@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Users, Wifi, Coffee, Car } from "lucide-react";
+import { Users } from "lucide-react";
 
 const RoomsSection = () => {
   const [selectedProperty, setSelectedProperty] = useState("travellers");
@@ -17,7 +17,7 @@ const RoomsSection = () => {
         type: "Mixed",
         amenities: ["Free WiFi", "AC", "Lockers", "Common Area"],
         availability: 3,
-        images: [] // Ready for Supabase URLs
+        images: []
       },
       {
         name: "6 Bed Female/Mixed Dormitory",
@@ -26,7 +26,7 @@ const RoomsSection = () => {
         type: "Female/Mixed",
         amenities: ["Free WiFi", "AC", "Lockers", "Private Bathroom"],
         availability: 2,
-        images: [] // Ready for Supabase URLs
+        images: []
       },
       {
         name: "4 Bed Female/Mixed Dormitory",
@@ -35,7 +35,7 @@ const RoomsSection = () => {
         type: "Female/Mixed",
         amenities: ["Free WiFi", "AC", "Lockers", "Premium Bedding"],
         availability: 1,
-        images: [] // Ready for Supabase URLs
+        images: []
       }
     ],
     luxury: [
@@ -46,7 +46,7 @@ const RoomsSection = () => {
         type: "Private",
         amenities: ["King Bed", "Private Bathroom", "AC", "Mini Fridge", "Balcony"],
         availability: 2,
-        images: [] // Ready for Supabase URLs
+        images: []
       },
       {
         name: "King Triple Room",
@@ -55,7 +55,7 @@ const RoomsSection = () => {
         type: "Private",
         amenities: ["King Bed", "Single Bed", "Private Bathroom", "AC", "Sea View"],
         availability: 1,
-        images: [] // Ready for Supabase URLs
+        images: []
       }
     ]
   };
@@ -71,7 +71,7 @@ const RoomsSection = () => {
             Choose from our comfortable accommodations designed for every type of traveler
           </p>
 
-          {/* Property Selector */}
+          {/* Property Selector - Center Aligned */}
           <div className="flex justify-center gap-4 mb-12">
             <Button
               variant={selectedProperty === "travellers" ? "default" : "outline"}
@@ -96,57 +96,60 @@ const RoomsSection = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {roomTypes[selectedProperty].map((room, index) => (
-            <Card key={index} className="backdrop-blur-lg bg-white/10 border border-white/20 hover:bg-white/15 transition-all duration-300 overflow-hidden group">
-              {/* Room Image Placeholder - Ready for Supabase URLs */}
-              <div className="h-48 bg-gradient-to-br from-slate-700 to-slate-600 flex items-center justify-center">
-                <div className="text-gray-400 text-center">
-                  <div className="w-16 h-16 mx-auto mb-2 bg-white/10 rounded-lg flex items-center justify-center">
-                    <Users className="h-8 w-8" />
-                  </div>
-                  <p className="text-sm">Room images will appear here</p>
-                  <p className="text-xs">from Supabase bucket</p>
-                </div>
-              </div>
-
-              <CardHeader>
-                <div className="flex justify-between items-start">
-                  <CardTitle className="text-xl font-bold text-white">
-                    {room.name}
-                  </CardTitle>
-                  <Badge variant="secondary" className="bg-teal-500/20 text-teal-300">
-                    {room.availability} available
-                  </Badge>
-                </div>
-                <CardDescription className="text-gray-300">
-                  {room.type} • {room.capacity} guests
-                </CardDescription>
-              </CardHeader>
-
-              <CardContent>
-                <div className="mb-4">
-                  <div className="flex flex-wrap gap-2">
-                    {room.amenities.map((amenity, i) => (
-                      <Badge key={i} variant="outline" className="border-white/20 text-gray-300 text-xs">
-                        {amenity}
-                      </Badge>
-                    ))}
+        {/* Room Cards - Center Aligned Grid */}
+        <div className="flex justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl">
+            {roomTypes[selectedProperty].map((room, index) => (
+              <Card key={index} className="backdrop-blur-xl bg-white/10 border border-white/20 hover:bg-white/15 transition-all duration-300 overflow-hidden group hover:scale-105">
+                {/* Room Image Placeholder */}
+                <div className="h-48 bg-gradient-to-br from-slate-700 to-slate-600 flex items-center justify-center">
+                  <div className="text-gray-400 text-center">
+                    <div className="w-16 h-16 mx-auto mb-2 bg-white/10 rounded-lg flex items-center justify-center">
+                      <Users className="h-8 w-8" />
+                    </div>
+                    <p className="text-sm">Room images will appear here</p>
+                    <p className="text-xs">from Supabase bucket</p>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between">
-                  <div>
-                    <span className="text-2xl font-bold text-white">₹{room.price}</span>
-                    <span className="text-gray-400 text-sm">/night</span>
+                <CardHeader className="text-center">
+                  <div className="flex justify-between items-start mb-2">
+                    <CardTitle className="text-xl font-bold text-white flex-1 text-left">
+                      {room.name}
+                    </CardTitle>
+                    <Badge variant="secondary" className="bg-teal-500/20 text-teal-300">
+                      {room.availability} available
+                    </Badge>
                   </div>
-                  <Button className="bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-600 hover:to-blue-700 text-white">
-                    Book Now
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                  <CardDescription className="text-gray-300 text-center">
+                    {room.type} • {room.capacity} guests
+                  </CardDescription>
+                </CardHeader>
+
+                <CardContent className="text-center">
+                  <div className="mb-4">
+                    <div className="flex flex-wrap gap-2 justify-center">
+                      {room.amenities.map((amenity, i) => (
+                        <Badge key={i} variant="outline" className="border-white/20 text-gray-300 text-xs">
+                          {amenity}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="text-2xl font-bold text-white">₹{room.price}</span>
+                      <span className="text-gray-400 text-sm">/night</span>
+                    </div>
+                    <Button className="bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-600 hover:to-blue-700 text-white">
+                      Book Now
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </div>
     </section>

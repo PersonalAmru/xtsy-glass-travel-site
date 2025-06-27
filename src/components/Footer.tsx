@@ -11,15 +11,17 @@ const Footer = () => {
   ];
 
   return (
-    <footer id="contact" className="bg-slate-900/50 backdrop-blur-lg border-t border-white/10 py-16 px-4">
+    <footer id="contact" className="bg-slate-900/30 backdrop-blur-xl border-t border-white/10 py-16 px-4">
       <div className="container mx-auto max-w-6xl">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           
           {/* Company Info */}
           <div className="space-y-4">
-            <div className="w-32 h-8 bg-gradient-to-r from-teal-400 to-blue-500 rounded flex items-center justify-center">
-              <span className="text-white font-bold text-lg">XTSY</span>
-            </div>
+            <img 
+              src="https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/image-assets/Header/Color%20logo%20-%20no%20background.png"
+              alt="XTSY Logo"
+              className="h-12 w-auto"
+            />
             <p className="text-gray-400 text-sm">
               Your gateway to unforgettable adventures. Experience comfort, community, and convenience at XTSY Travellers Hostel.
             </p>
@@ -27,7 +29,7 @@ const Footer = () => {
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-gray-400 hover:text-white hover:bg-white/10 p-2"
+                className="text-gray-400 hover:text-white hover:bg-white/10 p-2 backdrop-blur-sm"
                 onClick={() => window.open("https://instagram.com/xtsy.one", "_blank")}
               >
                 <Instagram className="h-5 w-5" />
@@ -42,8 +44,8 @@ const Footer = () => {
               <div className="flex items-center gap-3 text-gray-400">
                 <Phone className="h-4 w-4" />
                 <div>
-                  <p className="text-sm">+91 98636 27070</p>
-                  <p className="text-sm">+91 88373 17070</p>
+                  <p className="text-sm hover:text-white transition-colors">+91 98636 27070</p>
+                  <p className="text-sm hover:text-white transition-colors">+91 88373 17070</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 text-gray-400">
@@ -92,7 +94,7 @@ const Footer = () => {
               <a href="#reviews" className="block text-gray-400 hover:text-white transition-colors text-sm">
                 Reviews
               </a>
-              <Button className="mt-4 bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-600 hover:to-blue-700 text-white font-semibold text-sm">
+              <Button className="mt-4 bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-600 hover:to-blue-700 text-white font-semibold text-sm backdrop-blur-sm">
                 Book Now for Exclusive Offers
               </Button>
             </div>

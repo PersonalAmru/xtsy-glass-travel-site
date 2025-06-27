@@ -6,6 +6,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 
 const AdventureSection = () => {
   const [openCards, setOpenCards] = useState({});
+  const [hoveredCard, setHoveredCard] = useState(null);
 
   const toggleCard = (cardId) => {
     setOpenCards(prev => ({
@@ -56,23 +57,36 @@ const AdventureSection = () => {
     }
   ];
 
-  const itineraries = [
+  const curatedDestinations = [
     {
-      title: "3-Day Beach Explorer",
+      title: "Meghalaya's Living Root Bridges",
       days: [
-        "Day 1: Check-in, Beach walk, Sunset viewing",
-        "Day 2: Water sports, Local food tour",
-        "Day 3: Shopping, Cultural sites, Departure"
-      ]
+        "Day 1: Arrival in Shillong, explore Police Bazaar and Ward's Lake",
+        "Day 2: Trek to Double Decker Living Root Bridge in Cherrapunji",
+        "Day 3: Visit Mawlynnong (Asia's cleanest village) and Dawki River",
+        "Day 4: Explore caves in Jaintia Hills and local tribal culture"
+      ],
+      highlight: "UNESCO Heritage Sites & Natural Wonders"
     },
     {
-      title: "7-Day Complete Experience",
+      title: "Sacred Groves & Waterfalls Experience",
       days: [
-        "Day 1-2: Arrival, Local orientation, Beach activities",
-        "Day 3-4: Adventure sports, Trekking",
-        "Day 5-6: Cultural immersion, Food tours",
-        "Day 7: Relaxation, Shopping, Departure"
-      ]
+        "Day 1-2: Shillong sightseeing - Elephant Falls, Shillong Peak",
+        "Day 3-4: Cherrapunji - Nohkalikai Falls, Seven Sisters Falls",
+        "Day 5-6: Mawsynram wettest place exploration",
+        "Day 7: Sacred groves conservation experience with Khasi tribes"
+      ],
+      highlight: "Biodiversity Hotspot & Cultural Immersion"
+    },
+    {
+      title: "Adventure Sports in Meghalaya",
+      days: [
+        "Day 1: River rafting in Umngot River, Dawki",
+        "Day 2: Rock climbing and rappelling in East Khasi Hills",
+        "Day 3: Caving expedition in Krem Liat Prah cave system",
+        "Day 4: Zip-lining and canopy walks in Mawphlang Sacred Forest"
+      ],
+      highlight: "Adrenaline Rush in Northeast India"
     }
   ];
 
@@ -88,10 +102,17 @@ const AdventureSection = () => {
           </p>
         </div>
 
-        {/* Adventure Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        {/* Adventure Cards with Hover Effects */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           {adventureData.map((item) => (
-            <Card key={item.id} className="backdrop-blur-lg bg-white/10 border border-white/20">
+            <Card 
+              key={item.id} 
+              className={`backdrop-blur-xl bg-white/10 border border-white/20 transition-all duration-300 ${
+                hoveredCard === item.id ? 'bg-white/20 scale-105 shadow-2xl' : 'hover:bg-white/15'
+              }`}
+              onMouseEnter={() => setHoveredCard(item.id)}
+              onMouseLeave={() => setHoveredCard(null)}
+            >
               <Collapsible
                 open={openCards[item.id]}
                 onOpenChange={() => toggleCard(item.id)}
@@ -100,7 +121,9 @@ const AdventureSection = () => {
                   <CardHeader className="cursor-pointer hover:bg-white/5 transition-colors duration-200">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 bg-gradient-to-r from-teal-500 to-blue-600 rounded-lg flex items-center justify-center">
+                        <div className={`w-12 h-12 bg-gradient-to-r from-teal-500 to-blue-600 rounded-lg flex items-center justify-center transition-transform duration-300 ${
+                          hoveredCard === item.id ? 'scale-110' : ''
+                        }`}>
                           <item.icon className="h-6 w-6 text-white" />
                         </div>
                         <div>
@@ -137,30 +160,49 @@ const AdventureSection = () => {
           ))}
         </div>
 
-        {/* Sample Itineraries */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <h3 className="col-span-full text-2xl font-bold text-white text-center mb-6">
-            Sample Itineraries
-          </h3>
-          {itineraries.map((itinerary, index) => (
-            <Card key={index} className="backdrop-blur-lg bg-white/10 border border-white/20">
-              <CardHeader>
-                <CardTitle className="text-xl font-bold text-white">
-                  {itinerary.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3">
-                  {itinerary.days.map((day, dayIndex) => (
-                    <li key={dayIndex} className="text-gray-300 text-sm flex items-start gap-2">
-                      <span className="w-2 h-2 bg-teal-400 rounded-full mt-2 flex-shrink-0"></span>
-                      {day}
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          ))}
+        {/* Curated Itineraries */}
+        <div className="space-y-8">
+          <div className="text-center">
+            <h3 className="text-3xl font-bold text-white mb-4 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent">
+              Curated Itineraries and Destinations
+            </h3>
+            <p className="text-lg text-gray-400 mb-8">
+              Explore the mystical beauty of Northeast India with our specially crafted experiences
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {curatedDestinations.map((itinerary, index) => (
+              <Card 
+                key={index} 
+                className="backdrop-blur-xl bg-white/10 border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105 group"
+              >
+                <CardHeader>
+                  <CardTitle className="text-xl font-bold text-white">
+                    {itinerary.title}
+                  </CardTitle>
+                  <div className="inline-block px-3 py-1 bg-gradient-to-r from-teal-500/20 to-blue-600/20 rounded-full border border-teal-400/30">
+                    <span className="text-teal-300 text-sm font-medium">{itinerary.highlight}</span>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-3">
+                    {itinerary.days.map((day, dayIndex) => (
+                      <li key={dayIndex} className="text-gray-300 text-sm flex items-start gap-2">
+                        <span className="w-2 h-2 bg-teal-400 rounded-full mt-2 flex-shrink-0"></span>
+                        {day}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-6">
+                    <Button className="w-full bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-600 hover:to-blue-700 text-white font-semibold">
+                      Explore This Journey
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </div>
     </section>

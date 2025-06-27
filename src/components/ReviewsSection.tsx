@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { Star, Upload, Send } from "lucide-react";
+
+import { useState, useEffect } from "react";
+import { Star, Upload, Send, ChevronLeft, ChevronRight } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,6 +12,7 @@ const ReviewsSection = () => {
   const [hoveredRating, setHoveredRating] = useState(0);
   const [reviewText, setReviewText] = useState("");
   const [reviewerName, setReviewerName] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const existingReviews = [
     {
@@ -30,24 +32,47 @@ const ReviewsSection = () => {
       rating: 10,
       comment: "Best hostel experience ever! The convenience store and laundry services made my stay so comfortable.",
       date: "3 weeks ago"
+    },
+    {
+      name: "John Smith",
+      rating: 9,
+      comment: "Fantastic location and amazing views! The staff went above and beyond to make our stay memorable.",
+      date: "1 week ago"
+    },
+    {
+      name: "Lisa Wang",
+      rating: 8,
+      comment: "Great value for money and wonderful facilities. The common areas are perfect for meeting other travelers.",
+      date: "2 months ago"
     }
   ];
+
+  const nextReview = () => {
+    setCurrentIndex((prev) => (prev + 1) % Math.ceil(existingReviews.length - 2));
+  };
+
+  const prevReview = () => {
+    setCurrentIndex((prev) => (prev - 1 + Math.ceil(existingReviews.length - 2)) % Math.ceil(existingReviews.length - 2));
+  };
+
+  useEffect(() => {
+    const interval = setInterval(nextReview, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleStarClick = (starValue) => {
     setRating(starValue);
   };
 
   const handleSubmitReview = () => {
-    // This will connect to Supabase to submit reviews
     console.log("Review submitted:", { rating, reviewText, reviewerName });
-    // Reset form
     setRating(0);
     setReviewText("");
     setReviewerName("");
   };
 
   return (
-    <section id="reviews" className="py-20 px-4">
+    <section id="reviews" className="py-20 px-4 relative">
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent">
@@ -58,29 +83,77 @@ const ReviewsSection = () => {
           </p>
         </div>
 
-        {/* Existing Reviews */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {existingReviews.map((review, index) => (
-            <Card key={index} className="backdrop-blur-lg bg-white/10 border border-white/20">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle className="text-lg font-semibold text-white">
-                    {review.name}
-                  </CardTitle>
-                  <div className="flex items-center gap-1">
-                    <span className="text-yellow-400 font-bold">{review.rating}</span>
-                    <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+        {/* Floating Carousel */}
+        <div className="relative mb-12">
+          <div className="overflow-hidden">
+            <div 
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            >
+              {Array.from({ length: Math.ceil(existingReviews.length - 2) }).map((_, slideIndex) => (
+                <div key={slideIndex} className="w-full flex-shrink-0">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
+                    {existingReviews.slice(slideIndex, slideIndex + 3).map((review, index) => (
+                      <Card 
+                        key={index} 
+                        className="backdrop-blur-xl bg-white/10 border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                      >
+                        <CardHeader>
+                          <div className="flex items-center justify-between">
+                            <CardTitle className="text-lg font-semibold text-white">
+                              {review.name}
+                            </CardTitle>
+                            <div className="flex items-center gap-1">
+                              <span className="text-yellow-400 font-bold">{review.rating}</span>
+                              <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                            </div>
+                          </div>
+                          <CardDescription className="text-gray-400 text-sm">
+                            {review.date}
+                          </CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-gray-300">{review.comment}</p>
+                        </CardContent>
+                      </Card>
+                    ))}
                   </div>
                 </div>
-                <CardDescription className="text-gray-400 text-sm">
-                  {review.date}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-300">{review.comment}</p>
-              </CardContent>
-            </Card>
-          ))}
+              ))}
+            </div>
+          </div>
+
+          {/* Navigation Buttons */}
+          <Button
+            variant="outline"
+            size="icon"
+            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/10 border-white/20 text-white hover:bg-white/20 backdrop-blur-sm"
+            onClick={prevReview}
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </Button>
+          
+          <Button
+            variant="outline"
+            size="icon"
+            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/10 border-white/20 text-white hover:bg-white/20 backdrop-blur-sm"
+            onClick={nextReview}
+          >
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+
+          {/* Dots Indicators */}
+          <div className="flex justify-center mt-6 gap-2">
+            {Array.from({ length: Math.ceil(existingReviews.length - 2) }).map((_, index) => (
+              <button
+                key={index}
+                className={`w-3 h-3 rounded-full transition-colors ${
+                  index === currentIndex ? 'bg-teal-400' : 'bg-white/30'
+                }`}
+                onClick={() => setCurrentIndex(index)}
+              />
+            ))}
+          </div>
         </div>
 
         {/* Submit Review Button */}
@@ -91,7 +164,7 @@ const ReviewsSection = () => {
                 Submit a Review
               </Button>
             </DialogTrigger>
-            <DialogContent className="backdrop-blur-lg bg-slate-900/95 border border-white/20 text-white max-w-md">
+            <DialogContent className="backdrop-blur-xl bg-slate-900/95 border border-white/20 text-white max-w-md">
               <DialogHeader>
                 <DialogTitle className="text-2xl font-bold text-center">Share Your Experience</DialogTitle>
                 <DialogDescription className="text-gray-400 text-center">
@@ -100,7 +173,6 @@ const ReviewsSection = () => {
               </DialogHeader>
 
               <div className="space-y-6 mt-6">
-                {/* Name Input */}
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">Your Name</label>
                   <Input
@@ -111,7 +183,6 @@ const ReviewsSection = () => {
                   />
                 </div>
 
-                {/* Rating Selection */}
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">Rating (1-10)</label>
                   <div className="flex gap-1">
@@ -136,7 +207,6 @@ const ReviewsSection = () => {
                   <p className="text-sm text-gray-400 mt-1">Selected: {rating}/10</p>
                 </div>
 
-                {/* Review Text */}
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">Your Review</label>
                   <Textarea
@@ -148,7 +218,6 @@ const ReviewsSection = () => {
                   />
                 </div>
 
-                {/* Image/Video Upload */}
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">Add Photos/Videos (Optional)</label>
                   <Button variant="outline" className="w-full border-white/20 text-gray-300 hover:bg-white/10">
@@ -158,7 +227,6 @@ const ReviewsSection = () => {
                   <p className="text-xs text-gray-400 mt-1">Images and videos will be stored in Supabase</p>
                 </div>
 
-                {/* Submit Button */}
                 <Button
                   onClick={handleSubmitReview}
                   disabled={!rating || !reviewText.trim() || !reviewerName.trim()}
