@@ -3,7 +3,7 @@ import { Star, Upload, Send } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { textarea } from "@/components/ui/textarea";
+import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 const ReviewsSection = () => {
@@ -139,7 +139,7 @@ const ReviewsSection = () => {
                 {/* Review Text */}
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">Your Review</label>
-                  <textarea
+                  <Textarea
                     value={reviewText}
                     onChange={(e) => setReviewText(e.target.value)}
                     placeholder="Tell us about your experience..."
