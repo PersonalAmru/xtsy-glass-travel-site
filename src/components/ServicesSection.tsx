@@ -8,25 +8,29 @@ const ServicesSection = () => {
       icon: Car,
       title: "Free Taxi",
       description: "Complimentary taxi service for groups of 4 or more guests",
-      details: "Enjoy hassle-free transportation to and from major attractions"
+      details: "Enjoy hassle-free transportation to and from major attractions",
+      gradient: "from-blue-500 to-cyan-500"
     },
     {
       icon: Clock,
       title: "24/7 Travel Assistance",
       description: "Round-the-clock support for all your travel needs",
-      details: "Our dedicated team is always available to help you"
+      details: "Our dedicated team is always available to help you",
+      gradient: "from-purple-500 to-pink-500"
     },
     {
       icon: ShoppingBag,
       title: "In-House Convenience Store",
       description: "Everything you need right at your fingertips",
-      details: "Snacks, drinks, toiletries, and travel essentials available 24/7"
+      details: "Snacks, drinks, toiletries, and travel essentials available 24/7",
+      gradient: "from-green-500 to-emerald-500"
     },
     {
       icon: Shirt,
       title: "Laundry Services",
       description: "Professional laundry and dry cleaning services",
-      details: "Keep your clothes fresh during your extended stay"
+      details: "Keep your clothes fresh during your extended stay",
+      gradient: "from-orange-500 to-red-500"
     }
   ];
 
@@ -46,8 +50,11 @@ const ServicesSection = () => {
           {services.map((service, index) => (
             <Card key={index} className="backdrop-blur-lg bg-white/10 border border-white/20 hover:bg-white/15 transition-all duration-300 group">
               <CardHeader className="text-center pb-4">
-                <div className="mx-auto w-16 h-16 bg-gradient-to-r from-teal-500 to-blue-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <service.icon className="h-8 w-8 text-white" />
+                <div className={`mx-auto w-20 h-20 bg-gradient-to-r ${service.gradient} rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-2xl relative`}>
+                  {/* 3D Effect */}
+                  <div className={`absolute inset-0 bg-gradient-to-r ${service.gradient} rounded-2xl blur-md opacity-60 scale-110`}></div>
+                  <div className={`absolute inset-0 bg-gradient-to-br from-white/30 to-transparent rounded-2xl`}></div>
+                  <service.icon className="h-10 w-10 text-white relative z-10 drop-shadow-lg" />
                 </div>
                 <CardTitle className="text-xl font-bold text-white">
                   {service.title}
