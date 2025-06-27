@@ -1,8 +1,8 @@
-
 import { useState } from "react";
 import { ChevronDown, ChevronUp, MapPin, Camera, Compass } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { Button } from "@/components/ui/button";
 
 const AdventureSection = () => {
   const [openCards, setOpenCards] = useState({});
