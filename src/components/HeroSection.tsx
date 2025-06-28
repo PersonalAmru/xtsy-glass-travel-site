@@ -42,39 +42,75 @@ const HeroSection = () => {
 
   // Get today's date in YYYY-MM-DD format
   const today = new Date().toISOString().split('T')[0];
+  
+  // Get tomorrow's date for minimum checkout
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const tomorrowStr = tomorrow.toISOString().split('T')[0];
 
   return (
     <>
-      <section id="home" className="relative min-h-screen flex flex-col justify-end px-4 pt-16 pb-12 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-        {/* Background Image */}
+      <section id="home" className="relative min-h-screen flex flex-col justify-end px-4 pt-16 pb-8 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
+        {/* Enhanced Background with animations */}
         <div className="absolute inset-0">
           <img 
             src="https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/image-assets/Hero/DJI_20250324_105854_074.jpg"
             alt="Hero Background"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/60 via-slate-800/40 to-slate-900/60"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/70 via-slate-800/50 to-slate-900/70 animate-pulse"></div>
+          {/* Floating particles effect */}
+          <div className="absolute inset-0">
+            {[...Array(6)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute w-2 h-2 bg-white/20 rounded-full animate-bounce"
+                style={{
+                  left: `${20 + i * 15}%`,
+                  top: `${30 + i * 10}%`,
+                  animationDelay: `${i * 0.5}s`,
+                  animationDuration: `${2 + i * 0.3}s`
+                }}
+              />
+            ))}
+          </div>
         </div>
 
         <div className="relative z-10 w-full max-w-6xl mx-auto">
-          {/* Hero Text - Centered with floating Hello and modern fonts */}
+          {/* Tagline - Top Center */}
           <div className="text-center mb-8">
-            <div className="mb-6">
-              <span className="text-5xl md:text-7xl font-bold text-white transition-all duration-700 ease-in-out transform hover:scale-110" style={{ fontFamily: "'Inter', 'Helvetica Neue', sans-serif", textShadow: '2px 2px 8px rgba(0,0,0,0.5)' }}>
+            <h2 
+              className="text-2xl md:text-3xl font-bold text-white mb-8 bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent animate-pulse"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              Live the Shillong Vibe
+            </h2>
+          </div>
+
+          {/* Hero Text - Smaller and centered */}
+          <div className="text-center mb-12">
+            <div className="mb-4">
+              <span 
+                className="text-3xl md:text-4xl font-bold text-white transition-all duration-700 ease-in-out transform hover:scale-110" 
+                style={{ fontFamily: "'Josefin Sans', sans-serif", textShadow: '2px 2px 8px rgba(0,0,0,0.5)' }}
+              >
                 {helloMessages[currentHelloIndex]}
               </span>
             </div>
-            <h1 className="text-6xl md:text-8xl font-bold text-white mb-8 bg-gradient-to-r from-teal-400 via-blue-400 to-purple-400 bg-clip-text text-transparent animate-pulse" style={{ fontFamily: "'Playfair Display', 'Georgia', serif", textShadow: '2px 2px 8px rgba(0,0,0,0.3)' }}>
+            <h1 
+              className="text-5xl md:text-6xl font-bold text-white mb-6 bg-gradient-to-r from-teal-400 via-blue-400 to-purple-400 bg-clip-text text-transparent animate-pulse" 
+              style={{ fontFamily: "'Cormorant Garmond', serif", textShadow: '2px 2px 8px rgba(0,0,0,0.3)' }}
+            >
               XTSY
             </h1>
           </div>
 
-          {/* Booking Form - Bottom Aligned, Simple without background blur */}
-          <div className="bg-gradient-to-r from-orange-500/30 to-red-600/30 border-2 border-orange-400/50 rounded-3xl p-8 shadow-2xl max-w-5xl mx-auto backdrop-blur-sm">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 items-end">
-              <div className="space-y-3">
-                <label className="text-sm font-bold text-white flex items-center gap-2 font-['Inter']">
-                  <Calendar className="h-5 w-5" />
+          {/* Booking Form - Smaller and bottom aligned */}
+          <div className="bg-gradient-to-r from-orange-500/20 to-red-600/20 border border-orange-400/30 rounded-2xl p-6 shadow-2xl max-w-4xl mx-auto backdrop-blur-sm">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-white flex items-center gap-2" style={{ fontFamily: "'Inter', sans-serif" }}>
+                  <Calendar className="h-4 w-4" />
                   CHECK-IN
                 </label>
                 <Input
@@ -82,33 +118,33 @@ const HeroSection = () => {
                   value={checkIn}
                   min={today}
                   onChange={(e) => setCheckIn(e.target.value)}
-                  className="bg-white/95 border-orange-300/60 text-black placeholder-gray-600 h-14 text-lg font-semibold rounded-xl"
+                  className="bg-white/95 border-orange-300/60 text-black placeholder-gray-600 h-12 text-sm font-semibold rounded-lg"
                 />
               </div>
               
-              <div className="space-y-3">
-                <label className="text-sm font-bold text-white flex items-center gap-2 font-['Inter']">
-                  <Calendar className="h-5 w-5" />
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-white flex items-center gap-2" style={{ fontFamily: "'Inter', sans-serif" }}>
+                  <Calendar className="h-4 w-4" />
                   CHECK-OUT
                 </label>
                 <Input
                   type="date"
                   value={checkOut}
-                  min={checkIn || today}
+                  min={checkIn ? (new Date(new Date(checkIn).getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]) : tomorrowStr}
                   onChange={(e) => setCheckOut(e.target.value)}
-                  className="bg-white/95 border-orange-300/60 text-black placeholder-gray-600 h-14 text-lg font-semibold rounded-xl"
+                  className="bg-white/95 border-orange-300/60 text-black placeholder-gray-600 h-12 text-sm font-semibold rounded-lg"
                 />
               </div>
               
-              <div className="space-y-3">
-                <label className="text-sm font-bold text-white flex items-center gap-2 font-['Inter']">
-                  <Users className="h-5 w-5" />
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-white flex items-center gap-2" style={{ fontFamily: "'Inter', sans-serif" }}>
+                  <Users className="h-4 w-4" />
                   GUESTS
                 </label>
                 <select
                   value={guests}
                   onChange={(e) => setGuests(e.target.value)}
-                  className="w-full px-4 py-4 h-14 bg-white/95 border-2 border-orange-300/60 rounded-xl text-black text-lg font-semibold"
+                  className="w-full px-3 py-3 h-12 bg-white/95 border-2 border-orange-300/60 rounded-lg text-black text-sm font-semibold"
                 >
                   {Array.from({length: 50}, (_, i) => i + 1).map(num => (
                     <option key={num} value={num} className="bg-white text-black font-semibold">{num}</option>
@@ -118,9 +154,10 @@ const HeroSection = () => {
               
               <Button 
                 onClick={handleSearch}
-                className="h-14 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold text-xl px-10 border-3 border-orange-400/70 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 rounded-xl"
+                className="h-12 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold text-lg px-8 border-2 border-orange-400/70 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 rounded-lg"
+                style={{ fontFamily: "'Inter', sans-serif" }}
               >
-                <Search className="h-6 w-6 mr-3" />
+                <Search className="h-5 w-5 mr-2" />
                 Search
               </Button>
             </div>

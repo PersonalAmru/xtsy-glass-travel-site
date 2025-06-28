@@ -29,15 +29,15 @@ const ServicesSection = () => {
       icon: ShoppingBag,
       title: "In-House Convenience Store",
       description: "Everything you need right at your fingertips",
-      details: "Our well-stocked convenience store offers snacks, drinks, toiletries, travel essentials, local souvenirs, and emergency supplies. Open 24/7 for your convenience, so you never have to worry about running out of essentials during your stay.",
+      details: "Our well-stocked convenience store offers snacks, drinks, travel essentials and emergency supplies. Open 24/7 for your convenience, so you never have to worry about running out of essentials during your stay.",
       gradient: "from-green-500 to-emerald-500"
     },
     {
       id: "laundry",
       icon: Shirt,
       title: "Laundry Services",
-      description: "Professional laundry and dry cleaning services",
-      details: "Keep your clothes fresh during your extended stay with our professional laundry services. We offer same-day washing and drying, dry cleaning for delicate items, and express service for urgent needs. Eco-friendly detergents used for all cleaning processes.",
+      description: "Professional laundry meets Guest satisfaction!",
+      details: "Keep your clothes fresh during your extended stay express laundry service for urgent needs. We use Eco-friendly detergents and Our staffs are trained to handle your items with love and care.",
       gradient: "from-orange-500 to-red-500"
     }
   ];
@@ -45,29 +45,46 @@ const ServicesSection = () => {
   const activeService = services.find(service => service.id === activeTab);
 
   return (
-    <section id="services" className="py-20 px-4 bg-gradient-to-br from-slate-900/30 via-slate-800/30 to-slate-900/30">
-      <div className="container mx-auto max-w-6xl">
+    <section id="services" className="py-20 px-4 bg-gradient-to-br from-slate-900/30 via-slate-800/30 to-slate-900/30 relative overflow-hidden">
+      {/* Background animations */}
+      <div className="absolute inset-0">
+        {[...Array(5)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-24 h-24 bg-gradient-to-r from-teal-400/10 to-blue-400/10 rounded-full blur-xl animate-pulse"
+            style={{
+              right: `${5 + i * 20}%`,
+              top: `${10 + i * 20}%`,
+              animationDelay: `${i * 0.8}s`,
+              animationDuration: `${4 + i * 0.3}s`
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent font-['Poppins']">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent" style={{ fontFamily: "'Cormorant Garmond', serif" }}>
             Our Services
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto font-['Inter']">
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto" style={{ fontFamily: "'Inter', sans-serif" }}>
             Experience comfort and convenience with our premium hostel services designed for modern travelers
           </p>
         </div>
 
-        {/* Tab Toggle Buttons */}
+        {/* Enhanced Tab Toggle Buttons */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
           {services.map((service) => (
             <Button
               key={service.id}
               variant={activeTab === service.id ? "default" : "outline"}
               onClick={() => setActiveTab(service.id)}
-              className={`px-8 py-4 font-bold transition-all duration-300 text-base ${
+              className={`px-8 py-4 font-bold transition-all duration-300 text-base border-2 ${
                 activeTab === service.id
-                  ? "bg-gradient-to-r from-teal-500 to-blue-600 text-white shadow-xl border-0 scale-105"
-                  : "border-white/20 text-gray-300 hover:bg-white/10 hover:border-white/40 hover:scale-105"
+                  ? "bg-gradient-to-r from-teal-500 to-blue-600 text-white shadow-xl border-teal-400 scale-105 transform"
+                  : "border-teal-300/60 text-white bg-slate-800/60 hover:bg-slate-700/80 hover:border-teal-400/80 hover:scale-105 hover:text-teal-200 backdrop-blur-sm"
               }`}
+              style={{ fontFamily: "'Inter', sans-serif" }}
             >
               <service.icon className="h-5 w-5 mr-3" />
               {service.title}
@@ -77,7 +94,7 @@ const ServicesSection = () => {
 
         {/* Active Service Content */}
         {activeService && (
-          <Card className="backdrop-blur-xl bg-white/10 border border-white/20 max-w-4xl mx-auto transform hover:scale-105 transition-all duration-300">
+          <Card className="backdrop-blur-xl bg-white/10 border border-white/20 max-w-4xl mx-auto transform hover:scale-105 transition-all duration-300 shadow-2xl">
             <CardHeader className="text-center pb-4">
               <div className={`mx-auto w-28 h-28 bg-gradient-to-r ${activeService.gradient} rounded-3xl flex items-center justify-center mb-6 shadow-2xl relative transform hover:rotate-3 transition-transform duration-300`}>
                 <div className={`absolute inset-0 bg-gradient-to-r ${activeService.gradient} rounded-3xl blur-xl opacity-60 scale-110`}></div>
@@ -85,15 +102,15 @@ const ServicesSection = () => {
                 <div className={`absolute inset-1 bg-gradient-to-tl from-black/20 to-transparent rounded-3xl`}></div>
                 <activeService.icon className="h-14 w-14 text-white relative z-10 drop-shadow-lg" />
               </div>
-              <CardTitle className="text-3xl font-bold text-white mb-2 font-['Poppins']">
+              <CardTitle className="text-3xl font-bold text-white mb-2" style={{ fontFamily: "'Cormorant Garmond', serif" }}>
                 {activeService.title}
               </CardTitle>
-              <CardDescription className="text-gray-300 text-lg font-['Inter']">
+              <CardDescription className="text-gray-300 text-lg" style={{ fontFamily: "'Inter', sans-serif" }}>
                 {activeService.description}
               </CardDescription>
             </CardHeader>
             <CardContent className="text-center">
-              <p className="text-gray-300 text-base leading-relaxed font-['Inter']">
+              <p className="text-gray-300 text-base leading-relaxed" style={{ fontFamily: "'Inter', sans-serif" }}>
                 {activeService.details}
               </p>
             </CardContent>

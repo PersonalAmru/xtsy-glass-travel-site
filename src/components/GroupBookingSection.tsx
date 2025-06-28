@@ -28,18 +28,18 @@ const GroupBookingSection = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Format the message for WhatsApp
-    const message = `🏨 *Group/Entire Property Booking Inquiry*
+    // Format the message for WhatsApp without emojis
+    const message = `Group/Entire Property Booking Inquiry
 
-👤 *Name:* ${formData.name}
-📧 *Email:* ${formData.email}
-📱 *Phone:* ${formData.phone}
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
 
-📅 *Check-in Date:* ${formData.checkIn}
-📅 *Check-out Date:* ${formData.checkOut}
-👥 *Number of Guests:* ${formData.guests}
+Check-in Date: ${formData.checkIn}
+Check-out Date: ${formData.checkOut}
+Number of Guests: ${formData.guests}
 
-📝 *Additional Requirements:*
+Additional Requirements:
 ${formData.requirements}
 
 Looking forward to your response!`;
@@ -55,20 +55,36 @@ Looking forward to your response!`;
   const today = new Date().toISOString().split('T')[0];
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-br from-slate-900/60 via-slate-800/60 to-slate-900/60">
-      <div className="container mx-auto max-w-4xl">
+    <section className="py-20 px-4 bg-gradient-to-br from-slate-900/60 via-slate-800/60 to-slate-900/60 relative overflow-hidden">
+      {/* Background animations */}
+      <div className="absolute inset-0">
+        {[...Array(4)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-36 h-36 bg-gradient-to-r from-green-400/10 to-teal-400/10 rounded-full blur-xl animate-pulse"
+            style={{
+              right: `${5 + i * 25}%`,
+              bottom: `${10 + i * 20}%`,
+              animationDelay: `${i * 1.2}s`,
+              animationDuration: `${5 + i * 0.5}s`
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="container mx-auto max-w-4xl relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 bg-gradient-to-r from-green-400 to-teal-400 bg-clip-text text-transparent font-['Poppins']">
-            Group Booking & Entire Property
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 bg-gradient-to-r from-green-400 to-teal-400 bg-clip-text text-transparent" style={{ fontFamily: "'Cormorant Garmond', serif" }}>
+            Group & Entire Property Booking
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto font-['Inter']">
-            Planning a group trip or need the entire property? Let us know your requirements and we'll get back to you!
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto" style={{ fontFamily: "'Inter', sans-serif" }}>
+            Planning for a group trip or looking for the entire property for your special events? Let us know your requirements and we'll get back to you!
           </p>
         </div>
 
-        <Card className="backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl">
+        <Card className="backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl transform hover:scale-105 transition-all duration-300">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-bold text-white mb-4 font-['Poppins']">
+            <CardTitle className="text-2xl font-bold text-white mb-4" style={{ fontFamily: "'Cormorant Garmond', serif" }}>
               Get a Custom Quote
             </CardTitle>
           </CardHeader>
@@ -76,7 +92,7 @@ Looking forward to your response!`;
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-white font-['Inter']">Full Name *</label>
+                  <label className="text-sm font-bold text-white" style={{ fontFamily: "'Inter', sans-serif" }}>Full Name *</label>
                   <Input
                     name="name"
                     value={formData.name}
@@ -88,7 +104,7 @@ Looking forward to your response!`;
                 </div>
                 
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-white font-['Inter']">Email Address *</label>
+                  <label className="text-sm font-bold text-white" style={{ fontFamily: "'Inter', sans-serif" }}>Email Address *</label>
                   <Input
                     name="email"
                     type="email"
@@ -102,7 +118,7 @@ Looking forward to your response!`;
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-bold text-white font-['Inter']">Phone Number *</label>
+                <label className="text-sm font-bold text-white" style={{ fontFamily: "'Inter', sans-serif" }}>Phone Number *</label>
                 <Input
                   name="phone"
                   type="tel"
@@ -116,7 +132,7 @@ Looking forward to your response!`;
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-white flex items-center gap-2 font-['Inter']">
+                  <label className="text-sm font-bold text-white flex items-center gap-2" style={{ fontFamily: "'Inter', sans-serif" }}>
                     <Calendar className="h-4 w-4" />
                     Check-in Date *
                   </label>
@@ -132,7 +148,7 @@ Looking forward to your response!`;
                 </div>
                 
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-white flex items-center gap-2 font-['Inter']">
+                  <label className="text-sm font-bold text-white flex items-center gap-2" style={{ fontFamily: "'Inter', sans-serif" }}>
                     <Calendar className="h-4 w-4" />
                     Check-out Date *
                   </label>
@@ -148,7 +164,7 @@ Looking forward to your response!`;
                 </div>
                 
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-white flex items-center gap-2 font-['Inter']">
+                  <label className="text-sm font-bold text-white flex items-center gap-2" style={{ fontFamily: "'Inter', sans-serif" }}>
                     <Users className="h-4 w-4" />
                     Number of Guests *
                   </label>
@@ -166,7 +182,7 @@ Looking forward to your response!`;
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-bold text-white flex items-center gap-2 font-['Inter']">
+                <label className="text-sm font-bold text-white flex items-center gap-2" style={{ fontFamily: "'Inter', sans-serif" }}>
                   <MessageSquare className="h-4 w-4" />
                   Additional Requirements
                 </label>
@@ -183,11 +199,12 @@ Looking forward to your response!`;
                 <Button
                   type="submit"
                   className="bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 text-white font-bold text-xl px-12 py-4 rounded-xl shadow-2xl transform hover:scale-105 transition-all duration-300"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
                 >
                   <Send className="h-6 w-6 mr-3" />
                   Send via WhatsApp
                 </Button>
-                <p className="text-gray-400 text-sm mt-3 font-['Inter']">
+                <p className="text-gray-400 text-sm mt-3" style={{ fontFamily: "'Inter', sans-serif" }}>
                   You'll be redirected to WhatsApp with your details pre-filled
                 </p>
               </div>

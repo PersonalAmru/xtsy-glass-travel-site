@@ -35,7 +35,7 @@ const RoomsSection = () => {
       "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/image-assets/Rooms/XTSY%20Travellers%20Hostel/4%20Bed%20Female%20Only%20Dormitory/DJI_20250324_130728_735.jpg",
       "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/image-assets/Rooms/XTSY%20Travellers%20Hostel/4%20Bed%20Female%20Only%20Dormitory/DJI_20250324_131640_522.jpg",
       "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/image-assets/Rooms/XTSY%20Travellers%20Hostel/4%20Bed%20Female%20Only%20Dormitory/IMG_3956.JPG",
-      "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/image-assets/Rooms/XTSY%20Travellers%20Hostel/4%20Bed%20Female%20Only%20Dormitory/IMG_3962.JPG",
+      "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/image-assets/Rooms/XTSY%20Travellers%20Hostel/4%20Bed%20Female%20Only%20Dormitory/P1010930.JPG",
       "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/image-assets/Rooms/XTSY%20Travellers%20Hostel/4%20Bed%20Female%20Only%20Dormitory/IMG_4076.jpg"
     ],
     "king_double": [
@@ -57,7 +57,7 @@ const RoomsSection = () => {
     travellers: [
       {
         id: "8_bed",
-        name: "8 Bed In Mixed Only Dormitory",
+        name: "Bed In 8 Bed Mixed Dormitory",
         price: 555,
         capacity: 8,
         type: "Mixed",
@@ -66,7 +66,7 @@ const RoomsSection = () => {
       },
       {
         id: "6_bed",  
-        name: "6 Bed In Female/Mixed Dormitory",
+        name: "Bed In 6 Bed Female/Mixed Dormitory",
         price: 666,
         capacity: 6,
         type: "Female/Mixed",
@@ -75,7 +75,7 @@ const RoomsSection = () => {
       },
       {
         id: "4_bed_mixed",
-        name: "4 Bed In Female/Mixed Dormitory",
+        name: "Bed In 4 Bed Female/Mixed Dormitory",
         price: 777,
         capacity: 4,
         type: "Female/Mixed",
@@ -84,7 +84,7 @@ const RoomsSection = () => {
       },
       {
         id: "4_bed_female",
-        name: "4 Bed In Female Only Dormitory",
+        name: "Bed In 4 Bed Female Dormitory",
         price: 888,
         capacity: 4,
         type: "Female Only",
@@ -124,7 +124,7 @@ const RoomsSection = () => {
     ]
   };
 
-  // Auto-cycling images effect
+  // Auto-cycling images effect with fade
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex(prev => {
@@ -170,37 +170,55 @@ const RoomsSection = () => {
   };
 
   return (
-    <section id="rooms" className="py-20 px-4 bg-gradient-to-br from-slate-900/40 via-slate-800/40 to-slate-900/40">
-      <div className="container mx-auto max-w-6xl">
+    <section id="rooms" className="py-20 px-4 bg-gradient-to-br from-slate-900/40 via-slate-800/40 to-slate-900/40 relative overflow-hidden">
+      {/* Background animations */}
+      <div className="absolute inset-0">
+        {[...Array(6)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-20 h-20 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full blur-xl animate-pulse"
+            style={{
+              left: `${5 + i * 15}%`,
+              bottom: `${10 + i * 15}%`,
+              animationDelay: `${i * 0.6}s`,
+              animationDuration: `${3.5 + i * 0.4}s`
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent font-['Poppins']">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent" style={{ fontFamily: "'Cormorant Garmond', serif" }}>
             Our Rooms
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-8 font-['Inter']">
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-8" style={{ fontFamily: "'Inter', sans-serif" }}>
             Choose from our comfortable accommodations designed for every type of traveler
           </p>
 
-          {/* Property Selector */}
+          {/* Enhanced Property Selector */}
           <div className="flex justify-center gap-4 mb-12">
             <Button
               variant={selectedProperty === "travellers" ? "default" : "outline"}
               onClick={() => setSelectedProperty("travellers")}
-              className={`px-8 py-4 font-bold transition-all duration-300 text-base ${
+              className={`px-8 py-4 font-bold transition-all duration-300 text-base border-2 ${
                 selectedProperty === "travellers"
-                  ? "bg-gradient-to-r from-teal-500 to-blue-600 text-white shadow-xl scale-105"
-                  : "border-white/20 text-gray-300 hover:bg-white/10 hover:scale-105"
+                  ? "bg-gradient-to-r from-teal-500 to-blue-600 text-white shadow-xl border-teal-400 scale-105 transform"
+                  : "border-teal-300/60 text-white bg-slate-800/60 hover:bg-slate-700/80 hover:border-teal-400/80 hover:scale-105 hover:text-teal-200 backdrop-blur-sm"
               }`}
+              style={{ fontFamily: "'Inter', sans-serif" }}
             >
               XTSY Travellers Hostel
             </Button>
             <Button
               variant={selectedProperty === "luxury" ? "default" : "outline"}
               onClick={() => setSelectedProperty("luxury")}
-              className={`px-8 py-4 font-bold transition-all duration-300 text-base ${
+              className={`px-8 py-4 font-bold transition-all duration-300 text-base border-2 ${
                 selectedProperty === "luxury"
-                  ? "bg-gradient-to-r from-teal-500 to-blue-600 text-white shadow-xl scale-105"
-                  : "border-white/20 text-gray-300 hover:bg-white/10 hover:scale-105"
+                  ? "bg-gradient-to-r from-teal-500 to-blue-600 text-white shadow-xl border-teal-400 scale-105 transform"
+                  : "border-teal-300/60 text-white bg-slate-800/60 hover:bg-slate-700/80 hover:border-teal-400/80 hover:scale-105 hover:text-teal-200 backdrop-blur-sm"
               }`}
+              style={{ fontFamily: "'Inter', sans-serif" }}
             >
               XTSY Luxury
             </Button>
@@ -213,14 +231,14 @@ const RoomsSection = () => {
             {roomTypes[selectedProperty].map((room, index) => (
               <Card 
                 key={index} 
-                className="backdrop-blur-xl bg-white/10 border border-white/20 hover:bg-white/15 transition-all duration-300 overflow-hidden group hover:scale-105 transform-gpu"
+                className="backdrop-blur-xl bg-white/10 border border-white/20 hover:bg-white/15 transition-all duration-300 overflow-hidden group hover:scale-105 transform-gpu shadow-2xl"
               >
-                {/* Room Image with Manual Navigation */}
+                {/* Room Image with Manual Navigation and Fade Effect */}
                 <div className="h-48 relative overflow-hidden">
-                  {room.comingSoon ? (
+                  {room.comingSoon && room.id === "glass_sky" ? (
                     <div className="bg-gradient-to-br from-purple-700 to-indigo-600 flex items-center justify-center h-full relative">
                       <div className="text-white text-center">
-                        <div className="text-3xl font-bold mb-2 font-['Poppins']">Glass Sky Suite</div>
+                        <div className="text-3xl font-bold mb-2" style={{ fontFamily: "'Cormorant Garmond', serif" }}>Glass Sky Suite</div>
                         <Badge className="bg-yellow-500 text-black font-bold px-4 py-2 text-lg">
                           Coming Soon
                         </Badge>
@@ -231,7 +249,14 @@ const RoomsSection = () => {
                       <img 
                         src={room.images[currentImageIndex[room.id] || 0]}
                         alt={room.name}
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 opacity-0 animate-fade-in"
+                        style={{ 
+                          opacity: 1,
+                          transition: 'opacity 0.5s ease-in-out, transform 0.3s ease'
+                        }}
+                        onLoad={(e) => {
+                          e.target.style.opacity = 1;
+                        }}
                       />
                       
                       {/* Manual Navigation Buttons */}
@@ -242,7 +267,7 @@ const RoomsSection = () => {
                               e.stopPropagation();
                               prevImage(room.id);
                             }}
-                            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/75 text-white p-2 rounded-full transition-all duration-200"
+                            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/75 text-white p-2 rounded-full transition-all duration-200 z-10"
                           >
                             <ChevronLeft className="h-4 w-4" />
                           </button>
@@ -251,7 +276,7 @@ const RoomsSection = () => {
                               e.stopPropagation();
                               nextImage(room.id);
                             }}
-                            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/75 text-white p-2 rounded-full transition-all duration-200"
+                            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/75 text-white p-2 rounded-full transition-all duration-200 z-10"
                           >
                             <ChevronRight className="h-4 w-4" />
                           </button>
@@ -260,7 +285,7 @@ const RoomsSection = () => {
                       
                       {/* Image Dots Indicator */}
                       {room.images.length > 1 && (
-                        <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1">
+                        <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1 z-10">
                           {room.images.map((_, imgIndex) => (
                             <div
                               key={imgIndex}
@@ -288,16 +313,16 @@ const RoomsSection = () => {
 
                 <CardHeader className="text-center">
                   <div className="flex justify-between items-start mb-2">
-                    <CardTitle className="text-xl font-bold text-white flex-1 text-left font-['Poppins']">
+                    <CardTitle className="text-xl font-bold text-white flex-1 text-left" style={{ fontFamily: "'Cormorant Garmond', serif" }}>
                       {room.name}
                     </CardTitle>
-                    {room.comingSoon && (
+                    {room.comingSoon && room.id === "glass_sky" && (
                       <Badge className="bg-yellow-500 text-black font-bold">
                         Coming Soon
                       </Badge>
                     )}
                   </div>
-                  <CardDescription className="text-gray-300 text-center font-['Inter']">
+                  <CardDescription className="text-gray-300 text-center" style={{ fontFamily: "'Inter', sans-serif" }}>
                     {room.type} • {room.capacity} guests
                   </CardDescription>
                 </CardHeader>
@@ -306,7 +331,7 @@ const RoomsSection = () => {
                   <div className="mb-4">
                     <div className="flex flex-wrap gap-2 justify-center">
                       {room.amenities.map((amenity, i) => (
-                        <Badge key={i} variant="outline" className="border-white/20 text-gray-300 text-xs font-['Inter']">
+                        <Badge key={i} variant="outline" className="border-white/20 text-gray-300 text-xs" style={{ fontFamily: "'Inter', sans-serif" }}>
                           {amenity}
                         </Badge>
                       ))}
@@ -315,15 +340,16 @@ const RoomsSection = () => {
 
                   <div className="flex items-center justify-between">
                     <div>
-                      <span className="text-2xl font-bold text-white font-['Poppins']">₹{room.price}</span>
-                      <span className="text-gray-400 text-sm font-['Inter']">/night</span>
+                      <span className="text-2xl font-bold text-white" style={{ fontFamily: "'Cormorant Garmond', serif" }}>₹{room.price}</span>
+                      <span className="text-gray-400 text-sm" style={{ fontFamily: "'Inter', sans-serif" }}>/night</span>
                     </div>
                     <Button 
-                      className="bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-600 hover:to-blue-700 text-white font-bold"
+                      className="bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-600 hover:to-blue-700 text-white font-bold transition-all duration-300 transform hover:scale-105"
                       onClick={scrollToBooking}
-                      disabled={room.comingSoon}
+                      disabled={room.comingSoon && room.id === "glass_sky"}
+                      style={{ fontFamily: "'Inter', sans-serif" }}
                     >
-                      {room.comingSoon ? "Coming Soon" : "Book Now"}
+                      {room.comingSoon && room.id === "glass_sky" ? "Coming Soon" : "Book Now"}
                     </Button>
                   </div>
                 </CardContent>
