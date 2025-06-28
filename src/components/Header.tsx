@@ -14,8 +14,10 @@ const Header = () => {
     { name: "Home", href: "#home" },
     { name: "Deals & Offers", href: "#deals" },
     { name: "Services", href: "#services" },
-    { name: "Rooms", href: "#rooms" },
+    { name: "Our Properties", href: "#rooms" },
+    { name: "Gallery", href: "/gallery" },
     { name: "Reviews", href: "#reviews" },
+    { name: "About Us", href: "/about" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -39,8 +41,7 @@ const Header = () => {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-gray-300 hover:text-white transition-colors duration-200 font-medium"
-                  style={{ fontFamily: "'Inter', sans-serif" }}
+                  className="text-gray-300 hover:text-white transition-colors duration-200 font-medium font-seasons"
                 >
                   {item.name}
                 </a>
@@ -79,9 +80,8 @@ const Header = () => {
                   <a
                     key={item.name}
                     href={item.href}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 font-medium py-2"
+                    className="text-gray-300 hover:text-white transition-colors duration-200 font-medium py-2 font-seasons"
                     onClick={() => setIsMenuOpen(false)}
-                    style={{ fontFamily: "'Inter', sans-serif" }}
                   >
                     {item.name}
                   </a>

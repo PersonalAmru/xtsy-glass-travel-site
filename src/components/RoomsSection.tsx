@@ -7,6 +7,7 @@ import { Users, ChevronLeft, ChevronRight } from "lucide-react";
 const RoomsSection = () => {
   const [selectedProperty, setSelectedProperty] = useState("travellers");
   const [currentImageIndex, setCurrentImageIndex] = useState({});
+  const [imageLoading, setImageLoading] = useState({});
 
   const roomImages = {
     "8_bed": [
@@ -123,7 +124,7 @@ const RoomsSection = () => {
     ]
   };
 
-  // Auto-cycling images effect with fade
+  // Auto-cycling images effect with smooth fade
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex(prev => {
@@ -131,6 +132,7 @@ const RoomsSection = () => {
         Object.keys(roomImages).forEach(roomId => {
           const room = [...roomTypes.travellers, ...roomTypes.luxury].find(r => r.id === roomId);
           if (room && room.images.length > 0) {
+            setImageLoading(prevLoading => ({ ...prevLoading, [roomId]: true }));
             newIndex[roomId] = ((prev[roomId] || 0) + 1) % room.images.length;
           }
         });
@@ -169,29 +171,44 @@ const RoomsSection = () => {
   };
 
   return (
-    <section id="rooms" className="py-20 px-4 bg-gradient-to-br from-slate-900/40 via-slate-800/40 to-slate-900/40 relative overflow-hidden">
-      {/* Background animations */}
+    <section id="rooms" className="py-20 px-4 bg-gradient-to-br from-yellow-400/10 via-orange-400/15 to-red-400/10 relative overflow-hidden">
+      {/* Enhanced tropical background animations */}
       <div className="absolute inset-0">
-        {[...Array(6)].map((_, i) => (
+        {[...Array(8)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-20 h-20 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full blur-xl animate-pulse"
+            className="absolute w-24 h-24 bg-gradient-to-r from-yellow-400/15 to-orange-400/15 rounded-full blur-xl animate-pulse"
             style={{
-              left: `${5 + i * 15}%`,
-              bottom: `${10 + i * 15}%`,
+              left: `${5 + i * 12}%`,
+              bottom: `${10 + i * 12}%`,
               animationDelay: `${i * 0.6}s`,
               animationDuration: `${3.5 + i * 0.4}s`
             }}
           />
         ))}
+        {/* Palm leaf shadows */}
+        <div className="absolute top-0 left-0 w-full h-full opacity-10">
+          {[...Array(3)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-32 h-32 bg-gradient-to-br from-green-400/30 to-emerald-500/30 rounded-full blur-2xl animate-bounce"
+              style={{
+                right: `${5 + i * 30}%`,
+                top: `${10 + i * 25}%`,
+                animationDelay: `${i * 1.2}s`,
+                animationDuration: `${5 + i * 0.5}s`
+              }}
+            />
+          ))}
+        </div>
       </div>
 
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent" style={{ fontFamily: "'Cormorant Garmond', serif" }}>
-            Our Rooms
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent font-serif-sans">
+            Our Properties
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-8" style={{ fontFamily: "'Inter', sans-serif" }}>
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8 font-seasons">
             Choose from our comfortable accommodations designed for every type of traveler
           </p>
 
@@ -200,24 +217,22 @@ const RoomsSection = () => {
             <Button
               variant={selectedProperty === "travellers" ? "default" : "outline"}
               onClick={() => setSelectedProperty("travellers")}
-              className={`px-8 py-4 font-bold transition-all duration-300 text-base border-2 ${
+              className={`px-8 py-4 font-bold transition-all duration-300 text-base border-2 font-seasons ${
                 selectedProperty === "travellers"
                   ? "bg-gradient-to-r from-teal-500 to-blue-600 text-white shadow-xl border-teal-400 scale-105 transform"
                   : "border-teal-300/60 text-white bg-slate-800/60 hover:bg-slate-700/80 hover:border-teal-400/80 hover:scale-105 hover:text-teal-200 backdrop-blur-sm"
               }`}
-              style={{ fontFamily: "'Inter', sans-serif" }}
             >
               XTSY Travellers Hostel
             </Button>
             <Button
               variant={selectedProperty === "luxury" ? "default" : "outline"}
               onClick={() => setSelectedProperty("luxury")}
-              className={`px-8 py-4 font-bold transition-all duration-300 text-base border-2 ${
+              className={`px-8 py-4 font-bold transition-all duration-300 text-base border-2 font-seasons ${
                 selectedProperty === "luxury"
                   ? "bg-gradient-to-r from-teal-500 to-blue-600 text-white shadow-xl border-teal-400 scale-105 transform"
                   : "border-teal-300/60 text-white bg-slate-800/60 hover:bg-slate-700/80 hover:border-teal-400/80 hover:scale-105 hover:text-teal-200 backdrop-blur-sm"
               }`}
-              style={{ fontFamily: "'Inter', sans-serif" }}
             >
               XTSY Luxury
             </Button>
@@ -232,12 +247,12 @@ const RoomsSection = () => {
                 key={index} 
                 className="backdrop-blur-xl bg-white/10 border border-white/20 hover:bg-white/15 transition-all duration-300 overflow-hidden group hover:scale-105 transform-gpu shadow-2xl"
               >
-                {/* Room Image with Manual Navigation and Fade Effect */}
+                {/* Room Image with Enhanced Fade Effect */}
                 <div className="h-48 relative overflow-hidden">
                   {room.comingSoon && room.id === "glass_sky" ? (
                     <div className="bg-gradient-to-br from-purple-700 to-indigo-600 flex items-center justify-center h-full relative">
                       <div className="text-white text-center">
-                        <div className="text-3xl font-bold mb-2" style={{ fontFamily: "'Cormorant Garmond', serif" }}>Glass Sky Suite</div>
+                        <div className="text-3xl font-bold mb-2 font-serif-sans">Glass Sky Suite</div>
                         <Badge className="bg-yellow-500 text-black font-bold px-4 py-2 text-lg">
                           Coming Soon
                         </Badge>
@@ -248,14 +263,17 @@ const RoomsSection = () => {
                       <img 
                         src={room.images[currentImageIndex[room.id] || 0]}
                         alt={room.name}
-                        className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 opacity-0 animate-fade-in"
+                        className={`w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 ${
+                          imageLoading[room.id] ? 'opacity-0' : 'opacity-100'
+                        }`}
                         style={{ 
-                          opacity: 1,
-                          transition: 'opacity 0.5s ease-in-out, transform 0.3s ease'
+                          transition: 'opacity 1s ease-in-out, transform 0.3s ease'
                         }}
-                        onLoad={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.style.opacity = '1';
+                        onLoad={() => {
+                          setImageLoading(prev => ({ ...prev, [room.id]: false }));
+                        }}
+                        onLoadStart={() => {
+                          setImageLoading(prev => ({ ...prev, [room.id]: true }));
                         }}
                       />
                       
@@ -305,7 +323,7 @@ const RoomsSection = () => {
                         <div className="w-16 h-16 mx-auto mb-2 bg-white/10 rounded-lg flex items-center justify-center">
                           <Users className="h-8 w-8" />
                         </div>
-                        <p className="text-sm">Room images will appear here</p>
+                        <p className="text-sm font-seasons">Room images will appear here</p>
                       </div>
                     </div>
                   )}
@@ -313,7 +331,7 @@ const RoomsSection = () => {
 
                 <CardHeader className="text-center">
                   <div className="flex justify-between items-start mb-2">
-                    <CardTitle className="text-xl font-bold text-white flex-1 text-left" style={{ fontFamily: "'Cormorant Garmond', serif" }}>
+                    <CardTitle className="text-xl font-bold text-white flex-1 text-left font-serif-sans">
                       {room.name}
                     </CardTitle>
                     {room.comingSoon && room.id === "glass_sky" && (
@@ -322,7 +340,7 @@ const RoomsSection = () => {
                       </Badge>
                     )}
                   </div>
-                  <CardDescription className="text-gray-300 text-center" style={{ fontFamily: "'Inter', sans-serif" }}>
+                  <CardDescription className="text-gray-300 text-center font-seasons">
                     {room.type} • {room.capacity} guests
                   </CardDescription>
                 </CardHeader>
@@ -331,7 +349,7 @@ const RoomsSection = () => {
                   <div className="mb-4">
                     <div className="flex flex-wrap gap-2 justify-center">
                       {room.amenities.map((amenity, i) => (
-                        <Badge key={i} variant="outline" className="border-white/20 text-gray-300 text-xs" style={{ fontFamily: "'Inter', sans-serif" }}>
+                        <Badge key={i} variant="outline" className="border-white/20 text-gray-300 text-xs font-seasons">
                           {amenity}
                         </Badge>
                       ))}
@@ -340,14 +358,13 @@ const RoomsSection = () => {
 
                   <div className="flex items-center justify-between">
                     <div>
-                      <span className="text-2xl font-bold text-white" style={{ fontFamily: "'Cormorant Garmond', serif" }}>₹{room.price}</span>
-                      <span className="text-gray-400 text-sm" style={{ fontFamily: "'Inter', sans-serif" }}>/night</span>
+                      <span className="text-2xl font-bold text-white font-serif-sans">₹{room.price}</span>
+                      <span className="text-gray-400 text-sm font-seasons">/night</span>
                     </div>
                     <Button 
-                      className="bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-600 hover:to-blue-700 text-white font-bold transition-all duration-300 transform hover:scale-105"
+                      className="bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-600 hover:to-blue-700 text-white font-bold transition-all duration-300 transform hover:scale-105 font-seasons"
                       onClick={scrollToBooking}
                       disabled={room.comingSoon && room.id === "glass_sky"}
-                      style={{ fontFamily: "'Inter', sans-serif" }}
                     >
                       {room.comingSoon && room.id === "glass_sky" ? "Coming Soon" : "Book Now"}
                     </Button>

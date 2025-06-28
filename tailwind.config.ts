@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,6 +19,12 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'wildera': ['Wildera', 'Playfair Display', 'serif'],
+				'seasons': ['The Seasons', 'serif'],
+				'safira': ['Safira March', 'sans-serif'],
+				'serif-sans': ['Cormorant Garamond', 'serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
