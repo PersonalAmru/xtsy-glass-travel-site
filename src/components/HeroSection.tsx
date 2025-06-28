@@ -40,9 +40,12 @@ const HeroSection = () => {
     }
   };
 
+  // Get today's date in YYYY-MM-DD format
+  const today = new Date().toISOString().split('T')[0];
+
   return (
     <>
-      <section id="home" className="relative min-h-screen flex flex-col justify-end px-4 pt-16 pb-12">
+      <section id="home" className="relative min-h-screen flex flex-col justify-end px-4 pt-16 pb-12 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         {/* Background Image */}
         <div className="absolute inset-0">
           <img 
@@ -50,72 +53,74 @@ const HeroSection = () => {
             alt="Hero Background"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-slate-900/40"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/60 via-slate-800/40 to-slate-900/60"></div>
         </div>
 
         <div className="relative z-10 w-full max-w-6xl mx-auto">
           {/* Hero Text - Centered with floating Hello and modern fonts */}
           <div className="text-center mb-8">
-            <div className="mb-4">
-              <span className="text-4xl md:text-6xl font-bold text-white transition-all duration-500 ease-in-out transform" style={{ fontFamily: "'Inter', 'Helvetica Neue', sans-serif" }}>
+            <div className="mb-6">
+              <span className="text-5xl md:text-7xl font-bold text-white transition-all duration-700 ease-in-out transform hover:scale-110" style={{ fontFamily: "'Inter', 'Helvetica Neue', sans-serif", textShadow: '2px 2px 8px rgba(0,0,0,0.5)' }}>
                 {helloMessages[currentHelloIndex]}
               </span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent" style={{ fontFamily: "'Poppins', 'Inter', sans-serif" }}>
+            <h1 className="text-6xl md:text-8xl font-bold text-white mb-8 bg-gradient-to-r from-teal-400 via-blue-400 to-purple-400 bg-clip-text text-transparent animate-pulse" style={{ fontFamily: "'Playfair Display', 'Georgia', serif", textShadow: '2px 2px 8px rgba(0,0,0,0.3)' }}>
               XTSY
             </h1>
           </div>
 
           {/* Booking Form - Bottom Aligned, Simple without background blur */}
-          <div className="bg-gradient-to-r from-orange-500/20 to-red-600/20 border border-orange-400/30 rounded-2xl p-6 shadow-xl max-w-5xl mx-auto backdrop-blur-none">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-white flex items-center gap-2">
-                  <Calendar className="h-4 w-4" />
+          <div className="bg-gradient-to-r from-orange-500/30 to-red-600/30 border-2 border-orange-400/50 rounded-3xl p-8 shadow-2xl max-w-5xl mx-auto backdrop-blur-sm">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 items-end">
+              <div className="space-y-3">
+                <label className="text-sm font-bold text-white flex items-center gap-2 font-['Inter']">
+                  <Calendar className="h-5 w-5" />
                   CHECK-IN
                 </label>
                 <Input
                   type="date"
                   value={checkIn}
+                  min={today}
                   onChange={(e) => setCheckIn(e.target.value)}
-                  className="bg-white/90 border-orange-300/40 text-black placeholder-gray-600 h-12"
+                  className="bg-white/95 border-orange-300/60 text-black placeholder-gray-600 h-14 text-lg font-semibold rounded-xl"
                 />
               </div>
               
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-white flex items-center gap-2">
-                  <Calendar className="h-4 w-4" />
+              <div className="space-y-3">
+                <label className="text-sm font-bold text-white flex items-center gap-2 font-['Inter']">
+                  <Calendar className="h-5 w-5" />
                   CHECK-OUT
                 </label>
                 <Input
                   type="date"
                   value={checkOut}
+                  min={checkIn || today}
                   onChange={(e) => setCheckOut(e.target.value)}
-                  className="bg-white/90 border-orange-300/40 text-black placeholder-gray-600 h-12"
+                  className="bg-white/95 border-orange-300/60 text-black placeholder-gray-600 h-14 text-lg font-semibold rounded-xl"
                 />
               </div>
               
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-white flex items-center gap-2">
-                  <Users className="h-4 w-4" />
+              <div className="space-y-3">
+                <label className="text-sm font-bold text-white flex items-center gap-2 font-['Inter']">
+                  <Users className="h-5 w-5" />
                   GUESTS
                 </label>
                 <select
                   value={guests}
                   onChange={(e) => setGuests(e.target.value)}
-                  className="w-full px-4 py-3 h-12 bg-white/90 border border-orange-300/40 rounded-md text-black"
+                  className="w-full px-4 py-4 h-14 bg-white/95 border-2 border-orange-300/60 rounded-xl text-black text-lg font-semibold"
                 >
                   {Array.from({length: 50}, (_, i) => i + 1).map(num => (
-                    <option key={num} value={num} className="bg-white text-black">{num}</option>
+                    <option key={num} value={num} className="bg-white text-black font-semibold">{num}</option>
                   ))}
                 </select>
               </div>
               
               <Button 
                 onClick={handleSearch}
-                className="h-12 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold text-lg px-8 border-2 border-orange-400/50 shadow-lg hover:shadow-xl transition-all duration-300"
+                className="h-14 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold text-xl px-10 border-3 border-orange-400/70 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 rounded-xl"
               >
-                <Search className="h-5 w-5 mr-2" />
+                <Search className="h-6 w-6 mr-3" />
                 Search
               </Button>
             </div>

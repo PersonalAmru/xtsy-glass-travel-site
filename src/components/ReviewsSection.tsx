@@ -67,48 +67,15 @@ const ReviewsSection = () => {
   }, []);
 
   return (
-    <section id="reviews" className="py-20 px-4 relative">
+    <section id="reviews" className="py-20 px-4 relative bg-gradient-to-br from-slate-900/50 via-slate-800/50 to-slate-900/50">
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent font-['Poppins']">
             Guest Reviews
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            See what our guests have to say about their stay at XTSY (Showing 4+ star reviews only)
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto font-['Inter']">
+            See what our guests have to say about their stay at XTSY
           </p>
-        </div>
-
-        {/* Google & OTA Reviews Integration Notice */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-4 bg-white/10 rounded-lg p-4 border border-white/20">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-sm">G</span>
-              </div>
-              <span className="text-gray-300 text-sm">Google Reviews</span>
-            </div>
-            <div className="w-px h-6 bg-white/20"></div>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-orange-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-sm">B</span>
-              </div>
-              <span className="text-gray-300 text-sm">Booking.com</span>
-            </div>
-            <div className="w-px h-6 bg-white/20"></div>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-sm">H</span>
-              </div>
-              <span className="text-gray-300 text-sm">HostelWorld</span>
-            </div>
-            <div className="w-px h-6 bg-white/20"></div>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-sm">M</span>
-              </div>
-              <span className="text-gray-300 text-sm">MakeMyTrip</span>
-            </div>
-          </div>
         </div>
 
         {/* Floating Carousel */}
@@ -128,7 +95,7 @@ const ReviewsSection = () => {
                       >
                         <CardHeader>
                           <div className="flex items-center justify-between">
-                            <CardTitle className="text-lg font-semibold text-white">
+                            <CardTitle className="text-lg font-semibold text-white font-['Poppins']">
                               {review.name}
                             </CardTitle>
                             <div className="flex items-center gap-1">
@@ -136,14 +103,14 @@ const ReviewsSection = () => {
                               <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                             </div>
                           </div>
-                          <CardDescription className="text-gray-400 text-sm flex items-center gap-2">
+                          <CardDescription className="text-gray-400 text-sm flex items-center gap-2 font-['Inter']">
                             <span>{review.date}</span>
                             <span>•</span>
                             <span className="text-teal-400">{review.source}</span>
                           </CardDescription>
                         </CardHeader>
                         <CardContent>
-                          <p className="text-gray-300">{review.comment}</p>
+                          <p className="text-gray-300 font-['Inter']">{review.comment}</p>
                         </CardContent>
                       </Card>
                     ))}
@@ -188,7 +155,7 @@ const ReviewsSection = () => {
 
         {/* Integration Notice */}
         <div className="text-center">
-          <p className="text-gray-400 text-sm">
+          <p className="text-gray-400 text-sm font-['Inter']">
             Reviews are automatically integrated from Google, Booking.com, HostelWorld, and MakeMyTrip
           </p>
         </div>

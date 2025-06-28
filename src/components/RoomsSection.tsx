@@ -3,11 +3,10 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Users } from "lucide-react";
+import { Users, ChevronLeft, ChevronRight } from "lucide-react";
 
 const RoomsSection = () => {
   const [selectedProperty, setSelectedProperty] = useState("travellers");
-  const [activeTab, setActiveTab] = useState("rooms");
   const [currentImageIndex, setCurrentImageIndex] = useState({});
 
   const roomImages = {
@@ -50,49 +49,46 @@ const RoomsSection = () => {
       "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/image-assets/Rooms/XTSY%20Luxury/King%20Triple%20Room/IMG_4074.jpg",
       "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/image-assets/Rooms/XTSY%20Luxury/King%20Triple%20Room/DJI_20250614_130117_662.JPG",
       "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/image-assets/Rooms/XTSY%20Luxury/King%20Triple%20Room/IMG_4076.jpg"
-    ]
+    ],
+    "glass_sky": []
   };
 
   const roomTypes = {
     travellers: [
       {
         id: "8_bed",
-        name: "8 Bed Mixed Only Dormitory",
+        name: "8 Bed In Mixed Only Dormitory",
         price: 555,
         capacity: 8,
         type: "Mixed",
-        amenities: ["Free WiFi", "AC", "Lockers", "Common Area"],
-        availability: 3,
+        amenities: ["XL Comfy Beds", "Reading lights", "Charging point", "Attached Bathroom", "High speed Wi-Fi", "Hot Water", "Locker", "Balcony", "Toiletries"],
         images: roomImages["8_bed"]
       },
       {
-        id: "6_bed",
-        name: "6 Bed Female/Mixed Dormitory",
+        id: "6_bed",  
+        name: "6 Bed In Female/Mixed Dormitory",
         price: 666,
         capacity: 6,
         type: "Female/Mixed",
-        amenities: ["Free WiFi", "AC", "Lockers", "Private Bathroom"],
-        availability: 2,
+        amenities: ["XL Comfy Beds", "Reading lights", "Charging point", "Attached Bathroom", "High speed Wi-Fi", "Hot Water", "Locker", "Balcony", "Toiletries"],
         images: roomImages["6_bed"]
       },
       {
         id: "4_bed_mixed",
-        name: "4 Bed Female/Mixed Dormitory",
+        name: "4 Bed In Female/Mixed Dormitory",
         price: 777,
         capacity: 4,
         type: "Female/Mixed",
-        amenities: ["Free WiFi", "AC", "Lockers", "Premium Bedding"],
-        availability: 1,
+        amenities: ["XL Comfy Beds", "Reading lights", "Charging point", "Attached Bathroom", "High speed Wi-Fi", "Hot Water", "Locker", "Balcony", "Toiletries"],
         images: roomImages["4_bed_mixed"]
       },
       {
         id: "4_bed_female",
-        name: "4 Bed Female Only Dormitory",
+        name: "4 Bed In Female Only Dormitory",
         price: 888,
         capacity: 4,
         type: "Female Only",
-        amenities: ["Free WiFi", "AC", "Lockers", "Premium Bedding", "Privacy"],
-        availability: 2,
+        amenities: ["XL Comfy Beds", "Reading lights", "Charging point", "Attached Bathroom", "High speed Wi-Fi", "Hot Water", "Locker", "Balcony", "Toiletries"],
         images: roomImages["4_bed_female"]
       }
     ],
@@ -103,8 +99,7 @@ const RoomsSection = () => {
         price: 3333,
         capacity: 2,
         type: "Private",
-        amenities: ["King Bed", "Private Bathroom", "AC", "Mini Fridge", "Balcony"],
-        availability: 2,
+        amenities: ["Charging point", "Attached Bathroom", "High speed Wi-Fi", "Privacy", "Hot Water", "Mountain View", "River View (Seasonal)", "Kettle", "Toiletries", "Seating Area"],
         images: roomImages["king_double"]
       },
       {
@@ -113,9 +108,18 @@ const RoomsSection = () => {
         price: 4444,
         capacity: 3,
         type: "Private",
-        amenities: ["King Bed", "Single Bed", "Private Bathroom", "AC", "Sea View"],
-        availability: 1,
+        amenities: ["Charging point", "Attached Bathroom", "High speed Wi-Fi", "Privacy", "Hot Water", "Mountain View", "River View (Seasonal)", "Kettle", "Toiletries", "Seating Area"],
         images: roomImages["king_triple"]
+      },
+      {
+        id: "glass_sky",
+        name: "Glass Sky Suite",
+        price: 18999,
+        capacity: 2,
+        type: "Premium Suite",
+        amenities: ["Charging point", "Attached Bathroom", "High speed Wi-Fi", "Privacy", "Hot Water", "Mountain View", "River View (Seasonal)", "Kettle", "Toiletries", "Seating Area"],
+        images: roomImages["glass_sky"],
+        comingSoon: true
       }
     ]
   };
@@ -133,173 +137,200 @@ const RoomsSection = () => {
         });
         return { ...prev, ...newIndex };
       });
-    }, 3000); // 3 seconds as requested
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
 
-  const tabOptions = [
-    { id: "rooms", label: "Our Rooms" },
-    { id: "adventure", label: "Adventure & Travel Info" },
-    { id: "itineraries", label: "Curated Itineraries" }
-  ];
+  const nextImage = (roomId) => {
+    const room = [...roomTypes.travellers, ...roomTypes.luxury].find(r => r.id === roomId);
+    if (room && room.images.length > 0) {
+      setCurrentImageIndex(prev => ({
+        ...prev,
+        [roomId]: ((prev[roomId] || 0) + 1) % room.images.length
+      }));
+    }
+  };
+
+  const prevImage = (roomId) => {
+    const room = [...roomTypes.travellers, ...roomTypes.luxury].find(r => r.id === roomId);
+    if (room && room.images.length > 0) {
+      setCurrentImageIndex(prev => ({
+        ...prev,
+        [roomId]: ((prev[roomId] || 0) - 1 + room.images.length) % room.images.length
+      }));
+    }
+  };
+
+  const scrollToBooking = () => {
+    const element = document.getElementById('home');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
-    <section id="rooms" className="py-20 px-4">
+    <section id="rooms" className="py-20 px-4 bg-gradient-to-br from-slate-900/40 via-slate-800/40 to-slate-900/40">
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent font-['Poppins']">
             Our Rooms
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-8">
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-8 font-['Inter']">
             Choose from our comfortable accommodations designed for every type of traveler
           </p>
 
-          {/* Tab Toggle Selection */}
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
-            {tabOptions.map((tab) => (
-              <Button
-                key={tab.id}
-                variant={activeTab === tab.id ? "default" : "outline"}
-                onClick={() => setActiveTab(tab.id)}
-                className={`px-6 py-3 font-semibold transition-all duration-300 ${
-                  activeTab === tab.id
-                    ? "bg-gradient-to-r from-teal-500 to-blue-600 text-white shadow-lg border-0"
-                    : "border-white/20 text-gray-300 hover:bg-white/10 hover:border-white/40"
-                }`}
-              >
-                {tab.label}
-              </Button>
-            ))}
+          {/* Property Selector */}
+          <div className="flex justify-center gap-4 mb-12">
+            <Button
+              variant={selectedProperty === "travellers" ? "default" : "outline"}
+              onClick={() => setSelectedProperty("travellers")}
+              className={`px-8 py-4 font-bold transition-all duration-300 text-base ${
+                selectedProperty === "travellers"
+                  ? "bg-gradient-to-r from-teal-500 to-blue-600 text-white shadow-xl scale-105"
+                  : "border-white/20 text-gray-300 hover:bg-white/10 hover:scale-105"
+              }`}
+            >
+              XTSY Travellers Hostel
+            </Button>
+            <Button
+              variant={selectedProperty === "luxury" ? "default" : "outline"}
+              onClick={() => setSelectedProperty("luxury")}
+              className={`px-8 py-4 font-bold transition-all duration-300 text-base ${
+                selectedProperty === "luxury"
+                  ? "bg-gradient-to-r from-teal-500 to-blue-600 text-white shadow-xl scale-105"
+                  : "border-white/20 text-gray-300 hover:bg-white/10 hover:scale-105"
+              }`}
+            >
+              XTSY Luxury
+            </Button>
           </div>
-
-          {/* Property Selector - Only show when rooms tab is active */}
-          {activeTab === "rooms" && (
-            <div className="flex justify-center gap-4 mb-12">
-              <Button
-                variant={selectedProperty === "travellers" ? "default" : "outline"}
-                onClick={() => setSelectedProperty("travellers")}
-                className={selectedProperty === "travellers" 
-                  ? "bg-gradient-to-r from-teal-500 to-blue-600 text-white" 
-                  : "border-white/20 text-gray-300 hover:bg-white/10"
-                }
-              >
-                XTSY Travellers Hostel
-              </Button>
-              <Button
-                variant={selectedProperty === "luxury" ? "default" : "outline"}
-                onClick={() => setSelectedProperty("luxury")}
-                className={selectedProperty === "luxury" 
-                  ? "bg-gradient-to-r from-teal-500 to-blue-600 text-white" 
-                  : "border-white/20 text-gray-300 hover:bg-white/10"
-                }
-              >
-                XTSY Luxury
-              </Button>
-            </div>
-          )}
         </div>
 
-        {/* Room Cards - Only show when rooms tab is active */}
-        {activeTab === "rooms" && (
-          <div className="flex justify-center">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl">
-              {roomTypes[selectedProperty].map((room, index) => (
-                <Card 
-                  key={index} 
-                  className="backdrop-blur-xl bg-white/10 border border-white/20 hover:bg-white/15 transition-all duration-300 overflow-hidden group hover:scale-105"
-                >
-                  {/* Room Image with Auto-floating */}
-                  <div className="h-48 relative overflow-hidden">
-                    {room.images.length > 0 ? (
-                      <div className="relative w-full h-full">
-                        <img 
-                          src={room.images[currentImageIndex[room.id] || 0]}
-                          alt={room.name}
-                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                        />
-                        
-                        {/* Image Dots Indicator */}
-                        {room.images.length > 1 && (
-                          <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1">
-                            {room.images.map((_, imgIndex) => (
-                              <div
-                                key={imgIndex}
-                                className={`w-2 h-2 rounded-full transition-colors ${
-                                  (currentImageIndex[room.id] || 0) === imgIndex 
-                                    ? 'bg-white' 
-                                    : 'bg-white/40'
-                                }`}
-                              />
-                            ))}
-                          </div>
-                        )}
+        {/* Room Cards */}
+        <div className="flex justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl">
+            {roomTypes[selectedProperty].map((room, index) => (
+              <Card 
+                key={index} 
+                className="backdrop-blur-xl bg-white/10 border border-white/20 hover:bg-white/15 transition-all duration-300 overflow-hidden group hover:scale-105 transform-gpu"
+              >
+                {/* Room Image with Manual Navigation */}
+                <div className="h-48 relative overflow-hidden">
+                  {room.comingSoon ? (
+                    <div className="bg-gradient-to-br from-purple-700 to-indigo-600 flex items-center justify-center h-full relative">
+                      <div className="text-white text-center">
+                        <div className="text-3xl font-bold mb-2 font-['Poppins']">Glass Sky Suite</div>
+                        <Badge className="bg-yellow-500 text-black font-bold px-4 py-2 text-lg">
+                          Coming Soon
+                        </Badge>
                       </div>
-                    ) : (
-                      <div className="bg-gradient-to-br from-slate-700 to-slate-600 flex items-center justify-center h-full">
-                        <div className="text-gray-400 text-center">
-                          <div className="w-16 h-16 mx-auto mb-2 bg-white/10 rounded-lg flex items-center justify-center">
-                            <Users className="h-8 w-8" />
-                          </div>
-                          <p className="text-sm">Room images will appear here</p>
+                    </div>
+                  ) : room.images.length > 0 ? (
+                    <div className="relative w-full h-full">
+                      <img 
+                        src={room.images[currentImageIndex[room.id] || 0]}
+                        alt={room.name}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      />
+                      
+                      {/* Manual Navigation Buttons */}
+                      {room.images.length > 1 && (
+                        <>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              prevImage(room.id);
+                            }}
+                            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/75 text-white p-2 rounded-full transition-all duration-200"
+                          >
+                            <ChevronLeft className="h-4 w-4" />
+                          </button>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              nextImage(room.id);
+                            }}
+                            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/75 text-white p-2 rounded-full transition-all duration-200"
+                          >
+                            <ChevronRight className="h-4 w-4" />
+                          </button>
+                        </>
+                      )}
+                      
+                      {/* Image Dots Indicator */}
+                      {room.images.length > 1 && (
+                        <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1">
+                          {room.images.map((_, imgIndex) => (
+                            <div
+                              key={imgIndex}
+                              className={`w-2 h-2 rounded-full transition-colors ${
+                                (currentImageIndex[room.id] || 0) === imgIndex 
+                                  ? 'bg-white' 
+                                  : 'bg-white/40'
+                              }`}
+                            />
+                          ))}
                         </div>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="bg-gradient-to-br from-slate-700 to-slate-600 flex items-center justify-center h-full">
+                      <div className="text-gray-400 text-center">
+                        <div className="w-16 h-16 mx-auto mb-2 bg-white/10 rounded-lg flex items-center justify-center">
+                          <Users className="h-8 w-8" />
+                        </div>
+                        <p className="text-sm">Room images will appear here</p>
                       </div>
+                    </div>
+                  )}
+                </div>
+
+                <CardHeader className="text-center">
+                  <div className="flex justify-between items-start mb-2">
+                    <CardTitle className="text-xl font-bold text-white flex-1 text-left font-['Poppins']">
+                      {room.name}
+                    </CardTitle>
+                    {room.comingSoon && (
+                      <Badge className="bg-yellow-500 text-black font-bold">
+                        Coming Soon
+                      </Badge>
                     )}
                   </div>
+                  <CardDescription className="text-gray-300 text-center font-['Inter']">
+                    {room.type} • {room.capacity} guests
+                  </CardDescription>
+                </CardHeader>
 
-                  <CardHeader className="text-center">
-                    <div className="flex justify-between items-start mb-2">
-                      <CardTitle className="text-xl font-bold text-white flex-1 text-left">
-                        {room.name}
-                      </CardTitle>
-                      <Badge variant="secondary" className="bg-teal-500/20 text-teal-300">
-                        {room.availability} available
-                      </Badge>
+                <CardContent className="text-center">
+                  <div className="mb-4">
+                    <div className="flex flex-wrap gap-2 justify-center">
+                      {room.amenities.map((amenity, i) => (
+                        <Badge key={i} variant="outline" className="border-white/20 text-gray-300 text-xs font-['Inter']">
+                          {amenity}
+                        </Badge>
+                      ))}
                     </div>
-                    <CardDescription className="text-gray-300 text-center">
-                      {room.type} • {room.capacity} guests
-                    </CardDescription>
-                  </CardHeader>
+                  </div>
 
-                  <CardContent className="text-center">
-                    <div className="mb-4">
-                      <div className="flex flex-wrap gap-2 justify-center">
-                        {room.amenities.map((amenity, i) => (
-                          <Badge key={i} variant="outline" className="border-white/20 text-gray-300 text-xs">
-                            {amenity}
-                          </Badge>
-                        ))}
-                      </div>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="text-2xl font-bold text-white font-['Poppins']">₹{room.price}</span>
+                      <span className="text-gray-400 text-sm font-['Inter']">/night</span>
                     </div>
-
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <span className="text-2xl font-bold text-white">₹{room.price}</span>
-                        <span className="text-gray-400 text-sm">/night</span>
-                      </div>
-                      <Button className="bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-600 hover:to-blue-700 text-white">
-                        Book Now
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+                    <Button 
+                      className="bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-600 hover:to-blue-700 text-white font-bold"
+                      onClick={scrollToBooking}
+                      disabled={room.comingSoon}
+                    >
+                      {room.comingSoon ? "Coming Soon" : "Book Now"}
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
-        )}
-
-        {/* Placeholder content for other tabs */}
-        {activeTab === "adventure" && (
-          <div className="text-center py-16">
-            <p className="text-gray-400 text-lg">Adventure & Travel Info content will be displayed here</p>
-          </div>
-        )}
-
-        {activeTab === "itineraries" && (
-          <div className="text-center py-16">
-            <p className="text-gray-400 text-lg">Curated Itineraries content will be displayed here</p>
-          </div>
-        )}
+        </div>
       </div>
     </section>
   );

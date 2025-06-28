@@ -1,20 +1,20 @@
 
 import { useState } from "react";
-import { Car, Clock, ShoppingBag, Shirt } from "lucide-react";
+import { Sofa, Clock, ShoppingBag, Shirt } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 const ServicesSection = () => {
-  const [activeTab, setActiveTab] = useState("free-taxi");
+  const [activeTab, setActiveTab] = useState("common-lounge");
 
   const services = [
     {
-      id: "free-taxi",
-      icon: Car,
-      title: "Free Taxi",
-      description: "Complimentary taxi service for groups of 4 or more guests",
-      details: "Enjoy hassle-free transportation to and from major attractions. Our free taxi service operates daily from 8 AM to 8 PM, covering all major tourist spots within a 15km radius. Perfect for group travelers looking to explore Shillong without worrying about transportation costs.",
-      gradient: "from-blue-500 to-cyan-500"
+      id: "common-lounge",
+      icon: Sofa,
+      title: "Common Lounge Access",
+      description: "Relax, play games, enjoy music in our cozy common area",
+      details: "Unwind in our spacious common lounge area designed for relaxation and socializing. Enjoy comfortable seating, board games, music system, books, and a friendly atmosphere where you can meet fellow travelers. Perfect for chilling out after a day of exploration, working on your laptop, or simply enjoying some downtime.",
+      gradient: "from-purple-500 to-indigo-500"
     },
     {
       id: "travel-assistance",
@@ -22,7 +22,7 @@ const ServicesSection = () => {
       title: "24/7 Travel Assistance",
       description: "Round-the-clock support for all your travel needs",
       details: "Our dedicated team is always available to help you with travel planning, emergency assistance, local recommendations, and booking services. Whether it's finding the best restaurants, arranging tours, or handling unexpected situations, we're here for you 24/7.",
-      gradient: "from-purple-500 to-pink-500"
+      gradient: "from-teal-500 to-cyan-500"
     },
     {
       id: "convenience-store",
@@ -45,13 +45,13 @@ const ServicesSection = () => {
   const activeService = services.find(service => service.id === activeTab);
 
   return (
-    <section id="services" className="py-20 px-4">
+    <section id="services" className="py-20 px-4 bg-gradient-to-br from-slate-900/30 via-slate-800/30 to-slate-900/30">
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent font-['Poppins']">
             Our Services
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto font-['Inter']">
             Experience comfort and convenience with our premium hostel services designed for modern travelers
           </p>
         </div>
@@ -63,13 +63,13 @@ const ServicesSection = () => {
               key={service.id}
               variant={activeTab === service.id ? "default" : "outline"}
               onClick={() => setActiveTab(service.id)}
-              className={`px-6 py-3 font-semibold transition-all duration-300 ${
+              className={`px-8 py-4 font-bold transition-all duration-300 text-base ${
                 activeTab === service.id
-                  ? "bg-gradient-to-r from-teal-500 to-blue-600 text-white shadow-lg border-0"
-                  : "border-white/20 text-gray-300 hover:bg-white/10 hover:border-white/40"
+                  ? "bg-gradient-to-r from-teal-500 to-blue-600 text-white shadow-xl border-0 scale-105"
+                  : "border-white/20 text-gray-300 hover:bg-white/10 hover:border-white/40 hover:scale-105"
               }`}
             >
-              <service.icon className="h-5 w-5 mr-2" />
+              <service.icon className="h-5 w-5 mr-3" />
               {service.title}
             </Button>
           ))}
@@ -77,24 +77,23 @@ const ServicesSection = () => {
 
         {/* Active Service Content */}
         {activeService && (
-          <Card className="backdrop-blur-xl bg-white/10 border border-white/20 max-w-4xl mx-auto">
+          <Card className="backdrop-blur-xl bg-white/10 border border-white/20 max-w-4xl mx-auto transform hover:scale-105 transition-all duration-300">
             <CardHeader className="text-center pb-4">
-              <div className={`mx-auto w-24 h-24 bg-gradient-to-r ${activeService.gradient} rounded-2xl flex items-center justify-center mb-6 shadow-2xl relative`}>
-                {/* Enhanced 3D Effect */}
-                <div className={`absolute inset-0 bg-gradient-to-r ${activeService.gradient} rounded-2xl blur-lg opacity-60 scale-110`}></div>
-                <div className={`absolute inset-0 bg-gradient-to-br from-white/40 to-transparent rounded-2xl`}></div>
-                <div className={`absolute inset-1 bg-gradient-to-tl from-black/20 to-transparent rounded-2xl`}></div>
-                <activeService.icon className="h-12 w-12 text-white relative z-10 drop-shadow-lg" />
+              <div className={`mx-auto w-28 h-28 bg-gradient-to-r ${activeService.gradient} rounded-3xl flex items-center justify-center mb-6 shadow-2xl relative transform hover:rotate-3 transition-transform duration-300`}>
+                <div className={`absolute inset-0 bg-gradient-to-r ${activeService.gradient} rounded-3xl blur-xl opacity-60 scale-110`}></div>
+                <div className={`absolute inset-0 bg-gradient-to-br from-white/40 to-transparent rounded-3xl`}></div>
+                <div className={`absolute inset-1 bg-gradient-to-tl from-black/20 to-transparent rounded-3xl`}></div>
+                <activeService.icon className="h-14 w-14 text-white relative z-10 drop-shadow-lg" />
               </div>
-              <CardTitle className="text-2xl font-bold text-white mb-2">
+              <CardTitle className="text-3xl font-bold text-white mb-2 font-['Poppins']">
                 {activeService.title}
               </CardTitle>
-              <CardDescription className="text-gray-300 text-lg">
+              <CardDescription className="text-gray-300 text-lg font-['Inter']">
                 {activeService.description}
               </CardDescription>
             </CardHeader>
             <CardContent className="text-center">
-              <p className="text-gray-300 text-base leading-relaxed">
+              <p className="text-gray-300 text-base leading-relaxed font-['Inter']">
                 {activeService.details}
               </p>
             </CardContent>

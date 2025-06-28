@@ -9,10 +9,10 @@ const Header = () => {
 
   const navItems = [
     { name: "Home", href: "#home" },
+    { name: "Deals & Offers", href: "#deals" },
     { name: "Services", href: "#services" },
     { name: "Rooms", href: "#rooms" },
     { name: "Reviews", href: "#reviews" },
-    { name: "Deals & Offers", href: "#deals" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -26,7 +26,7 @@ const Header = () => {
               <img 
                 src="https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/image-assets/Header/Color%20logo%20-%20no%20background.png"
                 alt="XTSY Logo"
-                className="h-14 w-auto"
+                className="h-16 w-auto"
               />
             </div>
 
