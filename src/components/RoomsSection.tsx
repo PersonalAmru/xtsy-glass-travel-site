@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -255,7 +254,8 @@ const RoomsSection = () => {
                           transition: 'opacity 0.5s ease-in-out, transform 0.3s ease'
                         }}
                         onLoad={(e) => {
-                          e.target.style.opacity = 1;
+                          const target = e.target as HTMLImageElement;
+                          target.style.opacity = '1';
                         }}
                       />
                       
