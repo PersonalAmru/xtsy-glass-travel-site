@@ -1,13 +1,29 @@
 
-import { Instagram, Phone, Mail, ExternalLink } from "lucide-react";
+import { Instagram, Phone, Mail, ExternalLink, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Footer = () => {
   const otaChannels = [
-    { name: "Booking.com", url: "#", offer: "10% off on direct bookings" },
-    { name: "MakeMyTrip", url: "#", offer: "Exclusive weekend deals" },
-    { name: "HostelWorld", url: "#", offer: "Best price guarantee" },
-    { name: "GoIbibo", url: "#", offer: "Instant confirmation" }
+    { 
+      name: "Booking.com", 
+      url: "https://www.booking.com/hotel/in/xtsy-travellers-hostel.en-gb.html?aid=356980&label=gog235jc-1FCAsobEIWeHRzeS10cmF2ZWxsZXJzLWhvc3RlbEgzWANobIgBAZgBCbgBF8gBDNgBAegBAfgBDIgCAagCA7gCicT-wgbAAgHSAiRjMDA2M2IzNC02OTFlLTRjNDgtOWQ0NS05MDkyMmU1MWRjOGbYAgbgAgE&sid=b65f876d011c498b2585a7d4e406717b&dest_id=-2111081&dest_type=city&dist=0&group_adults=2&group_children=0&hapos=1&hpos=1&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&srepoch=1751097868&srpvid=97c8ee04b9e5412cd35a3dfa1b7c24e3&type=total&ucfs=1&", 
+      offer: "10% off on direct bookings" 
+    },
+    { 
+      name: "MakeMyTrip", 
+      url: "https://www.makemytrip.com/hotels/xtsy_traveller_s_hostel_and_rooms-details-shillong.html", 
+      offer: "Exclusive weekend deals" 
+    },
+    { 
+      name: "HostelWorld", 
+      url: "https://www.hostelworld.com/pwa/hosteldetails.php/XTSY-Travellers-Hostel/Shillong/333065?from=2025-06-29&to=2025-06-30&guests=2", 
+      offer: "Best price guarantee" 
+    },
+    { 
+      name: "GoIbibo", 
+      url: "https://www.goibibo.com/hotels/xtsy-travellers-hostel-and-rooms-hotel-in-shillong-3246453588683171942/", 
+      offer: "Instant confirmation" 
+    }
   ];
 
   return (
@@ -20,7 +36,7 @@ const Footer = () => {
             <img 
               src="https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/image-assets/Header/Color%20logo%20-%20no%20background.png"
               alt="XTSY Logo"
-              className="h-12 w-auto"
+              className="h-14 w-auto"
             />
             <p className="text-gray-400 text-sm">
               Your gateway to unforgettable adventures. Experience comfort, community, and convenience at XTSY Travellers Hostel.
@@ -33,6 +49,14 @@ const Footer = () => {
                 onClick={() => window.open("https://instagram.com/xtsy.one", "_blank")}
               >
                 <Instagram className="h-5 w-5" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-gray-400 hover:text-white hover:bg-white/10 p-2 backdrop-blur-sm"
+                onClick={() => window.open("https://youtube.com/@XTSY_Shillong", "_blank")}
+              >
+                <Youtube className="h-5 w-5" />
               </Button>
             </div>
           </div>
@@ -65,6 +89,8 @@ const Footer = () => {
                 <div key={index} className="group">
                   <a
                     href={channel.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center justify-between text-gray-400 hover:text-white transition-colors text-sm py-1"
                   >
                     <span>{channel.name}</span>
@@ -104,7 +130,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-white/10 pt-8 text-center">
           <p className="text-gray-400 text-sm">
-            © 2024 XTSY Travellers Hostel. All rights reserved. | Designed for adventure seekers and comfort lovers.
+            © 2024 XTSY Travellers Hostel. All rights reserved. | Powered by XTSY ONE LLP
           </p>
         </div>
       </div>
