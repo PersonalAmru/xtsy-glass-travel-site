@@ -24,24 +24,24 @@ const Header = () => {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-slate-900/70 border-b border-white/10">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo - Made bigger */}
+        <div className="container mx-auto px-3 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-14 sm:h-16">
+            {/* Logo - Made smaller */}
             <div className="flex-shrink-0">
               <img 
                 src="https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/image-assets/Header/Color%20logo%20-%20no%20background.png"
                 alt="XTSY Logo"
-                className="h-20 w-auto"
+                className="h-12 sm:h-16 w-auto"
               />
             </div>
 
             {/* Desktop Navigation - Right Aligned */}
-            <nav className="hidden md:flex space-x-8 flex-1 justify-end mr-8">
+            <nav className="hidden lg:flex space-x-6 xl:space-x-8 flex-1 justify-end mr-6">
               {navItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-gray-300 hover:text-white transition-colors duration-200 font-medium font-seasons"
+                  className="text-gray-300 hover:text-white transition-colors duration-200 font-medium font-seasons text-sm xl:text-base"
                 >
                   {item.name}
                 </a>
@@ -49,12 +49,12 @@ const Header = () => {
             </nav>
 
             {/* Cart Icon with Badge */}
-            <div className="hidden md:flex relative">
+            <div className="hidden lg:flex relative">
               <button 
                 className="text-gray-300 hover:text-white transition-colors duration-200 p-2 relative"
                 onClick={() => setIsCartOpen(true)}
               >
-                <ShoppingCart className="h-6 w-6" />
+                <ShoppingCart className="h-5 w-5 xl:h-6 xl:w-6" />
                 {cartItemsCount > 0 && (
                   <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
                     {cartItemsCount}
@@ -65,39 +65,39 @@ const Header = () => {
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden text-gray-300 hover:text-white"
+              className="lg:hidden text-gray-300 hover:text-white p-1"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
 
-          {/* Mobile Navigation */}
+          {/* Mobile Navigation - Improved */}
           {isMenuOpen && (
-            <div className="md:hidden mt-2 pb-4 backdrop-blur-lg bg-slate-900/90 rounded-lg border border-white/10">
-              <nav className="flex flex-col space-y-2 px-4 pt-2">
+            <div className="lg:hidden mt-2 pb-4 backdrop-blur-lg bg-slate-900/95 rounded-lg border border-white/10 mx-2">
+              <nav className="flex flex-col space-y-1 px-4 pt-2">
                 {navItems.map((item) => (
                   <a
                     key={item.name}
                     href={item.href}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 font-medium py-2 font-seasons"
+                    className="text-gray-300 hover:text-white transition-colors duration-200 font-medium py-3 px-2 font-seasons text-sm border-b border-white/10 last:border-b-0"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.name}
                   </a>
                 ))}
-                <div className="mt-4 pt-2 border-t border-white/10">
+                <div className="mt-3 pt-3 border-t border-white/20">
                   <button 
-                    className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center gap-2 relative"
+                    className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center gap-2 relative py-2 px-2 font-seasons text-sm"
                     onClick={() => {
                       setIsCartOpen(true);
                       setIsMenuOpen(false);
                     }}
                   >
-                    <ShoppingCart className="h-5 w-5" />
+                    <ShoppingCart className="h-4 w-4" />
                     Cart
                     {cartItemsCount > 0 && (
-                      <span className="bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold ml-1">
+                      <span className="bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold ml-1">
                         {cartItemsCount}
                       </span>
                     )}

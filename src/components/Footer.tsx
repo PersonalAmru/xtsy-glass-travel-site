@@ -1,15 +1,15 @@
 
-import { Facebook, Instagram, Twitter, Youtube, MessageCircle } from "lucide-react";
+import { Instagram, Youtube, MapPin, Mail, Phone } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer id="contact" className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-16 px-4 relative overflow-hidden">
+    <footer id="contact" className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-12 sm:py-16 px-3 sm:px-4 relative overflow-hidden">
       {/* Background animations */}
       <div className="absolute inset-0">
         {[...Array(4)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-32 h-32 bg-gradient-to-r from-blue-400/10 to-purple-400/10 rounded-full blur-xl animate-pulse"
+            className="absolute w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-r from-blue-400/10 to-purple-400/10 rounded-full blur-xl animate-pulse"
             style={{
               left: `${15 + i * 25}%`,
               bottom: `${20 + i * 15}%`,
@@ -21,64 +21,121 @@ const Footer = () => {
       </div>
 
       <div className="container mx-auto max-w-6xl relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-8 sm:mb-12">
           {/* Logo and Description */}
-          <div className="md:col-span-2">
+          <div className="lg:col-span-1">
             <img 
               src="https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/image-assets/Header/Color%20logo%20-%20no%20background.png"
               alt="XTSY Logo"
-              className="h-16 w-auto mb-4"
+              className="h-12 sm:h-16 w-auto mb-3 sm:mb-4"
             />
-            <p className="text-gray-400 mb-6 font-seasons">
+            <p className="text-gray-400 mb-4 sm:mb-6 font-seasons text-sm sm:text-base">
               Experience the vibrant culture and breathtaking landscapes of Shillong with XTSY. 
               Your gateway to authentic Northeast Indian hospitality and unforgettable adventures.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
-                <Facebook className="h-6 w-6" />
+            <div className="flex space-x-3 sm:space-x-4">
+              <a 
+                href="https://www.instagram.com/xtsy.one" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors duration-200"
+              >
+                <Instagram className="h-5 w-5 sm:h-6 sm:w-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
-                <Instagram className="h-6 w-6" />
+              <a 
+                href="https://www.youtube.com/@XTSY_Shillong" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors duration-200"
+              >
+                <Youtube className="h-5 w-5 sm:h-6 sm:w-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
-                <Twitter className="h-6 w-6" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
-                <Youtube className="h-6 w-6" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
-                <MessageCircle className="h-6 w-6" />
+              <a 
+                href="#" 
+                className="text-gray-400 hover:text-white transition-colors duration-200"
+              >
+                <svg className="h-5 w-5 sm:h-6 sm:w-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .968-.786 1.754-1.754 1.754-.968 0-1.754-.786-1.754-1.754 0-.968.786-1.754 1.754-1.754.968 0 1.754.786 1.754 1.754 0 .968-.786 1.754-1.754 1.754-.968 0-1.754-.786-1.754-1.754 0-.968.786-1.754 1.754-1.754.968 0 1.754.786 1.754 1.754 0 .968-.786 1.754-1.754 1.754z"/>
+                </svg>
               </a>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-white font-bold mb-4 font-serif-sans">Quick Links</h3>
-            <ul className="space-y-2">
-              <li><a href="#home" className="text-gray-400 hover:text-white transition-colors duration-200 font-seasons">Home</a></li>
-              <li><a href="#rooms" className="text-gray-400 hover:text-white transition-colors duration-200 font-seasons">Our Properties</a></li>
-              <li><a href="#services" className="text-gray-400 hover:text-white transition-colors duration-200 font-seasons">Services</a></li>
-              <li><a href="/gallery" className="text-gray-400 hover:text-white transition-colors duration-200 font-seasons">Gallery</a></li>
-              <li><a href="#reviews" className="text-gray-400 hover:text-white transition-colors duration-200 font-seasons">Reviews</a></li>
+            <h3 className="text-white font-bold mb-3 sm:mb-4 font-serif-sans text-sm sm:text-base">Quick Links</h3>
+            <ul className="space-y-1 sm:space-y-2">
+              <li><a href="#home" className="text-gray-400 hover:text-white transition-colors duration-200 font-seasons text-sm">Home</a></li>
+              <li><a href="#rooms" className="text-gray-400 hover:text-white transition-colors duration-200 font-seasons text-sm">Our Properties</a></li>
+              <li><a href="#services" className="text-gray-400 hover:text-white transition-colors duration-200 font-seasons text-sm">Services</a></li>
+              <li><a href="/gallery" className="text-gray-400 hover:text-white transition-colors duration-200 font-seasons text-sm">Gallery</a></li>
+              <li><a href="#reviews" className="text-gray-400 hover:text-white transition-colors duration-200 font-seasons text-sm">Reviews</a></li>
             </ul>
+          </div>
+
+          {/* Find us on */}
+          <div>
+            <h3 className="text-white font-bold mb-3 sm:mb-4 font-serif-sans text-sm sm:text-base">Find us on</h3>
+            <div className="grid grid-cols-2 gap-2 sm:gap-3">
+              <a 
+                href="https://www.booking.com/searchresults.en-gb.html?aid=356980&label=gog235jc-1BCAsobEIWeHRzeS10cmF2ZWxsZXJzLWhvc3RlbEgzWANobIgBAZgBCbgBF8gBDNgBAegBAYgCAagCA7gC3J__wgbAAgHSAiRiZWViMTNhYS0wNjU4LTRiM2EtOGJiNy1lZmNiODdkYTdlZTDYAgXgAgE&no_rooms=1&highlighted_hotels=13259692&redirected=1&city=-2111081&hlrd=user_sh&group_adults=2&source=hotel&group_children=0&expand_sb=1&keep_landing=1&sid=b65f876d011c498b2585a7d4e406717b"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors duration-200 font-seasons text-xs sm:text-sm flex items-center gap-1"
+              >
+                <span>Booking.com</span>
+              </a>
+              <a 
+                href="https://www.makemytrip.com/hotels/xtsy_traveller_s_hostel_and_rooms-details-shillong.html?cmp=SEM|D|DH|G|DSA|DH_DSA_Mobile|Pmax&gad_source=1&gad_campaignid=21268867335&gbraid=0AAAAAD5Az1TjX8RG_VF19G6BJkoKdb85-&gclid=Cj0KCQjwpf7CBhCfARIsANIETVqkJpgBb6HfasOuMJFUKf4gPNqo8KxMOY_kbKNvxy9jk1zGTUmbUjsaAt4SEALw_wcB"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors duration-200 font-seasons text-xs sm:text-sm"
+              >
+                MakeMyTrip
+              </a>
+              <a 
+                href="https://www.hostelworld.com/pwa/hosteldetails.php/XTSY-Travellers-Hostel/Shillong/333065?from=2025-06-29&to=2025-07-02&guests=2"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors duration-200 font-seasons text-xs sm:text-sm"
+              >
+                HostelWorld
+              </a>
+              <a 
+                href="https://www.goibibo.com/hotels/xtsy-travellers-hostel-and-rooms-hotel-in-shillong-3246453588683171942/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors duration-200 font-seasons text-xs sm:text-sm"
+              >
+                GoIbibo
+              </a>
+            </div>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-white font-bold mb-4 font-serif-sans">Contact</h3>
-            <div className="space-y-2 text-gray-400 font-seasons">
-              <p>Shillong, Meghalaya</p>
-              <p>Email: info@xtsy.com</p>
-              <p>Website: www.xtsy.com</p>
+            <h3 className="text-white font-bold mb-3 sm:mb-4 font-serif-sans text-sm sm:text-base">Contact</h3>
+            <div className="space-y-2 text-gray-400 font-seasons text-xs sm:text-sm">
+              <p className="flex items-start gap-2">
+                <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                <span>Diengiong, New Shillong Township, Meghalaya - 793018</span>
+              </p>
+              <p className="flex items-center gap-2">
+                <Mail className="h-4 w-4 flex-shrink-0" />
+                <span>booking@xtsy.one</span>
+              </p>
+              <p className="flex items-center gap-2">
+                <Phone className="h-4 w-4 flex-shrink-0" />
+                <span>+91 88373 17070</span>
+              </p>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-700 pt-8 text-center">
-          <p className="text-gray-400 font-seasons">
-            © 2024 XTSY. All rights reserved. | Live the Shillong Vibe
+        <div className="border-t border-gray-700 pt-6 sm:pt-8 text-center">
+          <p className="text-gray-400 font-seasons text-xs sm:text-sm">
+            © 2024 XTSY. All rights reserved. | Live the Shillong Vibe | Powered by XTSY ONE LLP
           </p>
         </div>
       </div>

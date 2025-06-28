@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -34,7 +35,8 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       type: "Mixed",
       property: "XTSY Travellers Hostel",
       amenities: ["XL Comfy Beds", "Reading lights", "Charging point", "Attached Bathroom", "High speed Wi-Fi", "Hot Water", "Locker", "Balcony", "Toiletries"],
-      availability: 3,
+      availability: 1,
+      totalGuests: 8,
     },
     {
       id: "6_bed",
@@ -44,7 +46,8 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       type: "Female/Mixed",
       property: "XTSY Travellers Hostel",
       amenities: ["XL Comfy Beds", "Reading lights", "Charging point", "Attached Bathroom", "High speed Wi-Fi", "Hot Water", "Locker", "Balcony", "Toiletries"],
-      availability: 2,
+      availability: 5,
+      totalGuests: 30,
     },
     {
       id: "4_bed_mixed",
@@ -55,6 +58,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       property: "XTSY Travellers Hostel",
       amenities: ["XL Comfy Beds", "Reading lights", "Charging point", "Attached Bathroom", "High speed Wi-Fi", "Hot Water", "Locker", "Balcony", "Toiletries"],
       availability: 1,
+      totalGuests: 4,
     },
     {
       id: "4_bed_female",
@@ -64,7 +68,8 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       type: "Female Only",
       property: "XTSY Travellers Hostel",
       amenities: ["XL Comfy Beds", "Reading lights", "Charging point", "Attached Bathroom", "High speed Wi-Fi", "Hot Water", "Locker", "Balcony", "Toiletries"],
-      availability: 2,
+      availability: 1,
+      totalGuests: 4,
     },
     {
       id: "king_double",
@@ -75,6 +80,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       property: "XTSY Luxury",
       amenities: ["Charging point", "Attached Bathroom", "High speed Wi-Fi", "Privacy", "Hot Water", "Mountain View", "River View (Seasonal)", "Kettle", "Toiletries", "Seating Area"],
       availability: 2,
+      totalGuests: 2,
     },
     {
       id: "king_triple",
@@ -85,12 +91,11 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       property: "XTSY Luxury",
       amenities: ["Charging point", "Attached Bathroom", "High speed Wi-Fi", "Privacy", "Hot Water", "Mountain View", "River View (Seasonal)", "Kettle", "Toiletries", "Seating Area"],
       availability: 1,
+      totalGuests: 3,
     }
   ];
 
   const addRoom = (room: typeof roomTypes[0]) => {
-    const buttonText = room.property === "XTSY Travellers Hostel" ? "Add Bed" : "Add Room";
-    
     setBookingItems(prev => {
       const existing = prev.find(item => item.roomId === room.id);
       if (existing) {
@@ -148,11 +153,6 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
 
   const proceedToCheckout = () => {
     saveToCart();
-    // Enhanced checkout process
-    const checkoutBtn = document.querySelector('[data-checkout-btn]');
-    if (checkoutBtn) {
-      checkoutBtn.classList.add('animate-pulse', 'bg-green-500');
-    }
     setTimeout(() => {
       alert("Proceeding to payment gateway...");
     }, 500);
@@ -163,45 +163,51 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto backdrop-blur-xl bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-slate-900/95 border border-white/20 text-white">
+      <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto backdrop-blur-xl bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-slate-900/95 border border-white/20 text-white mx-2 sm:mx-4">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-center bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent font-serif-sans">
+          <DialogTitle className="text-xl sm:text-2xl font-bold text-center bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent font-serif-sans">
             Select Your Rooms
           </DialogTitle>
-          <DialogDescription className="text-gray-400 text-center font-seasons">
+          <DialogDescription className="text-gray-400 text-center font-seasons text-sm sm:text-base">
             Check-in: {checkIn} | Check-out: {checkOut} | Guests: {guests}
           </DialogDescription>
         </DialogHeader>
 
         {/* Property Groups */}
-        <div className="space-y-8">
+        <div className="space-y-6 sm:space-y-8">
           {/* XTSY Travellers Hostel */}
           <div>
-            <h3 className="text-xl font-bold text-white mb-4 font-serif-sans">XTSY Travellers Hostel</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4 font-serif-sans">XTSY Travellers Hostel</h3>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4">
               {roomTypes.filter(room => room.property === "XTSY Travellers Hostel").map((room) => (
                 <Card key={room.id} className="backdrop-blur-lg bg-white/10 border border-white/20 transition-all duration-300 hover:bg-white/15">
-                  <CardHeader>
-                    <CardTitle className="text-lg text-white font-serif-sans">{room.name}</CardTitle>
-                    <CardDescription className="text-gray-300 font-seasons">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-base sm:text-lg text-white font-serif-sans">{room.name}</CardTitle>
+                    <CardDescription className="text-gray-300 font-seasons text-sm">
                       {room.type} • {room.capacity} guests • ₹{room.price}/night
                     </CardDescription>
                   </CardHeader>
-                  <CardContent>
-                    <div className="flex flex-wrap gap-1 mb-4">
-                      {room.amenities.map((amenity, i) => (
+                  <CardContent className="space-y-3">
+                    <div className="flex flex-wrap gap-1">
+                      {room.amenities.slice(0, 4).map((amenity, i) => (
                         <Badge key={i} variant="outline" className="border-white/20 text-gray-300 text-xs font-seasons">
                           {amenity}
                         </Badge>
                       ))}
+                      {room.amenities.length > 4 && (
+                        <Badge variant="outline" className="border-white/20 text-gray-300 text-xs font-seasons">
+                          +{room.amenities.length - 4} more
+                        </Badge>
+                      )}
                     </div>
                     <div className="flex items-center justify-between">
-                      <Badge variant="secondary" className="bg-teal-500/20 text-teal-300 font-seasons">
-                        {room.availability} available
+                      <Badge variant="secondary" className="bg-teal-500/20 text-teal-300 font-seasons text-xs">
+                        {room.availability} room(s) - {room.totalGuests} guests
                       </Badge>
                       <Button
                         onClick={() => addRoom(room)}
-                        className={`transition-all duration-300 transform font-seasons ${
+                        size="sm"
+                        className={`transition-all duration-300 transform font-seasons text-xs sm:text-sm ${
                           addedItems[room.id] 
                             ? "bg-green-500 hover:bg-green-600 scale-110" 
                             : "bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-600 hover:to-blue-700 hover:scale-105"
@@ -209,7 +215,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
                       >
                         {addedItems[room.id] ? (
                           <>
-                            <CheckCircle className="h-4 w-4 mr-2" />
+                            <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
                             Added!
                           </>
                         ) : (
@@ -225,31 +231,37 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
 
           {/* XTSY Luxury */}
           <div>
-            <h3 className="text-xl font-bold text-white mb-4 font-serif-sans">XTSY Luxury</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4 font-serif-sans">XTSY Luxury</h3>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4">
               {roomTypes.filter(room => room.property === "XTSY Luxury").map((room) => (
                 <Card key={room.id} className="backdrop-blur-lg bg-white/10 border border-white/20 transition-all duration-300 hover:bg-white/15">
-                  <CardHeader>
-                    <CardTitle className="text-lg text-white font-serif-sans">{room.name}</CardTitle>
-                    <CardDescription className="text-gray-300 font-seasons">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-base sm:text-lg text-white font-serif-sans">{room.name}</CardTitle>
+                    <CardDescription className="text-gray-300 font-seasons text-sm">
                       {room.type} • {room.capacity} guests • ₹{room.price}/night
                     </CardDescription>
                   </CardHeader>
-                  <CardContent>
-                    <div className="flex flex-wrap gap-1 mb-4">
-                      {room.amenities.map((amenity, i) => (
+                  <CardContent className="space-y-3">
+                    <div className="flex flex-wrap gap-1">
+                      {room.amenities.slice(0, 4).map((amenity, i) => (
                         <Badge key={i} variant="outline" className="border-white/20 text-gray-300 text-xs font-seasons">
                           {amenity}
                         </Badge>
                       ))}
+                      {room.amenities.length > 4 && (
+                        <Badge variant="outline" className="border-white/20 text-gray-300 text-xs font-seasons">
+                          +{room.amenities.length - 4} more
+                        </Badge>
+                      )}
                     </div>
                     <div className="flex items-center justify-between">
-                      <Badge variant="secondary" className="bg-teal-500/20 text-teal-300 font-seasons">
+                      <Badge variant="secondary" className="bg-teal-500/20 text-teal-300 font-seasons text-xs">
                         {room.availability} available
                       </Badge>
                       <Button
                         onClick={() => addRoom(room)}
-                        className={`transition-all duration-300 transform font-seasons ${
+                        size="sm"
+                        className={`transition-all duration-300 transform font-seasons text-xs sm:text-sm ${
                           addedItems[room.id] 
                             ? "bg-green-500 hover:bg-green-600 scale-110" 
                             : "bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-600 hover:to-blue-700 hover:scale-105"
@@ -257,7 +269,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
                       >
                         {addedItems[room.id] ? (
                           <>
-                            <CheckCircle className="h-4 w-4 mr-2" />
+                            <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
                             Added!
                           </>
                         ) : (
@@ -273,41 +285,41 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
         </div>
 
         {bookingItems.length > 0 && (
-          <div className="bg-white/10 rounded-lg p-6 mb-4 backdrop-blur-lg border border-white/20">
-            <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2 font-serif-sans">
-              <ShoppingCart className="h-5 w-5" />
+          <div className="bg-white/10 rounded-lg p-4 sm:p-6 mb-4 backdrop-blur-lg border border-white/20">
+            <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4 flex items-center gap-2 font-serif-sans">
+              <ShoppingCart className="h-4 w-4 sm:h-5 sm:w-5" />
               Your Booking Summary
             </h3>
-            <div className="space-y-3">
+            <div className="space-y-2 sm:space-y-3">
               {bookingItems.map((item) => (
-                <div key={item.roomId} className="flex items-center justify-between bg-white/5 rounded-lg p-4 backdrop-blur-sm">
-                  <div>
-                    <p className="text-white font-medium font-seasons">{item.roomName}</p>
-                    <p className="text-gray-400 text-sm font-seasons">₹{item.price} x {item.quantity} room(s)</p>
+                <div key={item.roomId} className="flex items-center justify-between bg-white/5 rounded-lg p-3 sm:p-4 backdrop-blur-sm">
+                  <div className="flex-1 min-w-0 mr-3">
+                    <p className="text-white font-medium font-seasons text-sm sm:text-base truncate">{item.roomName}</p>
+                    <p className="text-gray-400 text-xs sm:text-sm font-seasons">₹{item.price} x {item.quantity} room(s)</p>
                   </div>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
                     <Button
                       size="sm"
                       variant="outline"
                       onClick={() => updateQuantity(item.roomId, -1)}
-                      className="border-white/20 text-white hover:bg-white/10 transition-all duration-200"
+                      className="border-white/20 text-white hover:bg-white/10 transition-all duration-200 h-8 w-8 p-0"
                     >
-                      <Minus className="h-4 w-4" />
+                      <Minus className="h-3 w-3 sm:h-4 sm:w-4" />
                     </Button>
-                    <span className="text-white min-w-[2rem] text-center font-bold">{item.quantity}</span>
+                    <span className="text-white min-w-[2rem] text-center font-bold text-sm">{item.quantity}</span>
                     <Button
                       size="sm"
                       variant="outline"
                       onClick={() => updateQuantity(item.roomId, 1)}
-                      className="border-white/20 text-white hover:bg-white/10 transition-all duration-200"
+                      className="border-white/20 text-white hover:bg-white/10 transition-all duration-200 h-8 w-8 p-0"
                     >
-                      <Plus className="h-4 w-4" />
+                      <Plus className="h-3 w-3 sm:h-4 sm:w-4" />
                     </Button>
                     <Button
                       size="sm"
                       variant="destructive"
                       onClick={() => removeRoom(item.roomId)}
-                      className="ml-2 transition-all duration-200 hover:scale-105"
+                      className="ml-1 sm:ml-2 transition-all duration-200 hover:scale-105 text-xs"
                     >
                       Remove
                     </Button>
@@ -315,28 +327,27 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
                 </div>
               ))}
             </div>
-            <div className="border-t border-white/20 pt-4 mt-4">
-              <div className="flex justify-between text-lg font-bold text-white font-serif-sans">
+            <div className="border-t border-white/20 pt-3 sm:pt-4 mt-3 sm:mt-4">
+              <div className="flex justify-between text-base sm:text-lg font-bold text-white font-serif-sans">
                 <span>Total Amount:</span>
                 <span>₹{totalAmount}</span>
               </div>
-              <div className="flex justify-between text-sm text-gray-400 font-seasons">
+              <div className="flex justify-between text-xs sm:text-sm text-gray-400 font-seasons">
                 <span>Advance Payment (22%):</span>
                 <span>₹{advanceAmount}</span>
               </div>
             </div>
-            <div className="flex gap-4 mt-6">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4 sm:mt-6">
               <Button
                 onClick={saveToCart}
                 variant="outline"
-                className="flex-1 border-white/40 text-white hover:bg-white/10 backdrop-blur-sm transition-all duration-300 hover:scale-105 font-seasons"
+                className="flex-1 border-white/40 text-white hover:bg-white/10 backdrop-blur-sm transition-all duration-300 hover:scale-105 font-seasons bg-white/5 border-2"
               >
                 Save for Later
               </Button>
               <Button
                 onClick={proceedToCheckout}
-                data-checkout-btn
-                className="flex-1 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 transition-all duration-300 hover:scale-105 font-seasons"
+                className="flex-1 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 transition-all duration-300 hover:scale-105 font-seasons shadow-lg"
               >
                 Proceed to Checkout
               </Button>
