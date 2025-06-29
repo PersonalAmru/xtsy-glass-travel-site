@@ -24,6 +24,7 @@ export default {
 				'seasons': ['The Seasons', 'serif'],
 				'safira': ['Safira March', 'sans-serif'],
 				'serif-sans': ['Cormorant Garamond', 'serif'],
+				'oreo-pops': ['Orbitron', 'Arial Black', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',

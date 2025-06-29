@@ -50,7 +50,7 @@ const Gallery = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-yellow-400/10 via-orange-400/15 to-red-400/10">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
       <Header />
       
       {/* Hero Section */}
@@ -60,7 +60,7 @@ const Gallery = () => {
           {[...Array(6)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-24 h-24 bg-gradient-to-r from-yellow-400/15 to-orange-400/15 rounded-full blur-xl animate-pulse"
+              className="absolute w-24 h-24 bg-gradient-to-r from-white/10 to-gray-300/10 rounded-full blur-xl animate-pulse"
               style={{
                 left: `${10 + i * 15}%`,
                 top: `${20 + i * 10}%`,
@@ -72,7 +72,7 @@ const Gallery = () => {
         </div>
 
         <div className="container mx-auto text-center relative z-10">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent font-serif-sans">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 font-serif-sans">
             Our Gallery
           </h1>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto font-seasons">

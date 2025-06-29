@@ -1,50 +1,76 @@
 
 import { useState } from "react";
-import { Menu, X, ShoppingCart } from "lucide-react";
+import { Menu, X, ShoppingCart, ArrowLeft } from "lucide-react";
+import { useLocation, Link } from "react-router-dom";
 import CartModal from "./CartModal";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   // Mock cart items count - you can replace this with actual cart state
   const cartItemsCount = 0; // This should come from your cart context/state
 
   const navItems = [
-    { name: "Home", href: "#home" },
-    { name: "Deals & Offers", href: "#deals" },
+    { name: "Home", href: "/" },
     { name: "Services", href: "#services" },
     { name: "Our Properties", href: "#rooms" },
     { name: "Gallery", href: "/gallery" },
     { name: "Reviews", href: "#reviews" },
     { name: "About Us", href: "/about" },
+    { name: "Deals & Offers", href: "/deals" },
     { name: "Contact", href: "#contact" },
   ];
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-slate-900/70 border-b border-white/10">
+      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/80 border-b border-white/10">
         <div className="container mx-auto px-3 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-14 sm:h-16">
-            {/* Logo - Made smaller */}
+            {/* Back Button for non-home pages */}
+            {!isHomePage && (
+              <Link 
+                to="/"
+                className="flex items-center gap-2 text-white hover:text-gray-300 transition-colors duration-200 mr-4"
+              >
+                <ArrowLeft className="h-5 w-5" />
+                <span className="hidden sm:inline font-seasons text-sm">Back</span>
+              </Link>
+            )}
+
+            {/* Logo - Optimized for LCP */}
             <div className="flex-shrink-0">
               <img 
                 src="https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/image-assets/Header/Color%20logo%20-%20no%20background.png"
                 alt="XTSY Logo"
-                className="h-12 sm:h-16 w-auto"
+                className="h-8 sm:h-12 w-auto"
+                loading="eager"
+                decoding="async"
               />
             </div>
 
             {/* Desktop Navigation - Right Aligned */}
             <nav className="hidden lg:flex space-x-6 xl:space-x-8 flex-1 justify-end mr-6">
               {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-gray-300 hover:text-white transition-colors duration-200 font-medium font-seasons text-sm xl:text-base"
-                >
-                  {item.name}
-                </a>
+                item.href.startsWith('#') ? (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="text-gray-300 hover:text-white transition-colors duration-200 font-medium font-seasons text-sm xl:text-base"
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className="text-gray-300 hover:text-white transition-colors duration-200 font-medium font-seasons text-sm xl:text-base"
+                  >
+                    {item.name}
+                  </Link>
+                )
               ))}
             </nav>
 
@@ -74,17 +100,28 @@ const Header = () => {
 
           {/* Mobile Navigation - Improved */}
           {isMenuOpen && (
-            <div className="lg:hidden mt-2 pb-4 backdrop-blur-lg bg-slate-900/95 rounded-lg border border-white/10 mx-2">
+            <div className="lg:hidden mt-2 pb-4 backdrop-blur-lg bg-black/95 rounded-lg border border-white/10 mx-2">
               <nav className="flex flex-col space-y-1 px-4 pt-2">
                 {navItems.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 font-medium py-3 px-2 font-seasons text-sm border-b border-white/10 last:border-b-0"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.name}
-                  </a>
+                  item.href.startsWith('#') ? (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className="text-gray-300 hover:text-white transition-colors duration-200 font-medium py-3 px-2 font-seasons text-sm border-b border-white/10 last:border-b-0"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.name}
+                    </a>
+                  ) : (
+                    <Link
+                      key={item.name}
+                      to={item.href}
+                      className="text-gray-300 hover:text-white transition-colors duration-200 font-medium py-3 px-2 font-seasons text-sm border-b border-white/10 last:border-b-0"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  )
                 ))}
                 <div className="mt-3 pt-3 border-t border-white/20">
                   <button 
