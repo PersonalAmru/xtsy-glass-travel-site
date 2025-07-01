@@ -50,7 +50,7 @@ const HeroSection = () => {
 
   return (
     <>
-      <section id="home" className="relative min-h-screen flex flex-col justify-between px-3 sm:px-4 pt-14 sm:pt-16 pb-6 sm:pb-8 bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-hidden">
+      <section id="home" className="relative min-h-screen flex flex-col px-3 sm:px-4 pt-14 sm:pt-16 pb-6 sm:pb-8 bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-hidden">
         {/* Enhanced Background with animations */}
         <div className="absolute inset-0">
           <img 
@@ -78,22 +78,22 @@ const HeroSection = () => {
           </div>
         </div>
 
-        <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col justify-between min-h-[calc(100vh-120px)]">
-          {/* Tagline - Top Center with Oreo Pops font */}
-          <div className="text-center mt-4 sm:mt-8">
-            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-black bg-white/90 backdrop-blur-sm px-6 py-2 rounded-full inline-block font-oreo-pops">
+        <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col min-h-[calc(100vh-120px)]">
+          {/* Tagline - Top Center */}
+          <div className="text-center mt-4 sm:mt-8 mb-8">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white font-oreo-pops drop-shadow-2xl">
               Live the Shillong Vibe
             </h2>
           </div>
 
           {/* Hero Text - Center */}
-          <div className="text-center flex-1 flex flex-col justify-center">
-            <div className="mb-3 sm:mb-4">
-              <span className="text-xl sm:text-2xl md:text-3xl text-black bg-white/90 backdrop-blur-sm px-4 py-1 rounded-lg inline-block font-seasons transition-all duration-700 ease-in-out transform hover:scale-110">
+          <div className="text-center flex-1 flex flex-col justify-center mb-8">
+            <div className="mb-6 sm:mb-8">
+              <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white font-seasons drop-shadow-2xl transition-all duration-700 ease-in-out transform hover:scale-110">
                 {helloMessages[currentHelloIndex]}
               </span>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl text-black bg-white/90 backdrop-blur-sm px-8 py-3 rounded-xl inline-block font-serif-sans mb-4 sm:mb-6 transition-all duration-300 hover:scale-105">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white font-serif-sans drop-shadow-2xl transition-all duration-300 hover:scale-105">
               XTSY
             </h1>
           </div>
@@ -139,7 +139,7 @@ const HeroSection = () => {
                   onChange={(e) => setGuests(e.target.value)}
                   className="w-full px-2 sm:px-3 py-2 h-8 sm:h-10 bg-white border-2 border-gray-300 rounded-lg text-black text-xs sm:text-sm font-semibold"
                 >
-                  {Array.from({length: 50}, (_, i) => i + 1).map(num => (
+                  {Array.from({length: 30}, (_, i) => i + 1).map(num => (
                     <option key={num} value={num} className="bg-white text-black font-semibold">{num}</option>
                   ))}
                 </select>

@@ -1,36 +1,12 @@
 
-import { useState } from "react";
-import { Car, Coffee, ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Car, MapPin, Users, Calendar, CheckCircle } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 const Deals = () => {
-  const [activeTab, setActiveTab] = useState("free-taxi");
-
-  const deals = [
-    {
-      id: "free-taxi",
-      icon: Car,
-      title: "Free Taxi to XTSY",
-      description: "Complimentary pickup service for groups of 4 or more",
-      details: "Enjoy Free transportation from major pickup points in Shillong directly to XTSY Travellers Hostel. This exclusive offer is available for groups of 4 or more guests and includes pickup from Police Bazaar, Golf links, Polo Market, Civil Hospital/Barik Point and Other major points in Shillong.",
-      gradient: "from-blue-500 to-cyan-500"
-    },
-    {
-      id: "free-breakfast",
-      icon: Coffee,
-      title: "Free Breakfast for Female Travellers",
-      description: "Complimentary breakfast for all female guests",
-      details: "Start your day right with our complimentary breakfast exclusively for female travellers. Enjoy a hearty complimentary meal available daily from 8:30 AM.",
-      gradient: "from-pink-500 to-rose-500"
-    }
-  ];
-
-  const activeDeal = deals.find(deal => deal.id === activeTab);
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
       <Header />
@@ -39,92 +15,122 @@ const Deals = () => {
       <section className="pt-24 pb-12 px-4 relative overflow-hidden">
         {/* Background effects */}
         <div className="absolute inset-0">
-          {[...Array(6)].map((_, i) => (
+          {[...Array(8)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-24 h-24 bg-gradient-to-r from-white/10 to-gray-300/10 rounded-full blur-xl animate-pulse"
+              className="absolute w-32 h-32 bg-gradient-to-r from-orange-500/20 to-yellow-500/20 rounded-full blur-xl animate-pulse"
               style={{
-                left: `${10 + i * 15}%`,
-                top: `${20 + i * 10}%`,
-                animationDelay: `${i * 0.8}s`,
-                animationDuration: `${3 + i * 0.4}s`
+                left: `${5 + i * 12}%`,
+                top: `${10 + i * 15}%`,
+                animationDelay: `${i * 0.6}s`,
+                animationDuration: `${4 + i * 0.5}s`
               }}
             />
           ))}
         </div>
 
         <div className="container mx-auto text-center relative z-10">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 font-serif-sans">
-            Deals & Offers
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 font-serif-sans bg-gradient-to-r from-orange-400 to-yellow-400 bg-clip-text text-transparent">
+            Exclusive Deals & Offers
           </h1>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto font-seasons">
-            Exclusive deals and special offers for our valued guests
+          <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto font-seasons leading-relaxed">
+            Discover amazing travel deals designed to make your Shillong adventure unforgettable and affordable
           </p>
         </div>
       </section>
 
-      {/* Deals Section */}
-      <section className="py-12 sm:py-16 lg:py-20 px-3 sm:px-4 relative overflow-hidden">
-        {/* Background animations */}
-        <div className="absolute inset-0">
-          {[...Array(4)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-r from-white/10 to-gray-300/10 rounded-full blur-xl animate-pulse"
-              style={{
-                left: `${10 + i * 25}%`,
-                top: `${20 + i * 15}%`,
-                animationDelay: `${i * 1}s`,
-                animationDuration: `${3 + i * 0.5}s`
-              }}
-            />
-          ))}
-        </div>
-
-        <div className="container mx-auto max-w-6xl relative z-10">
-          {/* Enhanced Tab Toggle Buttons - Mobile Optimized */}
-          <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-8 sm:mb-12 px-4">
-            {deals.map((deal) => (
-              <Button
-                key={deal.id}
-                variant={activeTab === deal.id ? "default" : "outline"}
-                onClick={() => setActiveTab(deal.id)}
-                className={`px-4 sm:px-6 lg:px-8 py-3 sm:py-4 font-bold transition-all duration-300 text-sm sm:text-base border-2 w-full sm:w-auto ${
-                  activeTab === deal.id
-                    ? "bg-white text-black shadow-xl border-gray-300 scale-105 transform"
-                    : "border-white/60 text-white bg-black/60 hover:bg-gray-800/80 hover:border-white/80 hover:scale-105 hover:text-white backdrop-blur-sm"
-                } font-seasons`}
-              >
-                <deal.icon className="h-4 w-4 sm:h-5 sm:w-5 mr-2 sm:mr-3" />
-                <span className="text-xs sm:text-sm lg:text-base">{deal.title}</span>
-              </Button>
-            ))}
-          </div>
-
-          {/* Active Deal Content - Mobile Optimized */}
-          {activeDeal && (
-            <Card className="backdrop-blur-xl bg-white/10 border border-white/20 max-w-4xl mx-auto transform hover:scale-105 transition-all duration-300 shadow-2xl mx-3 sm:mx-auto">
-              <CardHeader className="text-center pb-3 sm:pb-4">
-                <div className={`mx-auto w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 bg-gradient-to-r ${activeDeal.gradient} rounded-2xl sm:rounded-3xl flex items-center justify-center mb-4 sm:mb-6 shadow-2xl relative transform hover:rotate-3 transition-transform duration-300`}>
-                  <div className={`absolute inset-0 bg-gradient-to-r ${activeDeal.gradient} rounded-2xl sm:rounded-3xl blur-xl opacity-60 scale-110`}></div>
-                  <div className={`absolute inset-0 bg-gradient-to-br from-white/40 to-transparent rounded-2xl sm:rounded-3xl`}></div>
-                  <div className={`absolute inset-1 bg-gradient-to-tl from-black/20 to-transparent rounded-2xl sm:rounded-3xl`}></div>
-                  <activeDeal.icon className="h-10 w-10 sm:h-12 sm:w-12 lg:h-14 lg:w-14 text-white relative z-10 drop-shadow-lg" />
+      {/* Free Taxi Offer Section */}
+      <section className="py-16 px-4 relative">
+        <div className="container mx-auto max-w-6xl">
+          <Card className="backdrop-blur-xl bg-gradient-to-br from-blue-900/30 to-cyan-900/30 border-2 border-cyan-400/30 shadow-2xl overflow-hidden relative">
+            {/* Background taxi image */}
+            <div className="absolute top-4 right-4 opacity-10">
+              <Car className="h-32 w-32 text-cyan-400" />
+            </div>
+            
+            <CardHeader className="pb-8">
+              <div className="flex flex-col md:flex-row items-start md:items-center gap-4 mb-6">
+                <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-xl">
+                  <Car className="h-10 w-10 text-white" />
                 </div>
-                <CardTitle className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-2 font-serif-sans px-4">
-                  {activeDeal.title}
-                </CardTitle>
-                <CardDescription className="text-gray-300 text-sm sm:text-base lg:text-lg font-seasons px-4">
-                  {activeDeal.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-center px-4 sm:px-6">
-                <p className="text-gray-300 text-sm sm:text-base leading-relaxed font-seasons">
-                  {activeDeal.details}
+                <div className="flex-1">
+                  <CardTitle className="text-3xl md:text-4xl font-bold text-white mb-2 font-serif-sans">
+                    Free Taxi to XTSY
+                  </CardTitle>
+                  <CardDescription className="text-cyan-200 text-lg font-seasons">
+                    Complimentary pickup service for groups of 4 or more
+                  </CardDescription>
+                </div>
+                <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold px-4 py-2 text-lg">
+                  FREE SERVICE
+                </Badge>
+              </div>
+            </CardHeader>
+            
+            <CardContent className="space-y-8">
+              {/* Pickup Points Map Section */}
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2 font-serif-sans">
+                  <MapPin className="h-6 w-6 text-cyan-400" />
+                  Pickup Points in Shillong
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {[
+                    "Police Bazaar",
+                    "Golf Links", 
+                    "Polo Market",
+                    "Civil Hospital/Barik Point",
+                    "Other major points in Shillong"
+                  ].map((point, index) => (
+                    <div key={index} className="flex items-center gap-3 p-3 bg-white/5 rounded-lg">
+                      <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center">
+                        <span className="text-white font-bold text-sm">{index + 1}</span>
+                      </div>
+                      <span className="text-gray-300 font-seasons">{point}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Eligibility Section */}
+              <div className="bg-green-900/20 border border-green-400/30 rounded-2xl p-6">
+                <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2 font-serif-sans">
+                  <CheckCircle className="h-6 w-6 text-green-400" />
+                  Eligibility Requirements
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="flex items-center gap-3">
+                    <Users className="h-8 w-8 text-green-400" />
+                    <div>
+                      <p className="text-white font-bold">Minimum Booking</p>
+                      <p className="text-gray-300 font-seasons">4 people</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Calendar className="h-8 w-8 text-green-400" />
+                    <div>
+                      <p className="text-white font-bold">Minimum Stay</p>
+                      <p className="text-gray-300 font-seasons">2 nights</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* CTA Section */}
+              <div className="text-center pt-4">
+                <Button 
+                  className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-bold px-8 py-4 text-lg rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 font-seasons"
+                  onClick={() => window.open('https://wa.me/918837317070?text=Hi XTSY! I am interested in your Free Taxi service for my group booking. Please provide more details.', '_blank')}
+                >
+                  <Car className="h-5 w-5 mr-2" />
+                  Book Free Taxi Service
+                </Button>
+                <p className="text-gray-400 text-sm mt-3 font-seasons">
+                  Click to chat with us on WhatsApp for instant booking
                 </p>
-              </CardContent>
-            </Card>
-          )}
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
 

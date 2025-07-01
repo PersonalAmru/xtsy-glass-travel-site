@@ -15,14 +15,29 @@ const Header = () => {
 
   const navItems = [
     { name: "Home", href: "/" },
-    { name: "Services", href: "#services" },
-    { name: "Our Properties", href: "#rooms" },
+    { name: "Services", href: "/#services" },
+    { name: "Our Properties", href: "/#rooms" },
     { name: "Gallery", href: "/gallery" },
-    { name: "Reviews", href: "#reviews" },
+    { name: "Reviews", href: "/#reviews" },
     { name: "About Us", href: "/about" },
     { name: "Deals & Offers", href: "/deals" },
-    { name: "Contact", href: "#contact" },
+    { name: "Contact", href: "/#contact" },
   ];
+
+  const handleNavClick = (href: string) => {
+    if (href.startsWith('/#')) {
+      if (location.pathname !== '/') {
+        // Navigate to home first, then scroll
+        window.location.href = href;
+      } else {
+        // Already on home page, just scroll
+        const element = document.querySelector(href.substring(1));
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+  };
 
   return (
     <>
@@ -45,7 +60,7 @@ const Header = () => {
               <img 
                 src="https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/image-assets/Header/Color%20logo%20-%20no%20background.png"
                 alt="XTSY Logo"
-                className="h-8 sm:h-12 w-auto"
+                className="h-6 sm:h-8 w-auto"
                 loading="eager"
                 decoding="async"
               />
@@ -54,14 +69,14 @@ const Header = () => {
             {/* Desktop Navigation - Right Aligned */}
             <nav className="hidden lg:flex space-x-6 xl:space-x-8 flex-1 justify-end mr-6">
               {navItems.map((item) => (
-                item.href.startsWith('#') ? (
-                  <a
+                item.href.startsWith('/#') ? (
+                  <button
                     key={item.name}
-                    href={item.href}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 font-medium font-seasons text-sm xl:text-base"
+                    onClick={() => handleNavClick(item.href)}
+                    className="text-gray-300 hover:text-white transition-colors duration-200 font-medium font-seasons text-sm xl:text-base cursor-pointer"
                   >
                     {item.name}
-                  </a>
+                  </button>
                 ) : (
                   <Link
                     key={item.name}
@@ -103,15 +118,17 @@ const Header = () => {
             <div className="lg:hidden mt-2 pb-4 backdrop-blur-lg bg-black/95 rounded-lg border border-white/10 mx-2">
               <nav className="flex flex-col space-y-1 px-4 pt-2">
                 {navItems.map((item) => (
-                  item.href.startsWith('#') ? (
-                    <a
+                  item.href.startsWith('/#') ? (
+                    <button
                       key={item.name}
-                      href={item.href}
-                      className="text-gray-300 hover:text-white transition-colors duration-200 font-medium py-3 px-2 font-seasons text-sm border-b border-white/10 last:border-b-0"
-                      onClick={() => setIsMenuOpen(false)}
+                      onClick={() => {
+                        handleNavClick(item.href);
+                        setIsMenuOpen(false);
+                      }}
+                      className="text-gray-300 hover:text-white transition-colors duration-200 font-medium py-3 px-2 font-seasons text-sm border-b border-white/10 last:border-b-0 text-left"
                     >
                       {item.name}
-                    </a>
+                    </button>
                   ) : (
                     <Link
                       key={item.name}
