@@ -12,7 +12,7 @@ const Deals = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-24 pb-12 px-4 relative overflow-hidden">
+      <section className="relative min-h-screen flex flex-col px-3 sm:px-4 pt-14 sm:pt-16 pb-6 sm:pb-8 bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-hidden">
         {/* Background effects */}
         <div className="absolute inset-0">
           {[...Array(8)].map((_, i) => (
@@ -29,13 +29,26 @@ const Deals = () => {
           ))}
         </div>
 
-        <div className="container mx-auto text-center relative z-10">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 font-serif-sans bg-gradient-to-r from-orange-400 to-yellow-400 bg-clip-text text-transparent">
-            Exclusive Deals & Offers
-          </h1>
-          <p className="text-xl md:text-2xl text-white max-w-3xl mx-auto font-seasons leading-relaxed">
-            Discover amazing travel deals designed to make your Shillong adventure unforgettable and affordable
-          </p>
+        <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col min-h-[calc(100vh-120px)]">
+          {/* Hero Content */}
+          <div className="text-center flex-1 flex flex-col justify-center mb-8">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 font-serif-sans bg-gradient-to-r from-orange-400 to-yellow-400 bg-clip-text text-transparent">
+              Exclusive Deals & Offers
+            </h1>
+            <p className="text-xl md:text-2xl text-white max-w-3xl mx-auto font-seasons leading-relaxed mb-12">
+              Discover amazing travel deals designed to make your Shillong adventure unforgettable and affordable
+            </p>
+
+            {/* Hero Taxi Image */}
+            <div className="flex justify-center mb-8">
+              <img 
+                src="/lovable-uploads/0ef988f7-b7f3-4d1f-80e3-fc2a04acd9cb.png"
+                alt="Taxi Service" 
+                className="max-w-full h-auto rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                style={{ maxHeight: '400px' }}
+              />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -43,23 +56,10 @@ const Deals = () => {
       <section className="py-16 px-4 relative">
         <div className="container mx-auto max-w-6xl">
           <Card className="backdrop-blur-xl bg-gradient-to-br from-yellow-900/30 to-orange-900/30 border-2 border-yellow-400/30 shadow-2xl overflow-hidden relative">
-            {/* Background taxi image */}
-            <div className="absolute top-4 right-4 opacity-20">
-              <img 
-                src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=200&q=80" 
-                alt="Yellow Taxi" 
-                className="h-32 w-32 object-cover rounded-full"
-              />
-            </div>
-            
             <CardHeader className="pb-8">
               <div className="flex flex-col md:flex-row items-start md:items-center gap-4 mb-6">
                 <div className="w-20 h-20 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center shadow-xl">
-                  <img 
-                    src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=80&q=80" 
-                    alt="Yellow Taxi" 
-                    className="h-12 w-12 object-cover rounded-full"
-                  />
+                  <MapPin className="h-12 w-12 text-white" />
                 </div>
                 <div className="flex-1">
                   <CardTitle className="text-3xl md:text-4xl font-bold text-white mb-2 font-serif-sans">
@@ -135,11 +135,7 @@ const Deals = () => {
                   className="bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700 text-white font-bold px-8 py-4 text-lg rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 font-seasons"
                   onClick={() => window.open('https://wa.me/918837317070?text=Hi XTSY! I am interested in your Free Taxi service for my group booking. Please provide more details.', '_blank')}
                 >
-                  <img 
-                    src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=40&q=80" 
-                    alt="Taxi" 
-                    className="h-5 w-5 mr-2 rounded-full object-cover"
-                  />
+                  <MapPin className="h-5 w-5 mr-2" />
                   Book Free Taxi Service
                 </Button>
                 <p className="text-gray-300 text-sm mt-3 font-seasons">
