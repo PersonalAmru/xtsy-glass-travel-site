@@ -50,7 +50,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl backdrop-blur-xl bg-slate-900/95 border border-white/20 text-white">
+      <DialogContent className="max-w-2xl backdrop-blur-xl bg-slate-900/95 border border-white/20 text-white slide-in-from-left-full animate-in duration-300">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-center bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent flex items-center justify-center gap-2">
             <ShoppingCart className="h-6 w-6" />

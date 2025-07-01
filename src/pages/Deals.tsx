@@ -12,13 +12,13 @@ const Deals = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative min-h-screen flex flex-col px-3 sm:px-4 pt-14 sm:pt-16 pb-6 sm:pb-8 bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-hidden">
+      <section className="relative min-h-screen flex flex-col px-3 sm:px-4 pt-14 sm:pt-16 pb-6 sm:pb-8 bg-gradient-to-br from-slate-800/90 via-slate-700/90 to-slate-800/90 overflow-hidden">
         {/* Background effects */}
         <div className="absolute inset-0">
           {[...Array(8)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-32 h-32 bg-gradient-to-r from-orange-500/20 to-yellow-500/20 rounded-full blur-xl animate-pulse"
+              className="absolute w-32 h-32 bg-gradient-to-r from-orange-400/30 to-yellow-400/30 rounded-full blur-xl animate-pulse"
               style={{
                 left: `${5 + i * 12}%`,
                 top: `${10 + i * 15}%`,
@@ -32,10 +32,10 @@ const Deals = () => {
         <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col min-h-[calc(100vh-120px)]">
           {/* Hero Content */}
           <div className="text-center flex-1 flex flex-col justify-center mb-8">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 font-serif-sans bg-gradient-to-r from-orange-400 to-yellow-400 bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 font-serif-sans bg-gradient-to-r from-orange-300 to-yellow-300 bg-clip-text text-transparent drop-shadow-2xl">
               Exclusive Deals & Offers
             </h1>
-            <p className="text-xl md:text-2xl text-white max-w-3xl mx-auto font-seasons leading-relaxed mb-12">
+            <p className="text-xl md:text-2xl text-white max-w-3xl mx-auto font-seasons leading-relaxed mb-12 drop-shadow-lg">
               Discover amazing travel deals designed to make your Shillong adventure unforgettable and affordable
             </p>
 
@@ -44,7 +44,7 @@ const Deals = () => {
               <img 
                 src="/lovable-uploads/0ef988f7-b7f3-4d1f-80e3-fc2a04acd9cb.png"
                 alt="Taxi Service" 
-                className="max-w-full h-auto rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                className="max-w-full h-auto rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300 brightness-110"
                 style={{ maxHeight: '400px' }}
               />
             </div>
@@ -53,19 +53,19 @@ const Deals = () => {
       </section>
 
       {/* Free Taxi Offer Section */}
-      <section className="py-16 px-4 relative">
+      <section className="py-16 px-4 relative bg-gradient-to-br from-slate-100 via-white to-slate-100">
         <div className="container mx-auto max-w-6xl">
-          <Card className="backdrop-blur-xl bg-gradient-to-br from-yellow-900/30 to-orange-900/30 border-2 border-yellow-400/30 shadow-2xl overflow-hidden relative">
+          <Card className="backdrop-blur-xl bg-gradient-to-br from-yellow-50/95 to-orange-50/95 border-2 border-yellow-400/50 shadow-2xl overflow-hidden relative">
             <CardHeader className="pb-8">
               <div className="flex flex-col md:flex-row items-start md:items-center gap-4 mb-6">
                 <div className="w-20 h-20 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center shadow-xl">
                   <MapPin className="h-12 w-12 text-white" />
                 </div>
                 <div className="flex-1">
-                  <CardTitle className="text-3xl md:text-4xl font-bold text-white mb-2 font-serif-sans">
+                  <CardTitle className="text-3xl md:text-4xl font-bold text-gray-800 mb-2 font-serif-sans">
                     Free Taxi to XTSY
                   </CardTitle>
-                  <CardDescription className="text-yellow-200 text-lg font-seasons">
+                  <CardDescription className="text-gray-700 text-lg font-seasons font-semibold">
                     Complimentary pickup service for groups of 4 or more
                   </CardDescription>
                 </div>
@@ -77,9 +77,9 @@ const Deals = () => {
             
             <CardContent className="space-y-8">
               {/* Pickup Points Map Section */}
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
-                <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2 font-serif-sans">
-                  <MapPin className="h-6 w-6 text-yellow-400" />
+              <div className="bg-yellow-100/80 backdrop-blur-sm rounded-2xl p-6 border border-yellow-300/50">
+                <h3 className="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2 font-serif-sans">
+                  <MapPin className="h-6 w-6 text-yellow-600" />
                   Pickup Points in Shillong
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -90,40 +90,40 @@ const Deals = () => {
                     "Civil Hospital/Barik Point",
                     "Other major points in Shillong"
                   ].map((point, index) => (
-                    <div key={index} className="flex items-center gap-3 p-3 bg-yellow-500/10 rounded-lg border border-yellow-400/20">
+                    <div key={index} className="flex items-center gap-3 p-3 bg-white/80 rounded-lg border border-yellow-400/30 shadow-sm">
                       <div className="w-8 h-8 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full flex items-center justify-center">
                         <span className="text-white font-bold text-sm">{index + 1}</span>
                       </div>
-                      <span className="text-white font-seasons font-semibold">{point}</span>
+                      <span className="text-gray-800 font-seasons font-semibold">{point}</span>
                     </div>
                   ))}
                 </div>
-                <div className="mt-6 p-4 bg-yellow-500/20 rounded-xl border border-yellow-400/30">
-                  <p className="text-white font-seasons text-center">
+                <div className="mt-6 p-4 bg-yellow-200/60 rounded-xl border border-yellow-400/40">
+                  <p className="text-gray-800 font-seasons text-center font-semibold">
                     <strong>🚕 Free taxi service connects all major Shillong locations to XTSY Travellers Hostel inside the pines! 🌲</strong>
                   </p>
                 </div>
               </div>
 
               {/* Eligibility Section */}
-              <div className="bg-green-900/20 border border-green-400/30 rounded-2xl p-6">
-                <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2 font-serif-sans">
-                  <CheckCircle className="h-6 w-6 text-green-400" />
+              <div className="bg-green-100/80 border border-green-400/50 rounded-2xl p-6">
+                <h3 className="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2 font-serif-sans">
+                  <CheckCircle className="h-6 w-6 text-green-600" />
                   Eligibility Requirements
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="flex items-center gap-3">
-                    <Users className="h-8 w-8 text-green-400" />
+                    <Users className="h-8 w-8 text-green-600" />
                     <div>
-                      <p className="text-white font-bold font-seasons">Minimum Booking</p>
-                      <p className="text-green-200 font-seasons">4 people</p>
+                      <p className="text-gray-800 font-bold font-seasons">Minimum Booking</p>
+                      <p className="text-gray-700 font-seasons font-semibold">4 people</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Calendar className="h-8 w-8 text-green-400" />
+                    <Calendar className="h-8 w-8 text-green-600" />
                     <div>
-                      <p className="text-white font-bold font-seasons">Minimum Stay</p>
-                      <p className="text-green-200 font-seasons">2 nights</p>
+                      <p className="text-gray-800 font-bold font-seasons">Minimum Stay</p>
+                      <p className="text-gray-700 font-seasons font-semibold">2 nights</p>
                     </div>
                   </div>
                 </div>
@@ -138,7 +138,7 @@ const Deals = () => {
                   <MapPin className="h-5 w-5 mr-2" />
                   Book Free Taxi Service
                 </Button>
-                <p className="text-gray-300 text-sm mt-3 font-seasons">
+                <p className="text-gray-600 text-sm mt-3 font-seasons font-semibold">
                   Click to chat with us on WhatsApp for instant booking
                 </p>
               </div>

@@ -29,7 +29,7 @@ const Footer = () => {
               alt="XTSY Logo"
               className="h-12 sm:h-16 w-auto mb-3 sm:mb-4"
             />
-            <p className="text-gray-400 mb-4 sm:mb-6 font-seasons text-sm sm:text-base">
+            <p className="text-gray-400 mb-4 sm:mb-6 font-seasons text-sm sm:text-base text-justify">
               Experience the vibrant culture and breathtaking landscapes of Shillong with XTSY. 
               Your gateway to authentic Northeast Indian hospitality and unforgettable adventures.
             </p>
