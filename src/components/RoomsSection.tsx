@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -11,7 +12,37 @@ const RoomsSection = () => {
       name: "XTSY Travellers Hostel",
       description: "Budget-friendly accommodation perfect for backpackers and solo travelers",
       image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/image-assets/Rooms/Hostel/IMG_4087.JPG",
-      features: ["Dormitories", "Common Lounges", "Free Wi-Fi", "Shared Kitchen", "Community Atmosphere"]
+      features: ["Dormitories", "Common Lounges", "Free Wi-Fi", "Shared Kitchen", "Community Atmosphere"],
+      rooms: [
+        {
+          name: "Bed In 8 Bed Mixed Dormitory",
+          price: "₹800",
+          capacity: "1 Room - 8 Guests",
+          image: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=1200&q=80",
+          features: ["8 Bunk Beds", "Mixed Gender", "Shared Bathroom", "Lockers", "Common Area Access"]
+        },
+        {
+          name: "Bed In 6 Bed Female/Mixed Dormitory",
+          price: "₹900",
+          capacity: "5 Rooms - 30 Guests",
+          image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=80",
+          features: ["6 Bunk Beds", "Female/Mixed Gender", "Shared Bathroom", "Personal Lockers", "Reading Lights"]
+        },
+        {
+          name: "Bed In 4 Bed Female/Mixed Dormitory",
+          price: "₹1,100",
+          capacity: "1 Room - 4 Guests",
+          image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1200&q=80",
+          features: ["4 Bunk Beds", "Female/Mixed Gender", "Shared Bathroom", "Storage Space", "AC Available"]
+        },
+        {
+          name: "Bed In 4 Bed Female Dormitory",
+          price: "₹1,200",
+          capacity: "1 Room - 4 Guests",
+          image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=1200&q=80",
+          features: ["4 Bunk Beds", "Female Only", "Private Bathroom", "Individual Lockers", "Enhanced Privacy"]
+        }
+      ]
     },
     {
       id: "luxury",
@@ -136,7 +167,7 @@ const RoomsSection = () => {
                 </ul>
               </div>
 
-              {/* Luxury Room Details */}
+              {/* Room Details */}
               {activeRoomType.rooms && (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {activeRoomType.rooms.map((room, index) => (
