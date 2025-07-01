@@ -11,35 +11,35 @@ const RoomsSection = () => {
       id: "travellers-hostel",
       name: "XTSY Travellers Hostel",
       description: "Budget-friendly accommodation perfect for backpackers and solo travelers",
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/image-assets/Rooms/Hostel/IMG_4087.JPG",
+      image: "", // Ready for Supabase Object URL
       features: ["Dormitories", "Common Lounges", "Free Wi-Fi", "Shared Kitchen", "Community Atmosphere"],
       rooms: [
         {
           name: "Bed In 8 Bed Mixed Dormitory",
           price: "₹800",
           capacity: "1 Room - 8 Guests",
-          image: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=1200&q=80",
+          image: "", // Ready for Supabase Object URL
           features: ["8 Bunk Beds", "Mixed Gender", "Shared Bathroom", "Lockers", "Common Area Access"]
         },
         {
           name: "Bed In 6 Bed Female/Mixed Dormitory",
           price: "₹900",
           capacity: "5 Rooms - 30 Guests",
-          image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=80",
+          image: "", // Ready for Supabase Object URL
           features: ["6 Bunk Beds", "Female/Mixed Gender", "Shared Bathroom", "Personal Lockers", "Reading Lights"]
         },
         {
           name: "Bed In 4 Bed Female/Mixed Dormitory",
           price: "₹1,100",
           capacity: "1 Room - 4 Guests",
-          image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1200&q=80",
+          image: "", // Ready for Supabase Object URL
           features: ["4 Bunk Beds", "Female/Mixed Gender", "Shared Bathroom", "Storage Space", "AC Available"]
         },
         {
           name: "Bed In 4 Bed Female Dormitory",
           price: "₹1,200",
           capacity: "1 Room - 4 Guests",
-          image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=1200&q=80",
+          image: "", // Ready for Supabase Object URL
           features: ["4 Bunk Beds", "Female Only", "Private Bathroom", "Individual Lockers", "Enhanced Privacy"]
         }
       ]
@@ -48,28 +48,28 @@ const RoomsSection = () => {
       id: "luxury",
       name: "XTSY Luxury",
       description: "Premium hospitality experience with stunning mountain views",
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/image-assets/Rooms/Luxury/luxury-suite-1.jpg",
+      image: "", // Ready for Supabase Object URL
       features: ["Private Rooms", "Mountain Views", "Premium Amenities", "Concierge Service"],
       rooms: [
         {
           name: "Sky Glass Suite",
           price: "₹4,999",
           capacity: "2 Guests",
-          image: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1200&q=80",
+          image: "", // Ready for Supabase Object URL
           features: ["King Size Bed", "Glass Ceiling", "Mountain View", "Private Balcony", "Luxury Bathroom"]
         },
         {
           name: "Valley View Suite",
           price: "₹3,999", 
           capacity: "2 Guests",
-          image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80",
+          image: "", // Ready for Supabase Object URL
           features: ["Queen Size Bed", "Valley View", "Private Balcony", "Work Desk", "Premium Amenities"]
         },
         {
           name: "Garden Villa",
           price: "₹5,999",
           capacity: "4 Guests", 
-          image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1200&q=80",
+          image: "", // Ready for Supabase Object URL
           features: ["Two Bedrooms", "Private Garden", "Living Area", "Kitchenette", "Luxury Furnishing"]
         }
       ]
@@ -144,11 +144,17 @@ const RoomsSection = () => {
           <Card className="backdrop-blur-xl bg-white/10 border border-white/20 max-w-5xl mx-auto transform hover:scale-105 transition-all duration-300 shadow-2xl">
             <CardHeader className="text-center pb-6">
               <div className="relative">
-                <img
-                  src={activeRoomType.image}
-                  alt={activeRoomType.name}
-                  className="w-full h-64 object-cover rounded-2xl shadow-xl"
-                />
+                {activeRoomType.image ? (
+                  <img
+                    src={activeRoomType.image}
+                    alt={activeRoomType.name}
+                    className="w-full h-64 object-cover rounded-2xl shadow-xl"
+                  />
+                ) : (
+                  <div className="w-full h-64 bg-gray-300 rounded-2xl shadow-xl flex items-center justify-center">
+                    <span className="text-gray-600 font-seasons">Image Ready for Supabase URL</span>
+                  </div>
+                )}
               </div>
               <CardTitle className="text-3xl font-bold text-white mt-4 font-serif-sans">
                 {activeRoomType.name}
@@ -174,11 +180,17 @@ const RoomsSection = () => {
                     <Card key={index} className="bg-black/20 backdrop-blur-md border border-white/10">
                       <CardHeader className="text-center">
                         <div className="relative">
-                          <img
-                            src={room.image}
-                            alt={room.name}
-                            className="w-full h-48 object-cover rounded-2xl shadow-md"
-                          />
+                          {room.image ? (
+                            <img
+                              src={room.image}
+                              alt={room.name}
+                              className="w-full h-48 object-cover rounded-2xl shadow-md"
+                            />
+                          ) : (
+                            <div className="w-full h-48 bg-gray-300 rounded-2xl shadow-md flex items-center justify-center">
+                              <span className="text-gray-600 text-sm font-seasons">Image Ready for Supabase URL</span>
+                            </div>
+                          )}
                         </div>
                         <CardTitle className="text-xl font-bold text-white mt-3 font-serif-sans">
                           {room.name}

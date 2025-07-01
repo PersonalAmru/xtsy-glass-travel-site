@@ -81,7 +81,7 @@ const HeroSection = () => {
         <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col min-h-[calc(100vh-120px)]">
           {/* Tagline - Top Center */}
           <div className="text-center mt-4 sm:mt-6 mb-8">
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black font-seasons drop-shadow-2xl">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white font-seasons drop-shadow-2xl">
               Live the Shillong Vibe
             </h2>
           </div>
@@ -89,11 +89,11 @@ const HeroSection = () => {
           {/* Hero Text - Center */}
           <div className="text-center flex-1 flex flex-col justify-center mb-8">
             <div className="mb-6 sm:mb-8">
-              <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-black font-seasons drop-shadow-2xl transition-all duration-700 ease-in-out transform hover:scale-110">
+              <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white font-seasons drop-shadow-2xl transition-all duration-700 ease-in-out transform hover:scale-110">
                 {helloMessages[currentHelloIndex]}
               </span>
             </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-black font-serif-sans drop-shadow-2xl transition-all duration-300 hover:scale-105">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white font-serif-sans drop-shadow-2xl transition-all duration-300 hover:scale-105">
               XTSY
             </h1>
           </div>
