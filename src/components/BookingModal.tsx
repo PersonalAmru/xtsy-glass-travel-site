@@ -19,14 +19,14 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
   const [couponCode, setCouponCode] = useState("");
   const [showGuestDetails, setShowGuestDetails] = useState(false);
 
-  // Mock room data with more detailed structure
+  // Updated room data with new names and prices
   const rooms = [
     {
-      id: 'standard-2-bed-female-dorm',
-      name: 'Standard 2 Bed Female Dorm (shared attached washroom)',
-      price: 899,
+      id: '4-bed-female-only-dorm',
+      name: '4 Bed Female Only Dorms',
+      price: 850,
       image: '', // Ready for Supabase URL
-      description: 'A bed in a snug female dorm with private lockers and a shared attached washroom.',
+      description: 'A bed in a female-only dorm with private lockers and a shared attached washroom.',
       maxGuests: 1,
       amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)'],
       availability: {
@@ -34,45 +34,99 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
         'Jul 06': { available: false, price: 0 },
         'Jul 07': { available: false, price: 0 },
         'Jul 08': { available: false, price: 0 },
-        'Jul 09': { available: true, price: 949, units: 2 },
-        'Jul 10': { available: true, price: 949, units: 2 },
+        'Jul 09': { available: true, price: 850, units: 2 },
+        'Jul 10': { available: true, price: 850, units: 2 },
         'Jul 11': { available: false, price: 0 },
       }
     },
     {
-      id: 'deluxe-room',
-      name: 'Deluxe Room',
-      price: 3299,
+      id: '4-bed-mixed-female-dorm',
+      name: '4 Bed Mixed/Female Dorms',
+      price: 800,
       image: '', // Ready for Supabase URL
-      description: 'A snug room with a neat decor offering a private stay experience suitable for two. Comes with a doublebed, a closet, and an attached washroom.',
-      maxGuests: 2,
+      description: 'A bed in a mixed or female dorm with private lockers and a shared attached washroom.',
+      maxGuests: 1,
       amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)'],
       availability: {
-        'Jul 05': { available: true, price: 3299, units: 5 },
-        'Jul 06': { available: true, price: 3299, units: 5 },
-        'Jul 07': { available: true, price: 3299, units: 5 },
-        'Jul 08': { available: true, price: 3299, units: 5 },
-        'Jul 09': { available: true, price: 3299, units: 5 },
-        'Jul 10': { available: true, price: 3299, units: 5 },
-        'Jul 11': { available: true, price: 3299, units: 5 },
+        'Jul 05': { available: true, price: 800, units: 5 },
+        'Jul 06': { available: true, price: 800, units: 5 },
+        'Jul 07': { available: true, price: 800, units: 5 },
+        'Jul 08': { available: true, price: 800, units: 5 },
+        'Jul 09': { available: true, price: 800, units: 5 },
+        'Jul 10': { available: true, price: 800, units: 5 },
+        'Jul 11': { available: true, price: 800, units: 5 },
       }
     },
     {
-      id: 'standard-4-bed-mixed-dorm',
-      name: 'Standard 4 Bed Mixed Dorm',
-      price: 749,
+      id: '6-bed-mixed-female-dorm',
+      name: '6 Bed Mixed/Female Dorms',
+      price: 700,
       image: '', // Ready for Supabase URL
-      description: 'A bed in a cosy mixed dorm with private lockers and a shared ensuite.',
+      description: 'A bed in a spacious mixed or female dorm with private lockers and a shared ensuite.',
       maxGuests: 1,
       amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)'],
       availability: {
         'Jul 05': { available: false, price: 0 },
-        'Jul 06': { available: true, price: 749, units: 2 },
-        'Jul 07': { available: true, price: 749, units: 10 },
-        'Jul 08': { available: true, price: 749, units: 12 },
-        'Jul 09': { available: true, price: 749, units: 12 },
-        'Jul 10': { available: true, price: 749, units: 8 },
+        'Jul 06': { available: true, price: 700, units: 2 },
+        'Jul 07': { available: true, price: 700, units: 10 },
+        'Jul 08': { available: true, price: 700, units: 12 },
+        'Jul 09': { available: true, price: 700, units: 12 },
+        'Jul 10': { available: true, price: 700, units: 8 },
         'Jul 11': { available: false, price: 0 },
+      }
+    },
+    {
+      id: '8-bed-mixed-dorm',
+      name: '8 Bed Mixed Dorms',
+      price: 600,
+      image: '', // Ready for Supabase URL
+      description: 'A bed in a large mixed dormitory perfect for budget travelers.',
+      maxGuests: 1,
+      amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)'],
+      availability: {
+        'Jul 05': { available: true, price: 600, units: 8 },
+        'Jul 06': { available: true, price: 600, units: 8 },
+        'Jul 07': { available: true, price: 600, units: 8 },
+        'Jul 08': { available: true, price: 600, units: 8 },
+        'Jul 09': { available: true, price: 600, units: 8 },
+        'Jul 10': { available: true, price: 600, units: 8 },
+        'Jul 11': { available: true, price: 600, units: 8 },
+      }
+    },
+    {
+      id: 'king-double-room',
+      name: 'King Double Room',
+      price: 3200,
+      image: '', // Ready for Supabase URL
+      description: 'A spacious room with a king bed offering a private stay experience suitable for two guests.',
+      maxGuests: 2,
+      amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)'],
+      availability: {
+        'Jul 05': { available: true, price: 3200, units: 3 },
+        'Jul 06': { available: true, price: 3200, units: 3 },
+        'Jul 07': { available: true, price: 3200, units: 3 },
+        'Jul 08': { available: true, price: 3200, units: 3 },
+        'Jul 09': { available: true, price: 3200, units: 3 },
+        'Jul 10': { available: true, price: 3200, units: 3 },
+        'Jul 11': { available: true, price: 3200, units: 3 },
+      }
+    },
+    {
+      id: 'king-triple-room',
+      name: 'King Triple Room',
+      price: 4200,
+      image: '', // Ready for Supabase URL
+      description: 'A luxurious room with king bed and extra bed accommodating up to three guests.',
+      maxGuests: 3,
+      amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)'],
+      availability: {
+        'Jul 05': { available: true, price: 4200, units: 2 },
+        'Jul 06': { available: true, price: 4200, units: 2 },
+        'Jul 07': { available: true, price: 4200, units: 2 },
+        'Jul 08': { available: true, price: 4200, units: 2 },
+        'Jul 09': { available: true, price: 4200, units: 2 },
+        'Jul 10': { available: true, price: 4200, units: 2 },
+        'Jul 11': { available: true, price: 4200, units: 2 },
       }
     }
   ];

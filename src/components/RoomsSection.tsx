@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -29,30 +28,39 @@ const RoomsSection = () => {
       image: "", // Ready for Supabase Object URL
       rooms: [
         {
-          id: "dormitory-bed",
-          name: "Dormitory Bed",
-          price: 599,
-          description: "Shared accommodation with modern amenities",
-          features: ["Shared bathroom", "Wi-Fi", "Locker", "Common area"],
+          id: "4-bed-female-only-dorm",
+          name: "4 Bed Female Only Dorms",
+          price: 850,
+          description: "Female-only dormitory with modern amenities",
+          features: ["Female only", "Shared bathroom", "Wi-Fi", "Locker", "Common area"],
           maxGuests: 1,
           image: "" // Ready for Supabase Object URL
         },
         {
-          id: "private-room-shared-bath",
-          name: "Private Room (Shared Bath)",
-          price: 1299,
-          description: "Private room with shared bathroom facilities",
-          features: ["Private room", "Shared bathroom", "Wi-Fi", "TV"],
-          maxGuests: 2,
+          id: "4-bed-mixed-female-dorm",
+          name: "4 Bed Mixed/Female Dorms",
+          price: 800,
+          description: "Mixed or female dormitory with shared facilities",
+          features: ["Mixed/Female", "Shared bathroom", "Wi-Fi", "Locker", "Common area"],
+          maxGuests: 1,
           image: "" // Ready for Supabase Object URL
         },
         {
-          id: "private-room-attached-bath",
-          name: "Private Room (Attached Bath)",
-          price: 1799,
-          description: "Private room with attached bathroom",
-          features: ["Private room", "Attached bathroom", "Wi-Fi", "TV", "Hot water"],
-          maxGuests: 2,
+          id: "6-bed-mixed-female-dorm",
+          name: "6 Bed Mixed/Female Dorms",
+          price: 700,
+          description: "Spacious mixed or female dormitory",
+          features: ["Mixed/Female", "Shared bathroom", "Wi-Fi", "Locker", "Common area"],
+          maxGuests: 1,
+          image: "" // Ready for Supabase Object URL
+        },
+        {
+          id: "8-bed-mixed-dorm",
+          name: "8 Bed Mixed Dorms",
+          price: 600,
+          description: "Large mixed dormitory for budget travelers",
+          features: ["Mixed dorm", "Shared bathroom", "Wi-Fi", "Locker", "Common area"],
+          maxGuests: 1,
           image: "" // Ready for Supabase Object URL
         }
       ]
@@ -63,30 +71,21 @@ const RoomsSection = () => {
       image: "", // Ready for Supabase Object URL
       rooms: [
         {
-          id: "deluxe-room",
-          name: "Deluxe Room",
-          price: 2999,
-          description: "Spacious room with premium amenities and valley views",
+          id: "king-double-room",
+          name: "King Double Room",
+          price: 3200,
+          description: "Spacious room with king bed for two guests",
           features: ["King bed", "Valley view", "Mini bar", "Attached bath", "Wi-Fi", "TV"],
           maxGuests: 2,
           image: "" // Ready for Supabase Object URL
         },
         {
-          id: "executive-suite",
-          name: "Executive Suite",
-          price: 4999,
-          description: "Luxurious suite with separate living area and panoramic views",
-          features: ["Separate living area", "Panoramic view", "Jacuzzi", "Mini bar", "Wi-Fi", "Premium amenities"],
-          maxGuests: 4,
-          image: "" // Ready for Supabase Object URL
-        },
-        {
-          id: "presidential-suite",
-          name: "Presidential Suite",
-          price: 7999,
-          description: "Ultimate luxury with private balcony and exclusive services",
-          features: ["Private balcony", "Exclusive services", "Butler service", "Premium dining", "Spa access"],
-          maxGuests: 4,
+          id: "king-triple-room",
+          name: "King Triple Room",
+          price: 4200,
+          description: "Luxurious room accommodating up to three guests",
+          features: ["King bed + extra bed", "Panoramic view", "Mini bar", "Attached bath", "Wi-Fi", "Premium amenities"],
+          maxGuests: 3,
           image: "" // Ready for Supabase Object URL
         }
       ]
