@@ -108,34 +108,23 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Contact Info with Map */}
+          {/* Contact Info */}
           <div>
-            <h3 className="text-white font-bold mb-3 sm:mb-4 font-serif-sans text-sm sm:text-base">Find Us</h3>
-            
-            {/* Address */}
-            <div className="mb-4">
-              <h4 className="text-white font-semibold mb-2 text-sm">Address</h4>
-              <p className="text-gray-400 font-seasons text-xs sm:text-sm mb-2">
-                Pine Villa, Golf Club, LumShyiap, Shyiap, Shillong, Meghalaya - 793001
-              </p>
-              <a 
-                href="https://maps.app.goo.gl/BsKV2mhjRSqsECT39"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-orange-400 hover:text-orange-300 transition-colors duration-200 text-xs flex items-center gap-1"
-              >
-                <MapPin className="h-3 w-3" />
-                Tap To Open Maps
-              </a>
-            </div>
-
-            {/* Coordinates */}
-            <div className="mb-4 text-center">
-              <p className="text-white font-mono text-sm">25°35'18.4"N 91°54'12.7"E</p>
-            </div>
-
-            {/* Contact Details */}
+            <h3 className="text-white font-bold mb-3 sm:mb-4 font-serif-sans text-sm sm:text-base">Contact</h3>
             <div className="space-y-2 text-gray-400 font-seasons text-xs sm:text-sm">
+              <p className="flex items-start gap-2">
+                <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                <a 
+                  href="https://maps.app.goo.gl/BsKV2mhjRSqsECT39"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors duration-200"
+                >
+                  Diengiong, New Shillong Township, Meghalaya - 793018
+                  <br />
+                  <span className="text-blue-400 underline">Get Directions</span>
+                </a>
+              </p>
               <p className="flex items-center gap-2">
                 <Mail className="h-4 w-4 flex-shrink-0" />
                 <a 
@@ -153,43 +142,6 @@ const Footer = () => {
                 >
                   +91 88373 17070
                 </a>
-              </p>
-            </div>
-
-            {/* Amenities */}
-            <div className="mt-4">
-              <h4 className="text-white font-semibold mb-2 text-sm">Amenities</h4>
-              <div className="grid grid-cols-2 gap-1 text-xs text-gray-400">
-                <span>🏔️ Mountain View</span>
-                <span>🧺 Laundry Services</span>
-                <span>💳 Card Payment</span>
-                <span>📺 Common Television</span>
-                <span>☕ Cafe</span>
-                <span>🏠 In-house Activities</span>
-                <span>🏪 Storage Facility</span>
-                <span>📱 UPI Payment</span>
-                <span>📶 Free Wi-Fi</span>
-                <span>🍳 Breakfast (Extra)</span>
-                <span>👥 Common hangout area</span>
-                <span>🅿️ Parking (private)</span>
-              </div>
-            </div>
-
-            {/* Cancellation Policy */}
-            <div className="mt-4">
-              <h4 className="text-white font-semibold mb-2 text-sm">Cancellation Policy</h4>
-              <div className="bg-gradient-to-r from-red-500 to-orange-500 h-1 w-full rounded mb-2"></div>
-              <div className="flex justify-between text-xs text-gray-400 mb-2">
-                <span>😭 Now — 5 Jul 11:59 AM</span>
-                <span>🏨 5 Jul 12:00 pm</span>
-              </div>
-              <div className="flex justify-between text-xs font-semibold mb-2">
-                <span className="text-red-400">No Refund</span>
-                <span className="text-white">Check-in day</span>
-              </div>
-              <p className="text-xs text-gray-400">
-                No date modifications (date changes or stay duration reductions) are allowed within the 7-day window 
-                prior to the check-in date. Any such requests will be treated as cancellations.
               </p>
             </div>
           </div>
