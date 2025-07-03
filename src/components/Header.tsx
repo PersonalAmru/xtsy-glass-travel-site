@@ -17,10 +17,10 @@ const Header = () => {
     { name: "Home", href: "/" },
     { name: "Services", href: "/#services" },
     { name: "Our Properties", href: "/#rooms" },
+    { name: "Deals & Offers", href: "/deals" },
     { name: "Gallery", href: "/gallery" },
     { name: "Reviews", href: "/#reviews" },
     { name: "About Us", href: "/about" },
-    { name: "Deals & Offers", href: "/deals" },
     { name: "Contact", href: "/#contact" },
   ];
 

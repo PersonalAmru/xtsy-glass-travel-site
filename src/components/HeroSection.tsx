@@ -22,7 +22,16 @@ const HeroSection = () => {
     "안녕하세요!",
     "Привет!",
     "नमस्ते!",
-    "مرحبا!"
+    "مرحبا!",
+    "你好!",
+    "Olá!",
+    "Shwmae!",
+    "Γεια σας!",
+    "Merhaba!",
+    "Sawubona!",
+    "Hej!",
+    "Kumusta!",
+    "Saluton!"
   ];
 
   useEffect(() => {
@@ -51,16 +60,16 @@ const HeroSection = () => {
   return (
     <>
       <section id="home" className="relative min-h-screen flex flex-col px-3 sm:px-4 pt-14 sm:pt-16 pb-6 sm:pb-8 bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-hidden">
-        {/* Enhanced Background with animations */}
+        {/* Enhanced Background with improved brightness and saturation */}
         <div className="absolute inset-0">
           <img 
             src="https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/image-assets/Hero/DJI_20250324_105854_074.jpg"
             alt="Hero Background"
-            className="w-full h-full object-cover opacity-40 transition-transform duration-1000 hover:scale-105"
+            className="w-full h-full object-cover opacity-60 transition-transform duration-1000 hover:scale-105 brightness-125 saturate-150 contrast-110"
             loading="eager"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-gray-900/50 to-black/70"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-gray-900/30 to-black/50"></div>
           {/* Floating particles effect */}
           <div className="absolute inset-0">
             {[...Array(6)].map((_, i) => (
@@ -139,7 +148,7 @@ const HeroSection = () => {
                   onChange={(e) => setGuests(e.target.value)}
                   className="w-full px-2 sm:px-3 py-2 h-8 sm:h-10 bg-white border-2 border-gray-300 rounded-lg text-black text-xs sm:text-sm font-semibold"
                 >
-                  {Array.from({length: 30}, (_, i) => i + 1).map(num => (
+                  {Array.from({length: 25}, (_, i) => i + 1).map(num => (
                     <option key={num} value={num} className="bg-white text-black font-semibold">{num}</option>
                   ))}
                 </select>

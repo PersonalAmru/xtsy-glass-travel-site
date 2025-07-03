@@ -40,9 +40,23 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
     setBookingData(null);
   };
 
-  const proceedToCheckout = () => {
-    // Here you would integrate with your payment gateway
-    alert("Proceeding to payment gateway...");
+  const proceedToGuestDetails = () => {
+    // Here you would navigate to guest details page
+    alert("Navigating to guest details page...");
+  };
+
+  const getDaysAgo = (timestamp: number) => {
+    const now = new Date().getTime();
+    const diffTime = Math.abs(now - timestamp);
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    
+    if (diffDays === 0) {
+      return "today";
+    } else if (diffDays === 1) {
+      return "1 day ago";
+    } else {
+      return `${diffDays} days ago`;
+    }
   };
 
   const totalAmount = bookingData?.items.reduce((sum, item) => sum + (item.price * item.quantity), 0) || 0;
@@ -50,7 +64,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl backdrop-blur-xl bg-slate-900/95 border border-white/20 text-white slide-in-from-left-full animate-in duration-300">
+      <DialogContent className="max-w-2xl backdrop-blur-xl bg-slate-900/95 border border-white/20 text-white slide-in-from-left-full animate-in duration-300 fixed left-0 top-0 h-full rounded-none w-full sm:w-96 sm:max-w-none data-[state=open]:slide-in-from-left-0 data-[state=closed]:slide-out-to-left-0">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-center bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent flex items-center justify-center gap-2">
             <ShoppingCart className="h-6 w-6" />
@@ -66,6 +80,11 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
           </div>
         ) : (
           <div className="space-y-6">
+            {/* Cart saved info */}
+            <div className="text-center text-sm text-gray-400">
+              Cart saved {getDaysAgo(bookingData.timestamp)}
+            </div>
+
             <div className="bg-white/10 rounded-lg p-4">
               <h3 className="text-lg font-semibold text-white mb-2">Booking Details</h3>
               <div className="grid grid-cols-2 gap-4 text-sm">
@@ -82,8 +101,8 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                   <p className="text-white">{bookingData.guests}</p>
                 </div>
                 <div>
-                  <span className="text-gray-400">Booked:</span>
-                  <p className="text-white">{new Date(bookingData.timestamp).toLocaleDateString()}</p>
+                  <span className="text-gray-400">Booking Date:</span>
+                  <p className="text-white">{new Date().toLocaleDateString()}</p>
                 </div>
               </div>
             </div>
@@ -123,10 +142,10 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                 Clear Cart
               </Button>
               <Button
-                onClick={proceedToCheckout}
+                onClick={proceedToGuestDetails}
                 className="flex-1 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700"
               >
-                Proceed to Checkout
+                Next Step
               </Button>
             </div>
           </div>

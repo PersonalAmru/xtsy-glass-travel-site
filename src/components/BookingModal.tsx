@@ -1,10 +1,6 @@
-
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Users, Plus, Minus, ShoppingCart, CheckCircle } from "lucide-react";
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -14,346 +10,184 @@ interface BookingModalProps {
   guests: number;
 }
 
-interface BookingItem {
-  roomId: string;
-  roomName: string;
-  price: number;
-  quantity: number;
-  guests: number;
-}
-
 const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingModalProps) => {
-  const [bookingItems, setBookingItems] = useState<BookingItem[]>([]);
-  const [addedItems, setAddedItems] = useState<Record<string, boolean>>({});
+  const [selectedRooms, setSelectedRooms] = useState<{ [key: string]: number }>({});
 
-  const roomTypes = [
+  // Mock room data - this should come from your actual data source
+  const rooms = [
     {
-      id: "8_bed",
-      name: "Bed In 8 Bed Mixed Dormitory",
-      price: 555,
-      capacity: 8,
-      type: "Mixed",
-      property: "XTSY Travellers Hostel",
-      amenities: ["XL Comfy Beds", "Reading lights", "Charging point", "Attached Bathroom", "High speed Wi-Fi", "Hot Water", "Locker", "Balcony", "Toiletries"],
-      availability: 1,
-      totalGuests: 8,
+      id: 'xtsy-travellers-hostel',
+      name: 'XTSY Travellers Hostel',
+      price: 1500,
+      image: '', // Ready for Supabase URL
+      amenities: ['Free WiFi', 'Shared Kitchen', 'Common Area', 'Lockers'],
+      description: 'Budget-friendly hostel with shared facilities'
     },
     {
-      id: "6_bed",
-      name: "Bed In 6 Bed Female/Mixed Dormitory",
-      price: 666,
-      capacity: 6,
-      type: "Female/Mixed",
-      property: "XTSY Travellers Hostel",
-      amenities: ["XL Comfy Beds", "Reading lights", "Charging point", "Attached Bathroom", "High speed Wi-Fi", "Hot Water", "Locker", "Balcony", "Toiletries"],
-      availability: 5,
-      totalGuests: 30,
-    },
-    {
-      id: "4_bed_mixed",
-      name: "Bed In 4 Bed Female/Mixed Dormitory",
-      price: 777,
-      capacity: 4,
-      type: "Female/Mixed",
-      property: "XTSY Travellers Hostel",
-      amenities: ["XL Comfy Beds", "Reading lights", "Charging point", "Attached Bathroom", "High speed Wi-Fi", "Hot Water", "Locker", "Balcony", "Toiletries"],
-      availability: 1,
-      totalGuests: 4,
-    },
-    {
-      id: "4_bed_female",
-      name: "Bed In 4 Bed Female Dormitory",
-      price: 888,
-      capacity: 4,
-      type: "Female Only",
-      property: "XTSY Travellers Hostel",
-      amenities: ["XL Comfy Beds", "Reading lights", "Charging point", "Attached Bathroom", "High speed Wi-Fi", "Hot Water", "Locker", "Balcony", "Toiletries"],
-      availability: 1,
-      totalGuests: 4,
-    },
-    {
-      id: "king_double",
-      name: "King Double Room",
-      price: 3333,
-      capacity: 2,
-      type: "Private",
-      property: "XTSY Luxury",
-      amenities: ["Charging point", "Attached Bathroom", "High speed Wi-Fi", "Privacy", "Hot Water", "Mountain View", "River View (Seasonal)", "Kettle", "Toiletries", "Seating Area"],
-      availability: 2,
-      totalGuests: 2,
-    },
-    {
-      id: "king_triple",
-      name: "King Triple Room",
-      price: 4444,
-      capacity: 3,
-      type: "Private",
-      property: "XTSY Luxury",
-      amenities: ["Charging point", "Attached Bathroom", "High speed Wi-Fi", "Privacy", "Hot Water", "Mountain View", "River View (Seasonal)", "Kettle", "Toiletries", "Seating Area"],
-      availability: 1,
-      totalGuests: 3,
+      id: 'xtsy-luxury',
+      name: 'XTSY Luxury',
+      price: 3500,
+      image: '', // Ready for Supabase URL
+      amenities: ['Private Bathroom', 'AC', 'Room Service', 'Balcony'],
+      description: 'Luxury accommodation with premium amenities'
     }
   ];
 
-  const addRoom = (room: typeof roomTypes[0]) => {
-    setBookingItems(prev => {
-      const existing = prev.find(item => item.roomId === room.id);
-      if (existing) {
-        return prev.map(item => 
-          item.roomId === room.id 
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      }
-      return [...prev, {
+  const handleRoomQuantityChange = (roomId: string, quantity: number) => {
+    setSelectedRooms(prev => ({
+      ...prev,
+      [roomId]: quantity
+    }));
+  };
+
+  const addToCart = () => {
+    const selectedItems = rooms
+      .filter(room => selectedRooms[room.id] > 0)
+      .map(room => ({
         roomId: room.id,
         roomName: room.name,
         price: room.price,
-        quantity: 1,
-        guests: Math.min(room.capacity, guests)
-      }];
-    });
+        quantity: selectedRooms[room.id],
+        guests: guests
+      }));
 
-    // Show visual feedback
-    setAddedItems(prev => ({ ...prev, [room.id]: true }));
-    setTimeout(() => {
-      setAddedItems(prev => ({ ...prev, [room.id]: false }));
-    }, 2000);
-  };
+    if (selectedItems.length === 0) {
+      alert("Please select at least one room");
+      return;
+    }
 
-  const removeRoom = (roomId: string) => {
-    setBookingItems(prev => prev.filter(item => item.roomId !== roomId));
-  };
-
-  const updateQuantity = (roomId: string, change: number) => {
-    setBookingItems(prev => 
-      prev.map(item => {
-        if (item.roomId === roomId) {
-          const newQuantity = Math.max(0, item.quantity + change);
-          return newQuantity === 0 ? null : { ...item, quantity: newQuantity };
-        }
-        return item;
-      }).filter(Boolean) as BookingItem[]
-    );
-  };
-
-  const saveToCart = () => {
     const bookingData = {
       checkIn,
       checkOut,
       guests,
-      items: bookingItems,
-      timestamp: Date.now()
+      items: selectedItems,
+      timestamp: new Date().getTime()
     };
+
     localStorage.setItem('xtsy_booking_cart', JSON.stringify(bookingData));
-    
-    // Show success feedback
-    alert("Booking saved to cart successfully!");
+    alert("Rooms added to cart!");
+    onClose();
   };
 
-  const proceedToCheckout = () => {
-    saveToCart();
-    setTimeout(() => {
-      alert("Proceeding to payment gateway...");
-    }, 500);
-  };
-
-  const totalAmount = bookingItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-  const advanceAmount = Math.round(totalAmount * 0.22);
+  const totalRooms = Object.values(selectedRooms).reduce((sum, qty) => sum + qty, 0);
+  const totalAmount = rooms.reduce((sum, room) => {
+    const quantity = selectedRooms[room.id] || 0;
+    return sum + (room.price * quantity);
+  }, 0);
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto backdrop-blur-xl bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-slate-900/95 border border-white/20 text-white mx-2 sm:mx-4">
+      <DialogContent className="max-w-4xl backdrop-blur-xl bg-white/95 border border-gray-300 text-gray-900 max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-xl sm:text-2xl font-bold text-center bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent font-serif-sans">
+          <DialogTitle className="text-2xl font-bold text-center text-gray-900">
             Select Your Rooms
           </DialogTitle>
-          <DialogDescription className="text-gray-400 text-center font-seasons text-sm sm:text-base">
-            Check-in: {checkIn} | Check-out: {checkOut} | Guests: {guests}
+          <DialogDescription className="text-center text-gray-600">
+            Choose from our available accommodations
           </DialogDescription>
         </DialogHeader>
 
-        {/* Property Groups */}
-        <div className="space-y-6 sm:space-y-8">
-          {/* XTSY Travellers Hostel */}
-          <div>
-            <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4 font-serif-sans">XTSY Travellers Hostel</h3>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4">
-              {roomTypes.filter(room => room.property === "XTSY Travellers Hostel").map((room) => (
-                <Card key={room.id} className="backdrop-blur-lg bg-white/10 border border-white/20 transition-all duration-300 hover:bg-white/15">
-                  <CardHeader className="pb-3">
-                    <CardTitle className="text-base sm:text-lg text-white font-serif-sans">{room.name}</CardTitle>
-                    <CardDescription className="text-gray-300 font-seasons text-sm">
-                      {room.type} • {room.capacity} guests • ₹{room.price}/night
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-3">
-                    <div className="flex flex-wrap gap-1">
-                      {room.amenities.slice(0, 4).map((amenity, i) => (
-                        <Badge key={i} variant="outline" className="border-white/20 text-gray-300 text-xs font-seasons">
-                          {amenity}
-                        </Badge>
-                      ))}
-                      {room.amenities.length > 4 && (
-                        <Badge variant="outline" className="border-white/20 text-gray-300 text-xs font-seasons">
-                          +{room.amenities.length - 4} more
-                        </Badge>
-                      )}
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <Badge variant="secondary" className="bg-teal-500/20 text-teal-300 font-seasons text-xs">
-                        {room.availability} room(s) - {room.totalGuests} guests
-                      </Badge>
-                      <Button
-                        onClick={() => addRoom(room)}
-                        size="sm"
-                        className={`transition-all duration-300 transform font-seasons text-xs sm:text-sm ${
-                          addedItems[room.id] 
-                            ? "bg-green-500 hover:bg-green-600 scale-110" 
-                            : "bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-600 hover:to-blue-700 hover:scale-105"
-                        }`}
-                      >
-                        {addedItems[room.id] ? (
-                          <>
-                            <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
-                            Added!
-                          </>
-                        ) : (
-                          "Add Bed"
-                        )}
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+        {/* Booking Info */}
+        <div className="bg-gray-100 rounded-lg p-4 mb-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+            <div>
+              <span className="text-gray-600">Check-in:</span>
+              <p className="font-semibold text-gray-900">{checkIn}</p>
             </div>
-          </div>
-
-          {/* XTSY Luxury */}
-          <div>
-            <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4 font-serif-sans">XTSY Luxury</h3>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4">
-              {roomTypes.filter(room => room.property === "XTSY Luxury").map((room) => (
-                <Card key={room.id} className="backdrop-blur-lg bg-white/10 border border-white/20 transition-all duration-300 hover:bg-white/15">
-                  <CardHeader className="pb-3">
-                    <CardTitle className="text-base sm:text-lg text-white font-serif-sans">{room.name}</CardTitle>
-                    <CardDescription className="text-gray-300 font-seasons text-sm">
-                      {room.type} • {room.capacity} guests • ₹{room.price}/night
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-3">
-                    <div className="flex flex-wrap gap-1">
-                      {room.amenities.slice(0, 4).map((amenity, i) => (
-                        <Badge key={i} variant="outline" className="border-white/20 text-gray-300 text-xs font-seasons">
-                          {amenity}
-                        </Badge>
-                      ))}
-                      {room.amenities.length > 4 && (
-                        <Badge variant="outline" className="border-white/20 text-gray-300 text-xs font-seasons">
-                          +{room.amenities.length - 4} more
-                        </Badge>
-                      )}
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <Badge variant="secondary" className="bg-teal-500/20 text-teal-300 font-seasons text-xs">
-                        {room.availability} available
-                      </Badge>
-                      <Button
-                        onClick={() => addRoom(room)}
-                        size="sm"
-                        className={`transition-all duration-300 transform font-seasons text-xs sm:text-sm ${
-                          addedItems[room.id] 
-                            ? "bg-green-500 hover:bg-green-600 scale-110" 
-                            : "bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-600 hover:to-blue-700 hover:scale-105"
-                        }`}
-                      >
-                        {addedItems[room.id] ? (
-                          <>
-                            <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
-                            Added!
-                          </>
-                        ) : (
-                          "Add Room"
-                        )}
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+            <div>
+              <span className="text-gray-600">Check-out:</span>
+              <p className="font-semibold text-gray-900">{checkOut}</p>
+            </div>
+            <div>
+              <span className="text-gray-600">Guests:</span>
+              <p className="font-semibold text-gray-900">{guests}</p>
+            </div>
+            <div>
+              <span className="text-gray-600">Booking Date:</span>
+              <p className="font-semibold text-gray-900">{new Date().toLocaleDateString()}</p>
             </div>
           </div>
         </div>
 
-        {bookingItems.length > 0 && (
-          <div className="bg-white/10 rounded-lg p-4 sm:p-6 mb-4 backdrop-blur-lg border border-white/20">
-            <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4 flex items-center gap-2 font-serif-sans">
-              <ShoppingCart className="h-4 w-4 sm:h-5 sm:w-5" />
-              Your Booking Summary
-            </h3>
-            <div className="space-y-2 sm:space-y-3">
-              {bookingItems.map((item) => (
-                <div key={item.roomId} className="flex items-center justify-between bg-white/5 rounded-lg p-3 sm:p-4 backdrop-blur-sm">
-                  <div className="flex-1 min-w-0 mr-3">
-                    <p className="text-white font-medium font-seasons text-sm sm:text-base truncate">{item.roomName}</p>
-                    <p className="text-gray-400 text-xs sm:text-sm font-seasons">₹{item.price} x {item.quantity} room(s)</p>
+        <div className="space-y-6">
+          {rooms.map((room) => (
+            <div key={room.id} className="border border-gray-200 rounded-lg p-6 bg-white">
+              <div className="flex flex-col md:flex-row gap-6">
+                {/* Room Image Placeholder */}
+                <div className="w-full md:w-48 h-32 bg-gray-200 rounded-lg flex items-center justify-center">
+                  {room.image ? (
+                    <img src={room.image} alt={room.name} className="w-full h-full object-cover rounded-lg" />
+                  ) : (
+                    <span className="text-gray-500 text-sm">Image Ready for Supabase URL</span>
+                  )}
+                </div>
+
+                {/* Room Details */}
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">{room.name}</h3>
+                  <p className="text-gray-600 mb-3">{room.description}</p>
+                  
+                  {/* Amenities */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {room.amenities.map((amenity, index) => (
+                      <span key={index} className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
+                        {amenity}
+                      </span>
+                    ))}
                   </div>
-                  <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => updateQuantity(item.roomId, -1)}
-                      className="border-white/20 text-white hover:bg-white/10 transition-all duration-200 h-8 w-8 p-0"
-                    >
-                      <Minus className="h-3 w-3 sm:h-4 sm:w-4" />
-                    </Button>
-                    <span className="text-white min-w-[2rem] text-center font-bold text-sm">{item.quantity}</span>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => updateQuantity(item.roomId, 1)}
-                      className="border-white/20 text-white hover:bg-white/10 transition-all duration-200 h-8 w-8 p-0"
-                    >
-                      <Plus className="h-3 w-3 sm:h-4 sm:w-4" />
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="destructive"
-                      onClick={() => removeRoom(item.roomId)}
-                      className="ml-1 sm:ml-2 transition-all duration-200 hover:scale-105 text-xs"
-                    >
-                      Remove
-                    </Button>
+
+                  {/* Price and Quantity */}
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="text-2xl font-bold text-gray-900">₹{room.price}</span>
+                      <span className="text-gray-600 text-sm ml-2">per night</span>
+                    </div>
+                    
+                    <div className="flex items-center gap-3">
+                      <label className="text-sm font-medium text-gray-700">Quantity:</label>
+                      <select
+                        value={selectedRooms[room.id] || 0}
+                        onChange={(e) => handleRoomQuantityChange(room.id, parseInt(e.target.value))}
+                        className="px-3 py-2 border border-gray-300 rounded-md text-gray-900"
+                      >
+                        {Array.from({length: 6}, (_, i) => (
+                          <option key={i} value={i}>{i}</option>
+                        ))}
+                      </select>
+                    </div>
                   </div>
                 </div>
-              ))}
-            </div>
-            <div className="border-t border-white/20 pt-3 sm:pt-4 mt-3 sm:mt-4">
-              <div className="flex justify-between text-base sm:text-lg font-bold text-white font-serif-sans">
-                <span>Total Amount:</span>
-                <span>₹{totalAmount}</span>
-              </div>
-              <div className="flex justify-between text-xs sm:text-sm text-gray-400 font-seasons">
-                <span>Advance Payment (22%):</span>
-                <span>₹{advanceAmount}</span>
               </div>
             </div>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4 sm:mt-6">
-              <Button
-                onClick={saveToCart}
-                variant="outline"
-                className="flex-1 border-white/40 text-white hover:bg-white/10 backdrop-blur-sm transition-all duration-300 hover:scale-105 font-seasons bg-white/5 border-2"
-              >
-                Save for Later
-              </Button>
-              <Button
-                onClick={proceedToCheckout}
-                className="flex-1 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 transition-all duration-300 hover:scale-105 font-seasons shadow-lg"
-              >
-                Proceed to Checkout
-              </Button>
+          ))}
+        </div>
+
+        {/* Summary */}
+        {totalRooms > 0 && (
+          <div className="border-t border-gray-200 pt-4">
+            <div className="flex justify-between items-center text-lg font-bold text-gray-900">
+              <span>Total ({totalRooms} room{totalRooms > 1 ? 's' : ''}):</span>
+              <span>₹{totalAmount}</span>
             </div>
           </div>
         )}
+
+        {/* Action Buttons */}
+        <div className="flex gap-4">
+          <Button
+            onClick={onClose}
+            variant="outline"
+            className="flex-1"
+          >
+            Cancel
+          </Button>
+          <Button
+            onClick={addToCart}
+            className="flex-1 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700"
+          >
+            Add to Cart
+          </Button>
+        </div>
       </DialogContent>
     </Dialog>
   );
