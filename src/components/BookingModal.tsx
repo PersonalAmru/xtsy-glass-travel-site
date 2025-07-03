@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -246,14 +245,14 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
 
                       {/* Amenity Icons */}
                       <div className="flex gap-3 mb-4">
-                        <Mountain className="h-5 w-5 text-gray-400" title="Mountain View" />
-                        <CreditCard className="h-5 w-5 text-gray-400" title="Card Payment" />
-                        <Coffee className="h-5 w-5 text-gray-400" title="Cafe" />
-                        <Wifi className="h-5 w-5 text-gray-400" title="Free Wi-Fi" />
-                        <Tv className="h-5 w-5 text-gray-400" title="Television" />
-                        <Activity className="h-5 w-5 text-gray-400" title="Activities" />
-                        <Shield className="h-5 w-5 text-gray-400" title="Storage" />
-                        <Car className="h-5 w-5 text-gray-400" title="Parking" />
+                        <Mountain className="h-5 w-5 text-gray-400" />
+                        <CreditCard className="h-5 w-5 text-gray-400" />
+                        <Coffee className="h-5 w-5 text-gray-400" />
+                        <Wifi className="h-5 w-5 text-gray-400" />
+                        <Tv className="h-5 w-5 text-gray-400" />
+                        <Activity className="h-5 w-5 text-gray-400" />
+                        <Shield className="h-5 w-5 text-gray-400" />
+                        <Car className="h-5 w-5 text-gray-400" />
                       </div>
 
                       {/* Availability Calendar */}
