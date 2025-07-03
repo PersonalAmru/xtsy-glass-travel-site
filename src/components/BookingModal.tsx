@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Users, Wifi, Car, Coffee, Shield, Mountain, CreditCard, Tv, Activity } from "lucide-react";
+import GuestDetails from "./GuestDetails";
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -16,6 +17,7 @@ interface BookingModalProps {
 const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingModalProps) => {
   const [selectedRooms, setSelectedRooms] = useState<{ [key: string]: number }>({});
   const [couponCode, setCouponCode] = useState("");
+  const [showGuestDetails, setShowGuestDetails] = useState(false);
 
   // Mock room data with more detailed structure
   const rooms = [
@@ -107,8 +109,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
     };
 
     localStorage.setItem('xtsy_booking_cart', JSON.stringify(bookingData));
-    alert("Rooms added to cart!");
-    onClose();
+    setShowGuestDetails(true);
   };
 
   const selectedRoom = rooms.find(room => selectedRooms[room.id] > 0);
@@ -130,6 +131,23 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
     };
     return `${day} ${months[month as keyof typeof months] || month}`;
   };
+
+  if (showGuestDetails) {
+    return (
+      <GuestDetails
+        isOpen={true}
+        onClose={() => {
+          setShowGuestDetails(false);
+          onClose();
+        }}
+        bookingData={{
+          checkIn,
+          checkOut,
+          guests
+        }}
+      />
+    );
+  }
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -400,7 +418,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
               <Button
                 onClick={addToCart}
                 disabled={!selectedRoom || selectedRooms[selectedRoom?.id] === 0}
-                className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 font-semibold"
+                className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white py-3 font-semibold"
               >
                 Book now
               </Button>
