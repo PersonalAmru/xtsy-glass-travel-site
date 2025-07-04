@@ -31,6 +31,17 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
   const [bookingData, setBookingData] = useState<BookingData | null>(null);
   const [showGuestDetails, setShowGuestDetails] = useState(false);
 
+  // Calculate GST rate based on room tariff
+  const calculateGSTRate = (roomPrice: number) => {
+    if (roomPrice < 1000) {
+      return 0; // 0% GST
+    } else if (roomPrice >= 1000 && roomPrice < 7500) {
+      return 0.12; // 12% GST
+    } else {
+      return 0.18; // 18% GST
+    }
+  };
+
   useEffect(() => {
     if (isOpen) {
       const savedData = localStorage.getItem('xtsy_booking_cart');
@@ -44,6 +55,15 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
             nights: 1,
             roomType: item.roomType || 'dorm'
           })) || [];
+        }
+        // Update Sky Glass Suite price if it exists in cart
+        if (parsedData.items) {
+          parsedData.items = parsedData.items.map((item: any) => {
+            if (item.roomId === 'sky-glass-suite') {
+              return { ...item, price: 18000 };
+            }
+            return item;
+          });
         }
         setBookingData(parsedData);
       }
@@ -93,25 +113,40 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
     }
   };
 
-  // Calculate total with proper pricing logic
-  const totalAmount = bookingData?.items.reduce((sum, item) => {
-    let itemTotal = 0;
-    const nights = item.nights || bookingData.nights || 1;
+  // Calculate total with proper pricing logic and GST
+  const calculateTotals = () => {
+    if (!bookingData?.items) return { totalAmount: 0, totalGST: 0, grandTotal: 0, payableNow: 0 };
     
-    if (item.roomType === 'dorm') {
-      // For dorms: price per person per night
-      itemTotal = item.price * item.quantity * (item.guests || bookingData.guests) * nights;
-    } else {
-      // For luxury rooms: price per room per night
-      itemTotal = item.price * item.quantity * nights;
-    }
+    let subtotal = 0;
+    let totalGST = 0;
     
-    return sum + itemTotal;
-  }, 0) || 0;
-  
-  const tax = Math.round(totalAmount * 0.12);
-  const grandTotal = totalAmount + tax;
-  const payableNow = Math.round(grandTotal * 0.21);
+    bookingData.items.forEach(item => {
+      let itemTotal = 0;
+      const nights = item.nights || bookingData.nights || 1;
+      
+      if (item.roomType === 'dorm') {
+        // For dorms: price per person per night
+        itemTotal = item.price * item.quantity * (item.guests || bookingData.guests) * nights;
+      } else {
+        // For luxury rooms: price per room per night
+        itemTotal = item.price * item.quantity * nights;
+      }
+      
+      subtotal += itemTotal;
+      
+      // Calculate GST for this item
+      const gstRate = calculateGSTRate(item.price);
+      const itemGST = Math.round(itemTotal * gstRate);
+      totalGST += itemGST;
+    });
+    
+    const grandTotal = subtotal + totalGST;
+    const payableNow = Math.round(grandTotal * 0.21);
+    
+    return { totalAmount: subtotal, totalGST, grandTotal, payableNow };
+  };
+
+  const { totalAmount, totalGST, grandTotal, payableNow } = calculateTotals();
 
   if (showGuestDetails && bookingData) {
     return (
@@ -177,7 +212,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
               </div>
             </div>
 
-            {/* Selected Rooms - Fixed pricing calculations */}
+            {/* Selected Rooms - Updated pricing display */}
             <div className="space-y-3">
               <h3 className="text-lg font-semibold text-gray-900">Selected Rooms</h3>
               {bookingData.items.map((item, index) => {
@@ -197,7 +232,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                         <h4 className="font-semibold text-gray-900 mb-1">{item.roomName}</h4>
                         <p className="text-gray-600 text-sm">
                           {item.roomType === 'dorm' ? (
-                            <>₹{item.price} x {item.quantity} x {item.guests || bookingData.guests} guest{(item.guests || bookingData.guests) > 1 ? 's' : ''} x {nights} night{nights > 1 ? 's' : ''}</>
+                            <>₹{item.price} x {item.guests || bookingData.guests} guest{(item.guests || bookingData.guests) > 1 ? 's' : ''} x {nights} night{nights > 1 ? 's' : ''}</>
                           ) : (
                             <>₹{item.price} x {item.quantity} room{item.quantity > 1 ? 's' : ''} x {nights} night{nights > 1 ? 's' : ''}</>
                           )}
@@ -212,7 +247,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
               })}
             </div>
 
-            {/* Price Breakdown */}
+            {/* Price Breakdown - Updated GST calculation */}
             <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
@@ -220,8 +255,8 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                   <span className="text-gray-900">₹{totalAmount}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Tax (12%):</span>
-                  <span className="text-gray-900">₹{tax}</span>
+                  <span className="text-gray-600">GST:</span>
+                  <span className="text-gray-900">₹{totalGST}</span>
                 </div>
                 <div className="border-t border-gray-300 pt-2 flex justify-between font-bold">
                   <span className="text-gray-900">Total (tax incl.):</span>
