@@ -25,31 +25,41 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
     if (!checkInDate || !checkOutDate || checkInDate === 'undefined' || checkOutDate === 'undefined') {
       return 1;
     }
-    const checkIn = new Date(checkInDate);
-    const checkOut = new Date(checkOutDate);
-    const timeDiff = checkOut.getTime() - checkIn.getTime();
-    const nights = Math.ceil(timeDiff / (1000 * 3600 * 24));
-    return nights > 0 ? nights : 1;
+    try {
+      const checkInObj = new Date(checkInDate);
+      const checkOutObj = new Date(checkOutDate);
+      if (isNaN(checkInObj.getTime()) || isNaN(checkOutObj.getTime())) {
+        return 1;
+      }
+      const timeDiff = checkOutObj.getTime() - checkInObj.getTime();
+      const nights = Math.ceil(timeDiff / (1000 * 3600 * 24));
+      return nights > 0 ? nights : 1;
+    } catch {
+      return 1;
+    }
   };
 
   const nights = calculateNights(checkIn, checkOut);
 
-  // Room inventory and data
+  // Complete room inventory and data for both properties
   const rooms = [
+    // XTSY Travellers Hostel
     {
       id: '4-bed-female-only-dorm',
       name: '4 Bed Female Only Dorms',
       price: 850,
-      image: '', // Ready for Supabase URL
+      image: '',
       description: 'A bed in a female-only dorm with private lockers and a shared attached washroom.',
       maxGuests: 1,
       inventory: 4, // 4 beds available
+      roomType: 'dorm',
+      propertyName: 'XTSY Travellers Hostel',
       amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)'],
       availability: {
-        'Jul 05': { available: false, price: 0 },
-        'Jul 06': { available: false, price: 0 },
-        'Jul 07': { available: false, price: 0 },
-        'Jul 08': { available: false, price: 0 },
+        'Jul 05': { available: true, price: 850, units: 4 },
+        'Jul 06': { available: true, price: 850, units: 4 },
+        'Jul 07': { available: true, price: 850, units: 4 },
+        'Jul 08': { available: true, price: 850, units: 4 },
         'Jul 09': { available: true, price: 850, units: 2 },
         'Jul 10': { available: true, price: 850, units: 2 },
         'Jul 11': { available: false, price: 0 },
@@ -59,37 +69,41 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       id: '4-bed-mixed-female-dorm',
       name: '4 Bed Mixed/Female Dorms',
       price: 800,
-      image: '', // Ready for Supabase URL
+      image: '',
       description: 'A bed in a mixed or female dorm with private lockers and a shared attached washroom.',
       maxGuests: 1,
-      inventory: 4, // 4 beds available
+      inventory: 4,
+      roomType: 'dorm',
+      propertyName: 'XTSY Travellers Hostel',
       amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)'],
       availability: {
-        'Jul 05': { available: true, price: 800, units: 5 },
-        'Jul 06': { available: true, price: 800, units: 5 },
-        'Jul 07': { available: true, price: 800, units: 5 },
-        'Jul 08': { available: true, price: 800, units: 5 },
-        'Jul 09': { available: true, price: 800, units: 5 },
-        'Jul 10': { available: true, price: 800, units: 5 },
-        'Jul 11': { available: true, price: 800, units: 5 },
+        'Jul 05': { available: true, price: 800, units: 4 },
+        'Jul 06': { available: true, price: 800, units: 4 },
+        'Jul 07': { available: true, price: 800, units: 4 },
+        'Jul 08': { available: true, price: 800, units: 4 },
+        'Jul 09': { available: true, price: 800, units: 4 },
+        'Jul 10': { available: true, price: 800, units: 4 },
+        'Jul 11': { available: true, price: 800, units: 4 },
       }
     },
     {
       id: '6-bed-mixed-female-dorm',
       name: '6 Bed Mixed/Female Dorms',
       price: 700,
-      image: '', // Ready for Supabase URL
+      image: '',
       description: 'A bed in a spacious mixed or female dorm with private lockers and a shared ensuite.',
       maxGuests: 1,
-      inventory: 30, // 30 beds available
+      inventory: 30,
+      roomType: 'dorm',
+      propertyName: 'XTSY Travellers Hostel',
       amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)'],
       availability: {
         'Jul 05': { available: false, price: 0 },
-        'Jul 06': { available: true, price: 700, units: 2 },
-        'Jul 07': { available: true, price: 700, units: 10 },
-        'Jul 08': { available: true, price: 700, units: 12 },
-        'Jul 09': { available: true, price: 700, units: 12 },
-        'Jul 10': { available: true, price: 700, units: 8 },
+        'Jul 06': { available: true, price: 700, units: 28 },
+        'Jul 07': { available: true, price: 700, units: 30 },
+        'Jul 08': { available: true, price: 700, units: 30 },
+        'Jul 09': { available: true, price: 700, units: 30 },
+        'Jul 10': { available: true, price: 700, units: 28 },
         'Jul 11': { available: false, price: 0 },
       }
     },
@@ -97,10 +111,12 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       id: '8-bed-mixed-dorm',
       name: '8 Bed Mixed Dorms',
       price: 600,
-      image: '', // Ready for Supabase URL
+      image: '',
       description: 'A bed in a large mixed dormitory perfect for budget travelers.',
       maxGuests: 1,
-      inventory: 8, // 8 beds available
+      inventory: 8,
+      roomType: 'dorm',
+      propertyName: 'XTSY Travellers Hostel',
       amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)'],
       availability: {
         'Jul 05': { available: true, price: 600, units: 8 },
@@ -112,42 +128,68 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
         'Jul 11': { available: true, price: 600, units: 8 },
       }
     },
+    // XTSY Luxury
     {
       id: 'king-double-room',
       name: 'King Double Room',
       price: 3200,
-      image: '', // Ready for Supabase URL
+      image: '',
       description: 'A spacious room with a king bed offering a private stay experience suitable for two guests.',
       maxGuests: 2,
-      inventory: 2, // 2 rooms available
+      inventory: 2,
+      roomType: 'luxury',
+      propertyName: 'XTSY Luxury',
       amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)'],
       availability: {
-        'Jul 05': { available: true, price: 3200, units: 3 },
-        'Jul 06': { available: true, price: 3200, units: 3 },
-        'Jul 07': { available: true, price: 3200, units: 3 },
-        'Jul 08': { available: true, price: 3200, units: 3 },
-        'Jul 09': { available: true, price: 3200, units: 3 },
-        'Jul 10': { available: true, price: 3200, units: 3 },
-        'Jul 11': { available: true, price: 3200, units: 3 },
+        'Jul 05': { available: true, price: 3200, units: 2 },
+        'Jul 06': { available: true, price: 3200, units: 2 },
+        'Jul 07': { available: true, price: 3200, units: 2 },
+        'Jul 08': { available: true, price: 3200, units: 2 },
+        'Jul 09': { available: true, price: 3200, units: 2 },
+        'Jul 10': { available: true, price: 3200, units: 2 },
+        'Jul 11': { available: true, price: 3200, units: 2 },
       }
     },
     {
       id: 'king-triple-room',
       name: 'King Triple Room',
       price: 4200,
-      image: '', // Ready for Supabase URL
+      image: '',
       description: 'A luxurious room with king bed and extra bed accommodating up to three guests.',
       maxGuests: 3,
-      inventory: 1, // 1 room available
+      inventory: 1,
+      roomType: 'luxury',
+      propertyName: 'XTSY Luxury',
       amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)'],
       availability: {
-        'Jul 05': { available: true, price: 4200, units: 2 },
-        'Jul 06': { available: true, price: 4200, units: 2 },
-        'Jul 07': { available: true, price: 4200, units: 2 },
-        'Jul 08': { available: true, price: 4200, units: 2 },
-        'Jul 09': { available: true, price: 4200, units: 2 },
-        'Jul 10': { available: true, price: 4200, units: 2 },
-        'Jul 11': { available: true, price: 4200, units: 2 },
+        'Jul 05': { available: true, price: 4200, units: 1 },
+        'Jul 06': { available: true, price: 4200, units: 1 },
+        'Jul 07': { available: true, price: 4200, units: 1 },
+        'Jul 08': { available: true, price: 4200, units: 1 },
+        'Jul 09': { available: true, price: 4200, units: 1 },
+        'Jul 10': { available: true, price: 4200, units: 1 },
+        'Jul 11': { available: true, price: 4200, units: 1 },
+      }
+    },
+    {
+      id: 'sky-glass-suite',
+      name: 'Sky Glass Suite',
+      price: 5500,
+      image: '',
+      description: 'Premium suite with panoramic views and luxury amenities.',
+      maxGuests: 2,
+      inventory: 1,
+      roomType: 'luxury',
+      propertyName: 'XTSY Luxury',
+      amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)'],
+      availability: {
+        'Jul 05': { available: true, price: 5500, units: 1 },
+        'Jul 06': { available: true, price: 5500, units: 1 },
+        'Jul 07': { available: true, price: 5500, units: 1 },
+        'Jul 08': { available: true, price: 5500, units: 1 },
+        'Jul 09': { available: true, price: 5500, units: 1 },
+        'Jul 10': { available: true, price: 5500, units: 1 },
+        'Jul 11': { available: true, price: 5500, units: 1 },
       }
     }
   ];
@@ -168,7 +210,8 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
         price: room.price,
         quantity: selectedRooms[room.id],
         guests: guests,
-        nights: nights
+        nights: nights,
+        roomType: room.roomType
       }));
 
     if (selectedItems.length === 0) {
@@ -189,12 +232,19 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
     setShowGuestDetails(true);
   };
 
-  // Calculate totals for selected rooms
+  // Calculate totals for selected rooms with proper pricing logic
   const calculateTotals = () => {
     let subtotal = 0;
     rooms.forEach(room => {
       if (selectedRooms[room.id] > 0) {
-        const roomTotal = room.price * selectedRooms[room.id] * nights;
+        let roomTotal = 0;
+        if (room.roomType === 'dorm') {
+          // For dorms: price per person per night
+          roomTotal = room.price * selectedRooms[room.id] * guests * nights;
+        } else {
+          // For luxury rooms: price per room per night
+          roomTotal = room.price * selectedRooms[room.id] * nights;
+        }
         subtotal += roomTotal;
       }
     });
@@ -208,9 +258,11 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
 
   const { subtotal, tax, grandTotal, payableNow } = calculateTotals();
 
-  // Format date properly
+  // Format date properly - remove undefined
   const formatDate = (dateStr: string) => {
-    if (!dateStr || dateStr === 'undefined') return 'Select Date';
+    if (!dateStr || dateStr === 'undefined' || dateStr.includes('undefined')) {
+      return 'Select Date';
+    }
     
     try {
       const date = new Date(dateStr);
@@ -231,6 +283,15 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
     const days = ['SAT', 'SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI'];
     return dates.map((date, index) => ({ date, day: days[index] }));
   };
+
+  // Group rooms by property
+  const groupedRooms = rooms.reduce((acc, room) => {
+    if (!acc[room.propertyName]) {
+      acc[room.propertyName] = [];
+    }
+    acc[room.propertyName].push(room);
+    return acc;
+  }, {} as { [key: string]: typeof rooms });
 
   if (showGuestDetails) {
     return (
@@ -296,119 +357,134 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
               <DialogTitle className="text-2xl font-bold text-gray-900 mb-2">Book your stay</DialogTitle>
               <p className="text-gray-600">Select from a range of beautiful rooms</p>
               
-              {/* Date Range Display */}
+              {/* Date Range Display - Fixed */}
               <div className="flex items-center justify-center bg-blue-100 rounded-lg p-3 mt-4">
                 <span className="text-blue-800 font-medium">
-                  {formatDate(checkIn)} → {formatDate(checkOut)}
+                  {formatDate(checkIn)} → {formatDate(checkOut)} ({nights} night{nights > 1 ? 's' : ''})
                 </span>
               </div>
             </DialogHeader>
 
             <div className="p-6 space-y-8">
-              {rooms.map((room) => (
-                <div key={room.id} className="border border-gray-200 rounded-lg overflow-hidden bg-white">
-                  <div className="flex">
-                    {/* Room Image */}
-                    <div className="w-64 h-48 bg-gray-200 flex items-center justify-center">
-                      {room.image ? (
-                        <img src={room.image} alt={room.name} className="w-full h-full object-cover" />
-                      ) : (
-                        <span className="text-gray-500 text-sm">Room Image</span>
-                      )}
-                    </div>
-
-                    {/* Room Details */}
-                    <div className="flex-1 p-6">
-                      <div className="flex justify-between items-start mb-3">
-                        <div>
-                          <h3 className="text-xl font-bold text-gray-900 mb-1">{room.name}</h3>
-                          <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
-                            <Users className="h-4 w-4" />
-                            <span>x {room.maxGuests}</span>
-                          </div>
-                          <div className="flex items-center gap-1 text-lg font-bold text-gray-900">
-                            <span>₹{room.price}</span>
-                            <span className="text-sm font-normal text-gray-500">/ night</span>
-                          </div>
-                        </div>
-                        
-                        {selectedRooms[room.id] > 0 ? (
-                          <div className="flex items-center gap-2">
-                            <Button
-                              onClick={() => handleRoomQuantityChange(room.id, Math.max(0, (selectedRooms[room.id] || 0) - 1))}
-                              variant="outline"
-                              size="sm"
-                              className="w-8 h-8 p-0 border-orange-300 text-orange-600 hover:bg-orange-50"
-                            >
-                              -
-                            </Button>
-                            <span className="w-8 text-center font-semibold">{selectedRooms[room.id]}</span>
-                            <Button
-                              onClick={() => handleRoomQuantityChange(room.id, (selectedRooms[room.id] || 0) + 1)}
-                              variant="outline"
-                              size="sm"
-                              className="w-8 h-8 p-0 border-orange-300 text-orange-600 hover:bg-orange-50"
-                            >
-                              +
-                            </Button>
-                          </div>
-                        ) : (
-                          <Button
-                            onClick={() => handleRoomQuantityChange(room.id, 1)}
-                            className="bg-orange-500 hover:bg-orange-600 text-white px-6"
-                          >
-                            Select Room
-                          </Button>
-                        )}
-                      </div>
-
-                      <p className="text-gray-600 text-sm mb-4">{room.description}</p>
-
-                      {/* Amenity Icons */}
-                      <div className="flex gap-3 mb-4">
-                        <Mountain className="h-5 w-5 text-gray-400" />
-                        <CreditCard className="h-5 w-5 text-gray-400" />
-                        <Coffee className="h-5 w-5 text-gray-400" />
-                        <Wifi className="h-5 w-5 text-gray-400" />
-                        <Tv className="h-5 w-5 text-gray-400" />
-                        <Activity className="h-5 w-5 text-gray-400" />
-                        <Shield className="h-5 w-5 text-gray-400" />
-                        <Car className="h-5 w-5 text-gray-400" />
-                      </div>
-
-                      {/* Availability Calendar */}
-                      <div className="border-t border-gray-200 pt-4">
-                        <div className="flex items-center justify-between">
-                          <button className="text-orange-500 text-sm font-medium flex items-center gap-1">
-                            Availability calendar ⌄
-                          </button>
-                        </div>
-                        
-                        <div className="grid grid-cols-7 gap-2 mt-3 text-center text-xs">
-                          {getAvailabilityDates().map(({ date, day }) => {
-                            const availability = room.availability[date];
-                            return (
-                              <div key={date} className="p-2">
-                                <div className="font-medium text-gray-600">{day}</div>
-                                <div className="text-gray-500 mb-1">{date}</div>
-                                {availability?.available ? (
-                                  <div>
-                                    <div className="text-green-600 font-bold">₹{availability.price}</div>
-                                    <div className="text-gray-500">{availability.units} units</div>
-                                  </div>
-                                ) : (
-                                  <div>
-                                    <div className="text-gray-400">✗</div>
-                                    <div className="text-gray-400">No units</div>
-                                  </div>
-                                )}
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    </div>
+              {/* Display rooms grouped by property */}
+              {Object.entries(groupedRooms).map(([propertyName, propertyRooms]) => (
+                <div key={propertyName} className="space-y-6">
+                  <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-lg p-4">
+                    <h2 className="text-xl font-bold">{propertyName}</h2>
                   </div>
+                  
+                  {propertyRooms.map((room) => (
+                    <div key={room.id} className="border border-gray-200 rounded-lg overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow">
+                      <div className="flex">
+                        {/* Room Image */}
+                        <div className="w-64 h-48 bg-gray-200 flex items-center justify-center">
+                          {room.image ? (
+                            <img src={room.image} alt={room.name} className="w-full h-full object-cover" />
+                          ) : (
+                            <span className="text-gray-500 text-sm">Room Image</span>
+                          )}
+                        </div>
+
+                        {/* Room Details */}
+                        <div className="flex-1 p-6">
+                          <div className="flex justify-between items-start mb-3">
+                            <div>
+                              <h3 className="text-xl font-bold text-gray-900 mb-1">{room.name}</h3>
+                              <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
+                                <Users className="h-4 w-4" />
+                                <span>Max {room.maxGuests} guest{room.maxGuests > 1 ? 's' : ''}</span>
+                                <Badge variant="outline" className="ml-2">
+                                  {room.roomType === 'dorm' ? 'Per Person' : 'Per Room'}
+                                </Badge>
+                              </div>
+                              <div className="flex items-center gap-1 text-lg font-bold text-gray-900">
+                                <span>₹{room.price}</span>
+                                <span className="text-sm font-normal text-gray-500">/ night</span>
+                              </div>
+                            </div>
+                            
+                            {selectedRooms[room.id] > 0 ? (
+                              <div className="flex items-center gap-2">
+                                <Button
+                                  onClick={() => handleRoomQuantityChange(room.id, Math.max(0, (selectedRooms[room.id] || 0) - 1))}
+                                  variant="outline"
+                                  size="sm"
+                                  className="w-8 h-8 p-0 border-orange-300 text-orange-600 hover:bg-orange-50"
+                                >
+                                  -
+                                </Button>
+                                <span className="w-8 text-center font-semibold">{selectedRooms[room.id]}</span>
+                                <Button
+                                  onClick={() => handleRoomQuantityChange(room.id, (selectedRooms[room.id] || 0) + 1)}
+                                  variant="outline"
+                                  size="sm"
+                                  className="w-8 h-8 p-0 border-orange-300 text-orange-600 hover:bg-orange-50"
+                                >
+                                  +
+                                </Button>
+                              </div>
+                            ) : (
+                              <Button
+                                onClick={() => handleRoomQuantityChange(room.id, 1)}
+                                className="bg-orange-500 hover:bg-orange-600 text-white px-6"
+                              >
+                                Select Room
+                              </Button>
+                            )}
+                          </div>
+
+                          <p className="text-gray-600 text-sm mb-4">{room.description}</p>
+
+                          {/* Amenity Icons */}
+                          <div className="flex gap-3 mb-4">
+                            <Mountain className="h-5 w-5 text-gray-400" />
+                            <CreditCard className="h-5 w-5 text-gray-400" />
+                            <Coffee className="h-5 w-5 text-gray-400" />
+                            <Wifi className="h-5 w-5 text-gray-400" />
+                            <Tv className="h-5 w-5 text-gray-400" />
+                            <Activity className="h-5 w-5 text-gray-400" />
+                            <Shield className="h-5 w-5 text-gray-400" />
+                            <Car className="h-5 w-5 text-gray-400" />
+                          </div>
+
+                          {/* Availability Calendar */}
+                          <div className="border-t border-gray-200 pt-4">
+                            <div className="flex items-center justify-between mb-3">
+                              <h4 className="text-orange-500 text-sm font-medium">Availability Calendar</h4>
+                              <span className="text-xs text-gray-500">
+                                {room.roomType === 'dorm' ? 'Beds' : 'Rooms'} Available
+                              </span>
+                            </div>
+                            
+                            <div className="grid grid-cols-7 gap-2 text-center text-xs">
+                              {getAvailabilityDates().map(({ date, day }) => {
+                                const availability = room.availability[date];
+                                return (
+                                  <div key={date} className="p-2 border rounded">
+                                    <div className="font-medium text-gray-600">{day}</div>
+                                    <div className="text-gray-500 mb-1">{date}</div>
+                                    {availability?.available ? (
+                                      <div>
+                                        <div className="text-green-600 font-bold">₹{availability.price}</div>
+                                        <div className="text-gray-500">
+                                          {availability.units} {room.roomType === 'dorm' ? 'beds' : 'rooms'}
+                                        </div>
+                                      </div>
+                                    ) : (
+                                      <div>
+                                        <div className="text-red-400">✗</div>
+                                        <div className="text-red-400">Sold out</div>
+                                      </div>
+                                    )}
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               ))}
 
@@ -470,24 +546,46 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
                 <div className="space-y-4">
                   {rooms
                     .filter(room => selectedRooms[room.id] > 0)
-                    .map(room => (
-                      <div key={room.id} className="flex justify-between items-start">
-                        <div className="flex-1">
-                          <h4 className="font-semibold text-gray-900 mb-1">{room.name}</h4>
-                          <div className="text-sm text-gray-600">
-                            ₹{room.price} x {selectedRooms[room.id]} x {nights} night{nights > 1 ? 's' : ''}
+                    .map(room => {
+                      let itemTotal = 0;
+                      if (room.roomType === 'dorm') {
+                        itemTotal = room.price * selectedRooms[room.id] * guests * nights;
+                      } else {
+                        itemTotal = room.price * selectedRooms[room.id] * nights;
+                      }
+                      
+                      return (
+                        <div key={room.id} className="flex justify-between items-start border-b border-gray-100 pb-3">
+                          <div className="flex-1">
+                            <h4 className="font-semibold text-gray-900 mb-1">{room.name}</h4>
+                            <div className="text-sm text-gray-600">
+                              {room.roomType === 'dorm' ? (
+                                <>₹{room.price} x {selectedRooms[room.id]} x {guests} guest{guests > 1 ? 's' : ''} x {nights} night{nights > 1 ? 's' : ''}</>
+                              ) : (
+                                <>₹{room.price} x {selectedRooms[room.id]} room{selectedRooms[room.id] > 1 ? 's' : ''} x {nights} night{nights > 1 ? 's' : ''}</>
+                              )}
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <div className="font-bold">₹{itemTotal}</div>
+                            <button 
+                              onClick={() => handleRoomQuantityChange(room.id, 0)}
+                              className="text-gray-400 text-sm hover:text-red-500"
+                            >
+                              🗑
+                            </button>
                           </div>
                         </div>
-                        <div className="text-right">
-                          <div className="font-bold">₹{room.price * selectedRooms[room.id] * nights}</div>
-                          <button className="text-gray-400 text-sm">🗑</button>
-                        </div>
-                      </div>
-                    ))}
+                      );
+                    })}
 
                   <div className="border-t border-gray-200 pt-4 space-y-2">
                     <div className="flex justify-between text-sm">
-                      <span>Tax</span>
+                      <span>Subtotal</span>
+                      <span>₹{subtotal}</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span>Tax (12%)</span>
                       <span>₹{tax}</span>
                     </div>
                     <div className="flex justify-between font-bold">
@@ -495,7 +593,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
                       <span>₹{grandTotal}</span>
                     </div>
                     <div className="flex justify-between text-green-600 font-bold">
-                      <span>Payable Now</span>
+                      <span>Payable Now (21%)</span>
                       <span>₹{payableNow}</span>
                     </div>
                   </div>
@@ -529,7 +627,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
                 disabled={!Object.keys(selectedRooms).some(roomId => selectedRooms[roomId] > 0)}
                 className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white py-3 font-semibold"
               >
-                Book now
+                Book Now
               </Button>
             </div>
           </div>

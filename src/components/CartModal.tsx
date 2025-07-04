@@ -22,6 +22,7 @@ interface BookingData {
     quantity: number;
     guests: number;
     nights: number;
+    roomType?: string;
   }>;
   timestamp: number;
 }
@@ -40,7 +41,8 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
           parsedData.nights = 1;
           parsedData.items = parsedData.items?.map((item: any) => ({
             ...item,
-            nights: 1
+            nights: 1,
+            roomType: item.roomType || 'dorm'
           })) || [];
         }
         setBookingData(parsedData);
@@ -71,9 +73,11 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
     }
   };
 
-  // Format date properly
+  // Format date properly - remove undefined
   const formatDate = (dateStr: string) => {
-    if (!dateStr || dateStr === 'undefined') return 'Select Date';
+    if (!dateStr || dateStr === 'undefined' || dateStr.includes('undefined')) {
+      return 'Select Date';
+    }
     
     try {
       const date = new Date(dateStr);
@@ -89,8 +93,19 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
     }
   };
 
+  // Calculate total with proper pricing logic
   const totalAmount = bookingData?.items.reduce((sum, item) => {
-    const itemTotal = item.price * item.quantity * (item.nights || bookingData.nights || 1);
+    let itemTotal = 0;
+    const nights = item.nights || bookingData.nights || 1;
+    
+    if (item.roomType === 'dorm') {
+      // For dorms: price per person per night
+      itemTotal = item.price * item.quantity * (item.guests || bookingData.guests) * nights;
+    } else {
+      // For luxury rooms: price per room per night
+      itemTotal = item.price * item.quantity * nights;
+    }
+    
     return sum + itemTotal;
   }, 0) || 0;
   
@@ -139,7 +154,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
               Cart saved {getDaysAgo(bookingData.timestamp)}
             </div>
 
-            {/* Booking Summary */}
+            {/* Booking Summary - Fixed date display */}
             <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Booking Summary</h3>
               <div className="space-y-2 text-sm">
@@ -162,19 +177,30 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
               </div>
             </div>
 
-            {/* Selected Rooms */}
+            {/* Selected Rooms - Fixed pricing calculations */}
             <div className="space-y-3">
               <h3 className="text-lg font-semibold text-gray-900">Selected Rooms</h3>
               {bookingData.items.map((item, index) => {
                 const nights = item.nights || bookingData.nights || 1;
-                const itemTotal = item.price * item.quantity * nights;
+                let itemTotal = 0;
+                
+                if (item.roomType === 'dorm') {
+                  itemTotal = item.price * item.quantity * (item.guests || bookingData.guests) * nights;
+                } else {
+                  itemTotal = item.price * item.quantity * nights;
+                }
+                
                 return (
                   <div key={index} className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
                     <div className="flex justify-between items-start">
                       <div className="flex-1">
                         <h4 className="font-semibold text-gray-900 mb-1">{item.roomName}</h4>
                         <p className="text-gray-600 text-sm">
-                          ₹{item.price} x {item.quantity} room(s) x {nights} night{nights > 1 ? 's' : ''}
+                          {item.roomType === 'dorm' ? (
+                            <>₹{item.price} x {item.quantity} x {item.guests || bookingData.guests} guest{(item.guests || bookingData.guests) > 1 ? 's' : ''} x {nights} night{nights > 1 ? 's' : ''}</>
+                          ) : (
+                            <>₹{item.price} x {item.quantity} room{item.quantity > 1 ? 's' : ''} x {nights} night{nights > 1 ? 's' : ''}</>
+                          )}
                         </p>
                       </div>
                       <div className="text-right">
