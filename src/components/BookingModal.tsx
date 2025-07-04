@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -19,7 +20,21 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
   const [couponCode, setCouponCode] = useState("");
   const [showGuestDetails, setShowGuestDetails] = useState(false);
 
-  // Updated room data with new names and prices
+  // Calculate number of nights
+  const calculateNights = (checkInDate: string, checkOutDate: string) => {
+    if (!checkInDate || !checkOutDate || checkInDate === 'undefined' || checkOutDate === 'undefined') {
+      return 1;
+    }
+    const checkIn = new Date(checkInDate);
+    const checkOut = new Date(checkOutDate);
+    const timeDiff = checkOut.getTime() - checkIn.getTime();
+    const nights = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    return nights > 0 ? nights : 1;
+  };
+
+  const nights = calculateNights(checkIn, checkOut);
+
+  // Room inventory and data
   const rooms = [
     {
       id: '4-bed-female-only-dorm',
@@ -28,6 +43,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       image: '', // Ready for Supabase URL
       description: 'A bed in a female-only dorm with private lockers and a shared attached washroom.',
       maxGuests: 1,
+      inventory: 4, // 4 beds available
       amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)'],
       availability: {
         'Jul 05': { available: false, price: 0 },
@@ -46,6 +62,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       image: '', // Ready for Supabase URL
       description: 'A bed in a mixed or female dorm with private lockers and a shared attached washroom.',
       maxGuests: 1,
+      inventory: 4, // 4 beds available
       amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)'],
       availability: {
         'Jul 05': { available: true, price: 800, units: 5 },
@@ -64,6 +81,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       image: '', // Ready for Supabase URL
       description: 'A bed in a spacious mixed or female dorm with private lockers and a shared ensuite.',
       maxGuests: 1,
+      inventory: 30, // 30 beds available
       amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)'],
       availability: {
         'Jul 05': { available: false, price: 0 },
@@ -82,6 +100,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       image: '', // Ready for Supabase URL
       description: 'A bed in a large mixed dormitory perfect for budget travelers.',
       maxGuests: 1,
+      inventory: 8, // 8 beds available
       amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)'],
       availability: {
         'Jul 05': { available: true, price: 600, units: 8 },
@@ -100,6 +119,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       image: '', // Ready for Supabase URL
       description: 'A spacious room with a king bed offering a private stay experience suitable for two guests.',
       maxGuests: 2,
+      inventory: 2, // 2 rooms available
       amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)'],
       availability: {
         'Jul 05': { available: true, price: 3200, units: 3 },
@@ -118,6 +138,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       image: '', // Ready for Supabase URL
       description: 'A luxurious room with king bed and extra bed accommodating up to three guests.',
       maxGuests: 3,
+      inventory: 1, // 1 room available
       amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)'],
       availability: {
         'Jul 05': { available: true, price: 4200, units: 2 },
@@ -146,7 +167,8 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
         roomName: room.name,
         price: room.price,
         quantity: selectedRooms[room.id],
-        guests: guests
+        guests: guests,
+        nights: nights
       }));
 
     if (selectedItems.length === 0) {
@@ -158,6 +180,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       checkIn,
       checkOut,
       guests,
+      nights,
       items: selectedItems,
       timestamp: new Date().getTime()
     };
@@ -166,24 +189,47 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
     setShowGuestDetails(true);
   };
 
-  const selectedRoom = rooms.find(room => selectedRooms[room.id] > 0);
-  const totalAmount = selectedRoom ? selectedRoom.price * (selectedRooms[selectedRoom.id] || 0) : 0;
-  const tax = Math.round(totalAmount * 0.12);
-  const grandTotal = totalAmount + tax;
-  const payableNow = Math.round(grandTotal * 0.21);
+  // Calculate totals for selected rooms
+  const calculateTotals = () => {
+    let subtotal = 0;
+    rooms.forEach(room => {
+      if (selectedRooms[room.id] > 0) {
+        const roomTotal = room.price * selectedRooms[room.id] * nights;
+        subtotal += roomTotal;
+      }
+    });
+    
+    const tax = Math.round(subtotal * 0.12);
+    const grandTotal = subtotal + tax;
+    const payableNow = Math.round(grandTotal * 0.21);
+    
+    return { subtotal, tax, grandTotal, payableNow };
+  };
+
+  const { subtotal, tax, grandTotal, payableNow } = calculateTotals();
+
+  // Format date properly
+  const formatDate = (dateStr: string) => {
+    if (!dateStr || dateStr === 'undefined') return 'Select Date';
+    
+    try {
+      const date = new Date(dateStr);
+      if (isNaN(date.getTime())) return 'Select Date';
+      
+      return date.toLocaleDateString('en-GB', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric'
+      });
+    } catch {
+      return 'Select Date';
+    }
+  };
 
   const getAvailabilityDates = () => {
     const dates = ['Jul 05', 'Jul 06', 'Jul 07', 'Jul 08', 'Jul 09', 'Jul 10', 'Jul 11'];
     const days = ['SAT', 'SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI'];
     return dates.map((date, index) => ({ date, day: days[index] }));
-  };
-
-  const formatDate = (dateStr: string) => {
-    const [day, month] = dateStr.split(' ');
-    const months = {
-      'Jul': 'July'
-    };
-    return `${day} ${months[month as keyof typeof months] || month}`;
   };
 
   if (showGuestDetails) {
@@ -197,7 +243,8 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
         bookingData={{
           checkIn,
           checkOut,
-          guests
+          guests,
+          nights
         }}
       />
     );
@@ -250,8 +297,10 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
               <p className="text-gray-600">Select from a range of beautiful rooms</p>
               
               {/* Date Range Display */}
-              <div className="flex items-center justify-center bg-gray-100 rounded-lg p-3 mt-4">
-                <span className="text-gray-700 font-medium">{formatDate(checkIn)} → {formatDate(checkOut)}</span>
+              <div className="flex items-center justify-center bg-blue-100 rounded-lg p-3 mt-4">
+                <span className="text-blue-800 font-medium">
+                  {formatDate(checkIn)} → {formatDate(checkOut)}
+                </span>
               </div>
             </DialogHeader>
 
@@ -411,24 +460,30 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
                   <button className="text-gray-400">⌄</button>
                 </div>
               </div>
-              <p className="text-sm text-gray-600">1 night starting from {formatDate(checkIn)}</p>
+              <p className="text-sm text-gray-600">
+                {nights} night{nights > 1 ? 's' : ''} starting from {formatDate(checkIn)}
+              </p>
             </div>
 
             <div className="flex-1 overflow-y-auto p-6">
-              {selectedRoom && selectedRooms[selectedRoom.id] > 0 ? (
+              {Object.keys(selectedRooms).some(roomId => selectedRooms[roomId] > 0) ? (
                 <div className="space-y-4">
-                  <div className="flex justify-between items-start">
-                    <div className="flex-1">
-                      <h4 className="font-semibold text-gray-900 mb-1">{selectedRoom.name}</h4>
-                      <div className="text-sm text-gray-600">
-                        ₹{selectedRoom.price} x {selectedRooms[selectedRoom.id]} night
+                  {rooms
+                    .filter(room => selectedRooms[room.id] > 0)
+                    .map(room => (
+                      <div key={room.id} className="flex justify-between items-start">
+                        <div className="flex-1">
+                          <h4 className="font-semibold text-gray-900 mb-1">{room.name}</h4>
+                          <div className="text-sm text-gray-600">
+                            ₹{room.price} x {selectedRooms[room.id]} x {nights} night{nights > 1 ? 's' : ''}
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className="font-bold">₹{room.price * selectedRooms[room.id] * nights}</div>
+                          <button className="text-gray-400 text-sm">🗑</button>
+                        </div>
                       </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="font-bold">₹{totalAmount}</div>
-                      <button className="text-gray-400 text-sm">🗑</button>
-                    </div>
-                  </div>
+                    ))}
 
                   <div className="border-t border-gray-200 pt-4 space-y-2">
                     <div className="flex justify-between text-sm">
@@ -471,7 +526,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
             <div className="p-6 border-t border-gray-200">
               <Button
                 onClick={addToCart}
-                disabled={!selectedRoom || selectedRooms[selectedRoom?.id] === 0}
+                disabled={!Object.keys(selectedRooms).some(roomId => selectedRooms[roomId] > 0)}
                 className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white py-3 font-semibold"
               >
                 Book now
