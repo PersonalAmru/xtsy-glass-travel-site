@@ -25,16 +25,51 @@ const Header = () => {
   ];
 
   const handleNavClick = (href: string) => {
+    setIsMenuOpen(false);
+    
     if (href.startsWith('/#')) {
       if (location.pathname !== '/') {
         // Navigate to home first, then scroll
         window.location.href = href;
       } else {
-        // Already on home page, just scroll
-        const element = document.querySelector(href.substring(1));
+        // Already on home page, just scroll to section
+        const sectionId = href.substring(2); // Remove /#
+        const element = document.getElementById(sectionId);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
+          // Offset for fixed header
+          const headerOffset = 80;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
         }
+      }
+    } else if (href === '/deals') {
+      // Navigate to deals page and scroll to top
+      window.location.href = '/deals';
+    } else if (href === '/gallery') {
+      // Navigate to gallery page and scroll to top
+      window.location.href = '/gallery';
+    } else if (href === '/about') {
+      // Navigate to about page and scroll to top
+      window.location.href = '/about';
+    }
+  };
+
+  const handleContactClick = () => {
+    setIsMenuOpen(false);
+    
+    if (location.pathname !== '/') {
+      // If not on home page, navigate to home and then scroll to contact
+      window.location.href = '/#contact';
+    } else {
+      // Already on home page, scroll to contact (footer area)
+      const footerElement = document.querySelector('footer');
+      if (footerElement) {
+        footerElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }
   };
@@ -55,12 +90,12 @@ const Header = () => {
               </Link>
             )}
 
-            {/* Logo - Optimized for LCP */}
+            {/* Logo - Improved sizing */}
             <div className="flex-shrink-0">
               <img 
                 src="https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/image-assets/Header/Color%20logo%20-%20no%20background.png"
                 alt="XTSY Logo"
-                className="h-6 sm:h-8 w-auto"
+                className="h-8 sm:h-10 md:h-12 w-auto"
                 loading="eager"
                 decoding="async"
               />
@@ -69,7 +104,15 @@ const Header = () => {
             {/* Desktop Navigation - Right Aligned */}
             <nav className="hidden lg:flex space-x-6 xl:space-x-8 flex-1 justify-end mr-6">
               {navItems.map((item) => (
-                item.href.startsWith('/#') ? (
+                item.name === "Contact" ? (
+                  <button
+                    key={item.name}
+                    onClick={handleContactClick}
+                    className="text-gray-300 hover:text-white transition-colors duration-200 font-medium font-seasons text-sm xl:text-base cursor-pointer"
+                  >
+                    {item.name}
+                  </button>
+                ) : item.href.startsWith('/#') ? (
                   <button
                     key={item.name}
                     onClick={() => handleNavClick(item.href)}
@@ -78,13 +121,13 @@ const Header = () => {
                     {item.name}
                   </button>
                 ) : (
-                  <Link
+                  <button
                     key={item.name}
-                    to={item.href}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 font-medium font-seasons text-sm xl:text-base"
+                    onClick={() => handleNavClick(item.href)}
+                    className="text-gray-300 hover:text-white transition-colors duration-200 font-medium font-seasons text-sm xl:text-base cursor-pointer"
                   >
                     {item.name}
-                  </Link>
+                  </button>
                 )
               ))}
             </nav>
@@ -118,26 +161,30 @@ const Header = () => {
             <div className="lg:hidden mt-2 pb-4 backdrop-blur-lg bg-black/95 rounded-lg border border-white/10 mx-2">
               <nav className="flex flex-col space-y-1 px-4 pt-2">
                 {navItems.map((item) => (
-                  item.href.startsWith('/#') ? (
+                  item.name === "Contact" ? (
                     <button
                       key={item.name}
-                      onClick={() => {
-                        handleNavClick(item.href);
-                        setIsMenuOpen(false);
-                      }}
+                      onClick={handleContactClick}
+                      className="text-gray-300 hover:text-white transition-colors duration-200 font-medium py-3 px-2 font-seasons text-sm border-b border-white/10 last:border-b-0 text-left"
+                    >
+                      {item.name}
+                    </button>
+                  ) : item.href.startsWith('/#') ? (
+                    <button
+                      key={item.name}
+                      onClick={() => handleNavClick(item.href)}
                       className="text-gray-300 hover:text-white transition-colors duration-200 font-medium py-3 px-2 font-seasons text-sm border-b border-white/10 last:border-b-0 text-left"
                     >
                       {item.name}
                     </button>
                   ) : (
-                    <Link
+                    <button
                       key={item.name}
-                      to={item.href}
-                      className="text-gray-300 hover:text-white transition-colors duration-200 font-medium py-3 px-2 font-seasons text-sm border-b border-white/10 last:border-b-0"
-                      onClick={() => setIsMenuOpen(false)}
+                      onClick={() => handleNavClick(item.href)}
+                      className="text-gray-300 hover:text-white transition-colors duration-200 font-medium py-3 px-2 font-seasons text-sm border-b border-white/10 last:border-b-0 text-left"
                     >
                       {item.name}
-                    </Link>
+                    </button>
                   )
                 ))}
                 <div className="mt-3 pt-3 border-t border-white/20">

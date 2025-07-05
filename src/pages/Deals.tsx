@@ -33,10 +33,10 @@ const Deals = () => {
           {/* Hero Content */}
           <div className="text-center flex-1 flex flex-col justify-center mb-8">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 font-serif-sans bg-gradient-to-r from-orange-300 to-yellow-300 bg-clip-text text-transparent drop-shadow-2xl">
-              Exclusive Deals & Offers
+              Free Taxi to XTSY
             </h1>
             <p className="text-xl md:text-2xl text-white max-w-3xl mx-auto font-seasons leading-relaxed mb-12 drop-shadow-lg">
-              Discover amazing travel deals designed to make your Shillong adventure unforgettable and affordable
+              Complimentary pickup service from major Shillong locations for groups of 4 or more guests
             </p>
 
             {/* Hero Taxi Image */}

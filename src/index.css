@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -99,5 +100,78 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Enhanced mobile responsiveness */
+@layer utilities {
+  .mobile-scroll-smooth {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  
+  .one-handed-mobile {
+    @apply max-w-sm mx-auto;
+  }
+  
+  .mobile-friendly-tap {
+    @apply min-h-[44px] min-w-[44px];
+  }
+  
+  .mobile-text-readable {
+    @apply text-base leading-relaxed;
+  }
+  
+  .mobile-button-friendly {
+    @apply py-3 px-6 text-base font-semibold;
+  }
+}
+
+/* OnePlus inspired mobile UI */
+@media (max-width: 768px) {
+  .dialog-content {
+    @apply rounded-t-2xl rounded-b-none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  
+  .mobile-card {
+    @apply rounded-2xl shadow-lg border-0;
+  }
+  
+  .mobile-input {
+    @apply rounded-xl py-4 px-4 text-base;
+  }
+  
+  .mobile-button {
+    @apply rounded-xl py-4 px-6 text-base font-semibold shadow-lg;
+  }
+}
+
+/* Loading animation for better UX */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Better scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Mobile viewport handling */
+@supports (-webkit-touch-callout: none) {
+  .mobile-full-height {
+    min-height: -webkit-fill-available;
   }
 }
