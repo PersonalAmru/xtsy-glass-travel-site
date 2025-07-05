@@ -7,6 +7,7 @@ import ReviewsSection from "@/components/ReviewsSection";
 import AdventureSection from "@/components/AdventureSection";
 import GroupBookingSection from "@/components/GroupBookingSection";
 import Footer from "@/components/Footer";
+import AIChatBot from "@/components/AIChatBot";
 
 const Index = () => {
   return (
@@ -19,6 +20,7 @@ const Index = () => {
       <AdventureSection />
       <GroupBookingSection />
       <Footer />
+      <AIChatBot />
     </div>
   );
 };

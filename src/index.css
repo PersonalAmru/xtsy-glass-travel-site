@@ -125,26 +125,96 @@
   .mobile-button-friendly {
     @apply py-3 px-6 text-base font-semibold;
   }
+
+  /* OnePlus inspired responsive design */
+  .oneplus-card {
+    @apply bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl;
+  }
+  
+  .oneplus-input {
+    @apply bg-white/95 border-0 rounded-2xl shadow-lg focus:shadow-xl transition-all duration-300;
+  }
+  
+  .oneplus-button {
+    @apply bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300;
+  }
 }
 
-/* OnePlus inspired mobile UI */
-@media (max-width: 768px) {
+/* Enhanced OnePlus mobile UI for different screen sizes */
+@media (max-width: 640px) {
+  /* Mobile - One handed use optimization */
   .dialog-content {
-    @apply rounded-t-2xl rounded-b-none;
+    @apply rounded-t-3xl rounded-b-none max-h-[85vh];
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   }
   
   .mobile-card {
-    @apply rounded-2xl shadow-lg border-0;
+    @apply rounded-3xl shadow-2xl border-0 mx-2;
   }
   
   .mobile-input {
-    @apply rounded-xl py-4 px-4 text-base;
+    @apply rounded-2xl py-3 px-4 text-sm shadow-lg;
   }
   
   .mobile-button {
-    @apply rounded-xl py-4 px-6 text-base font-semibold shadow-lg;
+    @apply rounded-2xl py-3 px-4 text-sm font-semibold shadow-lg min-h-[48px];
+  }
+  
+  /* Ensure text is never cut off */
+  * {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Better spacing for mobile */
+  .container {
+    @apply px-3;
+  }
+  
+  /* Mobile friendly form elements */
+  input, select, textarea {
+    @apply text-base; /* Prevents zoom on iOS */
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  /* Tablet - Two handed use optimization */
+  .tablet-card {
+    @apply rounded-2xl shadow-xl border mx-4;
+  }
+  
+  .tablet-input {
+    @apply rounded-xl py-3 px-4 text-base shadow-md;
+  }
+  
+  .tablet-button {
+    @apply rounded-xl py-3 px-6 text-base font-semibold shadow-md min-h-[44px];
+  }
+  
+  /* Better grid layouts for tablets */
+  .tablet-grid-responsive {
+    @apply grid-cols-2 gap-4;
+  }
+  
+  /* Ensure proper text wrapping */
+  .tablet-text {
+    @apply leading-relaxed;
+  }
+}
+
+@media (min-width: 1025px) {
+  /* Desktop - Full experience */
+  .desktop-card {
+    @apply rounded-2xl shadow-lg border;
+  }
+  
+  .desktop-input {
+    @apply rounded-lg py-3 px-4 text-base;
+  }
+  
+  .desktop-button {
+    @apply rounded-lg py-4 px-8 text-lg font-semibold;
   }
 }
 
@@ -174,4 +244,30 @@ html {
   .mobile-full-height {
     min-height: -webkit-fill-available;
   }
+}
+
+/* Chat bot responsive styles */
+@media (max-width: 640px) {
+  .chatbot-mobile {
+    @apply w-full h-full fixed inset-0 rounded-none;
+  }
+}
+
+/* Prevent text overflow and ensure readability */
+.text-responsive {
+  @apply text-xs sm:text-sm md:text-base lg:text-lg;
+}
+
+.heading-responsive {
+  @apply text-lg sm:text-xl md:text-2xl lg:text-3xl;
+}
+
+/* Form field responsive spacing */
+.form-field-responsive {
+  @apply space-y-1 sm:space-y-2;
+}
+
+/* Button responsive sizing */
+.button-responsive {
+  @apply h-8 sm:h-10 md:h-12 px-3 sm:px-4 md:px-6 text-xs sm:text-sm md:text-base;
 }
