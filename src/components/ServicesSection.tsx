@@ -1,6 +1,5 @@
-
 import { useState } from "react";
-import { Sofa, Clock, ShoppingBag, Shirt, Wifi, Car, Coffee, Shield, Users, Gamepad2, Utensils, TreePine, Grill, Flame, Info, Eye } from "lucide-react";
+import { Sofa, Clock, ShoppingBag, Shirt, Wifi, Car, Coffee, Shield, Users, Gamepad2, Utensils, TreePine, Flame, Info, Eye } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -53,7 +52,7 @@ const ServicesSection = () => {
     { icon: Gamepad2, name: "Games Room" },
     { icon: Utensils, name: "CP Breakfast" },
     { icon: Car, name: "Free Parking for guests" },
-    { icon: Grill, name: "BBQ [Paid]" },
+    { icon: Flame, name: "BBQ [Paid]" },
     { icon: Flame, name: "Bonfire [On request]" },
     { icon: Info, name: "Tourist Info Centre" },
     { icon: Shield, name: "Security" },
