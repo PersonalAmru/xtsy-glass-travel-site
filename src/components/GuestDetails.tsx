@@ -1,12 +1,12 @@
+
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { Separator } from "@/components/ui/separator";
-import { Calendar, Users, MapPin, Phone, Mail, CreditCard } from "lucide-react";
+import { Label } from "@/components/ui/label";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Calendar, Users, User, Mail, Phone, MapPin, Hotel } from "lucide-react";
 
 interface GuestDetailsProps {
   isOpen: boolean;
@@ -24,41 +24,25 @@ const GuestDetails = ({ isOpen, onClose, bookingData }: GuestDetailsProps) => {
     firstName: "",
     lastName: "",
     email: "",
-    phone: "",
+    whatsapp: "",
     address: "",
     city: "",
     state: "",
-    pincode: "",
-    emergencyContact: "",
-    emergencyPhone: "",
-    specialRequests: "",
-    arrivalTime: "",
-    idProof: ""
+    pincode: ""
   });
 
-  const handleInputChange = (field: string, value: string) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [field]: value
+      [name]: value
     }));
   };
 
-  const handleSubmit = () => {
-    // Basic validation
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone) {
-      alert("Please fill in all required fields");
-      return;
-    }
-
-    // Here you would normally submit to your backend
-    console.log("Booking submitted:", { ...formData, bookingData });
-    alert("Booking submitted successfully!");
-    onClose();
-  };
-
-  // Format date properly
   const formatDate = (dateStr: string) => {
-    if (!dateStr || dateStr === 'undefined') return 'Select Date';
+    if (!dateStr || dateStr === 'undefined' || dateStr.includes('undefined')) {
+      return 'Select Date';
+    }
     
     try {
       const date = new Date(dateStr);
@@ -74,295 +58,298 @@ const GuestDetails = ({ isOpen, onClose, bookingData }: GuestDetailsProps) => {
     }
   };
 
+  const handlePayNow = () => {
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.whatsapp) {
+      alert("Please fill in all required fields");
+      return;
+    }
+
+    // Get booking data from localStorage
+    const savedData = localStorage.getItem('xtsy_booking_cart');
+    const cartData = savedData ? JSON.parse(savedData) : null;
+
+    const guestMessage = `🎉 Booking Confirmation - XTSY
+
+Dear ${formData.firstName} ${formData.lastName},
+
+Thank you for booking with us! Here are your booking details:
+
+📅 Check-in: ${formatDate(bookingData.checkIn)}
+📅 Check-out: ${formatDate(bookingData.checkOut)}
+🛏️ Nights: ${bookingData.nights}
+👥 Guests: ${bookingData.guests}
+
+📧 Email: ${formData.email}
+📱 WhatsApp: ${formData.whatsapp}
+📍 Address: ${formData.address}, ${formData.city}, ${formData.state} - ${formData.pincode}
+
+We look forward to hosting you!
+
+Best regards,
+XTSY Team`;
+
+    const propertyMessage = `🏨 New Booking Alert - XTSY
+
+Guest Details:
+👤 Name: ${formData.firstName} ${formData.lastName}
+📧 Email: ${formData.email}
+📱 WhatsApp: ${formData.whatsapp}
+📍 Address: ${formData.address}, ${formData.city}, ${formData.state} - ${formData.pincode}
+
+Booking Details:
+📅 Check-in: ${formatDate(bookingData.checkIn)}
+📅 Check-out: ${formatDate(bookingData.checkOut)}
+🛏️ Nights: ${bookingData.nights}
+👥 Guests: ${bookingData.guests}
+
+${cartData && cartData.items ? cartData.items.map((item: any) => 
+  `🏠 ${item.roomName} - ₹${item.price} x ${item.quantity}`
+).join('\n') : ''}
+
+Please confirm this booking.`;
+
+    // Send to guest
+    const guestWhatsAppUrl = `https://wa.me/${formData.whatsapp}?text=${encodeURIComponent(guestMessage)}`;
+    
+    // Send to property
+    const propertyWhatsAppUrl = `https://wa.me/918837317070?text=${encodeURIComponent(propertyMessage)}`;
+
+    // Open both WhatsApp links
+    window.open(guestWhatsAppUrl, '_blank');
+    setTimeout(() => {
+      window.open(propertyWhatsAppUrl, '_blank');
+    }, 1000);
+
+    // Clear cart and close
+    localStorage.removeItem('xtsy_booking_cart');
+    onClose();
+  };
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl h-[90vh] bg-white border border-gray-200 text-gray-900 shadow-lg overflow-hidden">
-        <div className="flex h-full">
+      <DialogContent className="max-w-7xl max-h-[95vh] bg-gray-50 border-0 p-0 overflow-hidden">
+        <div className="flex h-full max-h-[95vh]">
           {/* Left Panel - Guest Details Form */}
-          <div className="flex-1 overflow-y-auto p-6">
-            <DialogHeader className="mb-6">
+          <div className="flex-1 flex flex-col bg-white">
+            <DialogHeader className="flex-shrink-0 bg-white z-10 p-6 border-b border-gray-200">
               <DialogTitle className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-                <Users className="h-6 w-6 text-orange-500" />
+                <User className="h-6 w-6 text-orange-500" />
                 Guest Details
               </DialogTitle>
               <p className="text-gray-600">Please provide your information to complete the booking</p>
             </DialogHeader>
 
-            <div className="space-y-6">
-              {/* Personal Information */}
-              <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Personal Information</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="firstName" className="text-gray-700">First Name *</Label>
-                    <Input
-                      id="firstName"
-                      value={formData.firstName}
-                      onChange={(e) => handleInputChange('firstName', e.target.value)}
-                      className="mt-1"
-                      placeholder="Enter first name"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="lastName" className="text-gray-700">Last Name *</Label>
-                    <Input
-                      id="lastName"
-                      value={formData.lastName}
-                      onChange={(e) => handleInputChange('lastName', e.target.value)}
-                      className="mt-1"
-                      placeholder="Enter last name"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="email" className="text-gray-700">Email *</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => handleInputChange('email', e.target.value)}
-                      className="mt-1"
-                      placeholder="Enter email address"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="phone" className="text-gray-700">Phone *</Label>
-                    <Input
-                      id="phone"
-                      value={formData.phone}
-                      onChange={(e) => handleInputChange('phone', e.target.value)}
-                      className="mt-1"
-                      placeholder="Enter phone number"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Address Information */}
-              <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Address Information</h3>
-                <div className="space-y-4">
-                  <div>
-                    <Label htmlFor="address" className="text-gray-700">Address</Label>
-                    <Textarea
-                      id="address"
-                      value={formData.address}
-                      onChange={(e) => handleInputChange('address', e.target.value)}
-                      className="mt-1"
-                      placeholder="Enter full address"
-                      rows={2}
-                    />
-                  </div>
-                  <div className="grid grid-cols-3 gap-4">
-                    <div>
-                      <Label htmlFor="city" className="text-gray-700">City</Label>
-                      <Input
-                        id="city"
-                        value={formData.city}
-                        onChange={(e) => handleInputChange('city', e.target.value)}
-                        className="mt-1"
-                        placeholder="Enter city"
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="state" className="text-gray-700">State</Label>
-                      <Input
-                        id="state"
-                        value={formData.state}
-                        onChange={(e) => handleInputChange('state', e.target.value)}
-                        className="mt-1"
-                        placeholder="Enter state"
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="pincode" className="text-gray-700">Pincode</Label>
-                      <Input
-                        id="pincode"
-                        value={formData.pincode}
-                        onChange={(e) => handleInputChange('pincode', e.target.value)}
-                        className="mt-1"
-                        placeholder="Enter pincode"
-                      />
+            <div className="flex-1 overflow-hidden">
+              <ScrollArea className="h-full">
+                <div className="p-6 space-y-6">
+                  {/* Personal Information */}
+                  <div className="bg-gray-50 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Personal Information</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="firstName" className="text-gray-700 font-medium">
+                          First Name *
+                        </Label>
+                        <Input
+                          id="firstName"
+                          name="firstName"
+                          value={formData.firstName}
+                          onChange={handleInputChange}
+                          placeholder="Enter first name"
+                          className="border-gray-300"
+                          required
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="lastName" className="text-gray-700 font-medium">
+                          Last Name *
+                        </Label>
+                        <Input
+                          id="lastName"
+                          name="lastName"
+                          value={formData.lastName}
+                          onChange={handleInputChange}
+                          placeholder="Enter last name"
+                          className="border-gray-300"
+                          required
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="email" className="text-gray-700 font-medium">
+                          Email *
+                        </Label>
+                        <Input
+                          id="email"
+                          name="email"
+                          type="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          placeholder="Enter email address"
+                          className="border-gray-300"
+                          required
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="whatsapp" className="text-gray-700 font-medium">
+                          WhatsApp Number *
+                        </Label>
+                        <Input
+                          id="whatsapp"
+                          name="whatsapp"
+                          type="tel"
+                          value={formData.whatsapp}
+                          onChange={handleInputChange}
+                          placeholder="Enter WhatsApp number"
+                          className="border-gray-300"
+                          required
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
 
-              {/* Emergency Contact */}
-              <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Emergency Contact</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="emergencyContact" className="text-gray-700">Contact Name</Label>
-                    <Input
-                      id="emergencyContact"
-                      value={formData.emergencyContact}
-                      onChange={(e) => handleInputChange('emergencyContact', e.target.value)}
-                      className="mt-1"
-                      placeholder="Enter emergency contact name"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="emergencyPhone" className="text-gray-700">Contact Phone</Label>
-                    <Input
-                      id="emergencyPhone"
-                      value={formData.emergencyPhone}
-                      onChange={(e) => handleInputChange('emergencyPhone', e.target.value)}
-                      className="mt-1"
-                      placeholder="Enter emergency contact phone"
-                    />
+                  {/* Address Information */}
+                  <div className="bg-gray-50 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Address Information</h3>
+                    <div className="space-y-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="address" className="text-gray-700 font-medium">
+                          Address
+                        </Label>
+                        <Textarea
+                          id="address"
+                          name="address"
+                          value={formData.address}
+                          onChange={handleInputChange}
+                          placeholder="Enter full address"
+                          className="border-gray-300"
+                          rows={3}
+                        />
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="city" className="text-gray-700 font-medium">
+                            City
+                          </Label>
+                          <Input
+                            id="city"
+                            name="city"
+                            value={formData.city}
+                            onChange={handleInputChange}
+                            placeholder="Enter city"
+                            className="border-gray-300"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="state" className="text-gray-700 font-medium">
+                            State
+                          </Label>
+                          <Input
+                            id="state"
+                            name="state"
+                            value={formData.state}
+                            onChange={handleInputChange}
+                            placeholder="Enter state"
+                            className="border-gray-300"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="pincode" className="text-gray-700 font-medium">
+                            Pincode
+                          </Label>
+                          <Input
+                            id="pincode"
+                            name="pincode"
+                            value={formData.pincode}
+                            onChange={handleInputChange}
+                            placeholder="Enter pincode"
+                            className="border-gray-300"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-
-              {/* Additional Information */}
-              <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Additional Information</h3>
-                <div className="grid grid-cols-2 gap-4 mb-4">
-                  <div>
-                    <Label htmlFor="arrivalTime" className="text-gray-700">Expected Arrival Time</Label>
-                    <Select onValueChange={(value) => handleInputChange('arrivalTime', value)}>
-                      <SelectTrigger className="mt-1">
-                        <SelectValue placeholder="Select arrival time" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="before-12pm">Before 12:00 PM</SelectItem>
-                        <SelectItem value="12pm-3pm">12:00 PM - 3:00 PM</SelectItem>
-                        <SelectItem value="3pm-6pm">3:00 PM - 6:00 PM</SelectItem>
-                        <SelectItem value="6pm-9pm">6:00 PM - 9:00 PM</SelectItem>
-                        <SelectItem value="after-9pm">After 9:00 PM</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div>
-                    <Label htmlFor="idProof" className="text-gray-700">ID Proof Type</Label>
-                    <Select onValueChange={(value) => handleInputChange('idProof', value)}>
-                      <SelectTrigger className="mt-1">
-                        <SelectValue placeholder="Select ID proof" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="aadhar">Aadhar Card</SelectItem>
-                        <SelectItem value="passport">Passport</SelectItem>
-                        <SelectItem value="driving-license">Driving License</SelectItem>
-                        <SelectItem value="voter-id">Voter ID</SelectItem>
-                        <SelectItem value="pan-card">PAN Card</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </div>
-                <div>
-                  <Label htmlFor="specialRequests" className="text-gray-700">Special Requests</Label>
-                  <Textarea
-                    id="specialRequests"
-                    value={formData.specialRequests}
-                    onChange={(e) => handleInputChange('specialRequests', e.target.value)}
-                    className="mt-1"
-                    placeholder="Any special requests or dietary requirements"
-                    rows={3}
-                  />
-                </div>
-              </div>
+              </ScrollArea>
             </div>
           </div>
 
           {/* Right Panel - Booking Summary */}
-          <div className="w-96 bg-gray-50 border-l border-gray-200 flex flex-col">
-            <div className="p-6 border-b border-gray-200 bg-white">
+          <div className="w-96 bg-white border-l border-gray-200 flex flex-col">
+            <div className="flex-shrink-0 p-6 border-b border-gray-200">
               <h3 className="text-xl font-bold text-gray-900 mb-2">Booking Summary</h3>
-              <p className="text-sm text-gray-600">Review your booking details</p>
+              <p className="text-gray-600">Review your booking details</p>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-6">
-              <div className="space-y-4">
-                {/* Booking Details */}
-                <div className="bg-white rounded-lg p-4 border border-gray-200">
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-2">
-                      <Calendar className="h-4 w-4 text-gray-600" />
-                      <span className="font-medium text-gray-900">Stay Details</span>
-                    </div>
+            <div className="flex-1 overflow-hidden">
+              <ScrollArea className="h-full">
+                <div className="p-6 space-y-6">
+                  {/* Stay Details */}
+                  <div className="bg-gray-50 rounded-lg p-4">
+                    <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                      <Calendar className="h-4 w-4" />
+                      Stay Details
+                    </h4>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
                         <span className="text-gray-600">Check-in:</span>
-                        <span className="text-gray-900 font-medium">{formatDate(bookingData.checkIn)}</span>
+                        <span className="font-medium">{formatDate(bookingData.checkIn)}</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-gray-600">Check-out:</span>
-                        <span className="text-gray-900 font-medium">{formatDate(bookingData.checkOut)}</span>
+                        <span className="font-medium">{formatDate(bookingData.checkOut)}</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-gray-600">Nights:</span>
-                        <span className="text-gray-900 font-medium">{bookingData.nights}</span>
+                        <span className="font-medium">{bookingData.nights}</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-gray-600">Guests:</span>
-                        <span className="text-gray-900 font-medium">{bookingData.guests}</span>
+                        <span className="font-medium">{bookingData.guests}</span>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Property Information */}
-                <div className="bg-white rounded-lg p-4 border border-gray-200">
-                  <div className="flex items-center gap-2 mb-3">
-                    <MapPin className="h-4 w-4 text-gray-600" />
-                    <span className="font-medium text-gray-900">Property</span>
-                  </div>
-                  <div className="text-sm">
-                    <p className="font-medium text-gray-900">XTSY Travellers Hostel</p>
-                    <p className="text-gray-600">Near Manali Mall Road</p>
-                    <p className="text-gray-600">Himachal Pradesh, India</p>
-                  </div>
-                </div>
-
-                {/* Contact Information */}
-                <div className="bg-white rounded-lg p-4 border border-gray-200">
-                  <div className="flex items-center gap-2 mb-3">
-                    <Phone className="h-4 w-4 text-gray-600" />
-                    <span className="font-medium text-gray-900">Contact</span>
-                  </div>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex items-center gap-2">
-                      <Phone className="h-3 w-3 text-gray-500" />
-                      <span className="text-gray-900">+91 98765 43210</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Mail className="h-3 w-3 text-gray-500" />
-                      <span className="text-gray-900">info@xtsy.com</span>
+                  {/* Property */}
+                  <div className="bg-gray-50 rounded-lg p-4">
+                    <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                      <Hotel className="h-4 w-4" />
+                      Property
+                    </h4>
+                    <div className="text-sm">
+                      <p className="font-medium">XTSY Travellers Hostel</p>
+                      <p className="text-gray-600">Near Manali Mall Road</p>
+                      <p className="text-gray-600">Himachal Pradesh, India</p>
                     </div>
                   </div>
-                </div>
 
-                {/* Important Notes */}
-                <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
-                  <h4 className="font-medium text-orange-900 mb-2">Important Notes</h4>
-                  <ul className="text-sm text-orange-800 space-y-1">
-                    <li>• Check-in: 12:00 PM onwards</li>
-                    <li>• Check-out: 10:00 AM</li>
-                    <li>• Valid ID proof required</li>
-                    <li>• Only guests 18+ allowed</li>
-                    <li>• No outside visitors after 10 PM</li>
-                  </ul>
+                  {/* Contact */}
+                  <div className="bg-gray-50 rounded-lg p-4">
+                    <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                      <Phone className="h-4 w-4" />
+                      Contact
+                    </h4>
+                    <div className="text-sm space-y-1">
+                      <p className="flex items-center gap-2">
+                        <Phone className="h-3 w-3" />
+                        +91 98765 43210
+                      </p>
+                      <p className="flex items-center gap-2">
+                        <Mail className="h-3 w-3" />
+                        info@xtsy.com
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </ScrollArea>
             </div>
 
-            <div className="p-6 border-t border-gray-200 bg-white">
-              <div className="space-y-3">
-                <Button
-                  onClick={handleSubmit}
-                  className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white py-3 font-semibold"
-                >
-                  <CreditCard className="h-4 w-4 mr-2" />
-                  Proceed to Payment
-                </Button>
-                <Button
-                  onClick={onClose}
-                  variant="outline"
-                  className="w-full border-gray-300 text-gray-600 hover:bg-gray-50"
-                >
-                  Back to Booking
-                </Button>
-              </div>
+            <div className="flex-shrink-0 p-6 border-t border-gray-200">
+              <Button
+                onClick={handlePayNow}
+                className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white py-3 font-semibold"
+              >
+                Pay Now
+              </Button>
             </div>
           </div>
         </div>

@@ -44,78 +44,88 @@ const ServicesSection = () => {
 
   const activeService = services.find(service => service.id === activeTab);
 
-  return (
-    <section id="services" className="py-20 px-4 bg-gradient-to-br from-slate-900/30 via-slate-800/30 to-slate-900/30 relative overflow-hidden">
-      {/* Background animations */}
-      <div className="absolute inset-0">
-        {[...Array(5)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-24 h-24 bg-gradient-to-r from-teal-400/10 to-blue-400/10 rounded-full blur-xl animate-pulse"
-            style={{
-              right: `${5 + i * 20}%`,
-              top: `${10 + i * 20}%`,
-              animationDelay: `${i * 0.8}s`,
-              animationDuration: `${4 + i * 0.3}s`
-            }}
-          />
-        ))}
-      </div>
+  const amenities = [
+    "Mountain View", "Card Payment Accepted", "Cafe", "Storage Facility", 
+    "Laundry Services (Extra)", "Free Wi-Fi", "Common Television", 
+    "Common hangout area", "In-house Activities", "Breakfast (Extra)", 
+    "UPI Payment Accepted", "Parking (private)", "24/7 Reception",
+    "Tourist Information", "Luggage Storage", "Security"
+  ];
 
+  return (
+    <section id="services" className="py-16 sm:py-20 px-3 sm:px-4 bg-gradient-to-br from-slate-100 via-white to-slate-100 relative overflow-hidden">
       <div className="container mx-auto max-w-6xl relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent" style={{ fontFamily: "'Cormorant Garmond', serif" }}>
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-3 sm:mb-4 font-serif-sans">
             Our Services
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto" style={{ fontFamily: "'Inter', sans-serif" }}>
-            Experience comfort and convenience with our premium hostel services designed for modern travelers
+          <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto font-seasons px-4">
+            Choose from our range of accommodations designed for every traveler's needs and budget
           </p>
         </div>
 
-        {/* Enhanced Tab Toggle Buttons */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {services.map((service) => (
+        {/* Horizontal Tab Buttons */}
+        <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-0 mb-12 sm:mb-16 px-4">
+          {services.map((service, index) => (
             <Button
               key={service.id}
               variant={activeTab === service.id ? "default" : "outline"}
               onClick={() => setActiveTab(service.id)}
-              className={`px-8 py-4 font-bold transition-all duration-300 text-base border-2 ${
+              className={`px-4 sm:px-6 lg:px-8 py-3 sm:py-4 font-bold transition-all duration-300 text-sm sm:text-base flex-1 sm:flex-none ${
+                index === 0 ? 'sm:rounded-r-none' : 
+                index === services.length - 1 ? 'sm:rounded-l-none' : 
+                'sm:rounded-none'
+              } ${
                 activeTab === service.id
-                  ? "bg-gradient-to-r from-teal-500 to-blue-600 text-white shadow-xl border-teal-400 scale-105 transform"
-                  : "border-teal-300/60 text-white bg-slate-800/60 hover:bg-slate-700/80 hover:border-teal-400/80 hover:scale-105 hover:text-teal-200 backdrop-blur-sm"
-              }`}
-              style={{ fontFamily: "'Inter', sans-serif" }}
+                  ? "bg-gradient-to-r from-orange-500 to-red-600 text-white shadow-xl border-orange-400"
+                  : "border-orange-300/60 text-gray-800 bg-white hover:bg-orange-50 hover:border-orange-400/80 hover:text-orange-600"
+              } font-seasons border-2`}
             >
-              <service.icon className="h-5 w-5 mr-3" />
-              {service.title}
+              <service.icon className="h-4 w-4 sm:h-5 sm:w-5 mr-2 sm:mr-3" />
+              <span className="text-xs sm:text-sm lg:text-base whitespace-nowrap">{service.title}</span>
             </Button>
           ))}
         </div>
 
         {/* Active Service Content */}
         {activeService && (
-          <Card className="backdrop-blur-xl bg-white/10 border border-white/20 max-w-4xl mx-auto transform hover:scale-105 transition-all duration-300 shadow-2xl">
-            <CardHeader className="text-center pb-4">
-              <div className={`mx-auto w-28 h-28 bg-gradient-to-r ${activeService.gradient} rounded-3xl flex items-center justify-center mb-6 shadow-2xl relative transform hover:rotate-3 transition-transform duration-300`}>
-                <div className={`absolute inset-0 bg-gradient-to-r ${activeService.gradient} rounded-3xl blur-xl opacity-60 scale-110`}></div>
-                <div className={`absolute inset-0 bg-gradient-to-br from-white/40 to-transparent rounded-3xl`}></div>
-                <div className={`absolute inset-1 bg-gradient-to-tl from-black/20 to-transparent rounded-3xl`}></div>
-                <activeService.icon className="h-14 w-14 text-white relative z-10 drop-shadow-lg" />
+          <Card className="bg-white border-2 border-gray-200 max-w-4xl mx-auto transform hover:scale-105 transition-all duration-300 shadow-xl mx-3 sm:mx-auto">
+            <CardHeader className="text-center pb-3 sm:pb-4">
+              <div className={`mx-auto w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 bg-gradient-to-r ${activeService.gradient} rounded-2xl sm:rounded-3xl flex items-center justify-center mb-4 sm:mb-6 shadow-2xl relative transform hover:rotate-3 transition-transform duration-300`}>
+                <div className={`absolute inset-0 bg-gradient-to-r ${activeService.gradient} rounded-2xl sm:rounded-3xl blur-xl opacity-60 scale-110`}></div>
+                <div className={`absolute inset-0 bg-gradient-to-br from-white/40 to-transparent rounded-2xl sm:rounded-3xl`}></div>
+                <div className={`absolute inset-1 bg-gradient-to-tl from-black/20 to-transparent rounded-2xl sm:rounded-3xl`}></div>
+                <activeService.icon className="h-10 w-10 sm:h-12 sm:w-12 lg:h-14 lg:w-14 text-white relative z-10 drop-shadow-lg" />
               </div>
-              <CardTitle className="text-3xl font-bold text-white mb-2" style={{ fontFamily: "'Cormorant Garmond', serif" }}>
+              <CardTitle className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800 mb-2 font-serif-sans px-4">
                 {activeService.title}
               </CardTitle>
-              <CardDescription className="text-gray-300 text-lg" style={{ fontFamily: "'Inter', sans-serif" }}>
+              <CardDescription className="text-gray-600 text-sm sm:text-base lg:text-lg font-seasons px-4">
                 {activeService.description}
               </CardDescription>
             </CardHeader>
-            <CardContent className="text-center">
-              <p className="text-gray-300 text-base leading-relaxed" style={{ fontFamily: "'Inter', sans-serif" }}>
+            <CardContent className="text-center px-4 sm:px-6">
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed font-seasons">
                 {activeService.details}
               </p>
             </CardContent>
           </Card>
         )}
+
+        {/* Common Amenities Section */}
+        <div className="mt-16 bg-white border-2 border-gray-200 rounded-lg p-6 sm:p-8 shadow-xl max-w-4xl mx-auto">
+          <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-6 text-center font-serif-sans">
+            Common Amenities
+          </h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {amenities.map((amenity, index) => (
+              <div key={index} className="flex items-center gap-2 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                <div className="w-2 h-2 bg-orange-500 rounded-full flex-shrink-0"></div>
+                <span className="text-gray-700 text-sm font-seasons font-medium">{amenity}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

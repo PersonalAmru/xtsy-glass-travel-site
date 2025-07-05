@@ -19,6 +19,8 @@ interface BookingModalProps {
 const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingModalProps) => {
   const [selectedRooms, setSelectedRooms] = useState<{ [key: string]: number }>({});
   const [couponCode, setCouponCode] = useState("");
+  const [couponApplied, setCouponApplied] = useState(false);
+  const [couponDiscount, setCouponDiscount] = useState(0);
   const [showGuestDetails, setShowGuestDetails] = useState(false);
 
   // Calculate number of nights
@@ -63,19 +65,10 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       image: '',
       description: 'A bed in a female-only dorm with private lockers and a shared attached washroom.',
       maxGuests: 1,
-      inventory: 4, // 4 beds available
+      inventory: 4,
       roomType: 'dorm',
       propertyName: 'XTSY Travellers Hostel',
-      amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)'],
-      availability: {
-        'Jul 05': { available: true, price: 850, units: 4 },
-        'Jul 06': { available: true, price: 850, units: 4 },
-        'Jul 07': { available: true, price: 850, units: 4 },
-        'Jul 08': { available: true, price: 850, units: 4 },
-        'Jul 09': { available: true, price: 850, units: 2 },
-        'Jul 10': { available: true, price: 850, units: 2 },
-        'Jul 11': { available: false, price: 0 },
-      }
+      amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)']
     },
     {
       id: '4-bed-mixed-female-dorm',
@@ -87,16 +80,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       inventory: 4,
       roomType: 'dorm',
       propertyName: 'XTSY Travellers Hostel',
-      amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)'],
-      availability: {
-        'Jul 05': { available: true, price: 800, units: 4 },
-        'Jul 06': { available: true, price: 800, units: 4 },
-        'Jul 07': { available: true, price: 800, units: 4 },
-        'Jul 08': { available: true, price: 800, units: 4 },
-        'Jul 09': { available: true, price: 800, units: 4 },
-        'Jul 10': { available: true, price: 800, units: 4 },
-        'Jul 11': { available: true, price: 800, units: 4 },
-      }
+      amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)']
     },
     {
       id: '6-bed-mixed-female-dorm',
@@ -108,16 +92,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       inventory: 30,
       roomType: 'dorm',
       propertyName: 'XTSY Travellers Hostel',
-      amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)'],
-      availability: {
-        'Jul 05': { available: false, price: 0 },
-        'Jul 06': { available: true, price: 700, units: 28 },
-        'Jul 07': { available: true, price: 700, units: 30 },
-        'Jul 08': { available: true, price: 700, units: 30 },
-        'Jul 09': { available: true, price: 700, units: 30 },
-        'Jul 10': { available: true, price: 700, units: 28 },
-        'Jul 11': { available: false, price: 0 },
-      }
+      amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)']
     },
     {
       id: '8-bed-mixed-dorm',
@@ -129,16 +104,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       inventory: 8,
       roomType: 'dorm',
       propertyName: 'XTSY Travellers Hostel',
-      amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)'],
-      availability: {
-        'Jul 05': { available: true, price: 600, units: 8 },
-        'Jul 06': { available: true, price: 600, units: 8 },
-        'Jul 07': { available: true, price: 600, units: 8 },
-        'Jul 08': { available: true, price: 600, units: 8 },
-        'Jul 09': { available: true, price: 600, units: 8 },
-        'Jul 10': { available: true, price: 600, units: 8 },
-        'Jul 11': { available: true, price: 600, units: 8 },
-      }
+      amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)']
     },
     // XTSY Luxury
     {
@@ -151,16 +117,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       inventory: 2,
       roomType: 'luxury',
       propertyName: 'XTSY Luxury',
-      amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)'],
-      availability: {
-        'Jul 05': { available: true, price: 3200, units: 2 },
-        'Jul 06': { available: true, price: 3200, units: 2 },
-        'Jul 07': { available: true, price: 3200, units: 2 },
-        'Jul 08': { available: true, price: 3200, units: 2 },
-        'Jul 09': { available: true, price: 3200, units: 2 },
-        'Jul 10': { available: true, price: 3200, units: 2 },
-        'Jul 11': { available: true, price: 3200, units: 2 },
-      }
+      amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)']
     },
     {
       id: 'king-triple-room',
@@ -172,16 +129,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       inventory: 1,
       roomType: 'luxury',
       propertyName: 'XTSY Luxury',
-      amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)'],
-      availability: {
-        'Jul 05': { available: true, price: 4200, units: 1 },
-        'Jul 06': { available: true, price: 4200, units: 1 },
-        'Jul 07': { available: true, price: 4200, units: 1 },
-        'Jul 08': { available: true, price: 4200, units: 1 },
-        'Jul 09': { available: true, price: 4200, units: 1 },
-        'Jul 10': { available: true, price: 4200, units: 1 },
-        'Jul 11': { available: true, price: 4200, units: 1 },
-      }
+      amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)']
     },
     {
       id: 'sky-glass-suite',
@@ -193,16 +141,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       inventory: 1,
       roomType: 'luxury',
       propertyName: 'XTSY Luxury',
-      amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)'],
-      availability: {
-        'Jul 05': { available: true, price: 18000, units: 1 },
-        'Jul 06': { available: true, price: 18000, units: 1 },
-        'Jul 07': { available: true, price: 18000, units: 1 },
-        'Jul 08': { available: true, price: 18000, units: 1 },
-        'Jul 09': { available: true, price: 18000, units: 1 },
-        'Jul 10': { available: true, price: 18000, units: 1 },
-        'Jul 11': { available: true, price: 18000, units: 1 },
-      }
+      amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)']
     }
   ];
 
@@ -211,6 +150,20 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       ...prev,
       [roomId]: quantity
     }));
+  };
+
+  const handleCouponApply = () => {
+    if (couponCode.toUpperCase() === "XTSY-BASH") {
+      if (guests >= 4) {
+        setCouponApplied(true);
+        const { subtotal } = calculateTotals();
+        setCouponDiscount(Math.round(subtotal * 0.1)); // 10% discount
+      } else {
+        alert("This coupon is only valid for groups of 4 or more guests");
+      }
+    } else {
+      alert("Invalid coupon code");
+    }
   };
 
   const addToCart = () => {
@@ -237,7 +190,9 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       guests,
       nights,
       items: selectedItems,
-      timestamp: new Date().getTime()
+      timestamp: new Date().getTime(),
+      couponApplied,
+      couponDiscount
     };
 
     localStorage.setItem('xtsy_booking_cart', JSON.stringify(bookingData));
@@ -268,13 +223,14 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       }
     });
     
-    const grandTotal = subtotal + totalGST;
+    const discountAmount = couponApplied ? couponDiscount : 0;
+    const grandTotal = subtotal + totalGST - discountAmount;
     const payableNow = Math.round(grandTotal * 0.21);
     
-    return { subtotal, tax: totalGST, grandTotal, payableNow };
+    return { subtotal, tax: totalGST, grandTotal, payableNow, discountAmount };
   };
 
-  const { subtotal, tax, grandTotal, payableNow } = calculateTotals();
+  const { subtotal, tax, grandTotal, payableNow, discountAmount } = calculateTotals();
 
   // Format date properly - remove undefined
   const formatDate = (dateStr: string) => {
@@ -294,12 +250,6 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
     } catch {
       return 'Select Date';
     }
-  };
-
-  const getAvailabilityDates = () => {
-    const dates = ['Jul 05', 'Jul 06', 'Jul 07', 'Jul 08', 'Jul 09', 'Jul 10', 'Jul 11'];
-    const days = ['SAT', 'SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI'];
-    return dates.map((date, index) => ({ date, day: days[index] }));
   };
 
   // Group rooms by property
@@ -356,17 +306,10 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className="bg-red-100 text-red-600 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">18+</div>
+                      <span className="text-2xl">🎯</span>
                       <div>
-                        <div className="text-gray-600">Guest Policy</div>
-                        <div className="font-semibold">Only 18+</div>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-2xl">😢</span>
-                      <div>
-                        <div className="text-gray-600">Kids/Infants</div>
-                        <div className="font-semibold">Not allowed</div>
+                        <div className="text-gray-600">Special Offer</div>
+                        <div className="font-semibold text-orange-600">Use XTSY-BASH for groups 4+</div>
                       </div>
                     </div>
                   </div>
@@ -467,41 +410,6 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
                                 <Activity className="h-5 w-5 text-gray-400" />
                                 <Shield className="h-5 w-5 text-gray-400" />
                                 <Car className="h-5 w-5 text-gray-400" />
-                              </div>
-
-                              {/* Availability Calendar */}
-                              <div className="border-t border-gray-200 pt-4">
-                                <div className="flex items-center justify-between mb-3">
-                                  <h4 className="text-orange-500 text-sm font-medium">Availability Calendar</h4>
-                                  <span className="text-xs text-gray-500">
-                                    {room.roomType === 'dorm' ? 'Beds' : 'Rooms'} Available
-                                  </span>
-                                </div>
-                                
-                                <div className="grid grid-cols-7 gap-2 text-center text-xs">
-                                  {getAvailabilityDates().map(({ date, day }) => {
-                                    const availability = room.availability[date];
-                                    return (
-                                      <div key={date} className="p-2 border rounded">
-                                        <div className="font-medium text-gray-600">{day}</div>
-                                        <div className="text-gray-500 mb-1">{date}</div>
-                                        {availability?.available ? (
-                                          <div>
-                                            <div className="text-green-600 font-bold">₹{availability.price}</div>
-                                            <div className="text-gray-500">
-                                              {availability.units} {room.roomType === 'dorm' ? 'beds' : 'rooms'}
-                                            </div>
-                                          </div>
-                                        ) : (
-                                          <div>
-                                            <div className="text-red-400">✗</div>
-                                            <div className="text-red-400">Sold out</div>
-                                          </div>
-                                        )}
-                                      </div>
-                                    );
-                                  })}
-                                </div>
                               </div>
                             </div>
                           </div>
@@ -610,6 +518,12 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
                           <span>Subtotal</span>
                           <span>₹{subtotal}</span>
                         </div>
+                        {couponApplied && (
+                          <div className="flex justify-between text-sm text-green-600">
+                            <span>Discount (XTSY-BASH)</span>
+                            <span>-₹{discountAmount}</span>
+                          </div>
+                        )}
                         <div className="flex justify-between text-sm">
                           <span>GST</span>
                           <span>₹{tax}</span>
@@ -628,16 +542,24 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
                         <p className="font-medium text-gray-900 mb-3">Have a discount coupon?</p>
                         <div className="flex gap-2">
                           <Input
-                            placeholder="Enter coupon code"
+                            placeholder="Enter XTSY-BASH"
                             value={couponCode}
                             onChange={(e) => setCouponCode(e.target.value)}
                             className="flex-1"
+                            disabled={couponApplied}
                           />
-                          <Button variant="outline" className="border-orange-300 text-orange-600 hover:bg-orange-50">
-                            Apply
+                          <Button 
+                            variant="outline" 
+                            className="border-orange-300 text-orange-600 hover:bg-orange-50"
+                            onClick={handleCouponApply}
+                            disabled={couponApplied}
+                          >
+                            {couponApplied ? "Applied" : "Apply"}
                           </Button>
                         </div>
-                        <p className="text-xs text-gray-500 mt-2">For 18+ guests only. Infants/Kids/Minors not allowed</p>
+                        <p className="text-xs text-gray-500 mt-2">
+                          Use XTSY-BASH for 10% off (min 4 guests required)
+                        </p>
                       </div>
                     </div>
                   ) : (

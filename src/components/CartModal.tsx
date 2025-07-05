@@ -25,6 +25,8 @@ interface BookingData {
     roomType?: string;
   }>;
   timestamp: number;
+  couponApplied?: boolean;
+  couponDiscount?: number;
 }
 
 const CartModal = ({ isOpen, onClose }: CartModalProps) => {
@@ -115,7 +117,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
 
   // Calculate total with proper pricing logic and GST
   const calculateTotals = () => {
-    if (!bookingData?.items) return { totalAmount: 0, totalGST: 0, grandTotal: 0, payableNow: 0 };
+    if (!bookingData?.items) return { totalAmount: 0, totalGST: 0, grandTotal: 0, payableNow: 0, discountAmount: 0 };
     
     let subtotal = 0;
     let totalGST = 0;
@@ -140,13 +142,14 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
       totalGST += itemGST;
     });
     
-    const grandTotal = subtotal + totalGST;
+    const discountAmount = bookingData.couponApplied ? (bookingData.couponDiscount || 0) : 0;
+    const grandTotal = subtotal + totalGST - discountAmount;
     const payableNow = Math.round(grandTotal * 0.21);
     
-    return { totalAmount: subtotal, totalGST, grandTotal, payableNow };
+    return { totalAmount: subtotal, totalGST, grandTotal, payableNow, discountAmount };
   };
 
-  const { totalAmount, totalGST, grandTotal, payableNow } = calculateTotals();
+  const { totalAmount, totalGST, grandTotal, payableNow, discountAmount } = calculateTotals();
 
   if (showGuestDetails && bookingData) {
     return (
@@ -254,6 +257,12 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                   <span className="text-gray-600">Subtotal:</span>
                   <span className="text-gray-900">₹{totalAmount}</span>
                 </div>
+                {bookingData.couponApplied && discountAmount > 0 && (
+                  <div className="flex justify-between text-green-600">
+                    <span>Discount (XTSY-BASH):</span>
+                    <span>-₹{discountAmount}</span>
+                  </div>
+                )}
                 <div className="flex justify-between">
                   <span className="text-gray-600">GST:</span>
                   <span className="text-gray-900">₹{totalGST}</span>
