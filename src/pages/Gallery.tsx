@@ -20,7 +20,7 @@ const Gallery = () => {
     { id: "outdoors", label: "Outdoors" }
   ];
 
-  // Sample gallery data - replace with actual Supabase images
+  // Updated gallery data with your uploaded images
   const galleryImages = [
     {
       id: 1,
@@ -38,31 +38,31 @@ const Gallery = () => {
     },
     {
       id: 3,
-      url: "/lovable-uploads/0ef988f7-b7f3-4d1f-80e3-fc2a04acd9cb.png",
-      title: "King Double Room",
-      category: "private",
-      description: "Luxurious private room with king bed"
+      url: "/lovable-uploads/6a7b3dad-87a3-49d9-98fa-919ff7b09dd0.png",
+      title: "Services Overview",
+      category: "common",
+      description: "Our comprehensive service offerings"
     },
     {
       id: 4,
-      url: "/lovable-uploads/db863c94-a5db-4aa4-afa6-e11364e4b9d7.png",
-      title: "Outdoor Garden",
+      url: "/lovable-uploads/3fb3e606-6b14-409a-b0ef-87fd12dbac22.png",
+      title: "Adventure Activities",
       category: "outdoors",
-      description: "Beautiful garden area for relaxation"
+      description: "Exciting outdoor adventure options"
     },
     {
       id: 5,
-      url: "/lovable-uploads/0ef988f7-b7f3-4d1f-80e3-fc2a04acd9cb.png",
-      title: "Mixed Dorm",
-      category: "dorms",
-      description: "Comfortable mixed dormitory"
+      url: "/lovable-uploads/70b7c61f-c52c-479b-9663-3957d72f31b0.png",
+      title: "Common Amenities",
+      category: "common",
+      description: "Essential amenities for your comfort"
     },
     {
       id: 6,
-      url: "/lovable-uploads/db863c94-a5db-4aa4-afa6-e11364e4b9d7.png",
-      title: "Dining Area",
-      category: "common",
-      description: "Modern dining and kitchen area"
+      url: "/lovable-uploads/29371033-4f1b-4455-882e-ecaa3758aa7b.png",
+      title: "Booking Interface",
+      category: "private",
+      description: "Easy booking experience"
     }
   ];
 

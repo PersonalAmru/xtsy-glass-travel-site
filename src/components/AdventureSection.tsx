@@ -1,8 +1,8 @@
 
 import { useState } from "react";
-import { Mountain, Waves, TreePine, Camera, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Mountain, Waves, Camera, TreePine, X } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 const AdventureSection = () => {
@@ -14,109 +14,103 @@ const AdventureSection = () => {
       id: "trekking",
       icon: Mountain,
       title: "Trekking Expeditions",
-      description: "Discover breathtaking mountain trails and hidden valleys",
-      fullDescription: "Embark on unforgettable trekking adventures through Meghalaya's pristine landscapes. Our guided expeditions take you through lush green valleys, dense forests, and breathtaking mountain trails. Experience the thrill of conquering peaks while immersing yourself in the natural beauty of the Northeast. Perfect for both beginners and experienced trekkers, with routes ranging from easy day hikes to challenging multi-day expeditions.",
-      highlights: [
-        "Professional mountain guides",
-        "All necessary trekking equipment provided",
-        "Multiple difficulty levels available",
-        "Scenic photography opportunities",
-        "Local cultural interactions",
-        "Safety equipment and first aid support"
-      ],
-      duration: "Half-day to 7-day expeditions",
-      difficulty: "Easy to Challenging",
-      includes: "Guide, equipment, meals, permits",
-      gradient: "from-green-500 to-emerald-600"
+      description: "Explore scenic trails and mountain peaks",
+      details: "Join us for unforgettable trekking experiences across Meghalaya's stunning landscapes. From easy nature walks to challenging mountain treks, we offer guided expeditions suitable for all fitness levels. Discover hidden waterfalls, panoramic viewpoints, and pristine forests while experiencing the natural beauty of the Northeast.",
+      gradient: "from-green-500 to-emerald-500",
+      itinerary: [
+        "Day 1: Base camp setup and orientation",
+        "Day 2: Trail exploration and waterfall visit",
+        "Day 3: Summit attempt and panoramic views",
+        "Day 4: Return journey and celebration"
+      ]
     },
     {
-      id: "water-sports",
+      id: "water-adventures",
       icon: Waves,
       title: "Water Adventures",
-      description: "Thrilling water sports and river expeditions",
-      fullDescription: "Dive into exciting water adventures across Meghalaya's pristine rivers and lakes. From white-water rafting to kayaking and boating, experience the rush of navigating crystal-clear waters surrounded by stunning landscapes. Our water sports activities are designed for all skill levels, with professional instructors ensuring your safety while maximizing the fun.",
-      highlights: [
-        "White-water rafting on pristine rivers",
-        "Kayaking in calm lakes and rivers",
-        "Boating excursions to hidden spots",
-        "Swimming in natural pools",
-        "Certified water sports instructors",
-        "All safety equipment provided"
-      ],
-      duration: "2 hours to full day",
-      difficulty: "Beginner to Advanced",
-      includes: "Instructor, equipment, safety gear, transport",
-      gradient: "from-blue-500 to-cyan-600"
+      description: "River rafting, kayaking, and water sports",
+      details: "Experience the thrill of Meghalaya's pristine rivers and water bodies. Our water adventure packages include river rafting, kayaking, cliff jumping, and swimming in crystal-clear natural pools. Perfect for adrenaline seekers and those looking to cool off in nature's playground.",
+      gradient: "from-blue-500 to-cyan-500",
+      itinerary: [
+        "Day 1: Water safety briefing and basic training",
+        "Day 2: River rafting expedition",
+        "Day 3: Kayaking and cliff jumping",
+        "Day 4: Relaxation at natural pools"
+      ]
     },
     {
-      id: "nature-walks",
+      id: "nature-wildlife",
       icon: TreePine,
       title: "Nature & Wildlife",
-      description: "Guided nature walks and wildlife spotting tours",
-      fullDescription: "Explore Meghalaya's rich biodiversity through guided nature walks and wildlife spotting tours. Discover rare flora and fauna, learn about local ecosystems, and witness the incredible variety of birds and animals that call this region home. Our expert naturalists will help you understand and appreciate the delicate balance of nature in this biodiversity hotspot.",
-      highlights: [
-        "Expert naturalist guides",
-        "Bird watching opportunities",
-        "Flora and fauna identification",
-        "Photography workshops",
-        "Eco-system education",
-        "Visit to conservation areas"
-      ],
-      duration: "2-6 hours",
-      difficulty: "Easy to Moderate",
-      includes: "Naturalist guide, binoculars, field guides",
-      gradient: "from-green-600 to-teal-600"
+      description: "Bird watching, forest walks, and wildlife spotting",
+      details: "Immerse yourself in Meghalaya's rich biodiversity. Our nature and wildlife tours take you through dense forests, sacred groves, and wildlife sanctuaries. Spot rare birds, exotic plants, and maybe even some elusive wildlife while learning about local conservation efforts.",
+      gradient: "from-amber-500 to-orange-500",
+      itinerary: [
+        "Day 1: Forest orientation and bird watching",
+        "Day 2: Sacred grove exploration",
+        "Day 3: Wildlife sanctuary visit",
+        "Day 4: Photography session and nature appreciation"
+      ]
     },
     {
       id: "photography",
       icon: Camera,
       title: "Photography Tours",
-      description: "Capture stunning landscapes and cultural moments",
-      fullDescription: "Join our specialized photography tours designed to capture the best of Meghalaya's natural beauty and cultural richness. Whether you're a professional photographer or an enthusiast, our tours take you to the most photogenic locations at optimal times for lighting. Learn techniques, composition, and post-processing while creating a stunning portfolio of your Northeast adventure.",
-      highlights: [
-        "Professional photography guidance",
-        "Best time and location scouting",
-        "Landscape and portrait techniques",
-        "Cultural photography opportunities",
-        "Equipment recommendations",
-        "Post-processing workshops"
-      ],
-      duration: "Half-day to multi-day tours",
-      difficulty: "All levels welcome",
-      includes: "Photography guide, location access, tips & techniques",
-      gradient: "from-purple-500 to-pink-600"
+      description: "Capture the beauty of Meghalaya's landscapes",
+      details: "Perfect for photography enthusiasts, our tours are designed to capture Meghalaya's most photogenic locations. From golden sunrises to misty valleys, cascading waterfalls to traditional villages, we'll guide you to the best spots for that perfect shot.",
+      gradient: "from-purple-500 to-pink-500",
+      itinerary: [
+        "Day 1: Sunrise photography at viewpoints",
+        "Day 2: Waterfall and landscape photography",
+        "Day 3: Cultural and village photography",
+        "Day 4: Portfolio review and editing session"
+      ]
     }
   ];
 
   const activeAdventure = adventures.find(adventure => adventure.id === activeTab);
-  const selectedAdventureDetails = adventures.find(adventure => adventure.id === selectedAdventure);
+  const popupAdventure = adventures.find(adventure => adventure.id === selectedAdventure);
 
   const handleBookAdventure = () => {
-    const message = `Hi XTSY! I'm interested in booking the ${selectedAdventureDetails?.title} adventure. Please check availability and provide more details.`;
-    const whatsappUrl = `https://wa.me/918837317070?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+    window.open('https://wa.me/918837317070', '_blank');
   };
 
   return (
-    <section className="py-16 sm:py-20 px-3 sm:px-4 bg-gradient-to-br from-slate-100 via-white to-slate-100 relative overflow-hidden">
+    <section id="adventure" className="py-16 sm:py-20 px-3 sm:px-4 bg-gray-50 relative overflow-hidden">
+      {/* Background animations */}
+      <div className="absolute inset-0">
+        {[...Array(5)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-28 h-28 bg-gradient-to-r from-green-400/10 to-blue-400/10 rounded-full blur-xl animate-pulse"
+            style={{
+              left: `${5 + i * 18}%`,
+              bottom: `${10 + i * 15}%`,
+              animationDelay: `${i * 0.8}s`,
+              animationDuration: `${4 + i * 0.3}s`
+            }}
+          />
+        ))}
+      </div>
+
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-3 sm:mb-4 font-serif-sans">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent font-serif-sans px-4">
             Curated Meghalaya Itineraries
           </h2>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto font-seasons px-4">
-            Choose from our range of accommodations designed for every traveler's needs and budget
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto font-seasons px-4">
+            Discover the breathtaking beauty of Meghalaya with our expertly crafted adventure packages
           </p>
         </div>
 
-        {/* Horizontal Tab Buttons */}
+        {/* Horizontal Tab Buttons - Mobile Optimized */}
         <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-0 mb-12 sm:mb-16 px-4">
           {adventures.map((adventure, index) => (
             <Button
               key={adventure.id}
               variant={activeTab === adventure.id ? "default" : "outline"}
               onClick={() => setActiveTab(adventure.id)}
-              className={`px-4 sm:px-6 lg:px-8 py-3 sm:py-4 font-bold transition-all duration-300 text-sm sm:text-base flex-1 sm:flex-none ${
+              className={`px-3 sm:px-4 md:px-6 py-3 sm:py-4 font-bold transition-all duration-300 text-xs sm:text-sm lg:text-base flex-1 sm:flex-none ${
                 index === 0 ? 'sm:rounded-r-none' : 
                 index === adventures.length - 1 ? 'sm:rounded-l-none' : 
                 'sm:rounded-none'
@@ -126,8 +120,8 @@ const AdventureSection = () => {
                   : "border-orange-300/60 text-gray-800 bg-white hover:bg-orange-50 hover:border-orange-400/80 hover:text-orange-600"
               } font-seasons border-2`}
             >
-              <adventure.icon className="h-4 w-4 sm:h-5 sm:w-5 mr-2 sm:mr-3" />
-              <span className="text-xs sm:text-sm lg:text-base whitespace-nowrap">{adventure.title}</span>
+              <adventure.icon className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 mr-1 sm:mr-2" />
+              <span className="whitespace-nowrap">{adventure.title}</span>
             </Button>
           ))}
         </div>
@@ -149,24 +143,21 @@ const AdventureSection = () => {
                 {activeAdventure.description}
               </CardDescription>
             </CardHeader>
-            <CardContent className="text-center px-4 sm:px-6">
-              <p className="text-gray-600 text-sm sm:text-base leading-relaxed font-seasons mb-6">
-                {activeAdventure.fullDescription.substring(0, 200)}...
+            <CardContent className="text-center px-4 sm:px-6 space-y-4">
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed font-seasons">
+                {activeAdventure.details}
               </p>
-              <div className="flex gap-4 justify-center">
+              <div className="flex gap-4">
                 <Button
                   onClick={() => setSelectedAdventure(activeAdventure.id)}
                   variant="outline"
-                  className="border-orange-300 text-orange-600 hover:bg-orange-50 font-seasons"
+                  className="flex-1 border-orange-300 text-orange-600 hover:bg-orange-50"
                 >
-                  Read More Details
+                  View Details
                 </Button>
                 <Button
-                  onClick={() => {
-                    setSelectedAdventure(activeAdventure.id);
-                    setTimeout(handleBookAdventure, 100);
-                  }}
-                  className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-seasons"
+                  onClick={handleBookAdventure}
+                  className="flex-1 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white"
                 >
                   Book This Adventure
                 </Button>
@@ -176,58 +167,44 @@ const AdventureSection = () => {
         )}
       </div>
 
-      {/* Adventure Details Modal */}
-      <Dialog open={!!selectedAdventure} onOpenChange={() => setSelectedAdventure(null)}>
-        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-              {selectedAdventureDetails && (
-                <>
-                  <selectedAdventureDetails.icon className="h-6 w-6 text-orange-500" />
-                  {selectedAdventureDetails.title}
-                </>
-              )}
-            </DialogTitle>
-          </DialogHeader>
-          
-          {selectedAdventureDetails && (
+      {/* Adventure Details Popup */}
+      {popupAdventure && (
+        <Dialog open={!!selectedAdventure} onOpenChange={() => setSelectedAdventure(null)}>
+          <DialogContent className="max-w-2xl bg-white border border-gray-200 text-gray-900 shadow-lg">
+            <DialogHeader>
+              <DialogTitle className="text-2xl font-bold text-center text-gray-900 flex items-center justify-center gap-2">
+                <popupAdventure.icon className="h-6 w-6 text-orange-500" />
+                {popupAdventure.title}
+              </DialogTitle>
+            </DialogHeader>
+            
             <div className="space-y-6">
-              <p className="text-gray-600 leading-relaxed">
-                {selectedAdventureDetails.fullDescription}
-              </p>
+              <div className={`mx-auto w-24 h-24 bg-gradient-to-r ${popupAdventure.gradient} rounded-2xl flex items-center justify-center shadow-xl`}>
+                <popupAdventure.icon className="h-12 w-12 text-white" />
+              </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-gray-900 mb-1">Duration</h4>
-                  <p className="text-gray-600">{selectedAdventureDetails.duration}</p>
-                </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-gray-900 mb-1">Difficulty</h4>
-                  <p className="text-gray-600">{selectedAdventureDetails.difficulty}</p>
-                </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-gray-900 mb-1">Includes</h4>
-                  <p className="text-gray-600">{selectedAdventureDetails.includes}</p>
-                </div>
-              </div>
-
               <div>
-                <h4 className="font-semibold text-gray-900 mb-3">Highlights</h4>
-                <ul className="space-y-2">
-                  {selectedAdventureDetails.highlights.map((highlight, index) => (
-                    <li key={index} className="flex items-center gap-2 text-gray-600">
-                      <div className="w-2 h-2 bg-orange-500 rounded-full flex-shrink-0"></div>
-                      {highlight}
-                    </li>
-                  ))}
-                </ul>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Description</h3>
+                <p className="text-gray-600 text-sm leading-relaxed">{popupAdventure.details}</p>
               </div>
-
+              
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Sample Itinerary</h3>
+                <div className="space-y-2">
+                  {popupAdventure.itinerary.map((item, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                      <span className="text-gray-600 text-sm">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
               <div className="flex gap-4 pt-4">
                 <Button
                   onClick={() => setSelectedAdventure(null)}
                   variant="outline"
-                  className="flex-1"
+                  className="flex-1 border-gray-300 text-gray-600 hover:bg-gray-50"
                 >
                   Close
                 </Button>
@@ -239,9 +216,9 @@ const AdventureSection = () => {
                 </Button>
               </div>
             </div>
-          )}
-        </DialogContent>
-      </Dialog>
+          </DialogContent>
+        </Dialog>
+      )}
     </section>
   );
 };

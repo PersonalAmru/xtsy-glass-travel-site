@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Sofa, Clock, ShoppingBag, Shirt } from "lucide-react";
+import { Sofa, Clock, ShoppingBag, Shirt, Wifi, Car, Coffee, Shield, Users, Gamepad2, Utensils, TreePine, Grill, Flame, Info, Eye } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -45,33 +45,57 @@ const ServicesSection = () => {
   const activeService = services.find(service => service.id === activeTab);
 
   const amenities = [
-    "Mountain View", "Card Payment Accepted", "Cafe", "Storage Facility", 
-    "Laundry Services (Extra)", "Free Wi-Fi", "Common Television", 
-    "Common hangout area", "In-house Activities", "Breakfast (Extra)", 
-    "UPI Payment Accepted", "Parking (private)", "24/7 Reception",
-    "Tourist Information", "Luggage Storage", "Security"
+    { icon: Wifi, name: "Free Wi-Fi" },
+    { icon: Coffee, name: "Cafe" },
+    { icon: ShoppingBag, name: "Storage facility in all dorm rooms" },
+    { icon: Shirt, name: "Laundry service [Paid]" },
+    { icon: Sofa, name: "Common Lounge" },
+    { icon: Gamepad2, name: "Games Room" },
+    { icon: Utensils, name: "CP Breakfast" },
+    { icon: Car, name: "Free Parking for guests" },
+    { icon: Grill, name: "BBQ [Paid]" },
+    { icon: Flame, name: "Bonfire [On request]" },
+    { icon: Info, name: "Tourist Info Centre" },
+    { icon: Shield, name: "Security" },
+    { icon: Eye, name: "CCTV" }
   ];
 
   return (
-    <section id="services" className="py-16 sm:py-20 px-3 sm:px-4 bg-gradient-to-br from-slate-100 via-white to-slate-100 relative overflow-hidden">
+    <section id="services" className="py-16 sm:py-20 px-3 sm:px-4 bg-gray-50 relative overflow-hidden">
+      {/* Enhanced background animations */}
+      <div className="absolute inset-0">
+        {[...Array(6)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-r from-gray-200/20 to-orange-200/20 rounded-full blur-xl animate-pulse"
+            style={{
+              left: `${10 + i * 15}%`,
+              top: `${20 + i * 12}%`,
+              animationDelay: `${i * 1}s`,
+              animationDuration: `${3 + i * 0.5}s`
+            }}
+          />
+        ))}
+      </div>
+
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-3 sm:mb-4 font-serif-sans">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent font-serif-sans px-4">
             Our Services
           </h2>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto font-seasons px-4">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto font-seasons px-4">
             Choose from our range of accommodations designed for every traveler's needs and budget
           </p>
         </div>
 
-        {/* Horizontal Tab Buttons */}
+        {/* Horizontal Tab Buttons - Mobile Optimized */}
         <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-0 mb-12 sm:mb-16 px-4">
           {services.map((service, index) => (
             <Button
               key={service.id}
               variant={activeTab === service.id ? "default" : "outline"}
               onClick={() => setActiveTab(service.id)}
-              className={`px-4 sm:px-6 lg:px-8 py-3 sm:py-4 font-bold transition-all duration-300 text-sm sm:text-base flex-1 sm:flex-none ${
+              className={`px-3 sm:px-4 md:px-6 py-3 sm:py-4 font-bold transition-all duration-300 text-xs sm:text-sm lg:text-base flex-1 sm:flex-none ${
                 index === 0 ? 'sm:rounded-r-none' : 
                 index === services.length - 1 ? 'sm:rounded-l-none' : 
                 'sm:rounded-none'
@@ -81,8 +105,8 @@ const ServicesSection = () => {
                   : "border-orange-300/60 text-gray-800 bg-white hover:bg-orange-50 hover:border-orange-400/80 hover:text-orange-600"
               } font-seasons border-2`}
             >
-              <service.icon className="h-4 w-4 sm:h-5 sm:w-5 mr-2 sm:mr-3" />
-              <span className="text-xs sm:text-sm lg:text-base whitespace-nowrap">{service.title}</span>
+              <service.icon className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 mr-1 sm:mr-2" />
+              <span className="whitespace-nowrap">{service.title}</span>
             </Button>
           ))}
         </div>
@@ -117,11 +141,11 @@ const ServicesSection = () => {
           <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-6 text-center font-serif-sans">
             Common Amenities
           </h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {amenities.map((amenity, index) => (
-              <div key={index} className="flex items-center gap-2 p-3 bg-gray-50 rounded-lg border border-gray-200">
-                <div className="w-2 h-2 bg-orange-500 rounded-full flex-shrink-0"></div>
-                <span className="text-gray-700 text-sm font-seasons font-medium">{amenity}</span>
+              <div key={index} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                <amenity.icon className="h-5 w-5 text-orange-500 flex-shrink-0" />
+                <span className="text-gray-700 text-sm font-seasons font-medium">{amenity.name}</span>
               </div>
             ))}
           </div>

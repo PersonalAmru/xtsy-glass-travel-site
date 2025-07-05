@@ -1,8 +1,9 @@
+
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Users, Wifi, Car, Coffee, Utensils, Shield, TreePine } from "lucide-react";
+import { MapPin, Users, Wifi, Car, Coffee, Shield, TreePine } from "lucide-react";
 
 const RoomsSection = () => {
   const [activeProperty, setActiveProperty] = useState("hostel");
@@ -86,6 +87,15 @@ const RoomsSection = () => {
           description: "Luxurious room accommodating up to three guests",
           features: ["King bed + extra bed", "Panoramic view", "Mini bar", "Attached bath", "Wi-Fi", "Premium amenities"],
           maxGuests: 3,
+          image: "" // Ready for Supabase Object URL
+        },
+        {
+          id: "sky-glass-suite",
+          name: "Sky Glass Suite",
+          price: 18000,
+          description: "Ultimate luxury suite with panoramic glass views",
+          features: ["Glass walls", "360° views", "Premium amenities", "Jacuzzi", "Mini bar", "Concierge service"],
+          maxGuests: 2,
           image: "" // Ready for Supabase Object URL
         }
       ]
@@ -211,37 +221,6 @@ const RoomsSection = () => {
               </CardContent>
             </Card>
           ))}
-        </div>
-
-        {/* Common Amenities */}
-        <div className="mt-12 sm:mt-16">
-          <Card className="bg-white border border-gray-200 shadow-lg max-w-4xl mx-auto mx-3 sm:mx-auto">
-            <CardHeader className="text-center">
-              <CardTitle className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 font-serif-sans">
-                Common Amenities
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 text-center">
-                <div className="flex flex-col items-center">
-                  <Wifi className="h-6 w-6 sm:h-8 sm:w-8 text-orange-500 mb-2" />
-                  <span className="text-gray-700 text-xs sm:text-sm font-seasons">Free Wi-Fi</span>
-                </div>
-                <div className="flex flex-col items-center">
-                  <Car className="h-6 w-6 sm:h-8 sm:w-8 text-orange-500 mb-2" />
-                  <span className="text-gray-700 text-xs sm:text-sm font-seasons">Parking</span>
-                </div>
-                <div className="flex flex-col items-center">
-                  <Coffee className="h-6 w-6 sm:h-8 sm:w-8 text-orange-500 mb-2" />
-                  <span className="text-gray-700 text-xs sm:text-sm font-seasons">Cafe</span>
-                </div>
-                <div className="flex flex-col items-center">
-                  <Shield className="h-6 w-6 sm:h-8 sm:w-8 text-orange-500 mb-2" />
-                  <span className="text-gray-700 text-xs sm:text-sm font-seasons">24/7 Security</span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
         </div>
       </div>
     </section>

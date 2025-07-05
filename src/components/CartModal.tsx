@@ -2,7 +2,9 @@
 import { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Trash2 } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { ShoppingCart, Trash2, Tag } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 import GuestDetails from "./GuestDetails";
 
 interface CartModalProps {
@@ -32,6 +34,9 @@ interface BookingData {
 const CartModal = ({ isOpen, onClose }: CartModalProps) => {
   const [bookingData, setBookingData] = useState<BookingData | null>(null);
   const [showGuestDetails, setShowGuestDetails] = useState(false);
+  const [couponCode, setCouponCode] = useState("");
+  const [couponApplied, setCouponApplied] = useState(false);
+  const { toast } = useToast();
 
   // Calculate GST rate based on room tariff
   const calculateGSTRate = (roomPrice: number) => {
@@ -68,13 +73,74 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
           });
         }
         setBookingData(parsedData);
+        setCouponApplied(parsedData.couponApplied || false);
       }
     }
   }, [isOpen]);
 
+  const applyCoupon = () => {
+    if (!bookingData) return;
+
+    if (couponCode.toUpperCase() === "XTSY-BASH") {
+      if (bookingData.guests >= 4) {
+        const { totalAmount } = calculateTotals();
+        const discountAmount = Math.round(totalAmount * 0.1); // 10% discount
+        
+        const updatedData = {
+          ...bookingData,
+          couponApplied: true,
+          couponDiscount: discountAmount
+        };
+        
+        setBookingData(updatedData);
+        setCouponApplied(true);
+        localStorage.setItem('xtsy_booking_cart', JSON.stringify(updatedData));
+        
+        toast({
+          title: "Coupon Applied!",
+          description: `₹${discountAmount} discount applied successfully!`,
+        });
+      } else {
+        toast({
+          title: "Coupon Invalid",
+          description: "XTSY-BASH coupon requires minimum 4 guests",
+          variant: "destructive"
+        });
+      }
+    } else {
+      toast({
+        title: "Invalid Coupon",
+        description: "Please enter a valid coupon code",
+        variant: "destructive"
+      });
+    }
+  };
+
+  const removeCoupon = () => {
+    if (!bookingData) return;
+    
+    const updatedData = {
+      ...bookingData,
+      couponApplied: false,
+      couponDiscount: 0
+    };
+    
+    setBookingData(updatedData);
+    setCouponApplied(false);
+    setCouponCode("");
+    localStorage.setItem('xtsy_booking_cart', JSON.stringify(updatedData));
+    
+    toast({
+      title: "Coupon Removed",
+      description: "Discount has been removed from your booking",
+    });
+  };
+
   const clearCart = () => {
     localStorage.removeItem('xtsy_booking_cart');
     setBookingData(null);
+    setCouponApplied(false);
+    setCouponCode("");
   };
 
   const proceedToGuestDetails = () => {
@@ -171,7 +237,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-lg bg-white border border-gray-200 text-gray-900 shadow-lg">
+      <DialogContent className="max-w-lg max-h-[90vh] bg-white border border-gray-200 text-gray-900 shadow-lg">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-center text-gray-900 flex items-center justify-center gap-2">
             <ShoppingCart className="h-6 w-6 text-orange-500" />
@@ -186,7 +252,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
             <p className="text-gray-500 text-sm">Add some rooms to get started</p>
           </div>
         ) : (
-          <div className="space-y-6">
+          <div className="space-y-6 overflow-y-auto max-h-[60vh] px-1">
             {/* Cart saved info */}
             <div className="text-center text-sm text-gray-500">
               Cart saved {getDaysAgo(bookingData.timestamp)}
@@ -213,6 +279,48 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                   <span className="text-gray-900 font-medium">{bookingData.guests}</span>
                 </div>
               </div>
+            </div>
+
+            {/* Coupon Section */}
+            <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+              <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                <Tag className="h-5 w-5 text-orange-500" />
+                Apply Coupon
+              </h3>
+              {!couponApplied ? (
+                <div className="flex gap-2">
+                  <Input
+                    placeholder="Enter coupon code"
+                    value={couponCode}
+                    onChange={(e) => setCouponCode(e.target.value)}
+                    className="flex-1"
+                  />
+                  <Button 
+                    onClick={applyCoupon}
+                    className="bg-orange-500 hover:bg-orange-600 text-white px-4"
+                  >
+                    Apply
+                  </Button>
+                </div>
+              ) : (
+                <div className="flex items-center justify-between bg-green-100 rounded-lg p-3 border border-green-300">
+                  <div>
+                    <span className="text-green-800 font-medium">XTSY-BASH Applied!</span>
+                    <p className="text-green-700 text-sm">₹{discountAmount} discount</p>
+                  </div>
+                  <Button 
+                    onClick={removeCoupon}
+                    variant="outline"
+                    size="sm"
+                    className="border-green-300 text-green-700 hover:bg-green-50"
+                  >
+                    Remove
+                  </Button>
+                </div>
+              )}
+              <p className="text-orange-600 text-xs mt-2">
+                Use "XTSY-BASH" for 10% off (min 4 guests)
+              </p>
             </div>
 
             {/* Selected Rooms - Updated pricing display */}
@@ -279,7 +387,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex gap-4">
+            <div className="flex gap-4 pt-4">
               <Button
                 onClick={clearCart}
                 variant="outline"
