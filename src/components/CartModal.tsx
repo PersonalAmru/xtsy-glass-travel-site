@@ -139,19 +139,19 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
         localStorage.setItem('xtsy_booking_cart', JSON.stringify(updatedData));
         
         toast({
-          title: "Coupon Applied!",
+          title: "Coupon Applied! 🎉",
           description: `₹${totalDiscount} discount applied successfully!`,
         });
       } else {
         toast({
-          title: "Coupon Invalid",
+          title: "Coupon Invalid ❌",
           description: "XTSY-BASH coupon requires minimum 4 guests",
           variant: "destructive"
         });
       }
     } else {
       toast({
-        title: "Invalid Coupon",
+        title: "Invalid Coupon ❌",
         description: "Please enter a valid coupon code",
         variant: "destructive"
       });
@@ -249,7 +249,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
   const calculateTotals = () => {
     if (!bookingData?.items) return { totalAmount: 0, totalGST: 0, grandTotal: 0, payableNow: 0, discountAmount: 0 };
     
-    let subtotal = 0;
+    let totalAmount = 0;
     let totalGST = 0;
     
     bookingData.items.forEach(item => {
@@ -264,7 +264,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
         itemTotal = item.price * item.quantity * nights;
       }
       
-      subtotal += itemTotal;
+      totalAmount += itemTotal;
       
       // Calculate GST for this item
       const gstRate = calculateGSTRate(item.price);
@@ -273,10 +273,10 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
     });
     
     const discountAmount = bookingData.couponApplied ? (bookingData.couponDiscount || 0) : 0;
-    const grandTotal = subtotal + totalGST - discountAmount;
+    const grandTotal = totalAmount + totalGST - discountAmount;
     const payableNow = Math.round(grandTotal * 0.21);
     
-    return { totalAmount: subtotal, totalGST, grandTotal, payableNow, discountAmount };
+    return { totalAmount, totalGST, grandTotal, payableNow, discountAmount };
   };
 
   const { totalAmount, totalGST, grandTotal, payableNow, discountAmount } = calculateTotals();
@@ -338,14 +338,13 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="w-full h-full max-w-none max-h-none md:max-w-2xl lg:max-w-4xl md:max-h-[95vh] md:h-auto bg-white border-0 p-0 overflow-hidden">
-        {/* Mobile/Tablet Layout */}
-        <div className="flex flex-col h-full md:flex-row">
-          {/* Header - Mobile Only */}
+      <DialogContent className="w-full h-full max-w-none max-h-none md:max-w-3xl lg:max-w-4xl md:max-h-[90vh] md:h-auto bg-white border-0 p-0 overflow-hidden">
+        <div className="flex flex-col h-full">
+          {/* Mobile Header */}
           <div className="md:hidden flex items-center justify-between p-3 border-b bg-white sticky top-0 z-50">
-            <h2 className="text-base font-bold text-gray-900 flex items-center gap-2">
-              <ShoppingCart className="h-4 w-4 text-orange-500" />
-              Your Cart
+            <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+              <ShoppingCart className="h-5 w-5 text-orange-500" />
+              🛒 Your Cart
             </h2>
             <Button
               variant="ghost"
@@ -353,198 +352,199 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
               onClick={onClose}
               className="p-2"
             >
-              <X className="h-4 w-4" />
+              <X className="h-5 w-5" />
             </Button>
           </div>
 
-          {/* Main Content */}
-          <div className="flex-1 flex flex-col min-h-0">
-            {/* Desktop Header */}
-            <DialogHeader className="hidden md:block flex-shrink-0 p-4 lg:p-6 border-b">
-              <DialogTitle className="text-xl lg:text-2xl font-bold text-center text-gray-900 flex items-center justify-center gap-2">
-                <ShoppingCart className="h-5 w-5 lg:h-6 lg:w-6 text-orange-500" />
-                Your Cart
-              </DialogTitle>
-            </DialogHeader>
+          {/* Desktop Header */}
+          <DialogHeader className="hidden md:block flex-shrink-0 p-6 border-b">
+            <DialogTitle className="text-2xl font-bold text-center text-gray-900 flex items-center justify-center gap-2">
+              <ShoppingCart className="h-6 w-6 text-orange-500" />
+              🛒 Your Cart
+            </DialogTitle>
+          </DialogHeader>
 
-            {!bookingData || bookingData.items.length === 0 ? (
-              <div className="flex-1 flex items-center justify-center p-6">
-                <div className="text-center">
-                  <ShoppingCart className="h-12 w-12 md:h-16 md:w-16 text-gray-400 mx-auto mb-4" />
-                  <p className="text-gray-600 text-base md:text-lg mb-2">Your cart is empty</p>
-                  <p className="text-gray-500 text-sm">Add some rooms to get started</p>
-                </div>
+          {!bookingData || bookingData.items.length === 0 ? (
+            <div className="flex-1 flex items-center justify-center p-6">
+              <div className="text-center">
+                <ShoppingCart className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+                <p className="text-gray-600 text-lg mb-2">🛒 Your cart is empty</p>
+                <p className="text-gray-500 text-sm">Add some rooms to get started 🏨</p>
               </div>
-            ) : (
-              <>
-                {/* Scrollable Content */}
-                <div className="flex-1 overflow-y-auto p-3 md:p-4 lg:p-6 space-y-3 md:space-y-4 mobile-scroll-smooth">
-                  {/* Cart saved info */}
-                  <div className="text-center text-xs md:text-sm text-gray-500">
-                    Cart saved {getDaysAgo(bookingData.timestamp)}
-                  </div>
+            </div>
+          ) : (
+            <>
+              {/* Scrollable Content - Fixed height for all views */}
+              <div className="flex-1 overflow-y-auto p-3 md:p-6 space-y-4 max-h-[60vh] md:max-h-[50vh]">
+                {/* Cart saved info */}
+                <div className="text-center text-sm text-gray-500">
+                  📅 Cart saved {getDaysAgo(bookingData.timestamp)}
+                </div>
 
-                  {/* Booking Summary */}
-                  <div className="bg-gray-50 rounded-lg p-3 md:p-4 border border-gray-200">
-                    <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-3 md:mb-4">Booking Summary</h3>
-                    <div className="grid grid-cols-2 gap-3 md:gap-4 text-sm">
-                      <div>
-                        <span className="text-gray-600 text-xs md:text-sm">Check-in:</span>
-                        <div className="text-gray-900 font-medium text-sm md:text-base">{formatDate(bookingData.checkIn)}</div>
-                      </div>
-                      <div>
-                        <span className="text-gray-600 text-xs md:text-sm">Check-out:</span>
-                        <div className="text-gray-900 font-medium text-sm md:text-base">{formatDate(bookingData.checkOut)}</div>
-                      </div>
-                      <div>
-                        <span className="text-gray-600 text-xs md:text-sm">Nights:</span>
-                        <div className="text-gray-900 font-medium text-sm md:text-base">{bookingData.nights || 1}</div>
-                      </div>
-                      <div>
-                        <span className="text-gray-600 text-xs md:text-sm">Guests:</span>
-                        <div className="text-gray-900 font-medium text-sm md:text-base">{bookingData.guests}</div>
-                      </div>
+                {/* Booking Summary - Compact view */}
+                <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-3 md:p-4 border border-orange-200">
+                  <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                    📋 Booking Summary
+                  </h3>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 text-xs md:text-sm">
+                    <div>
+                      <span className="text-gray-600 block">📅 Check-in:</span>
+                      <div className="text-gray-900 font-medium">{formatDate(bookingData.checkIn)}</div>
+                    </div>
+                    <div>
+                      <span className="text-gray-600 block">📅 Check-out:</span>
+                      <div className="text-gray-900 font-medium">{formatDate(bookingData.checkOut)}</div>
+                    </div>
+                    <div>
+                      <span className="text-gray-600 block">🌙 Nights:</span>
+                      <div className="text-gray-900 font-medium">{bookingData.nights || 1}</div>
+                    </div>
+                    <div>
+                      <span className="text-gray-600 block">👥 Guests:</span>
+                      <div className="text-gray-900 font-medium">{bookingData.guests}</div>
                     </div>
                   </div>
+                </div>
 
-                  {/* Coupon Section */}
-                  <div className="bg-orange-50 rounded-lg p-3 md:p-4 border border-orange-200">
-                    <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                      <Tag className="h-4 w-4 md:h-5 md:w-5 text-orange-500" />
-                      Apply Coupon
-                    </h3>
-                    {!couponApplied ? (
-                      <div className="space-y-3">
-                        <div className="flex gap-2">
-                          <Input
-                            placeholder="Enter coupon code"
-                            value={couponCode}
-                            onChange={(e) => setCouponCode(e.target.value)}
-                            className="flex-1 text-sm md:text-base mobile-input"
-                          />
-                          <Button 
-                            onClick={applyCoupon}
-                            className="bg-orange-500 hover:bg-orange-600 text-white px-3 md:px-4 whitespace-nowrap text-sm md:text-base mobile-button-friendly"
-                          >
-                            Apply
-                          </Button>
-                        </div>
-                        <p className="text-orange-600 text-xs">
-                          Use "XTSY-BASH" for 10% off (min 4 guests)
-                        </p>
-                      </div>
-                    ) : (
-                      <div className="flex items-center justify-between bg-green-100 rounded-lg p-3 border border-green-300">
-                        <div>
-                          <span className="text-green-800 font-medium text-sm md:text-base">XTSY-BASH Applied!</span>
-                          <p className="text-green-700 text-xs md:text-sm">₹{discountAmount} discount</p>
-                        </div>
+                {/* Coupon Section - Compact */}
+                <div className="bg-yellow-50 rounded-xl p-3 md:p-4 border border-yellow-200">
+                  <h3 className="text-base font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                    <Tag className="h-4 w-4 text-yellow-500" />
+                    🎫 Apply Coupon
+                  </h3>
+                  {!couponApplied ? (
+                    <div className="space-y-2">
+                      <div className="flex gap-2">
+                        <Input
+                          placeholder="Enter coupon code"
+                          value={couponCode}
+                          onChange={(e) => setCouponCode(e.target.value)}
+                          className="flex-1 text-sm h-10"
+                        />
                         <Button 
-                          onClick={removeCoupon}
-                          variant="outline"
-                          size="sm"
-                          className="border-green-300 text-green-700 hover:bg-green-50 text-xs md:text-sm"
+                          onClick={applyCoupon}
+                          className="bg-orange-500 hover:bg-orange-600 text-white px-3 text-sm h-10"
                         >
-                          Remove
+                          Apply
                         </Button>
                       </div>
-                    )}
-                  </div>
+                      <p className="text-orange-600 text-xs">
+                        ✨ Use "XTSY-BASH" for 10% off (min 4 guests)
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-between bg-green-100 rounded-lg p-3 border border-green-300">
+                      <div>
+                        <span className="text-green-800 font-medium text-sm">🎉 XTSY-BASH Applied!</span>
+                        <p className="text-green-700 text-xs">₹{discountAmount} discount</p>
+                      </div>
+                      <Button 
+                        onClick={removeCoupon}
+                        variant="outline"
+                        size="sm"
+                        className="border-green-300 text-green-700 hover:bg-green-50 text-xs"
+                      >
+                        Remove
+                      </Button>
+                    </div>
+                  )}
+                </div>
 
-                  {/* Selected Rooms */}
-                  <div className="space-y-3">
-                    <h3 className="text-base md:text-lg font-semibold text-gray-900">Selected Rooms</h3>
-                    {bookingData.items.map((item, index) => {
-                      const nights = item.nights || bookingData.nights || 1;
-                      let itemTotal = 0;
-                      
-                      if (item.roomType === 'dorm') {
-                        itemTotal = item.price * item.quantity * (item.guests || bookingData.guests) * nights;
-                      } else {
-                        itemTotal = item.price * item.quantity * nights;
-                      }
-                      
-                      return (
-                        <div key={index} className="bg-white border border-gray-200 rounded-lg p-3 md:p-4 shadow-sm mobile-card">
-                          <div className="flex justify-between items-start gap-2">
-                            <div className="flex-1 min-w-0">
-                              <h4 className="font-semibold text-gray-900 mb-1 text-sm md:text-base">{item.roomName}</h4>
-                              <p className="text-gray-600 text-xs md:text-sm">
-                                {item.roomType === 'dorm' ? (
-                                  <>₹{item.price} x {item.guests || bookingData.guests} guest{(item.guests || bookingData.guests) > 1 ? 's' : ''} x {nights} night{nights > 1 ? 's' : ''}</>
-                                ) : (
-                                  <>₹{item.price} x {item.quantity} room{item.quantity > 1 ? 's' : ''} x {nights} night{nights > 1 ? 's' : ''}</>
-                                )}
-                              </p>
-                            </div>
-                            <div className="text-right flex-shrink-0">
-                              <div className="font-bold text-gray-900 text-sm md:text-base">₹{itemTotal}</div>
-                            </div>
+                {/* Selected Rooms - Compact cards */}
+                <div className="space-y-2">
+                  <h3 className="text-base md:text-lg font-semibold text-gray-900 flex items-center gap-2">
+                    🏨 Selected Rooms
+                  </h3>
+                  {bookingData.items.map((item, index) => {
+                    const nights = item.nights || bookingData.nights || 1;
+                    let itemTotal = 0;
+                    
+                    if (item.roomType === 'dorm') {
+                      itemTotal = item.price * item.quantity * (item.guests || bookingData.guests) * nights;
+                    } else {
+                      itemTotal = item.price * item.quantity * nights;
+                    }
+                    
+                    return (
+                      <div key={index} className="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+                        <div className="flex justify-between items-start gap-2">
+                          <div className="flex-1 min-w-0">
+                            <h4 className="font-semibold text-gray-900 mb-1 text-sm md:text-base">{item.roomName}</h4>
+                            <p className="text-gray-600 text-xs md:text-sm">
+                              {item.roomType === 'dorm' ? (
+                                <>💰 ₹{item.price} x {item.guests || bookingData.guests} guest{(item.guests || bookingData.guests) > 1 ? 's' : ''} x {nights} night{nights > 1 ? 's' : ''}</>
+                              ) : (
+                                <>💰 ₹{item.price} x {item.quantity} room{item.quantity > 1 ? 's' : ''} x {nights} night{nights > 1 ? 's' : ''}</>
+                              )}
+                            </p>
+                          </div>
+                          <div className="text-right flex-shrink-0">
+                            <div className="font-bold text-gray-900 text-sm md:text-base">₹{itemTotal}</div>
                           </div>
                         </div>
-                      );
-                    })}
-                  </div>
+                      </div>
+                    );
+                  })}
+                </div>
 
-                  {/* Price Breakdown */}
-                  <div className="bg-gray-50 rounded-lg p-3 md:p-4 border border-gray-200">
-                    <div className="space-y-2 text-sm">
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Subtotal:</span>
-                        <span className="text-gray-900">₹{totalAmount}</span>
+                {/* Price Breakdown - Compact */}
+                <div className="bg-gray-50 rounded-lg p-3 md:p-4 border border-gray-200">
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">💵 Subtotal:</span>
+                      <span className="text-gray-900">₹{totalAmount}</span>
+                    </div>
+                    {bookingData.couponApplied && discountAmount > 0 && (
+                      <div className="flex justify-between text-green-600">
+                        <span>🎫 Discount (XTSY-BASH):</span>
+                        <span>-₹{discountAmount}</span>
                       </div>
-                      {bookingData.couponApplied && discountAmount > 0 && (
-                        <div className="flex justify-between text-green-600">
-                          <span>Discount (XTSY-BASH):</span>
-                          <span>-₹{discountAmount}</span>
-                        </div>
-                      )}
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">GST:</span>
-                        <span className="text-gray-900">₹{totalGST}</span>
-                      </div>
-                      <div className="border-t border-gray-300 pt-2 flex justify-between font-bold">
-                        <span className="text-gray-900">Total (tax incl.):</span>
-                        <span className="text-gray-900">₹{grandTotal}</span>
-                      </div>
-                      <div className="flex justify-between text-green-600 font-bold">
-                        <span>Payable Now (21%):</span>
-                        <span>₹{payableNow}</span>
-                      </div>
+                    )}
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">📊 GST:</span>
+                      <span className="text-gray-900">₹{totalGST}</span>
+                    </div>
+                    <div className="border-t border-gray-300 pt-2 flex justify-between font-bold">
+                      <span className="text-gray-900">💳 Total (tax incl.):</span>
+                      <span className="text-gray-900">₹{grandTotal}</span>
+                    </div>
+                    <div className="flex justify-between text-green-600 font-bold">
+                      <span>💰 Payable Now (21%):</span>
+                      <span>₹{payableNow}</span>
                     </div>
                   </div>
                 </div>
+              </div>
 
-                {/* Fixed Footer with Action Buttons */}
-                <div className="flex-shrink-0 p-3 md:p-4 lg:p-6 border-t bg-white">
-                  <div className="flex flex-col gap-2 md:flex-row md:gap-3">
-                    <Button
-                      onClick={saveForLater}
-                      variant="outline"
-                      className="flex-1 border-blue-300 text-blue-600 hover:bg-blue-50 flex items-center justify-center gap-2 mobile-button-friendly text-sm md:text-base"
-                    >
-                      <Clock className="h-4 w-4" />
-                      Save Later
-                    </Button>
-                    <Button
-                      onClick={clearCart}
-                      variant="outline"
-                      className="flex-1 border-red-300 text-red-600 hover:bg-red-50 flex items-center justify-center gap-2 mobile-button-friendly text-sm md:text-base"
-                    >
-                      <Trash2 className="h-4 w-4" />
-                      Clear Cart
-                    </Button>
-                    <Button
-                      onClick={proceedToGuestDetails}
-                      className="flex-1 md:flex-[2] bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold mobile-button-friendly text-sm md:text-base"
-                    >
-                      Book Now
-                    </Button>
-                  </div>
+              {/* Fixed Footer with Action Buttons */}
+              <div className="flex-shrink-0 p-3 md:p-6 border-t bg-white">
+                <div className="flex flex-col gap-2 md:flex-row md:gap-3">
+                  <Button
+                    onClick={saveForLater}
+                    variant="outline"
+                    className="flex-1 border-blue-300 text-blue-600 hover:bg-blue-50 flex items-center justify-center gap-2 h-12 text-sm md:text-base"
+                  >
+                    <Clock className="h-4 w-4" />
+                    ⏰ Save Later
+                  </Button>
+                  <Button
+                    onClick={clearCart}
+                    variant="outline"
+                    className="flex-1 border-red-300 text-red-600 hover:bg-red-50 flex items-center justify-center gap-2 h-12 text-sm md:text-base"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                    🗑️ Clear Cart
+                  </Button>
+                  <Button
+                    onClick={proceedToGuestDetails}
+                    className="flex-1 md:flex-[2] bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold h-12 text-sm md:text-base"
+                  >
+                    🚀 Book Now
+                  </Button>
                 </div>
-              </>
-            )}
-          </div>
+              </div>
+            </>
+          )}
         </div>
       </DialogContent>
     </Dialog>
