@@ -92,8 +92,8 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
   const applyExitDiscount = () => {
     if (!bookingData) return;
     
-    const { subtotal } = calculateTotals();
-    const additionalDiscount = Math.round(subtotal * 0.05); // 5% additional discount
+    const { totalAmount } = calculateTotals();
+    const additionalDiscount = Math.round(totalAmount * 0.05); // 5% additional discount
     setBonusDiscount(additionalDiscount);
     
     const updatedData = {
@@ -124,8 +124,8 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
 
     if (couponCode.toUpperCase() === "XTSY-BASH") {
       if (bookingData.guests >= 4) {
-        const { subtotal } = calculateTotals();
-        const baseDiscount = Math.round(subtotal * 0.1); // 10% discount
+        const { totalAmount } = calculateTotals();
+        const baseDiscount = Math.round(totalAmount * 0.1); // 10% discount
         const totalDiscount = baseDiscount + bonusDiscount;
         
         const updatedData = {
@@ -338,13 +338,13 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="w-full h-full max-w-none max-h-none md:max-w-4xl md:max-h-[90vh] md:h-auto bg-white border-0 p-0 overflow-hidden">
+      <DialogContent className="w-full h-full max-w-none max-h-none md:max-w-2xl lg:max-w-4xl md:max-h-[95vh] md:h-auto bg-white border-0 p-0 overflow-hidden">
         {/* Mobile/Tablet Layout */}
         <div className="flex flex-col h-full md:flex-row">
           {/* Header - Mobile Only */}
-          <div className="md:hidden flex items-center justify-between p-4 border-b bg-white sticky top-0 z-50">
-            <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-              <ShoppingCart className="h-5 w-5 text-orange-500" />
+          <div className="md:hidden flex items-center justify-between p-3 border-b bg-white sticky top-0 z-50">
+            <h2 className="text-base font-bold text-gray-900 flex items-center gap-2">
+              <ShoppingCart className="h-4 w-4 text-orange-500" />
               Your Cart
             </h2>
             <Button
@@ -353,64 +353,64 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
               onClick={onClose}
               className="p-2"
             >
-              <X className="h-5 w-5" />
+              <X className="h-4 w-4" />
             </Button>
           </div>
 
           {/* Main Content */}
           <div className="flex-1 flex flex-col min-h-0">
             {/* Desktop Header */}
-            <DialogHeader className="hidden md:block flex-shrink-0 p-6 border-b">
-              <DialogTitle className="text-2xl font-bold text-center text-gray-900 flex items-center justify-center gap-2">
-                <ShoppingCart className="h-6 w-6 text-orange-500" />
+            <DialogHeader className="hidden md:block flex-shrink-0 p-4 lg:p-6 border-b">
+              <DialogTitle className="text-xl lg:text-2xl font-bold text-center text-gray-900 flex items-center justify-center gap-2">
+                <ShoppingCart className="h-5 w-5 lg:h-6 lg:w-6 text-orange-500" />
                 Your Cart
               </DialogTitle>
             </DialogHeader>
 
             {!bookingData || bookingData.items.length === 0 ? (
-              <div className="flex-1 flex items-center justify-center p-8">
+              <div className="flex-1 flex items-center justify-center p-6">
                 <div className="text-center">
-                  <ShoppingCart className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-                  <p className="text-gray-600 text-lg mb-2">Your cart is empty</p>
+                  <ShoppingCart className="h-12 w-12 md:h-16 md:w-16 text-gray-400 mx-auto mb-4" />
+                  <p className="text-gray-600 text-base md:text-lg mb-2">Your cart is empty</p>
                   <p className="text-gray-500 text-sm">Add some rooms to get started</p>
                 </div>
               </div>
             ) : (
               <>
                 {/* Scrollable Content */}
-                <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 md:space-y-6">
+                <div className="flex-1 overflow-y-auto p-3 md:p-4 lg:p-6 space-y-3 md:space-y-4 mobile-scroll-smooth">
                   {/* Cart saved info */}
-                  <div className="text-center text-sm text-gray-500">
+                  <div className="text-center text-xs md:text-sm text-gray-500">
                     Cart saved {getDaysAgo(bookingData.timestamp)}
                   </div>
 
                   {/* Booking Summary */}
-                  <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Booking Summary</h3>
-                    <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div className="bg-gray-50 rounded-lg p-3 md:p-4 border border-gray-200">
+                    <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-3 md:mb-4">Booking Summary</h3>
+                    <div className="grid grid-cols-2 gap-3 md:gap-4 text-sm">
                       <div>
-                        <span className="text-gray-600">Check-in:</span>
-                        <div className="text-gray-900 font-medium">{formatDate(bookingData.checkIn)}</div>
+                        <span className="text-gray-600 text-xs md:text-sm">Check-in:</span>
+                        <div className="text-gray-900 font-medium text-sm md:text-base">{formatDate(bookingData.checkIn)}</div>
                       </div>
                       <div>
-                        <span className="text-gray-600">Check-out:</span>
-                        <div className="text-gray-900 font-medium">{formatDate(bookingData.checkOut)}</div>
+                        <span className="text-gray-600 text-xs md:text-sm">Check-out:</span>
+                        <div className="text-gray-900 font-medium text-sm md:text-base">{formatDate(bookingData.checkOut)}</div>
                       </div>
                       <div>
-                        <span className="text-gray-600">Nights:</span>
-                        <div className="text-gray-900 font-medium">{bookingData.nights || 1}</div>
+                        <span className="text-gray-600 text-xs md:text-sm">Nights:</span>
+                        <div className="text-gray-900 font-medium text-sm md:text-base">{bookingData.nights || 1}</div>
                       </div>
                       <div>
-                        <span className="text-gray-600">Guests:</span>
-                        <div className="text-gray-900 font-medium">{bookingData.guests}</div>
+                        <span className="text-gray-600 text-xs md:text-sm">Guests:</span>
+                        <div className="text-gray-900 font-medium text-sm md:text-base">{bookingData.guests}</div>
                       </div>
                     </div>
                   </div>
 
                   {/* Coupon Section */}
-                  <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                      <Tag className="h-5 w-5 text-orange-500" />
+                  <div className="bg-orange-50 rounded-lg p-3 md:p-4 border border-orange-200">
+                    <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                      <Tag className="h-4 w-4 md:h-5 md:w-5 text-orange-500" />
                       Apply Coupon
                     </h3>
                     {!couponApplied ? (
@@ -420,11 +420,11 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                             placeholder="Enter coupon code"
                             value={couponCode}
                             onChange={(e) => setCouponCode(e.target.value)}
-                            className="flex-1"
+                            className="flex-1 text-sm md:text-base mobile-input"
                           />
                           <Button 
                             onClick={applyCoupon}
-                            className="bg-orange-500 hover:bg-orange-600 text-white px-4 whitespace-nowrap"
+                            className="bg-orange-500 hover:bg-orange-600 text-white px-3 md:px-4 whitespace-nowrap text-sm md:text-base mobile-button-friendly"
                           >
                             Apply
                           </Button>
@@ -436,14 +436,14 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                     ) : (
                       <div className="flex items-center justify-between bg-green-100 rounded-lg p-3 border border-green-300">
                         <div>
-                          <span className="text-green-800 font-medium">XTSY-BASH Applied!</span>
-                          <p className="text-green-700 text-sm">₹{discountAmount} discount</p>
+                          <span className="text-green-800 font-medium text-sm md:text-base">XTSY-BASH Applied!</span>
+                          <p className="text-green-700 text-xs md:text-sm">₹{discountAmount} discount</p>
                         </div>
                         <Button 
                           onClick={removeCoupon}
                           variant="outline"
                           size="sm"
-                          className="border-green-300 text-green-700 hover:bg-green-50"
+                          className="border-green-300 text-green-700 hover:bg-green-50 text-xs md:text-sm"
                         >
                           Remove
                         </Button>
@@ -453,7 +453,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
 
                   {/* Selected Rooms */}
                   <div className="space-y-3">
-                    <h3 className="text-lg font-semibold text-gray-900">Selected Rooms</h3>
+                    <h3 className="text-base md:text-lg font-semibold text-gray-900">Selected Rooms</h3>
                     {bookingData.items.map((item, index) => {
                       const nights = item.nights || bookingData.nights || 1;
                       let itemTotal = 0;
@@ -465,11 +465,11 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                       }
                       
                       return (
-                        <div key={index} className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
-                          <div className="flex justify-between items-start">
+                        <div key={index} className="bg-white border border-gray-200 rounded-lg p-3 md:p-4 shadow-sm mobile-card">
+                          <div className="flex justify-between items-start gap-2">
                             <div className="flex-1 min-w-0">
-                              <h4 className="font-semibold text-gray-900 mb-1 truncate">{item.roomName}</h4>
-                              <p className="text-gray-600 text-sm">
+                              <h4 className="font-semibold text-gray-900 mb-1 text-sm md:text-base">{item.roomName}</h4>
+                              <p className="text-gray-600 text-xs md:text-sm">
                                 {item.roomType === 'dorm' ? (
                                   <>₹{item.price} x {item.guests || bookingData.guests} guest{(item.guests || bookingData.guests) > 1 ? 's' : ''} x {nights} night{nights > 1 ? 's' : ''}</>
                                 ) : (
@@ -477,8 +477,8 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                                 )}
                               </p>
                             </div>
-                            <div className="text-right ml-2">
-                              <div className="font-bold text-gray-900">₹{itemTotal}</div>
+                            <div className="text-right flex-shrink-0">
+                              <div className="font-bold text-gray-900 text-sm md:text-base">₹{itemTotal}</div>
                             </div>
                           </div>
                         </div>
@@ -487,7 +487,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                   </div>
 
                   {/* Price Breakdown */}
-                  <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                  <div className="bg-gray-50 rounded-lg p-3 md:p-4 border border-gray-200">
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
                         <span className="text-gray-600">Subtotal:</span>
@@ -516,12 +516,12 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                 </div>
 
                 {/* Fixed Footer with Action Buttons */}
-                <div className="flex-shrink-0 p-4 md:p-6 border-t bg-white">
-                  <div className="flex flex-col gap-3 md:flex-row md:gap-4">
+                <div className="flex-shrink-0 p-3 md:p-4 lg:p-6 border-t bg-white">
+                  <div className="flex flex-col gap-2 md:flex-row md:gap-3">
                     <Button
                       onClick={saveForLater}
                       variant="outline"
-                      className="flex-1 border-blue-300 text-blue-600 hover:bg-blue-50 flex items-center justify-center gap-2"
+                      className="flex-1 border-blue-300 text-blue-600 hover:bg-blue-50 flex items-center justify-center gap-2 mobile-button-friendly text-sm md:text-base"
                     >
                       <Clock className="h-4 w-4" />
                       Save Later
@@ -529,14 +529,14 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                     <Button
                       onClick={clearCart}
                       variant="outline"
-                      className="flex-1 border-red-300 text-red-600 hover:bg-red-50 flex items-center justify-center gap-2"
+                      className="flex-1 border-red-300 text-red-600 hover:bg-red-50 flex items-center justify-center gap-2 mobile-button-friendly text-sm md:text-base"
                     >
                       <Trash2 className="h-4 w-4" />
                       Clear Cart
                     </Button>
                     <Button
                       onClick={proceedToGuestDetails}
-                      className="flex-1 md:flex-[2] bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold"
+                      className="flex-1 md:flex-[2] bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold mobile-button-friendly text-sm md:text-base"
                     >
                       Book Now
                     </Button>
