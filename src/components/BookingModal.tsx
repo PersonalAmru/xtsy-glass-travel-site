@@ -55,16 +55,17 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
     }
   };
 
-  // Complete room inventory and data for both properties
+  // Updated room inventory with correct naming and capacity logic
   const rooms = [
     // XTSY Travellers Hostel
     {
       id: '4-bed-female-only-dorm',
-      name: '4 Bed Female Only Dorms',
+      name: 'Bed in 4 Bed Female Only Dorm',
       price: 850,
       image: '',
       description: 'A bed in a female-only dorm with private lockers and a shared attached washroom.',
-      maxGuests: 1,
+      maxGuests: 4,
+      maxRooms: 1,
       inventory: 4,
       roomType: 'dorm',
       propertyName: 'XTSY Travellers Hostel',
@@ -72,11 +73,12 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
     },
     {
       id: '4-bed-mixed-female-dorm',
-      name: '4 Bed Mixed/Female Dorms',
+      name: 'Bed in 4 Bed Mixed/Female Dorm',
       price: 800,
       image: '',
       description: 'A bed in a mixed or female dorm with private lockers and a shared attached washroom.',
-      maxGuests: 1,
+      maxGuests: 4,
+      maxRooms: 1,
       inventory: 4,
       roomType: 'dorm',
       propertyName: 'XTSY Travellers Hostel',
@@ -84,11 +86,12 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
     },
     {
       id: '6-bed-mixed-female-dorm',
-      name: '6 Bed Mixed/Female Dorms',
+      name: 'Bed in 6 Bed Mixed/Female Dorm',
       price: 700,
       image: '',
       description: 'A bed in a spacious mixed or female dorm with private lockers and a shared ensuite.',
-      maxGuests: 1,
+      maxGuests: 30,
+      maxRooms: 5,
       inventory: 30,
       roomType: 'dorm',
       propertyName: 'XTSY Travellers Hostel',
@@ -96,11 +99,12 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
     },
     {
       id: '8-bed-mixed-dorm',
-      name: '8 Bed Mixed Dorms',
+      name: 'Bed in 8 Bed Mixed Dorm',
       price: 600,
       image: '',
       description: 'A bed in a large mixed dormitory perfect for budget travelers.',
-      maxGuests: 1,
+      maxGuests: 8,
+      maxRooms: 1,
       inventory: 8,
       roomType: 'dorm',
       propertyName: 'XTSY Travellers Hostel',
@@ -113,7 +117,8 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       price: 3200,
       image: '',
       description: 'A spacious room with a king bed offering a private stay experience suitable for two guests.',
-      maxGuests: 2,
+      maxGuests: 4,
+      maxRooms: 2,
       inventory: 2,
       roomType: 'luxury',
       propertyName: 'XTSY Luxury',
@@ -126,6 +131,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       image: '',
       description: 'A luxurious room with king bed and extra bed accommodating up to three guests.',
       maxGuests: 3,
+      maxRooms: 1,
       inventory: 1,
       roomType: 'luxury',
       propertyName: 'XTSY Luxury',
@@ -138,6 +144,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       image: '',
       description: 'Premium suite with panoramic views and luxury amenities.',
       maxGuests: 2,
+      maxRooms: 1,
       inventory: 1,
       roomType: 'luxury',
       propertyName: 'XTSY Luxury',
@@ -146,20 +153,51 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
   ];
 
   const handleRoomQuantityChange = (roomId: string, quantity: number) => {
-    setSelectedRooms(prev => ({
-      ...prev,
-      [roomId]: quantity
-    }));
+    const room = rooms.find(r => r.id === roomId);
+    if (room) {
+      // For dorms, max quantity is based on guests, for luxury rooms based on available rooms
+      const maxQuantity = room.roomType === 'dorm' ? Math.min(room.inventory, guests) : room.maxRooms;
+      const validQuantity = Math.max(0, Math.min(quantity, maxQuantity));
+      
+      setSelectedRooms(prev => ({
+        ...prev,
+        [roomId]: validQuantity
+      }));
+    }
   };
 
+  // Updated promo code logic
   const handleCouponApply = () => {
     if (couponCode.toUpperCase() === "XTSY-BASH") {
-      if (guests >= 4) {
+      // Check if XTSY-BASH is applicable
+      const hasHostelRooms = rooms.some(room => 
+        selectedRooms[room.id] > 0 && room.propertyName === 'XTSY Travellers Hostel'
+      );
+      const hasLuxuryRooms = rooms.some(room => 
+        selectedRooms[room.id] > 0 && room.propertyName === 'XTSY Luxury'
+      );
+
+      let isApplicable = false;
+      let errorMessage = "";
+
+      if (hasHostelRooms && guests >= 4) {
+        isApplicable = true;
+      } else if (hasLuxuryRooms && nights >= 2) {
+        isApplicable = true;
+      } else if (hasHostelRooms && guests < 4) {
+        errorMessage = "XTSY-BASH requires minimum 4 guests for hostel bookings";
+      } else if (hasLuxuryRooms && nights < 2) {
+        errorMessage = "XTSY-BASH requires minimum 2 nights for luxury bookings";
+      } else {
+        errorMessage = "XTSY-BASH is not applicable for this booking";
+      }
+
+      if (isApplicable) {
         setCouponApplied(true);
         const { subtotal } = calculateTotals();
         setCouponDiscount(Math.round(subtotal * 0.1)); // 10% discount
       } else {
-        alert("This coupon is only valid for groups of 4 or more guests");
+        alert(errorMessage);
       }
     } else {
       alert("Invalid coupon code");
@@ -174,7 +212,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
         roomName: room.name,
         price: room.price,
         quantity: selectedRooms[room.id],
-        guests: guests,
+        guests: room.roomType === 'dorm' ? selectedRooms[room.id] : room.maxGuests,
         nights: nights,
         roomType: room.roomType
       }));
@@ -199,7 +237,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
     setShowGuestDetails(true);
   };
 
-  // Calculate totals for selected rooms with proper pricing logic and GST
+  // Calculate totals with updated pricing logic
   const calculateTotals = () => {
     let subtotal = 0;
     let totalGST = 0;
@@ -208,8 +246,8 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
       if (selectedRooms[room.id] > 0) {
         let roomTotal = 0;
         if (room.roomType === 'dorm') {
-          // For dorms: price per person per night
-          roomTotal = room.price * selectedRooms[room.id] * guests * nights;
+          // For dorms: price per bed per night
+          roomTotal = room.price * selectedRooms[room.id] * nights;
         } else {
           // For luxury rooms: price per room per night
           roomTotal = room.price * selectedRooms[room.id] * nights;
@@ -310,7 +348,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
                       <span className="text-2xl">🎯</span>
                       <div>
                         <div className="text-gray-600">Special Offer</div>
-                        <div className="font-semibold text-orange-600">Use XTSY-BASH for groups 4+</div>
+                        <div className="font-semibold text-orange-600">Use XTSY-BASH for eligible bookings</div>
                       </div>
                     </div>
                   </div>
@@ -360,7 +398,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
                                     <Users className="h-4 w-4" />
                                     <span>Max {room.maxGuests} guest{room.maxGuests > 1 ? 's' : ''}</span>
                                     <Badge variant="outline" className="ml-2">
-                                      {room.roomType === 'dorm' ? 'Per Person' : 'Per Room'}
+                                      {room.roomType === 'dorm' ? 'Per Bed' : 'Per Room'}
                                     </Badge>
                                   </div>
                                   <div className="flex items-center gap-1 text-lg font-bold text-gray-900">
@@ -394,7 +432,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
                                     onClick={() => handleRoomQuantityChange(room.id, 1)}
                                     className="bg-orange-500 hover:bg-orange-600 text-white px-6"
                                   >
-                                    Select Room
+                                    {room.roomType === 'dorm' ? 'Select Bed' : 'Select Room'}
                                   </Button>
                                 )}
                               </div>
@@ -466,7 +504,6 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
                 <h3 className="text-xl font-bold text-gray-900">Booking <span className="text-orange-500">Summary</span></h3>
                 <div className="flex items-center gap-1">
                   <span className="text-lg font-bold">INR</span>
-                  <button className="text-gray-400">⌄</button>
                 </div>
               </div>
               <p className="text-sm text-gray-600">
@@ -484,7 +521,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
                         .map(room => {
                           let itemTotal = 0;
                           if (room.roomType === 'dorm') {
-                            itemTotal = room.price * selectedRooms[room.id] * guests * nights;
+                            itemTotal = room.price * selectedRooms[room.id] * nights;
                           } else {
                             itemTotal = room.price * selectedRooms[room.id] * nights;
                           }
@@ -495,7 +532,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
                                 <h4 className="font-semibold text-gray-900 mb-1">{room.name}</h4>
                                 <div className="text-sm text-gray-600">
                                   {room.roomType === 'dorm' ? (
-                                    <>₹{room.price} x {guests} guest{guests > 1 ? 's' : ''} x {nights} night{nights > 1 ? 's' : ''}</>
+                                    <>₹{room.price} x {selectedRooms[room.id]} bed{selectedRooms[room.id] > 1 ? 's' : ''} x {nights} night{nights > 1 ? 's' : ''}</>
                                   ) : (
                                     <>₹{room.price} x {selectedRooms[room.id]} room{selectedRooms[room.id] > 1 ? 's' : ''} x {nights} night{nights > 1 ? 's' : ''}</>
                                   )}
@@ -507,7 +544,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
                                   onClick={() => handleRoomQuantityChange(room.id, 0)}
                                   className="text-gray-400 text-sm hover:text-red-500"
                                 >
-                                  🗑
+                                  Remove
                                 </button>
                               </div>
                             </div>
@@ -559,7 +596,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
                           </Button>
                         </div>
                         <p className="text-xs text-gray-500 mt-2">
-                          Use XTSY-BASH for 10% off (min 4 guests required)
+                          XTSY-BASH: 10% off for hostel bookings (min 4 guests) or luxury bookings (min 2 nights)
                         </p>
                       </div>
                     </div>

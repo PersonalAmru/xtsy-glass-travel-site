@@ -29,38 +29,42 @@ const RoomsSection = () => {
       rooms: [
         {
           id: "4-bed-female-only-dorm",
-          name: "Bed in 4 Bed Female Only Dorms",
+          name: "Bed in 4 Bed Female Only Dorm",
           price: 850,
           description: "Female-only dormitory with modern amenities",
           features: ["Female only", "Shared bathroom", "Wi-Fi", "Locker", "Common area"],
-          maxGuests: 1,
+          maxGuests: 4,
+          maxRooms: 1,
           image: ""
         },
         {
           id: "4-bed-mixed-female-dorm",
-          name: "Bed in 4 Bed Mixed/Female Dorms", 
+          name: "Bed in 4 Bed Mixed/Female Dorm", 
           price: 800,
           description: "Mixed or female dormitory with shared facilities",
           features: ["Mixed/Female", "Shared bathroom", "Wi-Fi", "Locker", "Common area"],
-          maxGuests: 1,
+          maxGuests: 4,
+          maxRooms: 1,
           image: ""
         },
         {
           id: "6-bed-mixed-female-dorm",
-          name: "Bed in 6 Bed Mixed/Female Dorms",
+          name: "Bed in 6 Bed Mixed/Female Dorm",
           price: 700,
           description: "Spacious mixed or female dormitory",
           features: ["Mixed/Female", "Shared bathroom", "Wi-Fi", "Locker", "Common area"],
-          maxGuests: 1,
+          maxGuests: 30,
+          maxRooms: 5,
           image: ""
         },
         {
           id: "8-bed-mixed-dorm",
-          name: "Bed in 8 Bed Mixed Dorms",
+          name: "Bed in 8 Bed Mixed Dorm",
           price: 600,
           description: "Large mixed dormitory for budget travelers",
           features: ["Mixed dorm", "Shared bathroom", "Wi-Fi", "Locker", "Common area"],
-          maxGuests: 1,
+          maxGuests: 8,
+          maxRooms: 1,
           image: ""
         }
       ],
@@ -77,7 +81,8 @@ const RoomsSection = () => {
           price: 3200,
           description: "Spacious room with king bed for two guests",
           features: ["King bed", "Valley view", "Attached bath", "Wi-Fi", "Premium amenities"],
-          maxGuests: 2,
+          maxGuests: 4,
+          maxRooms: 2,
           image: ""
         },
         {
@@ -87,6 +92,17 @@ const RoomsSection = () => {
           description: "Luxurious room accommodating up to three guests",
           features: ["King bed + extra bed", "Panoramic view", "Attached bath", "Wi-Fi", "Premium amenities"],
           maxGuests: 3,
+          maxRooms: 1,
+          image: ""
+        },
+        {
+          id: "sky-glass-suite",
+          name: "Sky Glass Suite",
+          price: 18000,
+          description: "Premium suite with panoramic views and luxury amenities",
+          features: ["Panoramic view", "Luxury amenities", "Attached bath", "Wi-Fi", "Premium service"],
+          maxGuests: 2,
+          maxRooms: 1,
           image: ""
         }
       ],
@@ -117,7 +133,7 @@ const RoomsSection = () => {
       <div className="container mx-auto max-w-7xl relative z-10">
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent font-serif-sans px-4">
-            🏨 Our Properties
+            Our Properties
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto font-seasons px-4">
             Choose from our range of accommodations designed for every traveler's needs and budget
@@ -149,7 +165,7 @@ const RoomsSection = () => {
               <div className="w-full h-64 sm:h-80 lg:h-96 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg mb-6 flex items-center justify-center border border-gray-300">
                 <div className="text-center">
                   <MapPin className="h-12 w-12 text-gray-400 mx-auto mb-2" />
-                  <p className="text-gray-500 text-sm">📸 Main Property Image</p>
+                  <p className="text-gray-500 text-sm">Main Property Image</p>
                   <p className="text-gray-400 text-xs">Ready for Supabase URL</p>
                 </div>
               </div>
@@ -173,7 +189,7 @@ const RoomsSection = () => {
                     <div className="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg mb-4 flex items-center justify-center border border-gray-300">
                       <div className="text-center">
                         <TreePine className="h-8 w-8 text-gray-400 mx-auto mb-1" />
-                        <p className="text-gray-500 text-xs">🏠 Room Image</p>
+                        <p className="text-gray-500 text-xs">Room Image</p>
                         <p className="text-gray-400 text-xs">Supabase Ready</p>
                       </div>
                     </div>
@@ -210,7 +226,7 @@ const RoomsSection = () => {
                       onClick={scrollToCalendar}
                       className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 font-seasons"
                     >
-                      {activePropertyData.buttonText} 🛏️
+                      {activePropertyData.buttonText}
                     </Button>
                   </CardContent>
                 </Card>

@@ -29,6 +29,7 @@ interface BookingData {
   timestamp: number;
   couponApplied?: boolean;
   couponDiscount?: number;
+  couponCode?: string;
 }
 
 const CartModal = ({ isOpen, onClose }: CartModalProps) => {
@@ -49,6 +50,16 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
     } else {
       return 0.18; // 18% GST
     }
+  };
+
+  // Check if booking is within 3 days for LASTMIN-DEAL
+  const isUrgentBooking = () => {
+    if (!bookingData) return false;
+    const checkInDate = new Date(bookingData.checkIn);
+    const today = new Date();
+    const diffTime = checkInDate.getTime() - today.getTime();
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays <= 3 && diffDays >= 0;
   };
 
   useEffect(() => {
@@ -82,24 +93,28 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
 
   const handleClose = () => {
     if (showGuestDetails && bookingData && bookingData.items.length > 0) {
-      // Show exit discount only if trying to close from guest details
-      setShowExitDiscount(true);
+      // Check if it's an urgent booking for LASTMIN-DEAL
+      if (isUrgentBooking()) {
+        setShowExitDiscount(true);
+      } else {
+        onClose();
+      }
     } else {
       onClose();
     }
   };
 
-  const applyExitDiscount = () => {
+  const applyLastMinDeal = () => {
     if (!bookingData) return;
     
     const { totalAmount } = calculateTotals();
-    const additionalDiscount = Math.round(totalAmount * 0.05); // 5% additional discount
-    setBonusDiscount(additionalDiscount);
+    const lastMinDiscount = Math.round(totalAmount * 0.15); // 15% discount
     
     const updatedData = {
       ...bookingData,
       couponApplied: true,
-      couponDiscount: (bookingData.couponDiscount || 0) + additionalDiscount
+      couponDiscount: lastMinDiscount,
+      couponCode: 'LASTMIN-DEAL'
     };
     
     setBookingData(updatedData);
@@ -109,29 +124,53 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
     localStorage.setItem('xtsy_booking_cart', JSON.stringify(updatedData));
     
     toast({
-      title: "Special Discount Applied! 🎉",
-      description: `Extra ₹${additionalDiscount} discount added to your booking!`,
+      title: "Last-Minute Deal Applied!",
+      description: `15% discount (₹${lastMinDiscount}) applied to your booking!`,
     });
   };
 
-  const declineExitDiscount = () => {
+  const declineLastMinDeal = () => {
     setShowExitDiscount(false);
     onClose();
   };
 
+  // Updated promo code logic
   const applyCoupon = () => {
     if (!bookingData) return;
 
     if (couponCode.toUpperCase() === "XTSY-BASH") {
-      if (bookingData.guests >= 4) {
+      // Check if XTSY-BASH is applicable
+      const hasHostelRooms = bookingData.items.some(item => 
+        item.roomType === 'dorm'
+      );
+      const hasLuxuryRooms = bookingData.items.some(item => 
+        item.roomType === 'luxury'
+      );
+
+      let isApplicable = false;
+      let errorMessage = "";
+
+      if (hasHostelRooms && bookingData.guests >= 4) {
+        isApplicable = true;
+      } else if (hasLuxuryRooms && bookingData.nights >= 2) {
+        isApplicable = true;
+      } else if (hasHostelRooms && bookingData.guests < 4) {
+        errorMessage = "XTSY-BASH requires minimum 4 guests for hostel bookings";
+      } else if (hasLuxuryRooms && bookingData.nights < 2) {
+        errorMessage = "XTSY-BASH requires minimum 2 nights for luxury bookings";
+      } else {
+        errorMessage = "XTSY-BASH is not applicable for this booking";
+      }
+
+      if (isApplicable) {
         const { totalAmount } = calculateTotals();
-        const baseDiscount = Math.round(totalAmount * 0.1); // 10% discount
-        const totalDiscount = baseDiscount + bonusDiscount;
+        const discount = Math.round(totalAmount * 0.1); // 10% discount
         
         const updatedData = {
           ...bookingData,
           couponApplied: true,
-          couponDiscount: totalDiscount
+          couponDiscount: discount,
+          couponCode: 'XTSY-BASH'
         };
         
         setBookingData(updatedData);
@@ -139,19 +178,19 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
         localStorage.setItem('xtsy_booking_cart', JSON.stringify(updatedData));
         
         toast({
-          title: "Coupon Applied! 🎉",
-          description: `₹${totalDiscount} discount applied successfully!`,
+          title: "Coupon Applied!",
+          description: `₹${discount} discount applied successfully!`,
         });
       } else {
         toast({
-          title: "Coupon Invalid ❌",
-          description: "XTSY-BASH coupon requires minimum 4 guests",
+          title: "Coupon Invalid",
+          description: errorMessage,
           variant: "destructive"
         });
       }
     } else {
       toast({
-        title: "Invalid Coupon ❌",
+        title: "Invalid Coupon",
         description: "Please enter a valid coupon code",
         variant: "destructive"
       });
@@ -164,7 +203,8 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
     const updatedData = {
       ...bookingData,
       couponApplied: false,
-      couponDiscount: 0
+      couponDiscount: 0,
+      couponCode: undefined
     };
     
     setBookingData(updatedData);
@@ -185,6 +225,10 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
     setCouponApplied(false);
     setCouponCode("");
     setBonusDiscount(0);
+    toast({
+      title: "Cart Cleared",
+      description: "All items have been removed from your cart",
+    });
   };
 
   const saveForLater = () => {
@@ -257,8 +301,8 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
       const nights = item.nights || bookingData.nights || 1;
       
       if (item.roomType === 'dorm') {
-        // For dorms: price per person per night
-        itemTotal = item.price * item.quantity * (item.guests || bookingData.guests) * nights;
+        // For dorms: price per bed per night
+        itemTotal = item.price * item.quantity * nights;
       } else {
         // For luxury rooms: price per room per night
         itemTotal = item.price * item.quantity * nights;
@@ -297,37 +341,37 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
     );
   }
 
-  // Exit discount modal
+  // Last-minute deal modal
   if (showExitDiscount) {
     return (
       <Dialog open={true} onOpenChange={() => {}}>
         <DialogContent className="max-w-md mx-auto bg-gradient-to-br from-orange-50 to-red-50 border-2 border-orange-200">
           <DialogHeader>
             <DialogTitle className="text-center text-xl font-bold text-gray-900">
-              Wait! Don't Miss Out! 🎯
+              Wait! Last-Minute Deal!
             </DialogTitle>
           </DialogHeader>
           <div className="text-center p-6">
-            <div className="text-6xl mb-4">🎉</div>
+            <div className="text-6xl mb-4">⚡</div>
             <h3 className="text-lg font-bold text-gray-900 mb-2">
-              Special Exit Offer!
+              15% OFF Your Booking!
             </h3>
             <p className="text-gray-700 mb-4">
-              Get an additional <span className="font-bold text-orange-600">5% discount</span> on your booking if you complete it now!
+              Since you're booking within 3 days, get an instant 15% discount on your stay!
             </p>
             <div className="flex gap-3 mt-6">
               <Button
-                onClick={applyExitDiscount}
+                onClick={applyLastMinDeal}
                 className="flex-1 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold"
               >
                 Apply & Continue
               </Button>
               <Button
-                onClick={declineExitDiscount}
+                onClick={declineLastMinDeal}
                 variant="outline"
                 className="flex-1 border-gray-300 text-gray-600"
               >
-                No Thanks
+                Skip Deal
               </Button>
             </div>
           </div>
@@ -344,7 +388,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
           <div className="md:hidden flex items-center justify-between p-3 border-b bg-white sticky top-0 z-50">
             <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
               <ShoppingCart className="h-5 w-5 text-orange-500" />
-              🛒 Your Cart
+              Your Cart
             </h2>
             <Button
               variant="ghost"
@@ -360,7 +404,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
           <DialogHeader className="hidden md:block flex-shrink-0 p-6 border-b">
             <DialogTitle className="text-2xl font-bold text-center text-gray-900 flex items-center justify-center gap-2">
               <ShoppingCart className="h-6 w-6 text-orange-500" />
-              🛒 Your Cart
+              Your Cart
             </DialogTitle>
           </DialogHeader>
 
@@ -368,8 +412,8 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
             <div className="flex-1 flex items-center justify-center p-6">
               <div className="text-center">
                 <ShoppingCart className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-600 text-lg mb-2">🛒 Your cart is empty</p>
-                <p className="text-gray-500 text-sm">Add some rooms to get started 🏨</p>
+                <p className="text-gray-600 text-lg mb-2">Your cart is empty</p>
+                <p className="text-gray-500 text-sm">Add some rooms to get started</p>
               </div>
             </div>
           ) : (
@@ -378,29 +422,29 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
               <div className="flex-1 overflow-y-auto p-3 md:p-6 space-y-4 max-h-[60vh] md:max-h-[50vh]">
                 {/* Cart saved info */}
                 <div className="text-center text-sm text-gray-500">
-                  📅 Cart saved {getDaysAgo(bookingData.timestamp)}
+                  Cart saved {getDaysAgo(bookingData.timestamp)} | Session expires in {Math.max(0, 6 - Math.floor((Date.now() - bookingData.timestamp) / (1000 * 60 * 60)))} hours
                 </div>
 
                 {/* Booking Summary - Compact view */}
                 <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-3 md:p-4 border border-orange-200">
                   <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                    📋 Booking Summary
+                    Booking Summary
                   </h3>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 text-xs md:text-sm">
                     <div>
-                      <span className="text-gray-600 block">📅 Check-in:</span>
+                      <span className="text-gray-600 block">Check-in:</span>
                       <div className="text-gray-900 font-medium">{formatDate(bookingData.checkIn)}</div>
                     </div>
                     <div>
-                      <span className="text-gray-600 block">📅 Check-out:</span>
+                      <span className="text-gray-600 block">Check-out:</span>
                       <div className="text-gray-900 font-medium">{formatDate(bookingData.checkOut)}</div>
                     </div>
                     <div>
-                      <span className="text-gray-600 block">🌙 Nights:</span>
+                      <span className="text-gray-600 block">Nights:</span>
                       <div className="text-gray-900 font-medium">{bookingData.nights || 1}</div>
                     </div>
                     <div>
-                      <span className="text-gray-600 block">👥 Guests:</span>
+                      <span className="text-gray-600 block">Guests:</span>
                       <div className="text-gray-900 font-medium">{bookingData.guests}</div>
                     </div>
                   </div>
@@ -410,7 +454,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                 <div className="bg-yellow-50 rounded-xl p-3 md:p-4 border border-yellow-200">
                   <h3 className="text-base font-semibold text-gray-900 mb-3 flex items-center gap-2">
                     <Tag className="h-4 w-4 text-yellow-500" />
-                    🎫 Apply Coupon
+                    Apply Coupon
                   </h3>
                   {!couponApplied ? (
                     <div className="space-y-2">
@@ -429,13 +473,13 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                         </Button>
                       </div>
                       <p className="text-orange-600 text-xs">
-                        ✨ Use "XTSY-BASH" for 10% off (min 4 guests)
+                        Use "XTSY-BASH" for eligible bookings (hostel: min 4 guests, luxury: min 2 nights)
                       </p>
                     </div>
                   ) : (
                     <div className="flex items-center justify-between bg-green-100 rounded-lg p-3 border border-green-300">
                       <div>
-                        <span className="text-green-800 font-medium text-sm">🎉 XTSY-BASH Applied!</span>
+                        <span className="text-green-800 font-medium text-sm">{bookingData.couponCode || 'XTSY-BASH'} Applied!</span>
                         <p className="text-green-700 text-xs">₹{discountAmount} discount</p>
                       </div>
                       <Button 
@@ -453,14 +497,14 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                 {/* Selected Rooms - Compact cards */}
                 <div className="space-y-2">
                   <h3 className="text-base md:text-lg font-semibold text-gray-900 flex items-center gap-2">
-                    🏨 Selected Rooms
+                    Selected Rooms
                   </h3>
                   {bookingData.items.map((item, index) => {
                     const nights = item.nights || bookingData.nights || 1;
                     let itemTotal = 0;
                     
                     if (item.roomType === 'dorm') {
-                      itemTotal = item.price * item.quantity * (item.guests || bookingData.guests) * nights;
+                      itemTotal = item.price * item.quantity * nights;
                     } else {
                       itemTotal = item.price * item.quantity * nights;
                     }
@@ -472,9 +516,9 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                             <h4 className="font-semibold text-gray-900 mb-1 text-sm md:text-base">{item.roomName}</h4>
                             <p className="text-gray-600 text-xs md:text-sm">
                               {item.roomType === 'dorm' ? (
-                                <>💰 ₹{item.price} x {item.guests || bookingData.guests} guest{(item.guests || bookingData.guests) > 1 ? 's' : ''} x {nights} night{nights > 1 ? 's' : ''}</>
+                                <>₹{item.price} x {item.quantity} bed{item.quantity > 1 ? 's' : ''} x {nights} night{nights > 1 ? 's' : ''}</>
                               ) : (
-                                <>💰 ₹{item.price} x {item.quantity} room{item.quantity > 1 ? 's' : ''} x {nights} night{nights > 1 ? 's' : ''}</>
+                                <>₹{item.price} x {item.quantity} room{item.quantity > 1 ? 's' : ''} x {nights} night{nights > 1 ? 's' : ''}</>
                               )}
                             </p>
                           </div>
@@ -491,25 +535,25 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                 <div className="bg-gray-50 rounded-lg p-3 md:p-4 border border-gray-200">
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-gray-600">💵 Subtotal:</span>
+                      <span className="text-gray-600">Subtotal:</span>
                       <span className="text-gray-900">₹{totalAmount}</span>
                     </div>
                     {bookingData.couponApplied && discountAmount > 0 && (
                       <div className="flex justify-between text-green-600">
-                        <span>🎫 Discount (XTSY-BASH):</span>
+                        <span>Discount ({bookingData.couponCode || 'XTSY-BASH'}):</span>
                         <span>-₹{discountAmount}</span>
                       </div>
                     )}
                     <div className="flex justify-between">
-                      <span className="text-gray-600">📊 GST:</span>
+                      <span className="text-gray-600">GST:</span>
                       <span className="text-gray-900">₹{totalGST}</span>
                     </div>
                     <div className="border-t border-gray-300 pt-2 flex justify-between font-bold">
-                      <span className="text-gray-900">💳 Total (tax incl.):</span>
+                      <span className="text-gray-900">Total (tax incl.):</span>
                       <span className="text-gray-900">₹{grandTotal}</span>
                     </div>
                     <div className="flex justify-between text-green-600 font-bold">
-                      <span>💰 Payable Now (21%):</span>
+                      <span>Payable Now (21%):</span>
                       <span>₹{payableNow}</span>
                     </div>
                   </div>
@@ -525,7 +569,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                     className="flex-1 border-blue-300 text-blue-600 hover:bg-blue-50 flex items-center justify-center gap-2 h-12 text-sm md:text-base"
                   >
                     <Clock className="h-4 w-4" />
-                    ⏰ Save Later
+                    Save Later
                   </Button>
                   <Button
                     onClick={clearCart}
@@ -533,13 +577,13 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                     className="flex-1 border-red-300 text-red-600 hover:bg-red-50 flex items-center justify-center gap-2 h-12 text-sm md:text-base"
                   >
                     <Trash2 className="h-4 w-4" />
-                    🗑️ Clear Cart
+                    Clear Cart
                   </Button>
                   <Button
                     onClick={proceedToGuestDetails}
                     className="flex-1 md:flex-[2] bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold h-12 text-sm md:text-base"
                   >
-                    🚀 Book Now
+                    Book Now
                   </Button>
                 </div>
               </div>
