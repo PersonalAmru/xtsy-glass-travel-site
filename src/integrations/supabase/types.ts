@@ -14,13 +14,205 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      booking_confirmations: {
+        Row: {
+          booking_id: string | null
+          confirmation_sent_at: string | null
+          created_at: string
+          id: string
+          sent_to_guest_email: boolean | null
+          sent_to_guest_whatsapp: boolean | null
+          sent_to_property_email: boolean | null
+          sent_to_property_whatsapp: boolean | null
+        }
+        Insert: {
+          booking_id?: string | null
+          confirmation_sent_at?: string | null
+          created_at?: string
+          id?: string
+          sent_to_guest_email?: boolean | null
+          sent_to_guest_whatsapp?: boolean | null
+          sent_to_property_email?: boolean | null
+          sent_to_property_whatsapp?: boolean | null
+        }
+        Update: {
+          booking_id?: string | null
+          confirmation_sent_at?: string | null
+          created_at?: string
+          id?: string
+          sent_to_guest_email?: boolean | null
+          sent_to_guest_whatsapp?: boolean | null
+          sent_to_property_email?: boolean | null
+          sent_to_property_whatsapp?: boolean | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "booking_confirmations_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: false
+            referencedRelation: "bookings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      bookings: {
+        Row: {
+          address: string | null
+          booking_id: string
+          booking_status: string | null
+          check_in: string
+          check_out: string
+          city: string | null
+          created_at: string
+          discount_amount: number | null
+          email: string
+          emergency_contact: string | null
+          emergency_relation: string | null
+          gst_amount: number
+          guest_name: string
+          guests: number
+          id: string
+          invoice_generated: boolean | null
+          invoice_url: string | null
+          nights: number
+          payment_method: string | null
+          payment_verified_at: string | null
+          pincode: string | null
+          promo_applied: boolean | null
+          promo_code: string | null
+          room_details: Json
+          state: string | null
+          subtotal: number
+          total_amount: number
+          updated_at: string
+          whatsapp_number: string
+        }
+        Insert: {
+          address?: string | null
+          booking_id: string
+          booking_status?: string | null
+          check_in: string
+          check_out: string
+          city?: string | null
+          created_at?: string
+          discount_amount?: number | null
+          email: string
+          emergency_contact?: string | null
+          emergency_relation?: string | null
+          gst_amount: number
+          guest_name: string
+          guests: number
+          id?: string
+          invoice_generated?: boolean | null
+          invoice_url?: string | null
+          nights: number
+          payment_method?: string | null
+          payment_verified_at?: string | null
+          pincode?: string | null
+          promo_applied?: boolean | null
+          promo_code?: string | null
+          room_details: Json
+          state?: string | null
+          subtotal: number
+          total_amount: number
+          updated_at?: string
+          whatsapp_number: string
+        }
+        Update: {
+          address?: string | null
+          booking_id?: string
+          booking_status?: string | null
+          check_in?: string
+          check_out?: string
+          city?: string | null
+          created_at?: string
+          discount_amount?: number | null
+          email?: string
+          emergency_contact?: string | null
+          emergency_relation?: string | null
+          gst_amount?: number
+          guest_name?: string
+          guests?: number
+          id?: string
+          invoice_generated?: boolean | null
+          invoice_url?: string | null
+          nights?: number
+          payment_method?: string | null
+          payment_verified_at?: string | null
+          pincode?: string | null
+          promo_applied?: boolean | null
+          promo_code?: string | null
+          room_details?: Json
+          state?: string | null
+          subtotal?: number
+          total_amount?: number
+          updated_at?: string
+          whatsapp_number?: string
+        }
+        Relationships: []
+      }
+      transactions: {
+        Row: {
+          amount: number
+          booking_id: string | null
+          created_at: string
+          currency: string | null
+          gateway_response: Json | null
+          id: string
+          matched: boolean | null
+          payment_status: string | null
+          razorpay_payment_id: string | null
+          source: string | null
+          txn_id: string
+          verified_at: string | null
+        }
+        Insert: {
+          amount: number
+          booking_id?: string | null
+          created_at?: string
+          currency?: string | null
+          gateway_response?: Json | null
+          id?: string
+          matched?: boolean | null
+          payment_status?: string | null
+          razorpay_payment_id?: string | null
+          source?: string | null
+          txn_id: string
+          verified_at?: string | null
+        }
+        Update: {
+          amount?: number
+          booking_id?: string | null
+          created_at?: string
+          currency?: string | null
+          gateway_response?: Json | null
+          id?: string
+          matched?: boolean | null
+          payment_status?: string | null
+          razorpay_payment_id?: string | null
+          source?: string | null
+          txn_id?: string
+          verified_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "transactions_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: false
+            referencedRelation: "bookings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      generate_booking_id: {
+        Args: Record<PropertyKey, never>
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never
