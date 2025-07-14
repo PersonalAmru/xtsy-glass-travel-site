@@ -1,5 +1,5 @@
 
-import { Sofa, Clock, ShoppingBag, Shirt, Wifi, Car, Coffee, Shield, Users, Gamepad2, Utensils, TreePine, Flame, Info, Eye, Droplets, CreditCard, Tv, Dumbbell, Zap } from "lucide-react";
+import { Sofa, Clock, ShoppingBag, Shirt, Wifi, Car, Coffee, Shield, Users, Gamepad2, Utensils, TreePine, Flame, Info, Eye, Droplets, CreditCard, Tv, Dumbbell, Zap, Mountain, UserCheck, Waves } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const ServicesSection = () => {
@@ -31,25 +31,15 @@ const ServicesSection = () => {
   ];
 
   const amenities = [
-    { icon: Wifi, name: "Free Wi-Fi", emoji: "📶" },
-    { icon: Coffee, name: "Cafe", emoji: "☕" },
-    { icon: ShoppingBag, name: "Storage Facility", emoji: "🧳" },
-    { icon: Shirt, name: "Laundry Service", emoji: "👕" },
-    { icon: Sofa, name: "Common Lounge", emoji: "🛋️" },
-    { icon: Gamepad2, name: "Games Room", emoji: "🎮" },
-    { icon: Utensils, name: "CP Breakfast", emoji: "🍳" },
-    { icon: Car, name: "Free Parking", emoji: "🚗" },
-    { icon: Flame, name: "BBQ Area", emoji: "🔥" },
-    { icon: Flame, name: "Bonfire", emoji: "🔥" },
-    { icon: Info, name: "Tourist Info Centre", emoji: "ℹ️" },
-    { icon: Shield, name: "Security", emoji: "🛡️" },
-    { icon: Eye, name: "CCTV", emoji: "👁️" },
-    { icon: Droplets, name: "Hot Water", emoji: "🚿" },
-    { icon: CreditCard, name: "Card Payment", emoji: "💳" },
-    { icon: Dumbbell, name: "In-house Activities", emoji: "🏋️" },
-    { icon: Zap, name: "UPI Payment", emoji: "⚡" },
-    { icon: Droplets, name: "Water Dispenser", emoji: "💧" },
-    { icon: Car, name: "Public Parking", emoji: "🅿️" }
+    { icon: Mountain, name: "Mountain View" },
+    { icon: CreditCard, name: "Card Payment Accepted" },
+    { icon: Coffee, name: "Cafe" },
+    { icon: ShoppingBag, name: "Storage Facility" },
+    { icon: Waves, name: "Laundry Services (Extra)" },
+    { icon: Wifi, name: "Free Wi-Fi" },
+    { icon: Tv, name: "Common Television" },
+    { icon: UserCheck, name: "Common hangout area" },
+    { icon: Car, name: "Parking (private)" }
   ];
 
   return (
@@ -73,7 +63,7 @@ const ServicesSection = () => {
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent font-serif-sans px-4">
-            ✨ Our Services
+            Our Services
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto font-seasons px-4">
             Experience premium amenities and services designed for every traveler's comfort and convenience
@@ -100,29 +90,26 @@ const ServicesSection = () => {
           ))}
         </div>
 
-        {/* Amenities Section - More Attractive Design */}
+        {/* Amenities Section - Clean Text-based Design */}
         <div className="bg-gradient-to-br from-white to-gray-50 border-2 border-orange-200 rounded-2xl p-6 sm:p-8 shadow-2xl">
           <div className="text-center mb-8">
             <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 font-serif-sans">
-              🏠 Amenities & Facilities
+              Amenities
             </h3>
             <p className="text-gray-600 text-base sm:text-lg font-seasons max-w-2xl mx-auto">
               Enjoy a comprehensive range of modern amenities designed to make your stay comfortable and memorable
             </p>
           </div>
           
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {amenities.map((amenity, index) => (
-              <div key={index} className="flex flex-col items-center gap-2 p-3 sm:p-4 bg-white rounded-xl border border-gray-200 hover:border-orange-300 hover:shadow-lg transition-all duration-300 transform hover:scale-105 group">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl flex items-center justify-center group-hover:rotate-6 transition-transform duration-300">
-                  <amenity.icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+              <div key={index} className="flex items-center gap-3 p-3 sm:p-4 bg-white rounded-xl border border-gray-200 hover:border-orange-300 hover:shadow-lg transition-all duration-300 transform hover:scale-105 group">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg flex items-center justify-center group-hover:rotate-6 transition-transform duration-300 flex-shrink-0">
+                  <amenity.icon className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
                 </div>
-                <div className="text-center">
-                  <span className="text-lg sm:text-xl mb-1 block">{amenity.emoji}</span>
-                  <span className="text-gray-700 text-xs sm:text-sm font-seasons font-medium text-center leading-tight">
-                    {amenity.name}
-                  </span>
-                </div>
+                <span className="text-gray-700 text-sm sm:text-base font-seasons font-medium">
+                  {amenity.name}
+                </span>
               </div>
             ))}
           </div>
