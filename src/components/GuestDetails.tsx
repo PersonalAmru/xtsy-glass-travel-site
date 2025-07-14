@@ -95,7 +95,7 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
       const gstAmount = Math.round(subtotal * 0.18); // 18% GST
       const totalAmount = subtotal + gstAmount - discountAmount;
 
-      // Create booking record
+      // Create booking record with correct field names
       const { data: booking, error: bookingError } = await supabase
         .from('bookings')
         .insert({

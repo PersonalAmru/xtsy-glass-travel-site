@@ -269,6 +269,7 @@ const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingMod
           setShowGuestDetails(false);
           onClose();
         }}
+        onBack={() => setShowGuestDetails(false)}
         bookingData={{
           checkIn,
           checkOut,
