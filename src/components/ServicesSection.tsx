@@ -1,62 +1,55 @@
-import { useState } from "react";
-import { Sofa, Clock, ShoppingBag, Shirt, Wifi, Car, Coffee, Shield, Users, Gamepad2, Utensils, TreePine, Flame, Info, Eye } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+
+import { Sofa, Clock, ShoppingBag, Shirt, Wifi, Car, Coffee, Shield, Users, Gamepad2, Utensils, TreePine, Flame, Info, Eye, Droplets, CreditCard, Tv, Dumbbell, Zap, Parking } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 
 const ServicesSection = () => {
-  const [activeTab, setActiveTab] = useState("common-lounge");
-
-  const services = [
+  const mainServices = [
     {
-      id: "common-lounge",
       icon: Sofa,
       title: "Common Lounge Access",
       description: "Relax, play games, enjoy music in our cozy common area",
-      details: "Unwind in our spacious common lounge area designed for relaxation and socializing. Enjoy comfortable seating, board games, music system, books, and a friendly atmosphere where you can meet fellow travelers. Perfect for chilling out after a day of exploration, working on your laptop, or simply enjoying some downtime.",
       gradient: "from-purple-500 to-indigo-500"
     },
     {
-      id: "travel-assistance",
       icon: Clock,
       title: "24/7 Travel Assistance",
       description: "Round-the-clock support for all your travel needs",
-      details: "Our dedicated team is always available to help you with travel planning, emergency assistance, local recommendations, and booking services. Whether it's finding the best restaurants, arranging tours, or handling unexpected situations, we're here for you 24/7.",
       gradient: "from-teal-500 to-cyan-500"
     },
     {
-      id: "convenience-store",
       icon: ShoppingBag,
       title: "In-House Convenience Store",
       description: "Everything you need right at your fingertips",
-      details: "Our well-stocked convenience store offers snacks, drinks, travel essentials and emergency supplies. Open 24/7 for your convenience, so you never have to worry about running out of essentials during your stay.",
       gradient: "from-green-500 to-emerald-500"
     },
     {
-      id: "laundry",
       icon: Shirt,
       title: "Laundry Services",
       description: "Professional laundry meets Guest satisfaction!",
-      details: "Keep your clothes fresh during your extended stay express laundry service for urgent needs. We use Eco-friendly detergents and Our staffs are trained to handle your items with love and care.",
       gradient: "from-orange-500 to-red-500"
     }
   ];
 
-  const activeService = services.find(service => service.id === activeTab);
-
   const amenities = [
-    { icon: Wifi, name: "Free Wi-Fi" },
-    { icon: Coffee, name: "Cafe" },
-    { icon: ShoppingBag, name: "Storage facility in all dorm rooms" },
-    { icon: Shirt, name: "Laundry service [Paid]" },
-    { icon: Sofa, name: "Common Lounge" },
-    { icon: Gamepad2, name: "Games Room" },
-    { icon: Utensils, name: "CP Breakfast" },
-    { icon: Car, name: "Free Parking for guests" },
-    { icon: Flame, name: "BBQ [Paid]" },
-    { icon: Flame, name: "Bonfire [On request]" },
-    { icon: Info, name: "Tourist Info Centre" },
-    { icon: Shield, name: "Security" },
-    { icon: Eye, name: "CCTV" }
+    { icon: Wifi, name: "Free Wi-Fi", emoji: "📶" },
+    { icon: Coffee, name: "Cafe", emoji: "☕" },
+    { icon: ShoppingBag, name: "Storage Facility", emoji: "🧳" },
+    { icon: Shirt, name: "Laundry Service", emoji: "👕" },
+    { icon: Sofa, name: "Common Lounge", emoji: "🛋️" },
+    { icon: Gamepad2, name: "Games Room", emoji: "🎮" },
+    { icon: Utensils, name: "CP Breakfast", emoji: "🍳" },
+    { icon: Car, name: "Free Parking", emoji: "🚗" },
+    { icon: Flame, name: "BBQ Area", emoji: "🔥" },
+    { icon: Flame, name: "Bonfire", emoji: "🔥" },
+    { icon: Info, name: "Tourist Info Centre", emoji: "ℹ️" },
+    { icon: Shield, name: "Security", emoji: "🛡️" },
+    { icon: Eye, name: "CCTV", emoji: "👁️" },
+    { icon: Droplets, name: "Hot Water", emoji: "🚿" },
+    { icon: CreditCard, name: "Card Payment", emoji: "💳" },
+    { icon: Dumbbell, name: "In-house Activities", emoji: "🏋️" },
+    { icon: Zap, name: "UPI Payment", emoji: "⚡" },
+    { icon: Droplets, name: "Water Dispenser", emoji: "💧" },
+    { icon: Parking, name: "Public Parking", emoji: "🅿️" }
   ];
 
   return (
@@ -80,71 +73,56 @@ const ServicesSection = () => {
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent font-serif-sans px-4">
-            Our Services
+            ✨ Our Services
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto font-seasons px-4">
-            Choose from our range of accommodations designed for every traveler's needs and budget
+            Experience premium amenities and services designed for every traveler's comfort and convenience
           </p>
         </div>
 
-        {/* Horizontal Tab Buttons - Mobile Optimized */}
-        <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-0 mb-12 sm:mb-16 px-4">
-          {services.map((service, index) => (
-            <Button
-              key={service.id}
-              variant={activeTab === service.id ? "default" : "outline"}
-              onClick={() => setActiveTab(service.id)}
-              className={`px-3 sm:px-4 md:px-6 py-3 sm:py-4 font-bold transition-all duration-300 text-xs sm:text-sm lg:text-base flex-1 sm:flex-none ${
-                index === 0 ? 'sm:rounded-r-none' : 
-                index === services.length - 1 ? 'sm:rounded-l-none' : 
-                'sm:rounded-none'
-              } ${
-                activeTab === service.id
-                  ? "bg-gradient-to-r from-orange-500 to-red-600 text-white shadow-xl border-orange-400"
-                  : "border-orange-300/60 text-gray-800 bg-white hover:bg-orange-50 hover:border-orange-400/80 hover:text-orange-600"
-              } font-seasons border-2`}
-            >
-              <service.icon className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 mr-1 sm:mr-2" />
-              <span className="whitespace-nowrap">{service.title}</span>
-            </Button>
+        {/* Main Services Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-16">
+          {mainServices.map((service, index) => (
+            <Card key={index} className="bg-white border-2 border-gray-200 hover:border-orange-300 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+              <CardContent className="p-4 sm:p-6 text-center">
+                <div className={`mx-auto w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r ${service.gradient} rounded-2xl flex items-center justify-center mb-4 shadow-xl relative transform hover:rotate-3 transition-transform duration-300`}>
+                  <div className={`absolute inset-0 bg-gradient-to-r ${service.gradient} rounded-2xl blur-lg opacity-50 scale-110`}></div>
+                  <service.icon className="h-8 w-8 sm:h-10 sm:w-10 text-white relative z-10 drop-shadow-lg" />
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 font-serif-sans">
+                  {service.title}
+                </h3>
+                <p className="text-gray-600 text-sm sm:text-base font-seasons">
+                  {service.description}
+                </p>
+              </CardContent>
+            </Card>
           ))}
         </div>
 
-        {/* Active Service Content */}
-        {activeService && (
-          <Card className="bg-white border-2 border-gray-200 max-w-4xl mx-auto transform hover:scale-105 transition-all duration-300 shadow-xl mx-3 sm:mx-auto">
-            <CardHeader className="text-center pb-3 sm:pb-4">
-              <div className={`mx-auto w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 bg-gradient-to-r ${activeService.gradient} rounded-2xl sm:rounded-3xl flex items-center justify-center mb-4 sm:mb-6 shadow-2xl relative transform hover:rotate-3 transition-transform duration-300`}>
-                <div className={`absolute inset-0 bg-gradient-to-r ${activeService.gradient} rounded-2xl sm:rounded-3xl blur-xl opacity-60 scale-110`}></div>
-                <div className={`absolute inset-0 bg-gradient-to-br from-white/40 to-transparent rounded-2xl sm:rounded-3xl`}></div>
-                <div className={`absolute inset-1 bg-gradient-to-tl from-black/20 to-transparent rounded-2xl sm:rounded-3xl`}></div>
-                <activeService.icon className="h-10 w-10 sm:h-12 sm:w-12 lg:h-14 lg:w-14 text-white relative z-10 drop-shadow-lg" />
-              </div>
-              <CardTitle className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800 mb-2 font-serif-sans px-4">
-                {activeService.title}
-              </CardTitle>
-              <CardDescription className="text-gray-600 text-sm sm:text-base lg:text-lg font-seasons px-4">
-                {activeService.description}
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="text-center px-4 sm:px-6">
-              <p className="text-gray-600 text-sm sm:text-base leading-relaxed font-seasons">
-                {activeService.details}
-              </p>
-            </CardContent>
-          </Card>
-        )}
-
-        {/* Common Amenities Section */}
-        <div className="mt-16 bg-white border-2 border-gray-200 rounded-lg p-6 sm:p-8 shadow-xl max-w-4xl mx-auto">
-          <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-6 text-center font-serif-sans">
-            Common Amenities
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* Amenities Section - More Attractive Design */}
+        <div className="bg-gradient-to-br from-white to-gray-50 border-2 border-orange-200 rounded-2xl p-6 sm:p-8 shadow-2xl">
+          <div className="text-center mb-8">
+            <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 font-serif-sans">
+              🏠 Amenities & Facilities
+            </h3>
+            <p className="text-gray-600 text-base sm:text-lg font-seasons max-w-2xl mx-auto">
+              Enjoy a comprehensive range of modern amenities designed to make your stay comfortable and memorable
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4">
             {amenities.map((amenity, index) => (
-              <div key={index} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
-                <amenity.icon className="h-5 w-5 text-orange-500 flex-shrink-0" />
-                <span className="text-gray-700 text-sm font-seasons font-medium">{amenity.name}</span>
+              <div key={index} className="flex flex-col items-center gap-2 p-3 sm:p-4 bg-white rounded-xl border border-gray-200 hover:border-orange-300 hover:shadow-lg transition-all duration-300 transform hover:scale-105 group">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl flex items-center justify-center group-hover:rotate-6 transition-transform duration-300">
+                  <amenity.icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                </div>
+                <div className="text-center">
+                  <span className="text-lg sm:text-xl mb-1 block">{amenity.emoji}</span>
+                  <span className="text-gray-700 text-xs sm:text-sm font-seasons font-medium text-center leading-tight">
+                    {amenity.name}
+                  </span>
+                </div>
               </div>
             ))}
           </div>

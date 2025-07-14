@@ -12,7 +12,6 @@ const RoomsSection = () => {
     const element = document.querySelector('#home');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      // Focus on the booking form after scrolling
       setTimeout(() => {
         const checkInInput = document.querySelector('input[type="date"]') as HTMLInputElement;
         if (checkInInput) {
@@ -26,79 +25,72 @@ const RoomsSection = () => {
     hostel: {
       name: "XTSY Travellers Hostel",
       description: "Budget-friendly accommodation in the heart of Shillong",
-      image: "", // Ready for Supabase Object URL
+      image: "", 
       rooms: [
         {
           id: "4-bed-female-only-dorm",
-          name: "4 Bed Female Only Dorms",
+          name: "Bed in 4 Bed Female Only Dorms",
           price: 850,
           description: "Female-only dormitory with modern amenities",
           features: ["Female only", "Shared bathroom", "Wi-Fi", "Locker", "Common area"],
           maxGuests: 1,
-          image: "" // Ready for Supabase Object URL
+          image: ""
         },
         {
           id: "4-bed-mixed-female-dorm",
-          name: "4 Bed Mixed/Female Dorms",
+          name: "Bed in 4 Bed Mixed/Female Dorms", 
           price: 800,
           description: "Mixed or female dormitory with shared facilities",
           features: ["Mixed/Female", "Shared bathroom", "Wi-Fi", "Locker", "Common area"],
           maxGuests: 1,
-          image: "" // Ready for Supabase Object URL
+          image: ""
         },
         {
           id: "6-bed-mixed-female-dorm",
-          name: "6 Bed Mixed/Female Dorms",
+          name: "Bed in 6 Bed Mixed/Female Dorms",
           price: 700,
           description: "Spacious mixed or female dormitory",
           features: ["Mixed/Female", "Shared bathroom", "Wi-Fi", "Locker", "Common area"],
           maxGuests: 1,
-          image: "" // Ready for Supabase Object URL
+          image: ""
         },
         {
           id: "8-bed-mixed-dorm",
-          name: "8 Bed Mixed Dorms",
+          name: "Bed in 8 Bed Mixed Dorms",
           price: 600,
           description: "Large mixed dormitory for budget travelers",
           features: ["Mixed dorm", "Shared bathroom", "Wi-Fi", "Locker", "Common area"],
           maxGuests: 1,
-          image: "" // Ready for Supabase Object URL
+          image: ""
         }
-      ]
+      ],
+      buttonText: "Select Bed"
     },
     luxury: {
       name: "XTSY Luxury",
       description: "Premium accommodation with modern amenities and scenic views",
-      image: "", // Ready for Supabase Object URL
+      image: "",
       rooms: [
         {
           id: "king-double-room",
           name: "King Double Room",
           price: 3200,
           description: "Spacious room with king bed for two guests",
-          features: ["King bed", "Valley view", "Mini bar", "Attached bath", "Wi-Fi", "TV"],
+          features: ["King bed", "Valley view", "Attached bath", "Wi-Fi", "Premium amenities"],
           maxGuests: 2,
-          image: "" // Ready for Supabase Object URL
+          image: ""
         },
         {
           id: "king-triple-room",
           name: "King Triple Room",
           price: 4200,
           description: "Luxurious room accommodating up to three guests",
-          features: ["King bed + extra bed", "Panoramic view", "Mini bar", "Attached bath", "Wi-Fi", "Premium amenities"],
+          features: ["King bed + extra bed", "Panoramic view", "Attached bath", "Wi-Fi", "Premium amenities"],
           maxGuests: 3,
-          image: "" // Ready for Supabase Object URL
-        },
-        {
-          id: "sky-glass-suite",
-          name: "Sky Glass Suite",
-          price: 18000,
-          description: "Ultimate luxury suite with panoramic glass views",
-          features: ["Glass walls", "360° views", "Premium amenities", "Jacuzzi", "Mini bar", "Concierge service"],
-          maxGuests: 2,
-          image: "" // Ready for Supabase Object URL
+          image: ""
         }
-      ]
+      ],
+      buttonText: "Select Room"
     }
   };
 
@@ -106,7 +98,7 @@ const RoomsSection = () => {
 
   return (
     <section id="rooms" className="py-12 sm:py-16 lg:py-20 px-3 sm:px-4 bg-gray-50 relative overflow-hidden">
-      {/* Background animations - subtle gray tones */}
+      {/* Background animations */}
       <div className="absolute inset-0">
         {[...Array(6)].map((_, i) => (
           <div
@@ -122,10 +114,10 @@ const RoomsSection = () => {
         ))}
       </div>
 
-      <div className="container mx-auto max-w-6xl relative z-10">
+      <div className="container mx-auto max-w-7xl relative z-10">
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent font-serif-sans px-4">
-            Our Properties
+            🏨 Our Properties
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto font-seasons px-4">
             Choose from our range of accommodations designed for every traveler's needs and budget
@@ -157,7 +149,7 @@ const RoomsSection = () => {
               <div className="w-full h-64 sm:h-80 lg:h-96 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg mb-6 flex items-center justify-center border border-gray-300">
                 <div className="text-center">
                   <MapPin className="h-12 w-12 text-gray-400 mx-auto mb-2" />
-                  <p className="text-gray-500 text-sm">Main Property Image</p>
+                  <p className="text-gray-500 text-sm">📸 Main Property Image</p>
                   <p className="text-gray-400 text-xs">Ready for Supabase URL</p>
                 </div>
               </div>
@@ -171,58 +163,72 @@ const RoomsSection = () => {
           </Card>
         </div>
 
-        {/* Rooms Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 px-3 sm:px-0">
-          {activePropertyData.rooms.map((room) => (
-            <Card key={room.id} className="bg-white border border-gray-200 hover:border-orange-300 hover:shadow-lg transition-all duration-300 transform hover:scale-105 shadow-md">
-              <CardHeader className="pb-3">
-                <div className="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg mb-4 flex items-center justify-center border border-gray-300">
-                  <div className="text-center">
-                    <TreePine className="h-8 w-8 text-gray-400 mx-auto mb-1" />
-                    <p className="text-gray-500 text-xs">Room Image</p>
-                    <p className="text-gray-400 text-xs">Supabase Ready</p>
-                  </div>
-                </div>
-                <div className="flex justify-between items-start mb-2">
-                  <CardTitle className="text-lg sm:text-xl font-bold text-gray-900 font-serif-sans">
-                    {room.name}
-                  </CardTitle>
-                  <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold">
-                    ₹{room.price}/night
-                  </Badge>
-                </div>
-                <CardDescription className="text-gray-600 text-sm font-seasons">
-                  {room.description}
-                </CardDescription>
-              </CardHeader>
-              
-              <CardContent className="space-y-4">
-                <div className="flex flex-wrap gap-2">
-                  {room.features.map((feature, index) => (
-                    <Badge key={index} variant="outline" className="text-xs border-orange-300 text-orange-600 bg-orange-50">
-                      {feature}
-                    </Badge>
-                  ))}
-                </div>
-                
-                <div className="flex items-center justify-between text-sm text-gray-600">
-                  <span className="flex items-center gap-1">
-                    <Users className="h-4 w-4" />
-                    Max {room.maxGuests} guests
-                  </span>
-                </div>
-                
-                <Button 
-                  onClick={scrollToCalendar}
-                  className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 font-seasons"
-                >
-                  Book Now
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
+        {/* Rooms Grid - All rooms in single row with horizontal scroll on mobile */}
+        <div className="w-full">
+          <div className="flex gap-4 sm:gap-6 overflow-x-auto pb-4 px-3 sm:px-0 scrollbar-hide">
+            <div className={`flex gap-4 sm:gap-6 ${activePropertyData.rooms.length <= 2 ? 'justify-center w-full' : ''}`}>
+              {activePropertyData.rooms.map((room) => (
+                <Card key={room.id} className="bg-white border border-gray-200 hover:border-orange-300 hover:shadow-lg transition-all duration-300 transform hover:scale-105 shadow-md flex-shrink-0 w-80 sm:w-72 lg:w-80">
+                  <CardHeader className="pb-3">
+                    <div className="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg mb-4 flex items-center justify-center border border-gray-300">
+                      <div className="text-center">
+                        <TreePine className="h-8 w-8 text-gray-400 mx-auto mb-1" />
+                        <p className="text-gray-500 text-xs">🏠 Room Image</p>
+                        <p className="text-gray-400 text-xs">Supabase Ready</p>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-start mb-2">
+                      <CardTitle className="text-lg sm:text-xl font-bold text-gray-900 font-serif-sans leading-tight">
+                        {room.name}
+                      </CardTitle>
+                      <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold whitespace-nowrap ml-2">
+                        ₹{room.price}/night
+                      </Badge>
+                    </div>
+                    <CardDescription className="text-gray-600 text-sm font-seasons">
+                      {room.description}
+                    </CardDescription>
+                  </CardHeader>
+                  
+                  <CardContent className="space-y-4">
+                    <div className="flex flex-wrap gap-1">
+                      {room.features.map((feature, index) => (
+                        <Badge key={index} variant="outline" className="text-xs border-orange-300 text-orange-600 bg-orange-50">
+                          {feature}
+                        </Badge>
+                      ))}
+                    </div>
+                    
+                    <div className="flex items-center justify-between text-sm text-gray-600">
+                      <span className="flex items-center gap-1">
+                        <Users className="h-4 w-4" />
+                        Max {room.maxGuests} guest{room.maxGuests > 1 ? 's' : ''}
+                      </span>
+                    </div>
+                    
+                    <Button 
+                      onClick={scrollToCalendar}
+                      className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 font-seasons"
+                    >
+                      {activePropertyData.buttonText} 🛏️
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
+
+      <style jsx>{`
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </section>
   );
 };

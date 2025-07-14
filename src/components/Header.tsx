@@ -11,66 +11,54 @@ const Header = () => {
   const isHomePage = location.pathname === '/';
 
   // Mock cart items count - you can replace this with actual cart state
-  const cartItemsCount = 0; // This should come from your cart context/state
+  const cartItemsCount = 0;
 
   const navItems = [
-    { name: "Home", href: "/" },
-    { name: "Services", href: "/#services" },
-    { name: "Our Properties", href: "/#rooms" },
-    { name: "Deals & Offers", href: "/deals" },
-    { name: "Gallery", href: "/gallery" },
-    { name: "Reviews", href: "/#reviews" },
-    { name: "About Us", href: "/about" },
-    { name: "Contact", href: "/#contact" },
+    { name: "Home", href: "#home", section: "home" },
+    { name: "Services", href: "#services", section: "services" },
+    { name: "Our Properties", href: "#rooms", section: "rooms" },
+    { name: "Deals & Offers", href: "#deals", section: "deals" },
+    { name: "Gallery", href: "#gallery", section: "gallery" },
+    { name: "Reviews", href: "#reviews", section: "reviews" },
+    { name: "About Us", href: "#about", section: "about" },
+    { name: "Contact", href: "#contact", section: "contact" },
   ];
 
-  const handleNavClick = (href: string) => {
+  const handleNavClick = (sectionId: string) => {
     setIsMenuOpen(false);
     
-    if (href.startsWith('/#')) {
-      if (location.pathname !== '/') {
-        // Navigate to home first, then scroll
-        window.location.href = href;
-      } else {
-        // Already on home page, just scroll to section
-        const sectionId = href.substring(2); // Remove /#
-        const element = document.getElementById(sectionId);
-        if (element) {
-          // Offset for fixed header
-          const headerOffset = 80;
-          const elementPosition = element.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-          
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-        }
-      }
-    } else if (href === '/deals') {
-      // Navigate to deals page and scroll to top
-      window.location.href = '/deals';
-    } else if (href === '/gallery') {
-      // Navigate to gallery page and scroll to top
-      window.location.href = '/gallery';
-    } else if (href === '/about') {
-      // Navigate to about page and scroll to top
-      window.location.href = '/about';
+    if (!isHomePage) {
+      // If not on home page, navigate to home first
+      window.location.href = `/#${sectionId}`;
+      return;
+    }
+
+    // Smooth scroll to section on home page
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
   const handleContactClick = () => {
     setIsMenuOpen(false);
     
-    if (location.pathname !== '/') {
-      // If not on home page, navigate to home and then scroll to contact
+    if (!isHomePage) {
       window.location.href = '/#contact';
-    } else {
-      // Already on home page, scroll to contact (footer area)
-      const footerElement = document.querySelector('footer');
-      if (footerElement) {
-        footerElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      return;
+    }
+
+    // Scroll to footer/contact area
+    const footerElement = document.querySelector('footer');
+    if (footerElement) {
+      footerElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
@@ -90,7 +78,7 @@ const Header = () => {
               </Link>
             )}
 
-            {/* Logo - Improved sizing */}
+            {/* Logo */}
             <div className="flex-shrink-0">
               <img 
                 src="https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/image-assets/Header/Color%20logo%20-%20no%20background.png"
@@ -101,7 +89,7 @@ const Header = () => {
               />
             </div>
 
-            {/* Desktop Navigation - Right Aligned */}
+            {/* Desktop Navigation */}
             <nav className="hidden lg:flex space-x-6 xl:space-x-8 flex-1 justify-end mr-6">
               {navItems.map((item) => (
                 item.name === "Contact" ? (
@@ -112,18 +100,10 @@ const Header = () => {
                   >
                     {item.name}
                   </button>
-                ) : item.href.startsWith('/#') ? (
-                  <button
-                    key={item.name}
-                    onClick={() => handleNavClick(item.href)}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 font-medium font-seasons text-sm xl:text-base cursor-pointer"
-                  >
-                    {item.name}
-                  </button>
                 ) : (
                   <button
                     key={item.name}
-                    onClick={() => handleNavClick(item.href)}
+                    onClick={() => handleNavClick(item.section)}
                     className="text-gray-300 hover:text-white transition-colors duration-200 font-medium font-seasons text-sm xl:text-base cursor-pointer"
                   >
                     {item.name}
@@ -156,7 +136,7 @@ const Header = () => {
             </button>
           </div>
 
-          {/* Mobile Navigation - Improved */}
+          {/* Mobile Navigation */}
           {isMenuOpen && (
             <div className="lg:hidden mt-2 pb-4 backdrop-blur-lg bg-black/95 rounded-lg border border-white/10 mx-2">
               <nav className="flex flex-col space-y-1 px-4 pt-2">
@@ -169,18 +149,10 @@ const Header = () => {
                     >
                       {item.name}
                     </button>
-                  ) : item.href.startsWith('/#') ? (
-                    <button
-                      key={item.name}
-                      onClick={() => handleNavClick(item.href)}
-                      className="text-gray-300 hover:text-white transition-colors duration-200 font-medium py-3 px-2 font-seasons text-sm border-b border-white/10 last:border-b-0 text-left"
-                    >
-                      {item.name}
-                    </button>
                   ) : (
                     <button
                       key={item.name}
-                      onClick={() => handleNavClick(item.href)}
+                      onClick={() => handleNavClick(item.section)}
                       className="text-gray-300 hover:text-white transition-colors duration-200 font-medium py-3 px-2 font-seasons text-sm border-b border-white/10 last:border-b-0 text-left"
                     >
                       {item.name}
@@ -196,7 +168,7 @@ const Header = () => {
                     }}
                   >
                     <ShoppingCart className="h-4 w-4" />
-                    Cart
+                    Cart 🛒
                     {cartItemsCount > 0 && (
                       <span className="bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold ml-1">
                         {cartItemsCount}

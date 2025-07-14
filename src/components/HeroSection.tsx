@@ -57,6 +57,13 @@ const HeroSection = () => {
   tomorrow.setDate(tomorrow.getDate() + 1);
   const tomorrowStr = tomorrow.toISOString().split('T')[0];
 
+  // Function to handle date input clicks - opens the calendar
+  const handleDateInputClick = (inputRef: HTMLInputElement | null) => {
+    if (inputRef) {
+      inputRef.showPicker?.();
+    }
+  };
+
   return (
     <>
       <section id="home" className="relative min-h-screen flex flex-col px-3 sm:px-4 pt-14 sm:pt-16 pb-6 sm:pb-8 bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-hidden">
@@ -91,7 +98,7 @@ const HeroSection = () => {
           {/* Tagline - Top Center */}
           <div className="text-center mt-4 sm:mt-6 mb-8">
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white font-seasons drop-shadow-2xl">
-              Live the Shillong Vibe
+              Live the Shillong Vibe ✨
             </h2>
           </div>
 
@@ -113,40 +120,46 @@ const HeroSection = () => {
               <div className="space-y-1 sm:space-y-2">
                 <label className="text-xs font-bold text-black flex items-center gap-1 sm:gap-2 font-seasons">
                   <Calendar className="h-3 w-3" />
-                  CHECK-IN
+                  CHECK-IN 📅
                 </label>
-                <Input
-                  type="date"
-                  value={checkIn}
-                  min={today}
-                  onChange={(e) => setCheckIn(e.target.value)}
-                  className="bg-white border-gray-300 text-black placeholder-gray-600 h-8 sm:h-10 text-xs sm:text-sm font-semibold rounded-lg"
-                />
+                <div className="relative">
+                  <Input
+                    type="date"
+                    value={checkIn}
+                    min={today}
+                    onChange={(e) => setCheckIn(e.target.value)}
+                    onClick={(e) => handleDateInputClick(e.target as HTMLInputElement)}
+                    className="bg-white border-gray-300 text-black placeholder-gray-600 h-8 sm:h-10 text-xs sm:text-sm font-semibold rounded-lg cursor-pointer"
+                  />
+                </div>
               </div>
               
               <div className="space-y-1 sm:space-y-2">
                 <label className="text-xs font-bold text-black flex items-center gap-1 sm:gap-2 font-seasons">
                   <Calendar className="h-3 w-3" />
-                  CHECK-OUT
+                  CHECK-OUT 📅
                 </label>
-                <Input
-                  type="date"
-                  value={checkOut}
-                  min={checkIn ? (new Date(new Date(checkIn).getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]) : tomorrowStr}
-                  onChange={(e) => setCheckOut(e.target.value)}
-                  className="bg-white border-gray-300 text-black placeholder-gray-600 h-8 sm:h-10 text-xs sm:text-sm font-semibold rounded-lg"
-                />
+                <div className="relative">
+                  <Input
+                    type="date"
+                    value={checkOut}
+                    min={checkIn ? (new Date(new Date(checkIn).getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]) : tomorrowStr}
+                    onChange={(e) => setCheckOut(e.target.value)}
+                    onClick={(e) => handleDateInputClick(e.target as HTMLInputElement)}
+                    className="bg-white border-gray-300 text-black placeholder-gray-600 h-8 sm:h-10 text-xs sm:text-sm font-semibold rounded-lg cursor-pointer"
+                  />
+                </div>
               </div>
               
               <div className="space-y-1 sm:space-y-2">
                 <label className="text-xs font-bold text-black flex items-center gap-1 sm:gap-2 font-seasons">
                   <Users className="h-3 w-3" />
-                  GUESTS
+                  GUESTS 👥
                 </label>
                 <select
                   value={guests}
                   onChange={(e) => setGuests(e.target.value)}
-                  className="w-full px-2 sm:px-3 py-2 h-8 sm:h-10 bg-white border-2 border-gray-300 rounded-lg text-black text-xs sm:text-sm font-semibold"
+                  className="w-full px-2 sm:px-3 py-2 h-8 sm:h-10 bg-white border-2 border-gray-300 rounded-lg text-black text-xs sm:text-sm font-semibold cursor-pointer"
                 >
                   {Array.from({length: 25}, (_, i) => i + 1).map(num => (
                     <option key={num} value={num} className="bg-white text-black font-semibold">{num}</option>
@@ -159,7 +172,7 @@ const HeroSection = () => {
                 className="h-8 sm:h-10 bg-black hover:bg-gray-800 text-white font-bold text-xs sm:text-sm px-4 sm:px-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 rounded-lg font-seasons mt-2 sm:mt-0"
               >
                 <Search className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-                Search
+                Search 🔍
               </Button>
             </div>
           </div>

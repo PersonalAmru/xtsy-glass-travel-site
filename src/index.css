@@ -38,47 +38,32 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
-
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
-
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-
     --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 11.2%;
-
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
-
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
-
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
@@ -100,6 +85,32 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Smooth scrolling for anchor links */
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  /* Ensure no white patches between sections */
+  section {
+    @apply w-full;
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Fix text rendering issues with proper line-height */
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    padding-bottom: 0.1em;
+  }
+
+  /* Better descender handling for text */
+  .text-with-descenders {
+    line-height: 1.3;
+    padding-bottom: 0.15em;
   }
 }
 
@@ -137,6 +148,13 @@
   
   .oneplus-button {
     @apply bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300;
+  }
+
+  /* Full bleed sections */
+  .full-bleed {
+    @apply w-full;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
   }
 }
 
@@ -176,6 +194,26 @@
   input, select, textarea {
     @apply text-base; /* Prevents zoom on iOS */
   }
+
+  /* Compact mobile sections */
+  section {
+    @apply py-12;
+  }
+
+  /* Better mobile typography */
+  h1 { @apply text-2xl; }
+  h2 { @apply text-xl; }
+  h3 { @apply text-lg; }
+  
+  /* Mobile grid improvements */
+  .mobile-grid-responsive {
+    @apply grid-cols-1 gap-3;
+  }
+
+  /* One-handed friendly positioning */
+  .mobile-bottom-action {
+    @apply fixed bottom-6 left-4 right-4 z-50;
+  }
 }
 
 @media (min-width: 641px) and (max-width: 1024px) {
@@ -201,6 +239,16 @@
   .tablet-text {
     @apply leading-relaxed;
   }
+
+  /* Tablet section spacing */
+  section {
+    @apply py-16;
+  }
+
+  /* Tablet typography */
+  h1 { @apply text-3xl; }
+  h2 { @apply text-2xl; }
+  h3 { @apply text-xl; }
 }
 
 @media (min-width: 1025px) {
@@ -215,6 +263,11 @@
   
   .desktop-button {
     @apply rounded-lg py-4 px-8 text-lg font-semibold;
+  }
+
+  /* Desktop section spacing */
+  section {
+    @apply py-20;
   }
 }
 
@@ -232,11 +285,6 @@
 
 .animate-fade-in-up {
   animation: fadeInUp 0.6s ease-out forwards;
-}
-
-/* Better scroll behavior */
-html {
-  scroll-behavior: smooth;
 }
 
 /* Mobile viewport handling */
@@ -270,4 +318,47 @@ html {
 /* Button responsive sizing */
 .button-responsive {
   @apply h-8 sm:h-10 md:h-12 px-3 sm:px-4 md:px-6 text-xs sm:text-sm md:text-base;
+}
+
+/* Horizontal scroll improvements */
+.horizontal-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Emoji support */
+.emoji-support {
+  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+}
+
+/* Better touch targets */
+.touch-target {
+  @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+}
+
+/* Compact design elements */
+.compact-spacing {
+  @apply space-y-2 sm:space-y-3 md:space-y-4;
+}
+
+.compact-padding {
+  @apply p-2 sm:p-3 md:p-4;
+}
+
+/* Seamless section transitions */
+.seamless-section {
+  @apply w-full min-h-0;
+  margin: 0;
+  border: none;
+}
+
+/* Responsive text that never overflows */
+.safe-text {
+  word-break: break-word;
+  hyphens: auto;
+  overflow-wrap: break-word;
 }
