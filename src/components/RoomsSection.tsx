@@ -220,7 +220,8 @@ const RoomsSection = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>
+        {`
         .scrollbar-hide {
           -ms-overflow-style: none;
           scrollbar-width: none;
@@ -228,7 +229,8 @@ const RoomsSection = () => {
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
         }
-      `}</style>
+        `}
+      </style>
     </section>
   );
 };

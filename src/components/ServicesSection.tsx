@@ -1,5 +1,5 @@
 
-import { Sofa, Clock, ShoppingBag, Shirt, Wifi, Car, Coffee, Shield, Users, Gamepad2, Utensils, TreePine, Flame, Info, Eye, Droplets, CreditCard, Tv, Dumbbell, Zap, Parking } from "lucide-react";
+import { Sofa, Clock, ShoppingBag, Shirt, Wifi, Car, Coffee, Shield, Users, Gamepad2, Utensils, TreePine, Flame, Info, Eye, Droplets, CreditCard, Tv, Dumbbell, Zap } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const ServicesSection = () => {
@@ -49,7 +49,7 @@ const ServicesSection = () => {
     { icon: Dumbbell, name: "In-house Activities", emoji: "🏋️" },
     { icon: Zap, name: "UPI Payment", emoji: "⚡" },
     { icon: Droplets, name: "Water Dispenser", emoji: "💧" },
-    { icon: Parking, name: "Public Parking", emoji: "🅿️" }
+    { icon: Car, name: "Public Parking", emoji: "🅿️" }
   ];
 
   return (
