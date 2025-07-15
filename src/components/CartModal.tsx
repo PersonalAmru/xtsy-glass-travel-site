@@ -133,21 +133,30 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
     onClose();
   };
 
-  // Updated promo code logic - FIXED
+  // Updated promo code logic for XTSY-DEAL
   const applyCoupon = () => {
     if (!bookingData) return;
 
-    if (couponCode.toUpperCase() === "XTSY-BASH") {
-      // Calculate total beds for hostel rooms
+    if (couponCode.toUpperCase() === "XTSY-DEAL") {
+      // Calculate total beds for hostel rooms (dorm type)
       const totalHostelBeds = bookingData.items
         .filter(item => item.roomType === 'dorm')
         .reduce((total, item) => total + item.quantity, 0);
 
-      // Check if XTSY-BASH is applicable: min 4 beds AND min 2 nights
-      const hasMinBeds = totalHostelBeds >= 4;
-      const hasMinNights = bookingData.nights >= 2;
+      // Check dates for XTSY-DEAL: same day or within 7 days
+      const checkInDate = new Date(bookingData.checkIn);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      checkInDate.setHours(0, 0, 0, 0);
+      
+      const diffTime = checkInDate.getTime() - today.getTime();
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      const isValidDate = diffDays >= 0 && diffDays <= 7; // Same day (0) to 7 days
 
-      if (hasMinBeds && hasMinNights) {
+      // Check if XTSY-DEAL is applicable: min 4 beds AND valid booking date
+      const hasMinBeds = totalHostelBeds >= 4;
+
+      if (hasMinBeds && isValidDate) {
         const { totalAmount } = calculateTotals();
         const discount = Math.round(totalAmount * 0.1); // 10% discount
         
@@ -155,7 +164,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
           ...bookingData,
           couponApplied: true,
           couponDiscount: discount,
-          couponCode: 'XTSY-BASH'
+          couponCode: 'XTSY-DEAL'
         };
         
         setBookingData(updatedData);
@@ -167,13 +176,13 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
           description: `₹${discount} discount applied successfully!`,
         });
       } else {
-        let errorMessage = "XTSY-BASH requires ";
-        if (!hasMinBeds && !hasMinNights) {
-          errorMessage += "minimum 4 beds and 2 nights";
+        let errorMessage = "XTSY-DEAL requires ";
+        if (!hasMinBeds && !isValidDate) {
+          errorMessage += "minimum 4 beds from XTSY Travellers Hostel and booking for same day or within 7 days";
         } else if (!hasMinBeds) {
           errorMessage += "minimum 4 beds from XTSY Travellers Hostel";
         } else {
-          errorMessage += "minimum 2 nights";
+          errorMessage += "booking for same day or within 7 days from today";
         }
         
         toast({
@@ -355,7 +364,13 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
             </p>
             <div className="flex gap-3 mt-6">
               <Button
-                onClick={applyLastMinDeal}
+                onClick={() => {
+                  applyLastMinDeal();
+                  // Navigate to booking summary after applying deal
+                  setTimeout(() => {
+                    setShowGuestDetails(true);
+                  }, 500);
+                }}
                 className="flex-1 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold"
               >
                 Apply & Continue
@@ -467,13 +482,13 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                         </Button>
                       </div>
                       <p className="text-orange-600 text-xs">
-                        Use "XTSY-BASH" for min 4 beds from XTSY Travellers Hostel and min 2 nights
+                        Use "XTSY-DEAL" for min 4 beds from XTSY Travellers Hostel (same day or within 7 days)
                       </p>
                     </div>
                   ) : (
                     <div className="flex items-center justify-between bg-green-100 rounded-lg p-3 border border-green-300">
                       <div>
-                        <span className="text-green-800 font-medium text-sm">{bookingData.couponCode || 'XTSY-BASH'} Applied!</span>
+                        <span className="text-green-800 font-medium text-sm">{bookingData.couponCode || 'XTSY-DEAL'} Applied!</span>
                         <p className="text-green-700 text-xs">₹{discountAmount} discount</p>
                       </div>
                       <Button 

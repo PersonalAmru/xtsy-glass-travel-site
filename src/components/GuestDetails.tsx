@@ -130,36 +130,74 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
       }
 
       // Initiate Razorpay payment
-      const options = {
-        key: "rzp_live_1234567890", // Replace with actual Razorpay key
-        amount: Math.round(totalAmount * 0.21), // 21% advance payment in paise
-        currency: "INR",
-        name: "XTSY Travellers Hostel",
-        description: `Booking ${booking.booking_id}`,
-        order_id: booking.booking_id,
-        handler: async (response: any) => {
-          // Payment successful - will be verified via webhook/SMS
+      if (!window.Razorpay) {
+        // Load Razorpay script if not loaded
+        const script = document.createElement('script');
+        script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+        script.onload = () => initiateRazorpay();
+        script.onerror = () => {
           toast({
-            title: "Payment Initiated!",
-            description: "Your payment is being processed. You'll receive confirmation shortly.",
+            title: "Payment Error",
+            description: "Failed to load payment gateway. Please check your internet connection.",
+            variant: "destructive"
           });
-          
-          // Clear cart and close modal
-          localStorage.removeItem('xtsy_booking_cart');
-          onClose();
-        },
-        prefill: {
-          name: formData.guestName,
-          email: formData.email,
-          contact: formData.whatsappNumber
-        },
-        theme: {
-          color: "#f97316"
-        }
-      };
+          setIsSubmitting(false);
+        };
+        document.head.appendChild(script);
+      } else {
+        initiateRazorpay();
+      }
 
-      const rzp = new (window as any).Razorpay(options);
-      rzp.open();
+      function initiateRazorpay() {
+        const options = {
+          key: "rzp_test_1234567890", // Test key - replace with actual key
+          amount: Math.round(totalAmount * 0.21 * 100), // 21% advance payment in paise
+          currency: "INR",
+          name: "XTSY Travellers Hostel",
+          description: `Booking ${booking.booking_id}`,
+          order_id: booking.booking_id,
+          handler: async (response: any) => {
+            try {
+              // Payment successful - will be verified via webhook/SMS
+              toast({
+                title: "Payment Successful!",
+                description: "Your payment has been processed. You'll receive confirmation shortly.",
+              });
+              
+              // Clear cart and close modal
+              localStorage.removeItem('xtsy_booking_cart');
+              onClose();
+            } catch (error) {
+              console.error('Payment processing error:', error);
+              toast({
+                title: "Payment Processing Error",
+                description: "Payment completed but confirmation failed. Contact support.",
+                variant: "destructive"
+              });
+            }
+          },
+          prefill: {
+            name: formData.guestName,
+            email: formData.email,
+            contact: formData.whatsappNumber
+          },
+          theme: {
+            color: "#f97316"
+          },
+          modal: {
+            ondismiss: () => {
+              toast({
+                title: "Payment Cancelled",
+                description: "You can complete the payment later from your booking details.",
+              });
+              setIsSubmitting(false);
+            }
+          }
+        };
+
+        const rzp = new (window as any).Razorpay(options);
+        rzp.open();
+      }
 
     } catch (error: any) {
       toast({

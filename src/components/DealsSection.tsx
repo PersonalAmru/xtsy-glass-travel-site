@@ -11,9 +11,9 @@ const DealsSection = () => {
     {
       id: "same-day-discount",
       icon: Tag,
-      title: "XTSY-BASH Same Day Discount",
-      description: "10% off for groups of 4+ booking on the same day",
-      details: "Get instant 10% discount on your booking when you book with us on the same day! This exclusive offer is available for groups of 4 or more guests. Simply use the coupon code 'XTSY-BASH' during booking and enjoy amazing savings on your Shillong adventure. Perfect for spontaneous travelers and last-minute planners!",
+      title: "XTSY-DEAL Same Day Discount",
+      description: "10% off for groups of 4+ beds (same day or within 7 days)",
+      details: "Get instant 10% discount on your booking when you book 4 or more beds from XTSY Travellers Hostel! This exclusive offer is available for bookings made on the same day or with check-in dates within 7 days. Simply use the coupon code 'XTSY-DEAL' during booking and enjoy amazing savings on your Shillong adventure!",
       gradient: "from-green-500 to-emerald-500"
     },
     {
@@ -111,10 +111,10 @@ const DealsSection = () => {
               {activeDeal.id === "same-day-discount" && (
                 <div className="mt-6 p-4 bg-green-100 rounded-xl border-2 border-green-300">
                   <p className="text-green-800 font-bold text-lg font-seasons">
-                    Use Coupon Code: <span className="bg-green-200 px-3 py-1 rounded-lg text-xl">XTSY-BASH</span>
+                    Use Coupon Code: <span className="bg-green-200 px-3 py-1 rounded-lg text-xl">XTSY-DEAL</span>
                   </p>
                   <p className="text-green-700 text-sm mt-2 font-seasons">
-                    Valid for same-day bookings with 4+ guests only
+                    Valid for 4+ beds from XTSY Travellers Hostel (same day or within 7 days)
                   </p>
                 </div>
               )}

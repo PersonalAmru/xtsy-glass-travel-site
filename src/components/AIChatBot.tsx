@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { MessageCircle, X, Send, Bot, User } from "lucide-react";
+import { MessageCircle, X, Send, Bot, User, HelpCircle } from "lucide-react";
 
 interface Message {
   id: string;
@@ -16,36 +16,95 @@ const AIChatBot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      text: "Hi! 👋 I'm XTSY AI Assistant. I can help you with property details, travel information, and booking questions. How can I assist you today?",
+      text: "Hey there! I'm XTSY AI Assistant, your Gen Z travel buddy for Meghalaya! Ask me anything about XTSY hostels, Shillong vibes, check-in/out times, or travel tips. What's up?",
       isBot: true,
       timestamp: new Date()
     }
   ]);
   const [inputMessage, setInputMessage] = useState("");
+  const [showQuickQuestions, setShowQuickQuestions] = useState(true);
 
-  const handleSendMessage = () => {
-    if (!inputMessage.trim()) return;
+  // Common FAQs for Meghalaya travelers
+  const quickQuestions = [
+    "What are XTSY hostel timings?",
+    "Can I get early check-in?",
+    "Best places to visit in Shillong?",
+    "How to reach XTSY from airport?",
+    "What's included in breakfast?",
+    "Is WiFi free at XTSY?",
+    "Weather in Meghalaya?",
+    "Local food recommendations?"
+  ];
+
+  const handleSendMessage = (question?: string) => {
+    const messageText = question || inputMessage.trim();
+    if (!messageText) return;
 
     const userMessage: Message = {
       id: Date.now().toString(),
-      text: inputMessage,
+      text: messageText,
       isBot: false,
       timestamp: new Date()
     };
 
     setMessages(prev => [...prev, userMessage]);
     setInputMessage("");
+    setShowQuickQuestions(false);
 
-    // Simple AI responses for demo
+    // Enhanced AI responses with Gen Z vibes
     setTimeout(() => {
+      let response = getAIResponse(messageText.toLowerCase());
+      
       const botResponse: Message = {
         id: (Date.now() + 1).toString(),
-        text: "Thank you for your question! 🤖 For detailed information about our properties and services, I'd recommend connecting with our team directly. Click the button below to chat with us on WhatsApp for personalized assistance!",
+        text: response,
         isBot: true,
         timestamp: new Date()
       };
       setMessages(prev => [...prev, botResponse]);
     }, 1000);
+  };
+
+  const getAIResponse = (question: string): string => {
+    // XTSY policies and Gen Z responses
+    if (question.includes("timing") || question.includes("check")) {
+      return "Check-in: 2 PM onwards (but we're chill about early arrivals if rooms are ready!) Check-out: 11 AM. Need to leave later? Just ask! We're pretty flexible. No cap! 😎";
+    }
+    
+    if (question.includes("early check") || question.includes("late check")) {
+      return "Absolutely! Early check-in and late check-out are totally doable when we have availability. Just hit us up on WhatsApp or mention it when booking. We're all about making your stay stress-free! ✨";
+    }
+    
+    if (question.includes("places") || question.includes("visit") || question.includes("shillong")) {
+      return "Bruh, Shillong hits different! Must-visits: Police Bazaar for shopping vibes, Elephant Falls for Insta pics, Shillong Peak for sunrise goals, and Don Bosco Museum for culture flex. Ward's Lake is perfect for chill evenings! 🌅📸";
+    }
+    
+    if (question.includes("airport") || question.includes("reach") || question.includes("transport")) {
+      return "From Umroi Airport: Grab a taxi (45 mins, ₹800-1000) or book our airport transfer! From Guwahati Airport: Train to Guwahati, then taxi/bus to Shillong (3-4 hours total). Pro tip: Book advance for better rates! 🚗";
+    }
+    
+    if (question.includes("breakfast") || question.includes("food")) {
+      return "Our breakfast is fire! Traditional Meghalayan dishes, bread, eggs, and tea/coffee. Plus, female travelers get FREE breakfast because we stan supporting our queens! 👑🍳";
+    }
+    
+    if (question.includes("wifi") || question.includes("internet")) {
+      return "Free WiFi that actually works! Stream, post, video call home - we got you covered. Password is usually at reception or just ask staff. Stay connected, bestie! 📱💫";
+    }
+    
+    if (question.includes("weather") || question.includes("climate")) {
+      return "Meghalaya weather is moody but gorgeous! Summers (Mar-Jun): 15-25°C, perfect vibes. Monsoon (Jun-Sep): Heavy rains but stunning waterfalls. Winter (Oct-Feb): 4-15°C, pack warm! Always carry a jacket fr! 🌦️";
+    }
+    
+    if (question.includes("food") || question.includes("eat") || question.includes("restaurant")) {
+      return "Local food scene is unmatched! Try jadoh (rice dish), dohneiiong (pork curry), and tungrymbai (fermented soybean). Cafes: Café Shillong, ML05 Café for coffee dates, and City Hut Family Dhaba for authentic vibes! 🍛☕";
+    }
+    
+    if (question.includes("price") || question.includes("cost") || question.includes("rate")) {
+      return "We keep it budget-friendly! Dorm beds from ₹600/night, private rooms from ₹2500/night. Check our deals page for discounts - XTSY-DEAL gives 10% off for groups of 4+! Value for money, no scam! 💰";
+    }
+    
+    // Default response
+    return "That's a great question! For the most up-to-date info and personalized help, our team is always ready to assist. Hit up our WhatsApp for instant replies - we're basically online 24/7! 🤙✨";
   };
 
   const handleWhatsAppConnect = () => {
@@ -115,6 +174,29 @@ const AIChatBot = () => {
                 )}
               </div>
             ))}
+            
+            {/* Quick Questions */}
+            {showQuickQuestions && (
+              <div className="space-y-2">
+                <div className="text-xs text-gray-500 flex items-center gap-1">
+                  <HelpCircle className="h-3 w-3" />
+                  Quick questions:
+                </div>
+                <div className="grid grid-cols-1 gap-1">
+                  {quickQuestions.slice(0, 4).map((q, index) => (
+                    <Button
+                      key={index}
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handleSendMessage(q)}
+                      className="text-xs h-8 justify-start bg-white hover:bg-blue-50 border-blue-200 text-blue-600"
+                    >
+                      {q}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* WhatsApp Connect Button */}
@@ -132,12 +214,12 @@ const AIChatBot = () => {
             <Input
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
-              placeholder="Type your message..."
+              placeholder="Ask me anything about XTSY or Meghalaya..."
               className="flex-1 text-sm"
               onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
             />
             <Button
-              onClick={handleSendMessage}
+              onClick={() => handleSendMessage()}
               size="sm"
               className="bg-blue-500 hover:bg-blue-600 text-white"
             >
