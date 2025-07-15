@@ -223,9 +223,9 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className="w-full h-full max-w-none max-h-none md:max-w-2xl lg:max-w-3xl md:max-h-[90vh] md:h-auto bg-white border-0 p-0 overflow-hidden">
-        <div className="flex flex-col h-full">
-          {/* Header */}
+      <DialogContent className="w-full h-full max-w-none max-h-none md:max-w-2xl lg:max-w-3xl md:max-h-[95vh] md:h-auto bg-white border-0 p-0 overflow-hidden">
+        <div className="flex flex-col h-full max-h-[100vh] md:max-h-[95vh]">
+          {/* Header - Fixed */}
           <div className="flex-shrink-0 p-4 md:p-6 border-b bg-gradient-to-r from-orange-50 to-red-50">
             <div className="flex items-center gap-3 mb-2">
               <Button
@@ -276,160 +276,162 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
             </div>
           </div>
 
-          {/* Form Content - FIXED SCROLLING */}
-          <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6">
-            {/* Primary Guest Info */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                <User className="h-5 w-5 text-orange-500" />
-                Primary Guest Information
-              </h3>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="guestName" className="text-sm font-medium text-gray-700">
-                    Full Name *
-                  </Label>
-                  <Input
-                    id="guestName"
-                    value={formData.guestName}
-                    onChange={(e) => handleInputChange('guestName', e.target.value)}
-                    placeholder="Enter your full name"
-                    className="mt-1"
-                  />
-                </div>
-                
-                <div>
-                  <Label htmlFor="email" className="text-sm font-medium text-gray-700">
-                    Email Address *
-                  </Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => handleInputChange('email', e.target.value)}
-                    placeholder="your@email.com"
-                    className="mt-1"
-                  />
-                </div>
-                
-                <div>
-                  <Label htmlFor="whatsappNumber" className="text-sm font-medium text-gray-700">
-                    WhatsApp Number *
-                  </Label>
-                  <Input
-                    id="whatsappNumber"
-                    value={formData.whatsappNumber}
-                    onChange={(e) => handleInputChange('whatsappNumber', e.target.value)}
-                    placeholder="+91 9876543210"
-                    className="mt-1"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Address Information */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                <MapPin className="h-5 w-5 text-orange-500" />
-                Address Information
-              </h3>
-              
+          {/* Scrollable Form Content */}
+          <div className="flex-1 overflow-y-auto min-h-0">
+            <div className="p-4 md:p-6 space-y-6">
+              {/* Primary Guest Info */}
               <div className="space-y-4">
-                <div>
-                  <Label htmlFor="address" className="text-sm font-medium text-gray-700">
-                    Full Address
-                  </Label>
-                  <Input
-                    id="address"
-                    value={formData.address}
-                    onChange={(e) => handleInputChange('address', e.target.value)}
-                    placeholder="House No, Street, Area"
-                    className="mt-1"
-                  />
-                </div>
+                <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                  <User className="h-5 w-5 text-orange-500" />
+                  Primary Guest Information
+                </h3>
                 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="city" className="text-sm font-medium text-gray-700">
-                      City
+                    <Label htmlFor="guestName" className="text-sm font-medium text-gray-700">
+                      Full Name *
                     </Label>
                     <Input
-                      id="city"
-                      value={formData.city}
-                      onChange={(e) => handleInputChange('city', e.target.value)}
-                      placeholder="City"
+                      id="guestName"
+                      value={formData.guestName}
+                      onChange={(e) => handleInputChange('guestName', e.target.value)}
+                      placeholder="Enter your full name"
                       className="mt-1"
                     />
                   </div>
                   
                   <div>
-                    <Label htmlFor="state" className="text-sm font-medium text-gray-700">
-                      State
+                    <Label htmlFor="email" className="text-sm font-medium text-gray-700">
+                      Email Address *
                     </Label>
                     <Input
-                      id="state"
-                      value={formData.state}
-                      onChange={(e) => handleInputChange('state', e.target.value)}
-                      placeholder="State"
+                      id="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => handleInputChange('email', e.target.value)}
+                      placeholder="your@email.com"
                       className="mt-1"
                     />
                   </div>
                   
                   <div>
-                    <Label htmlFor="pincode" className="text-sm font-medium text-gray-700">
-                      Pincode
+                    <Label htmlFor="whatsappNumber" className="text-sm font-medium text-gray-700">
+                      WhatsApp Number *
                     </Label>
                     <Input
-                      id="pincode"
-                      value={formData.pincode}
-                      onChange={(e) => handleInputChange('pincode', e.target.value)}
-                      placeholder="123456"
+                      id="whatsappNumber"
+                      value={formData.whatsappNumber}
+                      onChange={(e) => handleInputChange('whatsappNumber', e.target.value)}
+                      placeholder="+91 9876543210"
                       className="mt-1"
                     />
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Emergency Contact */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                <AlertTriangle className="h-5 w-5 text-orange-500" />
-                Emergency Contact
-              </h3>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="emergencyContact" className="text-sm font-medium text-gray-700">
-                    Emergency Contact Number
-                  </Label>
-                  <Input
-                    id="emergencyContact"
-                    value={formData.emergencyContact}
-                    onChange={(e) => handleInputChange('emergencyContact', e.target.value)}
-                    placeholder="+91 9876543210"
-                    className="mt-1"
-                  />
-                </div>
+              {/* Address Information */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                  <MapPin className="h-5 w-5 text-orange-500" />
+                  Address Information
+                </h3>
                 
-                <div>
-                  <Label htmlFor="emergencyRelation" className="text-sm font-medium text-gray-700">
-                    Relationship
-                  </Label>
-                  <Input
-                    id="emergencyRelation"
-                    value={formData.emergencyRelation}
-                    onChange={(e) => handleInputChange('emergencyRelation', e.target.value)}
-                    placeholder="e.g., Father, Mother, Friend"
-                    className="mt-1"
-                  />
+                <div className="space-y-4">
+                  <div>
+                    <Label htmlFor="address" className="text-sm font-medium text-gray-700">
+                      Full Address
+                    </Label>
+                    <Input
+                      id="address"
+                      value={formData.address}
+                      onChange={(e) => handleInputChange('address', e.target.value)}
+                      placeholder="House No, Street, Area"
+                      className="mt-1"
+                    />
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                      <Label htmlFor="city" className="text-sm font-medium text-gray-700">
+                        City
+                      </Label>
+                      <Input
+                        id="city"
+                        value={formData.city}
+                        onChange={(e) => handleInputChange('city', e.target.value)}
+                        placeholder="City"
+                        className="mt-1"
+                      />
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="state" className="text-sm font-medium text-gray-700">
+                        State
+                      </Label>
+                      <Input
+                        id="state"
+                        value={formData.state}
+                        onChange={(e) => handleInputChange('state', e.target.value)}
+                        placeholder="State"
+                        className="mt-1"
+                      />
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="pincode" className="text-sm font-medium text-gray-700">
+                        Pincode
+                      </Label>
+                      <Input
+                        id="pincode"
+                        value={formData.pincode}
+                        onChange={(e) => handleInputChange('pincode', e.target.value)}
+                        placeholder="123456"
+                        className="mt-1"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Emergency Contact */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                  <AlertTriangle className="h-5 w-5 text-orange-500" />
+                  Emergency Contact
+                </h3>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="emergencyContact" className="text-sm font-medium text-gray-700">
+                      Emergency Contact Number
+                    </Label>
+                    <Input
+                      id="emergencyContact"
+                      value={formData.emergencyContact}
+                      onChange={(e) => handleInputChange('emergencyContact', e.target.value)}
+                      placeholder="+91 9876543210"
+                      className="mt-1"
+                    />
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="emergencyRelation" className="text-sm font-medium text-gray-700">
+                      Relationship
+                    </Label>
+                    <Input
+                      id="emergencyRelation"
+                      value={formData.emergencyRelation}
+                      onChange={(e) => handleInputChange('emergencyRelation', e.target.value)}
+                      placeholder="e.g., Father, Mother, Friend"
+                      className="mt-1"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Footer */}
+          {/* Footer - Fixed */}
           <div className="flex-shrink-0 p-4 md:p-6 border-t bg-gray-50">
             <Button
               onClick={handleSubmit}
