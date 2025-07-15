@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -134,35 +133,21 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
     onClose();
   };
 
-  // Updated promo code logic
+  // Updated promo code logic - FIXED
   const applyCoupon = () => {
     if (!bookingData) return;
 
     if (couponCode.toUpperCase() === "XTSY-BASH") {
-      // Check if XTSY-BASH is applicable
-      const hasHostelRooms = bookingData.items.some(item => 
-        item.roomType === 'dorm'
-      );
-      const hasLuxuryRooms = bookingData.items.some(item => 
-        item.roomType === 'luxury'
-      );
+      // Calculate total beds for hostel rooms
+      const totalHostelBeds = bookingData.items
+        .filter(item => item.roomType === 'dorm')
+        .reduce((total, item) => total + item.quantity, 0);
 
-      let isApplicable = false;
-      let errorMessage = "";
+      // Check if XTSY-BASH is applicable: min 4 beds AND min 2 nights
+      const hasMinBeds = totalHostelBeds >= 4;
+      const hasMinNights = bookingData.nights >= 2;
 
-      if (hasHostelRooms && bookingData.guests >= 4) {
-        isApplicable = true;
-      } else if (hasLuxuryRooms && bookingData.nights >= 2) {
-        isApplicable = true;
-      } else if (hasHostelRooms && bookingData.guests < 4) {
-        errorMessage = "XTSY-BASH requires minimum 4 guests for hostel bookings";
-      } else if (hasLuxuryRooms && bookingData.nights < 2) {
-        errorMessage = "XTSY-BASH requires minimum 2 nights for luxury bookings";
-      } else {
-        errorMessage = "XTSY-BASH is not applicable for this booking";
-      }
-
-      if (isApplicable) {
+      if (hasMinBeds && hasMinNights) {
         const { totalAmount } = calculateTotals();
         const discount = Math.round(totalAmount * 0.1); // 10% discount
         
@@ -182,6 +167,15 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
           description: `₹${discount} discount applied successfully!`,
         });
       } else {
+        let errorMessage = "XTSY-BASH requires ";
+        if (!hasMinBeds && !hasMinNights) {
+          errorMessage += "minimum 4 beds and 2 nights";
+        } else if (!hasMinBeds) {
+          errorMessage += "minimum 4 beds from XTSY Travellers Hostel";
+        } else {
+          errorMessage += "minimum 2 nights";
+        }
+        
         toast({
           title: "Coupon Invalid",
           description: errorMessage,
@@ -473,7 +467,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                         </Button>
                       </div>
                       <p className="text-orange-600 text-xs">
-                        Use "XTSY-BASH" for eligible bookings (hostel: min 4 guests, luxury: min 2 nights)
+                        Use "XTSY-BASH" for min 4 beds from XTSY Travellers Hostel and min 2 nights
                       </p>
                     </div>
                   ) : (
