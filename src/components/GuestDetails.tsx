@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { ArrowLeft, User, Mail, Phone, MapPin, AlertTriangle, Calendar, Users } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import SecurePaymentHandler from "./SecurePaymentHandler";
 
 interface GuestDetailsProps {
   isOpen: boolean;
@@ -34,31 +35,56 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
   });
   const [showLastMinDeal, setShowLastMinDeal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [bookingId, setBookingId] = useState<string>("");
   const { toast } = useToast();
 
-  // Check if booking is within 3 days for LASTMIN-DEAL
+  // Check if booking is within 7 days for XTSY-DEAL
   const isUrgentBooking = () => {
     const checkInDate = new Date(bookingData.checkIn);
     const today = new Date();
     const diffTime = checkInDate.getTime() - today.getTime();
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays <= 3 && diffDays >= 0;
+    return diffDays <= 7 && diffDays >= 0;
+  };
+
+  // Validate email format
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]+$/;
+    return emailRegex.test(email);
+  };
+
+  // Validate phone number
+  const validatePhone = (phone: string) => {
+    const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+    return phoneRegex.test(phone.replace(/\s/g, ''));
+  };
+
+  // Sanitize input to prevent XSS
+  const sanitizeInput = (input: string) => {
+    return input.trim().replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
   };
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    const sanitizedValue = sanitizeInput(value);
+    setFormData(prev => ({ ...prev, [field]: sanitizedValue }));
   };
 
   const validateForm = () => {
     const required = ['guestName', 'email', 'whatsappNumber'];
-    return required.every(field => formData[field as keyof typeof formData].trim() !== '');
+    const hasRequiredFields = required.every(field => formData[field as keyof typeof formData].trim() !== '');
+    
+    if (!hasRequiredFields) return false;
+    if (!validateEmail(formData.email)) return false;
+    if (!validatePhone(formData.whatsappNumber)) return false;
+    
+    return true;
   };
 
   const handleSubmit = async () => {
     if (!validateForm()) {
       toast({
-        title: "Missing Information",
-        description: "Please fill in all required fields",
+        title: "Invalid Information",
+        description: "Please check your email and phone number format",
         variant: "destructive"
       });
       return;
@@ -75,31 +101,45 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
 
       const cart = JSON.parse(cartData);
       
-      // Calculate totals
+      // Calculate totals with enhanced validation
       let subtotal = 0;
       cart.items.forEach((item: any) => {
         const nights = item.nights || cart.nights || 1;
-        if (item.roomType === 'dorm') {
-          subtotal += item.price * item.quantity * nights;
-        } else {
-          subtotal += item.price * item.quantity * nights;
+        const itemPrice = Number(item.price) || 0;
+        const quantity = Number(item.quantity) || 0;
+        
+        if (itemPrice <= 0 || quantity <= 0) {
+          throw new Error('Invalid booking data detected');
         }
+        
+        subtotal += itemPrice * quantity * nights;
       });
 
-      // Apply LASTMIN-DEAL if urgent booking
+      // Apply XTSY-DEAL if urgent booking and 4+ beds from XTSY Travellers Hostel
       let discountAmount = cart.couponDiscount || 0;
       if (isUrgentBooking() && !cart.couponApplied) {
-        discountAmount = Math.round(subtotal * 0.15); // 15% discount
+        const xtsyTravellersItems = cart.items.filter((item: any) => 
+          item.hostelName === 'XTSY Travellers Hostel'
+        );
+        const totalBeds = xtsyTravellersItems.reduce((sum: number, item: any) => sum + (item.quantity || 0), 0);
+        
+        if (totalBeds >= 4) {
+          discountAmount = Math.round(subtotal * 0.15); // 15% discount
+        }
       }
 
       const gstAmount = Math.round(subtotal * 0.18); // 18% GST
       const totalAmount = subtotal + gstAmount - discountAmount;
 
-      // Create booking record with correct field names from database schema
+      // Validate amounts
+      if (totalAmount <= 0 || subtotal <= 0) {
+        throw new Error('Invalid booking amounts calculated');
+      }
+
+      // Create booking record with enhanced security
       const { data: booking, error: bookingError } = await supabase
         .from('bookings')
         .insert({
-          booking_id: `TEMP-${Date.now()}`, // Temporary ID, will be replaced by trigger
           guest_name: formData.guestName,
           email: formData.email,
           whatsapp_number: formData.whatsappNumber,
@@ -118,7 +158,7 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
           gst_amount: gstAmount,
           discount_amount: discountAmount,
           total_amount: totalAmount,
-          promo_code: isUrgentBooking() && !cart.couponApplied ? 'LASTMIN-DEAL' : cart.couponCode,
+          promo_code: isUrgentBooking() && !cart.couponApplied ? 'XTSY-DEAL' : cart.couponCode,
           promo_applied: discountAmount > 0,
           booking_status: 'pending'
         })
@@ -129,77 +169,30 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
         throw bookingError;
       }
 
-      // Initiate Razorpay payment
-      if (!window.Razorpay) {
-        // Load Razorpay script if not loaded
-        const script = document.createElement('script');
-        script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-        script.onload = () => initiateRazorpay();
-        script.onerror = () => {
-          toast({
-            title: "Payment Error",
-            description: "Failed to load payment gateway. Please check your internet connection.",
-            variant: "destructive"
-          });
-          setIsSubmitting(false);
-        };
-        document.head.appendChild(script);
-      } else {
-        initiateRazorpay();
-      }
+      setBookingId(booking.booking_id);
 
-      function initiateRazorpay() {
-        const options = {
-          key: "rzp_test_1234567890", // Test key - replace with actual key
-          amount: Math.round(totalAmount * 0.21 * 100), // 21% advance payment in paise
-          currency: "INR",
-          name: "XTSY Travellers Hostel",
-          description: `Booking ${booking.booking_id}`,
-          order_id: booking.booking_id,
-          handler: async (response: any) => {
-            try {
-              // Payment successful - will be verified via webhook/SMS
-              toast({
-                title: "Payment Successful!",
-                description: "Your payment has been processed. You'll receive confirmation shortly.",
-              });
-              
-              // Clear cart and close modal
-              localStorage.removeItem('xtsy_booking_cart');
-              onClose();
-            } catch (error) {
-              console.error('Payment processing error:', error);
-              toast({
-                title: "Payment Processing Error",
-                description: "Payment completed but confirmation failed. Contact support.",
-                variant: "destructive"
-              });
-            }
-          },
-          prefill: {
-            name: formData.guestName,
-            email: formData.email,
-            contact: formData.whatsappNumber
-          },
-          theme: {
-            color: "#f97316"
-          },
-          modal: {
-            ondismiss: () => {
-              toast({
-                title: "Payment Cancelled",
-                description: "You can complete the payment later from your booking details.",
-              });
-              setIsSubmitting(false);
-            }
-          }
-        };
+      // Use secure payment handler
+      const paymentHandler = SecurePaymentHandler({
+        bookingData: {
+          totalAmount: totalAmount,
+          guestName: formData.guestName,
+          email: formData.email,
+          whatsappNumber: formData.whatsappNumber,
+          bookingId: booking.booking_id
+        },
+        onSuccess: () => {
+          localStorage.removeItem('xtsy_booking_cart');
+          onClose();
+        },
+        onError: (error) => {
+          console.error('Payment error:', error);
+        }
+      });
 
-        const rzp = new (window as any).Razorpay(options);
-        rzp.open();
-      }
+      paymentHandler.initiateSecurePayment();
 
     } catch (error: any) {
+      console.error('Booking creation error:', error);
       toast({
         title: "Booking Failed",
         description: error.message || "Something went wrong. Please try again.",
@@ -233,13 +226,12 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
               15% OFF Your Booking!
             </h3>
             <p className="text-gray-700 mb-4">
-              Since you're booking within 3 days, get an instant 15% discount on your stay!
+              Since you're booking within 7 days, get an instant 15% discount on your stay!
             </p>
             <div className="flex gap-3 mt-6">
               <Button
                 onClick={() => {
                   setShowLastMinDeal(false);
-                  // Apply discount and continue
                 }}
                 className="flex-1 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold"
               >
@@ -335,6 +327,7 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
                       onChange={(e) => handleInputChange('guestName', e.target.value)}
                       placeholder="Enter your full name"
                       className="mt-1"
+                      maxLength={100}
                     />
                   </div>
                   
@@ -349,6 +342,7 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
                       onChange={(e) => handleInputChange('email', e.target.value)}
                       placeholder="your@email.com"
                       className="mt-1"
+                      maxLength={100}
                     />
                   </div>
                   
@@ -362,6 +356,7 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
                       onChange={(e) => handleInputChange('whatsappNumber', e.target.value)}
                       placeholder="+91 9876543210"
                       className="mt-1"
+                      maxLength={20}
                     />
                   </div>
                 </div>
@@ -385,6 +380,7 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
                       onChange={(e) => handleInputChange('address', e.target.value)}
                       placeholder="House No, Street, Area"
                       className="mt-1"
+                      maxLength={200}
                     />
                   </div>
                   
@@ -399,6 +395,7 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
                         onChange={(e) => handleInputChange('city', e.target.value)}
                         placeholder="City"
                         className="mt-1"
+                        maxLength={50}
                       />
                     </div>
                     
@@ -412,6 +409,7 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
                         onChange={(e) => handleInputChange('state', e.target.value)}
                         placeholder="State"
                         className="mt-1"
+                        maxLength={50}
                       />
                     </div>
                     
@@ -425,6 +423,7 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
                         onChange={(e) => handleInputChange('pincode', e.target.value)}
                         placeholder="123456"
                         className="mt-1"
+                        maxLength={10}
                       />
                     </div>
                   </div>
@@ -449,6 +448,7 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
                       onChange={(e) => handleInputChange('emergencyContact', e.target.value)}
                       placeholder="+91 9876543210"
                       className="mt-1"
+                      maxLength={20}
                     />
                   </div>
                   
@@ -462,6 +462,7 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
                       onChange={(e) => handleInputChange('emergencyRelation', e.target.value)}
                       placeholder="e.g., Father, Mother, Friend"
                       className="mt-1"
+                      maxLength={50}
                     />
                   </div>
                 </div>
