@@ -136,10 +136,14 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
         throw new Error('Invalid booking amounts calculated');
       }
 
-      // Create booking record with enhanced security - let the database generate booking_id
+      // Generate a temporary booking ID for the insert
+      const tempBookingId = 'TEMP-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+
+      // Create booking record - let the database trigger handle the actual booking_id
       const { data: booking, error: bookingError } = await supabase
         .from('bookings')
         .insert({
+          booking_id: tempBookingId, // Temporary ID, will be replaced by trigger
           guest_name: formData.guestName,
           email: formData.email,
           whatsapp_number: formData.whatsappNumber,
@@ -166,6 +170,7 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
         .single();
 
       if (bookingError) {
+        console.error('Booking creation error:', bookingError);
         throw bookingError;
       }
 
