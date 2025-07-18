@@ -136,7 +136,7 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
         throw new Error('Invalid booking amounts calculated');
       }
 
-      // Create booking record with enhanced security
+      // Create booking record with enhanced security - let the database generate booking_id
       const { data: booking, error: bookingError } = await supabase
         .from('bookings')
         .insert({
