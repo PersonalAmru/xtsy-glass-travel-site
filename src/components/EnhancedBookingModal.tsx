@@ -40,30 +40,64 @@ interface BookingData {
 }
 
 const rooms: Room[] = [
+  // XTSY Travellers Hostel Rooms
   {
-    id: "xtsy-travellers-hostel",
-    name: "XTSY Travellers Hostel",
-    price: 800,
-    capacity: 8,
-    description: "Our signature hostel room, perfect for budget travellers",
-    type: 'dorm'
+    id: "4-bed-female-only-dorm",
+    name: "Bed in 4 Bed Female Only Dorm",
+    price: 850,
+    capacity: 4,
+    description: "Female-only dormitory with modern amenities",
+    type: 'hostel'
   },
   {
-    id: "xtsy-luxury",
-    name: "XTSY Luxury Suite",
+    id: "4-bed-mixed-female-dorm",
+    name: "Bed in 4 Bed Mixed/Female Dorm", 
+    price: 800,
+    capacity: 4,
+    description: "Mixed or female dormitory with shared facilities",
+    type: 'hostel'
+  },
+  {
+    id: "6-bed-mixed-female-dorm",
+    name: "Bed in 6 Bed Mixed/Female Dorm",
+    price: 700,
+    capacity: 30,
+    description: "Spacious mixed or female dormitory",
+    type: 'hostel'
+  },
+  {
+    id: "8-bed-mixed-dorm",
+    name: "Bed in 8 Bed Mixed Dorm",
+    price: 600,
+    capacity: 8,
+    description: "Large mixed dormitory for budget travelers",
+    type: 'hostel'
+  },
+  // XTSY Luxury Rooms
+  {
+    id: "king-double-room",
+    name: "King Double Room",
+    price: 3200,
+    capacity: 4,
+    description: "Spacious room with king bed for two guests",
+    type: 'luxury'
+  },
+  {
+    id: "king-triple-room",
+    name: "King Triple Room",
+    price: 4200,
+    capacity: 3,
+    description: "Luxurious room accommodating up to three guests",
+    type: 'luxury'
+  },
+  {
+    id: "signature-270-glass-suite",
+    name: "Signature 270° Glass Suite",
     price: 18000,
     capacity: 2,
-    description: "Experience luxury with panoramic views",
+    description: "Premium suite with 270-degree panoramic views and luxury amenities",
     type: 'luxury'
-  },
-  {
-    id: "xtsy-deluxe-suite",
-    name: "XTSY Deluxe Suite",
-    price: 12000,
-    capacity: 4,
-    description: "Spacious suite with modern amenities",
-    type: 'luxury'
-  },
+  }
 ];
 
 const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingModalProps) => {
@@ -124,24 +158,49 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
       return;
     }
 
-    const cartData = {
-      checkIn: bookingData.checkIn,
-      checkOut: bookingData.checkOut,
+    // Get or generate session ID (same logic as header)
+    let sessionId = localStorage.getItem('current_guest_session');
+    if (!sessionId) {
+      sessionId = `guest_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      localStorage.setItem('current_guest_session', sessionId);
+    }
+
+    // Create cart item in the same format as tour packages
+    const cartItem = {
+      sessionId: sessionId,
+      type: 'room_booking',
+      packageId: selectedRoom.id,
+      packageTitle: selectedRoom.name,
       guests: bookingData.guests,
-      nights: bookingData.nights,
-      items: [{
-        roomId: selectedRoom.id,
-        roomName: selectedRoom.name,
-        price: selectedRoom.price,
-        quantity: bookingData.quantity,
-        guests: bookingData.guests,
-        nights: bookingData.nights,
-        roomType: selectedRoom.type || 'dorm'
-      }],
-      timestamp: new Date().getTime()
+      selectedDate: bookingData.checkIn,
+      duration: bookingData.nights,
+      baseRate: selectedRoom.price,
+      totalAmount: totalAmount,
+      gstAmount: gstAmount,
+      finalTotal: totalAmount,
+      guestDetails: {
+        name: '',
+        email: '',
+        phone: '',
+        emergencyContact: ''
+      },
+      createdAt: new Date().toISOString(),
+      savedForLater: false,
+      checkOut: bookingData.checkOut,
+      quantity: bookingData.quantity,
+      roomType: selectedRoom.type || 'hostel'
     };
 
-    localStorage.setItem('xtsy_booking_cart', JSON.stringify(cartData));
+    // Add to cart using the same storage system as tour packages
+    const existingCart = JSON.parse(localStorage.getItem(`tour_cart_${sessionId}`) || '[]');
+    const updatedCart = [...existingCart, cartItem];
+    localStorage.setItem(`tour_cart_${sessionId}`, JSON.stringify(updatedCart));
+
+    // Trigger storage event for real-time updates
+    window.dispatchEvent(new StorageEvent('storage', {
+      key: `tour_cart_${sessionId}`,
+      newValue: JSON.stringify(updatedCart)
+    }));
 
     toast({
       title: "Added to Cart",

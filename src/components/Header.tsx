@@ -65,8 +65,8 @@ const Header = () => {
               <div className="text-2xl font-bold text-primary">XTSY</div>
             </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
+            {/* Desktop Navigation - All items aligned right */}
+            <nav className="hidden md:flex items-center space-x-8 ml-auto">
               <Link to="/" className="text-gray-700 hover:text-primary transition-colors">
                 Home
               </Link>
@@ -111,30 +111,15 @@ const Header = () => {
                     <UserMenu />
                   </div>
                 ) : (
-                  <div className="flex items-center space-x-2">
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      onClick={() => handleAuthClick('newsletter')}
-                      className="text-green-600 hover:text-green-700"
-                    >
-                      <Users className="h-4 w-4 mr-2" />
-                      Newsletter
-                    </Button>
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      onClick={() => handleAuthClick('signin')}
-                    >
-                      Staff Login
-                    </Button>
-                    <Button 
-                      size="sm"
-                      onClick={() => handleAuthClick('signup')}
-                    >
-                      Staff Signup
-                    </Button>
-                  </div>
+                  <Button 
+                    variant="ghost" 
+                    size="sm"
+                    onClick={() => handleAuthClick('newsletter')}
+                    className="text-green-600 hover:text-green-700"
+                  >
+                    <Users className="h-4 w-4 mr-2" />
+                    Newsletter
+                  </Button>
                 )}
               </div>
             </nav>
@@ -206,28 +191,7 @@ const Header = () => {
                       }}
                     >
                       <Users className="h-4 w-4 mr-2" />
-                      Guest Newsletter
-                    </Button>
-                    <Button 
-                      variant="ghost" 
-                      className="w-full justify-start"
-                      onClick={() => {
-                        handleAuthClick('signin');
-                        setIsMenuOpen(false);
-                      }}
-                    >
-                      <User className="h-4 w-4 mr-2" />
-                      Staff Login
-                    </Button>
-                    <Button 
-                      className="w-full justify-start"
-                      onClick={() => {
-                        handleAuthClick('signup');
-                        setIsMenuOpen(false);
-                      }}
-                    >
-                      <User className="h-4 w-4 mr-2" />
-                      Staff Signup
+                      Newsletter
                     </Button>
                   </div>
                 )}
