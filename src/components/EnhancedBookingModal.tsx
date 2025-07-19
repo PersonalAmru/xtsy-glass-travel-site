@@ -134,7 +134,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
       const checkInDate = new Date(bookingData.checkIn);
       const checkOutDate = new Date(bookingData.checkOut);
       const timeDiff = checkOutDate.getTime() - checkInDate.getTime();
-      const nights = Math.ceil(timeDiff / (1000 * 3600 * 24));
+      const nights = Math.max(1, Math.floor(timeDiff / (1000 * 3600 * 24)));
       setBookingData(prev => ({ ...prev, nights: nights }));
     }
   }, [bookingData.checkIn, bookingData.checkOut]);
