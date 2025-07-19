@@ -34,15 +34,17 @@ const HeroSection = () => {
   return (
     <>
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
-        {/* Background Image with Overlay */}
+        {/* Background Image with Overlay - Ready for Supabase URL */}
+        {/* 
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url('/lovable-uploads/6a7b3dad-87a3-49d9-98fa-919ff7b09dd0.png')",
+            backgroundImage: "url('SUPABASE_IMAGE_URL_HERE')",
           }}
         >
           <div className="absolute inset-0 bg-black/60"></div>
         </div>
+        */}
 
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -53,20 +55,34 @@ const HeroSection = () => {
 
         {/* Main Content */}
         <div className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-          {/* Hero Text */}
+          {/* Hero Text with Floating Languages */}
           <div className="mb-12">
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent animate-fade-in">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-12 bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent animate-fade-in">
               XTSY Travellers Hostel
             </h1>
             
-            {/* Multilingual Hello XTSY in center */}
-            <div className="space-y-4 mb-8">
-              <p className="text-xl sm:text-2xl lg:text-3xl opacity-90 animate-fade-in text-white/80" style={{ animationDelay: '0.3s' }}>
-                Hello XTSY • नमस्ते XTSY • হ্যালো XTSY
-              </p>
-              <p className="text-lg sm:text-xl lg:text-2xl opacity-80 animate-fade-in text-orange-400/70" style={{ animationDelay: '0.6s' }}>
-                Hola XTSY • こんにちは XTSY
-              </p>
+            {/* Single Floating Languages Section */}
+            <div className="relative h-24 flex items-center justify-center">
+              <div className="absolute text-2xl sm:text-3xl lg:text-4xl font-bold text-white animate-pulse">
+                <span className="inline-block animate-fade-in" style={{ animationDelay: '0s' }}>Hello</span>
+                <span className="mx-2 text-orange-400">XTSY</span>
+              </div>
+              <div className="absolute text-2xl sm:text-3xl lg:text-4xl font-bold text-red-400/80 animate-pulse" style={{ animationDelay: '1s', transform: 'translateY(-10px)' }}>
+                <span className="inline-block animate-fade-in" style={{ animationDelay: '1s' }}>नमस्ते</span>
+                <span className="mx-2 text-orange-400">XTSY</span>
+              </div>
+              <div className="absolute text-2xl sm:text-3xl lg:text-4xl font-bold text-yellow-400/80 animate-pulse" style={{ animationDelay: '2s', transform: 'translateY(10px)' }}>
+                <span className="inline-block animate-fade-in" style={{ animationDelay: '2s' }}>Hola</span>
+                <span className="mx-2 text-orange-400">XTSY</span>
+              </div>
+              <div className="absolute text-2xl sm:text-3xl lg:text-4xl font-bold text-pink-400/80 animate-pulse" style={{ animationDelay: '3s', transform: 'translateX(-20px)' }}>
+                <span className="inline-block animate-fade-in" style={{ animationDelay: '3s' }}>こんにちは</span>
+                <span className="mx-2 text-orange-400">XTSY</span>
+              </div>
+              <div className="absolute text-2xl sm:text-3xl lg:text-4xl font-bold text-green-400/80 animate-pulse" style={{ animationDelay: '4s', transform: 'translateX(20px)' }}>
+                <span className="inline-block animate-fade-in" style={{ animationDelay: '4s' }}>হ্যালো</span>
+                <span className="mx-2 text-orange-400">XTSY</span>
+              </div>
             </div>
           </div>
 
