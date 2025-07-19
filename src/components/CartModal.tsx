@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ShoppingCart, Trash2, Tag, X, ArrowLeft, Clock } from "lucide-react";
+import { ShoppingCart, Trash2, Tag, X, ArrowLeft, Clock, Bookmark } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import GuestDetails from "./GuestDetails";
 
@@ -29,10 +29,12 @@ interface BookingData {
   couponApplied?: boolean;
   couponDiscount?: number;
   couponCode?: string;
+  savedForLater?: boolean;
 }
 
 const CartModal = ({ isOpen, onClose }: CartModalProps) => {
   const [bookingData, setBookingData] = useState<BookingData | null>(null);
+  const [savedBookings, setSavedBookings] = useState<BookingData[]>([]);
   const [showGuestDetails, setShowGuestDetails] = useState(false);
   const [couponCode, setCouponCode] = useState("");
   const [couponApplied, setCouponApplied] = useState(false);
@@ -64,6 +66,8 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
   useEffect(() => {
     if (isOpen) {
       const savedData = localStorage.getItem('xtsy_booking_cart');
+      const savedForLaterData = localStorage.getItem('xtsy_saved_bookings');
+      
       if (savedData) {
         const parsedData = JSON.parse(savedData);
         // Ensure backwards compatibility with old cart data
@@ -86,6 +90,10 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
         }
         setBookingData(parsedData);
         setCouponApplied(parsedData.couponApplied || false);
+      }
+      
+      if (savedForLaterData) {
+        setSavedBookings(JSON.parse(savedForLaterData));
       }
     }
   }, [isOpen]);
@@ -222,6 +230,65 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
     });
   };
 
+  const saveForLater = () => {
+    if (bookingData) {
+      const savedData = {
+        ...bookingData,
+        savedForLater: true,
+        timestamp: new Date().getTime()
+      };
+      
+      const existingSaved = JSON.parse(localStorage.getItem('xtsy_saved_bookings') || '[]');
+      const updatedSaved = [...existingSaved, savedData];
+      
+      localStorage.setItem('xtsy_saved_bookings', JSON.stringify(updatedSaved));
+      localStorage.removeItem('xtsy_booking_cart');
+      
+      setSavedBookings(updatedSaved);
+      setBookingData(null);
+      
+      toast({
+        title: "Booking Saved!",
+        description: "Your booking has been saved for later. You can access it anytime.",
+      });
+    }
+    onClose();
+  };
+
+  const moveToCart = (index: number) => {
+    const bookingToMove = savedBookings[index];
+    const updatedSaved = savedBookings.filter((_, i) => i !== index);
+    
+    // Remove savedForLater flag and update timestamp
+    const { savedForLater, ...bookingWithoutFlag } = bookingToMove;
+    const updatedBooking = {
+      ...bookingWithoutFlag,
+      timestamp: new Date().getTime()
+    };
+    
+    localStorage.setItem('xtsy_booking_cart', JSON.stringify(updatedBooking));
+    localStorage.setItem('xtsy_saved_bookings', JSON.stringify(updatedSaved));
+    
+    setSavedBookings(updatedSaved);
+    setBookingData(updatedBooking);
+    
+    toast({
+      title: "Moved to Cart",
+      description: "Booking has been moved back to your cart",
+    });
+  };
+
+  const removeSavedBooking = (index: number) => {
+    const updatedSaved = savedBookings.filter((_, i) => i !== index);
+    setSavedBookings(updatedSaved);
+    localStorage.setItem('xtsy_saved_bookings', JSON.stringify(updatedSaved));
+    
+    toast({
+      title: "Booking Removed",
+      description: "Saved booking has been removed",
+    });
+  };
+
   const clearCart = () => {
     localStorage.removeItem('xtsy_booking_cart');
     setBookingData(null);
@@ -232,22 +299,6 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
       title: "Cart Cleared",
       description: "All items have been removed from your cart",
     });
-  };
-
-  const saveForLater = () => {
-    if (bookingData) {
-      const savedData = {
-        ...bookingData,
-        savedForLater: true,
-        timestamp: new Date().getTime()
-      };
-      localStorage.setItem('xtsy_saved_booking', JSON.stringify(savedData));
-      toast({
-        title: "Booking Saved!",
-        description: "Your booking has been saved for later. You can access it from the cart.",
-      });
-    }
-    onClose();
   };
 
   const proceedToGuestDetails = () => {
@@ -423,6 +474,52 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                 <ShoppingCart className="h-16 w-16 text-gray-400 mx-auto mb-4" />
                 <p className="text-gray-600 text-lg mb-2">Your cart is empty</p>
                 <p className="text-gray-500 text-sm">Add some rooms to get started</p>
+                
+                {/* Show saved bookings if available */}
+                {savedBookings.length > 0 && (
+                  <div className="mt-8 w-full max-w-md">
+                    <h3 className="text-lg font-semibold mb-4 flex items-center justify-center gap-2">
+                      <Bookmark className="h-5 w-5" />
+                      Saved Bookings ({savedBookings.length})
+                    </h3>
+                    <div className="space-y-3">
+                      {savedBookings.map((booking, index) => (
+                        <div key={index} className="bg-gray-50 p-4 rounded-lg border-dashed border-2">
+                          <div className="flex justify-between items-start mb-2">
+                            <div>
+                              <p className="font-medium text-sm">
+                                {formatDate(booking.checkIn)} - {formatDate(booking.checkOut)}
+                              </p>
+                              <p className="text-xs text-gray-500">
+                                {booking.guests} guests, {booking.nights} nights
+                              </p>
+                            </div>
+                            <div className="text-right">
+                              <p className="font-bold text-sm">₹{calculateTotals().grandTotal.toLocaleString()}</p>
+                            </div>
+                          </div>
+                          <div className="flex gap-2">
+                            <Button
+                              size="sm"
+                              onClick={() => moveToCart(index)}
+                              className="flex-1 text-xs h-8"
+                            >
+                              Move to Cart
+                            </Button>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => removeSavedBooking(index)}
+                              className="text-red-600 hover:text-red-700 text-xs h-8"
+                            >
+                              <Trash2 className="h-3 w-3" />
+                            </Button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           ) : (
@@ -577,7 +674,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                     variant="outline"
                     className="flex-1 border-blue-300 text-blue-600 hover:bg-blue-50 flex items-center justify-center gap-2 h-12 text-sm md:text-base"
                   >
-                    <Clock className="h-4 w-4" />
+                    <Bookmark className="h-4 w-4" />
                     Save Later
                   </Button>
                   <Button
