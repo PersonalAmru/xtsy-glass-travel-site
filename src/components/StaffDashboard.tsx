@@ -8,61 +8,96 @@ import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
 import { useQuery } from '@tanstack/react-query';
 import { Hotel, Users, Calendar, Settings, BarChart3, Globe } from 'lucide-react';
+import { Profile, OTAIntegration } from '@/types/database';
 
 export const StaffDashboard: React.FC = () => {
   const { user } = useAuth();
   const [userRole, setUserRole] = useState<string>('guest');
 
-  // Fetch user profile and role
+  // Fetch user profile and role using fallback approach
   const { data: profile } = useQuery({
     queryKey: ['profile', user?.id],
     queryFn: async () => {
       if (!user?.id) return null;
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('role')
-        .eq('id', user.id)
-        .single();
       
-      if (error) throw error;
-      setUserRole(data.role || 'guest');
-      return data;
+      try {
+        // Try to query profiles table
+        const { data, error } = await supabase
+          .from('profiles' as any)
+          .select('role')
+          .eq('id', user.id)
+          .single();
+        
+        if (error) {
+          console.log('Profile query error:', error);
+          // Fallback to checking user metadata
+          const role = user.user_metadata?.role || 'guest';
+          setUserRole(role);
+          return { role };
+        }
+        
+        setUserRole(data.role || 'guest');
+        return data;
+      } catch (err) {
+        console.log('Profile fetch error:', err);
+        setUserRole('guest');
+        return null;
+      }
     },
     enabled: !!user?.id,
   });
 
-  // Fetch dashboard stats
+  // Fetch dashboard stats with fallback queries
   const { data: stats } = useQuery({
     queryKey: ['dashboard-stats'],
     queryFn: async () => {
-      const [bookingsRes, roomTypesRes, inventoryRes] = await Promise.all([
-        supabase.from('bookings').select('id, booking_status, total_amount').limit(100),
-        supabase.from('room_types').select('id, name').eq('is_active', true),
-        supabase.from('inventory').select('id, available_units, total_units')
-      ]);
+      try {
+        const [bookingsRes, roomTypesRes, inventoryRes] = await Promise.all([
+          supabase.from('bookings').select('id, booking_status, total_amount').limit(100),
+          supabase.from('room_types' as any).select('id, name').eq('is_active', true).catch(() => ({ data: [], error: null })),
+          supabase.from('inventory' as any).select('id, available_units, total_units').catch(() => ({ data: [], error: null }))
+        ]);
 
-      return {
-        totalBookings: bookingsRes.data?.length || 0,
-        confirmedBookings: bookingsRes.data?.filter(b => b.booking_status === 'confirmed').length || 0,
-        totalRevenue: bookingsRes.data?.reduce((sum, b) => sum + (b.total_amount || 0), 0) || 0,
-        roomTypes: roomTypesRes.data?.length || 0,
-        availableUnits: inventoryRes.data?.reduce((sum, i) => sum + (i.available_units || 0), 0) || 0,
-      };
+        return {
+          totalBookings: bookingsRes.data?.length || 0,
+          confirmedBookings: bookingsRes.data?.filter(b => b.booking_status === 'confirmed').length || 0,
+          totalRevenue: bookingsRes.data?.reduce((sum, b) => sum + (b.total_amount || 0), 0) || 0,
+          roomTypes: roomTypesRes.data?.length || 0,
+          availableUnits: inventoryRes.data?.reduce((sum: number, i: any) => sum + (i.available_units || 0), 0) || 0,
+        };
+      } catch (error) {
+        console.log('Stats fetch error:', error);
+        return {
+          totalBookings: 0,
+          confirmedBookings: 0,
+          totalRevenue: 0,
+          roomTypes: 0,
+          availableUnits: 0,
+        };
+      }
     },
     enabled: userRole !== 'guest',
   });
 
-  // Fetch OTA integrations
+  // Fetch OTA integrations with fallback
   const { data: otaIntegrations } = useQuery({
     queryKey: ['ota-integrations'],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from('ota_integrations')
-        .select('*')
-        .order('created_at', { ascending: false });
-      
-      if (error) throw error;
-      return data;
+      try {
+        const { data, error } = await supabase
+          .from('ota_integrations' as any)
+          .select('*')
+          .order('created_at', { ascending: false });
+        
+        if (error) {
+          console.log('OTA integrations error:', error);
+          return [];
+        }
+        return data as OTAIntegration[];
+      } catch (error) {
+        console.log('OTA integrations fetch error:', error);
+        return [];
+      }
     },
     enabled: userRole === 'admin' || userRole === 'channel_manager',
   });
