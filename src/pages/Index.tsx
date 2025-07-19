@@ -56,12 +56,7 @@ const Index = () => {
           isOpen={showGuestDetails}
           onClose={handleCloseGuestDetails}
           onBack={handleBackFromGuestDetails}
-          bookingData={{
-            checkIn: currentBooking.checkIn,
-            checkOut: currentBooking.checkOut,
-            guests: currentBooking.guests,
-            nights: currentBooking.nights
-          }}
+          bookingData={currentBooking}
         />
       )}
     </div>

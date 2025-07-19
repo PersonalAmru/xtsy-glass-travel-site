@@ -18,6 +18,19 @@ interface GuestDetailsProps {
     checkOut: string;
     guests: number;
     nights: number;
+    selectedRooms: Array<{
+      id: string;
+      name: string;
+      price: number;
+      type: string;
+      selection: { guests: number; rooms: number };
+    }>;
+    totalAmount: number;
+    gstAmount: number;
+    subtotal: number;
+    discountAmount: number;
+    couponCode: string;
+    couponDiscount: number;
   };
 }
 
@@ -34,22 +47,7 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
     emergencyRelation: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showPaymentModal, setShowPaymentModal] = useState(false);
-  const [bookingId, setBookingId] = useState<string>("");
   const { toast } = useToast();
-
-  // Check if booking is within 7 days or group size <= 4 for full payment
-  const requiresFullPayment = () => {
-    const checkInDate = new Date(bookingData.checkIn);
-    const today = new Date();
-    const diffTime = checkInDate.getTime() - today.getTime();
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    
-    // Full payment required if:
-    // 1. Booking within 7 days, OR
-    // 2. Group size is 4 or less
-    return diffDays <= 7 || bookingData.guests <= 4;
-  };
 
   // Validate email format
   const validateEmail = (email: string) => {
@@ -95,132 +93,72 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
       return;
     }
 
-    setIsSubmitting(true);
-    
-    try {
-      // Get cart data
-      const cartData = localStorage.getItem('xtsy_booking_cart');
-      if (!cartData) {
-        throw new Error('No booking data found');
-      }
-
-      const cart = JSON.parse(cartData);
-      
-      // Calculate totals
-      let subtotal = 0;
-      cart.items.forEach((item: any) => {
-        const nights = item.nights || cart.nights || 1;
-        const itemPrice = Number(item.price) || 0;
-        const quantity = Number(item.quantity) || 0;
-        
-        if (itemPrice <= 0 || quantity <= 0) {
-          throw new Error('Invalid booking data detected');
-        }
-        
-        subtotal += itemPrice * quantity * nights;
+    // Directly redirect to WhatsApp without payment processing
+    const formatDate = (dateStr: string) => {
+      return new Date(dateStr).toLocaleDateString('en-IN', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric'
       });
+    };
 
-      const gstAmount = Math.round(subtotal * 0.18); // 18% GST
-      let totalAmount = subtotal + gstAmount;
+    // Format room details for WhatsApp message
+    const roomDetails = bookingData.selectedRooms.map(room => {
+      const isDorm = room.name.toLowerCase().includes('dorm');
+      const selection = room.selection;
+      const nights = bookingData.nights;
       
-      // Calculate payment amount based on rules
-      let paymentAmount;
-      let paymentType;
-      
-      if (requiresFullPayment()) {
-        paymentAmount = totalAmount;
-        paymentType = 'full';
+      if (isDorm) {
+        return `${room.name}: ${selection.guests} beds × ${nights} nights = ₹${room.price * selection.guests * nights}`;
       } else {
-        paymentAmount = Math.round(totalAmount * 0.21); // 21% advance
-        paymentType = 'advance';
+        return `${room.name}: ${selection.rooms} rooms × ${nights} nights = ₹${room.price * selection.rooms * nights}`;
       }
+    }).join('\n');
 
-      // Validate amounts
-      if (totalAmount <= 0 || subtotal <= 0) {
-        throw new Error('Invalid booking amounts calculated');
-      }
+    const discountText = bookingData.discountAmount > 0 
+      ? `\nDiscount (${bookingData.couponCode}): -₹${bookingData.discountAmount}`
+      : '';
 
-      // Create booking record - let the database auto-generate booking_id
-      const bookingPayload = {
-        email: formData.email,
-        whatsapp_number: formData.whatsappNumber,
-        address: formData.address,
-        city: formData.city,
-        state: formData.state,
-        pincode: formData.pincode,
-        emergency_contact: formData.emergencyContact || null,
-        emergency_relation: formData.emergencyRelation || null,
-        check_in: bookingData.checkIn,
-        check_out: bookingData.checkOut,
-        nights: bookingData.nights,
-        guests: bookingData.guests,
-        room_details: cart.items,
-        subtotal: subtotal,
-        gst_amount: gstAmount,
-        total_amount: totalAmount,
-        booking_status: 'pending' as const,
-        payment_method: 'upi' as const
-      } as any;
+    const whatsappMessage = `🏨 *XTSY Hotel Booking Request*
 
-      // Add guest_name directly to avoid TypeScript issues
-      bookingPayload.guest_name = formData.guestName;
+👤 *Guest Details:*
+Name: ${formData.guestName}
+Email: ${formData.email}
+Phone: ${formData.whatsappNumber}
+Address: ${formData.address}, ${formData.city}, ${formData.state} - ${formData.pincode}
 
-      const { data: booking, error: bookingError } = await supabase
-        .from('bookings')
-        .insert(bookingPayload)
-        .select()
-        .single();
+📅 *Booking Details:*
+Check-in: ${formatDate(bookingData.checkIn)}
+Check-out: ${formatDate(bookingData.checkOut)}
+Total Guests: ${bookingData.guests}
+Number of Nights: ${bookingData.nights}
 
-      if (bookingError) {
-        console.error('Booking creation error:', bookingError);
-        throw bookingError;
-      }
+🏠 *Room Details:*
+${roomDetails}
 
-      setBookingId(booking.booking_id);
-      
-      // Show payment modal with calculated amount
-      setShowPaymentModal(true);
+💰 *Payment Summary:*
+Subtotal: ₹${bookingData.subtotal}${discountText}
+GST (18%): ₹${bookingData.gstAmount}
+*Total Amount: ₹${bookingData.totalAmount}*
 
-    } catch (error: any) {
-      console.error('Booking creation error:', error);
-      toast({
-        title: "Booking Failed",
-        description: error.message || "Something went wrong. Please try again.",
-        variant: "destructive"
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+Please confirm this booking and share payment details.`;
 
-  const handlePaymentModalClose = () => {
-    setShowPaymentModal(false);
-    localStorage.removeItem('xtsy_booking_cart');
+    const whatsappURL = `https://wa.me/918837317070?text=${encodeURIComponent(whatsappMessage)}`;
+    
+    // Open WhatsApp in new tab
+    window.open(whatsappURL, '_blank');
+    
+    // Show success message and close modal
+    toast({
+      title: "Redirecting to WhatsApp",
+      description: "Your booking details have been prepared. Complete the booking via WhatsApp.",
+    });
+    
+    // Clear booking data and close modal
+    localStorage.removeItem('xtsy_current_booking');
     onClose();
   };
 
-  const getPaymentAmount = () => {
-    const cartData = localStorage.getItem('xtsy_booking_cart');
-    if (!cartData) return 0;
-
-    const cart = JSON.parse(cartData);
-    let subtotal = 0;
-    
-    cart.items.forEach((item: any) => {
-      const nights = item.nights || cart.nights || 1;
-      const itemPrice = Number(item.price) || 0;
-      const quantity = Number(item.quantity) || 0;
-      subtotal += itemPrice * quantity * nights;
-    });
-
-    const gstAmount = Math.round(subtotal * 0.18);
-    const totalAmount = subtotal + gstAmount;
-    
-    return requiresFullPayment() ? totalAmount : Math.round(totalAmount * 0.21);
-  };
-
-  const paymentAmount = getPaymentAmount();
-  const isFullPayment = requiresFullPayment();
 
   return (
     <>
@@ -277,22 +215,13 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
                 </div>
               </div>
 
-              {/* Payment Info Banner */}
-              <div className={`mt-3 p-3 rounded-lg ${isFullPayment ? 'bg-red-50 border border-red-200' : 'bg-green-50 border border-green-200'}`}>
-                <div className={`text-sm font-medium ${isFullPayment ? 'text-red-800' : 'text-green-800'}`}>
-                  {isFullPayment ? (
-                    <>🔒 Full Payment Required: ₹{paymentAmount}</>
-                  ) : (
-                    <>💰 Advance Payment: ₹{paymentAmount} (21% of total)</>
-                  )}
+              {/* Payment Summary */}
+              <div className="mt-3 p-3 rounded-lg bg-blue-50 border border-blue-200">
+                <div className="text-sm font-medium text-blue-800">
+                  💰 Total Amount: ₹{bookingData.totalAmount}
                 </div>
-                <div className={`text-xs mt-1 ${isFullPayment ? 'text-red-600' : 'text-green-600'}`}>
-                  {isFullPayment 
-                    ? bookingData.guests <= 4 
-                      ? "Groups of 4 or less require full payment"
-                      : "Bookings within 7 days require full payment"
-                    : "Balance payable at check-in"
-                  }
+                <div className="text-xs mt-1 text-blue-600">
+                  Complete booking via WhatsApp with payment details
                 </div>
               </div>
             </div>
@@ -480,36 +409,17 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
                     <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                     Processing...
                   </div>
-                ) : (
-                  `Pay ₹${paymentAmount} & Confirm Booking`
-                )}
-              </Button>
-              <p className="text-xs text-gray-500 text-center mt-2">
-                {isFullPayment 
-                  ? "* Full payment required for this booking"
-                  : "* Pay 21% advance now, rest at check-in"
-                }
-              </p>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
-
-      {/* UPI Payment Modal */}
-      {showPaymentModal && (
-        <UPIPaymentModal
-          isOpen={showPaymentModal}
-          onClose={handlePaymentModalClose}
-          bookingData={{
-            bookingId: bookingId,
-            guestName: formData.guestName,
-            checkIn: bookingData.checkIn,
-            checkOut: bookingData.checkOut,
-            totalAmount: paymentAmount,
-            whatsappNumber: formData.whatsappNumber
-          }}
-        />
-      )}
+                 ) : (
+                  "Complete Booking via WhatsApp"
+                 )}
+               </Button>
+               <p className="text-xs text-gray-500 text-center mt-2">
+                 Complete your booking through WhatsApp with payment details
+               </p>
+             </div>
+           </div>
+         </DialogContent>
+       </Dialog>
     </>
   );
 };

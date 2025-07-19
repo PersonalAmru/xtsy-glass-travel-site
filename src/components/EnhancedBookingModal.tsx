@@ -101,12 +101,12 @@ const rooms: Room[] = [
 ];
 
 const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingModalProps) => {
-  const [selectedRoom, setSelectedRoom] = useState<Room | null>(rooms[0]);
+  const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
   const [roomSelections, setRoomSelections] = useState<{[key: string]: {guests: number, rooms: number}}>({});
   const [bookingData, setBookingData] = useState<BookingData>({
     checkIn: initialData?.checkIn || "",
     checkOut: initialData?.checkOut || "",
-    guests: initialData?.guests || 1,
+    guests: initialData?.guests || 2,
     nights: 1,
     quantity: 1,
   });
@@ -195,54 +195,58 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
   };
 
   const calculateTotals = () => {
-    if (!selectedRoom) return { subtotal: 0, gstAmount: 0, totalAmount: 0, discountAmount: 0 };
-    
-    const roomPrice = selectedRoom.price;
     const nights = bookingData.nights || 1;
-    const isDorm = selectedRoom.name.toLowerCase().includes('dorm');
-    
     let subtotal = 0;
-    if (isDorm) {
-      // For dorms: price per bed * number of guests (beds) * nights
-      const guestCount = getRoomSelectionForRoom(selectedRoom.id).guests || bookingData.guests;
-      subtotal = roomPrice * guestCount * nights;
-    } else {
-      // For luxury rooms: price per room * number of rooms * nights
-      const roomCount = getRoomSelectionForRoom(selectedRoom.id).rooms || 1;
-      subtotal = roomPrice * roomCount * nights;
-    }
+    let totalGuestsCalculated = 0;
+    
+    // Calculate total for all room selections (multiple rooms can be selected)
+    Object.entries(roomSelections).forEach(([roomId, selection]) => {
+      const room = rooms.find(r => r.id === roomId);
+      if (!room || (!selection.guests && !selection.rooms)) return;
+      
+      const isDorm = room.name.toLowerCase().includes('dorm');
+      
+      if (isDorm) {
+        // For dorms: price per bed * number of guests (beds) * nights
+        const guestCount = selection.guests || 0;
+        subtotal += room.price * guestCount * nights;
+        totalGuestsCalculated += guestCount;
+      } else {
+        // For luxury rooms: price per room * number of rooms * nights
+        const roomCount = selection.rooms || 0;
+        subtotal += room.price * roomCount * nights;
+        
+        // Calculate guests for luxury rooms
+        if (room.name === "King Triple Room") {
+          totalGuestsCalculated += Math.min(3, roomCount * 3);
+        } else {
+          totalGuestsCalculated += roomCount * 2;
+        }
+      }
+    });
     
     const discountAmount = Math.round(subtotal * (couponDiscount / 100));
     const discountedSubtotal = subtotal - discountAmount;
     const gstAmount = Math.round(discountedSubtotal * 0.18);
     const totalAmount = discountedSubtotal + gstAmount;
-    return { subtotal, gstAmount, totalAmount, discountAmount };
+    
+    return { subtotal, gstAmount, totalAmount, discountAmount, totalGuestsCalculated };
   };
 
   const applyCoupon = () => {
     setCouponError("");
     if (couponCode === "XTSY-DEAL") {
-      // Calculate total guests for coupon eligibility
-      let totalGuests = 0;
-      if (selectedRoom) {
-        if (selectedRoom.name.toLowerCase().includes('dorm')) {
-          totalGuests = getRoomSelectionForRoom(selectedRoom.id).guests || 0;
-        } else {
-          const roomCount = getRoomSelectionForRoom(selectedRoom.id).rooms || 0;
-          totalGuests = selectedRoom.name === "King Triple Room" 
-            ? Math.min(3, roomCount * 3)
-            : roomCount * 2;
-        }
-      }
+      // Use the calculated total guests from calculateTotals
+      const { totalGuestsCalculated } = calculateTotals();
       
       // Check conditions: Min 4 guests and at least 2 nights
-      if (totalGuests >= 4 && bookingData.nights >= 2) {
+      if (totalGuestsCalculated >= 4 && bookingData.nights >= 2) {
         setCouponDiscount(15); // 15% discount
         toast({
           title: "Coupon Applied!",
           description: "15% discount has been applied to your booking.",
         });
-      } else if (totalGuests >= 4 && bookingData.nights < 2) {
+      } else if (totalGuestsCalculated >= 4 && bookingData.nights < 2) {
         setCouponError("Minimum 2 nights required for 4+ guests");
       } else {
         setCouponError("Minimum 4 guests required for this offer");
@@ -262,7 +266,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
     });
   };
 
-  const { subtotal, gstAmount, totalAmount, discountAmount } = calculateTotals();
+  const { subtotal, gstAmount, totalAmount, discountAmount, totalGuestsCalculated } = calculateTotals();
 
   // Update guests when room or quantity changes
   useEffect(() => {
@@ -406,29 +410,41 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
   };
 
   const handleBookNow = () => {
-    if (!selectedRoom || !bookingData.checkIn || !bookingData.checkOut || bookingData.guests === 0) {
+    if (!bookingData.checkIn || !bookingData.checkOut || totalGuestsCalculated === 0) {
       toast({
         title: "Incomplete Booking",
-        description: "Please select a room, dates and number of guests first",
+        description: "Please select dates and rooms/beds first",
         variant: "destructive"
       });
       return;
     }
 
+    // Get all selected room details
+    const selectedRooms = Object.entries(roomSelections)
+      .filter(([_, selection]) => selection.guests > 0 || selection.rooms > 0)
+      .map(([roomId, selection]) => {
+        const room = rooms.find(r => r.id === roomId);
+        return {
+          id: roomId,
+          name: room?.name || '',
+          price: room?.price || 0,
+          type: room?.type || 'hostel',
+          selection: selection
+        };
+      });
+
     const bookingDetails = {
       checkIn: bookingData.checkIn,
       checkOut: bookingData.checkOut,
-      guests: bookingData.guests,
+      guests: totalGuestsCalculated,
       nights: bookingData.nights,
-      room: {
-        id: selectedRoom.id,
-        name: selectedRoom.name,
-        price: selectedRoom.price,
-        quantity: bookingData.quantity,
-        type: selectedRoom.type || 'dorm'
-      },
-      totalAmount,
-      payableNow: Math.round(totalAmount * 0.21)
+      selectedRooms: selectedRooms,
+      totalAmount: totalAmount,
+      gstAmount: gstAmount,
+      subtotal: subtotal,
+      discountAmount: discountAmount,
+      couponCode: couponCode,
+      couponDiscount: couponDiscount
     };
 
     localStorage.setItem('xtsy_current_booking', JSON.stringify(bookingDetails));
@@ -501,7 +517,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                       : "Select your dates"
                     }
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-3 gap-4">
                     <div>
                       <label className="block text-sm font-medium mb-1 text-blue-800">Check-in</label>
                       <Input
@@ -521,6 +537,35 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                         min={bookingData.checkIn ? new Date(new Date(bookingData.checkIn).getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0] : new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]}
                         className="bg-white border-blue-200"
                       />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-1 text-blue-800">Number of Guests</label>
+                      <div className="flex items-center gap-2 bg-white border border-blue-200 rounded-md p-2">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => setBookingData(prev => ({ ...prev, guests: Math.max(1, prev.guests - 1) }))}
+                          disabled={bookingData.guests <= 1}
+                          className="h-6 w-6 p-0"
+                        >
+                          <Minus className="h-3 w-3" />
+                        </Button>
+                        <span className="w-8 text-center text-sm text-blue-800 font-medium">
+                          {bookingData.guests}
+                        </span>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => setBookingData(prev => ({ ...prev, guests: Math.min(25, prev.guests + 1) }))}
+                          disabled={bookingData.guests >= 25}
+                          className="h-6 w-6 p-0"
+                        >
+                          <Plus className="h-3 w-3" />
+                        </Button>
+                      </div>
+                      <div className="text-xs text-blue-600 mt-1">
+                        Max 25 guests
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -718,35 +763,58 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                 <div className="flex-1">
                   <h3 className="text-lg font-semibold mb-4">Booking Summary</h3>
                   
-                  {bookingData.checkIn && bookingData.checkOut && (
-                    <div className="text-sm text-gray-600 mb-4">
-                      {bookingData.nights} nights starting from {formatDate(bookingData.checkIn)}
-                    </div>
-                  )}
-
-                   {selectedRoom && (
-                     <div className="space-y-3 mb-4">
-                       <div className="flex justify-between">
-                         <span className="font-medium">{selectedRoom.name}</span>
-                         <span>₹{selectedRoom.price}</span>
-                       </div>
-                       <div className="text-sm text-gray-600">
-                         {selectedRoom.name.toLowerCase().includes('dorm') ? (
-                           <>₹{selectedRoom.price} x {getRoomSelectionForRoom(selectedRoom.id).guests || 0} {getRoomSelectionForRoom(selectedRoom.id).guests === 1 ? 'bed' : 'beds'} x {bookingData.nights} nights</>
-                         ) : (
-                           <>₹{selectedRoom.price} x {getRoomSelectionForRoom(selectedRoom.id).rooms || 0} {getRoomSelectionForRoom(selectedRoom.id).rooms === 1 ? 'room' : 'rooms'} x {bookingData.nights} nights</>
-                         )}
-                       </div>
-                       <div className="text-sm text-gray-600">
-                         Guests: {selectedRoom.name.toLowerCase().includes('dorm') 
-                           ? getRoomSelectionForRoom(selectedRoom.id).guests || 0
-                           : selectedRoom.name === "King Triple Room" 
-                             ? Math.min(3, (getRoomSelectionForRoom(selectedRoom.id).rooms || 0) * 3)
-                             : (getRoomSelectionForRoom(selectedRoom.id).rooms || 0) * 2
-                         }
-                       </div>
+                   {bookingData.checkIn && bookingData.checkOut && (
+                     <div className="text-sm text-gray-600 mb-4">
+                       {bookingData.nights} nights starting from {formatDate(bookingData.checkIn)}
                      </div>
                    )}
+
+                   {/* Show all selected rooms */}
+                   <div className="space-y-3 mb-4">
+                     {Object.entries(roomSelections)
+                       .filter(([_, selection]) => selection.guests > 0 || selection.rooms > 0)
+                       .map(([roomId, selection]) => {
+                         const room = rooms.find(r => r.id === roomId);
+                         if (!room) return null;
+                         
+                         const isDorm = room.name.toLowerCase().includes('dorm');
+                         const roomPrice = room.price;
+                         const nights = bookingData.nights || 1;
+                         
+                         return (
+                           <div key={roomId} className="bg-white rounded-lg p-3 border">
+                             <div className="flex justify-between items-start mb-2">
+                               <span className="font-medium text-sm">{room.name}</span>
+                               <span className="text-sm">₹{roomPrice}</span>
+                             </div>
+                             <div className="text-xs text-gray-600 mb-1">
+                               {isDorm ? (
+                                 <>₹{roomPrice} x {selection.guests} {selection.guests === 1 ? 'bed' : 'beds'} x {nights} nights</>
+                               ) : (
+                                 <>₹{roomPrice} x {selection.rooms} {selection.rooms === 1 ? 'room' : 'rooms'} x {nights} nights</>
+                               )}
+                             </div>
+                             <div className="text-xs text-gray-600">
+                               Guests: {isDorm 
+                                 ? selection.guests
+                                 : room.name === "King Triple Room" 
+                                   ? Math.min(3, selection.rooms * 3)
+                                   : selection.rooms * 2
+                               }
+                             </div>
+                             <div className="text-xs font-medium text-orange-600 mt-1">
+                               Subtotal: ₹{isDorm ? roomPrice * selection.guests * nights : roomPrice * selection.rooms * nights}
+                             </div>
+                           </div>
+                         );
+                       })}
+                     
+                     {totalGuestsCalculated > 0 && (
+                       <div className="text-sm text-gray-600 font-medium">
+                         Total Guests: {totalGuestsCalculated}
+                       </div>
+                     )}
+                   </div>
 
                   <Separator className="my-4" />
 
@@ -818,21 +886,14 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                   </div>
                 </div>
 
-                {/* Action Buttons - Fixed at bottom */}
-                <div className="mt-6 space-y-3 flex-shrink-0">
+                 {/* Action Buttons - Fixed at bottom */}
+                <div className="mt-6 flex-shrink-0">
                   <Button 
                     onClick={handleBookNow}
                     className="w-full bg-orange-500 hover:bg-orange-600 text-white"
+                    disabled={totalGuestsCalculated === 0}
                   >
                     Book Now
-                  </Button>
-                  <Button 
-                    onClick={saveForLater}
-                    variant="outline" 
-                    className="w-full border-orange-500 text-orange-500 hover:bg-orange-50"
-                  >
-                    <Bookmark className="h-4 w-4 mr-2" />
-                    Save Later
                   </Button>
                 </div>
               </div>
