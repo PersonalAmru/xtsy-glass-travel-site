@@ -1,622 +1,382 @@
-
-import { useState } from "react";
+import React, { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Users, Wifi, Car, Coffee, Shield, Mountain, CreditCard, Tv, Activity } from "lucide-react";
-import GuestDetails from "./GuestDetails";
+import { Card, Separator } from "@/components/ui/card";
+import { Calendar, Users, Bed, Clock, Tag, X, Minus, Plus, Bookmark } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 interface BookingModalProps {
   isOpen: boolean;
   onClose: () => void;
-  checkIn: string;
-  checkOut: string;
-  guests: number;
+  room: {
+    id: string;
+    name: string;
+    price: number;
+    capacity: number;
+    description: string;
+    type?: string;
+  };
 }
 
-const BookingModal = ({ isOpen, onClose, checkIn, checkOut, guests }: BookingModalProps) => {
-  const [selectedRooms, setSelectedRooms] = useState<{ [key: string]: number }>({});
-  const [couponCode, setCouponCode] = useState("");
-  const [couponApplied, setCouponApplied] = useState(false);
-  const [couponDiscount, setCouponDiscount] = useState(0);
-  const [showGuestDetails, setShowGuestDetails] = useState(false);
+const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
+  const [bookingData, setBookingData] = useState({
+    checkIn: "",
+    checkOut: "",
+    guests: 1,
+    quantity: 1,
+    nights: 1,
+  });
+  const { toast } = useToast();
 
-  // Calculate number of nights
-  const calculateNights = (checkInDate: string, checkOutDate: string) => {
-    if (!checkInDate || !checkOutDate || checkInDate === 'undefined' || checkOutDate === 'undefined') {
-      return 1;
-    }
-    try {
-      const checkInObj = new Date(checkInDate);
-      const checkOutObj = new Date(checkOutDate);
-      if (isNaN(checkInObj.getTime()) || isNaN(checkOutObj.getTime())) {
-        return 1;
-      }
-      const timeDiff = checkOutObj.getTime() - checkInObj.getTime();
-      const nights = Math.ceil(timeDiff / (1000 * 3600 * 24));
-      return nights > 0 ? nights : 1;
-    } catch {
-      return 1;
-    }
+  const formatDate = (dateStr: string) => {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString('en-GB', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric'
+    });
   };
 
-  const nights = calculateNights(checkIn, checkOut);
-
-  // Calculate GST rate based on room tariff
-  const calculateGSTRate = (roomPrice: number) => {
-    if (roomPrice < 1000) {
-      return 0; // 0% GST
-    } else if (roomPrice >= 1000 && roomPrice < 7500) {
-      return 0.12; // 12% GST
-    } else {
-      return 0.18; // 18% GST
-    }
-  };
-
-  // Updated room inventory with correct naming and capacity logic
-  const rooms = [
-    // XTSY Travellers Hostel
-    {
-      id: '4-bed-female-only-dorm',
-      name: 'Bed in 4 Bed Female Only Dorm',
-      price: 850,
-      image: '',
-      description: 'A bed in a female-only dorm with private lockers and a shared attached washroom.',
-      maxGuests: 4,
-      maxRooms: 1,
-      inventory: 4,
-      roomType: 'dorm',
-      propertyName: 'XTSY Travellers Hostel',
-      amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)']
-    },
-    {
-      id: '4-bed-mixed-female-dorm',
-      name: 'Bed in 4 Bed Mixed/Female Dorm',
-      price: 800,
-      image: '',
-      description: 'A bed in a mixed or female dorm with private lockers and a shared attached washroom.',
-      maxGuests: 4,
-      maxRooms: 1,
-      inventory: 4,
-      roomType: 'dorm',
-      propertyName: 'XTSY Travellers Hostel',
-      amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)']
-    },
-    {
-      id: '6-bed-mixed-female-dorm',
-      name: 'Bed in 6 Bed Mixed/Female Dorm',
-      price: 700,
-      image: '',
-      description: 'A bed in a spacious mixed or female dorm with private lockers and a shared ensuite.',
-      maxGuests: 30,
-      maxRooms: 5,
-      inventory: 30,
-      roomType: 'dorm',
-      propertyName: 'XTSY Travellers Hostel',
-      amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)']
-    },
-    {
-      id: '8-bed-mixed-dorm',
-      name: 'Bed in 8 Bed Mixed Dorm',
-      price: 600,
-      image: '',
-      description: 'A bed in a large mixed dormitory perfect for budget travelers.',
-      maxGuests: 8,
-      maxRooms: 1,
-      inventory: 8,
-      roomType: 'dorm',
-      propertyName: 'XTSY Travellers Hostel',
-      amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)']
-    },
-    // XTSY Luxury
-    {
-      id: 'king-double-room',
-      name: 'King Double Room',
-      price: 3200,
-      image: '',
-      description: 'A spacious room with a king bed offering a private stay experience suitable for two guests.',
-      maxGuests: 4,
-      maxRooms: 2,
-      inventory: 2,
-      roomType: 'luxury',
-      propertyName: 'XTSY Luxury',
-      amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)']
-    },
-    {
-      id: 'king-triple-room',
-      name: 'King Triple Room',
-      price: 4200,
-      image: '',
-      description: 'A luxurious room with king bed and extra bed accommodating up to three guests.',
-      maxGuests: 3,
-      maxRooms: 1,
-      inventory: 1,
-      roomType: 'luxury',
-      propertyName: 'XTSY Luxury',
-      amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)']
-    },
-    {
-      id: 'sky-glass-suite',
-      name: 'Sky Glass Suite',
-      price: 18000,
-      image: '',
-      description: 'Premium suite with panoramic views and luxury amenities.',
-      maxGuests: 2,
-      maxRooms: 1,
-      inventory: 1,
-      roomType: 'luxury',
-      propertyName: 'XTSY Luxury',
-      amenities: ['Mountain View', 'Card Payment Accepted', 'Cafe', 'Storage Facility', 'Laundry Services (Extra)', 'Free Wi-Fi', 'Common Television', 'Common hangout area', 'In-house Activities', 'Breakfast (Extra)', 'UPI Payment Accepted', 'Parking (private)']
-    }
-  ];
-
-  const handleRoomQuantityChange = (roomId: string, quantity: number) => {
-    const room = rooms.find(r => r.id === roomId);
-    if (room) {
-      // For dorms, max quantity is based on guests, for luxury rooms based on available rooms
-      const maxQuantity = room.roomType === 'dorm' ? Math.min(room.inventory, guests) : room.maxRooms;
-      const validQuantity = Math.max(0, Math.min(quantity, maxQuantity));
+  const handleDateChange = (field: string, value: string) => {
+    setBookingData(prev => {
+      const updatedData = { ...prev, [field]: value };
       
-      setSelectedRooms(prev => ({
-        ...prev,
-        [roomId]: validQuantity
-      }));
-    }
+      if (updatedData.checkIn && updatedData.checkOut) {
+        const checkInDate = new Date(updatedData.checkIn);
+        const checkOutDate = new Date(updatedData.checkOut);
+        const timeDiff = checkOutDate.getTime() - checkInDate.getTime();
+        const nights = Math.ceil(timeDiff / (1000 * 3600 * 24));
+        updatedData.nights = nights;
+      }
+      
+      return updatedData;
+    });
   };
 
-  // Updated promo code logic
-  const handleCouponApply = () => {
-    if (couponCode.toUpperCase() === "XTSY-BASH") {
-      // Check if XTSY-BASH is applicable
-      const hasHostelRooms = rooms.some(room => 
-        selectedRooms[room.id] > 0 && room.propertyName === 'XTSY Travellers Hostel'
-      );
-      const hasLuxuryRooms = rooms.some(room => 
-        selectedRooms[room.id] > 0 && room.propertyName === 'XTSY Luxury'
-      );
+  const totalAmount = room.price * bookingData.quantity * bookingData.nights;
+  const gstAmount = Math.round(totalAmount * 0.18);
+  const grandTotal = totalAmount + gstAmount;
 
-      let isApplicable = false;
-      let errorMessage = "";
-
-      if (hasHostelRooms && guests >= 4) {
-        isApplicable = true;
-      } else if (hasLuxuryRooms && nights >= 2) {
-        isApplicable = true;
-      } else if (hasHostelRooms && guests < 4) {
-        errorMessage = "XTSY-BASH requires minimum 4 guests for hostel bookings";
-      } else if (hasLuxuryRooms && nights < 2) {
-        errorMessage = "XTSY-BASH requires minimum 2 nights for luxury bookings";
-      } else {
-        errorMessage = "XTSY-BASH is not applicable for this booking";
-      }
-
-      if (isApplicable) {
-        setCouponApplied(true);
-        const { subtotal } = calculateTotals();
-        setCouponDiscount(Math.round(subtotal * 0.1)); // 10% discount
-      } else {
-        alert(errorMessage);
-      }
-    } else {
-      alert("Invalid coupon code");
-    }
-  };
-
-  const addToCart = () => {
-    const selectedItems = rooms
-      .filter(room => selectedRooms[room.id] > 0)
-      .map(room => ({
-        roomId: room.id,
-        roomName: room.name,
-        price: room.price,
-        quantity: selectedRooms[room.id],
-        guests: room.roomType === 'dorm' ? selectedRooms[room.id] : room.maxGuests,
-        nights: nights,
-        roomType: room.roomType
-      }));
-
-    if (selectedItems.length === 0) {
-      alert("Please select at least one room");
+  const handleBookNow = () => {
+    if (!bookingData.checkIn || !bookingData.checkOut || bookingData.guests === 0) {
+      toast({
+        title: "Incomplete Booking",
+        description: "Please select dates and number of guests first",
+        variant: "destructive"
+      });
       return;
     }
 
-    const bookingData = {
-      checkIn,
-      checkOut,
-      guests,
-      nights,
-      items: selectedItems,
+    const cartData = {
+      checkIn: bookingData.checkIn,
+      checkOut: bookingData.checkOut,
+      guests: bookingData.guests,
+      nights: bookingData.nights,
+      items: [{
+        roomId: room.id,
+        roomName: room.name,
+        price: room.price,
+        quantity: 1,
+        guests: bookingData.guests,
+        nights: bookingData.nights,
+        roomType: room.type || 'dorm'
+      }],
+      timestamp: new Date().getTime()
+    };
+    
+    localStorage.setItem('xtsy_booking_cart', JSON.stringify(cartData));
+
+    toast({
+      title: "Added to Cart",
+      description: "Your booking has been added to the cart.",
+    });
+
+    onClose();
+  };
+
+  const saveForLater = () => {
+    if (!bookingData.checkIn || !bookingData.checkOut || bookingData.guests === 0) {
+      toast({
+        title: "Incomplete Booking",
+        description: "Please select dates and number of guests first",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    const cartData = {
+      checkIn: bookingData.checkIn,
+      checkOut: bookingData.checkOut,
+      guests: bookingData.guests,
+      nights: bookingData.nights,
+      items: [{
+        roomId: room.id,
+        roomName: room.name,
+        price: room.price,
+        quantity: 1,
+        guests: bookingData.guests,
+        nights: bookingData.nights,
+        roomType: room.type || 'dorm'
+      }],
       timestamp: new Date().getTime(),
-      couponApplied,
-      couponDiscount
+      savedForLater: true
     };
 
-    localStorage.setItem('xtsy_booking_cart', JSON.stringify(bookingData));
-    setShowGuestDetails(true);
-  };
+    const existingSaved = JSON.parse(localStorage.getItem('xtsy_saved_bookings') || '[]');
+    const updatedSaved = [...existingSaved, cartData];
+    localStorage.setItem('xtsy_saved_bookings', JSON.stringify(updatedSaved));
 
-  // Calculate totals with updated pricing logic
-  const calculateTotals = () => {
-    let subtotal = 0;
-    let totalGST = 0;
-    
-    rooms.forEach(room => {
-      if (selectedRooms[room.id] > 0) {
-        let roomTotal = 0;
-        if (room.roomType === 'dorm') {
-          // For dorms: price per bed per night
-          roomTotal = room.price * selectedRooms[room.id] * nights;
-        } else {
-          // For luxury rooms: price per room per night
-          roomTotal = room.price * selectedRooms[room.id] * nights;
-        }
-        subtotal += roomTotal;
-        
-        // Calculate GST for this room type
-        const gstRate = calculateGSTRate(room.price);
-        const roomGST = Math.round(roomTotal * gstRate);
-        totalGST += roomGST;
-      }
+    toast({
+      title: "Saved for Later",
+      description: "Your booking has been saved. You can access it from your cart.",
     });
-    
-    const discountAmount = couponApplied ? couponDiscount : 0;
-    const grandTotal = subtotal + totalGST - discountAmount;
-    const payableNow = Math.round(grandTotal * 0.21);
-    
-    return { subtotal, tax: totalGST, grandTotal, payableNow, discountAmount };
+
+    onClose();
   };
-
-  const { subtotal, tax, grandTotal, payableNow, discountAmount } = calculateTotals();
-
-  // Format date properly - remove undefined
-  const formatDate = (dateStr: string) => {
-    if (!dateStr || dateStr === 'undefined' || dateStr.includes('undefined')) {
-      return 'Select Date';
-    }
-    
-    try {
-      const date = new Date(dateStr);
-      if (isNaN(date.getTime())) return 'Select Date';
-      
-      return date.toLocaleDateString('en-GB', {
-        day: '2-digit',
-        month: 'short',
-        year: 'numeric'
-      });
-    } catch {
-      return 'Select Date';
-    }
-  };
-
-  // Group rooms by property
-  const groupedRooms = rooms.reduce((acc, room) => {
-    if (!acc[room.propertyName]) {
-      acc[room.propertyName] = [];
-    }
-    acc[room.propertyName].push(room);
-    return acc;
-  }, {} as { [key: string]: typeof rooms });
-
-  if (showGuestDetails) {
-    return (
-      <GuestDetails
-        isOpen={true}
-        onClose={() => {
-          setShowGuestDetails(false);
-          onClose();
-        }}
-        onBack={() => setShowGuestDetails(false)}
-        bookingData={{
-          checkIn,
-          checkOut,
-          guests,
-          nights
-        }}
-      />
-    );
-  }
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-7xl max-h-[95vh] bg-gray-50 border-0 p-0 overflow-hidden">
-        <div className="flex h-full max-h-[95vh]">
-          {/* Left Panel - Room Selection */}
-          <div className="flex-1 flex flex-col bg-white">
-            {/* Fixed Header */}
-            <DialogHeader className="flex-shrink-0 bg-white z-10 p-6 border-b border-gray-200">
-              <div className="mb-4">
-                <div className="bg-orange-50 rounded-lg p-4 mb-4">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-2">Know before you go</h3>
-                  <div className="flex items-center gap-6 text-sm">
-                    <div className="flex items-center gap-2">
-                      <span className="text-2xl">😊</span>
-                      <div>
-                        <div className="text-gray-600">Check-in</div>
-                        <div className="font-semibold">12:00 PM</div>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-2xl">👋</span>
-                      <div>
-                        <div className="text-gray-600">Check-out</div>
-                        <div className="font-semibold">10:00 AM</div>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-2xl">🎯</span>
-                      <div>
-                        <div className="text-gray-600">Special Offer</div>
-                        <div className="font-semibold text-orange-600">Use XTSY-BASH for eligible bookings</div>
-                      </div>
-                    </div>
+      <DialogContent className="w-full h-full max-w-none max-h-none md:max-w-4xl lg:max-w-6xl md:max-h-[95vh] md:h-auto bg-white border-0 p-0 overflow-hidden">
+        <div className="flex flex-col h-full max-h-[100vh] md:max-h-[95vh]">
+          {/* Header */}
+          <div className="flex-shrink-0 p-4 md:p-6 border-b bg-gradient-to-r from-orange-50 to-red-50">
+            <div className="flex items-center gap-3 mb-4">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={onClose}
+                className="p-2"
+              >
+                <X className="h-5 w-5" />
+              </Button>
+              <DialogTitle className="text-xl md:text-2xl font-bold text-gray-900">
+                Book your stay
+              </DialogTitle>
+            </div>
+            
+            {/* Know before you go section */}
+            <div className="bg-white rounded-lg p-4 mb-4">
+              <h3 className="text-lg font-semibold mb-3">Know before you go</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <div className="flex items-center gap-2">
+                  <Clock className="h-4 w-4 text-orange-500" />
+                  <div>
+                    <div className="font-medium">Check-in</div>
+                    <div className="text-gray-600">12:00 PM</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Clock className="h-4 w-4 text-orange-500" />
+                  <div>
+                    <div className="font-medium">Check-out</div>
+                    <div className="text-gray-600">10:00 AM</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Tag className="h-4 w-4 text-orange-500" />
+                  <div>
+                    <div className="font-medium">Special Offer</div>
+                    <div className="text-orange-600">Use XTSY-DEAL for eligible bookings</div>
                   </div>
                 </div>
               </div>
-              
-              <DialogTitle className="text-2xl font-bold text-gray-900 mb-2">Book your stay</DialogTitle>
-              <p className="text-gray-600">Select from a range of beautiful rooms</p>
-              
-              {/* Date Range Display - Fixed */}
-              <div className="flex items-center justify-center bg-blue-100 rounded-lg p-3 mt-4">
-                <span className="text-blue-800 font-medium">
-                  {formatDate(checkIn)} → {formatDate(checkOut)} ({nights} night{nights > 1 ? 's' : ''})
-                </span>
+            </div>
+
+            {/* Date selection */}
+            <div className="bg-blue-100 rounded-lg p-3 text-center">
+              <div className="text-blue-800 font-medium">
+                {bookingData.checkIn && bookingData.checkOut 
+                  ? `${formatDate(bookingData.checkIn)} → ${formatDate(bookingData.checkOut)} (${bookingData.nights} nights)`
+                  : "Select your dates"
+                }
               </div>
-            </DialogHeader>
-
-            {/* Scrollable Content */}
-            <div className="flex-1 overflow-hidden">
-              <ScrollArea className="h-full">
-                <div className="p-6 space-y-8">
-                  {/* Display rooms grouped by property */}
-                  {Object.entries(groupedRooms).map(([propertyName, propertyRooms]) => (
-                    <div key={propertyName} className="space-y-6">
-                      <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-lg p-4">
-                        <h2 className="text-xl font-bold">{propertyName}</h2>
-                      </div>
-                      
-                      {propertyRooms.map((room) => (
-                        <div key={room.id} className="border border-gray-200 rounded-lg overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow">
-                          <div className="flex">
-                            {/* Room Image */}
-                            <div className="w-64 h-48 bg-gray-200 flex items-center justify-center flex-shrink-0">
-                              {room.image ? (
-                                <img src={room.image} alt={room.name} className="w-full h-full object-cover" />
-                              ) : (
-                                <span className="text-gray-500 text-sm">Room Image</span>
-                              )}
-                            </div>
-
-                            {/* Room Details */}
-                            <div className="flex-1 p-6">
-                              <div className="flex justify-between items-start mb-3">
-                                <div>
-                                  <h3 className="text-xl font-bold text-gray-900 mb-1">{room.name}</h3>
-                                  <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
-                                    <Users className="h-4 w-4" />
-                                    <span>Max {room.maxGuests} guest{room.maxGuests > 1 ? 's' : ''}</span>
-                                    <Badge variant="outline" className="ml-2">
-                                      {room.roomType === 'dorm' ? 'Per Bed' : 'Per Room'}
-                                    </Badge>
-                                  </div>
-                                  <div className="flex items-center gap-1 text-lg font-bold text-gray-900">
-                                    <span>₹{room.price}</span>
-                                    <span className="text-sm font-normal text-gray-500">/ night</span>
-                                  </div>
-                                </div>
-                                
-                                {selectedRooms[room.id] > 0 ? (
-                                  <div className="flex items-center gap-2">
-                                    <Button
-                                      onClick={() => handleRoomQuantityChange(room.id, Math.max(0, (selectedRooms[room.id] || 0) - 1))}
-                                      variant="outline"
-                                      size="sm"
-                                      className="w-8 h-8 p-0 border-orange-300 text-orange-600 hover:bg-orange-50"
-                                    >
-                                      -
-                                    </Button>
-                                    <span className="w-8 text-center font-semibold">{selectedRooms[room.id]}</span>
-                                    <Button
-                                      onClick={() => handleRoomQuantityChange(room.id, (selectedRooms[room.id] || 0) + 1)}
-                                      variant="outline"
-                                      size="sm"
-                                      className="w-8 h-8 p-0 border-orange-300 text-orange-600 hover:bg-orange-50"
-                                    >
-                                      +
-                                    </Button>
-                                  </div>
-                                ) : (
-                                  <Button
-                                    onClick={() => handleRoomQuantityChange(room.id, 1)}
-                                    className="bg-orange-500 hover:bg-orange-600 text-white px-6"
-                                  >
-                                    {room.roomType === 'dorm' ? 'Select Bed' : 'Select Room'}
-                                  </Button>
-                                )}
-                              </div>
-
-                              <p className="text-gray-600 text-sm mb-4">{room.description}</p>
-
-                              {/* Amenity Icons */}
-                              <div className="flex gap-3 mb-4">
-                                <Mountain className="h-5 w-5 text-gray-400" />
-                                <CreditCard className="h-5 w-5 text-gray-400" />
-                                <Coffee className="h-5 w-5 text-gray-400" />
-                                <Wifi className="h-5 w-5 text-gray-400" />
-                                <Tv className="h-5 w-5 text-gray-400" />
-                                <Activity className="h-5 w-5 text-gray-400" />
-                                <Shield className="h-5 w-5 text-gray-400" />
-                                <Car className="h-5 w-5 text-gray-400" />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  ))}
-
-                  {/* Amenities Section */}
-                  <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">Amenities</h3>
-                    <div className="grid grid-cols-3 gap-4">
-                      {[
-                        { icon: Mountain, label: 'Mountain View' },
-                        { icon: CreditCard, label: 'Card Payment Accepted' },
-                        { icon: Coffee, label: 'Cafe' },
-                        { icon: Shield, label: 'Storage Facility' },
-                        { icon: Activity, label: 'Laundry Services (Extra)' },
-                        { icon: Wifi, label: 'Free Wi-Fi' },
-                        { icon: Tv, label: 'Common Television' },
-                        { icon: Users, label: 'Common hangout area' },
-                        { icon: Car, label: 'Parking (private)' }
-                      ].map(({ icon: Icon, label }) => (
-                        <div key={label} className="flex items-center gap-3">
-                          <Icon className="h-5 w-5 text-gray-600" />
-                          <span className="text-gray-700 text-sm">{label}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Contact Section */}
-                  <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">Contact Us</h3>
-                    <div className="flex gap-6">
-                      <Button variant="outline" className="flex items-center gap-2 text-orange-600 border-orange-300 hover:bg-orange-50">
-                        📞 Call the Property
-                      </Button>
-                      <Button variant="outline" className="flex items-center gap-2 text-green-600 border-green-300 hover:bg-green-50">
-                        💬 WhatsApp Us
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </ScrollArea>
             </div>
           </div>
 
-          {/* Right Panel - Booking Summary */}
-          <div className="w-96 bg-white border-l border-gray-200 flex flex-col max-h-[95vh]">
-            <div className="flex-shrink-0 p-6 border-b border-gray-200">
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="text-xl font-bold text-gray-900">Booking <span className="text-orange-500">Summary</span></h3>
-                <div className="flex items-center gap-1">
-                  <span className="text-lg font-bold">INR</span>
+          {/* Content */}
+          <div className="flex-1 overflow-y-auto min-h-0">
+            <div className="grid grid-cols-1 lg:grid-cols-2 h-full">
+              {/* Left side - Room Selection */}
+              <div className="p-4 md:p-6 border-r">
+                <div className="bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-lg p-4 mb-6">
+                  <h2 className="text-xl font-bold">XTSY Travellers Hostel</h2>
+                </div>
+
+                {/* Room Card */}
+                <Card className="mb-6">
+                  <div className="flex gap-4 p-4">
+                    <div className="w-32 h-24 bg-gray-200 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <span className="text-gray-500 text-sm">Room Image</span>
+                    </div>
+                    
+                    <div className="flex-1">
+                      <h3 className="text-lg font-semibold mb-2">{room.name}</h3>
+                      <div className="flex items-center gap-4 text-sm text-gray-600 mb-2">
+                        <div className="flex items-center gap-1">
+                          <Users className="h-4 w-4" />
+                          <span>Max {room.capacity} guests</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Bed className="h-4 w-4" />
+                          <span>Per Bed</span>
+                        </div>
+                      </div>
+                      <div className="text-lg font-bold">₹{room.price} / night</div>
+                      <p className="text-sm text-gray-600 mt-1">{room.description}</p>
+                    </div>
+                  </div>
+
+                  {/* Quantity and Guest Selection */}
+                  <div className="px-4 pb-4 space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span className="font-medium">Number of beds:</span>
+                      <div className="flex items-center gap-3">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => setBookingData(prev => ({ ...prev, quantity: Math.max(1, prev.quantity - 1) }))}
+                          disabled={bookingData.quantity <= 1}
+                        >
+                          <Minus className="h-4 w-4" />
+                        </Button>
+                        <span className="w-8 text-center">{bookingData.quantity}</span>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => setBookingData(prev => ({ ...prev, quantity: prev.quantity + 1 }))}
+                          disabled={bookingData.quantity >= room.capacity}
+                        >
+                          <Plus className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      <span className="font-medium">Number of guests:</span>
+                      <div className="flex items-center gap-3">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => setBookingData(prev => ({ ...prev, guests: Math.max(1, prev.guests - 1) }))}
+                          disabled={bookingData.guests <= 1}
+                        >
+                          <Minus className="h-4 w-4" />
+                        </Button>
+                        <span className="w-8 text-center">{bookingData.guests}</span>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => setBookingData(prev => ({ ...prev, guests: prev.guests + 1 }))}
+                          disabled={bookingData.guests >= room.capacity * bookingData.quantity}
+                        >
+                          <Plus className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+
+                {/* Date Selection */}
+                <Card className="p-4">
+                  <h3 className="font-semibold mb-3">Select Dates</h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium mb-1">Check-in</label>
+                      <Input
+                        type="date"
+                        value={bookingData.checkIn}
+                        onChange={(e) => handleDateChange('checkIn', e.target.value)}
+                        min={new Date().toISOString().split('T')[0]}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-1">Check-out</label>
+                      <Input
+                        type="date"
+                        value={bookingData.checkOut}
+                        onChange={(e) => handleDateChange('checkOut', e.target.value)}
+                        min={bookingData.checkIn || new Date().toISOString().split('T')[0]}
+                      />
+                    </div>
+                  </div>
+                </Card>
+              </div>
+
+              {/* Right side - Booking Summary */}
+              <div className="p-4 md:p-6 bg-gray-50">
+                <div className="sticky top-0">
+                  <Card className="p-4 mb-4">
+                    <h3 className="text-lg font-semibold mb-3">Booking Summary</h3>
+                    <div className="text-sm text-gray-600 mb-4">
+                      {bookingData.nights} nights starting from {bookingData.checkIn ? formatDate(bookingData.checkIn) : 'Select date'}
+                    </div>
+                    
+                    <div className="space-y-2 mb-4">
+                      <div className="flex justify-between">
+                        <span>{room.name}</span>
+                        <span>₹{totalAmount}</span>
+                      </div>
+                      <div className="flex justify-between text-sm text-gray-600">
+                        <span>₹{room.price} x {bookingData.quantity} bed x {bookingData.nights} nights</span>
+                        <span>Remove</span>
+                      </div>
+                    </div>
+                    
+                    <Separator className="my-4" />
+                    
+                    <div className="space-y-2">
+                      <div className="flex justify-between">
+                        <span>Subtotal</span>
+                        <span>₹{totalAmount}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>GST</span>
+                        <span>₹{gstAmount}</span>
+                      </div>
+                      <div className="flex justify-between font-semibold">
+                        <span>Grand Total (tax incl.)</span>
+                        <span>₹{grandTotal}</span>
+                      </div>
+                      <div className="flex justify-between text-green-600 font-semibold">
+                        <span>Payable Now (21%)</span>
+                        <span>₹{Math.round(grandTotal * 0.21)}</span>
+                      </div>
+                    </div>
+                  </Card>
+
+                  {/* Coupon Section */}
+                  <Card className="p-4 mb-4">
+                    <h4 className="font-medium mb-3">Have a discount coupon?</h4>
+                    <div className="flex gap-2">
+                      <Input placeholder="Enter XTSY-DEAL" />
+                      <Button variant="outline">Apply</Button>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-2">
+                      XTSY-DEAL: 10% off for hostel bookings (min 4 guests) or luxury bookings (min 2 nights)
+                    </p>
+                  </Card>
+
+                  {/* Action Buttons */}
+                  <div className="space-y-3">
+                    <Button
+                      onClick={saveForLater}
+                      variant="outline"
+                      className="w-full border-blue-300 text-blue-600 hover:bg-blue-50 flex items-center justify-center gap-2"
+                    >
+                      <Bookmark className="h-4 w-4" />
+                      Save Later
+                    </Button>
+                    <Button
+                      onClick={handleBookNow}
+                      disabled={!bookingData.checkIn || !bookingData.checkOut || bookingData.guests === 0}
+                      className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold"
+                    >
+                      Book Now
+                    </Button>
+                  </div>
                 </div>
               </div>
-              <p className="text-sm text-gray-600">
-                {nights} night{nights > 1 ? 's' : ''} starting from {formatDate(checkIn)}
-              </p>
-            </div>
-
-            <div className="flex-1 overflow-hidden">
-              <ScrollArea className="h-full">
-                <div className="p-6">
-                  {Object.keys(selectedRooms).some(roomId => selectedRooms[roomId] > 0) ? (
-                    <div className="space-y-4">
-                      {rooms
-                        .filter(room => selectedRooms[room.id] > 0)
-                        .map(room => {
-                          let itemTotal = 0;
-                          if (room.roomType === 'dorm') {
-                            itemTotal = room.price * selectedRooms[room.id] * nights;
-                          } else {
-                            itemTotal = room.price * selectedRooms[room.id] * nights;
-                          }
-                          
-                          return (
-                            <div key={room.id} className="flex justify-between items-start border-b border-gray-100 pb-3">
-                              <div className="flex-1">
-                                <h4 className="font-semibold text-gray-900 mb-1">{room.name}</h4>
-                                <div className="text-sm text-gray-600">
-                                  {room.roomType === 'dorm' ? (
-                                    <>₹{room.price} x {selectedRooms[room.id]} bed{selectedRooms[room.id] > 1 ? 's' : ''} x {nights} night{nights > 1 ? 's' : ''}</>
-                                  ) : (
-                                    <>₹{room.price} x {selectedRooms[room.id]} room{selectedRooms[room.id] > 1 ? 's' : ''} x {nights} night{nights > 1 ? 's' : ''}</>
-                                  )}
-                                </div>
-                              </div>
-                              <div className="text-right">
-                                <div className="font-bold">₹{itemTotal}</div>
-                                <button 
-                                  onClick={() => handleRoomQuantityChange(room.id, 0)}
-                                  className="text-gray-400 text-sm hover:text-red-500"
-                                >
-                                  Remove
-                                </button>
-                              </div>
-                            </div>
-                          );
-                        })}
-
-                      <div className="border-t border-gray-200 pt-4 space-y-2">
-                        <div className="flex justify-between text-sm">
-                          <span>Subtotal</span>
-                          <span>₹{subtotal}</span>
-                        </div>
-                        {couponApplied && (
-                          <div className="flex justify-between text-sm text-green-600">
-                            <span>Discount (XTSY-BASH)</span>
-                            <span>-₹{discountAmount}</span>
-                          </div>
-                        )}
-                        <div className="flex justify-between text-sm">
-                          <span>GST</span>
-                          <span>₹{tax}</span>
-                        </div>
-                        <div className="flex justify-between font-bold">
-                          <span>Grand Total (tax incl.)</span>
-                          <span>₹{grandTotal}</span>
-                        </div>
-                        <div className="flex justify-between text-green-600 font-bold">
-                          <span>Payable Now (21%)</span>
-                          <span>₹{payableNow}</span>
-                        </div>
-                      </div>
-
-                      <div className="border-t border-gray-200 pt-4">
-                        <p className="font-medium text-gray-900 mb-3">Have a discount coupon?</p>
-                        <div className="flex gap-2">
-                          <Input
-                            placeholder="Enter XTSY-BASH"
-                            value={couponCode}
-                            onChange={(e) => setCouponCode(e.target.value)}
-                            className="flex-1"
-                            disabled={couponApplied}
-                          />
-                          <Button 
-                            variant="outline" 
-                            className="border-orange-300 text-orange-600 hover:bg-orange-50"
-                            onClick={handleCouponApply}
-                            disabled={couponApplied}
-                          >
-                            {couponApplied ? "Applied" : "Apply"}
-                          </Button>
-                        </div>
-                        <p className="text-xs text-gray-500 mt-2">
-                          XTSY-BASH: 10% off for hostel bookings (min 4 guests) or luxury bookings (min 2 nights)
-                        </p>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="text-center text-gray-500 py-8">
-                      <p>Select a room to see booking summary</p>
-                    </div>
-                  )}
-                </div>
-              </ScrollArea>
-            </div>
-
-            <div className="flex-shrink-0 p-6 border-t border-gray-200">
-              <Button
-                onClick={addToCart}
-                disabled={!Object.keys(selectedRooms).some(roomId => selectedRooms[roomId] > 0)}
-                className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white py-3 font-semibold"
-              >
-                Book Now
-              </Button>
             </div>
           </div>
         </div>
