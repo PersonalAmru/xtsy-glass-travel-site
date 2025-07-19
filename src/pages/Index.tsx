@@ -36,7 +36,13 @@ const Index = () => {
 
   const handleBackFromGuestDetails = () => {
     setShowGuestDetails(false);
-    // Could open booking modal again if needed
+    // Trigger the booking modal to reopen with the same booking data
+    if (currentBooking) {
+      setTimeout(() => {
+        const event = new CustomEvent('reopenBookingModal', { detail: currentBooking });
+        window.dispatchEvent(event);
+      }, 100);
+    }
   };
 
   return (

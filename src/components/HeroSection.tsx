@@ -27,6 +27,24 @@ const HeroSection = () => {
   }, []);
 
   useEffect(() => {
+    const handleReopenBookingModal = (event: any) => {
+      const bookingData = event.detail;
+      if (bookingData && bookingData.checkIn && bookingData.checkOut) {
+        setCheckIn(bookingData.checkIn);
+        setCheckOut(bookingData.checkOut);
+        setGuests(bookingData.guests?.toString() || "2");
+        setIsBookingModalOpen(true);
+      }
+    };
+
+    window.addEventListener('reopenBookingModal', handleReopenBookingModal);
+
+    return () => {
+      window.removeEventListener('reopenBookingModal', handleReopenBookingModal);
+    };
+  }, []);
+
+  useEffect(() => {
     const languageInterval = setInterval(() => {
       setCurrentLanguageIndex((prev) => (prev + 1) % languages.length);
     }, 2000);
