@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import EnhancedBookingModal from "./EnhancedBookingModal";
 
 const HeroSection = () => {
-  const [checkIn, setCheckIn] = useState("");
+  const [checkIn, setCheckIn] = useState(new Date().toISOString().split('T')[0]);
   const [checkOut, setCheckOut] = useState("");
   const [guests, setGuests] = useState("2");
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
@@ -43,6 +43,17 @@ const HeroSection = () => {
     // Validate checkout date is not same as checkin
     if (checkIn === checkOut) {
       alert("Check-out date cannot be the same as check-in date. Please select a different date.");
+      return;
+    }
+
+    const guestCount = parseInt(guests);
+    if (guestCount > 25) {
+      alert("For more than 25 guests, please use B2B Corporate Booking or Group Booking options available below.");
+      // Scroll to group booking section
+      const groupBookingElement = document.querySelector('#group-booking-section');
+      if (groupBookingElement) {
+        groupBookingElement.scrollIntoView({ behavior: 'smooth' });
+      }
       return;
     }
     
@@ -126,6 +137,7 @@ const HeroSection = () => {
                     onChange={(e) => setCheckOut(e.target.value)}
                     className="pl-12 h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-base"
                     min={checkIn ? new Date(new Date(checkIn).getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0] : new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]}
+                    placeholder="dd-mm-yyyy"
                   />
                   <Calendar className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-300" />
                 </div>
@@ -139,7 +151,7 @@ const HeroSection = () => {
                     value={guests}
                     onChange={(e) => setGuests(e.target.value)}
                     min="1"
-                    max="20"
+                    max="25"
                     className="pl-12 h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-base"
                     placeholder="2"
                   />

@@ -9,7 +9,7 @@ const GroupBookingSection = () => {
   const [activeBookingType, setActiveBookingType] = useState<"b2b" | "group" | null>(null);
 
   return (
-    <section className="py-16 sm:py-20 px-3 sm:px-4 bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 relative overflow-hidden">
+    <section id="group-booking-section" className="py-16 sm:py-20 px-3 sm:px-4 bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 relative overflow-hidden">
       {/* Enhanced Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-amber-100/30 via-transparent to-orange-100/30" />
       <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-amber-500 via-yellow-500 to-orange-500" />

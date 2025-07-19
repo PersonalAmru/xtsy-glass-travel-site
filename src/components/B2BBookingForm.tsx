@@ -16,7 +16,7 @@ const B2BBookingForm = () => {
     phone: "",
     checkIn: "",
     checkOut: "",
-    guests: 1,
+    guests: 26,
     roomType: "",
     rooms: 1,
     specialRequests: ""
@@ -234,30 +234,31 @@ const B2BBookingForm = () => {
                 </div>
               </div>
 
-              <div>
+                <div>
                 <Label htmlFor="guests">Total Guests</Label>
                 <div className="flex items-center space-x-2">
                   <Button
                     type="button"
                     variant="outline"
                     size="sm"
-                    onClick={() => handleInputChange('guests', Math.max(1, formData.guests - 1))}
+                    onClick={() => handleInputChange('guests', Math.max(26, formData.guests - 1))}
                   >
                     <Minus className="h-4 w-4" />
                   </Button>
                   <Input
                     id="guests"
                     type="number"
-                    min="1"
+                    min="26"
+                    max="58"
                     value={formData.guests}
-                    onChange={(e) => handleInputChange('guests', parseInt(e.target.value) || 1)}
+                    onChange={(e) => handleInputChange('guests', parseInt(e.target.value) || 26)}
                     className="text-center w-20"
                   />
                   <Button
                     type="button"
                     variant="outline"
                     size="sm"
-                    onClick={() => handleInputChange('guests', formData.guests + 1)}
+                    onClick={() => handleInputChange('guests', Math.min(58, formData.guests + 1))}
                   >
                     <Plus className="h-4 w-4" />
                   </Button>
