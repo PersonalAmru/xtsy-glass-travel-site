@@ -116,9 +116,9 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
   const [date, setDate] = React.useState<Date | undefined>(undefined);
   const { toast } = useToast();
 
-  // Initialize booking data only once when modal opens
+  // Initialize booking data when initialData changes
   useEffect(() => {
-    if (initialData && !bookingData.checkIn) {
+    if (initialData) {
       setBookingData({
         checkIn: initialData.checkIn || "",
         checkOut: initialData.checkOut || "",
@@ -127,7 +127,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
         quantity: 1,
       });
     }
-  }, [initialData, bookingData.checkIn]);
+  }, [initialData]);
 
   useEffect(() => {
     if (bookingData.checkIn && bookingData.checkOut) {
@@ -178,15 +178,6 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
         [field]: value
       }
     }));
-    
-    // Update booking data for selected room
-    if (selectedRoom?.id === roomId) {
-      if (field === 'guests') {
-        setBookingData(prev => ({ ...prev, guests: value }));
-      } else if (field === 'rooms') {
-        setBookingData(prev => ({ ...prev, quantity: value }));
-      }
-    }
   };
 
   const calculateTotals = () => {
@@ -474,103 +465,85 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
           {/* Content */}
           <div className="flex-1 overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-3 h-full">
-              {/* Left side - 3 Tiles */}
-              <div className="lg:col-span-2 p-4 md:p-6 space-y-4 overflow-y-auto">
-                {/* Know before you go section - smaller tile */}
-                <div className="bg-white rounded-lg p-4 border shadow-sm">
-                  <h3 className="text-lg font-semibold mb-3">Know before you go</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                    <div className="flex items-center gap-2">
-                      <Clock className="h-4 w-4 text-orange-500" />
-                      <div>
-                        <div className="font-medium">Check-in</div>
-                        <div className="text-gray-600">12:00 PM</div>
-                      </div>
+              {/* Left side - Room Selection Only */}
+              <div className="lg:col-span-2 p-4 md:p-6 overflow-y-auto">
+                {/* Live the Shillong Vibe - Full Height */}
+                <div className="bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-lg border shadow-sm h-full">
+                  {/* Header fixed at top */}
+                  <div className="p-4 border-b border-orange-400/30">
+                    <h2 className="text-xl font-bold">Live the Shillong Vibe</h2>
+                    
+                    {/* Compact date and guest display */}
+                    <div className="mt-2 text-sm text-orange-100">
+                      {bookingData.checkIn && bookingData.checkOut ? (
+                        <div className="flex items-center gap-4">
+                          <span>{formatDate(bookingData.checkIn)} → {formatDate(bookingData.checkOut)}</span>
+                          <span>•</span>
+                          <span>{bookingData.nights} nights</span>
+                          <span>•</span>
+                          <span>{totalGuestsCalculated} guests total</span>
+                        </div>
+                      ) : (
+                        <span>Please select dates and guests first</span>
+                      )}
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Clock className="h-4 w-4 text-orange-500" />
-                      <div>
-                        <div className="font-medium">Check-out</div>
-                        <div className="text-gray-600">10:00 AM</div>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Tag className="h-4 w-4 text-orange-500" />
-                      <div>
-                        <div className="font-medium">Special Offer</div>
-                        <div className="text-orange-600">Use XTSY-DEAL for eligible bookings</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
 
-                {/* Date selection - smaller tile */}
-                <div className="bg-blue-100 rounded-lg p-4 border shadow-sm">
-                  <div className="text-blue-800 font-medium mb-3 text-center">
-                    {bookingData.checkIn && bookingData.checkOut 
-                      ? `${formatDate(bookingData.checkIn)} → ${formatDate(bookingData.checkOut)} (${bookingData.nights} nights)`
-                      : "Select your dates"
-                    }
-                  </div>
-                  <div className="grid grid-cols-3 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium mb-1 text-blue-800">Check-in</label>
-                      <Input
-                        type="date"
-                        value={bookingData.checkIn}
-                        onChange={(e) => handleDateChange('checkIn', e.target.value)}
-                        min={new Date().toISOString().split('T')[0]}
-                        className="bg-white border-blue-200"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium mb-1 text-blue-800">Check-out</label>
-                      <Input
-                        type="date"
-                        value={bookingData.checkOut}
-                        onChange={(e) => handleDateChange('checkOut', e.target.value)}
-                        min={bookingData.checkIn ? new Date(new Date(bookingData.checkIn).getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0] : new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]}
-                        className="bg-white border-blue-200"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium mb-1 text-blue-800">Number of Guests</label>
-                      <div className="flex items-center gap-2 bg-white border border-blue-200 rounded-md p-2">
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => setBookingData(prev => ({ ...prev, guests: Math.max(1, prev.guests - 1) }))}
-                          disabled={bookingData.guests <= 1}
-                          className="h-6 w-6 p-0"
-                        >
-                          <Minus className="h-3 w-3" />
-                        </Button>
-                        <span className="w-8 text-center text-sm text-blue-800 font-medium">
-                          {bookingData.guests}
-                        </span>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => setBookingData(prev => ({ ...prev, guests: Math.min(25, prev.guests + 1) }))}
-                          disabled={bookingData.guests >= 25}
-                          className="h-6 w-6 p-0"
-                        >
-                          <Plus className="h-3 w-3" />
-                        </Button>
+                    {/* Quick date and guest controls */}
+                    <div className="grid grid-cols-3 gap-4 mt-3">
+                      <div>
+                        <label className="block text-xs font-medium mb-1 text-orange-200">Check-in</label>
+                        <Input
+                          type="date"
+                          value={bookingData.checkIn}
+                          onChange={(e) => handleDateChange('checkIn', e.target.value)}
+                          min={new Date().toISOString().split('T')[0]}
+                          className="bg-white/20 border-orange-300/50 text-white text-sm placeholder:text-orange-200"
+                        />
                       </div>
-                      <div className="text-xs text-blue-600 mt-1">
-                        Max 25 guests
+                      <div>
+                        <label className="block text-xs font-medium mb-1 text-orange-200">Check-out</label>
+                        <Input
+                          type="date"
+                          value={bookingData.checkOut}
+                          onChange={(e) => handleDateChange('checkOut', e.target.value)}
+                          min={bookingData.checkIn ? new Date(new Date(bookingData.checkIn).getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0] : new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]}
+                          className="bg-white/20 border-orange-300/50 text-white text-sm placeholder:text-orange-200"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-medium mb-1 text-orange-200">Target Guests</label>
+                        <div className="flex items-center gap-1 bg-white/20 border border-orange-300/50 rounded-md p-1">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => setBookingData(prev => ({ ...prev, guests: Math.max(1, prev.guests - 1) }))}
+                            disabled={bookingData.guests <= 1}
+                            className="h-5 w-5 p-0 text-white hover:bg-white/20"
+                          >
+                            <Minus className="h-3 w-3" />
+                          </Button>
+                          <span className="w-6 text-center text-xs text-white font-medium">
+                            {bookingData.guests}
+                          </span>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => setBookingData(prev => ({ ...prev, guests: Math.min(20, prev.guests + 1) }))}
+                            disabled={bookingData.guests >= 20}
+                            className="h-5 w-5 p-0 text-white hover:bg-white/20"
+                          >
+                            <Plus className="h-3 w-3" />
+                          </Button>
+                        </div>
+                        <div className="text-xs text-orange-200 mt-1">
+                          Max 20 guests
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-
-                {/* Live the Shillong Vibe - larger scrollable tile */}
-                <div className="bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-lg p-4 border shadow-sm">
-                  <h2 className="text-xl font-bold mb-4">Live the Shillong Vibe</h2>
                   
                   {/* Room Selection - scrollable content */}
-                  <div className="max-h-96 overflow-y-auto">
+                  <div className="p-4 overflow-y-auto" style={{ height: 'calc(100% - 200px)' }}>
                     <div className="mb-6">
                       <h3 className="text-lg font-semibold mb-3 text-white">Select a Room</h3>
                       
@@ -581,8 +554,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                            {rooms.filter(room => room.type === 'hostel').map((room) => (
                              <Card
                                key={room.id}
-                               className={`cursor-pointer hover:shadow-md transition-shadow duration-200 ${selectedRoom?.id === room.id ? 'border-2 border-orange-300' : ''}`}
-                               onClick={() => setSelectedRoom(room)}
+                               className="cursor-pointer hover:shadow-md transition-shadow duration-200 bg-white/95"
                              >
                                <div className="p-4">
                                  <div className="flex gap-4 mb-3">
@@ -603,19 +575,13 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                                      </div>
                                      <div className="text-gray-600 text-sm mb-2">{room.description}</div>
                                      <div className="text-lg font-bold text-orange-600">₹{room.price}</div>
-                                     {selectedRoom?.id === room.id && (
-                                       <div className="text-green-600 mt-2 flex items-center gap-1">
-                                         <Check className="h-4 w-4" />
-                                         Selected
-                                       </div>
-                                     )}
                                    </div>
                                  </div>
                                  
                                  {/* Number of Guests for Hostel Rooms */}
                                  <div className="border-t pt-3">
                                    <div className="flex items-center justify-between">
-                                     <span className="text-sm font-medium text-gray-900">Number of Guests:</span>
+                                     <span className="text-sm font-medium text-gray-900">Number of Beds:</span>
                                      <div className="flex items-center gap-2">
                                        <Button
                                          variant="outline"
@@ -665,8 +631,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                            {rooms.filter(room => room.type === 'luxury').map((room) => (
                              <Card
                                key={room.id}
-                               className={`cursor-pointer hover:shadow-md transition-shadow duration-200 ${selectedRoom?.id === room.id ? 'border-2 border-orange-300' : ''}`}
-                               onClick={() => setSelectedRoom(room)}
+                               className="cursor-pointer hover:shadow-md transition-shadow duration-200 bg-white/95"
                              >
                                <div className="p-4">
                                  <div className="flex gap-4 mb-3">
@@ -689,12 +654,6 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                                      </div>
                                      <div className="text-gray-600 text-sm mb-2">{room.description}</div>
                                      <div className="text-lg font-bold text-orange-600">₹{room.price}</div>
-                                     {selectedRoom?.id === room.id && (
-                                       <div className="text-green-600 mt-2 flex items-center gap-1">
-                                         <Check className="h-4 w-4" />
-                                         Selected
-                                       </div>
-                                     )}
                                    </div>
                                  </div>
                                  
@@ -753,17 +712,20 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                 </div>
               </div>
 
-              {/* Right side - Fixed Booking Summary from top */}
-              <div className="lg:col-span-1 bg-gray-50 p-4 md:p-6 flex flex-col h-full border-l">
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold mb-4">Booking Summary</h3>
-                  
-                   {bookingData.checkIn && bookingData.checkOut && (
-                     <div className="text-sm text-gray-600 mb-4">
-                       {bookingData.nights} nights starting from {formatDate(bookingData.checkIn)}
-                     </div>
-                   )}
+              {/* Right side - Scrollable Booking Summary */}
+              <div className="lg:col-span-1 bg-gray-50 flex flex-col h-full border-l">
+                {/* Header - Fixed */}
+                <div className="flex-shrink-0 p-4 md:p-6 border-b bg-white">
+                  <h3 className="text-lg font-semibold">Booking Summary</h3>
+                  {bookingData.checkIn && bookingData.checkOut && (
+                    <div className="text-sm text-gray-600 mt-2">
+                      {bookingData.nights} nights starting from {formatDate(bookingData.checkIn)}
+                    </div>
+                  )}
+                </div>
 
+                {/* Scrollable Content */}
+                <div className="flex-1 overflow-y-auto p-4 md:p-6">
                    {/* Show all selected rooms */}
                    <div className="space-y-3 mb-4">
                      {Object.entries(roomSelections)
@@ -805,7 +767,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                        })}
                      
                      {totalGuestsCalculated > 0 && (
-                       <div className="text-sm text-gray-600 font-medium">
+                       <div className="text-sm text-gray-600 font-medium bg-blue-50 p-3 rounded-lg border">
                          Total Guests: {totalGuestsCalculated}
                        </div>
                      )}
