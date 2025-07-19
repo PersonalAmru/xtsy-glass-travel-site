@@ -1,210 +1,265 @@
-import React, { useEffect, useState } from 'react';
+
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Calendar, MapPin, Users, Clock, ExternalLink } from 'lucide-react';
-import { supabase } from '@/integrations/supabase/client';
-
-interface Itinerary {
-  id: string;
-  title: string;
-  description: string;
-  duration_days: number;
-  destinations: any;
-  activities: any;
-  estimated_cost: number;
-  difficulty_level: string;
-  best_season: string;
-  image_url?: string;
-  tags?: string[];
-  featured: boolean;
-  source: string;
-  external_url?: string;
-}
+import { MapPin, Clock, Users, Star, Calendar, Mountain, Camera, Compass } from "lucide-react";
 
 const TravelItinerariesSection = () => {
-  const [itineraries, setItineraries] = useState<Itinerary[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
-  useEffect(() => {
-    fetchItineraries();
-  }, []);
-
-  const fetchItineraries = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('itineraries')
-        .select('*')
-        .order('featured', { ascending: false })
-        .order('created_at', { ascending: false });
-
-      if (error) {
-        console.error('Error fetching itineraries:', error);
-      } else {
-        setItineraries(data || []);
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    } finally {
-      setLoading(false);
+  const itineraries = [
+    {
+      id: 1,
+      title: "Meghalaya Hidden Gems",
+      description: "Discover the unexplored waterfalls and living root bridges of Meghalaya",
+      duration: "5 Days",
+      difficulty: "Moderate",
+      price: "₹12,999",
+      image: "/lovable-uploads/6a7b3dad-87a3-49d9-98fa-919ff7b09dd0.png",
+      rating: 4.8,
+      category: "adventure",
+      highlights: ["Double Decker Root Bridge", "Rainbow Falls", "Crystal Clear Pools"],
+      bestSeason: "Oct-Mar"
+    },
+    {
+      id: 2,
+      title: "Shillong Cultural Experience",
+      description: "Immerse yourself in Khasi culture, local markets, and traditional cuisine",
+      duration: "3 Days",
+      difficulty: "Easy",
+      price: "₹8,999",
+      image: "/lovable-uploads/29371033-4f1b-4455-882e-ecaa3758aa7b.png",
+      rating: 4.6,
+      category: "cultural",
+      highlights: ["Police Bazaar", "Don Bosco Museum", "Local Food Tours"],
+      bestSeason: "Year Round"
+    },
+    {
+      id: 3,
+      title: "Cherrapunji Monsoon Trek",
+      description: "Experience the wettest place on earth during monsoon season",
+      duration: "4 Days",
+      difficulty: "Challenging",
+      price: "₹15,999",
+      image: "/lovable-uploads/3fb3e606-6b14-409a-b0ef-87fd12dbac22.png",
+      rating: 4.9,
+      category: "adventure",
+      highlights: ["Nohkalikai Falls", "Mawsmai Caves", "Living Root Bridges"],
+      bestSeason: "Jun-Sep"
+    },
+    {
+      id: 4,
+      title: "Dawki River Adventure",
+      description: "Crystal clear waters and boating experience at Indo-Bangladesh border",
+      duration: "2 Days",
+      difficulty: "Easy",
+      price: "₹6,999",
+      image: "/lovable-uploads/70b7c61f-c52c-479b-9663-3957d72f31b0.png",
+      rating: 4.7,
+      category: "leisure",
+      highlights: ["Umngot River", "Transparent Water Boating", "Border Views"],
+      bestSeason: "Nov-May"
+    },
+    {
+      id: 5,
+      title: "Mawlynnong Clean Village Tour",
+      description: "Visit Asia's cleanest village and experience sustainable living",
+      duration: "2 Days", 
+      difficulty: "Easy",
+      price: "₹7,499",
+      image: "/lovable-uploads/db863c94-a5db-4aa4-afa6-e11364e4b9d7.png",
+      rating: 4.5,
+      category: "cultural",
+      highlights: ["Sky Walk", "Living Root Bridge", "Organic Gardens"],
+      bestSeason: "Oct-Apr"
+    },
+    {
+      id: 6,
+      title: "Garo Hills Tribal Experience",
+      description: "Explore Garo tribal culture, traditional dances, and handicrafts",
+      duration: "4 Days",
+      difficulty: "Moderate", 
+      price: "₹11,999",
+      image: "/lovable-uploads/0ef988f7-b7f3-4d1f-80e3-fc2a04acd9cb.png",
+      rating: 4.4,
+      category: "cultural",
+      highlights: ["Nokrek National Park", "Tribal Villages", "Traditional Crafts"],
+      bestSeason: "Nov-Mar"
+    },
+    {
+      id: 7,
+      title: "Jaintia Hills Cave Expedition",
+      description: "Explore mysterious limestone caves and underground rivers",
+      duration: "3 Days",
+      difficulty: "Challenging",
+      price: "₹10,999",
+      image: "/lovable-uploads/6a7b3dad-87a3-49d9-98fa-919ff7b09dd0.png",
+      rating: 4.6,
+      category: "adventure",
+      highlights: ["Krem Liat Prah", "Underground Rivers", "Cave Photography"],
+      bestSeason: "Dec-May"
+    },
+    {
+      id: 8,
+      title: "Meghalaya Photography Tour",
+      description: "Capture stunning landscapes with professional photography guidance",
+      duration: "6 Days",
+      difficulty: "Easy",
+      price: "₹18,999",
+      image: "/lovable-uploads/29371033-4f1b-4455-882e-ecaa3758aa7b.png",
+      rating: 4.8,
+      category: "leisure",
+      highlights: ["Golden Hour Shots", "Waterfall Photography", "Portrait Sessions"],
+      bestSeason: "Oct-Feb"
+    },
+    {
+      id: 9,
+      title: "Meghalaya Wellness Retreat",
+      description: "Yoga, meditation, and wellness activities in nature's lap",
+      duration: "5 Days",
+      difficulty: "Easy",
+      price: "₹16,999",
+      image: "/lovable-uploads/3fb3e606-6b14-409a-b0ef-87fd12dbac22.png",
+      rating: 4.7,
+      category: "leisure",
+      highlights: ["Morning Yoga", "Nature Meditation", "Organic Meals"],
+      bestSeason: "Oct-Mar"
+    },
+    {
+      id: 10,
+      title: "Offbeat Meghalaya Circuit",
+      description: "Explore lesser-known destinations and hidden treasures",
+      duration: "7 Days",
+      difficulty: "Moderate",
+      price: "₹22,999",
+      image: "/lovable-uploads/70b7c61f-c52c-479b-9663-3957d72f31b0.png",
+      rating: 4.9,
+      category: "adventure",
+      highlights: ["Secret Waterfalls", "Untouched Villages", "Local Homestays"],
+      bestSeason: "Nov-Apr"
     }
-  };
+  ];
 
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-IN', {
-      style: 'currency',
-      currency: 'INR',
-      maximumFractionDigits: 0,
-    }).format(amount);
-  };
+  const categories = [
+    { id: "all", label: "All Packages", icon: Compass },
+    { id: "adventure", label: "Adventure", icon: Mountain },
+    { id: "cultural", label: "Cultural", icon: Users },
+    { id: "leisure", label: "Leisure", icon: Camera }
+  ];
 
-  if (loading) {
-    return (
-      <section className="py-16 bg-gradient-to-b from-background to-secondary/20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Travel Itineraries
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Loading amazing travel experiences...
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="animate-pulse">
-                <Card className="h-full">
-                  <div className="h-48 bg-muted rounded-t-lg"></div>
-                  <CardHeader>
-                    <div className="h-6 bg-muted rounded mb-2"></div>
-                    <div className="h-4 bg-muted rounded w-3/4"></div>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-3">
-                      <div className="h-4 bg-muted rounded"></div>
-                      <div className="h-4 bg-muted rounded w-2/3"></div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
+  const filteredItineraries = selectedCategory === "all" 
+    ? itineraries 
+    : itineraries.filter(item => item.category === selectedCategory);
 
   return (
-    <section className="py-16 bg-gradient-to-b from-background to-secondary/20">
+    <section id="travel-itineraries" className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Curated Travel Itineraries
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Discover handcrafted travel experiences across Northeast India
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+            Discover Meghalaya's hidden treasures with our expertly crafted travel packages. 
+            From thrilling adventures to cultural immersions, find your perfect journey.
           </p>
+
+          {/* Category Filter */}
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            {categories.map((category) => {
+              const IconComponent = category.icon;
+              return (
+                <Button
+                  key={category.id}
+                  variant={selectedCategory === category.id ? "default" : "outline"}
+                  onClick={() => setSelectedCategory(category.id)}
+                  className="flex items-center gap-2"
+                >
+                  <IconComponent className="h-4 w-4" />
+                  {category.label}
+                </Button>
+              );
+            })}
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {itineraries.map((itinerary) => (
-            <Card key={itinerary.id} className="h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
-              {itinerary.image_url && (
-                <div className="h-48 overflow-hidden rounded-t-lg">
-                  <img 
-                    src={itinerary.image_url} 
-                    alt={itinerary.title}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                  />
+          {filteredItineraries.map((itinerary) => (
+            <Card key={itinerary.id} className="group hover:shadow-xl transition-all duration-300 overflow-hidden border-0 bg-white/80 backdrop-blur-sm">
+              <div className="relative overflow-hidden">
+                <img
+                  src={itinerary.image}
+                  alt={itinerary.title}
+                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                />
+                <div className="absolute top-4 left-4">
+                  <Badge variant="secondary" className="bg-white/90 text-gray-800">
+                    {itinerary.category}
+                  </Badge>
                 </div>
-              )}
+                <div className="absolute top-4 right-4 bg-black/70 text-white px-2 py-1 rounded text-sm font-bold">
+                  {itinerary.price}
+                </div>
+              </div>
               
-              <CardHeader className="flex-none">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <CardTitle className="text-xl mb-2 line-clamp-2">
-                      {itinerary.title}
-                      {itinerary.featured && (
-                        <Badge variant="secondary" className="ml-2">Featured</Badge>
-                      )}
-                    </CardTitle>
-                    <CardDescription className="line-clamp-2">
-                      {itinerary.description}
-                    </CardDescription>
+              <CardHeader>
+                <div className="flex justify-between items-start mb-2">
+                  <CardTitle className="text-xl group-hover:text-orange-600 transition-colors">
+                    {itinerary.title}
+                  </CardTitle>
+                  <div className="flex items-center gap-1 text-yellow-500">
+                    <Star className="h-4 w-4 fill-current" />
+                    <span className="text-sm font-medium text-gray-700">{itinerary.rating}</span>
                   </div>
                 </div>
+                <CardDescription className="text-gray-600">
+                  {itinerary.description}
+                </CardDescription>
               </CardHeader>
-
-              <CardContent className="flex-1 flex flex-col">
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              
+              <CardContent className="space-y-4">
+                <div className="flex items-center justify-between text-sm text-gray-600">
+                  <div className="flex items-center gap-1">
+                    <Clock className="h-4 w-4" />
+                    {itinerary.duration}
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Mountain className="h-4 w-4" />
+                    {itinerary.difficulty}
+                  </div>
+                  <div className="flex items-center gap-1">
                     <Calendar className="h-4 w-4" />
-                    <span>{itinerary.duration_days} days</span>
+                    {itinerary.bestSeason}
                   </div>
-                  
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <MapPin className="h-4 w-4" />
-                    <span>{Array.isArray(itinerary.destinations) ? itinerary.destinations.length : 0} destinations</span>
-                  </div>
-
-                  {itinerary.estimated_cost && (
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Users className="h-4 w-4" />
-                      <span>From {formatCurrency(itinerary.estimated_cost)}</span>
-                    </div>
-                  )}
-
-                  {itinerary.difficulty_level && (
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Clock className="h-4 w-4" />
-                      <span>{itinerary.difficulty_level}</span>
-                    </div>
-                  )}
-
-                  {itinerary.best_season && (
-                    <div className="text-sm text-muted-foreground">
-                      <strong>Best time:</strong> {itinerary.best_season}
-                    </div>
-                  )}
                 </div>
-
-                {itinerary.tags && itinerary.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {itinerary.tags.slice(0, 3).map((tag, index) => (
+                
+                <div className="space-y-2">
+                  <h4 className="font-semibold text-gray-900">Highlights:</h4>
+                  <div className="flex flex-wrap gap-1">
+                    {itinerary.highlights.map((highlight, index) => (
                       <Badge key={index} variant="outline" className="text-xs">
-                        {tag}
+                        {highlight}
                       </Badge>
                     ))}
                   </div>
-                )}
-
-                <div className="mt-auto">
-                  {itinerary.source === 'external' && itinerary.external_url ? (
-                    <Button 
-                      className="w-full" 
-                      onClick={() => window.open(itinerary.external_url, '_blank')}
-                    >
-                      View Details
-                      <ExternalLink className="h-4 w-4 ml-2" />
-                    </Button>
-                  ) : (
-                    <Button className="w-full">
-                      Explore Itinerary
-                    </Button>
-                  )}
+                </div>
+                
+                <div className="pt-4">
+                  <Button className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white">
+                    <MapPin className="h-4 w-4 mr-2" />
+                    Book This Journey
+                  </Button>
                 </div>
               </CardContent>
             </Card>
           ))}
         </div>
 
-        {itineraries.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-muted-foreground text-lg">
-              No itineraries available at the moment. Check back soon!
-            </p>
-          </div>
-        )}
+        <div className="text-center mt-12">
+          <Button variant="outline" size="lg" className="px-8">
+            View All Packages
+          </Button>
+        </div>
       </div>
     </section>
   );

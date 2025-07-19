@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { Button } from "./ui/button";
-import { Menu, X, User, Settings } from "lucide-react";
+import { Menu, X, User, Settings, Users } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { AuthModal } from "./AuthModal";
 import { UserMenu } from "./UserMenu";
@@ -10,10 +10,10 @@ import { Link } from "react-router-dom";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const [authModalTab, setAuthModalTab] = useState<'signin' | 'signup'>('signin');
+  const [authModalTab, setAuthModalTab] = useState<'signin' | 'signup' | 'newsletter'>('signin');
   const { user, loading } = useAuth();
 
-  const handleAuthClick = (tab: 'signin' | 'signup') => {
+  const handleAuthClick = (tab: 'signin' | 'signup' | 'newsletter') => {
     setAuthModalTab(tab);
     setIsAuthModalOpen(true);
   };
@@ -62,15 +62,24 @@ const Header = () => {
                     <Button 
                       variant="ghost" 
                       size="sm"
+                      onClick={() => handleAuthClick('newsletter')}
+                      className="text-green-600 hover:text-green-700"
+                    >
+                      <Users className="h-4 w-4 mr-2" />
+                      Newsletter
+                    </Button>
+                    <Button 
+                      variant="ghost" 
+                      size="sm"
                       onClick={() => handleAuthClick('signin')}
                     >
-                      Sign In
+                      Staff Login
                     </Button>
                     <Button 
                       size="sm"
                       onClick={() => handleAuthClick('signup')}
                     >
-                      Sign Up
+                      Staff Signup
                     </Button>
                   </div>
                 )}
@@ -137,6 +146,17 @@ const Header = () => {
                   <div className="pt-4 border-t space-y-2">
                     <Button 
                       variant="ghost" 
+                      className="w-full justify-start text-green-600"
+                      onClick={() => {
+                        handleAuthClick('newsletter');
+                        setIsMenuOpen(false);
+                      }}
+                    >
+                      <Users className="h-4 w-4 mr-2" />
+                      Guest Newsletter
+                    </Button>
+                    <Button 
+                      variant="ghost" 
                       className="w-full justify-start"
                       onClick={() => {
                         handleAuthClick('signin');
@@ -144,7 +164,7 @@ const Header = () => {
                       }}
                     >
                       <User className="h-4 w-4 mr-2" />
-                      Sign In
+                      Staff Login
                     </Button>
                     <Button 
                       className="w-full justify-start"
@@ -154,7 +174,7 @@ const Header = () => {
                       }}
                     >
                       <User className="h-4 w-4 mr-2" />
-                      Sign Up
+                      Staff Signup
                     </Button>
                   </div>
                 )}
