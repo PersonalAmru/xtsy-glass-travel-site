@@ -7,7 +7,6 @@ import ReviewsSection from "@/components/ReviewsSection";
 import GroupBookingSection from "@/components/GroupBookingSection";
 import Footer from "@/components/Footer";
 import AIChatBot from "@/components/AIChatBot";
-import AdventureCallToAction from "@/components/AdventureCallToAction";
 
 const Index = () => {
   return (
@@ -18,7 +17,6 @@ const Index = () => {
       <ServicesSection />
       <ReviewsSection />
       <GroupBookingSection />
-      <AdventureCallToAction />
       <Footer />
       <AIChatBot />
     </div>
