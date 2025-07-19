@@ -119,13 +119,20 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
       ? `\nDiscount (${bookingData.couponCode}): -₹${bookingData.discountAmount}`
       : '';
 
+    // Include emergency contact if provided
+    const emergencyContactText = formData.emergencyContact && formData.emergencyRelation 
+      ? `\nEmergency Contact: ${formData.emergencyContact} (${formData.emergencyRelation})`
+      : formData.emergencyContact 
+        ? `\nEmergency Contact: ${formData.emergencyContact}`
+        : '';
+
     const whatsappMessage = `*XTSY Travellers Hostel & XTSY Luxury Booking Request*
 
 *Guest Details:*
 Name: ${formData.guestName}
 Email: ${formData.email}
 Phone: ${formData.whatsappNumber}
-Address: ${formData.address}, ${formData.city}, ${formData.state} - ${formData.pincode}
+Address: ${formData.address}, ${formData.city}, ${formData.state} - ${formData.pincode}${emergencyContactText}
 
 *Booking Details:*
 Check-in: ${formatDate(bookingData.checkIn)}
