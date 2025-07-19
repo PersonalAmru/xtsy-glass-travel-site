@@ -222,44 +222,36 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
     const discountAmount = Math.round(subtotal * (couponDiscount / 100));
     const discountedSubtotal = subtotal - discountAmount;
     
-    // Calculate GST based on Indian GST criteria for accommodation
-    // Calculate average room rate per night to determine GST rate
-    let gstRate = 0;
-    if (Object.keys(roomSelections).length > 0) {
-      let totalRoomNightValue = 0;
-      let totalRoomNights = 0;
-      
-      Object.entries(roomSelections).forEach(([roomId, selection]) => {
-        const room = rooms.find(r => r.id === roomId);
-        if (!room || (!selection.guests && !selection.rooms)) return;
-        
-        const isDorm = room.name.toLowerCase().includes('dorm');
-        
-        if (isDorm) {
-          const guestCount = selection.guests || 0;
-          // For dorms, treat each bed as a room unit
-          totalRoomNightValue += room.price * guestCount * nights;
-          totalRoomNights += guestCount * nights;
-        } else {
-          const roomCount = selection.rooms || 0;
-          totalRoomNightValue += room.price * roomCount * nights;
-          totalRoomNights += roomCount * nights;
-        }
-      });
-      
-      const averageRatePerNight = totalRoomNights > 0 ? totalRoomNightValue / totalRoomNights : 0;
-      
-      // Apply Indian GST rates based on room tariff per night
-      if (averageRatePerNight < 1000) {
-        gstRate = 0; // Exempt
-      } else if (averageRatePerNight <= 7500) {
-        gstRate = 0.12; // 12%
-      } else {
-        gstRate = 0.18; // 18%
-      }
-    }
+    // Calculate GST room-wise only for luxury rooms (XTSY Luxury)
+    // Dorm rooms are GST exempt, luxury rooms have specific GST rates
+    let gstAmount = 0;
     
-    const gstAmount = Math.round(discountedSubtotal * gstRate);
+    Object.entries(roomSelections).forEach(([roomId, selection]) => {
+      const room = rooms.find(r => r.id === roomId);
+      if (!room || (!selection.guests && !selection.rooms)) return;
+      
+      const isDorm = room.name.toLowerCase().includes('dorm');
+      
+      // Skip GST calculation for dorm rooms (they are GST exempt)
+      if (isDorm) return;
+      
+      // Apply GST only to luxury rooms
+      let roomGstRate = 0;
+      const roomName = room.name.toLowerCase();
+      
+      if (roomName.includes('king double') || roomName.includes('king triple')) {
+        roomGstRate = 0.12; // 12% GST for King Double and King Triple rooms
+      } else if (roomName.includes('signature') && roomName.includes('glass suite')) {
+        roomGstRate = 0.18; // 18% GST for Signature 270° Glass Suite
+      }
+      
+      if (roomGstRate > 0) {
+        const roomCount = selection.rooms || 0;
+        const roomTotal = room.price * roomCount * nights;
+        const roomDiscountedTotal = roomTotal - Math.round(roomTotal * (couponDiscount / 100));
+        gstAmount += Math.round(roomDiscountedTotal * roomGstRate);
+      }
+    });
     const totalAmount = discountedSubtotal + gstAmount;
     
     return { subtotal, gstAmount, totalAmount, discountAmount, totalGuestsCalculated };
