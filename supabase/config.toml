@@ -6,3 +6,9 @@ verify_jwt = false
 
 [functions.payment-webhook]
 verify_jwt = false
+
+[functions.ota-webhook-handler]
+verify_jwt = false
+
+[functions.inventory-sync]
+verify_jwt = false
