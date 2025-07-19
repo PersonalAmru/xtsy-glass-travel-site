@@ -37,6 +37,17 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
     phone: "",
     emergencyContact: ""
   });
+
+  // Calculate end date based on selected start date and package duration
+  const calculateEndDate = (startDate: string, duration: string) => {
+    if (!startDate) return "";
+    const days = parseInt(duration.split(" ")[0]);
+    const start = new Date(startDate);
+    const end = new Date(start.getTime() + (days - 1) * 24 * 60 * 60 * 1000);
+    return end.toISOString().split('T')[0];
+  };
+
+  const endDate = calculateEndDate(selectedDate, tourPackage?.duration || "");
   const { toast } = useToast();
 
   if (!tourPackage) return null;
@@ -56,7 +67,7 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
   const gstAmount = Math.round(totalAmount * 0.18);
   const finalTotal = totalAmount + gstAmount;
 
-  const handleAddToCart = () => {
+  const handlePayAndConfirm = () => {
     if (!selectedDate || !guestDetails.name || !guestDetails.email || !guestDetails.phone) {
       toast({
         title: "Missing Information",
@@ -66,40 +77,46 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
       return;
     }
 
-    // Generate unique session ID for this guest
-    const sessionId = `tour_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-    
-    const cartItem = {
-      sessionId,
-      type: "tour_package",
-      packageId: tourPackage.id,
-      packageTitle: tourPackage.title,
-      guests,
-      selectedDate,
-      duration: days,
-      baseRate: finalRate,
-      totalAmount,
-      gstAmount,
-      finalTotal,
-      guestDetails,
-      createdAt: new Date().toISOString()
-    };
+    // Create WhatsApp message
+    const whatsappMessage = `🌟 Tour Package Booking Request - XTSY Travellers Hostel & XTSY Luxury 🌟
 
-    // Save to localStorage with unique session
-    const existingCart = JSON.parse(localStorage.getItem(`tour_cart_${sessionId}`) || "[]");
-    existingCart.push(cartItem);
-    localStorage.setItem(`tour_cart_${sessionId}`, JSON.stringify(existingCart));
+*Package Details:*
+Package: ${tourPackage.title}
+Duration: ${days} days (${selectedDate} to ${endDate})
+Difficulty: ${tourPackage.difficulty}
+Category: ${tourPackage.category}
 
-    // Also save session ID for header cart access
-    const allSessions = JSON.parse(localStorage.getItem("active_tour_sessions") || "[]");
-    if (!allSessions.includes(sessionId)) {
-      allSessions.push(sessionId);
-      localStorage.setItem("active_tour_sessions", JSON.stringify(allSessions));
-    }
+*Guest Details:*
+Name: ${guestDetails.name}
+Email: ${guestDetails.email}
+Phone: ${guestDetails.phone}
+Number of Guests: ${guests}
+${guestDetails.emergencyContact ? `Emergency Contact: ${guestDetails.emergencyContact}` : ''}
+
+*Booking Summary:*
+Start Date: ${selectedDate}
+End Date: ${endDate}
+Total Days: ${days}
+Total Guests: ${guests}
+
+*Payment Details:*
+Base Rate: ₹${Math.round(finalRate).toLocaleString()} per person/day
+Subtotal: ₹${totalAmount.toLocaleString()}
+GST (18%): ₹${gstAmount.toLocaleString()}
+*Total Amount: ₹${finalTotal.toLocaleString()}*
+
+*Package Highlights:*
+${tourPackage.highlights.map(highlight => `• ${highlight}`).join('\n')}
+
+Please confirm this tour package booking and share payment details.`;
+
+    // Redirect to WhatsApp
+    const whatsappURL = `https://wa.me/918837317070?text=${encodeURIComponent(whatsappMessage)}`;
+    window.open(whatsappURL, '_blank');
 
     toast({
-      title: "Added to Cart",
-      description: `${tourPackage.title} has been added to your cart`,
+      title: "Redirecting to WhatsApp",
+      description: "Please complete your booking via WhatsApp",
     });
 
     onClose();
@@ -212,6 +229,21 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
                   />
                 </div>
 
+                {selectedDate && (
+                  <div className="bg-blue-50 p-3 rounded-lg">
+                    <div className="text-sm space-y-1">
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Total Days:</span>
+                        <span className="font-medium">{days} days</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">End Date:</span>
+                        <span className="font-medium">{endDate}</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 <Separator />
 
                 <div className="space-y-3">
@@ -303,10 +335,10 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
               </div>
 
               <Button 
-                onClick={handleAddToCart}
+                onClick={handlePayAndConfirm}
                 className="w-full mt-6 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700"
               >
-                Add to Cart
+                Pay and Confirm
               </Button>
             </Card>
           </div>
