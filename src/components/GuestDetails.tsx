@@ -126,29 +126,37 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
         ? `\nEmergency Contact: ${formData.emergencyContact}`
         : '';
 
-    const whatsappMessage = `*XTSY Travellers Hostel & XTSY Luxury Booking Request*
+    const whatsappMessage = `🌟 Booking Confirmation (Pending from Property) – XTSY Travellers Hostel & XTSY Luxury 🌟
 
-*Guest Details:*
+Hi ${formData.guestName},
+Thanks for choosing to stay at XTSY Travellers Hostel – where travel meets vibes 🌍✨
+
+We've received your booking and payment. Here's your confirmed reservation:
+
+👤 Guest Details:
 Name: ${formData.guestName}
 Email: ${formData.email}
 Phone: ${formData.whatsappNumber}
 Address: ${formData.address}, ${formData.city}, ${formData.state} - ${formData.pincode}${emergencyContactText}
 
-*Booking Details:*
+🛏 Booking Details:
 Check-in: ${formatDate(bookingData.checkIn)}
 Check-out: ${formatDate(bookingData.checkOut)}
-Total Guests: ${bookingData.guests}
-Number of Nights: ${bookingData.nights}
+Nights: ${bookingData.nights}
+Guests: ${bookingData.guests}
+Room Type: ${roomDetails}
+Total Stay: ₹${bookingData.totalAmount}
 
-*Room Details:*
-${roomDetails}
+💸 Payment: ✅ Received
+GST (under ₹1000/night per bed): ₹${bookingData.gstAmount}
+Total Paid: ₹${bookingData.totalAmount}
 
-*Payment Summary:*
-Subtotal: ₹${bookingData.subtotal}${discountText}
-GST (18%): ₹${bookingData.gstAmount}
-*Total Amount: ₹${bookingData.totalAmount}*
+📸 Payment Screenshot: [Attached]
 
-Please confirm this booking. We have already made payment and here is the Payment screenshot for reference.`;
+If you need anything before check-in—airport pickup, itinerary planning, or café updates—just WhatsApp us 📲 wa.me/918837317070
+
+Can't wait to host you! Safe travels & pack light 😉
+— Team XTSY 🏕️`;
 
     const whatsappURL = `https://wa.me/918837317070?text=${encodeURIComponent(whatsappMessage)}`;
     
