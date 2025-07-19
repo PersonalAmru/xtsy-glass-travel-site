@@ -1,9 +1,8 @@
-
 import { useState, useEffect } from "react";
 import { Calendar, Users, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import BookingModal from "./BookingModal";
+import EnhancedBookingModal from "./EnhancedBookingModal";
 
 const HeroSection = () => {
   const [checkIn, setCheckIn] = useState("");
@@ -179,12 +178,9 @@ const HeroSection = () => {
         </div>
       </section>
 
-      <BookingModal 
+      <EnhancedBookingModal 
         isOpen={isBookingModalOpen}
         onClose={() => setIsBookingModalOpen(false)}
-        checkIn={checkIn}
-        checkOut={checkOut}
-        guests={parseInt(guests)}
       />
     </>
   );

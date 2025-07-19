@@ -6,10 +6,9 @@ import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
-import { CalendarIcon, Check, ChevronsUpDown, Clock, Tag, Users, Bed, Minus, Plus, Bookmark } from "lucide-react";
+import { CalendarIcon, Check, Clock, Tag, Users, Bed, Minus, Plus, Bookmark, X } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { Listbox } from "@headlessui/react";
 import { useToast } from "@/hooks/use-toast";
 
 interface Room {

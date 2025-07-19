@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, Separator } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import { Calendar, Users, Bed, Clock, Tag, X, Minus, Plus, Bookmark } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
