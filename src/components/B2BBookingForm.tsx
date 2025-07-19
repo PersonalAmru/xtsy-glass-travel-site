@@ -1,294 +1,339 @@
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Calendar, Users, MessageSquare, User, Mail, MapPin, Building } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from "@/components/ui/select";
+import { Calendar, Users, Building, IndianRupee, Minus, Plus, ShoppingCart } from "lucide-react";
+import { CartModal } from "./CartModal";
 
 const B2BBookingForm = () => {
   const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
     companyName: "",
-    designation: "",
-    fromCity: "",
+    contactPerson: "",
+    email: "",
+    phone: "",
     checkIn: "",
     checkOut: "",
-    guests: "",
-    bookingType: "",
-    requirements: ""
+    guests: 1,
+    roomType: "",
+    rooms: 1,
+    specialRequests: ""
   });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
+  const [showCart, setShowCart] = useState(false);
+  const [nights, setNights] = useState(0);
+  
+  const roomTypes = [
+    { id: "4-bed-dorm", name: "4-Bed Mixed Dorm", pricePerNight: 800, capacity: 4 },
+    { id: "6-bed-dorm", name: "6-Bed Mixed Dorm", pricePerNight: 700, capacity: 6 },
+    { id: "signature-suite", name: "Signature 270° Glass Suite", pricePerNight: 2500, capacity: 2 },
+    { id: "private-room", name: "Private Room", pricePerNight: 2000, capacity: 2 }
+  ];
+
+  // Calculate nights when dates change
+  useEffect(() => {
+    if (formData.checkIn && formData.checkOut) {
+      const checkIn = new Date(formData.checkIn);
+      const checkOut = new Date(formData.checkOut);
+      const diffTime = checkOut.getTime() - checkIn.getTime();
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      setNights(diffDays > 0 ? diffDays : 0);
+    }
+  }, [formData.checkIn, formData.checkOut]);
+
+  const selectedRoomType = roomTypes.find(room => room.id === formData.roomType);
+  const totalPrice = selectedRoomType ? selectedRoomType.pricePerNight * formData.rooms * nights : 0;
+  const gst = Math.round(totalPrice * 0.12);
+  const finalTotal = totalPrice + gst;
+
+  const handleInputChange = (field: string, value: any) => {
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [field]: value
     }));
   };
 
-  const handleSelectChange = (value: string) => {
-    setFormData(prev => ({
-      ...prev,
-      bookingType: value
-    }));
+  const handleAddToCart = () => {
+    if (!selectedRoomType || !formData.checkIn || !formData.checkOut || nights <= 0) {
+      alert("Please fill in all required fields including valid dates");
+      return;
+    }
+    
+    const cartItem = {
+      id: `b2b-${Date.now()}`,
+      type: 'b2b',
+      roomType: selectedRoomType.name,
+      rooms: formData.rooms,
+      guests: formData.guests,
+      checkIn: formData.checkIn,
+      checkOut: formData.checkOut,
+      nights: nights,
+      pricePerNight: selectedRoomType.pricePerNight,
+      totalPrice: finalTotal,
+      companyName: formData.companyName,
+      contactPerson: formData.contactPerson
+    };
+    
+    // Store in localStorage or state management
+    const existingCart = JSON.parse(localStorage.getItem('bookingCart') || '[]');
+    existingCart.push(cartItem);
+    localStorage.setItem('bookingCart', JSON.stringify(existingCart));
+    
+    setShowCart(true);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    const guestCount = parseInt(formData.guests);
-    if (guestCount < 26) {
-      alert("B2B Corporate bookings require a minimum of 26 guests and maximum 60 guests");
-      return;
-    }
-
-    if (guestCount > 60) {
-      alert("B2B Corporate bookings are limited to maximum 60 guests");
-      return;
-    }
-
-    const estimatedCost = guestCount * 750;
-
-    const message = `B2B Corporate Booking Inquiry
-
-Full Name: ${formData.fullName}
-Email: ${formData.email}
-Company Name: ${formData.companyName}
-Designation: ${formData.designation}
-From City: ${formData.fromCity}
-Check-in Date: ${formData.checkIn}
-Check-out Date: ${formData.checkOut}
-Number of Guests: ${formData.guests}
-Booking Type: ${formData.bookingType}
-Estimated Stay Cost: ₹${estimatedCost.toLocaleString()}
-Additional Requirements: ${formData.requirements}
-
-Looking forward to your response.
-
-Best regards`;
-
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/918837317070?text=${encodedMessage}`;
-    
-    window.open(whatsappUrl, '_blank');
+    handleAddToCart();
   };
 
-  // Calculate estimated cost
-  const guestCount = parseInt(formData.guests) || 0;
-  const estimatedCost = guestCount >= 26 ? guestCount * 750 : 0;
-
-  // Get today's date in YYYY-MM-DD format
-  const today = new Date().toISOString().split('T')[0];
-  
-  // Get tomorrow's date for minimum checkout
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  const tomorrowStr = tomorrow.toISOString().split('T')[0];
-
   return (
-    <div className="backdrop-blur-xl bg-black/80 border border-white/20 rounded-2xl p-3 sm:p-4 md:p-6 lg:p-8 shadow-2xl">
-      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white text-center mb-3 sm:mb-4 md:mb-6 font-serif-sans">
-        B2B Corporate Booking
-      </h3>
-      <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4 md:space-y-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
-          <div className="space-y-1 sm:space-y-2">
-            <Label htmlFor="fullName" className="text-white font-bold flex items-center gap-2 font-seasons text-xs sm:text-sm md:text-base">
-              <User className="h-3 w-3 sm:h-4 sm:w-4" />
-              Full Name
-            </Label>
-            <Input
-              id="fullName"
-              name="fullName"
-              type="text"
-              value={formData.fullName}
-              onChange={handleInputChange}
-              required
-              placeholder="Enter your full name"
-              className="bg-white/95 border-gray-300/60 text-black h-8 sm:h-10 md:h-12 font-seasons text-xs sm:text-sm md:text-base"
-            />
-          </div>
-
-          <div className="space-y-1 sm:space-y-2">
-            <Label htmlFor="email" className="text-white font-bold flex items-center gap-2 font-seasons text-xs sm:text-sm md:text-base">
-              <Mail className="h-3 w-3 sm:h-4 sm:w-4" />
-              Email Address
-            </Label>
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              required
-              placeholder="Enter your email"
-              className="bg-white/95 border-gray-300/60 text-black h-8 sm:h-10 md:h-12 font-seasons text-xs sm:text-sm md:text-base"
-            />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
-          <div className="space-y-1 sm:space-y-2">
-            <Label htmlFor="companyName" className="text-white font-bold flex items-center gap-2 font-seasons text-xs sm:text-sm md:text-base">
-              <Building className="h-3 w-3 sm:h-4 sm:w-4" />
-              Company Name
-            </Label>
-            <Input
-              id="companyName"
-              name="companyName"
-              type="text"
-              value={formData.companyName}
-              onChange={handleInputChange}
-              required
-              placeholder="Enter your company name"
-              className="bg-white/95 border-gray-300/60 text-black h-8 sm:h-10 md:h-12 font-seasons text-xs sm:text-sm md:text-base"
-            />
-          </div>
-
-          <div className="space-y-1 sm:space-y-2">
-            <Label htmlFor="designation" className="text-white font-bold flex items-center gap-2 font-seasons text-xs sm:text-sm md:text-base">
-              Designation
-            </Label>
-            <Input
-              id="designation"
-              name="designation"
-              type="text"
-              value={formData.designation}
-              onChange={handleInputChange}
-              required
-              placeholder="Your designation"
-              className="bg-white/95 border-gray-300/60 text-black h-8 sm:h-10 md:h-12 font-seasons text-xs sm:text-sm md:text-base"
-            />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
-          <div className="space-y-1 sm:space-y-2">
-            <Label htmlFor="fromCity" className="text-white font-bold flex items-center gap-2 font-seasons text-xs sm:text-sm md:text-base">
-              <MapPin className="h-3 w-3 sm:h-4 sm:w-4" />
-              From City
-            </Label>
-            <Input
-              id="fromCity"
-              name="fromCity"
-              type="text"
-              value={formData.fromCity}
-              onChange={handleInputChange}
-              required
-              placeholder="Which city are you traveling from?"
-              className="bg-white/95 border-gray-300/60 text-black h-8 sm:h-10 md:h-12 font-seasons text-xs sm:text-sm md:text-base"
-            />
-          </div>
-
-          <div className="space-y-1 sm:space-y-2">
-            <Label className="text-white font-bold flex items-center gap-2 font-seasons text-xs sm:text-sm md:text-base">
-              Booking Type
-            </Label>
-            <Select onValueChange={handleSelectChange} required>
-              <SelectTrigger className="bg-white/95 border-gray-300/60 text-black h-8 sm:h-10 md:h-12 font-seasons text-xs sm:text-sm md:text-base">
-                <SelectValue placeholder="Select booking type" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="individual">Individual/Agent</SelectItem>
-                <SelectItem value="company">Company</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
-          <div className="space-y-1 sm:space-y-2">
-            <Label htmlFor="checkIn" className="text-white font-bold flex items-center gap-2 font-seasons text-xs sm:text-sm md:text-base">
-              <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
-              Check-in Date
-            </Label>
-            <Input
-              id="checkIn"
-              name="checkIn"
-              type="date"
-              value={formData.checkIn}
-              min={today}
-              onChange={handleInputChange}
-              required
-              className="bg-white/95 border-gray-300/60 text-black h-8 sm:h-10 md:h-12 font-seasons text-xs sm:text-sm md:text-base"
-            />
-          </div>
-
-          <div className="space-y-1 sm:space-y-2">
-            <Label htmlFor="checkOut" className="text-white font-bold flex items-center gap-2 font-seasons text-xs sm:text-sm md:text-base">
-              <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
-              Check-out Date
-            </Label>
-            <Input
-              id="checkOut"
-              name="checkOut"
-              type="date"
-              value={formData.checkOut}
-              min={formData.checkIn ? (new Date(new Date(formData.checkIn).getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]) : tomorrowStr}
-              onChange={handleInputChange}
-              required
-              className="bg-white/95 border-gray-300/60 text-black h-8 sm:h-10 md:h-12 font-seasons text-xs sm:text-sm md:text-base"
-            />
-          </div>
-        </div>
-
-        <div className="space-y-1 sm:space-y-2">
-          <Label htmlFor="guests" className="text-white font-bold flex items-center gap-2 font-seasons text-xs sm:text-sm md:text-base">
-            <Users className="h-3 w-3 sm:h-4 sm:w-4" />
-            Number of Guests (Min 26, Max 60)
-          </Label>
-          <Input
-            id="guests"
-            name="guests"
-            type="number"
-            min="26"
-            max="60"
-            value={formData.guests}
-            onChange={handleInputChange}
-            required
-            placeholder="Enter number of guests (26-60)"
-            className="bg-white/95 border-gray-300/60 text-black h-8 sm:h-10 md:h-12 font-seasons text-xs sm:text-sm md:text-base"
-          />
-          {guestCount >= 26 && guestCount <= 60 && (
-            <div className="bg-blue-500/20 border border-blue-400/50 rounded-lg p-2 sm:p-3 mt-2">
-              <p className="text-blue-100 font-bold text-xs sm:text-sm md:text-base">
-                Estimated Stay Cost: ₹{estimatedCost.toLocaleString()}
-              </p>
-              <p className="text-blue-200 text-xs sm:text-sm">
-                (₹750 per guest average - excludes additional services)
-              </p>
+    <>
+      <Card className="bg-white/95 backdrop-blur-sm border-blue-200 shadow-2xl">
+        <CardHeader className="text-center pb-6">
+          <CardTitle className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2 font-serif-sans">
+            <Building className="h-8 w-8 mx-auto mb-2 text-blue-600" />
+            B2B Corporate Booking
+          </CardTitle>
+          <CardDescription className="text-gray-600 font-seasons">
+            Exclusive rates and services for corporate clients
+          </CardDescription>
+        </CardHeader>
+        
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Company Information */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="companyName">Company Name *</Label>
+                <Input
+                  id="companyName"
+                  value={formData.companyName}
+                  onChange={(e) => handleInputChange('companyName', e.target.value)}
+                  placeholder="Your Company Name"
+                  required
+                />
+              </div>
+              <div>
+                <Label htmlFor="contactPerson">Contact Person *</Label>
+                <Input
+                  id="contactPerson"
+                  value={formData.contactPerson}
+                  onChange={(e) => handleInputChange('contactPerson', e.target.value)}
+                  placeholder="Primary Contact Name"
+                  required
+                />
+              </div>
             </div>
-          )}
-        </div>
 
-        <div className="space-y-1 sm:space-y-2">
-          <Label htmlFor="requirements" className="text-white font-bold flex items-center gap-2 font-seasons text-xs sm:text-sm md:text-base">
-            <MessageSquare className="h-3 w-3 sm:h-4 sm:w-4" />
-            Additional Requirements
-          </Label>
-          <Textarea
-            id="requirements"
-            name="requirements"
-            value={formData.requirements}
-            onChange={handleInputChange}
-            placeholder="Tell us about any special requirements, event details, dietary preferences, accessibility needs, breakfast/dinner/BBQ/bonfire services, or other concerns..."
-            rows={3}
-            className="bg-white/95 border-gray-300/60 text-black resize-none font-seasons text-xs sm:text-sm md:text-base"
-          />
-        </div>
+            {/* Contact Information */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="email">Email *</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => handleInputChange('email', e.target.value)}
+                  placeholder="company@example.com"
+                  required
+                />
+              </div>
+              <div>
+                <Label htmlFor="phone">Phone *</Label>
+                <Input
+                  id="phone"
+                  value={formData.phone}
+                  onChange={(e) => handleInputChange('phone', e.target.value)}
+                  placeholder="+91 XXXXXXXXXX"
+                  required
+                />
+              </div>
+            </div>
 
-        <div className="text-center">
-          <Button
-            type="submit"
-            className="w-full sm:w-auto bg-white hover:bg-gray-200 text-black font-bold px-4 sm:px-6 md:px-8 lg:px-12 py-2 sm:py-3 md:py-4 text-sm sm:text-base md:text-lg transition-all duration-300 transform hover:scale-105 shadow-2xl font-seasons"
-          >
-            Get Corporate Quote
-          </Button>
-        </div>
-      </form>
-    </div>
+            {/* Booking Details */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="checkIn">Check-in Date *</Label>
+                <Input
+                  id="checkIn"
+                  type="date"
+                  value={formData.checkIn}
+                  onChange={(e) => handleInputChange('checkIn', e.target.value)}
+                  required
+                />
+              </div>
+              <div>
+                <Label htmlFor="checkOut">Check-out Date *</Label>
+                <Input
+                  id="checkOut"
+                  type="date"
+                  value={formData.checkOut}
+                  onChange={(e) => handleInputChange('checkOut', e.target.value)}
+                  required
+                />
+              </div>
+            </div>
+
+            {nights > 0 && (
+              <div className="bg-blue-50 p-4 rounded-lg">
+                <p className="text-blue-800 font-semibold">
+                  <Calendar className="h-4 w-4 inline mr-2" />
+                  Total Nights: {nights}
+                </p>
+              </div>
+            )}
+
+            {/* Room Selection */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <Label htmlFor="roomType">Room Type *</Label>
+                <Select value={formData.roomType} onValueChange={(value) => handleInputChange('roomType', value)}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select room type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {roomTypes.map((room) => (
+                      <SelectItem key={room.id} value={room.id}>
+                        {room.name} - ₹{room.pricePerNight}/night
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              
+              <div>
+                <Label htmlFor="rooms">Number of Rooms</Label>
+                <div className="flex items-center space-x-2">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleInputChange('rooms', Math.max(1, formData.rooms - 1))}
+                  >
+                    <Minus className="h-4 w-4" />
+                  </Button>
+                  <Input
+                    id="rooms"
+                    type="number"
+                    min="1"
+                    value={formData.rooms}
+                    onChange={(e) => handleInputChange('rooms', parseInt(e.target.value) || 1)}
+                    className="text-center w-20"
+                  />
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleInputChange('rooms', formData.rooms + 1)}
+                  >
+                    <Plus className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+
+              <div>
+                <Label htmlFor="guests">Total Guests</Label>
+                <div className="flex items-center space-x-2">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleInputChange('guests', Math.max(1, formData.guests - 1))}
+                  >
+                    <Minus className="h-4 w-4" />
+                  </Button>
+                  <Input
+                    id="guests"
+                    type="number"
+                    min="1"
+                    value={formData.guests}
+                    onChange={(e) => handleInputChange('guests', parseInt(e.target.value) || 1)}
+                    className="text-center w-20"
+                  />
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleInputChange('guests', formData.guests + 1)}
+                  >
+                    <Plus className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            {/* Price Summary */}
+            {selectedRoomType && nights > 0 && (
+              <Card className="bg-gradient-to-r from-blue-50 to-blue-100 border-blue-200">
+                <CardContent className="p-4">
+                  <h3 className="font-bold text-blue-800 mb-2 flex items-center">
+                    <IndianRupee className="h-4 w-4 mr-1" />
+                    Price Summary
+                  </h3>
+                  <div className="space-y-1 text-sm">
+                    <div className="flex justify-between">
+                      <span>{selectedRoomType.name} × {formData.rooms} rooms × {nights} nights</span>
+                      <span>₹{totalPrice.toLocaleString()}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>GST (12%)</span>
+                      <span>₹{gst.toLocaleString()}</span>
+                    </div>
+                    <div className="flex justify-between font-bold text-blue-800 pt-2 border-t border-blue-200">
+                      <span>Total Amount</span>
+                      <span>₹{finalTotal.toLocaleString()}</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Special Requests */}
+            <div>
+              <Label htmlFor="specialRequests">Special Requests</Label>
+              <Textarea
+                id="specialRequests"
+                value={formData.specialRequests}
+                onChange={(e) => handleInputChange('specialRequests', e.target.value)}
+                placeholder="Any special requirements or requests..."
+                rows={3}
+              />
+            </div>
+
+            {/* Submit Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={handleAddToCart}
+                className="flex-1 border-blue-300 text-blue-600 hover:bg-blue-50"
+                disabled={!selectedRoomType || !formData.checkIn || !formData.checkOut || nights <= 0}
+              >
+                <ShoppingCart className="h-4 w-4 mr-2" />
+                Add to Cart
+              </Button>
+              <Button 
+                type="submit"
+                className="flex-1 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold shadow-lg"
+                disabled={!selectedRoomType || !formData.checkIn || !formData.checkOut || nights <= 0}
+              >
+                <Users className="h-4 w-4 mr-2" />
+                Book Now - ₹{finalTotal.toLocaleString()}
+              </Button>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+
+      <CartModal 
+        isOpen={showCart}
+        onClose={() => setShowCart(false)}
+      />
+    </>
   );
 };
 

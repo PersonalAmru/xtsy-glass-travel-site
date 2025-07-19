@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Mountain, Waves, TreePine, Camera, MapPin, Clock, Users, Star } from "lucide-react";
+import { Mountain, Waves, TreePine, Camera, Clock, Users, Star } from "lucide-react";
 
 const AdventureSection = () => {
   const adventures = [
@@ -73,7 +73,7 @@ const AdventureSection = () => {
       <div className="container mx-auto max-w-7xl relative z-10">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4 font-serif-sans leading-tight" style={{ lineHeight: '1.2' }}>
-            🏔️ Curated Meghalaya Itineraries
+            🏔️ Adventure Experiences
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto font-seasons px-4 leading-relaxed">
             Discover the breathtaking beauty of Meghalaya through our carefully crafted adventure experiences
@@ -81,7 +81,7 @@ const AdventureSection = () => {
         </div>
 
         {/* All Adventure Cards in Grid Layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {adventures.map((adventure) => (
             <Card key={adventure.id} className="bg-white border-2 border-gray-200 hover:border-orange-300 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
               <CardHeader className="text-center pb-4">
@@ -133,25 +133,6 @@ const AdventureSection = () => {
               </CardContent>
             </Card>
           ))}
-        </div>
-
-        {/* Call to Action */}
-        <div className="text-center">
-          <Card className="bg-gradient-to-r from-orange-500 to-red-500 border-0 max-w-2xl mx-auto">
-            <CardContent className="p-6 sm:p-8 text-center">
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 font-serif-sans">
-                🌟 Ready for Adventure?
-              </h3>
-              <p className="text-white/90 text-base sm:text-lg mb-6 font-seasons">
-                Contact us to customize your perfect Meghalaya adventure package
-              </p>
-              <Button 
-                className="bg-white text-orange-600 hover:bg-gray-100 font-bold px-8 py-3 text-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 font-seasons"
-              >
-                Plan My Adventure 🗺️
-              </Button>
-            </CardContent>
-          </Card>
         </div>
       </div>
     </section>

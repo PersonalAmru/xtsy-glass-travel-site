@@ -4,14 +4,10 @@ import HeroSection from "@/components/HeroSection";
 import RoomsSection from "@/components/RoomsSection";
 import ServicesSection from "@/components/ServicesSection";
 import ReviewsSection from "@/components/ReviewsSection";
-import AdventureSection from "@/components/AdventureSection";
 import GroupBookingSection from "@/components/GroupBookingSection";
 import Footer from "@/components/Footer";
 import AIChatBot from "@/components/AIChatBot";
-import DealsSection from "@/components/DealsSection";
-import GallerySection from "@/components/GallerySection";
-import AboutSection from "@/components/AboutSection";
-import TravelItinerariesSection from "@/components/TravelItinerariesSection";
+import AdventureCallToAction from "@/components/AdventureCallToAction";
 
 const Index = () => {
   return (
@@ -20,13 +16,9 @@ const Index = () => {
       <HeroSection />
       <RoomsSection />
       <ServicesSection />
-      <DealsSection />
-      <TravelItinerariesSection />
-      <GallerySection />
       <ReviewsSection />
-      <AdventureSection />
-      <AboutSection />
       <GroupBookingSection />
+      <AdventureCallToAction />
       <Footer />
       <AIChatBot />
     </div>
