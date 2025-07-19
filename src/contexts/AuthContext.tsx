@@ -41,7 +41,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           setTimeout(async () => {
             try {
               // Try to update profile, but don't fail if table doesn't exist yet
-              await supabase
+              const { error } = await supabase
                 .from('profiles' as any)
                 .upsert({
                   id: session.user.id,
@@ -49,13 +49,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
                   full_name: session.user.user_metadata?.full_name,
                   role: session.user.user_metadata?.role || 'guest',
                   last_login: new Date().toISOString(),
-                })
-                .catch(() => {
-                  // Ignore errors if profiles table doesn't exist yet
-                  console.log('Profile update skipped - table may not exist yet');
                 });
+              
+              if (error) {
+                console.log('Profile update error:', error);
+              }
             } catch (error) {
-              console.log('Profile update error:', error);
+              console.log('Profile update skipped - table may not exist yet');
             }
           }, 0);
         }

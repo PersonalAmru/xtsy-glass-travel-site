@@ -61,8 +61,10 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, defaultTa
     const { error } = await signUp(
       signUpData.email,
       signUpData.password,
-      signUpData.fullName,
-      signUpData.role
+      {
+        full_name: signUpData.fullName,
+        role: signUpData.role
+      }
     );
     
     if (!error) {
