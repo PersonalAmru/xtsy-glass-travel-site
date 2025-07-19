@@ -148,7 +148,7 @@ Subtotal: ₹${bookingData.subtotal}${discountText}
 GST (18%): ₹${bookingData.gstAmount}
 *Total Amount: ₹${bookingData.totalAmount}*
 
-Please confirm this booking and share payment details.`;
+Please confirm this booking. We have already made payment and here is the Payment screenshot for reference.`;
 
     const whatsappURL = `https://wa.me/918837317070?text=${encodeURIComponent(whatsappMessage)}`;
     
