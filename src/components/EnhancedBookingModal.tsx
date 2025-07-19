@@ -102,6 +102,7 @@ const rooms: Room[] = [
 
 const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingModalProps) => {
   const [selectedRoom, setSelectedRoom] = useState<Room | null>(rooms[0]);
+  const [roomSelections, setRoomSelections] = useState<{[key: string]: {guests: number, rooms: number}}>({});
   const [bookingData, setBookingData] = useState<BookingData>({
     checkIn: initialData?.checkIn || "",
     checkOut: initialData?.checkOut || "",
@@ -114,6 +115,24 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
   const [couponError, setCouponError] = useState("");
   const [date, setDate] = React.useState<Date | undefined>(undefined);
   const { toast } = useToast();
+
+  // Update booking data when initialData changes
+  useEffect(() => {
+    if (initialData) {
+      setBookingData({
+        checkIn: initialData.checkIn || "",
+        checkOut: initialData.checkOut || "",
+        guests: initialData.guests || 1,
+        nights: 1,
+        quantity: 1,
+      });
+      // Reset room selections and coupon when new search data comes in
+      setRoomSelections({});
+      setCouponCode("");
+      setCouponDiscount(0);
+      setCouponError("");
+    }
+  }, [initialData]);
 
   useEffect(() => {
     if (bookingData.checkIn && bookingData.checkOut) {
@@ -152,12 +171,47 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
     }
   };
 
+  const getRoomSelectionForRoom = (roomId: string) => {
+    return roomSelections[roomId] || { guests: 0, rooms: 0 };
+  };
+
+  const updateRoomSelection = (roomId: string, field: 'guests' | 'rooms', value: number) => {
+    setRoomSelections(prev => ({
+      ...prev,
+      [roomId]: {
+        ...prev[roomId],
+        [field]: value
+      }
+    }));
+    
+    // Update booking data for selected room
+    if (selectedRoom?.id === roomId) {
+      if (field === 'guests') {
+        setBookingData(prev => ({ ...prev, guests: value }));
+      } else if (field === 'rooms') {
+        setBookingData(prev => ({ ...prev, quantity: value }));
+      }
+    }
+  };
+
   const calculateTotals = () => {
-    const roomPrice = selectedRoom ? selectedRoom.price : 0;
+    if (!selectedRoom) return { subtotal: 0, gstAmount: 0, totalAmount: 0, discountAmount: 0 };
+    
+    const roomPrice = selectedRoom.price;
     const nights = bookingData.nights || 1;
-    // For dorms: guests = beds (1 bed per guest), for private rooms: always 1 room
-    const quantity = selectedRoom?.name.toLowerCase().includes('dorm') ? bookingData.guests : 1;
-    const subtotal = roomPrice * quantity * nights;
+    const isDorm = selectedRoom.name.toLowerCase().includes('dorm');
+    
+    let subtotal = 0;
+    if (isDorm) {
+      // For dorms: price per bed * number of guests (beds) * nights
+      const guestCount = getRoomSelectionForRoom(selectedRoom.id).guests || bookingData.guests;
+      subtotal = roomPrice * guestCount * nights;
+    } else {
+      // For luxury rooms: price per room * number of rooms * nights
+      const roomCount = getRoomSelectionForRoom(selectedRoom.id).rooms || 1;
+      subtotal = roomPrice * roomCount * nights;
+    }
+    
     const discountAmount = Math.round(subtotal * (couponDiscount / 100));
     const discountedSubtotal = subtotal - discountAmount;
     const gstAmount = Math.round(discountedSubtotal * 0.18);
@@ -168,14 +222,27 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
   const applyCoupon = () => {
     setCouponError("");
     if (couponCode === "XTSY-DEAL") {
+      // Calculate total guests for coupon eligibility
+      let totalGuests = 0;
+      if (selectedRoom) {
+        if (selectedRoom.name.toLowerCase().includes('dorm')) {
+          totalGuests = getRoomSelectionForRoom(selectedRoom.id).guests || 0;
+        } else {
+          const roomCount = getRoomSelectionForRoom(selectedRoom.id).rooms || 0;
+          totalGuests = selectedRoom.name === "King Triple Room" 
+            ? Math.min(3, roomCount * 3)
+            : roomCount * 2;
+        }
+      }
+      
       // Check conditions: Min 4 guests and at least 2 nights
-      if (bookingData.guests >= 4 && bookingData.nights >= 2) {
+      if (totalGuests >= 4 && bookingData.nights >= 2) {
         setCouponDiscount(15); // 15% discount
         toast({
           title: "Coupon Applied!",
           description: "15% discount has been applied to your booking.",
         });
-      } else if (bookingData.guests >= 4 && bookingData.nights < 2) {
+      } else if (totalGuests >= 4 && bookingData.nights < 2) {
         setCouponError("Minimum 2 nights required for 4+ guests");
       } else {
         setCouponError("Minimum 4 guests required for this offer");
@@ -467,130 +534,181 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                     <div className="mb-6">
                       <h3 className="text-lg font-semibold mb-3 text-white">Select a Room</h3>
                       
-                      {/* XTSY Travellers Hostel */}
-                      <div className="mb-6">
-                        <h4 className="text-md font-semibold mb-3 text-orange-200">XTSY Travellers Hostel</h4>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          {rooms.filter(room => room.type === 'hostel').map((room) => (
-                            <Card
-                              key={room.id}
-                              className={`cursor-pointer hover:shadow-md transition-shadow duration-200 ${selectedRoom?.id === room.id ? 'border-2 border-orange-300' : ''}`}
-                              onClick={() => setSelectedRoom(room)}
-                            >
-                              <div className="flex gap-4 p-4">
-                                <div className="w-24 h-20 bg-gray-200 rounded-lg flex items-center justify-center flex-shrink-0">
-                                  <span className="text-gray-500 text-sm">Room Image</span>
-                                </div>
-                                
-                                <div className="flex-1">
-                                  <h4 className="font-semibold mb-1 text-gray-900">{room.name}</h4>
-                                  <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
-                                    <div className="flex items-center gap-1">
-                                      <Users className="h-4 w-4" />
-                                      <span>Max {room.capacity} guests</span>
-                                    </div>
-                                    <div className="flex items-center gap-1">
-                                      <span className="text-gray-600">Per Bed</span>
-                                    </div>
-                                  </div>
-                                  <div className="text-gray-600 text-sm mb-2">{room.description}</div>
-                                  <div className="text-lg font-bold text-orange-600">₹{room.price}</div>
-                                  {selectedRoom?.id === room.id && (
-                                    <div className="text-green-600 mt-2 flex items-center gap-1">
-                                      <Check className="h-4 w-4" />
-                                      Selected
-                                    </div>
-                                  )}
-                                </div>
-                              </div>
-                            </Card>
-                          ))}
-                        </div>
-                      </div>
+                       {/* XTSY Travellers Hostel */}
+                       <div className="mb-6">
+                         <h4 className="text-md font-semibold mb-3 text-orange-200">XTSY Travellers Hostel</h4>
+                         <div className="grid grid-cols-1 gap-4">
+                           {rooms.filter(room => room.type === 'hostel').map((room) => (
+                             <Card
+                               key={room.id}
+                               className={`cursor-pointer hover:shadow-md transition-shadow duration-200 ${selectedRoom?.id === room.id ? 'border-2 border-orange-300' : ''}`}
+                               onClick={() => setSelectedRoom(room)}
+                             >
+                               <div className="p-4">
+                                 <div className="flex gap-4 mb-3">
+                                   <div className="w-24 h-20 bg-gray-200 rounded-lg flex items-center justify-center flex-shrink-0">
+                                     <span className="text-gray-500 text-sm">Room Image</span>
+                                   </div>
+                                   
+                                   <div className="flex-1">
+                                     <h4 className="font-semibold mb-1 text-gray-900">{room.name}</h4>
+                                     <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
+                                       <div className="flex items-center gap-1">
+                                         <Users className="h-4 w-4" />
+                                         <span>Max {room.capacity} guests</span>
+                                       </div>
+                                       <div className="flex items-center gap-1">
+                                         <span className="text-gray-600">Per Bed</span>
+                                       </div>
+                                     </div>
+                                     <div className="text-gray-600 text-sm mb-2">{room.description}</div>
+                                     <div className="text-lg font-bold text-orange-600">₹{room.price}</div>
+                                     {selectedRoom?.id === room.id && (
+                                       <div className="text-green-600 mt-2 flex items-center gap-1">
+                                         <Check className="h-4 w-4" />
+                                         Selected
+                                       </div>
+                                     )}
+                                   </div>
+                                 </div>
+                                 
+                                 {/* Number of Guests for Hostel Rooms */}
+                                 <div className="border-t pt-3">
+                                   <div className="flex items-center justify-between">
+                                     <span className="text-sm font-medium text-gray-900">Number of Guests:</span>
+                                     <div className="flex items-center gap-2">
+                                       <Button
+                                         variant="outline"
+                                         size="sm"
+                                         onClick={(e) => {
+                                           e.stopPropagation();
+                                           const currentGuests = getRoomSelectionForRoom(room.id).guests || 0;
+                                           updateRoomSelection(room.id, 'guests', Math.max(0, currentGuests - 1));
+                                         }}
+                                         disabled={getRoomSelectionForRoom(room.id).guests <= 0}
+                                         className="h-8 w-8 p-0"
+                                       >
+                                         <Minus className="h-4 w-4" />
+                                       </Button>
+                                       <span className="w-8 text-center text-sm text-gray-900">
+                                         {getRoomSelectionForRoom(room.id).guests || 0}
+                                       </span>
+                                       <Button
+                                         variant="outline"
+                                         size="sm"
+                                         onClick={(e) => {
+                                           e.stopPropagation();
+                                           const currentGuests = getRoomSelectionForRoom(room.id).guests || 0;
+                                           updateRoomSelection(room.id, 'guests', Math.min(room.capacity, currentGuests + 1));
+                                         }}
+                                         disabled={getRoomSelectionForRoom(room.id).guests >= room.capacity}
+                                         className="h-8 w-8 p-0"
+                                       >
+                                         <Plus className="h-4 w-4" />
+                                       </Button>
+                                     </div>
+                                   </div>
+                                   <div className="text-xs text-gray-600 mt-1">
+                                     1 bed = 1 guest • Price: ₹{room.price} per bed per night
+                                   </div>
+                                 </div>
+                               </div>
+                             </Card>
+                           ))}
+                         </div>
+                       </div>
 
-                      {/* XTSY Luxury */}
-                      <div className="mb-6">
-                        <h4 className="text-md font-semibold mb-3 text-orange-200">XTSY Luxury</h4>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          {rooms.filter(room => room.type === 'luxury').map((room) => (
-                            <Card
-                              key={room.id}
-                              className={`cursor-pointer hover:shadow-md transition-shadow duration-200 ${selectedRoom?.id === room.id ? 'border-2 border-orange-300' : ''}`}
-                              onClick={() => setSelectedRoom(room)}
-                            >
-                              <div className="flex gap-4 p-4">
-                                <div className="w-24 h-20 bg-gray-200 rounded-lg flex items-center justify-center flex-shrink-0">
-                                  <span className="text-gray-500 text-sm">Room Image</span>
-                                </div>
-                                
-                                <div className="flex-1">
-                                  <h4 className="font-semibold mb-1 text-gray-900">{room.name}</h4>
-                                  <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
-                                    <div className="flex items-center gap-1">
-                                      <Users className="h-4 w-4" />
-                                      <span>Max {room.capacity} guests</span>
-                                    </div>
-                                    <div className="flex items-center gap-1">
-                                      <span className="text-gray-600">
-                                        {room.name === "King Double Room" ? "2 rooms available" : "Per Room"}
-                                      </span>
-                                    </div>
-                                  </div>
-                                  <div className="text-gray-600 text-sm mb-2">{room.description}</div>
-                                  <div className="text-lg font-bold text-orange-600">₹{room.price}</div>
-                                  {selectedRoom?.id === room.id && (
-                                    <div className="text-green-600 mt-2 flex items-center gap-1">
-                                      <Check className="h-4 w-4" />
-                                      Selected
-                                    </div>
-                                  )}
-                                </div>
-                              </div>
-                            </Card>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Guest Selection - Auto-calculated based on room type */}
-                    {selectedRoom && (
-                      <Card className="p-4 bg-white">
-                        <h3 className="font-semibold mb-3 text-gray-900">Number of Guests</h3>
-                        <div className="space-y-4">
-                          <div className="flex items-center justify-between">
-                            <span className="font-medium text-gray-900">Number of guests:</span>
-                            <div className="flex items-center gap-3">
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() => setBookingData(prev => ({ ...prev, guests: Math.max(1, prev.guests - 1) }))}
-                                disabled={bookingData.guests <= 1}
-                              >
-                                <Minus className="h-4 w-4" />
-                              </Button>
-                              <span className="w-8 text-center text-gray-900">{bookingData.guests}</span>
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() => setBookingData(prev => ({ ...prev, guests: prev.guests + 1 }))}
-                                disabled={bookingData.guests >= getGuestCapacityForRoom(selectedRoom)}
-                              >
-                                <Plus className="h-4 w-4" />
-                              </Button>
-                            </div>
-                          </div>
-                          
-                          <div className="text-sm text-gray-600">
-                            {selectedRoom.name.toLowerCase().includes('dorm') 
-                              ? `For dorms: 1 bed = 1 guest (${bookingData.guests} ${bookingData.guests === 1 ? 'guest' : 'guests'})`
-                              : selectedRoom.name === "King Triple Room" 
-                                ? "Up to 3 guests per room (with extra bed option)"
-                                : "Up to 2 guests per room (strictly)"
-                            }
-                          </div>
-                        </div>
-                      </Card>
-                    )}
+                       {/* XTSY Luxury */}
+                       <div className="mb-6">
+                         <h4 className="text-md font-semibold mb-3 text-orange-200">XTSY Luxury</h4>
+                         <div className="grid grid-cols-1 gap-4">
+                           {rooms.filter(room => room.type === 'luxury').map((room) => (
+                             <Card
+                               key={room.id}
+                               className={`cursor-pointer hover:shadow-md transition-shadow duration-200 ${selectedRoom?.id === room.id ? 'border-2 border-orange-300' : ''}`}
+                               onClick={() => setSelectedRoom(room)}
+                             >
+                               <div className="p-4">
+                                 <div className="flex gap-4 mb-3">
+                                   <div className="w-24 h-20 bg-gray-200 rounded-lg flex items-center justify-center flex-shrink-0">
+                                     <span className="text-gray-500 text-sm">Room Image</span>
+                                   </div>
+                                   
+                                   <div className="flex-1">
+                                     <h4 className="font-semibold mb-1 text-gray-900">{room.name}</h4>
+                                     <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
+                                       <div className="flex items-center gap-1">
+                                         <Users className="h-4 w-4" />
+                                         <span>Max {room.capacity} guests</span>
+                                       </div>
+                                       <div className="flex items-center gap-1">
+                                         <span className="text-gray-600">
+                                           {room.name === "King Double Room" ? "2 rooms available" : "Per Room"}
+                                         </span>
+                                       </div>
+                                     </div>
+                                     <div className="text-gray-600 text-sm mb-2">{room.description}</div>
+                                     <div className="text-lg font-bold text-orange-600">₹{room.price}</div>
+                                     {selectedRoom?.id === room.id && (
+                                       <div className="text-green-600 mt-2 flex items-center gap-1">
+                                         <Check className="h-4 w-4" />
+                                         Selected
+                                       </div>
+                                     )}
+                                   </div>
+                                 </div>
+                                 
+                                 {/* Number of Rooms for Luxury Rooms */}
+                                 <div className="border-t pt-3">
+                                   <div className="flex items-center justify-between">
+                                     <span className="text-sm font-medium text-gray-900">Number of Rooms:</span>
+                                     <div className="flex items-center gap-2">
+                                       <Button
+                                         variant="outline"
+                                         size="sm"
+                                         onClick={(e) => {
+                                           e.stopPropagation();
+                                           const currentRooms = getRoomSelectionForRoom(room.id).rooms || 0;
+                                           updateRoomSelection(room.id, 'rooms', Math.max(0, currentRooms - 1));
+                                         }}
+                                         disabled={getRoomSelectionForRoom(room.id).rooms <= 0}
+                                         className="h-8 w-8 p-0"
+                                       >
+                                         <Minus className="h-4 w-4" />
+                                       </Button>
+                                       <span className="w-8 text-center text-sm text-gray-900">
+                                         {getRoomSelectionForRoom(room.id).rooms || 0}
+                                       </span>
+                                       <Button
+                                         variant="outline"
+                                         size="sm"
+                                         onClick={(e) => {
+                                           e.stopPropagation();
+                                           const currentRooms = getRoomSelectionForRoom(room.id).rooms || 0;
+                                           const maxRooms = room.name === "King Double Room" ? 2 : 1;
+                                           updateRoomSelection(room.id, 'rooms', Math.min(maxRooms, currentRooms + 1));
+                                         }}
+                                         disabled={getRoomSelectionForRoom(room.id).rooms >= (room.name === "King Double Room" ? 2 : 1)}
+                                         className="h-8 w-8 p-0"
+                                       >
+                                         <Plus className="h-4 w-4" />
+                                       </Button>
+                                     </div>
+                                   </div>
+                                   <div className="text-xs text-gray-600 mt-1">
+                                     {room.name === "King Triple Room" 
+                                       ? "2 guests per room + 1 extra bed option • Price: ₹" + room.price + " per room per night"
+                                       : "2 guests per room (strictly) • Price: ₹" + room.price + " per room per night"
+                                     }
+                                     {room.name === "King Double Room" && " • Max 2 rooms available"}
+                                   </div>
+                                 </div>
+                               </div>
+                             </Card>
+                           ))}
+                         </div>
+                       </div>
+                     </div>
                   </div>
                 </div>
               </div>
@@ -606,20 +724,29 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                     </div>
                   )}
 
-                  {selectedRoom && (
-                    <div className="space-y-3 mb-4">
-                      <div className="flex justify-between">
-                        <span className="font-medium">{selectedRoom.name}</span>
-                        <span>₹{selectedRoom.price}</span>
-                      </div>
-                      <div className="text-sm text-gray-600">
-                        ₹{selectedRoom.price} x {selectedRoom.name.toLowerCase().includes('dorm') ? bookingData.quantity : 1} {selectedRoom.name.toLowerCase().includes('dorm') ? (bookingData.quantity === 1 ? 'bed' : 'beds') : 'room'} x {bookingData.nights} nights
-                      </div>
-                      <div className="text-sm text-gray-600">
-                        Guests: {bookingData.guests}
-                      </div>
-                    </div>
-                  )}
+                   {selectedRoom && (
+                     <div className="space-y-3 mb-4">
+                       <div className="flex justify-between">
+                         <span className="font-medium">{selectedRoom.name}</span>
+                         <span>₹{selectedRoom.price}</span>
+                       </div>
+                       <div className="text-sm text-gray-600">
+                         {selectedRoom.name.toLowerCase().includes('dorm') ? (
+                           <>₹{selectedRoom.price} x {getRoomSelectionForRoom(selectedRoom.id).guests || 0} {getRoomSelectionForRoom(selectedRoom.id).guests === 1 ? 'bed' : 'beds'} x {bookingData.nights} nights</>
+                         ) : (
+                           <>₹{selectedRoom.price} x {getRoomSelectionForRoom(selectedRoom.id).rooms || 0} {getRoomSelectionForRoom(selectedRoom.id).rooms === 1 ? 'room' : 'rooms'} x {bookingData.nights} nights</>
+                         )}
+                       </div>
+                       <div className="text-sm text-gray-600">
+                         Guests: {selectedRoom.name.toLowerCase().includes('dorm') 
+                           ? getRoomSelectionForRoom(selectedRoom.id).guests || 0
+                           : selectedRoom.name === "King Triple Room" 
+                             ? Math.min(3, (getRoomSelectionForRoom(selectedRoom.id).rooms || 0) * 3)
+                             : (getRoomSelectionForRoom(selectedRoom.id).rooms || 0) * 2
+                         }
+                       </div>
+                     </div>
+                   )}
 
                   <Separator className="my-4" />
 
