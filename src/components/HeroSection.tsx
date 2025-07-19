@@ -69,7 +69,7 @@ const HeroSection = () => {
           {/* Hero Text with Floating Languages */}
           <div className="mb-12">
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-12 bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent animate-fade-in">
-              XTSY Travellers Hostel
+              Live the Shillong Vibe
             </h1>
             
             {/* Floating Languages Section */}
@@ -92,39 +92,39 @@ const HeroSection = () => {
           </div>
 
           {/* Search Form */}
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-2xl animate-fade-in" style={{ animationDelay: '0.9s' }}>
-            <h2 className="text-2xl font-semibold mb-6 text-center">Find Your Perfect Stay</h2>
+          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-2xl animate-fade-in max-w-5xl mx-auto" style={{ animationDelay: '0.9s' }}>
+            <h2 className="text-2xl font-semibold mb-8 text-center">Find Your Perfect Stay</h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-              <div className="space-y-2">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+              <div className="space-y-3">
                 <label className="block text-sm font-medium text-gray-200">Check-in</label>
                 <div className="relative">
                   <Input
                     type="date"
                     value={checkIn}
                     onChange={(e) => setCheckIn(e.target.value)}
-                    className="pl-10 bg-white/20 border-white/30 text-white placeholder-gray-300"
+                    className="pl-12 h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-base"
                     min={new Date().toISOString().split('T')[0]}
                   />
-                  <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-300" />
+                  <Calendar className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-300" />
                 </div>
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <label className="block text-sm font-medium text-gray-200">Check-out</label>
                 <div className="relative">
                   <Input
                     type="date"
                     value={checkOut}
                     onChange={(e) => setCheckOut(e.target.value)}
-                    className="pl-10 bg-white/20 border-white/30 text-white placeholder-gray-300"
+                    className="pl-12 h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-base"
                     min={checkIn || new Date().toISOString().split('T')[0]}
                   />
-                  <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-300" />
+                  <Calendar className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-300" />
                 </div>
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <label className="block text-sm font-medium text-gray-200">Guests</label>
                 <div className="relative">
                   <Input
@@ -133,19 +133,19 @@ const HeroSection = () => {
                     onChange={(e) => setGuests(e.target.value)}
                     min="1"
                     max="20"
-                    className="pl-10 bg-white/20 border-white/30 text-white placeholder-gray-300"
+                    className="pl-12 h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-base"
                     placeholder="2"
                   />
-                  <Users className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-300" />
+                  <Users className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-300" />
                 </div>
               </div>
 
               <div className="flex items-end">
                 <Button
                   onClick={handleSearch}
-                  className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  className="w-full h-12 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-base"
                 >
-                  <Search className="mr-2 h-4 w-4" />
+                  <Search className="mr-2 h-5 w-5" />
                   Search Rooms
                 </Button>
               </div>

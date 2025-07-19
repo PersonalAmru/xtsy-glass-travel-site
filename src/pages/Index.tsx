@@ -1,4 +1,5 @@
 
+import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import RoomsSection from "@/components/RoomsSection";
@@ -9,8 +10,35 @@ import TravelItinerariesSection from "@/components/TravelItinerariesSection";
 import Footer from "@/components/Footer";
 import AIChatBot from "@/components/AIChatBot";
 import TourAIChatBot from "@/components/TourAIChatBot";
+import GuestDetails from "@/components/GuestDetails";
 
 const Index = () => {
+  const [showGuestDetails, setShowGuestDetails] = useState(false);
+  const [currentBooking, setCurrentBooking] = useState<any>(null);
+
+  useEffect(() => {
+    const handleOpenGuestDetails = (event: any) => {
+      setCurrentBooking(event.detail);
+      setShowGuestDetails(true);
+    };
+
+    window.addEventListener('openGuestDetails', handleOpenGuestDetails);
+
+    return () => {
+      window.removeEventListener('openGuestDetails', handleOpenGuestDetails);
+    };
+  }, []);
+
+  const handleCloseGuestDetails = () => {
+    setShowGuestDetails(false);
+    setCurrentBooking(null);
+  };
+
+  const handleBackFromGuestDetails = () => {
+    setShowGuestDetails(false);
+    // Could open booking modal again if needed
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
       <Header />
@@ -22,6 +50,20 @@ const Index = () => {
       <TravelItinerariesSection />
       <Footer />
       <AIChatBot />
+      
+      {showGuestDetails && currentBooking && (
+        <GuestDetails
+          isOpen={showGuestDetails}
+          onClose={handleCloseGuestDetails}
+          onBack={handleBackFromGuestDetails}
+          bookingData={{
+            checkIn: currentBooking.checkIn,
+            checkOut: currentBooking.checkOut,
+            guests: currentBooking.guests,
+            nights: currentBooking.nights
+          }}
+        />
+      )}
     </div>
   );
 };

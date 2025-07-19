@@ -44,8 +44,8 @@ const rooms: Room[] = [
     type: 'dorm'
   },
   {
-    id: "sky-glass-suite",
-    name: "Sky Glass Suite",
+    id: "xtsy-luxury",
+    name: "XTSY Luxury Suite",
     price: 18000,
     capacity: 2,
     description: "Experience luxury with panoramic views",
@@ -186,6 +186,40 @@ const EnhancedBookingModal = ({ isOpen, onClose }: EnhancedBookingModalProps) =>
     onClose();
   };
 
+  const handleBookNow = () => {
+    if (!selectedRoom || !bookingData.checkIn || !bookingData.checkOut || bookingData.guests === 0) {
+      toast({
+        title: "Incomplete Booking",
+        description: "Please select a room, dates and number of guests first",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    const bookingDetails = {
+      checkIn: bookingData.checkIn,
+      checkOut: bookingData.checkOut,
+      guests: bookingData.guests,
+      nights: bookingData.nights,
+      room: {
+        id: selectedRoom.id,
+        name: selectedRoom.name,
+        price: selectedRoom.price,
+        quantity: bookingData.quantity,
+        type: selectedRoom.type || 'dorm'
+      },
+      totalAmount,
+      payableNow: Math.round(totalAmount * 0.21)
+    };
+
+    localStorage.setItem('xtsy_current_booking', JSON.stringify(bookingDetails));
+
+    // Trigger guest details modal/component
+    window.dispatchEvent(new CustomEvent('openGuestDetails', { detail: bookingDetails }));
+    
+    onClose();
+  };
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="w-full h-full max-w-none max-h-none md:max-w-6xl lg:max-w-7xl md:max-h-[95vh] md:h-auto bg-white border-0 p-0 overflow-hidden">
@@ -251,7 +285,7 @@ const EnhancedBookingModal = ({ isOpen, onClose }: EnhancedBookingModalProps) =>
               {/* Left side - Room Selection */}
               <div className="lg:col-span-2 p-4 md:p-6 border-r">
                 <div className="bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-lg p-4 mb-6">
-                  <h2 className="text-xl font-bold">XTSY Travellers Hostel</h2>
+                  <h2 className="text-xl font-bold">Live the Shillong Vibe</h2>
                 </div>
 
                 {/* Room Selection */}
@@ -432,19 +466,19 @@ const EnhancedBookingModal = ({ isOpen, onClose }: EnhancedBookingModalProps) =>
                   {/* Action Buttons */}
                   <div className="space-y-3 mt-6">
                     <Button
+                      onClick={handleBookNow}
+                      disabled={!selectedRoom || !bookingData.checkIn || !bookingData.checkOut || bookingData.guests === 0}
+                      className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold"
+                    >
+                      Book Now
+                    </Button>
+                    <Button
                       onClick={saveForLater}
                       variant="outline"
                       className="w-full border-blue-300 text-blue-600 hover:bg-blue-50 flex items-center justify-center gap-2"
                     >
                       <Bookmark className="h-4 w-4" />
                       Save Later
-                    </Button>
-                    <Button
-                      onClick={handleAddToCart}
-                      disabled={!selectedRoom || !bookingData.checkIn || !bookingData.checkOut || bookingData.guests === 0}
-                      className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold"
-                    >
-                      Add to Cart
                     </Button>
                   </div>
                 </div>
