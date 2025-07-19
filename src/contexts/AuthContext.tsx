@@ -1,15 +1,14 @@
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
-import { toast } from 'sonner';
 
 interface AuthContextType {
   user: User | null;
   session: Session | null;
   loading: boolean;
   signIn: (email: string, password: string) => Promise<{ error: any }>;
-  signUp: (email: string, password: string, fullName: string, role?: string) => Promise<{ error: any }>;
+  signUp: (email: string, password: string, metadata?: any) => Promise<{ error: any }>;
   signOut: () => Promise<void>;
   resetPassword: (email: string) => Promise<{ error: any }>;
 }
@@ -30,30 +29,42 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Set up auth state listener FIRST
+    // Set up auth state listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        console.log('Auth state changed:', event, session?.user?.email);
+      async (event, session) => {
+        console.log('Auth state changed:', event, session?.user?.id);
         setSession(session);
         setUser(session?.user ?? null);
-        setLoading(false);
         
-        // Update last login for authenticated users
-        if (session?.user && event === 'SIGNED_IN') {
-          setTimeout(() => {
-            supabase
-              .from('profiles')
-              .update({ last_login: new Date().toISOString() })
-              .eq('id', session.user.id)
-              .then(({ error }) => {
-                if (error) console.log('Error updating last login:', error);
-              });
+        // Update last login when user signs in
+        if (event === 'SIGNED_IN' && session?.user) {
+          setTimeout(async () => {
+            try {
+              // Try to update profile, but don't fail if table doesn't exist yet
+              await supabase
+                .from('profiles' as any)
+                .upsert({
+                  id: session.user.id,
+                  email: session.user.email,
+                  full_name: session.user.user_metadata?.full_name,
+                  role: session.user.user_metadata?.role || 'guest',
+                  last_login: new Date().toISOString(),
+                })
+                .catch(() => {
+                  // Ignore errors if profiles table doesn't exist yet
+                  console.log('Profile update skipped - table may not exist yet');
+                });
+            } catch (error) {
+              console.log('Profile update error:', error);
+            }
           }, 0);
         }
+        
+        setLoading(false);
       }
     );
 
-    // THEN check for existing session
+    // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setUser(session?.user ?? null);
@@ -68,17 +79,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       email,
       password,
     });
-    
-    if (error) {
-      toast.error(error.message);
-    } else {
-      toast.success('Welcome back!');
-    }
-    
     return { error };
   };
 
-  const signUp = async (email: string, password: string, fullName: string, role: string = 'guest') => {
+  const signUp = async (email: string, password: string, metadata?: any) => {
     const redirectUrl = `${window.location.origin}/`;
     
     const { error } = await supabase.auth.signUp({
@@ -86,44 +90,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       password,
       options: {
         emailRedirectTo: redirectUrl,
-        data: {
-          full_name: fullName,
-          role: role
-        }
-      }
+        data: metadata,
+      },
     });
-    
-    if (error) {
-      toast.error(error.message);
-    } else {
-      toast.success('Account created! Please check your email to verify your account.');
-    }
-    
     return { error };
   };
 
   const signOut = async () => {
-    const { error } = await supabase.auth.signOut();
-    if (error) {
-      toast.error(error.message);
-    } else {
-      toast.success('Signed out successfully');
-      setUser(null);
-      setSession(null);
-    }
+    await supabase.auth.signOut();
   };
 
   const resetPassword = async (email: string) => {
+    const redirectUrl = `${window.location.origin}/`;
+    
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/reset-password`,
+      redirectTo: redirectUrl,
     });
-    
-    if (error) {
-      toast.error(error.message);
-    } else {
-      toast.success('Password reset email sent!');
-    }
-    
     return { error };
   };
 
@@ -137,5 +119,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     resetPassword,
   };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={value}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
