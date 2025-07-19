@@ -24,6 +24,11 @@ interface Room {
 interface EnhancedBookingModalProps {
   isOpen: boolean;
   onClose: () => void;
+  initialData?: {
+    checkIn: string;
+    checkOut: string;
+    guests: number;
+  };
 }
 
 interface BookingData {
@@ -61,12 +66,12 @@ const rooms: Room[] = [
   },
 ];
 
-const EnhancedBookingModal = ({ isOpen, onClose }: EnhancedBookingModalProps) => {
+const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingModalProps) => {
   const [selectedRoom, setSelectedRoom] = useState<Room | null>(rooms[0]);
   const [bookingData, setBookingData] = useState<BookingData>({
-    checkIn: "",
-    checkOut: "",
-    guests: 1,
+    checkIn: initialData?.checkIn || "",
+    checkOut: initialData?.checkOut || "",
+    guests: initialData?.guests || 1,
     nights: 1,
     quantity: 1,
   });
@@ -268,13 +273,35 @@ const EnhancedBookingModal = ({ isOpen, onClose }: EnhancedBookingModalProps) =>
               </div>
             </div>
 
-            {/* Date selection */}
-            <div className="bg-blue-100 rounded-lg p-3 text-center">
-              <div className="text-blue-800 font-medium">
+            {/* Date selection with update functionality */}
+            <div className="bg-blue-100 rounded-lg p-4 text-center">
+              <div className="text-blue-800 font-medium mb-3">
                 {bookingData.checkIn && bookingData.checkOut 
                   ? `${formatDate(bookingData.checkIn)} → ${formatDate(bookingData.checkOut)} (${bookingData.nights} nights)`
                   : "Select your dates"
                 }
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium mb-1 text-blue-800">Check-in</label>
+                  <Input
+                    type="date"
+                    value={bookingData.checkIn}
+                    onChange={(e) => handleDateChange('checkIn', e.target.value)}
+                    min={new Date().toISOString().split('T')[0]}
+                    className="bg-white border-blue-200"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1 text-blue-800">Check-out</label>
+                  <Input
+                    type="date"
+                    value={bookingData.checkOut}
+                    onChange={(e) => handleDateChange('checkOut', e.target.value)}
+                    min={bookingData.checkIn ? new Date(new Date(bookingData.checkIn).getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0] : new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]}
+                    className="bg-white border-blue-200"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -383,30 +410,7 @@ const EnhancedBookingModal = ({ isOpen, onClose }: EnhancedBookingModalProps) =>
                   </Card>
                 )}
 
-                {/* Date Selection */}
-                <Card className="p-4 mt-4">
-                  <h3 className="font-semibold mb-3">Select Dates</h3>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium mb-1">Check-in</label>
-                      <Input
-                        type="date"
-                        value={bookingData.checkIn}
-                        onChange={(e) => handleDateChange('checkIn', e.target.value)}
-                        min={new Date().toISOString().split('T')[0]}
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium mb-1">Check-out</label>
-                      <Input
-                        type="date"
-                        value={bookingData.checkOut}
-                        onChange={(e) => handleDateChange('checkOut', e.target.value)}
-                        min={bookingData.checkIn || new Date().toISOString().split('T')[0]}
-                      />
-                    </div>
-                  </div>
-                </Card>
+                {/* Date Selection - Moved to top */}
               </div>
 
               {/* Right side - Booking Summary */}

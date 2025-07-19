@@ -44,7 +44,7 @@ const ServicesSection = () => {
         <div className="bg-gradient-to-br from-white/95 to-green-50/80 border-3 border-green-300 rounded-3xl p-8 sm:p-12 shadow-2xl backdrop-blur-sm">
           <div className="text-center mb-8">
             <div className="inline-block p-4 bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl mb-6">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-green-600 via-teal-600 to-emerald-600 bg-clip-text text-transparent mb-4 font-playfair">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent mb-4 font-playfair">
                 Amenities
               </h2>
               <div className="w-28 h-1 bg-gradient-to-r from-green-500 to-teal-500 mx-auto rounded-full" />

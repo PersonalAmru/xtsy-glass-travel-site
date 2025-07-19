@@ -39,6 +39,13 @@ const HeroSection = () => {
       alert("Please fill in all search fields");
       return;
     }
+    
+    // Validate checkout date is not same as checkin
+    if (checkIn === checkOut) {
+      alert("Check-out date cannot be the same as check-in date. Please select a different date.");
+      return;
+    }
+    
     setIsBookingModalOpen(true);
   };
 
@@ -118,7 +125,7 @@ const HeroSection = () => {
                     value={checkOut}
                     onChange={(e) => setCheckOut(e.target.value)}
                     className="pl-12 h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-base"
-                    min={checkIn || new Date().toISOString().split('T')[0]}
+                    min={checkIn ? new Date(new Date(checkIn).getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0] : new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]}
                   />
                   <Calendar className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-300" />
                 </div>
@@ -181,6 +188,11 @@ const HeroSection = () => {
       <EnhancedBookingModal 
         isOpen={isBookingModalOpen}
         onClose={() => setIsBookingModalOpen(false)}
+        initialData={{
+          checkIn,
+          checkOut,
+          guests: parseInt(guests) || 1
+        }}
       />
     </>
   );
