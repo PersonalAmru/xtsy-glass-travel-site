@@ -1,4 +1,5 @@
 
+
 import { useState, useEffect } from "react";
 import { Calendar, Users, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -60,10 +61,10 @@ const HeroSection = () => {
               XTSY Travellers Hostel
             </h1>
             <p className="text-xl sm:text-2xl lg:text-3xl mb-4 opacity-90 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-              Your Gateway to Meghalaya's Wonders
+              Hello XTSY • नमस्ते XTSY • হ্যালো XTSY • Hola XTSY • Bonjour XTSY
             </p>
             <p className="text-lg sm:text-xl mb-8 opacity-80 max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: '0.6s' }}>
-              Experience the magic of the Northeast with our premium hostel stays, luxury suites, and unforgettable adventure tours
+              أهلاً XTSY • こんにちは XTSY • 안녕하세요 XTSY • Ciao XTSY • Привет XTSY
             </p>
           </div>
 
@@ -163,3 +164,4 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
