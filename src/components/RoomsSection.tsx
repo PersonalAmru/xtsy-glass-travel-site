@@ -149,25 +149,7 @@ const RoomsSection = () => {
           </p>
         </div>
 
-        {/* Property Toggle Buttons */}
-        <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-8 sm:mb-12 px-4">
-          {Object.entries(properties).map(([key, property]) => (
-            <Button
-              key={key}
-              variant={activeProperty === key ? "default" : "outline"}
-              onClick={() => setActiveProperty(key)}
-              className={`px-4 sm:px-6 lg:px-8 py-3 sm:py-4 font-bold transition-all duration-300 text-sm sm:text-base border-2 w-full sm:w-auto ${
-                activeProperty === key
-                  ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-xl border-orange-400 scale-105 transform"
-                  : "border-gray-300 text-gray-700 bg-white hover:bg-gray-50 hover:border-orange-400 hover:scale-105 hover:text-orange-600"
-              } font-seasons`}
-            >
-              {property.name}
-            </Button>
-          ))}
-        </div>
-
-        {/* Property Header */}
+        {/* Main Property Display */}
         <div className="text-center mb-8 sm:mb-12">
           <Card className="bg-white border border-gray-200 shadow-lg max-w-4xl mx-auto mx-3 sm:mx-auto">
             <CardHeader className="text-center">
@@ -179,20 +161,21 @@ const RoomsSection = () => {
                 </div>
               </div>
               <CardTitle className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 font-serif-sans">
-                {activePropertyData.name}
+                Live the Shillong Vibe
               </CardTitle>
               <CardDescription className="text-gray-600 text-base sm:text-lg font-seasons">
-                {activePropertyData.description}
+                Experience both budget-friendly hostel stays and premium luxury accommodations
               </CardDescription>
             </CardHeader>
           </Card>
         </div>
 
-        {/* Rooms Grid - All rooms in single row with horizontal scroll on mobile */}
+        {/* All Room Types - Combined display */}
         <div className="w-full">
           <div className="flex gap-4 sm:gap-6 overflow-x-auto pb-4 px-3 sm:px-0 scrollbar-hide">
-            <div className={`flex gap-4 sm:gap-6 ${activePropertyData.rooms.length <= 2 ? 'justify-center w-full' : ''}`}>
-              {activePropertyData.rooms.map((room) => (
+            <div className="flex gap-4 sm:gap-6">
+              {/* XTSY Travellers Hostel Rooms */}
+              {properties.hostel.rooms.map((room) => (
                 <Card key={room.id} className="bg-white border border-gray-200 hover:border-orange-300 hover:shadow-lg transition-all duration-300 transform hover:scale-105 shadow-md flex-shrink-0 w-80 sm:w-72 lg:w-80">
                   <CardHeader className="pb-3">
                     <div className="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg mb-4 flex items-center justify-center border border-gray-300">
@@ -205,9 +188,7 @@ const RoomsSection = () => {
                     <div className="flex justify-between items-start mb-2">
                       <CardTitle className="text-lg sm:text-xl font-bold text-gray-900 font-serif-sans leading-tight flex items-center gap-2">
                         {room.name}
-                        {room.id === "signature-270-glass-suite" && (
-                          <RotateCcw className="h-5 w-5 text-orange-500" />
-                        )}
+                        <Badge className="bg-blue-500 text-white text-xs">Hostel</Badge>
                       </CardTitle>
                       <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold whitespace-nowrap ml-2">
                         ₹{room.price}/night
@@ -238,7 +219,61 @@ const RoomsSection = () => {
                       onClick={scrollToCalendar}
                       className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 font-seasons"
                     >
-                      {activePropertyData.buttonText}
+                      Select Bed
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+              
+              {/* XTSY Luxury Rooms */}
+              {properties.luxury.rooms.map((room) => (
+                <Card key={room.id} className="bg-white border border-gray-200 hover:border-orange-300 hover:shadow-lg transition-all duration-300 transform hover:scale-105 shadow-md flex-shrink-0 w-80 sm:w-72 lg:w-80">
+                  <CardHeader className="pb-3">
+                    <div className="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg mb-4 flex items-center justify-center border border-gray-300">
+                      <div className="text-center">
+                        <TreePine className="h-8 w-8 text-gray-400 mx-auto mb-1" />
+                        <p className="text-gray-500 text-xs">Room Image</p>
+                        <p className="text-gray-400 text-xs">Supabase Ready</p>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-start mb-2">
+                      <CardTitle className="text-lg sm:text-xl font-bold text-gray-900 font-serif-sans leading-tight flex items-center gap-2">
+                        {room.name}
+                        {room.id === "signature-270-glass-suite" && (
+                          <RotateCcw className="h-5 w-5 text-orange-500" />
+                        )}
+                        <Badge className="bg-purple-500 text-white text-xs">Luxury</Badge>
+                      </CardTitle>
+                      <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold whitespace-nowrap ml-2">
+                        ₹{room.price}/night
+                      </Badge>
+                    </div>
+                    <CardDescription className="text-gray-600 text-sm font-seasons">
+                      {room.description}
+                    </CardDescription>
+                  </CardHeader>
+                  
+                  <CardContent className="space-y-4">
+                    <div className="flex flex-wrap gap-1">
+                      {room.features.map((feature, index) => (
+                        <Badge key={index} variant="outline" className="text-xs border-orange-300 text-orange-600 bg-orange-50">
+                          {feature}
+                        </Badge>
+                      ))}
+                    </div>
+                    
+                    <div className="flex items-center justify-between text-sm text-gray-600">
+                      <span className="flex items-center gap-1">
+                        <Users className="h-4 w-4" />
+                        Max {room.maxGuests} guest{room.maxGuests > 1 ? 's' : ''}
+                      </span>
+                    </div>
+                    
+                    <Button 
+                      onClick={scrollToCalendar}
+                      className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 font-seasons"
+                    >
+                      Select Room
                     </Button>
                   </CardContent>
                 </Card>

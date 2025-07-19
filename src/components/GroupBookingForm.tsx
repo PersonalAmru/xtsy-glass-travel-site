@@ -18,7 +18,6 @@ const GroupBookingForm = () => {
     checkOut: "",
     guests: 8,
     roomType: "",
-    rooms: 2,
     specialRequests: ""
   });
 
@@ -45,7 +44,7 @@ const GroupBookingForm = () => {
   }, [formData.checkIn, formData.checkOut]);
 
   const selectedRoomType = roomTypes.find(room => room.id === formData.roomType);
-  const totalPrice = selectedRoomType ? selectedRoomType.pricePerNight * formData.rooms * nights : 0;
+  const totalPrice = selectedRoomType ? selectedRoomType.pricePerNight * nights : 0;
   const gst = Math.round(totalPrice * 0.12);
   const finalTotal = totalPrice + gst;
 
@@ -66,7 +65,6 @@ const GroupBookingForm = () => {
       id: `group-${Date.now()}`,
       type: 'group',
       roomType: selectedRoomType.name,
-      rooms: formData.rooms,
       guests: formData.guests,
       checkIn: formData.checkIn,
       checkOut: formData.checkOut,
@@ -188,7 +186,7 @@ const GroupBookingForm = () => {
             )}
 
             {/* Room Selection */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="roomType">Room Type *</Label>
                 <Select value={formData.roomType} onValueChange={(value) => handleInputChange('roomType', value)}>
@@ -203,36 +201,6 @@ const GroupBookingForm = () => {
                     ))}
                   </SelectContent>
                 </Select>
-              </div>
-              
-              <div>
-                <Label htmlFor="rooms">Number of Rooms</Label>
-                <div className="flex items-center space-x-2">
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="sm"
-                    onClick={() => handleInputChange('rooms', Math.max(1, formData.rooms - 1))}
-                  >
-                    <Minus className="h-4 w-4" />
-                  </Button>
-                  <Input
-                    id="rooms"
-                    type="number"
-                    min="1"
-                    value={formData.rooms}
-                    onChange={(e) => handleInputChange('rooms', parseInt(e.target.value) || 1)}
-                    className="text-center w-20"
-                  />
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="sm"
-                    onClick={() => handleInputChange('rooms', formData.rooms + 1)}
-                  >
-                    <Plus className="h-4 w-4" />
-                  </Button>
-                </div>
               </div>
 
               <div>
@@ -276,7 +244,7 @@ const GroupBookingForm = () => {
                   </h3>
                   <div className="space-y-1 text-sm">
                     <div className="flex justify-between">
-                      <span>{selectedRoomType.name} × {formData.rooms} rooms × {nights} nights</span>
+                      <span>{selectedRoomType.name} × {nights} nights</span>
                       <span>₹{totalPrice.toLocaleString()}</span>
                     </div>
                     <div className="flex justify-between">
