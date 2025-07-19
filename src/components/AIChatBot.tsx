@@ -1,8 +1,9 @@
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { MessageCircle, X, Send, Bot, User, HelpCircle } from "lucide-react";
+import { supabase } from '@/integrations/supabase/client';
 
 interface Message {
   id: string;
@@ -16,13 +17,15 @@ const AIChatBot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      text: "Hey there! I'm XTSY AI Assistant, your Gen Z travel buddy for Meghalaya! Ask me anything about XTSY hostels, Shillong vibes, check-in/out times, or travel tips. What's up?",
+      text: "Hi! I'm your XTSY travel assistant. I can help you plan your trip to Northeast India, find the best destinations, and book accommodations. What would you like to know?",
       isBot: true,
       timestamp: new Date()
     }
   ]);
   const [inputMessage, setInputMessage] = useState("");
   const [showQuickQuestions, setShowQuickQuestions] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const sessionId = useRef(Math.random().toString(36).substring(7));
 
   // Common FAQs for Meghalaya travelers
   const quickQuestions = [
@@ -36,9 +39,9 @@ const AIChatBot = () => {
     "Local food recommendations?"
   ];
 
-  const handleSendMessage = (question?: string) => {
+  const handleSendMessage = async (question?: string) => {
     const messageText = question || inputMessage.trim();
-    if (!messageText) return;
+    if (!messageText || isLoading) return;
 
     const userMessage: Message = {
       id: Date.now().toString(),
@@ -50,19 +53,41 @@ const AIChatBot = () => {
     setMessages(prev => [...prev, userMessage]);
     setInputMessage("");
     setShowQuickQuestions(false);
+    setIsLoading(true);
 
-    // Enhanced AI responses with Gen Z vibes
-    setTimeout(() => {
-      let response = getAIResponse(messageText.toLowerCase());
-      
+    try {
+      const { data, error } = await supabase.functions.invoke('ai-travel-assistant', {
+        body: {
+          message: messageText,
+          sessionId: sessionId.current,
+          userEmail: null
+        }
+      });
+
+      if (error) {
+        throw error;
+      }
+
       const botResponse: Message = {
         id: (Date.now() + 1).toString(),
-        text: response,
+        text: data.response || "I'm sorry, I couldn't process your request right now. Please try again!",
         isBot: true,
-        timestamp: new Date()
+        timestamp: new Date(),
       };
+
       setMessages(prev => [...prev, botResponse]);
-    }, 1000);
+    } catch (error) {
+      console.error('Error calling AI assistant:', error);
+      const errorResponse: Message = {
+        id: (Date.now() + 1).toString(),
+        text: "I'm sorry, I'm having trouble connecting right now. Please try again in a moment! 😊",
+        isBot: true,
+        timestamp: new Date(),
+      };
+      setMessages(prev => [...prev, errorResponse]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const getAIResponse = (question: string): string => {
@@ -222,8 +247,13 @@ const AIChatBot = () => {
               onClick={() => handleSendMessage()}
               size="sm"
               className="bg-blue-500 hover:bg-blue-600 text-white"
+              disabled={isLoading}
             >
-              <Send className="h-4 w-4" />
+              {isLoading ? (
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+              ) : (
+                <Send className="h-4 w-4" />
+              )}
             </Button>
           </div>
         </div>

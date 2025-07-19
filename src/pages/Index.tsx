@@ -11,6 +11,7 @@ import AIChatBot from "@/components/AIChatBot";
 import DealsSection from "@/components/DealsSection";
 import GallerySection from "@/components/GallerySection";
 import AboutSection from "@/components/AboutSection";
+import TravelItinerariesSection from "@/components/TravelItinerariesSection";
 
 const Index = () => {
   return (
@@ -20,6 +21,7 @@ const Index = () => {
       <ServicesSection />
       <RoomsSection />
       <DealsSection />
+      <TravelItinerariesSection />
       <GallerySection />
       <ReviewsSection />
       <AdventureSection />

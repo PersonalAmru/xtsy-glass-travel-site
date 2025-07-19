@@ -14,6 +14,68 @@ export type Database = {
   }
   public: {
     Tables: {
+      attractions: {
+        Row: {
+          address: string | null
+          created_at: string
+          description: string | null
+          destination_id: string | null
+          entry_fee: number | null
+          google_place_id: string | null
+          id: string
+          image_url: string | null
+          latitude: number | null
+          longitude: number | null
+          name: string
+          opening_hours: Json | null
+          rating: number | null
+          type: string
+          updated_at: string
+        }
+        Insert: {
+          address?: string | null
+          created_at?: string
+          description?: string | null
+          destination_id?: string | null
+          entry_fee?: number | null
+          google_place_id?: string | null
+          id?: string
+          image_url?: string | null
+          latitude?: number | null
+          longitude?: number | null
+          name: string
+          opening_hours?: Json | null
+          rating?: number | null
+          type: string
+          updated_at?: string
+        }
+        Update: {
+          address?: string | null
+          created_at?: string
+          description?: string | null
+          destination_id?: string | null
+          entry_fee?: number | null
+          google_place_id?: string | null
+          id?: string
+          image_url?: string | null
+          latitude?: number | null
+          longitude?: number | null
+          name?: string
+          opening_hours?: Json | null
+          rating?: number | null
+          type?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "attractions_destination_id_fkey"
+            columns: ["destination_id"]
+            isOneToOne: false
+            referencedRelation: "destinations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       booking_confirmations: {
         Row: {
           booking_id: string | null
@@ -150,6 +212,170 @@ export type Database = {
           whatsapp_number?: string
         }
         Relationships: []
+      }
+      chat_conversations: {
+        Row: {
+          created_at: string
+          id: string
+          messages: Json
+          session_id: string
+          updated_at: string
+          user_email: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          messages?: Json
+          session_id: string
+          updated_at?: string
+          user_email?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          messages?: Json
+          session_id?: string
+          updated_at?: string
+          user_email?: string | null
+        }
+        Relationships: []
+      }
+      destinations: {
+        Row: {
+          created_at: string
+          description: string | null
+          featured: boolean | null
+          id: string
+          image_url: string | null
+          latitude: number | null
+          longitude: number | null
+          name: string
+          state: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          featured?: boolean | null
+          id?: string
+          image_url?: string | null
+          latitude?: number | null
+          longitude?: number | null
+          name: string
+          state: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          featured?: boolean | null
+          id?: string
+          image_url?: string | null
+          latitude?: number | null
+          longitude?: number | null
+          name?: string
+          state?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      itineraries: {
+        Row: {
+          activities: Json
+          best_season: string | null
+          created_at: string
+          description: string | null
+          destinations: Json
+          difficulty_level: string | null
+          duration_days: number
+          estimated_cost: number | null
+          external_url: string | null
+          featured: boolean | null
+          id: string
+          image_url: string | null
+          source: string | null
+          tags: string[] | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          activities?: Json
+          best_season?: string | null
+          created_at?: string
+          description?: string | null
+          destinations?: Json
+          difficulty_level?: string | null
+          duration_days: number
+          estimated_cost?: number | null
+          external_url?: string | null
+          featured?: boolean | null
+          id?: string
+          image_url?: string | null
+          source?: string | null
+          tags?: string[] | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          activities?: Json
+          best_season?: string | null
+          created_at?: string
+          description?: string | null
+          destinations?: Json
+          difficulty_level?: string | null
+          duration_days?: number
+          estimated_cost?: number | null
+          external_url?: string | null
+          featured?: boolean | null
+          id?: string
+          image_url?: string | null
+          source?: string | null
+          tags?: string[] | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      reviews: {
+        Row: {
+          booking_id: string | null
+          created_at: string
+          guest_name: string
+          id: string
+          photos: string[] | null
+          rating: number
+          review_text: string | null
+          verified: boolean | null
+        }
+        Insert: {
+          booking_id?: string | null
+          created_at?: string
+          guest_name: string
+          id?: string
+          photos?: string[] | null
+          rating: number
+          review_text?: string | null
+          verified?: boolean | null
+        }
+        Update: {
+          booking_id?: string | null
+          created_at?: string
+          guest_name?: string
+          id?: string
+          photos?: string[] | null
+          rating?: number
+          review_text?: string | null
+          verified?: boolean | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviews_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: false
+            referencedRelation: "bookings"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       transactions: {
         Row: {
