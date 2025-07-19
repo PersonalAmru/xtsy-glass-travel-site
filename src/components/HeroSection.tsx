@@ -7,172 +7,147 @@ import EnhancedBookingModal from "./EnhancedBookingModal";
 const HeroSection = () => {
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
-  const [guests, setGuests] = useState("1");
-  const [currentHelloIndex, setCurrentHelloIndex] = useState(0);
+  const [guests, setGuests] = useState("2");
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
-
-  const helloMessages = [
-    "Hello!",
-    "¡Hola!",
-    "Bonjour!",
-    "Hallo!",
-    "Ciao!",
-    "こんにちは!",
-    "안녕하세요!",
-    "Привет!",
-    "नमस्ते!",
-    "مرحبا!",
-    "你好!",
-    "Olá!",
-    "Shwmae!",
-    "Γεια σας!",
-    "Merhaba!",
-    "Sawubona!",
-    "Hej!",
-    "Kumusta!",
-    "Saluton!"
-  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentHelloIndex((prev) => (prev + 1) % helloMessages.length);
-    }, 2000);
+      const elements = document.querySelectorAll('.floating-element');
+      elements.forEach((element, index) => {
+        const randomX = Math.random() * 20 - 10;
+        const randomY = Math.random() * 20 - 10;
+        (element as HTMLElement).style.transform = `translate(${randomX}px, ${randomY}px)`;
+      });
+    }, 3000);
+
     return () => clearInterval(interval);
   }, []);
 
   const handleSearch = () => {
-    if (checkIn && checkOut && guests) {
-      setIsBookingModalOpen(true);
-    } else {
-      alert("Please fill in all booking details");
+    if (!checkIn || !checkOut || !guests) {
+      alert("Please fill in all search fields");
+      return;
     }
-  };
-
-  // Get today's date in YYYY-MM-DD format
-  const today = new Date().toISOString().split('T')[0];
-  
-  // Get tomorrow's date for minimum checkout
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  const tomorrowStr = tomorrow.toISOString().split('T')[0];
-
-  // Function to handle date input clicks - opens the calendar
-  const handleDateInputClick = (inputRef: HTMLInputElement | null) => {
-    if (inputRef) {
-      inputRef.showPicker?.();
-    }
+    setIsBookingModalOpen(true);
   };
 
   return (
     <>
-      <section id="home" className="relative min-h-screen flex flex-col px-3 sm:px-4 pt-14 sm:pt-16 pb-6 sm:pb-8 bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-hidden">
-        {/* Enhanced Background with improved brightness and saturation */}
-        <div className="absolute inset-0">
-          <img 
-            src="https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/image-assets/Hero/DJI_20250324_105854_074.jpg"
-            alt="Hero Background"
-            className="w-full h-full object-cover opacity-60 transition-transform duration-1000 hover:scale-105 brightness-125 saturate-150 contrast-110"
-            loading="eager"
-            decoding="async"
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-gray-900/30 to-black/50"></div>
-          {/* Floating particles effect */}
-          <div className="absolute inset-0">
-            {[...Array(6)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute w-2 h-2 sm:w-3 sm:h-3 bg-gradient-to-r from-white/20 to-gray-300/20 rounded-full animate-bounce shadow-lg"
-                style={{
-                  left: `${15 + i * 12}%`,
-                  top: `${25 + i * 8}%`,
-                  animationDelay: `${i * 0.4}s`,
-                  animationDuration: `${2.5 + i * 0.3}s`
-                }}
-              />
-            ))}
-          </div>
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
+        {/* Background Image with Overlay */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('/lovable-uploads/6a7b3dad-87a3-49d9-98fa-919ff7b09dd0.png')",
+          }}
+        >
+          <div className="absolute inset-0 bg-black/60"></div>
         </div>
 
-        <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col min-h-[calc(100vh-120px)]">
-          {/* Tagline - Top Center */}
-          <div className="text-center mt-4 sm:mt-6 mb-8">
-            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white font-playfair drop-shadow-2xl">
-              Live the Shillong Vibe
-            </h2>
-          </div>
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="floating-element absolute top-1/4 left-1/4 w-64 h-64 bg-orange-500/10 rounded-full blur-xl animate-pulse"></div>
+          <div className="floating-element absolute top-3/4 right-1/4 w-48 h-48 bg-red-500/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="floating-element absolute bottom-1/4 left-1/3 w-32 h-32 bg-yellow-500/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        </div>
 
-          {/* Hero Text - Center */}
-          <div className="text-center flex-1 flex flex-col justify-center mb-8">
-            <div className="mb-6 sm:mb-8">
-              <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white font-cormorant drop-shadow-2xl transition-all duration-700 ease-in-out transform hover:scale-110">
-                {helloMessages[currentHelloIndex]}
-              </span>
-            </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-josefin drop-shadow-2xl transition-all duration-300 hover:scale-105">
-              XTSY
+        {/* Main Content */}
+        <div className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+          {/* Hero Text */}
+          <div className="mb-12">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent animate-fade-in">
+              XTSY Travellers Hostel
             </h1>
+            <p className="text-xl sm:text-2xl lg:text-3xl mb-4 opacity-90 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+              Your Gateway to Meghalaya's Wonders
+            </p>
+            <p className="text-lg sm:text-xl mb-8 opacity-80 max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: '0.6s' }}>
+              Experience the magic of the Northeast with our premium hostel stays, luxury suites, and unforgettable adventure tours
+            </p>
           </div>
 
-          {/* Booking Form - Bottom aligned and mobile optimized */}
-          <div className="bg-white/95 backdrop-blur-sm border border-gray-300 rounded-xl sm:rounded-2xl p-3 sm:p-4 shadow-2xl max-w-full sm:max-w-3xl mx-auto">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 items-end">
-              <div className="space-y-1 sm:space-y-2">
-                <label className="text-xs font-bold text-black flex items-center gap-1 sm:gap-2 font-seasons">
-                  <Calendar className="h-3 w-3" />
-                  CHECK-IN
-                </label>
+          {/* Search Form */}
+          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-2xl animate-fade-in" style={{ animationDelay: '0.9s' }}>
+            <h2 className="text-2xl font-semibold mb-6 text-center">Find Your Perfect Stay</h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-200">Check-in</label>
                 <div className="relative">
                   <Input
                     type="date"
                     value={checkIn}
-                    min={today}
                     onChange={(e) => setCheckIn(e.target.value)}
-                    onClick={(e) => handleDateInputClick(e.target as HTMLInputElement)}
-                    className="bg-white border-gray-300 text-black placeholder-gray-600 h-8 sm:h-10 text-xs sm:text-sm font-semibold rounded-lg cursor-pointer"
+                    className="pl-10 bg-white/20 border-white/30 text-white placeholder-gray-300"
+                    min={new Date().toISOString().split('T')[0]}
                   />
+                  <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-300" />
                 </div>
               </div>
-              
-              <div className="space-y-1 sm:space-y-2">
-                <label className="text-xs font-bold text-black flex items-center gap-1 sm:gap-2 font-seasons">
-                  <Calendar className="h-3 w-3" />
-                  CHECK-OUT
-                </label>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-200">Check-out</label>
                 <div className="relative">
                   <Input
                     type="date"
                     value={checkOut}
-                    min={checkIn ? (new Date(new Date(checkIn).getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]) : tomorrowStr}
                     onChange={(e) => setCheckOut(e.target.value)}
-                    onClick={(e) => handleDateInputClick(e.target as HTMLInputElement)}
-                    className="bg-white border-gray-300 text-black placeholder-gray-600 h-8 sm:h-10 text-xs sm:text-sm font-semibold rounded-lg cursor-pointer"
+                    className="pl-10 bg-white/20 border-white/30 text-white placeholder-gray-300"
+                    min={checkIn || new Date().toISOString().split('T')[0]}
                   />
+                  <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-300" />
                 </div>
               </div>
-              
-              <div className="space-y-1 sm:space-y-2">
-                <label className="text-xs font-bold text-black flex items-center gap-1 sm:gap-2 font-seasons">
-                  <Users className="h-3 w-3" />
-                  GUESTS
-                </label>
-                <select
-                  value={guests}
-                  onChange={(e) => setGuests(e.target.value)}
-                  className="w-full px-2 sm:px-3 py-2 h-8 sm:h-10 bg-white border-2 border-gray-300 rounded-lg text-black text-xs sm:text-sm font-semibold cursor-pointer"
-                >
-                  {Array.from({length: 25}, (_, i) => i + 1).map(num => (
-                    <option key={num} value={num} className="bg-white text-black font-semibold">{num}</option>
-                  ))}
-                </select>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-200">Guests</label>
+                <div className="relative">
+                  <Input
+                    type="number"
+                    value={guests}
+                    onChange={(e) => setGuests(e.target.value)}
+                    min="1"
+                    max="20"
+                    className="pl-10 bg-white/20 border-white/30 text-white placeholder-gray-300"
+                    placeholder="2"
+                  />
+                  <Users className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-300" />
+                </div>
               </div>
-              
-              <Button 
-                onClick={handleSearch}
-                className="h-8 sm:h-10 bg-black hover:bg-gray-800 text-white font-bold text-xs sm:text-sm px-4 sm:px-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 rounded-lg font-seasons mt-2 sm:mt-0"
-              >
-                <Search className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-                Search
-              </Button>
+
+              <div className="flex items-end">
+                <Button
+                  onClick={handleSearch}
+                  className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+                >
+                  <Search className="mr-2 h-4 w-4" />
+                  Search Rooms
+                </Button>
+              </div>
+            </div>
+
+            <div className="text-center text-sm text-gray-300">
+              <p>🏨 3 Room Types Available • 🌟 Premium Amenities • 🎯 Best Rates Guaranteed</p>
+            </div>
+          </div>
+
+          {/* Quick Stats */}
+          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 animate-fade-in" style={{ animationDelay: '1.2s' }}>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-orange-400">500+</div>
+              <div className="text-sm text-gray-300">Happy Guests</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-red-400">50+</div>
+              <div className="text-sm text-gray-300">Adventure Tours</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-yellow-400">4.8</div>
+              <div className="text-sm text-gray-300">Rating</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-green-400">24/7</div>
+              <div className="text-sm text-gray-300">Support</div>
             </div>
           </div>
         </div>
