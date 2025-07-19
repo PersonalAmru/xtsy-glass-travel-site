@@ -97,19 +97,19 @@ const HeroSection = () => {
         <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col min-h-[calc(100vh-120px)]">
           {/* Tagline - Top Center */}
           <div className="text-center mt-4 sm:mt-6 mb-8">
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white font-seasons drop-shadow-2xl">
-              Live the Shillong Vibe ✨
+            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white font-playfair drop-shadow-2xl">
+              Live the Shillong Vibe
             </h2>
           </div>
 
           {/* Hero Text - Center */}
           <div className="text-center flex-1 flex flex-col justify-center mb-8">
             <div className="mb-6 sm:mb-8">
-              <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white font-seasons drop-shadow-2xl transition-all duration-700 ease-in-out transform hover:scale-110">
+              <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white font-cormorant drop-shadow-2xl transition-all duration-700 ease-in-out transform hover:scale-110">
                 {helloMessages[currentHelloIndex]}
               </span>
             </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white font-serif-sans drop-shadow-2xl transition-all duration-300 hover:scale-105">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-josefin drop-shadow-2xl transition-all duration-300 hover:scale-105">
               XTSY
             </h1>
           </div>
@@ -120,7 +120,7 @@ const HeroSection = () => {
               <div className="space-y-1 sm:space-y-2">
                 <label className="text-xs font-bold text-black flex items-center gap-1 sm:gap-2 font-seasons">
                   <Calendar className="h-3 w-3" />
-                  CHECK-IN 📅
+                  CHECK-IN
                 </label>
                 <div className="relative">
                   <Input
@@ -137,7 +137,7 @@ const HeroSection = () => {
               <div className="space-y-1 sm:space-y-2">
                 <label className="text-xs font-bold text-black flex items-center gap-1 sm:gap-2 font-seasons">
                   <Calendar className="h-3 w-3" />
-                  CHECK-OUT 📅
+                  CHECK-OUT
                 </label>
                 <div className="relative">
                   <Input
@@ -154,7 +154,7 @@ const HeroSection = () => {
               <div className="space-y-1 sm:space-y-2">
                 <label className="text-xs font-bold text-black flex items-center gap-1 sm:gap-2 font-seasons">
                   <Users className="h-3 w-3" />
-                  GUESTS 👥
+                  GUESTS
                 </label>
                 <select
                   value={guests}
@@ -172,7 +172,7 @@ const HeroSection = () => {
                 className="h-8 sm:h-10 bg-black hover:bg-gray-800 text-white font-bold text-xs sm:text-sm px-4 sm:px-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 rounded-lg font-seasons mt-2 sm:mt-0"
               >
                 <Search className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-                Search 🔍
+                Search
               </Button>
             </div>
           </div>

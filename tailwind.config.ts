@@ -20,11 +20,12 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				'wildera': ['Wildera', 'Playfair Display', 'serif'],
-				'seasons': ['The Seasons', 'serif'],
-				'safira': ['Safira March', 'sans-serif'],
-				'serif-sans': ['Cormorant Garamond', 'serif'],
-				'oreo-pops': ['Orbitron', 'Arial Black', 'sans-serif'],
+				'playfair': ['Playfair Display', 'serif'],
+				'cormorant': ['Cormorant Garamond', 'serif'],
+				'josefin': ['Josefin Sans', 'sans-serif'],
+				'cardo': ['Cardo', 'serif'],
+				'sans': ['Josefin Sans', 'system-ui', 'sans-serif'],
+				'serif': ['Playfair Display', 'serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',

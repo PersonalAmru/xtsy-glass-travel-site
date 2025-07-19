@@ -90,7 +90,7 @@ const Header = () => {
                   className="relative"
                 >
                   <ShoppingCart className="h-4 w-4 mr-2" />
-                  Tour Cart
+                  Cart
                   {cartItemCount > 0 && (
                     <span className="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                       {cartItemCount}

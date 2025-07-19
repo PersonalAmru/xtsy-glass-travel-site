@@ -22,7 +22,6 @@ const Index = () => {
       <TravelItinerariesSection />
       <Footer />
       <AIChatBot />
-      <TourAIChatBot />
     </div>
   );
 };

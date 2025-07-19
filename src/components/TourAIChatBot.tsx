@@ -38,14 +38,14 @@ const TourAIChatBot: React.FC<TourAIChatBotProps> = ({ sessionId }) => {
       // Initialize with welcome message
       const welcomeMessage: Message = {
         id: Date.now().toString(),
-        content: `Hello! 👋 I'm your personal travel assistant for XTSY Tours! I can help you with:
+        content: `Hello! I'm your personal travel assistant for XTSY Tours! I can help you with:
 
-🏔️ **Tour Package Information** - Get details about our Meghalaya adventures
-📅 **Booking Assistance** - Help you choose the perfect travel dates
-🎯 **Custom Recommendations** - Suggest packages based on your preferences
-💰 **Pricing & Offers** - Information about rates and special deals
-🗺️ **Itinerary Planning** - Detailed day-by-day activities
-🏨 **Accommodation Details** - Where you'll stay during tours
+**Tour Package Information** - Get details about our Meghalaya adventures
+**Booking Assistance** - Help you choose the perfect travel dates
+**Custom Recommendations** - Suggest packages based on your preferences
+**Pricing & Offers** - Information about rates and special deals
+**Itinerary Planning** - Detailed day-by-day activities
+**Accommodation Details** - Where you'll stay during tours
 
 What would you like to know about our travel packages?`,
         sender: 'bot',
@@ -74,24 +74,24 @@ What would you like to know about our travel packages?`,
     const message = userMessage.toLowerCase();
     
     if (message.includes('price') || message.includes('cost') || message.includes('rate')) {
-      return `💰 **Tour Package Pricing:**
+      return `**Tour Package Pricing:**
 
 Our packages start from ₹2,800 per person per day as base rate:
 
-🏔️ **Adventure Packages** (15% premium): ₹3,220/day
-🏛️ **Cultural Packages** (10% premium): ₹3,080/day  
-🌿 **Leisure Packages**: ₹2,800/day (base rate)
+**Adventure Packages** (15% premium): ₹3,220/day
+**Cultural Packages** (10% premium): ₹3,080/day  
+**Leisure Packages**: ₹2,800/day (base rate)
 
 **Popular Packages:**
 • Meghalaya Hidden Gems (5 days): ₹12,999
 • Cherrapunji Monsoon Trek (4 days): ₹15,999
 • Offbeat Meghalaya Circuit (7 days): ₹22,999
 
-All prices include 18% GST. Group discounts available for 6+ people! 🎉`;
+All prices include 18% GST. Group discounts available for 6+ people!`;
     }
 
     if (message.includes('book') || message.includes('booking')) {
-      return `📅 **Easy Booking Process:**
+      return `**Easy Booking Process:**
 
 1. **Choose Your Package** - Click on any tour card
 2. **Select Details** - Pick dates, number of guests
@@ -100,44 +100,44 @@ All prices include 18% GST. Group discounts available for 6+ people! 🎉`;
 5. **Secure Payment** - Pay online safely
 
 **Need Help?** I can assist you with:
-✅ Finding the perfect package for your group
-✅ Selecting the best travel dates
-✅ Understanding what's included
-✅ Payment options and policies
+• Finding the perfect package for your group
+• Selecting the best travel dates
+• Understanding what's included
+• Payment options and policies
 
-Would you like me to recommend a package based on your preferences? 🎯`;
+Would you like me to recommend a package based on your preferences?`;
     }
 
     if (message.includes('recommend') || message.includes('suggest') || message.includes('best')) {
-      return `🎯 **Perfect! Let me help you find the ideal package:**
+      return `**Perfect! Let me help you find the ideal package:**
 
 **For Adventure Lovers:**
-🏔️ Cherrapunji Monsoon Trek (4 days) - Experience living root bridges
-⭐ Rating: 4.9/5 - ₹15,999
+Cherrapunji Monsoon Trek (4 days) - Experience living root bridges
+Rating: 4.9/5 - ₹15,999
 
 **For Cultural Enthusiasts:**
-🏛️ Shillong Cultural Experience (3 days) - Local markets & cuisine  
-⭐ Rating: 4.6/5 - ₹8,999
+Shillong Cultural Experience (3 days) - Local markets & cuisine  
+Rating: 4.6/5 - ₹8,999
 
 **For Relaxed Travelers:**
-🌿 Mawlynnong Clean Village Tour (2 days) - Asia's cleanest village
-⭐ Rating: 4.5/5 - ₹7,499
+Mawlynnong Clean Village Tour (2 days) - Asia's cleanest village
+Rating: 4.5/5 - ₹7,499
 
 **Most Popular:**
-🌟 Meghalaya Hidden Gems (5 days) - Waterfalls & root bridges
-⭐ Rating: 4.8/5 - ₹12,999
+Meghalaya Hidden Gems (5 days) - Waterfalls & root bridges
+Rating: 4.8/5 - ₹12,999
 
-What type of experience interests you most? 🤔`;
+What type of experience interests you most?`;
     }
 
     if (message.includes('group') || message.includes('family')) {
-      return `👨‍👩‍👧‍👦 **Group & Family Packages:**
+      return `**Group & Family Packages:**
 
 **Special Group Benefits:**
-🎉 10% discount for groups of 6+ people
-🚐 Free group transportation included
-👥 Dedicated group coordinator
-🏨 Group accommodation arrangements
+10% discount for groups of 6+ people
+Free group transportation included
+Dedicated group coordinator
+Group accommodation arrangements
 
 **Family-Friendly Options:**
 • Dawki River Adventure (2 days) - Easy difficulty
@@ -145,83 +145,83 @@ What type of experience interests you most? 🤔`;
 • Wellness Retreat (5 days) - Relaxing for all ages
 
 **Group Activities:**
-🥾 Guided nature walks
-📸 Group photography sessions  
-🍽️ Traditional group meals
-🎨 Local craft workshops
+Guided nature walks
+Group photography sessions  
+Traditional group meals
+Local craft workshops
 
-How many people are in your group? I'll suggest the perfect package! 👥`;
+How many people are in your group? I'll suggest the perfect package!`;
     }
 
     if (message.includes('include') || message.includes('accommodation') || message.includes('food')) {
-      return `📋 **What's Included in Our Packages:**
+      return `**What's Included in Our Packages:**
 
-**🏨 Accommodation:**
+**Accommodation:**
 • Clean, comfortable lodging
 • Based on package (hostels/hotels/homestays)
 • Shared or private rooms as specified
 
-**🍽️ Meals:**
+**Meals:**
 • Daily breakfast included
 • Local lunch during excursions
 • Traditional dinner experiences
 • Vegetarian/non-vegetarian options
 
-**🚐 Transportation:**
+**Transportation:**
 • All local transfers
 • Comfortable vehicles
 • Experienced local drivers
 • Pick-up/drop-off included
 
-**👨‍🏫 Activities:**
+**Activities:**
 • Professional local guides
 • Entry fees to attractions
 • Safety equipment for adventures
 • Group activities & experiences
 
-**📱 Support:**
+**Support:**
 • 24/7 emergency contact
 • Travel insurance assistance
 • Local SIM card help
 
-Need details about a specific package? Just ask! 💬`;
+Need details about a specific package? Just ask!`;
     }
 
     if (message.includes('season') || message.includes('weather') || message.includes('when')) {
-      return `🌤️ **Best Time to Visit Meghalaya:**
+      return `**Best Time to Visit Meghalaya:**
 
-**🌟 Peak Season (Oct-Mar):**
+**Peak Season (Oct-Mar):**
 • Perfect weather - cool & pleasant
 • Clear skies for photography  
 • Ideal for most packages
 • Higher demand - book early!
 
-**🌧️ Monsoon Season (Jun-Sep):**
+**Monsoon Season (Jun-Sep):**
 • Unique experience - lush greenery
 • Spectacular waterfalls
 • Special monsoon packages available
 • Adventure seekers' paradise!
 
-**☀️ Summer Season (Apr-May):**
+**Summer Season (Apr-May):**
 • Moderate temperatures
 • Good for cultural tours
 • Less crowded attractions
 • Great value deals
 
 **Package-Specific Seasons:**
-🏔️ Cherrapunji Trek: Jun-Sep (monsoon magic)
-🏛️ Cultural Tours: Year-round
-🌿 Nature Tours: Oct-Mar (best weather)
+Cherrapunji Trek: Jun-Sep (monsoon magic)
+Cultural Tours: Year-round
+Nature Tours: Oct-Mar (best weather)
 
-When are you planning to visit? 📅`;
+When are you planning to visit?`;
     }
 
     // Default response
-    return `Thank you for your question! 😊 
+    return `Thank you for your question! 
 
 I'm here to help you with everything about XTSY Tours:
 
-🏔️ **Popular Topics:**
+**Popular Topics:**
 • Tour package details & pricing
 • Best times to visit Meghalaya  
 • Group bookings & discounts
@@ -230,12 +230,12 @@ I'm here to help you with everything about XTSY Tours:
 • Custom recommendations
 
 You can also:
-🎯 Ask for package recommendations
-📞 Get contact information
-💬 Chat about specific destinations
-📅 Plan your perfect itinerary
+Ask for package recommendations
+Get contact information
+Chat about specific destinations
+Plan your perfect itinerary
 
-What specific information would you like about our Meghalaya adventures? I'm here to help make your trip unforgettable! ✨`;
+What specific information would you like about our Meghalaya adventures? I'm here to help make your trip unforgettable!`;
   };
 
   const handleSendMessage = async () => {
@@ -273,24 +273,16 @@ What specific information would you like about our Meghalaya adventures? I'm her
     }
   };
 
+  // Don't render the floating button - this component will be integrated differently
   if (!isOpen) {
-    return (
-      <div className="fixed bottom-6 right-6 z-50">
-        <Button
-          onClick={() => setIsOpen(true)}
-          className="rounded-full w-16 h-16 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-110"
-        >
-          <MessageCircle className="h-6 w-6 text-white" />
-        </Button>
-      </div>
-    );
+    return null;
   }
 
   return (
     <div className={`fixed ${isMinimized ? 'bottom-6 right-6' : 'bottom-6 right-6'} z-50 ${isMinimized ? 'w-80' : 'w-96'} transition-all duration-300`}>
       <Card className={`${isMinimized ? 'h-16' : 'h-[500px]'} shadow-2xl border-0 bg-white/95 backdrop-blur-sm overflow-hidden transition-all duration-300`}>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 bg-gradient-to-r from-orange-500 to-red-600 text-white">
-          <CardTitle className="text-sm font-semibold flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold flex items-center gap-2 font-josefin">
             <Bot className="h-4 w-4" />
             Tour AI Assistant
             <span className="text-xs opacity-75">({guestSessionId.slice(-8)})</span>
@@ -335,7 +327,7 @@ What specific information would you like about our Meghalaya adventures? I'm her
                         {message.sender === 'bot' && <Bot className="h-4 w-4 mt-0.5 flex-shrink-0" />}
                         {message.sender === 'user' && <User className="h-4 w-4 mt-0.5 flex-shrink-0" />}
                         <div className="flex-1">
-                          <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                          <p className="text-sm whitespace-pre-wrap font-cardo">{message.content}</p>
                           <p className={`text-xs mt-1 opacity-70 ${message.sender === 'user' ? 'text-white' : 'text-gray-500'}`}>
                             {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                           </p>
@@ -371,7 +363,7 @@ What specific information would you like about our Meghalaya adventures? I'm her
                   onChange={(e) => setInputMessage(e.target.value)}
                   onKeyPress={handleKeyPress}
                   placeholder="Ask about our tour packages..."
-                  className="flex-1"
+                  className="flex-1 font-cardo"
                   disabled={isLoading}
                 />
                 <Button

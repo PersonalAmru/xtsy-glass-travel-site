@@ -77,13 +77,13 @@ const ReviewsSection = () => {
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-16">
           <div className="inline-block p-6 bg-white/10 backdrop-blur-sm rounded-2xl shadow-2xl mb-6">
-            <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent mb-4">
-              ⭐ Guest Reviews ⭐
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent mb-4 font-playfair">
+              Guest Reviews
             </h2>
             <div className="w-32 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 mx-auto rounded-full" />
           </div>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg">
-            🌟 See what our amazing guests have to say about their unforgettable stay at XTSY! 💫
+            See what our amazing guests have to say about their unforgettable stay at XTSY!
           </p>
         </div>
 

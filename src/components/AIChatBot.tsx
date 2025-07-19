@@ -81,7 +81,7 @@ const AIChatBot = () => {
       console.error('Error calling AI assistant:', error);
       const errorResponse: Message = {
         id: (Date.now() + 1).toString(),
-        text: "I'm here to help you plan your Northeast India trip! I can provide information about destinations in Meghalaya, Shillong attractions, XTSY accommodation options, local culture, weather, and travel tips. What would you like to explore? 😊",
+        text: "I'm here to help you plan your Northeast India trip! I can provide information about destinations in Meghalaya, Shillong attractions, XTSY accommodation options, local culture, weather, and travel tips. What would you like to explore?",
         isBot: true,
         timestamp: new Date(),
       };
@@ -203,7 +203,7 @@ const AIChatBot = () => {
               onClick={handleWhatsAppConnect}
               className="w-full bg-green-500 hover:bg-green-600 text-white text-xs py-2"
             >
-              💬 Connect on WhatsApp
+              Connect on WhatsApp
             </Button>
           </div>
 

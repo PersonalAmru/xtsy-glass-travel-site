@@ -173,14 +173,14 @@ const TravelItinerariesSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <div className="inline-block p-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl mb-6">
-            <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 bg-clip-text text-transparent mb-4">
-              ✨ Curated Travel Itineraries ✨
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 bg-clip-text text-transparent mb-4 font-playfair">
+              Curated Travel Itineraries
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto rounded-full" />
           </div>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8 bg-white/60 backdrop-blur-sm rounded-xl p-6 shadow-lg">
-            🏔️ Discover Meghalaya's hidden treasures with our expertly crafted travel packages. 
-            From thrilling adventures to cultural immersions, find your perfect journey and create memories that last forever! 🌟
+            Discover Meghalaya's hidden treasures with our expertly crafted travel packages. 
+            From thrilling adventures to cultural immersions, find your perfect journey and create memories that last forever!
           </p>
 
           {/* Category Filter */}
@@ -278,7 +278,7 @@ const TravelItinerariesSection = () => {
                     }}
                   >
                     <MapPin className="h-4 w-4 mr-2" />
-                    ✨ Book This Journey ✨
+                    Book This Journey
                   </Button>
                 </div>
               </CardContent>
@@ -292,7 +292,7 @@ const TravelItinerariesSection = () => {
             size="lg" 
             className="px-12 py-4 text-lg font-semibold bg-white/80 backdrop-blur-sm border-2 border-orange-300 hover:bg-gradient-to-r hover:from-orange-500 hover:to-red-500 hover:text-white hover:border-transparent shadow-xl hover:shadow-2xl transition-all duration-300"
           >
-            🌟 View All Packages 🌟
+            View All Packages
           </Button>
         </div>
       </div>
