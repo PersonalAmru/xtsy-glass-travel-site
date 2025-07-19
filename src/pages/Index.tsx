@@ -5,6 +5,7 @@ import RoomsSection from "@/components/RoomsSection";
 import ServicesSection from "@/components/ServicesSection";
 import ReviewsSection from "@/components/ReviewsSection";
 import GroupBookingSection from "@/components/GroupBookingSection";
+import TravelItinerariesSection from "@/components/TravelItinerariesSection";
 import Footer from "@/components/Footer";
 import AIChatBot from "@/components/AIChatBot";
 
@@ -17,6 +18,7 @@ const Index = () => {
       <ServicesSection />
       <ReviewsSection />
       <GroupBookingSection />
+      <TravelItinerariesSection />
       <Footer />
       <AIChatBot />
     </div>
