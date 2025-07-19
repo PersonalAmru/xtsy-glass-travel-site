@@ -16,7 +16,7 @@ const TravelItinerariesSection = () => {
       duration: "5 Days",
       difficulty: "Moderate",
       price: "₹12,999",
-      image: "/lovable-uploads/6a7b3dad-87a3-49d9-98fa-919ff7b09dd0.png",
+      image: "",
       rating: 4.8,
       category: "adventure",
       highlights: ["Double Decker Root Bridge", "Rainbow Falls", "Crystal Clear Pools"],
@@ -29,7 +29,7 @@ const TravelItinerariesSection = () => {
       duration: "3 Days",
       difficulty: "Easy",
       price: "₹8,999",
-      image: "/lovable-uploads/29371033-4f1b-4455-882e-ecaa3758aa7b.png",
+      image: "",
       rating: 4.6,
       category: "cultural",
       highlights: ["Police Bazaar", "Don Bosco Museum", "Local Food Tours"],
@@ -42,7 +42,7 @@ const TravelItinerariesSection = () => {
       duration: "4 Days",
       difficulty: "Challenging",
       price: "₹15,999",
-      image: "/lovable-uploads/3fb3e606-6b14-409a-b0ef-87fd12dbac22.png",
+      image: "",
       rating: 4.9,
       category: "adventure",
       highlights: ["Nohkalikai Falls", "Mawsmai Caves", "Living Root Bridges"],
@@ -55,7 +55,7 @@ const TravelItinerariesSection = () => {
       duration: "2 Days",
       difficulty: "Easy",
       price: "₹6,999",
-      image: "/lovable-uploads/70b7c61f-c52c-479b-9663-3957d72f31b0.png",
+      image: "",
       rating: 4.7,
       category: "leisure",
       highlights: ["Umngot River", "Transparent Water Boating", "Border Views"],
@@ -68,7 +68,7 @@ const TravelItinerariesSection = () => {
       duration: "2 Days", 
       difficulty: "Easy",
       price: "₹7,499",
-      image: "/lovable-uploads/db863c94-a5db-4aa4-afa6-e11364e4b9d7.png",
+      image: "",
       rating: 4.5,
       category: "cultural",
       highlights: ["Sky Walk", "Living Root Bridge", "Organic Gardens"],
@@ -81,7 +81,7 @@ const TravelItinerariesSection = () => {
       duration: "4 Days",
       difficulty: "Moderate", 
       price: "₹11,999",
-      image: "/lovable-uploads/0ef988f7-b7f3-4d1f-80e3-fc2a04acd9cb.png",
+      image: "",
       rating: 4.4,
       category: "cultural",
       highlights: ["Nokrek National Park", "Tribal Villages", "Traditional Crafts"],
@@ -94,7 +94,7 @@ const TravelItinerariesSection = () => {
       duration: "3 Days",
       difficulty: "Challenging",
       price: "₹10,999",
-      image: "/lovable-uploads/6a7b3dad-87a3-49d9-98fa-919ff7b09dd0.png",
+      image: "",
       rating: 4.6,
       category: "adventure",
       highlights: ["Krem Liat Prah", "Underground Rivers", "Cave Photography"],
@@ -107,7 +107,7 @@ const TravelItinerariesSection = () => {
       duration: "6 Days",
       difficulty: "Easy",
       price: "₹18,999",
-      image: "/lovable-uploads/29371033-4f1b-4455-882e-ecaa3758aa7b.png",
+      image: "",
       rating: 4.8,
       category: "leisure",
       highlights: ["Golden Hour Shots", "Waterfall Photography", "Portrait Sessions"],
@@ -120,7 +120,7 @@ const TravelItinerariesSection = () => {
       duration: "5 Days",
       difficulty: "Easy",
       price: "₹16,999",
-      image: "/lovable-uploads/3fb3e606-6b14-409a-b0ef-87fd12dbac22.png",
+      image: "",
       rating: 4.7,
       category: "leisure",
       highlights: ["Morning Yoga", "Nature Meditation", "Organic Meals"],
@@ -133,7 +133,7 @@ const TravelItinerariesSection = () => {
       duration: "7 Days",
       difficulty: "Moderate",
       price: "₹22,999",
-      image: "/lovable-uploads/70b7c61f-c52c-479b-9663-3957d72f31b0.png",
+      image: "",
       rating: 4.9,
       category: "adventure",
       highlights: ["Secret Waterfalls", "Untouched Villages", "Local Homestays"],
@@ -187,11 +187,13 @@ const TravelItinerariesSection = () => {
           {filteredItineraries.map((itinerary) => (
             <Card key={itinerary.id} className="group hover:shadow-xl transition-all duration-300 overflow-hidden border-0 bg-white/80 backdrop-blur-sm">
               <div className="relative overflow-hidden">
-                <img
-                  src={itinerary.image}
-                  alt={itinerary.title}
-                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
-                />
+                <div className="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center border-b">
+                  <div className="text-center">
+                    <Camera className="h-12 w-12 text-gray-400 mx-auto mb-2" />
+                    <p className="text-gray-500 text-sm">Package Image</p>
+                    <p className="text-gray-400 text-xs">Ready for Supabase URL</p>
+                  </div>
+                </div>
                 <div className="absolute top-4 left-4">
                   <Badge variant="secondary" className="bg-white/90 text-gray-800">
                     {itinerary.category}

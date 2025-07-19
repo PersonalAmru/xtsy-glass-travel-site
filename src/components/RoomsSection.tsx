@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Users, Wifi, Car, Coffee, Shield, TreePine } from "lucide-react";
+import { MapPin, Users, Wifi, Car, Coffee, Shield, TreePine, RotateCcw } from "lucide-react";
 
 const RoomsSection = () => {
   const [activeProperty, setActiveProperty] = useState("hostel");
@@ -96,11 +96,11 @@ const RoomsSection = () => {
           image: ""
         },
         {
-          id: "sky-glass-suite",
-          name: "Sky Glass Suite",
+          id: "signature-270-glass-suite",
+          name: "Signature 270° Glass Suite",
           price: 18000,
-          description: "Premium suite with panoramic views and luxury amenities",
-          features: ["Panoramic view", "Luxury amenities", "Attached bath", "Wi-Fi", "Premium service"],
+          description: "Premium suite with 270-degree panoramic views and luxury amenities",
+          features: ["270° Panoramic view", "Luxury amenities", "Attached bath", "Wi-Fi", "Premium service"],
           maxGuests: 2,
           maxRooms: 1,
           image: ""
@@ -194,8 +194,11 @@ const RoomsSection = () => {
                       </div>
                     </div>
                     <div className="flex justify-between items-start mb-2">
-                      <CardTitle className="text-lg sm:text-xl font-bold text-gray-900 font-serif-sans leading-tight">
+                      <CardTitle className="text-lg sm:text-xl font-bold text-gray-900 font-serif-sans leading-tight flex items-center gap-2">
                         {room.name}
+                        {room.id === "signature-270-glass-suite" && (
+                          <RotateCcw className="h-5 w-5 text-orange-500" />
+                        )}
                       </CardTitle>
                       <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold whitespace-nowrap ml-2">
                         ₹{room.price}/night

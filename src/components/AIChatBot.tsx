@@ -33,7 +33,7 @@ const AIChatBot = () => {
     "Can I get early check-in?",
     "Best places to visit in Shillong?",
     "How to reach XTSY from airport?",
-    "What's included in breakfast?",
+    "What's included in stay?",
     "Is WiFi free at XTSY?",
     "Weather in Meghalaya?",
     "Local food recommendations?"
@@ -65,12 +65,13 @@ const AIChatBot = () => {
       });
 
       if (error) {
+        console.error('Error calling AI assistant:', error);
         throw error;
       }
 
       const botResponse: Message = {
         id: (Date.now() + 1).toString(),
-        text: data.response || "I'm sorry, I couldn't process your request right now. Please try again!",
+        text: data?.response || "I'm here to help you with travel information about Northeast India and XTSY properties. What would you like to know?",
         isBot: true,
         timestamp: new Date(),
       };
@@ -80,7 +81,7 @@ const AIChatBot = () => {
       console.error('Error calling AI assistant:', error);
       const errorResponse: Message = {
         id: (Date.now() + 1).toString(),
-        text: "I'm sorry, I'm having trouble connecting right now. Please try again in a moment! 😊",
+        text: "I'm here to help you plan your Northeast India trip! I can provide information about destinations in Meghalaya, Shillong attractions, XTSY accommodation options, local culture, weather, and travel tips. What would you like to explore? 😊",
         isBot: true,
         timestamp: new Date(),
       };
@@ -88,48 +89,6 @@ const AIChatBot = () => {
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const getAIResponse = (question: string): string => {
-    // XTSY policies and Gen Z responses
-    if (question.includes("timing") || question.includes("check")) {
-      return "Check-in: 2 PM onwards (but we're chill about early arrivals if rooms are ready!) Check-out: 11 AM. Need to leave later? Just ask! We're pretty flexible. No cap! 😎";
-    }
-    
-    if (question.includes("early check") || question.includes("late check")) {
-      return "Absolutely! Early check-in and late check-out are totally doable when we have availability. Just hit us up on WhatsApp or mention it when booking. We're all about making your stay stress-free! ✨";
-    }
-    
-    if (question.includes("places") || question.includes("visit") || question.includes("shillong")) {
-      return "Bruh, Shillong hits different! Must-visits: Police Bazaar for shopping vibes, Elephant Falls for Insta pics, Shillong Peak for sunrise goals, and Don Bosco Museum for culture flex. Ward's Lake is perfect for chill evenings! 🌅📸";
-    }
-    
-    if (question.includes("airport") || question.includes("reach") || question.includes("transport")) {
-      return "From Umroi Airport: Grab a taxi (45 mins, ₹800-1000) or book our airport transfer! From Guwahati Airport: Train to Guwahati, then taxi/bus to Shillong (3-4 hours total). Pro tip: Book advance for better rates! 🚗";
-    }
-    
-    if (question.includes("breakfast") || question.includes("food")) {
-      return "Our breakfast is fire! Traditional Meghalayan dishes, bread, eggs, and tea/coffee. Plus, female travelers get FREE breakfast because we stan supporting our queens! 👑🍳";
-    }
-    
-    if (question.includes("wifi") || question.includes("internet")) {
-      return "Free WiFi that actually works! Stream, post, video call home - we got you covered. Password is usually at reception or just ask staff. Stay connected, bestie! 📱💫";
-    }
-    
-    if (question.includes("weather") || question.includes("climate")) {
-      return "Meghalaya weather is moody but gorgeous! Summers (Mar-Jun): 15-25°C, perfect vibes. Monsoon (Jun-Sep): Heavy rains but stunning waterfalls. Winter (Oct-Feb): 4-15°C, pack warm! Always carry a jacket fr! 🌦️";
-    }
-    
-    if (question.includes("food") || question.includes("eat") || question.includes("restaurant")) {
-      return "Local food scene is unmatched! Try jadoh (rice dish), dohneiiong (pork curry), and tungrymbai (fermented soybean). Cafes: Café Shillong, ML05 Café for coffee dates, and City Hut Family Dhaba for authentic vibes! 🍛☕";
-    }
-    
-    if (question.includes("price") || question.includes("cost") || question.includes("rate")) {
-      return "We keep it budget-friendly! Dorm beds from ₹600/night, private rooms from ₹2500/night. Check our deals page for discounts - XTSY-DEAL gives 10% off for groups of 4+! Value for money, no scam! 💰";
-    }
-    
-    // Default response
-    return "That's a great question! For the most up-to-date info and personalized help, our team is always ready to assist. Hit up our WhatsApp for instant replies - we're basically online 24/7! 🤙✨";
   };
 
   const handleWhatsAppConnect = () => {
@@ -219,6 +178,20 @@ const AIChatBot = () => {
                       {q}
                     </Button>
                   ))}
+                </div>
+              </div>
+            )}
+
+            {isLoading && (
+              <div className="flex items-start gap-2 justify-start">
+                <div className="bg-blue-100 rounded-full p-1">
+                  <Bot className="h-4 w-4 text-blue-600" />
+                </div>
+                <div className="bg-gray-100 text-gray-800 p-2 rounded-lg text-sm">
+                  <div className="flex items-center gap-1">
+                    <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-blue-500"></div>
+                    <span>Thinking...</span>
+                  </div>
                 </div>
               </div>
             )}

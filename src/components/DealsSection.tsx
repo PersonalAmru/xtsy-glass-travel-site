@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Car, Coffee, Tag } from "lucide-react";
+import { Car, Tag } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -23,14 +23,6 @@ const DealsSection = () => {
       description: "Complimentary pickup service for groups of 4 or more",
       details: "Enjoy Free transportation from major pickup points in Shillong directly to XTSY Travellers Hostel. This exclusive offer is available for groups of 4 or more guests and includes pickup from Police Bazaar, Golf links, Polo Market, Civil Hospital/Barik Point and Other major points in Shillong.",
       gradient: "from-blue-500 to-cyan-500"
-    },
-    {
-      id: "free-breakfast",
-      icon: Coffee,
-      title: "Free Breakfast for Female Travellers",
-      description: "Complimentary breakfast for all female guests",
-      details: "Start your day right with our complimentary breakfast exclusively for female travellers. Enjoy a hearty complimentary meal available daily from 8:30 AM.",
-      gradient: "from-pink-500 to-rose-500"
     }
   ];
 
@@ -72,9 +64,7 @@ const DealsSection = () => {
               variant={activeTab === deal.id ? "default" : "outline"}
               onClick={() => setActiveTab(deal.id)}
               className={`px-4 sm:px-6 lg:px-8 py-3 sm:py-4 font-bold transition-all duration-300 text-sm sm:text-base flex-1 sm:flex-none ${
-                index === 0 ? 'sm:rounded-r-none' : 
-                index === deals.length - 1 ? 'sm:rounded-l-none' : 
-                'sm:rounded-none'
+                index === 0 ? 'sm:rounded-r-none' : 'sm:rounded-l-none'
               } ${
                 activeTab === deal.id
                   ? "bg-gradient-to-r from-orange-500 to-red-600 text-white shadow-xl border-orange-400"

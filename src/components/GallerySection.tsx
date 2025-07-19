@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Calendar, Users, Star } from "lucide-react";
+import { Camera } from "lucide-react";
 
 const GallerySection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -12,28 +12,28 @@ const GallerySection = () => {
       id: 1,
       title: "XTSY Travellers Hostel - Common Area",
       category: "hostel",
-      image: "/lovable-uploads/6a7b3dad-87a3-49d9-98fa-919ff7b09dd0.png",
+      image: "",
       description: "Relaxing common lounge area"
     },
     {
       id: 2,
       title: "Dormitory Room",
       category: "rooms",
-      image: "/lovable-uploads/29371033-4f1b-4455-882e-ecaa3758aa7b.png",
+      image: "",
       description: "Comfortable shared accommodation"
     },
     {
       id: 3,
       title: "Shillong City View",
       category: "views",
-      image: "/lovable-uploads/3fb3e606-6b14-409a-b0ef-87fd12dbac22.png",
+      image: "",
       description: "Beautiful city landscape"
     },
     {
       id: 4,
       title: "Adventure Activities",
       category: "activities",
-      image: "/lovable-uploads/70b7c61f-c52c-479b-9663-3957d72f31b0.png",
+      image: "",
       description: "Exciting outdoor experiences"
     }
   ];
@@ -101,11 +101,13 @@ const GallerySection = () => {
             <Card key={item.id} className="group overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:scale-105">
               <CardContent className="p-0">
                 <div className="relative overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-48 sm:h-56 object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
+                  <div className="w-full h-48 sm:h-56 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center border-b group-hover:scale-110 transition-transform duration-500">
+                    <div className="text-center">
+                      <Camera className="h-12 w-12 text-gray-400 mx-auto mb-2" />
+                      <p className="text-gray-500 text-sm">Gallery Image</p>
+                      <p className="text-gray-400 text-xs">Ready for Supabase URL</p>
+                    </div>
+                  </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <h3 className="font-bold text-sm sm:text-base mb-1">{item.title}</h3>
