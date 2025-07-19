@@ -9,6 +9,9 @@ const HeroSection = () => {
   const [checkOut, setCheckOut] = useState("");
   const [guests, setGuests] = useState("2");
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [currentLanguageIndex, setCurrentLanguageIndex] = useState(0);
+
+  const languages = ["Hello", "नमस्ते", "হ্যালো", "Hola", "こんにちは"];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -22,6 +25,14 @@ const HeroSection = () => {
 
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    const languageInterval = setInterval(() => {
+      setCurrentLanguageIndex((prev) => (prev + 1) % languages.length);
+    }, 2000);
+
+    return () => clearInterval(languageInterval);
+  }, [languages.length]);
 
   const handleSearch = () => {
     if (!checkIn || !checkOut || !guests) {
@@ -61,27 +72,21 @@ const HeroSection = () => {
               XTSY Travellers Hostel
             </h1>
             
-            {/* Single Floating Languages Section */}
-            <div className="relative h-24 flex items-center justify-center">
-              <div className="absolute text-2xl sm:text-3xl lg:text-4xl font-bold text-white animate-pulse">
-                <span className="inline-block animate-fade-in" style={{ animationDelay: '0s' }}>Hello</span>
-                <span className="mx-2 text-orange-400">XTSY</span>
+            {/* Floating Languages Section */}
+            <div className="relative h-32 flex flex-col items-center justify-center">
+              {/* Animated Language Text */}
+              <div className="relative h-16 flex items-center justify-center mb-4">
+                <span 
+                  key={currentLanguageIndex}
+                  className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white animate-fade-in transition-opacity duration-500"
+                >
+                  {languages[currentLanguageIndex]}
+                </span>
               </div>
-              <div className="absolute text-2xl sm:text-3xl lg:text-4xl font-bold text-red-400/80 animate-pulse" style={{ animationDelay: '1s', transform: 'translateY(-10px)' }}>
-                <span className="inline-block animate-fade-in" style={{ animationDelay: '1s' }}>नमस्ते</span>
-                <span className="mx-2 text-orange-400">XTSY</span>
-              </div>
-              <div className="absolute text-2xl sm:text-3xl lg:text-4xl font-bold text-yellow-400/80 animate-pulse" style={{ animationDelay: '2s', transform: 'translateY(10px)' }}>
-                <span className="inline-block animate-fade-in" style={{ animationDelay: '2s' }}>Hola</span>
-                <span className="mx-2 text-orange-400">XTSY</span>
-              </div>
-              <div className="absolute text-2xl sm:text-3xl lg:text-4xl font-bold text-pink-400/80 animate-pulse" style={{ animationDelay: '3s', transform: 'translateX(-20px)' }}>
-                <span className="inline-block animate-fade-in" style={{ animationDelay: '3s' }}>こんにちは</span>
-                <span className="mx-2 text-orange-400">XTSY</span>
-              </div>
-              <div className="absolute text-2xl sm:text-3xl lg:text-4xl font-bold text-green-400/80 animate-pulse" style={{ animationDelay: '4s', transform: 'translateX(20px)' }}>
-                <span className="inline-block animate-fade-in" style={{ animationDelay: '4s' }}>হ্যালো</span>
-                <span className="mx-2 text-orange-400">XTSY</span>
+              
+              {/* Fixed XTSY Text */}
+              <div className="text-4xl sm:text-5xl lg:text-6xl font-bold text-orange-400">
+                XTSY
               </div>
             </div>
           </div>
