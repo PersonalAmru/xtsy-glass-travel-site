@@ -119,11 +119,19 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
   // Initialize booking data when initialData changes
   useEffect(() => {
     if (initialData) {
+      let calculatedNights = 1;
+      if (initialData.checkIn && initialData.checkOut) {
+        const checkInDate = new Date(initialData.checkIn);
+        const checkOutDate = new Date(initialData.checkOut);
+        const timeDiff = checkOutDate.getTime() - checkInDate.getTime();
+        calculatedNights = Math.max(1, Math.floor(timeDiff / (1000 * 3600 * 24)));
+      }
+      
       setBookingData({
         checkIn: initialData.checkIn || "",
         checkOut: initialData.checkOut || "",
         guests: initialData.guests || 2,
-        nights: 1,
+        nights: calculatedNights,
         quantity: 1,
       });
     }
