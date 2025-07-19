@@ -119,24 +119,24 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
       ? `\nDiscount (${bookingData.couponCode}): -₹${bookingData.discountAmount}`
       : '';
 
-    const whatsappMessage = `🏨 *XTSY Hotel Booking Request*
+    const whatsappMessage = `*XTSY Travellers Hostel & XTSY Luxury Booking Request*
 
-👤 *Guest Details:*
+*Guest Details:*
 Name: ${formData.guestName}
 Email: ${formData.email}
 Phone: ${formData.whatsappNumber}
 Address: ${formData.address}, ${formData.city}, ${formData.state} - ${formData.pincode}
 
-📅 *Booking Details:*
+*Booking Details:*
 Check-in: ${formatDate(bookingData.checkIn)}
 Check-out: ${formatDate(bookingData.checkOut)}
 Total Guests: ${bookingData.guests}
 Number of Nights: ${bookingData.nights}
 
-🏠 *Room Details:*
+*Room Details:*
 ${roomDetails}
 
-💰 *Payment Summary:*
+*Payment Summary:*
 Subtotal: ₹${bookingData.subtotal}${discountText}
 GST (18%): ₹${bookingData.gstAmount}
 *Total Amount: ₹${bookingData.totalAmount}*
