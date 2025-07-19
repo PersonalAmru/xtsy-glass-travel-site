@@ -221,7 +221,45 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
     
     const discountAmount = Math.round(subtotal * (couponDiscount / 100));
     const discountedSubtotal = subtotal - discountAmount;
-    const gstAmount = Math.round(discountedSubtotal * 0.18);
+    
+    // Calculate GST based on Indian GST criteria for accommodation
+    // Calculate average room rate per night to determine GST rate
+    let gstRate = 0;
+    if (Object.keys(roomSelections).length > 0) {
+      let totalRoomNightValue = 0;
+      let totalRoomNights = 0;
+      
+      Object.entries(roomSelections).forEach(([roomId, selection]) => {
+        const room = rooms.find(r => r.id === roomId);
+        if (!room || (!selection.guests && !selection.rooms)) return;
+        
+        const isDorm = room.name.toLowerCase().includes('dorm');
+        
+        if (isDorm) {
+          const guestCount = selection.guests || 0;
+          // For dorms, treat each bed as a room unit
+          totalRoomNightValue += room.price * guestCount * nights;
+          totalRoomNights += guestCount * nights;
+        } else {
+          const roomCount = selection.rooms || 0;
+          totalRoomNightValue += room.price * roomCount * nights;
+          totalRoomNights += roomCount * nights;
+        }
+      });
+      
+      const averageRatePerNight = totalRoomNights > 0 ? totalRoomNightValue / totalRoomNights : 0;
+      
+      // Apply Indian GST rates based on room tariff per night
+      if (averageRatePerNight < 1000) {
+        gstRate = 0; // Exempt
+      } else if (averageRatePerNight <= 7500) {
+        gstRate = 0.12; // 12%
+      } else {
+        gstRate = 0.18; // 18%
+      }
+    }
+    
+    const gstAmount = Math.round(discountedSubtotal * gstRate);
     const totalAmount = discountedSubtotal + gstAmount;
     
     return { subtotal, gstAmount, totalAmount, discountAmount, totalGuestsCalculated };
