@@ -78,7 +78,7 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
     }
 
     // Create WhatsApp message
-    const whatsappMessage = `🌟 Tour Package Booking Request - XTSY Travellers Hostel & XTSY Luxury 🌟
+    const whatsappMessage = `Tour Package Booking Request - XTSY Travellers Hostel & XTSY Luxury
 
 *Package Details:*
 Package: ${tourPackage.title}
