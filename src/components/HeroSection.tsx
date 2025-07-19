@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Calendar, Users, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -52,25 +51,6 @@ const HeroSection = () => {
           <div className="floating-element absolute bottom-1/4 left-1/3 w-32 h-32 bg-yellow-500/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '2s' }}></div>
         </div>
 
-        {/* Floating Hello XTSY Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="floating-element absolute top-20 left-10 text-white/30 text-2xl font-bold animate-pulse">
-            Hello XTSY
-          </div>
-          <div className="floating-element absolute top-40 right-20 text-orange-400/40 text-xl font-semibold animate-pulse" style={{ animationDelay: '1s' }}>
-            नमस्ते XTSY
-          </div>
-          <div className="floating-element absolute bottom-40 left-20 text-red-400/30 text-lg font-medium animate-pulse" style={{ animationDelay: '2s' }}>
-            হ্যালো XTSY
-          </div>
-          <div className="floating-element absolute bottom-20 right-10 text-yellow-400/40 text-xl font-semibold animate-pulse" style={{ animationDelay: '0.5s' }}>
-            Hola XTSY
-          </div>
-          <div className="floating-element absolute top-1/2 left-5 text-pink-400/30 text-lg font-medium animate-pulse" style={{ animationDelay: '1.5s' }}>
-            こんにちは XTSY
-          </div>
-        </div>
-
         {/* Main Content */}
         <div className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
           {/* Hero Text */}
@@ -78,12 +58,16 @@ const HeroSection = () => {
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent animate-fade-in">
               XTSY Travellers Hostel
             </h1>
-            <p className="text-xl sm:text-2xl lg:text-3xl mb-4 opacity-90 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-              Your Gateway to Meghalaya's Wonders
-            </p>
-            <p className="text-lg sm:text-xl mb-8 opacity-80 max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: '0.6s' }}>
-              Experience the magic of the Northeast with our premium hostel stays, luxury suites, and unforgettable adventure tours
-            </p>
+            
+            {/* Multilingual Hello XTSY in center */}
+            <div className="space-y-4 mb-8">
+              <p className="text-xl sm:text-2xl lg:text-3xl opacity-90 animate-fade-in text-white/80" style={{ animationDelay: '0.3s' }}>
+                Hello XTSY • नमस्ते XTSY • হ্যালো XTSY
+              </p>
+              <p className="text-lg sm:text-xl lg:text-2xl opacity-80 animate-fade-in text-orange-400/70" style={{ animationDelay: '0.6s' }}>
+                Hola XTSY • こんにちは XTSY
+              </p>
+            </div>
           </div>
 
           {/* Search Form */}
