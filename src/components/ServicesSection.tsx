@@ -16,32 +16,41 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section id="services" className="py-16 sm:py-20 px-3 sm:px-4 bg-gray-50 relative overflow-hidden">
+    <section id="services" className="py-16 sm:py-20 px-3 sm:px-4 bg-gradient-to-br from-green-50 via-teal-50 to-emerald-50 relative overflow-hidden">
+      {/* Enhanced Background Effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-green-100/30 via-transparent to-teal-100/30" />
+      <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-green-500 via-teal-500 to-emerald-500" />
+      <div className="absolute -top-24 -right-24 w-64 h-64 bg-green-200/30 rounded-full blur-3xl" />
+      <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-teal-200/30 rounded-full blur-3xl" />
+      
       {/* Enhanced background animations */}
       <div className="absolute inset-0">
-        {[...Array(6)].map((_, i) => (
+        {[...Array(7)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-r from-gray-200/20 to-orange-200/20 rounded-full blur-xl animate-pulse"
+            className="absolute w-28 h-28 sm:w-36 sm:h-36 bg-gradient-to-r from-green-300/20 to-teal-300/20 rounded-full blur-xl animate-pulse"
             style={{
-              left: `${10 + i * 15}%`,
-              top: `${20 + i * 12}%`,
-              animationDelay: `${i * 1}s`,
-              animationDuration: `${3 + i * 0.5}s`
+              left: `${8 + i * 13}%`,
+              top: `${12 + i * 11}%`,
+              animationDelay: `${i * 0.7}s`,
+              animationDuration: `${3.5 + i * 0.4}s`
             }}
           />
         ))}
       </div>
 
       <div className="container mx-auto max-w-6xl relative z-10">
-        {/* Amenities Section - Clean Text-based Design */}
-        <div className="bg-gradient-to-br from-white to-gray-50 border-2 border-orange-200 rounded-2xl p-6 sm:p-8 shadow-2xl">
+        {/* Amenities Section - Enhanced Design */}
+        <div className="bg-gradient-to-br from-white/95 to-green-50/80 border-3 border-green-300 rounded-3xl p-8 sm:p-12 shadow-2xl backdrop-blur-sm">
           <div className="text-center mb-8">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent font-serif-sans">
-              Amenities
-            </h2>
-            <p className="text-gray-600 text-base sm:text-lg font-seasons max-w-2xl mx-auto">
-              Enjoy a comprehensive range of modern amenities designed to make your stay comfortable and memorable
+            <div className="inline-block p-4 bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl mb-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-green-600 via-teal-600 to-emerald-600 bg-clip-text text-transparent mb-4">
+                🏨 Amenities 🌟
+              </h2>
+              <div className="w-28 h-1 bg-gradient-to-r from-green-500 to-teal-500 mx-auto rounded-full" />
+            </div>
+            <p className="text-gray-700 text-lg sm:text-xl max-w-3xl mx-auto bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-lg">
+              ✨ Enjoy a comprehensive range of modern amenities designed to make your stay comfortable and memorable! 🏠
             </p>
           </div>
           

@@ -1,17 +1,54 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "./ui/button";
-import { Menu, X, User, Settings, Users } from "lucide-react";
+import { Menu, X, User, Settings, Users, ShoppingCart } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { AuthModal } from "./AuthModal";
 import { UserMenu } from "./UserMenu";
 import { Link } from "react-router-dom";
+import TourCartModal from "./TourCartModal";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authModalTab, setAuthModalTab] = useState<'signin' | 'signup' | 'newsletter'>('signin');
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [cartItemCount, setCartItemCount] = useState(0);
+  const [currentSessionId, setCurrentSessionId] = useState<string | null>(null);
   const { user, loading } = useAuth();
+
+  // Generate or get session ID for this guest
+  useEffect(() => {
+    let sessionId = localStorage.getItem("current_guest_session");
+    if (!sessionId) {
+      sessionId = `guest_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      localStorage.setItem("current_guest_session", sessionId);
+    }
+    setCurrentSessionId(sessionId);
+    updateCartCount(sessionId);
+  }, []);
+
+  const updateCartCount = (sessionId: string) => {
+    const cartData = localStorage.getItem(`tour_cart_${sessionId}`);
+    if (cartData) {
+      const items = JSON.parse(cartData);
+      setCartItemCount(items.length);
+    } else {
+      setCartItemCount(0);
+    }
+  };
+
+  // Listen for cart updates
+  useEffect(() => {
+    const handleStorageChange = () => {
+      if (currentSessionId) {
+        updateCartCount(currentSessionId);
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, [currentSessionId]);
 
   const handleAuthClick = (tab: 'signin' | 'signup' | 'newsletter') => {
     setAuthModalTab(tab);
@@ -43,8 +80,24 @@ const Header = () => {
                 Deals
               </Link>
               
-              {/* Authentication Section */}
+              {/* Cart and Authentication Section */}
               <div className="flex items-center space-x-4">
+                {/* Tour Cart */}
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setIsCartOpen(true)}
+                  className="relative"
+                >
+                  <ShoppingCart className="h-4 w-4 mr-2" />
+                  Tour Cart
+                  {cartItemCount > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                      {cartItemCount}
+                    </span>
+                  )}
+                </Button>
+
                 {loading ? (
                   <div className="w-8 h-8 animate-pulse bg-gray-200 rounded-full"></div>
                 ) : user ? (
@@ -188,6 +241,12 @@ const Header = () => {
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
         defaultTab={authModalTab}
+      />
+
+      <TourCartModal
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+        sessionId={currentSessionId || undefined}
       />
     </>
   );

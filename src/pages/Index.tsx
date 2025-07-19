@@ -8,6 +8,7 @@ import GroupBookingSection from "@/components/GroupBookingSection";
 import TravelItinerariesSection from "@/components/TravelItinerariesSection";
 import Footer from "@/components/Footer";
 import AIChatBot from "@/components/AIChatBot";
+import TourAIChatBot from "@/components/TourAIChatBot";
 
 const Index = () => {
   return (
@@ -21,6 +22,7 @@ const Index = () => {
       <TravelItinerariesSection />
       <Footer />
       <AIChatBot />
+      <TourAIChatBot />
     </div>
   );
 };

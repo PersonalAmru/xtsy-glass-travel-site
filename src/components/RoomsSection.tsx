@@ -113,18 +113,24 @@ const RoomsSection = () => {
   const activePropertyData = properties[activeProperty as keyof typeof properties];
 
   return (
-    <section id="rooms" className="py-12 sm:py-16 lg:py-20 px-3 sm:px-4 bg-gray-50 relative overflow-hidden">
-      {/* Background animations */}
+    <section id="rooms" className="py-12 sm:py-16 lg:py-20 px-3 sm:px-4 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 relative overflow-hidden">
+      {/* Enhanced Background Effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-100/30 via-transparent to-purple-100/30" />
+      <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" />
+      <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-200/30 rounded-full blur-3xl" />
+      <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-purple-200/30 rounded-full blur-3xl" />
+      
+      {/* Floating background animations */}
       <div className="absolute inset-0">
-        {[...Array(6)].map((_, i) => (
+        {[...Array(8)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-r from-gray-200/20 to-orange-200/20 rounded-full blur-xl animate-pulse"
+            className="absolute w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-r from-blue-300/20 to-purple-300/20 rounded-full blur-xl animate-pulse"
             style={{
-              left: `${10 + i * 15}%`,
-              top: `${20 + i * 12}%`,
-              animationDelay: `${i * 1}s`,
-              animationDuration: `${3 + i * 0.5}s`
+              left: `${5 + i * 12}%`,
+              top: `${15 + i * 10}%`,
+              animationDelay: `${i * 0.8}s`,
+              animationDuration: `${4 + i * 0.3}s`
             }}
           />
         ))}
@@ -132,11 +138,14 @@ const RoomsSection = () => {
 
       <div className="container mx-auto max-w-7xl relative z-10">
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent font-serif-sans px-4">
-            Our Properties
-          </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto font-seasons px-4">
-            Choose from our range of accommodations designed for every traveler's needs and budget
+          <div className="inline-block p-6 bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+              🏨 Our Properties 🏨
+            </h2>
+            <div className="w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+          </div>
+          <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 max-w-3xl mx-auto bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-lg">
+            🌟 Choose from our range of premium accommodations designed for every traveler's needs and budget! ✨
           </p>
         </div>
 

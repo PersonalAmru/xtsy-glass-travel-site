@@ -4,9 +4,17 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Clock, Users, Star, Calendar, Mountain, Camera, Compass } from "lucide-react";
+import TourPackageModal from "./TourPackageModal";
 
 const TravelItinerariesSection = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedPackage, setSelectedPackage] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handlePackageClick = (itinerary: any) => {
+    setSelectedPackage(itinerary);
+    setIsModalOpen(true);
+  };
 
   const itineraries = [
     {
@@ -153,15 +161,26 @@ const TravelItinerariesSection = () => {
     : itineraries.filter(item => item.category === selectedCategory);
 
   return (
-    <section id="travel-itineraries" className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+    <>
+    <section id="travel-itineraries" className="py-20 bg-gradient-to-br from-slate-50 via-orange-50 to-red-50 relative overflow-hidden">
+      {/* Enhanced Background Effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-orange-100/30 via-transparent to-red-100/30" />
+      <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-orange-500 via-red-500 to-pink-500" />
+      <div className="absolute -top-24 -right-24 w-48 h-48 bg-orange-200/30 rounded-full blur-3xl" />
+      <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-red-200/30 rounded-full blur-3xl" />
+      
+      <div className="relative z-10">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Curated Travel Itineraries
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            Discover Meghalaya's hidden treasures with our expertly crafted travel packages. 
-            From thrilling adventures to cultural immersions, find your perfect journey.
+          <div className="inline-block p-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl mb-6">
+            <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 bg-clip-text text-transparent mb-4">
+              ✨ Curated Travel Itineraries ✨
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto rounded-full" />
+          </div>
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8 bg-white/60 backdrop-blur-sm rounded-xl p-6 shadow-lg">
+            🏔️ Discover Meghalaya's hidden treasures with our expertly crafted travel packages. 
+            From thrilling adventures to cultural immersions, find your perfect journey and create memories that last forever! 🌟
           </p>
 
           {/* Category Filter */}
@@ -185,7 +204,11 @@ const TravelItinerariesSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredItineraries.map((itinerary) => (
-            <Card key={itinerary.id} className="group hover:shadow-xl transition-all duration-300 overflow-hidden border-0 bg-white/80 backdrop-blur-sm">
+            <Card 
+              key={itinerary.id} 
+              className="group hover:shadow-2xl hover:scale-105 transition-all duration-500 overflow-hidden border-0 bg-white/90 backdrop-blur-md cursor-pointer"
+              onClick={() => handlePackageClick(itinerary)}
+            >
               <div className="relative overflow-hidden">
                 <div className="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center border-b">
                   <div className="text-center">
@@ -247,9 +270,15 @@ const TravelItinerariesSection = () => {
                 </div>
                 
                 <div className="pt-4">
-                  <Button className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white">
+                  <Button 
+                    className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handlePackageClick(itinerary);
+                    }}
+                  >
                     <MapPin className="h-4 w-4 mr-2" />
-                    Book This Journey
+                    ✨ Book This Journey ✨
                   </Button>
                 </div>
               </CardContent>
@@ -258,12 +287,24 @@ const TravelItinerariesSection = () => {
         </div>
 
         <div className="text-center mt-12">
-          <Button variant="outline" size="lg" className="px-8">
-            View All Packages
+          <Button 
+            variant="outline" 
+            size="lg" 
+            className="px-12 py-4 text-lg font-semibold bg-white/80 backdrop-blur-sm border-2 border-orange-300 hover:bg-gradient-to-r hover:from-orange-500 hover:to-red-500 hover:text-white hover:border-transparent shadow-xl hover:shadow-2xl transition-all duration-300"
+          >
+            🌟 View All Packages 🌟
           </Button>
         </div>
       </div>
+      </div>
     </section>
+
+    <TourPackageModal
+      isOpen={isModalOpen}
+      onClose={() => setIsModalOpen(false)}
+      tourPackage={selectedPackage}
+    />
+    </>
   );
 };
 

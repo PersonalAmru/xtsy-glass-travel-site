@@ -9,18 +9,24 @@ const GroupBookingSection = () => {
   const [activeBookingType, setActiveBookingType] = useState<"b2b" | "group" | null>(null);
 
   return (
-    <section className="py-16 sm:py-20 px-3 sm:px-4 bg-gradient-to-br from-slate-100 via-white to-slate-100 relative overflow-hidden">
+    <section className="py-16 sm:py-20 px-3 sm:px-4 bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 relative overflow-hidden">
+      {/* Enhanced Background Effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-amber-100/30 via-transparent to-orange-100/30" />
+      <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-amber-500 via-yellow-500 to-orange-500" />
+      <div className="absolute -top-24 -right-24 w-64 h-64 bg-amber-200/30 rounded-full blur-3xl" />
+      <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-orange-200/30 rounded-full blur-3xl" />
+      
       {/* Enhanced background animations */}
       <div className="absolute inset-0">
-        {[...Array(7)].map((_, i) => (
+        {[...Array(8)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-28 h-28 bg-gradient-to-r from-orange-400/10 to-red-400/10 rounded-full blur-xl animate-pulse"
+            className="absolute w-32 h-32 bg-gradient-to-r from-amber-300/20 to-orange-300/20 rounded-full blur-xl animate-pulse"
             style={{
-              left: `${5 + i * 14}%`,
-              bottom: `${10 + i * 12}%`,
-              animationDelay: `${i * 0.6}s`,
-              animationDuration: `${3.5 + i * 0.4}s`
+              left: `${3 + i * 12}%`,
+              bottom: `${8 + i * 11}%`,
+              animationDelay: `${i * 0.5}s`,
+              animationDuration: `${3.8 + i * 0.3}s`
             }}
           />
         ))}
@@ -28,11 +34,14 @@ const GroupBookingSection = () => {
 
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-3 sm:mb-4 font-serif-sans">
-            Group & Entire Property Booking
-          </h2>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto font-seasons px-4">
-            Choose from our range of accommodations designed for every traveler's needs and budget
+          <div className="inline-block p-6 bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-amber-600 via-yellow-600 to-orange-600 bg-clip-text text-transparent mb-4">
+              🏢 Group & Entire Property Booking 🏠
+            </h2>
+            <div className="w-40 h-1 bg-gradient-to-r from-amber-500 to-orange-500 mx-auto rounded-full" />
+          </div>
+          <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-lg">
+            🌟 Perfect for corporate events, family gatherings, and group adventures! Book your entire space today! ✨
           </p>
         </div>
 

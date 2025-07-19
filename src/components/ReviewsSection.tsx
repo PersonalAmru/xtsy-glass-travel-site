@@ -67,14 +67,23 @@ const ReviewsSection = () => {
   }, []);
 
   return (
-    <section id="reviews" className="py-20 px-4 relative bg-gradient-to-br from-slate-900/50 via-slate-800/50 to-slate-900/50">
-      <div className="container mx-auto max-w-6xl">
+    <section id="reviews" className="py-20 px-4 relative bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 overflow-hidden">
+      {/* Enhanced Background Effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-transparent to-indigo-900/30" />
+      <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500" />
+      <div className="absolute -top-32 -right-32 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl" />
+      <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-indigo-500/20 rounded-full blur-3xl" />
+      
+      <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent font-['Poppins']">
-            Guest Reviews
-          </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto font-['Inter']">
-            See what our guests have to say about their stay at XTSY
+          <div className="inline-block p-6 bg-white/10 backdrop-blur-sm rounded-2xl shadow-2xl mb-6">
+            <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent mb-4">
+              ⭐ Guest Reviews ⭐
+            </h2>
+            <div className="w-32 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 mx-auto rounded-full" />
+          </div>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg">
+            🌟 See what our amazing guests have to say about their unforgettable stay at XTSY! 💫
           </p>
         </div>
 
