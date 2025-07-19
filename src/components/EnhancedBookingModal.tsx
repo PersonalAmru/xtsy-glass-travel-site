@@ -712,7 +712,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                 </div>
               </div>
 
-              {/* Right side - Scrollable Booking Summary */}
+               {/* Right side - Scrollable Booking Summary */}
               <div className="lg:col-span-1 bg-gray-50 flex flex-col h-full border-l">
                 {/* Header - Fixed */}
                 <div className="flex-shrink-0 p-4 md:p-6 border-b bg-white">
@@ -725,7 +725,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                 </div>
 
                 {/* Scrollable Content */}
-                <div className="flex-1 overflow-y-auto p-4 md:p-6">
+                <div className="flex-1 overflow-y-auto p-4 md:p-6 max-h-[calc(100vh-300px)]">
                    {/* Show all selected rooms */}
                    <div className="space-y-3 mb-4">
                      {Object.entries(roomSelections)
@@ -844,7 +844,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                 </div>
 
                  {/* Action Buttons - Fixed at bottom */}
-                <div className="mt-6 flex-shrink-0">
+                <div className="flex-shrink-0 p-4 md:p-6 border-t bg-white">
                   <Button 
                     onClick={handleBookNow}
                     className="w-full bg-orange-500 hover:bg-orange-600 text-white"
