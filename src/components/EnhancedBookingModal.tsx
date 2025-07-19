@@ -109,6 +109,9 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
     nights: 1,
     quantity: 1,
   });
+  const [couponCode, setCouponCode] = useState("");
+  const [couponDiscount, setCouponDiscount] = useState(0);
+  const [couponError, setCouponError] = useState("");
   const [date, setDate] = React.useState<Date | undefined>(undefined);
   const { toast } = useToast();
 
@@ -136,17 +139,63 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
     setBookingData(prev => ({ ...prev, [field]: value }));
   };
 
+  const getGuestCapacityForRoom = (room: Room) => {
+    const isDorm = room.name.toLowerCase().includes('dorm');
+    if (isDorm) {
+      return bookingData.quantity; // For dorms: 1 bed = 1 guest
+    } else {
+      // For private rooms: 2 guests per room, except King Triple which can have 3
+      if (room.name === "King Triple Room") {
+        return 3;
+      }
+      return 2;
+    }
+  };
+
   const calculateTotals = () => {
     const roomPrice = selectedRoom ? selectedRoom.price : 0;
     const quantity = bookingData.quantity || 1;
     const nights = bookingData.nights || 1;
     const subtotal = roomPrice * quantity * nights;
-    const gstAmount = Math.round(subtotal * 0.18);
-    const totalAmount = subtotal + gstAmount;
-    return { subtotal, gstAmount, totalAmount };
+    const discountAmount = Math.round(subtotal * (couponDiscount / 100));
+    const discountedSubtotal = subtotal - discountAmount;
+    const gstAmount = Math.round(discountedSubtotal * 0.18);
+    const totalAmount = discountedSubtotal + gstAmount;
+    return { subtotal, gstAmount, totalAmount, discountAmount };
   };
 
-  const { subtotal, gstAmount, totalAmount } = calculateTotals();
+  const applyCoupon = () => {
+    setCouponError("");
+    if (couponCode === "XTSY-DEAL") {
+      // Check conditions: Min 4 guests and at least 2 nights
+      if (bookingData.guests >= 4 && bookingData.nights >= 2) {
+        setCouponDiscount(15); // 15% discount
+        toast({
+          title: "Coupon Applied!",
+          description: "15% discount has been applied to your booking.",
+        });
+      } else if (bookingData.guests >= 4 && bookingData.nights < 2) {
+        setCouponError("Minimum 2 nights required for 4+ guests");
+      } else {
+        setCouponError("Minimum 4 guests required for this offer");
+      }
+    } else {
+      setCouponError("Invalid coupon code");
+    }
+  };
+
+  const { subtotal, gstAmount, totalAmount, discountAmount } = calculateTotals();
+
+  // Update guests when room or quantity changes
+  useEffect(() => {
+    if (selectedRoom) {
+      const maxGuests = getGuestCapacityForRoom(selectedRoom);
+      setBookingData(prev => ({ 
+        ...prev, 
+        guests: Math.min(prev.guests, maxGuests)
+      }));
+    }
+  }, [selectedRoom, bookingData.quantity]);
 
   const handleAddToCart = () => {
     if (!selectedRoom || !bookingData.checkIn || !bookingData.checkOut || bookingData.guests === 0) {
@@ -425,8 +474,9 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                                 <span>Max {room.capacity} guests</span>
                               </div>
                               <div className="flex items-center gap-1">
-                                <Bed className="h-4 w-4" />
-                                <span>Per Bed</span>
+                                <span className="text-gray-600">
+                                  {room.name.toLowerCase().includes('dorm') ? 'Per Bed' : 'Per Room'}
+                                </span>
                               </div>
                             </div>
                             <div className="text-gray-600 text-sm">{room.description}</div>
@@ -443,56 +493,72 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                   </div>
                 </div>
 
-                {/* Quantity and Guest Selection */}
+                {/* Guest Selection */}
                 {selectedRoom && (
                   <Card className="p-4">
-                    <h3 className="font-semibold mb-3">Select Number of Guests & Beds</h3>
+                    <h3 className="font-semibold mb-3">Select Number of {selectedRoom.name.toLowerCase().includes('dorm') ? 'Beds & ' : ''}Guests</h3>
                     <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <span className="font-medium">Number of beds:</span>
-                        <div className="flex items-center gap-3">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => setBookingData(prev => ({ ...prev, quantity: Math.max(1, prev.quantity - 1) }))}
-                            disabled={bookingData.quantity <= 1}
-                          >
-                            <Minus className="h-4 w-4" />
-                          </Button>
-                          <span className="w-8 text-center">{bookingData.quantity}</span>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => setBookingData(prev => ({ ...prev, quantity: prev.quantity + 1 }))}
-                            disabled={bookingData.quantity >= selectedRoom.capacity}
-                          >
-                            <Plus className="h-4 w-4" />
-                          </Button>
+                      {selectedRoom.name.toLowerCase().includes('dorm') && (
+                        <div className="flex items-center justify-between">
+                          <span className="font-medium">Number of beds:</span>
+                          <div className="flex items-center gap-3">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => setBookingData(prev => ({ ...prev, quantity: Math.max(1, prev.quantity - 1), guests: Math.max(1, prev.quantity - 1) }))}
+                              disabled={bookingData.quantity <= 1}
+                            >
+                              <Minus className="h-4 w-4" />
+                            </Button>
+                            <span className="w-8 text-center">{bookingData.quantity}</span>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => setBookingData(prev => ({ ...prev, quantity: prev.quantity + 1, guests: prev.quantity + 1 }))}
+                              disabled={bookingData.quantity >= selectedRoom.capacity}
+                            >
+                              <Plus className="h-4 w-4" />
+                            </Button>
+                          </div>
                         </div>
-                      </div>
-
-                      <div className="flex items-center justify-between">
-                        <span className="font-medium">Number of guests:</span>
-                        <div className="flex items-center gap-3">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => setBookingData(prev => ({ ...prev, guests: Math.max(1, prev.guests - 1) }))}
-                            disabled={bookingData.guests <= 1}
-                          >
-                            <Minus className="h-4 w-4" />
-                          </Button>
-                          <span className="w-8 text-center">{bookingData.guests}</span>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => setBookingData(prev => ({ ...prev, guests: prev.guests + 1 }))}
-                            disabled={bookingData.guests >= selectedRoom.capacity * bookingData.quantity}
-                          >
-                            <Plus className="h-4 w-4" />
-                          </Button>
+                      )}
+                      
+                      {!selectedRoom.name.toLowerCase().includes('dorm') && (
+                        <div className="flex items-center justify-between">
+                          <span className="font-medium">Number of guests:</span>
+                          <div className="flex items-center gap-3">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => setBookingData(prev => ({ ...prev, guests: Math.max(1, prev.guests - 1) }))}
+                              disabled={bookingData.guests <= 1}
+                            >
+                              <Minus className="h-4 w-4" />
+                            </Button>
+                            <span className="w-8 text-center">{bookingData.guests}</span>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => setBookingData(prev => ({ ...prev, guests: prev.guests + 1 }))}
+                              disabled={bookingData.guests >= getGuestCapacityForRoom(selectedRoom)}
+                            >
+                              <Plus className="h-4 w-4" />
+                            </Button>
+                          </div>
                         </div>
-                      </div>
+                      )}
+                      
+                      {selectedRoom.name.toLowerCase().includes('dorm') && (
+                        <div className="text-sm text-gray-600">
+                          For dorms: 1 bed = 1 guest ({bookingData.quantity} {bookingData.quantity === 1 ? 'guest' : 'guests'})
+                        </div>
+                      )}
+                      
+                      {!selectedRoom.name.toLowerCase().includes('dorm') && (
+                        <div className="text-sm text-gray-600">
+                          {selectedRoom.name === "King Triple Room" ? "Up to 3 guests per room" : "Up to 2 guests per room"}
+                        </div>
+                      )}
                     </div>
                   </Card>
                 )}
@@ -501,77 +567,101 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
               </div>
 
               {/* Right side - Booking Summary */}
-              <div className="p-4 md:p-6 bg-gray-50">
-                <div className="sticky top-0">
-                  <Card className="p-4 mb-4">
-                    <h3 className="text-lg font-semibold mb-3">Booking Summary</h3>
+              <div className="lg:col-span-1 bg-gray-50 p-4 md:p-6 flex flex-col h-full">
+                <div className="flex-1">
+                  <h3 className="text-lg font-semibold mb-4">Booking Summary</h3>
+                  
+                  {bookingData.checkIn && bookingData.checkOut && (
                     <div className="text-sm text-gray-600 mb-4">
-                      {bookingData.nights} nights starting from {bookingData.checkIn ? formatDate(bookingData.checkIn) : 'Select date'}
+                      {bookingData.nights} nights starting from {formatDate(bookingData.checkIn)}
                     </div>
-                    
-                    <div className="space-y-2 mb-4">
+                  )}
+
+                  {selectedRoom && (
+                    <div className="space-y-3 mb-4">
                       <div className="flex justify-between">
-                        <span>{selectedRoom?.name}</span>
-                        <span>₹{totalAmount}</span>
+                        <span className="font-medium">{selectedRoom.name}</span>
+                        <span>₹{selectedRoom.price}</span>
                       </div>
-                      <div className="flex justify-between text-sm text-gray-600">
-                        <span>₹{selectedRoom?.price} x {bookingData.quantity} bed x {bookingData.nights} nights</span>
-                        <span>Remove</span>
+                      <div className="text-sm text-gray-600">
+                        ₹{selectedRoom.price} x {selectedRoom.name.toLowerCase().includes('dorm') ? bookingData.quantity : 1} {selectedRoom.name.toLowerCase().includes('dorm') ? (bookingData.quantity === 1 ? 'bed' : 'beds') : 'room'} x {bookingData.nights} nights
                       </div>
-                    </div>
-                    
-                    <Separator className="my-4" />
-                    
-                    <div className="space-y-2">
-                      <div className="flex justify-between">
-                        <span>Subtotal</span>
-                        <span>₹{subtotal}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>GST</span>
-                        <span>₹{gstAmount}</span>
-                      </div>
-                      <div className="flex justify-between font-semibold">
-                        <span>Grand Total (tax incl.)</span>
-                        <span>₹{totalAmount}</span>
-                      </div>
-                      <div className="flex justify-between text-green-600 font-semibold">
-                        <span>Payable Now (21%)</span>
-                        <span>₹{Math.round(totalAmount * 0.21)}</span>
+                      <div className="text-sm text-gray-600">
+                        Guests: {bookingData.guests}
                       </div>
                     </div>
-                  </Card>
+                  )}
+
+                  <Separator className="my-4" />
+
+                  <div className="space-y-2">
+                    <div className="flex justify-between">
+                      <span>Subtotal</span>
+                      <span>₹{subtotal}</span>
+                    </div>
+                    {couponDiscount > 0 && (
+                      <div className="flex justify-between text-green-600">
+                        <span>Discount ({couponDiscount}%)</span>
+                        <span>-₹{discountAmount}</span>
+                      </div>
+                    )}
+                    <div className="flex justify-between">
+                      <span>GST</span>
+                      <span>₹{gstAmount}</span>
+                    </div>
+                    <Separator className="my-2" />
+                    <div className="flex justify-between font-semibold text-lg">
+                      <span>Grand Total (Amount)</span>
+                      <span>₹{totalAmount}</span>
+                    </div>
+                  </div>
 
                   {/* Coupon Section */}
-                  <Card className="p-4 mb-4">
-                    <h4 className="font-medium mb-3">Have a discount coupon?</h4>
+                  <div className="mt-6 space-y-3">
                     <div className="flex gap-2">
-                      <Input placeholder="Enter XTSY-DEAL" />
-                      <Button variant="outline">Apply</Button>
+                      <Input
+                        placeholder="Enter coupon code (XTSY-DEAL)"
+                        value={couponCode}
+                        onChange={(e) => setCouponCode(e.target.value)}
+                        className="flex-1"
+                      />
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={applyCoupon}
+                        disabled={!couponCode}
+                      >
+                        Apply
+                      </Button>
                     </div>
-                    <p className="text-xs text-gray-500 mt-2">
-                      XTSY-DEAL: 10% off for hostel bookings (min 4 guests) or luxury bookings (min 2 nights)
-                    </p>
-                  </Card>
-
-                  {/* Action Buttons */}
-                  <div className="space-y-3 mt-6">
-                    <Button
-                      onClick={handleBookNow}
-                      disabled={!selectedRoom || !bookingData.checkIn || !bookingData.checkOut || bookingData.guests === 0}
-                      className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold"
-                    >
-                      Book Now
-                    </Button>
-                    <Button
-                      onClick={saveForLater}
-                      variant="outline"
-                      className="w-full border-blue-300 text-blue-600 hover:bg-blue-50 flex items-center justify-center gap-2"
-                    >
-                      <Bookmark className="h-4 w-4" />
-                      Save Later
-                    </Button>
+                    {couponError && (
+                      <div className="text-red-500 text-sm">{couponError}</div>
+                    )}
+                    {couponDiscount > 0 && (
+                      <div className="text-green-600 text-sm flex items-center gap-1">
+                        <Check className="h-4 w-4" />
+                        Coupon applied successfully!
+                      </div>
+                    )}
                   </div>
+                </div>
+
+                {/* Action Buttons - Fixed at bottom */}
+                <div className="mt-6 space-y-3 flex-shrink-0">
+                  <Button 
+                    onClick={handleBookNow}
+                    className="w-full bg-orange-500 hover:bg-orange-600 text-white"
+                  >
+                    Book Now
+                  </Button>
+                  <Button 
+                    onClick={saveForLater}
+                    variant="outline" 
+                    className="w-full border-orange-500 text-orange-500 hover:bg-orange-50"
+                  >
+                    <Bookmark className="h-4 w-4 mr-2" />
+                    Save Later
+                  </Button>
                 </div>
               </div>
             </div>
