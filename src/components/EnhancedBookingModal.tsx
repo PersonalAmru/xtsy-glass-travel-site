@@ -116,23 +116,18 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
   const [date, setDate] = React.useState<Date | undefined>(undefined);
   const { toast } = useToast();
 
-  // Update booking data when initialData changes
+  // Initialize booking data only once when modal opens
   useEffect(() => {
-    if (initialData) {
+    if (initialData && !bookingData.checkIn) {
       setBookingData({
         checkIn: initialData.checkIn || "",
         checkOut: initialData.checkOut || "",
-        guests: initialData.guests || 1,
+        guests: initialData.guests || 2,
         nights: 1,
         quantity: 1,
       });
-      // Reset room selections and coupon when new search data comes in
-      setRoomSelections({});
-      setCouponCode("");
-      setCouponDiscount(0);
-      setCouponError("");
     }
-  }, [initialData]);
+  }, [initialData, bookingData.checkIn]);
 
   useEffect(() => {
     if (bookingData.checkIn && bookingData.checkOut) {
