@@ -161,27 +161,55 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
       return;
     }
 
-    const cartData = {
-      checkIn: bookingData.checkIn,
-      checkOut: bookingData.checkOut,
+    // Get or generate session ID (same logic as header)
+    let sessionId = localStorage.getItem('current_tour_session');
+    if (!sessionId) {
+      sessionId = 'session_' + new Date().getTime() + '_' + Math.random().toString(36).substr(2, 9);
+      localStorage.setItem('current_tour_session', sessionId);
+      
+      const allSessions = JSON.parse(localStorage.getItem("active_tour_sessions") || "[]");
+      if (!allSessions.includes(sessionId)) {
+        allSessions.push(sessionId);
+        localStorage.setItem("active_tour_sessions", JSON.stringify(allSessions));
+      }
+    }
+
+    // Create cart item in the same format as tour packages
+    const cartItem = {
+      sessionId: sessionId,
+      type: 'room_booking',
+      packageId: selectedRoom.id,
+      packageTitle: selectedRoom.name,
       guests: bookingData.guests,
-      nights: bookingData.nights,
-      items: [{
-        roomId: selectedRoom.id,
-        roomName: selectedRoom.name,
-        price: selectedRoom.price,
-        quantity: bookingData.quantity,
-        guests: bookingData.guests,
-        nights: bookingData.nights,
-        roomType: selectedRoom.type || 'dorm'
-      }],
-      timestamp: new Date().getTime(),
-      savedForLater: true
+      selectedDate: bookingData.checkIn,
+      duration: bookingData.nights,
+      baseRate: selectedRoom.price,
+      totalAmount: totalAmount,
+      gstAmount: gstAmount,
+      finalTotal: totalAmount,
+      guestDetails: {
+        name: '',
+        email: '',
+        phone: '',
+        emergencyContact: ''
+      },
+      createdAt: new Date().toISOString(),
+      savedForLater: true,
+      checkOut: bookingData.checkOut,
+      quantity: bookingData.quantity,
+      roomType: selectedRoom.type || 'dorm'
     };
 
-    const existingSaved = JSON.parse(localStorage.getItem('xtsy_saved_bookings') || '[]');
-    const updatedSaved = [...existingSaved, cartData];
-    localStorage.setItem('xtsy_saved_bookings', JSON.stringify(updatedSaved));
+    // Save to the same storage system as tour packages
+    const existingSaved = JSON.parse(localStorage.getItem(`tour_saved_${sessionId}`) || '[]');
+    const updatedSaved = [...existingSaved, cartItem];
+    localStorage.setItem(`tour_saved_${sessionId}`, JSON.stringify(updatedSaved));
+
+    // Trigger storage event for real-time updates
+    window.dispatchEvent(new StorageEvent('storage', {
+      key: `tour_saved_${sessionId}`,
+      newValue: JSON.stringify(updatedSaved)
+    }));
 
     toast({
       title: "Saved for Later",

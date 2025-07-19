@@ -11,7 +11,7 @@ import { useToast } from "@/hooks/use-toast";
 interface CartItem {
   sessionId: string;
   type: string;
-  packageId: number;
+  packageId: number | string;
   packageTitle: string;
   guests: number;
   selectedDate: string;
@@ -28,6 +28,10 @@ interface CartItem {
   };
   createdAt: string;
   savedForLater?: boolean;
+  // Additional fields for room bookings
+  checkOut?: string;
+  quantity?: number;
+  roomType?: string;
 }
 
 interface TourCartModalProps {
@@ -324,25 +328,31 @@ const TourCartModal: React.FC<TourCartModalProps> = ({ isOpen, onClose, sessionI
                   <Card key={index} className="p-4 border-dashed">
                     <div className="flex justify-between items-start">
                       <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-2">
-                          <h3 className="font-semibold text-lg text-gray-600">{item.packageTitle}</h3>
-                          <Badge variant="secondary">Saved</Badge>
-                        </div>
-                        
-                        <div className="grid grid-cols-2 gap-4 text-sm text-gray-500 mb-3">
-                          <div className="flex items-center gap-1">
-                            <Users className="h-4 w-4" />
-                            <span>{item.guests} guests</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <Clock className="h-4 w-4" />
-                            <span>{item.duration} days</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <Calendar className="h-4 w-4" />
-                            <span>{new Date(item.selectedDate).toLocaleDateString()}</span>
-                          </div>
-                        </div>
+                         <div className="flex items-center gap-2 mb-2">
+                           <h3 className="font-semibold text-lg text-gray-600">{item.packageTitle}</h3>
+                           <Badge variant="secondary">{item.type === 'room_booking' ? 'Room Booking' : 'Tour Package'}</Badge>
+                         </div>
+                         
+                         <div className="grid grid-cols-2 gap-4 text-sm text-gray-500 mb-3">
+                           <div className="flex items-center gap-1">
+                             <Users className="h-4 w-4" />
+                             <span>{item.guests} guests</span>
+                           </div>
+                           <div className="flex items-center gap-1">
+                             <Clock className="h-4 w-4" />
+                             <span>{item.type === 'room_booking' ? `${item.duration} nights` : `${item.duration} days`}</span>
+                           </div>
+                           <div className="flex items-center gap-1">
+                             <Calendar className="h-4 w-4" />
+                             <span>{new Date(item.selectedDate).toLocaleDateString()}</span>
+                           </div>
+                           {item.type === 'room_booking' && item.checkOut && (
+                             <div className="flex items-center gap-1">
+                               <Calendar className="h-4 w-4" />
+                               <span>→ {new Date(item.checkOut).toLocaleDateString()}</span>
+                             </div>
+                           )}
+                         </div>
                       </div>
                       
                       <div className="text-right">
