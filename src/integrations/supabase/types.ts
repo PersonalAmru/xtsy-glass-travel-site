@@ -336,6 +336,39 @@ export type Database = {
         }
         Relationships: []
       }
+      newsletter_subscribers: {
+        Row: {
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          interests: string[] | null
+          is_active: boolean
+          subscribed_at: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          interests?: string[] | null
+          is_active?: boolean
+          subscribed_at?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          interests?: string[] | null
+          is_active?: boolean
+          subscribed_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       reviews: {
         Row: {
           booking_id: string | null
