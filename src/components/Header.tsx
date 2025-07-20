@@ -62,7 +62,11 @@ const Header = () => {
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2">
-              <div className="text-2xl font-bold text-primary">XTSY</div>
+              <img 
+                src="/lovable-uploads/f60939c8-8351-4f63-80df-a4c6e37e539a.png"
+                alt="XTSY Travellers Hostel"
+                className="h-10 w-auto"
+              />
             </Link>
 
             {/* Desktop Navigation - All items aligned right */}

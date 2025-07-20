@@ -25,8 +25,8 @@ const Footer = () => {
           {/* Logo and Description */}
           <div className="lg:col-span-1">
             <img 
-              src="https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/image-assets/Header/Color%20logo%20-%20no%20background.png"
-              alt="XTSY Logo"
+              src="/lovable-uploads/f60939c8-8351-4f63-80df-a4c6e37e539a.png"
+              alt="XTSY Travellers Hostel"
               className="h-12 sm:h-16 w-auto mb-3 sm:mb-4"
             />
             <p className="text-white mb-4 sm:mb-6 font-seasons text-sm sm:text-base text-justify">
