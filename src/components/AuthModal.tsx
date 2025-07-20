@@ -102,7 +102,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, defaultTa
               <div>
                 <Label>Interests (Select all that apply)</Label>
                 <div className="grid grid-cols-2 gap-2 mt-2">
-                  {['Seasonal Offers', 'Meghalaya Updates', 'Adventure Tours', 'Group Bookings'].map((interest) => (
+                  {['Seasonal Offers', 'Meghalaya Updates', 'Adventure Tours', 'Group Bookings', 'XTSY Merchandise', 'About XTSY Asia'].map((interest) => (
                     <Button
                       key={interest}
                       type="button"
