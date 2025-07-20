@@ -1,13 +1,9 @@
 
-import { useState } from "react";
+import { MapPin } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { MapPin, Users, Wifi, Car, Coffee, Shield, TreePine, RotateCcw } from "lucide-react";
+import PropertySection from "./PropertySection";
 
 const RoomsSection = () => {
-  const [activeProperty, setActiveProperty] = useState("hostel");
-
   const scrollToCalendar = () => {
     const element = document.querySelector('#home');
     if (element) {
@@ -21,96 +17,81 @@ const RoomsSection = () => {
     }
   };
 
-  const properties = {
-    hostel: {
-      name: "XTSY Travellers Hostel",
-      description: "Budget-friendly accommodation in the heart of Shillong",
-      image: "", 
-      rooms: [
-        {
-          id: "4-bed-female-only-dorm",
-          name: "Bed in 4 Bed Female Only Dorm",
-          price: 850,
-          description: "Female-only dormitory with modern amenities",
-          features: ["Female only", "Shared bathroom", "Wi-Fi", "Locker", "Common area"],
-          maxGuests: 4,
-          maxRooms: 1,
-          image: ""
-        },
-        {
-          id: "4-bed-mixed-female-dorm",
-          name: "Bed in 4 Bed Mixed/Female Dorm", 
-          price: 800,
-          description: "Mixed or female dormitory with shared facilities",
-          features: ["Mixed/Female", "Shared bathroom", "Wi-Fi", "Locker", "Common area"],
-          maxGuests: 4,
-          maxRooms: 1,
-          image: ""
-        },
-        {
-          id: "6-bed-mixed-female-dorm",
-          name: "Bed in 6 Bed Mixed/Female Dorm",
-          price: 700,
-          description: "Spacious mixed or female dormitory",
-          features: ["Mixed/Female", "Shared bathroom", "Wi-Fi", "Locker", "Common area"],
-          maxGuests: 30,
-          maxRooms: 5,
-          image: ""
-        },
-        {
-          id: "8-bed-mixed-dorm",
-          name: "Bed in 8 Bed Mixed Dorm",
-          price: 600,
-          description: "Large mixed dormitory for budget travelers",
-          features: ["Mixed dorm", "Shared bathroom", "Wi-Fi", "Locker", "Common area"],
-          maxGuests: 8,
-          maxRooms: 1,
-          image: ""
-        }
-      ],
-      buttonText: "Select Bed"
+  const hostelRooms = [
+    {
+      id: "4-bed-female-only-dorm",
+      name: "Bed in 4 Bed Female Only Dorm",
+      price: 850,
+      description: "Female-only dormitory with modern amenities",
+      features: ["Female only", "Shared bathroom", "Wi-Fi", "Locker", "Common area"],
+      maxGuests: 4,
+      maxRooms: 1,
+      image: ""
     },
-    luxury: {
-      name: "XTSY Luxury",
-      description: "Premium accommodation with modern amenities and scenic views",
-      image: "",
-      rooms: [
-        {
-          id: "king-double-room",
-          name: "King Double Room",
-          price: 3200,
-          description: "Spacious room with king bed for two guests",
-          features: ["King bed", "Valley view", "Attached bath", "Wi-Fi", "Premium amenities"],
-          maxGuests: 4,
-          maxRooms: 2,
-          image: ""
-        },
-        {
-          id: "king-triple-room",
-          name: "King Triple Room",
-          price: 4200,
-          description: "Luxurious room accommodating up to three guests",
-          features: ["King bed + extra bed", "Panoramic view", "Attached bath", "Wi-Fi", "Premium amenities"],
-          maxGuests: 3,
-          maxRooms: 1,
-          image: ""
-        },
-        {
-          id: "signature-270-glass-suite",
-          name: "Signature 270° Glass Suite",
-          price: 18000,
-          description: "Premium suite with 270-degree panoramic views and luxury amenities",
-          features: ["270° Panoramic view", "Luxury amenities", "Attached bath", "Wi-Fi", "Premium service"],
-          maxGuests: 2,
-          maxRooms: 1,
-          image: ""
-        }
-      ],
-      buttonText: "Select Room"
+    {
+      id: "4-bed-mixed-female-dorm",
+      name: "Bed in 4 Bed Mixed/Female Dorm", 
+      price: 800,
+      description: "Mixed or female dormitory with shared facilities",
+      features: ["Mixed/Female", "Shared bathroom", "Wi-Fi", "Locker", "Common area"],
+      maxGuests: 4,
+      maxRooms: 1,
+      image: ""
+    },
+    {
+      id: "6-bed-mixed-female-dorm",
+      name: "Bed in 6 Bed Mixed/Female Dorm",
+      price: 700,
+      description: "Spacious mixed or female dormitory",
+      features: ["Mixed/Female", "Shared bathroom", "Wi-Fi", "Locker", "Common area"],
+      maxGuests: 30,
+      maxRooms: 5,
+      image: ""
+    },
+    {
+      id: "8-bed-mixed-dorm",
+      name: "Bed in 8 Bed Mixed Dorm",
+      price: 600,
+      description: "Large mixed dormitory for budget travelers",
+      features: ["Mixed dorm", "Shared bathroom", "Wi-Fi", "Locker", "Common area"],
+      maxGuests: 8,
+      maxRooms: 1,
+      image: ""
     }
-  };
+  ];
 
-  const activePropertyData = properties[activeProperty as keyof typeof properties];
+  const luxuryRooms = [
+    {
+      id: "king-double-room",
+      name: "King Double Room",
+      price: 3200,
+      description: "Spacious room with king bed for two guests",
+      features: ["King bed", "Valley view", "Attached bath", "Wi-Fi", "Premium amenities"],
+      maxGuests: 4,
+      maxRooms: 2,
+      image: ""
+    },
+    {
+      id: "king-triple-room",
+      name: "King Triple Room",
+      price: 4200,
+      description: "Luxurious room accommodating up to three guests",
+      features: ["King bed + extra bed", "Panoramic view", "Attached bath", "Wi-Fi", "Premium amenities"],
+      maxGuests: 3,
+      maxRooms: 1,
+      image: ""
+    },
+    {
+      id: "signature-270-glass-suite",
+      name: "Signature 270° Glass Suite",
+      price: 18000,
+      description: "Premium suite with 270-degree panoramic views and luxury amenities",
+      features: ["270° Panoramic view", "Luxury amenities", "Attached bath", "Wi-Fi", "Premium service"],
+      maxGuests: 2,
+      maxRooms: 1,
+      image: ""
+    }
+  ];
 
   return (
     <section id="rooms" className="py-12 sm:py-16 lg:py-20 px-3 sm:px-4 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 relative overflow-hidden">
@@ -139,9 +120,9 @@ const RoomsSection = () => {
       <div className="container mx-auto max-w-7xl relative z-10">
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
           <div className="inline-block p-6 bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl mb-6">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent mb-4 font-playfair">
-                Our Properties
-              </h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent mb-4 font-playfair">
+              Our Properties
+            </h2>
             <div className="w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
           </div>
           <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 max-w-3xl mx-auto bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-lg">
@@ -170,117 +151,23 @@ const RoomsSection = () => {
           </Card>
         </div>
 
-        {/* All Room Types - Combined display */}
-        <div className="w-full">
-          <div className="flex gap-4 sm:gap-6 overflow-x-auto pb-4 px-3 sm:px-0 scrollbar-hide">
-            <div className="flex gap-4 sm:gap-6">
-              {/* XTSY Travellers Hostel Rooms */}
-              {properties.hostel.rooms.map((room) => (
-                <Card key={room.id} className="bg-white border border-gray-200 hover:border-orange-300 hover:shadow-lg transition-all duration-300 transform hover:scale-105 shadow-md flex-shrink-0 w-80 sm:w-72 lg:w-80">
-                  <CardHeader className="pb-3">
-                    <div className="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg mb-4 flex items-center justify-center border border-gray-300">
-                      <div className="text-center">
-                        <TreePine className="h-8 w-8 text-gray-400 mx-auto mb-1" />
-                        <p className="text-gray-500 text-xs">Room Image</p>
-                        <p className="text-gray-400 text-xs">Supabase Ready</p>
-                      </div>
-                    </div>
-                    <div className="flex justify-between items-start mb-2">
-                      <CardTitle className="text-lg sm:text-xl font-bold text-gray-900 font-serif-sans leading-tight flex items-center gap-2">
-                        {room.name}
-                        <Badge className="bg-blue-500 text-white text-xs">Hostel</Badge>
-                      </CardTitle>
-                      <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold whitespace-nowrap ml-2">
-                        ₹{room.price}/night
-                      </Badge>
-                    </div>
-                    <CardDescription className="text-gray-600 text-sm font-seasons">
-                      {room.description}
-                    </CardDescription>
-                  </CardHeader>
-                  
-                  <CardContent className="space-y-4">
-                    <div className="flex flex-wrap gap-1">
-                      {room.features.map((feature, index) => (
-                        <Badge key={index} variant="outline" className="text-xs border-orange-300 text-orange-600 bg-orange-50">
-                          {feature}
-                        </Badge>
-                      ))}
-                    </div>
-                    
-                    <div className="flex items-center justify-between text-sm text-gray-600">
-                      <span className="flex items-center gap-1">
-                        <Users className="h-4 w-4" />
-                        Max {room.maxGuests} guest{room.maxGuests > 1 ? 's' : ''}
-                      </span>
-                    </div>
-                    
-                    <Button 
-                      onClick={scrollToCalendar}
-                      className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 font-seasons"
-                    >
-                      Select Bed
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-              
-              {/* XTSY Luxury Rooms */}
-              {properties.luxury.rooms.map((room) => (
-                <Card key={room.id} className="bg-white border border-gray-200 hover:border-orange-300 hover:shadow-lg transition-all duration-300 transform hover:scale-105 shadow-md flex-shrink-0 w-80 sm:w-72 lg:w-80">
-                  <CardHeader className="pb-3">
-                    <div className="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg mb-4 flex items-center justify-center border border-gray-300">
-                      <div className="text-center">
-                        <TreePine className="h-8 w-8 text-gray-400 mx-auto mb-1" />
-                        <p className="text-gray-500 text-xs">Room Image</p>
-                        <p className="text-gray-400 text-xs">Supabase Ready</p>
-                      </div>
-                    </div>
-                    <div className="flex justify-between items-start mb-2">
-                      <CardTitle className="text-lg sm:text-xl font-bold text-gray-900 font-serif-sans leading-tight flex items-center gap-2">
-                        {room.name}
-                        {room.id === "signature-270-glass-suite" && (
-                          <RotateCcw className="h-5 w-5 text-orange-500" />
-                        )}
-                        <Badge className="bg-purple-500 text-white text-xs">Luxury</Badge>
-                      </CardTitle>
-                      <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold whitespace-nowrap ml-2">
-                        ₹{room.price}/night
-                      </Badge>
-                    </div>
-                    <CardDescription className="text-gray-600 text-sm font-seasons">
-                      {room.description}
-                    </CardDescription>
-                  </CardHeader>
-                  
-                  <CardContent className="space-y-4">
-                    <div className="flex flex-wrap gap-1">
-                      {room.features.map((feature, index) => (
-                        <Badge key={index} variant="outline" className="text-xs border-orange-300 text-orange-600 bg-orange-50">
-                          {feature}
-                        </Badge>
-                      ))}
-                    </div>
-                    
-                    <div className="flex items-center justify-between text-sm text-gray-600">
-                      <span className="flex items-center gap-1">
-                        <Users className="h-4 w-4" />
-                        Max {room.maxGuests} guest{room.maxGuests > 1 ? 's' : ''}
-                      </span>
-                    </div>
-                    
-                    <Button 
-                      onClick={scrollToCalendar}
-                      className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 font-seasons"
-                    >
-                      Select Room
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </div>
+        {/* XTSY Travellers Hostel Section */}
+        <PropertySection
+          title="XTSY Travellers Hostel"
+          description="Budget-friendly accommodation in the heart of Shillong with modern amenities and vibrant community spaces"
+          rooms={hostelRooms}
+          propertyType="hostel"
+          onSelectRoom={scrollToCalendar}
+        />
+
+        {/* XTSY Luxury Section */}
+        <PropertySection
+          title="XTSY Luxury"
+          description="Premium accommodation with breathtaking views, luxury amenities, and exceptional service for discerning travelers"
+          rooms={luxuryRooms}
+          propertyType="luxury"
+          onSelectRoom={scrollToCalendar}
+        />
       </div>
 
       <style>
