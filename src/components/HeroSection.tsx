@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Calendar, Users, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -10,12 +11,17 @@ const HeroSection = () => {
   const [guests, setGuests] = useState("2");
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [currentLanguageIndex, setCurrentLanguageIndex] = useState(0);
+  const [bookNowClicks, setBookNowClicks] = useState(500);
 
-  const languages = ["Hello", "नमस्ते", "হ্যালো", "Hola", "こんにちは"];
+  // 12 most common travel-friendly languages
+  const languages = [
+    "Hello", "नमस्ते", "হ্যালো", "Hola", "Bonjour", "Hallo", 
+    "Ciao", "こんにちは", "안녕하세요", "Olá", "Привет", "مرحبا"
+  ];
 
   useEffect(() => {
+    const elements = document.querySelectorAll('.floating-element');
     const interval = setInterval(() => {
-      const elements = document.querySelectorAll('.floating-element');
       elements.forEach((element, index) => {
         const randomX = Math.random() * 20 - 10;
         const randomY = Math.random() * 20 - 10;
@@ -38,10 +44,7 @@ const HeroSection = () => {
     };
 
     window.addEventListener('reopenBookingModal', handleReopenBookingModal);
-
-    return () => {
-      window.removeEventListener('reopenBookingModal', handleReopenBookingModal);
-    };
+    return () => window.removeEventListener('reopenBookingModal', handleReopenBookingModal);
   }, []);
 
   useEffect(() => {
@@ -52,13 +55,27 @@ const HeroSection = () => {
     return () => clearInterval(languageInterval);
   }, [languages.length]);
 
+  useEffect(() => {
+    // Load click count from localStorage on component mount
+    const savedClicks = localStorage.getItem('bookNowClicks');
+    if (savedClicks) {
+      setBookNowClicks(parseInt(savedClicks, 10));
+    }
+  }, []);
+
+  const handleBookNowClick = () => {
+    const newCount = bookNowClicks + 1;
+    setBookNowClicks(newCount);
+    localStorage.setItem('bookNowClicks', newCount.toString());
+    setIsBookingModalOpen(true);
+  };
+
   const handleSearch = () => {
     if (!checkIn || !checkOut || !guests) {
       alert("Please fill in all search fields");
       return;
     }
     
-    // Validate checkout date is not same as checkin
     if (checkIn === checkOut) {
       alert("Check-out date cannot be the same as check-in date. Please select a different date.");
       return;
@@ -67,7 +84,6 @@ const HeroSection = () => {
     const guestCount = parseInt(guests);
     if (guestCount > 25) {
       alert("For more than 25 guests, please use B2B Corporate Booking or Group Booking options available below.");
-      // Scroll to group booking section
       const groupBookingElement = document.querySelector('#group-booking-section');
       if (groupBookingElement) {
         groupBookingElement.scrollIntoView({ behavior: 'smooth' });
@@ -75,24 +91,12 @@ const HeroSection = () => {
       return;
     }
     
-    setIsBookingModalOpen(true);
+    handleBookNowClick();
   };
 
   return (
     <>
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
-        {/* Background Image with Overlay - Ready for Supabase URL */}
-        {/* 
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: "url('SUPABASE_IMAGE_URL_HERE')",
-          }}
-        >
-          <div className="absolute inset-0 bg-black/60"></div>
-        </div>
-        */}
-
+      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="floating-element absolute top-1/4 left-1/4 w-64 h-64 bg-orange-500/10 rounded-full blur-xl animate-pulse"></div>
@@ -110,7 +114,6 @@ const HeroSection = () => {
             
             {/* Floating Languages Section */}
             <div className="relative h-32 flex flex-col items-center justify-center">
-              {/* Animated Language Text */}
               <div className="relative h-16 flex items-center justify-center mb-4">
                 <span 
                   key={currentLanguageIndex}
@@ -120,7 +123,6 @@ const HeroSection = () => {
                 </span>
               </div>
               
-              {/* Fixed XTSY Text */}
               <div className="text-4xl sm:text-5xl lg:text-6xl font-bold text-orange-400">
                 XTSY
               </div>
@@ -183,20 +185,20 @@ const HeroSection = () => {
                   className="w-full h-12 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-base"
                 >
                   <Search className="mr-2 h-5 w-5" />
-                  Search Rooms
+                  Book Your Stay
                 </Button>
               </div>
             </div>
 
             <div className="text-center text-sm text-gray-300">
-              <p>🏨 3 Room Types Available • 🌟 Premium Amenities • 🎯 Best Rates Guaranteed</p>
+              <p>🏨 3 Property Types Available • 🌟 Premium Amenities • 🎯 Best Rates Guaranteed</p>
             </div>
           </div>
 
           {/* Quick Stats */}
           <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 animate-fade-in" style={{ animationDelay: '1.2s' }}>
             <div className="text-center">
-              <div className="text-3xl font-bold text-orange-400">500+</div>
+              <div className="text-3xl font-bold text-orange-400">{bookNowClicks}+</div>
               <div className="text-sm text-gray-300">Happy Guests</div>
             </div>
             <div className="text-center">

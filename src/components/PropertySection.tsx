@@ -19,11 +19,12 @@ interface PropertySectionProps {
   title: string;
   description: string;
   rooms: Room[];
-  propertyType: "hostel" | "luxury";
+  propertyType: "hostel" | "luxury" | "economy";
   onSelectRoom: () => void;
+  isLuxury?: boolean;
 }
 
-const PropertySection = ({ title, description, rooms, propertyType, onSelectRoom }: PropertySectionProps) => {
+const PropertySection = ({ title, description, rooms, propertyType, onSelectRoom, isLuxury = false }: PropertySectionProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -38,7 +39,7 @@ const PropertySection = ({ title, description, rooms, propertyType, onSelectRoom
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
-      const scrollAmount = 320; // Width of one card plus gap
+      const scrollAmount = isLuxury ? 800 : 320;
       const newScrollLeft = direction === 'left' 
         ? scrollRef.current.scrollLeft - scrollAmount
         : scrollRef.current.scrollLeft + scrollAmount;
@@ -48,7 +49,6 @@ const PropertySection = ({ title, description, rooms, propertyType, onSelectRoom
         behavior: 'smooth'
       });
       
-      // Update buttons after scroll animation
       setTimeout(updateScrollButtons, 300);
     }
   };
@@ -68,51 +68,63 @@ const PropertySection = ({ title, description, rooms, propertyType, onSelectRoom
         </p>
       </div>
 
-      {/* Scrollable Rooms Container */}
-      <div className="relative">
-        {/* Left Arrow */}
-        <Button
-          variant="outline"
-          size="icon"
-          className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 ${
-            !canScrollLeft ? 'opacity-50 cursor-not-allowed' : 'hover:scale-110'
-          }`}
-          onClick={() => scroll('left')}
-          disabled={!canScrollLeft}
-        >
-          <ChevronLeft className="h-4 w-4" />
-        </Button>
-
-        {/* Right Arrow */}
-        <Button
-          variant="outline"
-          size="icon"
-          className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 ${
-            !canScrollRight ? 'opacity-50 cursor-not-allowed' : 'hover:scale-110'
-          }`}
-          onClick={() => scroll('right')}
-          disabled={!canScrollRight}
-        >
-          <ChevronRight className="h-4 w-4" />
-        </Button>
-
-        {/* Rooms Scroll Container */}
-        <div 
-          ref={scrollRef}
-          className="flex gap-6 overflow-x-auto scrollbar-hide px-12 py-4"
-          onScroll={updateScrollButtons}
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-        >
-          {rooms.map((room) => (
-            <RoomCard
-              key={room.id}
-              room={room}
-              propertyType={propertyType}
-              onSelectRoom={onSelectRoom}
-            />
-          ))}
+      {/* Luxury Room - Full Width Display */}
+      {isLuxury && rooms.length > 0 ? (
+        <div className="max-w-6xl mx-auto">
+          <RoomCard
+            room={rooms[0]}
+            propertyType={propertyType}
+            onSelectRoom={onSelectRoom}
+            isLuxury={true}
+          />
         </div>
-      </div>
+      ) : (
+        // Regular Scrollable Rooms Container
+        <div className="relative">
+          {/* Left Arrow */}
+          <Button
+            variant="outline"
+            size="icon"
+            className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 ${
+              !canScrollLeft ? 'opacity-50 cursor-not-allowed' : 'hover:scale-110'
+            }`}
+            onClick={() => scroll('left')}
+            disabled={!canScrollLeft}
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </Button>
+
+          {/* Right Arrow */}
+          <Button
+            variant="outline"
+            size="icon"
+            className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 ${
+              !canScrollRight ? 'opacity-50 cursor-not-allowed' : 'hover:scale-110'
+            }`}
+            onClick={() => scroll('right')}
+            disabled={!canScrollRight}
+          >
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+
+          {/* Rooms Scroll Container */}
+          <div 
+            ref={scrollRef}
+            className="flex gap-6 overflow-x-auto scrollbar-hide px-12 py-4"
+            onScroll={updateScrollButtons}
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {rooms.map((room) => (
+              <RoomCard
+                key={room.id}
+                room={room}
+                propertyType={propertyType}
+                onSelectRoom={onSelectRoom}
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

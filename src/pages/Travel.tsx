@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { MapPin, Clock, Users, Star, Calendar, Mountain, Camera, Compass, Globe, Package, Bell, Mail, Filter } from "lucide-react";
+import { MapPin, Globe, Package, Bell, Mail, Filter } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import TourPackageCard from "@/components/TourPackageCard";
 import TourPackageModal from "@/components/TourPackageModal";
 import { AuthModal } from "@/components/AuthModal";
 
@@ -21,7 +21,6 @@ const Travel = () => {
   const [daysFilter, setDaysFilter] = useState("all");
   const [locationFilter, setLocationFilter] = useState("all");
 
-  // Handle URL parameters
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const tab = urlParams.get('tab');
@@ -39,8 +38,9 @@ const Travel = () => {
     setIsAuthModalOpen(true);
   };
 
-  // Tour packages data
+  // Enhanced tour packages data with more states
   const itineraries = [
+    // Meghalaya packages
     {
       id: 1,
       title: "Meghalaya Hidden Gems",
@@ -111,8 +111,230 @@ const Travel = () => {
       highlights: ["Sky Walk", "Living Root Bridge", "Organic Gardens"],
       bestSeason: "Oct-Apr"
     },
+    
+    // Uttarakhand packages
     {
       id: 6,
+      title: "Char Dham Yatra Complete",
+      description: "Sacred pilgrimage to all four dhams - Kedarnath, Badrinath, Gangotri, and Yamunotri",
+      duration: "12 Days",
+      difficulty: "Challenging",
+      price: "₹35,999",
+      image: "",
+      rating: 4.9,
+      category: "cultural",
+      location: "Uttarakhand",
+      highlights: ["Four Sacred Dhams", "Helicopter Options", "Guided Tours"],
+      bestSeason: "May-Oct"
+    },
+    {
+      id: 7,
+      title: "Rishikesh Adventure Special",
+      description: "World capital of yoga, river rafting, and spiritual experiences",
+      duration: "4 Days",
+      difficulty: "Moderate",
+      price: "₹11,999",
+      image: "",
+      rating: 4.8,
+      category: "adventure",
+      location: "Uttarakhand",
+      highlights: ["River Rafting", "Yoga Sessions", "Ganga Aarti"],
+      bestSeason: "Oct-Mar"
+    },
+    {
+      id: 8,
+      title: "Nainital Lake District",
+      description: "Explore the lake district of Uttarakhand with scenic hill stations",
+      duration: "6 Days",
+      difficulty: "Easy",
+      price: "₹18,999",
+      image: "",
+      rating: 4.7,
+      category: "leisure",
+      location: "Uttarakhand",
+      highlights: ["Naini Lake", "Bhimtal", "Mall Road"],
+      bestSeason: "Mar-Jun"
+    },
+    {
+      id: 9,
+      title: "Valley of Flowers Trek",
+      description: "UNESCO World Heritage site with rare alpine flowers and meadows",
+      duration: "8 Days",
+      difficulty: "Challenging",
+      price: "₹24,999",
+      image: "",
+      rating: 4.9,
+      category: "adventure",
+      location: "Uttarakhand",
+      highlights: ["Alpine Flowers", "Hemkund Sahib", "Ghangaria"],
+      bestSeason: "Jul-Sep"
+    },
+    
+    // Sikkim packages
+    {
+      id: 10,
+      title: "Sikkim Himalayan Explorer",
+      description: "Complete Sikkim tour covering all major attractions and monasteries",
+      duration: "7 Days",
+      difficulty: "Moderate",
+      price: "₹22,999",
+      image: "",
+      rating: 4.8,
+      category: "cultural",
+      location: "Sikkim",
+      highlights: ["Gangtok", "Rumtek Monastery", "Tsomgo Lake"],
+      bestSeason: "Mar-Jun"
+    },
+    {
+      id: 11,
+      title: "Gurudongmar Lake Expedition",
+      description: "High altitude sacred lake adventure with breathtaking mountain views",
+      duration: "5 Days",
+      difficulty: "Challenging",
+      price: "₹19,999",
+      image: "",
+      rating: 4.9,
+      category: "adventure",
+      location: "Sikkim",
+      highlights: ["Gurudongmar Lake", "Lachung", "Yumthang Valley"],
+      bestSeason: "Apr-Jun"
+    },
+    {
+      id: 12,
+      title: "Pelling Kanchenjunga View",
+      description: "Witness the third highest peak in the world from scenic Pelling",
+      duration: "4 Days",
+      difficulty: "Easy",
+      price: "₹13,999",
+      image: "",
+      rating: 4.6,
+      category: "leisure",
+      location: "Sikkim",
+      highlights: ["Kanchenjunga View", "Pemayangtse Monastery", "Khecheopalri Lake"],
+      bestSeason: "Oct-Dec"
+    },
+    
+    // Himachal Pradesh packages
+    {
+      id: 13,
+      title: "Shimla Manali Honeymoon",
+      description: "Romantic hill station package perfect for couples and honeymooners",
+      duration: "6 Days",
+      difficulty: "Easy",
+      price: "₹16,999",
+      image: "",
+      rating: 4.7,
+      category: "leisure",
+      location: "Himachal Pradesh",
+      highlights: ["Mall Road", "Rohtang Pass", "Solang Valley"],
+      bestSeason: "Mar-Jun"
+    },
+    {
+      id: 14,
+      title: "Spiti Valley Circuit",
+      description: "High altitude cold desert adventure through remote Spiti Valley",
+      duration: "10 Days",
+      difficulty: "Challenging",
+      price: "₹32,999",
+      image: "",
+      rating: 4.9,
+      category: "adventure",
+      location: "Himachal Pradesh",
+      highlights: ["Key Monastery", "Chandratal Lake", "Kaza"],
+      bestSeason: "Jun-Sep"
+    },
+    {
+      id: 15,
+      title: "Dharamshala McLeod Ganj",
+      description: "Explore the Dalai Lama's residence and Tibetan culture",
+      duration: "4 Days",
+      difficulty: "Easy",
+      price: "₹12,999",
+      image: "",
+      rating: 4.6,
+      category: "cultural",
+      location: "Himachal Pradesh",
+      highlights: ["Dalai Lama Temple", "Bhagsu Waterfall", "Tibetan Market"],
+      bestSeason: "Mar-Jun"
+    },
+    
+    // Kerala packages
+    {
+      id: 16,
+      title: "Kerala Backwaters & Beaches",
+      description: "God's Own Country - backwaters, beaches, and hill stations",
+      duration: "8 Days",
+      difficulty: "Easy",
+      price: "₹25,999",
+      image: "",
+      rating: 4.8,
+      category: "leisure",
+      location: "Kerala",
+      highlights: ["Alleppey Houseboat", "Munnar Hills", "Kovalam Beach"],
+      bestSeason: "Oct-Mar"
+    },
+    {
+      id: 17,
+      title: "Munnar Tea Garden Experience",
+      description: "Explore the lush tea plantations and spice gardens of Munnar",
+      duration: "5 Days",
+      difficulty: "Easy",
+      price: "₹14,999",
+      image: "",
+      rating: 4.7,
+      category: "cultural",
+      location: "Kerala",
+      highlights: ["Tea Museum", "Mattupetty Dam", "Spice Plantations"],
+      bestSeason: "Sep-Mar"
+    },
+    {
+      id: 18,
+      title: "Thekkady Wildlife Safari",
+      description: "Wildlife adventure in Periyar National Park with boat safaris",
+      duration: "3 Days",
+      difficulty: "Easy",
+      price: "₹9,999",
+      image: "",
+      rating: 4.5,
+      category: "adventure",
+      location: "Kerala",
+      highlights: ["Periyar National Park", "Boat Safari", "Spice Gardens"],
+      bestSeason: "Dec-Apr"
+    },
+    
+    // Tamil Nadu packages
+    {
+      id: 19,
+      title: "Tamil Nadu Temple Circuit",
+      description: "Spiritual journey through ancient temples and cultural heritage",
+      duration: "7 Days",
+      difficulty: "Easy",
+      price: "₹17,999",
+      image: "",
+      rating: 4.6,
+      category: "cultural",
+      location: "Tamil Nadu",
+      highlights: ["Meenakshi Temple", "Brihadeeswarar Temple", "Kanyakumari"],
+      bestSeason: "Oct-Mar"
+    },
+    {
+      id: 20,
+      title: "Ooty Kodaikanal Hill Stations",
+      description: "Queen of hill stations with scenic beauty and pleasant weather",
+      duration: "6 Days",
+      difficulty: "Easy",
+      price: "₹15,999",
+      image: "",
+      rating: 4.7,
+      category: "leisure",
+      location: "Tamil Nadu",
+      highlights: ["Ooty Lake", "Doddabetta Peak", "Kodai Lake"],
+      bestSeason: "Oct-Jun"
+    },
+    
+    // Other Northeast states
+    {
+      id: 21,
       title: "Arunachal Pradesh Eagle Festival",
       description: "Experience the vibrant culture and traditions of Arunachal Pradesh",
       duration: "6 Days",
@@ -126,7 +348,7 @@ const Travel = () => {
       bestSeason: "Dec-Feb"
     },
     {
-      id: 7,
+      id: 22,
       title: "Nagaland Hornbill Festival",
       description: "Witness the spectacular Hornbill Festival showcasing Naga culture",
       duration: "5 Days",
@@ -140,21 +362,7 @@ const Travel = () => {
       bestSeason: "Dec"
     },
     {
-      id: 8,
-      title: "Ziro Music Festival Experience",
-      description: "Enjoy indie music amidst the beautiful Ziro Valley landscapes",
-      duration: "4 Days",
-      difficulty: "Easy",
-      price: "₹14,999",
-      image: "",
-      rating: 4.9,
-      category: "leisure",
-      location: "Arunachal Pradesh",
-      highlights: ["Music Festival", "Apatani Culture", "Valley Views"],
-      bestSeason: "Sep"
-    },
-    {
-      id: 9,
+      id: 23,
       title: "Assam Tea Garden Safari",
       description: "Explore the lush tea gardens and wildlife sanctuaries of Assam",
       duration: "7 Days",
@@ -168,7 +376,7 @@ const Travel = () => {
       bestSeason: "Nov-Apr"
     },
     {
-      id: 10,
+      id: 24,
       title: "Manipur Loktak Lake Adventure",
       description: "Discover the floating islands and unique ecosystem of Loktak Lake",
       duration: "4 Days",
@@ -184,15 +392,15 @@ const Travel = () => {
   ];
 
   const categories = [
-    { id: "all", label: "All Packages", icon: Compass },
-    { id: "adventure", label: "Adventure", icon: Mountain },
-    { id: "cultural", label: "Cultural", icon: Users },
-    { id: "leisure", label: "Leisure", icon: Camera }
+    { id: "all", label: "All Packages" },
+    { id: "adventure", label: "Adventure" },
+    { id: "cultural", label: "Cultural" },
+    { id: "leisure", label: "Leisure" }
   ];
 
   const difficulties = ["all", "Easy", "Moderate", "Challenging"];
   const days = ["all", "1-3 Days", "4-6 Days", "7+ Days"];
-  const locations = ["all", "Meghalaya", "Assam", "Arunachal Pradesh", "Nagaland", "Manipur"];
+  const locations = ["all", "Meghalaya", "Uttarakhand", "Sikkim", "Himachal Pradesh", "Kerala", "Tamil Nadu", "Assam", "Arunachal Pradesh", "Nagaland", "Manipur"];
 
   const filteredItineraries = itineraries.filter(item => {
     const categoryMatch = selectedCategory === "all" || item.category === selectedCategory;
@@ -219,86 +427,6 @@ const Travel = () => {
     setDaysFilter("all");
     setLocationFilter("all");
   };
-
-  const PackageCard = ({ itinerary }: { itinerary: any }) => (
-    <Card 
-      className="group hover:shadow-2xl hover:scale-105 transition-all duration-500 overflow-hidden border-0 bg-white/90 backdrop-blur-md cursor-pointer"
-      onClick={() => handlePackageClick(itinerary)}
-    >
-      <div className="relative overflow-hidden">
-        <div className="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center border-b">
-          <div className="text-center">
-            <Camera className="h-12 w-12 text-gray-400 mx-auto mb-2" />
-            <p className="text-gray-500 text-sm">Package Image</p>
-          </div>
-        </div>
-        <div className="absolute top-4 left-4">
-          <Badge variant="secondary" className="bg-white/90 text-gray-800">
-            {itinerary.category}
-          </Badge>
-        </div>
-        <div className="absolute top-4 right-4 bg-black/70 text-white px-2 py-1 rounded text-sm font-bold">
-          {itinerary.price}
-        </div>
-      </div>
-      
-      <CardHeader>
-        <div className="flex justify-between items-start mb-2">
-          <CardTitle className="text-xl group-hover:text-orange-600 transition-colors">
-            {itinerary.title}
-          </CardTitle>
-          <div className="flex items-center gap-1 text-yellow-500">
-            <Star className="h-4 w-4 fill-current" />
-            <span className="text-sm font-medium text-gray-700">{itinerary.rating}</span>
-          </div>
-        </div>
-        <CardDescription className="text-gray-600">
-          {itinerary.description}
-        </CardDescription>
-      </CardHeader>
-      
-      <CardContent className="space-y-4">
-        <div className="flex items-center justify-between text-sm text-gray-600">
-          <div className="flex items-center gap-1">
-            <Clock className="h-4 w-4" />
-            {itinerary.duration}
-          </div>
-          <div className="flex items-center gap-1">
-            <Mountain className="h-4 w-4" />
-            {itinerary.difficulty}
-          </div>
-          <div className="flex items-center gap-1">
-            <Calendar className="h-4 w-4" />
-            {itinerary.bestSeason}
-          </div>
-        </div>
-        
-        <div className="space-y-2">
-          <h4 className="font-semibold text-gray-900">Highlights:</h4>
-          <div className="flex flex-wrap gap-1">
-            {itinerary.highlights.map((highlight, index) => (
-              <Badge key={index} variant="outline" className="text-xs">
-                {highlight}
-              </Badge>
-            ))}
-          </div>
-        </div>
-        
-        <div className="pt-4">
-          <Button 
-            className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
-            onClick={(e) => {
-              e.stopPropagation();
-              handlePackageClick(itinerary);
-            }}
-          >
-            <MapPin className="h-4 w-4 mr-2" />
-            Book This Journey
-          </Button>
-        </div>
-      </CardContent>
-    </Card>
-  );
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -353,10 +481,10 @@ const Travel = () => {
                 <div>
                   <div className="text-center mb-8">
                     <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                      🌄 Discover Northeast India - Land of Seven Sisters
+                      🏔️ Discover Northeast India & Beyond - Incredible India Awaits
                     </h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                      Explore the mystical beauty of Northeast India with our specially curated travel experiences
+                      Explore the mystical beauty of Northeast India and iconic destinations across the country with our specially curated travel experiences
                     </p>
                   </div>
 
@@ -445,26 +573,34 @@ const Travel = () => {
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {meghalayaPackages.map((itinerary) => (
-                          <PackageCard key={itinerary.id} itinerary={itinerary} />
+                          <TourPackageCard
+                            key={itinerary.id}
+                            tourPackage={itinerary}
+                            onPackageClick={() => handlePackageClick(itinerary)}
+                          />
                         ))}
                       </div>
                     </div>
                   )}
 
-                  {/* Other Northeast Packages */}
+                  {/* Other Destinations */}
                   {otherPackages.length > 0 && (
                     <div>
                       <div className="text-center mb-8">
                         <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                          🌟 Other Northeast Destinations
+                          🌟 Other Incredible Destinations
                         </h3>
                         <p className="text-gray-600">
-                          Discover the diverse cultures and landscapes of Northeast India
+                          Discover the diverse cultures and landscapes across India
                         </p>
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {otherPackages.map((itinerary) => (
-                          <PackageCard key={itinerary.id} itinerary={itinerary} />
+                          <TourPackageCard
+                            key={itinerary.id}
+                            tourPackage={itinerary}
+                            onPackageClick={() => handlePackageClick(itinerary)}
+                          />
                         ))}
                       </div>
                     </div>
@@ -485,7 +621,6 @@ const Travel = () => {
               )}
 
               {activeTab === 'international' && (
-                
                 <div className="max-w-4xl mx-auto">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {/* XTSY Asia */}
@@ -495,9 +630,9 @@ const Travel = () => {
                           <div className="text-center">
                             <Globe className="h-16 w-16 text-blue-500 mx-auto mb-4" />
                             <h3 className="text-2xl font-bold text-gray-800 mb-2">XTSY Asia</h3>
-                            <Badge className="bg-gradient-to-r from-blue-500 to-purple-600 text-white">
+                            <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
                               Launching Soon
-                            </Badge>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -522,9 +657,9 @@ const Travel = () => {
                           <div className="text-center">
                             <Package className="h-16 w-16 text-green-500 mx-auto mb-4" />
                             <h3 className="text-2xl font-bold text-gray-800 mb-2">XTSY Merchandise</h3>
-                            <Badge className="bg-gradient-to-r from-green-500 to-teal-600 text-white">
+                            <div className="bg-gradient-to-r from-green-500 to-teal-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
                               Coming Soon
-                            </Badge>
+                            </div>
                           </div>
                         </div>
                       </div>
