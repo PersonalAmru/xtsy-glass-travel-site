@@ -1,10 +1,10 @@
-
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Clock, Users, Star, Calendar, Mountain, Camera, Compass, Globe, Package, Bell, Mail } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { MapPin, Clock, Users, Star, Calendar, Mountain, Camera, Compass, Globe, Package, Bell, Mail, Filter } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TourPackageModal from "@/components/TourPackageModal";
@@ -17,6 +17,9 @@ const Travel = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [difficultyFilter, setDifficultyFilter] = useState("all");
+  const [daysFilter, setDaysFilter] = useState("all");
+  const [locationFilter, setLocationFilter] = useState("all");
 
   // Handle URL parameters
   useEffect(() => {
@@ -36,7 +39,7 @@ const Travel = () => {
     setIsAuthModalOpen(true);
   };
 
-  // Tour packages data (moved from TravelItinerariesSection)
+  // Tour packages data
   const itineraries = [
     {
       id: 1,
@@ -48,6 +51,7 @@ const Travel = () => {
       image: "",
       rating: 4.8,
       category: "adventure",
+      location: "Meghalaya",
       highlights: ["Double Decker Root Bridge", "Rainbow Falls", "Crystal Clear Pools"],
       bestSeason: "Oct-Mar"
     },
@@ -61,6 +65,7 @@ const Travel = () => {
       image: "",
       rating: 4.6,
       category: "cultural",
+      location: "Meghalaya",
       highlights: ["Police Bazaar", "Don Bosco Museum", "Local Food Tours"],
       bestSeason: "Year Round"
     },
@@ -74,6 +79,7 @@ const Travel = () => {
       image: "",
       rating: 4.9,
       category: "adventure",
+      location: "Meghalaya",
       highlights: ["Nohkalikai Falls", "Mawsmai Caves", "Living Root Bridges"],
       bestSeason: "Jun-Sep"
     },
@@ -87,6 +93,7 @@ const Travel = () => {
       image: "",
       rating: 4.7,
       category: "leisure",
+      location: "Meghalaya",
       highlights: ["Umngot River", "Transparent Water Boating", "Border Views"],
       bestSeason: "Nov-May"
     },
@@ -100,6 +107,7 @@ const Travel = () => {
       image: "",
       rating: 4.5,
       category: "cultural",
+      location: "Meghalaya",
       highlights: ["Sky Walk", "Living Root Bridge", "Organic Gardens"],
       bestSeason: "Oct-Apr"
     },
@@ -113,6 +121,7 @@ const Travel = () => {
       image: "",
       rating: 4.7,
       category: "cultural",
+      location: "Arunachal Pradesh",
       highlights: ["Traditional Dances", "Local Tribes", "Mountain Views"],
       bestSeason: "Dec-Feb"
     },
@@ -126,6 +135,7 @@ const Travel = () => {
       image: "",
       rating: 4.8,
       category: "cultural",
+      location: "Nagaland",
       highlights: ["Hornbill Festival", "Naga Cuisine", "Traditional Crafts"],
       bestSeason: "Dec"
     },
@@ -139,6 +149,7 @@ const Travel = () => {
       image: "",
       rating: 4.9,
       category: "leisure",
+      location: "Arunachal Pradesh",
       highlights: ["Music Festival", "Apatani Culture", "Valley Views"],
       bestSeason: "Sep"
     },
@@ -152,6 +163,7 @@ const Travel = () => {
       image: "",
       rating: 4.6,
       category: "adventure",
+      location: "Assam",
       highlights: ["Tea Plantation Tours", "Kaziranga National Park", "River Safari"],
       bestSeason: "Nov-Apr"
     },
@@ -165,6 +177,7 @@ const Travel = () => {
       image: "",
       rating: 4.5,
       category: "adventure",
+      location: "Manipur",
       highlights: ["Floating Islands", "Phumdis", "Sangai Deer"],
       bestSeason: "Oct-Mar"
     }
@@ -177,9 +190,115 @@ const Travel = () => {
     { id: "leisure", label: "Leisure", icon: Camera }
   ];
 
-  const filteredItineraries = selectedCategory === "all" 
-    ? itineraries 
-    : itineraries.filter(item => item.category === selectedCategory);
+  const difficulties = ["all", "Easy", "Moderate", "Challenging"];
+  const days = ["all", "1-3 Days", "4-6 Days", "7+ Days"];
+  const locations = ["all", "Meghalaya", "Assam", "Arunachal Pradesh", "Nagaland", "Manipur"];
+
+  const filteredItineraries = itineraries.filter(item => {
+    const categoryMatch = selectedCategory === "all" || item.category === selectedCategory;
+    const difficultyMatch = difficultyFilter === "all" || item.difficulty === difficultyFilter;
+    const locationMatch = locationFilter === "all" || item.location === locationFilter;
+    
+    let daysMatch = true;
+    if (daysFilter !== "all") {
+      const itemDays = parseInt(item.duration);
+      if (daysFilter === "1-3 Days") daysMatch = itemDays >= 1 && itemDays <= 3;
+      else if (daysFilter === "4-6 Days") daysMatch = itemDays >= 4 && itemDays <= 6;
+      else if (daysFilter === "7+ Days") daysMatch = itemDays >= 7;
+    }
+    
+    return categoryMatch && difficultyMatch && daysMatch && locationMatch;
+  });
+
+  const meghalayaPackages = filteredItineraries.filter(item => item.location === "Meghalaya");
+  const otherPackages = filteredItineraries.filter(item => item.location !== "Meghalaya");
+
+  const clearFilters = () => {
+    setSelectedCategory("all");
+    setDifficultyFilter("all");
+    setDaysFilter("all");
+    setLocationFilter("all");
+  };
+
+  const PackageCard = ({ itinerary }: { itinerary: any }) => (
+    <Card 
+      className="group hover:shadow-2xl hover:scale-105 transition-all duration-500 overflow-hidden border-0 bg-white/90 backdrop-blur-md cursor-pointer"
+      onClick={() => handlePackageClick(itinerary)}
+    >
+      <div className="relative overflow-hidden">
+        <div className="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center border-b">
+          <div className="text-center">
+            <Camera className="h-12 w-12 text-gray-400 mx-auto mb-2" />
+            <p className="text-gray-500 text-sm">Package Image</p>
+          </div>
+        </div>
+        <div className="absolute top-4 left-4">
+          <Badge variant="secondary" className="bg-white/90 text-gray-800">
+            {itinerary.category}
+          </Badge>
+        </div>
+        <div className="absolute top-4 right-4 bg-black/70 text-white px-2 py-1 rounded text-sm font-bold">
+          {itinerary.price}
+        </div>
+      </div>
+      
+      <CardHeader>
+        <div className="flex justify-between items-start mb-2">
+          <CardTitle className="text-xl group-hover:text-orange-600 transition-colors">
+            {itinerary.title}
+          </CardTitle>
+          <div className="flex items-center gap-1 text-yellow-500">
+            <Star className="h-4 w-4 fill-current" />
+            <span className="text-sm font-medium text-gray-700">{itinerary.rating}</span>
+          </div>
+        </div>
+        <CardDescription className="text-gray-600">
+          {itinerary.description}
+        </CardDescription>
+      </CardHeader>
+      
+      <CardContent className="space-y-4">
+        <div className="flex items-center justify-between text-sm text-gray-600">
+          <div className="flex items-center gap-1">
+            <Clock className="h-4 w-4" />
+            {itinerary.duration}
+          </div>
+          <div className="flex items-center gap-1">
+            <Mountain className="h-4 w-4" />
+            {itinerary.difficulty}
+          </div>
+          <div className="flex items-center gap-1">
+            <Calendar className="h-4 w-4" />
+            {itinerary.bestSeason}
+          </div>
+        </div>
+        
+        <div className="space-y-2">
+          <h4 className="font-semibold text-gray-900">Highlights:</h4>
+          <div className="flex flex-wrap gap-1">
+            {itinerary.highlights.map((highlight, index) => (
+              <Badge key={index} variant="outline" className="text-xs">
+                {highlight}
+              </Badge>
+            ))}
+          </div>
+        </div>
+        
+        <div className="pt-4">
+          <Button 
+            className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+            onClick={(e) => {
+              e.stopPropagation();
+              handlePackageClick(itinerary);
+            }}
+          >
+            <MapPin className="h-4 w-4 mr-2" />
+            Book This Journey
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
+  );
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -234,118 +353,139 @@ const Travel = () => {
                 <div>
                   <div className="text-center mb-8">
                     <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                      🇮🇳 Exclusive Travel Plans - Assam & Meghalaya
+                      🌄 Discover Northeast India - Land of Seven Sisters
                     </h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                      Discover the enchanting Northeast India with our curated travel packages
+                      Explore the mystical beauty of Northeast India with our specially curated travel experiences
                     </p>
                   </div>
 
-                  {/* Category Filter */}
-                  <div className="flex flex-wrap justify-center gap-4 mb-12">
-                    {categories.map((category) => {
-                      const IconComponent = category.icon;
-                      return (
-                        <Button
-                          key={category.id}
-                          variant={selectedCategory === category.id ? "default" : "outline"}
-                          onClick={() => setSelectedCategory(category.id)}
-                          className="flex items-center gap-2"
-                        >
-                          <IconComponent className="h-4 w-4" />
-                          {category.label}
-                        </Button>
-                      );
-                    })}
+                  {/* Filters */}
+                  <div className="mb-8 bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg">
+                    <div className="flex flex-wrap items-center gap-4 mb-4">
+                      <div className="flex items-center gap-2">
+                        <Filter className="h-5 w-5 text-gray-600" />
+                        <span className="font-semibold text-gray-900">Filters:</span>
+                      </div>
+                      
+                      <div className="flex flex-wrap gap-4">
+                        <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                          <SelectTrigger className="w-40">
+                            <SelectValue placeholder="Category" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {categories.map((category) => (
+                              <SelectItem key={category.id} value={category.id}>
+                                {category.label}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+
+                        <Select value={difficultyFilter} onValueChange={setDifficultyFilter}>
+                          <SelectTrigger className="w-40">
+                            <SelectValue placeholder="Difficulty" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {difficulties.map((difficulty) => (
+                              <SelectItem key={difficulty} value={difficulty}>
+                                {difficulty === "all" ? "All Levels" : difficulty}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+
+                        <Select value={daysFilter} onValueChange={setDaysFilter}>
+                          <SelectTrigger className="w-40">
+                            <SelectValue placeholder="Duration" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {days.map((day) => (
+                              <SelectItem key={day} value={day}>
+                                {day === "all" ? "Any Duration" : day}
+                                </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+
+                        <Select value={locationFilter} onValueChange={setLocationFilter}>
+                          <SelectTrigger className="w-40">
+                            <SelectValue placeholder="Location" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {locations.map((location) => (
+                              <SelectItem key={location} value={location}>
+                                {location === "all" ? "All Locations" : location}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      
+                      <Button 
+                        variant="outline" 
+                        onClick={clearFilters}
+                        className="ml-auto"
+                      >
+                        Clear Filters
+                      </Button>
+                    </div>
                   </div>
 
-                  {/* Tour Packages Grid */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {filteredItineraries.map((itinerary) => (
-                      <Card 
-                        key={itinerary.id} 
-                        className="group hover:shadow-2xl hover:scale-105 transition-all duration-500 overflow-hidden border-0 bg-white/90 backdrop-blur-md cursor-pointer"
-                        onClick={() => handlePackageClick(itinerary)}
+                  {/* Meghalaya Packages Section */}
+                  {meghalayaPackages.length > 0 && (
+                    <div className="mb-16">
+                      <div className="text-center mb-8">
+                        <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                          🏔️ Meghalaya - The Abode of Clouds
+                        </h3>
+                        <p className="text-gray-600">
+                          Experience the enchanting beauty of Meghalaya with our specialized packages
+                        </p>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {meghalayaPackages.map((itinerary) => (
+                          <PackageCard key={itinerary.id} itinerary={itinerary} />
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Other Northeast Packages */}
+                  {otherPackages.length > 0 && (
+                    <div>
+                      <div className="text-center mb-8">
+                        <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                          🌟 Other Northeast Destinations
+                        </h3>
+                        <p className="text-gray-600">
+                          Discover the diverse cultures and landscapes of Northeast India
+                        </p>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {otherPackages.map((itinerary) => (
+                          <PackageCard key={itinerary.id} itinerary={itinerary} />
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {filteredItineraries.length === 0 && (
+                    <div className="text-center py-12">
+                      <p className="text-gray-500 text-lg">No packages found matching your filters.</p>
+                      <Button 
+                        onClick={clearFilters}
+                        className="mt-4 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white"
                       >
-                        <div className="relative overflow-hidden">
-                          <div className="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center border-b">
-                            <div className="text-center">
-                              <Camera className="h-12 w-12 text-gray-400 mx-auto mb-2" />
-                              <p className="text-gray-500 text-sm">Package Image</p>
-                            </div>
-                          </div>
-                          <div className="absolute top-4 left-4">
-                            <Badge variant="secondary" className="bg-white/90 text-gray-800">
-                              {itinerary.category}
-                            </Badge>
-                          </div>
-                          <div className="absolute top-4 right-4 bg-black/70 text-white px-2 py-1 rounded text-sm font-bold">
-                            {itinerary.price}
-                          </div>
-                        </div>
-                        
-                        <CardHeader>
-                          <div className="flex justify-between items-start mb-2">
-                            <CardTitle className="text-xl group-hover:text-orange-600 transition-colors">
-                              {itinerary.title}
-                            </CardTitle>
-                            <div className="flex items-center gap-1 text-yellow-500">
-                              <Star className="h-4 w-4 fill-current" />
-                              <span className="text-sm font-medium text-gray-700">{itinerary.rating}</span>
-                            </div>
-                          </div>
-                          <CardDescription className="text-gray-600">
-                            {itinerary.description}
-                          </CardDescription>
-                        </CardHeader>
-                        
-                        <CardContent className="space-y-4">
-                          <div className="flex items-center justify-between text-sm text-gray-600">
-                            <div className="flex items-center gap-1">
-                              <Clock className="h-4 w-4" />
-                              {itinerary.duration}
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <Mountain className="h-4 w-4" />
-                              {itinerary.difficulty}
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <Calendar className="h-4 w-4" />
-                              {itinerary.bestSeason}
-                            </div>
-                          </div>
-                          
-                          <div className="space-y-2">
-                            <h4 className="font-semibold text-gray-900">Highlights:</h4>
-                            <div className="flex flex-wrap gap-1">
-                              {itinerary.highlights.map((highlight, index) => (
-                                <Badge key={index} variant="outline" className="text-xs">
-                                  {highlight}
-                                </Badge>
-                              ))}
-                            </div>
-                          </div>
-                          
-                          <div className="pt-4">
-                            <Button 
-                              className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handlePackageClick(itinerary);
-                              }}
-                            >
-                              <MapPin className="h-4 w-4 mr-2" />
-                              Book This Journey
-                            </Button>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
+                        Clear All Filters
+                      </Button>
+                    </div>
+                  )}
                 </div>
               )}
 
               {activeTab === 'international' && (
+                
                 <div className="max-w-4xl mx-auto">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {/* XTSY Asia */}
