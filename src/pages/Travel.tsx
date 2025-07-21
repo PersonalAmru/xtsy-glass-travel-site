@@ -9,13 +9,13 @@ import Footer from "@/components/Footer";
 import TourPackageCard from "@/components/TourPackageCard";
 import TourPackageModal from "@/components/TourPackageModal";
 import { AuthModal } from "@/components/AuthModal";
-// Import images lazily for better performance
-const meghalayaHero = "/src/assets/meghalaya-hero.jpg";
-const uttarakhandImage = "/src/assets/uttarakhand-himalayas.jpg";
-const sikkimImage = "/src/assets/sikkim-rhododendrons.jpg";
-const himachalImage = "/src/assets/himachal-valleys.jpg";
-const keralaImage = "/src/assets/kerala-backwaters.jpg";
-const tamilNaduImage = "/src/assets/tamil-nadu-temples.jpg";
+// Optimized placeholder images for better performance
+const meghalayaHero = "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=800&q=80";
+const uttarakhandImage = "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80";
+const sikkimImage = "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&q=80";
+const himachalImage = "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=800&q=80";
+const keralaImage = "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&q=80";
+const tamilNaduImage = "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=800&q=80";
 
 const Travel = () => {
   const location = useLocation();
