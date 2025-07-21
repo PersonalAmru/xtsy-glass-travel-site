@@ -1,12 +1,20 @@
 
 import React, { useState, useEffect } from "react";
 import { Button } from "./ui/button";
-import { Menu, X, User, Settings, Users, ShoppingCart } from "lucide-react";
+import { Menu, X, User, Settings, Users, ShoppingCart, ChevronDown } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { AuthModal } from "./AuthModal";
 import { UserMenu } from "./UserMenu";
 import { Link } from "react-router-dom";
 import TourCartModal from "./TourCartModal";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -84,9 +92,51 @@ const Header = () => {
                 Deals
               </Link>
               
+              {/* Travel Navigation Menu */}
+              <NavigationMenu>
+                <NavigationMenuList>
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger className="text-gray-700 hover:text-primary transition-colors">
+                      Travel
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <div className="grid gap-3 p-4 w-[300px]">
+                        <NavigationMenuLink asChild>
+                          <Link 
+                            to="/travel?tab=domestic" 
+                            className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                          >
+                            <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                              🇮🇳
+                            </div>
+                            <div>
+                              <div className="font-semibold text-gray-900">Domestic Travel</div>
+                              <div className="text-sm text-gray-600">Explore India with us</div>
+                            </div>
+                          </Link>
+                        </NavigationMenuLink>
+                        <NavigationMenuLink asChild>
+                          <Link 
+                            to="/travel?tab=international" 
+                            className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                          >
+                            <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                              🌏
+                            </div>
+                            <div>
+                              <div className="font-semibold text-gray-900">International Travel</div>
+                              <div className="text-sm text-gray-600">XTSY Asia & more</div>
+                            </div>
+                          </Link>
+                        </NavigationMenuLink>
+                      </div>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
+              
               {/* Authentication Section */}
               <div className="flex items-center space-x-4">
-
                 {loading ? (
                   <div className="w-8 h-8 animate-pulse bg-gray-200 rounded-full"></div>
                 ) : user ? (
@@ -154,6 +204,25 @@ const Header = () => {
                 >
                   Deals
                 </Link>
+                
+                {/* Mobile Travel Menu */}
+                <div className="pl-4 space-y-2">
+                  <div className="font-semibold text-gray-900">Travel</div>
+                  <Link 
+                    to="/travel?tab=domestic" 
+                    className="block text-gray-600 hover:text-primary transition-colors pl-4"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    🇮🇳 Domestic Travel
+                  </Link>
+                  <Link 
+                    to="/travel?tab=international" 
+                    className="block text-gray-600 hover:text-primary transition-colors pl-4"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    🌏 International Travel
+                  </Link>
+                </div>
                 
                 {user ? (
                   <div className="pt-4 border-t">
