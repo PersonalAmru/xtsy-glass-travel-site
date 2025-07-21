@@ -73,8 +73,8 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
             </div>
           </div>
           
-          {/* Guest Info */}
-          <div className="flex items-center justify-between text-lg text-gray-600">
+          {/* Guest Info - Hidden */}
+          <div className="hidden">
             <span className="flex items-center gap-2">
               <Users className="h-5 w-5" />
               Max {room.maxGuests} guest{room.maxGuests > 1 ? 's' : ''}
@@ -129,7 +129,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
             ))}
           </div>
           
-          <div className="flex items-center justify-between text-sm text-gray-600 mb-3">
+          <div className="hidden">
             <span className="flex items-center gap-1">
               <Users className="h-4 w-4" />
               Max {room.maxGuests} guest{room.maxGuests > 1 ? 's' : ''}

@@ -22,12 +22,12 @@ const ServicesSection = () => {
   const amenities = [
     { name: "Free WiFi", icon: Wifi, description: "High-speed internet throughout the property" },
     { name: "Parking", icon: Car, description: "Secure parking space for vehicles" },
-    { name: "Common Kitchen", icon: Utensils, description: "Fully equipped kitchen for guest use" },
+    
     { name: "Cafe/Restaurant", icon: Coffee, description: "On-site dining options available" },
     { name: "24/7 Security", icon: Shield, description: "Round-the-clock security services" },
-    { name: "24/7 Reception", icon: Clock, description: "Always available front desk support" },
+    { name: "Reception", icon: Clock, description: "Always available front desk support" },
     { name: "Tour Assistance", icon: Headphones, description: "Local tour booking and guidance" },
-    { name: "Power Backup", icon: Zap, description: "Uninterrupted power supply" },
+    
     { name: "Hot Water", icon: Bath, description: "24/7 hot water facility" },
     
     { name: "TV/Entertainment", icon: Tv, description: "Entertainment options in common areas" },

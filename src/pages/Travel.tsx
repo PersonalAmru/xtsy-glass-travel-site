@@ -18,14 +18,14 @@ const keralaImage = "https://images.unsplash.com/photo-1518495973542-4542c06a584
 const tamilNaduImage = "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=800&q=80";
 
 // Additional images for variety
-const waterfallImage = "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80";
-const mountainImage = "https://images.unsplash.com/photo-1464822759844-d150baec0494?w=800&q=80";
-const lakeImage = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80";
+const waterfallImage = "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80";
+const mountainImage = "https://images.unsplash.com/photo-1615729947596-a598e5de0ab3?w=800&q=80";
+const lakeImage = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&q=80";
 const templeImage = "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80";
-const forestImage = "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80";
-const cultureImage = "https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?w=800&q=80";
+const forestImage = "https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?w=800&q=80";
+const cultureImage = "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&q=80";
 const adventureImage = "https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&q=80";
-const hillStationImage = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80";
+const hillStationImage = "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=800&q=80";
 
 const Travel = () => {
   const location = useLocation();
