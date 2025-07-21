@@ -9,13 +9,23 @@ import Footer from "@/components/Footer";
 import TourPackageCard from "@/components/TourPackageCard";
 import TourPackageModal from "@/components/TourPackageModal";
 import { AuthModal } from "@/components/AuthModal";
-// Optimized placeholder images for better performance
+// Optimized images for different destinations and activities
 const meghalayaHero = "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=800&q=80";
 const uttarakhandImage = "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80";
 const sikkimImage = "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&q=80";
 const himachalImage = "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=800&q=80";
 const keralaImage = "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&q=80";
 const tamilNaduImage = "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=800&q=80";
+
+// Additional images for variety
+const waterfallImage = "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80";
+const mountainImage = "https://images.unsplash.com/photo-1464822759844-d150baec0494?w=800&q=80";
+const lakeImage = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80";
+const templeImage = "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80";
+const forestImage = "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80";
+const cultureImage = "https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?w=800&q=80";
+const adventureImage = "https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&q=80";
+const hillStationImage = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80";
 
 const Travel = () => {
   const location = useLocation();
@@ -69,7 +79,7 @@ const Travel = () => {
       duration: "3 Days",
       difficulty: "Easy",
       price: "₹8,999",
-      image: "",
+      image: cultureImage,
       rating: 4.6,
       category: "cultural",
       location: "Meghalaya",
@@ -83,7 +93,7 @@ const Travel = () => {
       duration: "4 Days",
       difficulty: "Challenging",
       price: "₹15,999",
-      image: "",
+      image: waterfallImage,
       rating: 4.9,
       category: "adventure",
       location: "Meghalaya",
@@ -97,7 +107,7 @@ const Travel = () => {
       duration: "2 Days",
       difficulty: "Easy",
       price: "₹6,999",
-      image: "",
+      image: lakeImage,
       rating: 4.7,
       category: "leisure",
       location: "Meghalaya",
@@ -111,7 +121,7 @@ const Travel = () => {
       duration: "2 Days", 
       difficulty: "Easy",
       price: "₹7,499",
-      image: "",
+      image: forestImage,
       rating: 4.5,
       category: "cultural",
       location: "Meghalaya",
@@ -141,7 +151,7 @@ const Travel = () => {
       duration: "4 Days",
       difficulty: "Moderate",
       price: "₹11,999",
-      image: "",
+      image: adventureImage,
       rating: 4.8,
       category: "adventure",
       location: "Uttarakhand",
@@ -155,7 +165,7 @@ const Travel = () => {
       duration: "6 Days",
       difficulty: "Easy",
       price: "₹18,999",
-      image: "",
+      image: lakeImage,
       rating: 4.7,
       category: "leisure",
       location: "Uttarakhand",
@@ -169,7 +179,7 @@ const Travel = () => {
       duration: "8 Days",
       difficulty: "Challenging",
       price: "₹24,999",
-      image: "",
+      image: mountainImage,
       rating: 4.9,
       category: "adventure",
       location: "Uttarakhand",
@@ -199,7 +209,7 @@ const Travel = () => {
       duration: "5 Days",
       difficulty: "Challenging",
       price: "₹19,999",
-      image: "",
+      image: mountainImage,
       rating: 4.9,
       category: "adventure",
       location: "Sikkim",
@@ -213,7 +223,7 @@ const Travel = () => {
       duration: "4 Days",
       difficulty: "Easy",
       price: "₹13,999",
-      image: "",
+      image: hillStationImage,
       rating: 4.6,
       category: "leisure",
       location: "Sikkim",
@@ -243,7 +253,7 @@ const Travel = () => {
       duration: "10 Days",
       difficulty: "Challenging",
       price: "₹32,999",
-      image: "",
+      image: mountainImage,
       rating: 4.9,
       category: "adventure",
       location: "Himachal Pradesh",
@@ -257,7 +267,7 @@ const Travel = () => {
       duration: "4 Days",
       difficulty: "Easy",
       price: "₹12,999",
-      image: "",
+      image: templeImage,
       rating: 4.6,
       category: "cultural",
       location: "Himachal Pradesh",
@@ -287,7 +297,7 @@ const Travel = () => {
       duration: "5 Days",
       difficulty: "Easy",
       price: "₹14,999",
-      image: "",
+      image: keralaImage,
       rating: 4.7,
       category: "cultural",
       location: "Kerala",
@@ -301,7 +311,7 @@ const Travel = () => {
       duration: "3 Days",
       difficulty: "Easy",
       price: "₹9,999",
-      image: "",
+      image: forestImage,
       rating: 4.5,
       category: "adventure",
       location: "Kerala",
@@ -331,7 +341,7 @@ const Travel = () => {
       duration: "6 Days",
       difficulty: "Easy",
       price: "₹15,999",
-      image: "",
+      image: hillStationImage,
       rating: 4.7,
       category: "leisure",
       location: "Tamil Nadu",
@@ -347,7 +357,7 @@ const Travel = () => {
       duration: "6 Days",
       difficulty: "Moderate",
       price: "₹18,999",
-      image: "",
+      image: cultureImage,
       rating: 4.7,
       category: "cultural",
       location: "Arunachal Pradesh",
@@ -361,7 +371,7 @@ const Travel = () => {
       duration: "5 Days",
       difficulty: "Easy",
       price: "₹16,999",
-      image: "",
+      image: cultureImage,
       rating: 4.8,
       category: "cultural",
       location: "Nagaland",
@@ -375,7 +385,7 @@ const Travel = () => {
       duration: "7 Days",
       difficulty: "Moderate",
       price: "₹19,999",
-      image: "",
+      image: keralaImage,
       rating: 4.6,
       category: "adventure",
       location: "Assam",
@@ -389,7 +399,7 @@ const Travel = () => {
       duration: "4 Days",
       difficulty: "Easy",
       price: "₹12,999",
-      image: "",
+      image: lakeImage,
       rating: 4.5,
       category: "adventure",
       location: "Manipur",
