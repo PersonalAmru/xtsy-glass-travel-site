@@ -10,9 +10,20 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-r from-orange-400 to-red-500 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-lg">X</span>
-              </div>
+              <img 
+                src="/src/assets/xtsy-logo.png" 
+                alt="XTSY Logo" 
+                className="w-10 h-10 object-contain"
+                onError={(e) => {
+                  // Fallback to gradient circle if image fails to load
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  const fallback = document.createElement('div');
+                  fallback.className = 'w-10 h-10 bg-gradient-to-r from-orange-400 to-red-500 rounded-full flex items-center justify-center';
+                  fallback.innerHTML = '<span class="text-white font-bold text-lg">X</span>';
+                  target.parentNode?.insertBefore(fallback, target);
+                }}
+              />
               <span className="text-xl font-bold">XTSY</span>
             </div>
             <p className="text-gray-400 text-sm">
@@ -66,12 +77,12 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Our Services</h3>
             <ul className="space-y-2 text-gray-400">
-              <li>XTSY Luxury Suites</li>
-              <li>XTSY Travellers Hostel</li>
-              <li>XTSY Economy Stays</li>
+              <li>Accommodation Booking</li>
               <li>Adventure Tours</li>
               <li>Group Bookings</li>
               <li>Corporate Events</li>
+              <li>Travel Planning</li>
+              <li>Local Experiences</li>
             </ul>
           </div>
 
@@ -79,17 +90,31 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
             <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <MapPin className="h-5 w-5 text-orange-400" />
-                <span className="text-gray-400 text-sm">Shillong, Meghalaya, India</span>
+              <div className="flex items-start space-x-3">
+                <MapPin className="h-5 w-5 text-orange-400 mt-0.5" />
+                <span className="text-gray-400 text-sm">
+                  XTSY Travellers Hostel, Diengiong Village,<br />
+                  Mawdiangdiang road, New Shillong Township,<br />
+                  Meghalaya - 793018
+                </span>
               </div>
-              <div className="flex items-center space-x-3">
-                <Phone className="h-5 w-5 text-orange-400" />
-                <span className="text-gray-400 text-sm">+91 XXXXX XXXXX</span>
+              <div className="space-y-2">
+                <div className="flex items-center space-x-3">
+                  <Phone className="h-5 w-5 text-orange-400" />
+                  <div className="text-gray-400 text-sm">
+                    <div>Bookings: +91 88373 17070</div>
+                    <div>Reception: +91 98633 17070</div>
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 text-orange-400" />
-                <span className="text-gray-400 text-sm">info@xtsy.com</span>
+              <div className="space-y-2">
+                <div className="flex items-center space-x-3">
+                  <Mail className="h-5 w-5 text-orange-400" />
+                  <div className="text-gray-400 text-sm">
+                    <div>booking@xtsy.one</div>
+                    <div>admin@xtsy.one</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

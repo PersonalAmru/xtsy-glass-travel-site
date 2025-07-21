@@ -29,7 +29,7 @@ const ServicesSection = () => {
     { name: "Tour Assistance", icon: Headphones, description: "Local tour booking and guidance" },
     { name: "Power Backup", icon: Zap, description: "Uninterrupted power supply" },
     { name: "Hot Water", icon: Bath, description: "24/7 hot water facility" },
-    { name: "Air Conditioning", icon: Wind, description: "Climate control in rooms" },
+    
     { name: "TV/Entertainment", icon: Tv, description: "Entertainment options in common areas" },
     { name: "Games Room", icon: Gamepad2, description: "Indoor games and recreational activities" },
     { name: "Lockers", icon: Shield, description: "Secure storage for valuables" },

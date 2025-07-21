@@ -49,8 +49,8 @@ const GroupBookingForm = ({ isOpen, onClose }: GroupBookingFormProps) => {
     }
   }, [formData.checkIn, formData.checkOut]);
 
-  const selectedRoomType = roomTypes.find(room => room.id === formData.roomType);
-  const totalPrice = selectedRoomType ? selectedRoomType.pricePerNight * nights : 0;
+  // Fixed pricing for group booking - entire property
+  const totalPrice = 15000 * nights;
   const gst = Math.round(totalPrice * 0.12);
   const finalTotal = totalPrice + gst;
 
@@ -61,37 +61,42 @@ const GroupBookingForm = ({ isOpen, onClose }: GroupBookingFormProps) => {
     }));
   };
 
-  const handleAddToCart = () => {
-    if (!selectedRoomType || !formData.checkIn || !formData.checkOut || nights <= 0) {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.checkIn || !formData.checkOut || nights <= 0) {
       alert("Please fill in all required fields including valid dates");
       return;
     }
     
-    const cartItem = {
-      id: `group-${Date.now()}`,
-      type: 'group',
-      roomType: selectedRoomType.name,
-      guests: formData.guests,
-      checkIn: formData.checkIn,
-      checkOut: formData.checkOut,
-      nights: nights,
-      pricePerNight: selectedRoomType.pricePerNight,
-      totalPrice: finalTotal,
-      groupName: formData.groupName,
-      contactPerson: formData.contactPerson
-    };
-    
-    // Store in localStorage or state management
-    const existingCart = JSON.parse(localStorage.getItem('bookingCart') || '[]');
-    existingCart.push(cartItem);
-    localStorage.setItem('bookingCart', JSON.stringify(existingCart));
-    
-    setShowCart(true);
-  };
+    // WhatsApp booking functionality
+    const bookingDetails = `
+🏨 *XTSY Group Booking Request*
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    handleAddToCart();
+👥 *Group Details:*
+Group Name: ${formData.groupName}
+Contact Person: ${formData.contactPerson}
+Email: ${formData.email}
+Phone: ${formData.phone}
+
+📅 *Booking Details:*
+Check-in: ${formData.checkIn}
+Check-out: ${formData.checkOut}
+Nights: ${nights}
+Total Guests: ${formData.guests}
+
+💰 *Price Summary:*
+Rate: ₹15,000 per night
+Subtotal: ₹${(15000 * nights).toLocaleString()}
+GST (12%): ₹${Math.round(15000 * nights * 0.12).toLocaleString()}
+Total: ₹${(15000 * nights * 1.12).toLocaleString()}
+
+📝 *Special Requests:*
+${formData.specialRequests || 'None'}
+    `.trim();
+
+    const whatsappUrl = `https://wa.me/918837317070?text=${encodeURIComponent(bookingDetails)}`;
+    window.open(whatsappUrl, '_blank');
+    onClose();
   };
 
   return (
@@ -195,24 +200,8 @@ const GroupBookingForm = ({ isOpen, onClose }: GroupBookingFormProps) => {
                   </div>
                 )}
 
-                {/* Room Selection */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="roomType">Room Type *</Label>
-                    <Select value={formData.roomType} onValueChange={(value) => handleInputChange('roomType', value)}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select room type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {roomTypes.map((room) => (
-                          <SelectItem key={room.id} value={room.id}>
-                            {room.name} - ₹{room.pricePerNight}/night
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-
+                {/* Guest Selection */}
+                <div className="grid grid-cols-1 gap-4">
                   <div>
                     <Label htmlFor="guests">Total Guests</Label>
                     <div className="flex items-center space-x-2">
@@ -246,7 +235,7 @@ const GroupBookingForm = ({ isOpen, onClose }: GroupBookingFormProps) => {
                 </div>
 
                 {/* Price Summary */}
-                {selectedRoomType && nights > 0 && (
+                {nights > 0 && (
                   <Card className="bg-gradient-to-r from-green-50 to-green-100 border-green-200">
                     <CardContent className="p-4">
                       <h3 className="font-bold text-green-800 mb-2 flex items-center">
@@ -255,16 +244,16 @@ const GroupBookingForm = ({ isOpen, onClose }: GroupBookingFormProps) => {
                       </h3>
                       <div className="space-y-1 text-sm">
                         <div className="flex justify-between">
-                          <span>{selectedRoomType.name} × {nights} nights</span>
-                          <span>₹{totalPrice.toLocaleString()}</span>
+                          <span>Group Booking × {nights} nights</span>
+                          <span>₹15,000 per night</span>
                         </div>
                         <div className="flex justify-between">
                           <span>GST (12%)</span>
-                          <span>₹{gst.toLocaleString()}</span>
+                          <span>₹{Math.round(15000 * nights * 0.12).toLocaleString()}</span>
                         </div>
                         <div className="flex justify-between font-bold text-green-800 pt-2 border-t border-green-200">
                           <span>Total Amount</span>
-                          <span>₹{finalTotal.toLocaleString()}</span>
+                          <span>₹{(15000 * nights * 1.12).toLocaleString()}</span>
                         </div>
                       </div>
                     </CardContent>
@@ -283,25 +272,15 @@ const GroupBookingForm = ({ isOpen, onClose }: GroupBookingFormProps) => {
                   />
                 </div>
 
-                {/* Submit Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={handleAddToCart}
-                    className="flex-1 border-green-300 text-green-600 hover:bg-green-50"
-                    disabled={!selectedRoomType || !formData.checkIn || !formData.checkOut || nights <= 0}
-                  >
-                    <ShoppingCart className="h-4 w-4 mr-2" />
-                    Add to Cart
-                  </Button>
+                {/* Submit Button */}
+                <div className="flex justify-center">
                   <Button 
                     type="submit"
-                    className="flex-1 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold shadow-lg"
-                    disabled={!selectedRoomType || !formData.checkIn || !formData.checkOut || nights <= 0}
+                    className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold shadow-lg"
+                    disabled={!formData.checkIn || !formData.checkOut || nights <= 0}
                   >
                     <Users className="h-4 w-4 mr-2" />
-                    Book Now - ₹{finalTotal.toLocaleString()}
+                    Book Now - ₹{nights > 0 ? (15000 * nights * 1.12).toLocaleString() : '0'}
                   </Button>
                 </div>
               </form>

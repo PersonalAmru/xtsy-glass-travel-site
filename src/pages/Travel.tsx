@@ -9,12 +9,13 @@ import Footer from "@/components/Footer";
 import TourPackageCard from "@/components/TourPackageCard";
 import TourPackageModal from "@/components/TourPackageModal";
 import { AuthModal } from "@/components/AuthModal";
-import meghalayaHero from "@/assets/meghalaya-hero.jpg";
-import uttarakhandImage from "@/assets/uttarakhand-himalayas.jpg";
-import sikkimImage from "@/assets/sikkim-rhododendrons.jpg";
-import himachalImage from "@/assets/himachal-valleys.jpg";
-import keralaImage from "@/assets/kerala-backwaters.jpg";
-import tamilNaduImage from "@/assets/tamil-nadu-temples.jpg";
+// Import images lazily for better performance
+const meghalayaHero = "/src/assets/meghalaya-hero.jpg";
+const uttarakhandImage = "/src/assets/uttarakhand-himalayas.jpg";
+const sikkimImage = "/src/assets/sikkim-rhododendrons.jpg";
+const himachalImage = "/src/assets/himachal-valleys.jpg";
+const keralaImage = "/src/assets/kerala-backwaters.jpg";
+const tamilNaduImage = "/src/assets/tamil-nadu-temples.jpg";
 
 const Travel = () => {
   const location = useLocation();

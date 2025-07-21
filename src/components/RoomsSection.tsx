@@ -76,7 +76,7 @@ const RoomsSection = () => {
       name: "King Double Room",
       price: 3200,
       description: "Spacious private room with king bed for two guests",
-      features: ["King bed", "Valley view", "Attached bath", "Wi-Fi", "Premium amenities", "Air conditioning", "Mini fridge"],
+      features: ["King bed", "Valley view", "Attached bath", "Wi-Fi", "Premium amenities", "Mini fridge"],
       maxGuests: 4,
       maxRooms: 2,
       image: ""
@@ -86,7 +86,7 @@ const RoomsSection = () => {
       name: "King Triple Room",
       price: 4200,
       description: "Luxurious private room accommodating up to three guests",
-      features: ["King bed + extra bed", "Panoramic view", "Attached bath", "Wi-Fi", "Premium amenities", "Air conditioning", "Mini fridge"],
+      features: ["King bed + extra bed", "Panoramic view", "Attached bath", "Wi-Fi", "Premium amenities", "Mini fridge"],
       maxGuests: 3,
       maxRooms: 1,
       image: ""
@@ -142,9 +142,6 @@ const RoomsSection = () => {
             </h2>
             <div className="w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
           </div>
-          <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 max-w-3xl mx-auto bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-lg">
-            Choose from our range of premium accommodations designed for every traveler's needs and budget!
-          </p>
         </div>
 
         {/* XTSY Luxury Section - Full Width */}

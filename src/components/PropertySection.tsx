@@ -63,9 +63,6 @@ const PropertySection = ({ title, description, rooms, propertyType, onSelectRoom
           </h3>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
         </div>
-        <p className="text-base sm:text-lg text-gray-700 max-w-2xl mx-auto bg-white/70 backdrop-blur-sm rounded-lg p-4 shadow-md">
-          {description}
-        </p>
       </div>
 
       {/* Luxury Room - Full Width Display */}
