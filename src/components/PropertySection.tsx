@@ -107,13 +107,8 @@ const PropertySection = ({ title, description, rooms, propertyType, onSelectRoom
             <ChevronRight className="h-4 w-4" />
           </Button>
 
-          {/* Rooms Scroll Container */}
-          <div 
-            ref={scrollRef}
-            className="flex gap-6 overflow-x-auto scrollbar-hide px-12 py-4"
-            onScroll={updateScrollButtons}
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
+          {/* Rooms Grid Container */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 max-w-7xl mx-auto">
             {rooms.map((room) => (
               <RoomCard
                 key={room.id}

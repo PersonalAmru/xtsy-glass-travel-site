@@ -94,9 +94,9 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
   }
 
   return (
-    <Card className="bg-white border border-gray-200 hover:border-orange-300 hover:shadow-lg transition-all duration-300 transform hover:scale-105 shadow-md flex-shrink-0 w-80 sm:w-72 lg:w-80 h-[500px] flex flex-col">
+    <Card className="bg-white border border-gray-200 hover:border-orange-300 hover:shadow-lg transition-all duration-300 shadow-md flex-shrink-0 w-80 h-[550px] flex flex-col">
       <CardHeader className="pb-3">
-        <div className="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg mb-4 flex items-center justify-center border border-gray-300">
+        <div className="w-full h-40 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg mb-4 flex items-center justify-center border border-gray-300">
           <div className="text-center">
             <TreePine className="h-8 w-8 text-gray-400 mx-auto mb-1" />
             <p className="text-gray-500 text-xs">Room Image</p>
@@ -104,32 +104,32 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
           </div>
         </div>
         <div className="flex justify-between items-start mb-2">
-          <CardTitle className="text-lg sm:text-xl font-bold text-gray-900 font-serif-sans leading-tight flex items-center gap-2">
+          <CardTitle className="text-lg font-bold text-gray-900 font-serif-sans leading-tight flex items-center gap-2">
             {room.name}
             <Badge className={`${badgeColor} text-white text-xs`}>
               {badgeText}
             </Badge>
           </CardTitle>
-          <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold whitespace-nowrap ml-2">
+          <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold text-sm whitespace-nowrap ml-2">
             ₹{room.price}/night
           </Badge>
         </div>
-        <CardDescription className="text-gray-600 text-sm font-seasons">
+        <CardDescription className="text-gray-600 text-sm font-seasons line-clamp-2">
           {room.description}
         </CardDescription>
       </CardHeader>
       
-      <CardContent className="space-y-4 flex-1 flex flex-col">
+      <CardContent className="space-y-3 flex-1 flex flex-col">
         <div className="flex-1">
-          <div className="flex flex-wrap gap-1 mb-4">
-            {room.features.map((feature, index) => (
+          <div className="flex flex-wrap gap-1 mb-3 max-h-16 overflow-hidden">
+            {room.features.slice(0, 6).map((feature, index) => (
               <Badge key={index} variant="outline" className="text-xs border-orange-300 text-orange-600 bg-orange-50">
                 {feature}
               </Badge>
             ))}
           </div>
           
-          <div className="flex items-center justify-between text-sm text-gray-600 mb-4">
+          <div className="flex items-center justify-between text-sm text-gray-600 mb-3">
             <span className="flex items-center gap-1">
               <Users className="h-4 w-4" />
               Max {room.maxGuests} guest{room.maxGuests > 1 ? 's' : ''}
@@ -140,7 +140,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
         <div className="mt-auto">
           <Button 
             onClick={onSelectRoom}
-            className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 font-seasons"
+            className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold shadow-lg hover:shadow-xl transition-all duration-300 font-seasons py-2"
           >
             {buttonText}
           </Button>
