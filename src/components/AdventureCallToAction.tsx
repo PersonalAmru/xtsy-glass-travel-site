@@ -1,21 +1,21 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const AdventureCallToAction = () => {
   const navigate = useNavigate();
+  const [showTravelModal, setShowTravelModal] = useState(false);
 
   const handlePlanAdventure = () => {
-    // Navigate to the travel itineraries page/section
-    navigate("/#travel-itineraries");
-    // Scroll to the travel itineraries section if on the same page
-    setTimeout(() => {
-      const element = document.getElementById("travel-itineraries");
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    }, 100);
+    setShowTravelModal(true);
+  };
+
+  const handleTravelChoice = (type: 'domestic' | 'international') => {
+    setShowTravelModal(false);
+    navigate(`/travel?tab=${type}`);
   };
 
   return (
@@ -56,6 +56,31 @@ const AdventureCallToAction = () => {
           </Card>
         </div>
       </div>
+
+      {/* Travel Choice Modal */}
+      <Dialog open={showTravelModal} onOpenChange={setShowTravelModal}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-center text-xl font-bold">Choose Your Adventure</DialogTitle>
+          </DialogHeader>
+          <div className="flex flex-col gap-4 p-4">
+            <Button 
+              onClick={() => handleTravelChoice('domestic')}
+              className="h-16 text-lg font-semibold bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white"
+            >
+              🇮🇳 Domestic Travel
+              <span className="block text-sm font-normal">Explore India</span>
+            </Button>
+            <Button 
+              onClick={() => handleTravelChoice('international')}
+              className="h-16 text-lg font-semibold bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white"
+            >
+              ✈️ International Travel
+              <span className="block text-sm font-normal">Explore the World</span>
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
