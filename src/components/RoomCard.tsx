@@ -27,7 +27,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
 
   if (isLuxury) {
     return (
-      <Card className="bg-white border border-gray-200 hover:border-orange-300 hover:shadow-lg transition-all duration-300 shadow-md w-full">
+      <Card className="bg-white border border-gray-200 hover:border-orange-300 hover:shadow-lg transition-all duration-300 shadow-md w-full min-h-[600px] flex flex-col">
         {/* Floating Images Display */}
         <div className="relative h-96 mb-6 rounded-lg overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
@@ -45,7 +45,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
         </div>
 
         {/* Bottom Section for Description */}
-        <CardHeader className="pb-3">
+        <CardHeader className="pb-3 flex-1">
           <div className="flex justify-between items-start mb-2">
             <CardTitle className="text-2xl font-bold text-gray-900 font-serif-sans leading-tight flex items-center gap-2">
               {room.name}
@@ -94,7 +94,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
   }
 
   return (
-    <Card className="bg-white border border-gray-200 hover:border-orange-300 hover:shadow-lg transition-all duration-300 transform hover:scale-105 shadow-md flex-shrink-0 w-80 sm:w-72 lg:w-80 h-full flex flex-col">
+    <Card className="bg-white border border-gray-200 hover:border-orange-300 hover:shadow-lg transition-all duration-300 transform hover:scale-105 shadow-md flex-shrink-0 w-80 sm:w-72 lg:w-80 h-[500px] flex flex-col">
       <CardHeader className="pb-3">
         <div className="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg mb-4 flex items-center justify-center border border-gray-300">
           <div className="text-center">
@@ -114,13 +114,13 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
             ₹{room.price}/night
           </Badge>
         </div>
-        <CardDescription className="text-gray-600 text-sm font-seasons flex-grow">
+        <CardDescription className="text-gray-600 text-sm font-seasons">
           {room.description}
         </CardDescription>
       </CardHeader>
       
-      <CardContent className="space-y-4 flex-grow flex flex-col">
-        <div className="flex-grow">
+      <CardContent className="space-y-4 flex-1 flex flex-col">
+        <div className="flex-1">
           <div className="flex flex-wrap gap-1 mb-4">
             {room.features.map((feature, index) => (
               <Badge key={index} variant="outline" className="text-xs border-orange-300 text-orange-600 bg-orange-50">

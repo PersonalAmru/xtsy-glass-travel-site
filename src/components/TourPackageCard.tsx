@@ -17,6 +17,7 @@ interface TourPackageCardProps {
     location: string;
     highlights: string[];
     bestSeason: string;
+    image?: string;
   };
   onPackageClick: () => void;
 }
@@ -24,16 +25,24 @@ interface TourPackageCardProps {
 const TourPackageCard = ({ tourPackage, onPackageClick }: TourPackageCardProps) => {
   return (
     <Card 
-      className="group hover:shadow-2xl hover:scale-105 transition-all duration-500 overflow-hidden border-0 bg-white/90 backdrop-blur-md cursor-pointer h-full flex flex-col"
+      className="group hover:shadow-2xl hover:scale-105 transition-all duration-500 overflow-hidden border-0 bg-white/90 backdrop-blur-md cursor-pointer h-[600px] flex flex-col"
       onClick={onPackageClick}
     >
       <div className="relative overflow-hidden">
-        <div className="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center border-b">
-          <div className="text-center">
-            <Camera className="h-12 w-12 text-gray-400 mx-auto mb-2" />
-            <p className="text-gray-500 text-sm">Package Image</p>
+        {tourPackage.image ? (
+          <img 
+            src={tourPackage.image} 
+            alt={tourPackage.title}
+            className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+          />
+        ) : (
+          <div className="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center border-b">
+            <div className="text-center">
+              <Camera className="h-12 w-12 text-gray-400 mx-auto mb-2" />
+              <p className="text-gray-500 text-sm">Package Image</p>
+            </div>
           </div>
-        </div>
+        )}
         <div className="absolute top-4 left-4">
           <Badge variant="secondary" className="bg-white/90 text-gray-800">
             {tourPackage.category}

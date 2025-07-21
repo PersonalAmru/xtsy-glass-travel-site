@@ -9,6 +9,12 @@ import Footer from "@/components/Footer";
 import TourPackageCard from "@/components/TourPackageCard";
 import TourPackageModal from "@/components/TourPackageModal";
 import { AuthModal } from "@/components/AuthModal";
+import meghalayaHero from "@/assets/meghalaya-hero.jpg";
+import uttarakhandImage from "@/assets/uttarakhand-himalayas.jpg";
+import sikkimImage from "@/assets/sikkim-rhododendrons.jpg";
+import himachalImage from "@/assets/himachal-valleys.jpg";
+import keralaImage from "@/assets/kerala-backwaters.jpg";
+import tamilNaduImage from "@/assets/tamil-nadu-temples.jpg";
 
 const Travel = () => {
   const location = useLocation();
@@ -48,7 +54,7 @@ const Travel = () => {
       duration: "5 Days",
       difficulty: "Moderate",
       price: "₹12,999",
-      image: "",
+      image: meghalayaHero,
       rating: 4.8,
       category: "adventure",
       location: "Meghalaya",
@@ -120,7 +126,7 @@ const Travel = () => {
       duration: "12 Days",
       difficulty: "Challenging",
       price: "₹35,999",
-      image: "",
+      image: uttarakhandImage,
       rating: 4.9,
       category: "cultural",
       location: "Uttarakhand",
@@ -178,7 +184,7 @@ const Travel = () => {
       duration: "7 Days",
       difficulty: "Moderate",
       price: "₹22,999",
-      image: "",
+      image: sikkimImage,
       rating: 4.8,
       category: "cultural",
       location: "Sikkim",
@@ -222,7 +228,7 @@ const Travel = () => {
       duration: "6 Days",
       difficulty: "Easy",
       price: "₹16,999",
-      image: "",
+      image: himachalImage,
       rating: 4.7,
       category: "leisure",
       location: "Himachal Pradesh",
@@ -266,7 +272,7 @@ const Travel = () => {
       duration: "8 Days",
       difficulty: "Easy",
       price: "₹25,999",
-      image: "",
+      image: keralaImage,
       rating: 4.8,
       category: "leisure",
       location: "Kerala",
@@ -310,7 +316,7 @@ const Travel = () => {
       duration: "7 Days",
       difficulty: "Easy",
       price: "₹17,999",
-      image: "",
+      image: tamilNaduImage,
       rating: 4.6,
       category: "cultural",
       location: "Tamil Nadu",

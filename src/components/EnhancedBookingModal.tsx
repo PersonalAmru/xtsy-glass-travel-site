@@ -40,6 +40,15 @@ interface BookingData {
 }
 
 const rooms: Room[] = [
+  // XTSY Luxury Rooms
+  {
+    id: "signature-270-glass-suite",
+    name: "Signature 270° Glass Suite",
+    price: 18000,
+    capacity: 2,
+    description: "Premium suite with 270-degree panoramic views and luxury amenities",
+    type: 'luxury'
+  },
   // XTSY Travellers Hostel Rooms
   {
     id: "4-bed-female-only-dorm",
@@ -73,30 +82,46 @@ const rooms: Room[] = [
     description: "Large mixed dormitory for budget travelers",
     type: 'hostel'
   },
-  // XTSY Luxury Rooms
   {
     id: "king-double-room",
     name: "King Double Room",
     price: 3200,
-    capacity: 2,
-    description: "Spacious room with king bed for two guests (2 rooms available)",
-    type: 'luxury'
+    capacity: 4,
+    description: "Spacious private room with king bed for two guests",
+    type: 'hostel'
   },
   {
     id: "king-triple-room",
     name: "King Triple Room",
     price: 4200,
     capacity: 3,
-    description: "Luxurious room accommodating up to three guests",
-    type: 'luxury'
+    description: "Luxurious private room accommodating up to three guests",
+    type: 'hostel'
+  },
+  // XTSY Economy Rooms
+  {
+    id: "6-bed-female-economy-dorm",
+    name: "Bed in 6 Bed Female Economy Dorm",
+    price: 550,
+    capacity: 6,
+    description: "Budget-friendly female dormitory with essential amenities",
+    type: 'economy'
   },
   {
-    id: "signature-270-glass-suite",
-    name: "Signature 270° Glass Suite",
-    price: 18000,
-    capacity: 2,
-    description: "Premium suite with 270-degree panoramic views and luxury amenities",
-    type: 'luxury'
+    id: "6-bed-mixed-economy-dorm",
+    name: "Bed in 6 Bed Mixed Economy Dorm",
+    price: 500,
+    capacity: 6,
+    description: "Affordable mixed dormitory perfect for budget travelers",
+    type: 'economy'
+  },
+  {
+    id: "8-bed-mixed-economy-dorm",
+    name: "Bed in 8 Bed Mixed Economy Dorm",
+    price: 450,
+    capacity: 8,
+    description: "Most economical option for backpackers and budget travelers",
+    type: 'economy'
   }
 ];
 
