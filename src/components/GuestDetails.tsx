@@ -93,11 +93,11 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
       return;
     }
 
-    // Directly redirect to WhatsApp without payment processing
+    // Format dates for WhatsApp message
     const formatDate = (dateStr: string) => {
       return new Date(dateStr).toLocaleDateString('en-IN', {
         day: '2-digit',
-        month: 'short',
+        month: 'long',
         year: 'numeric'
       });
     };
@@ -109,24 +109,58 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
       const nights = bookingData.nights;
       
       if (isDorm) {
-        return `${room.name}: ${selection.guests} beds × ${nights} nights = ₹${room.price * selection.guests * nights}`;
+        return `• ${room.name}: ${selection.guests} beds × ${nights} nights = ₹${room.price * selection.guests * nights}`;
       } else {
-        return `${room.name}: ${selection.rooms} rooms × ${nights} nights = ₹${room.price * selection.rooms * nights}`;
+        return `• ${room.name}: ${selection.rooms} rooms × ${nights} nights = ₹${room.price * selection.rooms * nights}`;
       }
     }).join('\n');
 
-    const discountText = bookingData.discountAmount > 0 
-      ? `\nDiscount (${bookingData.couponCode}): -₹${bookingData.discountAmount}`
-      : '';
-
     // Include emergency contact if provided
     const emergencyContactText = formData.emergencyContact && formData.emergencyRelation 
-      ? `\nEmergency Contact: ${formData.emergencyContact} (${formData.emergencyRelation})`
+      ? `\n• Emergency Contact: ${formData.emergencyContact} (${formData.emergencyRelation})`
       : formData.emergencyContact 
-        ? `\nEmergency Contact: ${formData.emergencyContact}`
+        ? `\n• Emergency Contact: ${formData.emergencyContact}`
         : '';
 
-    const whatsappMessage = `Booking Confirmation (Pending from Property) – XTSY Travellers Hostel & XTSY Luxury  |  Hi ${formData.guestName}, Thanks for choosing to stay at XTSY Travellers Hostel – where travel meets vibes. We've received your booking and payment. Here's your confirmed reservation: Guest Details: Name: ${formData.guestName} Email: ${formData.email} Phone: ${formData.whatsappNumber} Address: ${formData.address}, ${formData.city}, ${formData.state} - ${formData.pincode}${emergencyContactText}; Booking Details: Check-in: ${formatDate(bookingData.checkIn)} Check-out: ${formatDate(bookingData.checkOut)} Nights: ${bookingData.nights} Guests: ${bookingData.guests} Room Type: ${roomDetails} Total Stay: ₹${bookingData.totalAmount} ; Payment: Pending Confirmation GST (under ₹1000/night per bed): ₹${bookingData.gstAmount} Total Paid: ₹${bookingData.totalAmount}; Payment Screenshot: [Attached] If you need anything before check-in—airport pickup, itinerary planning, or café updates—just WhatsApp us - wa.me/918837317070 Can't wait to host you! Safe travels & pack light — Team XTSY`;
+    const whatsappMessage = `Booking Confirmation – Pending Property Approval
+XTSY Travellers Hostel & XTSY Luxury
+
+Hi ${formData.guestName},
+
+Thanks for choosing to vibe with us at XTSY Travellers Hostel – where travel meets tribe ✨
+We've received your booking request and payment. Your reservation is almost locked in—just pending final confirmation from our property team. Here's what we've got:
+
+👤 Guest Details
+• Name: ${formData.guestName}
+• Email: ${formData.email}
+• Phone: ${formData.whatsappNumber}
+• Address: ${formData.address}, ${formData.city}, ${formData.state} – ${formData.pincode}${emergencyContactText}
+
+🛏️ Booking Summary
+• Check-in: ${formatDate(bookingData.checkIn)}
+• Check-out: ${formatDate(bookingData.checkOut)}
+• Nights: ${bookingData.nights}
+• Guests: ${bookingData.guests}
+
+Room Selection:
+${roomDetails}
+Total Stay: ₹${bookingData.totalAmount}
+
+💳 Payment Info
+• GST: ₹${bookingData.gstAmount} ${bookingData.gstAmount === 0 ? '(Dorms under ₹1000/night exempt)' : ''}
+• Total Paid: ₹${bookingData.totalAmount}
+• Payment Screenshot: [Attached]
+• Status: Pending Final Confirmation
+
+If you need anything before your trip—airport pickup, itinerary help, or just the latest café playlist, hit us up on WhatsApp anytime:
+📲 wa.me/918837317070
+
+—
+
+We're hyped to host you! Stay tuned for confirmation.
+Until then—safe travels & pack light 🧳🌿
+
+— Team XTSY`;
 
     const whatsappURL = `https://wa.me/918837317070?text=${encodeURIComponent(whatsappMessage)}`;
     
@@ -143,7 +177,6 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
     localStorage.removeItem('xtsy_current_booking');
     onClose();
   };
-
 
   return (
     <>
