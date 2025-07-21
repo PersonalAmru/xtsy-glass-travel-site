@@ -9,15 +9,52 @@ import Footer from "@/components/Footer";
 import TourPackageCard from "@/components/TourPackageCard";
 import TourPackageModal from "@/components/TourPackageModal";
 import { AuthModal } from "@/components/AuthModal";
-// Optimized images for different destinations and activities
-const meghalayaHero = "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=800&q=80";
-const uttarakhandImage = "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80";
-const sikkimImage = "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&q=80";
-const himachalImage = "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=800&q=80";
-const keralaImage = "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&q=80";
-const tamilNaduImage = "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=800&q=80";
+// Relevant tourism images for each destination
+const meghalayaImages = [
+  "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&q=80", // Shillong hills
+  "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80", // Mountain landscape
+  "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80"  // Green mountains
+];
 
-// Additional images for variety
+const himachalImages = [
+  "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80", // Snow mountains
+  "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80", // Dharamshala landscape
+  "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&q=80"  // Pine trees in mountains
+];
+
+const keralImages = [
+  "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&q=80", // Kerala backwaters
+  "https://images.unsplash.com/photo-1548013146-72479768bada?w=800&q=80", // Coconut palms
+  "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&q=80"  // Traditional houseboat
+];
+
+const uttarakhandImages = [
+  "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80", // Himalayan peaks
+  "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80", // Mountain summit
+  "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=800&q=80"  // Waterfall
+];
+
+const sikkimImages = [
+  "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80", // Sikkim mountains
+  "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80", // Rhododendron landscape
+  "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80"  // Valley views
+];
+
+const tamilNaduImages = [
+  "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80", // Temple architecture
+  "https://images.unsplash.com/photo-1466442929976-97f336a657be?w=800&q=80", // Traditional temple
+  "https://images.unsplash.com/photo-1582549346109-6c1b2b41ba00?w=800&q=80"  // South Indian culture
+];
+
+// Individual destination images
+const meghalayaHero = meghalayaImages[0];
+const uttarakhandImage = uttarakhandImages[0];
+const sikkimImage = sikkimImages[0];
+const himachalImage = himachalImages[0];
+const keralaImage = keralImages[0];
+const tamilNaduImage = tamilNaduImages[0];
+
+// Additional categorized images
 const waterfallImage = "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80";
 const mountainImage = "https://images.unsplash.com/photo-1615729947596-a598e5de0ab3?w=800&q=80";
 const lakeImage = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&q=80";
@@ -26,6 +63,11 @@ const forestImage = "https://images.unsplash.com/photo-1523712999610-f77fbcfc384
 const cultureImage = "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&q=80";
 const adventureImage = "https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&q=80";
 const hillStationImage = "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=800&q=80";
+
+// International travel images
+const internationalTravelImage = "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80"; // World travel
+const asiaImage = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"; // Asian landscapes
+const merchandiseImage = "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80"; // Travel gear
 
 const Travel = () => {
   const location = useLocation();
@@ -65,7 +107,7 @@ const Travel = () => {
       duration: "5 Days",
       difficulty: "Moderate",
       price: "₹12,999",
-      image: meghalayaHero,
+      images: meghalayaImages,
       rating: 4.8,
       category: "adventure",
       location: "Meghalaya",
@@ -79,7 +121,7 @@ const Travel = () => {
       duration: "3 Days",
       difficulty: "Easy",
       price: "₹8,999",
-      image: cultureImage,
+      images: [cultureImage, meghalayaImages[1], meghalayaImages[2]],
       rating: 4.6,
       category: "cultural",
       location: "Meghalaya",
@@ -93,7 +135,7 @@ const Travel = () => {
       duration: "4 Days",
       difficulty: "Challenging",
       price: "₹15,999",
-      image: waterfallImage,
+      images: [waterfallImage, "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80", "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80"],
       rating: 4.9,
       category: "adventure",
       location: "Meghalaya",
@@ -107,7 +149,7 @@ const Travel = () => {
       duration: "2 Days",
       difficulty: "Easy",
       price: "₹6,999",
-      image: lakeImage,
+      images: [lakeImage, "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=800&q=80", "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80"],
       rating: 4.7,
       category: "leisure",
       location: "Meghalaya",
@@ -121,7 +163,7 @@ const Travel = () => {
       duration: "2 Days", 
       difficulty: "Easy",
       price: "₹7,499",
-      image: forestImage,
+      images: [forestImage, meghalayaImages[0], meghalayaImages[2]],
       rating: 4.5,
       category: "cultural",
       location: "Meghalaya",
@@ -137,7 +179,7 @@ const Travel = () => {
       duration: "12 Days",
       difficulty: "Challenging",
       price: "₹35,999",
-      image: uttarakhandImage,
+      images: uttarakhandImages,
       rating: 4.9,
       category: "cultural",
       location: "Uttarakhand",
@@ -151,7 +193,7 @@ const Travel = () => {
       duration: "4 Days",
       difficulty: "Moderate",
       price: "₹11,999",
-      image: adventureImage,
+      images: [adventureImage, uttarakhandImages[1], uttarakhandImages[2]],
       rating: 4.8,
       category: "adventure",
       location: "Uttarakhand",
@@ -165,7 +207,7 @@ const Travel = () => {
       duration: "6 Days",
       difficulty: "Easy",
       price: "₹18,999",
-      image: lakeImage,
+      images: [lakeImage, "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80", "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80"],
       rating: 4.7,
       category: "leisure",
       location: "Uttarakhand",
@@ -179,7 +221,7 @@ const Travel = () => {
       duration: "8 Days",
       difficulty: "Challenging",
       price: "₹24,999",
-      image: mountainImage,
+      images: [mountainImage, "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80", "https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?w=800&q=80"],
       rating: 4.9,
       category: "adventure",
       location: "Uttarakhand",
@@ -195,7 +237,7 @@ const Travel = () => {
       duration: "7 Days",
       difficulty: "Moderate",
       price: "₹22,999",
-      image: sikkimImage,
+      images: sikkimImages,
       rating: 4.8,
       category: "cultural",
       location: "Sikkim",
@@ -209,7 +251,7 @@ const Travel = () => {
       duration: "5 Days",
       difficulty: "Challenging",
       price: "₹19,999",
-      image: mountainImage,
+      images: [mountainImage, sikkimImages[1], sikkimImages[2]],
       rating: 4.9,
       category: "adventure",
       location: "Sikkim",
@@ -223,7 +265,7 @@ const Travel = () => {
       duration: "4 Days",
       difficulty: "Easy",
       price: "₹13,999",
-      image: hillStationImage,
+      images: [hillStationImage, sikkimImages[0], sikkimImages[1]],
       rating: 4.6,
       category: "leisure",
       location: "Sikkim",
@@ -239,7 +281,7 @@ const Travel = () => {
       duration: "6 Days",
       difficulty: "Easy",
       price: "₹16,999",
-      image: himachalImage,
+      images: himachalImages,
       rating: 4.7,
       category: "leisure",
       location: "Himachal Pradesh",
@@ -253,7 +295,7 @@ const Travel = () => {
       duration: "10 Days",
       difficulty: "Challenging",
       price: "₹32,999",
-      image: mountainImage,
+      images: [mountainImage, himachalImages[0], himachalImages[2]],
       rating: 4.9,
       category: "adventure",
       location: "Himachal Pradesh",
@@ -267,7 +309,7 @@ const Travel = () => {
       duration: "4 Days",
       difficulty: "Easy",
       price: "₹12,999",
-      image: templeImage,
+      images: ["https://images.unsplash.com/photo-1597149960113-5c8e3f9ad11a?w=800&q=80", himachalImages[1], himachalImages[2]],
       rating: 4.6,
       category: "cultural",
       location: "Himachal Pradesh",
@@ -283,7 +325,7 @@ const Travel = () => {
       duration: "8 Days",
       difficulty: "Easy",
       price: "₹25,999",
-      image: keralaImage,
+      images: keralImages,
       rating: 4.8,
       category: "leisure",
       location: "Kerala",
@@ -297,7 +339,7 @@ const Travel = () => {
       duration: "5 Days",
       difficulty: "Easy",
       price: "₹14,999",
-      image: keralaImage,
+      images: ["https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&q=80", keralImages[1], keralImages[2]],
       rating: 4.7,
       category: "cultural",
       location: "Kerala",
@@ -311,7 +353,7 @@ const Travel = () => {
       duration: "3 Days",
       difficulty: "Easy",
       price: "₹9,999",
-      image: forestImage,
+      images: [forestImage, keralImages[0], keralImages[1]],
       rating: 4.5,
       category: "adventure",
       location: "Kerala",
@@ -327,7 +369,7 @@ const Travel = () => {
       duration: "7 Days",
       difficulty: "Easy",
       price: "₹17,999",
-      image: tamilNaduImage,
+      images: tamilNaduImages,
       rating: 4.6,
       category: "cultural",
       location: "Tamil Nadu",
@@ -341,7 +383,7 @@ const Travel = () => {
       duration: "6 Days",
       difficulty: "Easy",
       price: "₹15,999",
-      image: hillStationImage,
+      images: ["https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&q=80", hillStationImage, "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&q=80"],
       rating: 4.7,
       category: "leisure",
       location: "Tamil Nadu",
@@ -357,7 +399,7 @@ const Travel = () => {
       duration: "6 Days",
       difficulty: "Moderate",
       price: "₹18,999",
-      image: cultureImage,
+      images: [cultureImage, "https://images.unsplash.com/photo-1615729947596-a598e5de0ab3?w=800&q=80", "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80"],
       rating: 4.7,
       category: "cultural",
       location: "Arunachal Pradesh",
@@ -371,7 +413,7 @@ const Travel = () => {
       duration: "5 Days",
       difficulty: "Easy",
       price: "₹16,999",
-      image: cultureImage,
+      images: [cultureImage, "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&q=80", "https://images.unsplash.com/photo-1582549346109-6c1b2b41ba00?w=800&q=80"],
       rating: 4.8,
       category: "cultural",
       location: "Nagaland",
@@ -385,7 +427,7 @@ const Travel = () => {
       duration: "7 Days",
       difficulty: "Moderate",
       price: "₹19,999",
-      image: keralaImage,
+      images: ["https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&q=80", forestImage, keralImages[1]],
       rating: 4.6,
       category: "adventure",
       location: "Assam",
@@ -399,7 +441,7 @@ const Travel = () => {
       duration: "4 Days",
       difficulty: "Easy",
       price: "₹12,999",
-      image: lakeImage,
+      images: [lakeImage, "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=800&q=80", "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&q=80"],
       rating: 4.5,
       category: "adventure",
       location: "Manipur",
@@ -640,18 +682,23 @@ const Travel = () => {
               {activeTab === 'international' && (
                 <div className="max-w-4xl mx-auto">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {/* XTSY Asia */}
+                     {/* XTSY Asia */}
                     <Card className="group hover:shadow-2xl hover:scale-105 transition-all duration-500 overflow-hidden border-0 bg-white/90 backdrop-blur-md">
                       <div className="relative overflow-hidden">
-                        <div className="w-full h-64 bg-gradient-to-br from-blue-100 to-purple-200 flex items-center justify-center">
-                          <div className="text-center">
-                            <Globe className="h-16 w-16 text-blue-500 mx-auto mb-4" />
-                            <h3 className="text-2xl font-bold text-gray-800 mb-2">XTSY Asia</h3>
-                            <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
-                              Launching Soon
-                            </div>
-                          </div>
-                        </div>
+                         <img 
+                           src={asiaImage}
+                           alt="XTSY Asia"
+                           className="w-full h-64 object-cover"
+                         />
+                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-center justify-center">
+                           <div className="text-center">
+                             <Globe className="h-16 w-16 text-white mx-auto mb-4" />
+                             <h3 className="text-2xl font-bold text-white mb-2">XTSY Asia</h3>
+                             <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
+                               Launching Soon
+                             </div>
+                           </div>
+                         </div>
                       </div>
                       <CardContent className="p-6">
                         <h4 className="text-xl font-semibold mb-3 text-gray-900">Expanding Horizons</h4>
@@ -670,15 +717,20 @@ const Travel = () => {
                     {/* XTSY Merchandise */}
                     <Card className="group hover:shadow-2xl hover:scale-105 transition-all duration-500 overflow-hidden border-0 bg-white/90 backdrop-blur-md">
                       <div className="relative overflow-hidden">
-                        <div className="w-full h-64 bg-gradient-to-br from-green-100 to-teal-200 flex items-center justify-center">
-                          <div className="text-center">
-                            <Package className="h-16 w-16 text-green-500 mx-auto mb-4" />
-                            <h3 className="text-2xl font-bold text-gray-800 mb-2">XTSY Merchandise</h3>
-                            <div className="bg-gradient-to-r from-green-500 to-teal-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
-                              Coming Soon
-                            </div>
-                          </div>
-                        </div>
+                         <img 
+                           src={merchandiseImage}
+                           alt="XTSY Merchandise"
+                           className="w-full h-64 object-cover"
+                         />
+                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-center justify-center">
+                           <div className="text-center">
+                             <Package className="h-16 w-16 text-white mx-auto mb-4" />
+                             <h3 className="text-2xl font-bold text-white mb-2">XTSY Merchandise</h3>
+                             <div className="bg-gradient-to-r from-green-500 to-teal-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
+                               Coming Soon
+                             </div>
+                           </div>
+                         </div>
                       </div>
                       <CardContent className="p-6">
                         <h4 className="text-xl font-semibold mb-3 text-gray-900">Travel in Style</h4>

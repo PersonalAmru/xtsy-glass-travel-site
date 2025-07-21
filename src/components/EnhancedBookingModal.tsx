@@ -40,7 +40,7 @@ interface BookingData {
 }
 
 const rooms: Room[] = [
-  // XTSY Luxury Rooms
+  // XTSY Luxury Rooms (First priority)
   {
     id: "signature-270-glass-suite",
     name: "Signature 270° Glass Suite",
@@ -49,7 +49,7 @@ const rooms: Room[] = [
     description: "Premium suite with 270-degree panoramic views and luxury amenities",
     type: 'luxury'
   },
-  // XTSY Travellers Hostel Rooms
+  // XTSY Travellers Hostel Rooms (Second priority)
   {
     id: "4-bed-female-only-dorm",
     name: "Bed in 4 Bed Female Only Dorm",
@@ -98,7 +98,7 @@ const rooms: Room[] = [
     description: "Luxurious private room accommodating up to three guests",
     type: 'hostel'
   },
-  // XTSY Economy Rooms
+  // XTSY Economy Stays (Third priority)
   {
     id: "6-bed-female-economy-dorm",
     name: "Bed in 6 Bed Female Economy Dorm",

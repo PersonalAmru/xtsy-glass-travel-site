@@ -1,6 +1,7 @@
 
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, Instagram, Facebook, Twitter, Home, Info, Image, Tag, Plane } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Footer = () => {
   return (
@@ -9,22 +10,21 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center justify-center">
               <img 
                 src="/lovable-uploads/f60939c8-8351-4f63-80df-a4c6e37e539a.png" 
                 alt="XTSY Logo" 
-                className="w-10 h-10 object-contain"
+                className="w-16 h-16 object-contain"
                 onError={(e) => {
                   // Fallback to gradient circle if image fails to load
                   const target = e.target as HTMLImageElement;
                   target.style.display = 'none';
                   const fallback = document.createElement('div');
-                  fallback.className = 'w-10 h-10 bg-gradient-to-r from-orange-400 to-red-500 rounded-full flex items-center justify-center';
-                  fallback.innerHTML = '<span class="text-white font-bold text-lg">X</span>';
+                  fallback.className = 'w-16 h-16 bg-gradient-to-r from-orange-400 to-red-500 rounded-full flex items-center justify-center';
+                  fallback.innerHTML = '<span class="text-white font-bold text-2xl">X</span>';
                   target.parentNode?.insertBefore(fallback, target);
                 }}
               />
-              <span className="text-xl font-bold">XTSY</span>
             </div>
             <p className="text-gray-400 text-sm">
               Experience the authentic vibe of Shillong with premium accommodations and unforgettable adventures.
@@ -112,8 +112,15 @@ const Footer = () => {
                   <Mail className="h-5 w-5 text-orange-400" />
                   <div className="text-gray-400 text-sm">
                     <div>booking@xtsy.one</div>
-                    <div>admin@xtsy.one</div>
                   </div>
+                </div>
+                <div className="mt-3">
+                  <Button 
+                    onClick={() => window.open('https://maps.app.goo.gl/Apj4xBxDWv8hBbSm6', '_blank')}
+                    className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white text-sm px-4 py-2"
+                  >
+                    Get Directions
+                  </Button>
                 </div>
               </div>
             </div>

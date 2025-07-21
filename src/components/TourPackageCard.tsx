@@ -18,6 +18,7 @@ interface TourPackageCardProps {
     highlights: string[];
     bestSeason: string;
     image?: string;
+    images?: string[];
   };
   onPackageClick: () => void;
 }
@@ -29,9 +30,9 @@ const TourPackageCard = ({ tourPackage, onPackageClick }: TourPackageCardProps) 
       onClick={onPackageClick}
     >
       <div className="relative overflow-hidden">
-        {tourPackage.image ? (
+        {(tourPackage.images?.length || tourPackage.image) ? (
           <img 
-            src={tourPackage.image} 
+            src={tourPackage.images?.[0] || tourPackage.image} 
             alt={tourPackage.title}
             className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
           />
@@ -41,6 +42,11 @@ const TourPackageCard = ({ tourPackage, onPackageClick }: TourPackageCardProps) 
               <Camera className="h-12 w-12 text-gray-400 mx-auto mb-2" />
               <p className="text-gray-500 text-sm">Package Image</p>
             </div>
+          </div>
+        )}
+        {tourPackage.images && tourPackage.images.length > 1 && (
+          <div className="absolute top-4 left-4 bg-white/90 text-gray-800 px-2 py-1 rounded text-xs font-semibold">
+            +{tourPackage.images.length - 1} more
           </div>
         )}
         <div className="absolute top-4 left-4">
