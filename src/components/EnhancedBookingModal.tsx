@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -968,7 +969,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                                     : selection.guests
                                   }
                                 </div>
-                                <div className="text-xs font-medium text-orange-600 mt-1">
+                                <div className="text-xs font-medium text-black mt-1">
                                   Subtotal: ₹{isRoomBased ? roomPrice * selection.rooms * nights : roomPrice * selection.guests * nights}
                                 </div>
                               </div>
@@ -1006,7 +1007,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                               >
                                 <Minus className="h-3 w-3" />
                               </Button>
-                              <span className="w-8 text-center text-sm">{addOnServices.breakfast}</span>
+                              <span className="w-8 text-center text-sm text-black">{addOnServices.breakfast}</span>
                               <Button
                                 variant="outline"
                                 size="sm"
@@ -1040,7 +1041,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                               >
                                 <Minus className="h-3 w-3" />
                               </Button>
-                              <span className="w-8 text-center text-sm">{addOnServices.dinnerVeg}</span>
+                              <span className="w-8 text-center text-sm text-black">{addOnServices.dinnerVeg}</span>
                               <Button
                                 variant="outline"
                                 size="sm"
@@ -1074,7 +1075,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                               >
                                 <Minus className="h-3 w-3" />
                               </Button>
-                              <span className="w-8 text-center text-sm">{addOnServices.dinnerNonVeg}</span>
+                              <span className="w-8 text-center text-sm text-black">{addOnServices.dinnerNonVeg}</span>
                               <Button
                                 variant="outline"
                                 size="sm"
@@ -1098,7 +1099,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                               <Car className="h-4 w-4 text-blue-500" />
                               <div>
                                 <span className="text-sm text-black block">Transportation Services</span>
-                                <span className="text-xs text-gray-600">Price match guarantee • Best rates</span>
+                                <span className="text-xs text-black">Price match guarantee • Best rates</span>
                               </div>
                             </div>
                             <Checkbox
@@ -1114,7 +1115,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                               <MapPin className="h-4 w-4 text-purple-500" />
                               <div>
                                 <span className="text-sm text-black block">Itinerary Planning & Support</span>
-                                <span className="text-xs text-gray-600">
+                                <span className="text-xs text-black">
                                   {addOnServices.transportation ? "Free with transportation" : "5% convenience charges"}
                                 </span>
                               </div>
@@ -1188,7 +1189,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                                   Apply
                                 </Button>
                               </div>
-                              <p className="text-xs text-gray-600">
+                              <p className="text-xs text-black">
                                 XTSY-DEAL: 15% off for bookings with minimum 4 guests and 2 nights
                               </p>
                             </div>
@@ -1227,10 +1228,10 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                         <Bed className="h-8 w-8 text-gray-400" />
                       </div>
                       <h4 className="text-lg font-medium text-black mb-2">No rooms selected</h4>
-                      <p className="text-sm text-gray-600 mb-4">
+                      <p className="text-sm text-black mb-4">
                         Please select rooms or beds from the available options to see your booking summary.
                       </p>
-                      <div className="text-xs text-gray-500">
+                      <div className="text-xs text-black">
                         Select dates, choose rooms, and see pricing details here.
                       </div>
                     </div>
