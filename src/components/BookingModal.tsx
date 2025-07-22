@@ -231,22 +231,26 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
                   {/* Quantity and Guest Selection */}
                   <div className="px-4 pb-4 space-y-4">
                     <div className="flex items-center justify-between">
-                      <span className="font-medium">Number of beds:</span>
+                      <span className="font-medium text-gray-900">
+                        {room.type === 'luxury' ? 'Number of rooms:' : 'Number of beds:'}
+                      </span>
                       <div className="flex items-center gap-3">
                         <Button
                           variant="outline"
                           size="sm"
                           onClick={() => setBookingData(prev => ({ ...prev, quantity: Math.max(1, prev.quantity - 1) }))}
                           disabled={bookingData.quantity <= 1}
+                          className="text-gray-900"
                         >
                           <Minus className="h-4 w-4" />
                         </Button>
-                        <span className="w-8 text-center">{bookingData.quantity}</span>
+                        <span className="w-8 text-center text-gray-900 font-semibold">{bookingData.quantity}</span>
                         <Button
                           variant="outline"
                           size="sm"
                           onClick={() => setBookingData(prev => ({ ...prev, quantity: prev.quantity + 1 }))}
                           disabled={bookingData.quantity >= room.capacity}
+                          className="text-gray-900"
                         >
                           <Plus className="h-4 w-4" />
                         </Button>
@@ -254,22 +258,24 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <span className="font-medium">Number of guests:</span>
+                      <span className="font-medium text-gray-900">Number of guests:</span>
                       <div className="flex items-center gap-3">
                         <Button
                           variant="outline"
                           size="sm"
                           onClick={() => setBookingData(prev => ({ ...prev, guests: Math.max(1, prev.guests - 1) }))}
                           disabled={bookingData.guests <= 1}
+                          className="text-gray-900"
                         >
                           <Minus className="h-4 w-4" />
                         </Button>
-                        <span className="w-8 text-center">{bookingData.guests}</span>
+                        <span className="w-8 text-center text-gray-900 font-semibold">{bookingData.guests}</span>
                         <Button
                           variant="outline"
                           size="sm"
                           onClick={() => setBookingData(prev => ({ ...prev, guests: prev.guests + 1 }))}
                           disabled={bookingData.guests >= room.capacity * bookingData.quantity}
+                          className="text-gray-900"
                         >
                           <Plus className="h-4 w-4" />
                         </Button>
@@ -283,21 +289,23 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
                   <h3 className="font-semibold mb-3">Select Dates</h3>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium mb-1">Check-in</label>
+                      <label className="block text-sm font-medium mb-1 text-gray-900">Check-in</label>
                       <Input
                         type="date"
                         value={bookingData.checkIn}
                         onChange={(e) => handleDateChange('checkIn', e.target.value)}
                         min={new Date().toISOString().split('T')[0]}
+                        className="text-gray-900"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium mb-1">Check-out</label>
+                      <label className="block text-sm font-medium mb-1 text-gray-900">Check-out</label>
                       <Input
                         type="date"
                         value={bookingData.checkOut}
                         onChange={(e) => handleDateChange('checkOut', e.target.value)}
                         min={bookingData.checkIn || new Date().toISOString().split('T')[0]}
+                        className="text-gray-900"
                       />
                     </div>
                   </div>
@@ -313,33 +321,36 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
                       {bookingData.nights} nights starting from {bookingData.checkIn ? formatDate(bookingData.checkIn) : 'Select date'}
                     </div>
                     
-                    <div className="space-y-2 mb-4">
-                      <div className="flex justify-between">
-                        <span>{room.name}</span>
-                        <span>₹{totalAmount}</span>
-                      </div>
-                      <div className="flex justify-between text-sm text-gray-600">
-                        <span>₹{room.price} x {bookingData.quantity} bed x {bookingData.nights} nights</span>
-                        <span>Remove</span>
-                      </div>
+                  <div className="space-y-2 mb-4">
+                    <div className="flex justify-between">
+                      <span className="text-gray-900 font-medium">{room.name}</span>
+                      <span className="text-gray-900 font-semibold">₹{totalAmount}</span>
                     </div>
+                    <div className="flex justify-between text-sm text-gray-700">
+                      {room.type === 'luxury' ? (
+                        <span>₹{room.price} x {bookingData.quantity} room x {bookingData.nights} nights</span>
+                      ) : (
+                        <span>₹{room.price} x {bookingData.quantity} bed x {bookingData.nights} nights</span>
+                      )}
+                    </div>
+                  </div>
                     
                     <Separator className="my-4" />
                     
                     <div className="space-y-2">
                       <div className="flex justify-between">
-                        <span>Subtotal</span>
-                        <span>₹{totalAmount}</span>
+                        <span className="text-gray-700">Subtotal</span>
+                        <span className="text-gray-900 font-medium">₹{totalAmount}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span>GST</span>
-                        <span>₹{gstAmount}</span>
+                        <span className="text-gray-700">GST (18%)</span>
+                        <span className="text-gray-900 font-medium">₹{gstAmount}</span>
                       </div>
-                      <div className="flex justify-between font-semibold">
-                        <span>Grand Total (tax incl.)</span>
-                        <span>₹{grandTotal}</span>
+                      <div className="flex justify-between font-semibold text-lg">
+                        <span className="text-gray-900">Grand Total</span>
+                        <span className="text-gray-900">₹{grandTotal}</span>
                       </div>
-                      <div className="flex justify-between text-green-600 font-semibold">
+                      <div className="flex justify-between text-green-700 font-semibold">
                         <span>Payable Now (21%)</span>
                         <span>₹{Math.round(grandTotal * 0.21)}</span>
                       </div>

@@ -205,29 +205,29 @@ Until then—safe travels & pack light 🧳🌿
                   <div className="flex items-center gap-2">
                     <Calendar className="h-4 w-4 text-orange-500" />
                     <div>
-                      <div className="text-gray-600">Check-in</div>
-                      <div className="font-medium">{new Date(bookingData.checkIn).toLocaleDateString()}</div>
+                      <div className="text-gray-700 font-medium">Check-in</div>
+                      <div className="font-semibold text-gray-900">{new Date(bookingData.checkIn).toLocaleDateString()}</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
                     <Calendar className="h-4 w-4 text-orange-500" />
                     <div>
-                      <div className="text-gray-600">Check-out</div>
-                      <div className="font-medium">{new Date(bookingData.checkOut).toLocaleDateString()}</div>
+                      <div className="text-gray-700 font-medium">Check-out</div>
+                      <div className="font-semibold text-gray-900">{new Date(bookingData.checkOut).toLocaleDateString()}</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
                     <Users className="h-4 w-4 text-orange-500" />
                     <div>
-                      <div className="text-gray-600">Guests</div>
-                      <div className="font-medium">{bookingData.guests}</div>
+                      <div className="text-gray-700 font-medium">Guests</div>
+                      <div className="font-semibold text-gray-900">{bookingData.guests}</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
                     <Calendar className="h-4 w-4 text-orange-500" />
                     <div>
-                      <div className="text-gray-600">Nights</div>
-                      <div className="font-medium">{bookingData.nights}</div>
+                      <div className="text-gray-700 font-medium">Nights</div>
+                      <div className="font-semibold text-gray-900">{bookingData.nights}</div>
                     </div>
                   </div>
                 </div>
@@ -238,7 +238,7 @@ Until then—safe travels & pack light 🧳🌿
                 <div className="text-sm font-medium text-blue-800">
                   💰 Total Amount: ₹{bookingData.totalAmount}
                 </div>
-                <div className="text-xs mt-1 text-blue-600">
+                <div className="text-xs mt-1 text-blue-700">
                   Complete booking via WhatsApp with payment details
                 </div>
               </div>

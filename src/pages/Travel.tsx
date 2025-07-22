@@ -9,6 +9,11 @@ import Footer from "@/components/Footer";
 import TourPackageCard from "@/components/TourPackageCard";
 import TourPackageModal from "@/components/TourPackageModal";
 import { AuthModal } from "@/components/AuthModal";
+import meghalayaLivingRootBridges from "@/assets/meghalaya-living-root-bridges.jpg";
+import cherrapunjiNohkalikaiFalls from "@/assets/cherrapunji-nohkalikai-falls.jpg";
+import dawkiUmngotRiver from "@/assets/dawki-umngot-river.jpg";
+import mawlynnongCleanestVillage from "@/assets/mawlynnong-cleanest-village.jpg";
+import shillongCulturalCity from "@/assets/shillong-cultural-city.jpg";
 // Relevant tourism images for each destination
 const meghalayaImages = [
   "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&q=80", // Shillong hills
@@ -107,7 +112,7 @@ const Travel = () => {
       duration: "5 Days",
       difficulty: "Moderate",
       price: "₹12,999",
-      images: meghalayaImages,
+      images: [meghalayaLivingRootBridges, meghalayaImages[1], meghalayaImages[2]],
       rating: 4.8,
       category: "adventure",
       location: "Meghalaya",
@@ -121,7 +126,7 @@ const Travel = () => {
       duration: "3 Days",
       difficulty: "Easy",
       price: "₹8,999",
-      images: [cultureImage, meghalayaImages[1], meghalayaImages[2]],
+      images: [shillongCulturalCity, meghalayaImages[1], meghalayaImages[2]],
       rating: 4.6,
       category: "cultural",
       location: "Meghalaya",
@@ -135,7 +140,7 @@ const Travel = () => {
       duration: "4 Days",
       difficulty: "Challenging",
       price: "₹15,999",
-      images: [waterfallImage, "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80", "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80"],
+      images: [cherrapunjiNohkalikaiFalls, "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80", "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80"],
       rating: 4.9,
       category: "adventure",
       location: "Meghalaya",
@@ -149,7 +154,7 @@ const Travel = () => {
       duration: "2 Days",
       difficulty: "Easy",
       price: "₹6,999",
-      images: [lakeImage, "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=800&q=80", "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80"],
+      images: [dawkiUmngotRiver, "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=800&q=80", "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80"],
       rating: 4.7,
       category: "leisure",
       location: "Meghalaya",
@@ -163,7 +168,7 @@ const Travel = () => {
       duration: "2 Days", 
       difficulty: "Easy",
       price: "₹7,499",
-      images: [forestImage, meghalayaImages[0], meghalayaImages[2]],
+      images: [mawlynnongCleanestVillage, meghalayaImages[0], meghalayaImages[2]],
       rating: 4.5,
       category: "cultural",
       location: "Meghalaya",
