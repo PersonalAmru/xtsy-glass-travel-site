@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -21,6 +20,14 @@ interface BookingConfirmationProps {
       quantity: number;
       price: number;
     }>;
+    addOns?: {
+      breakfast?: number;
+      dinnerVeg?: number;
+      dinnerNonVeg?: number;
+      transportation?: boolean;
+      itineraryPlanning?: boolean;
+    };
+    addOnTotal?: number;
   };
 }
 
@@ -37,7 +44,39 @@ const BookingConfirmation = ({ bookingData }: BookingConfirmationProps) => {
     return () => clearTimeout(timer);
   }, []);
 
+  const generateAddOnsMessage = () => {
+    if (!bookingData.addOns) return '';
+    
+    const addOns = [];
+    
+    if (bookingData.addOns.breakfast && bookingData.addOns.breakfast > 0) {
+      addOns.push(`• Breakfast: ${bookingData.addOns.breakfast} meals × ₹150 = ₹${bookingData.addOns.breakfast * 150}`);
+    }
+    
+    if (bookingData.addOns.dinnerVeg && bookingData.addOns.dinnerVeg > 0) {
+      addOns.push(`• Dinner (Veg): ${bookingData.addOns.dinnerVeg} meals × ₹300 = ₹${bookingData.addOns.dinnerVeg * 300}`);
+    }
+    
+    if (bookingData.addOns.dinnerNonVeg && bookingData.addOns.dinnerNonVeg > 0) {
+      addOns.push(`• Dinner (Non-Veg): ${bookingData.addOns.dinnerNonVeg} meals × ₹300 = ₹${bookingData.addOns.dinnerNonVeg * 300}`);
+    }
+    
+    if (bookingData.addOns.transportation) {
+      addOns.push(`• Transportation Services: Price match guarantee`);
+    }
+    
+    if (bookingData.addOns.itineraryPlanning) {
+      const cost = bookingData.addOns.transportation ? 'Free (with Transportation)' : '5% convenience charges';
+      addOns.push(`• Itinerary Planning & Support: ${cost}`);
+    }
+    
+    return addOns.length > 0 ? `\n🎯 Add-ons Selected:\n${addOns.join('\n')}` : '';
+  };
+
   const sendWhatsAppMessage = () => {
+    const addOnsMessage = generateAddOnsMessage();
+    const addOnTotalMessage = bookingData.addOnTotal ? `\n💰 Add-ons Total: ₹${bookingData.addOnTotal}` : '';
+    
     const message = `
 Booking Confirmed! 
 
@@ -50,11 +89,11 @@ Booking Confirmed!
 🌙 Nights: ${bookingData.nights}
 👥 Guests: ${bookingData.guests}
 
-💰 Total Amount: ₹${bookingData.totalAmount}
-💳 Advance Paid: ₹${Math.round(bookingData.totalAmount * 0.21)}
-
 🏨 Room Details:
-${bookingData.items.map(room => `• ${room.roomName} x${room.quantity}`).join('\n')}
+${bookingData.items.map(room => `• ${room.roomName} x${room.quantity}`).join('\n')}${addOnsMessage}
+
+💰 Total Amount: ₹${bookingData.totalAmount}${addOnTotalMessage}
+💳 Advance Paid: ₹${Math.round(bookingData.totalAmount * 0.21)}
 
 Thank you for choosing XTSY!
     `.trim();
@@ -147,6 +186,43 @@ Thank you for choosing XTSY!
             </div>
           </div>
 
+          {/* Add-ons Display */}
+          {bookingData.addOns && (
+            <div className="bg-blue-50 rounded-lg p-4">
+              <h3 className="font-semibold text-gray-900 mb-3">Selected Add-ons</h3>
+              <div className="space-y-2 text-sm">
+                {bookingData.addOns.breakfast && bookingData.addOns.breakfast > 0 && (
+                  <div className="flex justify-between">
+                    <span>Breakfast ({bookingData.addOns.breakfast} meals)</span>
+                    <span>₹{bookingData.addOns.breakfast * 150}</span>
+                  </div>
+                )}
+                {bookingData.addOns.dinnerVeg && bookingData.addOns.dinnerVeg > 0 && (
+                  <div className="flex justify-between">
+                    <span>Dinner Veg ({bookingData.addOns.dinnerVeg} meals)</span>
+                    <span>₹{bookingData.addOns.dinnerVeg * 300}</span>
+                  </div>
+                )}
+                {bookingData.addOns.dinnerNonVeg && bookingData.addOns.dinnerNonVeg > 0 && (
+                  <div className="flex justify-between">
+                    <span>Dinner Non-Veg ({bookingData.addOns.dinnerNonVeg} meals)</span>
+                    <span>₹{bookingData.addOns.dinnerNonVeg * 300}</span>
+                  </div>
+                )}
+                {bookingData.addOns.transportation && (
+                  <div className="text-blue-600">
+                    • Transportation Services: Price match guarantee
+                  </div>
+                )}
+                {bookingData.addOns.itineraryPlanning && (
+                  <div className="text-blue-600">
+                    • Itinerary Planning: {bookingData.addOns.transportation ? 'Free (with Transportation)' : '5% convenience charges'}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
           {/* Payment Summary */}
           <div className="bg-green-50 rounded-lg p-4">
             <h3 className="font-semibold text-gray-900 mb-3">Payment Summary</h3>
@@ -155,6 +231,12 @@ Thank you for choosing XTSY!
                 <span>Total Amount:</span>
                 <span className="font-medium">₹{bookingData.totalAmount}</span>
               </div>
+              {bookingData.addOnTotal && (
+                <div className="flex justify-between text-blue-600">
+                  <span>Add-ons Total:</span>
+                  <span className="font-medium">₹{bookingData.addOnTotal}</span>
+                </div>
+              )}
               <div className="flex justify-between text-green-600">
                 <span>Advance Paid (21%):</span>
                 <span className="font-medium">₹{Math.round(bookingData.totalAmount * 0.21)}</span>

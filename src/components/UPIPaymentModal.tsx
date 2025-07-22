@@ -16,6 +16,14 @@ interface UPIPaymentModalProps {
     checkOut: string;
     totalAmount: number;
     whatsappNumber: string;
+    addOns?: {
+      breakfast?: number;
+      dinnerVeg?: number;
+      dinnerNonVeg?: number;
+      transportation?: boolean;
+      itineraryPlanning?: boolean;
+    };
+    addOnTotal?: number;
   };
 }
 
@@ -36,7 +44,39 @@ const UPIPaymentModal = ({ isOpen, onClose, bookingData }: UPIPaymentModalProps)
     setTimeout(() => setCopied(""), 2000);
   };
 
+  const generateAddOnsMessage = () => {
+    if (!bookingData.addOns) return '';
+    
+    const addOns = [];
+    
+    if (bookingData.addOns.breakfast && bookingData.addOns.breakfast > 0) {
+      addOns.push(`• Breakfast: ${bookingData.addOns.breakfast} meals × ₹150 = ₹${bookingData.addOns.breakfast * 150}`);
+    }
+    
+    if (bookingData.addOns.dinnerVeg && bookingData.addOns.dinnerVeg > 0) {
+      addOns.push(`• Dinner (Veg): ${bookingData.addOns.dinnerVeg} meals × ₹300 = ₹${bookingData.addOns.dinnerVeg * 300}`);
+    }
+    
+    if (bookingData.addOns.dinnerNonVeg && bookingData.addOns.dinnerNonVeg > 0) {
+      addOns.push(`• Dinner (Non-Veg): ${bookingData.addOns.dinnerNonVeg} meals × ₹300 = ₹${bookingData.addOns.dinnerNonVeg * 300}`);
+    }
+    
+    if (bookingData.addOns.transportation) {
+      addOns.push(`• Transportation Services: Price match guarantee`);
+    }
+    
+    if (bookingData.addOns.itineraryPlanning) {
+      const cost = bookingData.addOns.transportation ? 'Free (with Transportation)' : '5% convenience charges';
+      addOns.push(`• Itinerary Planning & Support: ${cost}`);
+    }
+    
+    return addOns.length > 0 ? `\n\n🎯 Add-ons Selected:\n${addOns.join('\n')}` : '';
+  };
+
   const openWhatsApp = () => {
+    const addOnsMessage = generateAddOnsMessage();
+    const addOnTotalMessage = bookingData.addOnTotal ? `\nAdd-ons Total: ₹${bookingData.addOnTotal}` : '';
+    
     const message = `Hi XTSY Team! 
 
 I have made the UPI payment for my booking:
@@ -45,7 +85,7 @@ I have made the UPI payment for my booking:
 👤 Guest Name: ${bookingData.guestName}
 📅 Check-in: ${new Date(bookingData.checkIn).toLocaleDateString()}
 📅 Check-out: ${new Date(bookingData.checkOut).toLocaleDateString()}
-💰 Amount Paid: ₹${upiAmount}
+💰 Amount Paid: ₹${upiAmount}${addOnTotalMessage}${addOnsMessage}
 
 Payment Screenshot: [Please attach your payment screenshot here]
 
