@@ -23,11 +23,13 @@ const GroupBookingForm = ({ isOpen, onClose }: GroupBookingFormProps) => {
     checkIn: "",
     checkOut: "",
     arrivalTime: "",
-    guests: 26,
+    guests: 20,
     roomType: "",
     breakfast: false,
     dinner: false,
     dinnerType: "veg",
+    transportation: false,
+    itinerary: false,
     specialRequests: ""
   });
 
@@ -228,87 +230,115 @@ ${formData.specialRequests || 'None'}
 
                 {/* Guest Selection */}
                 <div className="grid grid-cols-1 gap-4">
-                  <div>
-                    <Label htmlFor="guests">Total Guests</Label>
-                    <div className="flex items-center space-x-2">
-                      <Button
-                        type="button"
-                        variant="outline"
-                        size="sm"
-                        onClick={() => handleInputChange('guests', Math.max(26, formData.guests - 1))}
-                      >
-                        <Minus className="h-4 w-4" />
-                      </Button>
-                      <Input
-                        id="guests"
-                        type="number"
-                        min="26"
-                        max="58"
-                        value={formData.guests}
-                        onChange={(e) => handleInputChange('guests', parseInt(e.target.value) || 26)}
-                        className="text-center w-20"
-                      />
-                      <Button
-                        type="button"
-                        variant="outline"
-                        size="sm"
-                        onClick={() => handleInputChange('guests', Math.min(58, formData.guests + 1))}
-                      >
-                        <Plus className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
+                   <div>
+                     <Label htmlFor="guests">Total Guests (Min: 20, Max: 100)</Label>
+                     <div className="flex items-center space-x-2">
+                       <Button
+                         type="button"
+                         variant="outline"
+                         size="sm"
+                         onClick={() => handleInputChange('guests', Math.max(20, formData.guests - 1))}
+                       >
+                         <Minus className="h-4 w-4" />
+                       </Button>
+                       <Input
+                         id="guests"
+                         type="number"
+                         min="20"
+                         max="100"
+                         value={formData.guests}
+                         onChange={(e) => handleInputChange('guests', parseInt(e.target.value) || 20)}
+                         className="text-center w-20"
+                       />
+                       <Button
+                         type="button"
+                         variant="outline"
+                         size="sm"
+                         onClick={() => handleInputChange('guests', Math.min(100, formData.guests + 1))}
+                       >
+                         <Plus className="h-4 w-4" />
+                       </Button>
+                     </div>
+                   </div>
                 </div>
 
-                {/* Food Add-ons */}
-                <div className="space-y-4">
-                  <Label className="text-lg font-semibold">Food Add-ons</Label>
-                  
-                  {/* Breakfast */}
-                  <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border">
-                    <div>
-                      <h4 className="font-semibold">Breakfast</h4>
-                      <p className="text-sm text-muted-foreground">₹150 per person per day</p>
-                    </div>
-                    <input
-                      type="checkbox"
-                      checked={formData.breakfast}
-                      onChange={(e) => handleInputChange('breakfast', e.target.checked)}
-                      className="w-5 h-5 text-primary"
-                    />
-                  </div>
+                 {/* Food Add-ons & Additional Services */}
+                 <div className="space-y-4">
+                   <Label className="text-lg font-semibold">Food Add-ons & Additional Services</Label>
+                   
+                   {/* Breakfast */}
+                   <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border">
+                     <div>
+                       <h4 className="font-semibold">Breakfast</h4>
+                       <p className="text-sm text-muted-foreground">₹150 per person per day</p>
+                     </div>
+                     <input
+                       type="checkbox"
+                       checked={formData.breakfast}
+                       onChange={(e) => handleInputChange('breakfast', e.target.checked)}
+                       className="w-5 h-5 text-primary"
+                     />
+                   </div>
 
-                  {/* Dinner */}
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border">
-                      <div>
-                        <h4 className="font-semibold">Dinner Thali</h4>
-                        <p className="text-sm text-muted-foreground">₹300 per person per day</p>
-                      </div>
-                      <input
-                        type="checkbox"
-                        checked={formData.dinner}
-                        onChange={(e) => handleInputChange('dinner', e.target.checked)}
-                        className="w-5 h-5 text-primary"
-                      />
-                    </div>
-                    
-                    {formData.dinner && (
-                      <div className="ml-4">
-                        <Label>Dinner Type</Label>
-                        <Select value={formData.dinnerType} onValueChange={(value) => handleInputChange('dinnerType', value)}>
-                          <SelectTrigger>
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="veg">Vegetarian Thali</SelectItem>
-                            <SelectItem value="nonveg">Non-Vegetarian Thali</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    )}
-                  </div>
-                </div>
+                   {/* Dinner */}
+                   <div className="space-y-2">
+                     <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border">
+                       <div>
+                         <h4 className="font-semibold">Dinner Thali</h4>
+                         <p className="text-sm text-muted-foreground">₹300 per person per day (Veg/Non-Veg)</p>
+                       </div>
+                       <input
+                         type="checkbox"
+                         checked={formData.dinner}
+                         onChange={(e) => handleInputChange('dinner', e.target.checked)}
+                         className="w-5 h-5 text-primary"
+                       />
+                     </div>
+                     
+                     {formData.dinner && (
+                       <div className="ml-4">
+                         <Label>Dinner Type</Label>
+                         <Select value={formData.dinnerType} onValueChange={(value) => handleInputChange('dinnerType', value)}>
+                           <SelectTrigger>
+                             <SelectValue />
+                           </SelectTrigger>
+                           <SelectContent>
+                             <SelectItem value="veg">Vegetarian Thali</SelectItem>
+                             <SelectItem value="nonveg">Non-Vegetarian Thali</SelectItem>
+                           </SelectContent>
+                         </Select>
+                       </div>
+                     )}
+                   </div>
+
+                   {/* Transportation */}
+                   <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border">
+                     <div>
+                       <h4 className="font-semibold">Transportation Arrangement</h4>
+                       <p className="text-sm text-muted-foreground">Local transport and transfers</p>
+                     </div>
+                     <input
+                       type="checkbox"
+                       checked={formData.transportation}
+                       onChange={(e) => handleInputChange('transportation', e.target.checked)}
+                       className="w-5 h-5 text-primary"
+                     />
+                   </div>
+
+                   {/* Travel Itinerary */}
+                   <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border">
+                     <div>
+                       <h4 className="font-semibold">Travel Itinerary Support</h4>
+                       <p className="text-sm text-muted-foreground">Customized itinerary planning</p>
+                     </div>
+                     <input
+                       type="checkbox"
+                       checked={formData.itinerary}
+                       onChange={(e) => handleInputChange('itinerary', e.target.checked)}
+                       className="w-5 h-5 text-primary"
+                     />
+                   </div>
+                 </div>
 
                 {/* Price Summary */}
                 {nights > 0 && (

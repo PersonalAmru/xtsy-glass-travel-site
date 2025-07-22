@@ -12,8 +12,8 @@ const Footer = () => {
           <div className="space-y-3 sm:space-y-4">
             <div className="flex items-center justify-center md:justify-start">
               <img 
-                src="/src/assets/xtsy-logo.png" 
-                alt="Brand Logo" 
+                src="/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png" 
+                alt="XTSY Brand Logo" 
                 className="w-16 h-16 sm:w-20 sm:h-20 object-contain"
               />
             </div>

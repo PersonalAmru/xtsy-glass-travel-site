@@ -1,13 +1,12 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
-import { Calendar, Users, Building, IndianRupee, Minus, Plus, Clock } from "lucide-react";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Building2, Calendar, Users, IndianRupee, Minus, Plus } from "lucide-react";
 
 interface B2BBookingFormProps {
   isOpen: boolean;
@@ -22,16 +21,19 @@ const B2BBookingForm = ({ isOpen, onClose }: B2BBookingFormProps) => {
     phone: "",
     checkIn: "",
     checkOut: "",
-    guests: 26,
-    bookingType: "partial" as "partial" | "entire",
-    specialRequests: "",
     arrivalTime: "",
-    includeBreakfast: false,
-    includeDinner: false
+    guests: 20,
+    eventType: "",
+    breakfast: false,
+    dinner: false,
+    dinnerType: "veg",
+    transportation: false,
+    itinerary: false,
+    specialRequests: ""
   });
 
   const [nights, setNights] = useState(0);
-  
+
   // Calculate nights when dates change
   useEffect(() => {
     if (formData.checkIn && formData.checkOut) {
@@ -43,13 +45,16 @@ const B2BBookingForm = ({ isOpen, onClose }: B2BBookingFormProps) => {
     }
   }, [formData.checkIn, formData.checkOut]);
 
-  // B2B Corporate pricing: ₹850 per person average
-  const accommodationCost = formData.guests * 850 * nights;
-  const breakfastCost = formData.includeBreakfast ? formData.guests * 150 * nights : 0;
-  const dinnerCost = formData.includeDinner ? formData.guests * 300 * nights : 0;
-  const subtotal = accommodationCost + breakfastCost + dinnerCost;
-  const gst = Math.round(subtotal * 0.12);
-  const totalAmount = subtotal + gst;
+  // Calculate food add-ons
+  const breakfastCost = formData.breakfast ? formData.guests * 150 * nights : 0;
+  const dinnerCost = formData.dinner ? formData.guests * 300 * nights : 0;
+  const foodTotal = breakfastCost + dinnerCost;
+  
+  // B2B Corporate pricing - 850 INR per guest per night (higher rate than group booking)
+  const corporateRate = 850;
+  const totalPrice = corporateRate * formData.guests * nights;
+  const gst = Math.round((totalPrice + foodTotal) * 0.12);
+  const finalTotal = totalPrice + foodTotal + gst;
 
   const handleInputChange = (field: string, value: any) => {
     setFormData(prev => ({
@@ -66,15 +71,19 @@ const B2BBookingForm = ({ isOpen, onClose }: B2BBookingFormProps) => {
     }
     
     // WhatsApp booking functionality
-    const mealDetails = [];
-    if (formData.includeBreakfast) mealDetails.push(`Breakfast: ₹${breakfastCost.toLocaleString()}`);
-    if (formData.includeDinner) mealDetails.push(`Dinner: ₹${dinnerCost.toLocaleString()}`);
-
+    const foodDetails = [];
+    if (formData.breakfast) foodDetails.push(`Breakfast: ₹${breakfastCost.toLocaleString()}`);
+    if (formData.dinner) foodDetails.push(`Dinner (${formData.dinnerType}): ₹${dinnerCost.toLocaleString()}`);
+    
+    const additionalServices = [];
+    if (formData.transportation) additionalServices.push("Transportation Arrangement");
+    if (formData.itinerary) additionalServices.push("Travel Itinerary Support");
+    
     const bookingDetails = `
-🏢 *B2B Corporate Booking Request*
+🏢 *XTSY B2B Corporate Booking Request*
 
 🏢 *Company Details:*
-Company Name: ${formData.companyName}
+Company: ${formData.companyName}
 Contact Person: ${formData.contactPerson}
 Email: ${formData.email}
 Phone: ${formData.phone}
@@ -82,17 +91,17 @@ Phone: ${formData.phone}
 📅 *Booking Details:*
 Check-in: ${formData.checkIn}
 Check-out: ${formData.checkOut}
+${formData.arrivalTime ? `Arrival Time: ${formData.arrivalTime}` : ''}
 Nights: ${nights}
 Total Guests: ${formData.guests}
-Booking Type: ${formData.bookingType === 'entire' ? 'Entire Property' : 'Partial Booking'}
-Arrival Time: ${formData.arrivalTime || 'Not specified'}
+Event Type: ${formData.eventType}
 
-💰 *Price Summary:*
-Accommodation: ₹${accommodationCost.toLocaleString()} (₹850 per person per night)
-${mealDetails.length > 0 ? `Meals:\n${mealDetails.join('\n')}` : ''}
-Subtotal: ₹${subtotal.toLocaleString()}
+💰 *Price Summary (Corporate Rate):*
+Accommodation: ₹${totalPrice.toLocaleString()} (₹${corporateRate}/person/night)
+${foodDetails.length > 0 ? `Food Add-ons:\n${foodDetails.join('\n')}` : ''}
+${additionalServices.length > 0 ? `Additional Services:\n${additionalServices.join('\n')}` : ''}
 GST (12%): ₹${gst.toLocaleString()}
-*Total: ₹${totalAmount.toLocaleString()}*
+*Total: ₹${finalTotal.toLocaleString()}*
 
 📝 *Special Requests:*
 ${formData.specialRequests || 'None'}
@@ -105,233 +114,261 @@ ${formData.specialRequests || 'None'}
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
         </DialogHeader>
-        <Card className="bg-white/95 backdrop-blur-sm border-blue-200 shadow-2xl border-0">
-          <CardHeader className="text-center pb-4 sm:pb-6">
-            <CardTitle className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800 mb-2">
-              <Building className="h-6 w-6 sm:h-8 sm:w-8 mx-auto mb-2 text-blue-600" />
+        <Card className="bg-card/95 backdrop-blur-sm border-border shadow-2xl border">
+          <CardHeader className="text-center pb-6">
+            <CardTitle className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
+              <Building2 className="h-8 w-8 mx-auto mb-2 text-primary" />
               B2B Corporate Booking
             </CardTitle>
-            <CardDescription className="text-gray-600 text-sm">
-              Exclusive rates and services for corporate clients
+            <CardDescription className="text-muted-foreground">
+              Professional accommodation solutions for corporate events (₹850/person/night)
             </CardDescription>
           </CardHeader>
           
-          <CardContent className="p-4 sm:p-6">
-            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+          <CardContent>
+            <form onSubmit={handleSubmit} className="space-y-6">
               {/* Company Information */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="companyName" className="text-sm">Company Name *</Label>
+                  <Label htmlFor="companyName">Company Name *</Label>
                   <Input
                     id="companyName"
                     value={formData.companyName}
                     onChange={(e) => handleInputChange('companyName', e.target.value)}
                     placeholder="Your Company Name"
-                    className="h-10 sm:h-12 text-sm"
                     required
                   />
                 </div>
                 <div>
-                  <Label htmlFor="contactPerson" className="text-sm">Contact Person *</Label>
+                  <Label htmlFor="contactPerson">Contact Person *</Label>
                   <Input
                     id="contactPerson"
                     value={formData.contactPerson}
                     onChange={(e) => handleInputChange('contactPerson', e.target.value)}
                     placeholder="Primary Contact Name"
-                    className="h-10 sm:h-12 text-sm"
                     required
                   />
                 </div>
               </div>
 
               {/* Contact Information */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="email" className="text-sm">Email *</Label>
+                  <Label htmlFor="email">Email *</Label>
                   <Input
                     id="email"
                     type="email"
                     value={formData.email}
                     onChange={(e) => handleInputChange('email', e.target.value)}
                     placeholder="company@example.com"
-                    className="h-10 sm:h-12 text-sm"
                     required
                   />
                 </div>
                 <div>
-                  <Label htmlFor="phone" className="text-sm">Phone *</Label>
+                  <Label htmlFor="phone">Phone *</Label>
                   <Input
                     id="phone"
                     value={formData.phone}
                     onChange={(e) => handleInputChange('phone', e.target.value)}
                     placeholder="+91 XXXXXXXXXX"
-                    className="h-10 sm:h-12 text-sm"
                     required
                   />
                 </div>
               </div>
 
               {/* Booking Details */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="checkIn" className="text-sm">Check-in Date *</Label>
+                  <Label htmlFor="checkIn">Check-in Date *</Label>
                   <Input
                     id="checkIn"
                     type="date"
                     value={formData.checkIn}
                     onChange={(e) => handleInputChange('checkIn', e.target.value)}
-                    className="h-10 sm:h-12 text-sm"
                     required
                   />
                 </div>
                 <div>
-                  <Label htmlFor="checkOut" className="text-sm">Check-out Date *</Label>
+                  <Label htmlFor="checkOut">Check-out Date *</Label>
                   <Input
                     id="checkOut"
                     type="date"
                     value={formData.checkOut}
                     onChange={(e) => handleInputChange('checkOut', e.target.value)}
-                    className="h-10 sm:h-12 text-sm"
                     required
                   />
                 </div>
               </div>
 
               {nights > 0 && (
-                <div className="bg-blue-50 p-3 sm:p-4 rounded-lg">
-                  <p className="text-blue-800 font-semibold text-sm">
+                <div className="bg-primary/10 p-4 rounded-lg border border-primary/20">
+                  <p className="text-primary font-semibold">
                     <Calendar className="h-4 w-4 inline mr-2" />
                     Total Nights: {nights}
                   </p>
                 </div>
               )}
 
-              {/* Guest Selection and Booking Type */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+              {/* Time of Arrival */}
+              <div>
+                <Label htmlFor="arrivalTime">Expected Time of Arrival</Label>
+                <Input
+                  id="arrivalTime"
+                  type="time"
+                  value={formData.arrivalTime}
+                  onChange={(e) => handleInputChange('arrivalTime', e.target.value)}
+                  placeholder="e.g., 14:00"
+                />
+              </div>
+
+              {/* Guest Selection */}
+              <div className="grid grid-cols-1 gap-4">
                 <div>
-                  <Label htmlFor="guests" className="text-sm">Total Guests</Label>
+                  <Label htmlFor="guests">Total Guests (Min: 20, Max: 100)</Label>
                   <div className="flex items-center space-x-2">
                     <Button
                       type="button"
                       variant="outline"
                       size="sm"
-                      onClick={() => handleInputChange('guests', Math.max(26, formData.guests - 1))}
+                      onClick={() => handleInputChange('guests', Math.max(20, formData.guests - 1))}
                     >
-                      <Minus className="h-3 w-3 sm:h-4 sm:w-4" />
+                      <Minus className="h-4 w-4" />
                     </Button>
                     <Input
                       id="guests"
                       type="number"
-                      min="26"
-                      max="58"
+                      min="20"
+                      max="100"
                       value={formData.guests}
-                      onChange={(e) => handleInputChange('guests', parseInt(e.target.value) || 26)}
-                      className="text-center w-16 sm:w-20 h-10 text-sm"
+                      onChange={(e) => handleInputChange('guests', parseInt(e.target.value) || 20)}
+                      className="text-center w-20"
                     />
                     <Button
                       type="button"
                       variant="outline"
                       size="sm"
-                      onClick={() => handleInputChange('guests', Math.min(58, formData.guests + 1))}
+                      onClick={() => handleInputChange('guests', Math.min(100, formData.guests + 1))}
                     >
-                      <Plus className="h-3 w-3 sm:h-4 sm:w-4" />
+                      <Plus className="h-4 w-4" />
                     </Button>
                   </div>
                 </div>
+              </div>
 
-                <div>
-                  <Label htmlFor="arrivalTime" className="text-sm">Time of Arrival</Label>
-                  <Input
-                    id="arrivalTime"
-                    type="time"
-                    value={formData.arrivalTime}
-                    onChange={(e) => handleInputChange('arrivalTime', e.target.value)}
-                    className="h-10 sm:h-12 text-sm"
+              <div>
+                <Label htmlFor="eventType">Event Type *</Label>
+                <Input
+                  id="eventType"
+                  value={formData.eventType}
+                  onChange={(e) => handleInputChange('eventType', e.target.value)}
+                  placeholder="Conference, Team Building, etc."
+                  required
+                />
+              </div>
+
+              {/* Food Add-ons & Additional Services */}
+              <div className="space-y-4">
+                <Label className="text-lg font-semibold">Food Add-ons & Additional Services</Label>
+                
+                {/* Breakfast */}
+                <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border">
+                  <div>
+                    <h4 className="font-semibold">Breakfast</h4>
+                    <p className="text-sm text-muted-foreground">₹150 per person per day</p>
+                  </div>
+                  <input
+                    type="checkbox"
+                    checked={formData.breakfast}
+                    onChange={(e) => handleInputChange('breakfast', e.target.checked)}
+                    className="w-5 h-5 text-primary"
                   />
                 </div>
-              </div>
 
-              {/* Booking Type */}
-              <div>
-                <Label className="text-sm font-medium">Booking Type</Label>
-                <div className="flex gap-4 mt-2">
-                  <label className="flex items-center space-x-2 cursor-pointer">
-                    <input
-                      type="radio"
-                      name="bookingType"
-                      value="partial"
-                      checked={formData.bookingType === "partial"}
-                      onChange={(e) => handleInputChange('bookingType', e.target.value)}
-                      className="text-blue-600"
-                    />
-                    <span className="text-sm">Partial Booking</span>
-                  </label>
-                  <label className="flex items-center space-x-2 cursor-pointer">
-                    <input
-                      type="radio"
-                      name="bookingType"
-                      value="entire"
-                      checked={formData.bookingType === "entire"}
-                      onChange={(e) => handleInputChange('bookingType', e.target.value)}
-                      className="text-blue-600"
-                    />
-                    <span className="text-sm">Entire Property</span>
-                  </label>
-                </div>
-              </div>
-
-              {/* Food Add-ons */}
-              <div>
-                <Label className="text-sm font-medium mb-3 block">Food Add-ons</Label>
+                {/* Dinner */}
                 <div className="space-y-2">
-                  <div className="flex items-center space-x-2">
-                    <Checkbox 
-                      id="breakfast"
-                      checked={formData.includeBreakfast}
-                      onCheckedChange={(checked) => handleInputChange('includeBreakfast', checked)}
+                  <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border">
+                    <div>
+                      <h4 className="font-semibold">Dinner Thali</h4>
+                      <p className="text-sm text-muted-foreground">₹300 per person per day (Veg/Non-Veg)</p>
+                    </div>
+                    <input
+                      type="checkbox"
+                      checked={formData.dinner}
+                      onChange={(e) => handleInputChange('dinner', e.target.checked)}
+                      className="w-5 h-5 text-primary"
                     />
-                    <Label htmlFor="breakfast" className="text-sm">
-                      Breakfast - ₹150/person/day
-                    </Label>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <Checkbox 
-                      id="dinner"
-                      checked={formData.includeDinner}
-                      onCheckedChange={(checked) => handleInputChange('includeDinner', checked)}
-                    />
-                    <Label htmlFor="dinner" className="text-sm">
-                      Dinner Thali (Veg/Non-Veg) - ₹300/person/day
-                    </Label>
+                  
+                  {formData.dinner && (
+                    <div className="ml-4">
+                      <Label>Dinner Type</Label>
+                      <Select value={formData.dinnerType} onValueChange={(value) => handleInputChange('dinnerType', value)}>
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="veg">Vegetarian Thali</SelectItem>
+                          <SelectItem value="nonveg">Non-Vegetarian Thali</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  )}
+                </div>
+
+                {/* Transportation */}
+                <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border">
+                  <div>
+                    <h4 className="font-semibold">Transportation Arrangement</h4>
+                    <p className="text-sm text-muted-foreground">Local transport and transfers</p>
                   </div>
+                  <input
+                    type="checkbox"
+                    checked={formData.transportation}
+                    onChange={(e) => handleInputChange('transportation', e.target.checked)}
+                    className="w-5 h-5 text-primary"
+                  />
+                </div>
+
+                {/* Travel Itinerary */}
+                <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border">
+                  <div>
+                    <h4 className="font-semibold">Travel Itinerary Support</h4>
+                    <p className="text-sm text-muted-foreground">Customized itinerary planning</p>
+                  </div>
+                  <input
+                    type="checkbox"
+                    checked={formData.itinerary}
+                    onChange={(e) => handleInputChange('itinerary', e.target.checked)}
+                    className="w-5 h-5 text-primary"
+                  />
                 </div>
               </div>
 
               {/* Price Summary */}
               {nights > 0 && (
-                <Card className="bg-gradient-to-r from-blue-50 to-blue-100 border-blue-200">
-                  <CardContent className="p-3 sm:p-4">
-                    <h3 className="font-bold text-blue-800 mb-2 flex items-center text-sm">
+                <Card className="bg-primary/10 border-primary/20">
+                  <CardContent className="p-4">
+                    <h3 className="font-bold text-primary mb-2 flex items-center">
                       <IndianRupee className="h-4 w-4 mr-1" />
-                      Price Summary
+                      Price Summary (Corporate Rate)
                     </h3>
-                    <div className="space-y-1 text-xs sm:text-sm">
+                    <div className="space-y-1 text-sm">
                       <div className="flex justify-between">
-                        <span>Accommodation ({formData.guests} guests × {nights} nights)</span>
-                        <span>₹{accommodationCost.toLocaleString()}</span>
+                        <span>Accommodation ({formData.guests} guests × {nights} nights × ₹850)</span>
+                        <span>₹{totalPrice.toLocaleString()}</span>
                       </div>
-                      {formData.includeBreakfast && (
+                      {formData.breakfast && (
                         <div className="flex justify-between">
-                          <span>Breakfast</span>
+                          <span>Breakfast ({formData.guests} guests × {nights} nights)</span>
                           <span>₹{breakfastCost.toLocaleString()}</span>
                         </div>
                       )}
-                      {formData.includeDinner && (
+                      {formData.dinner && (
                         <div className="flex justify-between">
-                          <span>Dinner</span>
+                          <span>Dinner {formData.dinnerType} ({formData.guests} guests × {nights} nights)</span>
                           <span>₹{dinnerCost.toLocaleString()}</span>
                         </div>
                       )}
@@ -339,9 +376,9 @@ ${formData.specialRequests || 'None'}
                         <span>GST (12%)</span>
                         <span>₹{gst.toLocaleString()}</span>
                       </div>
-                      <div className="flex justify-between font-bold text-blue-800 pt-2 border-t border-blue-200">
+                      <div className="flex justify-between font-bold text-primary pt-2 border-t border-primary/20">
                         <span>Total Amount</span>
-                        <span>₹{totalAmount.toLocaleString()}</span>
+                        <span>₹{finalTotal.toLocaleString()}</span>
                       </div>
                     </div>
                   </CardContent>
@@ -350,14 +387,13 @@ ${formData.specialRequests || 'None'}
 
               {/* Special Requests */}
               <div>
-                <Label htmlFor="specialRequests" className="text-sm">Special Requests</Label>
+                <Label htmlFor="specialRequests">Special Requests</Label>
                 <Textarea
                   id="specialRequests"
                   value={formData.specialRequests}
                   onChange={(e) => handleInputChange('specialRequests', e.target.value)}
                   placeholder="Any special requirements or requests..."
                   rows={3}
-                  className="text-sm"
                 />
               </div>
 
@@ -365,11 +401,11 @@ ${formData.specialRequests || 'None'}
               <div className="flex justify-center">
                 <Button 
                   type="submit"
-                  className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold shadow-lg h-10 sm:h-12 text-sm"
+                  className="w-full bg-gradient-to-r from-primary to-orange-600 hover:from-orange-600 hover:to-red-700 text-white font-bold shadow-lg"
                   disabled={!formData.checkIn || !formData.checkOut || nights <= 0}
                 >
-                  <Users className="h-4 w-4 mr-2" />
-                  Book Now - ₹{nights > 0 ? totalAmount.toLocaleString() : '0'}
+                  <Building2 className="h-4 w-4 mr-2" />
+                  Book Now - ₹{nights > 0 ? finalTotal.toLocaleString() : '0'}
                 </Button>
               </div>
             </form>

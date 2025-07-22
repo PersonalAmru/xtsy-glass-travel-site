@@ -8,7 +8,7 @@ import EnhancedBookingModal from "./EnhancedBookingModal";
 const HeroSection = () => {
   const [checkIn, setCheckIn] = useState(new Date().toISOString().split('T')[0]);
   const [checkOut, setCheckOut] = useState("");
-  const [guests, setGuests] = useState("2");
+  const [guests, setGuests] = useState("4");
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [currentLanguageIndex, setCurrentLanguageIndex] = useState(0);
   const [bookNowClicks, setBookNowClicks] = useState(500);
@@ -38,7 +38,7 @@ const HeroSection = () => {
       if (bookingData && bookingData.checkIn && bookingData.checkOut) {
         setCheckIn(bookingData.checkIn);
         setCheckOut(bookingData.checkOut);
-        setGuests(bookingData.guests?.toString() || "2");
+        setGuests(bookingData.guests?.toString() || "4");
         setIsBookingModalOpen(true);
       }
     };
@@ -82,8 +82,8 @@ const HeroSection = () => {
     }
 
     const guestCount = parseInt(guests);
-    if (guestCount > 25) {
-      alert("For more than 25 guests, please use B2B Corporate Booking or Group Booking options available below.");
+    if (guestCount > 20) {
+      alert("For more than 20 guests, please use B2B Corporate Booking or Group Booking options available below.");
       const groupBookingElement = document.querySelector('#group-booking-section');
       if (groupBookingElement) {
         groupBookingElement.scrollIntoView({ behavior: 'smooth' });
@@ -125,9 +125,9 @@ const HeroSection = () => {
               
               <div className="flex items-center justify-center">
                 <img 
-                  src="/lovable-uploads/9190ba64-4f45-45e8-b15d-981db2e861b3.png" 
+                  src="/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png" 
                   alt="XTSY Brand Logo" 
-                  className="w-12 h-12 sm:w-16 sm:h-16 lg:w-24 lg:h-24 object-contain"
+                  className="w-16 h-16 sm:w-20 sm:h-20 lg:w-32 lg:h-32 object-contain"
                 />
               </div>
             </div>
@@ -183,9 +183,9 @@ const HeroSection = () => {
                     value={guests}
                     onChange={(e) => setGuests(e.target.value)}
                     min="1"
-                    max="25"
+                    max="20"
                     className="pl-10 h-10 sm:h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-sm sm:text-base"
-                    placeholder="2"
+                    placeholder="4"
                   />
                   <Users className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-gray-300" />
                 </div>
