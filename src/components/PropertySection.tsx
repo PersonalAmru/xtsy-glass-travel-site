@@ -76,10 +76,10 @@ const PropertySection = ({ title, description, rooms, propertyType, onSelectRoom
           />
         </div>
       ) : (
-        // Regular Responsive Rooms Container
+        // Fixed 3-Column Responsive Layout
         <div className="relative">
-          {/* Responsive Rooms Grid */}
-          <div className="grid-responsive-cards max-w-7xl mx-auto">
+          {/* Fixed 3-tile grid that scales content */}
+          <div className="grid-3-fixed max-w-7xl mx-auto">
             {rooms.map((room) => (
               <RoomCard
                 key={room.id}

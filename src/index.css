@@ -288,15 +288,23 @@
     margin: clamp(2rem, 5vw, 3rem);
   }
 
-  /* Responsive grids */
+  /* Responsive grids - Fixed 3-column layout */
   .grid-responsive-auto {
-    @apply grid gap-4 sm:gap-6 lg:gap-8;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    @apply grid gap-2 sm:gap-4 md:gap-6 lg:gap-8;
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .grid-responsive-cards {
-    @apply grid gap-4 sm:gap-6 lg:gap-8;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    @apply grid gap-2 sm:gap-4 md:gap-6 lg:gap-8;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Fixed 3-tile layout that scales content */
+  .grid-3-fixed {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(0.5rem, 2vw, 2rem);
+    width: 100%;
   }
 
   /* Safe area support */

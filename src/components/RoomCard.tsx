@@ -94,36 +94,36 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
   }
 
   return (
-    <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-400 hover:shadow-lg transition-all duration-300 shadow-md flex-shrink-0 w-80 h-[550px] flex flex-col">
-      <CardHeader className="pb-3">
-        <div className="w-full h-40 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 rounded-lg mb-4 flex items-center justify-center border border-gray-300 dark:border-gray-600">
+    <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-400 hover:shadow-lg transition-all duration-300 shadow-md w-full h-auto min-h-[400px] sm:min-h-[450px] md:min-h-[500px] lg:min-h-[550px] flex flex-col">
+      <CardHeader className="pb-2 sm:pb-3">
+        <div className="w-full h-24 sm:h-32 md:h-36 lg:h-40 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 rounded-lg mb-2 sm:mb-4 flex items-center justify-center border border-gray-300 dark:border-gray-600">
           <div className="text-center">
-            <TreePine className="h-8 w-8 text-gray-400 dark:text-gray-300 mx-auto mb-1" />
-            <p className="text-gray-500 dark:text-gray-300 text-xs">Room Image</p>
-            <p className="text-gray-400 dark:text-gray-400 text-xs">Supabase Ready</p>
+            <TreePine className="h-4 w-4 sm:h-6 sm:w-6 md:h-8 md:w-8 text-gray-400 dark:text-gray-300 mx-auto mb-1" />
+            <p className="text-gray-500 dark:text-gray-300 text-fluid-xs">Room Image</p>
+            <p className="text-gray-400 dark:text-gray-400 text-fluid-xs">Supabase Ready</p>
           </div>
         </div>
-        <div className="flex justify-between items-start mb-2">
-          <CardTitle className="text-lg font-bold text-gray-900 dark:text-white font-serif-sans leading-tight flex items-center gap-2">
-            {room.name}
-            <Badge className={`${badgeColor} text-white text-xs`}>
+        <div className="flex justify-between items-start mb-1 sm:mb-2">
+          <CardTitle className="text-fluid-sm sm:text-fluid-base md:text-fluid-lg font-bold text-gray-900 dark:text-white font-serif-sans leading-tight flex items-center gap-1 sm:gap-2">
+            <span className="truncate">{room.name}</span>
+            <Badge className={`${badgeColor} text-white text-fluid-xs flex-shrink-0`}>
               {badgeText}
             </Badge>
           </CardTitle>
-          <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold text-sm whitespace-nowrap ml-2">
+          <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold text-fluid-xs sm:text-fluid-sm whitespace-nowrap ml-1 sm:ml-2 flex-shrink-0">
             ₹{room.price}/night
           </Badge>
         </div>
-        <CardDescription className="text-gray-600 dark:text-gray-300 text-sm font-seasons line-clamp-2">
+        <CardDescription className="text-gray-600 dark:text-gray-300 text-fluid-xs sm:text-fluid-sm font-seasons line-clamp-2">
           {room.description}
         </CardDescription>
       </CardHeader>
       
-      <CardContent className="space-y-3 flex-1 flex flex-col">
+      <CardContent className="space-y-2 sm:space-y-3 flex-1 flex flex-col p-3 sm:p-6">
         <div className="flex-1">
-          <div className="flex flex-wrap gap-1 mb-3 max-h-16 overflow-hidden">
+          <div className="flex flex-wrap gap-1 mb-2 sm:mb-3 max-h-12 sm:max-h-16 overflow-hidden">
             {room.features.slice(0, 6).map((feature, index) => (
-              <Badge key={index} variant="outline" className="text-xs border-orange-300 dark:border-orange-400 text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-900/20">
+              <Badge key={index} variant="outline" className="text-fluid-xs border-orange-300 dark:border-orange-400 text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-900/20 px-1 sm:px-2 py-0.5 sm:py-1">
                 {feature}
               </Badge>
             ))}
@@ -131,7 +131,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
           
           <div className="hidden">
             <span className="flex items-center gap-1">
-              <Users className="h-4 w-4" />
+              <Users className="h-3 w-3 sm:h-4 sm:w-4" />
               Max {room.maxGuests} guest{room.maxGuests > 1 ? 's' : ''}
             </span>
           </div>
@@ -140,7 +140,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
         <div className="mt-auto">
           <Button 
             onClick={onSelectRoom}
-            className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold shadow-lg hover:shadow-xl transition-all duration-300 font-seasons py-2"
+            className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold shadow-lg hover:shadow-xl transition-all duration-300 font-seasons py-2 sm:py-3 text-fluid-xs sm:text-fluid-sm hover-lift"
           >
             {buttonText}
           </Button>
