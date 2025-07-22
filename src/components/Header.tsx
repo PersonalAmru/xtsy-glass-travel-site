@@ -65,7 +65,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="bg-card/80 backdrop-blur-lg border-b border-border shadow-sm sticky top-0 z-50 safe-area-padding">
+      <header className="bg-white/95 backdrop-blur-lg border-b border-gray-200 shadow-sm sticky top-0 z-50 safe-area-padding">
         <div className="responsive-container">
           <div className="flex justify-between items-center h-14 sm:h-16">
             {/* Logo */}
@@ -81,28 +81,28 @@ const Header = () => {
             <nav className="hidden md:flex items-center space-x-8 ml-auto">
               <Link 
                 to="/" 
-                className="text-foreground hover:text-primary transition-colors"
+                className="text-gray-800 hover:text-primary transition-colors"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
                 Home
               </Link>
               <Link 
                 to="/about" 
-                className="text-foreground hover:text-primary transition-colors"
+                className="text-gray-800 hover:text-primary transition-colors"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
                 About
               </Link>
               <Link 
                 to="/gallery" 
-                className="text-foreground hover:text-primary transition-colors"
+                className="text-gray-800 hover:text-primary transition-colors"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
                 Gallery
               </Link>
               <Link 
                 to="/deals" 
-                className="text-foreground hover:text-primary transition-colors"
+                className="text-gray-800 hover:text-primary transition-colors"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
                 Deals
@@ -112,7 +112,7 @@ const Header = () => {
               <NavigationMenu>
                 <NavigationMenuList>
                   <NavigationMenuItem>
-                    <NavigationMenuTrigger className="text-foreground hover:text-primary transition-colors">
+                    <NavigationMenuTrigger className="text-gray-800 hover:text-primary transition-colors">
                       Travel
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
@@ -183,7 +183,7 @@ const Header = () => {
 
             {/* Mobile menu button */}
             <button
-              className="md:hidden touch-friendly"
+              className="md:hidden touch-friendly text-gray-800"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
