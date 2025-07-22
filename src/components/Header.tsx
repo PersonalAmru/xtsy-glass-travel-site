@@ -65,7 +65,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="bg-white shadow-sm sticky top-0 z-50">
+      <header className="bg-card/80 backdrop-blur-lg border-b border-border shadow-sm sticky top-0 z-50">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
@@ -79,16 +79,32 @@ const Header = () => {
 
             {/* Desktop Navigation - All items aligned right */}
             <nav className="hidden md:flex items-center space-x-8 ml-auto">
-              <Link to="/" className="text-gray-700 hover:text-primary transition-colors">
+              <Link 
+                to="/" 
+                className="text-foreground hover:text-primary transition-colors"
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              >
                 Home
               </Link>
-              <Link to="/about" className="text-gray-700 hover:text-primary transition-colors">
+              <Link 
+                to="/about" 
+                className="text-foreground hover:text-primary transition-colors"
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              >
                 About
               </Link>
-              <Link to="/gallery" className="text-gray-700 hover:text-primary transition-colors">
+              <Link 
+                to="/gallery" 
+                className="text-foreground hover:text-primary transition-colors"
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              >
                 Gallery
               </Link>
-              <Link to="/deals" className="text-gray-700 hover:text-primary transition-colors">
+              <Link 
+                to="/deals" 
+                className="text-foreground hover:text-primary transition-colors"
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              >
                 Deals
               </Link>
               
@@ -96,7 +112,7 @@ const Header = () => {
               <NavigationMenu>
                 <NavigationMenuList>
                   <NavigationMenuItem>
-                    <NavigationMenuTrigger className="text-gray-700 hover:text-primary transition-colors">
+                    <NavigationMenuTrigger className="text-foreground hover:text-primary transition-colors">
                       Travel
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
@@ -104,7 +120,8 @@ const Header = () => {
                         <NavigationMenuLink asChild>
                           <Link 
                             to="/travel?tab=domestic" 
-                            className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                            className="flex items-center space-x-3 p-3 rounded-lg hover:bg-muted transition-colors"
+                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                           >
                             <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
                               🇮🇳
@@ -118,7 +135,8 @@ const Header = () => {
                         <NavigationMenuLink asChild>
                           <Link 
                             to="/travel?tab=international" 
-                            className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                            className="flex items-center space-x-3 p-3 rounded-lg hover:bg-muted transition-colors"
+                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                           >
                             <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
                               🌏

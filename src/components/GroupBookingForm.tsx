@@ -22,8 +22,12 @@ const GroupBookingForm = ({ isOpen, onClose }: GroupBookingFormProps) => {
     phone: "",
     checkIn: "",
     checkOut: "",
+    arrivalTime: "",
     guests: 26,
     roomType: "",
+    breakfast: false,
+    dinner: false,
+    dinnerType: "veg",
     specialRequests: ""
   });
 
@@ -49,10 +53,15 @@ const GroupBookingForm = ({ isOpen, onClose }: GroupBookingFormProps) => {
     }
   }, [formData.checkIn, formData.checkOut]);
 
+  // Calculate food add-ons
+  const breakfastCost = formData.breakfast ? formData.guests * 150 * nights : 0;
+  const dinnerCost = formData.dinner ? formData.guests * 300 * nights : 0;
+  const foodTotal = breakfastCost + dinnerCost;
+  
   // Fixed pricing for group booking - entire property
   const totalPrice = 15000 * nights;
-  const gst = Math.round(totalPrice * 0.12);
-  const finalTotal = totalPrice + gst;
+  const gst = Math.round((totalPrice + foodTotal) * 0.12);
+  const finalTotal = totalPrice + foodTotal + gst;
 
   const handleInputChange = (field: string, value: any) => {
     setFormData(prev => ({
@@ -69,6 +78,10 @@ const GroupBookingForm = ({ isOpen, onClose }: GroupBookingFormProps) => {
     }
     
     // WhatsApp booking functionality
+    const foodDetails = [];
+    if (formData.breakfast) foodDetails.push(`Breakfast: ₹${breakfastCost.toLocaleString()}`);
+    if (formData.dinner) foodDetails.push(`Dinner (${formData.dinnerType}): ₹${dinnerCost.toLocaleString()}`);
+    
     const bookingDetails = `
 🏨 *XTSY Group Booking Request*
 
@@ -81,14 +94,15 @@ Phone: ${formData.phone}
 📅 *Booking Details:*
 Check-in: ${formData.checkIn}
 Check-out: ${formData.checkOut}
+${formData.arrivalTime ? `Arrival Time: ${formData.arrivalTime}` : ''}
 Nights: ${nights}
 Total Guests: ${formData.guests}
 
 💰 *Price Summary:*
-Rate: ₹15,000 per night
-Subtotal: ₹${(15000 * nights).toLocaleString()}
-GST (12%): ₹${Math.round(15000 * nights * 0.12).toLocaleString()}
-Total: ₹${(15000 * nights * 1.12).toLocaleString()}
+Property Rate: ₹${(15000 * nights).toLocaleString()}
+${foodDetails.length > 0 ? `Food Add-ons:\n${foodDetails.join('\n')}` : ''}
+GST (12%): ₹${gst.toLocaleString()}
+*Total: ₹${finalTotal.toLocaleString()}*
 
 📝 *Special Requests:*
 ${formData.specialRequests || 'None'}
@@ -105,13 +119,13 @@ ${formData.specialRequests || 'None'}
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
           </DialogHeader>
-          <Card className="bg-white/95 backdrop-blur-sm border-green-200 shadow-2xl border-0">
+          <Card className="bg-card/95 backdrop-blur-sm border-border shadow-2xl border">
             <CardHeader className="text-center pb-6">
-              <CardTitle className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2 font-serif-sans">
-                <Users className="h-8 w-8 mx-auto mb-2 text-green-600" />
+              <CardTitle className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
+                <Users className="h-8 w-8 mx-auto mb-2 text-primary" />
                 Group Booking
               </CardTitle>
-              <CardDescription className="text-gray-600 font-seasons">
+              <CardDescription className="text-muted-foreground">
                 Perfect for group travels and special occasions
               </CardDescription>
             </CardHeader>
@@ -192,13 +206,25 @@ ${formData.specialRequests || 'None'}
                 </div>
 
                 {nights > 0 && (
-                  <div className="bg-green-50 p-4 rounded-lg">
-                    <p className="text-green-800 font-semibold">
+                  <div className="bg-primary/10 p-4 rounded-lg border border-primary/20">
+                    <p className="text-primary font-semibold">
                       <Calendar className="h-4 w-4 inline mr-2" />
                       Total Nights: {nights}
                     </p>
                   </div>
                 )}
+
+                {/* Time of Arrival */}
+                <div>
+                  <Label htmlFor="arrivalTime">Expected Time of Arrival</Label>
+                  <Input
+                    id="arrivalTime"
+                    type="time"
+                    value={formData.arrivalTime}
+                    onChange={(e) => handleInputChange('arrivalTime', e.target.value)}
+                    placeholder="e.g., 14:00"
+                  />
+                </div>
 
                 {/* Guest Selection */}
                 <div className="grid grid-cols-1 gap-4">
@@ -234,26 +260,88 @@ ${formData.specialRequests || 'None'}
                   </div>
                 </div>
 
+                {/* Food Add-ons */}
+                <div className="space-y-4">
+                  <Label className="text-lg font-semibold">Food Add-ons</Label>
+                  
+                  {/* Breakfast */}
+                  <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border">
+                    <div>
+                      <h4 className="font-semibold">Breakfast</h4>
+                      <p className="text-sm text-muted-foreground">₹150 per person per day</p>
+                    </div>
+                    <input
+                      type="checkbox"
+                      checked={formData.breakfast}
+                      onChange={(e) => handleInputChange('breakfast', e.target.checked)}
+                      className="w-5 h-5 text-primary"
+                    />
+                  </div>
+
+                  {/* Dinner */}
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border">
+                      <div>
+                        <h4 className="font-semibold">Dinner Thali</h4>
+                        <p className="text-sm text-muted-foreground">₹300 per person per day</p>
+                      </div>
+                      <input
+                        type="checkbox"
+                        checked={formData.dinner}
+                        onChange={(e) => handleInputChange('dinner', e.target.checked)}
+                        className="w-5 h-5 text-primary"
+                      />
+                    </div>
+                    
+                    {formData.dinner && (
+                      <div className="ml-4">
+                        <Label>Dinner Type</Label>
+                        <Select value={formData.dinnerType} onValueChange={(value) => handleInputChange('dinnerType', value)}>
+                          <SelectTrigger>
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="veg">Vegetarian Thali</SelectItem>
+                            <SelectItem value="nonveg">Non-Vegetarian Thali</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
                 {/* Price Summary */}
                 {nights > 0 && (
-                  <Card className="bg-gradient-to-r from-green-50 to-green-100 border-green-200">
+                  <Card className="bg-primary/10 border-primary/20">
                     <CardContent className="p-4">
-                      <h3 className="font-bold text-green-800 mb-2 flex items-center">
+                      <h3 className="font-bold text-primary mb-2 flex items-center">
                         <IndianRupee className="h-4 w-4 mr-1" />
                         Price Summary
                       </h3>
                       <div className="space-y-1 text-sm">
                         <div className="flex justify-between">
                           <span>Group Booking × {nights} nights</span>
-                          <span>₹15,000 per night</span>
+                          <span>₹{(15000 * nights).toLocaleString()}</span>
                         </div>
+                        {formData.breakfast && (
+                          <div className="flex justify-between">
+                            <span>Breakfast ({formData.guests} guests × {nights} nights)</span>
+                            <span>₹{breakfastCost.toLocaleString()}</span>
+                          </div>
+                        )}
+                        {formData.dinner && (
+                          <div className="flex justify-between">
+                            <span>Dinner {formData.dinnerType} ({formData.guests} guests × {nights} nights)</span>
+                            <span>₹{dinnerCost.toLocaleString()}</span>
+                          </div>
+                        )}
                         <div className="flex justify-between">
                           <span>GST (12%)</span>
-                          <span>₹{Math.round(15000 * nights * 0.12).toLocaleString()}</span>
+                          <span>₹{gst.toLocaleString()}</span>
                         </div>
-                        <div className="flex justify-between font-bold text-green-800 pt-2 border-t border-green-200">
+                        <div className="flex justify-between font-bold text-primary pt-2 border-t border-primary/20">
                           <span>Total Amount</span>
-                          <span>₹{(15000 * nights * 1.12).toLocaleString()}</span>
+                          <span>₹{finalTotal.toLocaleString()}</span>
                         </div>
                       </div>
                     </CardContent>
@@ -274,13 +362,13 @@ ${formData.specialRequests || 'None'}
 
                 {/* Submit Button */}
                 <div className="flex justify-center">
-                  <Button 
+                    <Button 
                     type="submit"
-                    className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold shadow-lg"
+                    className="w-full bg-gradient-to-r from-primary to-orange-600 hover:from-orange-600 hover:to-red-700 text-white font-bold shadow-lg"
                     disabled={!formData.checkIn || !formData.checkOut || nights <= 0}
                   >
                     <Users className="h-4 w-4 mr-2" />
-                    Book Now - ₹{nights > 0 ? (15000 * nights * 1.12).toLocaleString() : '0'}
+                    Book Now - ₹{nights > 0 ? finalTotal.toLocaleString() : '0'}
                   </Button>
                 </div>
               </form>

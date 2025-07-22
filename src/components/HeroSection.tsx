@@ -123,43 +123,55 @@ const HeroSection = () => {
                 </span>
               </div>
               
-              <div className="text-4xl sm:text-5xl lg:text-6xl font-bold text-orange-400">
-                XTSY
+              <div className="flex items-center justify-center">
+                <img 
+                  src="/lovable-uploads/1dc183db-b406-4fa4-a670-ba8b1b0e7c0f.png" 
+                  alt="XTSY Brand Logo" 
+                  className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 object-contain filter brightness-0 invert"
+                />
               </div>
             </div>
           </div>
 
-          {/* Search Form */}
+          {/* Search Form - Clickable tiles */}
           <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-2xl animate-fade-in max-w-5xl mx-auto" style={{ animationDelay: '0.9s' }}>
             <h2 className="text-2xl font-semibold mb-8 text-center">Find Your Perfect Stay</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
               <div className="space-y-3">
                 <label className="block text-sm font-medium text-gray-200">Check-in</label>
-                <div className="relative">
+                <div 
+                  className="relative cursor-pointer"
+                  onClick={() => document.getElementById('checkin-input')?.focus()}
+                >
                   <Input
+                    id="checkin-input"
                     type="date"
                     value={checkIn}
                     onChange={(e) => setCheckIn(e.target.value)}
-                    className="pl-12 h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-base"
+                    className="pl-12 h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-base cursor-pointer"
                     min={new Date().toISOString().split('T')[0]}
                   />
-                  <Calendar className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-300" />
+                  <Calendar className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-300 pointer-events-none" />
                 </div>
               </div>
 
               <div className="space-y-3">
                 <label className="block text-sm font-medium text-gray-200">Check-out</label>
-                <div className="relative">
+                <div 
+                  className="relative cursor-pointer"
+                  onClick={() => document.getElementById('checkout-input')?.focus()}
+                >
                   <Input
+                    id="checkout-input"
                     type="date"
                     value={checkOut}
                     onChange={(e) => setCheckOut(e.target.value)}
-                    className="pl-12 h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-base"
+                    className="pl-12 h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-base cursor-pointer"
                     min={checkIn ? new Date(new Date(checkIn).getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0] : new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]}
                     placeholder="dd-mm-yyyy"
                   />
-                  <Calendar className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-300" />
+                  <Calendar className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-300 pointer-events-none" />
                 </div>
               </div>
 
@@ -198,19 +210,19 @@ const HeroSection = () => {
           {/* Quick Stats */}
           <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 animate-fade-in" style={{ animationDelay: '1.2s' }}>
             <div className="text-center">
-              <div className="text-3xl font-bold text-orange-400">{bookNowClicks}+</div>
+              <div className="text-3xl font-bold bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">{bookNowClicks + 14}+</div>
               <div className="text-sm text-gray-300">Happy Guests</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-red-400">50+</div>
-              <div className="text-sm text-gray-300">Adventure Tours</div>
+              <div className="text-3xl font-bold bg-gradient-to-r from-red-400 to-pink-500 bg-clip-text text-transparent">50+</div>
+              <div className="text-sm text-gray-300">Tour Packages across IN</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-yellow-400">4.8</div>
+              <div className="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">4.8</div>
               <div className="text-sm text-gray-300">Rating</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-green-400">24/7</div>
+              <div className="text-3xl font-bold bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">24/7</div>
               <div className="text-sm text-gray-300">Support</div>
             </div>
           </div>
