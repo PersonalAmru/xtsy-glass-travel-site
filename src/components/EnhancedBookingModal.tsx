@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -867,132 +866,149 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
 
                 {/* Scrollable Content */}
                 <div className="flex-1 overflow-y-auto p-4 md:p-6 max-h-[calc(100vh-300px)]">
-                   {/* Show all selected rooms */}
-                   <div className="space-y-3 mb-4">
-                     {Object.entries(roomSelections)
-                       .filter(([_, selection]) => selection.guests > 0 || selection.rooms > 0)
-                       .map(([roomId, selection]) => {
-                         const room = rooms.find(r => r.id === roomId);
-                         if (!room) return null;
-                         
-                         const isDorm = room.name.toLowerCase().includes('dorm');
-                         const roomPrice = room.price;
-                         const nights = bookingData.nights || 1;
-                         
-                         return (
-                           <div key={roomId} className="bg-white rounded-lg p-3 border">
-                             <div className="flex justify-between items-start mb-2">
-                               <span className="font-medium text-sm text-black">{room.name}</span>
-                               <span className="text-sm text-black">₹{roomPrice}</span>
-                             </div>
-                             <div className="text-xs text-black mb-1">
-                               {isDorm ? (
-                                 <>₹{roomPrice} x {selection.guests} {selection.guests === 1 ? 'bed' : 'beds'} x {nights} nights</>
-                               ) : (
-                                 <>₹{roomPrice} x {selection.rooms} {selection.rooms === 1 ? 'room' : 'rooms'} x {nights} nights</>
-                               )}
-                             </div>
-                             <div className="text-xs text-black">
-                               Guests: {isDorm 
-                                 ? selection.guests
-                                 : room.name === "King Triple Room" 
-                                   ? Math.min(3, selection.rooms * 3)
-                                   : selection.rooms * 2
-                               }
-                             </div>
-                             <div className="text-xs font-medium text-orange-600 mt-1">
-                               Subtotal: ₹{isDorm ? roomPrice * selection.guests * nights : roomPrice * selection.rooms * nights}
-                             </div>
-                           </div>
-                         );
-                       })}
-                     
-                     {totalGuestsCalculated > 0 && (
-                       <div className="text-sm text-black font-medium bg-blue-50 p-3 rounded-lg border">
-                         Total Guests: {totalGuestsCalculated}
-                       </div>
-                     )}
-                   </div>
-
-                  <Separator className="my-4" />
-
-                  <div className="space-y-2">
-                    <div className="flex justify-between">
-                      <span className="text-black">Subtotal</span>
-                      <span className="text-black">₹{subtotal}</span>
-                    </div>
-                    {couponDiscount > 0 && (
-                      <div className="flex justify-between text-green-600">
-                        <span>Discount ({couponDiscount}%)</span>
-                        <span>-₹{discountAmount}</span>
+                  {hasRoomSelections ? (
+                    <>
+                      {/* Show all selected rooms */}
+                      <div className="space-y-3 mb-4">
+                        {Object.entries(roomSelections)
+                          .filter(([_, selection]) => selection.guests > 0 || selection.rooms > 0)
+                          .map(([roomId, selection]) => {
+                            const room = rooms.find(r => r.id === roomId);
+                            if (!room) return null;
+                            
+                            const isDorm = room.name.toLowerCase().includes('dorm');
+                            const roomPrice = room.price;
+                            const nights = bookingData.nights || 1;
+                            
+                            return (
+                              <div key={roomId} className="bg-white rounded-lg p-3 border">
+                                <div className="flex justify-between items-start mb-2">
+                                  <span className="font-medium text-sm text-black">{room.name}</span>
+                                  <span className="text-sm text-black">₹{roomPrice}</span>
+                                </div>
+                                <div className="text-xs text-black mb-1">
+                                  {isDorm ? (
+                                    <>₹{roomPrice} x {selection.guests} {selection.guests === 1 ? 'bed' : 'beds'} x {nights} nights</>
+                                  ) : (
+                                    <>₹{roomPrice} x {selection.rooms} {selection.rooms === 1 ? 'room' : 'rooms'} x {nights} nights</>
+                                  )}
+                                </div>
+                                <div className="text-xs text-black">
+                                  Guests: {isDorm 
+                                    ? selection.guests
+                                    : room.name === "King Triple Room" 
+                                      ? Math.min(3, selection.rooms * 3)
+                                      : selection.rooms * 2
+                                  }
+                                </div>
+                                <div className="text-xs font-medium text-orange-600 mt-1">
+                                  Subtotal: ₹{isDorm ? roomPrice * selection.guests * nights : roomPrice * selection.rooms * nights}
+                                </div>
+                              </div>
+                            );
+                          })}
+                        
+                        {totalGuestsCalculated > 0 && (
+                          <div className="text-sm text-black font-medium bg-blue-50 p-3 rounded-lg border">
+                            Total Guests: {totalGuestsCalculated}
+                          </div>
+                        )}
                       </div>
-                    )}
-                    <div className="flex justify-between">
-                      <span className="text-black">GST</span>
-                      <span className="text-black">₹{gstAmount}</span>
-                    </div>
-                    <Separator className="my-2" />
-                    <div className="flex justify-between font-semibold text-lg">
-                      <span className="text-black">Grand Total (Amount)</span>
-                      <span className="text-black">₹{totalAmount}</span>
-                    </div>
-                  </div>
 
-                  {/* Coupon Section - Fixed styling */}
-                  <div className="mt-6 space-y-3">
-                    <div className="bg-white rounded-lg p-4 border shadow-sm">
-                      <h4 className="font-semibold mb-3 text-black text-base">Have a discount coupon?</h4>
-                      {couponDiscount === 0 ? (
-                        <div className="space-y-3">
-                          <div className="flex gap-2">
-                            <Input
-                              placeholder="Enter coupon code (XTSY-DEAL)"
-                              value={couponCode}
-                              onChange={(e) => setCouponCode(e.target.value)}
-                              className="flex-1 text-black border-gray-300 bg-white"
-                            />
-                            <Button 
-                              variant="outline" 
-                              size="sm"
-                              onClick={applyCoupon}
-                              disabled={!couponCode}
-                              className="text-black border-gray-300 bg-white hover:bg-gray-50 font-medium"
-                            >
-                              Apply
-                            </Button>
-                          </div>
-                          <p className="text-xs text-gray-600">
-                            XTSY-DEAL: 15% off for bookings with minimum 4 guests and 2 nights
-                          </p>
+                      <Separator className="my-4" />
+
+                      <div className="space-y-2">
+                        <div className="flex justify-between">
+                          <span className="text-black">Subtotal</span>
+                          <span className="text-black">₹{subtotal}</span>
                         </div>
-                      ) : (
-                        <div className="space-y-2">
-                          <div className="text-green-600 text-sm flex items-center justify-between bg-green-50 p-3 rounded-lg">
-                            <div className="flex items-center gap-2">
-                              <Check className="h-4 w-4" />
-                              <span className="font-medium">Coupon Applied! ({couponCode})</span>
+                        {couponDiscount > 0 && (
+                          <div className="flex justify-between text-green-600">
+                            <span>Discount ({couponDiscount}%)</span>
+                            <span>-₹{discountAmount}</span>
+                          </div>
+                        )}
+                        <div className="flex justify-between">
+                          <span className="text-black">GST</span>
+                          <span className="text-black">₹{gstAmount}</span>
+                        </div>
+                        <Separator className="my-2" />
+                        <div className="flex justify-between font-semibold text-lg">
+                          <span className="text-black">Grand Total (Amount)</span>
+                          <span className="text-black">₹{totalAmount}</span>
+                        </div>
+                      </div>
+
+                      {/* Coupon Section - Fixed styling */}
+                      <div className="mt-6 space-y-3">
+                        <div className="bg-white rounded-lg p-4 border shadow-sm">
+                          <h4 className="font-semibold mb-3 text-black text-base">Have a discount coupon?</h4>
+                          {couponDiscount === 0 ? (
+                            <div className="space-y-3">
+                              <div className="flex gap-2">
+                                <Input
+                                  placeholder="Enter coupon code (XTSY-DEAL)"
+                                  value={couponCode}
+                                  onChange={(e) => setCouponCode(e.target.value)}
+                                  className="flex-1 text-black border-gray-300 bg-white"
+                                />
+                                <Button 
+                                  variant="outline" 
+                                  size="sm"
+                                  onClick={applyCoupon}
+                                  disabled={!couponCode}
+                                  className="text-black border-gray-300 bg-white hover:bg-gray-50 font-medium"
+                                >
+                                  Apply
+                                </Button>
+                              </div>
+                              <p className="text-xs text-gray-600">
+                                XTSY-DEAL: 15% off for bookings with minimum 4 guests and 2 nights
+                              </p>
                             </div>
-                            <Button 
-                              variant="ghost" 
-                              size="sm"
-                              onClick={removeCoupon}
-                              className="text-red-500 hover:text-red-700 hover:bg-red-50 p-1"
-                            >
-                              <X className="h-4 w-4" />
-                            </Button>
-                          </div>
-                          <div className="text-green-600 text-sm font-medium">
-                            15% discount has been applied to your booking.
-                          </div>
+                          ) : (
+                            <div className="space-y-2">
+                              <div className="text-green-600 text-sm flex items-center justify-between bg-green-50 p-3 rounded-lg">
+                                <div className="flex items-center gap-2">
+                                  <Check className="h-4 w-4" />
+                                  <span className="font-medium">Coupon Applied! ({couponCode})</span>
+                                </div>
+                                <Button 
+                                  variant="ghost" 
+                                  size="sm"
+                                  onClick={removeCoupon}
+                                  className="text-red-500 hover:text-red-700 hover:bg-red-50 p-1"
+                                >
+                                  <X className="h-4 w-4" />
+                                </Button>
+                              </div>
+                              <div className="text-green-600 text-sm font-medium">
+                                15% discount has been applied to your booking.
+                              </div>
+                            </div>
+                          )}
+                          {couponError && (
+                            <div className="text-red-500 text-sm font-medium bg-red-50 p-2 rounded mt-2">
+                              {couponError}
+                            </div>
+                          )}
                         </div>
-                      )}
-                      {couponError && (
-                        <div className="text-red-500 text-sm font-medium bg-red-50 p-2 rounded mt-2">
-                          {couponError}
-                        </div>
-                      )}
+                      </div>
+                    </>
+                  ) : (
+                    <div className="flex flex-col items-center justify-center h-full text-center py-8">
+                      <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mb-4">
+                        <Bed className="h-8 w-8 text-gray-400" />
+                      </div>
+                      <h4 className="text-lg font-medium text-black mb-2">No rooms selected</h4>
+                      <p className="text-sm text-gray-600 mb-4">
+                        Please select rooms or beds from the available options to see your booking summary.
+                      </p>
+                      <div className="text-xs text-gray-500">
+                        Select dates, choose rooms, and see pricing details here.
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
 
                  {/* Action Buttons - Fixed at bottom */}
