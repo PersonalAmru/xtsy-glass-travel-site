@@ -33,44 +33,48 @@ import thekkadyWildlife from "@/assets/thekkady-wildlife.jpg";
 import ootyKodaikanal from "@/assets/ooty-kodaikanal.jpg";
 import dharamshalaMcleodganj from "@/assets/dharamshala-mcleodganj.jpg";
 import pellingKanchenjunga from "@/assets/pelling-kanchenjunga.jpg";
-import assamTeaGardens from "@/assets/assam-tea-gardens.jpg";
+import assamTeaGardensNew from "@/assets/assam-tea-gardens-new.jpg";
 import tamilNaduTemplesNew from "@/assets/tamil-nadu-temples-new.jpg";
-import arunachalFestival from "@/assets/arunachal-festival.jpg";
-// Relevant tourism images for each destination
+import arunachalTribalFestival from "@/assets/arunachal-tribal-festival.jpg";
+import tamilNaduTemplesPinterest from "@/assets/tamil-nadu-temples-pinterest.jpg";
+import munnarTeaGardensKerala from "@/assets/munnar-tea-gardens-kerala.jpg";
+import nagalandHornbillFestival from "@/assets/nagaland-hornbill-festival.jpg";
+import manipurLoktakFloatingIslands from "@/assets/manipur-loktak-floating-islands.jpg";
+// Optimized local images to improve performance and reduce API calls
 const meghalayaImages = [
-  "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&q=80", // Shillong hills
-  "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80", // Mountain landscape
-  "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80"  // Green mountains
+  meghalayaLivingRootBridges,
+  cherrapunjiNohkalikaiFalls,
+  dawkiUmngotRiver
 ];
 
 const himachalImages = [
-  "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80", // Snow mountains
-  "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80", // Dharamshala landscape
-  "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&q=80"  // Pine trees in mountains
+  himachalValleys,
+  dharamshalaMcleodganj,
+  shimlaManaliHoneymoon
 ];
 
 const keralImages = [
-  "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&q=80", // Kerala backwaters
-  "https://images.unsplash.com/photo-1548013146-72479768bada?w=800&q=80", // Coconut palms
-  "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&q=80"  // Traditional houseboat
+  keralaBackwaters,
+  munnarTeaGardensKerala,
+  thekkadyWildlife
 ];
 
 const uttarakhandImages = [
-  "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80", // Himalayan peaks
-  "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80", // Mountain summit
-  "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=800&q=80"  // Waterfall
+  uttarakhandHimalayas,
+  charDhamYatra,
+  rishikeshAdventure
 ];
 
 const sikkimImages = [
-  "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80", // Sikkim mountains
-  "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80", // Rhododendron landscape
-  "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80"  // Valley views
+  sikkimRhododendrons,
+  gurudongmarLake,
+  pellingKanchenjunga
 ];
 
 const tamilNaduImages = [
-  "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80", // Temple architecture
-  "https://images.unsplash.com/photo-1466442929976-97f336a657be?w=800&q=80", // Traditional temple
-  "https://images.unsplash.com/photo-1582549346109-6c1b2b41ba00?w=800&q=80"  // South Indian culture
+  tamilNaduTemplesPinterest,
+  tamilNaduTemplesNew,
+  ootyKodaikanal
 ];
 
 // Individual destination images
@@ -165,7 +169,7 @@ const Travel = () => {
         difficulty: "Challenging",
         price: "₹15,999",
         image: cherrapunjiNohkalikaiFalls,
-        images: [cherrapunjiNohkalikaiFalls, "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80", "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80"],
+        images: [cherrapunjiNohkalikaiFalls, meghalayaLivingRootBridges, dawkiUmngotRiver],
         rating: 4.9,
         category: "adventure",
         location: "Meghalaya",
@@ -180,7 +184,7 @@ const Travel = () => {
         difficulty: "Easy",
         price: "₹6,999",
         image: dawkiUmngotRiver,
-        images: [dawkiUmngotRiver, "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=800&q=80", "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80"],
+        images: [dawkiUmngotRiver, cherrapunjiNohkalikaiFalls, mawlynnongCleanestVillage],
         rating: 4.7,
         category: "leisure",
         location: "Meghalaya",
@@ -195,7 +199,7 @@ const Travel = () => {
         difficulty: "Easy",
         price: "₹7,499",
         image: mawlynnongCleanestVillage,
-        images: [mawlynnongCleanestVillage, meghalayaImages[0], meghalayaImages[2]],
+        images: [mawlynnongCleanestVillage, meghalayaLivingRootBridges, dawkiUmngotRiver],
         rating: 4.5,
         category: "cultural",
         location: "Meghalaya",
@@ -213,7 +217,7 @@ const Travel = () => {
         difficulty: "Challenging",
         price: "₹35,999",
         image: charDhamYatra,
-        images: [charDhamYatra, uttarakhandImages[1], uttarakhandImages[2]],
+        images: [charDhamYatra, rishikeshAdventure, valleyOfFlowers],
         rating: 4.9,
         category: "cultural",
         location: "Uttarakhand",
@@ -228,7 +232,7 @@ const Travel = () => {
         difficulty: "Moderate",
         price: "₹11,999",
         image: rishikeshAdventure,
-        images: [rishikeshAdventure, uttarakhandImages[1], uttarakhandImages[2]],
+        images: [rishikeshAdventure, charDhamYatra, nainitalLakeDistrict],
         rating: 4.8,
         category: "adventure",
         location: "Uttarakhand",
@@ -243,7 +247,7 @@ const Travel = () => {
         difficulty: "Easy",
         price: "₹18,999",
         image: nainitalLakeDistrict,
-        images: [nainitalLakeDistrict, "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80", "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80"],
+        images: [nainitalLakeDistrict, uttarakhandHimalayas, charDhamYatra],
         rating: 4.7,
         category: "leisure",
         location: "Uttarakhand",
@@ -258,7 +262,7 @@ const Travel = () => {
         difficulty: "Challenging",
         price: "₹24,999",
         image: valleyOfFlowers,
-        images: [valleyOfFlowers, "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80", "https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?w=800&q=80"],
+        images: [valleyOfFlowers, uttarakhandHimalayas, rishikeshAdventure],
         rating: 4.9,
         category: "adventure",
         location: "Uttarakhand",
@@ -276,7 +280,7 @@ const Travel = () => {
         difficulty: "Moderate",
         price: "₹22,999",
         image: sikkimRhododendrons,
-        images: sikkimImages,
+        images: [sikkimRhododendrons, gurudongmarLake, pellingKanchenjunga],
         rating: 4.8,
         category: "cultural",
         location: "Sikkim",
@@ -291,7 +295,7 @@ const Travel = () => {
         difficulty: "Challenging",
         price: "₹19,999",
         image: gurudongmarLake,
-        images: [gurudongmarLake, sikkimImages[1], sikkimImages[2]],
+        images: [gurudongmarLake, sikkimRhododendrons, pellingKanchenjunga],
         rating: 4.9,
         category: "adventure",
         location: "Sikkim",
@@ -306,7 +310,7 @@ const Travel = () => {
         difficulty: "Easy",
         price: "₹13,999",
         image: pellingKanchenjunga,
-        images: [pellingKanchenjunga, sikkimImages[0], sikkimImages[1]],
+        images: [pellingKanchenjunga, sikkimRhododendrons, gurudongmarLake],
         rating: 4.6,
         category: "leisure",
         location: "Sikkim",
@@ -324,7 +328,7 @@ const Travel = () => {
         difficulty: "Easy",
         price: "₹16,999",
         image: shimlaManaliHoneymoon,
-        images: [shimlaManaliHoneymoon, himachalImages[1], himachalImages[2]],
+        images: [shimlaManaliHoneymoon, himachalValleys, dharamshalaMcleodganj],
         rating: 4.7,
         category: "leisure",
         location: "Himachal Pradesh",
@@ -339,7 +343,7 @@ const Travel = () => {
         difficulty: "Challenging",
         price: "₹32,999",
         image: spitiValley,
-        images: [spitiValley, himachalImages[0], himachalImages[2]],
+        images: [spitiValley, himachalValleys, dharamshalaMcleodganj],
         rating: 4.9,
         category: "adventure",
         location: "Himachal Pradesh",
@@ -354,7 +358,7 @@ const Travel = () => {
         difficulty: "Easy",
         price: "₹12,999",
         image: dharamshalaMcleodganj,
-        images: [dharamshalaMcleodganj, himachalImages[1], himachalImages[2]],
+        images: [dharamshalaMcleodganj, himachalValleys, shimlaManaliHoneymoon],
         rating: 4.6,
         category: "cultural",
         location: "Himachal Pradesh",
@@ -372,7 +376,7 @@ const Travel = () => {
         difficulty: "Easy",
         price: "₹25,999",
         image: keralaBackwaters,
-        images: keralImages,
+        images: [keralaBackwaters, munnarTeaGardensKerala, thekkadyWildlife],
         rating: 4.8,
         category: "leisure",
         location: "Kerala",
@@ -386,8 +390,8 @@ const Travel = () => {
         duration: "5 Days",
         difficulty: "Easy",
         price: "₹14,999",
-        image: munnarTeaGardensNew,
-        images: [munnarTeaGardensNew, keralImages[1], keralImages[2]],
+        image: munnarTeaGardensKerala,
+        images: [munnarTeaGardensKerala, munnarTeaGardensNew, keralaBackwaters],
         rating: 4.7,
         category: "cultural",
         location: "Kerala",
@@ -402,7 +406,7 @@ const Travel = () => {
         difficulty: "Easy",
         price: "₹9,999",
         image: thekkadyWildlife,
-        images: [thekkadyWildlife, keralImages[0], keralImages[1]],
+        images: [thekkadyWildlife, keralaBackwaters, munnarTeaGardensKerala],
         rating: 4.5,
         category: "adventure",
         location: "Kerala",
@@ -419,8 +423,8 @@ const Travel = () => {
         duration: "7 Days",
         difficulty: "Easy",
         price: "₹17,999",
-        image: tamilNaduTemplesNew,
-        images: [tamilNaduTemplesNew, tamilNaduImages[1], tamilNaduImages[2]],
+        image: tamilNaduTemplesPinterest,
+        images: [tamilNaduTemplesPinterest, tamilNaduTemplesNew, tamilNaduTemples],
         rating: 4.6,
         category: "cultural",
         location: "Tamil Nadu",
@@ -435,7 +439,7 @@ const Travel = () => {
         difficulty: "Easy",
         price: "₹15,999",
         image: ootyKodaikanal,
-        images: [ootyKodaikanal, hillStationImage, "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&q=80"],
+        images: [ootyKodaikanal, tamilNaduTemplesPinterest, tamilNaduTemplesNew],
         rating: 4.7,
         category: "leisure",
         location: "Tamil Nadu",
@@ -452,8 +456,8 @@ const Travel = () => {
         duration: "6 Days",
         difficulty: "Moderate",
         price: "₹18,999",
-        image: cultureImage,
-        images: [cultureImage, "https://images.unsplash.com/photo-1615729947596-a598e5de0ab3?w=800&q=80", "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80"],
+        image: arunachalTribalFestival,
+        images: [arunachalTribalFestival, tribalCircuit, uttarakhandHimalayas],
         rating: 4.7,
         category: "cultural",
         location: "Arunachal Pradesh",
@@ -467,8 +471,8 @@ const Travel = () => {
         duration: "5 Days",
         difficulty: "Easy",
         price: "₹16,999",
-        image: cultureImage,
-        images: [cultureImage, "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&q=80", "https://images.unsplash.com/photo-1582549346109-6c1b2b41ba00?w=800&q=80"],
+        image: nagalandHornbillFestival,
+        images: [nagalandHornbillFestival, tribalCircuit, shillongCulturalCity],
         rating: 4.8,
         category: "cultural",
         location: "Nagaland",
@@ -482,8 +486,8 @@ const Travel = () => {
         duration: "7 Days",
         difficulty: "Moderate",
         price: "₹19,999",
-        image: assamTeaGardens,
-        images: [assamTeaGardens, forestImage, keralImages[1]],
+        image: assamTeaGardensNew,
+        images: [assamTeaGardensNew, munnarTeaGardensKerala, keralaBackwaters],
         rating: 4.6,
         category: "adventure",
         location: "Assam",
@@ -497,8 +501,8 @@ const Travel = () => {
         duration: "4 Days",
         difficulty: "Easy",
         price: "₹12,999",
-        image: lakeImage,
-        images: [lakeImage, "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=800&q=80", "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&q=80"],
+        image: manipurLoktakFloatingIslands,
+        images: [manipurLoktakFloatingIslands, dawkiUmngotRiver, keralaBackwaters],
         rating: 4.5,
         category: "adventure",
         location: "Manipur",
