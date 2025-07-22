@@ -137,17 +137,17 @@ Please confirm this tour package booking and share payment details.`;
           </div>
         </DialogHeader>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Package Details */}
-          <div className="space-y-6">
+        <div className="grid grid-cols-1 gap-6">
+          {/* Large Cover Image */}
+          <div className="w-full">
             <div className="relative">
               <img 
                 src={tourPackage.image} 
                 alt={tourPackage.title}
-                className="w-full h-64 object-cover rounded-lg"
+                className="w-full h-80 lg:h-96 object-cover rounded-lg"
               />
               <div className="absolute top-4 left-4">
-                <Badge variant="secondary" className="bg-white/90">
+                <Badge variant="secondary" className="bg-white/90 text-black">
                   {tourPackage.category}
                 </Badge>
               </div>
@@ -156,8 +156,13 @@ Please confirm this tour package booking and share payment details.`;
                 <span className="text-sm">{tourPackage.rating}</span>
               </div>
             </div>
+          </div>
 
-            <div>
+          {/* Content Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Package Details */}
+            <div className="space-y-6">
+              <div>
               <p className="text-gray-600 mb-4">{tourPackage.description}</p>
               
               <div className="grid grid-cols-3 gap-4 mb-4">
@@ -187,10 +192,10 @@ Please confirm this tour package booking and share payment details.`;
                 </div>
               </div>
             </div>
-          </div>
+            </div>
 
-          {/* Booking Form */}
-          <div className="space-y-6">
+            {/* Booking Form */}
+            <div className="space-y-6">
             <Card className="p-6">
               <h3 className="text-lg font-semibold mb-4">Book This Journey</h3>
               
@@ -341,6 +346,7 @@ Please confirm this tour package booking and share payment details.`;
                 Pay and Confirm
               </Button>
             </Card>
+            </div>
           </div>
         </div>
       </DialogContent>

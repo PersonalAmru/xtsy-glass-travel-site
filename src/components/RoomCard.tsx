@@ -21,9 +21,7 @@ interface RoomCardProps {
 }
 
 const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCardProps) => {
-  const buttonText = propertyType === "hostel" ? "Select Bed" : propertyType === "luxury" ? "Select Suite" : "Select Bed";
-  const badgeColor = propertyType === "hostel" ? "bg-blue-500" : propertyType === "luxury" ? "bg-purple-500" : "bg-green-500";
-  const badgeText = propertyType === "hostel" ? "Hostel" : propertyType === "luxury" ? "Luxury" : "Economy";
+  const buttonText = propertyType === "hostel" ? `Select Bed - ₹${room.price}/night` : propertyType === "luxury" ? `Select Suite - ₹${room.price}/night` : `Select Room - ₹${room.price}/night`;
 
   if (isLuxury) {
     return (
@@ -37,11 +35,6 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
               <p className="text-gray-400 dark:text-gray-400 text-sm">270° Panoramic Views</p>
             </div>
           </div>
-          <div className="absolute top-4 right-4">
-            <Badge className={`${badgeColor} text-white text-sm px-4 py-2`}>
-              {badgeText}
-            </Badge>
-          </div>
         </div>
 
         {/* Bottom Section for Description */}
@@ -51,9 +44,6 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
               {room.name}
               <RotateCcw className="h-6 w-6 text-orange-500" />
             </CardTitle>
-            <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold text-lg px-4 py-2 whitespace-nowrap">
-              ₹{room.price}/night
-            </Badge>
           </div>
           <CardDescription className="text-gray-600 dark:text-gray-300 text-lg font-seasons">
             {room.description}
@@ -94,7 +84,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
   }
 
   return (
-    <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-400 hover:shadow-lg transition-all duration-300 shadow-md w-full max-w-sm mx-auto h-auto min-h-[400px] sm:min-h-[450px] md:min-h-[500px] lg:min-h-[550px] flex flex-col">
+    <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-400 hover:shadow-lg transition-all duration-300 shadow-md w-full min-w-0 flex-1 min-h-[400px] sm:min-h-[450px] md:min-h-[500px] lg:min-h-[550px] flex flex-col">
       <CardHeader className="pb-2 sm:pb-3">
         <div className="w-full h-24 sm:h-32 md:h-36 lg:h-40 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 rounded-lg mb-2 sm:mb-4 flex items-center justify-center border border-gray-300 dark:border-gray-600">
           <div className="text-center">
@@ -106,13 +96,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
         <div className="flex justify-between items-start mb-1 sm:mb-2">
           <CardTitle className="text-fluid-sm sm:text-fluid-base md:text-fluid-lg font-bold text-gray-900 dark:text-white font-serif-sans leading-tight flex items-center gap-1 sm:gap-2">
             <span className="truncate">{room.name}</span>
-            <Badge className={`${badgeColor} text-white text-fluid-xs flex-shrink-0`}>
-              {badgeText}
-            </Badge>
           </CardTitle>
-          <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold text-fluid-xs sm:text-fluid-sm whitespace-nowrap ml-1 sm:ml-2 flex-shrink-0">
-            ₹{room.price}/night
-          </Badge>
         </div>
         <CardDescription className="text-gray-600 dark:text-gray-300 text-fluid-xs sm:text-fluid-sm font-seasons line-clamp-2">
           {room.description}

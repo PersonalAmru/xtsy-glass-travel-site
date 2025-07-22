@@ -14,6 +14,12 @@ import cherrapunjiNohkalikaiFalls from "@/assets/cherrapunji-nohkalikai-falls.jp
 import dawkiUmngotRiver from "@/assets/dawki-umngot-river.jpg";
 import mawlynnongCleanestVillage from "@/assets/mawlynnong-cleanest-village.jpg";
 import shillongCulturalCity from "@/assets/shillong-cultural-city.jpg";
+import keralaBackwaters from "@/assets/kerala-backwaters.jpg";
+import uttarakhandHimalayas from "@/assets/uttarakhand-himalayas.jpg";
+import sikkimRhododendrons from "@/assets/sikkim-rhododendrons.jpg";
+import himachalValleys from "@/assets/himachal-valleys.jpg";
+import tamilNaduTemples from "@/assets/tamil-nadu-temples.jpg";
+import tribalCircuit from "@/assets/tribal-circuit.jpg";
 // Relevant tourism images for each destination
 const meghalayaImages = [
   "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&q=80", // Shillong hills
@@ -102,358 +108,392 @@ const Travel = () => {
     setIsAuthModalOpen(true);
   };
 
-  // Enhanced tour packages data with more states
-  const itineraries = [
-    // Meghalaya packages
-    {
-      id: 1,
-      title: "Meghalaya Hidden Gems",
-      description: "Discover the unexplored waterfalls and living root bridges of Meghalaya",
-      duration: "5 Days",
-      difficulty: "Moderate",
-      price: "₹12,999",
-      images: [meghalayaLivingRootBridges, meghalayaImages[1], meghalayaImages[2]],
-      rating: 4.8,
-      category: "adventure",
-      location: "Meghalaya",
-      highlights: ["Double Decker Root Bridge", "Rainbow Falls", "Crystal Clear Pools"],
-      bestSeason: "Oct-Mar"
-    },
-    {
-      id: 2,
-      title: "Shillong Cultural Experience",
-      description: "Immerse yourself in Khasi culture, local markets, and traditional cuisine",
-      duration: "3 Days",
-      difficulty: "Easy",
-      price: "₹8,999",
-      images: [shillongCulturalCity, meghalayaImages[1], meghalayaImages[2]],
-      rating: 4.6,
-      category: "cultural",
-      location: "Meghalaya",
-      highlights: ["Police Bazaar", "Don Bosco Museum", "Local Food Tours"],
-      bestSeason: "Year Round"
-    },
-    {
-      id: 3,
-      title: "Cherrapunji Monsoon Trek",
-      description: "Experience the wettest place on earth during monsoon season",
-      duration: "4 Days",
-      difficulty: "Challenging",
-      price: "₹15,999",
-      images: [cherrapunjiNohkalikaiFalls, "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80", "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80"],
-      rating: 4.9,
-      category: "adventure",
-      location: "Meghalaya",
-      highlights: ["Nohkalikai Falls", "Mawsmai Caves", "Living Root Bridges"],
-      bestSeason: "Jun-Sep"
-    },
-    {
-      id: 4,
-      title: "Dawki River Adventure",
-      description: "Crystal clear waters and boating experience at Indo-Bangladesh border",
-      duration: "2 Days",
-      difficulty: "Easy",
-      price: "₹6,999",
-      images: [dawkiUmngotRiver, "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=800&q=80", "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80"],
-      rating: 4.7,
-      category: "leisure",
-      location: "Meghalaya",
-      highlights: ["Umngot River", "Transparent Water Boating", "Border Views"],
-      bestSeason: "Nov-May"
-    },
-    {
-      id: 5,
-      title: "Mawlynnong Clean Village Tour",
-      description: "Visit Asia's cleanest village and experience sustainable living",
-      duration: "2 Days", 
-      difficulty: "Easy",
-      price: "₹7,499",
-      images: [mawlynnongCleanestVillage, meghalayaImages[0], meghalayaImages[2]],
-      rating: 4.5,
-      category: "cultural",
-      location: "Meghalaya",
-      highlights: ["Sky Walk", "Living Root Bridge", "Organic Gardens"],
-      bestSeason: "Oct-Apr"
-    },
+  // Enhanced tour packages data organized by states
+  const stateWiseTourPackages = {
+    "Meghalaya": [
+      {
+        id: 1,
+        title: "Meghalaya Hidden Gems",
+        description: "Discover the unexplored waterfalls and living root bridges of Meghalaya",
+        duration: "5 Days",
+        difficulty: "Moderate",
+        price: "₹12,999",
+        image: meghalayaLivingRootBridges,
+        images: [meghalayaLivingRootBridges, meghalayaImages[1], meghalayaImages[2]],
+        rating: 4.8,
+        category: "adventure",
+        location: "Meghalaya",
+        highlights: ["Double Decker Root Bridge", "Rainbow Falls", "Crystal Clear Pools"],
+        bestSeason: "Oct-Mar"
+      },
+      {
+        id: 2,
+        title: "Shillong Cultural Experience",
+        description: "Immerse yourself in Khasi culture, local markets, and traditional cuisine",
+        duration: "3 Days",
+        difficulty: "Easy",
+        price: "₹8,999",
+        image: shillongCulturalCity,
+        images: [shillongCulturalCity, meghalayaImages[1], meghalayaImages[2]],
+        rating: 4.6,
+        category: "cultural",
+        location: "Meghalaya",
+        highlights: ["Police Bazaar", "Don Bosco Museum", "Local Food Tours"],
+        bestSeason: "Year Round"
+      },
+      {
+        id: 3,
+        title: "Cherrapunji Monsoon Trek",
+        description: "Experience the wettest place on earth during monsoon season",
+        duration: "4 Days",
+        difficulty: "Challenging",
+        price: "₹15,999",
+        image: cherrapunjiNohkalikaiFalls,
+        images: [cherrapunjiNohkalikaiFalls, "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80", "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80"],
+        rating: 4.9,
+        category: "adventure",
+        location: "Meghalaya",
+        highlights: ["Nohkalikai Falls", "Mawsmai Caves", "Living Root Bridges"],
+        bestSeason: "Jun-Sep"
+      },
+      {
+        id: 4,
+        title: "Dawki River Adventure",
+        description: "Crystal clear waters and boating experience at Indo-Bangladesh border",
+        duration: "2 Days",
+        difficulty: "Easy",
+        price: "₹6,999",
+        image: dawkiUmngotRiver,
+        images: [dawkiUmngotRiver, "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=800&q=80", "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80"],
+        rating: 4.7,
+        category: "leisure",
+        location: "Meghalaya",
+        highlights: ["Umngot River", "Transparent Water Boating", "Border Views"],
+        bestSeason: "Nov-May"
+      },
+      {
+        id: 5,
+        title: "Mawlynnong Clean Village Tour",
+        description: "Visit Asia's cleanest village and experience sustainable living",
+        duration: "2 Days", 
+        difficulty: "Easy",
+        price: "₹7,499",
+        image: mawlynnongCleanestVillage,
+        images: [mawlynnongCleanestVillage, meghalayaImages[0], meghalayaImages[2]],
+        rating: 4.5,
+        category: "cultural",
+        location: "Meghalaya",
+        highlights: ["Sky Walk", "Living Root Bridge", "Organic Gardens"],
+        bestSeason: "Oct-Apr"
+      }
+    ],
     
-    // Uttarakhand packages
-    {
-      id: 6,
-      title: "Char Dham Yatra Complete",
-      description: "Sacred pilgrimage to all four dhams - Kedarnath, Badrinath, Gangotri, and Yamunotri",
-      duration: "12 Days",
-      difficulty: "Challenging",
-      price: "₹35,999",
-      images: uttarakhandImages,
-      rating: 4.9,
-      category: "cultural",
-      location: "Uttarakhand",
-      highlights: ["Four Sacred Dhams", "Helicopter Options", "Guided Tours"],
-      bestSeason: "May-Oct"
-    },
-    {
-      id: 7,
-      title: "Rishikesh Adventure Special",
-      description: "World capital of yoga, river rafting, and spiritual experiences",
-      duration: "4 Days",
-      difficulty: "Moderate",
-      price: "₹11,999",
-      images: [adventureImage, uttarakhandImages[1], uttarakhandImages[2]],
-      rating: 4.8,
-      category: "adventure",
-      location: "Uttarakhand",
-      highlights: ["River Rafting", "Yoga Sessions", "Ganga Aarti"],
-      bestSeason: "Oct-Mar"
-    },
-    {
-      id: 8,
-      title: "Nainital Lake District",
-      description: "Explore the lake district of Uttarakhand with scenic hill stations",
-      duration: "6 Days",
-      difficulty: "Easy",
-      price: "₹18,999",
-      images: [lakeImage, "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80", "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80"],
-      rating: 4.7,
-      category: "leisure",
-      location: "Uttarakhand",
-      highlights: ["Naini Lake", "Bhimtal", "Mall Road"],
-      bestSeason: "Mar-Jun"
-    },
-    {
-      id: 9,
-      title: "Valley of Flowers Trek",
-      description: "UNESCO World Heritage site with rare alpine flowers and meadows",
-      duration: "8 Days",
-      difficulty: "Challenging",
-      price: "₹24,999",
-      images: [mountainImage, "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80", "https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?w=800&q=80"],
-      rating: 4.9,
-      category: "adventure",
-      location: "Uttarakhand",
-      highlights: ["Alpine Flowers", "Hemkund Sahib", "Ghangaria"],
-      bestSeason: "Jul-Sep"
-    },
+    "Uttarakhand": [
+      {
+        id: 6,
+        title: "Char Dham Yatra Complete",
+        description: "Sacred pilgrimage to all four dhams - Kedarnath, Badrinath, Gangotri, and Yamunotri",
+        duration: "12 Days",
+        difficulty: "Challenging",
+        price: "₹35,999",
+        image: uttarakhandHimalayas,
+        images: uttarakhandImages,
+        rating: 4.9,
+        category: "cultural",
+        location: "Uttarakhand",
+        highlights: ["Four Sacred Dhams", "Helicopter Options", "Guided Tours"],
+        bestSeason: "May-Oct"
+      },
+      {
+        id: 7,
+        title: "Rishikesh Adventure Special",
+        description: "World capital of yoga, river rafting, and spiritual experiences",
+        duration: "4 Days",
+        difficulty: "Moderate",
+        price: "₹11,999",
+        image: adventureImage,
+        images: [adventureImage, uttarakhandImages[1], uttarakhandImages[2]],
+        rating: 4.8,
+        category: "adventure",
+        location: "Uttarakhand",
+        highlights: ["River Rafting", "Yoga Sessions", "Ganga Aarti"],
+        bestSeason: "Oct-Mar"
+      },
+      {
+        id: 8,
+        title: "Nainital Lake District",
+        description: "Explore the lake district of Uttarakhand with scenic hill stations",
+        duration: "6 Days",
+        difficulty: "Easy",
+        price: "₹18,999",
+        image: lakeImage,
+        images: [lakeImage, "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80", "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80"],
+        rating: 4.7,
+        category: "leisure",
+        location: "Uttarakhand",
+        highlights: ["Naini Lake", "Bhimtal", "Mall Road"],
+        bestSeason: "Mar-Jun"
+      },
+      {
+        id: 9,
+        title: "Valley of Flowers Trek",
+        description: "UNESCO World Heritage site with rare alpine flowers and meadows",
+        duration: "8 Days",
+        difficulty: "Challenging",
+        price: "₹24,999",
+        image: mountainImage,
+        images: [mountainImage, "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80", "https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?w=800&q=80"],
+        rating: 4.9,
+        category: "adventure",
+        location: "Uttarakhand",
+        highlights: ["Alpine Flowers", "Hemkund Sahib", "Ghangaria"],
+        bestSeason: "Jul-Sep"
+      }
+    ],
     
-    // Sikkim packages
-    {
-      id: 10,
-      title: "Sikkim Himalayan Explorer",
-      description: "Complete Sikkim tour covering all major attractions and monasteries",
-      duration: "7 Days",
-      difficulty: "Moderate",
-      price: "₹22,999",
-      images: sikkimImages,
-      rating: 4.8,
-      category: "cultural",
-      location: "Sikkim",
-      highlights: ["Gangtok", "Rumtek Monastery", "Tsomgo Lake"],
-      bestSeason: "Mar-Jun"
-    },
-    {
-      id: 11,
-      title: "Gurudongmar Lake Expedition",
-      description: "High altitude sacred lake adventure with breathtaking mountain views",
-      duration: "5 Days",
-      difficulty: "Challenging",
-      price: "₹19,999",
-      images: [mountainImage, sikkimImages[1], sikkimImages[2]],
-      rating: 4.9,
-      category: "adventure",
-      location: "Sikkim",
-      highlights: ["Gurudongmar Lake", "Lachung", "Yumthang Valley"],
-      bestSeason: "Apr-Jun"
-    },
-    {
-      id: 12,
-      title: "Pelling Kanchenjunga View",
-      description: "Witness the third highest peak in the world from scenic Pelling",
-      duration: "4 Days",
-      difficulty: "Easy",
-      price: "₹13,999",
-      images: [hillStationImage, sikkimImages[0], sikkimImages[1]],
-      rating: 4.6,
-      category: "leisure",
-      location: "Sikkim",
-      highlights: ["Kanchenjunga View", "Pemayangtse Monastery", "Khecheopalri Lake"],
-      bestSeason: "Oct-Dec"
-    },
+    "Sikkim": [
+      {
+        id: 10,
+        title: "Sikkim Himalayan Explorer",
+        description: "Complete Sikkim tour covering all major attractions and monasteries",
+        duration: "7 Days",
+        difficulty: "Moderate",
+        price: "₹22,999",
+        image: sikkimRhododendrons,
+        images: sikkimImages,
+        rating: 4.8,
+        category: "cultural",
+        location: "Sikkim",
+        highlights: ["Gangtok", "Rumtek Monastery", "Tsomgo Lake"],
+        bestSeason: "Mar-Jun"
+      },
+      {
+        id: 11,
+        title: "Gurudongmar Lake Expedition",
+        description: "High altitude sacred lake adventure with breathtaking mountain views",
+        duration: "5 Days",
+        difficulty: "Challenging",
+        price: "₹19,999",
+        image: mountainImage,
+        images: [mountainImage, sikkimImages[1], sikkimImages[2]],
+        rating: 4.9,
+        category: "adventure",
+        location: "Sikkim",
+        highlights: ["Gurudongmar Lake", "Lachung", "Yumthang Valley"],
+        bestSeason: "Apr-Jun"
+      },
+      {
+        id: 12,
+        title: "Pelling Kanchenjunga View",
+        description: "Witness the third highest peak in the world from scenic Pelling",
+        duration: "4 Days",
+        difficulty: "Easy",
+        price: "₹13,999",
+        image: hillStationImage,
+        images: [hillStationImage, sikkimImages[0], sikkimImages[1]],
+        rating: 4.6,
+        category: "leisure",
+        location: "Sikkim",
+        highlights: ["Kanchenjunga View", "Pemayangtse Monastery", "Khecheopalri Lake"],
+        bestSeason: "Oct-Dec"
+      }
+    ],
     
-    // Himachal Pradesh packages
-    {
-      id: 13,
-      title: "Shimla Manali Honeymoon",
-      description: "Romantic hill station package perfect for couples and honeymooners",
-      duration: "6 Days",
-      difficulty: "Easy",
-      price: "₹16,999",
-      images: himachalImages,
-      rating: 4.7,
-      category: "leisure",
-      location: "Himachal Pradesh",
-      highlights: ["Mall Road", "Rohtang Pass", "Solang Valley"],
-      bestSeason: "Mar-Jun"
-    },
-    {
-      id: 14,
-      title: "Spiti Valley Circuit",
-      description: "High altitude cold desert adventure through remote Spiti Valley",
-      duration: "10 Days",
-      difficulty: "Challenging",
-      price: "₹32,999",
-      images: [mountainImage, himachalImages[0], himachalImages[2]],
-      rating: 4.9,
-      category: "adventure",
-      location: "Himachal Pradesh",
-      highlights: ["Key Monastery", "Chandratal Lake", "Kaza"],
-      bestSeason: "Jun-Sep"
-    },
-    {
-      id: 15,
-      title: "Dharamshala McLeod Ganj",
-      description: "Explore the Dalai Lama's residence and Tibetan culture",
-      duration: "4 Days",
-      difficulty: "Easy",
-      price: "₹12,999",
-      images: ["https://images.unsplash.com/photo-1597149960113-5c8e3f9ad11a?w=800&q=80", himachalImages[1], himachalImages[2]],
-      rating: 4.6,
-      category: "cultural",
-      location: "Himachal Pradesh",
-      highlights: ["Dalai Lama Temple", "Bhagsu Waterfall", "Tibetan Market"],
-      bestSeason: "Mar-Jun"
-    },
+    "Himachal Pradesh": [
+      {
+        id: 13,
+        title: "Shimla Manali Honeymoon",
+        description: "Romantic hill station package perfect for couples and honeymooners",
+        duration: "6 Days",
+        difficulty: "Easy",
+        price: "₹16,999",
+        image: himachalValleys,
+        images: himachalImages,
+        rating: 4.7,
+        category: "leisure",
+        location: "Himachal Pradesh",
+        highlights: ["Mall Road", "Rohtang Pass", "Solang Valley"],
+        bestSeason: "Mar-Jun"
+      },
+      {
+        id: 14,
+        title: "Spiti Valley Circuit",
+        description: "High altitude cold desert adventure through remote Spiti Valley",
+        duration: "10 Days",
+        difficulty: "Challenging",
+        price: "₹32,999",
+        image: mountainImage,
+        images: [mountainImage, himachalImages[0], himachalImages[2]],
+        rating: 4.9,
+        category: "adventure",
+        location: "Himachal Pradesh",
+        highlights: ["Key Monastery", "Chandratal Lake", "Kaza"],
+        bestSeason: "Jun-Sep"
+      },
+      {
+        id: 15,
+        title: "Dharamshala McLeod Ganj",
+        description: "Explore the Dalai Lama's residence and Tibetan culture",
+        duration: "4 Days",
+        difficulty: "Easy",
+        price: "₹12,999",
+        image: cultureImage,
+        images: ["https://images.unsplash.com/photo-1597149960113-5c8e3f9ad11a?w=800&q=80", himachalImages[1], himachalImages[2]],
+        rating: 4.6,
+        category: "cultural",
+        location: "Himachal Pradesh",
+        highlights: ["Dalai Lama Temple", "Bhagsu Waterfall", "Tibetan Market"],
+        bestSeason: "Mar-Jun"
+      }
+    ],
     
-    // Kerala packages
-    {
-      id: 16,
-      title: "Kerala Backwaters & Beaches",
-      description: "God's Own Country - backwaters, beaches, and hill stations",
-      duration: "8 Days",
-      difficulty: "Easy",
-      price: "₹25,999",
-      images: keralImages,
-      rating: 4.8,
-      category: "leisure",
-      location: "Kerala",
-      highlights: ["Alleppey Houseboat", "Munnar Hills", "Kovalam Beach"],
-      bestSeason: "Oct-Mar"
-    },
-    {
-      id: 17,
-      title: "Munnar Tea Garden Experience",
-      description: "Explore the lush tea plantations and spice gardens of Munnar",
-      duration: "5 Days",
-      difficulty: "Easy",
-      price: "₹14,999",
-      images: ["https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&q=80", keralImages[1], keralImages[2]],
-      rating: 4.7,
-      category: "cultural",
-      location: "Kerala",
-      highlights: ["Tea Museum", "Mattupetty Dam", "Spice Plantations"],
-      bestSeason: "Sep-Mar"
-    },
-    {
-      id: 18,
-      title: "Thekkady Wildlife Safari",
-      description: "Wildlife adventure in Periyar National Park with boat safaris",
-      duration: "3 Days",
-      difficulty: "Easy",
-      price: "₹9,999",
-      images: [forestImage, keralImages[0], keralImages[1]],
-      rating: 4.5,
-      category: "adventure",
-      location: "Kerala",
-      highlights: ["Periyar National Park", "Boat Safari", "Spice Gardens"],
-      bestSeason: "Dec-Apr"
-    },
+    "Kerala": [
+      {
+        id: 16,
+        title: "Kerala Backwaters & Beaches",
+        description: "God's Own Country - backwaters, beaches, and hill stations",
+        duration: "8 Days",
+        difficulty: "Easy",
+        price: "₹25,999",
+        image: keralaBackwaters,
+        images: keralImages,
+        rating: 4.8,
+        category: "leisure",
+        location: "Kerala",
+        highlights: ["Alleppey Houseboat", "Munnar Hills", "Kovalam Beach"],
+        bestSeason: "Oct-Mar"
+      },
+      {
+        id: 17,
+        title: "Munnar Tea Garden Experience",
+        description: "Explore the lush tea plantations and spice gardens of Munnar",
+        duration: "5 Days",
+        difficulty: "Easy",
+        price: "₹14,999",
+        image: forestImage,
+        images: ["https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&q=80", keralImages[1], keralImages[2]],
+        rating: 4.7,
+        category: "cultural",
+        location: "Kerala",
+        highlights: ["Tea Museum", "Mattupetty Dam", "Spice Plantations"],
+        bestSeason: "Sep-Mar"
+      },
+      {
+        id: 18,
+        title: "Thekkady Wildlife Safari",
+        description: "Wildlife adventure in Periyar National Park with boat safaris",
+        duration: "3 Days",
+        difficulty: "Easy",
+        price: "₹9,999",
+        image: forestImage,
+        images: [forestImage, keralImages[0], keralImages[1]],
+        rating: 4.5,
+        category: "adventure",
+        location: "Kerala",
+        highlights: ["Periyar National Park", "Boat Safari", "Spice Gardens"],
+        bestSeason: "Dec-Apr"
+      }
+    ],
     
-    // Tamil Nadu packages
-    {
-      id: 19,
-      title: "Tamil Nadu Temple Circuit",
-      description: "Spiritual journey through ancient temples and cultural heritage",
-      duration: "7 Days",
-      difficulty: "Easy",
-      price: "₹17,999",
-      images: tamilNaduImages,
-      rating: 4.6,
-      category: "cultural",
-      location: "Tamil Nadu",
-      highlights: ["Meenakshi Temple", "Brihadeeswarar Temple", "Kanyakumari"],
-      bestSeason: "Oct-Mar"
-    },
-    {
-      id: 20,
-      title: "Ooty Kodaikanal Hill Stations",
-      description: "Queen of hill stations with scenic beauty and pleasant weather",
-      duration: "6 Days",
-      difficulty: "Easy",
-      price: "₹15,999",
-      images: ["https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&q=80", hillStationImage, "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&q=80"],
-      rating: 4.7,
-      category: "leisure",
-      location: "Tamil Nadu",
-      highlights: ["Ooty Lake", "Doddabetta Peak", "Kodai Lake"],
-      bestSeason: "Oct-Jun"
-    },
+    "Tamil Nadu": [
+      {
+        id: 19,
+        title: "Tamil Nadu Temple Circuit",
+        description: "Spiritual journey through ancient temples and cultural heritage",
+        duration: "7 Days",
+        difficulty: "Easy",
+        price: "₹17,999",
+        image: tamilNaduTemples,
+        images: tamilNaduImages,
+        rating: 4.6,
+        category: "cultural",
+        location: "Tamil Nadu",
+        highlights: ["Meenakshi Temple", "Brihadeeswarar Temple", "Kanyakumari"],
+        bestSeason: "Oct-Mar"
+      },
+      {
+        id: 20,
+        title: "Ooty Kodaikanal Hill Stations",
+        description: "Queen of hill stations with scenic beauty and pleasant weather",
+        duration: "6 Days",
+        difficulty: "Easy",
+        price: "₹15,999",
+        image: hillStationImage,
+        images: ["https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&q=80", hillStationImage, "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&q=80"],
+        rating: 4.7,
+        category: "leisure",
+        location: "Tamil Nadu",
+        highlights: ["Ooty Lake", "Doddabetta Peak", "Kodai Lake"],
+        bestSeason: "Oct-Jun"
+      }
+    ],
     
-    // Other Northeast states
-    {
-      id: 21,
-      title: "Arunachal Pradesh Eagle Festival",
-      description: "Experience the vibrant culture and traditions of Arunachal Pradesh",
-      duration: "6 Days",
-      difficulty: "Moderate",
-      price: "₹18,999",
-      images: [cultureImage, "https://images.unsplash.com/photo-1615729947596-a598e5de0ab3?w=800&q=80", "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80"],
-      rating: 4.7,
-      category: "cultural",
-      location: "Arunachal Pradesh",
-      highlights: ["Traditional Dances", "Local Tribes", "Mountain Views"],
-      bestSeason: "Dec-Feb"
-    },
-    {
-      id: 22,
-      title: "Nagaland Hornbill Festival",
-      description: "Witness the spectacular Hornbill Festival showcasing Naga culture",
-      duration: "5 Days",
-      difficulty: "Easy",
-      price: "₹16,999",
-      images: [cultureImage, "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&q=80", "https://images.unsplash.com/photo-1582549346109-6c1b2b41ba00?w=800&q=80"],
-      rating: 4.8,
-      category: "cultural",
-      location: "Nagaland",
-      highlights: ["Hornbill Festival", "Naga Cuisine", "Traditional Crafts"],
-      bestSeason: "Dec"
-    },
-    {
-      id: 23,
-      title: "Assam Tea Garden Safari",
-      description: "Explore the lush tea gardens and wildlife sanctuaries of Assam",
-      duration: "7 Days",
-      difficulty: "Moderate",
-      price: "₹19,999",
-      images: ["https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&q=80", forestImage, keralImages[1]],
-      rating: 4.6,
-      category: "adventure",
-      location: "Assam",
-      highlights: ["Tea Plantation Tours", "Kaziranga National Park", "River Safari"],
-      bestSeason: "Nov-Apr"
-    },
-    {
-      id: 24,
-      title: "Manipur Loktak Lake Adventure",
-      description: "Discover the floating islands and unique ecosystem of Loktak Lake",
-      duration: "4 Days",
-      difficulty: "Easy",
-      price: "₹12,999",
-      images: [lakeImage, "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=800&q=80", "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&q=80"],
-      rating: 4.5,
-      category: "adventure",
-      location: "Manipur",
-      highlights: ["Floating Islands", "Phumdis", "Sangai Deer"],
-      bestSeason: "Oct-Mar"
-    }
-  ];
+    "Northeast States": [
+      {
+        id: 21,
+        title: "Arunachal Pradesh Eagle Festival",
+        description: "Experience the vibrant culture and traditions of Arunachal Pradesh",
+        duration: "6 Days",
+        difficulty: "Moderate",
+        price: "₹18,999",
+        image: tribalCircuit,
+        images: [cultureImage, "https://images.unsplash.com/photo-1615729947596-a598e5de0ab3?w=800&q=80", "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80"],
+        rating: 4.7,
+        category: "cultural",
+        location: "Arunachal Pradesh",
+        highlights: ["Traditional Dances", "Local Tribes", "Mountain Views"],
+        bestSeason: "Dec-Feb"
+      },
+      {
+        id: 22,
+        title: "Nagaland Hornbill Festival",
+        description: "Witness the spectacular Hornbill Festival showcasing Naga culture",
+        duration: "5 Days",
+        difficulty: "Easy",
+        price: "₹16,999",
+        image: cultureImage,
+        images: [cultureImage, "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&q=80", "https://images.unsplash.com/photo-1582549346109-6c1b2b41ba00?w=800&q=80"],
+        rating: 4.8,
+        category: "cultural",
+        location: "Nagaland",
+        highlights: ["Hornbill Festival", "Naga Cuisine", "Traditional Crafts"],
+        bestSeason: "Dec"
+      },
+      {
+        id: 23,
+        title: "Assam Tea Garden Safari",
+        description: "Explore the lush tea gardens and wildlife sanctuaries of Assam",
+        duration: "7 Days",
+        difficulty: "Moderate",
+        price: "₹19,999",
+        image: forestImage,
+        images: ["https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&q=80", forestImage, keralImages[1]],
+        rating: 4.6,
+        category: "adventure",
+        location: "Assam",
+        highlights: ["Tea Plantation Tours", "Kaziranga National Park", "River Safari"],
+        bestSeason: "Nov-Apr"
+      },
+      {
+        id: 24,
+        title: "Manipur Loktak Lake Adventure",
+        description: "Discover the floating islands and unique ecosystem of Loktak Lake",
+        duration: "4 Days",
+        difficulty: "Easy",
+        price: "₹12,999",
+        image: lakeImage,
+        images: [lakeImage, "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=800&q=80", "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&q=80"],
+        rating: 4.5,
+        category: "adventure",
+        location: "Manipur",
+        highlights: ["Floating Islands", "Phumdis", "Sangai Deer"],
+        bestSeason: "Oct-Mar"
+      }
+    ]
+  };
+
+  // Flatten all packages for filtering
+  const allItineraries = Object.values(stateWiseTourPackages).flat();
 
   const categories = [
     { id: "all", label: "All Packages" },
@@ -466,7 +506,7 @@ const Travel = () => {
   const days = ["all", "1-3 Days", "4-6 Days", "7+ Days"];
   const locations = ["all", "Meghalaya", "Uttarakhand", "Sikkim", "Himachal Pradesh", "Kerala", "Tamil Nadu", "Assam", "Arunachal Pradesh", "Nagaland", "Manipur"];
 
-  const filteredItineraries = itineraries.filter(item => {
+  const filteredItineraries = allItineraries.filter(item => {
     const categoryMatch = selectedCategory === "all" || item.category === selectedCategory;
     const difficultyMatch = difficultyFilter === "all" || item.difficulty === difficultyFilter;
     const locationMatch = locationFilter === "all" || item.location === locationFilter;
