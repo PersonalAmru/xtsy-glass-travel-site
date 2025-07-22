@@ -151,33 +151,33 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
               >
                 <X className="h-5 w-5 text-gray-900" />
               </Button>
-              <DialogTitle className="text-xl md:text-2xl font-bold text-gray-900">
+              <DialogTitle className="text-xl md:text-2xl font-bold text-black">
                 Book your stay
               </DialogTitle>
             </div>
             
             {/* Know before you go section */}
             <div className="bg-white rounded-lg p-4 mb-4">
-              <h3 className="text-lg font-semibold mb-3">Know before you go</h3>
+              <h3 className="text-lg font-semibold mb-3 text-black">Know before you go</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                 <div className="flex items-center gap-2">
                   <Clock className="h-4 w-4 text-orange-500" />
                   <div>
-                    <div className="font-medium">Check-in</div>
-                    <div className="text-gray-600">12:00 PM</div>
+                    <div className="font-medium text-black">Check-in</div>
+                    <div className="text-black">12:00 PM</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="h-4 w-4 text-orange-500" />
                   <div>
-                    <div className="font-medium">Check-out</div>
-                    <div className="text-gray-600">10:00 AM</div>
+                    <div className="font-medium text-black">Check-out</div>
+                    <div className="text-black">10:00 AM</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
                   <Tag className="h-4 w-4 text-orange-500" />
                   <div>
-                    <div className="font-medium">Special Offer</div>
+                    <div className="font-medium text-black">Special Offer</div>
                     <div className="text-orange-600">Use XTSY-DEAL for eligible bookings</div>
                   </div>
                 </div>
@@ -186,7 +186,7 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
 
             {/* Date selection */}
             <div className="bg-blue-100 rounded-lg p-3 text-center">
-              <div className="text-blue-900 font-semibold text-base">
+              <div className="text-black font-bold text-base">
                 {bookingData.checkIn && bookingData.checkOut 
                   ? `${formatDate(bookingData.checkIn)} → ${formatDate(bookingData.checkOut)} (${bookingData.nights} nights)`
                   : "Select your dates"
@@ -201,37 +201,37 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
               {/* Left side - Room Selection */}
               <div className="p-4 md:p-6 border-r">
                 <div className="bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-lg p-4 mb-6">
-                  <h2 className="text-xl font-bold">XTSY Travellers Hostel</h2>
+                  <h2 className="text-xl font-bold text-white">XTSY Travellers Hostel</h2>
                 </div>
 
                 {/* Room Card */}
                 <Card className="mb-6">
                   <div className="flex gap-4 p-4">
                     <div className="w-32 h-24 bg-gray-200 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <span className="text-gray-500 text-sm">Room Image</span>
+                      <span className="text-black text-sm font-semibold">Room Image</span>
                     </div>
                     
                     <div className="flex-1">
-                      <h3 className="text-lg font-bold mb-2 text-gray-900">{room.name}</h3>
-                      <div className="flex items-center gap-4 text-sm text-gray-800 font-medium mb-2">
+                      <h3 className="text-lg font-bold mb-2 text-black">{room.name}</h3>
+                      <div className="flex items-center gap-4 text-sm text-black font-semibold mb-2">
                         <div className="flex items-center gap-1">
-                          <Users className="h-4 w-4 text-gray-700" />
-                          <span className="text-gray-900 font-semibold">Max {room.capacity} guests</span>
+                          <Users className="h-4 w-4 text-black" />
+                          <span className="text-black font-bold">Max {room.capacity} guests</span>
                         </div>
                         <div className="flex items-center gap-1">
-                          <Bed className="h-4 w-4 text-gray-700" />
-                          <span className="text-gray-900 font-semibold">Per Bed</span>
+                          <Bed className="h-4 w-4 text-black" />
+                          <span className="text-black font-bold">Per Bed</span>
                         </div>
                       </div>
-                      <div className="text-lg font-bold text-gray-900">₹{room.price} / night</div>
-                      <p className="text-sm text-gray-800 font-medium mt-1">{room.description}</p>
+                      <div className="text-lg font-bold text-black">₹{room.price} / night</div>
+                      <p className="text-sm text-black font-semibold mt-1">{room.description}</p>
                     </div>
                   </div>
 
                   {/* Quantity and Guest Selection */}
                   <div className="px-4 pb-4 space-y-4">
                     <div className="flex items-center justify-between">
-                      <span className="font-bold text-gray-900 text-base">
+                      <span className="font-bold text-black text-base">
                         {room.type === 'luxury' ? 'Number of rooms:' : 'Number of beds:'}
                       </span>
                       <div className="flex items-center gap-3">
@@ -240,44 +240,44 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
                           size="sm"
                           onClick={() => setBookingData(prev => ({ ...prev, quantity: Math.max(1, prev.quantity - 1) }))}
                           disabled={bookingData.quantity <= 1}
-                          className="text-gray-900 border-gray-400 hover:bg-gray-100"
+                          className="text-black border-black hover:bg-gray-100"
                         >
-                          <Minus className="h-4 w-4 text-gray-900" />
+                          <Minus className="h-4 w-4 text-black" />
                         </Button>
-                        <span className="w-8 text-center text-gray-900 font-bold text-lg">{bookingData.quantity}</span>
+                        <span className="w-8 text-center text-black font-bold text-lg">{bookingData.quantity}</span>
                         <Button
                           variant="outline"
                           size="sm"
                           onClick={() => setBookingData(prev => ({ ...prev, quantity: prev.quantity + 1 }))}
                           disabled={bookingData.quantity >= room.capacity}
-                          className="text-gray-900 border-gray-400 hover:bg-gray-100"
+                          className="text-black border-black hover:bg-gray-100"
                         >
-                          <Plus className="h-4 w-4 text-gray-900" />
+                          <Plus className="h-4 w-4 text-black" />
                         </Button>
                       </div>
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <span className="font-bold text-gray-900 text-base">Number of guests:</span>
+                      <span className="font-bold text-black text-base">Number of guests:</span>
                       <div className="flex items-center gap-3">
                         <Button
                           variant="outline"
                           size="sm"
                           onClick={() => setBookingData(prev => ({ ...prev, guests: Math.max(1, prev.guests - 1) }))}
                           disabled={bookingData.guests <= 1}
-                          className="text-gray-900 border-gray-400 hover:bg-gray-100"
+                          className="text-black border-black hover:bg-gray-100"
                         >
-                          <Minus className="h-4 w-4 text-gray-900" />
+                          <Minus className="h-4 w-4 text-black" />
                         </Button>
-                        <span className="w-8 text-center text-gray-900 font-bold text-lg">{bookingData.guests}</span>
+                        <span className="w-8 text-center text-black font-bold text-lg">{bookingData.guests}</span>
                         <Button
                           variant="outline"
                           size="sm"
                           onClick={() => setBookingData(prev => ({ ...prev, guests: prev.guests + 1 }))}
                           disabled={bookingData.guests >= room.capacity * bookingData.quantity}
-                          className="text-gray-900 border-gray-400 hover:bg-gray-100"
+                          className="text-black border-black hover:bg-gray-100"
                         >
-                          <Plus className="h-4 w-4 text-gray-900" />
+                          <Plus className="h-4 w-4 text-black" />
                         </Button>
                       </div>
                     </div>
@@ -286,26 +286,26 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
 
                 {/* Date Selection */}
                 <Card className="p-4">
-                  <h3 className="font-bold mb-3 text-gray-900 text-lg">Select Dates</h3>
+                  <h3 className="font-bold mb-3 text-black text-lg">Select Dates</h3>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-bold mb-1 text-gray-900">Check-in</label>
+                      <label className="block text-sm font-bold mb-1 text-black">Check-in</label>
                       <Input
                         type="date"
                         value={bookingData.checkIn}
                         onChange={(e) => handleDateChange('checkIn', e.target.value)}
                         min={new Date().toISOString().split('T')[0]}
-                        className="text-gray-900 font-semibold border-gray-400"
+                        className="text-black font-semibold border-black"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-bold mb-1 text-gray-900">Check-out</label>
+                      <label className="block text-sm font-bold mb-1 text-black">Check-out</label>
                       <Input
                         type="date"
                         value={bookingData.checkOut}
                         onChange={(e) => handleDateChange('checkOut', e.target.value)}
                         min={bookingData.checkIn || new Date().toISOString().split('T')[0]}
-                        className="text-gray-900 font-semibold border-gray-400"
+                        className="text-black font-semibold border-black"
                       />
                     </div>
                   </div>
