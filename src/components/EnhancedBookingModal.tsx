@@ -11,7 +11,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 interface EnhancedBookingModalProps {
   isOpen: boolean;
   onClose: () => void;
-  room: {
+  room?: {
     id: string;
     name: string;
     price: number;
@@ -19,16 +19,34 @@ interface EnhancedBookingModalProps {
     description: string;
     type?: string;
   };
+  initialData?: {
+    checkIn: string;
+    checkOut: string;
+    guests: number;
+  };
 }
 
-const EnhancedBookingModal = ({ isOpen, onClose, room }: EnhancedBookingModalProps) => {
+const EnhancedBookingModal = ({ isOpen, onClose, room, initialData }: EnhancedBookingModalProps) => {
+  // Default room data for hero section bookings
+  const defaultRoom = {
+    id: 'hero-booking',
+    name: 'XTSY Accommodation',
+    price: 850,
+    capacity: 4,
+    description: 'Perfect stay for your Shillong adventure',
+    type: 'dorm'
+  };
+
+  const currentRoom = room || defaultRoom;
+
   const [bookingData, setBookingData] = useState({
-    checkIn: "",
-    checkOut: "",
-    guests: 1,
+    checkIn: initialData?.checkIn || "",
+    checkOut: initialData?.checkOut || "",
+    guests: initialData?.guests || 1,
     quantity: 1,
     nights: 1,
   });
+
   const [addOnServices, setAddOnServices] = useState({
     breakfast: 0,
     dinnerVeg: 0,
@@ -63,7 +81,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, room }: EnhancedBookingModalPro
     });
   };
 
-  const totalAmount = room.price * bookingData.quantity * bookingData.nights;
+  const totalAmount = currentRoom.price * bookingData.quantity * bookingData.nights;
   const gstAmount = Math.round(totalAmount * 0.18);
   const grandTotal = totalAmount + gstAmount;
 
@@ -83,13 +101,13 @@ const EnhancedBookingModal = ({ isOpen, onClose, room }: EnhancedBookingModalPro
       guests: bookingData.guests,
       nights: bookingData.nights,
       items: [{
-        roomId: room.id,
-        roomName: room.name,
-        price: room.price,
+        roomId: currentRoom.id,
+        roomName: currentRoom.name,
+        price: currentRoom.price,
         quantity: 1,
         guests: bookingData.guests,
         nights: bookingData.nights,
-        roomType: room.type || 'dorm'
+        roomType: currentRoom.type || 'dorm'
       }],
       timestamp: new Date().getTime()
     };
@@ -120,13 +138,13 @@ const EnhancedBookingModal = ({ isOpen, onClose, room }: EnhancedBookingModalPro
       guests: bookingData.guests,
       nights: bookingData.nights,
       items: [{
-        roomId: room.id,
-        roomName: room.name,
-        price: room.price,
+        roomId: currentRoom.id,
+        roomName: currentRoom.name,
+        price: currentRoom.price,
         quantity: 1,
         guests: bookingData.guests,
         nights: bookingData.nights,
-        roomType: room.type || 'dorm'
+        roomType: currentRoom.type || 'dorm'
       }],
       timestamp: new Date().getTime(),
       savedForLater: true
@@ -220,19 +238,19 @@ const EnhancedBookingModal = ({ isOpen, onClose, room }: EnhancedBookingModalPro
                     </div>
                     
                     <div className="flex-1">
-                      <h3 className="text-lg font-bold mb-2 text-black">{room.name}</h3>
+                      <h3 className="text-lg font-bold mb-2 text-black">{currentRoom.name}</h3>
                       <div className="flex items-center gap-4 text-sm text-black font-semibold mb-2">
                         <div className="flex items-center gap-1">
                           <Users className="h-4 w-4 text-black" />
-                          <span className="text-black font-bold">Max {room.capacity} guests</span>
+                          <span className="text-black font-bold">Max {currentRoom.capacity} guests</span>
                         </div>
                         <div className="flex items-center gap-1">
                           <Bed className="h-4 w-4 text-black" />
                           <span className="text-black font-bold">Per Bed</span>
                         </div>
                       </div>
-                      <div className="text-lg font-bold text-black">₹{room.price} / night</div>
-                      <p className="text-sm text-black font-semibold mt-1">{room.description}</p>
+                      <div className="text-lg font-bold text-black">₹{currentRoom.price} / night</div>
+                      <p className="text-sm text-black font-semibold mt-1">{currentRoom.description}</p>
                     </div>
                   </div>
 
@@ -240,7 +258,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, room }: EnhancedBookingModalPro
                   <div className="px-4 pb-4 space-y-4">
                     <div className="flex items-center justify-between">
                       <span className="font-bold text-black text-base">
-                        {room.type === 'luxury' ? 'Number of rooms:' : 'Number of beds:'}
+                        {currentRoom.type === 'luxury' ? 'Number of rooms:' : 'Number of beds:'}
                       </span>
                       <div className="flex items-center gap-3">
                         <Button
@@ -257,7 +275,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, room }: EnhancedBookingModalPro
                           variant="outline"
                           size="sm"
                           onClick={() => setBookingData(prev => ({ ...prev, quantity: prev.quantity + 1 }))}
-                          disabled={bookingData.quantity >= room.capacity}
+                          disabled={bookingData.quantity >= currentRoom.capacity}
                           className="text-black border-black hover:bg-gray-100"
                         >
                           <Plus className="h-4 w-4 text-black" />
@@ -282,7 +300,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, room }: EnhancedBookingModalPro
                           variant="outline"
                           size="sm"
                           onClick={() => setBookingData(prev => ({ ...prev, guests: prev.guests + 1 }))}
-                          disabled={bookingData.guests >= room.capacity * bookingData.quantity}
+                          disabled={bookingData.guests >= currentRoom.capacity * bookingData.quantity}
                           className="text-black border-black hover:bg-gray-100"
                         >
                           <Plus className="h-4 w-4 text-black" />
@@ -313,11 +331,11 @@ const EnhancedBookingModal = ({ isOpen, onClose, room }: EnhancedBookingModalPro
                             breakfast: Math.max(0, prev.breakfast - 1) 
                           }))}
                           disabled={addOnServices.breakfast <= 0}
-                          className="h-8 w-8 p-0 border-black text-black hover:bg-gray-100"
+                          className="h-8 w-8 p-0 border-2 border-black text-black hover:bg-gray-100 bg-white"
                         >
                           <Minus className="h-4 w-4 text-black" />
                         </Button>
-                        <span className="w-8 text-center text-sm font-bold text-black bg-white px-2 py-1 rounded border">
+                        <span className="w-8 text-center text-sm font-bold text-black bg-white px-2 py-1 rounded border-2 border-black">
                           {addOnServices.breakfast}
                         </span>
                         <Button
@@ -327,7 +345,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, room }: EnhancedBookingModalPro
                             ...prev, 
                             breakfast: prev.breakfast + 1 
                           }))}
-                          className="h-8 w-8 p-0 border-black text-black hover:bg-gray-100"
+                          className="h-8 w-8 p-0 border-2 border-black text-black hover:bg-gray-100 bg-white"
                         >
                           <Plus className="h-4 w-4 text-black" />
                         </Button>
@@ -351,11 +369,11 @@ const EnhancedBookingModal = ({ isOpen, onClose, room }: EnhancedBookingModalPro
                             dinnerVeg: Math.max(0, prev.dinnerVeg - 1) 
                           }))}
                           disabled={addOnServices.dinnerVeg <= 0}
-                          className="h-8 w-8 p-0 border-black text-black hover:bg-gray-100"
+                          className="h-8 w-8 p-0 border-2 border-black text-black hover:bg-gray-100 bg-white"
                         >
                           <Minus className="h-4 w-4 text-black" />
                         </Button>
-                        <span className="w-8 text-center text-sm font-bold text-black bg-white px-2 py-1 rounded border">
+                        <span className="w-8 text-center text-sm font-bold text-black bg-white px-2 py-1 rounded border-2 border-black">
                           {addOnServices.dinnerVeg}
                         </span>
                         <Button
@@ -365,7 +383,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, room }: EnhancedBookingModalPro
                             ...prev, 
                             dinnerVeg: prev.dinnerVeg + 1 
                           }))}
-                          className="h-8 w-8 p-0 border-black text-black hover:bg-gray-100"
+                          className="h-8 w-8 p-0 border-2 border-black text-black hover:bg-gray-100 bg-white"
                         >
                           <Plus className="h-4 w-4 text-black" />
                         </Button>
@@ -389,11 +407,11 @@ const EnhancedBookingModal = ({ isOpen, onClose, room }: EnhancedBookingModalPro
                             dinnerNonVeg: Math.max(0, prev.dinnerNonVeg - 1) 
                           }))}
                           disabled={addOnServices.dinnerNonVeg <= 0}
-                          className="h-8 w-8 p-0 border-black text-black hover:bg-gray-100"
+                          className="h-8 w-8 p-0 border-2 border-black text-black hover:bg-gray-100 bg-white"
                         >
                           <Minus className="h-4 w-4 text-black" />
                         </Button>
-                        <span className="w-8 text-center text-sm font-bold text-black bg-white px-2 py-1 rounded border">
+                        <span className="w-8 text-center text-sm font-bold text-black bg-white px-2 py-1 rounded border-2 border-black">
                           {addOnServices.dinnerNonVeg}
                         </span>
                         <Button
@@ -403,7 +421,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, room }: EnhancedBookingModalPro
                             ...prev, 
                             dinnerNonVeg: prev.dinnerNonVeg + 1 
                           }))}
-                          className="h-8 w-8 p-0 border-black text-black hover:bg-gray-100"
+                          className="h-8 w-8 p-0 border-2 border-black text-black hover:bg-gray-100 bg-white"
                         >
                           <Plus className="h-4 w-4 text-black" />
                         </Button>
@@ -484,21 +502,21 @@ const EnhancedBookingModal = ({ isOpen, onClose, room }: EnhancedBookingModalPro
               <div className="p-4 md:p-6 bg-gray-50 overflow-y-auto">
                 <div className="sticky top-0">
                   <Card className="p-4 mb-4">
-                    <h3 className="text-lg font-semibold mb-3">Booking Summary</h3>
-                    <div className="text-sm text-gray-600 mb-4">
+                    <h3 className="text-lg font-semibold mb-3 text-black">Booking Summary</h3>
+                    <div className="text-sm text-black mb-4">
                       {bookingData.nights} nights starting from {bookingData.checkIn ? formatDate(bookingData.checkIn) : 'Select date'}
                     </div>
                     
                   <div className="space-y-2 mb-4">
                     <div className="flex justify-between">
-                      <span className="text-gray-900 font-medium">{room.name}</span>
-                      <span className="text-gray-900 font-semibold">₹{totalAmount}</span>
+                      <span className="text-black font-medium">{currentRoom.name}</span>
+                      <span className="text-black font-semibold">₹{totalAmount}</span>
                     </div>
-                    <div className="flex justify-between text-sm text-gray-700">
-                      {room.type === 'luxury' ? (
-                        <span>₹{room.price} x {bookingData.quantity} room x {bookingData.nights} nights</span>
+                    <div className="flex justify-between text-sm text-black">
+                      {currentRoom.type === 'luxury' ? (
+                        <span>₹{currentRoom.price} x {bookingData.quantity} room x {bookingData.nights} nights</span>
                       ) : (
-                        <span>₹{room.price} x {bookingData.quantity} bed x {bookingData.nights}</span>
+                        <span>₹{currentRoom.price} x {bookingData.quantity} bed x {bookingData.nights}</span>
                       )}
                     </div>
                   </div>
@@ -507,16 +525,16 @@ const EnhancedBookingModal = ({ isOpen, onClose, room }: EnhancedBookingModalPro
                     
                     <div className="space-y-2">
                       <div className="flex justify-between">
-                        <span className="text-gray-700">Subtotal</span>
-                        <span className="text-gray-900 font-medium">₹{totalAmount}</span>
+                        <span className="text-black">Subtotal</span>
+                        <span className="text-black font-medium">₹{totalAmount}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-700">GST (18%)</span>
-                        <span className="text-gray-900 font-medium">₹{gstAmount}</span>
+                        <span className="text-black">GST (18%)</span>
+                        <span className="text-black font-medium">₹{gstAmount}</span>
                       </div>
                       <div className="flex justify-between font-semibold text-lg">
-                        <span className="text-gray-900">Grand Total</span>
-                        <span className="text-gray-900">₹{grandTotal}</span>
+                        <span className="text-black">Grand Total</span>
+                        <span className="text-black">₹{grandTotal}</span>
                       </div>
                       <div className="flex justify-between text-green-700 font-semibold">
                         <span>Payable Now (21%)</span>
@@ -527,12 +545,12 @@ const EnhancedBookingModal = ({ isOpen, onClose, room }: EnhancedBookingModalPro
 
                   {/* Coupon Section */}
                   <Card className="p-4 mb-4">
-                    <h4 className="font-medium mb-3">Have a discount coupon?</h4>
+                    <h4 className="font-medium mb-3 text-black">Have a discount coupon?</h4>
                     <div className="flex gap-2">
-                      <Input placeholder="Enter XTSY-DEAL" />
-                      <Button variant="outline">Apply</Button>
+                      <Input placeholder="Enter XTSY-DEAL" className="text-black" />
+                      <Button variant="outline" className="text-black border-black">Apply</Button>
                     </div>
-                    <p className="text-xs text-gray-500 mt-2">
+                    <p className="text-xs text-black mt-2">
                       XTSY-DEAL: 10% off for hostel bookings (min 4 guests) or luxury bookings (min 2 nights)
                     </p>
                   </Card>
