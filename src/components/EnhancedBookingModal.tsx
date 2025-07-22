@@ -857,9 +857,9 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
               <div className="lg:col-span-1 bg-gray-50 flex flex-col h-full border-l">
                 {/* Header - Fixed */}
                 <div className="flex-shrink-0 p-4 md:p-6 border-b bg-white">
-                  <h3 className="text-lg font-semibold">Booking Summary</h3>
+                  <h3 className="text-lg font-semibold text-black">Booking Summary</h3>
                   {bookingData.checkIn && bookingData.checkOut && (
-                    <div className="text-sm text-gray-600 mt-2">
+                    <div className="text-sm text-black mt-2">
                       {bookingData.nights} nights starting from {formatDate(bookingData.checkIn)}
                     </div>
                   )}
@@ -882,17 +882,17 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                          return (
                            <div key={roomId} className="bg-white rounded-lg p-3 border">
                              <div className="flex justify-between items-start mb-2">
-                               <span className="font-medium text-sm">{room.name}</span>
-                               <span className="text-sm">₹{roomPrice}</span>
+                               <span className="font-medium text-sm text-black">{room.name}</span>
+                               <span className="text-sm text-black">₹{roomPrice}</span>
                              </div>
-                             <div className="text-xs text-gray-600 mb-1">
+                             <div className="text-xs text-black mb-1">
                                {isDorm ? (
                                  <>₹{roomPrice} x {selection.guests} {selection.guests === 1 ? 'bed' : 'beds'} x {nights} nights</>
                                ) : (
                                  <>₹{roomPrice} x {selection.rooms} {selection.rooms === 1 ? 'room' : 'rooms'} x {nights} nights</>
                                )}
                              </div>
-                             <div className="text-xs text-gray-600">
+                             <div className="text-xs text-black">
                                Guests: {isDorm 
                                  ? selection.guests
                                  : room.name === "King Triple Room" 
@@ -908,7 +908,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                        })}
                      
                      {totalGuestsCalculated > 0 && (
-                       <div className="text-sm text-gray-600 font-medium bg-blue-50 p-3 rounded-lg border">
+                       <div className="text-sm text-black font-medium bg-blue-50 p-3 rounded-lg border">
                          Total Guests: {totalGuestsCalculated}
                        </div>
                      )}
@@ -918,8 +918,8 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
 
                   <div className="space-y-2">
                     <div className="flex justify-between">
-                      <span>Subtotal</span>
-                      <span>₹{subtotal}</span>
+                      <span className="text-black">Subtotal</span>
+                      <span className="text-black">₹{subtotal}</span>
                     </div>
                     {couponDiscount > 0 && (
                       <div className="flex justify-between text-green-600">
@@ -928,13 +928,13 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                       </div>
                     )}
                     <div className="flex justify-between">
-                      <span>GST</span>
-                      <span>₹{gstAmount}</span>
+                      <span className="text-black">GST</span>
+                      <span className="text-black">₹{gstAmount}</span>
                     </div>
                     <Separator className="my-2" />
                     <div className="flex justify-between font-semibold text-lg">
-                      <span>Grand Total (Amount)</span>
-                      <span>₹{totalAmount}</span>
+                      <span className="text-black">Grand Total (Amount)</span>
+                      <span className="text-black">₹{totalAmount}</span>
                     </div>
                   </div>
 
@@ -946,13 +946,14 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                           placeholder="Enter coupon code (XTSY-DEAL)"
                           value={couponCode}
                           onChange={(e) => setCouponCode(e.target.value)}
-                          className="flex-1"
+                          className="flex-1 text-black"
                         />
                         <Button 
                           variant="outline" 
                           size="sm"
                           onClick={applyCoupon}
                           disabled={!couponCode}
+                          className="text-black border-black hover:bg-gray-100"
                         >
                           Apply
                         </Button>
@@ -988,7 +989,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                 <div className="flex-shrink-0 p-4 md:p-6 border-t bg-white">
                   <Button 
                     onClick={handleBookNow}
-                    className="w-full bg-orange-500 hover:bg-orange-600 text-white"
+                    className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold"
                     disabled={totalGuestsCalculated === 0}
                   >
                     Book Now
