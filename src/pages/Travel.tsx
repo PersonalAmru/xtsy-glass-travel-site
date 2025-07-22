@@ -596,10 +596,17 @@ const Travel = () => {
               {/* Content */}
               {activeTab === 'domestic' && (
                 <div>
+                  {/* India Flag Highlight */}
                   <div className="text-center mb-8">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                      🏔️ Discover Northeast India & Beyond - Incredible India Awaits
-                    </h2>
+                    <div className="inline-flex items-center gap-4 p-4 bg-gradient-to-r from-orange-100 to-green-100 rounded-2xl shadow-xl mb-6">
+                      <span className="text-5xl">🇮🇳</span>
+                      <div>
+                        <h2 className="text-3xl font-bold bg-gradient-to-r from-orange-500 via-white to-green-500 bg-clip-text text-transparent">
+                          Incredible India
+                        </h2>
+                        <p className="text-gray-700 font-semibold">Discover Northeast India & Beyond</p>
+                      </div>
+                    </div>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                       Explore the mystical beauty of Northeast India and iconic destinations across the country with our specially curated travel experiences
                     </p>
@@ -738,91 +745,114 @@ const Travel = () => {
               )}
 
               {activeTab === 'international' && (
-                <div className="max-w-4xl mx-auto">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                     {/* XTSY Asia */}
-                    <Card className="group hover:shadow-2xl hover:scale-105 transition-all duration-500 overflow-hidden border-0 bg-white/90 backdrop-blur-md">
-                      <div className="relative overflow-hidden">
-                         <img 
-                           src={asiaImage}
-                           alt="XTSY Asia"
-                           className="w-full h-64 object-cover"
-                         />
-                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-center justify-center">
-                           <div className="text-center">
-                             <Globe className="h-16 w-16 text-white mx-auto mb-4" />
-                             <h3 className="text-2xl font-bold text-white mb-2">XTSY Asia</h3>
-                             <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
-                               Launching Soon
-                             </div>
-                           </div>
-                         </div>
-                      </div>
-                      <CardContent className="p-6">
-                        <h4 className="text-xl font-semibold mb-3 text-gray-900">Expanding Horizons</h4>
-                        <p className="text-gray-600 mb-4">
-                          Get ready to explore Asia like never before! XTSY Asia is bringing you authentic travel experiences across Southeast Asia, East Asia, and beyond.
-                        </p>
-                        <div className="space-y-2 text-sm text-gray-600">
-                          <p>🏝️ Tropical Island Getaways</p>
-                          <p>🏔️ Mountain Adventures</p>
-                          <p>🏛️ Cultural Immersions</p>
-                          <p>🍜 Culinary Journeys</p>
-                        </div>
-                      </CardContent>
-                    </Card>
-
-                    {/* XTSY Merchandise */}
-                    <Card className="group hover:shadow-2xl hover:scale-105 transition-all duration-500 overflow-hidden border-0 bg-white/90 backdrop-blur-md">
-                      <div className="relative overflow-hidden">
-                         <img 
-                           src={merchandiseImage}
-                           alt="XTSY Merchandise"
-                           className="w-full h-64 object-cover"
-                         />
-                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-center justify-center">
-                           <div className="text-center">
-                             <Package className="h-16 w-16 text-white mx-auto mb-4" />
-                             <h3 className="text-2xl font-bold text-white mb-2">XTSY Merchandise</h3>
-                             <div className="bg-gradient-to-r from-green-500 to-teal-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
-                               Coming Soon
-                             </div>
-                           </div>
-                         </div>
-                      </div>
-                      <CardContent className="p-6">
-                        <h4 className="text-xl font-semibold mb-3 text-gray-900">Travel in Style</h4>
-                        <p className="text-gray-600 mb-4">
-                          Carry the XTSY vibe wherever you go! Our exclusive travel merchandise collection is designed for modern nomads who value quality and style.
-                        </p>
-                        <div className="space-y-2 text-sm text-gray-600">
-                          <p>🎒 Premium Travel Gear</p>
-                          <p>👕 Comfortable Apparel</p>
-                          <p>☕ Lifestyle Accessories</p>
-                          <p>🌿 Eco-Friendly Products</p>
-                        </div>
-                      </CardContent>
-                    </Card>
+                <div className="max-w-6xl mx-auto">
+                  {/* Header Section */}
+                  <div className="text-center mb-12">
+                    <div className="inline-flex items-center gap-3 p-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl mb-6">
+                      <span className="text-4xl">🌏</span>
+                      <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+                        XTSY Asia & Europe
+                      </h2>
+                      <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                        Launching Soon
+                      </span>
+                    </div>
+                    <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                      Get ready to explore the world with XTSY! We're expanding to bring you unforgettable experiences across Asia and Europe.
+                    </p>
                   </div>
 
-                  {/* Newsletter Subscription */}
-                  <Card className="mt-12 bg-gradient-to-r from-orange-500 to-red-600 text-white border-0">
-                    <CardContent className="p-8 text-center">
-                      <Bell className="h-12 w-12 mx-auto mb-4 text-white/90" />
-                      <h3 className="text-2xl font-bold mb-4">Stay in the Loop!</h3>
-                      <p className="text-lg mb-6 text-white/90">
-                        Be the first to know about XTSY Asia launches, new destinations, exclusive deals, and merchandise drops.
-                      </p>
-                      <Button 
-                        onClick={handleNewsletterClick}
-                        size="lg"
-                        className="bg-white text-orange-600 hover:bg-gray-100 font-semibold px-8 py-3"
-                      >
-                        <Mail className="h-5 w-5 mr-2" />
-                        Subscribe to Newsletter
-                      </Button>
-                    </CardContent>
-                  </Card>
+                  {/* Asian Countries Section */}
+                  <div className="mb-16">
+                    <div className="text-center mb-8">
+                      <h3 className="text-2xl font-bold text-gray-900 mb-2 flex items-center justify-center gap-2">
+                        🏯 Asian Destinations
+                      </h3>
+                      <p className="text-gray-600">Discover the diverse cultures and landscapes of Asia</p>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-8">
+                      {[
+                        { country: "Japan", flag: "🇯🇵", highlight: "Cherry Blossoms & Culture" },
+                        { country: "Thailand", flag: "🇹🇭", highlight: "Tropical Paradise" },
+                        { country: "Vietnam", flag: "🇻🇳", highlight: "Street Food & History" },
+                        { country: "South Korea", flag: "🇰🇷", highlight: "K-Culture & Tech" },
+                        { country: "Malaysia", flag: "🇲🇾", highlight: "Multicultural Hub" },
+                        { country: "Singapore", flag: "🇸🇬", highlight: "Modern City-State" },
+                        { country: "Indonesia", flag: "🇮🇩", highlight: "Island Adventures" },
+                        { country: "Philippines", flag: "🇵🇭", highlight: "Beach & Diving" },
+                        { country: "Cambodia", flag: "🇰🇭", highlight: "Ancient Temples" },
+                        { country: "Laos", flag: "🇱🇦", highlight: "Peaceful Landscapes" },
+                        { country: "Myanmar", flag: "🇲🇲", highlight: "Golden Pagodas" },
+                        { country: "Nepal", flag: "🇳🇵", highlight: "Himalayan Peaks" }
+                      ].map((item) => (
+                        <Card key={item.country} className="group hover:shadow-lg transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200">
+                          <CardContent className="p-4 text-center">
+                            <div className="text-3xl mb-2">{item.flag}</div>
+                            <h4 className="font-semibold text-gray-900 mb-1">{item.country}</h4>
+                            <p className="text-xs text-gray-600">{item.highlight}</p>
+                            <div className="mt-2">
+                              <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Soon</span>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* European Countries Section */}
+                  <div className="mb-16">
+                    <div className="text-center mb-8">
+                      <h3 className="text-2xl font-bold text-gray-900 mb-2 flex items-center justify-center gap-2">
+                        🏰 European Destinations
+                      </h3>
+                      <p className="text-gray-600">Experience the rich history and diverse cultures of Europe</p>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-8">
+                      {[
+                        { country: "France", flag: "🇫🇷", highlight: "Romance & Cuisine" },
+                        { country: "Italy", flag: "🇮🇹", highlight: "Art & History" },
+                        { country: "Spain", flag: "🇪🇸", highlight: "Passion & Festivals" },
+                        { country: "Germany", flag: "🇩🇪", highlight: "Castles & Beer" },
+                        { country: "Switzerland", flag: "🇨🇭", highlight: "Alpine Beauty" },
+                        { country: "Netherlands", flag: "🇳🇱", highlight: "Tulips & Canals" },
+                        { country: "United Kingdom", flag: "🇬🇧", highlight: "Royal Heritage" },
+                        { country: "Austria", flag: "🇦🇹", highlight: "Music & Mountains" },
+                        { country: "Czech Republic", flag: "🇨🇿", highlight: "Medieval Charm" },
+                        { country: "Greece", flag: "🇬🇷", highlight: "Ancient Wonders" },
+                        { country: "Portugal", flag: "🇵🇹", highlight: "Coastal Beauty" },
+                        { country: "Norway", flag: "🇳🇴", highlight: "Fjords & Aurora" }
+                      ].map((item) => (
+                        <Card key={item.country} className="group hover:shadow-lg transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200">
+                          <CardContent className="p-4 text-center">
+                            <div className="text-3xl mb-2">{item.flag}</div>
+                            <h4 className="font-semibold text-gray-900 mb-1">{item.country}</h4>
+                            <p className="text-xs text-gray-600">{item.highlight}</p>
+                            <div className="mt-2">
+                              <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Soon</span>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Newsletter Signup Section */}
+                  <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl p-8 text-center text-white">
+                    <Bell className="h-16 w-16 mx-auto mb-4 opacity-90" />
+                    <h3 className="text-2xl font-bold mb-4">Be the First to Know!</h3>
+                    <p className="text-lg mb-6 opacity-90">
+                      Join our newsletter to get exclusive early access to XTSY Asia & Europe packages, special discounts, and travel tips.
+                    </p>
+                    <Button 
+                      onClick={handleNewsletterClick}
+                      className="bg-white text-blue-600 hover:bg-gray-100 font-semibold px-8 py-3 text-lg"
+                    >
+                      <Mail className="h-5 w-5 mr-2" />
+                      Join Newsletter
+                    </Button>
+                  </div>
                 </div>
               )}
             </div>

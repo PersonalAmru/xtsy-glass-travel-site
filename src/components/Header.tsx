@@ -123,7 +123,7 @@ const Header = () => {
                             className="flex items-center space-x-3 p-3 rounded-lg hover:bg-muted transition-colors"
                             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                           >
-                            <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                            <div className="w-12 h-12 bg-gradient-to-br from-orange-200 to-green-200 rounded-lg flex items-center justify-center text-xl">
                               🇮🇳
                             </div>
                             <div>
@@ -138,12 +138,14 @@ const Header = () => {
                             className="flex items-center space-x-3 p-3 rounded-lg hover:bg-muted transition-colors"
                             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                           >
-                            <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <div className="w-12 h-12 bg-gradient-to-br from-blue-200 to-purple-200 rounded-lg flex items-center justify-center text-xl">
                               🌏
                             </div>
                             <div>
-                              <div className="font-semibold text-foreground">International Travel</div>
-                              <div className="text-sm text-muted-foreground">XTSY Asia & more</div>
+                              <div className="font-semibold text-foreground">XTSY Asia & Europe</div>
+                              <div className="text-sm text-muted-foreground">
+                                <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-2 py-1 rounded-full text-xs font-bold">Launching Soon</span>
+                              </div>
                             </div>
                           </Link>
                         </NavigationMenuLink>
@@ -231,14 +233,14 @@ const Header = () => {
                     className="block text-muted-foreground hover:text-primary transition-colors pl-4"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    🇮🇳 Domestic Travel
+                    🇮🇳 Domestic Travel - India
                   </Link>
                   <Link 
                     to="/travel?tab=international" 
                     className="block text-muted-foreground hover:text-primary transition-colors pl-4"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    🌏 International Travel
+                    🌏 XTSY Asia & Europe <span className="text-xs bg-red-500 text-white px-1 rounded">Soon</span>
                   </Link>
                 </div>
                 
