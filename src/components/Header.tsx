@@ -65,15 +65,15 @@ const Header = () => {
 
   return (
     <>
-      <header className="bg-card/80 backdrop-blur-lg border-b border-border shadow-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center h-16">
+      <header className="bg-card/80 backdrop-blur-lg border-b border-border shadow-sm sticky top-0 z-50 safe-area-padding">
+        <div className="responsive-container">
+          <div className="flex justify-between items-center h-14 sm:h-16">
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-2">
+            <Link to="/" className="flex items-center space-x-2 touch-friendly">
               <img 
                 src="/lovable-uploads/f60939c8-8351-4f63-80df-a4c6e37e539a.png"
                 alt="XTSY Travellers Hostel"
-                className="h-10 w-auto"
+                className="h-8 sm:h-10 w-auto"
               />
             </Link>
 
@@ -183,17 +183,17 @@ const Header = () => {
 
             {/* Mobile menu button */}
             <button
-              className="md:hidden"
+              className="md:hidden touch-friendly"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
 
           {/* Mobile Navigation */}
           {isMenuOpen && (
-            <div className="md:hidden py-4 border-t">
-              <nav className="flex flex-col space-y-4">
+            <div className="md:hidden py-4 border-t safe-area-padding">
+              <nav className="flex flex-col space-y-3">
                 <Link 
                   to="/" 
                   className="text-gray-700 hover:text-primary transition-colors"

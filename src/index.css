@@ -222,27 +222,119 @@
   }
 }
 
-/* Enhanced mobile responsiveness - One-handed UI optimized */
+/* Enhanced responsive design utilities and mobile optimizations */
+
+/* Base responsive utilities */
 @layer utilities {
+  .responsive-container {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Fluid typography utilities */
+  .text-fluid-xs {
+    font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+  }
+
+  .text-fluid-sm {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+  }
+
+  .text-fluid-base {
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
+  }
+
+  .text-fluid-lg {
+    font-size: clamp(1.125rem, 3vw, 1.25rem);
+  }
+
+  .text-fluid-xl {
+    font-size: clamp(1.25rem, 4vw, 1.5rem);
+  }
+
+  .text-fluid-2xl {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+
+  .text-fluid-3xl {
+    font-size: clamp(2rem, 6vw, 2.5rem);
+  }
+
+  .text-fluid-4xl {
+    font-size: clamp(2.5rem, 7vw, 3.5rem);
+  }
+
+  .text-fluid-5xl {
+    font-size: clamp(3rem, 8vw, 4.5rem);
+  }
+
+  /* Responsive spacing */
+  .space-responsive-xs {
+    margin: clamp(0.25rem, 1vw, 0.5rem);
+  }
+
+  .space-responsive-sm {
+    margin: clamp(0.5rem, 2vw, 1rem);
+  }
+
+  .space-responsive-md {
+    margin: clamp(1rem, 3vw, 1.5rem);
+  }
+
+  .space-responsive-lg {
+    margin: clamp(1.5rem, 4vw, 2rem);
+  }
+
+  .space-responsive-xl {
+    margin: clamp(2rem, 5vw, 3rem);
+  }
+
+  /* Responsive grids */
+  .grid-responsive-auto {
+    @apply grid gap-4 sm:gap-6 lg:gap-8;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  .grid-responsive-cards {
+    @apply grid gap-4 sm:gap-6 lg:gap-8;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+
+  /* Safe area support */
+  .safe-area-padding {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* Mobile-first utilities */
   .mobile-scroll-smooth {
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
   }
   
-  .one-handed-mobile {
-    @apply max-w-sm mx-auto;
-  }
-  
   .mobile-friendly-tap {
-    @apply min-h-[48px] min-w-[48px];
+    @apply min-h-[48px] min-w-[48px] touch-manipulation;
   }
-  
-  .mobile-text-readable {
-    @apply text-sm leading-relaxed;
+
+  /* Animation utilities */
+  .fade-in {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in-out forwards;
   }
-  
-  .mobile-button-friendly {
-    @apply py-3 px-4 text-sm font-semibold min-h-[48px];
+
+  .slide-up {
+    transform: translateY(20px);
+    opacity: 0;
+    animation: slideUp 0.6s ease-out forwards;
+  }
+
+  /* Hover effects for devices that support it */
+  .hover-scale {
+    transition: transform 0.2s ease;
+  }
+
+  .hover-lift {
+    transition: all 0.3s ease;
   }
 
   /* OnePlus inspired responsive design */
@@ -265,14 +357,23 @@
     margin-right: calc(-50vw + 50%);
   }
 
-  /* Compact mobile sections */
-  .mobile-section-compact {
-    @apply py-8 sm:py-12 lg:py-16;
-  }
-
   /* Touch-friendly sizing */
   .touch-friendly {
-    @apply min-h-[48px] min-w-[48px] p-3;
+    @apply min-h-[48px] min-w-[48px] p-3 touch-manipulation;
+  }
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 

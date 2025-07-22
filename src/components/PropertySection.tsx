@@ -56,18 +56,18 @@ const PropertySection = ({ title, description, rooms, propertyType, onSelectRoom
   return (
     <div className="mb-12">
       {/* Property Header */}
-      <div className="text-center mb-8">
-        <div className="inline-block p-4 bg-card/90 backdrop-blur-sm rounded-xl shadow-lg mb-4 border border-border">
-          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent mb-2 font-playfair">
+      <div className="text-center mb-6 sm:mb-8">
+        <div className="inline-block p-3 sm:p-4 bg-card/90 backdrop-blur-sm rounded-xl shadow-lg mb-4 border border-border">
+          <h3 className="text-fluid-xl sm:text-fluid-2xl md:text-fluid-3xl lg:text-fluid-4xl font-bold bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent mb-2 font-playfair">
             {title}
           </h3>
-          <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-600 mx-auto rounded-full" />
+          <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-orange-500 to-red-600 mx-auto rounded-full" />
         </div>
       </div>
 
-      {/* Luxury Room - Full Width Display */}
+      {/* Luxury Room - Responsive Display */}
       {isLuxury && rooms.length > 0 ? (
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <RoomCard
             room={rooms[0]}
             propertyType={propertyType}
@@ -76,10 +76,10 @@ const PropertySection = ({ title, description, rooms, propertyType, onSelectRoom
           />
         </div>
       ) : (
-        // Regular Scrollable Rooms Container
+        // Regular Responsive Rooms Container
         <div className="relative">
-          {/* Rooms Grid Container - 3 cards per row */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 max-w-6xl mx-auto">
+          {/* Responsive Rooms Grid */}
+          <div className="grid-responsive-cards max-w-7xl mx-auto">
             {rooms.map((room) => (
               <RoomCard
                 key={room.id}

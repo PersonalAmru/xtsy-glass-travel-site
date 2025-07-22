@@ -99,25 +99,25 @@ const HeroSection = () => {
       <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="floating-element absolute top-1/4 left-1/4 w-32 sm:w-48 lg:w-64 h-32 sm:h-48 lg:h-64 bg-orange-500/10 rounded-full blur-xl animate-pulse"></div>
-          <div className="floating-element absolute top-3/4 right-1/4 w-24 sm:w-32 lg:w-48 h-24 sm:h-32 lg:h-48 bg-red-500/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-          <div className="floating-element absolute bottom-1/4 left-1/3 w-16 sm:w-24 lg:w-32 h-16 sm:h-24 lg:h-32 bg-yellow-500/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+          <div className="floating-element absolute top-1/4 left-1/4 w-20 sm:w-32 md:w-48 lg:w-64 h-20 sm:h-32 md:h-48 lg:h-64 bg-orange-500/10 rounded-full blur-xl animate-pulse"></div>
+          <div className="floating-element absolute top-3/4 right-1/4 w-16 sm:w-24 md:w-32 lg:w-48 h-16 sm:h-24 md:h-32 lg:h-48 bg-red-500/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="floating-element absolute bottom-1/4 left-1/3 w-12 sm:w-16 md:w-24 lg:w-32 h-12 sm:h-16 md:h-24 lg:h-32 bg-yellow-500/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '2s' }}></div>
         </div>
 
         {/* Main Content */}
-        <div className="relative z-10 text-center text-white px-3 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div className="responsive-container relative z-10 text-center text-white w-full">
           {/* Hero Text with Floating Languages */}
-          <div className="mb-6 sm:mb-8 lg:mb-12">
-            <h1 className="text-2xl sm:text-4xl lg:text-7xl font-bold mb-6 sm:mb-8 lg:mb-12 bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent animate-fade-in">
+          <div className="mb-6 sm:mb-8 md:mb-10 lg:mb-12">
+            <h1 className="text-fluid-3xl sm:text-fluid-4xl md:text-fluid-5xl font-bold mb-6 sm:mb-8 md:mb-10 lg:mb-12 bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent animate-fade-in">
               Live the Shillong Vibe
             </h1>
             
             {/* Floating Languages Section */}
-            <div className="relative h-20 sm:h-24 lg:h-32 flex flex-col items-center justify-center">
-              <div className="relative h-8 sm:h-12 lg:h-16 flex items-center justify-center mb-2 sm:mb-3 lg:mb-4">
+            <div className="relative h-16 sm:h-20 md:h-24 lg:h-32 flex flex-col items-center justify-center">
+              <div className="relative h-6 sm:h-8 md:h-12 lg:h-16 flex items-center justify-center mb-2 sm:mb-3 md:mb-4">
                 <span 
                   key={currentLanguageIndex}
-                  className="text-xl sm:text-3xl lg:text-5xl font-bold text-white animate-fade-in transition-opacity duration-500"
+                  className="text-fluid-lg sm:text-fluid-xl md:text-fluid-3xl lg:text-fluid-4xl font-bold text-white animate-fade-in transition-opacity duration-500"
                 >
                   {languages[currentLanguageIndex]}
                 </span>
@@ -127,17 +127,17 @@ const HeroSection = () => {
                 <img 
                   src="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png" 
                   alt="XTSY Brand Symbol" 
-                  className="w-16 h-16 sm:w-20 sm:h-20 lg:w-32 lg:h-32 object-contain"
+                  className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-32 lg:h-32 object-contain"
                 />
               </div>
             </div>
           </div>
 
-          {/* Search Form - Compact for mobile */}
-          <div className="bg-white/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 border border-white/20 shadow-2xl animate-fade-in max-w-5xl mx-auto" style={{ animationDelay: '0.9s' }}>
-            <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-4 sm:mb-6 lg:mb-8 text-center">Find Your Perfect Stay</h2>
+          {/* Search Form - Fully responsive */}
+          <div className="bg-white/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-7 lg:p-8 border border-white/20 shadow-2xl animate-fade-in w-full max-w-5xl mx-auto" style={{ animationDelay: '0.9s' }}>
+            <h2 className="text-fluid-lg sm:text-fluid-xl md:text-fluid-2xl font-semibold mb-4 sm:mb-6 md:mb-7 lg:mb-8 text-center">Find Your Perfect Stay</h2>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-4 sm:mb-6 lg:mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6 mb-4 sm:mb-6 md:mb-7 lg:mb-8">
               <div className="space-y-2">
                 <label className="block text-sm font-medium text-gray-200">Check-in</label>
                 <div 
@@ -191,10 +191,10 @@ const HeroSection = () => {
                 </div>
               </div>
 
-              <div className="flex items-end sm:col-span-2 lg:col-span-1">
+              <div className="flex items-end col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-1">
                 <Button
                   onClick={handleSearch}
-                  className="w-full h-10 sm:h-12 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold py-2 sm:py-3 px-4 sm:px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-sm sm:text-base"
+                  className="w-full h-10 sm:h-12 md:h-12 lg:h-12 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold py-2 sm:py-3 px-4 sm:px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-fluid-sm sm:text-fluid-base hover-lift"
                 >
                   <Search className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                   Book Your Stay
@@ -202,28 +202,28 @@ const HeroSection = () => {
               </div>
             </div>
 
-            <div className="text-center text-xs sm:text-sm text-gray-300">
+            <div className="text-center text-fluid-xs sm:text-fluid-sm text-gray-300">
               <p>🏨 3 Property Types Available • 🌟 Premium Amenities • 🎯 Best Rates Guaranteed</p>
             </div>
           </div>
 
-          {/* Quick Stats - Compact mobile view */}
-          <div className="mt-6 sm:mt-8 lg:mt-12 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 animate-fade-in" style={{ animationDelay: '1.2s' }}>
-            <div className="text-center">
-              <div className="text-xl sm:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">{bookNowClicks + 14}+</div>
-              <div className="text-xs sm:text-sm text-gray-300">Happy Guests</div>
+          {/* Quick Stats - Fully responsive grid */}
+          <div className="mt-6 sm:mt-8 md:mt-10 lg:mt-12 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6 animate-fade-in" style={{ animationDelay: '1.2s' }}>
+            <div className="text-center fade-in">
+              <div className="text-fluid-lg sm:text-fluid-xl md:text-fluid-2xl lg:text-fluid-3xl font-bold bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">{bookNowClicks + 14}+</div>
+              <div className="text-fluid-xs sm:text-fluid-sm text-gray-300 mt-1">Happy Guests</div>
             </div>
-            <div className="text-center">
-              <div className="text-xl sm:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-red-400 to-pink-500 bg-clip-text text-transparent">50+</div>
-              <div className="text-xs sm:text-sm text-gray-300">Tour Packages across IN</div>
+            <div className="text-center fade-in" style={{ animationDelay: '0.1s' }}>
+              <div className="text-fluid-lg sm:text-fluid-xl md:text-fluid-2xl lg:text-fluid-3xl font-bold bg-gradient-to-r from-red-400 to-pink-500 bg-clip-text text-transparent">50+</div>
+              <div className="text-fluid-xs sm:text-fluid-sm text-gray-300 mt-1">Tour Packages across IN</div>
             </div>
-            <div className="text-center">
-              <div className="text-xl sm:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">4.8</div>
-              <div className="text-xs sm:text-sm text-gray-300">Rating</div>
+            <div className="text-center fade-in" style={{ animationDelay: '0.2s' }}>
+              <div className="text-fluid-lg sm:text-fluid-xl md:text-fluid-2xl lg:text-fluid-3xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">4.8</div>
+              <div className="text-fluid-xs sm:text-fluid-sm text-gray-300 mt-1">Rating</div>
             </div>
-            <div className="text-center">
-              <div className="text-xl sm:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">24/7</div>
-              <div className="text-xs sm:text-sm text-gray-300">Support</div>
+            <div className="text-center fade-in" style={{ animationDelay: '0.3s' }}>
+              <div className="text-fluid-lg sm:text-fluid-xl md:text-fluid-2xl lg:text-fluid-3xl font-bold bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">24/7</div>
+              <div className="text-fluid-xs sm:text-fluid-sm text-gray-300 mt-1">Support</div>
             </div>
           </div>
         </div>
