@@ -140,6 +140,11 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
   const [date, setDate] = React.useState<Date | undefined>(undefined);
   const { toast } = useToast();
 
+  // Check if any rooms or beds are selected
+  const hasRoomSelections = Object.values(roomSelections).some(selection => 
+    selection.guests > 0 || selection.rooms > 0
+  );
+
   // Initialize booking data when initialData changes
   useEffect(() => {
     if (initialData) {
