@@ -23,10 +23,11 @@ const RoomsSection = () => {
       name: "Signature 270° Glass Suite",
       price: 18000,
       description: "Premium suite with 270-degree panoramic views and luxury amenities. Experience unparalleled comfort with breathtaking mountain and valley views.",
-      features: ["270° Panoramic view", "Luxury amenities", "Attached bath", "Wi-Fi", "Premium service", "Mountain views", "Valley views", "Complimentary breakfast"],
+      features: ["270° Panoramic view", "Luxury amenities", "Attached bath", "Wi-Fi", "Premium service", "Mountain views", "Valley views", "Complimentary breakfast", "Games room access"],
       maxGuests: 2,
       maxRooms: 1,
-      image: ""
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/20250722_0921_Meghalaya%20Getaway%20View_remix_01k0r405w4f66svm6nn0qdtxye%20(1).png",
+      images: ["https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/20250722_0921_Meghalaya%20Getaway%20View_remix_01k0r405w4f66svm6nn0qdtxye%20(1).png"]
     }
   ];
 
@@ -36,83 +37,126 @@ const RoomsSection = () => {
       name: "Bed in 4 Bed Female Only Dorm",
       price: 850,
       description: "Female-only dormitory with modern amenities and comfortable beds",
-      features: ["Female only", "Shared bathroom", "Wi-Fi", "Locker", "Common area", "Reading lights", "Power outlets"],
+      features: ["Female only", "Shared bathroom", "Wi-Fi", "Locker", "Common area", "Reading lights", "Power outlets", "Complimentary breakfast", "Games room access"],
       maxGuests: 4,
       maxRooms: 1,
-      image: ""
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg",
+      images: [
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/2.jpg",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/3.jpg",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/4.JPG",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/5.JPG",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/6.JPG",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/7.JPG",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/IMG_5161.png"
+      ]
     },
     {
       id: "4-bed-mixed-female-dorm",
       name: "Bed in 4 Bed Mixed/Female Dorm", 
       price: 800,
       description: "Mixed or female dormitory with shared facilities and social atmosphere",
-      features: ["Mixed/Female", "Shared bathroom", "Wi-Fi", "Locker", "Common area", "Reading lights", "Power outlets"],
+      features: ["Mixed/Female", "Shared bathroom", "Wi-Fi", "Locker", "Common area", "Reading lights", "Power outlets", "Complimentary breakfast", "Games room access"],
       maxGuests: 4,
       maxRooms: 1,
-      image: ""
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/3.jpg",
+      images: [
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/3.jpg",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/4.JPG",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/5.jpg",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/IMG_5161.png"
+      ]
     },
     {
       id: "6-bed-mixed-female-dorm",
       name: "Bed in 6 Bed Mixed/Female Dorm",
       price: 700,
       description: "Spacious mixed or female dormitory with modern amenities",
-      features: ["Mixed/Female", "Shared bathroom", "Wi-Fi", "Locker", "Common area", "Reading lights", "Power outlets"],
+      features: ["Mixed/Female", "Shared bathroom", "Wi-Fi", "Locker", "Common area", "Reading lights", "Power outlets", "Complimentary breakfast", "Games room access"],
       maxGuests: 30,
       maxRooms: 5,
-      image: ""
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG",
+      images: [
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/3.jpg",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/4.jpg",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/5.JPG",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/6.JPG",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/IMG_5160.png"
+      ]
     },
     {
       id: "8-bed-mixed-dorm",
       name: "Bed in 8 Bed Mixed Dorm",
       price: 600,
       description: "Large mixed dormitory for budget travelers seeking social experience",
-      features: ["Mixed dorm", "Shared bathroom", "Wi-Fi", "Locker", "Common area", "Reading lights", "Power outlets"],
+      features: ["Mixed dorm", "Shared bathroom", "Wi-Fi", "Locker", "Common area", "Reading lights", "Power outlets", "Complimentary breakfast", "Games room access"],
       maxGuests: 8,
       maxRooms: 1,
-      image: ""
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg",
+      images: [
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/4.jpg",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/5.jpg",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/6.jpg",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/8.jpg",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/9.jpg"
+      ]
     },
     {
       id: "king-double-room",
       name: "King Double Room",
       price: 3200,
       description: "Spacious private room with king bed for two guests",
-      features: ["King bed", "Valley view", "Attached bath", "Wi-Fi", "Premium amenities", "Mini fridge"],
+      features: ["King bed", "Valley view", "Attached bath", "Wi-Fi", "Premium amenities", "Mini fridge", "Complimentary breakfast", "Games room access"],
       maxGuests: 4,
       maxRooms: 2,
-      image: ""
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg",
+      images: [
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/2.jpg",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/3.JPG",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/IMG_4077.jpg"
+      ]
     },
     {
       id: "king-triple-room",
       name: "King Triple Room",
       price: 4200,
       description: "Luxurious private room accommodating up to three guests",
-      features: ["King bed + extra bed", "Panoramic view", "Attached bath", "Wi-Fi", "Premium amenities", "Mini fridge"],
+      features: ["King bed + extra bed", "Panoramic view", "Attached bath", "Wi-Fi", "Premium amenities", "Mini fridge", "Complimentary breakfast", "Games room access"],
       maxGuests: 3,
       maxRooms: 1,
-      image: ""
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/1.jpg",
+      images: [
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/1.jpg",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/2.jpg",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/3.jpg",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/5.jpg",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/IMG_4077.jpg"
+      ]
     }
   ];
 
   const economyRooms = [
     {
-      id: "6-bed-female-economy-dorm",
-      name: "Bed in 6 Bed Female Economy Dorm",
+      id: "6-bed-female-mixed-economy-dorm",
+      name: "Bed in 6 Bed Female/Mixed Economy Dorm",
       price: 550,
-      description: "Budget-friendly female dormitory with essential amenities",
-      features: ["Female only", "Shared bathroom", "Wi-Fi", "Locker", "Common area", "Basic amenities"],
+      description: "Budget-friendly female/mixed dormitory with essential amenities",
+      features: ["Female/Mixed", "Shared bathroom", "Wi-Fi", "Locker", "Common area", "Basic amenities"],
       maxGuests: 6,
       maxRooms: 1,
-      image: ""
-    },
-    {
-      id: "6-bed-mixed-economy-dorm",
-      name: "Bed in 6 Bed Mixed Economy Dorm",
-      price: 500,
-      description: "Affordable mixed dormitory perfect for budget travelers",
-      features: ["Mixed dorm", "Shared bathroom", "Wi-Fi", "Locker", "Common area", "Basic amenities"],
-      maxGuests: 6,
-      maxRooms: 1,
-      image: ""
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG",
+      images: [
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/3.jpg",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/4.jpg",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/5.JPG",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/6.JPG",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/IMG_5160.png"
+      ]
     },
     {
       id: "8-bed-mixed-economy-dorm",
@@ -122,7 +166,15 @@ const RoomsSection = () => {
       features: ["Mixed dorm", "Shared bathroom", "Wi-Fi", "Locker", "Common area", "Basic amenities"],
       maxGuests: 8,
       maxRooms: 1,
-      image: ""
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg",
+      images: [
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/4.jpg",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/5.jpg",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/6.jpg",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/8.jpg",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/9.jpg"
+      ]
     }
   ];
 

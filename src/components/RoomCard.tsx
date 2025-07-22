@@ -14,6 +14,7 @@ interface RoomCardProps {
     maxGuests: number;
     maxRooms: number;
     image: string;
+    images?: string[];
   };
   propertyType: "hostel" | "luxury" | "economy";
   onSelectRoom: () => void;
@@ -26,9 +27,21 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
   if (isLuxury) {
     return (
       <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-400 hover:shadow-lg transition-all duration-300 shadow-md w-full max-w-4xl mx-auto min-h-[500px] sm:min-h-[550px] md:min-h-[600px] flex flex-col">
-        {/* Floating Images Display */}
+        {/* Luxury Suite Image Display */}
         <div className="relative h-96 mb-6 rounded-lg overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 flex items-center justify-center">
+          {room.image ? (
+            <img 
+              src={room.image} 
+              alt={room.name}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+                target.nextElementSibling?.classList.remove('hidden');
+              }}
+            />
+          ) : null}
+          <div className={`absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 flex items-center justify-center ${room.image ? 'hidden' : ''}`}>
             <div className="text-center">
               <TreePine className="h-16 w-16 text-gray-400 dark:text-gray-300 mx-auto mb-4" />
               <p className="text-gray-500 dark:text-gray-300 text-lg">Luxury Suite Images</p>
@@ -86,8 +99,20 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
   return (
     <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-400 hover:shadow-lg transition-all duration-300 shadow-md w-full min-w-0 flex-1 min-h-[400px] sm:min-h-[450px] md:min-h-[500px] lg:min-h-[550px] flex flex-col">
       <CardHeader className="pb-2 sm:pb-3">
-        <div className="w-full h-24 sm:h-32 md:h-36 lg:h-40 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 rounded-lg mb-2 sm:mb-4 flex items-center justify-center border border-gray-300 dark:border-gray-600">
-          <div className="text-center">
+        <div className="w-full h-24 sm:h-32 md:h-36 lg:h-40 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 rounded-lg mb-2 sm:mb-4 flex items-center justify-center border border-gray-300 dark:border-gray-600 overflow-hidden">
+          {room.image ? (
+            <img 
+              src={room.image} 
+              alt={room.name}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+                target.nextElementSibling?.classList.remove('hidden');
+              }}
+            />
+          ) : null}
+          <div className={`text-center ${room.image ? 'hidden' : ''}`}>
             <TreePine className="h-4 w-4 sm:h-6 sm:w-6 md:h-8 md:w-8 text-gray-400 dark:text-gray-300 mx-auto mb-1" />
             <p className="text-gray-500 dark:text-gray-300 text-fluid-xs">Room Image</p>
             <p className="text-gray-400 dark:text-gray-400 text-fluid-xs">Supabase Ready</p>

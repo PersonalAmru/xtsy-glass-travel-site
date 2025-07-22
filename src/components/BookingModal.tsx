@@ -4,8 +4,93 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Calendar, Users, Bed, Clock, Tag, X, Minus, Plus, Bookmark } from "lucide-react";
+import { Calendar, Users, Bed, Clock, Tag, X, Minus, Plus, Bookmark, TreePine } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+
+// Room data with images - same as in RoomsSection
+const ROOM_DATA = {
+  "signature-270-glass-suite": {
+    id: "signature-270-glass-suite",
+    name: "Signature 270° Glass Suite",
+    price: 18000,
+    capacity: 2,
+    description: "Premium suite with 270-degree panoramic views and luxury amenities",
+    type: "luxury",
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/20250722_0921_Meghalaya%20Getaway%20View_remix_01k0r405w4f66svm6nn0qdtxye%20(1).png"
+  },
+  "4-bed-female-only-dorm": {
+    id: "4-bed-female-only-dorm",
+    name: "Bed in 4 Bed Female Only Dorm",
+    price: 850,
+    capacity: 4,
+    description: "Female-only dormitory with modern amenities and comfortable beds",
+    type: "dorm",
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg"
+  },
+  "4-bed-mixed-female-dorm": {
+    id: "4-bed-mixed-female-dorm",
+    name: "Bed in 4 Bed Mixed/Female Dorm",
+    price: 800,
+    capacity: 4,
+    description: "Mixed or female dormitory with shared facilities and social atmosphere",
+    type: "dorm",
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/3.jpg"
+  },
+  "6-bed-mixed-female-dorm": {
+    id: "6-bed-mixed-female-dorm",
+    name: "Bed in 6 Bed Mixed/Female Dorm",
+    price: 700,
+    capacity: 6,
+    description: "Spacious mixed or female dormitory with modern amenities",
+    type: "dorm",
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG"
+  },
+  "8-bed-mixed-dorm": {
+    id: "8-bed-mixed-dorm",
+    name: "Bed in 8 Bed Mixed Dorm",
+    price: 600,
+    capacity: 8,
+    description: "Large mixed dormitory for budget travelers seeking social experience",
+    type: "dorm",
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg"
+  },
+  "king-double-room": {
+    id: "king-double-room",
+    name: "King Double Room",
+    price: 3200,
+    capacity: 4,
+    description: "Spacious private room with king bed for two guests",
+    type: "room",
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg"
+  },
+  "king-triple-room": {
+    id: "king-triple-room",
+    name: "King Triple Room",
+    price: 4200,
+    capacity: 3,
+    description: "Luxurious private room accommodating up to three guests",
+    type: "room",
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/1.jpg"
+  },
+  "6-bed-female-mixed-economy-dorm": {
+    id: "6-bed-female-mixed-economy-dorm",
+    name: "Bed in 6 Bed Female/Mixed Economy Dorm",
+    price: 550,
+    capacity: 6,
+    description: "Budget-friendly female/mixed dormitory with essential amenities",
+    type: "dorm",
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG"
+  },
+  "8-bed-mixed-economy-dorm": {
+    id: "8-bed-mixed-economy-dorm",
+    name: "Bed in 8 Bed Mixed Economy Dorm",
+    price: 450,
+    capacity: 8,
+    description: "Most economical option for backpackers and budget travelers",
+    type: "dorm",
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg"
+  }
+};
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -148,6 +233,10 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
     onClose();
   };
 
+  // Get room image from ROOM_DATA
+  const roomData = ROOM_DATA[room.id as keyof typeof ROOM_DATA];
+  const roomImage = roomData?.image;
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="w-full h-full max-w-none max-h-none md:max-w-4xl lg:max-w-6xl md:max-h-[95vh] md:h-auto bg-white border-0 p-0 overflow-hidden">
@@ -219,8 +308,23 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
                 {/* Room Card */}
                 <Card className="mb-6">
                   <div className="flex gap-4 p-4">
-                    <div className="w-32 h-24 bg-gray-200 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <span className="text-black text-sm font-semibold">Room Image</span>
+                    <div className="w-32 h-24 bg-gray-200 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden">
+                      {roomImage ? (
+                        <img 
+                          src={roomImage} 
+                          alt={room.name}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                            target.nextElementSibling?.classList.remove('hidden');
+                          }}
+                        />
+                      ) : null}
+                      <div className={`text-center ${roomImage ? 'hidden' : ''}`}>
+                        <TreePine className="h-6 w-6 text-gray-400 mx-auto mb-1" />
+                        <span className="text-black text-sm font-semibold">Room Image</span>
+                      </div>
                     </div>
                     
                     <div className="flex-1">
