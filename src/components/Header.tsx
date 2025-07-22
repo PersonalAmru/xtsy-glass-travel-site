@@ -127,8 +127,8 @@ const Header = () => {
                               🇮🇳
                             </div>
                             <div>
-                              <div className="font-semibold text-gray-900">Domestic Travel</div>
-                              <div className="text-sm text-gray-600">Explore India with us</div>
+                              <div className="font-semibold text-foreground">Domestic Travel</div>
+                              <div className="text-sm text-muted-foreground">Explore India with us</div>
                             </div>
                           </Link>
                         </NavigationMenuLink>
@@ -142,8 +142,8 @@ const Header = () => {
                               🌏
                             </div>
                             <div>
-                              <div className="font-semibold text-gray-900">International Travel</div>
-                              <div className="text-sm text-gray-600">XTSY Asia & more</div>
+                              <div className="font-semibold text-foreground">International Travel</div>
+                              <div className="text-sm text-muted-foreground">XTSY Asia & more</div>
                             </div>
                           </Link>
                         </NavigationMenuLink>
@@ -196,28 +196,28 @@ const Header = () => {
               <nav className="flex flex-col space-y-3">
                 <Link 
                   to="/" 
-                  className="text-gray-700 hover:text-primary transition-colors"
+                  className="text-foreground hover:text-primary transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Home
                 </Link>
                 <Link 
                   to="/about" 
-                  className="text-gray-700 hover:text-primary transition-colors"
+                  className="text-foreground hover:text-primary transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   About
                 </Link>
                 <Link 
                   to="/gallery" 
-                  className="text-gray-700 hover:text-primary transition-colors"
+                  className="text-foreground hover:text-primary transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Gallery
                 </Link>
                 <Link 
                   to="/deals" 
-                  className="text-gray-700 hover:text-primary transition-colors"
+                  className="text-foreground hover:text-primary transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Deals
@@ -225,17 +225,17 @@ const Header = () => {
                 
                 {/* Mobile Travel Menu */}
                 <div className="pl-4 space-y-2">
-                  <div className="font-semibold text-gray-900">Travel</div>
+                  <div className="font-semibold text-foreground">Travel</div>
                   <Link 
                     to="/travel?tab=domestic" 
-                    className="block text-gray-600 hover:text-primary transition-colors pl-4"
+                    className="block text-muted-foreground hover:text-primary transition-colors pl-4"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     🇮🇳 Domestic Travel
                   </Link>
                   <Link 
                     to="/travel?tab=international" 
-                    className="block text-gray-600 hover:text-primary transition-colors pl-4"
+                    className="block text-muted-foreground hover:text-primary transition-colors pl-4"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     🌏 International Travel
@@ -246,13 +246,13 @@ const Header = () => {
                   <div className="pt-4 border-t">
                     <Link 
                       to="/dashboard" 
-                      className="flex items-center text-gray-700 hover:text-primary transition-colors mb-4"
+                      className="flex items-center text-foreground hover:text-primary transition-colors mb-4"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       <Settings className="h-4 w-4 mr-2" />
                       Dashboard
                     </Link>
-                    <div className="text-sm text-gray-600">
+                    <div className="text-sm text-muted-foreground">
                       Signed in as {user.user_metadata?.full_name || user.email}
                     </div>
                   </div>
