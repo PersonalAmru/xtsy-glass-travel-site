@@ -147,9 +147,9 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
                 variant="ghost"
                 size="sm"
                 onClick={onClose}
-                className="p-2"
+                className="p-2 text-gray-900 hover:bg-gray-100"
               >
-                <X className="h-5 w-5" />
+                <X className="h-5 w-5 text-gray-900" />
               </Button>
               <DialogTitle className="text-xl md:text-2xl font-bold text-gray-900">
                 Book your stay

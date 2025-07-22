@@ -190,9 +190,9 @@ Until then—safe travels & pack light 🧳🌿
                   variant="ghost"
                   size="sm"
                   onClick={onBack}
-                  className="p-2"
+                  className="p-2 text-gray-900 hover:bg-gray-100"
                 >
-                  <ArrowLeft className="h-5 w-5" />
+                  <ArrowLeft className="h-5 w-5 text-gray-900" />
                 </Button>
                 <DialogTitle className="text-xl md:text-2xl font-bold text-gray-900">
                   Guest Details
