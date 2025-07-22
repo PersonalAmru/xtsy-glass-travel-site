@@ -20,6 +20,19 @@ import sikkimRhododendrons from "@/assets/sikkim-rhododendrons.jpg";
 import himachalValleys from "@/assets/himachal-valleys.jpg";
 import tamilNaduTemples from "@/assets/tamil-nadu-temples.jpg";
 import tribalCircuit from "@/assets/tribal-circuit.jpg";
+// New optimized images
+import charDhamYatra from "@/assets/char-dham-yatra.jpg";
+import rishikeshAdventure from "@/assets/rishikesh-adventure.jpg";
+import nainitalLakeDistrict from "@/assets/nainital-lake-district.jpg";
+import valleyOfFlowers from "@/assets/valley-of-flowers.jpg";
+import gurudongmarLake from "@/assets/gurudongmar-lake.jpg";
+import shimlaManaliHoneymoon from "@/assets/shimla-manali-honeymoon.jpg";
+import spitiValley from "@/assets/spiti-valley.jpg";
+import munnarTeaGardens from "@/assets/munnar-tea-gardens.jpg";
+import thekkadyWildlife from "@/assets/thekkady-wildlife.jpg";
+import ootyKodaikanal from "@/assets/ooty-kodaikanal.jpg";
+import dharamshalaMcleodganj from "@/assets/dharamshala-mcleodganj.jpg";
+import pellingKanchenjunga from "@/assets/pelling-kanchenjunga.jpg";
 // Relevant tourism images for each destination
 const meghalayaImages = [
   "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&q=80", // Shillong hills
@@ -196,8 +209,8 @@ const Travel = () => {
         duration: "12 Days",
         difficulty: "Challenging",
         price: "₹35,999",
-        image: uttarakhandHimalayas,
-        images: uttarakhandImages,
+        image: charDhamYatra,
+        images: [charDhamYatra, uttarakhandImages[1], uttarakhandImages[2]],
         rating: 4.9,
         category: "cultural",
         location: "Uttarakhand",
@@ -211,8 +224,8 @@ const Travel = () => {
         duration: "4 Days",
         difficulty: "Moderate",
         price: "₹11,999",
-        image: adventureImage,
-        images: [adventureImage, uttarakhandImages[1], uttarakhandImages[2]],
+        image: rishikeshAdventure,
+        images: [rishikeshAdventure, uttarakhandImages[1], uttarakhandImages[2]],
         rating: 4.8,
         category: "adventure",
         location: "Uttarakhand",
@@ -226,8 +239,8 @@ const Travel = () => {
         duration: "6 Days",
         difficulty: "Easy",
         price: "₹18,999",
-        image: lakeImage,
-        images: [lakeImage, "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80", "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80"],
+        image: nainitalLakeDistrict,
+        images: [nainitalLakeDistrict, "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80", "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80"],
         rating: 4.7,
         category: "leisure",
         location: "Uttarakhand",
@@ -241,8 +254,8 @@ const Travel = () => {
         duration: "8 Days",
         difficulty: "Challenging",
         price: "₹24,999",
-        image: mountainImage,
-        images: [mountainImage, "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80", "https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?w=800&q=80"],
+        image: valleyOfFlowers,
+        images: [valleyOfFlowers, "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80", "https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?w=800&q=80"],
         rating: 4.9,
         category: "adventure",
         location: "Uttarakhand",
@@ -274,8 +287,8 @@ const Travel = () => {
         duration: "5 Days",
         difficulty: "Challenging",
         price: "₹19,999",
-        image: mountainImage,
-        images: [mountainImage, sikkimImages[1], sikkimImages[2]],
+        image: gurudongmarLake,
+        images: [gurudongmarLake, sikkimImages[1], sikkimImages[2]],
         rating: 4.9,
         category: "adventure",
         location: "Sikkim",
@@ -289,8 +302,8 @@ const Travel = () => {
         duration: "4 Days",
         difficulty: "Easy",
         price: "₹13,999",
-        image: hillStationImage,
-        images: [hillStationImage, sikkimImages[0], sikkimImages[1]],
+        image: pellingKanchenjunga,
+        images: [pellingKanchenjunga, sikkimImages[0], sikkimImages[1]],
         rating: 4.6,
         category: "leisure",
         location: "Sikkim",
@@ -307,8 +320,8 @@ const Travel = () => {
         duration: "6 Days",
         difficulty: "Easy",
         price: "₹16,999",
-        image: himachalValleys,
-        images: himachalImages,
+        image: shimlaManaliHoneymoon,
+        images: [shimlaManaliHoneymoon, himachalImages[1], himachalImages[2]],
         rating: 4.7,
         category: "leisure",
         location: "Himachal Pradesh",
@@ -322,8 +335,8 @@ const Travel = () => {
         duration: "10 Days",
         difficulty: "Challenging",
         price: "₹32,999",
-        image: mountainImage,
-        images: [mountainImage, himachalImages[0], himachalImages[2]],
+        image: spitiValley,
+        images: [spitiValley, himachalImages[0], himachalImages[2]],
         rating: 4.9,
         category: "adventure",
         location: "Himachal Pradesh",
@@ -337,8 +350,8 @@ const Travel = () => {
         duration: "4 Days",
         difficulty: "Easy",
         price: "₹12,999",
-        image: cultureImage,
-        images: ["https://images.unsplash.com/photo-1597149960113-5c8e3f9ad11a?w=800&q=80", himachalImages[1], himachalImages[2]],
+        image: dharamshalaMcleodganj,
+        images: [dharamshalaMcleodganj, himachalImages[1], himachalImages[2]],
         rating: 4.6,
         category: "cultural",
         location: "Himachal Pradesh",
@@ -370,8 +383,8 @@ const Travel = () => {
         duration: "5 Days",
         difficulty: "Easy",
         price: "₹14,999",
-        image: forestImage,
-        images: ["https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&q=80", keralImages[1], keralImages[2]],
+        image: munnarTeaGardens,
+        images: [munnarTeaGardens, keralImages[1], keralImages[2]],
         rating: 4.7,
         category: "cultural",
         location: "Kerala",
@@ -385,8 +398,8 @@ const Travel = () => {
         duration: "3 Days",
         difficulty: "Easy",
         price: "₹9,999",
-        image: forestImage,
-        images: [forestImage, keralImages[0], keralImages[1]],
+        image: thekkadyWildlife,
+        images: [thekkadyWildlife, keralImages[0], keralImages[1]],
         rating: 4.5,
         category: "adventure",
         location: "Kerala",
@@ -418,8 +431,8 @@ const Travel = () => {
         duration: "6 Days",
         difficulty: "Easy",
         price: "₹15,999",
-        image: hillStationImage,
-        images: ["https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&q=80", hillStationImage, "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&q=80"],
+        image: ootyKodaikanal,
+        images: [ootyKodaikanal, hillStationImage, "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&q=80"],
         rating: 4.7,
         category: "leisure",
         location: "Tamil Nadu",
