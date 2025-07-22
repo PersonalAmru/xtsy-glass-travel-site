@@ -27,7 +27,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
 
   if (isLuxury) {
     return (
-      <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-400 hover:shadow-lg transition-all duration-300 shadow-md w-full min-h-[600px] flex flex-col">
+      <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-400 hover:shadow-lg transition-all duration-300 shadow-md w-full max-w-4xl mx-auto min-h-[500px] sm:min-h-[550px] md:min-h-[600px] flex flex-col">
         {/* Floating Images Display */}
         <div className="relative h-96 mb-6 rounded-lg overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 flex items-center justify-center">
@@ -94,7 +94,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
   }
 
   return (
-    <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-400 hover:shadow-lg transition-all duration-300 shadow-md w-full h-auto min-h-[400px] sm:min-h-[450px] md:min-h-[500px] lg:min-h-[550px] flex flex-col">
+    <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-400 hover:shadow-lg transition-all duration-300 shadow-md w-full max-w-sm mx-auto h-auto min-h-[400px] sm:min-h-[450px] md:min-h-[500px] lg:min-h-[550px] flex flex-col">
       <CardHeader className="pb-2 sm:pb-3">
         <div className="w-full h-24 sm:h-32 md:h-36 lg:h-40 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 rounded-lg mb-2 sm:mb-4 flex items-center justify-center border border-gray-300 dark:border-gray-600">
           <div className="text-center">

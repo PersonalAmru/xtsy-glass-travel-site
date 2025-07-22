@@ -305,6 +305,47 @@
     grid-template-columns: repeat(3, 1fr);
     gap: clamp(0.5rem, 2vw, 2rem);
     width: 100%;
+    justify-items: center;
+    align-items: stretch;
+  }
+
+  /* Alignment utilities */
+  .section-container {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .center-aligned {
+    @apply flex flex-col items-center justify-center text-center;
+  }
+
+  .left-aligned {
+    @apply flex flex-col items-start justify-start text-left;
+  }
+
+  .right-aligned {
+    @apply flex flex-col items-end justify-end text-right;
+  }
+
+  .justified-content {
+    @apply flex flex-col items-stretch justify-between;
+  }
+
+  /* Header alignment */
+  .section-header {
+    @apply text-center mb-8 sm:mb-12 md:mb-14 lg:mb-16;
+  }
+
+  .section-title-card {
+    @apply inline-block p-4 sm:p-6 bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl mb-6 mx-auto;
+  }
+
+  /* Content grid alignment */
+  .content-grid-center {
+    @apply grid place-items-center gap-4 sm:gap-6 lg:gap-8;
+  }
+
+  .content-grid-justified {
+    @apply grid justify-items-stretch items-stretch gap-4 sm:gap-6 lg:gap-8;
   }
 
   /* Safe area support */

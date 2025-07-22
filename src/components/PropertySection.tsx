@@ -54,10 +54,10 @@ const PropertySection = ({ title, description, rooms, propertyType, onSelectRoom
   };
 
   return (
-    <div className="mb-12">
-      {/* Property Header */}
-      <div className="text-center mb-6 sm:mb-8">
-        <div className="inline-block p-3 sm:p-4 bg-card/90 backdrop-blur-sm rounded-xl shadow-lg mb-4 border border-border">
+    <div className="w-full mb-12">
+      {/* Property Header - Center Aligned */}
+      <div className="section-header">
+        <div className="section-title-card">
           <h3 className="text-fluid-xl sm:text-fluid-2xl md:text-fluid-3xl lg:text-fluid-4xl font-bold bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent mb-2 font-playfair">
             {title}
           </h3>
@@ -65,28 +65,31 @@ const PropertySection = ({ title, description, rooms, propertyType, onSelectRoom
         </div>
       </div>
 
-      {/* Luxury Room - Responsive Display */}
+      {/* Luxury Room - Center Aligned Display */}
       {isLuxury && rooms.length > 0 ? (
-        <div className="max-w-7xl mx-auto">
-          <RoomCard
-            room={rooms[0]}
-            propertyType={propertyType}
-            onSelectRoom={onSelectRoom}
-            isLuxury={true}
-          />
+        <div className="w-full flex justify-center">
+          <div className="max-w-4xl w-full">
+            <RoomCard
+              room={rooms[0]}
+              propertyType={propertyType}
+              onSelectRoom={onSelectRoom}
+              isLuxury={true}
+            />
+          </div>
         </div>
       ) : (
-        // Fixed 3-Column Responsive Layout
-        <div className="relative">
-          {/* Fixed 3-tile grid that scales content */}
-          <div className="grid-3-fixed max-w-7xl mx-auto">
+        // Fixed 3-Column Center Aligned Layout
+        <div className="w-full">
+          {/* Center-aligned 3-tile grid with consistent spacing */}
+          <div className="grid-3-fixed max-w-7xl mx-auto justify-items-center">
             {rooms.map((room) => (
-              <RoomCard
-                key={room.id}
-                room={room}
-                propertyType={propertyType}
-                onSelectRoom={onSelectRoom}
-              />
+              <div key={room.id} className="w-full flex justify-center">
+                <RoomCard
+                  room={room}
+                  propertyType={propertyType}
+                  onSelectRoom={onSelectRoom}
+                />
+              </div>
             ))}
           </div>
         </div>

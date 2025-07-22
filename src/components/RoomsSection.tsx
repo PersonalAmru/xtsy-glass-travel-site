@@ -135,8 +135,8 @@ const RoomsSection = () => {
       <div className="absolute -bottom-16 sm:-bottom-24 -left-16 sm:-left-24 w-32 sm:w-48 md:w-64 h-32 sm:h-48 md:h-64 bg-purple-200/30 rounded-full blur-3xl" />
 
       <div className="responsive-container relative z-10">
-        <div className="text-center mb-8 sm:mb-12 md:mb-14 lg:mb-16">
-          <div className="inline-block p-4 sm:p-6 bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl mb-6">
+        <div className="section-header">
+          <div className="section-title-card">
             <h2 className="text-fluid-2xl sm:text-fluid-3xl md:text-fluid-4xl lg:text-fluid-5xl font-bold bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent mb-4 font-playfair">
               Our Properties
             </h2>
@@ -144,8 +144,8 @@ const RoomsSection = () => {
           </div>
         </div>
 
-        {/* XTSY Luxury Section - Full Width */}
-        <div className="mb-16">
+        {/* XTSY Luxury Section - Center Aligned */}
+        <div className="center-aligned mb-16">
           <PropertySection
             title="XTSY Luxury"
             description="Premium accommodation with breathtaking 270-degree views, luxury amenities, and exceptional service for discerning travelers"
@@ -156,8 +156,8 @@ const RoomsSection = () => {
           />
         </div>
 
-        {/* XTSY Travellers Hostel Section */}
-        <div className="mb-16">
+        {/* XTSY Travellers Hostel Section - Center Aligned */}
+        <div className="center-aligned mb-16">
           <PropertySection
             title="XTSY Travellers Hostel"
             description="Budget-friendly and premium accommodation options in the heart of Shillong with modern amenities and vibrant community spaces"
@@ -167,8 +167,8 @@ const RoomsSection = () => {
           />
         </div>
 
-        {/* XTSY Economy Section */}
-        <div className="mb-16">
+        {/* XTSY Economy Section - Center Aligned */}
+        <div className="center-aligned mb-16">
           <PropertySection
             title="XTSY Economy"
             description="Most affordable accommodation options perfect for backpackers and budget travelers without compromising on essential amenities"
