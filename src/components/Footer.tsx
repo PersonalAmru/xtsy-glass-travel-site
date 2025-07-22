@@ -14,7 +14,7 @@ const Footer = () => {
               <img 
                 src="/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png" 
                 alt="XTSY Brand Logo" 
-                className="w-16 h-16 sm:w-20 sm:h-20 object-contain"
+                className="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 object-contain"
               />
             </div>
             <p className="text-gray-400 text-sm text-center md:text-left">

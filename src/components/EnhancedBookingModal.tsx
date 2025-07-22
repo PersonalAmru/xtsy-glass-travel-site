@@ -189,13 +189,14 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
   const getGuestCapacityForRoom = (room: Room) => {
     const isDorm = room.name.toLowerCase().includes('dorm');
     if (isDorm) {
-      return room.capacity; // For dorms: use room capacity
+      // For dorms: 1 guest = 1 bed, each bed can have 1 upper and 1 lower, so 1 guest per bed
+      return 1; // Each selection represents 1 bed for 1 guest
     } else {
-      // For private rooms: 2 guests per room, except King Triple which can have 3
+      // For private rooms: rates are calculated on room basis
       if (room.name === "King Triple Room") {
-        return 3;
+        return 3; // Max 3 guests per room
       }
-      return 2;
+      return 2; // Max 2 guests per room for other room types
     }
   };
 
@@ -226,20 +227,20 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
       const isDorm = room.name.toLowerCase().includes('dorm');
       
       if (isDorm) {
-        // For dorms: price per bed * number of guests (beds) * nights
-        const guestCount = selection.guests || 0;
-        subtotal += room.price * guestCount * nights;
-        totalGuestsCalculated += guestCount;
+        // For dorms: 1 guest = 1 bed, price per bed * number of beds * nights
+        const bedCount = selection.guests || 0; // guests represents number of beds for dorms
+        subtotal += room.price * bedCount * nights;
+        totalGuestsCalculated += bedCount; // 1 bed = 1 guest
       } else {
-        // For luxury rooms: price per room * number of rooms * nights
+        // For rooms and suites: price per room * number of rooms * nights
         const roomCount = selection.rooms || 0;
         subtotal += room.price * roomCount * nights;
         
-        // Calculate guests for luxury rooms
+        // Calculate guests for private rooms
         if (room.name === "King Triple Room") {
-          totalGuestsCalculated += Math.min(3, roomCount * 3);
+          totalGuestsCalculated += roomCount * 3; // 3 guests per King Triple Room
         } else {
-          totalGuestsCalculated += roomCount * 2;
+          totalGuestsCalculated += roomCount * 2; // 2 guests per other room types
         }
       }
     });
@@ -642,6 +643,83 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                                  </div>
                                  
                                  {/* Number of Guests for Hostel Rooms */}
+                                 <div className="border-t pt-3">
+                                   <div className="flex items-center justify-between">
+                                     <span className="text-sm font-medium text-gray-900">Number of Beds:</span>
+                                     <div className="flex items-center gap-2">
+                                       <Button
+                                         variant="outline"
+                                         size="sm"
+                                         onClick={(e) => {
+                                           e.stopPropagation();
+                                           const currentGuests = getRoomSelectionForRoom(room.id).guests || 0;
+                                           updateRoomSelection(room.id, 'guests', Math.max(0, currentGuests - 1));
+                                         }}
+                                         disabled={getRoomSelectionForRoom(room.id).guests <= 0}
+                                         className="h-8 w-8 p-0"
+                                       >
+                                         <Minus className="h-4 w-4" />
+                                       </Button>
+                                       <span className="w-8 text-center text-sm text-gray-900">
+                                         {getRoomSelectionForRoom(room.id).guests || 0}
+                                       </span>
+                                       <Button
+                                         variant="outline"
+                                         size="sm"
+                                         onClick={(e) => {
+                                           e.stopPropagation();
+                                           const currentGuests = getRoomSelectionForRoom(room.id).guests || 0;
+                                           updateRoomSelection(room.id, 'guests', Math.min(room.capacity, currentGuests + 1));
+                                         }}
+                                         disabled={getRoomSelectionForRoom(room.id).guests >= room.capacity}
+                                         className="h-8 w-8 p-0"
+                                       >
+                                         <Plus className="h-4 w-4" />
+                                       </Button>
+                                     </div>
+                                   </div>
+                                   <div className="text-xs text-gray-600 mt-1">
+                                     1 bed = 1 guest • Price: ₹{room.price} per bed per night
+                                   </div>
+                                 </div>
+                               </div>
+                             </Card>
+                           ))}
+                         </div>
+                        </div>
+
+                       {/* XTSY Economy Stays */}
+                       <div className="mb-6">
+                         <h4 className="text-md font-semibold mb-3 text-orange-200">XTSY Economy Stays</h4>
+                         <div className="grid grid-cols-1 gap-4">
+                           {rooms.filter(room => room.type === 'economy').map((room) => (
+                             <Card
+                               key={room.id}
+                               className="cursor-pointer hover:shadow-md transition-shadow duration-200 bg-white/95"
+                             >
+                               <div className="p-4">
+                                 <div className="flex gap-4 mb-3">
+                                   <div className="w-24 h-20 bg-gray-200 rounded-lg flex items-center justify-center flex-shrink-0">
+                                     <span className="text-gray-500 text-sm">Room Image</span>
+                                   </div>
+                                   
+                                   <div className="flex-1">
+                                     <h4 className="font-semibold mb-1 text-gray-900">{room.name}</h4>
+                                     <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
+                                       <div className="flex items-center gap-1">
+                                         <Users className="h-4 w-4" />
+                                         <span>Max {room.capacity} guests</span>
+                                       </div>
+                                       <div className="flex items-center gap-1">
+                                         <span className="text-gray-600">Per Bed</span>
+                                       </div>
+                                     </div>
+                                     <div className="text-gray-600 text-sm mb-2">{room.description}</div>
+                                     <div className="text-lg font-bold text-green-600">₹{room.price}</div>
+                                   </div>
+                                 </div>
+                                 
+                                 {/* Number of Guests for Economy Rooms */}
                                  <div className="border-t pt-3">
                                    <div className="flex items-center justify-between">
                                      <span className="text-sm font-medium text-gray-900">Number of Beds:</span>
