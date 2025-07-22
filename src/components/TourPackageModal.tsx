@@ -16,6 +16,7 @@ interface TourPackage {
   duration: string;
   difficulty: string;
   price: string;
+  image: string;
   rating: number;
   category: string;
   highlights: string[];
@@ -140,12 +141,11 @@ Please confirm this tour package booking and share payment details.`;
           {/* Package Details */}
           <div className="space-y-6">
             <div className="relative">
-              <div className="w-full h-64 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin className="h-12 w-12 text-gray-400 mx-auto mb-2" />
-                  <p className="text-gray-500">Package Image</p>
-                </div>
-              </div>
+              <img 
+                src={tourPackage.image} 
+                alt={tourPackage.title}
+                className="w-full h-64 object-cover rounded-lg"
+              />
               <div className="absolute top-4 left-4">
                 <Badge variant="secondary" className="bg-white/90">
                   {tourPackage.category}

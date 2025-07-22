@@ -6,6 +6,28 @@ import { Badge } from "@/components/ui/badge";
 import { MapPin, Clock, Users, Star, Calendar, Mountain, Camera, Compass } from "lucide-react";
 import TourPackageModal from "./TourPackageModal";
 
+// Import tour package images
+import meghalayaHiddenGemsImg from "@/assets/meghalaya-hidden-gems.jpg";
+import shillongCulturalImg from "@/assets/shillong-cultural.jpg";
+import cherrapunjiMonsoonImg from "@/assets/cherrapunji-monsoon.jpg";
+import dawkiRiverImg from "@/assets/dawki-river.jpg";
+import mawlynnongVillageImg from "@/assets/mawlynnong-village.jpg";
+import garoHillsTribalImg from "@/assets/garo-hills-tribal.jpg";
+import jaintiaCavesImg from "@/assets/jaintia-caves.jpg";
+import photographyTourImg from "@/assets/photography-tour.jpg";
+import wellnessRetreatImg from "@/assets/wellness-retreat.jpg";
+import offbeatCircuitImg from "@/assets/offbeat-circuit.jpg";
+import khasiHillsTrekImg from "@/assets/khasi-hills-trek.jpg";
+import tribalCircuitImg from "@/assets/tribal-circuit.jpg";
+import livingRootBridgesImg from "@/assets/living-root-bridges.jpg";
+import monsoonChallengeImg from "@/assets/monsoon-challenge.jpg";
+import cavesCanyonsImg from "@/assets/caves-canyons.jpg";
+import highAltitudeTrekImg from "@/assets/high-altitude-trek.jpg";
+import remoteVillagesImg from "@/assets/remote-villages.jpg";
+import researchExpeditionImg from "@/assets/research-expedition.jpg";
+import heritageTrailImg from "@/assets/heritage-trail.jpg";
+import extremeWeatherImg from "@/assets/extreme-weather.jpg";
+
 const TravelItinerariesSection = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedPackage, setSelectedPackage] = useState<any>(null);
@@ -24,7 +46,7 @@ const TravelItinerariesSection = () => {
       duration: "5 Days",
       difficulty: "Moderate",
       price: "₹12,999",
-      image: "",
+      image: meghalayaHiddenGemsImg,
       rating: 4.8,
       category: "adventure",
       highlights: ["Double Decker Root Bridge", "Rainbow Falls", "Crystal Clear Pools"],
@@ -37,7 +59,7 @@ const TravelItinerariesSection = () => {
       duration: "3 Days",
       difficulty: "Easy",
       price: "₹8,999",
-      image: "",
+      image: shillongCulturalImg,
       rating: 4.6,
       category: "cultural",
       highlights: ["Police Bazaar", "Don Bosco Museum", "Local Food Tours"],
@@ -50,7 +72,7 @@ const TravelItinerariesSection = () => {
       duration: "4 Days",
       difficulty: "Challenging",
       price: "₹15,999",
-      image: "",
+      image: cherrapunjiMonsoonImg,
       rating: 4.9,
       category: "adventure",
       highlights: ["Nohkalikai Falls", "Mawsmai Caves", "Living Root Bridges"],
@@ -63,7 +85,7 @@ const TravelItinerariesSection = () => {
       duration: "2 Days",
       difficulty: "Easy",
       price: "₹6,999",
-      image: "",
+      image: dawkiRiverImg,
       rating: 4.7,
       category: "leisure",
       highlights: ["Umngot River", "Transparent Water Boating", "Border Views"],
@@ -76,7 +98,7 @@ const TravelItinerariesSection = () => {
       duration: "2 Days", 
       difficulty: "Easy",
       price: "₹7,499",
-      image: "",
+      image: mawlynnongVillageImg,
       rating: 4.5,
       category: "cultural",
       highlights: ["Sky Walk", "Living Root Bridge", "Organic Gardens"],
@@ -89,7 +111,7 @@ const TravelItinerariesSection = () => {
       duration: "4 Days",
       difficulty: "Moderate", 
       price: "₹11,999",
-      image: "",
+      image: garoHillsTribalImg,
       rating: 4.4,
       category: "cultural",
       highlights: ["Nokrek National Park", "Tribal Villages", "Traditional Crafts"],
@@ -102,7 +124,7 @@ const TravelItinerariesSection = () => {
       duration: "3 Days",
       difficulty: "Challenging",
       price: "₹10,999",
-      image: "",
+      image: jaintiaCavesImg,
       rating: 4.6,
       category: "adventure",
       highlights: ["Krem Liat Prah", "Underground Rivers", "Cave Photography"],
@@ -115,7 +137,7 @@ const TravelItinerariesSection = () => {
       duration: "6 Days",
       difficulty: "Easy",
       price: "₹18,999",
-      image: "",
+      image: photographyTourImg,
       rating: 4.8,
       category: "leisure",
       highlights: ["Golden Hour Shots", "Waterfall Photography", "Portrait Sessions"],
@@ -128,7 +150,7 @@ const TravelItinerariesSection = () => {
       duration: "5 Days",
       difficulty: "Easy",
       price: "₹16,999",
-      image: "",
+      image: wellnessRetreatImg,
       rating: 4.7,
       category: "leisure",
       highlights: ["Morning Yoga", "Nature Meditation", "Organic Meals"],
@@ -141,7 +163,7 @@ const TravelItinerariesSection = () => {
       duration: "7 Days",
       difficulty: "Moderate",
       price: "₹22,999",
-      image: "",
+      image: offbeatCircuitImg,
       rating: 4.9,
       category: "adventure",
       highlights: ["Secret Waterfalls", "Untouched Villages", "Local Homestays"],
@@ -154,7 +176,7 @@ const TravelItinerariesSection = () => {
       duration: "6 Days",
       difficulty: "Moderate",
       price: "₹19,999",
-      image: "",
+      image: khasiHillsTrekImg,
       rating: 4.7,
       category: "adventure",
       highlights: ["Highland Trekking", "Camping Under Stars", "Local Guide"],
@@ -167,7 +189,7 @@ const TravelItinerariesSection = () => {
       duration: "8 Days",
       difficulty: "Moderate",
       price: "₹24,999",
-      image: "",
+      image: tribalCircuitImg,
       rating: 4.6,
       category: "cultural",
       highlights: ["Three Tribal Communities", "Traditional Festivals", "Craft Workshops"],
@@ -180,7 +202,7 @@ const TravelItinerariesSection = () => {
       duration: "5 Days",
       difficulty: "Moderate",
       price: "₹17,999",
-      image: "",
+      image: livingRootBridgesImg,
       rating: 4.8,
       category: "adventure",
       highlights: ["Double Decker Bridge", "Single Root Bridges", "Village Stays"],
@@ -193,7 +215,7 @@ const TravelItinerariesSection = () => {
       duration: "6 Days",
       difficulty: "Challenging",
       price: "₹21,999",
-      image: "",
+      image: monsoonChallengeImg,
       rating: 4.9,
       category: "adventure",
       highlights: ["Extreme Weather", "Waterfall Rappelling", "Rain Forest Trek"],
@@ -206,7 +228,7 @@ const TravelItinerariesSection = () => {
       duration: "7 Days",
       difficulty: "Challenging",
       price: "₹26,999",
-      image: "",
+      image: cavesCanyonsImg,
       rating: 4.8,
       category: "adventure",
       highlights: ["Spelunking", "Canyon Descent", "Underground Rivers"],
@@ -219,7 +241,7 @@ const TravelItinerariesSection = () => {
       duration: "8 Days",
       difficulty: "Challenging",
       price: "₹29,999",
-      image: "",
+      image: highAltitudeTrekImg,
       rating: 4.7,
       category: "adventure",
       highlights: ["Technical Climbing", "High Altitude Camps", "Summit Views"],
@@ -232,7 +254,7 @@ const TravelItinerariesSection = () => {
       duration: "9 Days",
       difficulty: "Challenging",
       price: "₹32,999",
-      image: "",
+      image: remoteVillagesImg,
       rating: 4.9,
       category: "adventure",
       highlights: ["Multi-day Trek", "Remote Communities", "Survival Skills"],
@@ -245,7 +267,7 @@ const TravelItinerariesSection = () => {
       duration: "10 Days",
       difficulty: "Moderate",
       price: "₹28,999",
-      image: "",
+      image: researchExpeditionImg,
       rating: 4.6,
       category: "cultural",
       highlights: ["Biodiversity Study", "Research Documentation", "Expert Guides"],
@@ -258,7 +280,7 @@ const TravelItinerariesSection = () => {
       duration: "6 Days",
       difficulty: "Moderate",
       price: "₹20,999",
-      image: "",
+      image: heritageTrailImg,
       rating: 4.5,
       category: "cultural",
       highlights: ["Historical Sites", "Archaeological Walks", "Heritage Stories"],
@@ -271,7 +293,7 @@ const TravelItinerariesSection = () => {
       duration: "5 Days",
       difficulty: "Challenging",
       price: "₹25,999",
-      image: "",
+      image: extremeWeatherImg,
       rating: 4.8,
       category: "adventure",
       highlights: ["Survival Training", "Extreme Weather", "Self-Reliance"],
@@ -340,13 +362,11 @@ const TravelItinerariesSection = () => {
               onClick={() => handlePackageClick(itinerary)}
             >
               <div className="relative overflow-hidden">
-                <div className="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center border-b">
-                  <div className="text-center">
-                    <Camera className="h-12 w-12 text-gray-400 mx-auto mb-2" />
-                    <p className="text-gray-500 text-sm">Package Image</p>
-                    <p className="text-gray-400 text-xs">Ready for Supabase URL</p>
-                  </div>
-                </div>
+                <img 
+                  src={itinerary.image} 
+                  alt={itinerary.title}
+                  className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                />
                 <div className="absolute top-4 left-4">
                   <Badge variant="secondary" className="bg-white/90 text-gray-800">
                     {itinerary.category}
