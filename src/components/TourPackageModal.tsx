@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,6 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Calendar, Clock, Users, Star, MapPin, Minus, Plus, X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface TourPackage {
   id: number;
@@ -38,6 +39,26 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
     phone: "",
     emergencyContact: ""
   });
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Store current tab when modal opens
+  useEffect(() => {
+    if (isOpen && location.pathname === '/travel') {
+      const urlParams = new URLSearchParams(location.search);
+      const currentTab = urlParams.get('tab') || 'domestic';
+      localStorage.setItem('lastTravelTab', currentTab);
+    }
+  }, [isOpen, location]);
+
+  // Custom close handler that preserves tab state
+  const handleClose = () => {
+    if (location.pathname === '/travel') {
+      const lastTab = localStorage.getItem('lastTravelTab') || 'domestic';
+      navigate(`/travel?tab=${lastTab}`, { replace: true });
+    }
+    onClose();
+  };
 
   // Calculate end date based on selected start date and package duration
   const calculateEndDate = (startDate: string, duration: string) => {
@@ -120,18 +141,18 @@ Please confirm this tour package booking and share payment details.`;
       description: "Please complete your booking via WhatsApp",
     });
 
-    onClose();
+    handleClose();
   };
 
-  return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    return (
+    <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <div className="flex items-center justify-between">
             <DialogTitle className="text-2xl font-bold text-gray-900">
               {tourPackage.title}
             </DialogTitle>
-            <Button variant="ghost" size="sm" onClick={onClose}>
+            <Button variant="ghost" size="sm" onClick={handleClose}>
               <X className="h-4 w-4" />
             </Button>
           </div>

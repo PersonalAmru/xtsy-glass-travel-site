@@ -28,11 +28,14 @@ import valleyOfFlowers from "@/assets/valley-of-flowers.jpg";
 import gurudongmarLake from "@/assets/gurudongmar-lake.jpg";
 import shimlaManaliHoneymoon from "@/assets/shimla-manali-honeymoon.jpg";
 import spitiValley from "@/assets/spiti-valley.jpg";
-import munnarTeaGardens from "@/assets/munnar-tea-gardens.jpg";
+import munnarTeaGardensNew from "@/assets/munnar-tea-gardens-new.jpg";
 import thekkadyWildlife from "@/assets/thekkady-wildlife.jpg";
 import ootyKodaikanal from "@/assets/ooty-kodaikanal.jpg";
 import dharamshalaMcleodganj from "@/assets/dharamshala-mcleodganj.jpg";
 import pellingKanchenjunga from "@/assets/pelling-kanchenjunga.jpg";
+import assamTeaGardens from "@/assets/assam-tea-gardens.jpg";
+import tamilNaduTemplesNew from "@/assets/tamil-nadu-temples-new.jpg";
+import arunachalFestival from "@/assets/arunachal-festival.jpg";
 // Relevant tourism images for each destination
 const meghalayaImages = [
   "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&q=80", // Shillong hills
@@ -383,8 +386,8 @@ const Travel = () => {
         duration: "5 Days",
         difficulty: "Easy",
         price: "₹14,999",
-        image: munnarTeaGardens,
-        images: [munnarTeaGardens, keralImages[1], keralImages[2]],
+        image: munnarTeaGardensNew,
+        images: [munnarTeaGardensNew, keralImages[1], keralImages[2]],
         rating: 4.7,
         category: "cultural",
         location: "Kerala",
@@ -416,8 +419,8 @@ const Travel = () => {
         duration: "7 Days",
         difficulty: "Easy",
         price: "₹17,999",
-        image: tamilNaduTemples,
-        images: tamilNaduImages,
+        image: tamilNaduTemplesNew,
+        images: [tamilNaduTemplesNew, tamilNaduImages[1], tamilNaduImages[2]],
         rating: 4.6,
         category: "cultural",
         location: "Tamil Nadu",
@@ -449,7 +452,7 @@ const Travel = () => {
         duration: "6 Days",
         difficulty: "Moderate",
         price: "₹18,999",
-        image: tribalCircuit,
+        image: cultureImage,
         images: [cultureImage, "https://images.unsplash.com/photo-1615729947596-a598e5de0ab3?w=800&q=80", "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80"],
         rating: 4.7,
         category: "cultural",
@@ -479,8 +482,8 @@ const Travel = () => {
         duration: "7 Days",
         difficulty: "Moderate",
         price: "₹19,999",
-        image: forestImage,
-        images: ["https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&q=80", forestImage, keralImages[1]],
+        image: assamTeaGardens,
+        images: [assamTeaGardens, forestImage, keralImages[1]],
         rating: 4.6,
         category: "adventure",
         location: "Assam",
@@ -596,21 +599,6 @@ const Travel = () => {
               {/* Content */}
               {activeTab === 'domestic' && (
                 <div>
-                  {/* India Flag Highlight */}
-                  <div className="text-center mb-8">
-                    <div className="inline-flex items-center gap-4 p-4 bg-gradient-to-r from-orange-100 to-green-100 rounded-2xl shadow-xl mb-6">
-                      <span className="text-5xl">🇮🇳</span>
-                      <div>
-                        <h2 className="text-3xl font-bold bg-gradient-to-r from-orange-500 via-white to-green-500 bg-clip-text text-transparent">
-                          Incredible India
-                        </h2>
-                        <p className="text-gray-700 font-semibold">Discover Northeast India & Beyond</p>
-                      </div>
-                    </div>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                      Explore the mystical beauty of Northeast India and iconic destinations across the country with our specially curated travel experiences
-                    </p>
-                  </div>
 
                   {/* Filters */}
                   <div className="mb-8 bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg">
@@ -684,51 +672,64 @@ const Travel = () => {
                     </div>
                   </div>
 
-                  {/* Meghalaya Packages Section */}
-                  {meghalayaPackages.length > 0 && (
-                    <div className="mb-16">
-                      <div className="text-center mb-8">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                          🏔️ Meghalaya - The Abode of Clouds
-                        </h3>
-                        <p className="text-gray-600">
-                          Experience the enchanting beauty of Meghalaya with our specialized packages
-                        </p>
-                      </div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {meghalayaPackages.map((itinerary) => (
-                          <TourPackageCard
-                            key={itinerary.id}
-                            tourPackage={itinerary}
-                            onPackageClick={() => handlePackageClick(itinerary)}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  )}
+                  {/* State-wise Packages Organization */}
+                  {Object.entries(stateWiseTourPackages).map(([state, packages]) => {
+                    const filteredStatePackages = packages.filter(pkg => {
+                      const categoryMatch = selectedCategory === "all" || pkg.category === selectedCategory;
+                      const difficultyMatch = difficultyFilter === "all" || pkg.difficulty === difficultyFilter;
+                      const locationMatch = locationFilter === "all" || pkg.location === locationFilter;
+                      
+                      let daysMatch = true;
+                      if (daysFilter !== "all") {
+                        const itemDays = parseInt(pkg.duration);
+                        if (daysFilter === "1-3 Days") daysMatch = itemDays >= 1 && itemDays <= 3;
+                        else if (daysFilter === "4-6 Days") daysMatch = itemDays >= 4 && itemDays <= 6;
+                        else if (daysFilter === "7+ Days") daysMatch = itemDays >= 7;
+                      }
+                      
+                      return categoryMatch && difficultyMatch && daysMatch && locationMatch;
+                    });
 
-                  {/* Other Destinations */}
-                  {otherPackages.length > 0 && (
-                    <div>
-                      <div className="text-center mb-8">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                          🌟 Other Incredible Destinations
-                        </h3>
-                        <p className="text-gray-600">
-                          Discover the diverse cultures and landscapes across India
-                        </p>
+                    if (filteredStatePackages.length === 0) return null;
+
+                    // State-specific icons and descriptions
+                    const stateInfo = {
+                      "Meghalaya": { icon: "🏔️", desc: "The Abode of Clouds" },
+                      "Uttarakhand": { icon: "🏔️", desc: "Land of the Gods" },
+                      "Sikkim": { icon: "🗻", desc: "Gateway to the Himalayas" },
+                      "Himachal Pradesh": { icon: "⛰️", desc: "Land of Snow" },
+                      "Kerala": { icon: "🌴", desc: "God's Own Country" },
+                      "Tamil Nadu": { icon: "🏛️", desc: "Land of Temples" },
+                      "Northeast States": { icon: "🌿", desc: "Seven Sisters Region" }
+                    };
+
+                    const info = stateInfo[state] || { icon: "🗺️", desc: "Incredible Destination" };
+
+                    return (
+                      <div key={state} className="mb-16">
+                        <div className="text-center mb-8">
+                          <div className="inline-flex items-center gap-2 p-3 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg mb-4">
+                            <span className="text-2xl">{info.icon}</span>
+                            <h3 className="text-2xl font-bold text-gray-900">
+                              {state}
+                            </h3>
+                          </div>
+                          <p className="text-gray-600 text-lg">
+                            {info.desc}
+                          </p>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                          {filteredStatePackages.map((itinerary) => (
+                            <TourPackageCard
+                              key={itinerary.id}
+                              tourPackage={itinerary}
+                              onPackageClick={() => handlePackageClick(itinerary)}
+                            />
+                          ))}
+                        </div>
                       </div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {otherPackages.map((itinerary) => (
-                          <TourPackageCard
-                            key={itinerary.id}
-                            tourPackage={itinerary}
-                            onPackageClick={() => handlePackageClick(itinerary)}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  )}
+                    );
+                  })}
 
                   {filteredItineraries.length === 0 && (
                     <div className="text-center py-12">

@@ -7,14 +7,7 @@ import { AuthModal } from "./AuthModal";
 import { UserMenu } from "./UserMenu";
 import { Link } from "react-router-dom";
 import TourCartModal from "./TourCartModal";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
+import TravelSelectionModal from "./TravelSelectionModal";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,6 +16,7 @@ const Header = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(0);
   const [currentSessionId, setCurrentSessionId] = useState<string | null>(null);
+  const [isTravelModalOpen, setIsTravelModalOpen] = useState(false);
   const { user, loading } = useAuth();
 
   // Generate or get session ID for this guest
@@ -108,52 +102,12 @@ const Header = () => {
                 Deals
               </Link>
               
-              {/* Travel Navigation Menu */}
-              <NavigationMenu>
-                <NavigationMenuList>
-                  <NavigationMenuItem>
-                    <NavigationMenuTrigger className="text-gray-800 hover:text-primary transition-colors">
-                      Travel
-                    </NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                      <div className="grid gap-3 p-4 w-[300px]">
-                        <NavigationMenuLink asChild>
-                          <Link 
-                            to="/travel?tab=domestic" 
-                            className="flex items-center space-x-3 p-3 rounded-lg hover:bg-muted transition-colors"
-                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                          >
-                            <div className="w-12 h-12 bg-gradient-to-br from-orange-200 to-green-200 rounded-lg flex items-center justify-center text-xl">
-                              🇮🇳
-                            </div>
-                            <div>
-                              <div className="font-semibold text-foreground">Domestic Travel</div>
-                              <div className="text-sm text-muted-foreground">Explore India with us</div>
-                            </div>
-                          </Link>
-                        </NavigationMenuLink>
-                        <NavigationMenuLink asChild>
-                          <Link 
-                            to="/travel?tab=international" 
-                            className="flex items-center space-x-3 p-3 rounded-lg hover:bg-muted transition-colors"
-                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                          >
-                            <div className="w-12 h-12 bg-gradient-to-br from-blue-200 to-purple-200 rounded-lg flex items-center justify-center text-xl">
-                              🌏
-                            </div>
-                            <div>
-                              <div className="font-semibold text-foreground">XTSY Asia & Europe</div>
-                              <div className="text-sm text-muted-foreground">
-                                <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-2 py-1 rounded-full text-xs font-bold">Launching Soon</span>
-                              </div>
-                            </div>
-                          </Link>
-                        </NavigationMenuLink>
-                      </div>
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
-                </NavigationMenuList>
-              </NavigationMenu>
+              <button
+                onClick={() => setIsTravelModalOpen(true)}
+                className="text-gray-800 hover:text-primary transition-colors"
+              >
+                Travel
+              </button>
               
               {/* Authentication Section */}
               <div className="flex items-center space-x-4">
@@ -225,24 +179,15 @@ const Header = () => {
                   Deals
                 </Link>
                 
-                {/* Mobile Travel Menu */}
-                <div className="pl-4 space-y-2">
-                  <div className="font-semibold text-foreground">Travel</div>
-                  <Link 
-                    to="/travel?tab=domestic" 
-                    className="block text-muted-foreground hover:text-primary transition-colors pl-4"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    🇮🇳 Domestic Travel - India
-                  </Link>
-                  <Link 
-                    to="/travel?tab=international" 
-                    className="block text-muted-foreground hover:text-primary transition-colors pl-4"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    🌏 XTSY Asia & Europe <span className="text-xs bg-red-500 text-white px-1 rounded">Soon</span>
-                  </Link>
-                </div>
+                <button
+                  onClick={() => {
+                    setIsTravelModalOpen(true);
+                    setIsMenuOpen(false);
+                  }}
+                  className="text-foreground hover:text-primary transition-colors text-left"
+                >
+                  Travel
+                </button>
                 
                 {user ? (
                   <div className="pt-4 border-t">
@@ -289,6 +234,11 @@ const Header = () => {
         isOpen={isCartOpen}
         onClose={() => setIsCartOpen(false)}
         sessionId={currentSessionId || undefined}
+      />
+
+      <TravelSelectionModal
+        isOpen={isTravelModalOpen}
+        onClose={() => setIsTravelModalOpen(false)}
       />
     </>
   );
