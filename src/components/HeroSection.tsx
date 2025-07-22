@@ -125,7 +125,7 @@ const HeroSection = () => {
               
               <div className="flex items-center justify-center">
                 <img 
-                  src="/src/assets/xtsy-logo.png" 
+                  src="/lovable-uploads/9190ba64-4f45-45e8-b15d-981db2e861b3.png" 
                   alt="XTSY Brand Logo" 
                   className="w-12 h-12 sm:w-16 sm:h-16 lg:w-24 lg:h-24 object-contain"
                 />
