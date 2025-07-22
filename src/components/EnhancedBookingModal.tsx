@@ -938,50 +938,60 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                     </div>
                   </div>
 
-                  {/* Coupon Section */}
+                  {/* Coupon Section - Fixed styling */}
                   <div className="mt-6 space-y-3">
-                    {couponDiscount === 0 ? (
-                      <div className="flex gap-2">
-                        <Input
-                          placeholder="Enter coupon code (XTSY-DEAL)"
-                          value={couponCode}
-                          onChange={(e) => setCouponCode(e.target.value)}
-                          className="flex-1 text-black"
-                        />
-                        <Button 
-                          variant="outline" 
-                          size="sm"
-                          onClick={applyCoupon}
-                          disabled={!couponCode}
-                          className="text-black border-black hover:bg-gray-100"
-                        >
-                          Apply
-                        </Button>
-                      </div>
-                    ) : (
-                      <div className="space-y-2">
-                        <div className="text-green-600 text-sm flex items-center justify-between">
-                          <div className="flex items-center gap-1">
-                            <Check className="h-4 w-4" />
-                            Coupon Applied! ({couponCode})
+                    <div className="bg-white rounded-lg p-4 border shadow-sm">
+                      <h4 className="font-semibold mb-3 text-black text-base">Have a discount coupon?</h4>
+                      {couponDiscount === 0 ? (
+                        <div className="space-y-3">
+                          <div className="flex gap-2">
+                            <Input
+                              placeholder="Enter coupon code (XTSY-DEAL)"
+                              value={couponCode}
+                              onChange={(e) => setCouponCode(e.target.value)}
+                              className="flex-1 text-black border-gray-300 bg-white"
+                            />
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              onClick={applyCoupon}
+                              disabled={!couponCode}
+                              className="text-black border-gray-300 bg-white hover:bg-gray-50 font-medium"
+                            >
+                              Apply
+                            </Button>
                           </div>
-                          <Button 
-                            variant="ghost" 
-                            size="sm"
-                            onClick={removeCoupon}
-                            className="text-red-500 hover:text-red-700 p-1"
-                          >
-                            <X className="h-4 w-4" />
-                          </Button>
+                          <p className="text-xs text-gray-600">
+                            XTSY-DEAL: 15% off for bookings with minimum 4 guests and 2 nights
+                          </p>
                         </div>
-                        <div className="text-green-600 text-sm">
-                          15% discount has been applied to your booking.
+                      ) : (
+                        <div className="space-y-2">
+                          <div className="text-green-600 text-sm flex items-center justify-between bg-green-50 p-3 rounded-lg">
+                            <div className="flex items-center gap-2">
+                              <Check className="h-4 w-4" />
+                              <span className="font-medium">Coupon Applied! ({couponCode})</span>
+                            </div>
+                            <Button 
+                              variant="ghost" 
+                              size="sm"
+                              onClick={removeCoupon}
+                              className="text-red-500 hover:text-red-700 hover:bg-red-50 p-1"
+                            >
+                              <X className="h-4 w-4" />
+                            </Button>
+                          </div>
+                          <div className="text-green-600 text-sm font-medium">
+                            15% discount has been applied to your booking.
+                          </div>
                         </div>
-                      </div>
-                    )}
-                    {couponError && (
-                      <div className="text-red-500 text-sm">{couponError}</div>
-                    )}
+                      )}
+                      {couponError && (
+                        <div className="text-red-500 text-sm font-medium bg-red-50 p-2 rounded mt-2">
+                          {couponError}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
 
