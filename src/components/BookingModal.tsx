@@ -28,6 +28,15 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
     quantity: 1,
     nights: 1,
   });
+  
+  const [addOns, setAddOns] = useState({
+    breakfast: 0,
+    dinnerVeg: 0,
+    dinnerNonVeg: 0,
+    transportation: false,
+    itineraryPlanning: false,
+  });
+
   const { toast } = useToast();
 
   const formatDate = (dateStr: string) => {
@@ -56,8 +65,9 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
   };
 
   const totalAmount = room.price * bookingData.quantity * bookingData.nights;
-  const gstAmount = Math.round(totalAmount * 0.18);
-  const grandTotal = totalAmount + gstAmount;
+  const addOnTotal = (addOns.breakfast * 150 + addOns.dinnerVeg * 300 + addOns.dinnerNonVeg * 300) * bookingData.nights;
+  const gstAmount = Math.round((totalAmount + addOnTotal) * 0.18);
+  const grandTotal = totalAmount + addOnTotal + gstAmount;
 
   const handleBookNow = () => {
     if (!bookingData.checkIn || !bookingData.checkOut || bookingData.guests === 0) {
@@ -81,7 +91,8 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
         quantity: 1,
         guests: bookingData.guests,
         nights: bookingData.nights,
-        roomType: room.type || 'dorm'
+        roomType: room.type || 'dorm',
+        addOns: addOns
       }],
       timestamp: new Date().getTime()
     };
@@ -118,7 +129,8 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
         quantity: 1,
         guests: bookingData.guests,
         nights: bookingData.nights,
-        roomType: room.type || 'dorm'
+        roomType: room.type || 'dorm',
+        addOns: addOns
       }],
       timestamp: new Date().getTime(),
       savedForLater: true
@@ -284,6 +296,149 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
                   </div>
                 </Card>
 
+                {/* Add-on Services Card */}
+                <Card className="mb-6 bg-white border border-gray-200">
+                  <div className="p-4">
+                    <h3 className="text-lg font-bold text-black mb-4">Add-on Services</h3>
+                    
+                    {/* Meal Services */}
+                    <div className="space-y-4">
+                      {/* Breakfast */}
+                      <div className="flex items-center justify-between bg-gray-50 p-3 rounded-lg border">
+                        <div className="flex items-center gap-3">
+                          <span className="text-2xl">🍳</span>
+                          <div>
+                            <span className="text-black font-semibold">Breakfast</span>
+                            <span className="text-gray-700 ml-2">(₹150/person/meal)</span>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => setAddOns(prev => ({ ...prev, breakfast: Math.max(0, prev.breakfast - 1) }))}
+                            disabled={addOns.breakfast <= 0}
+                            className="w-8 h-8 p-0 bg-gray-300 hover:bg-gray-400 border-gray-400"
+                          >
+                            <Minus className="h-3 w-3 text-black" />
+                          </Button>
+                          <span className="w-8 text-center text-black font-bold bg-white px-2 py-1 rounded border">
+                            {addOns.breakfast}
+                          </span>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => setAddOns(prev => ({ ...prev, breakfast: prev.breakfast + 1 }))}
+                            className="w-8 h-8 p-0 bg-black hover:bg-gray-800 text-white border-black"
+                          >
+                            <Plus className="h-3 w-3 text-white" />
+                          </Button>
+                        </div>
+                      </div>
+
+                      {/* Dinner Veg */}
+                      <div className="flex items-center justify-between bg-gray-50 p-3 rounded-lg border">
+                        <div className="flex items-center gap-3">
+                          <span className="text-2xl">🥗</span>
+                          <div>
+                            <span className="text-black font-semibold">Dinner Veg</span>
+                            <span className="text-gray-700 ml-2">(₹300/person/meal)</span>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => setAddOns(prev => ({ ...prev, dinnerVeg: Math.max(0, prev.dinnerVeg - 1) }))}
+                            disabled={addOns.dinnerVeg <= 0}
+                            className="w-8 h-8 p-0 bg-gray-300 hover:bg-gray-400 border-gray-400"
+                          >
+                            <Minus className="h-3 w-3 text-black" />
+                          </Button>
+                          <span className="w-8 text-center text-black font-bold bg-white px-2 py-1 rounded border">
+                            {addOns.dinnerVeg}
+                          </span>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => setAddOns(prev => ({ ...prev, dinnerVeg: prev.dinnerVeg + 1 }))}
+                            className="w-8 h-8 p-0 bg-black hover:bg-gray-800 text-white border-black"
+                          >
+                            <Plus className="h-3 w-3 text-white" />
+                          </Button>
+                        </div>
+                      </div>
+
+                      {/* Dinner Non-Veg */}
+                      <div className="flex items-center justify-between bg-gray-50 p-3 rounded-lg border">
+                        <div className="flex items-center gap-3">
+                          <span className="text-2xl">🍖</span>
+                          <div>
+                            <span className="text-black font-semibold">Dinner Non-Veg</span>
+                            <span className="text-gray-700 ml-2">(₹300/person/meal)</span>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => setAddOns(prev => ({ ...prev, dinnerNonVeg: Math.max(0, prev.dinnerNonVeg - 1) }))}
+                            disabled={addOns.dinnerNonVeg <= 0}
+                            className="w-8 h-8 p-0 bg-gray-300 hover:bg-gray-400 border-gray-400"
+                          >
+                            <Minus className="h-3 w-3 text-black" />
+                          </Button>
+                          <span className="w-8 text-center text-black font-bold bg-white px-2 py-1 rounded border">
+                            {addOns.dinnerNonVeg}
+                          </span>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => setAddOns(prev => ({ ...prev, dinnerNonVeg: prev.dinnerNonVeg + 1 }))}
+                            className="w-8 h-8 p-0 bg-black hover:bg-gray-800 text-white border-black"
+                          >
+                            <Plus className="h-3 w-3 text-white" />
+                          </Button>
+                        </div>
+                      </div>
+
+                      {/* Transportation Services */}
+                      <div className="flex items-center justify-between bg-gray-50 p-3 rounded-lg border">
+                        <div className="flex items-center gap-3">
+                          <span className="text-2xl">🚗</span>
+                          <div>
+                            <span className="text-black font-semibold">Transportation Services</span>
+                            <div className="text-sm text-gray-600">Price match guarantee • Best rates</div>
+                          </div>
+                        </div>
+                        <input
+                          type="checkbox"
+                          checked={addOns.transportation}
+                          onChange={(e) => setAddOns(prev => ({ ...prev, transportation: e.target.checked }))}
+                          className="w-5 h-5 text-orange-500 bg-white border-2 border-gray-300 rounded focus:ring-orange-500 focus:ring-2"
+                        />
+                      </div>
+
+                      {/* Itinerary Planning */}
+                      <div className="flex items-center justify-between bg-gray-50 p-3 rounded-lg border">
+                        <div className="flex items-center gap-3">
+                          <span className="text-2xl">📋</span>
+                          <div>
+                            <span className="text-black font-semibold">Itinerary Planning & Support</span>
+                            <div className="text-sm text-gray-600">5% convenience charges</div>
+                          </div>
+                        </div>
+                        <input
+                          type="checkbox"
+                          checked={addOns.itineraryPlanning}
+                          onChange={(e) => setAddOns(prev => ({ ...prev, itineraryPlanning: e.target.checked }))}
+                          className="w-5 h-5 text-orange-500 bg-white border-2 border-gray-300 rounded focus:ring-orange-500 focus:ring-2"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+
                 {/* Date Selection */}
                 <Card className="p-4">
                   <h3 className="font-bold mb-3 text-black text-lg">Select Dates</h3>
@@ -321,26 +476,58 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
                       {bookingData.nights} nights starting from {bookingData.checkIn ? formatDate(bookingData.checkIn) : 'Select date'}
                     </div>
                     
-                  <div className="space-y-2 mb-4">
-                    <div className="flex justify-between">
-                      <span className="text-gray-900 font-medium">{room.name}</span>
-                      <span className="text-gray-900 font-semibold">₹{totalAmount}</span>
-                    </div>
-                    <div className="flex justify-between text-sm text-gray-700">
-                      {room.type === 'luxury' ? (
-                        <span>₹{room.price} x {bookingData.quantity} room x {bookingData.nights} nights</span>
-                      ) : (
-                        <span>₹{room.price} x {bookingData.quantity} bed x {bookingData.nights} nights</span>
+                    <div className="space-y-2 mb-4">
+                      <div className="flex justify-between">
+                        <span className="text-gray-900 font-medium">{room.name}</span>
+                        <span className="text-gray-900 font-semibold">₹{totalAmount}</span>
+                      </div>
+                      <div className="flex justify-between text-sm text-gray-700">
+                        {room.type === 'luxury' ? (
+                          <span>₹{room.price} x {bookingData.quantity} room x {bookingData.nights} nights</span>
+                        ) : (
+                          <span>₹{room.price} x {bookingData.quantity} bed x {bookingData.nights} nights</span>
+                        )}
+                      </div>
+                      
+                      {/* Add-on items in summary */}
+                      {addOns.breakfast > 0 && (
+                        <div className="flex justify-between text-sm text-gray-700">
+                          <span>Breakfast ({addOns.breakfast} x {bookingData.nights} nights)</span>
+                          <span>₹{addOns.breakfast * 150 * bookingData.nights}</span>
+                        </div>
+                      )}
+                      {addOns.dinnerVeg > 0 && (
+                        <div className="flex justify-between text-sm text-gray-700">
+                          <span>Dinner Veg ({addOns.dinnerVeg} x {bookingData.nights} nights)</span>
+                          <span>₹{addOns.dinnerVeg * 300 * bookingData.nights}</span>
+                        </div>
+                      )}
+                      {addOns.dinnerNonVeg > 0 && (
+                        <div className="flex justify-between text-sm text-gray-700">
+                          <span>Dinner Non-Veg ({addOns.dinnerNonVeg} x {bookingData.nights} nights)</span>
+                          <span>₹{addOns.dinnerNonVeg * 300 * bookingData.nights}</span>
+                        </div>
+                      )}
+                      {addOns.transportation && (
+                        <div className="flex justify-between text-sm text-gray-700">
+                          <span>Transportation Services</span>
+                          <span>Quoted separately</span>
+                        </div>
+                      )}
+                      {addOns.itineraryPlanning && (
+                        <div className="flex justify-between text-sm text-gray-700">
+                          <span>Itinerary Planning</span>
+                          <span>5% of total</span>
+                        </div>
                       )}
                     </div>
-                  </div>
                     
                     <Separator className="my-4" />
                     
                     <div className="space-y-2">
                       <div className="flex justify-between">
                         <span className="text-gray-700">Subtotal</span>
-                        <span className="text-gray-900 font-medium">₹{totalAmount}</span>
+                        <span className="text-gray-900 font-medium">₹{totalAmount + addOnTotal}</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-gray-700">GST (18%)</span>
