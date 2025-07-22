@@ -6,10 +6,11 @@ import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
-import { CalendarIcon, Check, Clock, Tag, Users, Bed, Minus, Plus, Bookmark, X } from "lucide-react";
+import { CalendarIcon, Check, Clock, Tag, Users, Bed, Minus, Plus, Bookmark, X, Utensils, Car, MapPin } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface Room {
   id: string;
@@ -36,6 +37,14 @@ interface BookingData {
   guests: number;
   nights: number;
   quantity: number;
+}
+
+interface AddOnServices {
+  breakfast: number;
+  dinnerVeg: number;
+  dinnerNonVeg: number;
+  transportation: boolean;
+  itineraryPlanning: boolean;
 }
 
 const rooms: Room[] = [
@@ -85,7 +94,7 @@ const rooms: Room[] = [
     id: "king-double-room",
     name: "King Double Room",
     price: 3200,
-    capacity: 4,
+    capacity: 2,
     description: "Spacious private room with king bed for two guests",
     type: 'hostel'
   },
@@ -127,6 +136,13 @@ const rooms: Room[] = [
 const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingModalProps) => {
   const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
   const [roomSelections, setRoomSelections] = useState<{[key: string]: {guests: number, rooms: number}}>({});
+  const [addOnServices, setAddOnServices] = useState<AddOnServices>({
+    breakfast: 0,
+    dinnerVeg: 0,
+    dinnerNonVeg: 0,
+    transportation: false,
+    itineraryPlanning: false,
+  });
   const [bookingData, setBookingData] = useState<BookingData>({
     checkIn: initialData?.checkIn || "",
     checkOut: initialData?.checkOut || "",
@@ -190,10 +206,21 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
     setBookingData(prev => ({ ...prev, [field]: value }));
   };
 
+  const isRoomBasedRoom = (roomName: string) => {
+    return roomName === "King Double Room" || 
+           roomName === "King Triple Room" || 
+           roomName === "Signature 270° Glass Suite";
+  };
+
+  const getRoomCapacity = (room: Room) => {
+    if (room.name === "King Triple Room") return 3;
+    if (room.name === "King Double Room" || room.name === "Signature 270° Glass Suite") return 2;
+    return room.capacity;
+  };
+
   const getGuestCapacityForRoom = (room: Room) => {
     const isDorm = room.name.toLowerCase().includes('dorm');
     if (isDorm) {
-      // For dorms: 1 guest = 1 bed, each bed can have 1 upper and 1 lower, so 1 guest per bed
       return 1; // Each selection represents 1 bed for 1 guest
     } else {
       // For private rooms: rates are calculated on room basis
@@ -248,12 +275,31 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
         }
       }
     });
-    
-    const discountAmount = Math.round(subtotal * (couponDiscount / 100));
-    const discountedSubtotal = subtotal - discountAmount;
+
+    // Add-on services calculations
+    let addOnTotal = 0;
+    if (addOnServices.breakfast > 0) {
+      addOnTotal += addOnServices.breakfast * 150 * nights; // ₹150 per person per meal
+    }
+    if (addOnServices.dinnerVeg > 0) {
+      addOnTotal += addOnServices.dinnerVeg * 300 * nights; // ₹300 per person per meal
+    }
+    if (addOnServices.dinnerNonVeg > 0) {
+      addOnTotal += addOnServices.dinnerNonVeg * 300 * nights; // ₹300 per person per meal
+    }
+
+    // Itinerary planning charges
+    let itineraryCharges = 0;
+    if (addOnServices.itineraryPlanning && !addOnServices.transportation) {
+      // 5% convenience charges if no transportation
+      itineraryCharges = Math.round((subtotal + addOnTotal) * 0.05);
+    }
+
+    const totalBeforeDiscount = subtotal + addOnTotal + itineraryCharges;
+    const discountAmount = Math.round(totalBeforeDiscount * (couponDiscount / 100));
+    const discountedSubtotal = totalBeforeDiscount - discountAmount;
     
     // Calculate GST room-wise only for luxury rooms (XTSY Luxury)
-    // Dorm rooms are GST exempt, luxury rooms have specific GST rates
     let gstAmount = 0;
     
     Object.entries(roomSelections).forEach(([roomId, selection]) => {
@@ -282,9 +328,14 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
         gstAmount += Math.round(roomDiscountedTotal * roomGstRate);
       }
     });
+
+    // Add GST for add-on services (18% on food items)
+    const addOnGst = Math.round(addOnTotal * 0.18);
+    gstAmount += addOnGst;
+
     const totalAmount = discountedSubtotal + gstAmount;
     
-    return { subtotal, gstAmount, totalAmount, discountAmount, totalGuestsCalculated };
+    return { subtotal, addOnTotal, itineraryCharges, gstAmount, totalAmount, discountAmount, totalGuestsCalculated };
   };
 
   const applyCoupon = () => {
@@ -320,7 +371,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
     });
   };
 
-  const { subtotal, gstAmount, totalAmount, discountAmount, totalGuestsCalculated } = calculateTotals();
+  const { subtotal, addOnTotal, itineraryCharges, gstAmount, totalAmount, discountAmount, totalGuestsCalculated } = calculateTotals();
 
   // Update guests when room or quantity changes
   useEffect(() => {
@@ -493,9 +544,12 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
       guests: totalGuestsCalculated,
       nights: bookingData.nights,
       selectedRooms: selectedRooms,
+      addOnServices: addOnServices,
       totalAmount: totalAmount,
       gstAmount: gstAmount,
       subtotal: subtotal,
+      addOnTotal: addOnTotal,
+      itineraryCharges: itineraryCharges,
       discountAmount: discountAmount,
       couponCode: couponCode,
       couponDiscount: couponDiscount
@@ -635,10 +689,12 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                                      <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
                                        <div className="flex items-center gap-1">
                                          <Users className="h-4 w-4" />
-                                         <span>Max {room.capacity} guests</span>
+                                         <span>Max {getRoomCapacity(room)} guests {isRoomBasedRoom(room.name) ? 'per room' : ''}</span>
                                        </div>
                                        <div className="flex items-center gap-1">
-                                         <span className="text-gray-600">Per Bed</span>
+                                         <span className="text-gray-600">
+                                           {isRoomBasedRoom(room.name) ? "Per Room" : "Per Bed"}
+                                         </span>
                                        </div>
                                      </div>
                                      <div className="text-gray-600 text-sm mb-2">{room.description}</div>
@@ -646,36 +702,43 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                                    </div>
                                  </div>
                                  
-                                 {/* Number of Guests for Hostel Rooms */}
+                                 {/* Number selection based on room type */}
                                  <div className="border-t pt-3">
                                    <div className="flex items-center justify-between">
-                                     <span className="text-sm font-medium text-gray-900">Number of Beds:</span>
+                                     <span className="text-sm font-medium text-gray-900">
+                                       {isRoomBasedRoom(room.name) ? "Number of Rooms:" : "Number of Beds:"}
+                                     </span>
                                      <div className="flex items-center gap-2">
                                        <Button
                                          variant="outline"
                                          size="sm"
                                          onClick={(e) => {
                                            e.stopPropagation();
-                                           const currentGuests = getRoomSelectionForRoom(room.id).guests || 0;
-                                           updateRoomSelection(room.id, 'guests', Math.max(0, currentGuests - 1));
+                                           const field = isRoomBasedRoom(room.name) ? 'rooms' : 'guests';
+                                           const currentValue = getRoomSelectionForRoom(room.id)[field] || 0;
+                                           updateRoomSelection(room.id, field, Math.max(0, currentValue - 1));
                                          }}
-                                         disabled={getRoomSelectionForRoom(room.id).guests <= 0}
+                                         disabled={getRoomSelectionForRoom(room.id)[isRoomBasedRoom(room.name) ? 'rooms' : 'guests'] <= 0}
                                          className="h-8 w-8 p-0"
                                        >
                                          <Minus className="h-4 w-4" />
                                        </Button>
                                        <span className="w-8 text-center text-sm text-gray-900">
-                                         {getRoomSelectionForRoom(room.id).guests || 0}
+                                         {getRoomSelectionForRoom(room.id)[isRoomBasedRoom(room.name) ? 'rooms' : 'guests'] || 0}
                                        </span>
                                        <Button
                                          variant="outline"
                                          size="sm"
                                          onClick={(e) => {
                                            e.stopPropagation();
-                                           const currentGuests = getRoomSelectionForRoom(room.id).guests || 0;
-                                           updateRoomSelection(room.id, 'guests', Math.min(room.capacity, currentGuests + 1));
+                                           const field = isRoomBasedRoom(room.name) ? 'rooms' : 'guests';
+                                           const currentValue = getRoomSelectionForRoom(room.id)[field] || 0;
+                                           const maxValue = isRoomBasedRoom(room.name) 
+                                             ? (room.name === "King Double Room" ? 2 : 1)
+                                             : room.capacity;
+                                           updateRoomSelection(room.id, field, Math.min(maxValue, currentValue + 1));
                                          }}
-                                         disabled={getRoomSelectionForRoom(room.id).guests >= room.capacity}
+                                         disabled={getRoomSelectionForRoom(room.id)[isRoomBasedRoom(room.name) ? 'rooms' : 'guests'] >= (isRoomBasedRoom(room.name) ? (room.name === "King Double Room" ? 2 : 1) : room.capacity)}
                                          className="h-8 w-8 p-0"
                                        >
                                          <Plus className="h-4 w-4" />
@@ -683,7 +746,11 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                                      </div>
                                    </div>
                                    <div className="text-xs text-gray-600 mt-1">
-                                     1 bed = 1 guest • Price: ₹{room.price} per bed per night
+                                     {isRoomBasedRoom(room.name) 
+                                       ? `Max ${getRoomCapacity(room)} guests per room • Price: ₹${room.price} per room per night`
+                                       : `1 bed = 1 guest • Price: ₹${room.price} per bed per night`
+                                     }
+                                     {room.name === "King Double Room" && " • Max 2 rooms available"}
                                    </div>
                                  </div>
                                </div>
@@ -789,12 +856,10 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                                      <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
                                        <div className="flex items-center gap-1">
                                          <Users className="h-4 w-4" />
-                                         <span>Max {room.capacity} guests</span>
+                                         <span>Max {getRoomCapacity(room)} guests per room</span>
                                        </div>
                                        <div className="flex items-center gap-1">
-                                         <span className="text-gray-600">
-                                           {room.name === "King Double Room" ? "2 rooms available" : "Per Room"}
-                                         </span>
+                                         <span className="text-gray-600">Per Room</span>
                                        </div>
                                      </div>
                                      <div className="text-gray-600 text-sm mb-2">{room.description}</div>
@@ -829,10 +894,10 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                                          onClick={(e) => {
                                            e.stopPropagation();
                                            const currentRooms = getRoomSelectionForRoom(room.id).rooms || 0;
-                                           const maxRooms = room.name === "King Double Room" ? 2 : 1;
+                                           const maxRooms = 1; // All luxury rooms have max 1 room available
                                            updateRoomSelection(room.id, 'rooms', Math.min(maxRooms, currentRooms + 1));
                                          }}
-                                         disabled={getRoomSelectionForRoom(room.id).rooms >= (room.name === "King Double Room" ? 2 : 1)}
+                                         disabled={getRoomSelectionForRoom(room.id).rooms >= 1}
                                          className="h-8 w-8 p-0"
                                        >
                                          <Plus className="h-4 w-4" />
@@ -840,11 +905,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                                      </div>
                                    </div>
                                    <div className="text-xs text-gray-600 mt-1">
-                                     {room.name === "King Triple Room" 
-                                       ? "2 guests per room + 1 extra bed option • Price: ₹" + room.price + " per room per night"
-                                       : "2 guests per room (strictly) • Price: ₹" + room.price + " per room per night"
-                                     }
-                                     {room.name === "King Double Room" && " • Max 2 rooms available"}
+                                     Max {getRoomCapacity(room)} guests per room • Price: ₹{room.price} per room per night
                                    </div>
                                  </div>
                                </div>
@@ -882,6 +943,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                             if (!room) return null;
                             
                             const isDorm = room.name.toLowerCase().includes('dorm');
+                            const isRoomBased = isRoomBasedRoom(room.name);
                             const roomPrice = room.price;
                             const nights = bookingData.nights || 1;
                             
@@ -892,22 +954,22 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                                   <span className="text-sm text-black">₹{roomPrice}</span>
                                 </div>
                                 <div className="text-xs text-black mb-1">
-                                  {isDorm ? (
-                                    <>₹{roomPrice} x {selection.guests} {selection.guests === 1 ? 'bed' : 'beds'} x {nights} nights</>
-                                  ) : (
+                                  {isRoomBased ? (
                                     <>₹{roomPrice} x {selection.rooms} {selection.rooms === 1 ? 'room' : 'rooms'} x {nights} nights</>
+                                  ) : (
+                                    <>₹{roomPrice} x {selection.guests} {selection.guests === 1 ? 'bed' : 'beds'} x {nights} nights</>
                                   )}
                                 </div>
                                 <div className="text-xs text-black">
-                                  Guests: {isDorm 
-                                    ? selection.guests
-                                    : room.name === "King Triple Room" 
-                                      ? Math.min(3, selection.rooms * 3)
-                                      : selection.rooms * 2
+                                  Guests: {isRoomBased 
+                                    ? (room.name === "King Triple Room" 
+                                        ? Math.min(3, selection.rooms * 3)
+                                        : selection.rooms * 2)
+                                    : selection.guests
                                   }
                                 </div>
                                 <div className="text-xs font-medium text-orange-600 mt-1">
-                                  Subtotal: ₹{isDorm ? roomPrice * selection.guests * nights : roomPrice * selection.rooms * nights}
+                                  Subtotal: ₹{isRoomBased ? roomPrice * selection.rooms * nights : roomPrice * selection.guests * nights}
                                 </div>
                               </div>
                             );
@@ -920,13 +982,172 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                         )}
                       </div>
 
+                      {/* Add-on Services Section */}
+                      <div className="bg-white rounded-lg p-4 border shadow-sm mb-4">
+                        <h4 className="font-semibold mb-3 text-black text-base">Add-on Services</h4>
+                        
+                        {/* Meal Services */}
+                        <div className="space-y-3 mb-4">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              <Utensils className="h-4 w-4 text-orange-500" />
+                              <span className="text-sm text-black">Breakfast (₹150/person/meal)</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => setAddOnServices(prev => ({ 
+                                  ...prev, 
+                                  breakfast: Math.max(0, prev.breakfast - 1) 
+                                }))}
+                                disabled={addOnServices.breakfast <= 0}
+                                className="h-6 w-6 p-0"
+                              >
+                                <Minus className="h-3 w-3" />
+                              </Button>
+                              <span className="w-8 text-center text-sm">{addOnServices.breakfast}</span>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => setAddOnServices(prev => ({ 
+                                  ...prev, 
+                                  breakfast: Math.min(totalGuestsCalculated, prev.breakfast + 1) 
+                                }))}
+                                disabled={addOnServices.breakfast >= totalGuestsCalculated}
+                                className="h-6 w-6 p-0"
+                              >
+                                <Plus className="h-3 w-3" />
+                              </Button>
+                            </div>
+                          </div>
+
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              <Utensils className="h-4 w-4 text-green-500" />
+                              <span className="text-sm text-black">Dinner Veg (₹300/person/meal)</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => setAddOnServices(prev => ({ 
+                                  ...prev, 
+                                  dinnerVeg: Math.max(0, prev.dinnerVeg - 1) 
+                                }))}
+                                disabled={addOnServices.dinnerVeg <= 0}
+                                className="h-6 w-6 p-0"
+                              >
+                                <Minus className="h-3 w-3" />
+                              </Button>
+                              <span className="w-8 text-center text-sm">{addOnServices.dinnerVeg}</span>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => setAddOnServices(prev => ({ 
+                                  ...prev, 
+                                  dinnerVeg: Math.min(totalGuestsCalculated, prev.dinnerVeg + 1) 
+                                }))}
+                                disabled={addOnServices.dinnerVeg >= totalGuestsCalculated}
+                                className="h-6 w-6 p-0"
+                              >
+                                <Plus className="h-3 w-3" />
+                              </Button>
+                            </div>
+                          </div>
+
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              <Utensils className="h-4 w-4 text-red-500" />
+                              <span className="text-sm text-black">Dinner Non-Veg (₹300/person/meal)</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => setAddOnServices(prev => ({ 
+                                  ...prev, 
+                                  dinnerNonVeg: Math.max(0, prev.dinnerNonVeg - 1) 
+                                }))}
+                                disabled={addOnServices.dinnerNonVeg <= 0}
+                                className="h-6 w-6 p-0"
+                              >
+                                <Minus className="h-3 w-3" />
+                              </Button>
+                              <span className="w-8 text-center text-sm">{addOnServices.dinnerNonVeg}</span>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => setAddOnServices(prev => ({ 
+                                  ...prev, 
+                                  dinnerNonVeg: Math.min(totalGuestsCalculated, prev.dinnerNonVeg + 1) 
+                                }))}
+                                disabled={addOnServices.dinnerNonVeg >= totalGuestsCalculated}
+                                className="h-6 w-6 p-0"
+                              >
+                                <Plus className="h-3 w-3" />
+                              </Button>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Other Services */}
+                        <div className="space-y-3">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              <Car className="h-4 w-4 text-blue-500" />
+                              <div>
+                                <span className="text-sm text-black block">Transportation Services</span>
+                                <span className="text-xs text-gray-600">Price match guarantee • Best rates</span>
+                              </div>
+                            </div>
+                            <Checkbox
+                              checked={addOnServices.transportation}
+                              onCheckedChange={(checked) => 
+                                setAddOnServices(prev => ({ ...prev, transportation: !!checked }))
+                              }
+                            />
+                          </div>
+
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              <MapPin className="h-4 w-4 text-purple-500" />
+                              <div>
+                                <span className="text-sm text-black block">Itinerary Planning & Support</span>
+                                <span className="text-xs text-gray-600">
+                                  {addOnServices.transportation ? "Free with transportation" : "5% convenience charges"}
+                                </span>
+                              </div>
+                            </div>
+                            <Checkbox
+                              checked={addOnServices.itineraryPlanning}
+                              onCheckedChange={(checked) => 
+                                setAddOnServices(prev => ({ ...prev, itineraryPlanning: !!checked }))
+                              }
+                            />
+                          </div>
+                        </div>
+                      </div>
+
                       <Separator className="my-4" />
 
                       <div className="space-y-2">
                         <div className="flex justify-between">
-                          <span className="text-black">Subtotal</span>
+                          <span className="text-black">Room Subtotal</span>
                           <span className="text-black">₹{subtotal}</span>
                         </div>
+                        {addOnTotal > 0 && (
+                          <div className="flex justify-between">
+                            <span className="text-black">Add-on Services</span>
+                            <span className="text-black">₹{addOnTotal}</span>
+                          </div>
+                        )}
+                        {itineraryCharges > 0 && (
+                          <div className="flex justify-between">
+                            <span className="text-black">Itinerary Planning (5%)</span>
+                            <span className="text-black">₹{itineraryCharges}</span>
+                          </div>
+                        )}
                         {couponDiscount > 0 && (
                           <div className="flex justify-between text-green-600">
                             <span>Discount ({couponDiscount}%)</span>
@@ -939,7 +1160,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                         </div>
                         <Separator className="my-2" />
                         <div className="flex justify-between font-semibold text-lg">
-                          <span className="text-black">Grand Total (Amount)</span>
+                          <span className="text-black">Grand Total</span>
                           <span className="text-black">₹{totalAmount}</span>
                         </div>
                       </div>
