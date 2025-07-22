@@ -205,53 +205,11 @@
   [role="dialog"] [aria-describedby]:empty {
     display: none !important;
   }
-}
 
-/* Enhanced mobile responsiveness */
-@layer utilities {
-  .mobile-scroll-smooth {
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
-  }
-  
-  .one-handed-mobile {
-    @apply max-w-sm mx-auto;
-  }
-  
-  .mobile-friendly-tap {
-    @apply min-h-[44px] min-w-[44px];
-  }
-  
-  .mobile-text-readable {
-    @apply text-base leading-relaxed;
-  }
-  
-  .mobile-button-friendly {
-    @apply py-3 px-6 text-base font-semibold;
-  }
-
-  /* OnePlus inspired responsive design */
-  .oneplus-card {
-    @apply bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl;
-  }
-  
-  .oneplus-input {
-    @apply bg-white/95 border-0 rounded-2xl shadow-lg focus:shadow-xl transition-all duration-300;
-  }
-  
-  .oneplus-button {
-    @apply bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300;
-  }
-
-  /* Full bleed sections */
-  .full-bleed {
-    @apply w-full;
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
-  }
-
-  /* Properly hide elements that should not be visible */
-  .hidden-text {
+  /* Hide all helper text and labels that show unwanted content */
+  .hidden-text,
+  [data-state="hidden"],
+  [aria-hidden="true"] {
     position: absolute !important;
     width: 1px !important;
     height: 1px !important;
@@ -264,25 +222,84 @@
   }
 }
 
-/* Enhanced OnePlus mobile UI for different screen sizes */
+/* Enhanced mobile responsiveness - One-handed UI optimized */
+@layer utilities {
+  .mobile-scroll-smooth {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  
+  .one-handed-mobile {
+    @apply max-w-sm mx-auto;
+  }
+  
+  .mobile-friendly-tap {
+    @apply min-h-[48px] min-w-[48px];
+  }
+  
+  .mobile-text-readable {
+    @apply text-sm leading-relaxed;
+  }
+  
+  .mobile-button-friendly {
+    @apply py-3 px-4 text-sm font-semibold min-h-[48px];
+  }
+
+  /* OnePlus inspired responsive design */
+  .oneplus-card {
+    @apply bg-white/10 backdrop-blur-xl rounded-2xl sm:rounded-3xl border border-white/20 shadow-2xl;
+  }
+  
+  .oneplus-input {
+    @apply bg-white/95 border-0 rounded-xl sm:rounded-2xl shadow-lg focus:shadow-xl transition-all duration-300;
+  }
+  
+  .oneplus-button {
+    @apply bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300;
+  }
+
+  /* Full bleed sections */
+  .full-bleed {
+    @apply w-full;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+  }
+
+  /* Compact mobile sections */
+  .mobile-section-compact {
+    @apply py-8 sm:py-12 lg:py-16;
+  }
+
+  /* Touch-friendly sizing */
+  .touch-friendly {
+    @apply min-h-[48px] min-w-[48px] p-3;
+  }
+}
+
+/* One-handed mobile UI optimization */
 @media (max-width: 640px) {
+  /* Compact mobile sections */
+  section {
+    @apply py-8;
+  }
+
   /* Mobile - One handed use optimization */
   .dialog-content {
-    @apply rounded-t-3xl rounded-b-none max-h-[85vh];
+    @apply rounded-t-2xl rounded-b-none max-h-[85vh] mx-2;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   }
   
   .mobile-card {
-    @apply rounded-3xl shadow-2xl border-0 mx-2;
+    @apply rounded-2xl shadow-2xl border-0 mx-2;
   }
   
   .mobile-input {
-    @apply rounded-2xl py-3 px-4 text-sm shadow-lg;
+    @apply rounded-xl py-3 px-4 text-sm shadow-lg min-h-[48px];
   }
   
   .mobile-button {
-    @apply rounded-2xl py-3 px-4 text-sm font-semibold shadow-lg min-h-[48px];
+    @apply rounded-xl py-3 px-4 text-sm font-semibold shadow-lg min-h-[48px];
   }
   
   /* Ensure text is never cut off */
@@ -297,19 +314,14 @@
   }
   
   /* Mobile friendly form elements */
-  input, select, textarea {
-    @apply text-base; /* Prevents zoom on iOS */
-  }
-
-  /* Compact mobile sections */
-  section {
-    @apply py-12;
+  input, select, textarea, button {
+    @apply text-base min-h-[48px]; /* Prevents zoom on iOS */
   }
 
   /* Better mobile typography */
-  h1 { @apply text-2xl; }
-  h2 { @apply text-xl; }
-  h3 { @apply text-lg; }
+  h1 { @apply text-xl sm:text-2xl; }
+  h2 { @apply text-lg sm:text-xl; }
+  h3 { @apply text-base sm:text-lg; }
   
   /* Mobile grid improvements */
   .mobile-grid-responsive {
@@ -318,18 +330,37 @@
 
   /* One-handed friendly positioning */
   .mobile-bottom-action {
-    @apply fixed bottom-6 left-4 right-4 z-50;
+    @apply fixed bottom-4 left-3 right-3 z-50;
+  }
+
+  /* Compact stats grid */
+  .stats-mobile {
+    @apply grid-cols-2 gap-3 text-center;
+  }
+
+  /* Mobile hero optimization */
+  .hero-mobile-compact {
+    @apply min-h-[80vh] px-3 py-8;
+  }
+
+  /* Floating elements smaller on mobile */
+  .floating-element {
+    @apply w-16 h-16 sm:w-24 sm:h-24;
   }
 }
 
 @media (min-width: 641px) and (max-width: 1024px) {
   /* Tablet - Two handed use optimization */
+  section {
+    @apply py-12;
+  }
+
   .tablet-card {
     @apply rounded-2xl shadow-xl border mx-4;
   }
   
   .tablet-input {
-    @apply rounded-xl py-3 px-4 text-base shadow-md;
+    @apply rounded-xl py-3 px-4 text-base shadow-md min-h-[44px];
   }
   
   .tablet-button {
@@ -341,39 +372,33 @@
     @apply grid-cols-2 gap-4;
   }
   
-  /* Ensure proper text wrapping */
-  .tablet-text {
-    @apply leading-relaxed;
-  }
-
-  /* Tablet section spacing */
-  section {
-    @apply py-16;
-  }
-
   /* Tablet typography */
-  h1 { @apply text-3xl; }
-  h2 { @apply text-2xl; }
-  h3 { @apply text-xl; }
+  h1 { @apply text-2xl sm:text-3xl; }
+  h2 { @apply text-xl sm:text-2xl; }
+  h3 { @apply text-lg sm:text-xl; }
+
+  /* Tablet hero optimization */
+  .hero-tablet-compact {
+    @apply min-h-[85vh] px-4 py-10;
+  }
 }
 
 @media (min-width: 1025px) {
   /* Desktop - Full experience */
+  section {
+    @apply py-16;
+  }
+
   .desktop-card {
     @apply rounded-2xl shadow-lg border;
   }
   
   .desktop-input {
-    @apply rounded-lg py-3 px-4 text-base;
+    @apply rounded-lg py-3 px-4 text-base min-h-[44px];
   }
   
   .desktop-button {
-    @apply rounded-lg py-4 px-8 text-lg font-semibold;
-  }
-
-  /* Desktop section spacing */
-  section {
-    @apply py-20;
+    @apply rounded-lg py-4 px-8 text-lg font-semibold min-h-[48px];
   }
 }
 
@@ -400,50 +425,9 @@
   }
 }
 
-/* Chat bot responsive styles */
-@media (max-width: 640px) {
-  .chatbot-mobile {
-    @apply w-full h-full fixed inset-0 rounded-none;
-  }
-}
-
-/* Prevent text overflow and ensure readability */
-.text-responsive {
-  @apply text-xs sm:text-sm md:text-base lg:text-lg;
-}
-
-.heading-responsive {
-  @apply text-lg sm:text-xl md:text-2xl lg:text-3xl;
-}
-
-/* Form field responsive spacing */
-.form-field-responsive {
-  @apply space-y-1 sm:space-y-2;
-}
-
-/* Button responsive sizing */
-.button-responsive {
-  @apply h-8 sm:h-10 md:h-12 px-3 sm:px-4 md:px-6 text-xs sm:text-sm md:text-base;
-}
-
-/* Horizontal scroll improvements */
-.horizontal-scroll {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.horizontal-scroll::-webkit-scrollbar {
-  display: none;
-}
-
-/* Emoji support */
-.emoji-support {
-  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-}
-
-/* Better touch targets */
+/* Better touch targets for mobile */
 .touch-target {
-  @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+  @apply min-h-[48px] min-w-[48px] flex items-center justify-center;
 }
 
 /* Compact design elements */
@@ -467,4 +451,13 @@
   word-break: break-word;
   hyphens: auto;
   overflow-wrap: break-word;
+}
+
+/* Hide unwanted text elements */
+.hide-unwanted-text {
+  visibility: hidden !important;
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
 }
