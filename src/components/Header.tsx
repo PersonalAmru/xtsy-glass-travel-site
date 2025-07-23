@@ -146,60 +146,75 @@ const Header = () => {
             </button>
           </div>
 
-          {/* Mobile Navigation */}
-          {isMenuOpen && (
-            <div className="md:hidden py-4 border-t safe-area-padding">
-              <nav className="flex flex-col space-y-3">
-                <Link 
-                  to="/" 
-                  className="text-foreground hover:text-primary transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Home
-                </Link>
-                <Link 
-                  to="/about" 
-                  className="text-foreground hover:text-primary transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  About
-                </Link>
-                <Link 
-                  to="/gallery" 
-                  className="text-foreground hover:text-primary transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Gallery
-                </Link>
-                <Link 
-                  to="/deals" 
-                  className="text-foreground hover:text-primary transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Deals
-                </Link>
-                
-                <button
-                  onClick={() => {
-                    setIsTravelModalOpen(true);
-                    setIsMenuOpen(false);
-                  }}
-                  className="text-foreground hover:text-primary transition-colors text-left"
-                >
-                  Travel
-                </button>
+            {/* Mobile Navigation */}
+            {isMenuOpen && (
+              <div className="md:hidden py-4 border-t safe-area-padding">
+                <nav className="flex flex-col space-y-3">
+                  <Link 
+                    to="/" 
+                    className="text-gray-800 hover:text-primary transition-colors"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                  >
+                    Home
+                  </Link>
+                  <Link 
+                    to="/about" 
+                    className="text-gray-800 hover:text-primary transition-colors"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                  >
+                    About
+                  </Link>
+                  <Link 
+                    to="/gallery" 
+                    className="text-gray-800 hover:text-primary transition-colors"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                  >
+                    Gallery
+                  </Link>
+                  <Link 
+                    to="/deals" 
+                    className="text-gray-800 hover:text-primary transition-colors"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                  >
+                    Deals
+                  </Link>
+                  
+                  <button
+                    onClick={() => {
+                      setIsTravelModalOpen(true);
+                      setIsMenuOpen(false);
+                    }}
+                    className="text-gray-800 hover:text-primary transition-colors text-left"
+                  >
+                    Travel
+                  </button>
                 
                 {user ? (
                   <div className="pt-4 border-t">
                     <Link 
                       to="/dashboard" 
-                      className="flex items-center text-foreground hover:text-primary transition-colors mb-4"
-                      onClick={() => setIsMenuOpen(false)}
+                      className="flex items-center text-gray-800 hover:text-primary transition-colors mb-4"
+                      onClick={() => {
+                        setIsMenuOpen(false);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
                     >
                       <Settings className="h-4 w-4 mr-2" />
                       Dashboard
                     </Link>
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-sm text-gray-600">
                       Signed in as {user.user_metadata?.full_name || user.email}
                     </div>
                   </div>

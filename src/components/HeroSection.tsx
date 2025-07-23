@@ -108,7 +108,7 @@ const HeroSection = () => {
         <div className="responsive-container relative z-10 text-center text-white w-full">
           {/* Hero Text with Floating Languages */}
           <div className="mb-6 sm:mb-8 md:mb-10 lg:mb-12">
-            <h1 className="text-fluid-3xl sm:text-fluid-4xl md:text-fluid-5xl font-bold mb-6 sm:mb-8 md:mb-10 lg:mb-12 bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent animate-fade-in">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8 md:mb-10 lg:mb-12 bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent animate-fade-in">
               Live the Shillong Vibe
             </h1>
             
@@ -117,7 +117,7 @@ const HeroSection = () => {
               <div className="relative h-6 sm:h-8 md:h-12 lg:h-16 flex items-center justify-center mb-2 sm:mb-3 md:mb-4">
                 <span 
                   key={currentLanguageIndex}
-                  className="text-fluid-lg sm:text-fluid-xl md:text-fluid-3xl lg:text-fluid-4xl font-bold text-white animate-fade-in transition-opacity duration-500"
+                  className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white animate-fade-in transition-opacity duration-500"
                 >
                   {languages[currentLanguageIndex]}
                 </span>
@@ -134,8 +134,8 @@ const HeroSection = () => {
           </div>
 
           {/* Search Form - Fully responsive */}
-          <div className="bg-white/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-7 lg:p-8 border border-white/20 shadow-2xl animate-fade-in w-full max-w-5xl mx-auto" style={{ animationDelay: '0.9s' }}>
-            <h2 className="text-fluid-lg sm:text-fluid-xl md:text-fluid-2xl font-semibold mb-4 sm:mb-6 md:mb-7 lg:mb-8 text-center">Find Your Perfect Stay</h2>
+          <div className="bg-white/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-7 lg:p-8 border border-white/20 shadow-2xl animate-fade-in w-full max-w-4xl mx-auto" style={{ animationDelay: '0.9s' }}>
+            <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-4 sm:mb-6 md:mb-7 lg:mb-8 text-center">Find Your Perfect Stay</h2>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6 mb-4 sm:mb-6 md:mb-7 lg:mb-8">
               <div className="space-y-2">
@@ -194,7 +194,7 @@ const HeroSection = () => {
               <div className="flex items-end col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-1">
                 <Button
                   onClick={handleSearch}
-                  className="w-full h-10 sm:h-12 md:h-12 lg:h-12 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold py-2 sm:py-3 px-4 sm:px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-fluid-sm sm:text-fluid-base hover-lift"
+                  className="w-full h-10 sm:h-12 md:h-12 lg:h-12 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold py-2 sm:py-3 px-4 sm:px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-sm sm:text-base hover-lift"
                 >
                   <Search className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                   Book Your Stay
@@ -202,7 +202,7 @@ const HeroSection = () => {
               </div>
             </div>
 
-            <div className="text-center text-fluid-xs sm:text-fluid-sm text-gray-300">
+            <div className="text-center text-xs sm:text-sm text-gray-300">
               <p>🏨 3 Property Types Available • 🌟 Premium Amenities • 🎯 Best Rates Guaranteed</p>
             </div>
           </div>
@@ -210,20 +210,20 @@ const HeroSection = () => {
           {/* Quick Stats - Fully responsive grid */}
           <div className="mt-6 sm:mt-8 md:mt-10 lg:mt-12 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6 animate-fade-in" style={{ animationDelay: '1.2s' }}>
             <div className="text-center fade-in">
-              <div className="text-fluid-lg sm:text-fluid-xl md:text-fluid-2xl lg:text-fluid-3xl font-bold bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">{bookNowClicks + 14}+</div>
-              <div className="text-fluid-xs sm:text-fluid-sm text-gray-300 mt-1">Happy Guests</div>
+              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">{bookNowClicks + 14}+</div>
+              <div className="text-xs sm:text-sm text-gray-300 mt-1">Happy Guests</div>
             </div>
             <div className="text-center fade-in" style={{ animationDelay: '0.1s' }}>
-              <div className="text-fluid-lg sm:text-fluid-xl md:text-fluid-2xl lg:text-fluid-3xl font-bold bg-gradient-to-r from-red-400 to-pink-500 bg-clip-text text-transparent">50+</div>
-              <div className="text-fluid-xs sm:text-fluid-sm text-gray-300 mt-1">Tour Packages across IN</div>
+              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-red-400 to-pink-500 bg-clip-text text-transparent">50+</div>
+              <div className="text-xs sm:text-sm text-gray-300 mt-1">Tour Packages across IN</div>
             </div>
             <div className="text-center fade-in" style={{ animationDelay: '0.2s' }}>
-              <div className="text-fluid-lg sm:text-fluid-xl md:text-fluid-2xl lg:text-fluid-3xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">4.8</div>
-              <div className="text-fluid-xs sm:text-fluid-sm text-gray-300 mt-1">Rating</div>
+              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">4.8</div>
+              <div className="text-xs sm:text-sm text-gray-300 mt-1">Rating</div>
             </div>
             <div className="text-center fade-in" style={{ animationDelay: '0.3s' }}>
-              <div className="text-fluid-lg sm:text-fluid-xl md:text-fluid-2xl lg:text-fluid-3xl font-bold bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">24/7</div>
-              <div className="text-fluid-xs sm:text-fluid-sm text-gray-300 mt-1">Support</div>
+              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">24/7</div>
+              <div className="text-xs sm:text-sm text-gray-300 mt-1">Support</div>
             </div>
           </div>
         </div>
