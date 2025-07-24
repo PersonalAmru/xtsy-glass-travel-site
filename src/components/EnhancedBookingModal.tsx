@@ -555,22 +555,65 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
               </>
             )}
 
-            {/* Desktop: Side-by-side layout */}
+            {/* Desktop: Side-by-side layout with proper room selection */}
             {!isMobile && (
               <div className="flex h-full">
                 {/* Left side - Room Selection */}
                 <div className="flex-1 p-6 overflow-y-auto">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-6">Select Your Room</h3>
-                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-                    {roomsArray.map((room) => (
-                      <RoomCard
-                        key={room.id}
-                        room={room}
-                        propertyType={room.propertyType}
-                        onSelectRoom={() => handleRoomSelect(room.id)}
-                        isLuxury={room.propertyType === 'luxury'}
-                      />
-                    ))}
+                  {/* Live the Shillong Vibe Hero Section */}
+                  <div className="relative mb-8 h-40 bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl overflow-hidden">
+                    <div className="absolute inset-0 bg-black/20"></div>
+                    <div className="relative h-full flex items-center justify-center text-center px-6">
+                      <div>
+                        <h2 className="text-2xl font-bold text-white mb-2">Live the Shillong Vibe</h2>
+                        <p className="text-white/90 text-sm">Experience the best of Meghalaya with our premium accommodations</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Room Type Classifications */}
+                  <div className="space-y-8">
+                    {/* XTSY Luxury */}
+                    <div>
+                      <div className="flex items-center gap-3 mb-4">
+                        <Hotel className="h-6 w-6 text-orange-600" />
+                        <h3 className="text-xl font-bold text-gray-900">XTSY Luxury</h3>
+                        <span className="text-sm text-orange-600 bg-orange-50 px-2 py-1 rounded-full">Premium Experience</span>
+                      </div>
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                        {roomsArray.filter(room => room.propertyType === 'luxury').map((room) => (
+                          <RoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} />
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* XTSY Travellers Hostel */}
+                    <div>
+                      <div className="flex items-center gap-3 mb-4">
+                        <Bed className="h-6 w-6 text-blue-600" />
+                        <h3 className="text-xl font-bold text-gray-900">XTSY Travellers Hostel</h3>
+                        <span className="text-sm text-blue-600 bg-blue-50 px-2 py-1 rounded-full">Free Breakfast & Games Room</span>
+                      </div>
+                      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+                        {roomsArray.filter(room => room.propertyType === 'hostel').map((room) => (
+                          <RoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} />
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* XTSY Economy */}
+                    <div>
+                      <div className="flex items-center gap-3 mb-4">
+                        <Users className="h-6 w-6 text-green-600" />
+                        <h3 className="text-xl font-bold text-gray-900">XTSY Economy</h3>
+                        <span className="text-sm text-green-600 bg-green-50 px-2 py-1 rounded-full">Budget Friendly</span>
+                      </div>
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                        {roomsArray.filter(room => room.propertyType === 'economy').map((room) => (
+                          <RoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} />
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -766,6 +809,126 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
         </div>
       </DialogContent>
     </Dialog>
+  );
+};
+
+// Room Selection Card Component for Desktop
+interface RoomSelectionCardProps {
+  room: any;
+  selectedRooms: SelectedRoom[];
+  setSelectedRooms: React.Dispatch<React.SetStateAction<SelectedRoom[]>>;
+  nights: number;
+}
+
+const RoomSelectionCard: React.FC<RoomSelectionCardProps> = ({ room, selectedRooms, setSelectedRooms, nights }) => {
+  const [quantity, setQuantity] = useState(0);
+  const { toast } = useToast();
+
+  const handleQuantityChange = (newQuantity: number) => {
+    setQuantity(newQuantity);
+    
+    if (newQuantity === 0) {
+      // Remove room from selection
+      setSelectedRooms(prev => prev.filter(r => r.id !== room.id));
+    } else {
+      // Add or update room selection
+      const roomSelection: SelectedRoom = {
+        id: room.id,
+        name: room.name,
+        price: room.price,
+        type: room.type,
+        selection: {
+          guests: room.type === 'dorm' ? newQuantity : newQuantity,
+          rooms: room.type === 'dorm' ? 1 : newQuantity
+        }
+      };
+
+      setSelectedRooms(prev => {
+        const existingIndex = prev.findIndex(r => r.id === room.id);
+        if (existingIndex >= 0) {
+          const updated = [...prev];
+          updated[existingIndex] = roomSelection;
+          return updated;
+        } else {
+          return [...prev, roomSelection];
+        }
+      });
+    }
+  };
+
+  const currentSelection = selectedRooms.find(r => r.id === room.id);
+  const currentQuantity = currentSelection ? 
+    (room.type === 'dorm' ? currentSelection.selection.guests : currentSelection.selection.rooms) : 0;
+
+  return (
+    <Card className="overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow">
+      <div className="relative h-48">
+        <img 
+          src={room.image} 
+          alt={room.name}
+          className="w-full h-full object-cover"
+          onError={(e) => {
+            e.currentTarget.src = '/placeholder.svg';
+          }}
+        />
+        <div className="absolute top-2 right-2">
+          <span className="bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-medium">
+            ₹{room.price}/night
+          </span>
+        </div>
+      </div>
+      
+      <CardContent className="p-4">
+        <h4 className="font-semibold text-gray-900 mb-2">{room.name}</h4>
+        <p className="text-sm text-gray-600 mb-3">{room.description}</p>
+        
+        <div className="flex flex-wrap gap-1 mb-4">
+          {room.features.slice(0, 3).map((feature: string, index: number) => (
+            <span key={index} className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded">
+              {feature}
+            </span>
+          ))}
+        </div>
+
+        <div className="flex items-center justify-between">
+          <div className="text-sm text-gray-600">
+            {room.type === 'dorm' ? 'Beds' : 'Rooms'}
+          </div>
+          <div className="flex items-center gap-2">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={() => handleQuantityChange(Math.max(0, currentQuantity - 1))}
+              className="bg-white text-black border-black hover:bg-gray-100 h-8 w-8 p-0"
+            >
+              -
+            </Button>
+            <span className="w-8 text-center bg-white text-black font-bold border border-black rounded px-2 py-1 text-sm">
+              {currentQuantity}
+            </span>
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={() => handleQuantityChange(currentQuantity + 1)}
+              className="bg-white text-black border-black hover:bg-gray-100 h-8 w-8 p-0"
+            >
+              +
+            </Button>
+          </div>
+        </div>
+        
+        {currentQuantity > 0 && (
+          <div className="mt-3 pt-3 border-t">
+            <div className="flex justify-between text-sm">
+              <span>Total for {nights} nights:</span>
+              <span className="font-bold">
+                ₹{room.type === 'dorm' ? room.price * currentQuantity * nights : room.price * currentQuantity * nights}
+              </span>
+            </div>
+          </div>
+        )}
+      </CardContent>
+    </Card>
   );
 };
 
