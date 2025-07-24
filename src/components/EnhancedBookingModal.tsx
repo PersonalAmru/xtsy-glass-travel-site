@@ -393,75 +393,253 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
 
           {/* Content */}
           <div className="flex-1 overflow-y-auto min-h-0">
-            {currentStep === 'room-selection' && (
-              <div className="p-4 md:p-6">
-                <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-                  {roomsArray.map((room) => (
-                    <RoomCard
-                      key={room.id}
-                      room={room}
-                      propertyType={room.propertyType}
-                      onSelectRoom={() => handleRoomSelect(room.id)}
-                      isLuxury={room.propertyType === 'luxury'}
-                    />
-                  ))}
-                </div>
-              </div>
+            {/* Mobile/Tablet: Multi-step flow */}
+            {isMobile && (
+              <>
+                {currentStep === 'room-selection' && (
+                  <div className="p-4 md:p-6">
+                    <div className="grid grid-cols-1 gap-6">
+                      {roomsArray.map((room) => (
+                        <RoomCard
+                          key={room.id}
+                          room={room}
+                          propertyType={room.propertyType}
+                          onSelectRoom={() => handleRoomSelect(room.id)}
+                          isLuxury={room.propertyType === 'luxury'}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {currentStep === 'booking-summary' && (
+                  <div className="p-4 md:p-6 space-y-6">
+                    {/* Selected Rooms */}
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Selected Rooms</h3>
+                      <div className="space-y-3">
+                        {selectedRooms.map((room, index) => (
+                          <Card key={index} className="p-4">
+                            <div className="flex justify-between items-center">
+                              <div>
+                                <h4 className="font-medium text-gray-900">{room.name}</h4>
+                                <p className="text-sm text-gray-600">
+                                  {room.type === 'dorm' ? `${room.selection.guests} beds` : `${room.selection.rooms} rooms`} × {nights} nights
+                                </p>
+                              </div>
+                              <div className="text-right">
+                                <div className="font-bold text-gray-900">
+                                  ₹{room.type === 'dorm' ? room.price * room.selection.guests * nights : room.price * room.selection.rooms * nights}
+                                </div>
+                                <div className="text-sm text-gray-600">₹{room.price}/night</div>
+                              </div>
+                            </div>
+                          </Card>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Add-on Services */}
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Add-on Services</h3>
+                      <div className="space-y-4">
+                        <div className="grid grid-cols-1 gap-4">
+                          <Card className="p-4 bg-white border border-gray-200">
+                            <div className="flex justify-between items-center">
+                              <div>
+                                <h4 className="font-medium text-gray-900">Extra Breakfast</h4>
+                                <p className="text-sm text-gray-600">₹150 per person per day</p>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <Button 
+                                  variant="outline" 
+                                  size="sm" 
+                                  onClick={() => setAddOns(prev => ({ ...prev, breakfast: Math.max(0, prev.breakfast - 1) }))}
+                                  className="bg-white text-black border-black hover:bg-gray-100"
+                                >
+                                  -
+                                </Button>
+                                <span className="w-8 text-center bg-white text-black font-bold border border-black rounded px-2 py-1">{addOns.breakfast}</span>
+                                <Button 
+                                  variant="outline" 
+                                  size="sm" 
+                                  onClick={() => setAddOns(prev => ({ ...prev, breakfast: prev.breakfast + 1 }))}
+                                  className="bg-white text-black border-black hover:bg-gray-100"
+                                >
+                                  +
+                                </Button>
+                              </div>
+                            </div>
+                          </Card>
+
+                          <Card className="p-4 bg-white border border-gray-200">
+                            <div className="flex justify-between items-center">
+                              <div>
+                                <h4 className="font-medium text-gray-900">Dinner (Veg)</h4>
+                                <p className="text-sm text-gray-600">₹300 per person per day</p>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <Button 
+                                  variant="outline" 
+                                  size="sm" 
+                                  onClick={() => setAddOns(prev => ({ ...prev, dinnerVeg: Math.max(0, prev.dinnerVeg - 1) }))}
+                                  className="bg-white text-black border-black hover:bg-gray-100"
+                                >
+                                  -
+                                </Button>
+                                <span className="w-8 text-center bg-white text-black font-bold border border-black rounded px-2 py-1">{addOns.dinnerVeg}</span>
+                                <Button 
+                                  variant="outline" 
+                                  size="sm" 
+                                  onClick={() => setAddOns(prev => ({ ...prev, dinnerVeg: prev.dinnerVeg + 1 }))}
+                                  className="bg-white text-black border-black hover:bg-gray-100"
+                                >
+                                  +
+                                </Button>
+                              </div>
+                            </div>
+                          </Card>
+
+                          <Card className="p-4 bg-white border border-gray-200">
+                            <div className="flex justify-between items-center">
+                              <div>
+                                <h4 className="font-medium text-gray-900">Dinner (Non-Veg)</h4>
+                                <p className="text-sm text-gray-600">₹300 per person per day</p>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <Button 
+                                  variant="outline" 
+                                  size="sm" 
+                                  onClick={() => setAddOns(prev => ({ ...prev, dinnerNonVeg: Math.max(0, prev.dinnerNonVeg - 1) }))}
+                                  className="bg-white text-black border-black hover:bg-gray-100"
+                                >
+                                  -
+                                </Button>
+                                <span className="w-8 text-center bg-white text-black font-bold border border-black rounded px-2 py-1">{addOns.dinnerNonVeg}</span>
+                                <Button 
+                                  variant="outline" 
+                                  size="sm" 
+                                  onClick={() => setAddOns(prev => ({ ...prev, dinnerNonVeg: prev.dinnerNonVeg + 1 }))}
+                                  className="bg-white text-black border-black hover:bg-gray-100"
+                                >
+                                  +
+                                </Button>
+                              </div>
+                            </div>
+                          </Card>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Price Summary */}
+                    <Card className="p-4 bg-gray-50">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Price Summary</h3>
+                      <div className="space-y-2">
+                        <div className="flex justify-between">
+                          <span>Subtotal</span>
+                          <span>₹{calculateTotal().subtotal}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>GST (18%)</span>
+                          <span>₹{calculateTotal().gstAmount}</span>
+                        </div>
+                        <Separator />
+                        <div className="flex justify-between font-bold text-lg">
+                          <span>Total</span>
+                          <span>₹{calculateTotal().total}</span>
+                        </div>
+                      </div>
+                    </Card>
+                  </div>
+                )}
+              </>
             )}
 
-            {currentStep === 'booking-summary' && (
-              <div className="p-4 md:p-6 space-y-6">
-                {/* Selected Rooms */}
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Selected Rooms</h3>
-                  <div className="space-y-3">
-                    {selectedRooms.map((room, index) => (
-                      <Card key={index} className="p-4">
-                        <div className="flex justify-between items-center">
-                          <div>
-                            <h4 className="font-medium text-gray-900">{room.name}</h4>
-                            <p className="text-sm text-gray-600">
-                              {room.type === 'dorm' ? `${room.selection.guests} beds` : `${room.selection.rooms} rooms`} × {nights} nights
-                            </p>
-                          </div>
-                          <div className="text-right">
-                            <div className="font-bold text-gray-900">
-                              ₹{room.type === 'dorm' ? room.price * room.selection.guests * nights : room.price * room.selection.rooms * nights}
-                            </div>
-                            <div className="text-sm text-gray-600">₹{room.price}/night</div>
-                          </div>
-                        </div>
-                      </Card>
+            {/* Desktop: Side-by-side layout */}
+            {!isMobile && (
+              <div className="flex h-full">
+                {/* Left side - Room Selection */}
+                <div className="flex-1 p-6 overflow-y-auto">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-6">Select Your Room</h3>
+                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+                    {roomsArray.map((room) => (
+                      <RoomCard
+                        key={room.id}
+                        room={room}
+                        propertyType={room.propertyType}
+                        onSelectRoom={() => handleRoomSelect(room.id)}
+                        isLuxury={room.propertyType === 'luxury'}
+                      />
                     ))}
                   </div>
                 </div>
 
-                {/* Add-on Services */}
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Add-on Services</h3>
-                  <div className="space-y-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <Card className="p-4 bg-white border border-gray-200">
-                        <div className="flex justify-between items-center">
-                          <div>
-                            <h4 className="font-medium text-gray-900">Extra Breakfast</h4>
-                            <p className="text-sm text-gray-600">₹150 per person per day</p>
+                {/* Right side - Booking Summary */}
+                <div className="w-96 bg-gray-50 border-l p-6 overflow-y-auto">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-6">Booking Summary</h3>
+                  
+                  {/* Selected Rooms */}
+                  <div className="mb-6">
+                    <h4 className="text-lg font-medium text-gray-900 mb-4">Selected Rooms</h4>
+                    {selectedRooms.length === 0 ? (
+                      <p className="text-gray-600 text-sm">No rooms selected yet</p>
+                    ) : (
+                      <div className="space-y-3">
+                        {selectedRooms.map((room, index) => (
+                          <Card key={index} className="p-3">
+                            <div className="space-y-2">
+                              <h5 className="font-medium text-gray-900 text-sm">{room.name}</h5>
+                              <p className="text-xs text-gray-600">
+                                {room.type === 'dorm' ? `${room.selection.guests} beds` : `${room.selection.rooms} rooms`} × {nights} nights
+                              </p>
+                              <div className="flex justify-between items-center">
+                                <span className="text-xs text-gray-600">₹{room.price}/night</span>
+                                <span className="font-bold text-gray-900">
+                                  ₹{room.type === 'dorm' ? room.price * room.selection.guests * nights : room.price * room.selection.rooms * nights}
+                                </span>
+                              </div>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => setSelectedRooms(prev => prev.filter((_, i) => i !== index))}
+                                className="w-full text-xs bg-white text-red-600 border-red-200 hover:bg-red-50"
+                              >
+                                Remove
+                              </Button>
+                            </div>
+                          </Card>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Add-on Services */}
+                  <div className="mb-6">
+                    <h4 className="text-lg font-medium text-gray-900 mb-4">Add-on Services</h4>
+                    <div className="space-y-3">
+                      <Card className="p-3 bg-white border border-gray-200">
+                        <div className="space-y-2">
+                          <div className="flex justify-between items-center">
+                            <div>
+                              <h5 className="font-medium text-gray-900 text-sm">Extra Breakfast</h5>
+                              <p className="text-xs text-gray-600">₹150 per person per day</p>
+                            </div>
                           </div>
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center justify-center gap-2">
                             <Button 
                               variant="outline" 
                               size="sm" 
                               onClick={() => setAddOns(prev => ({ ...prev, breakfast: Math.max(0, prev.breakfast - 1) }))}
-                              className="bg-white text-black border-black hover:bg-gray-100"
+                              className="bg-white text-black border-black hover:bg-gray-100 h-8 w-8 p-0"
                             >
                               -
                             </Button>
-                            <span className="w-8 text-center bg-white text-black font-bold border border-black rounded px-2 py-1">{addOns.breakfast}</span>
+                            <span className="w-8 text-center bg-white text-black font-bold border border-black rounded px-2 py-1 text-sm">{addOns.breakfast}</span>
                             <Button 
                               variant="outline" 
                               size="sm" 
                               onClick={() => setAddOns(prev => ({ ...prev, breakfast: prev.breakfast + 1 }))}
-                              className="bg-white text-black border-black hover:bg-gray-100"
+                              className="bg-white text-black border-black hover:bg-gray-100 h-8 w-8 p-0"
                             >
                               +
                             </Button>
@@ -469,27 +647,29 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                         </div>
                       </Card>
 
-                      <Card className="p-4 bg-white border border-gray-200">
-                        <div className="flex justify-between items-center">
-                          <div>
-                            <h4 className="font-medium text-gray-900">Dinner (Veg)</h4>
-                            <p className="text-sm text-gray-600">₹300 per person per day</p>
+                      <Card className="p-3 bg-white border border-gray-200">
+                        <div className="space-y-2">
+                          <div className="flex justify-between items-center">
+                            <div>
+                              <h5 className="font-medium text-gray-900 text-sm">Dinner (Veg)</h5>
+                              <p className="text-xs text-gray-600">₹300 per person per day</p>
+                            </div>
                           </div>
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center justify-center gap-2">
                             <Button 
                               variant="outline" 
                               size="sm" 
                               onClick={() => setAddOns(prev => ({ ...prev, dinnerVeg: Math.max(0, prev.dinnerVeg - 1) }))}
-                              className="bg-white text-black border-black hover:bg-gray-100"
+                              className="bg-white text-black border-black hover:bg-gray-100 h-8 w-8 p-0"
                             >
                               -
                             </Button>
-                            <span className="w-8 text-center bg-white text-black font-bold border border-black rounded px-2 py-1">{addOns.dinnerVeg}</span>
+                            <span className="w-8 text-center bg-white text-black font-bold border border-black rounded px-2 py-1 text-sm">{addOns.dinnerVeg}</span>
                             <Button 
                               variant="outline" 
                               size="sm" 
                               onClick={() => setAddOns(prev => ({ ...prev, dinnerVeg: prev.dinnerVeg + 1 }))}
-                              className="bg-white text-black border-black hover:bg-gray-100"
+                              className="bg-white text-black border-black hover:bg-gray-100 h-8 w-8 p-0"
                             >
                               +
                             </Button>
@@ -497,27 +677,29 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                         </div>
                       </Card>
 
-                      <Card className="p-4 bg-white border border-gray-200">
-                        <div className="flex justify-between items-center">
-                          <div>
-                            <h4 className="font-medium text-gray-900">Dinner (Non-Veg)</h4>
-                            <p className="text-sm text-gray-600">₹300 per person per day</p>
+                      <Card className="p-3 bg-white border border-gray-200">
+                        <div className="space-y-2">
+                          <div className="flex justify-between items-center">
+                            <div>
+                              <h5 className="font-medium text-gray-900 text-sm">Dinner (Non-Veg)</h5>
+                              <p className="text-xs text-gray-600">₹300 per person per day</p>
+                            </div>
                           </div>
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center justify-center gap-2">
                             <Button 
                               variant="outline" 
                               size="sm" 
                               onClick={() => setAddOns(prev => ({ ...prev, dinnerNonVeg: Math.max(0, prev.dinnerNonVeg - 1) }))}
-                              className="bg-white text-black border-black hover:bg-gray-100"
+                              className="bg-white text-black border-black hover:bg-gray-100 h-8 w-8 p-0"
                             >
                               -
                             </Button>
-                            <span className="w-8 text-center bg-white text-black font-bold border border-black rounded px-2 py-1">{addOns.dinnerNonVeg}</span>
+                            <span className="w-8 text-center bg-white text-black font-bold border border-black rounded px-2 py-1 text-sm">{addOns.dinnerNonVeg}</span>
                             <Button 
                               variant="outline" 
                               size="sm" 
                               onClick={() => setAddOns(prev => ({ ...prev, dinnerNonVeg: prev.dinnerNonVeg + 1 }))}
-                              className="bg-white text-black border-black hover:bg-gray-100"
+                              className="bg-white text-black border-black hover:bg-gray-100 h-8 w-8 p-0"
                             >
                               +
                             </Button>
@@ -526,52 +708,61 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                       </Card>
                     </div>
                   </div>
-                </div>
 
-                {/* Price Summary */}
-                <Card className="p-4 bg-gray-50">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Price Summary</h3>
-                  <div className="space-y-2">
-                    <div className="flex justify-between">
-                      <span>Subtotal</span>
-                      <span>₹{calculateTotal().subtotal}</span>
+                  {/* Price Summary */}
+                  <Card className="p-4 bg-white border border-gray-300">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-3">Price Summary</h4>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex justify-between">
+                        <span>Subtotal</span>
+                        <span>₹{calculateTotal().subtotal}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>GST (18%)</span>
+                        <span>₹{calculateTotal().gstAmount}</span>
+                      </div>
+                      <Separator />
+                      <div className="flex justify-between font-bold text-base">
+                        <span>Total</span>
+                        <span>₹{calculateTotal().total}</span>
+                      </div>
                     </div>
-                    <div className="flex justify-between">
-                      <span>GST (18%)</span>
-                      <span>₹{calculateTotal().gstAmount}</span>
-                    </div>
-                    <Separator />
-                    <div className="flex justify-between font-bold text-lg">
-                      <span>Total</span>
-                      <span>₹{calculateTotal().total}</span>
-                    </div>
-                  </div>
-                </Card>
+                    <Button
+                      onClick={handleBookNow}
+                      disabled={selectedRooms.length === 0}
+                      className="w-full mt-4 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-2"
+                    >
+                      Book Now
+                    </Button>
+                  </Card>
+                </div>
               </div>
             )}
           </div>
 
-          {/* Footer */}
-          <div className="flex-shrink-0 p-4 md:p-6 border-t bg-gray-50">
-            {currentStep === 'room-selection' && (
-              <Button
-                onClick={handleNext}
-                disabled={selectedRooms.length === 0}
-                className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-3 text-lg"
-              >
-                Next - Review Booking <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            )}
+          {/* Footer - Only for mobile/tablet */}
+          {isMobile && (
+            <div className="flex-shrink-0 p-4 md:p-6 border-t bg-gray-50">
+              {currentStep === 'room-selection' && (
+                <Button
+                  onClick={handleNext}
+                  disabled={selectedRooms.length === 0}
+                  className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-3 text-lg"
+                >
+                  Next - Review Booking <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              )}
 
-            {currentStep === 'booking-summary' && (
-              <Button
-                onClick={handleBookNow}
-                className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-3 text-lg"
-              >
-                Book Now <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            )}
-          </div>
+              {currentStep === 'booking-summary' && (
+                <Button
+                  onClick={handleBookNow}
+                  className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-3 text-lg"
+                >
+                  Book Now <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              )}
+            </div>
+          )}
         </div>
       </DialogContent>
     </Dialog>
