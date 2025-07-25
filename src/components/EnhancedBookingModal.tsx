@@ -216,6 +216,19 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
 
   const { toast } = useToast();
   const isMobile = useIsMobile();
+  
+  // For tablet view, we want to use desktop layout. Only use mobile flow for actual mobile devices
+  const [isActualMobile, setIsActualMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsActualMobile(window.innerWidth < 640); // sm breakpoint
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   const roomsArray = Object.values(ROOM_DATA);
   const nights = initialData.checkIn && initialData.checkOut ? 
@@ -380,7 +393,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
             </div>
 
             {/* Progress indicator */}
-            {isMobile && (
+            {isActualMobile && (
               <div className="flex justify-center mt-4">
                 <div className="flex space-x-2">
                   <div className={`w-3 h-3 rounded-full ${currentStep === 'room-selection' ? 'bg-orange-500' : 'bg-gray-300'}`} />
@@ -393,8 +406,8 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
 
           {/* Content */}
           <div className="flex-1 overflow-y-auto min-h-0">
-            {/* Mobile/Tablet: Multi-step flow */}
-            {isMobile && (
+            {/* Mobile only: Multi-step flow */}
+            {isActualMobile && (
               <>
                 {currentStep === 'room-selection' && (
                   <div className="p-4 md:p-6">
@@ -555,8 +568,8 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
               </>
             )}
 
-            {/* Desktop: Side-by-side layout with proper room selection */}
-            {!isMobile && (
+            {/* Desktop/Tablet: Side-by-side layout with proper room selection */}
+            {!isActualMobile && (
               <div className="flex h-full">
                 {/* Left side - Room Selection */}
                 <div className="flex-1 p-6 overflow-y-auto">
@@ -783,8 +796,8 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
             )}
           </div>
 
-          {/* Footer - Only for mobile/tablet */}
-          {isMobile && (
+          {/* Footer - Only for actual mobile devices */}
+          {isActualMobile && (
             <div className="flex-shrink-0 p-4 md:p-6 border-t bg-gray-50">
               {currentStep === 'room-selection' && (
                 <Button
