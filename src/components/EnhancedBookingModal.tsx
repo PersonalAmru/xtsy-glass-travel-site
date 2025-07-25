@@ -353,7 +353,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="w-full h-full max-w-none max-h-none md:max-w-7xl lg:max-w-[90vw] md:max-h-[95vh] md:h-auto bg-white border-0 p-0 overflow-hidden">
-        <div className="flex flex-col h-full max-h-[100vh] md:max-h-[95vh]">
+        <div className="flex flex-col h-full max-h-[100vh] md:max-h-[95vh]">{/* Fixed layout structure */}
           {/* Header */}
           <div className="flex-shrink-0 p-4 md:p-6 border-b bg-gradient-to-r from-orange-50 to-red-50">
             <div className="flex items-center gap-3 mb-4">
@@ -830,7 +830,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                     <Button
                       onClick={handleBookNow}
                       disabled={selectedRooms.length === 0}
-                      className="w-full mt-4 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-2"
+                      className="w-full mt-4 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-3 text-lg rounded-lg shadow-lg"
                     >
                       Book Now
                     </Button>
@@ -842,12 +842,12 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
 
           {/* Footer - Only for actual mobile devices */}
           {isActualMobile && (
-            <div className="flex-shrink-0 p-4 md:p-6 border-t bg-gray-50">
+            <div className="flex-shrink-0 p-4 border-t bg-white shadow-lg sticky bottom-0 z-10">
               {currentStep === 'room-selection' && (
                 <Button
                   onClick={handleNext}
                   disabled={selectedRooms.length === 0}
-                  className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-3 text-lg"
+                  className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-3 text-lg rounded-lg"
                 >
                   Next - Review Booking <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
@@ -856,7 +856,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
               {currentStep === 'booking-summary' && (
                 <Button
                   onClick={handleBookNow}
-                  className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-3 text-lg"
+                  className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-3 text-lg rounded-lg"
                 >
                   Book Now <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
