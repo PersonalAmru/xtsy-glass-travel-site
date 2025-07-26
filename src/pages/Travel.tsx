@@ -788,25 +788,38 @@ const Travel = () => {
                     </div>
                     
                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-6 gap-4 mb-8">
-                      {[
-                        { country: "Japan", flag: "🇯🇵", highlight: "Cherry Blossoms & Culture" },
-                        { country: "Thailand", flag: "🇹🇭", highlight: "Tropical Paradise" },
-                        { country: "Vietnam", flag: "🇻🇳", highlight: "Street Food & History" },
-                        { country: "South Korea", flag: "🇰🇷", highlight: "K-Culture & Tech" },
-                        { country: "Malaysia", flag: "🇲🇾", highlight: "Multicultural Hub" },
-                        { country: "Singapore", flag: "🇸🇬", highlight: "Modern City-State" },
-                        { country: "Indonesia", flag: "🇮🇩", highlight: "Island Adventures" },
-                        { country: "Philippines", flag: "🇵🇭", highlight: "Beach & Diving" },
-                        { country: "Cambodia", flag: "🇰🇭", highlight: "Ancient Temples" },
-                        { country: "Laos", flag: "🇱🇦", highlight: "Peaceful Landscapes" },
-                        { country: "Myanmar", flag: "🇲🇲", highlight: "Golden Pagodas" },
-                        { country: "Nepal", flag: "🇳🇵", highlight: "Himalayan Peaks" }
-                      ].map((item) => (
+                       {[
+                         { country: "Japan", flag: "🇯🇵", highlight: "Cherry Blossoms & Culture" },
+                         { country: "Thailand", flag: "🇹🇭", highlight: "Tropical Paradise" },
+                         { country: "Vietnam", flag: "🇻🇳", highlight: "Street Food & History" },
+                         { country: "South Korea", flag: "🇰🇷", highlight: "K-Culture & Tech" },
+                         { country: "Malaysia", flag: "🇲🇾", highlight: "Multicultural Hub" },
+                         { country: "Singapore", flag: "🇸🇬", highlight: "Modern City-State" },
+                         { country: "Indonesia", flag: "🇮🇩", highlight: "Island Adventures" },
+                         { country: "Philippines", flag: "🇵🇭", highlight: "Beach & Diving" },
+                         { country: "Cambodia", flag: "🇰🇭", highlight: "Ancient Temples" },
+                         { country: "Laos", flag: "🇱🇦", highlight: "Peaceful Landscapes" },
+                         { country: "Myanmar", flag: "🇲🇲", highlight: "Golden Pagodas" },
+                         { country: "Nepal", flag: "🇳🇵", highlight: "Himalayan Peaks" }
+                       ].map((item) => (
                          <Card key={item.country} className="group hover:shadow-lg transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200">
                            <CardContent className="p-4 text-center">
-                             <div className="text-4xl lg:text-5xl mb-2 font-emoji" style={{fontFamily: 'Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, system-ui'}}>{item.flag}</div>
-                             <h4 className="font-semibold text-gray-900 mb-1">{item.country}</h4>
-                             <p className="text-xs text-gray-600">{item.highlight}</p>
+                             <div 
+                               className="text-5xl lg:text-6xl mb-3 leading-none"
+                               style={{
+                                 fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif',
+                                 fontSize: 'clamp(3rem, 5vw, 4rem)',
+                                 lineHeight: '1',
+                                 display: 'block',
+                                 height: '4rem',
+                                 width: '100%',
+                                 overflow: 'visible'
+                               }}
+                             >
+                               {item.flag}
+                             </div>
+                             <h4 className="font-semibold text-gray-900 mb-1 text-lg">{item.country}</h4>
+                             <p className="text-sm text-gray-600 mb-3">{item.highlight}</p>
                              <div className="mt-2">
                                <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Soon</span>
                              </div>
@@ -826,25 +839,38 @@ const Travel = () => {
                     </div>
                     
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-6 gap-4 mb-8">
-                      {[
-                        { country: "France", flag: "🇫🇷", highlight: "Romance & Cuisine" },
-                        { country: "Italy", flag: "🇮🇹", highlight: "Art & History" },
-                        { country: "Spain", flag: "🇪🇸", highlight: "Passion & Festivals" },
-                        { country: "Germany", flag: "🇩🇪", highlight: "Castles & Beer" },
-                        { country: "Switzerland", flag: "🇨🇭", highlight: "Alpine Beauty" },
-                        { country: "Netherlands", flag: "🇳🇱", highlight: "Tulips & Canals" },
-                        { country: "United Kingdom", flag: "🇬🇧", highlight: "Royal Heritage" },
-                        { country: "Austria", flag: "🇦🇹", highlight: "Music & Mountains" },
-                        { country: "Czech Republic", flag: "🇨🇿", highlight: "Medieval Charm" },
-                        { country: "Greece", flag: "🇬🇷", highlight: "Ancient Wonders" },
-                        { country: "Portugal", flag: "🇵🇹", highlight: "Coastal Beauty" },
-                        { country: "Norway", flag: "🇳🇴", highlight: "Fjords & Aurora" }
-                      ].map((item) => (
+                       {[
+                         { country: "France", flag: "🇫🇷", highlight: "Romance & Cuisine" },
+                         { country: "Italy", flag: "🇮🇹", highlight: "Art & History" },
+                         { country: "Spain", flag: "🇪🇸", highlight: "Passion & Festivals" },
+                         { country: "Germany", flag: "🇩🇪", highlight: "Castles & Beer" },
+                         { country: "Switzerland", flag: "🇨🇭", highlight: "Alpine Beauty" },
+                         { country: "Netherlands", flag: "🇳🇱", highlight: "Tulips & Canals" },
+                         { country: "United Kingdom", flag: "🇬🇧", highlight: "Royal Heritage" },
+                         { country: "Austria", flag: "🇦🇹", highlight: "Music & Mountains" },
+                         { country: "Czech Republic", flag: "🇨🇿", highlight: "Medieval Charm" },
+                         { country: "Greece", flag: "🇬🇷", highlight: "Ancient Wonders" },
+                         { country: "Portugal", flag: "🇵🇹", highlight: "Coastal Beauty" },
+                         { country: "Norway", flag: "🇳🇴", highlight: "Fjords & Aurora" }
+                       ].map((item) => (
                          <Card key={item.country} className="group hover:shadow-lg transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200">
                            <CardContent className="p-4 text-center">
-                             <div className="text-4xl lg:text-5xl mb-2 font-emoji" style={{fontFamily: 'Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, system-ui'}}>{item.flag}</div>
-                             <h4 className="font-semibold text-gray-900 mb-1">{item.country}</h4>
-                             <p className="text-xs text-gray-600">{item.highlight}</p>
+                             <div 
+                               className="text-5xl lg:text-6xl mb-3 leading-none"
+                               style={{
+                                 fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif',
+                                 fontSize: 'clamp(3rem, 5vw, 4rem)',
+                                 lineHeight: '1',
+                                 display: 'block',
+                                 height: '4rem',
+                                 width: '100%',
+                                 overflow: 'visible'
+                               }}
+                             >
+                               {item.flag}
+                             </div>
+                             <h4 className="font-semibold text-gray-900 mb-1 text-lg">{item.country}</h4>
+                             <p className="text-sm text-gray-600 mb-3">{item.highlight}</p>
                              <div className="mt-2">
                                <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Soon</span>
                              </div>
