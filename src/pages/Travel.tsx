@@ -802,16 +802,16 @@ const Travel = () => {
                         { country: "Myanmar", flag: "🇲🇲", highlight: "Golden Pagodas" },
                         { country: "Nepal", flag: "🇳🇵", highlight: "Himalayan Peaks" }
                       ].map((item) => (
-                        <Card key={item.country} className="group hover:shadow-lg transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200">
-                          <CardContent className="p-4 text-center">
-                            <div className="text-3xl mb-2">{item.flag}</div>
-                            <h4 className="font-semibold text-gray-900 mb-1">{item.country}</h4>
-                            <p className="text-xs text-gray-600">{item.highlight}</p>
-                            <div className="mt-2">
-                              <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Soon</span>
-                            </div>
-                          </CardContent>
-                        </Card>
+                         <Card key={item.country} className="group hover:shadow-lg transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200">
+                           <CardContent className="p-4 text-center">
+                             <div className="text-4xl lg:text-5xl mb-2 font-emoji" style={{fontFamily: 'Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, system-ui'}}>{item.flag}</div>
+                             <h4 className="font-semibold text-gray-900 mb-1">{item.country}</h4>
+                             <p className="text-xs text-gray-600">{item.highlight}</p>
+                             <div className="mt-2">
+                               <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Soon</span>
+                             </div>
+                           </CardContent>
+                         </Card>
                       ))}
                     </div>
                   </div>
@@ -840,16 +840,16 @@ const Travel = () => {
                         { country: "Portugal", flag: "🇵🇹", highlight: "Coastal Beauty" },
                         { country: "Norway", flag: "🇳🇴", highlight: "Fjords & Aurora" }
                       ].map((item) => (
-                        <Card key={item.country} className="group hover:shadow-lg transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200">
-                          <CardContent className="p-4 text-center">
-                            <div className="text-3xl mb-2">{item.flag}</div>
-                            <h4 className="font-semibold text-gray-900 mb-1">{item.country}</h4>
-                            <p className="text-xs text-gray-600">{item.highlight}</p>
-                            <div className="mt-2">
-                              <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Soon</span>
-                            </div>
-                          </CardContent>
-                        </Card>
+                         <Card key={item.country} className="group hover:shadow-lg transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200">
+                           <CardContent className="p-4 text-center">
+                             <div className="text-4xl lg:text-5xl mb-2 font-emoji" style={{fontFamily: 'Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, system-ui'}}>{item.flag}</div>
+                             <h4 className="font-semibold text-gray-900 mb-1">{item.country}</h4>
+                             <p className="text-xs text-gray-600">{item.highlight}</p>
+                             <div className="mt-2">
+                               <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Soon</span>
+                             </div>
+                           </CardContent>
+                         </Card>
                       ))}
                     </div>
                   </div>
