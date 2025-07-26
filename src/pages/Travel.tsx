@@ -787,7 +787,7 @@ const Travel = () => {
                       <p className="text-gray-600">Discover the diverse cultures and landscapes of Asia</p>
                     </div>
                     
-                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-8">
+                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-6 gap-4 mb-8">
                       {[
                         { country: "Japan", flag: "🇯🇵", highlight: "Cherry Blossoms & Culture" },
                         { country: "Thailand", flag: "🇹🇭", highlight: "Tropical Paradise" },
@@ -825,7 +825,7 @@ const Travel = () => {
                       <p className="text-gray-600">Experience the rich history and diverse cultures of Europe</p>
                     </div>
                     
-                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-8">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-6 gap-4 mb-8">
                       {[
                         { country: "France", flag: "🇫🇷", highlight: "Romance & Cuisine" },
                         { country: "Italy", flag: "🇮🇹", highlight: "Art & History" },
