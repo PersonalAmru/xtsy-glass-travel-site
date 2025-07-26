@@ -587,7 +587,11 @@ const Travel = () => {
                   <Button
                     onClick={() => setActiveTab('domestic')}
                     variant={activeTab === 'domestic' ? 'default' : 'ghost'}
-                    className="mr-2"
+                    className={`mr-2 ${
+                      activeTab === 'domestic' 
+                        ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white hover:from-orange-600 hover:to-red-700' 
+                        : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
+                    }`}
                   >
                     <MapPin className="h-4 w-4 mr-2" />
                     Domestic Travel
@@ -595,6 +599,11 @@ const Travel = () => {
                   <Button
                     onClick={() => setActiveTab('international')}
                     variant={activeTab === 'international' ? 'default' : 'ghost'}
+                    className={`${
+                      activeTab === 'international' 
+                        ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white hover:from-orange-600 hover:to-red-700' 
+                        : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
+                    }`}
                   >
                     <Globe className="h-4 w-4 mr-2" />
                     International Travel
@@ -614,58 +623,58 @@ const Travel = () => {
                         <span className="font-semibold text-gray-900">Filters:</span>
                       </div>
                       
-                      <div className="flex flex-wrap gap-4">
-                        <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                          <SelectTrigger className="w-40">
-                            <SelectValue placeholder="Category" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {categories.map((category) => (
-                              <SelectItem key={category.id} value={category.id}>
-                                {category.label}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                       <div className="flex flex-wrap gap-4">
+                         <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                           <SelectTrigger className="w-40 bg-white text-gray-900 border-gray-300">
+                             <SelectValue placeholder="Category" />
+                           </SelectTrigger>
+                           <SelectContent>
+                             {categories.map((category) => (
+                               <SelectItem key={category.id} value={category.id}>
+                                 {category.label}
+                               </SelectItem>
+                             ))}
+                           </SelectContent>
+                         </Select>
 
-                        <Select value={difficultyFilter} onValueChange={setDifficultyFilter}>
-                          <SelectTrigger className="w-40">
-                            <SelectValue placeholder="Difficulty" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {difficulties.map((difficulty) => (
-                              <SelectItem key={difficulty} value={difficulty}>
-                                {difficulty === "all" ? "All Levels" : difficulty}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                         <Select value={difficultyFilter} onValueChange={setDifficultyFilter}>
+                           <SelectTrigger className="w-40 bg-white text-gray-900 border-gray-300">
+                             <SelectValue placeholder="Difficulty" />
+                           </SelectTrigger>
+                           <SelectContent>
+                             {difficulties.map((difficulty) => (
+                               <SelectItem key={difficulty} value={difficulty}>
+                                 {difficulty === "all" ? "All Levels" : difficulty}
+                               </SelectItem>
+                             ))}
+                           </SelectContent>
+                         </Select>
 
-                        <Select value={daysFilter} onValueChange={setDaysFilter}>
-                          <SelectTrigger className="w-40">
-                            <SelectValue placeholder="Duration" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {days.map((day) => (
-                              <SelectItem key={day} value={day}>
-                                {day === "all" ? "Any Duration" : day}
-                                </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                         <Select value={daysFilter} onValueChange={setDaysFilter}>
+                           <SelectTrigger className="w-40 bg-white text-gray-900 border-gray-300">
+                             <SelectValue placeholder="Duration" />
+                           </SelectTrigger>
+                           <SelectContent>
+                             {days.map((day) => (
+                               <SelectItem key={day} value={day}>
+                                 {day === "all" ? "Any Duration" : day}
+                                 </SelectItem>
+                             ))}
+                           </SelectContent>
+                         </Select>
 
-                        <Select value={locationFilter} onValueChange={setLocationFilter}>
-                          <SelectTrigger className="w-40">
-                            <SelectValue placeholder="Location" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {locations.map((location) => (
-                              <SelectItem key={location} value={location}>
-                                {location === "all" ? "All Locations" : location}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                         <Select value={locationFilter} onValueChange={setLocationFilter}>
+                           <SelectTrigger className="w-40 bg-white text-gray-900 border-gray-300">
+                             <SelectValue placeholder="Location" />
+                           </SelectTrigger>
+                           <SelectContent>
+                             {locations.map((location) => (
+                               <SelectItem key={location} value={location}>
+                                 {location === "all" ? "All Locations" : location}
+                               </SelectItem>
+                             ))}
+                           </SelectContent>
+                         </Select>
                       </div>
                       
                       <Button 
