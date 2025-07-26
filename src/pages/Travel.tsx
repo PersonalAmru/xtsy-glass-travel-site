@@ -117,6 +117,8 @@ const Travel = () => {
     if (tab === 'domestic' || tab === 'international') {
       setActiveTab(tab);
     }
+    // Scroll to top when navigating to this page
+    window.scrollTo(0, 0);
   }, [location.search]);
 
   const handlePackageClick = (itinerary: any) => {
