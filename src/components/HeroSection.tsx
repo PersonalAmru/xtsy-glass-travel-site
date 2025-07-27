@@ -107,14 +107,14 @@ const HeroSection = () => {
         {/* Main Content */}
         <div className="responsive-container relative z-10 text-center text-white w-full">
           {/* Hero Text with Floating Languages */}
-          <div className="mb-6 sm:mb-8 md:mb-10 lg:mb-12">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8 md:mb-10 lg:mb-12 bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent animate-fade-in">
+          <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16 mt-4 sm:mt-6 md:mt-8 lg:mt-12">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 sm:mb-10 md:mb-12 lg:mb-16 bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent animate-fade-in">
               Live the Shillong Vibe
             </h1>
             
             {/* Floating Languages Section */}
-            <div className="relative h-16 sm:h-20 md:h-24 lg:h-32 flex flex-col items-center justify-center">
-              <div className="relative h-6 sm:h-8 md:h-12 lg:h-16 flex items-center justify-center mb-2 sm:mb-3 md:mb-4">
+            <div className="relative h-20 sm:h-24 md:h-28 lg:h-36 flex flex-col items-center justify-center">
+              <div className="relative h-8 sm:h-10 md:h-14 lg:h-18 flex items-center justify-center mb-4 sm:mb-5 md:mb-6 lg:mb-8">
                 <span 
                   key={currentLanguageIndex}
                   className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white animate-fade-in transition-opacity duration-500"

@@ -352,8 +352,8 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="w-full h-full max-w-none max-h-none md:max-w-7xl lg:max-w-[90vw] md:max-h-[95vh] md:h-auto bg-white border-0 p-0 overflow-hidden">
-        <div className="flex flex-col h-full max-h-[100vh] md:max-h-[95vh]">{/* Fixed layout structure */}
+        <DialogContent className="w-full h-full max-w-none max-h-none md:max-w-7xl lg:max-w-[90vw] md:max-h-[95vh] md:h-auto bg-white border-0 p-0 overflow-hidden">
+        <div className="flex flex-col h-full max-h-[100vh] md:max-h-[95vh] pb-safe-bottom">{/* Fixed layout structure with safe bottom */}
           {/* Header */}
           <div className="flex-shrink-0 p-4 md:p-6 border-b bg-gradient-to-r from-orange-50 to-red-50">
             <div className="flex items-center gap-3 mb-4">
@@ -375,7 +375,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
               >
                 <X className="h-5 w-5 text-gray-900" />
               </Button>
-              <DialogTitle className="text-xl md:text-2xl font-bold text-black">
+              <DialogTitle className="text-lg md:text-xl font-bold text-black">
                 {currentStep === 'room-selection' && 'Select Your Room'}
                 {currentStep === 'booking-summary' && 'Booking Summary'}
                 {currentStep === 'guest-details' && 'Guest Details'}
@@ -410,7 +410,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
             {isActualMobile && (
               <>
                 {currentStep === 'room-selection' && (
-                  <div className="p-4 space-y-6">
+                  <div className="p-4 space-y-6 pb-24">
                     {/* Live the Shillong Vibe Hero Section - Mobile */}
                     <div className="relative h-32 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl overflow-hidden">
                       <div className="absolute inset-0 bg-black/20"></div>
@@ -470,7 +470,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                 )}
 
                 {currentStep === 'booking-summary' && (
-                  <div className="p-4 md:p-6 space-y-6">
+                  <div className="p-4 md:p-6 space-y-6 pb-24">
                     {/* Selected Rooms */}
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-4">Selected Rooms</h3>
@@ -842,7 +842,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
 
           {/* Footer - Only for actual mobile devices */}
           {isActualMobile && (
-            <div className="flex-shrink-0 p-4 border-t bg-white shadow-lg sticky bottom-0 z-10">
+            <div className="flex-shrink-0 p-4 border-t bg-white shadow-lg fixed bottom-0 left-0 right-0 z-50">
               {currentStep === 'room-selection' && (
                 <Button
                   onClick={handleNext}

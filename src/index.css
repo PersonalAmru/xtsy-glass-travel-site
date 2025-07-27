@@ -4,6 +4,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Enhanced emoji support for better flag display */
+.flag-container {
+  font-variant-emoji: emoji;
+  unicode-bidi: isolate;
+  -webkit-font-feature-settings: "liga" on, "kern" on;
+  font-feature-settings: "liga" on, "kern" on;
+}
+
+/* Force emoji font display on all browsers */
+.flag-container * {
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "Twemoji Mozilla", sans-serif !important;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
