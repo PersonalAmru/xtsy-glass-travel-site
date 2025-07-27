@@ -246,7 +246,7 @@ Until then—safe travels & pack light 🧳🌿
 
             {/* Scrollable Form Content */}
             <div className="flex-1 overflow-y-auto min-h-0">
-              <div className="p-4 md:p-6 space-y-6 pb-32 md:pb-6">
+              <div className="p-4 md:p-6 space-y-6 pb-40 md:pb-6">
                 {/* Primary Guest Info */}
                 <div className="space-y-4">
                   <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
