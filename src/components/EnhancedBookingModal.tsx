@@ -410,7 +410,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
             {isActualMobile && (
               <>
                 {currentStep === 'room-selection' && (
-                  <div className="p-4 space-y-6 pb-24">
+                  <div className="p-4 space-y-6 pb-32">
                     {/* Live the Shillong Vibe Hero Section - Mobile */}
                     <div className="relative h-32 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl overflow-hidden">
                       <div className="absolute inset-0 bg-black/20"></div>
@@ -470,7 +470,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                 )}
 
                 {currentStep === 'booking-summary' && (
-                  <div className="p-4 md:p-6 space-y-6 pb-24">
+                  <div className="p-4 md:p-6 space-y-6 pb-32">
                     {/* Selected Rooms */}
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-4">Selected Rooms</h3>
