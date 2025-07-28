@@ -210,8 +210,8 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
     breakfast: 0,
     dinnerVeg: 0,
     dinnerNonVeg: 0,
-    transportation: false,
-    itineraryPlanning: false,
+    transportation: 0,
+    itinerary: 0,
   });
 
   const { toast } = useToast();
@@ -241,7 +241,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
       return total + (basePrice * nights);
     }, 0);
 
-    const addOnTotal = (addOns.breakfast * 150 + addOns.dinnerVeg * 300 + addOns.dinnerNonVeg * 300) * nights;
+    const addOnTotal = (addOns.breakfast * 125 + addOns.dinnerVeg * 180 + addOns.dinnerNonVeg * 240 + addOns.transportation * 0 + addOns.itinerary * 0) * nights;
     const subtotal = roomTotal + addOnTotal;
     const gstAmount = Math.round(subtotal * 0.18);
     const total = subtotal + gstAmount;
@@ -504,8 +504,8 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                           <Card className="p-4 bg-white border border-gray-200">
                             <div className="flex justify-between items-center">
                               <div>
-                                <h4 className="font-medium text-gray-900">Extra Breakfast</h4>
-                                <p className="text-sm text-gray-600">₹150 per person per day</p>
+                                <h4 className="font-medium text-gray-900">Breakfast</h4>
+                                <p className="text-sm text-gray-600">₹125 per person per day</p>
                               </div>
                               <div className="flex items-center gap-2">
                                 <Button 
@@ -532,8 +532,8 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                           <Card className="p-4 bg-white border border-gray-200">
                             <div className="flex justify-between items-center">
                               <div>
-                                <h4 className="font-medium text-gray-900">Dinner (Veg)</h4>
-                                <p className="text-sm text-gray-600">₹300 per person per day</p>
+                                <h4 className="font-medium text-gray-900">Dinner - Veg</h4>
+                                <p className="text-sm text-gray-600">₹180 per person per day</p>
                               </div>
                               <div className="flex items-center gap-2">
                                 <Button 
@@ -560,8 +560,8 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                           <Card className="p-4 bg-white border border-gray-200">
                             <div className="flex justify-between items-center">
                               <div>
-                                <h4 className="font-medium text-gray-900">Dinner (Non-Veg)</h4>
-                                <p className="text-sm text-gray-600">₹300 per person per day</p>
+                                <h4 className="font-medium text-gray-900">Dinner - Non Veg</h4>
+                                <p className="text-sm text-gray-600">₹240 per person per day</p>
                               </div>
                               <div className="flex items-center gap-2">
                                 <Button 
@@ -583,12 +583,68 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                                 </Button>
                               </div>
                             </div>
-                          </Card>
-                        </div>
-                      </div>
-                    </div>
+                           </Card>
 
-                    {/* Price Summary */}
+                          <Card className="p-4 bg-white border border-gray-200">
+                            <div className="flex justify-between items-center">
+                              <div>
+                                <h4 className="font-medium text-gray-900">Transportation arrangement</h4>
+                                <p className="text-sm text-gray-600">On request basis</p>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <Button 
+                                  variant="outline" 
+                                  size="sm" 
+                                  onClick={() => setAddOns(prev => ({ ...prev, transportation: Math.max(0, prev.transportation - 1) }))}
+                                  className="bg-white text-black border-black hover:bg-gray-100"
+                                >
+                                  -
+                                </Button>
+                                <span className="w-8 text-center bg-white text-black font-bold border border-black rounded px-2 py-1">{addOns.transportation}</span>
+                                <Button 
+                                  variant="outline" 
+                                  size="sm" 
+                                  onClick={() => setAddOns(prev => ({ ...prev, transportation: prev.transportation + 1 }))}
+                                  className="bg-white text-black border-black hover:bg-gray-100"
+                                >
+                                  +
+                                </Button>
+                              </div>
+                            </div>
+                          </Card>
+
+                          <Card className="p-4 bg-white border border-gray-200">
+                            <div className="flex justify-between items-center">
+                              <div>
+                                <h4 className="font-medium text-gray-900">Itinerary planning</h4>
+                                <p className="text-sm text-gray-600">On request basis</p>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <Button 
+                                  variant="outline" 
+                                  size="sm" 
+                                  onClick={() => setAddOns(prev => ({ ...prev, itinerary: Math.max(0, prev.itinerary - 1) }))}
+                                  className="bg-white text-black border-black hover:bg-gray-100"
+                                >
+                                  -
+                                </Button>
+                                <span className="w-8 text-center bg-white text-black font-bold border border-black rounded px-2 py-1">{addOns.itinerary}</span>
+                                <Button 
+                                  variant="outline" 
+                                  size="sm" 
+                                  onClick={() => setAddOns(prev => ({ ...prev, itinerary: prev.itinerary + 1 }))}
+                                  className="bg-white text-black border-black hover:bg-gray-100"
+                                >
+                                  +
+                                </Button>
+                              </div>
+                            </div>
+                          </Card>
+                         </div>
+                       </div>
+                     </div>
+
+                     {/* Price Summary */}
                     <Card className="p-4 bg-gray-50">
                       <h3 className="text-lg font-semibold text-gray-900 mb-4">Price Summary</h3>
                       <div className="space-y-2">

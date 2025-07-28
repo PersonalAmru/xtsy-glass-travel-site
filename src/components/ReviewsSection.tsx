@@ -77,7 +77,7 @@ const ReviewsSection = () => {
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-16">
           <div className="inline-block p-6 bg-white/10 backdrop-blur-sm rounded-2xl shadow-2xl mb-6">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent mb-4 font-playfair">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4 font-playfair">
               Guest Reviews
             </h2>
             <div className="w-32 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 mx-auto rounded-full" />

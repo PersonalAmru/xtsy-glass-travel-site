@@ -58,7 +58,7 @@ const PropertySection = ({ title, description, rooms, propertyType, onSelectRoom
       {/* Property Header - Center Aligned */}
       <div className="section-header">
         <div className="section-title-card">
-          <h3 className="text-fluid-xl sm:text-fluid-2xl md:text-fluid-3xl lg:text-fluid-4xl font-bold bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent mb-2 font-playfair">
+          <h3 className="text-2xl font-bold text-gray-900 mb-2 font-playfair">
             {title}
           </h3>
           <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-orange-500 to-red-600 mx-auto rounded-full" />

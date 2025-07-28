@@ -188,7 +188,7 @@ const RoomsSection = () => {
       <div className="responsive-container relative z-10">
         <div className="section-header">
           <div className="section-title-card">
-            <h2 className="text-fluid-2xl sm:text-fluid-3xl md:text-fluid-4xl lg:text-fluid-5xl font-bold bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent mb-4 font-playfair">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4 font-playfair">
               Our Properties
             </h2>
             <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />

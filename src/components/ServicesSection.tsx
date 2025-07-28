@@ -103,7 +103,7 @@ const ServicesSection = () => {
       <div className="responsive-container relative z-10">
         <div className="section-header">
           <div className="section-title-card">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent mb-4 font-playfair">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4 font-playfair">
               Amenities & Services
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
