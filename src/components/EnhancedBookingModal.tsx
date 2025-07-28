@@ -213,6 +213,9 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
     transportation: 0,
     itinerary: 0,
   });
+  const [promoCode, setPromoCode] = useState('');
+  const [promoDiscount, setPromoDiscount] = useState(0);
+  const [promoApplied, setPromoApplied] = useState(false);
 
   const { toast } = useToast();
   const isMobile = useIsMobile();
@@ -243,10 +246,45 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
 
     const addOnTotal = (addOns.breakfast * 125 + addOns.dinnerVeg * 180 + addOns.dinnerNonVeg * 240 + addOns.transportation * 0 + addOns.itinerary * 0) * nights;
     const subtotal = roomTotal + addOnTotal;
-    const gstAmount = Math.round(subtotal * 0.18);
-    const total = subtotal + gstAmount;
+    const discountAmount = promoApplied ? Math.round(subtotal * (promoDiscount / 100)) : 0;
+    const afterDiscount = subtotal - discountAmount;
+    const gstAmount = Math.round(afterDiscount * 0.18);
+    const total = afterDiscount + gstAmount;
 
-    return { subtotal, gstAmount, total };
+    return { subtotal, discountAmount, afterDiscount, gstAmount, total };
+  };
+
+  const applyPromoCode = () => {
+    const validPromoCodes = {
+      'XTSY10': 10,
+      'WELCOME15': 15,
+      'MEGHALAYA20': 20,
+    };
+
+    if (validPromoCodes[promoCode.toUpperCase()]) {
+      setPromoDiscount(validPromoCodes[promoCode.toUpperCase()]);
+      setPromoApplied(true);
+      toast({
+        title: "Promo code applied!",
+        description: `You got ${validPromoCodes[promoCode.toUpperCase()]}% discount`,
+      });
+    } else {
+      toast({
+        title: "Invalid promo code",
+        description: "Please check your promo code and try again",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const removePromoCode = () => {
+    setPromoCode('');
+    setPromoDiscount(0);
+    setPromoApplied(false);
+    toast({
+      title: "Promo code removed",
+      description: "Discount has been removed from your booking",
+    });
   };
 
   const handleRoomSelect = (roomId: string) => {
@@ -315,8 +353,8 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
       return;
     }
 
-    const { subtotal, gstAmount, total } = calculateTotal();
-
+    const { subtotal, discountAmount, afterDiscount, gstAmount, total } = calculateTotal();
+    
     const bookingData = {
       checkIn: initialData.checkIn,
       checkOut: initialData.checkOut,
@@ -326,9 +364,9 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
       totalAmount: total,
       gstAmount,
       subtotal,
-      discountAmount: 0,
-      couponCode: "",
-      couponDiscount: 0,
+      discountAmount,
+      couponCode: promoCode,
+      couponDiscount: promoDiscount,
       addOns
     };
 
@@ -644,23 +682,69 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                        </div>
                      </div>
 
-                     {/* Price Summary */}
-                    <Card className="p-4 bg-gray-50">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Price Summary</h3>
-                      <div className="space-y-2">
-                        <div className="flex justify-between">
-                          <span>Subtotal</span>
-                          <span>₹{calculateTotal().subtotal}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span>GST (18%)</span>
-                          <span>₹{calculateTotal().gstAmount}</span>
-                        </div>
-                        <Separator />
-                        <div className="flex justify-between font-bold text-lg">
-                          <span>Total</span>
-                          <span>₹{calculateTotal().total}</span>
-                        </div>
+                      {/* Price Summary */}
+                     <Card className="p-4 bg-gray-50">
+                       <h3 className="text-lg font-semibold text-gray-900 mb-4">Price Summary</h3>
+                       
+                       {/* Promocode Section */}
+                       <div className="mb-4 p-3 bg-white rounded-lg border">
+                         <label className="block text-sm font-medium text-gray-700 mb-2">Promo Code</label>
+                         {!promoApplied ? (
+                           <div className="flex gap-2">
+                             <input
+                               type="text"
+                               value={promoCode}
+                               onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
+                               placeholder="Enter promo code"
+                               className="flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                             />
+                             <Button 
+                               onClick={applyPromoCode}
+                               disabled={!promoCode.trim()}
+                               size="sm"
+                               className="bg-orange-500 hover:bg-orange-600 text-white"
+                             >
+                               Apply
+                             </Button>
+                           </div>
+                         ) : (
+                           <div className="flex items-center justify-between bg-green-50 border border-green-200 rounded-md p-2">
+                             <div className="flex items-center gap-2">
+                               <span className="text-green-600 font-medium text-sm">{promoCode}</span>
+                               <span className="text-green-600 text-sm">({promoDiscount}% off)</span>
+                             </div>
+                             <Button 
+                               onClick={removePromoCode}
+                               size="sm"
+                               variant="ghost"
+                               className="text-red-500 hover:text-red-700 h-6 w-6 p-0"
+                             >
+                               ×
+                             </Button>
+                           </div>
+                         )}
+                       </div>
+
+                       <div className="space-y-2">
+                         <div className="flex justify-between">
+                           <span>Subtotal</span>
+                           <span>₹{calculateTotal().subtotal}</span>
+                         </div>
+                         {promoApplied && (
+                           <div className="flex justify-between text-green-600">
+                             <span>Discount ({promoCode})</span>
+                             <span>-₹{calculateTotal().discountAmount}</span>
+                           </div>
+                         )}
+                         <div className="flex justify-between">
+                           <span>GST (18%)</span>
+                           <span>₹{calculateTotal().gstAmount}</span>
+                         </div>
+                         <Separator />
+                         <div className="flex justify-between font-bold text-lg">
+                           <span>Total</span>
+                           <span>₹{calculateTotal().total}</span>
+                         </div>
                       </div>
                     </Card>
                   </div>
@@ -777,8 +861,8 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                         <div className="space-y-2">
                           <div className="flex justify-between items-center">
                             <div>
-                              <h5 className="font-medium text-gray-900 text-sm">Extra Breakfast</h5>
-                              <p className="text-xs text-gray-600">₹150 per person per day</p>
+                              <h5 className="font-medium text-gray-900 text-sm">Breakfast</h5>
+                              <p className="text-xs text-gray-600">₹125 per person per day</p>
                             </div>
                           </div>
                           <div className="flex items-center justify-center gap-2">
@@ -807,8 +891,8 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                         <div className="space-y-2">
                           <div className="flex justify-between items-center">
                             <div>
-                              <h5 className="font-medium text-gray-900 text-sm">Dinner (Veg)</h5>
-                              <p className="text-xs text-gray-600">₹300 per person per day</p>
+                              <h5 className="font-medium text-gray-900 text-sm">Dinner - Veg</h5>
+                              <p className="text-xs text-gray-600">₹180 per person per day</p>
                             </div>
                           </div>
                           <div className="flex items-center justify-center gap-2">
@@ -837,8 +921,8 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                         <div className="space-y-2">
                           <div className="flex justify-between items-center">
                             <div>
-                              <h5 className="font-medium text-gray-900 text-sm">Dinner (Non-Veg)</h5>
-                              <p className="text-xs text-gray-600">₹300 per person per day</p>
+                              <h5 className="font-medium text-gray-900 text-sm">Dinner - Non Veg</h5>
+                              <p className="text-xs text-gray-600">₹240 per person per day</p>
                             </div>
                           </div>
                           <div className="flex items-center justify-center gap-2">
@@ -861,6 +945,66 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                             </Button>
                           </div>
                         </div>
+                       </Card>
+
+                      <Card className="p-3 bg-white border border-gray-200">
+                        <div className="space-y-2">
+                          <div className="flex justify-between items-center">
+                            <div>
+                              <h5 className="font-medium text-gray-900 text-sm">Transportation arrangement</h5>
+                              <p className="text-xs text-gray-600">On request basis</p>
+                            </div>
+                          </div>
+                          <div className="flex items-center justify-center gap-2">
+                            <Button 
+                              variant="outline" 
+                              size="sm" 
+                              onClick={() => setAddOns(prev => ({ ...prev, transportation: Math.max(0, prev.transportation - 1) }))}
+                              className="bg-white text-black border-black hover:bg-gray-100 h-8 w-8 p-0"
+                            >
+                              -
+                            </Button>
+                            <span className="w-8 text-center bg-white text-black font-bold border border-black rounded px-2 py-1 text-sm">{addOns.transportation}</span>
+                            <Button 
+                              variant="outline" 
+                              size="sm" 
+                              onClick={() => setAddOns(prev => ({ ...prev, transportation: prev.transportation + 1 }))}
+                              className="bg-white text-black border-black hover:bg-gray-100 h-8 w-8 p-0"
+                            >
+                              +
+                            </Button>
+                          </div>
+                        </div>
+                      </Card>
+
+                      <Card className="p-3 bg-white border border-gray-200">
+                        <div className="space-y-2">
+                          <div className="flex justify-between items-center">
+                            <div>
+                              <h5 className="font-medium text-gray-900 text-sm">Itinerary planning</h5>
+                              <p className="text-xs text-gray-600">On request basis</p>
+                            </div>
+                          </div>
+                          <div className="flex items-center justify-center gap-2">
+                            <Button 
+                              variant="outline" 
+                              size="sm" 
+                              onClick={() => setAddOns(prev => ({ ...prev, itinerary: Math.max(0, prev.itinerary - 1) }))}
+                              className="bg-white text-black border-black hover:bg-gray-100 h-8 w-8 p-0"
+                            >
+                              -
+                            </Button>
+                            <span className="w-8 text-center bg-white text-black font-bold border border-black rounded px-2 py-1 text-sm">{addOns.itinerary}</span>
+                            <Button 
+                              variant="outline" 
+                              size="sm" 
+                              onClick={() => setAddOns(prev => ({ ...prev, itinerary: prev.itinerary + 1 }))}
+                              className="bg-white text-black border-black hover:bg-gray-100 h-8 w-8 p-0"
+                            >
+                              +
+                            </Button>
+                          </div>
+                        </div>
                       </Card>
                     </div>
                   </div>
@@ -868,11 +1012,57 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                   {/* Price Summary */}
                   <Card className="p-4 bg-white border border-gray-300">
                     <h4 className="text-lg font-semibold text-gray-900 mb-3">Price Summary</h4>
+                    
+                    {/* Promocode Section */}
+                    <div className="mb-4 p-3 bg-gray-50 rounded-lg border">
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Promo Code</label>
+                      {!promoApplied ? (
+                        <div className="flex gap-2">
+                          <input
+                            type="text"
+                            value={promoCode}
+                            onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
+                            placeholder="Enter promo code"
+                            className="flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                          />
+                          <Button 
+                            onClick={applyPromoCode}
+                            disabled={!promoCode.trim()}
+                            size="sm"
+                            className="bg-orange-500 hover:bg-orange-600 text-white"
+                          >
+                            Apply
+                          </Button>
+                        </div>
+                      ) : (
+                        <div className="flex items-center justify-between bg-green-50 border border-green-200 rounded-md p-2">
+                          <div className="flex items-center gap-2">
+                            <span className="text-green-600 font-medium text-sm">{promoCode}</span>
+                            <span className="text-green-600 text-sm">({promoDiscount}% off)</span>
+                          </div>
+                          <Button 
+                            onClick={removePromoCode}
+                            size="sm"
+                            variant="ghost"
+                            className="text-red-500 hover:text-red-700 h-6 w-6 p-0"
+                          >
+                            ×
+                          </Button>
+                        </div>
+                      )}
+                    </div>
+
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
                         <span>Subtotal</span>
                         <span>₹{calculateTotal().subtotal}</span>
                       </div>
+                      {promoApplied && (
+                        <div className="flex justify-between text-green-600">
+                          <span>Discount ({promoCode})</span>
+                          <span>-₹{calculateTotal().discountAmount}</span>
+                        </div>
+                      )}
                       <div className="flex justify-between">
                         <span>GST (18%)</span>
                         <span>₹{calculateTotal().gstAmount}</span>
