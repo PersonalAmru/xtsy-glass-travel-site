@@ -72,31 +72,31 @@ const Header = () => {
             </Link>
 
             {/* Desktop Navigation - All items aligned right */}
-            <nav className="hidden md:flex items-center space-x-8 ml-auto">
+            <nav className="hidden md:flex items-center space-x-2 ml-auto">
               <Link 
                 to="/" 
-                className="text-gray-800 hover:text-primary transition-colors"
+                className="px-3 py-2 text-gray-800 hover:text-white hover:bg-gray-800 rounded-md transition-all duration-200 font-medium"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
                 Home
               </Link>
               <Link 
                 to="/about" 
-                className="text-gray-800 hover:text-primary transition-colors"
+                className="px-3 py-2 text-gray-800 hover:text-white hover:bg-gray-800 rounded-md transition-all duration-200 font-medium"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
                 About
               </Link>
               <Link 
                 to="/gallery" 
-                className="text-gray-800 hover:text-primary transition-colors"
+                className="px-3 py-2 text-gray-800 hover:text-white hover:bg-gray-800 rounded-md transition-all duration-200 font-medium"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
                 Gallery
               </Link>
               <Link 
                 to="/deals" 
-                className="text-gray-800 hover:text-primary transition-colors"
+                className="px-3 py-2 text-gray-800 hover:text-white hover:bg-gray-800 rounded-md transition-all duration-200 font-medium"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
                 Deals
@@ -104,7 +104,7 @@ const Header = () => {
               
               <button
                 onClick={() => setIsTravelModalOpen(true)}
-                className="text-gray-800 hover:text-primary transition-colors"
+                className="px-3 py-2 text-gray-800 hover:text-white hover:bg-gray-800 rounded-md transition-all duration-200 font-medium"
               >
                 Travel
               </button>
