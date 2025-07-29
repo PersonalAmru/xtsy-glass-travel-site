@@ -5,16 +5,32 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 
 const DealsSection = () => {
-  const [activeTab, setActiveTab] = useState("same-day-discount");
+  const [activeTab, setActiveTab] = useState("xtsy10");
 
   const deals = [
     {
-      id: "same-day-discount",
+      id: "xtsy10",
       icon: Tag,
-      title: "XTSY-DEAL Same Day Discount",
-      description: "10% off for groups of 4+ beds (same day or within 7 days)",
-      details: "Get instant 10% discount on your booking when you book 4 or more beds from XTSY Travellers Hostel! This exclusive offer is available for bookings made on the same day or with check-in dates within 7 days. Simply use the coupon code 'XTSY-DEAL' during booking and enjoy amazing savings on your Shillong adventure!",
+      title: "XTSY10 - 10% Discount",
+      description: "Min 4 guests, 4 beds, 2+ nights",
+      details: "Get 10% discount on your booking! Minimum requirements: 4 guests, room selection of minimum 4 beds for 2 nights or more. Use coupon code 'XTSY10' during booking.",
       gradient: "from-green-500 to-emerald-500"
+    },
+    {
+      id: "welcome15",
+      icon: Tag,
+      title: "WELCOME15 - 15% Discount",
+      description: "Exclusive for Signature 270° Glass Suite",
+      details: "Get 15% discount exclusively for XTSY Luxury 'Signature 270° Glass Suite' bookings. Minimum 1 night booking required. Use coupon code 'WELCOME15' during booking.",
+      gradient: "from-purple-500 to-pink-500"
+    },
+    {
+      id: "meghalaya20",
+      icon: Tag,
+      title: "MEGHALAYA20 - 20% Discount",
+      description: "Min 12 guests, 12 beds, 2+ nights",
+      details: "Get 20% discount on your booking! Minimum requirements: 12 guests selection, room selection for 12 beds for at least 2 nights or more. Use coupon code 'MEGHALAYA20' during booking.",
+      gradient: "from-orange-500 to-red-500"
     },
     {
       id: "free-taxi",
@@ -63,8 +79,8 @@ const DealsSection = () => {
               key={deal.id}
               variant={activeTab === deal.id ? "default" : "outline"}
               onClick={() => setActiveTab(deal.id)}
-              className={`px-4 sm:px-6 lg:px-8 py-3 sm:py-4 font-bold transition-all duration-300 text-sm sm:text-base flex-1 sm:flex-none ${
-                index === 0 ? 'sm:rounded-r-none' : 'sm:rounded-l-none'
+              className={`px-2 sm:px-4 lg:px-6 py-2 sm:py-3 font-bold transition-all duration-300 text-xs sm:text-sm flex-1 sm:flex-none ${
+                index === 0 ? 'sm:rounded-r-none' : index === deals.length - 1 ? 'sm:rounded-l-none' : 'sm:rounded-none'
               } ${
                 activeTab === deal.id
                   ? "bg-gradient-to-r from-orange-500 to-red-600 text-white shadow-xl border-orange-400"
@@ -72,7 +88,7 @@ const DealsSection = () => {
               } font-seasons border-2`}
             >
               <deal.icon className="h-4 w-4 sm:h-5 sm:w-5 mr-2 sm:mr-3" />
-              <span className="text-xs sm:text-sm lg:text-base whitespace-nowrap">{deal.title}</span>
+              <span className="text-xs sm:text-sm whitespace-nowrap leading-tight">{deal.title}</span>
             </Button>
           ))}
         </div>
@@ -98,13 +114,13 @@ const DealsSection = () => {
               <p className="text-gray-600 text-sm sm:text-base leading-relaxed font-seasons">
                 {activeDeal.details}
               </p>
-              {activeDeal.id === "same-day-discount" && (
+              {(activeDeal.id === "xtsy10" || activeDeal.id === "welcome15" || activeDeal.id === "meghalaya20") && (
                 <div className="mt-6 p-4 bg-green-100 rounded-xl border-2 border-green-300">
                   <p className="text-green-800 font-bold text-lg font-seasons">
-                    Use Coupon Code: <span className="bg-green-200 px-3 py-1 rounded-lg text-xl">XTSY-DEAL</span>
+                    Use Coupon Code: <span className="bg-green-200 px-3 py-1 rounded-lg text-xl">{activeDeal.id.toUpperCase()}</span>
                   </p>
                   <p className="text-green-700 text-sm mt-2 font-seasons">
-                    Valid for 4+ beds from XTSY Travellers Hostel (same day or within 7 days)
+                    {activeDeal.description}
                   </p>
                 </div>
               )}

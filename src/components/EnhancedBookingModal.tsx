@@ -3,6 +3,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Calendar, Users, X, ArrowRight, ArrowLeft, Hotel, Bed, Home } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -140,13 +141,13 @@ const ROOM_DATA = {
       "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/IMG_4077.jpg"
     ]
   },
-  "6-bed-female-mixed-economy-dorm": {
-    id: "6-bed-female-mixed-economy-dorm",
-    name: "Bed in 6 Bed Female/Mixed Economy Dorm",
+  "6-bed-mixed-economy-dorm": {
+    id: "6-bed-mixed-economy-dorm",
+    name: "Bed in 6 Bed Mixed Economy Dorm",
     price: 550,
     maxGuests: 1,
     maxRooms: 6,
-    description: "Budget-friendly female/mixed dormitory with essential amenities",
+    description: "Budget-friendly mixed dormitory with essential amenities",
     type: "dorm",
     propertyType: "economy" as const,
     features: ["Mixed/Female", "AC", "Reading Lights", "Lockers", "Budget Friendly"],
@@ -158,6 +159,23 @@ const ROOM_DATA = {
       "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/5.JPG",
       "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/6.JPG",
       "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/IMG_5160.png"
+    ]
+  },
+  "4-bed-female-economy-dorm": {
+    id: "4-bed-female-economy-dorm",
+    name: "Bed in 4 Bed Female Economy Dorm",
+    price: 600,
+    maxGuests: 1,
+    maxRooms: 4,
+    description: "Budget-friendly female-only dormitory with essential amenities",
+    type: "dorm",
+    propertyType: "economy" as const,
+    features: ["Female Only", "AC", "Reading Lights", "Lockers", "Budget Friendly"],
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg",
+    images: [
+      "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg",
+      "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/2.jpg",
+      "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/3.jpg"
     ]
   },
   "8-bed-mixed-economy-dorm": {
@@ -210,8 +228,8 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
     breakfast: 0,
     dinnerVeg: 0,
     dinnerNonVeg: 0,
-    transportation: 0,
-    itinerary: 0,
+    transportation: false,
+    itinerary: false,
   });
   const [promoCode, setPromoCode] = useState('');
   const [promoDiscount, setPromoDiscount] = useState(0);
@@ -244,7 +262,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
       return total + (basePrice * nights);
     }, 0);
 
-    const addOnTotal = (addOns.breakfast * 125 + addOns.dinnerVeg * 180 + addOns.dinnerNonVeg * 240 + addOns.transportation * 0 + addOns.itinerary * 0) * nights;
+    const addOnTotal = (addOns.breakfast * 125 + addOns.dinnerVeg * 180 + addOns.dinnerNonVeg * 240) * nights;
     const subtotal = roomTotal + addOnTotal;
     const discountAmount = promoApplied ? Math.round(subtotal * (promoDiscount / 100)) : 0;
     const afterDiscount = subtotal - discountAmount;
@@ -629,24 +647,11 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                                 <h4 className="font-medium text-gray-900">Transportation arrangement</h4>
                                 <p className="text-sm text-gray-600">On request basis</p>
                               </div>
-                              <div className="flex items-center gap-2">
-                                <Button 
-                                  variant="outline" 
-                                  size="sm" 
-                                  onClick={() => setAddOns(prev => ({ ...prev, transportation: Math.max(0, prev.transportation - 1) }))}
-                                  className="bg-white text-black border-black hover:bg-gray-100"
-                                >
-                                  -
-                                </Button>
-                                <span className="w-8 text-center bg-white text-black font-bold border border-black rounded px-2 py-1">{addOns.transportation}</span>
-                                <Button 
-                                  variant="outline" 
-                                  size="sm" 
-                                  onClick={() => setAddOns(prev => ({ ...prev, transportation: prev.transportation + 1 }))}
-                                  className="bg-white text-black border-black hover:bg-gray-100"
-                                >
-                                  +
-                                </Button>
+                              <div className="flex items-center">
+                                <Checkbox 
+                                  checked={addOns.transportation}
+                                  onCheckedChange={(checked) => setAddOns(prev => ({ ...prev, transportation: checked as boolean }))}
+                                />
                               </div>
                             </div>
                           </Card>
@@ -657,24 +662,11 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                                 <h4 className="font-medium text-gray-900">Itinerary planning</h4>
                                 <p className="text-sm text-gray-600">On request basis</p>
                               </div>
-                              <div className="flex items-center gap-2">
-                                <Button 
-                                  variant="outline" 
-                                  size="sm" 
-                                  onClick={() => setAddOns(prev => ({ ...prev, itinerary: Math.max(0, prev.itinerary - 1) }))}
-                                  className="bg-white text-black border-black hover:bg-gray-100"
-                                >
-                                  -
-                                </Button>
-                                <span className="w-8 text-center bg-white text-black font-bold border border-black rounded px-2 py-1">{addOns.itinerary}</span>
-                                <Button 
-                                  variant="outline" 
-                                  size="sm" 
-                                  onClick={() => setAddOns(prev => ({ ...prev, itinerary: prev.itinerary + 1 }))}
-                                  className="bg-white text-black border-black hover:bg-gray-100"
-                                >
-                                  +
-                                </Button>
+                              <div className="flex items-center">
+                                <Checkbox 
+                                  checked={addOns.itinerary}
+                                  onCheckedChange={(checked) => setAddOns(prev => ({ ...prev, itinerary: checked as boolean }))}
+                                />
                               </div>
                             </div>
                           </Card>
@@ -948,61 +940,31 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                        </Card>
 
                       <Card className="p-3 bg-white border border-gray-200">
-                        <div className="space-y-2">
-                          <div className="flex justify-between items-center">
-                            <div>
-                              <h5 className="font-medium text-gray-900 text-sm">Transportation arrangement</h5>
-                              <p className="text-xs text-gray-600">On request basis</p>
-                            </div>
+                        <div className="flex justify-between items-center">
+                          <div>
+                            <h5 className="font-medium text-gray-900 text-sm">Transportation arrangement</h5>
+                            <p className="text-xs text-gray-600">On request basis</p>
                           </div>
-                          <div className="flex items-center justify-center gap-2">
-                            <Button 
-                              variant="outline" 
-                              size="sm" 
-                              onClick={() => setAddOns(prev => ({ ...prev, transportation: Math.max(0, prev.transportation - 1) }))}
-                              className="bg-white text-black border-black hover:bg-gray-100 h-8 w-8 p-0"
-                            >
-                              -
-                            </Button>
-                            <span className="w-8 text-center bg-white text-black font-bold border border-black rounded px-2 py-1 text-sm">{addOns.transportation}</span>
-                            <Button 
-                              variant="outline" 
-                              size="sm" 
-                              onClick={() => setAddOns(prev => ({ ...prev, transportation: prev.transportation + 1 }))}
-                              className="bg-white text-black border-black hover:bg-gray-100 h-8 w-8 p-0"
-                            >
-                              +
-                            </Button>
+                          <div className="flex items-center">
+                            <Checkbox 
+                              checked={addOns.transportation}
+                              onCheckedChange={(checked) => setAddOns(prev => ({ ...prev, transportation: checked as boolean }))}
+                            />
                           </div>
                         </div>
                       </Card>
 
                       <Card className="p-3 bg-white border border-gray-200">
-                        <div className="space-y-2">
-                          <div className="flex justify-between items-center">
-                            <div>
-                              <h5 className="font-medium text-gray-900 text-sm">Itinerary planning</h5>
-                              <p className="text-xs text-gray-600">On request basis</p>
-                            </div>
+                        <div className="flex justify-between items-center">
+                          <div>
+                            <h5 className="font-medium text-gray-900 text-sm">Itinerary planning</h5>
+                            <p className="text-xs text-gray-600">On request basis</p>
                           </div>
-                          <div className="flex items-center justify-center gap-2">
-                            <Button 
-                              variant="outline" 
-                              size="sm" 
-                              onClick={() => setAddOns(prev => ({ ...prev, itinerary: Math.max(0, prev.itinerary - 1) }))}
-                              className="bg-white text-black border-black hover:bg-gray-100 h-8 w-8 p-0"
-                            >
-                              -
-                            </Button>
-                            <span className="w-8 text-center bg-white text-black font-bold border border-black rounded px-2 py-1 text-sm">{addOns.itinerary}</span>
-                            <Button 
-                              variant="outline" 
-                              size="sm" 
-                              onClick={() => setAddOns(prev => ({ ...prev, itinerary: prev.itinerary + 1 }))}
-                              className="bg-white text-black border-black hover:bg-gray-100 h-8 w-8 p-0"
-                            >
-                              +
-                            </Button>
+                          <div className="flex items-center">
+                            <Checkbox 
+                              checked={addOns.itinerary}
+                              onCheckedChange={(checked) => setAddOns(prev => ({ ...prev, itinerary: checked as boolean }))}
+                            />
                           </div>
                         </div>
                       </Card>
