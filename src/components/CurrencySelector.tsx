@@ -43,6 +43,7 @@ const CurrencySelector: React.FC<CurrencySelectorProps> = ({ onCurrencyChange, c
     setSelectedCurrency(currency);
     localStorage.setItem('selectedCurrency', currency.code);
     onCurrencyChange?.(currency);
+    console.log('Currency changed to:', currency.code, currency.symbol);
   };
 
   return (

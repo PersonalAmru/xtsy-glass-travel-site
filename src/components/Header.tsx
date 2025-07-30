@@ -113,8 +113,14 @@ const Header = () => {
               
               {/* Language and Currency Selectors */}
               <div className="flex items-center gap-3 border-l border-gray-300 pl-4">
-                <CurrencySelector className="text-white" />
-                <LanguageSelector className="text-white" />
+                <CurrencySelector 
+                  className="text-white" 
+                  onCurrencyChange={(currency) => console.log('Header: Currency changed to', currency.code)}
+                />
+                <LanguageSelector 
+                  className="text-white" 
+                  onLanguageChange={(language) => console.log('Header: Language changed to', language.code)}
+                />
               </div>
               
               {/* Authentication Section */}

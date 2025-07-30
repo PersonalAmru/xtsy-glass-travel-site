@@ -47,6 +47,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onLanguageChange, c
     setSelectedLanguage(language);
     localStorage.setItem('selectedLanguage', language.code);
     onLanguageChange?.(language);
+    console.log('Language changed to:', language.code, language.nativeName);
     
     // Update document language attribute
     document.documentElement.lang = language.code;
