@@ -13,10 +13,40 @@ export default {
 	theme: {
 		container: {
 			center: true,
-			padding: '2rem',
+			padding: '1rem',
 			screens: {
-				'2xl': '1400px'
+				'sm': '640px',
+				'md': '768px', 
+				'lg': '1024px',
+				'xl': '1280px',
+				'2xl': '1400px',
+				// Foldable device breakpoints
+				'fold': '280px',
+				'unfold': '360px',
+				'tablet': '768px',
+				'tablet-lg': '1024px'
 			}
+		},
+		screens: {
+			'xs': '475px',
+			'sm': '640px',
+			'md': '768px',
+			'lg': '1024px', 
+			'xl': '1280px',
+			'2xl': '1536px',
+			// Mobile specific
+			'mobile': {'max': '639px'},
+			'tablet': {'min': '640px', 'max': '1023px'},
+			'desktop': {'min': '1024px'},
+			// Foldable devices
+			'fold': {'max': '320px'},
+			'fold-open': {'min': '321px', 'max': '540px'},
+			// iPhone specific
+			'iphone-se': {'raw': '(max-width: 375px)'},
+			'iphone': {'raw': '(max-width: 428px)'},
+			// Android foldables
+			'galaxy-fold': {'raw': '(max-width: 280px)'},
+			'galaxy-fold-open': {'raw': '(min-width: 281px) and (max-width: 653px)'}
 		},
 		extend: {
 			fontFamily: {

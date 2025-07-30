@@ -224,7 +224,7 @@ interface SelectedRoom {
 
 const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingModalProps) => {
   const { formatPrice, currency } = useApp();
-  console.log("🎯 Enhanced Booking Modal opened with Transportation/Itinerary checkboxes!");
+  // console.log("🎯 Enhanced Booking Modal opened with Transportation/Itinerary checkboxes!");
   const [currentStep, setCurrentStep] = useState<'room-selection' | 'booking-summary' | 'guest-details'>('room-selection');
   const [selectedRooms, setSelectedRooms] = useState<SelectedRoom[]>([]);
   const [addOns, setAddOns] = useState({

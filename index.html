@@ -4,13 +4,39 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="/lovable-uploads/160f683c-a41c-41fd-8bdb-700d74a7e027.png" type="image/png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Critical mobile optimization with foldable device support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    
+    <!-- Performance hints -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//checkout.razorpay.com">
+    
     <title>XTSY - Live the Shillong Vibe</title>
     <meta name="description" content="Experience the best of Meghalaya at XTSY Travellers Hostel. Comfortable accommodations, stunning views, and unforgettable adventures await you in Shillong." />
+    
+    <!-- PWA and Mobile App Integration -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="XTSY Hostel">
+    
+    <!-- Theme colors for mobile browsers -->
+    <meta name="theme-color" content="#000000">
+    <meta name="msapplication-navbutton-color" content="#000000">
+    
+    <!-- Foldable device support -->
+    <meta name="screen-spanning" content="single-fold-vertical | single-fold-horizontal | none">
+    
+    <!-- Optimized font loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Josefin+Sans:wght@300;400;500;600;700&family=Cardo:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    
+    <!-- Payment gateway preload -->
+    <link rel="preload" href="https://checkout.razorpay.com/v1/checkout.js" as="script">
+    <script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
   </head>
   <body>
     <div id="root"></div>

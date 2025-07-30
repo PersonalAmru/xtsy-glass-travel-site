@@ -273,3 +273,143 @@ img {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ========================================
+   MOBILE & FOLDABLE DEVICE OPTIMIZATIONS
+   ======================================== */
+
+/* Touch target optimization for mobile */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 12px;
+}
+
+/* Foldable device specific styles */
+@media (max-width: 320px) {
+  .fold-text-sm { font-size: 0.75rem; }
+  .fold-p-2 { padding: 0.5rem; }
+  .fold-gap-1 { gap: 0.25rem; }
+  .fold-hidden { display: none; }
+}
+
+/* Galaxy Fold & iPhone mini optimization */
+@media (max-width: 280px) {
+  .hero-title { font-size: 1.5rem !important; }
+  .card-padding { padding: 0.75rem !important; }
+  .button-text { font-size: 0.75rem !important; }
+}
+
+/* iPhone SE & small phones */
+@media (max-width: 375px) and (max-height: 667px) {
+  .mobile-compact .space-y-4 > * + * { margin-top: 0.75rem; }
+  .mobile-compact .p-6 { padding: 1rem; }
+  .mobile-compact .text-lg { font-size: 1rem; }
+}
+
+/* Foldable devices when opened */
+@media (min-width: 321px) and (max-width: 653px) and (orientation: landscape) {
+  .fold-landscape-grid { grid-template-columns: repeat(2, 1fr); }
+  .fold-landscape-text { font-size: 0.875rem; }
+}
+
+/* Tablet optimization */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .tablet-grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .tablet-text-adjust { font-size: clamp(0.875rem, 2vw, 1rem); }
+  .tablet-spacing { gap: 1.5rem; }
+}
+
+/* Safe area handling for notched devices */
+.safe-top { padding-top: env(safe-area-inset-top); }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+.safe-left { padding-left: env(safe-area-inset-left); }
+.safe-right { padding-right: env(safe-area-inset-right); }
+
+/* Improved form inputs for mobile */
+.mobile-input {
+  font-size: 16px !important; /* Prevents zoom on iOS */
+  min-height: 44px;
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+
+.mobile-input:focus {
+  font-size: 16px !important;
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
+/* Better button sizes for touch */
+.mobile-button {
+  min-height: 48px;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+/* Loading states */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Improved scroll behavior */
+.smooth-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Better modal handling on mobile */
+.mobile-modal {
+  height: 100vh;
+  height: 100dvh; /* Dynamic viewport height */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Improved image loading */
+.progressive-image {
+  background-color: #f0f0f0;
+  background-image: linear-gradient(45deg, transparent 25%, rgba(255,255,255,.5) 25%, rgba(255,255,255,.5) 75%, transparent 75%, transparent),
+                    linear-gradient(45deg, transparent 25%, rgba(255,255,255,.5) 25%, rgba(255,255,255,.5) 75%, transparent 75%, transparent);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  animation: loading-shimmer 1.5s infinite;
+}
+
+@keyframes loading-shimmer {
+  0% { background-position: 0 0, 10px 10px; }
+  100% { background-position: 20px 20px, 30px 30px; }
+}
+
+/* Network optimization indicators */
+.slow-connection .image-heavy { display: none; }
+.slow-connection .text-only { display: block; }
+
+/* Orientation change handling */
+@media (orientation: landscape) and (max-height: 500px) {
+  .landscape-compact .hero-section { min-height: 70vh; }
+  .landscape-compact .modal-content { max-height: 90vh; }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .high-contrast-border { border: 2px solid currentColor; }
+  .high-contrast-bg { background-color: hsl(var(--background)); }
+}
+
+/* Dark mode mobile optimization */
+@media (prefers-color-scheme: dark) {
+  .auto-dark-bg { background-color: hsl(var(--background)); }
+  .auto-dark-text { color: hsl(var(--foreground)); }
+}

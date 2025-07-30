@@ -19,8 +19,20 @@ const Header = () => {
   const [cartItemCount, setCartItemCount] = useState(0);
   const [currentSessionId, setCurrentSessionId] = useState<string | null>(null);
   const [isTravelModalOpen, setIsTravelModalOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const { user, loading } = useAuth();
   const { setCurrency } = useApp();
+
+  // Mobile detection
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Generate or get session ID for this guest
   useEffect(() => {
@@ -62,15 +74,17 @@ const Header = () => {
 
   return (
     <>
-      <header className="bg-white/95 backdrop-blur-lg border-b border-gray-200 shadow-sm sticky top-0 z-50 safe-area-padding">
-        <div className="responsive-container">
+      <header className="bg-white/95 backdrop-blur-lg border-b border-gray-200 shadow-sm sticky top-0 z-50 safe-top safe-left safe-right">
+        <div className="responsive-container mobile-compact">
           <div className="flex justify-between items-center h-14 sm:h-16">
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-2 touch-friendly">
+            <Link to="/" className="flex items-center space-x-2 touch-target">
               <img 
                 src="/lovable-uploads/f60939c8-8351-4f63-80df-a4c6e37e539a.png"
                 alt="XTSY Travellers Hostel"
-                className="h-8 sm:h-10 w-auto"
+                className="h-8 sm:h-10 w-auto progressive-image"
+                loading="eager"
+                decoding="sync"
               />
             </Link>
 
@@ -78,28 +92,28 @@ const Header = () => {
             <nav className="hidden md:flex items-center space-x-2 ml-auto">
               <Link 
                 to="/" 
-                className="px-3 py-2 text-gray-800 hover:text-white hover:bg-gray-800 rounded-md transition-all duration-200 font-medium"
+                className="px-3 py-2 text-gray-800 hover:text-white hover:bg-gray-800 rounded-md transition-all duration-200 font-medium touch-target"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
                 Home
               </Link>
               <Link 
                 to="/about" 
-                className="px-3 py-2 text-gray-800 hover:text-white hover:bg-gray-800 rounded-md transition-all duration-200 font-medium"
+                className="px-3 py-2 text-gray-800 hover:text-white hover:bg-gray-800 rounded-md transition-all duration-200 font-medium touch-target"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
                 About
               </Link>
               <Link 
                 to="/gallery" 
-                className="px-3 py-2 text-gray-800 hover:text-white hover:bg-gray-800 rounded-md transition-all duration-200 font-medium"
+                className="px-3 py-2 text-gray-800 hover:text-white hover:bg-gray-800 rounded-md transition-all duration-200 font-medium touch-target"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
                 Gallery
               </Link>
               <Link 
                 to="/deals" 
-                className="px-3 py-2 text-gray-800 hover:text-white hover:bg-gray-800 rounded-md transition-all duration-200 font-medium"
+                className="px-3 py-2 text-gray-800 hover:text-white hover:bg-gray-800 rounded-md transition-all duration-200 font-medium touch-target"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
                 Deals
@@ -107,7 +121,7 @@ const Header = () => {
               
               <button
                 onClick={() => setIsTravelModalOpen(true)}
-                className="px-3 py-2 text-gray-800 hover:text-white hover:bg-gray-800 rounded-md transition-all duration-200 font-medium"
+                className="px-3 py-2 text-gray-800 hover:text-white hover:bg-gray-800 rounded-md transition-all duration-200 font-medium touch-target"
               >
                 Travel
               </button>
@@ -127,7 +141,7 @@ const Header = () => {
                 ) : user ? (
                   <div className="flex items-center space-x-2">
                     <Link to="/dashboard">
-                      <Button variant="ghost" size="sm">
+                      <Button variant="ghost" size="sm" className="touch-target">
                         <Settings className="h-4 w-4 mr-2" />
                         Dashboard
                       </Button>
@@ -139,7 +153,7 @@ const Header = () => {
                     variant="ghost" 
                     size="sm"
                     onClick={() => handleAuthClick('newsletter')}
-                    className="text-green-600 hover:text-green-700"
+                    className="text-green-600 hover:text-green-700 touch-target"
                   >
                     <Users className="h-4 w-4 mr-2" />
                     Newsletter
@@ -150,10 +164,11 @@ const Header = () => {
 
             {/* Mobile menu button */}
             <button
-              className="md:hidden touch-friendly text-gray-800"
+              className="md:hidden touch-target text-gray-800 p-2"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
-              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
 
