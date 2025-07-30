@@ -76,51 +76,47 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
 
   if (!tourPackage) return null;
 
-  // Calculate pricing matching TourPackageCard exactly
+  // Calculate pricing using EXACT same logic as TourPackageCard
   const calculatePricing = () => {
-    // Extract numeric value from price string
-    const priceNumeric = parseInt(tourPackage.price.replace(/[^\d]/g, ''));
-    const days = parseInt(tourPackage.duration.split(" ")[0]);
+    // Use the exact same calculation as TourPackageCard
+    const basePrice = parseInt(tourPackage.price.replace(/[^\d]/g, ''));
+    let displayPrice = basePrice;
     
     // Check if selected date is weekend (for USD/EUR pricing)
     const isWeekend = selectedDate ? 
       [0, 6].includes(new Date(selectedDate).getDay()) : false;
     
-    // Step 1: Calculate base rate exactly like TourPackageCard
-    let baseRatePerPersonINR = priceNumeric; // Original INR price for WhatsApp
-    let baseRatePerPersonInSelectedCurrency = priceNumeric;
-    
     // For USD/EUR guests: Add 10% base hike (15% on weekends)
     if (currency.code !== 'INR') {
       const weekendHike = isWeekend ? 1.15 : 1.10; // 15% weekend, 10% weekday
-      baseRatePerPersonINR = Math.round(priceNumeric * weekendHike);
-      baseRatePerPersonInSelectedCurrency = Math.round(priceNumeric * weekendHike);
+      displayPrice = Math.round(basePrice * weekendHike);
     }
     
-    // Step 2: For display purposes, we need to get the converted price
-    // Use the same logic as TourPackageCard - formatPrice handles the conversion
-    const displayPrice = currency.code !== 'INR' 
-      ? Math.round(baseRatePerPersonInSelectedCurrency * currency.rate)
-      : baseRatePerPersonInSelectedCurrency;
+    // Get the final converted price (this is what shows as $164)
+    // We need to extract the numeric value from formatPrice result
+    const formattedPrice = formatPrice(displayPrice);
+    // Extract just the number from the formatted price (e.g., "$164" -> 164)
+    const finalDisplayPrice = parseFloat(formattedPrice.replace(/[^\d.]/g, ''));
     
-    // Step 3: Calculate subtotal in display currency
-    const subtotalInDisplayCurrency = displayPrice * guests;
-    const subtotalINR = baseRatePerPersonINR * guests;
+    const days = parseInt(tourPackage.duration.split(" ")[0]);
     
-    // Step 4: GST calculation (5% on the display currency amount)
+    // Calculate all amounts using the final display price
+    const subtotal = finalDisplayPrice * guests;
     const gstRate = 0.05;
-    const gstAmountInDisplayCurrency = Math.round(subtotalInDisplayCurrency * gstRate);
-    const gstAmountINR = Math.round(subtotalINR * gstRate);
+    const gstAmount = Math.round(subtotal * gstRate);
+    const finalTotal = subtotal + gstAmount;
     
-    // Step 5: Final totals
-    const finalTotalInDisplayCurrency = subtotalInDisplayCurrency + gstAmountInDisplayCurrency;
+    // For WhatsApp (always in INR)
+    const baseRateINR = currency.code !== 'INR' ? displayPrice : basePrice;
+    const subtotalINR = baseRateINR * guests;
+    const gstAmountINR = Math.round(subtotalINR * gstRate);
     const finalTotalINR = subtotalINR + gstAmountINR;
     
     return {
-      basePrice: displayPrice,
-      subtotal: subtotalInDisplayCurrency,
-      gstAmount: gstAmountInDisplayCurrency,
-      finalTotal: finalTotalInDisplayCurrency,
+      basePrice: finalDisplayPrice,
+      subtotal: subtotal,
+      gstAmount: gstAmount,
+      finalTotal: finalTotal,
       gstRate: gstRate * 100,
       days,
       isWeekend,
