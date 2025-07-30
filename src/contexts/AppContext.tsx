@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { detectUserLocation, fetchExchangeRates } from '@/utils/locationDetection';
 
 interface Currency {
   code: string;
@@ -17,13 +18,47 @@ interface Language {
 interface AppContextType {
   currency: Currency;
   language: Language;
+  exchangeRates: Record<string, number>;
   setCurrency: (currency: Currency) => void;
   setLanguage: (language: Language) => void;
   formatPrice: (price: number) => string;
+  updateExchangeRates: () => Promise<void>;
 }
 
-const defaultCurrency: Currency = { code: 'INR', symbol: '₹', name: 'Indian Rupee', rate: 1 };
-const defaultLanguage: Language = { code: 'en', name: 'English', nativeName: 'English', flag: '🇺🇸' };
+// Available currencies and languages
+const availableCurrencies: Currency[] = [
+  { code: 'INR', symbol: '₹', name: 'Indian Rupee', rate: 1 },
+  { code: 'USD', symbol: '$', name: 'US Dollar', rate: 0.012 },
+  { code: 'EUR', symbol: '€', name: 'Euro', rate: 0.011 },
+];
+
+const availableLanguages: Language[] = [
+  // European Languages
+  { code: 'en', name: 'English', nativeName: 'English', flag: '🇬🇧' },
+  { code: 'de', name: 'German', nativeName: 'Deutsch', flag: '🇩🇪' },
+  { code: 'fr', name: 'French', nativeName: 'Français', flag: '🇫🇷' },
+  { code: 'es', name: 'Spanish', nativeName: 'Español', flag: '🇪🇸' },
+  { code: 'it', name: 'Italian', nativeName: 'Italiano', flag: '🇮🇹' },
+  { code: 'pt', name: 'Portuguese', nativeName: 'Português', flag: '🇵🇹' },
+  { code: 'ru', name: 'Russian', nativeName: 'Русский', flag: '🇷🇺' },
+  { code: 'pl', name: 'Polish', nativeName: 'Polski', flag: '🇵🇱' },
+  { code: 'nl', name: 'Dutch', nativeName: 'Nederlands', flag: '🇳🇱' },
+  
+  // Asian Languages
+  { code: 'zh', name: 'Chinese', nativeName: '中文', flag: '🇨🇳' },
+  { code: 'ja', name: 'Japanese', nativeName: '日本語', flag: '🇯🇵' },
+  { code: 'ko', name: 'Korean', nativeName: '한국어', flag: '🇰🇷' },
+  { code: 'hi', name: 'Hindi', nativeName: 'हिन्दी', flag: '🇮🇳' },
+  { code: 'th', name: 'Thai', nativeName: 'ไทย', flag: '🇹🇭' },
+  { code: 'vi', name: 'Vietnamese', nativeName: 'Tiếng Việt', flag: '🇻🇳' },
+  { code: 'id', name: 'Indonesian', nativeName: 'Bahasa Indonesia', flag: '🇮🇩' },
+  { code: 'ms', name: 'Malay', nativeName: 'Bahasa Melayu', flag: '🇲🇾' },
+  { code: 'ar', name: 'Arabic', nativeName: 'العربية', flag: '🇸🇦' },
+];
+
+// Default values
+const defaultCurrency: Currency = availableCurrencies[0];
+const defaultLanguage: Language = availableLanguages[0];
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
@@ -35,85 +70,117 @@ export const useApp = () => {
   return context;
 };
 
-interface AppProviderProps {
-  children: ReactNode;
-}
+export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [currency, setCurrencyState] = useState<Currency>(defaultCurrency);
+  const [language, setLanguageState] = useState<Language>(defaultLanguage);
+  const [exchangeRates, setExchangeRates] = useState<Record<string, number>>({
+    INR: 1,
+    USD: 0.012,
+    EUR: 0.011,
+  });
+  const [isInitialized, setIsInitialized] = useState(false);
 
-export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
-  const [currency, setCurrency] = useState<Currency>(defaultCurrency);
-  const [language, setLanguage] = useState<Language>(defaultLanguage);
-
+  // Auto-detect location and set preferences on first load
   useEffect(() => {
-    // Load saved preferences from localStorage
-    const savedCurrency = localStorage.getItem('selectedCurrency');
-    const savedLanguage = localStorage.getItem('selectedLanguage');
+    const initializePreferences = async () => {
+      const savedCurrency = localStorage.getItem('selectedCurrency');
+      const savedLanguage = localStorage.getItem('selectedLanguage');
+      
+      if (savedCurrency && savedLanguage) {
+        // Use saved preferences
+        try {
+          const parsedCurrency = JSON.parse(savedCurrency);
+          const parsedLanguage = JSON.parse(savedLanguage);
+          setCurrencyState(parsedCurrency);
+          setLanguageState(parsedLanguage);
+        } catch (error) {
+          console.warn('Failed to parse saved preferences:', error);
+        }
+      } else {
+        // Auto-detect based on location
+        try {
+          const locationData = await detectUserLocation();
+          
+          const detectedCurrency = availableCurrencies.find(c => c.code === locationData.currency) || defaultCurrency;
+          const detectedLanguage = availableLanguages.find(l => l.code === locationData.language) || defaultLanguage;
+          
+          setCurrencyState(detectedCurrency);
+          setLanguageState(detectedLanguage);
+          
+          // Save auto-detected preferences
+          localStorage.setItem('selectedCurrency', JSON.stringify(detectedCurrency));
+          localStorage.setItem('selectedLanguage', JSON.stringify(detectedLanguage));
+          
+          console.log('Auto-detected preferences:', { currency: detectedCurrency.code, language: detectedLanguage.code });
+        } catch (error) {
+          console.warn('Failed to auto-detect location, using defaults:', error);
+        }
+      }
+      
+      // Fetch real-time exchange rates
+      await updateExchangeRates();
+      setIsInitialized(true);
+    };
 
-    if (savedCurrency) {
-      // We'll need to import the currencies array, but for now use a simple mapping
-      const currencies = [
-        { code: 'INR', symbol: '₹', name: 'Indian Rupee', rate: 1 },
-        { code: 'USD', symbol: '$', name: 'US Dollar', rate: 0.012 },
-        { code: 'EUR', symbol: '€', name: 'Euro', rate: 0.011 },
-        { code: 'GBP', symbol: '£', name: 'British Pound', rate: 0.009 },
-        { code: 'AUD', symbol: 'A$', name: 'Australian Dollar', rate: 0.018 },
-        { code: 'CAD', symbol: 'C$', name: 'Canadian Dollar', rate: 0.016 },
-        { code: 'SGD', symbol: 'S$', name: 'Singapore Dollar', rate: 0.016 },
-        { code: 'AED', symbol: 'د.إ', name: 'UAE Dirham', rate: 0.044 },
-      ];
-      const foundCurrency = currencies.find(c => c.code === savedCurrency);
-      if (foundCurrency) setCurrency(foundCurrency);
-    }
-
-    if (savedLanguage) {
-      const languages = [
-        { code: 'en', name: 'English', nativeName: 'English', flag: '🇺🇸' },
-        { code: 'hi', name: 'Hindi', nativeName: 'हिन्दी', flag: '🇮🇳' },
-        { code: 'bn', name: 'Bengali', nativeName: 'বাংলা', flag: '🇧🇩' },
-        { code: 'te', name: 'Telugu', nativeName: 'తెలుగు', flag: '🇮🇳' },
-        { code: 'ta', name: 'Tamil', nativeName: 'தமிழ்', flag: '🇮🇳' },
-        { code: 'ur', name: 'Urdu', nativeName: 'اردو', flag: '🇵🇰' },
-        { code: 'gu', name: 'Gujarati', nativeName: 'ગુજરાતી', flag: '🇮🇳' },
-        { code: 'kn', name: 'Kannada', nativeName: 'ಕನ್ನಡ', flag: '🇮🇳' },
-        { code: 'ml', name: 'Malayalam', nativeName: 'മലയാളം', flag: '🇮🇳' },
-        { code: 'or', name: 'Odia', nativeName: 'ଓଡ଼ିଆ', flag: '🇮🇳' },
-        { code: 'pa', name: 'Punjabi', nativeName: 'ਪੰਜਾਬੀ', flag: '🇮🇳' },
-        { code: 'as', name: 'Assamese', nativeName: 'অসমীয়া', flag: '🇮🇳' },
-      ];
-      const foundLanguage = languages.find(l => l.code === savedLanguage);
-      if (foundLanguage) setLanguage(foundLanguage);
-    }
+    initializePreferences();
   }, []);
 
+  // Update document language when language changes
   useEffect(() => {
-    // Update document language attribute when language changes
-    document.documentElement.lang = language.code;
-  }, [language]);
+    if (isInitialized) {
+      document.documentElement.lang = language.code;
+    }
+  }, [language.code, isInitialized]);
+
+  const updateExchangeRates = async () => {
+    try {
+      const rates = await fetchExchangeRates('INR');
+      setExchangeRates(rates);
+      
+      // Update current currency with new rate
+      const updatedCurrency = { ...currency, rate: rates[currency.code] || currency.rate };
+      setCurrencyState(updatedCurrency);
+      
+      console.log('Exchange rates updated:', rates);
+    } catch (error) {
+      console.warn('Failed to update exchange rates:', error);
+    }
+  };
 
   const formatPrice = (price: number): string => {
     const convertedPrice = price * currency.rate;
-    return `${currency.symbol}${convertedPrice.toLocaleString(undefined, { 
+    return `${currency.symbol}${convertedPrice.toLocaleString('en-US', { 
       minimumFractionDigits: 0, 
       maximumFractionDigits: 0 
     })}`;
   };
 
   const handleSetCurrency = (newCurrency: Currency) => {
-    setCurrency(newCurrency);
-    localStorage.setItem('selectedCurrency', newCurrency.code);
+    const updatedCurrency = { ...newCurrency, rate: exchangeRates[newCurrency.code] || newCurrency.rate };
+    setCurrencyState(updatedCurrency);
+    localStorage.setItem('selectedCurrency', JSON.stringify(updatedCurrency));
+    console.log('Currency updated:', updatedCurrency);
   };
 
   const handleSetLanguage = (newLanguage: Language) => {
-    setLanguage(newLanguage);
-    localStorage.setItem('selectedLanguage', newLanguage.code);
+    setLanguageState(newLanguage);
+    localStorage.setItem('selectedLanguage', JSON.stringify(newLanguage));
+    console.log('Language updated:', newLanguage);
   };
 
-  const value: AppContextType = {
-    currency,
-    language,
-    setCurrency: handleSetCurrency,
-    setLanguage: handleSetLanguage,
-    formatPrice,
-  };
-
-  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
+  return (
+    <AppContext.Provider 
+      value={{
+        currency,
+        language,
+        exchangeRates,
+        setCurrency: handleSetCurrency,
+        setLanguage: handleSetLanguage,
+        formatPrice,
+        updateExchangeRates,
+      }}
+    >
+      {children}
+    </AppContext.Provider>
+  );
 };

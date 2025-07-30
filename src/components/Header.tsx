@@ -7,6 +7,7 @@ import { AuthModal } from "./AuthModal";
 import { UserMenu } from "./UserMenu";
 import { CurrencySelector } from "./CurrencySelector";
 import { LanguageSelector } from "./LanguageSelector";
+import { useApp } from "@/contexts/AppContext";
 import { Link } from "react-router-dom";
 import TourCartModal from "./TourCartModal";
 import TravelSelectionModal from "./TravelSelectionModal";
@@ -20,6 +21,7 @@ const Header = () => {
   const [currentSessionId, setCurrentSessionId] = useState<string | null>(null);
   const [isTravelModalOpen, setIsTravelModalOpen] = useState(false);
   const { user, loading } = useAuth();
+  const { setCurrency, setLanguage } = useApp();
 
   // Generate or get session ID for this guest
   useEffect(() => {
@@ -115,11 +117,11 @@ const Header = () => {
               <div className="flex items-center gap-3 border-l border-gray-300 pl-4">
                 <CurrencySelector 
                   className="text-white" 
-                  onCurrencyChange={(currency) => console.log('Header: Currency changed to', currency.code)}
+                  onCurrencyChange={setCurrency}
                 />
                 <LanguageSelector 
                   className="text-white" 
-                  onLanguageChange={(language) => console.log('Header: Language changed to', language.code)}
+                  onLanguageChange={setLanguage}
                 />
               </div>
               

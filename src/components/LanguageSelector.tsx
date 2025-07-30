@@ -10,18 +10,27 @@ interface Language {
 }
 
 const languages: Language[] = [
-  { code: 'en', name: 'English', nativeName: 'English', flag: '🇺🇸' },
+  // European Languages
+  { code: 'en', name: 'English', nativeName: 'English', flag: '🇬🇧' },
+  { code: 'de', name: 'German', nativeName: 'Deutsch', flag: '🇩🇪' },
+  { code: 'fr', name: 'French', nativeName: 'Français', flag: '🇫🇷' },
+  { code: 'es', name: 'Spanish', nativeName: 'Español', flag: '🇪🇸' },
+  { code: 'it', name: 'Italian', nativeName: 'Italiano', flag: '🇮🇹' },
+  { code: 'pt', name: 'Portuguese', nativeName: 'Português', flag: '🇵🇹' },
+  { code: 'ru', name: 'Russian', nativeName: 'Русский', flag: '🇷🇺' },
+  { code: 'pl', name: 'Polish', nativeName: 'Polski', flag: '🇵🇱' },
+  { code: 'nl', name: 'Dutch', nativeName: 'Nederlands', flag: '🇳🇱' },
+  
+  // Asian Languages
+  { code: 'zh', name: 'Chinese', nativeName: '中文', flag: '🇨🇳' },
+  { code: 'ja', name: 'Japanese', nativeName: '日本語', flag: '🇯🇵' },
+  { code: 'ko', name: 'Korean', nativeName: '한국어', flag: '🇰🇷' },
   { code: 'hi', name: 'Hindi', nativeName: 'हिन्दी', flag: '🇮🇳' },
-  { code: 'bn', name: 'Bengali', nativeName: 'বাংলা', flag: '🇧🇩' },
-  { code: 'te', name: 'Telugu', nativeName: 'తెలుగు', flag: '🇮🇳' },
-  { code: 'ta', name: 'Tamil', nativeName: 'தமிழ்', flag: '🇮🇳' },
-  { code: 'ur', name: 'Urdu', nativeName: 'اردو', flag: '🇵🇰' },
-  { code: 'gu', name: 'Gujarati', nativeName: 'ગુજરાતી', flag: '🇮🇳' },
-  { code: 'kn', name: 'Kannada', nativeName: 'ಕನ್ನಡ', flag: '🇮🇳' },
-  { code: 'ml', name: 'Malayalam', nativeName: 'മലയാളം', flag: '🇮🇳' },
-  { code: 'or', name: 'Odia', nativeName: 'ଓଡ଼ିଆ', flag: '🇮🇳' },
-  { code: 'pa', name: 'Punjabi', nativeName: 'ਪੰਜਾਬੀ', flag: '🇮🇳' },
-  { code: 'as', name: 'Assamese', nativeName: 'অসমীয়া', flag: '🇮🇳' },
+  { code: 'th', name: 'Thai', nativeName: 'ไทย', flag: '🇹🇭' },
+  { code: 'vi', name: 'Vietnamese', nativeName: 'Tiếng Việt', flag: '🇻🇳' },
+  { code: 'id', name: 'Indonesian', nativeName: 'Bahasa Indonesia', flag: '🇮🇩' },
+  { code: 'ms', name: 'Malay', nativeName: 'Bahasa Melayu', flag: '🇲🇾' },
+  { code: 'ar', name: 'Arabic', nativeName: 'العربية', flag: '🇸🇦' },
 ];
 
 interface LanguageSelectorProps {
@@ -36,16 +45,21 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onLanguageChange, c
     // Load saved language from localStorage
     const savedLanguage = localStorage.getItem('selectedLanguage');
     if (savedLanguage) {
-      const language = languages.find(l => l.code === savedLanguage) || languages[0];
-      setSelectedLanguage(language);
-      onLanguageChange?.(language);
+      try {
+        const language = JSON.parse(savedLanguage);
+        const matchedLanguage = languages.find(l => l.code === language.code) || languages[0];
+        setSelectedLanguage(matchedLanguage);
+        onLanguageChange?.(matchedLanguage);
+      } catch (error) {
+        console.warn('Failed to parse saved language:', error);
+      }
     }
   }, [onLanguageChange]);
 
   const handleLanguageChange = (languageCode: string) => {
     const language = languages.find(l => l.code === languageCode) || languages[0];
     setSelectedLanguage(language);
-    localStorage.setItem('selectedLanguage', language.code);
+    localStorage.setItem('selectedLanguage', JSON.stringify(language));
     onLanguageChange?.(language);
     console.log('Language changed to:', language.code, language.nativeName);
     

@@ -13,11 +13,6 @@ const currencies: Currency[] = [
   { code: 'INR', symbol: '₹', name: 'Indian Rupee', rate: 1 },
   { code: 'USD', symbol: '$', name: 'US Dollar', rate: 0.012 },
   { code: 'EUR', symbol: '€', name: 'Euro', rate: 0.011 },
-  { code: 'GBP', symbol: '£', name: 'British Pound', rate: 0.009 },
-  { code: 'AUD', symbol: 'A$', name: 'Australian Dollar', rate: 0.018 },
-  { code: 'CAD', symbol: 'C$', name: 'Canadian Dollar', rate: 0.016 },
-  { code: 'SGD', symbol: 'S$', name: 'Singapore Dollar', rate: 0.016 },
-  { code: 'AED', symbol: 'د.إ', name: 'UAE Dirham', rate: 0.044 },
 ];
 
 interface CurrencySelectorProps {
@@ -27,22 +22,32 @@ interface CurrencySelectorProps {
 
 const CurrencySelector: React.FC<CurrencySelectorProps> = ({ onCurrencyChange, className = '' }) => {
   const [selectedCurrency, setSelectedCurrency] = useState<Currency>(currencies[0]);
+  const [showCurrencyPrompt, setShowCurrencyPrompt] = useState(false);
 
   useEffect(() => {
     // Load saved currency from localStorage
     const savedCurrency = localStorage.getItem('selectedCurrency');
     if (savedCurrency) {
-      const currency = currencies.find(c => c.code === savedCurrency) || currencies[0];
-      setSelectedCurrency(currency);
-      onCurrencyChange?.(currency);
+      try {
+        const currency = JSON.parse(savedCurrency);
+        const matchedCurrency = currencies.find(c => c.code === currency.code) || currencies[0];
+        setSelectedCurrency(matchedCurrency);
+        onCurrencyChange?.(matchedCurrency);
+      } catch (error) {
+        console.warn('Failed to parse saved currency:', error);
+      }
+    } else {
+      // Show currency selection prompt for new users
+      setShowCurrencyPrompt(true);
     }
   }, [onCurrencyChange]);
 
   const handleCurrencyChange = (currencyCode: string) => {
     const currency = currencies.find(c => c.code === currencyCode) || currencies[0];
     setSelectedCurrency(currency);
-    localStorage.setItem('selectedCurrency', currency.code);
+    localStorage.setItem('selectedCurrency', JSON.stringify(currency));
     onCurrencyChange?.(currency);
+    setShowCurrencyPrompt(false);
     console.log('Currency changed to:', currency.code, currency.symbol);
   };
 
@@ -50,7 +55,9 @@ const CurrencySelector: React.FC<CurrencySelectorProps> = ({ onCurrencyChange, c
     <div className={`flex items-center gap-2 ${className}`}>
       <Globe className="h-4 w-4 text-muted-foreground" />
       <Select value={selectedCurrency.code} onValueChange={handleCurrencyChange}>
-        <SelectTrigger className="w-28 h-8 text-xs border-none shadow-none focus:ring-0">
+        <SelectTrigger className={`w-28 h-8 text-xs border-none shadow-none focus:ring-0 ${
+          showCurrencyPrompt ? 'ring-2 ring-primary animate-pulse' : ''
+        }`}>
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
@@ -64,6 +71,11 @@ const CurrencySelector: React.FC<CurrencySelectorProps> = ({ onCurrencyChange, c
           ))}
         </SelectContent>
       </Select>
+      {showCurrencyPrompt && (
+        <div className="absolute top-full left-0 mt-1 p-2 bg-primary text-primary-foreground text-xs rounded shadow-lg z-50">
+          Select your preferred currency
+        </div>
+      )}
     </div>
   );
 };
