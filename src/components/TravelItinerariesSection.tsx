@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Clock, Users, Star, Calendar, Mountain, Camera, Compass } from "lucide-react";
 import TourPackageModal from "./TourPackageModal";
+import { useApp } from "@/contexts/AppContext";
 
 // Import tour package images
 import meghalayaHiddenGemsImg from "@/assets/meghalaya-hidden-gems.jpg";
@@ -29,6 +30,7 @@ import heritageTrailImg from "@/assets/heritage-trail.jpg";
 import extremeWeatherImg from "@/assets/extreme-weather.jpg";
 
 const TravelItinerariesSection = () => {
+  const { formatPrice } = useApp();
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedPackage, setSelectedPackage] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -45,7 +47,7 @@ const TravelItinerariesSection = () => {
       description: "Discover the unexplored waterfalls and living root bridges of Meghalaya",
       duration: "5 Days",
       difficulty: "Moderate",
-      price: "₹12,999",
+      price: 12999,
       image: meghalayaHiddenGemsImg,
       rating: 4.8,
       category: "adventure",
@@ -58,7 +60,7 @@ const TravelItinerariesSection = () => {
       description: "Immerse yourself in Khasi culture, local markets, and traditional cuisine",
       duration: "3 Days",
       difficulty: "Easy",
-      price: "₹8,999",
+      price: 8999,
       image: shillongCulturalImg,
       rating: 4.6,
       category: "cultural",
@@ -71,7 +73,7 @@ const TravelItinerariesSection = () => {
       description: "Experience the wettest place on earth during monsoon season",
       duration: "4 Days",
       difficulty: "Challenging",
-      price: "₹15,999",
+      price: 15999,
       image: cherrapunjiMonsoonImg,
       rating: 4.9,
       category: "adventure",
@@ -84,7 +86,7 @@ const TravelItinerariesSection = () => {
       description: "Crystal clear waters and boating experience at Indo-Bangladesh border",
       duration: "2 Days",
       difficulty: "Easy",
-      price: "₹6,999",
+      price: 6999,
       image: dawkiRiverImg,
       rating: 4.7,
       category: "leisure",
@@ -97,7 +99,7 @@ const TravelItinerariesSection = () => {
       description: "Visit Asia's cleanest village and experience sustainable living",
       duration: "2 Days", 
       difficulty: "Easy",
-      price: "₹7,499",
+      price: 7499,
       image: mawlynnongVillageImg,
       rating: 4.5,
       category: "cultural",
@@ -373,7 +375,7 @@ const TravelItinerariesSection = () => {
                   </Badge>
                 </div>
                 <div className="absolute top-4 right-4 bg-black/70 text-white px-2 py-1 rounded text-sm font-bold">
-                  {itinerary.price}
+                  {typeof itinerary.price === 'number' ? formatPrice(itinerary.price) : itinerary.price}
                 </div>
               </div>
               

@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Calendar, Users, Bed, Clock, Tag, X, Minus, Plus, Bookmark, TreePine } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useApp } from "@/contexts/AppContext";
 
 // Room data with images - same as in RoomsSection
 const ROOM_DATA = {
@@ -106,6 +107,7 @@ interface BookingModalProps {
 }
 
 const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
+  const { formatPrice } = useApp();
   const [bookingData, setBookingData] = useState({
     checkIn: "",
     checkOut: "",
@@ -339,7 +341,7 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
                           <span className="text-black font-bold">Per Bed</span>
                         </div>
                       </div>
-                      <div className="text-lg font-bold text-black">₹{room.price} / night</div>
+                      <div className="text-lg font-bold text-black">{formatPrice(room.price)} / night</div>
                       <p className="text-sm text-black font-semibold mt-1">{room.description}</p>
                     </div>
                   </div>
@@ -583,13 +585,13 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
                     <div className="space-y-2 mb-4">
                       <div className="flex justify-between">
                         <span className="text-gray-900 font-medium">{room.name}</span>
-                        <span className="text-gray-900 font-semibold">₹{totalAmount}</span>
+                        <span className="text-gray-900 font-semibold">{formatPrice(totalAmount)}</span>
                       </div>
                       <div className="flex justify-between text-sm text-gray-700">
                         {room.type === 'luxury' ? (
-                          <span>₹{room.price} x {bookingData.quantity} room x {bookingData.nights} nights</span>
+                          <span>{formatPrice(room.price)} x {bookingData.quantity} room x {bookingData.nights} nights</span>
                         ) : (
-                          <span>₹{room.price} x {bookingData.quantity} bed x {bookingData.nights} nights</span>
+                          <span>{formatPrice(room.price)} x {bookingData.quantity} bed x {bookingData.nights} nights</span>
                         )}
                       </div>
                       

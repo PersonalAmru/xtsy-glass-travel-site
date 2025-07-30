@@ -8,6 +8,7 @@ import { Calendar, Users, X, ArrowRight, ArrowLeft, Hotel, Bed, Home } from "luc
 import { useToast } from "@/hooks/use-toast";
 import { useIsMobile } from "@/hooks/use-mobile";
 import RoomCard from "./RoomCard";
+import { useApp } from "@/contexts/AppContext";
 
 // Room data with Supabase images
 const ROOM_DATA = {
@@ -222,6 +223,7 @@ interface SelectedRoom {
 }
 
 const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingModalProps) => {
+  const { formatPrice } = useApp();
   console.log("🎯 Enhanced Booking Modal opened with Transportation/Itinerary checkboxes!");
   const [currentStep, setCurrentStep] = useState<'room-selection' | 'booking-summary' | 'guest-details'>('room-selection');
   const [selectedRooms, setSelectedRooms] = useState<SelectedRoom[]>([]);
@@ -490,7 +492,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                         </div>
                         <div className="space-y-3">
                           {roomsArray.filter(room => room.propertyType === 'luxury').map((room) => (
-                            <MobileRoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} />
+                            <MobileRoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} formatPrice={formatPrice} />
                           ))}
                         </div>
                       </div>
@@ -504,7 +506,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                         </div>
                         <div className="space-y-3">
                           {roomsArray.filter(room => room.propertyType === 'hostel').map((room) => (
-                            <MobileRoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} />
+                            <MobileRoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} formatPrice={formatPrice} />
                           ))}
                         </div>
                       </div>
@@ -518,7 +520,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                         </div>
                         <div className="space-y-3">
                           {roomsArray.filter(room => room.propertyType === 'economy').map((room) => (
-                            <MobileRoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} />
+                            <MobileRoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} formatPrice={formatPrice} />
                           ))}
                         </div>
                       </div>
@@ -543,9 +545,9 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                               </div>
                               <div className="text-right">
                                 <div className="font-bold text-gray-900">
-                                  ₹{room.type === 'dorm' ? room.price * room.selection.guests * nights : room.price * room.selection.rooms * nights}
+                                {formatPrice(room.type === 'dorm' ? room.price * room.selection.guests * nights : room.price * room.selection.rooms * nights)}
                                 </div>
-                                <div className="text-sm text-gray-600">₹{room.price}/night</div>
+                                <div className="text-sm text-gray-600">{formatPrice(room.price)}/night</div>
                               </div>
                             </div>
                           </Card>
@@ -721,22 +723,22 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                        <div className="space-y-2">
                          <div className="flex justify-between">
                            <span>Subtotal</span>
-                           <span>₹{calculateTotal().subtotal}</span>
+                            <span>{formatPrice(calculateTotal().subtotal)}</span>
                          </div>
                          {promoApplied && (
                            <div className="flex justify-between text-green-600">
                              <span>Discount ({promoCode})</span>
-                             <span>-₹{calculateTotal().discountAmount}</span>
+                              <span>-{formatPrice(calculateTotal().discountAmount)}</span>
                            </div>
                          )}
                          <div className="flex justify-between">
                            <span>GST (18%)</span>
-                           <span>₹{calculateTotal().gstAmount}</span>
+                            <span>{formatPrice(calculateTotal().gstAmount)}</span>
                          </div>
                          <Separator />
                          <div className="flex justify-between font-bold text-lg">
                            <span>Total</span>
-                           <span>₹{calculateTotal().total}</span>
+                            <span>{formatPrice(calculateTotal().total)}</span>
                          </div>
                       </div>
                     </Card>
@@ -772,7 +774,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                       </div>
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                         {roomsArray.filter(room => room.propertyType === 'luxury').map((room) => (
-                          <RoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} />
+                          <RoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} formatPrice={formatPrice} />
                         ))}
                       </div>
                     </div>
@@ -786,7 +788,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                       </div>
                       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
                         {roomsArray.filter(room => room.propertyType === 'hostel').map((room) => (
-                          <RoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} />
+                          <RoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} formatPrice={formatPrice} />
                         ))}
                       </div>
                     </div>
@@ -800,7 +802,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                       </div>
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                         {roomsArray.filter(room => room.propertyType === 'economy').map((room) => (
-                          <RoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} />
+                          <RoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} formatPrice={formatPrice} />
                         ))}
                       </div>
                     </div>
@@ -826,9 +828,9 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                                 {room.type === 'dorm' ? `${room.selection.guests} beds` : `${room.selection.rooms} rooms`} × {nights} nights
                               </p>
                               <div className="flex justify-between items-center">
-                                <span className="text-xs text-gray-600">₹{room.price}/night</span>
+                                <span className="text-xs text-gray-600">{formatPrice(room.price)}/night</span>
                                 <span className="font-bold text-gray-900">
-                                  ₹{room.type === 'dorm' ? room.price * room.selection.guests * nights : room.price * room.selection.rooms * nights}
+                                  {formatPrice(room.type === 'dorm' ? room.price * room.selection.guests * nights : room.price * room.selection.rooms * nights)}
                                 </span>
                               </div>
                               <Button
@@ -1018,22 +1020,22 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
                         <span>Subtotal</span>
-                        <span>₹{calculateTotal().subtotal}</span>
+                        <span>{formatPrice(calculateTotal().subtotal)}</span>
                       </div>
                       {promoApplied && (
                         <div className="flex justify-between text-green-600">
                           <span>Discount ({promoCode})</span>
-                          <span>-₹{calculateTotal().discountAmount}</span>
+                          <span>-{formatPrice(calculateTotal().discountAmount)}</span>
                         </div>
                       )}
                       <div className="flex justify-between">
                         <span>GST (18%)</span>
-                        <span>₹{calculateTotal().gstAmount}</span>
+                        <span>{formatPrice(calculateTotal().gstAmount)}</span>
                       </div>
                       <Separator />
                       <div className="flex justify-between font-bold text-base">
                         <span>Total</span>
-                        <span>₹{calculateTotal().total}</span>
+                        <span>{formatPrice(calculateTotal().total)}</span>
                       </div>
                     </div>
                     <Button
@@ -1084,9 +1086,10 @@ interface RoomSelectionCardProps {
   selectedRooms: SelectedRoom[];
   setSelectedRooms: React.Dispatch<React.SetStateAction<SelectedRoom[]>>;
   nights: number;
+  formatPrice: (price: number) => string;
 }
 
-const RoomSelectionCard: React.FC<RoomSelectionCardProps> = ({ room, selectedRooms, setSelectedRooms, nights }) => {
+const RoomSelectionCard: React.FC<RoomSelectionCardProps> = ({ room, selectedRooms, setSelectedRooms, nights, formatPrice }) => {
   const [quantity, setQuantity] = useState(0);
   const { toast } = useToast();
 
@@ -1139,7 +1142,7 @@ const RoomSelectionCard: React.FC<RoomSelectionCardProps> = ({ room, selectedRoo
         />
         <div className="absolute top-2 right-2">
           <span className="bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-medium">
-            ₹{room.price}/night
+            {formatPrice(room.price)}/night
           </span>
         </div>
       </div>
@@ -1188,7 +1191,7 @@ const RoomSelectionCard: React.FC<RoomSelectionCardProps> = ({ room, selectedRoo
             <div className="flex justify-between text-sm">
               <span>Total for {nights} nights:</span>
               <span className="font-bold">
-                ₹{room.type === 'dorm' ? room.price * currentQuantity * nights : room.price * currentQuantity * nights}
+                {formatPrice(room.type === 'dorm' ? room.price * currentQuantity * nights : room.price * currentQuantity * nights)}
               </span>
             </div>
           </div>
@@ -1204,9 +1207,10 @@ interface MobileRoomSelectionCardProps {
   selectedRooms: SelectedRoom[];
   setSelectedRooms: React.Dispatch<React.SetStateAction<SelectedRoom[]>>;
   nights: number;
+  formatPrice: (price: number) => string;
 }
 
-const MobileRoomSelectionCard: React.FC<MobileRoomSelectionCardProps> = ({ room, selectedRooms, setSelectedRooms, nights }) => {
+const MobileRoomSelectionCard: React.FC<MobileRoomSelectionCardProps> = ({ room, selectedRooms, setSelectedRooms, nights, formatPrice }) => {
   const { toast } = useToast();
 
   const handleQuantityChange = (newQuantity: number) => {
@@ -1262,7 +1266,7 @@ const MobileRoomSelectionCard: React.FC<MobileRoomSelectionCardProps> = ({ room,
         <div className="flex-1">
           <h4 className="font-semibold text-gray-900 text-sm mb-1">{room.name}</h4>
           <p className="text-xs text-gray-600 mb-2 line-clamp-2">{room.description}</p>
-          <div className="text-sm font-bold text-orange-600">₹{room.price}/night</div>
+          <div className="text-sm font-bold text-orange-600">{formatPrice(room.price)}/night</div>
         </div>
         
         {/* Quantity Selector */}
@@ -1293,7 +1297,7 @@ const MobileRoomSelectionCard: React.FC<MobileRoomSelectionCardProps> = ({ room,
           </div>
           {currentQuantity > 0 && (
             <div className="text-xs text-center font-bold text-gray-900">
-              ₹{room.type === 'dorm' ? room.price * currentQuantity * nights : room.price * currentQuantity * nights}
+              {formatPrice(room.type === 'dorm' ? room.price * currentQuantity * nights : room.price * currentQuantity * nights)}
             </div>
           )}
         </div>

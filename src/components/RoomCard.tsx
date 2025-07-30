@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Users, TreePine, RotateCcw, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
+import { useApp } from "@/contexts/AppContext";
 
 interface RoomCardProps {
   room: {
@@ -23,10 +24,11 @@ interface RoomCardProps {
 }
 
 const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCardProps) => {
+  const { formatPrice } = useApp();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imageError, setImageError] = useState(false);
   
-  const buttonText = propertyType === "hostel" ? `Select Bed - ₹${room.price}/night` : propertyType === "luxury" ? `Select Suite - ₹${room.price}/night` : `Select Room - ₹${room.price}/night`;
+  const buttonText = propertyType === "hostel" ? `Select Bed - ${formatPrice(room.price)}/night` : propertyType === "luxury" ? `Select Suite - ${formatPrice(room.price)}/night` : `Select Room - ${formatPrice(room.price)}/night`;
   
   const images = room.images && room.images.length > 0 ? room.images : [room.image];
   const hasMultipleImages = images.length > 1;
