@@ -82,9 +82,14 @@ const Header = () => {
               <img 
                 src="/lovable-uploads/f60939c8-8351-4f63-80df-a4c6e37e539a.png"
                 alt="XTSY Travellers Hostel"
-                className="h-8 sm:h-10 w-auto progressive-image"
+                className="h-8 sm:h-10 w-auto progressive-image hover:opacity-80 transition-opacity cursor-pointer"
                 loading="eager"
                 decoding="sync"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.open('/gallery?category=brand-assets', '_blank');
+                }}
+                title="View brand assets in gallery"
               />
             </Link>
 

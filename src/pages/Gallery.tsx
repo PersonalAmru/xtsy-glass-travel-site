@@ -1,12 +1,19 @@
 
 import { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import Header from "@/components/Header";
 import GallerySection from "@/components/GallerySection";
 import Footer from "@/components/Footer";
 import SEOContent from "@/components/SEOContent";
 
 const Gallery = () => {
+  const [searchParams] = useSearchParams();
+  
   useEffect(() => {
+    // Extract URL parameters
+    const category = searchParams.get('category');
+    const tag = searchParams.get('tag');
+    
     // Scroll to gallery section after header when navigating to /gallery
     setTimeout(() => {
       const gallerySection = document.getElementById('gallery');
@@ -18,8 +25,16 @@ const Gallery = () => {
           behavior: 'smooth'
         });
       }
+      
+      // Pass parameters to gallery component via custom event
+      if (category || tag) {
+        const event = new CustomEvent('galleryFilter', {
+          detail: { category, tag }
+        });
+        window.dispatchEvent(event);
+      }
     }, 100);
-  }, []);
+  }, [searchParams]);
 
   return (
     <div className="min-h-screen bg-white">

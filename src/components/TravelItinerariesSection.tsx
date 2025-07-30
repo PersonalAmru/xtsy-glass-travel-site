@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { MapPin, Clock, Users, Star, Calendar, Mountain, Camera, Compass } from "lucide-react";
 import TourPackageModal from "./TourPackageModal";
 import { useApp } from "@/contexts/AppContext";
+import GalleryImage from "./GalleryImage";
 
 // Import tour package images
 import meghalayaHiddenGemsImg from "@/assets/meghalaya-hidden-gems.jpg";
@@ -364,19 +365,26 @@ const TravelItinerariesSection = () => {
               onClick={() => handlePackageClick(itinerary)}
             >
               <div className="relative overflow-hidden">
-                <img 
+                <GalleryImage
                   src={itinerary.image} 
                   alt={itinerary.title}
                   className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute top-4 left-4">
-                  <Badge variant="secondary" className="bg-white/90 text-gray-800">
-                    {itinerary.category}
-                  </Badge>
-                </div>
-                <div className="absolute top-4 right-4 bg-black/70 text-white px-2 py-1 rounded text-sm font-bold">
-                  {typeof itinerary.price === 'number' ? formatPrice(itinerary.price) : itinerary.price}
-                </div>
+                  category="tour-destinations"
+                  tag={itinerary.category === 'adventure' ? 'adventure-tours' : 
+                       itinerary.category === 'cultural' ? 'cultural-tours' : 
+                       'leisure-tours'}
+                  title={`View ${itinerary.title} in Gallery`}
+                  overlay={false}
+                >
+                  <div className="absolute top-4 left-4">
+                    <Badge variant="secondary" className="bg-white/90 text-gray-800">
+                      {itinerary.category}
+                    </Badge>
+                  </div>
+                  <div className="absolute top-4 right-4 bg-black/70 text-white px-2 py-1 rounded text-sm font-bold">
+                    {typeof itinerary.price === 'number' ? formatPrice(itinerary.price) : itinerary.price}
+                  </div>
+                </GalleryImage>
               </div>
               
               <CardHeader>
