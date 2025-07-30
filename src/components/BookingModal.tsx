@@ -312,19 +312,9 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
         <div className="flex flex-col h-full max-h-[100vh] md:max-h-[95vh]">
           {/* Header */}
           <div className="flex-shrink-0 p-4 md:p-6 border-b bg-gradient-to-r from-orange-50 to-red-50">
-            <div className="flex items-center gap-3 mb-4">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={onClose}
-                className="p-2 text-gray-900 hover:bg-gray-100"
-              >
-                <X className="h-5 w-5 text-gray-900" />
-              </Button>
-              <DialogTitle className="text-xl md:text-2xl font-bold text-black">
-                Book your stay
-              </DialogTitle>
-            </div>
+            <DialogTitle className="text-xl md:text-2xl font-bold text-black mb-4">
+              Book your stay
+            </DialogTitle>
             
             {/* Know before you go section */}
             <div className="bg-white rounded-lg p-4 mb-4">

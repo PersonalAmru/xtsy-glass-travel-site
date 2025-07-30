@@ -190,14 +190,9 @@ Please confirm this tour package booking and share payment details.`;
     <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <div className="flex items-center justify-between">
-            <DialogTitle className="text-2xl font-bold text-gray-900">
-              {tourPackage.title}
-            </DialogTitle>
-            <Button variant="ghost" size="sm" onClick={handleClose}>
-              <X className="h-4 w-4" />
-            </Button>
-          </div>
+          <DialogTitle className="text-2xl font-bold text-gray-900">
+            {tourPackage.title}
+          </DialogTitle>
         </DialogHeader>
 
         <div className="grid grid-cols-1 gap-6">
