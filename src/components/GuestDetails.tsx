@@ -175,8 +175,7 @@ Total Stay: ${formatPrice(bookingData.totalAmount)}
 • Total Amount: ${formatPrice(bookingData.totalAmount)}
 • Status: Pending Final Confirmation
 
-If you need anything before your trip—airport pickup, itinerary help, or just the latest café playlist, hit us up on WhatsApp anytime:
-📲 wa.me/918837317070
+If you need anything before your trip—airport pickup, itinerary help, or just the latest café playlist, hit us up on WhatsApp anytime!
 
 —
 
