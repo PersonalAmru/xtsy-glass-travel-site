@@ -9,33 +9,33 @@ const SEOContent: React.FC<SEOContentProps> = ({ page = 'home' }) => {
     switch (page) {
       case 'travel':
         return {
-          title: "Best Travel Packages from India's Top Hostel | XTSY Travellers Hostel",
-          description: "Explore India with travel packages from XTSY Travellers Hostel - India's best hostel in Shillong, Meghalaya. Biggest hostel in North East India offering complete travel solutions.",
-          keywords: "India travel packages, North East India tours, Meghalaya travel, best hostel travel services, Shillong tourism, India adventure tours"
+          title: "Best Gen Z Travel Packages from India's Top Hostel | XTSY Travellers Hostel",
+          description: "Explore India with Gen Z-friendly travel packages from XTSY Travellers Hostel - India's best hostel in Shillong, Meghalaya. Instagram-worthy destinations, sustainable tourism, and authentic experiences for young travelers.",
+          keywords: "Gen Z travel India, digital nomad travel packages, Instagram worthy destinations India, sustainable travel packages, young traveler tours, solo travel India, backpacker tours India, authentic experiences India, adventure tourism Gen Z, cultural immersion travel, budget travel packages India, millennial travel India"
         };
       case 'gallery':
         return {
-          title: "Photo Gallery - XTSY Travellers Hostel | Best Hostel in India",
-          description: "Explore the stunning visuals of XTSY Travellers Hostel - India's best hostel experience in Shillong, Meghalaya. See why we're the biggest hostel in North East India.",
-          keywords: "hostel photos India, Shillong hostel gallery, best accommodation India, Meghalaya tourism photos"
+          title: "Instagram-Worthy Photo Gallery - XTSY Travellers Hostel | Best Gen Z Hostel in India",
+          description: "Explore the stunning visuals of XTSY Travellers Hostel - India's best Gen Z-friendly hostel in Shillong, Meghalaya. See why young travelers choose us for Instagram-worthy stays and authentic experiences.",
+          keywords: "Instagram worthy hostel India, Gen Z hostel photos, Shillong aesthetic accommodation, social media friendly hostel, picture perfect stays India, trendy hostel India, millennial accommodation photos"
         };
       case 'about':
         return {
-          title: "About XTSY Travellers Hostel | India's Best Hostel in Shillong, Meghalaya",
-          description: "Learn about XTSY Travellers Hostel - India's best hostel experience and the biggest hostel in Shillong, Meghalaya, North East India.",
-          keywords: "about XTSY hostel, best hostel India story, Shillong accommodation history"
+          title: "About XTSY Travellers Hostel | India's #1 Gen Z Choice in Shillong, Meghalaya",
+          description: "Discover why XTSY Travellers Hostel is India's best Gen Z-friendly hostel in Shillong, Meghalaya. Our story of creating authentic experiences, sustainable practices, and Instagram-worthy stays for young travelers.",
+          keywords: "about XTSY hostel, Gen Z friendly hostel India, best young traveler hostel, sustainable accommodation India, authentic travel experiences, digital nomad story, millennial hostel founders, social hostel community India"
         };
       case 'deals':
         return {
-          title: "Best Hostel Deals in India | XTSY Travellers Hostel Offers",
-          description: "Get the best deals at XTSY Travellers Hostel - India's best hostel in Shillong, Meghalaya. Special offers from the biggest hostel in North East India.",
-          keywords: "hostel deals India, cheap accommodation Shillong, best hostel offers India"
+          title: "Best Gen Z Hostel Deals in India | XTSY Travellers Hostel Student Offers",
+          description: "Get exclusive deals at XTSY Travellers Hostel - India's best Gen Z hostel in Shillong, Meghalaya. Special student discounts, group offers, and budget-friendly packages for young travelers.",
+          keywords: "Gen Z hostel deals India, student discount accommodation, budget hostel offers India, young traveler deals, backpacker discounts India, millennial travel offers, cheap hostel stays India"
         };
       default:
         return {
-          title: "XTSY Travellers Hostel - Best Hostel in India | Biggest Hostel in Shillong, Meghalaya",
-          description: "XTSY Travellers Hostel - India's best hostel experience in Shillong, Meghalaya. The biggest hostel in North East India with luxury and budget accommodations.",
-          keywords: "best hostel in India, biggest hostel Shillong, best hostel Meghalaya, North East India hostel"
+          title: "XTSY Travellers Hostel - Best Hostel in India | #1 Gen Z Choice in Shillong, Meghalaya",
+          description: "XTSY Travellers Hostel - India's best Gen Z-friendly hostel in Shillong, Meghalaya. The biggest hostel in North East India with Instagram-worthy accommodations, sustainable practices, and authentic experiences for young travelers.",
+          keywords: "best hostel in India, biggest hostel Shillong, best Gen Z hostel India, digital nomad hostel, solo travel India, Instagram worthy hostel, sustainable travel India, young traveler accommodation, millennial hostel India, authentic travel experiences"
         };
     }
   };
@@ -51,32 +51,41 @@ const SEOContent: React.FC<SEOContentProps> = ({ page = 'home' }) => {
         
         {/* Rich keyword content for search engines */}
         <section>
-          <h2>Why XTSY Travellers Hostel is India's Best Hostel</h2>
+          <h2>Why XTSY Travellers Hostel is India's Best Hostel for Gen Z Travelers</h2>
           <p>
             XTSY Travellers Hostel stands as India's best hostel, located in the heart of Shillong, Meghalaya. 
             As the biggest hostel in Shillong and the entire North East India region, we offer unparalleled 
-            accommodation experiences ranging from budget-friendly dormitories to luxury glass suites.
+            accommodation experiences ranging from budget-friendly dormitories to luxury glass suites perfect for 
+            Gen Z travelers, digital nomads, solo travelers, and Instagram-worthy stays.
           </p>
           <p>
-            When searching for the best hostel in India, travelers consistently choose XTSY Travellers Hostel 
-            for our exceptional service, stunning mountain views, and strategic location in Meghalaya's capital. 
-            Our position as the biggest hostel in North East India allows us to provide diverse accommodation 
-            options that cater to every type of traveler.
+            When searching for the best hostel in India, Gen Z travelers consistently choose XTSY Travellers Hostel 
+            for our exceptional service, stunning mountain views, Instagram-worthy locations, sustainable practices, 
+            and strategic location in Meghalaya's capital. Our position as the biggest hostel in North East India 
+            allows us to provide diverse accommodation options that cater to every type of young traveler seeking 
+            authentic experiences, adventure tourism, and budget-friendly stays.
+          </p>
+          <p>
+            Perfect for solo female travelers, digital nomads, gap year students, backpackers, and young professionals 
+            seeking affordable luxury, eco-friendly accommodation, and authentic cultural experiences in North East India.
           </p>
         </section>
 
         <section>
-          <h2>Best Accommodation Options in Shillong, Meghalaya</h2>
+          <h2>Best Gen Z Friendly Accommodation in Shillong, Meghalaya</h2>
           <p>
-            Experience the best hostel in India with our range of accommodations including signature glass suites, 
-            private rooms, and dormitory beds. XTSY Travellers Hostel offers the most comprehensive lodging 
-            experience in Shillong, making us the top choice for India travel accommodation.
+            Experience the best hostel in India with our range of Gen Z-friendly accommodations including signature glass suites, 
+            private rooms, and dormitory beds perfect for solo travelers, digital nomads, and young adventurers. 
+            XTSY Travellers Hostel offers the most comprehensive lodging experience in Shillong, making us the top choice 
+            for Gen Z India travel accommodation, sustainable tourism, and authentic cultural experiences.
           </p>
           <ul>
-            <li>Signature 270° Glass Suite - Luxury accommodation with panoramic mountain views</li>
-            <li>Private King Rooms - Comfortable private accommodation for couples and families</li>
-            <li>Mixed and Female Dormitories - Budget-friendly options for backpackers</li>
-            <li>Premium amenities including AC, free WiFi, complimentary breakfast</li>
+            <li>Signature 270° Glass Suite - Instagram-worthy luxury accommodation with panoramic mountain views</li>
+            <li>Private King Rooms - Perfect for solo travelers and couples seeking comfort and privacy</li>
+            <li>Mixed and Female Dormitories - Budget-friendly options for backpackers and digital nomads</li>
+            <li>Premium amenities including high-speed WiFi, AC, complimentary breakfast, and social spaces</li>
+            <li>Eco-friendly practices and sustainable tourism initiatives for conscious travelers</li>
+            <li>24/7 co-working spaces perfect for digital nomads and remote workers</li>
           </ul>
         </section>
 
