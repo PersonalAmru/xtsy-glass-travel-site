@@ -360,27 +360,33 @@ img {
 /* Better touch targets for small screens */
 @media (max-width: 480px) {
   .carousel-control {
-    min-width: 48px;
-    min-height: 48px;
-    padding: 12px;
+    min-width: 40px;
+    min-height: 40px;
+    padding: 8px;
   }
   
   .carousel-indicator {
-    min-width: 24px;
-    min-height: 24px;
+    min-width: 20px;
+    min-height: 20px;
+    padding: 4px;
   }
 }
 
 /* Foldable device optimizations */
 @media (max-width: 320px) {
   .carousel-compact .carousel-control {
-    min-width: 40px;
-    min-height: 40px;
-    padding: 8px;
+    min-width: 36px;
+    min-height: 36px;
+    padding: 6px;
+  }
+  
+  .carousel-compact .carousel-indicator {
+    min-width: 16px;
+    min-height: 16px;
   }
   
   .carousel-compact .text-indicator {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
   }
 }
 

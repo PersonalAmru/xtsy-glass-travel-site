@@ -194,15 +194,15 @@ const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
 
       {/* Image indicators */}
       {showIndicators && images.length > 1 && (
-        <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1.5 z-10">
+        <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 flex space-x-1 z-10">
           {images.map((_, index) => (
             <button
               key={index}
               onClick={() => goToImage(index)}
               disabled={isTransitioning}
-              className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full transition-all duration-200 touch-target ${
+              className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all duration-200 ${
                 currentIndex === index 
-                  ? 'bg-white scale-110' 
+                  ? 'bg-white scale-110 shadow-md' 
                   : 'bg-white/60 hover:bg-white/80'
               }`}
               aria-label={`Go to image ${index + 1}`}
@@ -211,16 +211,16 @@ const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
         </div>
       )}
 
-      {/* Image counter */}
+      {/* Image counter - smaller and less intrusive */}
       {images.length > 1 && (
-        <div className="absolute top-2 right-2 bg-black/60 text-white px-2 py-1 rounded text-xs font-medium z-10">
-          {currentIndex + 1} / {images.length}
+        <div className="absolute top-1 right-1 bg-black/50 text-white px-1.5 py-0.5 rounded text-xs font-medium z-10">
+          {currentIndex + 1}/{images.length}
         </div>
       )}
 
-      {/* Touch indicator for mobile */}
-      <div className="md:hidden absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/80 text-xs opacity-50">
-        Swipe for more photos
+      {/* Touch indicator for mobile - smaller and positioned better */}
+      <div className="md:hidden absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white/60 text-xs opacity-40 pointer-events-none">
+        Swipe for more
       </div>
     </div>
   );
