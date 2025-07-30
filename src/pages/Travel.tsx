@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -7,8 +7,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TourPackageCard from "@/components/TourPackageCard";
-import TourPackageModal from "@/components/TourPackageModal";
+import { LazyTourPackageModal } from "@/components/lazy/LazyTourPackageModal";
 import { AuthModal } from "@/components/AuthModal";
+import LazyWrapper from "@/components/LazyWrapper";
 import meghalayaLivingRootBridges from "@/assets/meghalaya-living-root-bridges.jpg";
 import cherrapunjiNohkalikaiFalls from "@/assets/cherrapunji-nohkalikai-falls.jpg";
 import dawkiUmngotRiver from "@/assets/dawki-umngot-river.jpg";
@@ -920,11 +921,15 @@ const Travel = () => {
 
       <Footer />
 
-      <TourPackageModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        tourPackage={selectedPackage}
-      />
+      {isModalOpen && (
+        <Suspense fallback={<div className="fixed inset-0 bg-black/50 flex items-center justify-center"><div className="bg-white p-4 rounded">Loading...</div></div>}>
+          <LazyTourPackageModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            tourPackage={selectedPackage}
+          />
+        </Suspense>
+      )}
 
       <AuthModal 
         isOpen={isAuthModalOpen}
