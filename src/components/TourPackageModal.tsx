@@ -86,35 +86,20 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
     const isWeekend = selectedDate ? 
       [0, 6].includes(new Date(selectedDate).getDay()) : false;
     
-    // Determine if the tour package price is already in USD/EUR or in INR
-    // If price starts with $ or €, it's already in foreign currency
-    const isAlreadyInForeignCurrency = tourPackage.price.startsWith('$') || tourPackage.price.startsWith('€');
+    // Use the same pricing logic as TourPackageCard for consistency
+    let baseRatePerPersonInSelectedCurrency = priceNumeric;
+    let baseRatePerPersonINR = priceNumeric; // Store original INR price
     
-    let baseRatePerPersonInSelectedCurrency;
-    let baseRatePerPersonINR;
-    
-    if (isAlreadyInForeignCurrency) {
-      // Price is already in USD/EUR, convert to selected currency if needed
-      if (currency.code === 'INR') {
-        // Convert from USD to INR (assuming tour package prices are in USD)
-        baseRatePerPersonInSelectedCurrency = Math.round(priceNumeric / currency.rate);
-        baseRatePerPersonINR = baseRatePerPersonInSelectedCurrency;
-      } else {
-        // Price is already in foreign currency, use as is
-        baseRatePerPersonInSelectedCurrency = priceNumeric;
-        baseRatePerPersonINR = Math.round(priceNumeric / currency.rate); // For WhatsApp message
-      }
-    } else {
-      // Price is in INR, convert to selected currency
-      baseRatePerPersonInSelectedCurrency = Math.round(priceNumeric * currency.rate);
-      baseRatePerPersonINR = priceNumeric;
-    }
-    
-    // Step 2: For USD/EUR guests, apply hikes to the converted amount
+    // For USD/EUR guests: Add 10% base hike (15% on weekends)
     if (currency.code !== 'INR') {
       const weekendHike = isWeekend ? 1.15 : 1.10; // 15% weekend, 10% weekday
-      baseRatePerPersonInSelectedCurrency = Math.round(baseRatePerPersonInSelectedCurrency * weekendHike);
-      baseRatePerPersonINR = Math.round(baseRatePerPersonINR * weekendHike); // For WhatsApp message
+      baseRatePerPersonInSelectedCurrency = Math.round(priceNumeric * weekendHike);
+      baseRatePerPersonINR = Math.round(priceNumeric * weekendHike);
+    }
+    
+    // Convert to selected currency (this matches TourPackageCard logic)
+    if (currency.code !== 'INR') {
+      baseRatePerPersonInSelectedCurrency = Math.round(baseRatePerPersonInSelectedCurrency * currency.rate);
     }
     
     // Step 3: Calculate subtotal in selected currency
