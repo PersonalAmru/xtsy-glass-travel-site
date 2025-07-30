@@ -138,15 +138,14 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
       return;
     }
 
-    // Create WhatsApp message (always in INR for backend processing)
-    const whatsappMessage = `Tour Package Booking Request - XTSY Travellers Hostel & XTSY Luxury
+    // Create WhatsApp message for availability inquiry
+    const whatsappMessage = `Tour Package Availability Inquiry - XTSY Travellers Hostel & XTSY Luxury
 
 *Package Details:*
 Package: ${tourPackage.title}
-Duration: ${pricing.days} days (${selectedDate} to ${endDate})
+Duration: ${tourPackage.duration} (${selectedDate} to ${endDate})
 Difficulty: ${tourPackage.difficulty}
 Category: ${tourPackage.category}
-${pricing.isWeekend ? '*Weekend Booking*' : ''}
 
 *Guest Details:*
 Name: ${guestDetails.name}
@@ -155,27 +154,15 @@ Phone: ${guestDetails.phone}
 Number of Guests: ${guests}
 ${guestDetails.emergencyContact ? `Emergency Contact: ${guestDetails.emergencyContact}` : ''}
 
-*Booking Summary:*
-Start Date: ${selectedDate}
+*Booking Details:*
+Preferred Start Date: ${selectedDate}
 End Date: ${endDate}
-Total Days: ${pricing.days}
 Total Guests: ${guests}
-${currency.code !== 'INR' ? `Selected Currency: ${currency.code}` : ''}
-
-*Payment Details (Base Currency - INR):*
-Base Rate: ₹${parseInt(tourPackage.price.replace(/[^\d]/g, '')).toLocaleString()} per person (complete package)
-${currency.code !== 'INR' && pricing.isWeekend ? 'Weekend Rate Applied: +15%' : ''}
-${currency.code !== 'INR' && !pricing.isWeekend ? 'International Rate Applied: +10%' : ''}
-Subtotal (${guests} guests): ₹${pricing.rawSubtotal.toLocaleString()}
-Tax (5% individual based): ₹${pricing.rawGstAmount.toLocaleString()}
-*Total Amount: ₹${pricing.rawTotal.toLocaleString()}*
-
-${currency.code !== 'INR' ? `*Display Amount (${currency.code}): ${formatPrice(pricing.finalTotal)}*` : ''}
 
 *Package Highlights:*
 ${tourPackage.highlights.map(highlight => `• ${highlight}`).join('\n')}
 
-Please confirm this tour package booking and share payment details.`;
+Please check availability for these dates and share pricing details for this exclusive tour package.`;
 
     // Redirect to WhatsApp
     const whatsappURL = `https://wa.me/918837317070?text=${encodeURIComponent(whatsappMessage)}`;
@@ -183,7 +170,7 @@ Please confirm this tour package booking and share payment details.`;
 
     toast({
       title: "Redirecting to WhatsApp",
-      description: "Please complete your booking via WhatsApp",
+      description: "Please check availability via WhatsApp",
     });
 
     handleClose();
@@ -300,19 +287,17 @@ Please confirm this tour package booking and share payment details.`;
                   <div className="bg-blue-50 p-3 rounded-lg">
                     <div className="text-sm space-y-1">
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Total Days:</span>
-                        <span className="font-medium">{pricing.days} days</span>
+                        <span className="text-gray-600">Start Date:</span>
+                        <span className="font-medium">{selectedDate}</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-gray-600">End Date:</span>
                         <span className="font-medium">{endDate}</span>
                       </div>
-                      {pricing.isWeekend && currency.code !== 'INR' && (
-                        <div className="flex justify-between text-orange-600">
-                          <span>Weekend Booking:</span>
-                          <span className="font-medium">+15% rate</span>
-                        </div>
-                      )}
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Total Days:</span>
+                        <span className="font-medium">{parseInt(tourPackage.duration.split(" ")[0])} days</span>
+                      </div>
                     </div>
                   </div>
                 )}
@@ -370,51 +355,21 @@ Please confirm this tour package booking and share payment details.`;
               </div>
             </Card>
 
-            {/* Pricing Summary */}
+            {/* Pricing Summary removed for exclusive packages */}
             <Card className="p-6 bg-gradient-to-br from-orange-50 to-red-50">
-              <h3 className="text-lg font-semibold mb-4">Pricing Summary</h3>
-              
-              <div className="space-y-3 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-gray-700">Base Rate (per person):</span>
-                  <span className="font-medium">{formatPrice(pricing.basePrice)}</span>
-                </div>
+              <div className="text-center space-y-4">
+                <h3 className="text-lg font-semibold">Exclusive Tour Package</h3>
+                <p className="text-gray-600 text-sm">
+                  This is an exclusive tour experience. Contact us to check availability and get personalized pricing.
+                </p>
                 
-                
-                <div className="flex justify-between">
-                  <span className="text-gray-700">Duration:</span>
-                  <span className="font-medium">{pricing.days} days</span>
-                </div>
-                
-                <div className="flex justify-between">
-                  <span className="text-gray-700">Guests:</span>
-                  <span className="font-medium">{guests}</span>
-                </div>
-                
-                <div className="flex justify-between">
-                  <span className="text-gray-700">Subtotal:</span>
-                  <span className="font-medium">{formatPrice(pricing.subtotal)}</span>
-                </div>
-                
-                <div className="flex justify-between">
-                  <span className="text-gray-700">Tax (as per India) (5%):</span>
-                  <span className="font-medium">{formatPrice(pricing.gstAmount)}</span>
-                </div>
-                
-                <Separator className="my-3" />
-                
-                <div className="flex justify-between items-center">
-                  <span className="text-lg font-semibold text-gray-900">Total Amount:</span>
-                  <span className="text-xl font-bold text-orange-600">{formatPrice(pricing.finalTotal)}</span>
-                </div>
+                <Button 
+                  onClick={handlePayAndConfirm}
+                  className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold py-3"
+                >
+                  Check for Availability
+                </Button>
               </div>
-
-              <Button 
-                onClick={handlePayAndConfirm}
-                className="w-full mt-6 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold py-3"
-              >
-                Pay and Confirm
-              </Button>
             </Card>
             </div>
           </div>

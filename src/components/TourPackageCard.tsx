@@ -69,9 +69,7 @@ const TourPackageCard = ({ tourPackage, onPackageClick }: TourPackageCardProps) 
             {tourPackage.category}
           </Badge>
         </div>
-        <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-2 py-1 rounded text-sm font-bold">
-          {calculateDisplayPrice()}
-        </div>
+        {/* Price tag removed for exclusive packages */}
       </div>
       
       <CardHeader className="flex-grow">
