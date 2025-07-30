@@ -83,8 +83,12 @@ const GroupBookingForm = ({ isOpen, onClose }: GroupBookingFormProps) => {
     
     // WhatsApp booking functionality
     const foodDetails = [];
-    if (formData.breakfast) foodDetails.push(`Breakfast: ${formatPrice(breakfastCost)}`);
-    if (formData.dinner) foodDetails.push(`Dinner (${formData.dinnerType}): ${formatPrice(dinnerCost)}`);
+    if (formData.breakfast) foodDetails.push(`• Breakfast: ${formatPrice(breakfastCost)}`);
+    if (formData.dinner) foodDetails.push(`• Dinner (${formData.dinnerType}): ${formatPrice(dinnerCost)}`);
+    
+    const additionalServices = [];
+    if (formData.transportation) additionalServices.push("• Transportation Arrangement");
+    if (formData.itinerary) additionalServices.push("• Travel Itinerary Support");
     
     const bookingDetails = `
 🏨 *XTSY Group Booking Request*
@@ -105,6 +109,7 @@ Total Guests: ${formData.guests}
 💰 *Price Summary:*
 Property Rate: ${formatPrice(15000 * nights)}
 ${foodDetails.length > 0 ? `Food Add-ons:\n${foodDetails.join('\n')}` : ''}
+${additionalServices.length > 0 ? `Additional Services:\n${additionalServices.join('\n')}` : ''}
 GST (12%): ${formatPrice(gst)}
 *Total: ${formatPrice(finalTotal)}*
 

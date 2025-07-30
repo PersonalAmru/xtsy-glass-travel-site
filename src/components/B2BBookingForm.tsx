@@ -101,7 +101,7 @@ Event Type: ${formData.eventType}
 💰 *Price Summary (Corporate Rate):*
 Accommodation: ${formatPrice(totalPrice)} (${formatPrice(corporateRate)}/person/night)
 ${foodDetails.length > 0 ? `Food Add-ons:\n${foodDetails.join('\n')}` : ''}
-${additionalServices.length > 0 ? `Additional Services:\n${additionalServices.join('\n')}` : ''}
+${additionalServices.length > 0 ? `Additional Services:\n${additionalServices.map(service => `• ${service}`).join('\n')}` : ''}
 GST (12%): ${formatPrice(gst)}
 *Total: ${formatPrice(finalTotal)}*
 
