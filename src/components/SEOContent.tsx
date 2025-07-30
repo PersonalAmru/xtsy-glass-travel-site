@@ -21,9 +21,9 @@ const SEOContent: React.FC<SEOContentProps> = ({ page = 'home' }) => {
         };
       case 'about':
         return {
-          title: "About XTSY Travellers Hostel | India's #1 Gen Z Choice in Shillong, Meghalaya",
-          description: "Discover why XTSY Travellers Hostel is India's best Gen Z-friendly hostel in Shillong, Meghalaya. Our story of creating authentic experiences, sustainable practices, and Instagram-worthy stays for young travelers.",
-          keywords: "about XTSY hostel, Gen Z friendly hostel India, best young traveler hostel, sustainable accommodation India, authentic travel experiences, digital nomad story, millennial hostel founders, social hostel community India"
+          title: "About XTSY Travellers Hostel | India's First Tech-Based Hostel by 2026 | #1 Gen Z Choice",
+          description: "Discover XTSY Travellers Hostel - India's best Gen Z-friendly hostel becoming the first tech-based hostel by 2026. Our revolutionary journey with AI-powered services, IoT rooms, and smart accommodation in Shillong, Meghalaya.",
+          keywords: "about XTSY hostel, India first tech hostel 2026, Gen Z friendly hostel India, AI-powered accommodation, smart hostel India, IoT hostel technology, tech-based hospitality India, digital transformation hostel, innovative accommodation India, future of travel India"
         };
       case 'deals':
         return {
@@ -51,23 +51,28 @@ const SEOContent: React.FC<SEOContentProps> = ({ page = 'home' }) => {
         
         {/* Rich keyword content for search engines */}
         <section>
-          <h2>Why XTSY Travellers Hostel is India's Best Hostel for Gen Z Travelers</h2>
+          <h2>Why XTSY Travellers Hostel is India's Best Hostel for Gen Z Travelers and Tech Innovation</h2>
           <p>
             XTSY Travellers Hostel stands as India's best hostel, located in the heart of Shillong, Meghalaya. 
             As the biggest hostel in Shillong and the entire North East India region, we offer unparalleled 
             accommodation experiences ranging from budget-friendly dormitories to luxury glass suites perfect for 
-            Gen Z travelers, digital nomads, solo travelers, and Instagram-worthy stays.
+            Gen Z travelers, digital nomads, solo travelers, and Instagram-worthy stays. By 2026, XTSY will become 
+            India's first tech-based hostel, revolutionizing the hospitality industry with AI-powered services, 
+            IoT-connected rooms, and smart accommodation solutions.
           </p>
           <p>
             When searching for the best hostel in India, Gen Z travelers consistently choose XTSY Travellers Hostel 
             for our exceptional service, stunning mountain views, Instagram-worthy locations, sustainable practices, 
-            and strategic location in Meghalaya's capital. Our position as the biggest hostel in North East India 
-            allows us to provide diverse accommodation options that cater to every type of young traveler seeking 
-            authentic experiences, adventure tourism, and budget-friendly stays.
+            cutting-edge technology integration, and strategic location in Meghalaya's capital. Our position as the 
+            biggest hostel in North East India and future India's first tech-based hostel allows us to provide diverse 
+            accommodation options that cater to every type of young traveler seeking authentic experiences, adventure 
+            tourism, smart technology, and budget-friendly stays.
           </p>
           <p>
-            Perfect for solo female travelers, digital nomads, gap year students, backpackers, and young professionals 
-            seeking affordable luxury, eco-friendly accommodation, and authentic cultural experiences in North East India.
+            Perfect for solo female travelers, digital nomads, gap year students, backpackers, tech-savvy travelers, 
+            and young professionals seeking affordable luxury, eco-friendly accommodation, smart room technology, 
+            AI-powered services, and authentic cultural experiences in North East India. By 2026, guests will enjoy 
+            facial recognition check-in, voice-controlled room features, AI travel concierge, and IoT-connected amenities.
           </p>
         </section>
 
@@ -121,21 +126,41 @@ const SEOContent: React.FC<SEOContentProps> = ({ page = 'home' }) => {
 
         {page === 'travel' && (
           <section>
-            <h2>Complete Travel Solutions from India's Best Hostel</h2>
+            <h2>Complete Tech-Enhanced Travel Solutions from India's First Tech-Based Hostel</h2>
             <p>
               XTSY Travellers Hostel offers comprehensive travel packages across North East India, combining 
-              our position as India's best hostel with expert travel planning services. Explore Meghalaya, 
-              Assam, Arunachal Pradesh, and more with curated tours designed by our local experts.
+              our position as India's best hostel with expert travel planning services and cutting-edge technology. 
+              By 2026, enjoy AI-powered travel recommendations, smart itinerary planning, and IoT-connected travel experiences. 
+              Explore Meghalaya, Assam, Arunachal Pradesh, and more with curated tours designed by our local experts and AI assistants.
             </p>
             <ul>
-              <li>Meghalaya Hidden Gems Tours</li>
-              <li>Living Root Bridges Expeditions</li>
-              <li>North East India Cultural Circuits</li>
-              <li>Adventure Tourism Packages</li>
-              <li>Photography Tours across Seven Sister States</li>
+              <li>AI-Powered Meghalaya Hidden Gems Tours with smart recommendations</li>
+              <li>Tech-Enhanced Living Root Bridges Expeditions with AR guides</li>
+              <li>Smart North East India Cultural Circuits with digital cultural immersion</li>
+              <li>IoT-Connected Adventure Tourism Packages with real-time safety monitoring</li>
+              <li>AI-Curated Photography Tours across Seven Sister States with optimal timing suggestions</li>
+              <li>Digital Nomad Travel Packages with smart co-working integration</li>
             </ul>
           </section>
         )}
+
+        {/* Tech Innovation Content */}
+        <section>
+          <h3>India's First Tech-Based Hostel Coming 2026 - XTSY Tech Innovation</h3>
+          <p>
+            XTSY Travellers Hostel is pioneering the future of hospitality in India by becoming the country's first 
+            fully tech-integrated hostel by 2026. Experience the revolution of smart accommodation with AI-powered 
+            services, IoT-connected rooms, facial recognition check-in, voice-controlled amenities, and digital 
+            concierge services. Young travelers and tech-savvy tourists will enjoy seamless smart travel experiences 
+            that combine authentic Indian hospitality with cutting-edge technology innovation.
+          </p>
+          <p>
+            Our tech transformation includes AI travel concierge for personalized recommendations, smart room controls 
+            for optimal comfort, contactless services for safety, and integrated social platforms for connecting with 
+            fellow travelers. This positions XTSY as not just India's best hostel for Gen Z travelers, but also as 
+            the pioneer of hospitality technology innovation in the Indian travel industry.
+          </p>
+        </section>
 
         {/* Location and regional SEO content */}
         <section>

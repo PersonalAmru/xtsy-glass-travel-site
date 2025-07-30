@@ -68,11 +68,35 @@ const AboutSection = () => {
     }
   ];
 
+  const techFeatures = [
+    {
+      icon: Smartphone,
+      title: "Smart Check-in",
+      description: "AI-powered instant check-in via mobile app",
+      emoji: "🤖",
+      status: "Coming 2026"
+    },
+    {
+      icon: Wifi,
+      title: "IoT Connected Rooms",
+      description: "Voice-controlled lighting, AC, and entertainment",
+      emoji: "🏠",
+      status: "Beta Testing"
+    },
+    {
+      icon: Zap,
+      title: "Digital Concierge",
+      description: "24/7 AI assistant for all your travel needs",
+      emoji: "✨",
+      status: "In Development"
+    }
+  ];
+
   const trendingFeatures = [
     { icon: Camera, text: "360° Glass Suite Views", trend: "📈 Trending" },
-    { icon: Smartphone, text: "Digital Check-in", trend: "🔥 Hot" },
+    { icon: Smartphone, text: "Smart Check-in 2026", trend: "🔥 Coming Soon" },
     { icon: Headphones, text: "Silent Disco Nights", trend: "✨ New" },
-    { icon: Globe, text: "Cultural Exchange Program", trend: "🌟 Popular" }
+    { icon: Globe, text: "Tech-Based Experience", trend: "🚀 Future" }
   ];
 
   return (
@@ -253,6 +277,104 @@ const AboutSection = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+
+        {/* Tech-Based Hostel 2026 Section */}
+        <div className="mb-16">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-3 rounded-full text-sm font-medium mb-6 animate-pulse">
+              <Zap className="w-5 h-5" />
+              🚀 Revolutionary Announcement
+            </div>
+            <h3 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-cyan-600 to-purple-600 bg-clip-text text-transparent">
+              India's First Tech-Based Hostel 🤖
+            </h3>
+            <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed mb-8">
+              By 2026, XTSY will transform into India's first fully tech-integrated hostel experience. 
+              We're revolutionizing how young travelers interact with accommodation through cutting-edge technology! 
+            </p>
+            <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-2xl inline-block text-lg font-semibold shadow-2xl hover-scale">
+              Coming 2026: The Future of Travel ✨
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {techFeatures.map((feature, index) => (
+              <Card key={index} className="bg-gradient-to-br from-blue-50 to-cyan-50 border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 group overflow-hidden animate-fade-in">
+                <CardContent className="p-8 text-center relative">
+                  <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-cyan-500"></div>
+                  
+                  {/* Status Badge */}
+                  <div className="absolute top-4 right-4">
+                    <span className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-3 py-1 rounded-full text-xs font-medium">
+                      {feature.status}
+                    </span>
+                  </div>
+
+                  <div className="text-4xl mb-4 group-hover:animate-bounce">{feature.emoji}</div>
+                  
+                  <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-500 shadow-lg">
+                    <feature.icon className="h-8 w-8 text-white" />
+                  </div>
+                  
+                  <h4 className="font-bold text-gray-800 mb-3 text-xl">
+                    {feature.title}
+                  </h4>
+                  
+                  <p className="text-gray-600 leading-relaxed">
+                    {feature.description}
+                  </p>
+
+                  {/* Tech Progress Bar */}
+                  <div className="mt-6">
+                    <div className="bg-gray-200 rounded-full h-2 overflow-hidden">
+                      <div 
+                        className={`bg-gradient-to-r from-blue-500 to-cyan-500 h-full transition-all duration-1000 ${
+                          index === 0 ? 'w-3/4' : index === 1 ? 'w-1/2' : 'w-1/4'
+                        }`}
+                      ></div>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-2">
+                      {index === 0 ? '75% Complete' : index === 1 ? '50% Complete' : '25% Complete'}
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Vision Statement */}
+          <div className="mt-12 bg-gradient-to-br from-blue-600 to-purple-700 rounded-3xl p-8 sm:p-12 text-white relative overflow-hidden">
+            <div className="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;charset=utf-8,%3csvg width=%2760%27 height=%2760%27 viewBox=%270 0 60 60%27 xmlns=%27http://www.w3.org/2000/svg%27%3e%3cg fill=%27none%27 fill-rule=%27evenodd%27%3e%3cg fill=%27%23ffffff%27 fill-opacity=%270.1%27%3e%3cpath d=%27m30 30c0-11.046 8.954-20 20-20s20 8.954 20 20-8.954 20-20 20-20-8.954-20-20z%27/%3e%3c/g%3e%3c/g%3e%3c/svg%3e')]"></div>
+            <div className="relative z-10 text-center">
+              <div className="text-6xl mb-6">🚀</div>
+              <h4 className="text-3xl font-bold mb-6">
+                The Future is Smart, Sustainable & Social
+              </h4>
+              <p className="text-lg opacity-90 max-w-3xl mx-auto mb-8">
+                Imagine checking in with facial recognition, controlling your room with voice commands, 
+                getting personalized travel recommendations from AI, and connecting with fellow travelers 
+                through our smart social platform. This isn't science fiction - this is XTSY 2026! 
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8">
+                <div className="bg-white/20 backdrop-blur-md rounded-2xl p-6">
+                  <div className="text-2xl mb-2">🧠</div>
+                  <h5 className="font-semibold mb-2">AI-Powered</h5>
+                  <p className="text-sm opacity-80">Smart recommendations and assistance</p>
+                </div>
+                <div className="bg-white/20 backdrop-blur-md rounded-2xl p-6">
+                  <div className="text-2xl mb-2">🌿</div>
+                  <h5 className="font-semibold mb-2">Eco-Smart</h5>
+                  <p className="text-sm opacity-80">Sustainable tech solutions</p>
+                </div>
+                <div className="bg-white/20 backdrop-blur-md rounded-2xl p-6">
+                  <div className="text-2xl mb-2">🌐</div>
+                  <h5 className="font-semibold mb-2">Connected</h5>
+                  <p className="text-sm opacity-80">Global community platform</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
