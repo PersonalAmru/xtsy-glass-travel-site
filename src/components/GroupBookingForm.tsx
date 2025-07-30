@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from "@
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { Calendar, Users, IndianRupee, Minus, Plus, ShoppingCart } from "lucide-react";
 import CartModal from "./CartModal";
+import { useApp } from "@/contexts/AppContext";
 
 interface GroupBookingFormProps {
   isOpen: boolean;
@@ -15,6 +16,7 @@ interface GroupBookingFormProps {
 }
 
 const GroupBookingForm = ({ isOpen, onClose }: GroupBookingFormProps) => {
+  const { formatPrice } = useApp();
   const [formData, setFormData] = useState({
     groupName: "",
     contactPerson: "",
@@ -81,8 +83,8 @@ const GroupBookingForm = ({ isOpen, onClose }: GroupBookingFormProps) => {
     
     // WhatsApp booking functionality
     const foodDetails = [];
-    if (formData.breakfast) foodDetails.push(`Breakfast: ₹${breakfastCost.toLocaleString()}`);
-    if (formData.dinner) foodDetails.push(`Dinner (${formData.dinnerType}): ₹${dinnerCost.toLocaleString()}`);
+    if (formData.breakfast) foodDetails.push(`Breakfast: ${formatPrice(breakfastCost)}`);
+    if (formData.dinner) foodDetails.push(`Dinner (${formData.dinnerType}): ${formatPrice(dinnerCost)}`);
     
     const bookingDetails = `
 🏨 *XTSY Group Booking Request*
@@ -101,10 +103,10 @@ Nights: ${nights}
 Total Guests: ${formData.guests}
 
 💰 *Price Summary:*
-Property Rate: ₹${(15000 * nights).toLocaleString()}
+Property Rate: ${formatPrice(15000 * nights)}
 ${foodDetails.length > 0 ? `Food Add-ons:\n${foodDetails.join('\n')}` : ''}
-GST (12%): ₹${gst.toLocaleString()}
-*Total: ₹${finalTotal.toLocaleString()}*
+GST (12%): ${formatPrice(gst)}
+*Total: ${formatPrice(finalTotal)}*
 
 📝 *Special Requests:*
 ${formData.specialRequests || 'None'}
@@ -270,7 +272,7 @@ ${formData.specialRequests || 'None'}
                    <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border">
                      <div>
                        <h4 className="font-semibold">Breakfast</h4>
-                       <p className="text-sm text-muted-foreground">₹150 per person per day</p>
+                       <p className="text-sm text-muted-foreground">{formatPrice(150)} per person per day</p>
                      </div>
                      <input
                        type="checkbox"
@@ -285,7 +287,7 @@ ${formData.specialRequests || 'None'}
                      <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border">
                        <div>
                          <h4 className="font-semibold">Dinner Thali</h4>
-                         <p className="text-sm text-muted-foreground">₹300 per person per day (Veg/Non-Veg)</p>
+                         <p className="text-sm text-muted-foreground">{formatPrice(300)} per person per day (Veg/Non-Veg)</p>
                        </div>
                        <input
                          type="checkbox"
@@ -351,27 +353,27 @@ ${formData.specialRequests || 'None'}
                       <div className="space-y-1 text-sm">
                         <div className="flex justify-between">
                           <span>Group Booking × {nights} nights</span>
-                          <span>₹{(15000 * nights).toLocaleString()}</span>
+                          <span>{formatPrice(15000 * nights)}</span>
                         </div>
                         {formData.breakfast && (
                           <div className="flex justify-between">
                             <span>Breakfast ({formData.guests} guests × {nights} nights)</span>
-                            <span>₹{breakfastCost.toLocaleString()}</span>
+                            <span>{formatPrice(breakfastCost)}</span>
                           </div>
                         )}
                         {formData.dinner && (
                           <div className="flex justify-between">
                             <span>Dinner {formData.dinnerType} ({formData.guests} guests × {nights} nights)</span>
-                            <span>₹{dinnerCost.toLocaleString()}</span>
+                            <span>{formatPrice(dinnerCost)}</span>
                           </div>
                         )}
                         <div className="flex justify-between">
                           <span>GST (12%)</span>
-                          <span>₹{gst.toLocaleString()}</span>
+                          <span>{formatPrice(gst)}</span>
                         </div>
                         <div className="flex justify-between font-bold text-primary pt-2 border-t border-primary/20">
                           <span>Total Amount</span>
-                          <span>₹{finalTotal.toLocaleString()}</span>
+                          <span>{formatPrice(finalTotal)}</span>
                         </div>
                       </div>
                     </CardContent>
@@ -398,7 +400,7 @@ ${formData.specialRequests || 'None'}
                     disabled={!formData.checkIn || !formData.checkOut || nights <= 0}
                   >
                     <Users className="h-4 w-4 mr-2" />
-                    Book Now - ₹{nights > 0 ? finalTotal.toLocaleString() : '0'}
+                    Book Now - {nights > 0 ? formatPrice(finalTotal) : formatPrice(0)}
                   </Button>
                 </div>
               </form>

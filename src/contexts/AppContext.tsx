@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import axios from 'axios';
 
 interface Currency {
   code: string;
@@ -75,7 +76,34 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   });
   const [isInitialized, setIsInitialized] = useState(false);
 
-  // Load saved currency preference from localStorage on mount
+  // Fetch real-time exchange rates
+  const fetchExchangeRates = async () => {
+    try {
+      // Using a free API that provides real-time exchange rates
+      const response = await axios.get('https://api.exchangerate-api.com/v4/latest/INR');
+      const rates = response.data.rates;
+      
+      const newRates = {
+        INR: 1,
+        USD: rates.USD || 0.012,
+        EUR: rates.EUR || 0.011,
+      };
+      
+      setExchangeRates(newRates);
+      
+      // Update currency rates in available currencies
+      availableCurrencies.forEach(curr => {
+        curr.rate = newRates[curr.code] || curr.rate;
+      });
+      
+      console.log('Exchange rates updated:', newRates);
+    } catch (error) {
+      console.warn('Failed to fetch exchange rates, using fallback rates:', error);
+      // Keep existing fallback rates
+    }
+  };
+
+  // Load saved currency preference and fetch exchange rates on mount
   useEffect(() => {
     const savedCurrency = localStorage.getItem('selectedCurrency');
     
@@ -89,7 +117,15 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       }
     }
     
+    // Fetch current exchange rates
+    fetchExchangeRates();
+    
+    // Set up interval to fetch rates every 30 minutes
+    const interval = setInterval(fetchExchangeRates, 30 * 60 * 1000);
+    
     setIsInitialized(true);
+    
+    return () => clearInterval(interval);
   }, []);
 
   const formatPrice = (price: number): string => {
