@@ -9,6 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { Calendar, Clock, Users, Star, MapPin, Minus, Plus, X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useApp } from "@/contexts/AppContext";
 
 interface TourPackage {
   id: number;
@@ -41,6 +42,7 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
   });
   const location = useLocation();
   const navigate = useNavigate();
+  const { currency, formatPrice } = useApp();
 
   // Store current tab when modal opens
   useEffect(() => {
@@ -74,20 +76,50 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
 
   if (!tourPackage) return null;
 
-  // Calculate pricing based on category
-  const baseRate = 2800; // per person per day
-  const days = parseInt(tourPackage.duration.split(" ")[0]);
-  let finalRate = baseRate;
+  // Calculate pricing with new GST rules and currency conversion
+  const calculatePricing = () => {
+    const basePrice = parseInt(tourPackage.price.replace(/[^\d]/g, ''));
+    const days = parseInt(tourPackage.duration.split(" ")[0]);
+    let displayPrice = basePrice;
+    
+    // Check if selected date is weekend (for USD/EUR pricing)
+    const isWeekend = selectedDate ? 
+      [0, 6].includes(new Date(selectedDate).getDay()) : false;
+    
+    // For USD/EUR guests: Add hikes
+    if (currency.code !== 'INR') {
+      const weekendHike = isWeekend ? 1.15 : 1.10; // 15% weekend, 10% weekday
+      displayPrice = Math.round(basePrice * weekendHike);
+    }
+    
+    const subtotal = displayPrice * days * guests;
+    
+    // GST calculation: 5% for tour packages (all domestic travel)
+    const gstRate = 0.05;
+    const gstAmount = Math.round(subtotal * gstRate);
+    const finalTotal = subtotal + gstAmount;
+    
+    // Convert to selected currency
+    const convertedSubtotal = Math.round(subtotal * currency.rate);
+    const convertedGstAmount = Math.round(gstAmount * currency.rate);
+    const convertedTotal = Math.round(finalTotal * currency.rate);
+    const convertedBasePrice = Math.round(displayPrice * currency.rate);
+    
+    return {
+      basePrice: convertedBasePrice,
+      subtotal: convertedSubtotal,
+      gstAmount: convertedGstAmount,
+      finalTotal: convertedTotal,
+      gstRate: gstRate * 100,
+      days,
+      isWeekend,
+      rawSubtotal: subtotal, // for WhatsApp message in INR
+      rawGstAmount: gstAmount,
+      rawTotal: finalTotal
+    };
+  };
 
-  if (tourPackage.category === "adventure") {
-    finalRate = baseRate * 1.15; // 15% increase for adventure
-  } else if (tourPackage.category === "cultural") {
-    finalRate = baseRate * 1.10; // 10% increase for cultural
-  }
-
-  const totalAmount = Math.round(finalRate * days * guests);
-  const gstAmount = Math.round(totalAmount * 0.18);
-  const finalTotal = totalAmount + gstAmount;
+  const pricing = calculatePricing();
 
   const handlePayAndConfirm = () => {
     if (!selectedDate || !guestDetails.name || !guestDetails.email || !guestDetails.phone) {
@@ -99,14 +131,15 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
       return;
     }
 
-    // Create WhatsApp message
+    // Create WhatsApp message (always in INR for backend processing)
     const whatsappMessage = `Tour Package Booking Request - XTSY Travellers Hostel & XTSY Luxury
 
 *Package Details:*
 Package: ${tourPackage.title}
-Duration: ${days} days (${selectedDate} to ${endDate})
+Duration: ${pricing.days} days (${selectedDate} to ${endDate})
 Difficulty: ${tourPackage.difficulty}
 Category: ${tourPackage.category}
+${pricing.isWeekend ? '*Weekend Booking*' : ''}
 
 *Guest Details:*
 Name: ${guestDetails.name}
@@ -118,14 +151,17 @@ ${guestDetails.emergencyContact ? `Emergency Contact: ${guestDetails.emergencyCo
 *Booking Summary:*
 Start Date: ${selectedDate}
 End Date: ${endDate}
-Total Days: ${days}
+Total Days: ${pricing.days}
 Total Guests: ${guests}
+${currency.code !== 'INR' ? `Selected Currency: ${currency.code}` : ''}
 
-*Payment Details:*
-Base Rate: ₹${Math.round(finalRate).toLocaleString()} per person/day
-Subtotal: ₹${totalAmount.toLocaleString()}
-GST (18%): ₹${gstAmount.toLocaleString()}
-*Total Amount: ₹${finalTotal.toLocaleString()}*
+*Payment Details (Base Currency - INR):*
+Base Rate: ₹${parseInt(tourPackage.price.replace(/[^\d]/g, '')).toLocaleString()} per person/day
+Subtotal: ₹${pricing.rawSubtotal.toLocaleString()}
+Tax (5%): ₹${pricing.rawGstAmount.toLocaleString()}
+*Total Amount: ₹${pricing.rawTotal.toLocaleString()}*
+
+${currency.code !== 'INR' ? `*Display Amount (${currency.code}): ${formatPrice(pricing.finalTotal)}*` : ''}
 
 *Package Highlights:*
 ${tourPackage.highlights.map(highlight => `• ${highlight}`).join('\n')}
@@ -260,12 +296,18 @@ Please confirm this tour package booking and share payment details.`;
                     <div className="text-sm space-y-1">
                       <div className="flex justify-between">
                         <span className="text-gray-600">Total Days:</span>
-                        <span className="font-medium">{days} days</span>
+                        <span className="font-medium">{pricing.days} days</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-gray-600">End Date:</span>
                         <span className="font-medium">{endDate}</span>
                       </div>
+                      {pricing.isWeekend && currency.code !== 'INR' && (
+                        <div className="flex justify-between text-orange-600">
+                          <span>Weekend Booking:</span>
+                          <span className="font-medium">+15% rate</span>
+                        </div>
+                      )}
                     </div>
                   </div>
                 )}
@@ -330,15 +372,23 @@ Please confirm this tour package booking and share payment details.`;
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
                   <span>Base Rate (per person/day):</span>
-                  <span>₹{baseRate.toLocaleString()}</span>
+                  <span>{formatPrice(pricing.basePrice)}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span>Category Rate (per person/day):</span>
-                  <span>₹{Math.round(finalRate).toLocaleString()}</span>
-                </div>
+                {currency.code !== 'INR' && pricing.isWeekend && (
+                  <div className="flex justify-between text-orange-600">
+                    <span>Weekend Rate Applied:</span>
+                    <span>+15%</span>
+                  </div>
+                )}
+                {currency.code !== 'INR' && !pricing.isWeekend && (
+                  <div className="flex justify-between text-blue-600">
+                    <span>International Rate Applied:</span>
+                    <span>+10%</span>
+                  </div>
+                )}
                 <div className="flex justify-between">
                   <span>Duration:</span>
-                  <span>{days} days</span>
+                  <span>{pricing.days} days</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Guests:</span>
@@ -347,16 +397,16 @@ Please confirm this tour package booking and share payment details.`;
                 <Separator />
                 <div className="flex justify-between">
                   <span>Subtotal:</span>
-                  <span>₹{totalAmount.toLocaleString()}</span>
+                  <span>{formatPrice(pricing.subtotal)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>GST (18%):</span>
-                  <span>₹{gstAmount.toLocaleString()}</span>
+                  <span>{currency.code === 'INR' ? 'GST (5%)' : 'Tax (as per India) (5%)'}:</span>
+                  <span>{formatPrice(pricing.gstAmount)}</span>
                 </div>
                 <Separator />
                 <div className="flex justify-between font-semibold text-lg">
                   <span>Total Amount:</span>
-                  <span className="text-orange-600">₹{finalTotal.toLocaleString()}</span>
+                  <span className="text-orange-600">{formatPrice(pricing.finalTotal)}</span>
                 </div>
               </div>
 

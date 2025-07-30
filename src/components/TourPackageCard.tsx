@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Clock, Star, Calendar, Mountain, Camera } from "lucide-react";
+import { useApp } from "@/contexts/AppContext";
 
 interface TourPackageCardProps {
   tourPackage: {
@@ -24,6 +25,21 @@ interface TourPackageCardProps {
 }
 
 const TourPackageCard = ({ tourPackage, onPackageClick }: TourPackageCardProps) => {
+  const { currency, formatPrice } = useApp();
+  
+  // Calculate proper pricing with currency conversion and weekend/weekday logic
+  const calculateDisplayPrice = () => {
+    const basePrice = parseInt(tourPackage.price.replace(/[^\d]/g, ''));
+    let displayPrice = basePrice;
+    
+    // For USD/EUR guests: Add 10% base hike (15% on weekends handled in modal)
+    if (currency.code !== 'INR') {
+      displayPrice = Math.round(basePrice * 1.10);
+    }
+    
+    return formatPrice(displayPrice);
+  };
+
   return (
     <Card 
       className="group hover:shadow-2xl hover:scale-105 transition-all duration-500 overflow-hidden border-0 bg-card/90 backdrop-blur-md cursor-pointer h-[600px] flex flex-col"
@@ -55,7 +71,7 @@ const TourPackageCard = ({ tourPackage, onPackageClick }: TourPackageCardProps) 
           </Badge>
         </div>
         <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-2 py-1 rounded text-sm font-bold">
-          {tourPackage.price}
+          {calculateDisplayPrice()}
         </div>
       </div>
       
