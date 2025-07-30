@@ -45,26 +45,22 @@ const AboutSection = () => {
     {
       number: "10k+",
       label: "Gen Z Travelers",
-      description: "Young explorers who chose us",
-      gradient: "from-pink-500 to-purple-600"
+      description: "Young explorers who chose us"
     },
     {
       number: "4.9★",
       label: "Rating",
-      description: "From fellow wanderers",
-      gradient: "from-yellow-400 to-orange-500"
+      description: "From fellow wanderers"
     },
     {
       number: "24/7",
       label: "Vibe Check",
-      description: "Always good energy here",
-      gradient: "from-green-400 to-blue-500"
+      description: "Always good energy here"
     },
     {
       number: "100%",
       label: "Authentic",
-      description: "Real experiences, no cap",
-      gradient: "from-red-400 to-pink-500"
+      description: "Real experiences, no cap"
     }
   ];
 
@@ -640,7 +636,7 @@ const AboutSection = () => {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {highlights.map((highlight, index) => (
               <div key={index} className="text-center group">
-                <div className={`w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-r ${highlight.gradient} flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-slate-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
                   <Star className="w-8 h-8 text-white" />
                 </div>
                 <div className="text-3xl sm:text-4xl font-bold mb-2 group-hover:scale-105 transition-transform duration-300">

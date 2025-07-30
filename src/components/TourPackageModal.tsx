@@ -336,26 +336,33 @@ Please check availability for these dates and share pricing details for this exc
                             <h5 className="font-medium text-gray-900 text-sm">{item.title}</h5>
                           </div>
                           <p className="text-xs text-gray-600 leading-relaxed">{item.description}</p>
-                          <div className="grid grid-cols-3 gap-2 mt-3 pt-2 border-t border-gray-100">
-                            <div className="text-center">
-                              <p className="text-xs text-gray-500">Per Person</p>
-                              <p className="font-semibold text-xs text-orange-600">{item.pricing.perPerson}</p>
-                            </div>
-                            <div className="text-center">
-                              <p className="text-xs text-gray-500">Group of 4</p>
-                              <p className="font-semibold text-xs text-orange-600">{item.pricing.group4}</p>
-                            </div>
-                            <div className="text-center">
-                              <p className="text-xs text-gray-500">Group of 10</p>
-                              <p className="font-semibold text-xs text-orange-600">{item.pricing.group10}</p>
-                            </div>
-                          </div>
                         </div>
                       </Card>
                     ))}
-                    <div className="text-xs text-gray-500 text-center mt-2">
-                      *Pricing sourced from international travel platforms
-                    </div>
+                    
+                    {/* Single Pricing Tile at Bottom */}
+                    <Card className="bg-orange-50 border-orange-200 mt-6">
+                      <CardContent className="p-4">
+                        <h4 className="font-semibold text-gray-900 mb-3 text-center">Package Pricing</h4>
+                        <div className="grid grid-cols-3 gap-4">
+                          <div className="text-center bg-white rounded-lg p-3 border border-orange-100">
+                            <p className="text-xs text-gray-500 mb-1">Per Person</p>
+                            <p className="font-bold text-lg text-orange-600">{itineraryHighlights[0]?.pricing.perPerson}</p>
+                          </div>
+                          <div className="text-center bg-white rounded-lg p-3 border border-orange-100">
+                            <p className="text-xs text-gray-500 mb-1">Group of 4</p>
+                            <p className="font-bold text-lg text-orange-600">{itineraryHighlights[0]?.pricing.group4}</p>
+                          </div>
+                          <div className="text-center bg-white rounded-lg p-3 border border-orange-100">
+                            <p className="text-xs text-gray-500 mb-1">Group of 10</p>
+                            <p className="font-bold text-lg text-orange-600">{itineraryHighlights[0]?.pricing.group10}</p>
+                          </div>
+                        </div>
+                        <div className="text-xs text-gray-500 text-center mt-3">
+                          *Pricing sourced from international travel platforms
+                        </div>
+                      </CardContent>
+                    </Card>
                   </div>
                 )}
               </div>

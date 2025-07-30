@@ -9,7 +9,7 @@ import { useApp } from "@/contexts/AppContext";
 import GalleryImage from "./GalleryImage";
 
 // Import tour package images
-import meghalayaHiddenGemsImg from "@/assets/meghalaya-hidden-gems.jpg";
+import meghalayaHiddenGemsImg from "@/assets/meghalaya-hidden-gems-new.jpg";
 import shillongCulturalImg from "@/assets/shillong-cultural.jpg";
 import cherrapunjiMonsoonImg from "@/assets/cherrapunji-monsoon.jpg";
 import dawkiRiverImg from "@/assets/dawki-river.jpg";
