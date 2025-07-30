@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import Header from "@/components/Header";
 import DealsSection from "@/components/DealsSection";
 import Footer from "@/components/Footer";
+import SEOContent from "@/components/SEOContent";
 
 const Deals = () => {
   useEffect(() => {
@@ -22,6 +23,7 @@ const Deals = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEOContent page="deals" />
       <Header />
       <div className="pt-20"> {/* Add padding to account for fixed header */}
         <DealsSection />

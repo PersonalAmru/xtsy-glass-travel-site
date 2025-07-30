@@ -10,6 +10,7 @@ import TourPackageCard from "@/components/TourPackageCard";
 import { LazyTourPackageModal } from "@/components/lazy/LazyTourPackageModal";
 import { AuthModal } from "@/components/AuthModal";
 import LazyWrapper from "@/components/LazyWrapper";
+import SEOContent from "@/components/SEOContent";
 import meghalayaLivingRootBridges from "@/assets/meghalaya-living-root-bridges.jpg";
 import cherrapunjiNohkalikaiFalls from "@/assets/cherrapunji-nohkalikai-falls.jpg";
 import dawkiUmngotRiver from "@/assets/dawki-umngot-river.jpg";
@@ -557,6 +558,7 @@ const Travel = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOContent page="travel" />
       <Header />
       
       <main className="flex-1">

@@ -10,6 +10,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GuestDetails from "@/components/GuestDetails";
 import LazyWrapper from "@/components/LazyWrapper";
+import SEOContent from "@/components/SEOContent";
 
 const Index = () => {
   const [showGuestDetails, setShowGuestDetails] = useState(false);
@@ -43,6 +44,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
+      <SEOContent page="home" />
       <Header />
       <main>
         <HeroSection />

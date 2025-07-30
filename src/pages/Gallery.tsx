@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import Header from "@/components/Header";
 import GallerySection from "@/components/GallerySection";
 import Footer from "@/components/Footer";
+import SEOContent from "@/components/SEOContent";
 
 const Gallery = () => {
   useEffect(() => {
@@ -22,6 +23,7 @@ const Gallery = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEOContent page="gallery" />
       <Header />
       <div className="pt-20"> {/* Add padding to account for fixed header */}
         <GallerySection />
