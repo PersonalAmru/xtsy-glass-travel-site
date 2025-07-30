@@ -223,7 +223,7 @@ interface SelectedRoom {
 }
 
 const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingModalProps) => {
-  const { formatPrice } = useApp();
+  const { formatPrice, currency } = useApp();
   console.log("🎯 Enhanced Booking Modal opened with Transportation/Itinerary checkboxes!");
   const [currentStep, setCurrentStep] = useState<'room-selection' | 'booking-summary' | 'guest-details'>('room-selection');
   const [selectedRooms, setSelectedRooms] = useState<SelectedRoom[]>([]);
@@ -259,20 +259,88 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
     Math.ceil((new Date(initialData.checkOut).getTime() - new Date(initialData.checkIn).getTime()) / (1000 * 3600 * 24)) : 1;
 
   const calculateTotal = () => {
+    // Check if selected date is weekend (for USD/EUR pricing)
+    const isWeekend = initialData.checkIn ? 
+      [0, 6].includes(new Date(initialData.checkIn).getDay()) : false;
+    
     const roomTotal = selectedRooms.reduce((total, room) => {
       const isDorm = room.name.toLowerCase().includes('dorm');
-      const basePrice = isDorm ? room.price * room.selection.guests : room.price * room.selection.rooms;
+      let roomPrice = room.price;
+      
+      // For USD/EUR guests: Add hikes
+      if (currency.code !== 'INR') {
+        const weekendHike = isWeekend ? 1.15 : 1.10; // 15% weekend, 10% weekday
+        roomPrice = Math.round(room.price * weekendHike);
+      }
+      
+      const basePrice = isDorm ? roomPrice * room.selection.guests : roomPrice * room.selection.rooms;
       return total + (basePrice * nights);
     }, 0);
 
-    const addOnTotal = (addOns.breakfast * 125 + addOns.dinnerVeg * 180 + addOns.dinnerNonVeg * 240) * nights;
+    // Add-on prices (always in INR base, then converted)
+    let breakfastPrice = 125;
+    let dinnerVegPrice = 180; 
+    let dinnerNonVegPrice = 240;
+    
+    // Apply same hikes to food for USD/EUR
+    if (currency.code !== 'INR') {
+      const foodHike = isWeekend ? 1.15 : 1.10;
+      breakfastPrice = Math.round(breakfastPrice * foodHike);
+      dinnerVegPrice = Math.round(dinnerVegPrice * foodHike);
+      dinnerNonVegPrice = Math.round(dinnerNonVegPrice * foodHike);
+    }
+
+    const addOnTotal = (addOns.breakfast * breakfastPrice + addOns.dinnerVeg * dinnerVegPrice + addOns.dinnerNonVeg * dinnerNonVegPrice) * nights;
     const subtotal = roomTotal + addOnTotal;
     const discountAmount = promoApplied ? Math.round(subtotal * (promoDiscount / 100)) : 0;
     const afterDiscount = subtotal - discountAmount;
-    const gstAmount = Math.round(afterDiscount * 0.18);
-    const total = afterDiscount + gstAmount;
+    
+    // GST calculation based on room types and prices
+    let totalGstAmount = 0;
+    
+    selectedRooms.forEach(room => {
+      const isDorm = room.name.toLowerCase().includes('dorm');
+      let roomPrice = room.price;
+      
+      // Apply same currency hikes for GST calculation
+      if (currency.code !== 'INR') {
+        const weekendHike = isWeekend ? 1.15 : 1.10;
+        roomPrice = Math.round(room.price * weekendHike);
+      }
+      
+      let roomGstRate = 0;
+      
+      if (isDorm) {
+        roomGstRate = 0; // No GST for dormitory
+      } else {
+        // Private rooms based on original INR price
+        if (room.price >= 8000) {
+          roomGstRate = 0.18; // 18% for ₹8000+
+        } else if (room.price >= 7999 && room.price <= 10001) {
+          roomGstRate = 0.12; // 12% for ₹7999-₹10001
+        } else {
+          roomGstRate = 0.12; // Default 12% for other private rooms
+        }
+      }
+      
+      const roomSubtotal = isDorm ? roomPrice * room.selection.guests * nights : roomPrice * room.selection.rooms * nights;
+      totalGstAmount += Math.round(roomSubtotal * roomGstRate);
+    });
+    
+    // No GST for food as requested
+    const total = afterDiscount + totalGstAmount;
 
-    return { subtotal, discountAmount, afterDiscount, gstAmount, total };
+    return { 
+      subtotal, 
+      discountAmount, 
+      afterDiscount, 
+      gstAmount: totalGstAmount, 
+      total,
+      isWeekend,
+      breakfastPrice,
+      dinnerVegPrice,
+      dinnerNonVegPrice
+    };
   };
 
   const applyPromoCode = () => {
@@ -564,7 +632,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                             <div className="flex justify-between items-center">
                               <div>
                                 <h4 className="font-medium text-gray-900">Breakfast</h4>
-                                <p className="text-sm text-gray-600">₹125 per person per day</p>
+                                <p className="text-sm text-gray-600">{formatPrice(calculateTotal().breakfastPrice)} per person per day</p>
                               </div>
                               <div className="flex items-center gap-2">
                                 <Button 
@@ -592,7 +660,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                             <div className="flex justify-between items-center">
                               <div>
                                 <h4 className="font-medium text-gray-900">Dinner - Veg</h4>
-                                <p className="text-sm text-gray-600">₹180 per person per day</p>
+                                <p className="text-sm text-gray-600">{formatPrice(calculateTotal().dinnerVegPrice)} per person per day</p>
                               </div>
                               <div className="flex items-center gap-2">
                                 <Button 
@@ -620,7 +688,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                             <div className="flex justify-between items-center">
                               <div>
                                 <h4 className="font-medium text-gray-900">Dinner - Non Veg</h4>
-                                <p className="text-sm text-gray-600">₹240 per person per day</p>
+                                <p className="text-sm text-gray-600">{formatPrice(calculateTotal().dinnerNonVegPrice)} per person per day</p>
                               </div>
                               <div className="flex items-center gap-2">
                                 <Button 
@@ -857,7 +925,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                           <div className="flex justify-between items-center">
                             <div>
                               <h5 className="font-medium text-gray-900 text-sm">Breakfast</h5>
-                              <p className="text-xs text-gray-600">₹125 per person per day</p>
+                              <p className="text-xs text-gray-600">{formatPrice(calculateTotal().breakfastPrice)} per person per day</p>
                             </div>
                           </div>
                           <div className="flex items-center justify-center gap-2">
@@ -887,7 +955,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                           <div className="flex justify-between items-center">
                             <div>
                               <h5 className="font-medium text-gray-900 text-sm">Dinner - Veg</h5>
-                              <p className="text-xs text-gray-600">₹180 per person per day</p>
+                              <p className="text-xs text-gray-600">{formatPrice(calculateTotal().dinnerVegPrice)} per person per day</p>
                             </div>
                           </div>
                           <div className="flex items-center justify-center gap-2">
@@ -917,7 +985,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                           <div className="flex justify-between items-center">
                             <div>
                               <h5 className="font-medium text-gray-900 text-sm">Dinner - Non Veg</h5>
-                              <p className="text-xs text-gray-600">₹240 per person per day</p>
+                              <p className="text-xs text-gray-600">{formatPrice(calculateTotal().dinnerNonVegPrice)} per person per day</p>
                             </div>
                           </div>
                           <div className="flex items-center justify-center gap-2">
@@ -1029,7 +1097,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                         </div>
                       )}
                       <div className="flex justify-between">
-                        <span>GST (18%)</span>
+                        <span>{currency.code === 'INR' ? 'GST' : 'Tax (as per India)'}</span>
                         <span>{formatPrice(calculateTotal().gstAmount)}</span>
                       </div>
                       <Separator />

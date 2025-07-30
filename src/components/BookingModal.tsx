@@ -107,7 +107,7 @@ interface BookingModalProps {
 }
 
 const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
-  const { formatPrice } = useApp();
+  const { formatPrice, currency } = useApp();
   const [bookingData, setBookingData] = useState({
     checkIn: "",
     checkOut: "",
@@ -151,10 +151,77 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
     });
   };
 
-  const totalAmount = room.price * bookingData.quantity * bookingData.nights;
-  const addOnTotal = (addOns.breakfast * 150 + addOns.dinnerVeg * 300 + addOns.dinnerNonVeg * 300) * bookingData.nights;
-  const gstAmount = Math.round((totalAmount + addOnTotal) * 0.18);
-  const grandTotal = totalAmount + addOnTotal + gstAmount;
+  // Calculate pricing with proper GST rules and currency conversion
+  const calculatePricing = () => {
+    const { currency } = useApp();
+    let roomPrice = room.price;
+    
+    // Check if selected date is weekend (for USD/EUR pricing)
+    const isWeekend = bookingData.checkIn ? 
+      [0, 6].includes(new Date(bookingData.checkIn).getDay()) : false;
+    
+    // For USD/EUR guests: Add hikes
+    if (currency.code !== 'INR') {
+      const weekendHike = isWeekend ? 1.15 : 1.10; // 15% weekend, 10% weekday
+      roomPrice = Math.round(room.price * weekendHike);
+    }
+    
+    const roomTotal = roomPrice * bookingData.quantity * bookingData.nights;
+    
+    // Add-on prices (always in INR base, then converted)
+    let breakfastPrice = 150;
+    let dinnerVegPrice = 300; 
+    let dinnerNonVegPrice = 300;
+    
+    // Apply same hikes to food for USD/EUR
+    if (currency.code !== 'INR') {
+      const foodHike = isWeekend ? 1.15 : 1.10;
+      breakfastPrice = Math.round(breakfastPrice * foodHike);
+      dinnerVegPrice = Math.round(dinnerVegPrice * foodHike);
+      dinnerNonVegPrice = Math.round(dinnerNonVegPrice * foodHike);
+    }
+    
+    const addOnTotal = (addOns.breakfast * breakfastPrice + addOns.dinnerVeg * dinnerVegPrice + addOns.dinnerNonVeg * dinnerNonVegPrice) * bookingData.nights;
+    
+    // GST calculation based on your rules
+    let roomGstRate = 0;
+    let foodGstRate = 0; // No GST for food as requested
+    
+    // Room GST based on price and type
+    if (room.type === 'dorm' || room.name.toLowerCase().includes('dorm')) {
+      roomGstRate = 0; // No GST for dormitory
+    } else {
+      // Private rooms
+      if (room.price >= 8000) {
+        roomGstRate = 0.18; // 18% for ₹8000+
+      } else if (room.price >= 7999 && room.price <= 10001) {
+        roomGstRate = 0.12; // 12% for ₹7999-₹10001
+      } else {
+        roomGstRate = 0.12; // Default 12% for other private rooms
+      }
+    }
+    
+    const roomGstAmount = Math.round(roomTotal * roomGstRate);
+    const foodGstAmount = Math.round(addOnTotal * foodGstRate); // 0
+    const totalGstAmount = roomGstAmount + foodGstAmount;
+    
+    const grandTotal = roomTotal + addOnTotal + totalGstAmount;
+    
+    return {
+      roomTotal,
+      addOnTotal,
+      totalGstAmount,
+      grandTotal,
+      roomGstRate: roomGstRate * 100,
+      foodGstRate: foodGstRate * 100,
+      isWeekend,
+      breakfastPrice,
+      dinnerVegPrice,
+      dinnerNonVegPrice
+    };
+  };
+
+  const pricing = calculatePricing();
 
   const handleBookNow = () => {
     if (!bookingData.checkIn || !bookingData.checkOut || bookingData.guests === 0) {
@@ -415,7 +482,7 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
                           <span className="text-2xl">🍳</span>
                           <div>
                             <span className="text-black font-semibold">Breakfast</span>
-                            <span className="text-gray-700 ml-2">(₹150/person/meal)</span>
+                            <span className="text-gray-700 ml-2">({formatPrice(pricing.breakfastPrice)}/person/meal)</span>
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -448,7 +515,7 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
                           <span className="text-2xl">🥗</span>
                           <div>
                             <span className="text-black font-semibold">Dinner Veg</span>
-                            <span className="text-gray-700 ml-2">(₹300/person/meal)</span>
+                            <span className="text-gray-700 ml-2">({formatPrice(pricing.dinnerVegPrice)}/person/meal)</span>
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -481,7 +548,7 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
                           <span className="text-2xl">🍖</span>
                           <div>
                             <span className="text-black font-semibold">Dinner Non-Veg</span>
-                            <span className="text-gray-700 ml-2">(₹300/person/meal)</span>
+                            <span className="text-gray-700 ml-2">({formatPrice(pricing.dinnerNonVegPrice)}/person/meal)</span>
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -585,7 +652,7 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
                     <div className="space-y-2 mb-4">
                       <div className="flex justify-between">
                         <span className="text-gray-900 font-medium">{room.name}</span>
-                        <span className="text-gray-900 font-semibold">{formatPrice(totalAmount)}</span>
+                        <span className="text-gray-900 font-semibold">{formatPrice(pricing.roomTotal)}</span>
                       </div>
                       <div className="flex justify-between text-sm text-gray-700">
                         {room.type === 'luxury' ? (
@@ -599,19 +666,19 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
                       {addOns.breakfast > 0 && (
                         <div className="flex justify-between text-sm text-gray-700">
                           <span>Breakfast ({addOns.breakfast} x {bookingData.nights} nights)</span>
-                          <span>₹{addOns.breakfast * 150 * bookingData.nights}</span>
+                          <span>{formatPrice(addOns.breakfast * pricing.breakfastPrice * bookingData.nights)}</span>
                         </div>
                       )}
                       {addOns.dinnerVeg > 0 && (
                         <div className="flex justify-between text-sm text-gray-700">
                           <span>Dinner Veg ({addOns.dinnerVeg} x {bookingData.nights} nights)</span>
-                          <span>₹{addOns.dinnerVeg * 300 * bookingData.nights}</span>
+                          <span>{formatPrice(addOns.dinnerVeg * pricing.dinnerVegPrice * bookingData.nights)}</span>
                         </div>
                       )}
                       {addOns.dinnerNonVeg > 0 && (
                         <div className="flex justify-between text-sm text-gray-700">
                           <span>Dinner Non-Veg ({addOns.dinnerNonVeg} x {bookingData.nights} nights)</span>
-                          <span>₹{addOns.dinnerNonVeg * 300 * bookingData.nights}</span>
+                          <span>{formatPrice(addOns.dinnerNonVeg * pricing.dinnerNonVegPrice * bookingData.nights)}</span>
                         </div>
                       )}
                       {addOns.transportation && (
@@ -633,19 +700,19 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
                     <div className="space-y-2">
                       <div className="flex justify-between">
                         <span className="text-gray-700">Subtotal</span>
-                        <span className="text-gray-900 font-medium">₹{totalAmount + addOnTotal}</span>
+                        <span className="text-gray-900 font-medium">{formatPrice(pricing.roomTotal + pricing.addOnTotal)}</span>
                       </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-700">GST (18%)</span>
-                        <span className="text-gray-900 font-medium">₹{gstAmount}</span>
-                      </div>
+                       <div className="flex justify-between">
+                         <span className="text-gray-700">{currency.code === 'INR' ? 'GST' : 'Tax (as per India)'} ({pricing.roomGstRate}%)</span>
+                         <span className="text-gray-900 font-medium">{formatPrice(pricing.totalGstAmount)}</span>
+                       </div>
                       <div className="flex justify-between font-semibold text-lg">
                         <span className="text-gray-900">Grand Total</span>
-                        <span className="text-gray-900">₹{grandTotal}</span>
+                        <span className="text-gray-900">{formatPrice(pricing.grandTotal)}</span>
                       </div>
                       <div className="flex justify-between text-green-700 font-semibold">
                         <span>Payable Now (21%)</span>
-                        <span>₹{Math.round(grandTotal * 0.21)}</span>
+                        <span>{formatPrice(Math.round(pricing.grandTotal * 0.21))}</span>
                       </div>
                     </div>
                   </Card>
