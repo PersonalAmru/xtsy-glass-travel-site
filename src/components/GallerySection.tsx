@@ -102,93 +102,15 @@ const GallerySection = () => {
       tags: ["private-accommodation", "family-room", "triple-occupancy", "spacious-layout"],
       image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/1.jpg",
       description: "Spacious triple room perfect for families"
-    },
-    
-    // Tour Package Destinations
-    {
-      id: 10,
-      title: "Meghalaya Hidden Gems",
-      category: "tour-destinations",
-      tags: ["adventure-tours", "hidden-waterfalls", "living-root-bridges", "nature-exploration"],
-      image: "/src/assets/meghalaya-hidden-gems.jpg",
-      description: "Discover unexplored waterfalls and living root bridges"
-    },
-    {
-      id: 11,
-      title: "Shillong Cultural Experience",
-      category: "tour-destinations",
-      tags: ["cultural-tours", "khasi-culture", "local-markets", "traditional-cuisine"],
-      image: "/src/assets/shillong-cultural.jpg",
-      description: "Immerse in Khasi culture and local traditions"
-    },
-    {
-      id: 12,
-      title: "Cherrapunji Monsoon Trek",
-      category: "tour-destinations",
-      tags: ["adventure-tours", "monsoon-experience", "challenging-trek", "nohkalikai-falls"],
-      image: "/src/assets/cherrapunji-monsoon.jpg",
-      description: "Experience the wettest place on earth"
-    },
-    {
-      id: 13,
-      title: "Dawki Crystal Clear River",
-      category: "tour-destinations",
-      tags: ["leisure-tours", "crystal-waters", "boating-experience", "border-views"],
-      image: "/src/assets/dawki-river.jpg",
-      description: "Crystal clear waters at Indo-Bangladesh border"
-    },
-    {
-      id: 14,
-      title: "Mawlynnong Clean Village",
-      category: "tour-destinations",
-      tags: ["cultural-tours", "cleanest-village", "sustainable-living", "sky-walk"],
-      image: "/src/assets/mawlynnong-village.jpg",
-      description: "Visit Asia's cleanest village"
-    },
-    {
-      id: 15,
-      title: "Living Root Bridges Trek",
-      category: "tour-destinations", 
-      tags: ["adventure-tours", "natural-bridges", "trekking-experience", "unique-architecture"],
-      image: "/src/assets/living-root-bridges.jpg",
-      description: "Explore nature's own architectural marvels"
-    },
-    
-    // Brand Assets
-    {
-      id: 16,
-      title: "XTSY Brand Logo",
-      category: "brand-assets",
-      tags: ["brand-identity", "logo-design", "hostel-branding", "visual-identity"],
-      image: "/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png",
-      description: "Official XTSY Travellers Hostel brand logo"
-    },
-    {
-      id: 17,
-      title: "XTSY Header Logo",
-      category: "brand-assets",
-      tags: ["brand-identity", "header-logo", "navigation-brand", "web-design"],
-      image: "/lovable-uploads/f60939c8-8351-4f63-80df-a4c6e37e539a.png",
-      description: "XTSY header logo for web navigation"
-    },
-    {
-      id: 18,
-      title: "XTSY Symbol",
-      category: "brand-assets",
-      tags: ["brand-symbol", "minimalist-design", "icon-design", "brand-mark"],
-      image: "/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png",
-      description: "XTSY brand symbol and icon"
     }
   ];
 
-  // Dynamic categories based on gallery items
+  // Dynamic categories based on gallery items (accommodation only)
   const categories = [
     { id: "all", label: "All Photos", icon: Image, count: galleryItems.length },
     { id: "luxury-rooms", label: "Luxury Suite", icon: Star, count: galleryItems.filter(item => item.category === "luxury-rooms").length },
     { id: "dormitories", label: "Dormitories", icon: Users, count: galleryItems.filter(item => item.category === "dormitories").length },
-    { id: "private-rooms", label: "Private Rooms", icon: Building, count: galleryItems.filter(item => item.category === "private-rooms").length },
-    { id: "tour-destinations", label: "Tour Destinations", icon: Mountain, count: galleryItems.filter(item => item.category === "tour-destinations").length },
-    { id: "brand-assets", label: "Brand Assets", icon: Eye, count: galleryItems.filter(item => item.category === "brand-assets").length }
+    { id: "private-rooms", label: "Private Rooms", icon: Building, count: galleryItems.filter(item => item.category === "private-rooms").length }
   ];
 
   const filteredItems = activeCategory === "all" 
