@@ -332,9 +332,8 @@ Please check availability for these dates and share pricing details for this exc
                     {itineraryHighlights.map((item) => (
                       <Card key={item.id} className="p-4 border border-gray-200">
                         <div className="space-y-2">
-                          <div className="flex justify-between items-start">
+                          <div>
                             <h5 className="font-medium text-gray-900 text-sm">{item.title}</h5>
-                            <Badge variant="outline" className="text-xs">{item.source}</Badge>
                           </div>
                           <p className="text-xs text-gray-600 leading-relaxed">{item.description}</p>
                           <div className="grid grid-cols-3 gap-2 mt-3 pt-2 border-t border-gray-100">
