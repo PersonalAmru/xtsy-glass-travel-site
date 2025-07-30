@@ -97,7 +97,7 @@ const AboutSection = () => {
 
   return (
     <>
-      <section id="about" className="py-16 sm:py-20 px-3 sm:px-4 bg-white relative overflow-hidden">
+      <section id="about" className="py-16 sm:py-20 px-3 sm:px-4 bg-gray-50 relative overflow-hidden">
         {/* Simple background pattern */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#f8fafc_1px,transparent_1px),linear-gradient(to_bottom,#f8fafc_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-30"></div>
