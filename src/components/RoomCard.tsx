@@ -23,9 +23,23 @@ interface RoomCardProps {
 }
 
 const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCardProps) => {
-  const { formatPrice } = useApp();
+  const { formatPrice, currency } = useApp();
   
-  const buttonText = propertyType === "hostel" ? `Select Bed - ${formatPrice(room.price)}/night` : propertyType === "luxury" ? `Select Suite - ${formatPrice(room.price)}/night` : `Select Room - ${formatPrice(room.price)}/night`;
+  // Apply weekend/weekday hike for USD/EUR guests to the displayed price
+  const getDisplayPrice = () => {
+    let price = room.price;
+    if (currency.code !== 'INR') {
+      // Check if current date is weekend (approximate for pricing display)
+      const today = new Date();
+      const isWeekend = [0, 6].includes(today.getDay());
+      const hike = isWeekend ? 1.15 : 1.10; // 15% weekend, 10% weekday
+      price = Math.round(price * hike);
+    }
+    return price;
+  };
+  
+  const displayPrice = getDisplayPrice();
+  const buttonText = propertyType === "hostel" ? `Select Bed - ${formatPrice(displayPrice)}/night` : propertyType === "luxury" ? `Select Suite - ${formatPrice(displayPrice)}/night` : `Select Room - ${formatPrice(displayPrice)}/night`;
   
   const images = room.images && room.images.length > 0 ? room.images : [room.image];
 
@@ -68,7 +82,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
                 <Users className="h-4 w-4 text-gray-600" />
                 <span className="text-sm text-gray-600 font-josefin">Max {room.maxGuests} guests</span>
               </div>
-              <span className="text-lg font-bold text-orange-600 font-playfair">{formatPrice(room.price)}/night</span>
+              <span className="text-lg font-bold text-orange-600 font-playfair">{formatPrice(displayPrice)}/night</span>
             </div>
             <Button 
               onClick={onSelectRoom}
@@ -121,7 +135,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
               <Users className="h-4 w-4 text-gray-600" />
               <span className="text-sm text-gray-600 font-josefin">Max {room.maxGuests} guests</span>
             </div>
-            <span className="text-lg font-bold text-orange-600 font-playfair">{formatPrice(room.price)}/night</span>
+            <span className="text-lg font-bold text-orange-600 font-playfair">{formatPrice(displayPrice)}/night</span>
           </div>
           <Button 
             onClick={onSelectRoom}

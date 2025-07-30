@@ -155,24 +155,18 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
   const calculatePricing = () => {
     const { currency } = useApp();
     
-    // room.price is always in INR base price, formatPrice converts it for display
-    let baseRoomPriceINR = room.price;
-    
-    // Check if selected date is weekend (for USD/EUR pricing)
+    // Apply weekend/weekday hike for USD/EUR guests to match displayed prices
+    let adjustedRoomPrice = room.price;
     const isWeekend = bookingData.checkIn ? 
       [0, 6].includes(new Date(bookingData.checkIn).getDay()) : false;
     
-    // For USD/EUR guests: Add hikes to INR price first
     if (currency.code !== 'INR') {
       const weekendHike = isWeekend ? 1.15 : 1.10; // 15% weekend, 10% weekday
-      baseRoomPriceINR = Math.round(baseRoomPriceINR * weekendHike);
+      adjustedRoomPrice = Math.round(adjustedRoomPrice * weekendHike);
     }
     
-    // Calculate room total in INR, then let formatPrice handle currency conversion for display
-    const roomTotalINR = baseRoomPriceINR * bookingData.quantity * bookingData.nights;
-    
-    // For internal calculations, convert to display currency
-    const roomTotal = Math.round(roomTotalINR * currency.rate);
+    // Calculate room total using the adjusted price (this matches what's shown in UI)
+    const roomTotal = Math.round(adjustedRoomPrice * currency.rate * bookingData.quantity * bookingData.nights);
     
     // Add-on prices (always in INR base, then converted)
     let baseBreakfastINR = 150;
@@ -409,7 +403,7 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
                           <span className="text-black font-bold">Per Bed</span>
                         </div>
                       </div>
-                      <div className="text-lg font-bold text-black">{formatPrice(room.price)} / night</div>
+                      <div className="text-lg font-bold text-black">{formatPrice(currency.code !== 'INR' ? Math.round(room.price * (pricing.isWeekend ? 1.15 : 1.10)) : room.price)} / night</div>
                       <p className="text-sm text-black font-semibold mt-1">{room.description}</p>
                     </div>
                   </div>
@@ -662,14 +656,6 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
                            <span>{formatPrice(room.price)} x {bookingData.quantity} bed x {bookingData.nights} nights</span>
                          )}
                        </div>
-                       
-                       {/* Show weekend/weekday hike for USD/EUR guests */}
-                       {currency.code !== 'INR' && (
-                         <div className="flex justify-between text-sm text-orange-600">
-                           <span>{pricing.isWeekend ? 'Weekend Rate Applied (+15%)' : 'International Guest Rate (+10%)'}</span>
-                           <span>+{formatPrice(Math.round(room.price * bookingData.quantity * bookingData.nights * currency.rate * (pricing.isWeekend ? 0.15 : 0.10)))}</span>
-                         </div>
-                       )}
                       
                       {/* Add-on items in summary */}
                       {addOns.breakfast > 0 && (
