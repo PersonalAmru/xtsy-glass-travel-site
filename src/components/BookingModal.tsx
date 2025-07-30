@@ -154,32 +154,41 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
   // Calculate pricing with proper GST rules and currency conversion
   const calculatePricing = () => {
     const { currency } = useApp();
-    let roomPrice = room.price;
+    
+    // Get base room price in INR (assuming room.price is always in INR in data)
+    let baseRoomPriceINR = room.price;
     
     // Check if selected date is weekend (for USD/EUR pricing)
     const isWeekend = bookingData.checkIn ? 
       [0, 6].includes(new Date(bookingData.checkIn).getDay()) : false;
     
-    // For USD/EUR guests: Add hikes
+    // For USD/EUR guests: Add hikes to INR price first
     if (currency.code !== 'INR') {
       const weekendHike = isWeekend ? 1.15 : 1.10; // 15% weekend, 10% weekday
-      roomPrice = Math.round(room.price * weekendHike);
+      baseRoomPriceINR = Math.round(baseRoomPriceINR * weekendHike);
     }
     
-    const roomTotal = roomPrice * bookingData.quantity * bookingData.nights;
+    // Now convert to display currency
+    const roomPriceInDisplayCurrency = Math.round(baseRoomPriceINR * currency.rate);
+    const roomTotal = roomPriceInDisplayCurrency * bookingData.quantity * bookingData.nights;
     
     // Add-on prices (always in INR base, then converted)
-    let breakfastPrice = 150;
-    let dinnerVegPrice = 300; 
-    let dinnerNonVegPrice = 300;
+    let baseBreakfastINR = 150;
+    let baseDinnerVegINR = 300; 
+    let baseDinnerNonVegINR = 300;
     
     // Apply same hikes to food for USD/EUR
     if (currency.code !== 'INR') {
       const foodHike = isWeekend ? 1.15 : 1.10;
-      breakfastPrice = Math.round(breakfastPrice * foodHike);
-      dinnerVegPrice = Math.round(dinnerVegPrice * foodHike);
-      dinnerNonVegPrice = Math.round(dinnerNonVegPrice * foodHike);
+      baseBreakfastINR = Math.round(baseBreakfastINR * foodHike);
+      baseDinnerVegINR = Math.round(baseDinnerVegINR * foodHike);
+      baseDinnerNonVegINR = Math.round(baseDinnerNonVegINR * foodHike);
     }
+    
+    // Convert food prices to display currency
+    const breakfastPrice = Math.round(baseBreakfastINR * currency.rate);
+    const dinnerVegPrice = Math.round(baseDinnerVegINR * currency.rate); 
+    const dinnerNonVegPrice = Math.round(baseDinnerNonVegINR * currency.rate);
     
     const addOnTotal = (addOns.breakfast * breakfastPrice + addOns.dinnerVeg * dinnerVegPrice + addOns.dinnerNonVeg * dinnerNonVegPrice) * bookingData.nights;
     
