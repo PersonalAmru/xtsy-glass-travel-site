@@ -275,6 +275,116 @@ img {
 }
 
 /* ========================================
+   ADVANCED MOBILE IMAGE PERFORMANCE
+   ======================================== */
+
+/* Hardware acceleration for smooth animations */
+.mobile-carousel {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.mobile-carousel img {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Touch optimization for image carousels */
+.carousel-container {
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+}
+
+.carousel-slide {
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
+/* Smooth transitions for mobile */
+.mobile-transition {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* Optimized image loading states */
+.image-loading {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading-shimmer 1.5s infinite;
+}
+
+@keyframes loading-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* High-performance blur for image placeholders */
+.image-blur {
+  filter: blur(5px);
+  transform: scale(1.05);
+  transition: filter 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.image-blur.loaded {
+  filter: blur(0);
+  transform: scale(1);
+}
+
+/* Touch feedback for better UX */
+.touch-feedback:active {
+  transform: scale(0.95);
+  transition: transform 0.1s ease-out;
+}
+
+/* Optimized for 60fps animations */
+@media (prefers-reduced-motion: no-preference) {
+  .smooth-60fps {
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    animation-fill-mode: both;
+  }
+}
+
+/* Image carousel performance optimization */
+.carousel-image {
+  content-visibility: auto;
+  contain: layout style paint;
+  contain-intrinsic-size: 400px 300px;
+}
+
+/* Better touch targets for small screens */
+@media (max-width: 480px) {
+  .carousel-control {
+    min-width: 48px;
+    min-height: 48px;
+    padding: 12px;
+  }
+  
+  .carousel-indicator {
+    min-width: 24px;
+    min-height: 24px;
+  }
+}
+
+/* Foldable device optimizations */
+@media (max-width: 320px) {
+  .carousel-compact .carousel-control {
+    min-width: 40px;
+    min-height: 40px;
+    padding: 8px;
+  }
+  
+  .carousel-compact .text-indicator {
+    font-size: 0.7rem;
+  }
+}
+
+/* ========================================
    MOBILE & FOLDABLE DEVICE OPTIMIZATIONS
    ======================================== */
 
