@@ -387,7 +387,225 @@ const AboutSection = () => {
             <p className="text-lg opacity-90">
               See why we're the go-to choice for young travelers worldwide
             </p>
+        </div>
+
+        {/* Competitive Advantage Section */}
+        <div className="mb-16">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-6 py-3 rounded-full text-sm font-medium mb-6">
+              <Award className="w-5 h-5" />
+              🏆 Why We're Different
+            </div>
+            <h3 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
+              Beyond Traditional Hostel Chains 🚀
+            </h3>
+            <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed mb-8">
+              While Zostel, The Hosteller, goSTOPS, Moustache Hostels, and Madpackers offer standardized experiences, 
+              XTSY delivers something revolutionary - India's first tech-integrated, culturally immersive, 
+              and truly personalized hostel experience in the heart of Northeast India.
+            </p>
           </div>
+
+          {/* Comparison Cards */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            {/* Traditional Chains */}
+            <Card className="bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-gray-200 shadow-lg">
+              <CardContent className="p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 bg-gray-400 rounded-2xl flex items-center justify-center">
+                    <Users className="w-6 h-6 text-white" />
+                  </div>
+                  <h4 className="text-2xl font-bold text-gray-700">Traditional Hostel Chains</h4>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center mt-1">
+                      <span className="text-xs text-gray-600">•</span>
+                    </div>
+                    <p className="text-gray-600">Standardized experiences across all locations</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center mt-1">
+                      <span className="text-xs text-gray-600">•</span>
+                    </div>
+                    <p className="text-gray-600">Limited local cultural integration</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center mt-1">
+                      <span className="text-xs text-gray-600">•</span>
+                    </div>
+                    <p className="text-gray-600">Basic technology and amenities</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center mt-1">
+                      <span className="text-xs text-gray-600">•</span>
+                    </div>
+                    <p className="text-gray-600">Generic accommodation options</p>
+                  </div>
+                </div>
+                <div className="mt-6 p-4 bg-gray-200 rounded-xl">
+                  <p className="text-sm text-gray-600 text-center">
+                    <strong>Zostel, The Hosteller, goSTOPS, Moustache Hostels, Madpackers</strong> - 
+                    Good for basic stays but lack uniqueness
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* XTSY Advantage */}
+            <Card className="bg-gradient-to-br from-emerald-50 to-teal-50 border-2 border-emerald-200 shadow-xl relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-emerald-500 to-teal-500"></div>
+              <CardContent className="p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center">
+                    <Star className="w-6 h-6 text-white" />
+                  </div>
+                  <h4 className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+                    XTSY Revolutionary Experience
+                  </h4>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center mt-1">
+                      <span className="text-xs text-white">✓</span>
+                    </div>
+                    <p className="text-gray-700"><strong>Tech-Integrated:</strong> India's first smart hostel with AI & IoT by 2026</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center mt-1">
+                      <span className="text-xs text-white">✓</span>
+                    </div>
+                    <p className="text-gray-700"><strong>Cultural Immersion:</strong> Deep Northeast India authentic experiences</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center mt-1">
+                      <span className="text-xs text-white">✓</span>
+                    </div>
+                    <p className="text-gray-700"><strong>Instagram-Worthy:</strong> 270° Glass Suite & picture-perfect locations</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center mt-1">
+                      <span className="text-xs text-white">✓</span>
+                    </div>
+                    <p className="text-gray-700"><strong>Gen Z Focused:</strong> Purpose-built for young, tech-savvy travelers</p>
+                  </div>
+                </div>
+                <div className="mt-6 p-4 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl text-white">
+                  <p className="text-sm text-center font-medium">
+                    🏆 <strong>XTSY Travellers Hostel</strong> - 
+                    The future of travel accommodation in India
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Detailed Advantages Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <Card className="bg-white/90 backdrop-blur-md border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
+              <CardContent className="p-6 text-center">
+                <div className="text-3xl mb-3">🌍</div>
+                <h5 className="font-bold text-gray-800 mb-2">Unique Location</h5>
+                <p className="text-gray-600 text-sm">
+                  Unlike chain hostels in touristy cities, we're in authentic Shillong - 
+                  the gateway to unexplored Northeast India
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-md border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
+              <CardContent className="p-6 text-center">
+                <div className="text-3xl mb-3">🤖</div>
+                <h5 className="font-bold text-gray-800 mb-2">Tech Innovation</h5>
+                <p className="text-gray-600 text-sm">
+                  While others offer basic stays, we're pioneering AI-powered, 
+                  IoT-connected smart accommodation experiences
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-md border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
+              <CardContent className="p-6 text-center">
+                <div className="text-3xl mb-3">🎯</div>
+                <h5 className="font-bold text-gray-800 mb-2">Personalized Service</h5>
+                <p className="text-gray-600 text-sm">
+                  No cookie-cutter approach - every guest gets tailored 
+                  recommendations and authentic local experiences
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-md border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
+              <CardContent className="p-6 text-center">
+                <div className="text-3xl mb-3">💎</div>
+                <h5 className="font-bold text-gray-800 mb-2">Premium Value</h5>
+                <p className="text-gray-600 text-sm">
+                  Luxury glass suites to budget dorms - better value 
+                  than overpriced chain alternatives
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Why Choose XTSY Over Competitors */}
+          <div className="bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 rounded-3xl p-8 sm:p-12 text-white">
+            <div className="text-center mb-8">
+              <h4 className="text-3xl font-bold mb-4">
+                Why Smart Travelers Choose XTSY Over Chain Hostels 💡
+              </h4>
+              <p className="text-lg opacity-90 max-w-4xl mx-auto">
+                When comparing XTSY with popular chains like Zostel, The Hosteller, goSTOPS, 
+                Moustache Hostels, and Madpackers, the difference is clear - we offer what they can't.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="text-center">
+                <div className="text-4xl mb-4">🚀</div>
+                <h5 className="text-xl font-bold mb-3">Innovation Leader</h5>
+                <p className="text-sm opacity-90">
+                  While chain hostels stick to basics, we're revolutionizing hospitality 
+                  with cutting-edge technology and forward-thinking amenities.
+                </p>
+              </div>
+              
+              <div className="text-center">
+                <div className="text-4xl mb-4">🎨</div>
+                <h5 className="text-xl font-bold mb-3">Authentic Culture</h5>
+                <p className="text-sm opacity-90">
+                  Experience real Northeast India culture, not sanitized tourist versions 
+                  offered by standardized hostel chains.
+                </p>
+              </div>
+              
+              <div className="text-center">
+                <div className="text-4xl mb-4">⭐</div>
+                <h5 className="text-xl font-bold mb-3">Exclusive Location</h5>
+                <p className="text-sm opacity-90">
+                  Biggest hostel in Shillong with exclusive access to hidden gems 
+                  that mainstream chains simply can't match.
+                </p>
+              </div>
+            </div>
+
+            <div className="text-center mt-10">
+              <p className="text-lg font-semibold mb-4">
+                Choose Experience Over Generic 🌟
+              </p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <div className="bg-white/20 backdrop-blur-md px-4 py-2 rounded-full">
+                  <span className="text-sm">#NotYourTypicalHostel</span>
+                </div>
+                <div className="bg-white/20 backdrop-blur-md px-4 py-2 rounded-full">
+                  <span className="text-sm">#BeyondChainExperience</span>
+                </div>
+                <div className="bg-white/20 backdrop-blur-md px-4 py-2 rounded-full">
+                  <span className="text-sm">#XTSYDifference</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
           
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {highlights.map((highlight, index) => (
