@@ -1,7 +1,60 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Phone, Mail, Clock, Users, Heart, Shield, Award, Zap, Coffee, Wifi, Camera, Leaf, Globe, TrendingUp, Star, Instagram, Smartphone, Headphones } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Users, Heart, Shield, Award, Zap, Coffee, Wifi, Camera, Leaf, Globe, TrendingUp, Star, Instagram, Smartphone, Headphones, Hash, Search, MapIcon, Compass, Mountain } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const AboutSection = () => {
+  const [trendingHashtags, setTrendingHashtags] = useState([
+    '#MeghalayaTourism', '#BestHostelsIndia', '#TechHostel2026', '#BackpackingIndia',
+    '#NortheastIndia', '#ShillongTravel', '#BudgetTravel', '#SoloTravel',
+    '#DigitalNomad', '#EcoTravel', '#AdventureTravel', '#CulturalTourism'
+  ]);
+
+  const seoKeywords = [
+    {
+      category: "Best Hostels in India",
+      icon: Award,
+      keywords: [
+        "India's largest hostel in Shillong",
+        "Best budget accommodation Northeast India", 
+        "Premium dormitory facilities",
+        "Backpacker hostel with modern amenities",
+        "Safe female-only dormitories India"
+      ]
+    },
+    {
+      category: "Tech Innovation 2026",
+      icon: Zap,
+      keywords: [
+        "India's first tech-based hostel",
+        "AI-powered hospitality experience",
+        "Smart hostel with IoT integration", 
+        "Digital concierge services",
+        "Future of budget accommodation"
+      ]
+    },
+    {
+      category: "Meghalaya Tourism",
+      icon: Mountain,
+      keywords: [
+        "Meghalaya tour packages expert",
+        "Living root bridges tour operator",
+        "Shillong travel specialist",
+        "Northeast India cultural tours",
+        "Cherrapunji waterfalls expedition"
+      ]
+    },
+    {
+      category: "International Travelers",
+      icon: Globe,
+      keywords: [
+        "International backpacker destination",
+        "Visa assistance for foreign travelers",
+        "Cultural exchange programs",
+        "English-speaking travel guides",
+        "Global traveler community hub"
+      ]
+    }
+  ];
   const genZFeatures = [
     {
       icon: Instagram,
@@ -114,9 +167,11 @@ const AboutSection = () => {
               About XTSY
             </h2>
             <p className="text-lg sm:text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
-              Where premium hospitality meets authentic travel experiences. We're your premier destination 
-              for exploring Northeast India's hidden gems, featuring India's first 270° Panorama Glass Ensuite 
-              in Shillong, comprehensive dormitory accommodations, and curated tour packages.
+              <strong>India's Best Hostel Experience</strong> - Where premium hospitality meets authentic travel experiences. 
+              As the <strong>largest hostel in Shillong</strong> and <strong>Northeast India's premier backpacker destination</strong>, 
+              we're revolutionizing budget accommodation with cutting-edge technology. Home to <strong>India's first 270° Panorama Glass Ensuite</strong>, 
+              comprehensive dormitory accommodations for international travelers, and expertly curated <strong>Meghalaya tour packages</strong> 
+              that showcase the region's hidden gems, living root bridges, and pristine waterfalls.
             </p>
           </div>
 
@@ -290,6 +345,172 @@ const AboutSection = () => {
                 </CardContent>
               </Card>
             </div>
+          </div>
+
+          {/* SEO Content Section - Strategic Keywords */}
+          <div className="mb-16">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 bg-green-600 text-white px-6 py-3 rounded-full text-sm font-medium mb-6">
+                <Search className="w-4 h-4" />
+                SEO Excellence & Market Leadership
+              </div>
+              <h3 className="text-3xl sm:text-4xl font-bold text-slate-800 mb-4">
+                Why We Rank #1 in Travel Searches
+              </h3>
+              <p className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed">
+                Dominating search results for <strong>best hostels in India</strong>, <strong>Meghalaya tourism</strong>, 
+                <strong>Northeast India travel</strong>, and <strong>budget accommodation</strong> with cutting-edge technology 
+                and unmatched hospitality excellence.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {seoKeywords.map((category, index) => (
+                <Card key={index} className="bg-white border border-slate-200 shadow-lg hover:shadow-xl transition-all duration-300">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center">
+                        <category.icon className="h-5 w-5 text-white" />
+                      </div>
+                      <h4 className="font-bold text-gray-800 text-lg">
+                        {category.category}
+                      </h4>
+                    </div>
+                    <div className="space-y-2">
+                      {category.keywords.map((keyword, keyIndex) => (
+                        <div key={keyIndex} className="flex items-center gap-2 text-sm">
+                          <div className="w-2 h-2 bg-green-600 rounded-full"></div>
+                          <span className="text-gray-700 font-medium">{keyword}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* Trending Hashtags Section */}
+          <div className="mb-16">
+            <Card className="bg-gradient-to-br from-purple-600 to-blue-600 border-none shadow-xl overflow-hidden">
+              <CardContent className="p-8 text-white">
+                <div className="text-center mb-8">
+                  <div className="inline-flex items-center gap-2 bg-white/20 text-white px-6 py-3 rounded-full text-sm font-medium mb-6">
+                    <Hash className="w-4 h-4" />
+                    Trending Now
+                  </div>
+                  <h3 className="text-3xl sm:text-4xl font-bold mb-4">
+                    🔥 Viral Travel Hashtags
+                  </h3>
+                  <p className="text-lg opacity-90">
+                    Stay ahead with the hottest travel trends and hashtags that are taking the internet by storm
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                  {trendingHashtags.map((hashtag, index) => (
+                    <div 
+                      key={index} 
+                      className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-3 text-center hover:bg-white/20 transition-all duration-300 cursor-pointer group"
+                    >
+                      <span className="text-sm font-medium group-hover:scale-105 transition-transform duration-300 block">
+                        {hashtag}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-8 p-6 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl">
+                  <div className="flex items-center gap-3 mb-4">
+                    <TrendingUp className="w-5 h-5" />
+                    <h4 className="font-bold text-lg">Live Travel Trends Impact</h4>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+                    <div>
+                      <div className="text-2xl font-bold mb-1">2.5M+</div>
+                      <div className="text-sm opacity-80">Monthly hashtag reach</div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold mb-1">89%</div>
+                      <div className="text-sm opacity-80">Trend accuracy rate</div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold mb-1">#1</div>
+                      <div className="text-sm opacity-80">Meghalaya tourism ranking</div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Global Recognition Section */}
+          <div className="mb-16">
+            <Card className="bg-white border border-slate-200 shadow-xl overflow-hidden">
+              <div className="h-1 bg-gradient-to-r from-green-600 to-blue-600"></div>
+              <CardContent className="p-8">
+                <div className="text-center mb-8">
+                  <h3 className="text-3xl sm:text-4xl font-bold text-slate-800 mb-4">
+                    🌍 Global Recognition & Market Dominance
+                  </h3>
+                  <p className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed">
+                    Leading international travel searches and setting new standards in Northeast India's hospitality industry
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div className="text-center p-6 bg-slate-50 rounded-xl border border-slate-200">
+                    <Compass className="w-8 h-8 text-blue-600 mx-auto mb-3" />
+                    <div className="text-xl font-bold text-gray-800 mb-1">International Reach</div>
+                    <div className="text-sm text-gray-600">50+ countries served</div>
+                  </div>
+                  
+                  <div className="text-center p-6 bg-slate-50 rounded-xl border border-slate-200">
+                    <Search className="w-8 h-8 text-green-600 mx-auto mb-3" />
+                    <div className="text-xl font-bold text-gray-800 mb-1">Search Ranking</div>
+                    <div className="text-sm text-gray-600">#1 for Meghalaya hostels</div>
+                  </div>
+                  
+                  <div className="text-center p-6 bg-slate-50 rounded-xl border border-slate-200">
+                    <Mountain className="w-8 h-8 text-purple-600 mx-auto mb-3" />
+                    <div className="text-xl font-bold text-gray-800 mb-1">Tour Expertise</div>
+                    <div className="text-sm text-gray-600">Northeast India specialist</div>
+                  </div>
+                  
+                  <div className="text-center p-6 bg-slate-50 rounded-xl border border-slate-200">
+                    <Zap className="w-8 h-8 text-orange-600 mx-auto mb-3" />
+                    <div className="text-xl font-bold text-gray-800 mb-1">Tech Innovation</div>
+                    <div className="text-sm text-gray-600">AI-powered by 2026</div>
+                  </div>
+                </div>
+
+                <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl">
+                  <h4 className="font-bold text-gray-800 mb-4 text-xl text-center">
+                    🏆 Market Leadership Keywords We Dominate
+                  </h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {[
+                      "Best hostels in India",
+                      "Shillong accommodation",
+                      "Meghalaya tour packages",
+                      "Northeast India travel",
+                      "Budget dormitory India",
+                      "International backpacker destination",
+                      "Living root bridges tour",
+                      "Cherrapunji waterfalls expedition",
+                      "Tech-based hostel India",
+                      "Digital nomad friendly India",
+                      "Female-only dormitory safety",
+                      "270° panorama glass suite"
+                    ].map((keyword, index) => (
+                      <div key={index} className="bg-white border border-blue-200 rounded-lg p-3 text-center">
+                        <span className="text-sm font-medium text-gray-800">{keyword}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Highlights Section */}
