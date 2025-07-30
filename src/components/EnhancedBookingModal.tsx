@@ -144,7 +144,7 @@ const ROOM_DATA = {
   },
   "6-bed-mixed-economy-dorm": {
     id: "6-bed-mixed-economy-dorm",
-    name: "Bed in 6 Bed Mixed Economy Dorm",
+    name: "Bed in 6 Bed Mixed Dormitory",
     price: 550,
     maxGuests: 1,
     maxRooms: 6,
@@ -162,26 +162,9 @@ const ROOM_DATA = {
       "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/IMG_5160.png"
     ]
   },
-  "4-bed-female-economy-dorm": {
-    id: "4-bed-female-economy-dorm",
-    name: "Bed in 4 Bed Female Economy Dorm",
-    price: 600,
-    maxGuests: 1,
-    maxRooms: 4,
-    description: "Budget-friendly female-only dormitory with essential amenities",
-    type: "dorm",
-    propertyType: "economy" as const,
-    features: ["Female Only", "AC", "Reading Lights", "Lockers", "Budget Friendly"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg",
-    images: [
-      "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg",
-      "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/2.jpg",
-      "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/3.jpg"
-    ]
-  },
   "8-bed-mixed-economy-dorm": {
     id: "8-bed-mixed-economy-dorm",
-    name: "Bed in 8 Bed Mixed Economy Dorm",
+    name: "Bed in 8 Bed Mixed Dormitory",
     price: 450,
     maxGuests: 1,
     maxRooms: 8,

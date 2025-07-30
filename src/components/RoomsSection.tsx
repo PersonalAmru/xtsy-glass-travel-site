@@ -87,7 +87,7 @@ const RoomsSection = () => {
     },
     {
       id: "6-bed-mixed-economy-dorm",
-      name: "Bed in 6 Bed Mixed Economy Dorm",
+      name: "Bed in 6 Bed Mixed Dormitory",
       price: 550,
       description: "Budget-friendly mixed dormitory with essential amenities",
       features: ["Mixed/Female", "AC", "Reading lights", "Lockers", "Budget Friendly"],
@@ -104,23 +104,8 @@ const RoomsSection = () => {
       ]
     },
     {
-      id: "4-bed-female-economy-dorm", 
-      name: "Bed in 4 Bed Female Economy Dorm",
-      price: 600,
-      description: "Budget-friendly female-only dormitory with essential amenities",
-      features: ["Female Only", "AC", "Reading lights", "Lockers", "Budget Friendly"],
-      maxGuests: 1,
-      maxRooms: 4,
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg",
-      images: [
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/2.jpg",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/3.jpg"
-      ]
-    },
-    {
       id: "8-bed-mixed-economy-dorm",
-      name: "Bed in 8 Bed Mixed Economy Dorm", 
+      name: "Bed in 8 Bed Mixed Dormitory", 
       price: 450,
       description: "Most economical option for backpackers and budget travelers",
       features: ["Mixed", "AC", "Reading lights", "Lockers", "Budget Friendly"],
@@ -173,13 +158,13 @@ const RoomsSection = () => {
 
   const economyRooms = [
     {
-      id: "6-bed-female-mixed-economy-dorm",
-      name: "Bed in 6 Bed Female/Mixed Economy Dorm",
+      id: "6-bed-mixed-economy-dorm",
+      name: "Bed in 6 Bed Mixed Dormitory",
       price: 550,
-      description: "Budget-friendly female/mixed dormitory with essential amenities",
-      features: ["Female/Mixed", "Shared bathroom", "Wi-Fi", "Locker", "Common area", "Basic amenities"],
-      maxGuests: 6,
-      maxRooms: 1,
+      description: "Budget-friendly mixed dormitory with essential amenities",
+      features: ["Mixed/Female", "AC", "Reading lights", "Lockers", "Budget Friendly"],
+      maxGuests: 1,
+      maxRooms: 6,
       image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG",
       images: [
         "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG",
@@ -192,12 +177,12 @@ const RoomsSection = () => {
     },
     {
       id: "8-bed-mixed-economy-dorm",
-      name: "Bed in 8 Bed Mixed Economy Dorm",
+      name: "Bed in 8 Bed Mixed Dormitory", 
       price: 450,
       description: "Most economical option for backpackers and budget travelers",
-      features: ["Mixed dorm", "Shared bathroom", "Wi-Fi", "Locker", "Common area", "Basic amenities"],
-      maxGuests: 8,
-      maxRooms: 1,
+      features: ["Mixed", "AC", "Reading lights", "Lockers", "Budget Friendly"],
+      maxGuests: 1,
+      maxRooms: 8,
       image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg",
       images: [
         "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg",
