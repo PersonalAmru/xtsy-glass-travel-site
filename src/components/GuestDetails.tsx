@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { ArrowLeft, User, Mail, Phone, MapPin, AlertTriangle, Calendar, Users } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { useApp } from "@/contexts/AppContext";
 import UPIPaymentModal from "./UPIPaymentModal";
 
 interface GuestDetailsProps {
@@ -48,6 +49,7 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const { formatPrice } = useApp();
 
   // Validate email format
   const validateEmail = (email: string) => {
@@ -236,7 +238,7 @@ Until then—safe travels & pack light 🧳🌿
               {/* Payment Summary */}
               <div className="mt-3 p-3 rounded-lg bg-blue-50 border border-blue-200">
                 <div className="text-sm font-medium text-blue-800">
-                  💰 Total Amount: ₹{bookingData.totalAmount}
+                  💰 Total Amount: {formatPrice(bookingData.totalAmount)}
                 </div>
                 <div className="text-xs mt-1 text-blue-700">
                   Complete booking via WhatsApp with payment details
