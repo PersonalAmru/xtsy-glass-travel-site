@@ -151,7 +151,7 @@ ${propertyName}
 
 Hi ${formData.guestName},
 
-Thanks for choosing to vibe with us at ${propertyName.includes('&') ? 'XTSY' : propertyName} – where travel meets tribe ✨
+Thanks for choosing to vibe with us at ${propertyName.includes('&') ? 'XTSY' : propertyName} – where travel meets community ✨
 We've received your booking request. Your reservation is pending final confirmation from our property team. Here's what we've got:
 
 👤 Guest Details
