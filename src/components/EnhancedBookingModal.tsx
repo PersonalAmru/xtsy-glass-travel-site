@@ -868,7 +868,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                         <h3 className="text-xl font-bold text-gray-900">XTSY Economy</h3>
                         <span className="text-sm text-green-600 bg-green-50 px-2 py-1 rounded-full">Budget Friendly</span>
                       </div>
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
                         {roomsArray.filter(room => room.propertyType === 'economy').map((room) => (
                           <RoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} formatPrice={formatPrice} />
                         ))}
