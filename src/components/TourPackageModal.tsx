@@ -372,50 +372,57 @@ Please confirm this tour package booking and share payment details.`;
             <Card className="p-6 bg-gradient-to-br from-orange-50 to-red-50">
               <h3 className="text-lg font-semibold mb-4">Pricing Summary</h3>
               
-              <div className="space-y-2 text-sm">
+              <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
-                  <span>Base Rate (per person):</span>
-                  <span>{formatPrice(pricing.basePrice)}</span>
+                  <span className="text-gray-700">Base Rate (per person):</span>
+                  <span className="font-medium">{formatPrice(pricing.basePrice)}</span>
                 </div>
+                
                 {currency.code !== 'INR' && pricing.isWeekend && (
-                  <div className="flex justify-between text-orange-600">
-                    <span>Weekend Rate Applied:</span>
-                    <span>+15%</span>
+                  <div className="flex justify-between">
+                    <span className="text-blue-600 font-medium">Weekend Rate Applied:</span>
+                    <span className="text-blue-600 font-medium">+15%</span>
                   </div>
                 )}
+                
                 {currency.code !== 'INR' && !pricing.isWeekend && (
-                  <div className="flex justify-between text-blue-600">
-                    <span>International Rate Applied:</span>
-                    <span>+10%</span>
+                  <div className="flex justify-between">
+                    <span className="text-blue-600 font-medium">International Rate Applied:</span>
+                    <span className="text-blue-600 font-medium">+10%</span>
                   </div>
                 )}
+                
                 <div className="flex justify-between">
-                  <span>Duration:</span>
-                  <span>{pricing.days} days</span>
+                  <span className="text-gray-700">Duration:</span>
+                  <span className="font-medium">{pricing.days} days</span>
                 </div>
+                
                 <div className="flex justify-between">
-                  <span>Guests:</span>
-                  <span>{guests}</span>
+                  <span className="text-gray-700">Guests:</span>
+                  <span className="font-medium">{guests}</span>
                 </div>
-                <Separator />
+                
                 <div className="flex justify-between">
-                  <span>Subtotal:</span>
-                  <span>{formatPrice(pricing.subtotal)}</span>
+                  <span className="text-gray-700">Subtotal:</span>
+                  <span className="font-medium">{formatPrice(pricing.subtotal)}</span>
                 </div>
+                
                 <div className="flex justify-between">
-                  <span>{currency.code === 'INR' ? 'GST (5%)' : 'Tax (as per India) (5%)'}:</span>
-                  <span>{formatPrice(pricing.gstAmount)}</span>
+                  <span className="text-gray-700">Tax (as per India) (5%):</span>
+                  <span className="font-medium">{formatPrice(pricing.gstAmount)}</span>
                 </div>
-                <Separator />
-                <div className="flex justify-between font-semibold text-lg">
-                  <span>Total Amount:</span>
-                  <span className="text-orange-600">{formatPrice(pricing.finalTotal)}</span>
+                
+                <Separator className="my-3" />
+                
+                <div className="flex justify-between items-center">
+                  <span className="text-lg font-semibold text-gray-900">Total Amount:</span>
+                  <span className="text-xl font-bold text-orange-600">{formatPrice(pricing.finalTotal)}</span>
                 </div>
               </div>
 
               <Button 
                 onClick={handlePayAndConfirm}
-                className="w-full mt-6 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700"
+                className="w-full mt-6 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold py-3"
               >
                 Pay and Confirm
               </Button>
