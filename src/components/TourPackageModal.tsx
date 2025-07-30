@@ -76,25 +76,26 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
 
   if (!tourPackage) return null;
 
-  // Calculate pricing with new GST rules and currency conversion
+  // Calculate pricing with corrected base rate logic
   const calculatePricing = () => {
-    const basePrice = parseInt(tourPackage.price.replace(/[^\d]/g, ''));
+    const packageBasePrice = parseInt(tourPackage.price.replace(/[^\d]/g, ''));
     const days = parseInt(tourPackage.duration.split(" ")[0]);
-    let displayPrice = basePrice;
+    let baseRatePerPerson = packageBasePrice; // Base rate per person for entire package
     
     // Check if selected date is weekend (for USD/EUR pricing)
     const isWeekend = selectedDate ? 
       [0, 6].includes(new Date(selectedDate).getDay()) : false;
     
-    // For USD/EUR guests: Add hikes
+    // For USD/EUR guests: Add hikes to base rate
     if (currency.code !== 'INR') {
       const weekendHike = isWeekend ? 1.15 : 1.10; // 15% weekend, 10% weekday
-      displayPrice = Math.round(basePrice * weekendHike);
+      baseRatePerPerson = Math.round(packageBasePrice * weekendHike);
     }
     
-    const subtotal = displayPrice * days * guests;
+    // Calculate subtotal: base rate per person * number of guests
+    const subtotal = baseRatePerPerson * guests;
     
-    // GST calculation: 5% for tour packages (all domestic travel)
+    // GST calculation: 5% for tour packages (individual based)
     const gstRate = 0.05;
     const gstAmount = Math.round(subtotal * gstRate);
     const finalTotal = subtotal + gstAmount;
@@ -103,7 +104,7 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
     const convertedSubtotal = Math.round(subtotal * currency.rate);
     const convertedGstAmount = Math.round(gstAmount * currency.rate);
     const convertedTotal = Math.round(finalTotal * currency.rate);
-    const convertedBasePrice = Math.round(displayPrice * currency.rate);
+    const convertedBasePrice = Math.round(baseRatePerPerson * currency.rate);
     
     return {
       basePrice: convertedBasePrice,
@@ -156,9 +157,11 @@ Total Guests: ${guests}
 ${currency.code !== 'INR' ? `Selected Currency: ${currency.code}` : ''}
 
 *Payment Details (Base Currency - INR):*
-Base Rate: ₹${parseInt(tourPackage.price.replace(/[^\d]/g, '')).toLocaleString()} per person/day
-Subtotal: ₹${pricing.rawSubtotal.toLocaleString()}
-Tax (5%): ₹${pricing.rawGstAmount.toLocaleString()}
+Base Rate: ₹${parseInt(tourPackage.price.replace(/[^\d]/g, '')).toLocaleString()} per person (complete package)
+${currency.code !== 'INR' && pricing.isWeekend ? 'Weekend Rate Applied: +15%' : ''}
+${currency.code !== 'INR' && !pricing.isWeekend ? 'International Rate Applied: +10%' : ''}
+Subtotal (${guests} guests): ₹${pricing.rawSubtotal.toLocaleString()}
+Tax (5% individual based): ₹${pricing.rawGstAmount.toLocaleString()}
 *Total Amount: ₹${pricing.rawTotal.toLocaleString()}*
 
 ${currency.code !== 'INR' ? `*Display Amount (${currency.code}): ${formatPrice(pricing.finalTotal)}*` : ''}
@@ -371,7 +374,7 @@ Please confirm this tour package booking and share payment details.`;
               
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <span>Base Rate (per person/day):</span>
+                  <span>Base Rate (per person):</span>
                   <span>{formatPrice(pricing.basePrice)}</span>
                 </div>
                 {currency.code !== 'INR' && pricing.isWeekend && (
