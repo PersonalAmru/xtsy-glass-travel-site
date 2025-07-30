@@ -113,8 +113,8 @@ const Header = () => {
               
               {/* Language and Currency Selectors */}
               <div className="flex items-center gap-3 border-l border-gray-300 pl-4">
-                <CurrencySelector className="text-gray-800" />
-                <LanguageSelector className="text-gray-800" />
+                <CurrencySelector className="text-white" />
+                <LanguageSelector className="text-white" />
               </div>
               
               {/* Authentication Section */}
