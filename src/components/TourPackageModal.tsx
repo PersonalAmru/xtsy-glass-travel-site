@@ -211,7 +211,10 @@ Please confirm this tour package booking and share payment details.`;
                   {tourPackage.category}
                 </Badge>
               </div>
-              <div className="absolute top-4 right-4 flex items-center gap-1 bg-black/70 text-white px-2 py-1 rounded">
+              <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1 rounded text-lg font-bold">
+                {formatPrice(pricing.basePrice)}
+              </div>
+              <div className="absolute bottom-4 right-4 flex items-center gap-1 bg-black/70 text-white px-2 py-1 rounded">
                 <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
                 <span className="text-sm">{tourPackage.rating}</span>
               </div>
@@ -378,19 +381,6 @@ Please confirm this tour package booking and share payment details.`;
                   <span className="font-medium">{formatPrice(pricing.basePrice)}</span>
                 </div>
                 
-                {currency.code !== 'INR' && pricing.isWeekend && (
-                  <div className="flex justify-between">
-                    <span className="text-blue-600 font-medium">Weekend Rate Applied:</span>
-                    <span className="text-blue-600 font-medium">+15%</span>
-                  </div>
-                )}
-                
-                {currency.code !== 'INR' && !pricing.isWeekend && (
-                  <div className="flex justify-between">
-                    <span className="text-blue-600 font-medium">International Rate Applied:</span>
-                    <span className="text-blue-600 font-medium">+10%</span>
-                  </div>
-                )}
                 
                 <div className="flex justify-between">
                   <span className="text-gray-700">Duration:</span>

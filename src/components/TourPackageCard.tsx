@@ -42,8 +42,7 @@ const TourPackageCard = ({ tourPackage, onPackageClick }: TourPackageCardProps) 
 
   return (
     <Card 
-      className="group hover:shadow-2xl hover:scale-105 transition-all duration-500 overflow-hidden border-0 bg-card/90 backdrop-blur-md cursor-pointer h-[600px] flex flex-col"
-      onClick={onPackageClick}
+      className="group hover:shadow-2xl hover:scale-105 transition-all duration-500 overflow-hidden border-0 bg-card/90 backdrop-blur-md h-[600px] flex flex-col"
     >
       <div className="relative overflow-hidden">
         {(tourPackage.images?.length || tourPackage.image) ? (
