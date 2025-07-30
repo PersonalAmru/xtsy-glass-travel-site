@@ -27,6 +27,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
   const { formatPrice } = useApp();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imageError, setImageError] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   
   const buttonText = propertyType === "hostel" ? `Select Bed - ${formatPrice(room.price)}/night` : propertyType === "luxury" ? `Select Suite - ${formatPrice(room.price)}/night` : `Select Room - ${formatPrice(room.price)}/night`;
   
@@ -34,13 +35,19 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
   const hasMultipleImages = images.length > 1;
 
   const nextImage = () => {
+    if (isTransitioning) return; // Prevent rapid clicking
+    setIsTransitioning(true);
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
     setImageError(false);
+    setTimeout(() => setIsTransitioning(false), 150); // Short debounce
   };
 
   const prevImage = () => {
+    if (isTransitioning) return; // Prevent rapid clicking
+    setIsTransitioning(true);
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
     setImageError(false);
+    setTimeout(() => setIsTransitioning(false), 150); // Short debounce
   };
 
   const handleImageError = () => {
