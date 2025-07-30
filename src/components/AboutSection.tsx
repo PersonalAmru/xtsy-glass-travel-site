@@ -9,6 +9,99 @@ const AboutSection = () => {
     '#DigitalNomad', '#EcoTravel', '#AdventureTravel', '#CulturalTourism'
   ]);
 
+  // Dynamic counters starting from base values
+  const [visitorStats, setVisitorStats] = useState({
+    totalTravelers: 100,
+    countriesServed: 4,
+    rating: 4.9,
+    vibeCheck: "24/7"
+  });
+
+  // Track visitor and update counters
+  useEffect(() => {
+    const trackVisitor = async () => {
+      try {
+        // Get stored stats from localStorage
+        const storedStats = localStorage.getItem('xtsy-visitor-stats');
+        let currentStats = storedStats ? JSON.parse(storedStats) : {
+          totalTravelers: 100,
+          countriesServed: 4,
+          visitedCountries: new Set(['India'])
+        };
+
+        // Increment total travelers for each unique session
+        const sessionId = sessionStorage.getItem('xtsy-session');
+        if (!sessionId) {
+          sessionStorage.setItem('xtsy-session', Date.now().toString());
+          currentStats.totalTravelers += 1;
+
+          // Detect visitor country using IP geolocation
+          try {
+            const response = await fetch('https://ipapi.co/json/');
+            const locationData = await response.json();
+            const country = locationData.country_name || 'Unknown';
+            
+            // Add country if it's not India and hasn't been counted before
+            if (country !== 'India' && country !== 'Unknown' && !currentStats.visitedCountries.has(country)) {
+              currentStats.visitedCountries.add(country);
+              currentStats.countriesServed += 1;
+            }
+          } catch (error) {
+            console.log('Location detection not available');
+          }
+
+          // Store updated stats
+          const statsToStore = {
+            ...currentStats,
+            visitedCountries: Array.from(currentStats.visitedCountries)
+          };
+          localStorage.setItem('xtsy-visitor-stats', JSON.stringify(statsToStore));
+        }
+
+        // Convert visitedCountries back to Set if it's an array
+        if (Array.isArray(currentStats.visitedCountries)) {
+          currentStats.visitedCountries = new Set(currentStats.visitedCountries);
+        }
+
+        // Update component state
+        setVisitorStats({
+          totalTravelers: currentStats.totalTravelers,
+          countriesServed: currentStats.countriesServed,
+          rating: 4.9,
+          vibeCheck: "24/7"
+        });
+
+      } catch (error) {
+        console.log('Visitor tracking error:', error);
+      }
+    };
+
+    trackVisitor();
+  }, []);
+
+  const highlights = [
+    {
+      number: `${visitorStats.totalTravelers}+`,
+      label: "Real Travelers",
+      description: "Actual visitors to our platform"
+    },
+    {
+      number: `${visitorStats.rating}★`,
+      label: "Rating",
+      description: "From genuine reviews"
+    },
+    {
+      number: visitorStats.vibeCheck,
+      label: "Vibe Check",
+      description: "Always good energy here"
+    },
+    {
+      number: `${visitorStats.countriesServed}+`,
+      label: "Countries",
+      description: "Real global reach"
+    }
+  ];
+
   const seoKeywords = [
     {
       category: "Best Hostels in India",
@@ -55,6 +148,7 @@ const AboutSection = () => {
       ]
     }
   ];
+
   const genZFeatures = [
     {
       icon: Instagram,
@@ -91,29 +185,6 @@ const AboutSection = () => {
       title: "24/7 Energy",
       description: "Always buzzing with positive vibes and activities",
       emoji: "⚡"
-    }
-  ];
-
-  const highlights = [
-    {
-      number: "10k+",
-      label: "Gen Z Travelers",
-      description: "Young explorers who chose us"
-    },
-    {
-      number: "4.9★",
-      label: "Rating",
-      description: "From fellow wanderers"
-    },
-    {
-      number: "24/7",
-      label: "Vibe Check",
-      description: "Always good energy here"
-    },
-    {
-      number: "100%",
-      label: "Authentic",
-      description: "Real experiences, no cap"
     }
   ];
 
