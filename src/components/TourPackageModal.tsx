@@ -76,7 +76,7 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
 
   if (!tourPackage) return null;
 
-  // Calculate pricing with proper currency conversion logic
+  // Calculate pricing with proper currency conversion logic - matching TourPackageCard exactly
   const calculatePricing = () => {
     // Extract numeric value from price string
     const priceNumeric = parseInt(tourPackage.price.replace(/[^\d]/g, ''));
@@ -86,20 +86,22 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
     const isWeekend = selectedDate ? 
       [0, 6].includes(new Date(selectedDate).getDay()) : false;
     
-    // Use the same pricing logic as TourPackageCard for consistency
+    // Step 1: Calculate base rate exactly like TourPackageCard
+    let baseRatePerPersonINR = priceNumeric; // Original INR price for WhatsApp
     let baseRatePerPersonInSelectedCurrency = priceNumeric;
-    let baseRatePerPersonINR = priceNumeric; // Store original INR price
     
     // For USD/EUR guests: Add 10% base hike (15% on weekends)
     if (currency.code !== 'INR') {
       const weekendHike = isWeekend ? 1.15 : 1.10; // 15% weekend, 10% weekday
-      baseRatePerPersonInSelectedCurrency = Math.round(priceNumeric * weekendHike);
       baseRatePerPersonINR = Math.round(priceNumeric * weekendHike);
+      baseRatePerPersonInSelectedCurrency = Math.round(priceNumeric * weekendHike);
     }
     
-    // Convert to selected currency (this matches TourPackageCard logic)
+    // Step 2: Convert to selected currency using formatPrice logic (but get numeric value)
     if (currency.code !== 'INR') {
-      baseRatePerPersonInSelectedCurrency = Math.round(baseRatePerPersonInSelectedCurrency * currency.rate);
+      // Use the exact same conversion logic as formatPrice in AppContext
+      const convertedPrice = baseRatePerPersonInSelectedCurrency * currency.rate;
+      baseRatePerPersonInSelectedCurrency = Math.round(convertedPrice);
     }
     
     // Step 3: Calculate subtotal in selected currency
