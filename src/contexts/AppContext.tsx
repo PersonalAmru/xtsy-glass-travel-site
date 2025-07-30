@@ -16,10 +16,8 @@ interface Language {
 
 interface AppContextType {
   currency: Currency;
-  language: Language;
   exchangeRates: Record<string, number>;
   setCurrency: (currency: Currency) => void;
-  setLanguage: (language: Language) => void;
   formatPrice: (price: number) => string;
 }
 
@@ -70,7 +68,6 @@ export const useApp = () => {
 
 export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [currency, setCurrencyState] = useState<Currency>(defaultCurrency);
-  const [language, setLanguageState] = useState<Language>(defaultLanguage);
   const [exchangeRates, setExchangeRates] = useState<Record<string, number>>({
     INR: 1,
     USD: 0.012,
@@ -78,10 +75,9 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   });
   const [isInitialized, setIsInitialized] = useState(false);
 
-  // Load saved preferences from localStorage on mount
+  // Load saved currency preference from localStorage on mount
   useEffect(() => {
     const savedCurrency = localStorage.getItem('selectedCurrency');
-    const savedLanguage = localStorage.getItem('selectedLanguage');
     
     if (savedCurrency) {
       try {
@@ -93,25 +89,8 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       }
     }
     
-    if (savedLanguage) {
-      try {
-        const parsedLanguage = JSON.parse(savedLanguage);
-        const matchedLanguage = availableLanguages.find(l => l.code === parsedLanguage.code) || defaultLanguage;
-        setLanguageState(matchedLanguage);
-      } catch (error) {
-        console.warn('Failed to parse saved language:', error);
-      }
-    }
-    
     setIsInitialized(true);
   }, []);
-
-  // Update document language when language changes
-  useEffect(() => {
-    if (isInitialized) {
-      document.documentElement.lang = language.code;
-    }
-  }, [language.code, isInitialized]);
 
   const formatPrice = (price: number): string => {
     const convertedPrice = price * currency.rate;
@@ -128,20 +107,12 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     console.log('Currency updated:', updatedCurrency);
   };
 
-  const handleSetLanguage = (newLanguage: Language) => {
-    setLanguageState(newLanguage);
-    localStorage.setItem('selectedLanguage', JSON.stringify(newLanguage));
-    console.log('Language updated:', newLanguage);
-  };
-
   return (
     <AppContext.Provider 
       value={{
         currency,
-        language,
         exchangeRates,
         setCurrency: handleSetCurrency,
-        setLanguage: handleSetLanguage,
         formatPrice,
       }}
     >

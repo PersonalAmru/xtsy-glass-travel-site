@@ -6,7 +6,6 @@ import { useAuth } from "@/contexts/AuthContext";
 import { AuthModal } from "./AuthModal";
 import { UserMenu } from "./UserMenu";
 import { CurrencySelector } from "./CurrencySelector";
-import { LanguageSelector } from "./LanguageSelector";
 import { useApp } from "@/contexts/AppContext";
 import { Link } from "react-router-dom";
 import TourCartModal from "./TourCartModal";
@@ -21,7 +20,7 @@ const Header = () => {
   const [currentSessionId, setCurrentSessionId] = useState<string | null>(null);
   const [isTravelModalOpen, setIsTravelModalOpen] = useState(false);
   const { user, loading } = useAuth();
-  const { setCurrency, setLanguage } = useApp();
+  const { setCurrency } = useApp();
 
   // Generate or get session ID for this guest
   useEffect(() => {
@@ -118,10 +117,6 @@ const Header = () => {
                 <CurrencySelector 
                   className="text-white" 
                   onCurrencyChange={setCurrency}
-                />
-                <LanguageSelector 
-                  className="text-white" 
-                  onLanguageChange={setLanguage}
                 />
               </div>
               
