@@ -804,24 +804,28 @@ const Travel = () => {
                        ].map((item) => (
                          <Card key={item.country} className="group hover:shadow-lg transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200">
                            <CardContent className="p-4 text-center">
-                              <div 
-                                className="text-5xl lg:text-6xl mb-3 leading-none flag-container"
-                                style={{
-                                  fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "Twemoji Mozilla", sans-serif',
-                                  fontSize: 'clamp(3rem, 5vw, 4rem)',
-                                  lineHeight: '1',
-                                  display: 'flex',
-                                  alignItems: 'center',
-                                  justifyContent: 'center',
-                                  height: '4rem',
-                                  width: '100%',
-                                  WebkitFontFeatureSettings: '"liga"',
-                                  fontFeatureSettings: '"liga"',
-                                  textRendering: 'optimizeLegibility'
-                                }}
-                              >
-                                {item.flag}
-                              </div>
+                               <div 
+                                 className="text-5xl lg:text-6xl mb-3 leading-none flag-container"
+                                 style={{
+                                   fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "EmojiOne Color", "Twemoji Mozilla", "Android Emoji", sans-serif',
+                                   fontSize: 'clamp(3rem, 5vw, 4rem)',
+                                   lineHeight: '1',
+                                   display: 'flex',
+                                   alignItems: 'center',
+                                   justifyContent: 'center',
+                                   height: '4rem',
+                                   width: '100%',
+                                   WebkitFontFeatureSettings: '"liga", "kern", "clig", "calt"',
+                                   fontFeatureSettings: '"liga", "kern", "clig", "calt"',
+                                   textRendering: 'optimizeLegibility',
+                                   unicodeBidi: 'isolate',
+                                   fontSynthesis: 'none',
+                                   WebkitFontSmoothing: 'antialiased',
+                                   MozOsxFontSmoothing: 'grayscale'
+                                 }}
+                               >
+                                 {item.flag}
+                               </div>
                              <h4 className="font-semibold text-gray-900 mb-1 text-lg">{item.country}</h4>
                              <p className="text-sm text-gray-600 mb-3">{item.highlight}</p>
                              <div className="mt-2">
@@ -859,24 +863,28 @@ const Travel = () => {
                        ].map((item) => (
                          <Card key={item.country} className="group hover:shadow-lg transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200">
                            <CardContent className="p-4 text-center">
-                              <div 
-                                className="text-5xl lg:text-6xl mb-3 leading-none flag-container"
-                                style={{
-                                  fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "Twemoji Mozilla", sans-serif',
-                                  fontSize: 'clamp(3rem, 5vw, 4rem)',
-                                  lineHeight: '1',
-                                  display: 'flex',
-                                  alignItems: 'center',
-                                  justifyContent: 'center',
-                                  height: '4rem',
-                                  width: '100%',
-                                  WebkitFontFeatureSettings: '"liga"',
-                                  fontFeatureSettings: '"liga"',
-                                  textRendering: 'optimizeLegibility'
-                                }}
-                              >
-                                {item.flag}
-                              </div>
+                               <div 
+                                 className="text-5xl lg:text-6xl mb-3 leading-none flag-container"
+                                 style={{
+                                   fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "EmojiOne Color", "Twemoji Mozilla", "Android Emoji", sans-serif',
+                                   fontSize: 'clamp(3rem, 5vw, 4rem)',
+                                   lineHeight: '1',
+                                   display: 'flex',
+                                   alignItems: 'center',
+                                   justifyContent: 'center',
+                                   height: '4rem',
+                                   width: '100%',
+                                   WebkitFontFeatureSettings: '"liga", "kern", "clig", "calt"',
+                                   fontFeatureSettings: '"liga", "kern", "clig", "calt"',
+                                   textRendering: 'optimizeLegibility',
+                                   unicodeBidi: 'isolate',
+                                   fontSynthesis: 'none',
+                                   WebkitFontSmoothing: 'antialiased',
+                                   MozOsxFontSmoothing: 'grayscale'
+                                 }}
+                               >
+                                 {item.flag}
+                               </div>
                              <h4 className="font-semibold text-gray-900 mb-1 text-lg">{item.country}</h4>
                              <p className="text-sm text-gray-600 mb-3">{item.highlight}</p>
                              <div className="mt-2">

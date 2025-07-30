@@ -4,17 +4,55 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Enhanced emoji support for better flag display */
+/* Enhanced emoji support for better flag display with cross-browser compatibility */
 .flag-container {
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "EmojiOne Color", "Twemoji Mozilla", "Android Emoji", sans-serif !important;
   font-variant-emoji: emoji;
   unicode-bidi: isolate;
-  -webkit-font-feature-settings: "liga" on, "kern" on;
-  font-feature-settings: "liga" on, "kern" on;
+  -webkit-font-feature-settings: "liga" on, "kern" on, "clig" on, "calt" on;
+  font-feature-settings: "liga" on, "kern" on, "clig" on, "calt" on;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
 }
 
 /* Force emoji font display on all browsers */
 .flag-container * {
-  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "Twemoji Mozilla", sans-serif !important;
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "EmojiOne Color", "Twemoji Mozilla", "Android Emoji", sans-serif !important;
+}
+
+/* Date input mobile improvements for better alignment */
+.date-input-mobile {
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  appearance: none;
+}
+
+.date-input-mobile::-webkit-calendar-picker-indicator {
+  background: transparent;
+  bottom: 0;
+  color: transparent;
+  cursor: pointer;
+  height: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
+}
+
+/* iPhone specific date input fixes */
+@supports (-webkit-touch-callout: none) {
+  .date-input-mobile {
+    font-size: 16px !important; /* Prevents zoom on iOS */
+    min-height: 44px; /* iOS touch target */
+  }
+  
+  .date-input-mobile:focus {
+    transform: none;
+    font-size: 16px !important;
+  }
 }
 
 @layer base {

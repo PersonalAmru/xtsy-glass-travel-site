@@ -133,7 +133,7 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Search Form - Fully responsive */}
+          {/* Search Form - Enhanced with luxury design and improved mobile alignment */}
           <div className="bg-white/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-7 lg:p-8 border border-white/20 shadow-2xl animate-fade-in w-full max-w-4xl mx-auto" style={{ animationDelay: '0.9s' }}>
             <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-4 sm:mb-6 md:mb-7 lg:mb-8 text-center">Find Your Perfect Stay</h2>
             
@@ -149,8 +149,13 @@ const HeroSection = () => {
                     type="date"
                     value={checkIn}
                     onChange={(e) => setCheckIn(e.target.value)}
-                    className="pl-10 h-10 sm:h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-sm sm:text-base cursor-pointer"
+                    className="pl-10 h-10 sm:h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-sm sm:text-base cursor-pointer date-input-mobile"
                     min={new Date().toISOString().split('T')[0]}
+                    style={{
+                      WebkitAppearance: 'none',
+                      MozAppearance: 'textfield',
+                      colorScheme: 'dark'
+                    }}
                   />
                   <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-gray-300 pointer-events-none" />
                 </div>
@@ -167,9 +172,14 @@ const HeroSection = () => {
                     type="date"
                     value={checkOut}
                     onChange={(e) => setCheckOut(e.target.value)}
-                    className="pl-10 h-10 sm:h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-sm sm:text-base cursor-pointer"
+                    className="pl-10 h-10 sm:h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-sm sm:text-base cursor-pointer date-input-mobile"
                     min={checkIn ? new Date(new Date(checkIn).getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0] : new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]}
                     placeholder="dd-mm-yyyy"
+                    style={{
+                      WebkitAppearance: 'none',
+                      MozAppearance: 'textfield',
+                      colorScheme: 'dark'
+                    }}
                   />
                   <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-gray-300 pointer-events-none" />
                 </div>

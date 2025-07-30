@@ -5,6 +5,8 @@ import { Menu, X, User, Settings, Users, ShoppingCart, ChevronDown } from "lucid
 import { useAuth } from "@/contexts/AuthContext";
 import { AuthModal } from "./AuthModal";
 import { UserMenu } from "./UserMenu";
+import { CurrencySelector } from "./CurrencySelector";
+import { LanguageSelector } from "./LanguageSelector";
 import { Link } from "react-router-dom";
 import TourCartModal from "./TourCartModal";
 import TravelSelectionModal from "./TravelSelectionModal";
@@ -108,6 +110,12 @@ const Header = () => {
               >
                 Travel
               </button>
+              
+              {/* Language and Currency Selectors */}
+              <div className="flex items-center gap-3 border-l border-gray-300 pl-4">
+                <CurrencySelector className="text-gray-800" />
+                <LanguageSelector className="text-gray-800" />
+              </div>
               
               {/* Authentication Section */}
               <div className="flex items-center space-x-4">
