@@ -209,6 +209,38 @@ const Travel = () => {
         location: "Meghalaya",
         highlights: ["Sky Walk", "Living Root Bridge", "Organic Gardens"],
         bestSeason: "Oct-Apr"
+      },
+      {
+        id: 201,
+        title: "XTSY Exclusive: Meghalaya Biodiversity Research Program",
+        description: "Educational wilderness expedition studying Northeast India's unique flora, fauna and ecosystems with expert naturalists",
+        duration: "7 Days",
+        difficulty: "Moderate",
+        price: "₹35,999",
+        image: meghalayaLivingRootBridges,
+        images: [meghalayaLivingRootBridges, cherrapunjiNohkalikaiFalls, dawkiUmngotRiver],
+        rating: 4.9,
+        category: "cultural",
+        location: "Meghalaya",
+        highlights: ["Expert Naturalist Guides", "Endemic Species Study", "Research Documentation", "Conservation Workshops", "Field Studies", "Night Safari", "Botanical Gardens"],
+        bestSeason: "Oct-Mar",
+        exclusive: true
+      },
+      {
+        id: 202,
+        title: "XTSY Exclusive: Wilderness Survival & Nature Immersion",
+        description: "Ultimate wilderness education program teaching survival skills, nature connection and sustainable living practices",
+        duration: "5 Days", 
+        difficulty: "Challenging",
+        price: "₹28,999",
+        image: cherrapunjiNohkalikaiFalls,
+        images: [cherrapunjiNohkalikaiFalls, meghalayaLivingRootBridges, dawkiUmngotRiver],
+        rating: 4.8,
+        category: "adventure",
+        location: "Meghalaya",
+        highlights: ["Survival Skills Training", "Wilderness Navigation", "Natural Shelter Building", "Foraging Education", "Water Purification", "Fire Making", "Leave No Trace Principles"],
+        bestSeason: "Nov-Apr",
+        exclusive: true
       }
     ],
     
