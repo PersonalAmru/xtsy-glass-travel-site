@@ -155,7 +155,7 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
   const calculatePricing = () => {
     const { currency } = useApp();
     
-    // Get base room price in INR (assuming room.price is always in INR in data)
+    // room.price is always in INR base price, formatPrice converts it for display
     let baseRoomPriceINR = room.price;
     
     // Check if selected date is weekend (for USD/EUR pricing)
@@ -168,9 +168,11 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
       baseRoomPriceINR = Math.round(baseRoomPriceINR * weekendHike);
     }
     
-    // Now convert to display currency
-    const roomPriceInDisplayCurrency = Math.round(baseRoomPriceINR * currency.rate);
-    const roomTotal = roomPriceInDisplayCurrency * bookingData.quantity * bookingData.nights;
+    // Calculate room total in INR, then let formatPrice handle currency conversion for display
+    const roomTotalINR = baseRoomPriceINR * bookingData.quantity * bookingData.nights;
+    
+    // For internal calculations, convert to display currency
+    const roomTotal = Math.round(roomTotalINR * currency.rate);
     
     // Add-on prices (always in INR base, then converted)
     let baseBreakfastINR = 150;
@@ -649,17 +651,25 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
                     </div>
                     
                     <div className="space-y-2 mb-4">
-                      <div className="flex justify-between">
-                        <span className="text-gray-900 font-medium">{room.name}</span>
-                        <span className="text-gray-900 font-semibold">{formatPrice(pricing.roomTotal)}</span>
-                      </div>
-                      <div className="flex justify-between text-sm text-gray-700">
-                        {room.type === 'luxury' ? (
-                          <span>{formatPrice(room.price)} x {bookingData.quantity} room x {bookingData.nights} nights</span>
-                        ) : (
-                          <span>{formatPrice(room.price)} x {bookingData.quantity} bed x {bookingData.nights} nights</span>
-                        )}
-                      </div>
+                       <div className="flex justify-between">
+                         <span className="text-gray-900 font-medium">{room.name}</span>
+                         <span className="text-gray-900 font-semibold">{formatPrice(pricing.roomTotal)}</span>
+                       </div>
+                       <div className="flex justify-between text-sm text-gray-700">
+                         {room.type === 'luxury' ? (
+                           <span>{formatPrice(room.price)} x {bookingData.quantity} room x {bookingData.nights} nights</span>
+                         ) : (
+                           <span>{formatPrice(room.price)} x {bookingData.quantity} bed x {bookingData.nights} nights</span>
+                         )}
+                       </div>
+                       
+                       {/* Show weekend/weekday hike for USD/EUR guests */}
+                       {currency.code !== 'INR' && (
+                         <div className="flex justify-between text-sm text-orange-600">
+                           <span>{pricing.isWeekend ? 'Weekend Rate Applied (+15%)' : 'International Guest Rate (+10%)'}</span>
+                           <span>+{formatPrice(Math.round(room.price * bookingData.quantity * bookingData.nights * currency.rate * (pricing.isWeekend ? 0.15 : 0.10)))}</span>
+                         </div>
+                       )}
                       
                       {/* Add-on items in summary */}
                       {addOns.breakfast > 0 && (
