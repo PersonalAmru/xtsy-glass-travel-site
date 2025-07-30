@@ -12,7 +12,7 @@ import { useApp } from "@/contexts/AppContext";
 const ROOM_DATA = {
   "signature-270-glass-suite": {
     id: "signature-270-glass-suite",
-    name: "Signature 270° Glass Suite",
+    name: "270° Panorama Glass Ensuite",
     price: 18000,
     capacity: 2,
     description: "Premium suite with 270-degree panoramic views and luxury amenities",

@@ -20,8 +20,8 @@ const DealsSection = () => {
       id: "welcome15",
       icon: Tag,
       title: "WELCOME15 - 15% Discount",
-      description: "Exclusive for Signature 270° Glass Suite",
-      details: "Get 15% discount exclusively for XTSY Luxury 'Signature 270° Glass Suite' bookings. Minimum 1 night booking required. Use coupon code 'WELCOME15' during booking.",
+      description: "Exclusive for 270° Panorama Glass Ensuite",
+      details: "Get 15% discount exclusively for XTSY Luxury '270° Panorama Glass Ensuite' bookings. Minimum 1 night booking required. Use coupon code 'WELCOME15' during booking.",
       gradient: "from-purple-500 to-pink-500"
     },
     {

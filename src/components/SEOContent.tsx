@@ -77,17 +77,20 @@ const SEOContent: React.FC<SEOContentProps> = ({ page = 'home' }) => {
         </section>
 
         <section>
-          <h2>Best Gen Z Friendly Accommodation in Shillong, Meghalaya</h2>
+          <h2>Best Gen Z Friendly Accommodation, Dormitories & Tour Packages in Shillong, Meghalaya</h2>
           <p>
-            Experience the best hostel in India with our range of Gen Z-friendly accommodations including signature glass suites, 
-            private rooms, and dormitory beds perfect for solo travelers, digital nomads, and young adventurers. 
-            XTSY Travellers Hostel offers the most comprehensive lodging experience in Shillong, making us the top choice 
-            for Gen Z India travel accommodation, sustainable tourism, and authentic cultural experiences.
+            Experience the best hostel in India with our comprehensive range of accommodations including the exclusive 
+            270° Panorama Glass Ensuite (first in Shillong), premium dormitory options, and expertly curated tour packages. 
+            XTSY Travellers Hostel offers India's most complete travel experience combining luxury suites, budget-friendly 
+            dormitories, and authentic Northeast India tour packages for Gen Z travelers, digital nomads, and adventure seekers.
           </p>
           <ul>
-            <li>Signature 270° Glass Suite - Instagram-worthy luxury accommodation with panoramic mountain views</li>
-            <li>Private King Rooms - Perfect for solo travelers and couples seeking comfort and privacy</li>
-            <li>Mixed and Female Dormitories - Budget-friendly options for backpackers and digital nomads</li>
+            <li>270° Panorama Glass Ensuite - Shillong's first panoramic luxury suite with 270-degree mountain views</li>
+            <li>Premium Dormitory Options - Mixed, female-only, and economy dormitories with 24/7 security</li>
+            <li>Budget-Friendly Accommodation - India's best value dormitory stays for backpackers and budget travelers</li>
+            <li>Northeast India Tour Packages - Authentic cultural immersion and adventure tours</li>
+            <li>Living Root Bridges Tours - Exclusive access to Meghalaya's hidden natural wonders</li>
+            <li>Curated Travel Experiences - From waterfalls to tribal culture, we offer authentic local tours</li>
             <li>Premium amenities including high-speed WiFi, AC, complimentary breakfast, and social spaces</li>
             <li>Eco-friendly practices and sustainable tourism initiatives for conscious travelers</li>
             <li>24/7 co-working spaces perfect for digital nomads and remote workers</li>
@@ -163,15 +166,39 @@ const SEOContent: React.FC<SEOContentProps> = ({ page = 'home' }) => {
           </p>
         </section>
 
-        {/* Location and Regional Advantage SEO */}
+        {/* Dormitory-Focused SEO Content */}
         <section>
-          <h3>Northeast India's Premier Alternative to Chain Hostels</h3>
+          <h3>India's Best Dormitory Accommodations at XTSY Travellers Hostel</h3>
           <p>
-            Located in Shillong, Meghalaya, XTSY Travellers Hostel provides exclusive access to Northeast India's hidden gems 
-            that mainstream chains like Zostel, The Hosteller, goSTOPS, Moustache Hostels, and Madpackers cannot offer 
-            from their urban locations. Experience authentic tribal culture, pristine waterfalls, living root bridges, 
-            and untouched landscapes while staying at India's most innovative hostel. Our strategic position as the biggest 
-            hostel in Northeast India offers adventures and experiences unavailable through traditional hostel chains.
+            XTSY Travellers Hostel features India's most comprehensive dormitory facilities, making us the top choice 
+            for budget-conscious travelers, backpackers, solo female travelers, and digital nomads. Our dormitory options 
+            include mixed dormitories, female-only dormitories, and economy dormitories, all featuring premium amenities, 
+            24/7 security, and exceptional cleanliness standards that exceed chain hostel competitors like Zostel, 
+            The Hosteller, and goSTOPS.
+          </p>
+          <p>
+            Choose from our 6-bed mixed dormitories and 8-bed mixed dormitories, both offering budget-friendly 
+            accommodation without compromising on safety, comfort, or community atmosphere. Our female-only dormitory 
+            sections provide secure, comfortable spaces for solo female travelers with dedicated facilities and enhanced 
+            privacy. As the biggest hostel in Shillong, our dormitory capacity and quality surpass all competitors 
+            in Northeast India.
+          </p>
+        </section>
+
+        {/* Tour Packages SEO Content */}
+        <section>
+          <h3>Expert Northeast India Tour Packages from Shillong's Premier Hostel</h3>
+          <p>
+            XTSY Travellers Hostel specializes in curated Northeast India tour packages that showcase the region's 
+            hidden gems, cultural heritage, and natural wonders. Our expertly designed tour packages include 
+            living root bridges expeditions, Cherrapunji waterfall tours, Dawki crystal river experiences, 
+            tribal culture immersion tours, and photography tours across Meghalaya's pristine landscapes.
+          </p>
+          <p>
+            Unlike generic tour operators, our Northeast India tour packages offer authentic cultural experiences, 
+            exclusive access to remote locations, and deep local insights that only the biggest hostel in Shillong 
+            can provide. From adventure tourism to heritage tours, wellness retreats to photography expeditions, 
+            we offer comprehensive travel packages that combine accommodation excellence with authentic Northeast India exploration.
           </p>
         </section>
 

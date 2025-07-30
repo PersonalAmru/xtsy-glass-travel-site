@@ -92,31 +92,30 @@ const AboutSection = () => {
     }
   ];
 
-  const trendingFeatures = [
-    { icon: Camera, text: "360° Glass Suite Views", trend: "📈 Trending" },
-    { icon: Smartphone, text: "Smart Check-in 2026", trend: "🔥 Coming Soon" },
-    { icon: Headphones, text: "Silent Disco Nights", trend: "✨ New" },
-    { icon: Globe, text: "Tech-Based Experience", trend: "🚀 Future" }
+  const coreServices = [
+    { icon: Camera, text: "270° Panorama Glass Ensuite - First in Shillong", trend: "Premium" },
+    { icon: Users, text: "Dormitory Accommodations for All Budgets", trend: "Core Service" },
+    { icon: Globe, text: "Northeast India Tour Packages", trend: "Specialty" },
+    { icon: Smartphone, text: "Tech-Enhanced Experience by 2026", trend: "Innovation" }
   ];
 
   return (
-    <section id="about" className="py-16 sm:py-20 px-3 sm:px-4 bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 relative overflow-hidden">
-      {/* Dynamic background animations */}
+    <section id="about" className="py-16 sm:py-20 px-3 sm:px-4 bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50 relative overflow-hidden">
+      {/* Professional background pattern */}
       <div className="absolute inset-0">
-        {[...Array(8)].map((_, i) => (
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)] opacity-30"></div>
+        {[...Array(6)].map((_, i) => (
           <div
             key={i}
-            className={`absolute w-16 h-16 sm:w-24 sm:h-24 rounded-full blur-xl animate-pulse ${
-              i % 4 === 0 ? 'bg-gradient-to-r from-pink-300/30 to-purple-300/30' :
-              i % 4 === 1 ? 'bg-gradient-to-r from-blue-300/30 to-cyan-300/30' :
-              i % 4 === 2 ? 'bg-gradient-to-r from-green-300/30 to-emerald-300/30' :
-              'bg-gradient-to-r from-yellow-300/30 to-orange-300/30'
+            className={`absolute w-12 h-12 sm:w-16 sm:h-16 rounded-full blur-xl opacity-20 ${
+              i % 3 === 0 ? 'bg-gradient-to-r from-blue-400/40 to-indigo-400/40' :
+              i % 3 === 1 ? 'bg-gradient-to-r from-slate-400/40 to-gray-400/40' :
+              'bg-gradient-to-r from-indigo-400/40 to-purple-400/40'
             }`}
             style={{
-              left: `${5 + i * 12}%`,
-              top: `${10 + (i * 8) % 60}%`,
-              animationDelay: `${i * 0.8}s`,
-              animationDuration: `${2 + i * 0.2}s`
+              left: `${10 + i * 15}%`,
+              top: `${15 + (i * 12) % 50}%`,
+              animation: `float 6s ease-in-out infinite ${i * 0.5}s`
             }}
           />
         ))}
@@ -125,33 +124,33 @@ const AboutSection = () => {
       <div className="container mx-auto max-w-7xl relative z-10">
         {/* Header Section */}
         <div className="text-center mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-medium mb-4">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-slate-600 to-blue-600 text-white px-6 py-3 rounded-full text-sm font-medium mb-6">
             <TrendingUp className="w-4 h-4" />
-            #1 Gen Z Choice in India
+            Premium Hospitality Excellence
           </div>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 bg-clip-text text-transparent mb-6">
-            About XTSY ✨
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-slate-700 via-blue-700 to-indigo-700 bg-clip-text text-transparent mb-6">
+            About XTSY
           </h2>
           <p className="text-lg sm:text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
-            Where Gen Z vibes meet authentic travel experiences. We're not just a hostel - 
-            we're your base camp for exploring India's hidden gems, making lifelong connections, 
-            and creating content that'll make your feed pop! 🔥
+            Where premium hospitality meets authentic travel experiences. We're your premier destination 
+            for exploring Northeast India's hidden gems, featuring India's first 270° Panorama Glass Ensuite 
+            in Shillong, comprehensive dormitory accommodations, and curated tour packages.
           </p>
         </div>
 
-        {/* Trending Features Ticker */}
-        <div className="mb-12 overflow-hidden bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg">
-          <div className="flex items-center py-3 px-4 bg-gradient-to-r from-pink-500 to-purple-600">
-            <Zap className="w-5 h-5 text-white mr-2" />
-            <span className="text-white font-semibold">What's Trending at XTSY</span>
+        {/* Professional Features Overview */}
+        <div className="mb-12 overflow-hidden bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-slate-200">
+          <div className="flex items-center py-4 px-6 bg-gradient-to-r from-slate-600 to-blue-600">
+            <Award className="w-5 h-5 text-white mr-3" />
+            <span className="text-white font-semibold">Core Services & Excellence</span>
           </div>
-          <div className="flex animate-scroll space-x-8 py-4 px-4">
-            {[...trendingFeatures, ...trendingFeatures].map((feature, index) => (
-              <div key={index} className="flex items-center space-x-3 min-w-fit">
-                <feature.icon className="w-5 h-5 text-purple-600" />
-                <span className="text-gray-800 font-medium">{feature.text}</span>
-                <span className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-2 py-1 rounded-full text-xs">
-                  {feature.trend}
+          <div className="flex overflow-x-auto space-x-6 py-4 px-6 scrollbar-hide">
+            {coreServices.map((service, index) => (
+              <div key={index} className="flex items-center space-x-3 min-w-fit bg-slate-50 px-4 py-2 rounded-lg">
+                <service.icon className="w-5 h-5 text-slate-600" />
+                <span className="text-gray-800 font-medium whitespace-nowrap">{service.text}</span>
+                <span className="bg-gradient-to-r from-slate-600 to-blue-600 text-white px-3 py-1 rounded-full text-xs font-medium">
+                  {service.trend}
                 </span>
               </div>
             ))}
@@ -160,92 +159,80 @@ const AboutSection = () => {
 
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 mb-16">
-          {/* Our Story - Gen Z Style */}
+          {/* Our Story - Professional Style */}
           <div className="space-y-6">
-            <Card className="bg-white/90 backdrop-blur-md border-0 shadow-2xl overflow-hidden">
-              <div className="h-2 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500"></div>
+            <Card className="bg-white/95 backdrop-blur-md border border-slate-200 shadow-xl overflow-hidden">
+              <div className="h-1 bg-gradient-to-r from-slate-600 to-blue-600"></div>
               <CardContent className="p-6 sm:p-8">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-pink-500 to-purple-600 rounded-2xl flex items-center justify-center">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 bg-gradient-to-r from-slate-600 to-blue-600 rounded-xl flex items-center justify-center">
                     <Heart className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                    Our Story 📖
+                  <h3 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-slate-700 to-blue-700 bg-clip-text text-transparent">
+                    Our Story
                   </h3>
                 </div>
                 <p className="text-gray-700 text-base sm:text-lg leading-relaxed mb-4">
-                  Born from a vision to create India's most Gen Z-friendly hostel experience 🚀 
-                  We saw young travelers struggling to find authentic, affordable, and Instagram-worthy 
-                  stays that actually understood their vibe.
+                  Founded with a vision to revolutionize hospitality in Northeast India, XTSY has established 
+                  itself as the premier destination for travelers seeking authentic experiences combined with 
+                  modern comfort and innovative technology.
                 </p>
                 <p className="text-gray-700 text-base sm:text-lg leading-relaxed mb-4">
-                  So we built XTSY - where sustainability meets style, where WiFi is faster than your thoughts, 
-                  and where every corner is designed for those perfect shots that'll make your friends jealous! 📸
+                  From our inception to becoming India's largest hostel in Shillong, we've consistently focused 
+                  on delivering exceptional service, featuring our exclusive 270° Panorama Glass Ensuite, 
+                  comprehensive dormitory accommodations, and expertly curated tour packages.
                 </p>
-                <div className="bg-gradient-to-r from-pink-50 to-purple-50 p-4 rounded-xl">
-                  <p className="text-purple-800 font-medium text-center">
-                    "No fake vibes, just real experiences" - That's our motto! ✨
+                <div className="bg-slate-50 border-l-4 border-blue-600 p-4 rounded-r-xl">
+                  <p className="text-slate-700 font-medium">
+                    Excellence in hospitality, authenticity in experience, and innovation in service delivery.
                   </p>
                 </div>
               </CardContent>
             </Card>
           </div>
 
-          {/* Contact Info - Modern Style */}
+          {/* Contact Info - Professional Style */}
           <div className="space-y-6">
-            <Card className="bg-white/90 backdrop-blur-md border-0 shadow-2xl overflow-hidden">
-              <div className="h-2 bg-gradient-to-r from-green-500 via-blue-500 to-purple-500"></div>
+            <Card className="bg-white/95 backdrop-blur-md border border-slate-200 shadow-xl overflow-hidden">
+              <div className="h-1 bg-gradient-to-r from-blue-600 to-indigo-600"></div>
               <CardContent className="p-6 sm:p-8">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-blue-500 rounded-2xl flex items-center justify-center">
-                    <Smartphone className="w-6 h-6 text-white" />
+                  <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center">
+                    <Phone className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-                    Stay Connected 📱
+                  <h3 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-700 to-indigo-700 bg-clip-text text-transparent">
+                    Contact Information
                   </h3>
                 </div>
                 
                 <div className="space-y-4">
-                  <div className="flex items-center gap-4 p-3 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl">
-                    <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-blue-500 rounded-xl flex items-center justify-center">
+                  <div className="flex items-center gap-4 p-4 bg-slate-50 border border-slate-200 rounded-xl">
+                    <div className="w-10 h-10 bg-gradient-to-r from-slate-600 to-blue-600 rounded-lg flex items-center justify-center">
                       <MapPin className="h-5 w-5 text-white" />
                     </div>
                     <div>
-                      <p className="font-semibold text-gray-800">📍 Location</p>
+                      <p className="font-semibold text-gray-800">Location</p>
                       <p className="text-gray-600 text-sm">Shillong, Meghalaya, India</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-center gap-4 p-3 bg-gradient-to-r from-pink-50 to-purple-50 rounded-xl">
-                    <div className="w-10 h-10 bg-gradient-to-r from-pink-500 to-purple-500 rounded-xl flex items-center justify-center">
+                  <div className="flex items-center gap-4 p-4 bg-slate-50 border border-slate-200 rounded-xl">
+                    <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
                       <Phone className="h-5 w-5 text-white" />
                     </div>
                     <div>
-                      <p className="font-semibold text-gray-800">📱 WhatsApp</p>
+                      <p className="font-semibold text-gray-800">WhatsApp</p>
                       <p className="text-gray-600 text-sm">+91 88373 17070</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-center gap-4 p-3 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl">
-                    <div className="w-10 h-10 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center">
+                  <div className="flex items-center gap-4 p-4 bg-slate-50 border border-slate-200 rounded-xl">
+                    <div className="w-10 h-10 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center">
                       <Clock className="h-5 w-5 text-white" />
                     </div>
                     <div>
-                      <p className="font-semibold text-gray-800">🕐 Available</p>
-                      <p className="text-gray-600 text-sm">24/7 Support (We never sleep!)</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Social Media Links */}
-                <div className="mt-6 pt-6 border-t border-gray-200">
-                  <p className="text-sm text-gray-600 mb-3">Follow our journey:</p>
-                  <div className="flex gap-3">
-                    <div className="w-10 h-10 bg-gradient-to-r from-pink-500 to-red-500 rounded-xl flex items-center justify-center cursor-pointer hover:scale-110 transition-transform">
-                      <Instagram className="w-5 h-5 text-white" />
-                    </div>
-                    <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center cursor-pointer hover:scale-110 transition-transform">
-                      <Globe className="w-5 h-5 text-white" />
+                      <p className="font-semibold text-gray-800">Availability</p>
+                      <p className="text-gray-600 text-sm">24/7 Professional Support</p>
                     </div>
                   </div>
                 </div>
@@ -254,29 +241,72 @@ const AboutSection = () => {
           </div>
         </div>
 
-        {/* Gen Z Features Grid */}
+        {/* Core Business Sections */}
         <div className="mb-16">
-          <h3 className="text-3xl sm:text-4xl font-bold text-center mb-8 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-            Why Gen Z Loves Us 💜
+          <h3 className="text-3xl sm:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-slate-700 to-blue-700 bg-clip-text text-transparent">
+            Our Core Business Excellence
           </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {genZFeatures.map((feature, index) => (
-              <Card key={index} className="bg-white/90 backdrop-blur-md border-0 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 group overflow-hidden">
-                <CardContent className="p-6 text-center relative">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-pink-500 to-purple-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-                  <div className="text-3xl mb-3">{feature.emoji}</div>
-                  <div className="w-14 h-14 bg-gradient-to-r from-pink-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:rotate-12 transition-transform duration-300">
-                    <feature.icon className="h-7 w-7 text-white" />
-                  </div>
-                  <h4 className="font-bold text-gray-800 mb-2 text-lg">
-                    {feature.title}
-                  </h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    {feature.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            {/* Dormitory Excellence */}
+            <Card className="bg-white/95 backdrop-blur-md border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 group">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-slate-600 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <Users className="h-8 w-8 text-white" />
+                </div>
+                <h4 className="font-bold text-gray-800 mb-4 text-xl">
+                  Premium Dormitory Accommodations
+                </h4>
+                <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                  India's most comprehensive dormitory facilities featuring mixed, female-only, and economy options. 
+                  As the biggest hostel in Shillong, we provide safe, comfortable, and budget-friendly accommodation 
+                  for all types of travelers.
+                </p>
+                <div className="text-sm text-slate-600 bg-slate-50 p-3 rounded-lg">
+                  <strong>Features:</strong> 6-bed & 8-bed dorms, premium amenities, 24/7 security, female-only sections
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Tour Packages Excellence */}
+            <Card className="bg-white/95 backdrop-blur-md border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 group">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <Globe className="h-8 w-8 text-white" />
+                </div>
+                <h4 className="font-bold text-gray-800 mb-4 text-xl">
+                  Curated Northeast India Tours
+                </h4>
+                <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                  Expertly designed tour packages showcasing Northeast India's hidden gems, cultural heritage, 
+                  and natural wonders. From living root bridges to pristine waterfalls, we offer authentic 
+                  experiences that mainstream tour operators cannot match.
+                </p>
+                <div className="text-sm text-slate-600 bg-slate-50 p-3 rounded-lg">
+                  <strong>Specialties:</strong> Meghalaya tours, cultural immersion, adventure packages, photography tours
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Premium Suite Excellence */}
+            <Card className="bg-white/95 backdrop-blur-md border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 group">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <Camera className="h-8 w-8 text-white" />
+                </div>
+                <h4 className="font-bold text-gray-800 mb-4 text-xl">
+                  270° Panorama Glass Ensuite
+                </h4>
+                <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                  Shillong's first and only 270° Panorama Glass Ensuite offering unparalleled mountain views 
+                  and luxury accommodation. This exclusive premium suite sets us apart from all competitors 
+                  in Northeast India's hospitality landscape.
+                </p>
+                <div className="text-sm text-slate-600 bg-slate-50 p-3 rounded-lg">
+                  <strong>Unique Feature:</strong> First in Shillong, panoramic views, luxury amenities, exclusive experience
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
 
@@ -481,7 +511,7 @@ const AboutSection = () => {
                     <div className="w-6 h-6 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center mt-1">
                       <span className="text-xs text-white">✓</span>
                     </div>
-                    <p className="text-gray-700"><strong>Instagram-Worthy:</strong> 270° Glass Suite & picture-perfect locations</p>
+                    <p className="text-gray-700"><strong>Premium Suite:</strong> 270° Panorama Glass Ensuite - First in Shillong</p>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-6 h-6 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center mt-1">
@@ -649,12 +679,17 @@ const AboutSection = () => {
       {/* Custom CSS for animations */}
       <style>
         {`
-          @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+          @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-10px) rotate(1deg); }
+            66% { transform: translateY(5px) rotate(-1deg); }
           }
-          .animate-scroll {
-            animation: scroll 30s linear infinite;
+          .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+          }
+          .scrollbar-hide::-webkit-scrollbar {
+            display: none;
           }
         `}
       </style>

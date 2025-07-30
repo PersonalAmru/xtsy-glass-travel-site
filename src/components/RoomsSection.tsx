@@ -19,7 +19,7 @@ const RoomsSection = () => {
   const luxuryRooms = [
     {
       id: "signature-270-glass-suite",
-      name: "Signature 270° Glass Suite",
+      name: "270° Panorama Glass Ensuite",
       price: 18000,
       description: "Premium suite with 270-degree panoramic views and luxury amenities. Experience unparalleled comfort with breathtaking mountain and valley views.",
       features: ["270° Panoramic view", "Luxury amenities", "Attached bath", "Wi-Fi", "Premium service", "Mountain views", "Valley views", "Complimentary breakfast", "Games room access"],
