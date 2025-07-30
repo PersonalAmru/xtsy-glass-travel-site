@@ -76,47 +76,50 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
 
   if (!tourPackage) return null;
 
-  // Calculate pricing with corrected base rate logic
+  // Calculate pricing with proper currency conversion logic
   const calculatePricing = () => {
-    const packageBasePrice = parseInt(tourPackage.price.replace(/[^\d]/g, ''));
+    const packageBasePriceINR = parseInt(tourPackage.price.replace(/[^\d]/g, ''));
     const days = parseInt(tourPackage.duration.split(" ")[0]);
-    let baseRatePerPerson = packageBasePrice; // Base rate per person for entire package
     
     // Check if selected date is weekend (for USD/EUR pricing)
     const isWeekend = selectedDate ? 
       [0, 6].includes(new Date(selectedDate).getDay()) : false;
     
-    // For USD/EUR guests: Add hikes to base rate
+    // Step 1: Convert INR base price to selected currency
+    let baseRatePerPersonInSelectedCurrency = Math.round(packageBasePriceINR * currency.rate);
+    let baseRatePerPersonINR = packageBasePriceINR;
+    
+    // Step 2: For USD/EUR guests, apply hikes to the converted amount
     if (currency.code !== 'INR') {
       const weekendHike = isWeekend ? 1.15 : 1.10; // 15% weekend, 10% weekday
-      baseRatePerPerson = Math.round(packageBasePrice * weekendHike);
+      baseRatePerPersonInSelectedCurrency = Math.round(baseRatePerPersonInSelectedCurrency * weekendHike);
+      baseRatePerPersonINR = Math.round(packageBasePriceINR * weekendHike); // For WhatsApp message
     }
     
-    // Calculate subtotal: base rate per person * number of guests
-    const subtotal = baseRatePerPerson * guests;
+    // Step 3: Calculate subtotal in selected currency
+    const subtotalInSelectedCurrency = baseRatePerPersonInSelectedCurrency * guests;
+    const subtotalINR = baseRatePerPersonINR * guests;
     
-    // GST calculation: 5% for tour packages (individual based)
+    // Step 4: GST calculation (5% on the selected currency amount)
     const gstRate = 0.05;
-    const gstAmount = Math.round(subtotal * gstRate);
-    const finalTotal = subtotal + gstAmount;
+    const gstAmountInSelectedCurrency = Math.round(subtotalInSelectedCurrency * gstRate);
+    const gstAmountINR = Math.round(subtotalINR * gstRate);
     
-    // Convert to selected currency
-    const convertedSubtotal = Math.round(subtotal * currency.rate);
-    const convertedGstAmount = Math.round(gstAmount * currency.rate);
-    const convertedTotal = Math.round(finalTotal * currency.rate);
-    const convertedBasePrice = Math.round(baseRatePerPerson * currency.rate);
+    // Step 5: Final totals
+    const finalTotalInSelectedCurrency = subtotalInSelectedCurrency + gstAmountInSelectedCurrency;
+    const finalTotalINR = subtotalINR + gstAmountINR;
     
     return {
-      basePrice: convertedBasePrice,
-      subtotal: convertedSubtotal,
-      gstAmount: convertedGstAmount,
-      finalTotal: convertedTotal,
+      basePrice: baseRatePerPersonInSelectedCurrency,
+      subtotal: subtotalInSelectedCurrency,
+      gstAmount: gstAmountInSelectedCurrency,
+      finalTotal: finalTotalInSelectedCurrency,
       gstRate: gstRate * 100,
       days,
       isWeekend,
-      rawSubtotal: subtotal, // for WhatsApp message in INR
-      rawGstAmount: gstAmount,
-      rawTotal: finalTotal
+      rawSubtotal: subtotalINR, // for WhatsApp message in INR
+      rawGstAmount: gstAmountINR,
+      rawTotal: finalTotalINR
     };
   };
 
