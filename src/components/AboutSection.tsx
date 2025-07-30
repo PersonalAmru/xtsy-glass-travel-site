@@ -418,46 +418,64 @@ const AboutSection = () => {
             </div>
           </div>
 
-          {/* SEO Content Section - Strategic Keywords */}
+          {/* Intelligent SEO Content - Natural Storytelling */}
           <div className="mb-16">
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 bg-green-600 text-white px-6 py-3 rounded-full text-sm font-medium mb-6">
                 <Search className="w-4 h-4" />
-                SEO Excellence & Market Leadership
+                Our Story & Excellence
               </div>
-              <h3 className="text-3xl sm:text-4xl font-bold text-slate-800 mb-4">
-                Why We Rank #1 in Travel Searches
+              <h3 className="text-3xl sm:text-4xl font-bold text-slate-800 mb-6">
+                Pioneering Northeast India's Hospitality Revolution
               </h3>
-              <p className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed">
-                Dominating search results for <strong>best hostels in India</strong>, <strong>Meghalaya tourism</strong>, 
-                <strong>Northeast India travel</strong>, and <strong>budget accommodation</strong> with cutting-edge technology 
-                and unmatched hospitality excellence.
-              </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {seoKeywords.map((category, index) => (
-                <Card key={index} className="bg-white border border-slate-200 shadow-lg hover:shadow-xl transition-all duration-300">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center">
-                        <category.icon className="h-5 w-5 text-white" />
-                      </div>
-                      <h4 className="font-bold text-gray-800 text-lg">
-                        {category.category}
-                      </h4>
-                    </div>
-                    <div className="space-y-2">
-                      {category.keywords.map((keyword, keyIndex) => (
-                        <div key={keyIndex} className="flex items-center gap-2 text-sm">
-                          <div className="w-2 h-2 bg-green-600 rounded-full"></div>
-                          <span className="text-gray-700 font-medium">{keyword}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <Card className="bg-white border border-slate-200 shadow-lg">
+                <CardContent className="p-8">
+                  <h4 className="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-3">
+                    <Award className="w-6 h-6 text-green-600" />
+                    Setting New Standards in Indian Hospitality
+                  </h4>
+                  <div className="space-y-4 text-gray-700 leading-relaxed">
+                    <p>
+                      In the heart of Shillong, we've established what many consider to be among the <strong>best hostels in India</strong>, 
+                      combining the warmth of traditional Northeast hospitality with cutting-edge innovation. Our comprehensive 
+                      <strong>dormitory accommodations</strong> cater to every traveler's need, from budget-conscious backpackers to 
+                      <strong>international travelers</strong> seeking authentic experiences in Meghalaya.
+                    </p>
+                    <p>
+                      What sets us apart is our commitment to excellence - featuring India's first <strong>270° Panorama Glass Ensuite</strong>, 
+                      premium amenities, and a safe environment that has made us the preferred choice for solo travelers and 
+                      groups alike. Our <strong>female-only dormitory sections</strong> ensure safety and comfort for women travelers 
+                      exploring Northeast India.
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white border border-slate-200 shadow-lg">
+                <CardContent className="p-8">
+                  <h4 className="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-3">
+                    <Zap className="w-6 h-6 text-blue-600" />
+                    Innovation Meets Authentic Travel
+                  </h4>
+                  <div className="space-y-4 text-gray-700 leading-relaxed">
+                    <p>
+                      By 2026, we're launching <strong>India's first tech-based hostel</strong> experience, integrating AI-powered services 
+                      with our renowned hospitality. This technological revolution will enhance every aspect of your stay, from 
+                      smart check-ins to personalized <strong>Meghalaya tour packages</strong> that showcase the region's living root bridges, 
+                      pristine waterfalls, and rich cultural heritage.
+                    </p>
+                    <p>
+                      Our expertise in <strong>Northeast India travel</strong> extends beyond accommodation. We're <strong>Meghalaya tourism</strong> 
+                      specialists, crafting authentic experiences that connect you with local communities, hidden gems, and natural 
+                      wonders that mainstream tour operators simply cannot access. Every journey we curate tells the story of this 
+                      enchanting region.
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
 
