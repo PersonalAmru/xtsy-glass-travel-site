@@ -301,6 +301,36 @@ const TravelItinerariesSection = () => {
       category: "adventure",
       highlights: ["Survival Training", "Extreme Weather", "Self-Reliance"],
       bestSeason: "Jun-Aug"
+    },
+    
+    // XTSY Exclusive Nature Education & Wilderness Programs
+    {
+      id: 21,
+      title: "XTSY Exclusive: Meghalaya Biodiversity Research Program",
+      description: "Educational wilderness expedition studying Northeast India's unique flora, fauna and ecosystems with expert naturalists",
+      duration: "7 Days",
+      difficulty: "Moderate",
+      price: "₹35,999",
+      image: researchExpeditionImg,
+      rating: 4.9,
+      category: "cultural",
+      highlights: ["Expert Naturalist Guides", "Endemic Species Study", "Research Documentation", "Conservation Workshops", "Field Studies", "Night Safari", "Botanical Gardens"],
+      bestSeason: "Oct-Mar",
+      exclusive: true
+    },
+    {
+      id: 22,
+      title: "XTSY Exclusive: Wilderness Survival & Nature Immersion",
+      description: "Ultimate wilderness education program teaching survival skills, nature connection and sustainable living practices",
+      duration: "5 Days", 
+      difficulty: "Challenging",
+      price: "₹28,999",
+      image: extremeWeatherImg,
+      rating: 4.8,
+      category: "adventure",
+      highlights: ["Survival Skills Training", "Wilderness Navigation", "Natural Shelter Building", "Foraging Education", "Water Purification", "Fire Making", "Leave No Trace Principles"],
+      bestSeason: "Nov-Apr",
+      exclusive: true
     }
   ];
 
@@ -361,7 +391,9 @@ const TravelItinerariesSection = () => {
           {filteredItineraries.map((itinerary) => (
             <Card 
               key={itinerary.id} 
-              className="group hover:shadow-2xl hover:scale-105 transition-all duration-500 overflow-hidden border-0 bg-white/90 backdrop-blur-md cursor-pointer"
+              className={`group hover:shadow-2xl hover:scale-105 transition-all duration-500 overflow-hidden border-0 bg-white/90 backdrop-blur-md cursor-pointer ${
+                itinerary.exclusive ? 'ring-2 ring-purple-500 ring-opacity-50' : ''
+              }`}
               onClick={() => handlePackageClick(itinerary)}
             >
               <div className="relative overflow-hidden">
@@ -376,13 +408,25 @@ const TravelItinerariesSection = () => {
                   title={`View ${itinerary.title} in Gallery`}
                   overlay={false}
                 >
-                  <div className="absolute top-4 left-4">
-                    <Badge variant="secondary" className="bg-white/90 text-gray-800">
-                      {itinerary.category}
-                    </Badge>
-                  </div>
-                  <div className="absolute top-4 right-4 bg-black/70 text-white px-2 py-1 rounded text-sm font-bold">
-                    {typeof itinerary.price === 'number' ? formatPrice(itinerary.price) : itinerary.price}
+                  {/* XTSY Exclusive Badge */}
+                  {itinerary.exclusive && (
+                    <div className="absolute top-2 left-2 z-10">
+                      <Badge className="bg-purple-600 text-white border-0 shadow-lg">
+                        <Star className="h-3 w-3 mr-1" />
+                        XTSY Exclusive
+                      </Badge>
+                    </div>
+                  )}
+                  
+                  <div className="absolute top-4 right-4 left-4">
+                    <div className="flex justify-between items-start">
+                      <Badge variant="secondary" className="bg-white/90 text-gray-800">
+                        {itinerary.category}
+                      </Badge>
+                      <div className="bg-black/70 text-white px-2 py-1 rounded text-sm font-bold">
+                        {typeof itinerary.price === 'number' ? formatPrice(itinerary.price) : itinerary.price}
+                      </div>
+                    </div>
                   </div>
                 </GalleryImage>
               </div>
