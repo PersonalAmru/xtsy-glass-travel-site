@@ -32,6 +32,13 @@ interface GuestDetailsProps {
     discountAmount: number;
     couponCode: string;
     couponDiscount: number;
+    addOns?: {
+      breakfast: number;
+      dinnerVeg: number;
+      dinnerNonVeg: number;
+      transportation: boolean;
+      itineraryPlanning: boolean;
+    };
   };
 }
 
@@ -146,6 +153,28 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
         ? `\n• Emergency Contact: ${formData.emergencyContact}`
         : '';
 
+    // Format add-on services
+    const addOnServices = [];
+    if (bookingData.addOns?.breakfast > 0) {
+      addOnServices.push(`• Breakfast: ${bookingData.addOns.breakfast} persons × ${bookingData.nights} nights`);
+    }
+    if (bookingData.addOns?.dinnerVeg > 0) {
+      addOnServices.push(`• Dinner (Veg): ${bookingData.addOns.dinnerVeg} persons × ${bookingData.nights} nights`);
+    }
+    if (bookingData.addOns?.dinnerNonVeg > 0) {
+      addOnServices.push(`• Dinner (Non-Veg): ${bookingData.addOns.dinnerNonVeg} persons × ${bookingData.nights} nights`);
+    }
+    if (bookingData.addOns?.transportation) {
+      addOnServices.push(`• Transportation arrangement: On request basis`);
+    }
+    if (bookingData.addOns?.itineraryPlanning) {
+      addOnServices.push(`• Itinerary planning: On request basis`);
+    }
+
+    const addOnServicesText = addOnServices.length > 0 
+      ? `\n\n🍽️ Add-on Services\n${addOnServices.join('\n')}`
+      : '';
+
     const whatsappMessage = `Booking Confirmation – Pending Property Approval
 ${propertyName}
 
@@ -168,7 +197,7 @@ We've received your booking request. Your reservation is pending final confirmat
 
 Room Selection:
 ${roomDetails}
-Total Stay: ${formatPrice(bookingData.totalAmount)}
+Total Stay: ${formatPrice(bookingData.totalAmount)}${addOnServicesText}
 
 💳 Payment Info
 • GST: ${formatPrice(bookingData.gstAmount)} ${bookingData.gstAmount === 0 ? '(Dorms under ₹1000/night exempt)' : ''}
