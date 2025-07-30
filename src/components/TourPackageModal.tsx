@@ -76,7 +76,7 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
 
   if (!tourPackage) return null;
 
-  // Calculate pricing with proper currency conversion logic - matching TourPackageCard exactly
+  // Calculate pricing matching TourPackageCard exactly
   const calculatePricing = () => {
     // Extract numeric value from price string
     const priceNumeric = parseInt(tourPackage.price.replace(/[^\d]/g, ''));
@@ -97,31 +97,30 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
       baseRatePerPersonInSelectedCurrency = Math.round(priceNumeric * weekendHike);
     }
     
-    // Step 2: Convert to selected currency using formatPrice logic (but get numeric value)
-    if (currency.code !== 'INR') {
-      // Use the exact same conversion logic as formatPrice in AppContext
-      const convertedPrice = baseRatePerPersonInSelectedCurrency * currency.rate;
-      baseRatePerPersonInSelectedCurrency = Math.round(convertedPrice);
-    }
+    // Step 2: For display purposes, we need to get the converted price
+    // Use the same logic as TourPackageCard - formatPrice handles the conversion
+    const displayPrice = currency.code !== 'INR' 
+      ? Math.round(baseRatePerPersonInSelectedCurrency * currency.rate)
+      : baseRatePerPersonInSelectedCurrency;
     
-    // Step 3: Calculate subtotal in selected currency
-    const subtotalInSelectedCurrency = baseRatePerPersonInSelectedCurrency * guests;
+    // Step 3: Calculate subtotal in display currency
+    const subtotalInDisplayCurrency = displayPrice * guests;
     const subtotalINR = baseRatePerPersonINR * guests;
     
-    // Step 4: GST calculation (5% on the selected currency amount)
+    // Step 4: GST calculation (5% on the display currency amount)
     const gstRate = 0.05;
-    const gstAmountInSelectedCurrency = Math.round(subtotalInSelectedCurrency * gstRate);
+    const gstAmountInDisplayCurrency = Math.round(subtotalInDisplayCurrency * gstRate);
     const gstAmountINR = Math.round(subtotalINR * gstRate);
     
     // Step 5: Final totals
-    const finalTotalInSelectedCurrency = subtotalInSelectedCurrency + gstAmountInSelectedCurrency;
+    const finalTotalInDisplayCurrency = subtotalInDisplayCurrency + gstAmountInDisplayCurrency;
     const finalTotalINR = subtotalINR + gstAmountINR;
     
     return {
-      basePrice: baseRatePerPersonInSelectedCurrency,
-      subtotal: subtotalInSelectedCurrency,
-      gstAmount: gstAmountInSelectedCurrency,
-      finalTotal: finalTotalInSelectedCurrency,
+      basePrice: displayPrice,
+      subtotal: subtotalInDisplayCurrency,
+      gstAmount: gstAmountInDisplayCurrency,
+      finalTotal: finalTotalInDisplayCurrency,
       gstRate: gstRate * 100,
       days,
       isWeekend,
@@ -217,9 +216,7 @@ Please confirm this tour package booking and share payment details.`;
                   {tourPackage.category}
                 </Badge>
               </div>
-              <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1 rounded text-lg font-bold">
-                {formatPrice(pricing.basePrice)}
-              </div>
+              {/* Price tag removed as requested */}
               <div className="absolute bottom-4 right-4 flex items-center gap-1 bg-black/70 text-white px-2 py-1 rounded">
                 <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
                 <span className="text-sm">{tourPackage.rating}</span>
