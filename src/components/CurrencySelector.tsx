@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Globe } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { useApp } from '@/contexts/AppContext';
 
 interface Currency {
   code: string;
@@ -21,40 +22,28 @@ interface CurrencySelectorProps {
 }
 
 const CurrencySelector: React.FC<CurrencySelectorProps> = ({ onCurrencyChange, className = '' }) => {
-  const [selectedCurrency, setSelectedCurrency] = useState<Currency>(currencies[0]);
+  const { currency } = useApp();
   const [showCurrencyPrompt, setShowCurrencyPrompt] = useState(false);
 
   useEffect(() => {
-    // Load saved currency from localStorage
+    // Show currency selection prompt for new users who haven't selected a currency
     const savedCurrency = localStorage.getItem('selectedCurrency');
-    if (savedCurrency) {
-      try {
-        const currency = JSON.parse(savedCurrency);
-        const matchedCurrency = currencies.find(c => c.code === currency.code) || currencies[0];
-        setSelectedCurrency(matchedCurrency);
-        onCurrencyChange?.(matchedCurrency);
-      } catch (error) {
-        console.warn('Failed to parse saved currency:', error);
-      }
-    } else {
-      // Show currency selection prompt for new users
+    if (!savedCurrency) {
       setShowCurrencyPrompt(true);
     }
-  }, [onCurrencyChange]);
+  }, []);
 
   const handleCurrencyChange = (currencyCode: string) => {
-    const currency = currencies.find(c => c.code === currencyCode) || currencies[0];
-    setSelectedCurrency(currency);
-    localStorage.setItem('selectedCurrency', JSON.stringify(currency));
-    onCurrencyChange?.(currency);
+    const selectedCurrency = currencies.find(c => c.code === currencyCode) || currencies[0];
+    onCurrencyChange?.(selectedCurrency);
     setShowCurrencyPrompt(false);
-    console.log('Currency changed to:', currency.code, currency.symbol);
+    console.log('Currency changed to:', selectedCurrency.code, selectedCurrency.symbol);
   };
 
   return (
     <div className={`flex items-center gap-2 ${className}`}>
       <Globe className="h-4 w-4 text-muted-foreground" />
-      <Select value={selectedCurrency.code} onValueChange={handleCurrencyChange}>
+      <Select value={currency.code} onValueChange={handleCurrencyChange}>
         <SelectTrigger className={`w-28 h-8 text-xs border-none shadow-none focus:ring-0 ${
           showCurrencyPrompt ? 'ring-2 ring-primary animate-pulse' : ''
         }`}>
