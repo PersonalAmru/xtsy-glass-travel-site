@@ -104,16 +104,38 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
       });
     };
 
-    // Format room details for WhatsApp message
+    // Determine property type based on room selection
+    const hasLuxuryRooms = bookingData.selectedRooms.some(room => 
+      room.name.toLowerCase().includes('luxury') || 
+      room.name.toLowerCase().includes('suite') || 
+      room.name.toLowerCase().includes('deluxe')
+    );
+    const hasDormRooms = bookingData.selectedRooms.some(room => 
+      room.name.toLowerCase().includes('dorm')
+    );
+    
+    // Determine property name based on room types
+    let propertyName = '';
+    if (hasLuxuryRooms && hasDormRooms) {
+      propertyName = 'XTSY Travellers Hostel & XTSY Luxury';
+    } else if (hasLuxuryRooms) {
+      propertyName = 'XTSY Luxury';
+    } else {
+      propertyName = 'XTSY Travellers Hostel';
+    }
+
+    // Format room details for WhatsApp message with currency formatting
     const roomDetails = bookingData.selectedRooms.map(room => {
       const isDorm = room.name.toLowerCase().includes('dorm');
       const selection = room.selection;
       const nights = bookingData.nights;
       
       if (isDorm) {
-        return `• ${room.name}: ${selection.guests} beds × ${nights} nights = ₹${room.price * selection.guests * nights}`;
+        const totalPrice = room.price * selection.guests * nights;
+        return `• ${room.name}: ${selection.guests} beds × ${nights} nights = ${formatPrice(totalPrice)}`;
       } else {
-        return `• ${room.name}: ${selection.rooms} rooms × ${nights} nights = ₹${room.price * selection.rooms * nights}`;
+        const totalPrice = room.price * selection.rooms * nights;
+        return `• ${room.name}: ${selection.rooms} rooms × ${nights} nights = ${formatPrice(totalPrice)}`;
       }
     }).join('\n');
 
@@ -125,12 +147,12 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
         : '';
 
     const whatsappMessage = `Booking Confirmation – Pending Property Approval
-XTSY Travellers Hostel & XTSY Luxury
+${propertyName}
 
 Hi ${formData.guestName},
 
-Thanks for choosing to vibe with us at XTSY Travellers Hostel – where travel meets tribe ✨
-We've received your booking request and payment. Your reservation is almost locked in—just pending final confirmation from our property team. Here's what we've got:
+Thanks for choosing to vibe with us at ${propertyName.includes('&') ? 'XTSY' : propertyName} – where travel meets tribe ✨
+We've received your booking request. Your reservation is pending final confirmation from our property team. Here's what we've got:
 
 👤 Guest Details
 • Name: ${formData.guestName}
@@ -146,12 +168,11 @@ We've received your booking request and payment. Your reservation is almost lock
 
 Room Selection:
 ${roomDetails}
-Total Stay: ₹${bookingData.totalAmount}
+Total Stay: ${formatPrice(bookingData.totalAmount)}
 
 💳 Payment Info
-• GST: ₹${bookingData.gstAmount} ${bookingData.gstAmount === 0 ? '(Dorms under ₹1000/night exempt)' : ''}
-• Total Paid: ₹${bookingData.totalAmount}
-• Payment Screenshot: [Attached]
+• GST: ${formatPrice(bookingData.gstAmount)} ${bookingData.gstAmount === 0 ? '(Dorms under ₹1000/night exempt)' : ''}
+• Total Amount: ${formatPrice(bookingData.totalAmount)}
 • Status: Pending Final Confirmation
 
 If you need anything before your trip—airport pickup, itinerary help, or just the latest café playlist, hit us up on WhatsApp anytime:
@@ -412,6 +433,39 @@ Until then—safe travels & pack light 🧳🌿
                         maxLength={50}
                       />
                     </div>
+                  </div>
+                </div>
+
+                {/* Instructions for Booking */}
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                    <Phone className="h-5 w-5 text-orange-500" />
+                    Instructions for Booking
+                  </h3>
+                  
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <ul className="space-y-2 text-sm text-blue-800">
+                      <li className="flex items-start gap-2">
+                        <span className="text-blue-600 font-semibold">•</span>
+                        <span>This is an <strong>enquiry-based booking system</strong> - not real-time availability</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-blue-600 font-semibold">•</span>
+                        <span>Room allocation will be confirmed based on availability across all OTA platforms</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-blue-600 font-semibold">•</span>
+                        <span>Payment is collected manually via QR codes sent through WhatsApp after confirmation</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-blue-600 font-semibold">•</span>
+                        <span>Our team will verify availability and send payment details within 2-4 hours</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-blue-600 font-semibold">•</span>
+                        <span>Complete the booking process via WhatsApp for final confirmation</span>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
