@@ -97,28 +97,28 @@ const Header = () => {
             <nav className="hidden md:flex items-center space-x-2 ml-auto">
               <Link 
                 to="/" 
-                className="px-3 py-2 text-gray-800 hover:text-white hover:bg-gray-800 rounded-md transition-all duration-200 font-medium touch-target"
+                className="px-3 py-2 text-gray-800 hover:text-primary hover:bg-primary/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
                 Home
               </Link>
               <Link 
                 to="/about" 
-                className="px-3 py-2 text-gray-800 hover:text-white hover:bg-gray-800 rounded-md transition-all duration-200 font-medium touch-target"
+                className="px-3 py-2 text-gray-800 hover:text-primary hover:bg-primary/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
                 About
               </Link>
               <Link 
                 to="/gallery" 
-                className="px-3 py-2 text-gray-800 hover:text-white hover:bg-gray-800 rounded-md transition-all duration-200 font-medium touch-target"
+                className="px-3 py-2 text-gray-800 hover:text-primary hover:bg-primary/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
                 Gallery
               </Link>
               <Link 
                 to="/deals" 
-                className="px-3 py-2 text-gray-800 hover:text-white hover:bg-gray-800 rounded-md transition-all duration-200 font-medium touch-target"
+                className="px-3 py-2 text-gray-800 hover:text-primary hover:bg-primary/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
                 Deals
@@ -126,7 +126,7 @@ const Header = () => {
               
               <button
                 onClick={() => setIsTravelModalOpen(true)}
-                className="px-3 py-2 text-gray-800 hover:text-white hover:bg-gray-800 rounded-md transition-all duration-200 font-medium touch-target"
+                className="px-3 py-2 text-gray-800 hover:text-primary hover:bg-primary/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
               >
                 Travel
               </button>
@@ -233,10 +233,10 @@ const Header = () => {
                   </button>
                 
                   {/* Currency Selector for Mobile */}
-                  <div className="pt-3 pb-2 border-t">
-                    <div className="text-sm text-gray-600 mb-2">Currency:</div>
+                  <div className="pt-3 pb-2 border-t border-gray-200">
+                    <div className="text-sm font-medium text-gray-700 mb-3">Select Currency:</div>
                     <CurrencySelector 
-                      className="w-full" 
+                      className="w-full bg-white border border-gray-300 rounded-md" 
                       onCurrencyChange={setCurrency}
                     />
                   </div>
