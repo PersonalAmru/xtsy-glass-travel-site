@@ -94,7 +94,7 @@ const Header = () => {
             </Link>
 
             {/* Desktop Navigation - All items aligned right */}
-            <nav className="hidden md:flex items-center space-x-2 ml-auto">
+            <nav className="hidden lg:flex items-center space-x-2 ml-auto">
               <Link 
                 to="/" 
                 className="px-3 py-2 text-gray-800 hover:text-primary hover:bg-primary/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
@@ -167,9 +167,9 @@ const Header = () => {
               </div>
             </nav>
 
-            {/* Mobile menu button */}
+            {/* Mobile and Tablet menu button */}
             <button
-              className="md:hidden touch-target text-gray-800 p-2"
+              className="lg:hidden touch-target text-gray-800 p-2"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
@@ -177,9 +177,9 @@ const Header = () => {
             </button>
           </div>
 
-            {/* Mobile Navigation */}
+            {/* Mobile and Tablet Navigation */}
             {isMenuOpen && (
-              <div className="md:hidden py-4 border-t safe-area-padding">
+              <div className="lg:hidden py-4 border-t safe-area-padding">
                 <nav className="flex flex-col space-y-3">
                   <Link 
                     to="/" 
