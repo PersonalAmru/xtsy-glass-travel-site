@@ -222,7 +222,7 @@ const Header = () => {
                     Deals
                   </Link>
                   
-                  <button
+                   <button
                     onClick={() => {
                       setIsTravelModalOpen(true);
                       setIsMenuOpen(false);
@@ -231,6 +231,15 @@ const Header = () => {
                   >
                     Travel
                   </button>
+                
+                  {/* Currency Selector for Mobile */}
+                  <div className="pt-3 pb-2 border-t">
+                    <div className="text-sm text-gray-600 mb-2">Currency:</div>
+                    <CurrencySelector 
+                      className="w-full" 
+                      onCurrencyChange={setCurrency}
+                    />
+                  </div>
                 
                 {user ? (
                   <div className="pt-4 border-t">
