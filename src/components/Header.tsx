@@ -134,7 +134,7 @@ const Header = () => {
               {/* Language and Currency Selectors */}
               <div className="flex items-center gap-3 border-l border-gray-300 pl-4">
                 <CurrencySelector 
-                  className="text-white" 
+                  className="text-gray-800" 
                   onCurrencyChange={setCurrency}
                 />
               </div>
