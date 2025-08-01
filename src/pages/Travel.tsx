@@ -43,10 +43,10 @@ import munnarTeaGardensKerala from "@/assets/munnar-tea-gardens-kerala.jpg";
 import nagalandHornbillFestival from "@/assets/nagaland-hornbill-festival.jpg";
 import manipurLoktakFloatingIslands from "@/assets/manipur-loktak-floating-islands.jpg";
 // New high-quality images
-import meghalayaHiddenGems from "@/assets/meghalaya-hidden-gems-new.jpg";
+import meghalayaHiddenGems from "@/assets/meghalaya-hidden-gems-better.jpg";
 import cherrapunjiMonsoon from "@/assets/cherrapunji-monsoon-new.jpg";
 import shillongCulturalNew from "@/assets/shillong-cultural-new.jpg";
-import meghalayaBiodiversity from "@/assets/meghalaya-biodiversity-new.jpg";
+import meghalayaBiodiversity from "@/assets/biodiversity-research-better.jpg";
 import wildernessSurvival from "@/assets/wilderness-survival-new.jpg";
 // Optimized local images to improve performance and reduce API calls
 const meghalayaImages = [
