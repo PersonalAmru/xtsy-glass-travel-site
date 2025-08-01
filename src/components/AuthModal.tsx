@@ -77,50 +77,19 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, defaultTa
         <DialogHeader>
           <DialogTitle>Join Our Newsletter</DialogTitle>
         </DialogHeader>
-        <div className="w-full">
-            <form onSubmit={handleNewsletterSignup} className="space-y-4">
-              <div>
-                <Label htmlFor="newsletter-name">Full Name</Label>
-                <Input
-                  id="newsletter-name"
-                  type="text"
-                  value={newsletterData.fullName}
-                  onChange={(e) => setNewsletterData({ ...newsletterData, fullName: e.target.value })}
-                  required
-                />
-              </div>
-              <div>
-                <Label htmlFor="newsletter-email">Email</Label>
-                <Input
-                  id="newsletter-email"
-                  type="email"
-                  value={newsletterData.email}
-                  onChange={(e) => setNewsletterData({ ...newsletterData, email: e.target.value })}
-                  required
-                />
-              </div>
-              <div>
-                <Label>Interests (Select all that apply)</Label>
-                <div className="grid grid-cols-2 gap-2 mt-2">
-                  {['Seasonal Offers', 'Meghalaya Updates', 'Adventure Tours', 'Group Bookings', 'XTSY Merchandise', 'About XTSY Asia'].map((interest) => (
-                    <Button
-                      key={interest}
-                      type="button"
-                      variant={newsletterData.interests.includes(interest) ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => toggleInterest(interest)}
-                      className="text-xs"
-                    >
-                      {interest}
-                    </Button>
-                  ))}
-                </div>
-              </div>
-              <Button type="submit" disabled={loading} className="w-full">
-                {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Subscribe to Newsletter
-              </Button>
-            </form>
+        <div className="w-full text-center space-y-4">
+          <p className="text-muted-foreground">
+            Join our WhatsApp broadcast channel to receive exclusive updates, travel offers, and Meghalaya insights directly to your phone!
+          </p>
+          <Button 
+            onClick={() => {
+              window.open('https://whatsapp.com/channel/0029VbAvWCF7DAWut48dtQ2f', '_blank');
+              onClose();
+            }}
+            className="w-full bg-green-600 hover:bg-green-700 text-white"
+          >
+            Join WhatsApp Channel
+          </Button>
         </div>
       </DialogContent>
     </Dialog>
