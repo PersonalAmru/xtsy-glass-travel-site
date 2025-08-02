@@ -42,12 +42,12 @@ import tamilNaduTemplesPinterest from "@/assets/tamil-nadu-temples-pinterest.jpg
 import munnarTeaGardensKerala from "@/assets/munnar-tea-gardens-kerala.jpg";
 import nagalandHornbillFestival from "@/assets/nagaland-hornbill-festival.jpg";
 import manipurLoktakFloatingIslands from "@/assets/manipur-loktak-floating-islands.jpg";
-// New high-quality images
-import meghalayaHiddenGems from "@/assets/meghalaya-hidden-gems-better.jpg";
-import cherrapunjiMonsoon from "@/assets/cherrapunji-monsoon-new.jpg";
+// New high-quality images - topic relevant
+import meghalayaHiddenGemsFinal from "@/assets/meghalaya-hidden-gems-final.jpg";
+import cherrapunjiMonsoonFinal from "@/assets/cherrapunji-monsoon-final.jpg";
 import shillongCulturalNew from "@/assets/shillong-cultural-new.jpg";
-import meghalayaBiodiversity from "@/assets/biodiversity-research-better.jpg";
-import wildernessSurvival from "@/assets/wilderness-survival-new.jpg";
+import meghalayaBiodiversityFinal from "@/assets/biodiversity-research-final.jpg";
+import wildernessSurvivalFinal from "@/assets/wilderness-survival-final.jpg";
 // Optimized local images to improve performance and reduce API calls
 const meghalayaImages = [
   meghalayaLivingRootBridges,
@@ -148,7 +148,7 @@ const Travel = () => {
         duration: "5 Days",
         difficulty: "Moderate",
         price: "₹12,999",
-        image: meghalayaHiddenGems,
+        image: meghalayaHiddenGemsFinal,
         images: [meghalayaLivingRootBridges, meghalayaImages[1], meghalayaImages[2]],
         rating: 4.8,
         category: "adventure",
@@ -178,7 +178,7 @@ const Travel = () => {
         duration: "4 Days",
         difficulty: "Challenging",
         price: "₹15,999",
-        image: cherrapunjiMonsoon,
+        image: cherrapunjiMonsoonFinal,
         images: [cherrapunjiNohkalikaiFalls, meghalayaLivingRootBridges, dawkiUmngotRiver],
         rating: 4.9,
         category: "adventure",
@@ -223,7 +223,7 @@ const Travel = () => {
         duration: "7 Days",
         difficulty: "Moderate",
         price: "₹35,999",
-        image: meghalayaBiodiversity,
+        image: meghalayaBiodiversityFinal,
         images: [meghalayaLivingRootBridges, cherrapunjiNohkalikaiFalls, dawkiUmngotRiver],
         rating: 4.9,
         category: "cultural",
@@ -239,7 +239,7 @@ const Travel = () => {
         duration: "5 Days", 
         difficulty: "Challenging",
         price: "₹28,999",
-        image: wildernessSurvival,
+        image: wildernessSurvivalFinal,
         images: [cherrapunjiNohkalikaiFalls, meghalayaLivingRootBridges, dawkiUmngotRiver],
         rating: 4.8,
         category: "adventure",
