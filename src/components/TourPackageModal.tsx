@@ -11,6 +11,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useApp } from "@/contexts/AppContext";
 import { TourItineraryService } from "@/utils/tourItineraryService";
+import { TourPricingService } from "@/utils/tourPricingService";
 
 interface TourPackage {
   id: number;
