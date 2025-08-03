@@ -10,6 +10,7 @@ import { Calendar, Clock, Users, Star, MapPin, Minus, Plus, X } from "lucide-rea
 import { useToast } from "@/hooks/use-toast";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useApp } from "@/contexts/AppContext";
+import { TourItineraryService } from "@/utils/tourItineraryService";
 
 interface TourPackage {
   id: number;
@@ -23,6 +24,7 @@ interface TourPackage {
   category: string;
   highlights: string[];
   bestSeason: string;
+  location: string;
 }
 
 interface TourPackageModalProps {
@@ -71,36 +73,39 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
     onClose();
   };
 
-  // Fetch itinerary highlights from travel sites
+  // Fetch itinerary highlights based on tour package details
   const fetchItineraryHighlights = async () => {
     if (!tourPackage) return;
     
     setIsLoadingItinerary(true);
     try {
-      // For now, use fallback data since we need web search functionality
-      // In production, this would call travel APIs
-      setItineraryHighlights(generateFallbackItinerary());
+      // Generate dynamic itinerary based on tour package specifics
+      const dynamicItinerary = TourItineraryService.generateItineraryHighlights(tourPackage);
+      setItineraryHighlights(dynamicItinerary);
     } catch (error) {
-      console.error('Error fetching itinerary highlights:', error);
+      console.error('Error generating itinerary highlights:', error);
+      // Fallback to basic itinerary if generation fails
       setItineraryHighlights(generateFallbackItinerary());
     } finally {
       setIsLoadingItinerary(false);
     }
   };
 
-  // Generate pricing based on group type
+  // Generate pricing based on group type and duration
   const generatePricing = (type: 'person' | 'group4' | 'group10') => {
-    const basePrice = parseInt(tourPackage?.price.replace(/[^\d]/g, '') || '10000');
-    const multipliers = {
-      person: 1,
-      group4: 3.5, // Slight discount for group of 4
-      group10: 8.5 // Better discount for group of 10
-    };
+    if (!tourPackage) return '₹0';
     
-    const price = Math.round(basePrice * multipliers[type]);
-    return currency.code === 'INR' ? `₹${price.toLocaleString()}` : 
-           currency.code === 'USD' ? `$${Math.round(price * 0.012)}` :
-           `€${Math.round(price * 0.011)}`;
+    const days = TourItineraryService.extractDays(tourPackage.duration);
+    const basePricing = TourItineraryService.generateDurationBasedPricing(tourPackage.price, type, days);
+    
+    // Convert to selected currency if needed
+    if (currency.code !== 'INR') {
+      const priceValue = parseInt(basePricing.replace(/[^\d]/g, ''));
+      return currency.code === 'USD' ? `$${Math.round(priceValue * 0.012)}` :
+             `€${Math.round(priceValue * 0.011)}`;
+    }
+    
+    return basePricing;
   };
 
   // Fallback itinerary data from travel sites
