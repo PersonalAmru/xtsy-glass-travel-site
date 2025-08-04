@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Calendar, Users, X, ArrowRight, ArrowLeft, Hotel, Bed, Home } from "lucide-react";
+import { Calendar, Users, X, ArrowRight, ArrowLeft, Hotel, Bed, Home, IndianRupee } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useIsMobile } from "@/hooks/use-mobile";
 import RoomCard from "./RoomCard";
@@ -728,9 +728,12 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                        </div>
                      </div>
 
-                      {/* Price Summary */}
-                     <Card className="p-4 bg-gray-50">
-                       <h3 className="text-lg font-semibold text-gray-900 mb-4">Price Summary</h3>
+                      {/* Mobile Price Summary - Enhanced */}
+                     <Card className="p-4 bg-gradient-to-br from-orange-50 to-red-50 border-orange-200">
+                       <h3 className="text-lg font-semibold text-orange-900 mb-4 flex items-center">
+                         <IndianRupee className="h-5 w-5 mr-2" />
+                         Price Summary
+                       </h3>
                        
                        {/* Promocode Section */}
                        <div className="mb-4 p-3 bg-white rounded-lg border">
@@ -771,28 +774,35 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                          )}
                        </div>
 
-                       <div className="space-y-2">
+                       <div className="space-y-3 text-sm">
                          <div className="flex justify-between">
-                           <span>Subtotal</span>
-                            <span>{formatPrice(calculateTotal().subtotal)}</span>
+                           <span className="text-gray-700">Subtotal</span>
+                            <span className="font-semibold text-gray-900">{formatPrice(calculateTotal().subtotal)}</span>
                          </div>
                          {promoApplied && (
                            <div className="flex justify-between text-green-600">
                              <span>Discount ({promoCode})</span>
-                              <span>-{formatPrice(calculateTotal().discountAmount)}</span>
+                              <span className="font-semibold">-{formatPrice(calculateTotal().discountAmount)}</span>
                            </div>
                          )}
                          <div className="flex justify-between">
-                           <span>GST (18%)</span>
-                            <span>{formatPrice(calculateTotal().gstAmount)}</span>
+                           <span className="text-gray-700">GST ({calculateTotal().gstAmount > 0 ? '12-18%' : '0%'})</span>
+                            <span className="font-semibold text-gray-900">{formatPrice(calculateTotal().gstAmount)}</span>
                          </div>
-                         <Separator />
-                         <div className="flex justify-between font-bold text-lg">
-                           <span>Total</span>
-                            <span>{formatPrice(calculateTotal().total)}</span>
+                         <Separator className="bg-orange-200" />
+                         <div className="flex justify-between font-bold text-lg bg-white rounded-lg p-3 border border-orange-200">
+                           <span className="text-orange-900">Total Amount</span>
+                            <span className="text-orange-900">{formatPrice(calculateTotal().total)}</span>
                          </div>
                       </div>
                     </Card>
+
+                    {/* Fixed bottom booking button for mobile */}
+                    <div className="fixed bottom-0 left-0 right-0 bg-white border-t p-4">
+                      <Button onClick={() => setCurrentStep('guest-details')} className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold text-lg py-3">
+                        Book Now - {formatPrice(calculateTotal().total)}
+                      </Button>
+                    </div>
                   </div>
                 )}
               </>
@@ -1026,8 +1036,11 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                   </div>
 
                   {/* Price Summary */}
-                  <Card className="p-4 bg-white border border-gray-300">
-                    <h4 className="text-lg font-semibold text-gray-900 mb-3">Price Summary</h4>
+                  <Card className="p-4 bg-gradient-to-br from-orange-50 to-red-50 border-orange-200">
+                    <h4 className="text-lg font-semibold text-orange-900 mb-3 flex items-center">
+                      <IndianRupee className="h-5 w-5 mr-2" />
+                      Price Summary
+                    </h4>
                     
                     {/* Promocode Section */}
                     <div className="mb-4 p-3 bg-gray-50 rounded-lg border">
@@ -1068,25 +1081,25 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                       )}
                     </div>
 
-                    <div className="space-y-2 text-sm">
+                    <div className="space-y-3 text-sm">
                       <div className="flex justify-between">
-                        <span>Subtotal</span>
-                        <span>{formatPrice(calculateTotal().subtotal)}</span>
+                        <span className="text-gray-700">Subtotal</span>
+                        <span className="font-semibold text-gray-900">{formatPrice(calculateTotal().subtotal)}</span>
                       </div>
                       {promoApplied && (
                         <div className="flex justify-between text-green-600">
                           <span>Discount ({promoCode})</span>
-                          <span>-{formatPrice(calculateTotal().discountAmount)}</span>
+                          <span className="font-semibold">-{formatPrice(calculateTotal().discountAmount)}</span>
                         </div>
                       )}
                       <div className="flex justify-between">
-                        <span>{currency.code === 'INR' ? 'GST' : 'Tax (as per India)'}</span>
-                        <span>{formatPrice(calculateTotal().gstAmount)}</span>
+                        <span className="text-gray-700">{currency.code === 'INR' ? 'GST' : 'Tax (as per India)'} ({calculateTotal().gstAmount > 0 ? '12-18%' : '0%'})</span>
+                        <span className="font-semibold text-gray-900">{formatPrice(calculateTotal().gstAmount)}</span>
                       </div>
-                      <Separator />
-                      <div className="flex justify-between font-bold text-base">
-                        <span>Total</span>
-                        <span>{formatPrice(calculateTotal().total)}</span>
+                      <Separator className="bg-orange-200" />
+                      <div className="flex justify-between font-bold text-lg bg-white rounded-lg p-3 border border-orange-200">
+                        <span className="text-orange-900">Total Amount</span>
+                        <span className="text-orange-900">{formatPrice(calculateTotal().total)}</span>
                       </div>
                     </div>
                     <Button

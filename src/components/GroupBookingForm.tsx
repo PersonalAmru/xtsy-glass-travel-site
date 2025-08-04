@@ -347,18 +347,22 @@ ${formData.specialRequests || 'None'}
                    </div>
                  </div>
 
-                {/* Price Summary */}
+                {/* Price Summary - Always visible when nights > 0 */}
                 {nights > 0 && (
                   <Card className="bg-primary/10 border-primary/20">
                     <CardContent className="p-4">
                       <h3 className="font-bold text-primary mb-2 flex items-center">
                         <IndianRupee className="h-4 w-4 mr-1" />
-                        Price Summary
+                        Price Summary (Group Rate)
                       </h3>
                       <div className="space-y-1 text-sm">
                         <div className="flex justify-between">
-                          <span>Group Booking × {nights} nights</span>
+                          <span>Entire Property × {nights} nights</span>
                           <span>{formatPrice(15000 * nights)}</span>
+                        </div>
+                        <div className="flex justify-between text-xs text-muted-foreground">
+                          <span>({formData.guests} guests × {nights} nights)</span>
+                          <span></span>
                         </div>
                         {formData.breakfast && (
                           <div className="flex justify-between">
