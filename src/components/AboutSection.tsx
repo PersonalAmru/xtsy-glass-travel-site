@@ -11,109 +11,40 @@ const AboutSection = () => {
     '#TrendingHostel', '#PremiumDormitory', '#GlassEnsuite', '#InternationalTours', '#DomesticTours'
   ]);
 
-  // Dynamic counters for SEO metrics
-  const [visitorStats, setVisitorStats] = useState({
-    totalTravelers: 2500,
-    countriesServed: 25,
-    rating: 4.9,
-    vibeCheck: "24/7"
-  });
-
-  // Track visitor and update counters
-  useEffect(() => {
-    const trackVisitor = async () => {
-      try {
-        // Get stored stats from localStorage
-        const storedStats = localStorage.getItem('xtsy-visitor-stats');
-        let currentStats = storedStats ? JSON.parse(storedStats) : {
-          totalTravelers: 2500,
-          countriesServed: 25,
-          visitedCountries: new Set(['India', 'USA', 'UK', 'Germany', 'Australia', 'France', 'Japan', 'Canada', 'Singapore', 'Thailand'])
-        };
-
-        // Increment total travelers for each unique session
-        const sessionId = sessionStorage.getItem('xtsy-session');
-        if (!sessionId) {
-          sessionStorage.setItem('xtsy-session', Date.now().toString());
-          currentStats.totalTravelers += 1;
-
-          // Detect visitor country using IP geolocation
-          try {
-            const response = await fetch('https://ipapi.co/json/');
-            const locationData = await response.json();
-            const country = locationData.country_name || 'Unknown';
-            
-            // Add country if it's not India and hasn't been counted before
-            if (country !== 'India' && country !== 'Unknown' && !currentStats.visitedCountries.has(country)) {
-              currentStats.visitedCountries.add(country);
-              currentStats.countriesServed += 1;
-            }
-          } catch (error) {
-            console.log('Location detection not available');
-          }
-
-          // Store updated stats
-          const statsToStore = {
-            ...currentStats,
-            visitedCountries: Array.from(currentStats.visitedCountries)
-          };
-          localStorage.setItem('xtsy-visitor-stats', JSON.stringify(statsToStore));
-        }
-
-        // Convert visitedCountries back to Set if it's an array
-        if (Array.isArray(currentStats.visitedCountries)) {
-          currentStats.visitedCountries = new Set(currentStats.visitedCountries);
-        }
-
-        // Update component state
-        setVisitorStats({
-          totalTravelers: currentStats.totalTravelers,
-          countriesServed: currentStats.countriesServed,
-          rating: 4.9,
-          vibeCheck: "24/7"
-        });
-
-      } catch (error) {
-        console.log('Visitor tracking error:', error);
-      }
-    };
-
-    trackVisitor();
-  }, []);
 
   // Core competitive advantages and unique selling propositions
   const competitiveAdvantages = [
     {
-      title: "Why Choose XTSY Over Zostel",
+      title: "Industry Leadership & Innovation",
       icon: Trophy,
       advantages: [
-        "Biggest hostel in Shillong & Northeast India vs limited regional presence",
-        "270° Panorama Glass Ensuite - first in Shillong vs standard rooms",
-        "Tech-based hostel launching 2026 vs traditional operations",
-        "Personalized NE tour packages vs generic offerings",
-        "Local expertise in Meghalaya vs pan-India focus"
+        "Northeast India's largest hostel facility with unmatched infrastructure",
+        "Exclusive 270° Panorama Glass Ensuite - unique architectural innovation",
+        "Technology-forward approach with AI integration planned for 2026",
+        "Specialized regional expertise in Meghalaya and Northeast tourism",
+        "Premium amenities at competitive pricing structures"
       ]
     },
     {
-      title: "XTSY vs The Hosteller Advantage",
+      title: "Competitive Market Position",
       icon: Target,
       advantages: [
-        "Exclusive Northeast India specialization vs limited NE coverage",
-        "Premium amenities with budget pricing vs higher costs",
-        "Cultural immersion programs vs standard backpacker experience",
-        "International Gen-Z focused amenities vs domestic-centric approach",
-        "AI-powered services by 2026 vs conventional hospitality"
+        "Regional specialization advantage over pan-India competitors",
+        "Enhanced safety protocols with dedicated female-only sections",
+        "Cultural authenticity programs versus generic backpacker experiences",
+        "International standard amenities designed for global travelers",
+        "Sustainable tourism practices integrated into core operations"
       ]
     },
     {
-      title: "Beyond goSTOPS & Moustache Hostels",
+      title: "Service Excellence Standards",
       icon: CheckCircle,
       advantages: [
-        "Authentic Meghalaya experiences vs mainstream destinations",
-        "Research-based biodiversity programs vs basic adventure tours",
-        "Female-only dormitory sections with enhanced safety vs mixed-only facilities",
-        "Local tribal culture integration vs tourist-focused activities",
-        "Sustainable eco-tourism practices vs commercial tourism"
+        "Research-based biodiversity and cultural immersion programs",
+        "Professional tour operations with expert local guides",
+        "Premium hospitality standards with personalized service approach",
+        "Comprehensive safety and security protocols for all guests",
+        "Eco-conscious tourism practices supporting local communities"
       ]
     }
   ];
@@ -136,24 +67,24 @@ const AboutSection = () => {
 
   const highlights = [
     {
-      number: `${visitorStats.totalTravelers}+`,
-      label: "Global Travelers",
-      description: "From 50+ countries worldwide"
-    },
-    {
-      number: `${visitorStats.rating}★`,
+      number: "★★★★★",
       label: "Excellence Rating",
-      description: "Verified guest reviews"
+      description: "Verified guest reviews & testimonials"
     },
     {
       number: "2026",
-      label: "Tech Launch",
-      description: "India's first AI hostel"
+      label: "Tech Innovation",
+      description: "India's first AI-powered hostel launch"
     },
     {
-      number: `${visitorStats.countriesServed}+`,
-      label: "Countries Served",
-      description: "International community"
+      number: "24/7",
+      label: "Professional Support",
+      description: "Round-the-clock hospitality services"
+    },
+    {
+      number: "100%",
+      label: "Safety Standards",
+      description: "Comprehensive security protocols"
     }
   ];
 
@@ -276,43 +207,43 @@ const AboutSection = () => {
 
   return (
     <>
-      <section id="about" className="py-16 sm:py-20 px-3 sm:px-4 bg-gray-50 relative overflow-hidden">
-        {/* Simple background pattern */}
+      <section id="about" className="py-16 sm:py-20 px-3 sm:px-4 bg-background relative overflow-hidden">
+        {/* Subtle background pattern */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#f8fafc_1px,transparent_1px),linear-gradient(to_bottom,#f8fafc_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-30"></div>
+          <div className="absolute inset-0 bg-gradient-subtle opacity-40"></div>
         </div>
 
         <div className="container mx-auto max-w-7xl relative z-10">
           {/* Header Section */}
           <div className="text-center mb-12 sm:mb-16">
-            <div className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-full text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-elegant">
               <TrendingUp className="w-4 h-4" />
               Premium Hospitality Excellence
             </div>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-800 mb-6">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-6">
               About XTSY
             </h2>
-            <p className="text-lg sm:text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
-              <strong>India's Best Hostel Experience</strong> - Where premium hospitality meets authentic travel experiences. 
-              As the <strong>largest hostel in Shillong</strong> and <strong>Northeast India's premier backpacker destination</strong>, 
-              we're revolutionizing budget accommodation with cutting-edge technology. Home to <strong>India's first 270° Panorama Glass Ensuite</strong>, 
-              comprehensive dormitory accommodations for international travelers, and expertly curated <strong>Meghalaya tour packages</strong> 
-              that showcase the region's hidden gems, living root bridges, and pristine waterfalls.
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+              <strong className="text-foreground">India's Premier Hostel Experience</strong> - Where innovation meets hospitality excellence. 
+              As <strong className="text-foreground">Northeast India's largest hostel in Shillong</strong>, we deliver world-class accommodation 
+              with cutting-edge technology integration. Our exclusive <strong className="text-foreground">270° Panorama Glass Ensuite</strong>, 
+              comprehensive dormitory facilities, and expertly curated <strong className="text-foreground">Meghalaya tour packages</strong> 
+              showcase the region's natural wonders, cultural heritage, and hidden destinations.
             </p>
           </div>
 
           {/* Professional Features Overview */}
-          <div className="mb-12 overflow-hidden bg-white rounded-2xl shadow-lg border border-slate-200">
-            <div className="flex items-center py-4 px-6 bg-blue-600">
-              <Award className="w-5 h-5 text-white mr-3" />
-              <span className="text-white font-semibold">Core Services & Excellence</span>
+          <div className="mb-12 overflow-hidden bg-card rounded-2xl shadow-soft border border-border">
+            <div className="flex items-center py-4 px-6 bg-primary">
+              <Award className="w-5 h-5 text-primary-foreground mr-3" />
+              <span className="text-primary-foreground font-semibold">Core Services & Excellence</span>
             </div>
-            <div className="flex overflow-x-auto space-x-6 py-4 px-6 scrollbar-hide">
+            <div className="flex overflow-x-auto space-x-4 py-6 px-6 scrollbar-hide">
               {coreServices.map((service, index) => (
-                <div key={index} className="flex items-center space-x-3 min-w-fit bg-slate-50 px-4 py-2 rounded-lg">
-                  <service.icon className="w-5 h-5 text-slate-600" />
-                  <span className="text-gray-800 font-medium whitespace-nowrap">{service.text}</span>
-                  <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-medium">
+                <div key={index} className="flex items-center space-x-3 min-w-fit bg-secondary px-4 py-3 rounded-xl border border-border">
+                  <service.icon className="w-5 h-5 text-primary" />
+                  <span className="text-foreground font-medium whitespace-nowrap">{service.text}</span>
+                  <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium">
                     {service.trend}
                   </span>
                 </div>
@@ -324,29 +255,29 @@ const AboutSection = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 mb-16">
             {/* Our Story - Professional Style */}
             <div className="space-y-6">
-              <Card className="bg-white border border-slate-200 shadow-xl overflow-hidden">
-                <div className="h-1 bg-blue-600"></div>
+              <Card className="bg-card border border-border shadow-elegant overflow-hidden group hover:shadow-soft transition-shadow duration-300">
+                <div className="h-1 bg-primary"></div>
                 <CardContent className="p-6 sm:p-8">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center">
-                      <Heart className="w-6 h-6 text-white" />
+                    <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
+                      <Heart className="w-6 h-6 text-primary-foreground" />
                     </div>
-                    <h3 className="text-2xl sm:text-3xl font-bold text-slate-800">
+                    <h3 className="text-2xl sm:text-3xl font-bold text-foreground">
                       Our Story
                     </h3>
                   </div>
-                  <p className="text-gray-700 text-base sm:text-lg leading-relaxed mb-4">
+                  <p className="text-muted-foreground text-base sm:text-lg leading-relaxed mb-4">
                     Founded with a vision to revolutionize hospitality in Northeast India, XTSY has established 
                     itself as the premier destination for travelers seeking authentic experiences combined with 
                     modern comfort and innovative technology.
                   </p>
-                  <p className="text-gray-700 text-base sm:text-lg leading-relaxed mb-4">
+                  <p className="text-muted-foreground text-base sm:text-lg leading-relaxed mb-4">
                     From our inception to becoming India's largest hostel in Shillong, we've consistently focused 
                     on delivering exceptional service, featuring our exclusive 270° Panorama Glass Ensuite, 
                     comprehensive dormitory accommodations, and expertly curated tour packages.
                   </p>
-                  <div className="bg-slate-50 border-l-4 border-blue-600 p-4 rounded-r-xl">
-                    <p className="text-slate-700 font-medium">
+                  <div className="bg-secondary border-l-4 border-primary p-4 rounded-r-xl">
+                    <p className="text-foreground font-medium">
                       Excellence in hospitality, authenticity in experience, and innovation in service delivery.
                     </p>
                   </div>
@@ -356,46 +287,46 @@ const AboutSection = () => {
 
             {/* Contact Info - Professional Style */}
             <div className="space-y-6">
-              <Card className="bg-white border border-slate-200 shadow-xl overflow-hidden">
-                <div className="h-1 bg-indigo-600"></div>
+              <Card className="bg-card border border-border shadow-elegant overflow-hidden group hover:shadow-soft transition-shadow duration-300">
+                <div className="h-1 bg-primary"></div>
                 <CardContent className="p-6 sm:p-8">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center">
-                      <Phone className="w-6 h-6 text-white" />
+                    <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
+                      <Phone className="w-6 h-6 text-primary-foreground" />
                     </div>
-                    <h3 className="text-2xl sm:text-3xl font-bold text-indigo-800">
+                    <h3 className="text-2xl sm:text-3xl font-bold text-foreground">
                       Contact Information
                     </h3>
                   </div>
                   
                   <div className="space-y-4">
-                    <div className="flex items-center gap-4 p-4 bg-slate-50 border border-slate-200 rounded-xl">
-                      <div className="w-10 h-10 bg-slate-600 rounded-lg flex items-center justify-center">
-                        <MapPin className="h-5 w-5 text-white" />
+                    <div className="flex items-center gap-4 p-4 bg-secondary border border-border rounded-xl hover:bg-accent transition-colors duration-200">
+                      <div className="w-10 h-10 bg-muted rounded-lg flex items-center justify-center">
+                        <MapPin className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-800">Location</p>
-                        <p className="text-gray-600 text-sm">Shillong, Meghalaya, India</p>
+                        <p className="font-semibold text-foreground">Location</p>
+                        <p className="text-muted-foreground text-sm">Shillong, Meghalaya, India</p>
                       </div>
                     </div>
                     
-                    <div className="flex items-center gap-4 p-4 bg-slate-50 border border-slate-200 rounded-xl">
-                      <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
-                        <Phone className="h-5 w-5 text-white" />
+                    <div className="flex items-center gap-4 p-4 bg-secondary border border-border rounded-xl hover:bg-accent transition-colors duration-200">
+                      <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <Phone className="h-5 w-5 text-primary-foreground" />
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-800">WhatsApp</p>
-                        <p className="text-gray-600 text-sm">+91 88373 17070</p>
+                        <p className="font-semibold text-foreground">WhatsApp</p>
+                        <p className="text-muted-foreground text-sm">+91 88373 17070</p>
                       </div>
                     </div>
                     
-                    <div className="flex items-center gap-4 p-4 bg-slate-50 border border-slate-200 rounded-xl">
-                      <div className="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
-                        <Clock className="h-5 w-5 text-white" />
+                    <div className="flex items-center gap-4 p-4 bg-secondary border border-border rounded-xl hover:bg-accent transition-colors duration-200">
+                      <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <Clock className="h-5 w-5 text-primary-foreground" />
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-800">Availability</p>
-                        <p className="text-gray-600 text-sm">24/7 Professional Support</p>
+                        <p className="font-semibold text-foreground">Availability</p>
+                        <p className="text-muted-foreground text-sm">24/7 Professional Support</p>
                       </div>
                     </div>
                   </div>
