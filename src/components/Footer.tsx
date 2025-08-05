@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MapPin, Phone, Mail, Instagram, Facebook, Twitter, Home, Info, Image, Tag, Plane } from "lucide-react";
+import { MapPin, Phone, Mail, Instagram, Facebook, Twitter, Home, Info, Image, Tag, Plane, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 const Footer = () => {
   return <footer className="bg-gray-900 text-white py-8 sm:py-12">
@@ -46,12 +46,18 @@ const Footer = () => {
                   Deals
                 </Link>
               </li>
-              <li>
-                <Link to="/travel" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 text-sm">
-                  <Plane className="h-3 w-3 sm:h-4 sm:w-4" />
-                  Travel
-                </Link>
-              </li>
+               <li>
+                 <Link to="/travel" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 text-sm">
+                   <Plane className="h-3 w-3 sm:h-4 sm:w-4" />
+                   Travel
+                 </Link>
+               </li>
+               <li>
+                 <Link to="/faq" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 text-sm">
+                   <HelpCircle className="h-3 w-3 sm:h-4 sm:w-4" />
+                   FAQ
+                 </Link>
+               </li>
             </ul>
           </div>
 

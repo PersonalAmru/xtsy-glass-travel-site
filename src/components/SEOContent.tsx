@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface SEOContentProps {
-  page?: 'home' | 'travel' | 'gallery' | 'about' | 'deals';
+  page?: 'home' | 'travel' | 'gallery' | 'about' | 'deals' | 'faq';
 }
 
 const SEOContent: React.FC<SEOContentProps> = ({ page = 'home' }) => {
@@ -30,6 +30,12 @@ const SEOContent: React.FC<SEOContentProps> = ({ page = 'home' }) => {
           title: "Best Gen Z Hostel Deals in India | XTSY Travellers Hostel Student Offers",
           description: "Get exclusive deals at XTSY Travellers Hostel - India's best Gen Z hostel in Shillong, Meghalaya. Special student discounts, group offers, and budget-friendly packages for young travelers.",
           keywords: "Gen Z hostel deals India, student discount accommodation, budget hostel offers India, young traveler deals, backpacker discounts India, millennial travel offers, cheap hostel stays India"
+        };
+      case 'faq':
+        return {
+          title: "FAQ - XTSY Travellers Hostel | All Your Questions Answered",
+          description: "Get real answers to your questions about XTSY Travellers Hostel - India's best Gen Z hostel in Shillong, Meghalaya. No corporate copy-paste vibes here, just honest answers about booking, safety, WiFi, and what's included.",
+          keywords: "XTSY hostel FAQ, hostel booking questions, India hostel safety, WiFi speed hostel, what's included hostel package, hostel cancellation policy, group booking questions, travel FAQ India"
         };
       default:
         return {
