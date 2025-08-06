@@ -5,43 +5,84 @@ import { Button } from "@/components/ui/button";
 const ReviewsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Only reviews with 4+ stars (5-scale) or 8+ stars (10-scale) as requested
+  // Real OTA platform reviews
   const filteredReviews = [{
-    name: "Sarah Johnson",
-    rating: 9,
-    comment: "Amazing hostel with great facilities! The staff was incredibly helpful and the location is perfect.",
-    date: "2 weeks ago",
-    source: "Google"
-  }, {
-    name: "Mike Chen",
-    rating: 8,
-    comment: "Clean rooms, friendly atmosphere, and excellent value for money. Will definitely stay again!",
-    date: "1 month ago",
-    source: "Booking.com"
-  }, {
-    name: "Emma Rodriguez",
+    name: "Kush Agarwal",
     rating: 10,
-    comment: "Best hostel experience ever! The convenience store and laundry services made my stay so comfortable.",
-    date: "3 weeks ago",
-    source: "HostelWorld"
+    comment: "Amazing location, clean space. Awesome hosts",
+    date: "May 2025",
+    source: "Booking.com",
+    roomType: "Bed in 4-Bed Mixed Dormitory Room"
   }, {
-    name: "John Smith",
-    rating: 9,
-    comment: "Fantastic location and amazing views! The staff went above and beyond to make our stay memorable.",
-    date: "1 week ago",
-    source: "Google"
+    name: "Jishnu",
+    rating: 10,
+    comment: "Amazing location, clean space. Awesome hosts",
+    date: "May 2025",
+    source: "Booking.com",
+    roomType: "Bed in 4-Bed Mixed Dormitory Room"
   }, {
-    name: "Lisa Wang",
-    rating: 8,
-    comment: "Great value for money and wonderful facilities. The common areas are perfect for meeting other travelers.",
-    date: "2 months ago",
-    source: "MakeMyTrip"
+    name: "Syama",
+    rating: 10,
+    comment: "The hospitality, facilities",
+    date: "March 2025",
+    source: "Booking.com",
+    roomType: "Bed in 8-Bed Mixed Dormitory Room"
   }, {
-    name: "David Brown",
-    rating: 9,
-    comment: "Excellent service and clean facilities. The free taxi service was a great bonus for our group.",
-    date: "5 days ago",
-    source: "Google"
+    name: "Madeleine",
+    rating: 10,
+    comment: "We had a great time at XTSY hostel. The staff is excellent and the beds are really comfortable",
+    date: "February 2025",
+    source: "Booking.com",
+    roomType: "Bed in 6-Bed Mixed Dormitory Room"
+  }, {
+    name: "Gorre",
+    rating: 10,
+    comment: "The hosts are very great .the place was very good.great location .great view.also budget friendly. We liked everything.",
+    date: "March 2025",
+    source: "Booking.com",
+    roomType: "Bed in 6-Bed Mixed Dormitory Room"
+  }, {
+    name: "Amritha",
+    rating: 10,
+    comment: "XTSY made me me ecstatic! Best hostel in Shillong rn as the team claims to be. Even though I booked the property just because it was cheap without much expectations as I was gonna just crash after a long day of travel, the property and staffs really surprised me by providing a very warm experience. The owner, my host Eurica and all other staffs are really friendly and goes above and beyond to make you feel at home and also does their maximum to satisfy your requests. The terrace area with bonfire is also another highlight and I had such an enjoyable experience with the whole XTSY fam there! :D Will definitely be back, try and stop me!!",
+    date: "February 2025",
+    source: "Booking.com",
+    roomType: "Bed in 4-Bed Female Dormitory Room"
+  }, {
+    name: "Harshaan",
+    rating: 10,
+    comment: "Exceptional",
+    date: "April 2025",
+    source: "Booking.com",
+    roomType: "Bed in 4-Bed Mixed Dormitory Room"
+  }, {
+    name: "Mani",
+    rating: 10,
+    comment: "Exceptional",
+    date: "May 2025",
+    source: "Booking.com",
+    roomType: "Bed in 8-Bed Mixed Dormitory Room"
+  }, {
+    name: "Shree",
+    rating: 10,
+    comment: "Superb",
+    date: "July 2025",
+    source: "Booking.com",
+    roomType: "Bed in 4-Bed Mixed Dormitory Room"
+  }, {
+    name: "Santhosh",
+    rating: 5,
+    comment: "we'll maintain hygienic and quality and responsibilities staffs.",
+    date: "April 2025",
+    source: "MakeMyTrip",
+    roomType: "Deluxe 6 Bed Mixed Dormitory"
+  }, {
+    name: "Millie C.",
+    rating: 5,
+    comment: "Xtsy Travellers Hostel is hands down the best hostel I've ever stayed in! The beds are incredibly cozy and spotless—honestly, they're so comfortable that I think they should be charging more! The entire place is well-maintained, with a warm and welcoming vibe. But what truly sets it apart is the stunning view. Everywhere you look, you're surrounded by pure nature—lush greenery, fresh mountain air, and total tranquility. If you're looking for a perfect stay in Shillong, this is the place!",
+    date: "February 2025",
+    source: "MakeMyTrip",
+    roomType: "Standard 8 Bed Mixed Dormitory"
   }];
   const nextReview = () => {
     setCurrentIndex(prev => (prev + 1) % Math.ceil(filteredReviews.length - 2));
@@ -88,14 +129,21 @@ const ReviewsSection = () => {
                               {review.name}
                             </CardTitle>
                             <div className="flex items-center gap-1">
-                              <span className="text-yellow-400 font-bold">{review.rating}</span>
+                              <span className="text-yellow-400 font-bold">
+                                {review.source === "MakeMyTrip" ? `${review.rating}/5` : `${review.rating}/10`}
+                              </span>
                               <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                             </div>
                           </div>
-                          <CardDescription className="text-gray-400 text-sm flex items-center gap-2 font-['Inter']">
-                            <span>{review.date}</span>
-                            <span>•</span>
-                            <span className="text-teal-400">{review.source}</span>
+                          <CardDescription className="text-gray-400 text-sm font-['Inter']">
+                            <div className="flex items-center gap-2 mb-1">
+                              <span>{review.date}</span>
+                              <span>•</span>
+                              <span className="text-teal-400">{review.source}</span>
+                            </div>
+                            {review.roomType && (
+                              <div className="text-xs text-gray-500">{review.roomType}</div>
+                            )}
                           </CardDescription>
                         </CardHeader>
                         <CardContent>

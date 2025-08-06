@@ -46,7 +46,7 @@ const Index = () => {
     <div className="min-h-screen">
       <SEOContent page="home" />
       <Header />
-      <main>
+      <main className="space-y-12 sm:space-y-16 md:space-y-20">
         <HeroSection />
         <LazyWrapper fallback={<div className="h-96 bg-gray-100 animate-pulse rounded-lg mx-4"></div>}>
           <RoomsSection />
