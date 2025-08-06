@@ -2,8 +2,11 @@ import { useState, useEffect } from "react";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 const ReviewsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [selectedReview, setSelectedReview] = useState<any>(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   // Real OTA platform reviews
   const filteredReviews = [{
@@ -90,6 +93,16 @@ const ReviewsSection = () => {
   const prevReview = () => {
     setCurrentIndex(prev => (prev - 1 + Math.ceil(filteredReviews.length - 2)) % Math.ceil(filteredReviews.length - 2));
   };
+
+  const truncateText = (text: string, maxLength: number = 120) => {
+    if (text.length <= maxLength) return text;
+    return text.substring(0, maxLength) + "...";
+  };
+
+  const handleReviewClick = (review: any) => {
+    setSelectedReview(review);
+    setIsDialogOpen(true);
+  };
   useEffect(() => {
     const interval = setInterval(nextReview, 5000);
     return () => clearInterval(interval);
@@ -122,10 +135,14 @@ const ReviewsSection = () => {
               length: Math.ceil(filteredReviews.length - 2)
             }).map((_, slideIndex) => <div key={slideIndex} className="w-full flex-shrink-0">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
-                    {filteredReviews.slice(slideIndex, slideIndex + 3).map((review, index) => <Card key={index} className="backdrop-blur-xl bg-white/10 border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105 hover:shadow-2xl transform-gpu">
-                        <CardHeader>
+                    {filteredReviews.slice(slideIndex, slideIndex + 3).map((review, index) => <Card 
+                        key={index} 
+                        className="backdrop-blur-xl bg-white/10 border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105 hover:shadow-2xl transform-gpu cursor-pointer h-[280px] flex flex-col"
+                        onClick={() => handleReviewClick(review)}
+                      >
+                        <CardHeader className="flex-shrink-0 pb-3">
                           <div className="flex items-center justify-between">
-                            <CardTitle className="text-lg font-semibold text-white font-['Poppins']">
+                            <CardTitle className="text-lg font-semibold text-white font-['Poppins'] truncate">
                               {review.name}
                             </CardTitle>
                             <div className="flex items-center gap-1">
@@ -142,12 +159,17 @@ const ReviewsSection = () => {
                               <span className="text-teal-400">{review.source}</span>
                             </div>
                             {review.roomType && (
-                              <div className="text-xs text-gray-500">{review.roomType}</div>
+                              <div className="text-xs text-gray-500 truncate">{review.roomType}</div>
                             )}
                           </CardDescription>
                         </CardHeader>
-                        <CardContent>
-                          <p className="text-gray-300 font-['Inter']">{review.comment}</p>
+                        <CardContent className="flex-grow flex flex-col justify-between">
+                          <p className="text-gray-300 font-['Inter'] text-sm leading-relaxed flex-grow">
+                            {truncateText(review.comment)}
+                          </p>
+                          {review.comment.length > 120 && (
+                            <p className="text-teal-400 text-xs mt-2 font-medium">Click to read more...</p>
+                          )}
                         </CardContent>
                       </Card>)}
                   </div>
@@ -179,6 +201,40 @@ const ReviewsSection = () => {
           </p>
         </div>
       </div>
+
+      {/* Review Detail Modal */}
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="flex items-center justify-between">
+              <span className="text-xl font-semibold">{selectedReview?.name}</span>
+              <div className="flex items-center gap-2">
+                <span className="text-yellow-600 font-bold">
+                  {selectedReview?.source === "MakeMyTrip" ? `${selectedReview?.rating}/5` : `${selectedReview?.rating}/10`}
+                </span>
+                <Star className="h-5 w-5 fill-yellow-500 text-yellow-500" />
+              </div>
+            </DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div className="text-sm text-gray-600">
+              <div className="flex items-center gap-2 mb-2">
+                <span>{selectedReview?.date}</span>
+                <span>•</span>
+                <span className="text-blue-600 font-medium">{selectedReview?.source}</span>
+              </div>
+              {selectedReview?.roomType && (
+                <div className="text-gray-500">{selectedReview?.roomType}</div>
+              )}
+            </div>
+            <div className="prose max-w-none">
+              <p className="text-gray-800 leading-relaxed whitespace-pre-wrap">
+                {selectedReview?.comment}
+              </p>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>;
 };
 export default ReviewsSection;
