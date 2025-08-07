@@ -8,15 +8,17 @@ import { Calendar, Users, Bed, Clock, Tag, X, Minus, Plus, Bookmark, TreePine } 
 import { useToast } from "@/hooks/use-toast";
 import { useApp } from "@/contexts/AppContext";
 
-// Room data with images - same as in RoomsSection
+// Room data with images, availability, and amenities
 const ROOM_DATA = {
   "signature-270-glass-suite": {
     id: "signature-270-glass-suite",
     name: "270° Panorama Glass Ensuite",
     price: 18000,
     capacity: 2,
+    maxAvailable: 1,
     description: "Premium suite with 270-degree panoramic views and luxury amenities",
     type: "luxury",
+    amenities: ["Mountain view", "Attached Bath", "24/7 Hot water", "Lovers seat", "Charging point"],
     image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/20250722_0921_Meghalaya%20Getaway%20View_remix_01k0r405w4f66svm6nn0qdtxye%20(1).png"
   },
   "4-bed-female-only-dorm": {
@@ -24,8 +26,10 @@ const ROOM_DATA = {
     name: "Bed in 4 Bed Female Only Dorm",
     price: 850,
     capacity: 4,
+    maxAvailable: 4,
     description: "Female-only dormitory with modern amenities and comfortable beds",
     type: "dorm",
+    amenities: ["Mountain view", "Attached Bath", "24/7 Hot water", "Extra Spacious Dorm Beds", "Charging point", "Locker"],
     image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg"
   },
   "4-bed-mixed-female-dorm": {
@@ -33,8 +37,10 @@ const ROOM_DATA = {
     name: "Bed in 4 Bed Mixed/Female Dorm",
     price: 800,
     capacity: 4,
+    maxAvailable: 4,
     description: "Mixed or female dormitory with shared facilities and social atmosphere",
     type: "dorm",
+    amenities: ["Mountain view", "Attached Bath", "24/7 Hot water", "Extra Spacious Dorm Beds", "Charging point", "Locker"],
     image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/3.jpg"
   },
   "6-bed-mixed-female-dorm": {
@@ -42,8 +48,10 @@ const ROOM_DATA = {
     name: "Bed in 6 Bed Mixed/Female Dorm",
     price: 700,
     capacity: 6,
+    maxAvailable: 12,
     description: "Spacious mixed or female dormitory with modern amenities",
     type: "dorm",
+    amenities: ["Mountain view", "Attached Bath", "24/7 Hot water", "Extra Spacious Dorm Beds", "Charging point", "Locker"],
     image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG"
   },
   "8-bed-mixed-dorm": {
@@ -51,8 +59,10 @@ const ROOM_DATA = {
     name: "Bed in 8 Bed Mixed Dorm",
     price: 600,
     capacity: 8,
+    maxAvailable: 8,
     description: "Large mixed dormitory for budget travelers seeking social experience",
     type: "dorm",
+    amenities: ["Mountain view", "Attached Bath", "24/7 Hot water", "Extra Spacious Dorm Beds", "Charging point", "Locker"],
     image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg"
   },
   "king-double-room": {
@@ -60,8 +70,10 @@ const ROOM_DATA = {
     name: "King Double Room",
     price: 3200,
     capacity: 4,
+    maxAvailable: 2,
     description: "Spacious private room with king bed for two guests",
     type: "room",
+    amenities: ["Mountain view", "Attached Bath", "24/7 Hot water", "Lovers seat", "Charging point"],
     image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg"
   },
   "king-triple-room": {
@@ -69,26 +81,32 @@ const ROOM_DATA = {
     name: "King Triple Room",
     price: 4200,
     capacity: 3,
+    maxAvailable: 1,
     description: "Luxurious private room accommodating up to three guests",
     type: "room",
+    amenities: ["Mountain view", "Attached Bath", "24/7 Hot water", "Lovers seat", "Charging point"],
     image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/1.jpg"
   },
   "6-bed-female-mixed-economy-dorm": {
     id: "6-bed-female-mixed-economy-dorm",
-    name: "Bed in 6 Bed Female/Mixed Economy Dorm",
+    name: "Bed in 6 Bed Mixed Dormitory",
     price: 550,
     capacity: 6,
+    maxAvailable: 6,
     description: "Budget-friendly female/mixed dormitory with essential amenities",
     type: "dorm",
+    amenities: ["Mountain view", "Attached Bath", "24/7 Hot water", "Extra Spacious Dorm Beds", "Charging point", "Locker"],
     image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG"
   },
   "8-bed-mixed-economy-dorm": {
     id: "8-bed-mixed-economy-dorm",
-    name: "Bed in 8 Bed Mixed Economy Dorm",
+    name: "Bed in 8 Bed Mixed Dormitory",
     price: 450,
     capacity: 8,
+    maxAvailable: 8,
     description: "Most economical option for backpackers and budget travelers",
     type: "dorm",
+    amenities: ["Mountain view", "Attached Bath", "24/7 Hot water", "Extra Spacious Dorm Beds", "Charging point", "Locker"],
     image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg"
   }
 };
@@ -429,7 +447,7 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
                           variant="outline"
                           size="sm"
                           onClick={() => setBookingData(prev => ({ ...prev, quantity: prev.quantity + 1 }))}
-                          disabled={bookingData.quantity >= room.capacity}
+                          disabled={bookingData.quantity >= (roomData?.maxAvailable || room.capacity)}
                           className="text-black border-black hover:bg-gray-100"
                         >
                           <Plus className="h-4 w-4 text-black" />
