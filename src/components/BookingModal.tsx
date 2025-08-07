@@ -256,6 +256,17 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
       return;
     }
 
+    // Validate that total capacity can accommodate all guests
+    const totalCapacity = bookingData.quantity * room.capacity;
+    if (totalCapacity < bookingData.guests) {
+      toast({
+        title: "Insufficient Capacity",
+        description: `You selected ${bookingData.guests} guests but only ${totalCapacity} bed${totalCapacity > 1 ? 's' : ''} selected. Please select more ${room.type === 'luxury' ? 'rooms' : 'beds'} to accommodate all guests.`,
+        variant: "destructive"
+      });
+      return;
+    }
+
     const cartData = {
       checkIn: bookingData.checkIn,
       checkOut: bookingData.checkOut,
@@ -289,6 +300,17 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
       toast({
         title: "Incomplete Booking",
         description: "Please select dates and number of guests first",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Validate that total capacity can accommodate all guests
+    const totalCapacity = bookingData.quantity * room.capacity;
+    if (totalCapacity < bookingData.guests) {
+      toast({
+        title: "Insufficient Capacity",
+        description: `You selected ${bookingData.guests} guests but only ${totalCapacity} bed${totalCapacity > 1 ? 's' : ''} selected. Please select more ${room.type === 'luxury' ? 'rooms' : 'beds'} to accommodate all guests.`,
         variant: "destructive"
       });
       return;
@@ -479,6 +501,18 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
                         </Button>
                       </div>
                     </div>
+
+                    {/* Capacity validation indicator */}
+                    {bookingData.quantity * room.capacity < bookingData.guests && (
+                      <div className="bg-red-50 border border-red-200 rounded-lg p-3 mt-3">
+                        <div className="flex items-center gap-2 text-red-600">
+                          <span className="text-sm font-medium">
+                            ⚠️ Insufficient capacity: You have {bookingData.guests} guests but only {bookingData.quantity * room.capacity} bed{bookingData.quantity * room.capacity > 1 ? 's' : ''} selected. 
+                            Please select more {room.type === 'luxury' ? 'rooms' : 'beds'} or reduce guest count.
+                          </span>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </Card>
 
