@@ -8,11 +8,11 @@ import TourPackageModal from "./TourPackageModal";
 import { useApp } from "@/contexts/AppContext";
 import GalleryImage from "./GalleryImage";
 
-// Import tour package images
+// Import real tour package images from verified sources
 import meghalayaHiddenGemsImg from "@/assets/meghalaya-hidden-gems-new.jpg";
-import shillongCulturalImg from "@/assets/shillong-cultural.jpg";
-import cherrapunjiMonsoonImg from "@/assets/cherrapunji-monsoon.jpg";
-import dawkiRiverImg from "@/assets/dawki-river.jpg";
+import shillongCulturalImg from "@/assets/shillong-meghalaya-real.jpg";
+import cherrapunjiMonsoonImg from "@/assets/nohkalikai-falls-real.jpg";
+import dawkiRiverImg from "@/assets/umngot-river-dawki-real.jpg";
 import mawlynnongVillageImg from "@/assets/mawlynnong-village.jpg";
 import garoHillsTribalImg from "@/assets/garo-hills-tribal.jpg";
 import jaintiaCavesImg from "@/assets/jaintia-caves.jpg";
