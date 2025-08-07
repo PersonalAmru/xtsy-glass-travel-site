@@ -23,22 +23,6 @@ const DealsSection = () => {
       description: "Exclusive for 270° Panorama Glass Ensuite",
       details: "Get 15% discount exclusively for XTSY Luxury '270° Panorama Glass Ensuite' bookings. Minimum 1 night booking required. Use coupon code 'WELCOME15' during booking.",
       gradient: "from-purple-500 to-pink-500"
-    },
-    {
-      id: "meghalaya20",
-      icon: Tag,
-      title: "MEGHALAYA20 - 20% Discount",
-      description: "Min 12 guests, 12 beds, 2+ nights",
-      details: "Get 20% discount on your booking! Minimum requirements: 12 guests selection, room selection for 12 beds for at least 2 nights or more. Use coupon code 'MEGHALAYA20' during booking.",
-      gradient: "from-orange-500 to-red-500"
-    },
-    {
-      id: "free-taxi",
-      icon: Car,
-      title: "Free Taxi to XTSY",
-      description: "Complimentary pickup service for groups of 4 or more",
-      details: "Enjoy Free transportation from major pickup points in Shillong directly to XTSY Travellers Hostel. This exclusive offer is available for groups of 4 or more guests and includes pickup from Police Bazaar, Golf links, Polo Market, Civil Hospital/Barik Point and Other major points in Shillong.",
-      gradient: "from-blue-500 to-cyan-500"
     }
   ];
 
