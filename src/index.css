@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Josefin+Sans:wght@200;300;400;500;600;700&family=Cardo:wght@400;700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/glacial-indifference');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -139,6 +140,8 @@
     --shadow-elegant: 0 4px 20px -4px hsl(220 85% 65% / 0.25);
     --shadow-soft: 0 1px 3px 0 hsl(0 0% 0% / 0.3);
   }
+
+  body { @apply font-sans; }
 }
 
 /* Performance optimizations */

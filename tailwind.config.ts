@@ -54,7 +54,7 @@ export default {
 				'cormorant': ['Cormorant Garamond', 'serif'],
 				'josefin': ['Josefin Sans', 'sans-serif'],
 				'cardo': ['Cardo', 'serif'],
-				'sans': ['Josefin Sans', 'system-ui', 'sans-serif'],
+				'sans': ['"Glacial Indifference"', 'Josefin Sans', 'system-ui', 'sans-serif'],
 				'serif': ['Playfair Display', 'serif'],
 			},
 			colors: {
