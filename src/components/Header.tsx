@@ -124,6 +124,14 @@ const Header = () => {
                 Deals
               </Link>
               <Link 
+                to="/xtsy-270" 
+                className="px-3 py-2 text-gray-800 hover:text-primary hover:bg-primary/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
+                aria-label="XTSY 270° Panorama Glass Ensuite details"
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              >
+                XTSY 270°
+              </Link>
+              <Link 
                 to="/faq" 
                 className="px-3 py-2 text-gray-800 hover:text-primary hover:bg-primary/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -227,6 +235,16 @@ const Header = () => {
                      }}
                    >
                      Deals
+                   </Link>
+                   <Link 
+                     to="/xtsy-270" 
+                     className="text-gray-800 hover:text-primary transition-colors"
+                     onClick={() => {
+                       setIsMenuOpen(false);
+                       window.scrollTo({ top: 0, behavior: 'smooth' });
+                     }}
+                   >
+                     XTSY 270°
                    </Link>
                    <Link 
                      to="/faq" 

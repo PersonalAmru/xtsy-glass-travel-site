@@ -13,6 +13,7 @@ import { LazyDeals } from "./pages/lazy/LazyDeals";
 import { LazyTravel } from "./pages/lazy/LazyTravel";
 import { LazyDashboard } from "./pages/lazy/LazyDashboard";
 import { LazyFAQ } from "./pages/lazy/LazyFAQ";
+import { LazyXTSY270 } from "./pages/lazy/LazyXTSY270";
 import NotFound from "./pages/NotFound";
 import { preloadCriticalResources, optimizeFontLoading, registerServiceWorker } from "./utils/bundleOptimization";
 
@@ -72,6 +73,11 @@ function App() {
           <Route path="/faq" element={
             <Suspense fallback={<LoadingScreen />}>
               <LazyFAQ />
+            </Suspense>
+          } />
+          <Route path="/xtsy-270" element={
+            <Suspense fallback={<LoadingScreen />}>
+              <LazyXTSY270 />
             </Suspense>
           } />
           <Route path="*" element={<NotFound />} />
