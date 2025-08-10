@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { XTSY270_DATA } from '@/data/rooms/xtsy270';
 
 const XTSY270: React.FC = () => {
-  const title = "XTSY 270° Panorama Glass Ensuite | Shillong";
-  const description = "Experience our 270° Panorama Glass Ensuite — a luxury glass room in Shillong with sweeping mountain and valley views, private ensuite, and premium amenities.";
-  const canonicalUrl = "https://xtsy.lovable.app/xtsy-270";
+  const title = XTSY270_DATA.seoTitle;
+  const description = XTSY270_DATA.seoDescription;
+  const canonicalUrl = XTSY270_DATA.canonicalUrl;
 
   const updateOrCreateMeta = (name: string, content: string) => {
     let el = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
@@ -36,31 +37,24 @@ const XTSY270: React.FC = () => {
   const roomLd = {
     '@context': 'https://schema.org',
     '@type': 'HotelRoom',
-    name: 'XTSY 270° Panorama Glass Ensuite',
+    name: XTSY270_DATA.name,
     description,
     url: canonicalUrl,
     occupancy: {
       '@type': 'QuantitativeValue',
-      minValue: 1,
-      maxValue: 2,
+      minValue: XTSY270_DATA.occupancy.min,
+      maxValue: XTSY270_DATA.occupancy.max,
     },
     bed: {
       '@type': 'BedDetails',
-      type: 'Queen',
-      numberOfBeds: 1,
+      type: XTSY270_DATA.bed.type,
+      numberOfBeds: XTSY270_DATA.bed.count,
     },
-    amenityFeature: [
-      { '@type': 'LocationFeatureSpecification', name: '270° panoramic glass walls', value: true },
-      { '@type': 'LocationFeatureSpecification', name: 'Private ensuite bathroom', value: true },
-      { '@type': 'LocationFeatureSpecification', name: 'Premium mountain and valley view', value: true },
-      { '@type': 'LocationFeatureSpecification', name: 'High-speed Wi‑Fi', value: true },
-      { '@type': 'LocationFeatureSpecification', name: 'Complimentary breakfast', value: true },
-      { '@type': 'LocationFeatureSpecification', name: 'Climate control', value: true },
-    ],
+    amenityFeature: XTSY270_DATA.features.map((f) => ({ '@type': 'LocationFeatureSpecification', name: f, value: true })),
     offers: {
       '@type': 'Offer',
       availability: 'https://schema.org/InStock',
-      priceCurrency: 'INR',
+      priceCurrency: XTSY270_DATA.priceCurrency,
     },
   };
 
@@ -70,7 +64,7 @@ const XTSY270: React.FC = () => {
       <main className="pt-20">
         <header className="py-14 px-4 text-center bg-gradient-to-b from-primary/5 to-background">
           <div className="container mx-auto max-w-4xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">XTSY 270° Panorama Glass Ensuite</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">{XTSY270_DATA.name}</h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               A signature luxury glass room with 270-degree panoramic views over Shillong's mountains and valleys.
               Designed for couples and discerning travelers seeking privacy, comfort, and an unforgettable horizon.
