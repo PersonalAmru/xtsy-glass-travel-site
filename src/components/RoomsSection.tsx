@@ -2,6 +2,7 @@ import { MapPin } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import PropertySection from "./PropertySection";
 import GalleryImage from "./GalleryImage";
+import { XTSY270_DATA } from "@/data/rooms/xtsy270";
 
 const RoomsSection = () => {
   const scrollToCalendar = () => {
@@ -20,14 +21,14 @@ const RoomsSection = () => {
   const luxuryRooms = [
     {
       id: "signature-270-glass-suite",
-      name: "270° Panorama Glass Ensuite",
-      price: 18000,
-      description: "Premium suite with 270-degree panoramic views and luxury amenities. Experience unparalleled comfort with breathtaking mountain and valley views.",
-      features: ["270° Panoramic view", "Luxury amenities", "Attached bath", "Wi-Fi", "Premium service", "Mountain views", "Valley views", "Complimentary breakfast", "Games room access"],
-      maxGuests: 2,
-      maxRooms: 1,
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/20250722_0921_Meghalaya%20Getaway%20View_remix_01k0r405w4f66svm6nn0qdtxye%20(1).png",
-      images: ["https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/20250722_0921_Meghalaya%20Getaway%20View_remix_01k0r405w4f66svm6nn0qdtxye%20(1).png"]
+      name: XTSY270_DATA.name,
+      price: XTSY270_DATA.price,
+      description: XTSY270_DATA.description,
+      features: XTSY270_DATA.features,
+      maxGuests: XTSY270_DATA.maxGuests,
+      maxRooms: XTSY270_DATA.maxRooms,
+      image: XTSY270_DATA.image,
+      images: XTSY270_DATA.images
     }
   ];
 

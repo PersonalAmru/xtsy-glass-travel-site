@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { XTSY270_DATA } from '@/data/rooms/xtsy270';
+import OptimizedLazyImage from '@/components/OptimizedLazyImage';
 
 const XTSY270: React.FC = () => {
   const title = XTSY270_DATA.seoTitle;
@@ -63,12 +64,21 @@ const XTSY270: React.FC = () => {
       <Header />
       <main className="pt-20">
         <header className="py-14 px-4 text-center bg-gradient-to-b from-primary/5 to-background">
-          <div className="container mx-auto max-w-4xl">
+          <div className="container mx-auto max-w-5xl">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">{XTSY270_DATA.name}</h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              A signature luxury glass room with 270-degree panoramic views over Shillong's mountains and valleys.
-              Designed for couples and discerning travelers seeking privacy, comfort, and an unforgettable horizon.
+              {XTSY270_DATA.seoDescription}
             </p>
+            <figure className="mt-6" aria-label="Hero image for XTSY 270° Panorama Glass Ensuite">
+              <div className="w-full aspect-[16/9] rounded-lg overflow-hidden shadow-md">
+                <OptimizedLazyImage
+                  src={XTSY270_DATA.image || (XTSY270_DATA.images && XTSY270_DATA.images[0]) || '/placeholder.svg'}
+                  alt="270° Panorama Glass Ensuite — panoramic mountain and valley views in Shillong"
+                  className="w-full h-full"
+                />
+              </div>
+              <figcaption className="mt-2 text-sm text-muted-foreground">Signature XTSY Luxury suite with 270° panoramic glass walls.</figcaption>
+            </figure>
           </div>
         </header>
 
