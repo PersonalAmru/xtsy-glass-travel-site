@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Calendar, Users, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { supabase } from "@/integrations/supabase/client";
 import EnhancedBookingModal from "./EnhancedBookingModal";
 const HeroSection = () => {
   const [checkIn, setCheckIn] = useState(new Date().toISOString().split('T')[0]);
@@ -10,6 +11,7 @@ const HeroSection = () => {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [currentLanguageIndex, setCurrentLanguageIndex] = useState(0);
   const [bookNowClicks, setBookNowClicks] = useState(551);
+  const [averageRating, setAverageRating] = useState(4.9);
 
   // 12 most common travel-friendly languages
   const languages = ["Hello", "नमस्ते", "হ্যালো", "Hola", "Bonjour", "Hallo", "Ciao", "こんにちは", "안녕하세요", "Olá", "Привет", "مرحبا"];
@@ -49,6 +51,32 @@ const HeroSection = () => {
     if (savedClicks) {
       setBookNowClicks(parseInt(savedClicks, 10));
     }
+  }, []);
+
+  useEffect(() => {
+    // Fetch reviews and calculate average rating
+    const fetchAverageRating = async () => {
+      try {
+        const { data: reviews, error } = await supabase
+          .from('reviews')
+          .select('rating');
+        
+        if (error) {
+          console.error('Error fetching reviews:', error);
+          return;
+        }
+        
+        if (reviews && reviews.length > 0) {
+          const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
+          const avgRating = totalRating / reviews.length;
+          setAverageRating(Number(avgRating.toFixed(1)));
+        }
+      } catch (error) {
+        console.error('Error calculating average rating:', error);
+      }
+    };
+
+    fetchAverageRating();
   }, []);
   const handleBookNowClick = () => {
     const newCount = bookNowClicks + 1;
@@ -180,8 +208,8 @@ const HeroSection = () => {
             <div className="text-center fade-in" style={{
             animationDelay: '0.2s'
           }}>
-              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">4.9</div>
-              <div className="text-xs sm:text-sm text-gray-300 mt-1">Rating</div>
+              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">{averageRating}</div>
+              <div className="text-xs sm:text-sm text-gray-300 mt-1">Guest Reviews</div>
             </div>
             <div className="text-center fade-in" style={{
             animationDelay: '0.3s'
