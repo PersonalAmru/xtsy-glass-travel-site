@@ -125,35 +125,13 @@ const Header = () => {
               >
                 Deals
               </Link>
-              <HoverCard openDelay={150}>
-                <HoverCardTrigger asChild>
-                  <Link 
-                    to={XTSY270_DATA.path}
-                    className="px-3 py-2 text-foreground hover:text-primary hover:bg-primary/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
-                    aria-label={`${XTSY270_DATA.name} details`}
-                    title={XTSY270_DATA.seoTitle}
-                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                  >
-                    {XTSY270_DATA.shortName}
-                  </Link>
-                </HoverCardTrigger>
-                <HoverCardContent className="w-80" align="end" side="bottom">
-                  <section aria-labelledby="xtsy270-nav-heading">
-                    <h2 id="xtsy270-nav-heading" className="text-sm font-semibold text-foreground">
-                      {XTSY270_DATA.name}
-                    </h2>
-                    <p className="mt-1 text-sm text-foreground">{XTSY270_DATA.seoDescription}</p>
-                    <ul className="mt-2 list-disc pl-5 text-xs text-foreground/80">
-                      {XTSY270_DATA.features.slice(0,3).map((f) => (
-                        <li key={f}>{f}</li>
-                      ))}
-                    </ul>
-                    <div className="mt-2 text-xs text-foreground/80">
-                      Occupancy: {XTSY270_DATA.occupancy.min}-{XTSY270_DATA.occupancy.max} • Bed: {XTSY270_DATA.bed.type}
-                    </div>
-                  </section>
-                </HoverCardContent>
-              </HoverCard>
+              <Link 
+                to={XTSY270_DATA.path}
+                className="px-3 py-2 text-gray-800 hover:text-primary hover:bg-primary/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              >
+                {XTSY270_DATA.shortName}
+              </Link>
               <Link 
                 to="/faq" 
                 className="px-3 py-2 text-gray-800 hover:text-primary hover:bg-primary/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
