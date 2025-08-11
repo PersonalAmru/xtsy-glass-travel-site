@@ -9,7 +9,7 @@ const HeroSection = () => {
   const [guests, setGuests] = useState("4");
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [currentLanguageIndex, setCurrentLanguageIndex] = useState(0);
-  const [bookNowClicks, setBookNowClicks] = useState(500);
+  const [bookNowClicks, setBookNowClicks] = useState(551);
 
   // 12 most common travel-friendly languages
   const languages = ["Hello", "नमस्ते", "হ্যালো", "Hola", "Bonjour", "Hallo", "Ciao", "こんにちは", "안녕하세요", "Olá", "Привет", "مرحبا"];
@@ -168,7 +168,7 @@ const HeroSection = () => {
           animationDelay: '1.2s'
         }}>
             <div className="text-center fade-in">
-              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">{bookNowClicks + 14}+</div>
+              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">{bookNowClicks}+</div>
               <div className="text-xs sm:text-sm text-gray-300 mt-1">Happy Guests!</div>
             </div>
             <div className="text-center fade-in" style={{
