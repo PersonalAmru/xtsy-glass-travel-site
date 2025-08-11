@@ -12,6 +12,7 @@ const HeroSection = () => {
   const [currentLanguageIndex, setCurrentLanguageIndex] = useState(0);
   const [bookNowClicks, setBookNowClicks] = useState(551);
   const [averageRating, setAverageRating] = useState(4.9);
+  const [tourCount, setTourCount] = useState<number>(38);
 
   // 12 most common travel-friendly languages
   const languages = ["Hello", "नमस्ते", "হ্যালো", "Hola", "Bonjour", "Hallo", "Ciao", "こんにちは", "안녕하세요", "Olá", "Привет", "مرحبا"];
@@ -77,6 +78,29 @@ const HeroSection = () => {
     };
 
     fetchAverageRating();
+  }, []);
+
+  useEffect(() => {
+    // Fetch total domestic tour packages count from database (fallback to static count)
+    const fetchTourCount = async () => {
+      try {
+        const { count, error } = await supabase
+          .from('itineraries')
+          .select('*', { count: 'exact', head: true });
+
+        if (error) {
+          console.error('Error counting itineraries:', error);
+          return;
+        }
+        if (typeof count === 'number' && count > 0) {
+          setTourCount(count);
+        }
+      } catch (err) {
+        console.error('Error fetching tour count:', err);
+      }
+    };
+
+    fetchTourCount();
   }, []);
   const handleBookNowClick = () => {
     const newCount = bookNowClicks + 1;
@@ -202,7 +226,7 @@ const HeroSection = () => {
             <div className="text-center fade-in" style={{
             animationDelay: '0.1s'
           }}>
-              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-red-400 to-pink-500 bg-clip-text text-transparent">50+</div>
+              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-red-400 to-pink-500 bg-clip-text text-transparent">{tourCount}+</div>
               <div className="text-xs sm:text-sm text-gray-300 mt-1">Tour Packages across IN</div>
             </div>
             <div className="text-center fade-in" style={{
