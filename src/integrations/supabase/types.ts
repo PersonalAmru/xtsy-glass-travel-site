@@ -336,6 +336,27 @@ export type Database = {
         }
         Relationships: []
       }
+      metrics: {
+        Row: {
+          created_at: string
+          key: string
+          updated_at: string
+          value: number
+        }
+        Insert: {
+          created_at?: string
+          key: string
+          updated_at?: string
+          value?: number
+        }
+        Update: {
+          created_at?: string
+          key?: string
+          updated_at?: string
+          value?: number
+        }
+        Relationships: []
+      }
       newsletter_subscribers: {
         Row: {
           created_at: string
@@ -471,6 +492,17 @@ export type Database = {
       generate_booking_id: {
         Args: Record<PropertyKey, never>
         Returns: string
+      }
+      get_jwt_email: {
+        Args: Record<PropertyKey, never>
+        Returns: string
+      }
+      increment_metric: {
+        Args: { p_key: string; p_inc?: number }
+        Returns: {
+          key: string
+          value: number
+        }[]
       }
     }
     Enums: {
