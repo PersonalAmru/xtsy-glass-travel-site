@@ -14,12 +14,42 @@ serve(async (req) => {
   }
 
   try {
+    // Read raw body for signature verification
+    const rawBody = await req.text();
+    let body: any;
+    try {
+      body = JSON.parse(rawBody || '{}');
+    } catch (e) {
+      return new Response(JSON.stringify({ error: 'Invalid JSON' }), { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+    }
+
+    // Verify Razorpay webhook signature when provided
+    const razorpaySignature = req.headers.get('x-razorpay-signature');
+    const webhookSecret = Deno.env.get('RAZORPAY_WEBHOOK_SECRET') ?? '';
+    if (body?.event && razorpaySignature) {
+      if (!webhookSecret) {
+        return new Response(JSON.stringify({ error: 'Webhook secret not configured' }), { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+      }
+      const encoder = new TextEncoder();
+      const key = await crypto.subtle.importKey(
+        'raw',
+        encoder.encode(webhookSecret),
+        { name: 'HMAC', hash: 'SHA-256' },
+        false,
+        ['sign']
+      );
+      const signatureBytes = await crypto.subtle.sign('HMAC', key, encoder.encode(rawBody));
+      const computed = Array.from(new Uint8Array(signatureBytes)).map(b => b.toString(16).padStart(2, '0')).join('');
+      if (computed !== razorpaySignature) {
+        return new Response(JSON.stringify({ error: 'Invalid signature' }), { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+      }
+    }
+
     const supabase = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
     );
 
-    const body = await req.json();
     console.log('Webhook received:', body);
 
     // Handle different webhook types

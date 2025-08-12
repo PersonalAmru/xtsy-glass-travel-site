@@ -2,7 +2,7 @@
 project_id = "oidnydyyjyjfnyadhyzn"
 
 [functions.process-booking]
-verify_jwt = false
+verify_jwt = true
 
 [functions.payment-webhook]
 verify_jwt = false
@@ -11,4 +11,4 @@ verify_jwt = false
 verify_jwt = false
 
 [functions.inventory-sync]
-verify_jwt = false
+verify_jwt = true

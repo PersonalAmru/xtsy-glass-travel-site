@@ -25,6 +25,16 @@ serve(async (req) => {
   }
 
   try {
+    // Validate OTA webhook secret
+    const incomingSecret = req.headers.get('x-webhook-secret') || '';
+    const expectedSecret = Deno.env.get('OTA_WEBHOOK_SECRET') || '';
+    if (!expectedSecret || incomingSecret !== expectedSecret) {
+      return new Response(JSON.stringify({ error: 'Invalid webhook secret' }), {
+        status: 401,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
     const supabase = createClient(supabaseUrl!, supabaseServiceKey!);
     const payload: WebhookPayload = await req.json();
     

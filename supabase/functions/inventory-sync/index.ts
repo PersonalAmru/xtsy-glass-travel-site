@@ -17,9 +17,19 @@ serve(async (req) => {
   }
 
   try {
+    // Enforce service role authorization
+    const authHeader = req.headers.get('authorization') || '';
+    const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : authHeader;
+    const serviceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '';
+    if (!serviceKey || token !== serviceKey) {
+      return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+        status: 403,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
     const supabase = createClient(supabaseUrl!, supabaseServiceKey!);
     const { action, data } = await req.json();
-
     console.log('Inventory sync request:', action);
 
     switch (action) {
