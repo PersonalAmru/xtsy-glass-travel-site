@@ -12,3 +12,12 @@ verify_jwt = false
 
 [functions.inventory-sync]
 verify_jwt = true
+
+[functions.secure-role-management]
+verify_jwt = true
+
+[functions.secure-booking-creation]
+verify_jwt = false
+
+[functions.apply-security-policies]
+verify_jwt = false

@@ -47,7 +47,7 @@ serve(async (req) => {
 
       switch (action) {
         case 'create_booking': {
-          // Validate required fields
+          // Enhanced validation with rate limiting
           if (!bookingData.bookingId || !bookingData.guestName || !bookingData.email || !bookingData.whatsappNumber) {
             return new Response(
               JSON.stringify({ error: 'Missing required booking fields' }),
@@ -71,6 +71,71 @@ serve(async (req) => {
               JSON.stringify({ error: 'Invalid phone number format' }),
               { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
             );
+          }
+
+          // Enhanced booking validation
+          if (bookingData.totalAmount <= 0 || bookingData.totalAmount > 1000000) {
+            return new Response(
+              JSON.stringify({ error: 'Invalid booking amount. Must be between ₹1 and ₹10,000' }),
+              { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+            );
+          }
+
+          if (bookingData.guests <= 0 || bookingData.guests > 10) {
+            return new Response(
+              JSON.stringify({ error: 'Invalid guest count. Must be between 1 and 10' }),
+              { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+            );
+          }
+
+          if (bookingData.nights <= 0 || bookingData.nights > 365) {
+            return new Response(
+              JSON.stringify({ error: 'Invalid stay duration. Must be between 1 and 365 nights' }),
+              { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+            );
+          }
+
+          // Rate limiting check
+          const clientIP = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown';
+          
+          // Check IP-based rate limiting (max 5 bookings per hour)
+          const { data: ipRateLimit } = await supabaseClient
+            .from('booking_rate_limits')
+            .select('*')
+            .eq('identifier', clientIP)
+            .eq('identifier_type', 'ip')
+            .single();
+
+          if (ipRateLimit) {
+            const hourAgo = new Date(Date.now() - 60 * 60 * 1000);
+            const lastBooking = new Date(ipRateLimit.last_booking_at);
+            
+            if (lastBooking > hourAgo && ipRateLimit.booking_count >= 5) {
+              return new Response(
+                JSON.stringify({ error: 'Rate limit exceeded. Please try again later.' }),
+                { status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+              );
+            }
+          }
+
+          // Check email-based rate limiting (max 3 bookings per day)
+          const { data: emailRateLimit } = await supabaseClient
+            .from('booking_rate_limits')
+            .select('*')
+            .eq('identifier', bookingData.email.toLowerCase())
+            .eq('identifier_type', 'email')
+            .single();
+
+          if (emailRateLimit) {
+            const dayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
+            const lastBooking = new Date(emailRateLimit.last_booking_at);
+            
+            if (lastBooking > dayAgo && emailRateLimit.booking_count >= 3) {
+              return new Response(
+                JSON.stringify({ error: 'Daily booking limit exceeded. Please try again tomorrow.' }),
+                { status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+              );
+            }
           }
 
           // Check if booking ID already exists
@@ -128,8 +193,35 @@ serve(async (req) => {
             );
           }
 
+          // Update rate limiting counters
+          const now = new Date().toISOString();
+          
+          // Update IP rate limit
+          await supabaseClient
+            .from('booking_rate_limits')
+            .upsert({
+              identifier: clientIP,
+              identifier_type: 'ip',
+              booking_count: (ipRateLimit?.booking_count || 0) + 1,
+              first_booking_at: ipRateLimit?.first_booking_at || now,
+              last_booking_at: now,
+              updated_at: now
+            });
+
+          // Update email rate limit
+          await supabaseClient
+            .from('booking_rate_limits')
+            .upsert({
+              identifier: bookingData.email.toLowerCase(),
+              identifier_type: 'email',
+              booking_count: (emailRateLimit?.booking_count || 0) + 1,
+              first_booking_at: emailRateLimit?.first_booking_at || now,
+              last_booking_at: now,
+              updated_at: now
+            });
+
           // Log the booking creation for audit
-          console.log(`Secure booking created: ${bookingData.bookingId} for ${bookingData.email}`);
+          console.log(`Secure booking created: ${bookingData.bookingId} for ${bookingData.email} from IP: ${clientIP}`);
 
           return new Response(
             JSON.stringify({ 

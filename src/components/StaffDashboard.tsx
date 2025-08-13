@@ -9,6 +9,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useQuery } from '@tanstack/react-query';
 import { Hotel, Users, Calendar, Settings, BarChart3, Globe } from 'lucide-react';
 import { Profile, OTAIntegration } from '@/types/database';
+import { SecurityDashboard } from '@/components/SecurityDashboard';
 
 export const StaffDashboard: React.FC = () => {
   const { user } = useAuth();
@@ -191,7 +192,10 @@ export const StaffDashboard: React.FC = () => {
             <TabsTrigger value="ota">OTA Integrations</TabsTrigger>
           )}
           {(userRole === 'admin') && (
-            <TabsTrigger value="settings">Settings</TabsTrigger>
+            <>
+              <TabsTrigger value="security">Security</TabsTrigger>
+              <TabsTrigger value="settings">Settings</TabsTrigger>
+            </>
           )}
         </TabsList>
 
@@ -297,20 +301,26 @@ export const StaffDashboard: React.FC = () => {
         )}
 
         {userRole === 'admin' && (
-          <TabsContent value="settings" className="space-y-4">
-            <Card>
-              <CardHeader>
-                <CardTitle>System Settings</CardTitle>
-                <CardDescription>Configure system-wide settings</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button>
-                  <Settings className="mr-2 h-4 w-4" />
-                  Manage Settings
-                </Button>
-              </CardContent>
-            </Card>
-          </TabsContent>
+          <>
+            <TabsContent value="security" className="space-y-4">
+              <SecurityDashboard />
+            </TabsContent>
+            
+            <TabsContent value="settings" className="space-y-4">
+              <Card>
+                <CardHeader>
+                  <CardTitle>System Settings</CardTitle>
+                  <CardDescription>Configure system-wide settings</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Button>
+                    <Settings className="mr-2 h-4 w-4" />
+                    Manage Settings
+                  </Button>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </>
         )}
       </Tabs>
     </div>
