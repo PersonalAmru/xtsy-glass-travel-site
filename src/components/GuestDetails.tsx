@@ -102,6 +102,100 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
       return;
     }
 
+    setIsSubmitting(true);
+
+    // Generate booking ID outside try block for later use
+    let bookingId = '';
+
+    try {
+      // Import the secure booking service
+      const { SecureBookingService } = await import('@/services/secureBookingService');
+      
+      // Generate a unique booking ID
+      bookingId = SecureBookingService.generateBookingId();
+      
+      // Prepare booking data for secure storage
+      const secureBookingData = {
+        bookingId,
+        guestName: formData.guestName,
+        email: formData.email,
+        whatsappNumber: formData.whatsappNumber,
+        checkIn: bookingData.checkIn,
+        checkOut: bookingData.checkOut,
+        guests: bookingData.guests,
+        nights: bookingData.nights,
+        roomDetails: bookingData.selectedRooms.map(room => ({
+          roomId: room.id,
+          roomName: room.name,
+          roomType: room.type,
+          price: room.price,
+          quantity: room.selection.rooms || room.selection.guests,
+          guests: room.selection.guests,
+          totalPrice: room.type === 'dorm' 
+            ? room.price * room.selection.guests * bookingData.nights
+            : room.price * room.selection.rooms * bookingData.nights
+        })),
+        subtotal: bookingData.subtotal,
+        gstAmount: bookingData.gstAmount,
+        totalAmount: bookingData.totalAmount,
+        discountAmount: bookingData.discountAmount || 0,
+        promoCode: bookingData.couponCode || null,
+        address: formData.address,
+        city: formData.city,
+        state: formData.state,
+        pincode: formData.pincode,
+        emergencyContact: formData.emergencyContact || null,
+        emergencyRelation: formData.emergencyRelation || null,
+        addOns: {
+          breakfast: bookingData.addOns?.breakfast || 0,
+          dinnerVeg: bookingData.addOns?.dinnerVeg || 0,
+          dinnerNonVeg: bookingData.addOns?.dinnerNonVeg || 0,
+          transportation: bookingData.addOns?.transportation || false,
+          itinerary: bookingData.addOns?.itineraryPlanning || false,
+        }
+      };
+
+      // Validate booking data before submission
+      const validation = SecureBookingService.validateBookingData(secureBookingData);
+      if (!validation.isValid) {
+        toast({
+          title: "Booking validation failed",
+          description: validation.errors.join(', '),
+          variant: "destructive"
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Create booking through secure service
+      const result = await SecureBookingService.createBooking(secureBookingData);
+      
+      if (!result.success) {
+        toast({
+          title: "Booking creation failed",
+          description: result.error || "Please try again or contact support.",
+          variant: "destructive"
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
+      toast({
+        title: "Booking Saved Securely",
+        description: `Your booking ${bookingId} has been saved. Proceeding to WhatsApp...`,
+      });
+
+    } catch (error) {
+      console.error('Secure booking creation error:', error);
+      toast({
+        title: "Security Error",
+        description: "Unable to save booking securely. Please try again.",
+        variant: "destructive"
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
     // Format dates for WhatsApp message
     const formatDate = (dateStr: string) => {
       return new Date(dateStr).toLocaleDateString('en-IN', {
@@ -175,8 +269,11 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
       ? `\n\n🍽️ Add-on Services\n${addOnServices.join('\n')}`
       : '';
 
-    const whatsappMessage = `Booking Confirmation – Pending Property Approval
-${propertyName}
+    // Use the booking ID generated earlier
+    
+    const whatsappMessage = `🏔️ *NEW BOOKING REQUEST* 🏔️
+✨ Property: ${propertyName}
+📋 Booking ID: ${bookingId}
 
 Hi ${formData.guestName},
 
