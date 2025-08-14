@@ -8,94 +8,94 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 const FAQ = () => {
   const faqSections = [
     {
-      title: "Booking Worries?",
-      icon: "📅",
+      title: "XTSY 270° Glass Suite",
+      icon: "🏔️",
       faqs: [
         {
-          question: "Can I cancel my booking if plans change?",
-          answer: "Absolutely! We offer flexible cancellation up to 24 hours before check-in for most bookings. For group bookings, we understand things happen - just give us a call and we'll work something out."
+          question: "What makes the 270° Glass Suite special?",
+          answer: "Our signature 270° Panorama Glass Ensuite offers unparalleled mountain and valley views from Shillong. The room features floor-to-ceiling glass walls on three sides, giving you breathtaking sunrise and sunset views right from your bed."
         },
         {
-          question: "What if I need to modify my dates?",
-          answer: "No stress! You can modify dates subject to availability. For domestic travel, changes are usually free up to 48 hours before. International bookings have different policies depending on the destination."
+          question: "Is the glass room private enough?",
+          answer: "Absolutely! While you get stunning panoramic views, the suite is positioned for complete privacy. The glass walls face natural landscapes, not other buildings, and we provide blackout curtains for when you want complete privacy."
         },
         {
-          question: "How do I know my booking is confirmed?",
-          answer: "You'll get instant confirmation via email and SMS. Plus, you can always check your booking status in real-time through our dashboard. No guessing games here!"
+          question: "What's included with the Glass Suite booking?",
+          answer: "Your stay includes complimentary breakfast, high-speed Wi-Fi, climate control, and access to all our common areas. The suite has a private ensuite bathroom and can accommodate up to 2 guests with a premium queen bed."
         },
         {
-          question: "Can I book for someone else?",
-          answer: "Of course! Just make sure you have their details handy. Whether it's a surprise for your parents or booking for your team, we've got you covered."
+          question: "How do I book the Glass Suite?",
+          answer: "You can book directly through our website or contact us via WhatsApp. The suite is our premium offering at ₹18,000 per night, and advance booking is recommended as it's our most popular room."
         }
       ]
     },
     {
-      title: "What's Included, For Real?",
-      icon: "✨",
+      title: "Meghalaya Tourism & Adventures",
+      icon: "🌿",
       faqs: [
         {
-          question: "Do the room rates include breakfast?",
-          answer: "Most of our packages include complimentary breakfast, but we're transparent about it. Check the package details - if breakfast is included, you'll see it clearly mentioned. No hidden surprises!"
+          question: "What are the must-visit places in Meghalaya?",
+          answer: "Don't miss the Living Root Bridges in Cherrapunji, the crystal-clear Umngot River in Dawki, Nohkalikai Falls (India's tallest plunge waterfall), and Mawlynnong (Asia's cleanest village). We can arrange guided tours to all these incredible spots."
         },
         {
-          question: "Are there any hidden charges?",
-          answer: "Nope, zero hidden fees. What you see is what you pay. GST is clearly mentioned, and any optional services (like spa treatments or adventure activities) are always your choice."
+          question: "When is the best time to visit Meghalaya?",
+          answer: "October to April offers the clearest skies and most comfortable weather. However, monsoon season (June-September) transforms the landscape into a lush green paradise - perfect for waterfall enthusiasts! Each season offers unique experiences."
         },
         {
-          question: "What about transportation?",
-          answer: "For domestic packages, local transportation is usually included. International packages vary - some include airport transfers, others don't. We always specify exactly what's covered."
+          question: "Do you arrange adventure activities?",
+          answer: "Yes! We organize trekking to Living Root Bridges, cave exploration in Jaintia Hills, river rafting, rock climbing, and wilderness survival experiences. All activities are conducted with certified guides and proper safety equipment."
         },
         {
-          question: "Are meals included in tour packages?",
-          answer: "It depends on the package! Multi-day tours typically include breakfast and dinner. Day trips usually don't include meals unless specified. We're always upfront about what's covered."
+          question: "Can you help with multi-day Meghalaya tours?",
+          answer: "Absolutely! We create custom itineraries covering Shillong, Cherrapunji, Dawki, Mawlynnong, and hidden gems like Krang Suri Falls. Tours include transportation, accommodation, meals, and local guides who know the best spots."
         }
       ]
     },
     {
-      title: "WiFi Speed? Yup, We Know It Matters.",
-      icon: "📶",
+      title: "Northeast India Experiences",
+      icon: "🎭",
       faqs: [
         {
-          question: "How fast is the WiFi, honestly?",
-          answer: "Most properties offer 25-50 Mbps - enough for video calls, streaming, and uploading those Instagram stories. Remote locations might be slower, but we'll warn you beforehand!"
+          question: "What unique cultural experiences do you offer?",
+          answer: "Experience tribal festivals like Hornbill Festival in Nagaland, traditional Khasi culture in Meghalaya villages, Manipur's floating islands at Loktak Lake, and Arunachal's untouched tribal traditions. Each state offers distinct cultural richness."
         },
         {
-          question: "Is WiFi available everywhere on the property?",
-          answer: "Generally yes, but mountain resorts and remote locations might have spotty coverage in some areas. Pool areas and lobbies usually have the strongest signals."
+          question: "Is Northeast India safe for international tourists?",
+          answer: "Yes, Northeast India is very safe for tourists. We work with local guides who know the terrain and culture intimately. Some areas require permits for foreign nationals, which we handle entirely for you."
         },
         {
-          question: "Can I work remotely from your properties?",
-          answer: "Absolutely! Many of our guests are digital nomads. We can recommend properties with dedicated workspaces and reliable internet. Just mention it when booking."
+          question: "Do you arrange permits for restricted areas?",
+          answer: "Yes, we handle all permit requirements for areas like Arunachal Pradesh, parts of Nagaland, and certain border regions. Just provide your details 15-20 days before travel, and we'll take care of the paperwork."
         },
         {
-          question: "What if I need super-fast internet for work?",
-          answer: "Let us know your requirements upfront. Some properties offer premium internet packages, and we can arrange dedicated connections for important business needs."
+          question: "What about connectivity and communication?",
+          answer: "Most tourist areas have good mobile coverage and internet. Remote villages might have limited connectivity, but that's part of the authentic experience! We always ensure safety communication channels are available."
         }
       ]
     },
     {
-      title: "Is it Safe? Heck Yes.",
-      icon: "🛡️",
+      title: "Booking & Travel Logistics",
+      icon: "📋",
       faqs: [
         {
-          question: "How safe are the destinations you recommend?",
-          answer: "We only partner with vetted properties and destinations. Our team personally visits locations, and we maintain real-time safety updates. Your safety is non-negotiable for us."
+          question: "How far in advance should I book?",
+          answer: "For our Glass Suite, book at least 2-3 weeks ahead during peak season. For tour packages, 1-2 weeks is usually sufficient. Last-minute bookings are possible but may have limited availability."
         },
         {
-          question: "What about solo female travelers?",
-          answer: "We have specific recommendations for solo female travelers, including women-only accommodations and trusted local guides. Many of our properties have dedicated female-friendly policies."
+          question: "What's your cancellation policy?",
+          answer: "Room bookings can be cancelled up to 48 hours before check-in for full refund. Tour packages have different policies based on the complexity - typically 72 hours for local tours, 7 days for multi-state packages."
         },
         {
-          question: "Are adventure activities safe?",
-          answer: "All our adventure partners are certified and insured. Equipment is regularly inspected, and guides are trained professionals. We don't compromise on safety for the sake of thrills."
+          question: "Do you provide transportation from airports?",
+          answer: "Yes! We arrange pickup from Guwahati Airport (closest to Meghalaya) and other northeastern airports. Our drivers are familiar with mountain roads and provide safe, comfortable transfers to your accommodation."
         },
         {
-          question: "What if there's an emergency during my trip?",
-          answer: "We provide 24/7 emergency support. You'll have direct contact numbers, and our team can assist with everything from medical emergencies to lost documents."
+          question: "What payment methods do you accept?",
+          answer: "We accept UPI, bank transfers, credit/debit cards, and cash payments. For international guests, we can arrange secure payment gateways. A small advance secures your booking, with balance payable on arrival."
         },
         {
-          question: "How do you handle data privacy?",
-          answer: "Your personal information is encrypted and secure. We don't sell your data to third parties, and you can request data deletion anytime. Privacy isn't optional for us."
+          question: "Do you offer group discounts?",
+          answer: "Yes! Groups of 6+ get special rates on accommodation and tours. Corporate groups, educational institutions, and adventure clubs get additional discounts. Contact us for custom group packages and pricing."
         }
       ]
     }
