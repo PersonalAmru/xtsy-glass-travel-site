@@ -16,11 +16,31 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-synthesis: none;
+  /* Force high contrast and visibility on desktop */
+  filter: contrast(1.2) brightness(1.1);
+  line-height: 1;
+  display: inline-block;
+  vertical-align: middle;
+  width: auto;
+  height: auto;
+  min-width: 1em;
+  min-height: 1em;
 }
 
 /* Force emoji font display on all browsers */
 .flag-container * {
   font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "EmojiOne Color", "Twemoji Mozilla", "Android Emoji", sans-serif !important;
+  filter: inherit;
+}
+
+/* Desktop specific flag visibility fixes */
+@media (min-width: 1024px) {
+  .flag-container {
+    font-size: inherit !important;
+    transform: scale(1.1);
+    filter: contrast(1.5) brightness(1.2) saturate(1.3);
+    text-shadow: 0 0 1px rgba(0,0,0,0.1);
+  }
 }
 
 /* Date input mobile improvements for better alignment */

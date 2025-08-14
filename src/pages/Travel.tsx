@@ -12,14 +12,14 @@ import { AuthModal } from "@/components/AuthModal";
 import LazyWrapper from "@/components/LazyWrapper";
 import SEOContent from "@/components/SEOContent";
 import { TourPricingService } from "@/utils/tourPricingService";
-import meghalayaLivingRootBridges from "@/assets/meghalaya-living-root-bridges.jpg";
-import cherrapunjiNohkalikaiFalls from "@/assets/cherrapunji-nohkalikai-falls.jpg";
-import dawkiUmngotRiver from "@/assets/dawki-umngot-river.jpg";
-import mawlynnongCleanestVillage from "@/assets/mawlynnong-cleanest-village.jpg";
-import shillongCulturalCity from "@/assets/shillong-cultural-city.jpg";
+import meghalayaLivingRootBridges from "@/assets/meghalaya-living-roots-premium.jpg";
+import cherrapunjiNohkalikaiFalls from "@/assets/cherrapunji-waterfalls-premium.jpg";
+import dawkiUmngotRiver from "@/assets/dawki-crystal-river-premium.jpg";
+import mawlynnongCleanestVillage from "@/assets/mawlynnong-cleanest-village-premium.jpg";
+import shillongCulturalCity from "@/assets/shillong-scotland-east-premium.jpg";
 import keralaBackwaters from "@/assets/kerala-backwaters.jpg";
 import uttarakhandHimalayas from "@/assets/uttarakhand-himalayas.jpg";
-import sikkimRhododendrons from "@/assets/sikkim-rhododendrons.jpg";
+import sikkimRhododendrons from "@/assets/sikkim-rhododendrons-premium.jpg";
 import himachalValleys from "@/assets/himachal-valleys.jpg";
 import tamilNaduTemples from "@/assets/tamil-nadu-temples.jpg";
 import tribalCircuit from "@/assets/tribal-circuit.jpg";
@@ -36,13 +36,19 @@ import thekkadyWildlife from "@/assets/thekkady-wildlife.jpg";
 import ootyKodaikanal from "@/assets/ooty-kodaikanal.jpg";
 import dharamshalaMcleodganj from "@/assets/dharamshala-mcleodganj.jpg";
 import pellingKanchenjunga from "@/assets/pelling-kanchenjunga.jpg";
-import assamTeaGardensNew from "@/assets/assam-tea-gardens-new.jpg";
+import assamTeaGardensNew from "@/assets/assam-tea-gardens-premium.jpg";
 import tamilNaduTemplesNew from "@/assets/tamil-nadu-temples-new.jpg";
-import arunachalTribalFestival from "@/assets/arunachal-tribal-festival.jpg";
+import arunachalTribalFestival from "@/assets/arunachal-tribal-premium.jpg";
 import tamilNaduTemplesPinterest from "@/assets/tamil-nadu-temples-pinterest.jpg";
 import munnarTeaGardensKerala from "@/assets/munnar-tea-gardens-kerala.jpg";
-import nagalandHornbillFestival from "@/assets/nagaland-hornbill-festival.jpg";
-import manipurLoktakFloatingIslands from "@/assets/manipur-loktak-floating-islands.jpg";
+import nagalandHornbillFestival from "@/assets/nagaland-hornbill-premium.jpg";
+import manipurLoktakFloatingIslands from "@/assets/manipur-loktak-premium.jpg";
+// Additional premium images for unique coverage
+import guwahatiKamakhya from "@/assets/guwahati-kamakhya-premium.jpg";
+import tripuraTribal from "@/assets/tripura-tribal-premium.jpg";
+import mizoramBamboo from "@/assets/mizoram-bamboo-premium.jpg";
+import kohimaWarCemetery from "@/assets/kohima-war-cemetery-premium.jpg";
+import unakotiSculptures from "@/assets/unakoti-sculptures-premium.jpg";
 // New high-quality images - topic relevant
 import meghalayaHiddenGemsFinal from "@/assets/meghalaya-hidden-gems-final.jpg";
 import cherrapunjiMonsoonFinal from "@/assets/cherrapunji-monsoon-final.jpg";
@@ -245,8 +251,8 @@ const Travel = () => {
         duration: "8 Days",
         difficulty: "Moderate",
         price: TourPricingService.calculatePrice("8 Days", "exclusive", "Moderate", "Arunachal Pradesh", "Mar-Oct"),
-        image: himachalValleys,
-        images: [meghalayaLivingRootBridges, cherrapunjiNohkalikaiFalls, dawkiUmngotRiver],
+        image: arunachalTribalFestival,
+        images: [arunachalTribalFestival, himachalValleys, sikkimRhododendrons],
         rating: 4.9,
         category: "wellness",
         location: "Arunachal Pradesh",
@@ -763,7 +769,7 @@ const Travel = () => {
         difficulty: "Moderate",
         price: TourPricingService.calculatePrice("7 Days", "adventure", "Moderate", "Assam", "Nov-Apr"),
         image: assamTeaGardensNew,
-        images: [assamTeaGardensNew, munnarTeaGardensKerala, keralaBackwaters],
+        images: [assamTeaGardensNew, guwahatiKamakhya, manipurLoktakFloatingIslands],
         rating: 4.6,
         category: "adventure",
         location: "Assam",
@@ -778,7 +784,7 @@ const Travel = () => {
         difficulty: "Easy",
         price: TourPricingService.calculatePrice("4 Days", "adventure", "Easy", "Manipur", "Oct-Mar"),
         image: manipurLoktakFloatingIslands,
-        images: [manipurLoktakFloatingIslands, dawkiUmngotRiver, keralaBackwaters],
+        images: [manipurLoktakFloatingIslands, nagalandHornbillFestival, tripuraTribal],
         rating: 4.5,
         category: "adventure",
         location: "Manipur",
@@ -807,8 +813,8 @@ const Travel = () => {
         duration: "12 Days",
         difficulty: "Easy",
         price: TourPricingService.calculatePrice("12 Days", "cultural", "Easy", "Northeast India", "Oct-Dec"),
-        image: tribalCircuit,
-        images: [tribalCircuit, nagalandHornbillFestival, manipurLoktakFloatingIslands],
+        image: tripuraTribal,
+        images: [tripuraTribal, mizoramBamboo, kohimaWarCemetery],
         rating: 4.9,
         category: "cultural",
         location: "Northeast India",
@@ -838,7 +844,7 @@ const Travel = () => {
         difficulty: "Easy",
         price: TourPricingService.calculatePrice("6 Days", "cultural", "Easy", "Northeast India", "Oct-Dec"),
         image: nagalandHornbillFestival,
-        images: [nagalandHornbillFestival, manipurLoktakFloatingIslands, tribalCircuit],
+        images: [nagalandHornbillFestival, kohimaWarCemetery, unakotiSculptures],
         rating: 4.8,
         category: "cultural",
         location: "Northeast India",
