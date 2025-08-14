@@ -108,7 +108,7 @@ const FAQ = () => {
       
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="py-16 px-4 text-center bg-gradient-to-b from-primary/5 to-background">
+        <section className="py-16 px-4 text-center">
           <div className="container mx-auto max-w-4xl">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
               Frequently Asked Questions
@@ -152,7 +152,7 @@ const FAQ = () => {
         </section>
 
         {/* Contact CTA */}
-        <section className="py-16 px-4 bg-gradient-to-r from-primary/10 via-accent/5 to-primary/10">
+        <section className="py-16 px-4">
           <div className="container mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold mb-4">Still Have Questions?</h2>
             <p className="text-muted-foreground mb-8">
