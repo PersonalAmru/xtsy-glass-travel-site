@@ -12,7 +12,7 @@ const HeroSection = () => {
   const [currentLanguageIndex, setCurrentLanguageIndex] = useState(0);
   const [bookNowClicks, setBookNowClicks] = useState(551);
   const [averageRating, setAverageRating] = useState(4.9);
-  const [tourCount, setTourCount] = useState<number>(38);
+  const [tourCount, setTourCount] = useState<number>(45);
 
   // 12 most common travel-friendly languages
   const languages = ["Hello", "नमस्ते", "হ্যালো", "Hola", "Bonjour", "Hallo", "Ciao", "こんにちは", "안녕하세요", "Olá", "Привет", "مرحبا"];
