@@ -81,26 +81,25 @@ const HeroSection = () => {
   }, []);
 
   useEffect(() => {
-    // Fetch total domestic tour packages count from database (fallback to static count)
-    const fetchTourCount = async () => {
-      try {
-        const { count, error } = await supabase
-          .from('itineraries')
-          .select('*', { count: 'exact', head: true });
-
-        if (error) {
-          console.error('Error counting itineraries:', error);
-          return;
-        }
-        if (typeof count === 'number' && count > 0) {
-          setTourCount(count);
-        }
-      } catch (err) {
-        console.error('Error fetching tour count:', err);
-      }
+    // Calculate total domestic tour packages count from static data
+    const calculateTourCount = () => {
+      // Static count based on the organized tour packages structure
+      const packageCounts = {
+        'XTSY Exclusives': 7,
+        'Meghalaya': 5,
+        'Northeast States': 8,
+        'Uttarakhand': 6,
+        'Sikkim': 5,
+        'Himachal Pradesh': 5,
+        'Kerala': 5,
+        'Tamil Nadu': 4
+      };
+      
+      const totalCount = Object.values(packageCounts).reduce((sum, count) => sum + count, 0);
+      setTourCount(totalCount);
     };
 
-    fetchTourCount();
+    calculateTourCount();
   }, []);
   const handleBookNowClick = () => {
     const newCount = bookNowClicks + 1;
