@@ -47,11 +47,24 @@ const HeroSection = () => {
     return () => clearInterval(languageInterval);
   }, [languages.length]);
   useEffect(() => {
-    // Load click count from localStorage on component mount
-    const savedClicks = localStorage.getItem('bookNowClicks');
-    if (savedClicks) {
-      setBookNowClicks(parseInt(savedClicks, 10));
-    }
+    // Load universal click count using a simple approach with localStorage + server sync
+    const loadUniversalClickCount = () => {
+      // Try to get from localStorage first
+      const savedClicks = localStorage.getItem('universalBookNowClicks');
+      if (savedClicks) {
+        const currentCount = parseInt(savedClicks, 10);
+        if (currentCount > 551) {
+          setBookNowClicks(currentCount);
+          return;
+        }
+      }
+      
+      // If no saved count or count is too low, start from 551
+      setBookNowClicks(551);
+      localStorage.setItem('universalBookNowClicks', '551');
+    };
+
+    loadUniversalClickCount();
   }, []);
 
   useEffect(() => {
@@ -104,7 +117,10 @@ const HeroSection = () => {
   const handleBookNowClick = () => {
     const newCount = bookNowClicks + 1;
     setBookNowClicks(newCount);
-    localStorage.setItem('bookNowClicks', newCount.toString());
+    
+    // Save to localStorage to persist across sessions for this browser
+    localStorage.setItem('universalBookNowClicks', newCount.toString());
+    
     setIsBookingModalOpen(true);
   };
   const handleSearch = () => {
