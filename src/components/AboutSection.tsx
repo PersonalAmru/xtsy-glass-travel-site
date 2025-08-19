@@ -12,8 +12,8 @@ const AboutSection = () => {
     },
     {
       icon: Star,
-      title: "Best Budget Accommodation",
-      category: "Value", 
+      title: "Best Budget Accommodation", 
+      category: "Value",
       description: "Premium amenities at budget-friendly prices, making luxury accessible to all travelers.",
       features: ["Premium Amenities", "Budget Pricing", "Best Value Proposition"]
     },
@@ -26,7 +26,7 @@ const AboutSection = () => {
     },
     {
       icon: Users,
-      title: "Comprehensive Dormitories", 
+      title: "Comprehensive Dormitories",
       category: "Accommodation",
       description: "Mixed, female-only, and economy dormitory options with premium comfort standards.",
       features: ["6-Bed & 8-Bed Dorms", "Female-Only Options", "Economy Categories"]
@@ -41,7 +41,7 @@ const AboutSection = () => {
     {
       icon: Wifi,
       title: "High-Speed WiFi & Amenities",
-      category: "Technology", 
+      category: "Technology",
       description: "Complimentary high-speed internet, modern facilities, and premium guest amenities.",
       features: ["Free High-Speed WiFi", "Modern Facilities", "Premium Amenities"]
     },
@@ -115,7 +115,7 @@ const AboutSection = () => {
             <Award className="w-5 h-5 text-primary-foreground mr-3" />
             <h2 className="text-primary-foreground font-semibold">Core Services & Facilities</h2>
           </header>
-          <div className="flex overflow-x-auto space-x-4 py-6 px-6 scrollbar-hide">
+          <div className="flex space-x-4 py-6 px-6 animate-slide-right">
             {coreServices.map((service, index) => (
               <article 
                 key={index} 
@@ -136,9 +136,29 @@ const AboutSection = () => {
                 </div>
               </article>
             ))}
+            {coreServices.map((service, index) => (
+              <article 
+                key={`duplicate-${index}`} 
+                className="flex-none"
+              >
+                <div className="flex items-center space-x-3 bg-white/95 backdrop-blur-sm rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 group px-4 py-3">
+                  <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                    <service.icon className="w-4 h-4 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="text-slate-800 font-semibold text-sm leading-tight whitespace-nowrap">
+                      {service.title}
+                    </h3>
+                    <span className="inline-block bg-primary text-primary-foreground px-2 py-1 rounded-full text-xs font-medium mt-1">
+                      {service.category}
+                    </span>
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
           <footer className="px-6 pb-4">
-            <p className="text-xs text-slate-500 text-center">← Scroll horizontally to explore all services →</p>
+            <p className="text-xs text-slate-500 text-center">← Auto-sliding services showcase →</p>
           </footer>
         </section>
 
@@ -313,6 +333,20 @@ const AboutSection = () => {
           }
           .scrollbar-hide::-webkit-scrollbar {
             display: none;
+          }
+          @keyframes slide-right {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(-50%);
+            }
+          }
+          .animate-slide-right {
+            animation: slide-right 20s linear infinite;
+          }
+          .animate-slide-right:hover {
+            animation-play-state: paused;
           }
         `}
       </style>
