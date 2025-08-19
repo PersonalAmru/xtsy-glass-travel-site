@@ -56,24 +56,24 @@ const AboutSection = () => {
             <Award className="w-5 h-5 text-primary-foreground mr-3" />
             <span className="text-primary-foreground font-semibold">Core Services</span>
           </div>
-          <div className="flex overflow-x-auto space-x-4 py-6 px-6 scrollbar-hide">
-            {coreServices.map((service, index) => (
-              <div 
-                key={index} 
-                className="flex items-center space-x-3 min-w-fit bg-white/90 backdrop-blur-sm px-4 py-3 rounded-xl border border-slate-200 shadow-sm animate-bounce"
-                style={{
-                  animationDelay: `${index * 0.5}s`,
-                  animationDuration: '2s',
-                  animationIterationCount: 'infinite'
-                }}
-              >
-                <service.icon className="w-5 h-5 text-primary animate-pulse" />
-                <span className="text-slate-800 font-medium whitespace-nowrap">{service.text}</span>
-                <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium animate-pulse" style={{ animationDelay: `${index * 0.3}s` }}>
-                  {service.trend}
-                </span>
-              </div>
-            ))}
+          <div className="relative overflow-hidden py-6 px-6">
+            <div className="flex space-x-4 animate-[slide_20s_linear_infinite]">
+              {[...coreServices, ...coreServices].map((service, index) => (
+                <div 
+                  key={index} 
+                  className="flex items-center space-x-3 min-w-fit bg-white/90 backdrop-blur-sm px-4 py-3 rounded-xl border border-slate-200 shadow-sm"
+                >
+                  <service.icon className="w-5 h-5 text-primary" />
+                  <span className="text-slate-800 font-medium whitespace-nowrap">{service.text}</span>
+                  <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium">
+                    {service.trend}
+                  </span>
+                  <div className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">
+                    &lt;div&gt;&lt;icon/&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -248,6 +248,14 @@ const AboutSection = () => {
           }
           .scrollbar-hide::-webkit-scrollbar {
             display: none;
+          }
+          @keyframes slide {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(-50%);
+            }
           }
         `}
       </style>
