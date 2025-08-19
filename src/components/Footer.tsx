@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, Instagram, Facebook, Twitter, Home, Info, Image, Tag, Plane, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -14,7 +13,7 @@ const Footer = () => {
               <img 
                 src="/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png" 
                 alt="XTSY Brand Logo" 
-                className="w-24 h-24 sm:w-32 sm:h-32 lg:w-36 lg:h-36 object-contain lg:ml-0" 
+                className="w-32 h-32 sm:w-40 sm:h-40 lg:w-44 lg:h-44 object-contain lg:ml-0" 
               />
               <p className="text-gray-300 text-base leading-relaxed text-center lg:text-left max-w-sm mx-auto lg:mx-0 mt-3 lg:ml-0">
                 Experience the authentic vibe of Shillong and unforgettable adventures with XTSY!
