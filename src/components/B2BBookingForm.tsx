@@ -27,7 +27,9 @@ const B2BBookingForm = ({ isOpen, onClose }: B2BBookingFormProps) => {
     guests: 20,
     eventType: "",
     breakfast: false,
+    breakfastGuests: 20,
     dinner: false,
+    dinnerGuests: 20,
     dinnerType: "veg",
     transportation: false,
     itinerary: false,
@@ -48,8 +50,8 @@ const B2BBookingForm = ({ isOpen, onClose }: B2BBookingFormProps) => {
   }, [formData.checkIn, formData.checkOut]);
 
   // Calculate food add-ons
-  const breakfastCost = formData.breakfast ? formData.guests * 150 * nights : 0;
-  const dinnerCost = formData.dinner ? formData.guests * 300 * nights : 0;
+  const breakfastCost = formData.breakfast ? formData.breakfastGuests * 150 * nights : 0;
+  const dinnerCost = formData.dinner ? formData.dinnerGuests * 300 * nights : 0;
   const foodTotal = breakfastCost + dinnerCost;
   
   // B2B Corporate pricing - 850 INR per guest per night (higher rate than group booking)
@@ -59,10 +61,19 @@ const B2BBookingForm = ({ isOpen, onClose }: B2BBookingFormProps) => {
   const finalTotal = totalPrice + foodTotal + gst;
 
   const handleInputChange = (field: string, value: any) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: value
-    }));
+    setFormData(prev => {
+      const newData = { ...prev, [field]: value };
+      
+      // Auto-set meal guest counts to total guests when first enabling food options
+      if (field === 'breakfast' && value && !prev.breakfast) {
+        newData.breakfastGuests = prev.guests;
+      }
+      if (field === 'dinner' && value && !prev.dinner) {
+        newData.dinnerGuests = prev.guests;
+      }
+      
+      return newData;
+    });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -74,8 +85,8 @@ const B2BBookingForm = ({ isOpen, onClose }: B2BBookingFormProps) => {
     
     // WhatsApp booking functionality
     const foodDetails = [];
-    if (formData.breakfast) foodDetails.push(`Breakfast: ${formatPrice(breakfastCost)}`);
-    if (formData.dinner) foodDetails.push(`Dinner (${formData.dinnerType}): ${formatPrice(dinnerCost)}`);
+    if (formData.breakfast) foodDetails.push(`Breakfast: ${formData.breakfastGuests} guests - ${formatPrice(breakfastCost)}`);
+    if (formData.dinner) foodDetails.push(`Dinner (${formData.dinnerType}): ${formData.dinnerGuests} guests - ${formatPrice(dinnerCost)}`);
     
     const additionalServices = [];
     if (formData.transportation) additionalServices.push("Transportation Arrangement");
@@ -276,17 +287,49 @@ ${formData.specialRequests || 'None'}
                 <Label className="text-lg font-semibold">Food Add-ons & Additional Services</Label>
                 
                 {/* Breakfast */}
-                <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border">
-                  <div>
-                    <h4 className="font-semibold">Breakfast</h4>
-                    <p className="text-sm text-muted-foreground">{formatPrice(150)} per person per day</p>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border">
+                    <div>
+                      <h4 className="font-semibold">Breakfast</h4>
+                      <p className="text-sm text-muted-foreground">{formatPrice(150)} per person per day</p>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      {formData.breakfast && (
+                        <>
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            onClick={() => handleInputChange('breakfastGuests', Math.max(1, formData.breakfastGuests - 1))}
+                          >
+                            <Minus className="h-4 w-4" />
+                          </Button>
+                          <Input
+                            type="number"
+                            min="1"
+                            max={formData.guests}
+                            value={formData.breakfastGuests}
+                            onChange={(e) => handleInputChange('breakfastGuests', Math.min(formData.guests, parseInt(e.target.value) || 1))}
+                            className="text-center w-20"
+                          />
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            onClick={() => handleInputChange('breakfastGuests', Math.min(formData.guests, formData.breakfastGuests + 1))}
+                          >
+                            <Plus className="h-4 w-4" />
+                          </Button>
+                        </>
+                      )}
+                      <input
+                        type="checkbox"
+                        checked={formData.breakfast}
+                        onChange={(e) => handleInputChange('breakfast', e.target.checked)}
+                        className="w-5 h-5 text-primary ml-2"
+                      />
+                    </div>
                   </div>
-                  <input
-                    type="checkbox"
-                    checked={formData.breakfast}
-                    onChange={(e) => handleInputChange('breakfast', e.target.checked)}
-                    className="w-5 h-5 text-primary"
-                  />
                 </div>
 
                 {/* Dinner */}
@@ -297,30 +340,34 @@ ${formData.specialRequests || 'None'}
                       <p className="text-sm text-muted-foreground">{formatPrice(300)} per person per day (Veg/Non-Veg)</p>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <Button
-                        type="button"
-                        variant="outline"
-                        size="sm"
-                        onClick={() => handleInputChange('guests', Math.max(20, formData.guests - 1))}
-                      >
-                        <Minus className="h-4 w-4" />
-                      </Button>
-                      <Input
-                        type="number"
-                        min="20"
-                        max="100"
-                        value={formData.guests}
-                        onChange={(e) => handleInputChange('guests', parseInt(e.target.value) || 20)}
-                        className="text-center w-20"
-                      />
-                      <Button
-                        type="button"
-                        variant="outline"
-                        size="sm"
-                        onClick={() => handleInputChange('guests', Math.min(100, formData.guests + 1))}
-                      >
-                        <Plus className="h-4 w-4" />
-                      </Button>
+                      {formData.dinner && (
+                        <>
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            onClick={() => handleInputChange('dinnerGuests', Math.max(1, formData.dinnerGuests - 1))}
+                          >
+                            <Minus className="h-4 w-4" />
+                          </Button>
+                          <Input
+                            type="number"
+                            min="1"
+                            max={formData.guests}
+                            value={formData.dinnerGuests}
+                            onChange={(e) => handleInputChange('dinnerGuests', Math.min(formData.guests, parseInt(e.target.value) || 1))}
+                            className="text-center w-20"
+                          />
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            onClick={() => handleInputChange('dinnerGuests', Math.min(formData.guests, formData.dinnerGuests + 1))}
+                          >
+                            <Plus className="h-4 w-4" />
+                          </Button>
+                        </>
+                      )}
                       <input
                         type="checkbox"
                         checked={formData.dinner}
@@ -390,13 +437,13 @@ ${formData.specialRequests || 'None'}
                         </div>
                         {formData.breakfast && (
                           <div className="flex justify-between">
-                            <span>Breakfast ({formData.guests} guests × {nights} nights)</span>
+                            <span>Breakfast ({formData.breakfastGuests} guests × {nights} nights)</span>
                             <span>{formatPrice(breakfastCost)}</span>
                           </div>
                         )}
                         {formData.dinner && (
                           <div className="flex justify-between">
-                            <span>Dinner {formData.dinnerType} ({formData.guests} guests × {nights} nights)</span>
+                            <span>Dinner {formData.dinnerType} ({formData.dinnerGuests} guests × {nights} nights)</span>
                             <span>{formatPrice(dinnerCost)}</span>
                           </div>
                         )}
