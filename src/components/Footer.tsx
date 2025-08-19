@@ -12,9 +12,9 @@ const Footer = () => {
           <div className="text-center lg:text-left">
             <div className="flex items-center gap-3 justify-center lg:justify-start mb-8">
               <img 
-                src="/lovable-uploads/737fc57d-44c2-4784-a8ce-4ad5bcc174ff.png" 
-                alt="XTSY Brand Logo" 
-                className="w-16 h-16 sm:w-20 sm:h-20 object-contain" 
+                src="/lovable-uploads/38e79862-b87b-4954-aba3-dd265bc6cf08.png" 
+                alt="XTSY Travellers Hostel Logo" 
+                className="h-16 sm:h-20 w-auto object-contain"
               />
             </div>
             <ul className="space-y-6">
