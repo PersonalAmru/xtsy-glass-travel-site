@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { MapPin, Phone, Mail, Instagram, Linkedin, Youtube, Home, Info, Image, Tag, Plane, HelpCircle } from "lucide-react";
+import { MapPin, Phone, Mail, Instagram, Linkedin, Youtube, Home, Info, Image as ImageIcon, Tag, Plane, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 
@@ -9,7 +9,7 @@ const Footer = () => {
 
   // Preload logo
   useEffect(() => {
-    const img = new Image();
+    const img = new window.Image();
     img.onload = () => setLogoLoaded(true);
     img.src = "/src/assets/xtsy-brand-logo.png";
   }, []);
@@ -62,7 +62,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/gallery" className="text-gray-300 hover:text-orange-400 transition-colors duration-300 flex items-center gap-3 text-base justify-center lg:justify-start">
-                  <Image className="h-5 w-5" />
+                  <ImageIcon className="h-5 w-5" />
                   Gallery
                 </Link>
               </li>
