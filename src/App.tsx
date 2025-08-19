@@ -54,9 +54,9 @@ function App() {
               {/* Logo */}
               <Link to="/" className="flex items-center space-x-2">
                 <img 
-                  src="/lovable-uploads/160f683c-a41c-41fd-8bdb-700d74a7e027.png" 
+                  src="/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png" 
                   alt="XTSY Logo" 
-                  className="h-10 w-auto"
+                  className="h-8 w-8 sm:h-10 sm:w-10 object-contain"
                   loading="eager"
                 />
                 <span className="text-xl font-bold text-foreground">XTSY</span>
