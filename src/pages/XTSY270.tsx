@@ -70,11 +70,11 @@ const XTSY270: React.FC = () => {
               {XTSY270_DATA.seoDescription}
             </p>
             <figure className="mt-6" aria-label="Hero image for XTSY 270° Panorama Glass Ensuite">
-              <div className="w-full aspect-[16/9] rounded-lg overflow-hidden shadow-md">
+              <div className="w-full aspect-[16/9] rounded-lg overflow-hidden shadow-md bg-muted">
                 <OptimizedLazyImage
                   src={XTSY270_DATA.image || (XTSY270_DATA.images && XTSY270_DATA.images[0]) || '/placeholder.svg'}
                   alt="270° Panorama Glass Ensuite — panoramic mountain and valley views in Shillong"
-                  className="w-full h-full"
+                  className="w-full h-full object-cover object-center block"
                 />
               </div>
               <figcaption className="mt-2 text-sm text-muted-foreground">Signature XTSY Luxury suite with 270° panoramic glass walls.</figcaption>
