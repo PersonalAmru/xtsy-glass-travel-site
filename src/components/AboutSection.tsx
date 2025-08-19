@@ -1,5 +1,3 @@
-
-
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Phone, Clock, Users, Heart, Globe, Award, Camera } from "lucide-react";
 
@@ -60,10 +58,18 @@ const AboutSection = () => {
           </div>
           <div className="flex overflow-x-auto space-x-4 py-6 px-6 scrollbar-hide">
             {coreServices.map((service, index) => (
-              <div key={index} className="flex items-center space-x-3 min-w-fit bg-white/90 backdrop-blur-sm px-4 py-3 rounded-xl border border-slate-200 shadow-sm">
-                <service.icon className="w-5 h-5 text-primary" />
+              <div 
+                key={index} 
+                className="flex items-center space-x-3 min-w-fit bg-white/90 backdrop-blur-sm px-4 py-3 rounded-xl border border-slate-200 shadow-sm animate-bounce"
+                style={{
+                  animationDelay: `${index * 0.5}s`,
+                  animationDuration: '2s',
+                  animationIterationCount: 'infinite'
+                }}
+              >
+                <service.icon className="w-5 h-5 text-primary animate-pulse" />
                 <span className="text-slate-800 font-medium whitespace-nowrap">{service.text}</span>
-                <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium">
+                <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium animate-pulse" style={{ animationDelay: `${index * 0.3}s` }}>
                   {service.trend}
                 </span>
               </div>
@@ -250,4 +256,3 @@ const AboutSection = () => {
 };
 
 export default AboutSection;
-
