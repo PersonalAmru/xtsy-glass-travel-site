@@ -1,35 +1,38 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Phone, Clock, Users, Heart, Globe, Award, Camera } from "lucide-react";
-
 const AboutSection = () => {
-  const coreServices = [
-    { icon: Camera, text: "270° Panorama Glass Ensuite", trend: "Premium" },
-    { icon: Users, text: "Dormitory Accommodations", trend: "Budget" },
-    { icon: Globe, text: "Northeast India Tours", trend: "Specialty" }
-  ];
-
-  const highlights = [
-    { number: "★★★★★", label: "Excellence Rating" },
-    { number: "24/7", label: "Support" },
-    { number: "100%", label: "Safety" }
-  ];
-
-  return (
-    <section id="about" className="pt-20 py-16 sm:py-20 px-3 sm:px-4 bg-gradient-to-br from-slate-50 via-white to-slate-100 relative overflow-hidden">
+  const coreServices = [{
+    icon: Camera,
+    text: "270° Panorama Glass Ensuite",
+    trend: "Premium"
+  }, {
+    icon: Users,
+    text: "Dormitory Accommodations",
+    trend: "Budget"
+  }, {
+    icon: Globe,
+    text: "Northeast India Tours",
+    trend: "Specialty"
+  }];
+  const highlights = [{
+    number: "★★★★★",
+    label: "Excellence Rating"
+  }, {
+    number: "24/7",
+    label: "Support"
+  }, {
+    number: "100%",
+    label: "Safety"
+  }];
+  return <section id="about" className="pt-20 py-16 sm:py-20 px-3 sm:px-4 bg-gradient-to-br from-slate-50 via-white to-slate-100 relative overflow-hidden">
       
       <div className="absolute inset-0">
-        {[...Array(4)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-r from-orange-400/3 to-red-400/3 rounded-full blur-xl animate-pulse"
-            style={{
-              left: `${20 + i * 15}%`,
-              top: `${15 + i * 20}%`,
-              animationDelay: `${i * 2}s`,
-              animationDuration: `${5 + i * 0.5}s`
-            }}
-          />
-        ))}
+        {[...Array(4)].map((_, i) => <div key={i} className="absolute w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-r from-orange-400/3 to-red-400/3 rounded-full blur-xl animate-pulse" style={{
+        left: `${20 + i * 15}%`,
+        top: `${15 + i * 20}%`,
+        animationDelay: `${i * 2}s`,
+        animationDuration: `${5 + i * 0.5}s`
+      }} />)}
       </div>
 
       <div className="container mx-auto max-w-7xl relative z-10">
@@ -39,9 +42,7 @@ const AboutSection = () => {
             <Award className="w-4 h-4" />
             Premium Hospitality Excellence
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-800 mb-6">
-            About XTSY Hostel
-          </h1>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-800 mb-6">About XTSY!</h1>
           <p className="text-lg sm:text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
             <strong className="text-slate-800">India's Premier Hostel Experience</strong> in Shillong, Meghalaya. 
             Featuring our exclusive <strong className="text-slate-800">270° Panorama Glass Ensuite</strong>, 
@@ -56,21 +57,20 @@ const AboutSection = () => {
             <Award className="w-5 h-5 text-primary-foreground mr-3" />
             <span className="text-primary-foreground font-semibold">Core Services</span>
           </div>
-          <div className="relative overflow-hidden py-6 px-6">
-            <div className="flex space-x-4 animate-[slide_20s_linear_infinite]">
-              {[...coreServices, ...coreServices].map((service, index) => (
-                <div 
-                  key={index} 
-                  className="flex items-center space-x-3 min-w-fit bg-white/90 backdrop-blur-sm px-4 py-3 rounded-xl border border-slate-200 shadow-sm"
-                >
-                  <service.icon className="w-5 h-5 text-primary" />
-                  <span className="text-slate-800 font-medium whitespace-nowrap">{service.text}</span>
-                  <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium">
-                    {service.trend}
-                  </span>
-                </div>
-              ))}
-            </div>
+          <div className="flex overflow-x-auto space-x-4 py-6 px-6 scrollbar-hide">
+            {coreServices.map((service, index) => <div key={index} className="flex items-center space-x-3 min-w-fit bg-white/90 backdrop-blur-sm px-4 py-3 rounded-xl border border-slate-200 shadow-sm animate-bounce" style={{
+            animationDelay: `${index * 0.5}s`,
+            animationDuration: '2s',
+            animationIterationCount: 'infinite'
+          }}>
+                <service.icon className="w-5 h-5 text-primary animate-pulse" />
+                <span className="text-slate-800 font-medium whitespace-nowrap">{service.text}</span>
+                <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium animate-pulse" style={{
+              animationDelay: `${index * 0.3}s`
+            }}>
+                  {service.trend}
+                </span>
+              </div>)}
           </div>
         </div>
 
@@ -222,16 +222,14 @@ const AboutSection = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {highlights.map((highlight, index) => (
-              <div key={index} className="text-center group">
+            {highlights.map((highlight, index) => <div key={index} className="text-center group">
                 <div className="text-3xl sm:text-4xl font-bold mb-2 group-hover:scale-105 transition-transform duration-300">
                   {highlight.number}
                 </div>
                 <div className="text-lg font-semibold">
                   {highlight.label}
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </div>
@@ -246,18 +244,8 @@ const AboutSection = () => {
           .scrollbar-hide::-webkit-scrollbar {
             display: none;
           }
-          @keyframes slide {
-            0% {
-              transform: translateX(0);
-            }
-            100% {
-              transform: translateX(-50%);
-            }
-          }
         `}
       </style>
-    </section>
-  );
+    </section>;
 };
-
 export default AboutSection;
