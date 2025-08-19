@@ -15,13 +15,14 @@ const AboutSection = () => {
   ];
 
   return (
-    <section id="about" className="py-16 sm:py-20 px-3 sm:px-4 bg-background relative overflow-hidden">
+    <section id="about" className="pt-20 py-16 sm:py-20 px-3 sm:px-4 bg-background relative overflow-hidden">
+      
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-subtle opacity-40"></div>
       </div>
 
       <div className="container mx-auto max-w-7xl relative z-10">
-        {/* Header Section */}
+        
         <div className="text-center mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-elegant">
             <Award className="w-4 h-4" />
@@ -38,7 +39,7 @@ const AboutSection = () => {
           </p>
         </div>
 
-        {/* Core Services */}
+        
         <div className="mb-12 overflow-hidden bg-card rounded-2xl shadow-soft border border-border">
           <div className="flex items-center py-4 px-6 bg-primary">
             <Award className="w-5 h-5 text-primary-foreground mr-3" />
@@ -57,9 +58,8 @@ const AboutSection = () => {
           </div>
         </div>
 
-        {/* Main Content Grid */}
+        
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 mb-16">
-          {/* Our Story */}
           <div className="space-y-6">
             <Card className="bg-card border border-border shadow-elegant overflow-hidden group hover:shadow-soft transition-shadow duration-300">
               <div className="h-1 bg-primary"></div>
@@ -74,23 +74,17 @@ const AboutSection = () => {
                 </div>
                 <p className="text-muted-foreground text-base sm:text-lg leading-relaxed mb-4">
                   Founded with a vision to revolutionize hospitality in Northeast India, XTSY has established 
-                  itself as the premier destination for travelers seeking authentic experiences combined with 
-                  modern comfort and innovative technology.
-                </p>
-                <p className="text-muted-foreground text-base sm:text-lg leading-relaxed mb-4">
-                  We focus on delivering exceptional service, featuring our exclusive 270° Panorama Glass Ensuite, 
-                  comprehensive dormitory accommodations, and expertly curated tour packages.
+                  itself as the premier destination for travelers seeking authentic experiences.
                 </p>
                 <div className="bg-secondary border-l-4 border-primary p-4 rounded-r-xl">
                   <p className="text-foreground font-medium">
-                    Excellence in hospitality, authenticity in experience, and innovation in service delivery.
+                    Excellence in hospitality, authenticity in experience.
                   </p>
                 </div>
               </CardContent>
             </Card>
           </div>
 
-          {/* Contact Info */}
           <div className="space-y-6">
             <Card className="bg-card border border-border shadow-elegant overflow-hidden group hover:shadow-soft transition-shadow duration-300">
               <div className="h-1 bg-primary"></div>
@@ -140,14 +134,13 @@ const AboutSection = () => {
           </div>
         </div>
 
-        {/* Business Excellence */}
+        
         <div className="mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 text-foreground">
             Our Services
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
-            {/* Dormitory */}
             <Card className="bg-card border border-border shadow-xl hover:shadow-2xl transition-all duration-300 group">
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
@@ -157,16 +150,14 @@ const AboutSection = () => {
                   Dormitory Accommodations
                 </h3>
                 <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                  Comprehensive dormitory facilities featuring mixed, female-only, and economy options. 
-                  Safe, comfortable, and budget-friendly accommodation for all types of travelers.
+                  Comprehensive dormitory facilities featuring mixed, female-only, and economy options.
                 </p>
                 <div className="text-sm text-muted-foreground bg-secondary p-3 rounded-lg">
-                  <strong>Features:</strong> 6-bed & 8-bed dorms, premium amenities, 24/7 security
+                  <strong>Features:</strong> 6-bed & 8-bed dorms, premium amenities
                 </div>
               </CardContent>
             </Card>
 
-            {/* Tours */}
             <Card className="bg-card border border-border shadow-xl hover:shadow-2xl transition-all duration-300 group">
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
@@ -176,16 +167,14 @@ const AboutSection = () => {
                   Northeast India Tours
                 </h3>
                 <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                  Expertly designed tour packages showcasing Northeast India's hidden gems, cultural heritage, 
-                  and natural wonders. From living root bridges to pristine waterfalls.
+                  Expertly designed tour packages showcasing Northeast India's hidden gems.
                 </p>
                 <div className="text-sm text-muted-foreground bg-secondary p-3 rounded-lg">
-                  <strong>Specialties:</strong> Meghalaya tours, cultural immersion, adventure packages
+                  <strong>Specialties:</strong> Meghalaya tours, cultural immersion
                 </div>
               </CardContent>
             </Card>
 
-            {/* Premium Suite */}
             <Card className="bg-card border border-border shadow-xl hover:shadow-2xl transition-all duration-300 group">
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
@@ -195,18 +184,17 @@ const AboutSection = () => {
                   270° Panorama Glass Ensuite
                 </h3>
                 <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                  Shillong's first and only 270° Panorama Glass Ensuite offering unparalleled mountain views 
-                  and luxury accommodation. This exclusive premium suite.
+                  Shillong's first and only 270° Panorama Glass Ensuite offering unparalleled mountain views.
                 </p>
                 <div className="text-sm text-muted-foreground bg-secondary p-3 rounded-lg">
-                  <strong>Features:</strong> Panoramic views, luxury amenities, exclusive experience
+                  <strong>Features:</strong> Panoramic views, luxury amenities
                 </div>
               </CardContent>
             </Card>
           </div>
         </div>
 
-        {/* Performance Highlights */}
+        
         <div className="bg-primary rounded-3xl p-8 sm:p-12 text-primary-foreground mb-16">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
@@ -232,7 +220,7 @@ const AboutSection = () => {
         </div>
       </div>
 
-      {/* Custom CSS for animations */}
+      
       <style>
         {`
           .scrollbar-hide {

@@ -25,9 +25,7 @@ const About = () => {
     <div className="min-h-screen bg-white">
       <SEOContent page="about" />
       <Header />
-      <div className="pt-20"> {/* Add padding to account for fixed header */}
-        <AboutSection />
-      </div>
+      <AboutSection />
       <Footer />
     </div>
   );
