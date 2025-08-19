@@ -131,20 +131,37 @@ const XTSY270: React.FC = () => {
             </div>
 
             {/* Pricing Display */}
-            <div className="flex justify-center mb-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+            <div className="flex flex-col md:flex-row justify-center gap-6 mb-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
               <Card className="bg-gradient-to-br from-card/80 to-card backdrop-blur-sm border-primary/20 shadow-lg">
                 <CardContent className="p-6 text-center">
                   <div className="flex items-center justify-center gap-4 mb-2">
                     <Calendar className="w-5 h-5 text-primary" />
                     <span className="text-sm font-medium text-muted-foreground">
-                      {isWeekend ? 'Weekend Rate' : 'Weekday Rate'}
+                      Weekday Rate
                     </span>
                   </div>
                   <div className="text-3xl font-bold text-primary mb-2">
-                    ₹{currentPrice.toLocaleString()}
+                    ₹{XTSY270_DATA.weekdayPrice.toLocaleString()}
                   </div>
                   <div className="text-sm text-muted-foreground">
-                    per night • {isWeekend ? 'Weekends ₹18,000' : 'Weekdays ₹12,000'}
+                    per night • Monday - Friday
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-to-br from-card/80 to-card backdrop-blur-sm border-primary/20 shadow-lg">
+                <CardContent className="p-6 text-center">
+                  <div className="flex items-center justify-center gap-4 mb-2">
+                    <Calendar className="w-5 h-5 text-primary" />
+                    <span className="text-sm font-medium text-muted-foreground">
+                      Weekend Rate
+                    </span>
+                  </div>
+                  <div className="text-3xl font-bold text-primary mb-2">
+                    ₹{XTSY270_DATA.weekendPrice.toLocaleString()}
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    per night • Saturday - Sunday
                   </div>
                 </CardContent>
               </Card>
