@@ -74,7 +74,7 @@ const ServicesSection = () => {
     {
       icon: <Calendar className="h-5 w-5" />,
       title: "Event Space",
-      description: "Common areas for small gatherings",
+      description: "Property booking for special events, photoshoots, yoga retreats and programs",
       badge: "Bookable"
     },
     {
