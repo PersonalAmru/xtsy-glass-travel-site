@@ -283,7 +283,7 @@ const XTSY270: React.FC = () => {
             {/* Experience Details */}
             <div className="mb-20 animate-fade-in">
               <Card className="bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-sm border-primary/20 shadow-xl">
-                <CardContent className="p-8 md:p-12">
+                <CardContent className="p-4 md:p-6">
                   <div className="grid lg:grid-cols-3 gap-8">
                     <Badge variant="outline" className="bg-primary/20 border-primary/50 text-primary font-semibold backdrop-blur-sm text-center justify-center p-6 flex-col">
                       <Users className="w-12 h-12 text-primary mx-auto mb-4" />
