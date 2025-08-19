@@ -132,12 +132,6 @@ const XTSY270: React.FC = () => {
                 <dd>Private ensuite</dd>
               </dl>
             </section>
-
-            <aside aria-label="Booking information" className="mt-8">
-              <p className="text-muted-foreground">
-                Tip: For best sunrise and sunset light, request edge-side orientation at booking. Availability is limited.
-              </p>
-            </aside>
           </article>
         </main>
 
