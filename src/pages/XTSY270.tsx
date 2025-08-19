@@ -240,8 +240,8 @@ const XTSY270: React.FC = () => {
                         <Mountain className="w-5 h-5 text-primary mr-2" />
                         <span className="text-sm">Panoramic mountain vistas</span>
                       </Badge>
-                      <Badge variant="outline" className="bg-secondary/20 border-secondary/50 text-secondary font-semibold backdrop-blur-sm w-full justify-start p-4">
-                        <Sun className="w-5 h-5 text-secondary mr-2" />
+                      <Badge variant="outline" className="bg-primary/20 border-primary/50 text-primary font-semibold backdrop-blur-sm w-full justify-start p-4">
+                        <Sun className="w-5 h-5 text-primary mr-2" />
                         <span className="text-sm">Sunrise to sunset immersion</span>
                       </Badge>
                       <Badge variant="outline" className="bg-primary/20 border-primary/50 text-primary font-semibold backdrop-blur-sm w-full justify-start p-4">
