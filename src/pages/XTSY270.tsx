@@ -290,8 +290,8 @@ const XTSY270: React.FC = () => {
                       <h3 className="text-lg font-semibold mb-1">Occupancy</h3>
                       <p className="text-muted-foreground text-sm">Up to 2 guests in supreme comfort</p>
                     </Badge>
-                    <Badge variant="outline" className="bg-secondary/20 border-secondary/50 text-secondary font-semibold backdrop-blur-sm text-center justify-center p-4 flex-col">
-                      <Bed className="w-8 h-8 text-secondary mx-auto mb-2" />
+                    <Badge variant="outline" className="bg-primary/20 border-primary/50 text-primary font-semibold backdrop-blur-sm text-center justify-center p-4 flex-col">
+                      <Bed className="w-8 h-8 text-primary mx-auto mb-2" />
                       <h3 className="text-lg font-semibold mb-1">Bedding</h3>
                       <p className="text-muted-foreground text-sm">Queen bed with premium linens</p>
                     </Badge>
