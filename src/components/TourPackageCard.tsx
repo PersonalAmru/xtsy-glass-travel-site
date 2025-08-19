@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -149,7 +148,7 @@ const TourPackageCard = ({ tourPackage, onPackageClick }: TourPackageCardProps) 
       case 'leisure':
         return wellnessRetreatImg;
       default:
-        return tourPackage.image || tourPackage.images?.[0] || meghalayaHiddenGemsImg;
+        return meghalayaHiddenGemsImg;
     }
   };
 
@@ -188,7 +187,6 @@ const TourPackageCard = ({ tourPackage, onPackageClick }: TourPackageCardProps) 
             {tourPackage.category}
           </Badge>
         </div>
-        {/* Price tag removed for exclusive packages */}
       </div>
       
       <CardHeader className="flex-grow">
