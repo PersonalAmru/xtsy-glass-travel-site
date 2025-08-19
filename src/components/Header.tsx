@@ -76,7 +76,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="bg-white/95 backdrop-blur-lg border-b border-gray-200 shadow-sm sticky top-0 z-50 safe-top safe-left safe-right">
+      <header className="glass-header sticky top-0 z-50 safe-top safe-left safe-right">
         <div className="responsive-container mobile-compact">
           <div className="flex justify-between items-center h-14 sm:h-16">
             {/* Logo */}
@@ -131,13 +131,6 @@ const Header = () => {
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
                 {XTSY270_DATA.shortName}
-              </Link>
-              <Link 
-                to="/faq" 
-                className="px-3 py-2 text-gray-800 hover:text-primary hover:bg-primary/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              >
-                FAQ
               </Link>
               
               <button
@@ -248,16 +241,6 @@ const Header = () => {
                      }}
                    >
                      {XTSY270_DATA.shortName}
-                   </Link>
-                   <Link 
-                     to="/faq" 
-                     className="text-gray-800 hover:text-primary transition-colors"
-                     onClick={() => {
-                       setIsMenuOpen(false);
-                       window.scrollTo({ top: 0, behavior: 'smooth' });
-                     }}
-                   >
-                     FAQ
                    </Link>
                   
                    <button

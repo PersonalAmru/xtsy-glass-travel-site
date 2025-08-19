@@ -11,6 +11,7 @@ import Footer from "@/components/Footer";
 import GuestDetails from "@/components/GuestDetails";
 import LazyWrapper from "@/components/LazyWrapper";
 import SEOContent from "@/components/SEOContent";
+import FAQSection from "@/components/FAQSection";
 
 const Index = () => {
   const [showGuestDetails, setShowGuestDetails] = useState(false);
@@ -62,6 +63,9 @@ const Index = () => {
         </LazyWrapper>
         <LazyWrapper fallback={<div className="h-48 bg-gray-100 animate-pulse rounded-lg mx-4 my-8"></div>}>
           <AdventureCallToAction />
+        </LazyWrapper>
+        <LazyWrapper fallback={<div className="h-64 bg-gray-100 animate-pulse rounded-lg mx-4 my-8"></div>}>
+          <FAQSection />
         </LazyWrapper>
       </main>
       <Footer />
