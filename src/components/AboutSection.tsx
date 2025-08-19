@@ -69,7 +69,7 @@ const AboutSection = () => {
     label: "Support"
   }, {
     number: "100%",
-    label: "Safety"
+    label: "Travel Assistance"
   }];
 
   return (
