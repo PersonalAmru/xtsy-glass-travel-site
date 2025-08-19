@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -10,38 +9,44 @@ import LoadingScreen from "./components/LoadingScreen";
 import PerformanceMonitor from "./components/PerformanceMonitor";
 import Footer from "./components/Footer";
 import { preloadCriticalResources, optimizeFontLoading, registerServiceWorker } from "./utils/bundleOptimization";
-
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
   useEffect(() => {
     // Initialize performance optimizations
     preloadCriticalResources();
     optimizeFontLoading();
     registerServiceWorker();
-
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 1500);
-
     return () => clearTimeout(timer);
   }, []);
-
   if (isLoading) {
     return <LoadingScreen />;
   }
-
-  const navItems = [
-    { to: "/", label: "Home", icon: Home },
-    { to: "/rooms", label: "Rooms", icon: Building },
-    { to: "/about", label: "About", icon: Users },
-    { to: "/contact", label: "Contact", icon: Phone },
-    { to: "/booking", label: "Book Now", icon: Calendar }
-  ];
-
-  return (
-    <div className="dark min-h-screen bg-background">
+  const navItems = [{
+    to: "/",
+    label: "Home",
+    icon: Home
+  }, {
+    to: "/rooms",
+    label: "Rooms",
+    icon: Building
+  }, {
+    to: "/about",
+    label: "About",
+    icon: Users
+  }, {
+    to: "/contact",
+    label: "Contact",
+    icon: Phone
+  }, {
+    to: "/booking",
+    label: "Book Now",
+    icon: Calendar
+  }];
+  return <div className="dark min-h-screen bg-background">
       <PerformanceMonitor />
       <TooltipProvider>
         <Toaster />
@@ -53,58 +58,34 @@ function App() {
             <div className="flex items-center justify-between h-16">
               {/* Logo */}
               <Link to="/" className="flex items-center space-x-2">
-                <img 
-                  src="/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png" 
-                  alt="XTSY Logo" 
-                  className="h-8 w-8 sm:h-10 sm:w-10 object-contain"
-                  loading="eager"
-                />
-                <span className="text-xl font-bold text-foreground">XTSY</span>
+                <img src="/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png" alt="XTSY Logo" className="h-8 w-8 sm:h-10 sm:w-10 object-contain" loading="eager" />
+                <span className="text-xl font-bold text-foreground">
+              </span>
               </Link>
 
               {/* Desktop Navigation */}
               <div className="hidden md:flex items-center space-x-6">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.to}
-                    to={item.to}
-                    className="flex items-center space-x-2 text-foreground/80 hover:text-foreground transition-colors"
-                  >
+                {navItems.map(item => <Link key={item.to} to={item.to} className="flex items-center space-x-2 text-foreground/80 hover:text-foreground transition-colors">
                     <item.icon className="w-4 h-4" />
                     <span>{item.label}</span>
-                  </Link>
-                ))}
+                  </Link>)}
               </div>
 
               {/* Mobile Menu Button */}
-              <Button
-                variant="ghost"
-                size="icon"
-                className="md:hidden"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              >
+              <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
                 {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </Button>
             </div>
 
             {/* Mobile Navigation */}
-            {isMobileMenuOpen && (
-              <div className="md:hidden py-4 bg-card/95 backdrop-blur-sm rounded-lg mt-2 border border-border/50">
+            {isMobileMenuOpen && <div className="md:hidden py-4 bg-card/95 backdrop-blur-sm rounded-lg mt-2 border border-border/50">
                 <div className="flex flex-col space-y-2">
-                  {navItems.map((item) => (
-                    <Link
-                      key={item.to}
-                      to={item.to}
-                      className="flex items-center space-x-2 px-4 py-2 text-foreground/80 hover:text-foreground hover:bg-accent/50 transition-colors"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
+                  {navItems.map(item => <Link key={item.to} to={item.to} className="flex items-center space-x-2 px-4 py-2 text-foreground/80 hover:text-foreground hover:bg-accent/50 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                       <item.icon className="w-4 h-4" />
                       <span>{item.label}</span>
-                    </Link>
-                  ))}
+                    </Link>)}
                 </div>
-              </div>
-            )}
+              </div>}
           </nav>
         </header>
 
@@ -118,8 +99,6 @@ function App() {
         {/* Footer */}
         <Footer />
       </TooltipProvider>
-    </div>
-  );
+    </div>;
 }
-
 export default App;
