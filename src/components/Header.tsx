@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Menu, X, User, Settings, Users, ShoppingCart, ChevronDown } from "lucide-react";
@@ -75,7 +76,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="glass-header sticky top-0 z-50 safe-top safe-left safe-right">
+      <header className="sticky top-0 z-50 safe-top safe-left safe-right bg-black/80 backdrop-blur-md border-b border-white/10">
         <div className="responsive-container mobile-compact">
           <div className="flex justify-between items-center h-14 sm:h-16">
             {/* Logo - adjusted with left margin */}
@@ -98,35 +99,35 @@ const Header = () => {
             <nav className="hidden lg:flex items-center space-x-2 ml-auto">
               <Link 
                 to="/" 
-                className="px-3 py-2 text-gray-800 hover:text-primary hover:bg-primary/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
+                className="px-3 py-2 text-white hover:text-primary hover:bg-white/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
                 Home
               </Link>
               <Link 
                 to="/about" 
-                className="px-3 py-2 text-gray-800 hover:text-primary hover:bg-primary/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
+                className="px-3 py-2 text-white hover:text-primary hover:bg-white/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
                 About
               </Link>
               <Link 
                 to="/gallery" 
-                className="px-3 py-2 text-gray-800 hover:text-primary hover:bg-primary/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
+                className="px-3 py-2 text-white hover:text-primary hover:bg-white/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
                 Gallery
               </Link>
               <Link 
                 to="/deals" 
-                className="px-3 py-2 text-gray-800 hover:text-primary hover:bg-primary/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
+                className="px-3 py-2 text-white hover:text-primary hover:bg-white/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
                 Deals
               </Link>
               <Link 
                 to={XTSY270_DATA.path}
-                className="px-3 py-2 text-gray-800 hover:text-primary hover:bg-primary/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
+                className="px-3 py-2 text-white hover:text-primary hover:bg-white/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
                 {XTSY270_DATA.shortName}
@@ -134,15 +135,15 @@ const Header = () => {
               
               <button
                 onClick={() => setIsTravelModalOpen(true)}
-                className="px-3 py-2 text-gray-800 hover:text-primary hover:bg-primary/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
+                className="px-3 py-2 text-white hover:text-primary hover:bg-white/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
               >
                 Travel
               </button>
               
               {/* Language and Currency Selectors */}
-              <div className="flex items-center gap-3 border-l border-gray-300 pl-4">
+              <div className="flex items-center gap-3 border-l border-white/20 pl-4">
                 <CurrencySelector 
-                  className="text-gray-800" 
+                  className="text-white" 
                   onCurrencyChange={setCurrency}
                 />
               </div>
@@ -150,11 +151,11 @@ const Header = () => {
               {/* Authentication Section */}
               <div className="flex items-center space-x-4">
                 {loading ? (
-                  <div className="w-8 h-8 animate-pulse bg-gray-200 rounded-full"></div>
+                  <div className="w-8 h-8 animate-pulse bg-white/20 rounded-full"></div>
                 ) : user ? (
                   <div className="flex items-center space-x-2">
                     <Link to="/dashboard">
-                      <Button variant="ghost" size="sm" className="touch-target">
+                      <Button variant="ghost" size="sm" className="touch-target text-white hover:text-primary hover:bg-white/10">
                         <Settings className="h-4 w-4 mr-2" />
                         Dashboard
                       </Button>
@@ -166,7 +167,7 @@ const Header = () => {
                     variant="ghost" 
                     size="sm"
                     onClick={() => handleAuthClick('newsletter')}
-                    className="text-green-600 hover:text-green-700 touch-target"
+                    className="text-green-400 hover:text-green-300 hover:bg-white/10 touch-target"
                   >
                     <Users className="h-4 w-4 mr-2" />
                     Newsletter
@@ -177,7 +178,7 @@ const Header = () => {
 
             {/* Mobile and Tablet menu button */}
             <button
-              className="lg:hidden touch-target text-gray-800 p-2"
+              className="lg:hidden touch-target text-white p-2"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
@@ -187,11 +188,11 @@ const Header = () => {
 
             {/* Mobile and Tablet Navigation */}
             {isMenuOpen && (
-              <div className="lg:hidden py-4 border-t safe-area-padding">
+              <div className="lg:hidden py-4 border-t border-white/20 safe-area-padding">
                 <nav className="flex flex-col space-y-3">
                   <Link 
                     to="/" 
-                    className="text-gray-800 hover:text-primary transition-colors"
+                    className="text-white hover:text-primary transition-colors"
                     onClick={() => {
                       setIsMenuOpen(false);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -201,7 +202,7 @@ const Header = () => {
                   </Link>
                   <Link 
                     to="/about" 
-                    className="text-gray-800 hover:text-primary transition-colors"
+                    className="text-white hover:text-primary transition-colors"
                     onClick={() => {
                       setIsMenuOpen(false);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -211,7 +212,7 @@ const Header = () => {
                   </Link>
                   <Link 
                     to="/gallery" 
-                    className="text-gray-800 hover:text-primary transition-colors"
+                    className="text-white hover:text-primary transition-colors"
                     onClick={() => {
                       setIsMenuOpen(false);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -221,7 +222,7 @@ const Header = () => {
                   </Link>
                    <Link 
                      to="/deals" 
-                     className="text-gray-800 hover:text-primary transition-colors"
+                     className="text-white hover:text-primary transition-colors"
                      onClick={() => {
                        setIsMenuOpen(false);
                        window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -231,7 +232,7 @@ const Header = () => {
                    </Link>
                    <Link 
                      to={XTSY270_DATA.path} 
-                     className="text-foreground hover:text-primary transition-colors"
+                     className="text-white hover:text-primary transition-colors"
                      aria-label={`${XTSY270_DATA.name} details`}
                      title={XTSY270_DATA.seoTitle}
                      onClick={() => {
@@ -247,25 +248,25 @@ const Header = () => {
                       setIsTravelModalOpen(true);
                       setIsMenuOpen(false);
                     }}
-                    className="text-gray-800 hover:text-primary transition-colors text-left"
+                    className="text-white hover:text-primary transition-colors text-left"
                   >
                     Travel
                   </button>
                 
                   {/* Currency Selector for Mobile */}
-                  <div className="pt-3 pb-2 border-t border-gray-200">
-                    <div className="text-sm font-medium text-gray-700 mb-3">Select Currency:</div>
+                  <div className="pt-3 pb-2 border-t border-white/20">
+                    <div className="text-sm font-medium text-white/80 mb-3">Select Currency:</div>
                     <CurrencySelector 
-                      className="w-full bg-white border border-gray-300 rounded-md" 
+                      className="w-full bg-black/50 border border-white/20 rounded-md text-white" 
                       onCurrencyChange={setCurrency}
                     />
                   </div>
                 
                 {user ? (
-                  <div className="pt-4 border-t">
+                  <div className="pt-4 border-t border-white/20">
                     <Link 
                       to="/dashboard" 
-                      className="flex items-center text-gray-800 hover:text-primary transition-colors mb-4"
+                      className="flex items-center text-white hover:text-primary transition-colors mb-4"
                       onClick={() => {
                         setIsMenuOpen(false);
                         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -274,15 +275,15 @@ const Header = () => {
                       <Settings className="h-4 w-4 mr-2" />
                       Dashboard
                     </Link>
-                    <div className="text-sm text-gray-600">
+                    <div className="text-sm text-white/60">
                       Signed in as {user.user_metadata?.full_name || user.email}
                     </div>
                   </div>
                 ) : (
-                  <div className="pt-4 border-t space-y-2">
+                  <div className="pt-4 border-t border-white/20 space-y-2">
                     <Button 
                       variant="ghost" 
-                      className="w-full justify-start text-green-600"
+                      className="w-full justify-start text-green-400 hover:text-green-300 hover:bg-white/10"
                       onClick={() => {
                         handleAuthClick('newsletter');
                         setIsMenuOpen(false);
