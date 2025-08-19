@@ -1021,7 +1021,7 @@ const Travel = () => {
                       <Button 
                         variant="outline" 
                         onClick={clearFilters}
-                        className="ml-auto"
+                        className="ml-auto bg-white border-2 border-orange-300 text-orange-700 hover:bg-orange-50 hover:border-orange-400 hover:text-orange-800 font-medium px-4 py-2 shadow-sm transition-all duration-200"
                       >
                         Clear Filters
                       </Button>
