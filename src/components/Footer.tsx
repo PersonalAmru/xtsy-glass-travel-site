@@ -1,23 +1,32 @@
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, Instagram, Facebook, Twitter, Home, Info, Image, Tag, Plane, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
 const Footer = () => {
-  return <footer className="bg-gray-900 text-white py-12 sm:py-16">
+  return (
+    <footer className="bg-gray-900 text-white py-12 sm:py-16">
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
-          {/* Brand Section - Larger space */}
-          <div className="lg:col-span-1 space-y-6">
-            <div className="flex items-center justify-center lg:justify-start">
-              <img src="/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png" alt="XTSY Brand Logo" className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 object-contain" />
-            </div>
-            <p className="text-gray-300 text-base leading-relaxed text-center lg:text-left max-w-sm mx-auto lg:mx-0">Experience the authentic vibe of Shillong and unforgettable adventures with XTSY!</p>
-            <div className="flex space-x-6 justify-center lg:justify-start">
+        {/* Brand Section - Top tier spanning full width */}
+        <div className="mb-12 lg:mb-16">
+          <div className="flex flex-col items-center lg:items-start space-y-6">
+            <img 
+              src="/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png" 
+              alt="XTSY Brand Logo" 
+              className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 object-contain" 
+            />
+            <p className="text-gray-300 text-base leading-relaxed text-center lg:text-left max-w-sm">
+              Experience the authentic vibe of Shillong and unforgettable adventures with XTSY!
+            </p>
+            <div className="flex space-x-6">
               <Instagram className="h-6 w-6 text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-300" />
               <Facebook className="h-6 w-6 text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-300" />
               <Twitter className="h-6 w-6 text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-300" />
             </div>
           </div>
+        </div>
 
+        {/* Content sections - Bottom tier in 2-column grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Quick Links */}
           <div className="text-center lg:text-left">
             <h3 className="text-xl font-semibold mb-6 text-white">Quick Links</h3>
@@ -46,18 +55,18 @@ const Footer = () => {
                   Deals
                 </Link>
               </li>
-               <li>
-                 <Link to="/travel" className="text-gray-300 hover:text-orange-400 transition-colors duration-300 flex items-center gap-3 text-base justify-center lg:justify-start">
-                   <Plane className="h-5 w-5" />
-                   Travel
-                 </Link>
-               </li>
-               <li>
-                 <Link to="/faq" className="text-gray-300 hover:text-orange-400 transition-colors duration-300 flex items-center gap-3 text-base justify-center lg:justify-start">
-                   <HelpCircle className="h-5 w-5" />
-                   FAQ
-                 </Link>
-               </li>
+              <li>
+                <Link to="/travel" className="text-gray-300 hover:text-orange-400 transition-colors duration-300 flex items-center gap-3 text-base justify-center lg:justify-start">
+                  <Plane className="h-5 w-5" />
+                  Travel
+                </Link>
+              </li>
+              <li>
+                <Link to="/faq" className="text-gray-300 hover:text-orange-400 transition-colors duration-300 flex items-center gap-3 text-base justify-center lg:justify-start">
+                  <HelpCircle className="h-5 w-5" />
+                  FAQ
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -90,7 +99,10 @@ const Footer = () => {
               </div>
               
               <div className="pt-4">
-                <Button onClick={() => window.open('https://maps.app.goo.gl/Apj4xBxDWv8hBbSm6', '_blank')} className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white text-base px-8 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105 shadow-lg">
+                <Button 
+                  onClick={() => window.open('https://maps.app.goo.gl/Apj4xBxDWv8hBbSm6', '_blank')} 
+                  className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white text-base px-8 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105 shadow-lg"
+                >
                   Get Directions
                 </Button>
               </div>
@@ -102,6 +114,8 @@ const Footer = () => {
           <p className="text-gray-400 text-base">© 2024 XTSY. All rights reserved. Experience the XTSY Vibe.</p>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };
+
 export default Footer;
