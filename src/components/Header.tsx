@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Menu, X, User, Settings, Users, ShoppingCart, ChevronDown } from "lucide-react";
@@ -79,8 +78,8 @@ const Header = () => {
       <header className="glass-header sticky top-0 z-50 safe-top safe-left safe-right">
         <div className="responsive-container mobile-compact">
           <div className="flex justify-between items-center h-14 sm:h-16">
-            {/* Logo */}
-            <Link to="/" className="flex items-center space-x-2 touch-target">
+            {/* Logo - adjusted with left margin */}
+            <Link to="/" className="flex items-center space-x-2 touch-target ml-4 sm:ml-6">
               <img 
                 src="/lovable-uploads/f60939c8-8351-4f63-80df-a4c6e37e539a.png"
                 alt="XTSY Travellers Hostel"
