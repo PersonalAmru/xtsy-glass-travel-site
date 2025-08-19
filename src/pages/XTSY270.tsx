@@ -122,7 +122,7 @@ const XTSY270: React.FC = () => {
               <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-muted-foreground leading-tight">
                 XTSY 270°
               </h1>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-light mb-4 text-muted-foreground">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-muted-foreground">
                 Panorama Glass Ensuite
               </h2>
               <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -225,29 +225,29 @@ const XTSY270: React.FC = () => {
                         maintaining the highest standards of comfort and privacy.
                       </p>
                       <div className="grid grid-cols-2 gap-4">
-                        <div className="text-center p-4 bg-primary/10 rounded-lg">
-                          <Eye className="w-6 h-6 text-primary mx-auto mb-2" />
+                        <Badge variant="outline" className="bg-primary/20 border-primary/50 text-primary font-semibold backdrop-blur-sm text-center justify-center p-4">
+                          <Eye className="w-6 h-6 text-primary mb-2" />
                           <div className="text-sm font-medium">270° Views</div>
-                        </div>
-                        <div className="text-center p-4 bg-secondary/10 rounded-lg">
-                          <Award className="w-6 h-6 text-secondary mx-auto mb-2" />
+                        </Badge>
+                        <Badge variant="outline" className="bg-secondary/20 border-secondary/50 text-secondary font-semibold backdrop-blur-sm text-center justify-center p-4">
+                          <Award className="w-6 h-6 text-secondary mb-2" />
                           <div className="text-sm font-medium">First in India</div>
-                        </div>
+                        </Badge>
                       </div>
                     </div>
                     <div className="space-y-4">
-                      <div className="flex items-center gap-3 p-4 bg-primary/5 rounded-lg">
-                        <Mountain className="w-5 h-5 text-primary" />
+                      <Badge variant="outline" className="bg-primary/20 border-primary/50 text-primary font-semibold backdrop-blur-sm w-full justify-start p-4">
+                        <Mountain className="w-5 h-5 text-primary mr-2" />
                         <span className="text-sm">Panoramic mountain vistas</span>
-                      </div>
-                      <div className="flex items-center gap-3 p-4 bg-secondary/5 rounded-lg">
-                        <Sun className="w-5 h-5 text-secondary" />
+                      </Badge>
+                      <Badge variant="outline" className="bg-secondary/20 border-secondary/50 text-secondary font-semibold backdrop-blur-sm w-full justify-start p-4">
+                        <Sun className="w-5 h-5 text-secondary mr-2" />
                         <span className="text-sm">Sunrise to sunset immersion</span>
-                      </div>
-                      <div className="flex items-center gap-3 p-4 bg-primary/5 rounded-lg">
-                        <Moon className="w-5 h-5 text-primary" />
+                      </Badge>
+                      <Badge variant="outline" className="bg-primary/20 border-primary/50 text-primary font-semibold backdrop-blur-sm w-full justify-start p-4">
+                        <Moon className="w-5 h-5 text-primary mr-2" />
                         <span className="text-sm">Stargazing sanctuary</span>
-                      </div>
+                      </Badge>
                     </div>
                   </div>
                 </CardContent>
