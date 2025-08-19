@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { 
@@ -32,8 +31,8 @@ const ServicesSection = () => {
     },
     {
       icon: <Coffee className="h-5 w-5" />,
-      title: "Café & Snacks",
-      description: "On-site 24/7 convenience store with local delicacies",
+      title: "On-site 24/7 convenience store",
+      description: "24/7 convenience store with local delicacies",
       badge: "24/7"
     },
     {
@@ -75,7 +74,7 @@ const ServicesSection = () => {
     {
       icon: <Calendar className="h-5 w-5" />,
       title: "Event Space",
-      description: "Property booking for special events, photoshoots, yoga retreats and programs",
+      description: "Special events, photoshoots, retreats, and programs booking",
       badge: "Bookable"
     },
     {
