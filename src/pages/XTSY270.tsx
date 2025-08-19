@@ -48,6 +48,41 @@ const XTSY270: React.FC = () => {
     addOrUpdateCanonical(canonicalUrl);
   }, []);
 
+  const handleBookingClick = () => {
+    const message = `🏔️ *XTSY 270° Panorama Glass Ensuite Booking Inquiry* 🏔️
+
+Hi XTSY Team! ✨
+
+I'm interested in booking the XTSY 270° - India's first panoramic glass house experience! 
+
+🏨 *Property Details:*
+• XTSY 270° Panorama Glass Ensuite
+• India's first 270° glass house with mountain views
+• Premium luxury accommodation in Shillong, Meghalaya
+
+💰 *Current Rates:*
+• Weekday: ₹${XTSY270_DATA.weekdayPrice.toLocaleString()}/night
+• Weekend: ₹${XTSY270_DATA.weekendPrice.toLocaleString()}/night
+
+🛏️ *Room Features:*
+• Queen bed accommodation for up to 2 guests
+• Private ensuite bathroom
+• 270° panoramic mountain views
+• Architectural excellence with transparent sanctuary design
+
+Could you please help me with:
+• Availability for my preferred dates
+• Final pricing and booking process
+• Any special packages or add-on services
+
+Looking forward to experiencing this incredible architectural marvel! 🌿
+
+Thank you! 😊`;
+
+    const whatsappUrl = `https://wa.me/918837317070?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
   const roomLd = {
     '@context': 'https://schema.org',
     '@type': 'HotelRoom',
@@ -189,7 +224,11 @@ const XTSY270: React.FC = () => {
 
             {/* CTA Section */}
             <div className="text-center mt-12 animate-fade-in" style={{ animationDelay: '0.8s' }}>
-              <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+              <Button 
+                size="lg" 
+                onClick={handleBookingClick}
+                className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+              >
                 Reserve Your Luxury Experience
               </Button>
               <p className="text-sm text-muted-foreground mt-3">
@@ -215,7 +254,7 @@ const XTSY270: React.FC = () => {
               </div>
               
               <Card className="bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-sm border-primary/20 shadow-xl">
-                <CardContent className="p-8 md:p-12">
+                <CardContent className="p-4 md:p-6">
                   <div className="grid md:grid-cols-2 gap-8 items-center">
                     <div>
                       <h3 className="text-2xl font-semibold mb-4 text-foreground">India's First 270° Glass House</h3>
@@ -283,21 +322,21 @@ const XTSY270: React.FC = () => {
             {/* Experience Details */}
             <div className="mb-20 animate-fade-in">
               <Card className="bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-sm border-primary/20 shadow-xl">
-                <CardContent className="p-4 md:p-6">
-                  <div className="grid lg:grid-cols-3 gap-4">
-                    <Badge variant="outline" className="bg-primary/20 border-primary/50 text-primary font-semibold backdrop-blur-sm text-center justify-center p-4 flex-col">
-                      <Users className="w-8 h-8 text-primary mx-auto mb-2" />
-                      <h3 className="text-lg font-semibold mb-1">Occupancy</h3>
+                <CardContent className="p-3 md:p-4">
+                  <div className="grid lg:grid-cols-3 gap-3">
+                    <Badge variant="outline" className="bg-primary/20 border-primary/50 text-primary font-semibold backdrop-blur-sm text-center justify-center p-3 flex-col">
+                      <Users className="w-6 h-6 text-primary mx-auto mb-2" />
+                      <h3 className="text-base font-semibold mb-1">Occupancy</h3>
                       <p className="text-muted-foreground text-sm">Up to 2 guests in supreme comfort</p>
                     </Badge>
-                    <Badge variant="outline" className="bg-primary/20 border-primary/50 text-primary font-semibold backdrop-blur-sm text-center justify-center p-4 flex-col">
-                      <Bed className="w-8 h-8 text-primary mx-auto mb-2" />
-                      <h3 className="text-lg font-semibold mb-1">Bedding</h3>
+                    <Badge variant="outline" className="bg-primary/20 border-primary/50 text-primary font-semibold backdrop-blur-sm text-center justify-center p-3 flex-col">
+                      <Bed className="w-6 h-6 text-primary mx-auto mb-2" />
+                      <h3 className="text-base font-semibold mb-1">Bedding</h3>
                       <p className="text-muted-foreground text-sm">Queen bed with premium linens</p>
                     </Badge>
-                    <Badge variant="outline" className="bg-primary/20 border-primary/50 text-primary font-semibold backdrop-blur-sm text-center justify-center p-4 flex-col">
-                      <Bath className="w-8 h-8 text-primary mx-auto mb-2" />
-                      <h3 className="text-lg font-semibold mb-1">Ensuite</h3>
+                    <Badge variant="outline" className="bg-primary/20 border-primary/50 text-primary font-semibold backdrop-blur-sm text-center justify-center p-3 flex-col">
+                      <Bath className="w-6 h-6 text-primary mx-auto mb-2" />
+                      <h3 className="text-base font-semibold mb-1">Ensuite</h3>
                       <p className="text-muted-foreground text-sm">Private luxury bathroom</p>
                     </Badge>
                   </div>
@@ -314,7 +353,11 @@ const XTSY270: React.FC = () => {
                   <p className="text-muted-foreground mb-6">
                     Nestled in the pristine hills of Northeast India's Scotland of the East
                   </p>
-                  <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 w-full">
+                  <Button 
+                    size="lg" 
+                    onClick={handleBookingClick}
+                    className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 w-full"
+                  >
                     Book Your 270° Experience
                   </Button>
                   <p className="text-sm text-muted-foreground mt-4">
