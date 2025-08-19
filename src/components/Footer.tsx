@@ -7,23 +7,26 @@ const Footer = () => {
     <footer className="bg-gray-900 text-white py-12 sm:py-16">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
-          {/* Brand Section - Larger space */}
-          <div className="lg:col-span-1 space-y-6">
-            <div className="flex flex-col items-center lg:items-start justify-center lg:justify-start">
+          {/* Brand Section */}
+          <div className="text-center lg:text-left">
+            <div className="flex items-center gap-3 justify-center lg:justify-start mb-6">
               <img 
                 src="/lovable-uploads/737fc57d-44c2-4784-a8ce-4ad5bcc174ff.png" 
                 alt="XTSY Brand Logo" 
-                className="w-44 h-44 sm:w-52 sm:h-52 lg:w-56 lg:h-56 object-contain lg:ml-0" 
+                className="w-8 h-8 object-contain" 
               />
-              <p className="text-gray-300 text-base leading-relaxed text-center lg:text-left max-w-sm mx-auto lg:mx-0 mt-3 lg:ml-0">
+              <h3 className="text-xl font-semibold text-white">XTSY</h3>
+            </div>
+            <ul className="space-y-4">
+              <li className="text-gray-300 text-base leading-relaxed justify-center lg:justify-start">
                 Experience the authentic vibe of Shillong and unforgettable adventures with XTSY!
-              </p>
-              <div className="flex space-x-6 justify-center lg:justify-start mt-4 lg:ml-0">
+              </li>
+              <li className="flex space-x-6 justify-center lg:justify-start">
                 <Instagram className="h-6 w-6 text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-300" />
                 <Facebook className="h-6 w-6 text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-300" />
                 <Twitter className="h-6 w-6 text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-300" />
-              </div>
-            </div>
+              </li>
+            </ul>
           </div>
 
           {/* Quick Links */}
