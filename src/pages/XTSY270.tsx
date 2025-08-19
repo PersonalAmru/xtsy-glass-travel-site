@@ -107,7 +107,7 @@ const XTSY270: React.FC = () => {
                 <Award className="w-3 h-3 mr-1" />
                 India's First 270° Glass House
               </Badge>
-              <Badge variant="outline" className="bg-secondary/20 border-secondary/50 text-secondary font-semibold backdrop-blur-sm">
+              <Badge variant="outline" className="bg-primary/20 border-primary/50 text-primary font-semibold backdrop-blur-sm">
                 <Star className="w-3 h-3 mr-1" />
                 Architectural Excellence
               </Badge>
