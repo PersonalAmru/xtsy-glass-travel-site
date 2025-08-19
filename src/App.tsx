@@ -48,7 +48,7 @@ function App() {
         <Sonner />
         
         {/* Glassmorphism Header */}
-        <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
+        <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-lg border-b border-white/20 shadow-lg">
           <nav className="responsive-container">
             <div className="flex items-center justify-between h-16">
               {/* Logo */}
