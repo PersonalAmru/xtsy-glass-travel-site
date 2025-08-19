@@ -49,7 +49,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
         <MobileImageCarousel
           images={images}
           alt={room.name}
-          className="h-64"
+          className="h-80"
           aspectRatio="photo"
           showIndicators={true}
           showArrows={true}
