@@ -1,3 +1,4 @@
+
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Phone, Clock, Users, Heart, Globe, Award, Camera, Building2, Star, Shield, Wifi } from "lucide-react";
 
@@ -110,7 +111,7 @@ const AboutSection = () => {
 
         
         {/* Core Services Section - Sliding Tags Only */}
-        <section className="mb-12 overflow-hidden bg-white/80 backdrop-blur-sm rounded-2xl shadow-soft border border-white/50">
+        <section className="mb-12 overflow-hidden bg-black rounded-2xl shadow-soft border border-gray-800">
           <header className="flex items-center py-4 px-6 bg-primary">
             <Award className="w-5 h-5 text-primary-foreground mr-3" />
             <h2 className="text-primary-foreground font-semibold">Core Services & Facilities</h2>
@@ -158,7 +159,7 @@ const AboutSection = () => {
             ))}
           </div>
           <footer className="px-6 pb-4">
-            <p className="text-xs text-slate-500 text-center">← Auto-sliding services showcase →</p>
+            <p className="text-xs text-gray-400 text-center">← Auto-sliding services showcase →</p>
           </footer>
         </section>
 
