@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { 
@@ -112,21 +113,21 @@ const ServicesSection = () => {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 mt-8">
           {services.map((service, index) => (
             <Card key={index} className="bg-white/80 backdrop-blur-sm border border-gray-200 hover:border-orange-300 hover:shadow-md transition-all duration-300 h-32 sm:h-36 flex flex-col">
-              <CardHeader className="p-3 pb-1 flex-1">
+              <CardHeader className="p-2 pb-1 flex-1">
                 <div className="flex items-center justify-between mb-1">
-                  <div className="text-orange-500">
+                  <div className="text-orange-500 flex-shrink-0">
                     {service.icon}
                   </div>
-                  <Badge variant="outline" className="text-xs border-orange-300 text-orange-600 bg-orange-50 px-1 py-0.5">
+                  <Badge variant="outline" className="text-xs border-orange-300 text-orange-600 bg-orange-50 px-1 py-0.5 flex-shrink-0">
                     {service.badge}
                   </Badge>
                 </div>
-                <CardTitle className="text-xs sm:text-sm font-bold text-gray-900 leading-tight line-clamp-2">
+                <CardTitle className="text-xs sm:text-sm font-bold text-gray-900 leading-tight">
                   {service.title}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-3 pt-0">
-                <CardDescription className="text-xs text-gray-600 line-clamp-2">
+              <CardContent className="p-2 pt-0 flex-1 flex items-start">
+                <CardDescription className="text-xs text-gray-600 leading-tight overflow-hidden">
                   {service.description}
                 </CardDescription>
               </CardContent>
