@@ -38,7 +38,6 @@ function App() {
     { to: "/gallery", label: "Gallery" },
     { to: "/deals", label: "Deals" },
     { to: "/xtsy-270", label: "XTSY 270°" },
-    { to: "/faq", label: "FAQ" },
     { to: "/travel", label: "Travel" }
   ];
 
