@@ -2,8 +2,18 @@
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, Instagram, Linkedin, Youtube, Home, Info, Image, Tag, Plane, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
 
 const Footer = () => {
+  const [logoLoaded, setLogoLoaded] = useState(false);
+
+  // Preload logo
+  useEffect(() => {
+    const img = new Image();
+    img.onload = () => setLogoLoaded(true);
+    img.src = "/src/assets/xtsy-brand-logo.png";
+  }, []);
+
   return (
     <footer className="bg-gray-900 text-white py-12 sm:py-16">
       <div className="container mx-auto px-4 sm:px-6">
@@ -11,11 +21,16 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="text-center lg:text-left">
             <div className="flex items-center gap-3 justify-center lg:justify-start mb-8">
-              <img 
-                src="/src/assets/xtsy-brand-logo.png" 
-                alt="XTSY Travellers Hostel Logo"
-                className="h-16 sm:h-20 w-auto object-contain"
-              />
+              {logoLoaded ? (
+                <img 
+                  src="/src/assets/xtsy-brand-logo.png" 
+                  alt="XTSY Travellers Hostel Logo"
+                  className="h-16 sm:h-20 w-auto object-contain"
+                  loading="lazy"
+                />
+              ) : (
+                <div className="h-16 sm:h-20 w-32 bg-gray-600/50 animate-pulse rounded"></div>
+              )}
             </div>
             <ul className="space-y-6">
               <li className="text-gray-300 text-base leading-relaxed justify-center lg:justify-start">
