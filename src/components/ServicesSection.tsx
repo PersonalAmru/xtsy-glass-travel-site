@@ -26,9 +26,9 @@ const ServicesSection = () => {
     },
     {
       icon: <Car className="h-5 w-5" />,
-      title: "Parking",
+      title: "Free parking",
       description: "Secure parking available for guests",
-      badge: "Available"
+      badge: "Free"
     },
     {
       icon: <Coffee className="h-5 w-5" />,
