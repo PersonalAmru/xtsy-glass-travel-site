@@ -1,25 +1,16 @@
-
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, Instagram, Facebook, Twitter, Home, Info, Image, Tag, Plane, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
 const Footer = () => {
-  return (
-    <footer className="bg-gray-900 text-white py-12 sm:py-16">
+  return <footer className="bg-gray-900 text-white py-12 sm:py-16">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
           {/* Brand Section - Larger space */}
           <div className="lg:col-span-1 space-y-6">
-            <div className="flex flex-col items-center justify-center lg:justify-start">
-              <img 
-                src="/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png" 
-                alt="XTSY Brand Logo" 
-                className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 object-contain" 
-              />
-              <p className="text-gray-300 text-base leading-relaxed text-center lg:text-left max-w-sm mx-auto lg:mx-0 mt-4">
-                Experience the authentic vibe of Shillong and unforgettable adventures with XTSY!
-              </p>
+            <div className="flex items-center justify-center lg:justify-start">
+              <img src="/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png" alt="XTSY Brand Logo" className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 object-contain" />
             </div>
+            <p className="text-gray-300 text-base leading-relaxed text-center lg:text-left max-w-sm mx-auto lg:mx-0">Experience the authentic vibe of Shillong and unforgettable adventures with XTSY!</p>
             <div className="flex space-x-6 justify-center lg:justify-start">
               <Instagram className="h-6 w-6 text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-300" />
               <Facebook className="h-6 w-6 text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-300" />
@@ -111,8 +102,6 @@ const Footer = () => {
           <p className="text-gray-400 text-base">© 2024 XTSY. All rights reserved. Experience the XTSY Vibe.</p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
