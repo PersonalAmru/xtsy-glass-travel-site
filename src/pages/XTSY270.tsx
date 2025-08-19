@@ -111,7 +111,7 @@ const XTSY270: React.FC = () => {
                 <Star className="w-3 h-3 mr-1" />
                 Architectural Excellence
               </Badge>
-              <Badge variant="outline" className="bg-primary/20 border-primary/50 text-foreground font-semibold backdrop-blur-sm">
+              <Badge variant="outline" className="bg-primary/20 border-primary/50 text-primary font-semibold backdrop-blur-sm">
                 <Mountain className="w-3 h-3 mr-1" />
                 Premium Mountain Views
               </Badge>
