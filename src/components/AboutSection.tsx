@@ -1,23 +1,66 @@
+
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Phone, Clock, Users, Heart, Globe, Award, Camera } from "lucide-react";
+import { MapPin, Phone, Clock, Users, Heart, Globe, Award, Camera, Building2, Star, Shield, Wifi } from "lucide-react";
 
 const AboutSection = () => {
-  const coreServices = [{
-    icon: Camera,
-    text: "270° Panorama Glass Ensuite",
-    trend: "Premium",
-    description: "Shillong's exclusive panoramic mountain view experience"
-  }, {
-    icon: Users,
-    text: "Dormitory Accommodations",
-    trend: "Budget", 
-    description: "Comfortable shared spaces for budget travelers"
-  }, {
-    icon: Globe,
-    text: "Northeast India Tours",
-    trend: "Specialty",
-    description: "Expertly curated regional exploration packages"
-  }];
+  const coreServices = [
+    {
+      icon: Building2,
+      title: "Biggest Hostel in Shillong",
+      category: "Scale",
+      description: "Northeast India's largest hostel accommodation facility with 100+ beds across multiple room categories.",
+      features: ["100+ Bed Capacity", "Multiple Buildings", "Largest in NE India"]
+    },
+    {
+      icon: Star,
+      title: "Best Budget Accommodation",
+      category: "Value", 
+      description: "Premium amenities at budget-friendly prices, making luxury accessible to all travelers.",
+      features: ["Premium Amenities", "Budget Pricing", "Best Value Proposition"]
+    },
+    {
+      icon: Camera,
+      title: "270° Panorama Glass Ensuite",
+      category: "Luxury",
+      description: "Shillong's exclusive panoramic mountain view experience with floor-to-ceiling glass walls.",
+      features: ["360° Mountain Views", "Glass Architecture", "Exclusive Experience"]
+    },
+    {
+      icon: Users,
+      title: "Comprehensive Dormitories", 
+      category: "Accommodation",
+      description: "Mixed, female-only, and economy dormitory options with premium comfort standards.",
+      features: ["6-Bed & 8-Bed Dorms", "Female-Only Options", "Economy Categories"]
+    },
+    {
+      icon: Shield,
+      title: "24/7 Security & Safety",
+      category: "Security",
+      description: "Round-the-clock security with CCTV monitoring and trained security personnel.",
+      features: ["24/7 CCTV", "Trained Security", "Safe Environment"]
+    },
+    {
+      icon: Wifi,
+      title: "High-Speed WiFi & Amenities",
+      category: "Technology", 
+      description: "Complimentary high-speed internet, modern facilities, and premium guest amenities.",
+      features: ["Free High-Speed WiFi", "Modern Facilities", "Premium Amenities"]
+    },
+    {
+      icon: Globe,
+      title: "Northeast India Tours",
+      category: "Travel",
+      description: "Expertly curated regional exploration packages covering all Northeast states.",
+      features: ["All 8 NE States", "Expert Guides", "Cultural Immersion"]
+    },
+    {
+      icon: MapPin,
+      title: "Prime Shillong Location",
+      category: "Location",
+      description: "Strategically located in the heart of Shillong with easy access to major attractions.",
+      features: ["City Center Location", "Tourist Attractions Nearby", "Easy Transportation"]
+    }
+  ];
 
   const highlights = [{
     number: "★★★★★",
@@ -33,6 +76,7 @@ const AboutSection = () => {
   return (
     <section id="about" className="pt-20 py-16 sm:py-20 px-3 sm:px-4 bg-gradient-to-br from-slate-50 via-white to-slate-100 relative overflow-hidden">
       
+      {/* Background Animation Elements */}
       <div className="absolute inset-0">
         {[...Array(4)].map((_, i) => (
           <div 
@@ -50,7 +94,8 @@ const AboutSection = () => {
 
       <div className="container mx-auto max-w-7xl relative z-10">
         
-        <div className="text-center mb-12 sm:mb-16 bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-white/50">
+        {/* Header Section */}
+        <header className="text-center mb-12 sm:mb-16 bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-white/50">
           <div className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-elegant">
             <Award className="w-4 h-4" />
             <span>Premium Hospitality Excellence</span>
@@ -62,47 +107,56 @@ const AboutSection = () => {
             comprehensive dormitory facilities, and expertly curated 
             <strong className="text-slate-800"> Meghalaya tour packages</strong>.
           </p>
-        </div>
+        </header>
 
         
-        <div className="mb-12 overflow-hidden bg-white/80 backdrop-blur-sm rounded-2xl shadow-soft border border-white/50">
-          <div className="flex items-center py-4 px-6 bg-primary">
+        {/* Core Services Section */}
+        <section className="mb-12 overflow-hidden bg-white/80 backdrop-blur-sm rounded-2xl shadow-soft border border-white/50">
+          <header className="flex items-center py-4 px-6 bg-primary">
             <Award className="w-5 h-5 text-primary-foreground mr-3" />
-            <span className="text-primary-foreground font-semibold">Core Services</span>
-          </div>
-          <div className="flex overflow-x-auto space-x-4 py-6 px-6 scrollbar-hide">
+            <h2 className="text-primary-foreground font-semibold">Core Services & Facilities</h2>
+          </header>
+          <div className="flex overflow-x-auto space-x-3 py-6 px-6 scrollbar-hide">
             {coreServices.map((service, index) => (
               <article 
                 key={index} 
-                className="flex-none w-80 bg-white/90 backdrop-blur-sm rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 group"
+                className="flex-none w-72 bg-white/95 backdrop-blur-sm rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 group"
               >
-                <div className="p-6">
+                <div className="p-5">
                   <header className="flex items-center space-x-3 mb-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
-                      <service.icon className="w-6 h-6 text-primary" />
+                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                      <service.icon className="w-5 h-5 text-primary" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-slate-800 font-semibold text-lg leading-tight">
-                        {service.text}
+                      <h3 className="text-slate-800 font-semibold text-base leading-tight mb-1">
+                        {service.title}
                       </h3>
-                      <span className="inline-block bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium mt-1">
-                        {service.trend}
+                      <span className="inline-block bg-primary text-primary-foreground px-2 py-1 rounded-full text-xs font-medium">
+                        {service.category}
                       </span>
                     </div>
                   </header>
-                  <p className="text-slate-600 text-sm leading-relaxed">
+                  <p className="text-slate-600 text-sm leading-relaxed mb-3">
                     {service.description}
                   </p>
+                  <ul className="space-y-1">
+                    {service.features.map((feature, idx) => (
+                      <li key={idx} className="text-xs text-slate-500 flex items-center">
+                        <div className="w-1 h-1 bg-primary rounded-full mr-2"></div>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </article>
             ))}
           </div>
-          <div className="px-6 pb-4">
+          <footer className="px-6 pb-4">
             <p className="text-xs text-slate-500 text-center">← Scroll horizontally to explore all services →</p>
-          </div>
-        </div>
+          </footer>
+        </section>
 
-        
+        {/* Story and Contact Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 mb-16">
           <div className="space-y-6">
             <Card className="bg-white/90 backdrop-blur-sm border border-white/50 shadow-elegant overflow-hidden group hover:shadow-soft transition-shadow duration-300">
@@ -178,7 +232,7 @@ const AboutSection = () => {
           </div>
         </div>
 
-        
+        {/* Services Grid */}
         <div className="mb-16 bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-white/50">
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 text-slate-800">
             Our Services
@@ -238,7 +292,7 @@ const AboutSection = () => {
           </div>
         </div>
 
-        
+        {/* Excellence Highlights */}
         <div className="bg-primary rounded-3xl p-8 sm:p-12 text-primary-foreground mb-16 shadow-xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
@@ -264,7 +318,7 @@ const AboutSection = () => {
         </div>
       </div>
 
-      
+      {/* Custom Styles */}
       <style>
         {`
           .scrollbar-hide {
