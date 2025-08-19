@@ -225,12 +225,12 @@ const XTSY270: React.FC = () => {
                         maintaining the highest standards of comfort and privacy.
                       </p>
                       <div className="grid grid-cols-2 gap-4">
-                        <Badge variant="outline" className="bg-primary/20 border-primary/50 text-primary font-semibold backdrop-blur-sm text-center justify-center p-4">
+                        <Badge variant="outline" className="bg-primary/20 border-primary/50 text-primary font-semibold backdrop-blur-sm text-center justify-center p-4 flex-col">
                           <Eye className="w-6 h-6 text-primary mb-2" />
                           <div className="text-sm font-medium">270° Views</div>
                         </Badge>
-                        <Badge variant="outline" className="bg-secondary/20 border-secondary/50 text-secondary font-semibold backdrop-blur-sm text-center justify-center p-4">
-                          <Award className="w-6 h-6 text-secondary mb-2" />
+                        <Badge variant="outline" className="bg-primary/20 border-primary/50 text-primary font-semibold backdrop-blur-sm text-center justify-center p-4 flex-col">
+                          <Award className="w-6 h-6 text-primary mb-2" />
                           <div className="text-sm font-medium">First in India</div>
                         </Badge>
                       </div>
