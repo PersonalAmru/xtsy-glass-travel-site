@@ -1,19 +1,24 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Phone, Clock, Users, Heart, Globe, Award, Camera } from "lucide-react";
+
 const AboutSection = () => {
   const coreServices = [{
     icon: Camera,
     text: "270° Panorama Glass Ensuite",
-    trend: "Premium"
+    trend: "Premium",
+    description: "Shillong's exclusive panoramic mountain view experience"
   }, {
     icon: Users,
     text: "Dormitory Accommodations",
-    trend: "Budget"
+    trend: "Budget", 
+    description: "Comfortable shared spaces for budget travelers"
   }, {
     icon: Globe,
     text: "Northeast India Tours",
-    trend: "Specialty"
+    trend: "Specialty",
+    description: "Expertly curated regional exploration packages"
   }];
+
   const highlights = [{
     number: "★★★★★",
     label: "Excellence Rating"
@@ -24,15 +29,23 @@ const AboutSection = () => {
     number: "100%",
     label: "Safety"
   }];
-  return <section id="about" className="pt-20 py-16 sm:py-20 px-3 sm:px-4 bg-gradient-to-br from-slate-50 via-white to-slate-100 relative overflow-hidden">
+
+  return (
+    <section id="about" className="pt-20 py-16 sm:py-20 px-3 sm:px-4 bg-gradient-to-br from-slate-50 via-white to-slate-100 relative overflow-hidden">
       
       <div className="absolute inset-0">
-        {[...Array(4)].map((_, i) => <div key={i} className="absolute w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-r from-orange-400/3 to-red-400/3 rounded-full blur-xl animate-pulse" style={{
-        left: `${20 + i * 15}%`,
-        top: `${15 + i * 20}%`,
-        animationDelay: `${i * 2}s`,
-        animationDuration: `${5 + i * 0.5}s`
-      }} />)}
+        {[...Array(4)].map((_, i) => (
+          <div 
+            key={i} 
+            className="absolute w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-r from-orange-400/3 to-red-400/3 rounded-full blur-xl animate-pulse" 
+            style={{
+              left: `${20 + i * 15}%`,
+              top: `${15 + i * 20}%`,
+              animationDelay: `${i * 2}s`,
+              animationDuration: `${5 + i * 0.5}s`
+            }} 
+          />
+        ))}
       </div>
 
       <div className="container mx-auto max-w-7xl relative z-10">
@@ -40,7 +53,7 @@ const AboutSection = () => {
         <div className="text-center mb-12 sm:mb-16 bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-white/50">
           <div className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-elegant">
             <Award className="w-4 h-4" />
-            Premium Hospitality Excellence
+            <span>Premium Hospitality Excellence</span>
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-800 mb-6">About XTSY!</h1>
           <p className="text-lg sm:text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
@@ -58,19 +71,34 @@ const AboutSection = () => {
             <span className="text-primary-foreground font-semibold">Core Services</span>
           </div>
           <div className="flex overflow-x-auto space-x-4 py-6 px-6 scrollbar-hide">
-            {coreServices.map((service, index) => <div key={index} className="flex items-center space-x-3 min-w-fit bg-white/90 backdrop-blur-sm px-4 py-3 rounded-xl border border-slate-200 shadow-sm animate-bounce" style={{
-            animationDelay: `${index * 0.5}s`,
-            animationDuration: '2s',
-            animationIterationCount: 'infinite'
-          }}>
-                <service.icon className="w-5 h-5 text-primary animate-pulse" />
-                <span className="text-slate-800 font-medium whitespace-nowrap">{service.text}</span>
-                <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium animate-pulse" style={{
-              animationDelay: `${index * 0.3}s`
-            }}>
-                  {service.trend}
-                </span>
-              </div>)}
+            {coreServices.map((service, index) => (
+              <article 
+                key={index} 
+                className="flex-none w-80 bg-white/90 backdrop-blur-sm rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 group"
+              >
+                <div className="p-6">
+                  <header className="flex items-center space-x-3 mb-4">
+                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                      <service.icon className="w-6 h-6 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-slate-800 font-semibold text-lg leading-tight">
+                        {service.text}
+                      </h3>
+                      <span className="inline-block bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium mt-1">
+                        {service.trend}
+                      </span>
+                    </div>
+                  </header>
+                  <p className="text-slate-600 text-sm leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+          <div className="px-6 pb-4">
+            <p className="text-xs text-slate-500 text-center">← Scroll horizontally to explore all services →</p>
           </div>
         </div>
 
@@ -222,14 +250,16 @@ const AboutSection = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {highlights.map((highlight, index) => <div key={index} className="text-center group">
+            {highlights.map((highlight, index) => (
+              <div key={index} className="text-center group">
                 <div className="text-3xl sm:text-4xl font-bold mb-2 group-hover:scale-105 transition-transform duration-300">
                   {highlight.number}
                 </div>
                 <div className="text-lg font-semibold">
                   {highlight.label}
                 </div>
-              </div>)}
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -246,6 +276,8 @@ const AboutSection = () => {
           }
         `}
       </style>
-    </section>;
+    </section>
+  );
 };
+
 export default AboutSection;
