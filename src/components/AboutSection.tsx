@@ -15,10 +15,21 @@ const AboutSection = () => {
   ];
 
   return (
-    <section id="about" className="pt-20 py-16 sm:py-20 px-3 sm:px-4 bg-background relative overflow-hidden">
+    <section id="about" className="pt-20 py-16 sm:py-20 px-3 sm:px-4 bg-white relative overflow-hidden">
       
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-subtle opacity-40"></div>
+        {[...Array(4)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-r from-orange-400/10 to-red-400/10 rounded-full blur-xl animate-pulse"
+            style={{
+              left: `${15 + i * 20}%`,
+              top: `${10 + i * 20}%`,
+              animationDelay: `${i * 1.5}s`,
+              animationDuration: `${4 + i * 0.5}s`
+            }}
+          />
+        ))}
       </div>
 
       <div className="container mx-auto max-w-7xl relative z-10">
