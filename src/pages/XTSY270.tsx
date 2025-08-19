@@ -1,13 +1,26 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { XTSY270_DATA } from '@/data/rooms/xtsy270';
 import MobileImageCarousel from '@/components/MobileImageCarousel';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Calendar, Mountain, Star, Award, Eye, Sun, Moon, Wifi, Coffee, Bath, Bed, Users, MapPin } from 'lucide-react';
 
 const XTSY270: React.FC = () => {
+  const [isWeekend, setIsWeekend] = useState(false);
   const title = XTSY270_DATA.seoTitle;
   const description = XTSY270_DATA.seoDescription;
   const canonicalUrl = XTSY270_DATA.canonicalUrl;
+
+  // Check if current day is weekend for dynamic pricing
+  useEffect(() => {
+    const today = new Date().getDay();
+    setIsWeekend(today === 0 || today === 6); // Sunday = 0, Saturday = 6
+  }, []);
+
+  const currentPrice = isWeekend ? XTSY270_DATA.weekendPrice : XTSY270_DATA.weekdayPrice;
 
   const updateOrCreateMeta = (name: string, content: string) => {
     let el = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
@@ -60,91 +73,239 @@ const XTSY270: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
       <Header />
-      <main className="pt-20 relative overflow-hidden">
-        {/* Background animations similar to Gallery page */}
-        <div className="absolute inset-0">
-          {[...Array(4)].map((_, i) => (
+      
+      {/* Luxury Hero Section */}
+      <main className="pt-16 relative overflow-hidden">
+        {/* Premium Background Effects */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/5 via-transparent to-primary/5">
+          {[...Array(6)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-r from-orange-400/10 to-red-400/10 rounded-full blur-xl animate-pulse"
+              className="absolute rounded-full animate-pulse opacity-30"
               style={{
-                left: `${15 + i * 20}%`,
-                top: `${10 + i * 20}%`,
-                animationDelay: `${i * 1.5}s`,
-                animationDuration: `${4 + i * 0.5}s`
+                width: `${80 + i * 20}px`,
+                height: `${80 + i * 20}px`,
+                background: `linear-gradient(135deg, hsl(var(--primary)) ${10 + i * 15}%, hsl(var(--secondary)) ${50 + i * 10}%)`,
+                left: `${10 + i * 15}%`,
+                top: `${5 + i * 12}%`,
+                animationDelay: `${i * 0.8}s`,
+                animationDuration: `${3 + i * 0.3}s`,
+                filter: 'blur(40px)'
               }}
             />
           ))}
         </div>
 
-        <header className="py-14 px-4 text-center relative z-10">
-          <div className="container mx-auto max-w-5xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">{XTSY270_DATA.name}</h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              {XTSY270_DATA.seoDescription}
-            </p>
-            <figure className="mt-6" aria-label="Hero images for XTSY 270° Panorama Glass Ensuite">
-              <div className="w-full rounded-lg overflow-hidden shadow-md bg-muted">
+        {/* Hero Section */}
+        <section className="relative z-10 pt-8 pb-16">
+          <div className="container mx-auto max-w-7xl px-4">
+            {/* Luxury Badges */}
+            <div className="flex flex-wrap justify-center gap-3 mb-8 animate-fade-in">
+              <Badge variant="outline" className="bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/30 text-primary">
+                <Award className="w-3 h-3 mr-1" />
+                India's First 270° Glass House
+              </Badge>
+              <Badge variant="outline" className="bg-gradient-to-r from-secondary/10 to-primary/10 border-secondary/30 text-secondary">
+                <Star className="w-3 h-3 mr-1" />
+                Architectural Excellence
+              </Badge>
+              <Badge variant="outline" className="bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/30 text-foreground">
+                <Mountain className="w-3 h-3 mr-1" />
+                Premium Mountain Views
+              </Badge>
+            </div>
+
+            {/* Hero Title */}
+            <div className="text-center mb-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 bg-gradient-to-br from-foreground via-foreground to-muted-foreground bg-clip-text text-transparent leading-tight">
+                XTSY 270°
+              </h1>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-light mb-4 text-muted-foreground">
+                Panorama Glass Ensuite
+              </h2>
+              <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                Experience India's most innovative architectural marvel — a 200% luxury ensuite with stunning 270° mountain panoramas that redefine hospitality excellence.
+              </p>
+            </div>
+
+            {/* Pricing Display */}
+            <div className="flex justify-center mb-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+              <Card className="bg-gradient-to-br from-card/80 to-card backdrop-blur-sm border-primary/20 shadow-lg">
+                <CardContent className="p-6 text-center">
+                  <div className="flex items-center justify-center gap-4 mb-2">
+                    <Calendar className="w-5 h-5 text-primary" />
+                    <span className="text-sm font-medium text-muted-foreground">
+                      {isWeekend ? 'Weekend Rate' : 'Weekday Rate'}
+                    </span>
+                  </div>
+                  <div className="text-3xl font-bold text-primary mb-2">
+                    ₹{currentPrice.toLocaleString()}
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    per night • {isWeekend ? 'Weekends ₹18,000' : 'Weekdays ₹12,000'}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Hero Image Carousel */}
+            <figure className="animate-fade-in" style={{ animationDelay: '0.6s' }} aria-label="XTSY 270° Panorama Glass Ensuite luxury experience">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-card/50 to-card backdrop-blur-sm border border-primary/10">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10" />
                 <MobileImageCarousel
                   images={XTSY270_DATA.images}
-                  alt="270° Panorama Glass Ensuite — panoramic mountain and valley views in Shillong"
+                  alt="XTSY 270° Panorama Glass Ensuite — India's first luxury glass house with 270-degree mountain views"
                   aspectRatio="video"
                   showIndicators={true}
                   showArrows={true}
                   autoPlay={true}
-                  autoPlayInterval={4000}
-                  className="w-full h-full"
+                  autoPlayInterval={5000}
+                  className="w-full h-[60vh] md:h-[70vh]"
                 />
               </div>
-              <figcaption className="mt-2 text-sm text-muted-foreground">Signature XTSY Luxury suite with 270° panoramic glass walls - swipe to explore views.</figcaption>
+              <figcaption className="mt-4 text-center text-muted-foreground">
+                India's first 270° panoramic glass house — where architecture meets nature in perfect harmony
+              </figcaption>
             </figure>
-          </div>
-        </header>
 
-        <main className="px-4 py-12 relative z-10">
-          <article className="container mx-auto max-w-4xl prose dark:prose-invert">
-            <section aria-labelledby="overview">
-              <h2 id="overview">Overview</h2>
-              <p>
-                The XTSY 270° Panorama Glass Ensuite is our most exclusive accommodation: floor-to-ceiling glass on three sides,
-                a private ensuite bath, and curated amenities that elevate your Shillong experience. Wake to first light over
-                lush hills, unwind under the stars, and soak in uninterrupted scenery from the comfort of your bed.
+            {/* CTA Section */}
+            <div className="text-center mt-12 animate-fade-in" style={{ animationDelay: '0.8s' }}>
+              <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+                Reserve Your Luxury Experience
+              </Button>
+              <p className="text-sm text-muted-foreground mt-3">
+                Limited availability • Book 48 hours in advance for exclusive concierge services
               </p>
-            </section>
+            </div>
+          </div>
+        </section>
 
-            <section aria-labelledby="features" className="mt-8">
-              <h2 id="features">Key Features</h2>
-              <ul>
-                <li>Expansive 270° glass architecture with insulated privacy glazing</li>
-                <li>Private ensuite bathroom with premium fittings</li>
-                <li>Queen bed with hotel-grade linen and dual pillows</li>
-                <li>High-speed Wi‑Fi for seamless streaming and remote work</li>
-                <li>Complimentary breakfast and access to common social spaces</li>
-                <li>Climate control and blackout options for restful sleep</li>
-              </ul>
-            </section>
+        {/* Luxury Content Sections */}
+        <section className="py-20 relative z-10">
+          <div className="container mx-auto max-w-7xl px-4">
+            
+            {/* The Vision Section */}
+            <div className="mb-20 animate-fade-in">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                  The Vision
+                </h2>
+                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                  Pioneering architectural innovation in the heart of Meghalaya's pristine landscapes
+                </p>
+              </div>
+              
+              <Card className="bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-sm border-primary/20 shadow-xl">
+                <CardContent className="p-8 md:p-12">
+                  <div className="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                      <h3 className="text-2xl font-semibold mb-4 text-foreground">India's First 270° Glass House</h3>
+                      <p className="text-muted-foreground leading-relaxed mb-6">
+                        Conceived as a masterpiece of contemporary architecture, XTSY 270° redefines luxury accommodation through 
+                        innovative glass engineering. Our transparent sanctuary offers an unparalleled connection with nature while 
+                        maintaining the highest standards of comfort and privacy.
+                      </p>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="text-center p-4 bg-primary/10 rounded-lg">
+                          <Eye className="w-6 h-6 text-primary mx-auto mb-2" />
+                          <div className="text-sm font-medium">270° Views</div>
+                        </div>
+                        <div className="text-center p-4 bg-secondary/10 rounded-lg">
+                          <Award className="w-6 h-6 text-secondary mx-auto mb-2" />
+                          <div className="text-sm font-medium">First in India</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3 p-4 bg-primary/5 rounded-lg">
+                        <Mountain className="w-5 h-5 text-primary" />
+                        <span className="text-sm">Panoramic mountain vistas</span>
+                      </div>
+                      <div className="flex items-center gap-3 p-4 bg-secondary/5 rounded-lg">
+                        <Sun className="w-5 h-5 text-secondary" />
+                        <span className="text-sm">Sunrise to sunset immersion</span>
+                      </div>
+                      <div className="flex items-center gap-3 p-4 bg-primary/5 rounded-lg">
+                        <Moon className="w-5 h-5 text-primary" />
+                        <span className="text-sm">Stargazing sanctuary</span>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
 
-            <section aria-labelledby="details" className="mt-8">
-              <h2 id="details">Room Details</h2>
-              <dl>
-                <dt>Occupancy</dt>
-                <dd>Up to 2 guests</dd>
-                <dt>View</dt>
-                <dd>Mountain and valley panorama</dd>
-                <dt>Bathroom</dt>
-                <dd>Private ensuite</dd>
-              </dl>
-            </section>
-          </article>
-        </main>
+            {/* Luxury Amenities Grid */}
+            <div className="mb-20 animate-fade-in">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
+                  Luxury Amenities
+                </h2>
+                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                  Every detail crafted for the discerning traveler seeking uncompromising excellence
+                </p>
+              </div>
 
-        <section className="py-8 relative z-10" aria-hidden="true">
-          <div className="container mx-auto max-w-4xl">
-            <a href="/" className="inline-flex items-center justify-center px-6 py-3 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
-              Book XTSY 270°
-            </a>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {XTSY270_DATA.luxuryFeatures.map((feature, index) => (
+                  <Card key={index} className="bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-sm border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300 group">
+                    <CardContent className="p-6 text-center">
+                      <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                        <feature.icon className="w-8 h-8 text-primary mx-auto" />
+                      </div>
+                      <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+                      <p className="text-sm text-muted-foreground">{feature.description}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            {/* Experience Details */}
+            <div className="mb-20 animate-fade-in">
+              <Card className="bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-sm border-primary/20 shadow-xl">
+                <CardContent className="p-8 md:p-12">
+                  <div className="grid lg:grid-cols-3 gap-8">
+                    <div className="text-center">
+                      <Users className="w-12 h-12 text-primary mx-auto mb-4" />
+                      <h3 className="text-xl font-semibold mb-2">Occupancy</h3>
+                      <p className="text-muted-foreground">Up to 2 guests in supreme comfort</p>
+                    </div>
+                    <div className="text-center">
+                      <Bed className="w-12 h-12 text-secondary mx-auto mb-4" />
+                      <h3 className="text-xl font-semibold mb-2">Bedding</h3>
+                      <p className="text-muted-foreground">Queen bed with premium linens</p>
+                    </div>
+                    <div className="text-center">
+                      <Bath className="w-12 h-12 text-primary mx-auto mb-4" />
+                      <h3 className="text-xl font-semibold mb-2">Ensuite</h3>
+                      <p className="text-muted-foreground">Private luxury bathroom</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Location & Booking */}
+            <div className="text-center animate-fade-in">
+              <Card className="bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-sm border-primary/20 shadow-xl max-w-2xl mx-auto">
+                <CardContent className="p-8">
+                  <MapPin className="w-8 h-8 text-primary mx-auto mb-4" />
+                  <h3 className="text-2xl font-semibold mb-4">Shillong, Meghalaya</h3>
+                  <p className="text-muted-foreground mb-6">
+                    Nestled in the pristine hills of Northeast India's Scotland of the East
+                  </p>
+                  <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 w-full">
+                    Book Your 270° Experience
+                  </Button>
+                  <p className="text-sm text-muted-foreground mt-4">
+                    Starting from ₹{XTSY270_DATA.weekdayPrice.toLocaleString()} per night • Advance booking recommended
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </section>
       </main>
