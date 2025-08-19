@@ -28,7 +28,7 @@ const AboutSection = () => {
             Premium Hospitality Excellence
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-6">
-            About XTSY
+            About XTSY Hostel
           </h1>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
             <strong className="text-foreground">India's Premier Hostel Experience</strong> in Shillong, Meghalaya. 
