@@ -68,9 +68,6 @@ const AboutSection = () => {
                   <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium">
                     {service.trend}
                   </span>
-                  <div className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">
-                    &lt;div&gt;&lt;icon/&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
-                  </div>
                 </div>
               ))}
             </div>
