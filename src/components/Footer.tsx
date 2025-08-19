@@ -8,11 +8,7 @@ const Footer = () => {
           {/* Brand Section - Larger space */}
           <div className="lg:col-span-1 space-y-6">
             <div className="flex items-center justify-center lg:justify-start">
-              <img 
-                src="/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png" 
-                alt="XTSY Brand Logo" 
-                className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 object-contain" 
-              />
+              <img src="/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png" alt="XTSY Brand Logo" className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 object-contain" />
             </div>
             <p className="text-gray-300 text-base leading-relaxed text-center lg:text-left max-w-sm mx-auto lg:mx-0">
               Experience the authentic vibe of Shillong and unforgettable adventures with XTSY!
@@ -74,8 +70,8 @@ const Footer = () => {
               <div className="flex items-start space-x-4 justify-center lg:justify-start">
                 <MapPin className="h-6 w-6 text-orange-400 mt-1 flex-shrink-0" />
                 <div className="text-gray-300 text-base leading-relaxed">
-                  <div className="font-medium text-white mb-1">XTSY Travellers Hostel, Diengiong Village,</div>
-                  <div>Mawdiangdiang road, New Shillong Township,</div>
+                  <div className="font-medium text-white mb-1">XTSY Travellers Hostel</div>
+                  <div>Diengiong, Mawdiangdiang road, New Shillong Township,</div>
                   <div>Meghalaya - 793018</div>
                 </div>
               </div>
@@ -96,10 +92,7 @@ const Footer = () => {
               </div>
               
               <div className="pt-4">
-                <Button 
-                  onClick={() => window.open('https://maps.app.goo.gl/Apj4xBxDWv8hBbSm6', '_blank')} 
-                  className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white text-base px-8 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105 shadow-lg"
-                >
+                <Button onClick={() => window.open('https://maps.app.goo.gl/Apj4xBxDWv8hBbSm6', '_blank')} className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white text-base px-8 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105 shadow-lg">
                   Get Directions
                 </Button>
               </div>
