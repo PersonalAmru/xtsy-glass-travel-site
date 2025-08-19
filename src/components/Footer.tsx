@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, Instagram, Facebook, Twitter, Home, Info, Image, Tag, Plane, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,14 +10,14 @@ const Footer = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
           {/* Brand Section */}
           <div className="text-center lg:text-left">
-            <div className="flex items-center gap-3 justify-center lg:justify-start mb-6">
+            <div className="flex items-center gap-3 justify-center lg:justify-start mb-8">
               <img 
                 src="/lovable-uploads/737fc57d-44c2-4784-a8ce-4ad5bcc174ff.png" 
                 alt="XTSY Brand Logo" 
-                className="w-8 h-8 object-contain" 
+                className="w-16 h-16 sm:w-20 sm:h-20 object-contain" 
               />
             </div>
-            <ul className="space-y-4">
+            <ul className="space-y-6">
               <li className="text-gray-300 text-base leading-relaxed justify-center lg:justify-start">
                 Experience the authentic vibe of Shillong and unforgettable adventures with XTSY!
               </li>
