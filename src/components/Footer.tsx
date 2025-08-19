@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="lg:col-span-1 space-y-6">
             <div className="flex flex-col items-center lg:items-start justify-center lg:justify-start">
               <img 
-                src="/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png" 
+                src="/lovable-uploads/737fc57d-44c2-4784-a8ce-4ad5bcc174ff.png" 
                 alt="XTSY Brand Logo" 
                 className="w-44 h-44 sm:w-52 sm:h-52 lg:w-56 lg:h-56 object-contain lg:ml-0" 
               />
