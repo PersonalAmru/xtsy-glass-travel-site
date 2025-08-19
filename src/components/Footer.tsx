@@ -12,8 +12,8 @@ const Footer = () => {
           <div className="text-center lg:text-left">
             <div className="flex items-center gap-3 justify-center lg:justify-start mb-8">
               <img 
-                src="/src/assets/xtsy-color-logo.png" 
-                alt="XTSY Travellers Hostel Logo" 
+                src="/src/assets/xtsy-brand-logo.png" 
+                alt="XTSY Travellers Hostel Logo"
                 className="h-16 sm:h-20 w-auto object-contain"
               />
             </div>
