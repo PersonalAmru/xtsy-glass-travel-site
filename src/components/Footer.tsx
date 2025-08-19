@@ -15,7 +15,6 @@ const Footer = () => {
                 alt="XTSY Brand Logo" 
                 className="w-8 h-8 object-contain" 
               />
-              <h3 className="text-xl font-semibold text-white">XTSY</h3>
             </div>
             <ul className="space-y-4">
               <li className="text-gray-300 text-base leading-relaxed justify-center lg:justify-start">
