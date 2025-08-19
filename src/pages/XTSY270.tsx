@@ -285,21 +285,21 @@ const XTSY270: React.FC = () => {
               <Card className="bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-sm border-primary/20 shadow-xl">
                 <CardContent className="p-8 md:p-12">
                   <div className="grid lg:grid-cols-3 gap-8">
-                    <div className="text-center">
+                    <Badge variant="outline" className="bg-primary/20 border-primary/50 text-primary font-semibold backdrop-blur-sm text-center justify-center p-6 flex-col">
                       <Users className="w-12 h-12 text-primary mx-auto mb-4" />
                       <h3 className="text-xl font-semibold mb-2">Occupancy</h3>
                       <p className="text-muted-foreground">Up to 2 guests in supreme comfort</p>
-                    </div>
-                    <div className="text-center">
+                    </Badge>
+                    <Badge variant="outline" className="bg-secondary/20 border-secondary/50 text-secondary font-semibold backdrop-blur-sm text-center justify-center p-6 flex-col">
                       <Bed className="w-12 h-12 text-secondary mx-auto mb-4" />
                       <h3 className="text-xl font-semibold mb-2">Bedding</h3>
                       <p className="text-muted-foreground">Queen bed with premium linens</p>
-                    </div>
-                    <div className="text-center">
+                    </Badge>
+                    <Badge variant="outline" className="bg-primary/20 border-primary/50 text-primary font-semibold backdrop-blur-sm text-center justify-center p-6 flex-col">
                       <Bath className="w-12 h-12 text-primary mx-auto mb-4" />
                       <h3 className="text-xl font-semibold mb-2">Ensuite</h3>
                       <p className="text-muted-foreground">Private luxury bathroom</p>
-                    </div>
+                    </Badge>
                   </div>
                 </CardContent>
               </Card>
