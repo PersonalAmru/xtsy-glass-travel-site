@@ -61,6 +61,9 @@ const PropertySection = ({ title, description, rooms, propertyType, onSelectRoom
           <h3 className="text-2xl font-bold text-gray-900 mb-2 font-playfair">
             {title}
           </h3>
+          <p className="text-gray-600 text-sm mb-3 max-w-md mx-auto">
+            {description}
+          </p>
           <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-orange-500 to-red-600 mx-auto rounded-full" />
         </div>
       </div>
@@ -79,11 +82,11 @@ const PropertySection = ({ title, description, rooms, propertyType, onSelectRoom
         </div>
       ) : (
         // Fixed 3-Column Center Aligned Layout
-        <div className="w-full">
+        <div className="w-full flex justify-center">
           {/* Center-aligned 3-tile grid with consistent spacing */}
-          <div className="grid-3-fixed max-w-7xl mx-auto justify-items-center">
+          <div className="grid-3-fixed mx-auto">
             {rooms.map((room) => (
-              <div key={room.id} className="w-full flex justify-center">
+              <div key={room.id} className="flex justify-center">
                 <RoomCard
                   room={room}
                   propertyType={propertyType}
