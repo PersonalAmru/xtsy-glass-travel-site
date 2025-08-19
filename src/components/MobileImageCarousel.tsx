@@ -36,7 +36,7 @@ const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
   const aspectClasses = {
     video: 'aspect-video',
     square: 'aspect-square', 
-    photo: 'aspect-[4/3]'
+    photo: 'aspect-[3/2] min-h-[280px] sm:min-h-[320px] md:min-h-[400px] lg:min-h-[480px]'
   };
 
   const nextImage = useCallback(() => {
@@ -104,8 +104,8 @@ const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
       return (
         <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
           <div className="text-center">
-            <TreePine className="h-8 w-8 text-gray-400 mx-auto mb-2" />
-            <p className="text-gray-500 text-sm">Image unavailable</p>
+            <TreePine className="h-10 w-10 sm:h-12 sm:w-12 text-gray-400 mx-auto mb-3" />
+            <p className="text-gray-500 text-base">Image unavailable</p>
           </div>
         </div>
       );
@@ -137,8 +137,8 @@ const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
       <div className={`relative overflow-hidden bg-gray-100 ${aspectClasses[aspectRatio]} ${className}`}>
         <div className="w-full h-full flex items-center justify-center">
           <div className="text-center">
-            <TreePine className="h-12 w-12 text-gray-400 mx-auto mb-2" />
-            <p className="text-gray-500 text-sm">No images available</p>
+            <TreePine className="h-16 w-16 sm:h-20 sm:w-20 text-gray-400 mx-auto mb-4" />
+            <p className="text-gray-500 text-lg">No images available</p>
           </div>
         </div>
       </div>
@@ -170,37 +170,37 @@ const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
         ))}
       </div>
 
-      {/* Navigation arrows */}
+      {/* Navigation arrows - made slightly larger for better visibility */}
       {showArrows && images.length > 1 && (
         <>
           <button
             onClick={prevImage}
             disabled={isTransitioning}
-            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-2 sm:p-3 rounded-full transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100 disabled:opacity-50 touch-target z-10"
+            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-3 sm:p-4 rounded-full transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100 disabled:opacity-50 touch-target z-10"
             aria-label="Previous image"
           >
-            <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
+            <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
           </button>
           <button
             onClick={nextImage}
             disabled={isTransitioning}
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-2 sm:p-3 rounded-full transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100 disabled:opacity-50 touch-target z-10"
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-3 sm:p-4 rounded-full transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100 disabled:opacity-50 touch-target z-10"
             aria-label="Next image"
           >
-            <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
+            <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
           </button>
         </>
       )}
 
-      {/* Image indicators */}
+      {/* Image indicators - slightly larger */}
       {showIndicators && images.length > 1 && (
-        <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 flex space-x-1 z-10">
+        <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
           {images.map((_, index) => (
             <button
               key={index}
               onClick={() => goToImage(index)}
               disabled={isTransitioning}
-              className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all duration-200 ${
+              className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full transition-all duration-200 ${
                 currentIndex === index 
                   ? 'bg-white scale-110 shadow-md' 
                   : 'bg-white/60 hover:bg-white/80'
@@ -211,15 +211,15 @@ const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
         </div>
       )}
 
-      {/* Image counter - smaller and less intrusive */}
+      {/* Image counter */}
       {images.length > 1 && (
-        <div className="absolute top-1 right-1 bg-black/50 text-white px-1.5 py-0.5 rounded text-xs font-medium z-10">
+        <div className="absolute top-2 right-2 bg-black/50 text-white px-2 py-1 rounded text-sm font-medium z-10">
           {currentIndex + 1}/{images.length}
         </div>
       )}
 
-      {/* Touch indicator for mobile - smaller and positioned better */}
-      <div className="md:hidden absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white/60 text-xs opacity-40 pointer-events-none">
+      {/* Touch indicator for mobile */}
+      <div className="md:hidden absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/60 text-sm opacity-40 pointer-events-none">
         Swipe for more
       </div>
     </div>
