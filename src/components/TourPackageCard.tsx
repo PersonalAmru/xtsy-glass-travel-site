@@ -59,6 +59,7 @@ import guwahatiKamakhyaImg from "@/assets/guwahati-kamakhya-premium.jpg";
 import kohimaWarCemeteryImg from "@/assets/kohima-war-cemetery-premium.jpg";
 import wildernessImg from "@/assets/wilderness-survival-final.jpg";
 import wildernessAuthenticImg from "@/assets/wilderness-survival-authentic.jpg";
+import northeastEcologicalEducationImg from "@/assets/northeast-ecological-education-authentic.jpg";
 
 interface TourPackageCardProps {
   tourPackage: {
@@ -89,7 +90,8 @@ const TourPackageCard = ({ tourPackage, onPackageClick }: TourPackageCardProps) 
     const highlights = tourPackage.highlights.join(' ').toLowerCase();
     const content = `${title} ${description} ${highlights}`;
 
-    // XTSY Exclusive packages with authentic images
+    // XTSY Exclusive packages with authentic images - prioritize specific matches
+    if (content.includes('northeast ecological education') || content.includes('ecological education program')) return northeastEcologicalEducationImg;
     if (content.includes('biodiversity') || content.includes('research') || content.includes('ecological')) return meghalayaBiodiversityAuthenticImg;
     if (content.includes('wilderness') || content.includes('survival skills') || content.includes('bushcraft')) return wildernessAuthenticImg;
     
