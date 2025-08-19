@@ -58,7 +58,7 @@ function App() {
             <div className="flex items-center justify-between h-16">
               {/* Logo */}
               <Link to="/" className="flex items-center space-x-2">
-                <img src="/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png" alt="XTSY Logo" className="h-8 w-8 sm:h-10 sm:w-10 object-contain" loading="eager" />
+                <img src="/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png" alt="XTSY Logo" className="h-12 w-12 sm:h-14 sm:w-14 object-contain" loading="eager" />
                 <span className="text-xl font-bold text-foreground">
               </span>
               </Link>
