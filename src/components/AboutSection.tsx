@@ -1,4 +1,5 @@
 
+
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Phone, Clock, Users, Heart, Globe, Award, Camera } from "lucide-react";
 
@@ -16,13 +17,13 @@ const AboutSection = () => {
   ];
 
   return (
-    <section id="about" className="pt-20 py-16 sm:py-20 px-3 sm:px-4 bg-white relative overflow-hidden">
+    <section id="about" className="pt-20 py-16 sm:py-20 px-3 sm:px-4 bg-gradient-to-br from-slate-50 via-white to-slate-100 relative overflow-hidden">
       
       <div className="absolute inset-0">
         {[...Array(4)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-r from-orange-400/5 to-red-400/5 rounded-full blur-xl animate-pulse"
+            className="absolute w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-r from-orange-400/3 to-red-400/3 rounded-full blur-xl animate-pulse"
             style={{
               left: `${20 + i * 15}%`,
               top: `${15 + i * 20}%`,
@@ -35,33 +36,33 @@ const AboutSection = () => {
 
       <div className="container mx-auto max-w-7xl relative z-10">
         
-        <div className="text-center mb-12 sm:mb-16">
+        <div className="text-center mb-12 sm:mb-16 bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-white/50">
           <div className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-elegant">
             <Award className="w-4 h-4" />
             Premium Hospitality Excellence
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-6">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-800 mb-6">
             About XTSY Hostel
           </h1>
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-            <strong className="text-foreground">India's Premier Hostel Experience</strong> in Shillong, Meghalaya. 
-            Featuring our exclusive <strong className="text-foreground">270° Panorama Glass Ensuite</strong>, 
+          <p className="text-lg sm:text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+            <strong className="text-slate-800">India's Premier Hostel Experience</strong> in Shillong, Meghalaya. 
+            Featuring our exclusive <strong className="text-slate-800">270° Panorama Glass Ensuite</strong>, 
             comprehensive dormitory facilities, and expertly curated 
-            <strong className="text-foreground"> Meghalaya tour packages</strong>.
+            <strong className="text-slate-800"> Meghalaya tour packages</strong>.
           </p>
         </div>
 
         
-        <div className="mb-12 overflow-hidden bg-card rounded-2xl shadow-soft border border-border">
+        <div className="mb-12 overflow-hidden bg-white/80 backdrop-blur-sm rounded-2xl shadow-soft border border-white/50">
           <div className="flex items-center py-4 px-6 bg-primary">
             <Award className="w-5 h-5 text-primary-foreground mr-3" />
             <span className="text-primary-foreground font-semibold">Core Services</span>
           </div>
           <div className="flex overflow-x-auto space-x-4 py-6 px-6 scrollbar-hide">
             {coreServices.map((service, index) => (
-              <div key={index} className="flex items-center space-x-3 min-w-fit bg-secondary px-4 py-3 rounded-xl border border-border">
+              <div key={index} className="flex items-center space-x-3 min-w-fit bg-white/90 backdrop-blur-sm px-4 py-3 rounded-xl border border-slate-200 shadow-sm">
                 <service.icon className="w-5 h-5 text-primary" />
-                <span className="text-foreground font-medium whitespace-nowrap">{service.text}</span>
+                <span className="text-slate-800 font-medium whitespace-nowrap">{service.text}</span>
                 <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium">
                   {service.trend}
                 </span>
@@ -73,23 +74,23 @@ const AboutSection = () => {
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 mb-16">
           <div className="space-y-6">
-            <Card className="bg-card border border-border shadow-elegant overflow-hidden group hover:shadow-soft transition-shadow duration-300">
+            <Card className="bg-white/90 backdrop-blur-sm border border-white/50 shadow-elegant overflow-hidden group hover:shadow-soft transition-shadow duration-300">
               <div className="h-1 bg-primary"></div>
               <CardContent className="p-6 sm:p-8">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
                     <Heart className="w-6 h-6 text-primary-foreground" />
                   </div>
-                  <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-slate-800">
                     Our Story
                   </h2>
                 </div>
-                <p className="text-muted-foreground text-base sm:text-lg leading-relaxed mb-4">
+                <p className="text-slate-600 text-base sm:text-lg leading-relaxed mb-4">
                   Founded with a vision to revolutionize hospitality in Northeast India, XTSY has established 
                   itself as the premier destination for travelers seeking authentic experiences.
                 </p>
-                <div className="bg-secondary border-l-4 border-primary p-4 rounded-r-xl">
-                  <p className="text-foreground font-medium">
+                <div className="bg-slate-50 border-l-4 border-primary p-4 rounded-r-xl">
+                  <p className="text-slate-800 font-medium">
                     Excellence in hospitality, authenticity in experience.
                   </p>
                 </div>
@@ -98,46 +99,46 @@ const AboutSection = () => {
           </div>
 
           <div className="space-y-6">
-            <Card className="bg-card border border-border shadow-elegant overflow-hidden group hover:shadow-soft transition-shadow duration-300">
+            <Card className="bg-white/90 backdrop-blur-sm border border-white/50 shadow-elegant overflow-hidden group hover:shadow-soft transition-shadow duration-300">
               <div className="h-1 bg-primary"></div>
               <CardContent className="p-6 sm:p-8">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
                     <Phone className="w-6 h-6 text-primary-foreground" />
                   </div>
-                  <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-slate-800">
                     Contact Information
                   </h2>
                 </div>
                 
                 <div className="space-y-4">
-                  <div className="flex items-center gap-4 p-4 bg-secondary border border-border rounded-xl hover:bg-accent transition-colors duration-200">
-                    <div className="w-10 h-10 bg-muted rounded-lg flex items-center justify-center">
+                  <div className="flex items-center gap-4 p-4 bg-slate-50 border border-slate-200 rounded-xl hover:bg-slate-100 transition-colors duration-200">
+                    <div className="w-10 h-10 bg-slate-200 rounded-lg flex items-center justify-center">
                       <MapPin className="h-5 w-5 text-primary" />
                     </div>
                     <div>
-                      <p className="font-semibold text-foreground">Location</p>
-                      <p className="text-muted-foreground text-sm">Shillong, Meghalaya, India</p>
+                      <p className="font-semibold text-slate-800">Location</p>
+                      <p className="text-slate-600 text-sm">Shillong, Meghalaya, India</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-center gap-4 p-4 bg-secondary border border-border rounded-xl hover:bg-accent transition-colors duration-200">
+                  <div className="flex items-center gap-4 p-4 bg-slate-50 border border-slate-200 rounded-xl hover:bg-slate-100 transition-colors duration-200">
                     <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
                       <Phone className="h-5 w-5 text-primary-foreground" />
                     </div>
                     <div>
-                      <p className="font-semibold text-foreground">WhatsApp</p>
-                      <p className="text-muted-foreground text-sm">+91 88373 17070</p>
+                      <p className="font-semibold text-slate-800">WhatsApp</p>
+                      <p className="text-slate-600 text-sm">+91 88373 17070</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-center gap-4 p-4 bg-secondary border border-border rounded-xl hover:bg-accent transition-colors duration-200">
+                  <div className="flex items-center gap-4 p-4 bg-slate-50 border border-slate-200 rounded-xl hover:bg-slate-100 transition-colors duration-200">
                     <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
                       <Clock className="h-5 w-5 text-primary-foreground" />
                     </div>
                     <div>
-                      <p className="font-semibold text-foreground">Availability</p>
-                      <p className="text-muted-foreground text-sm">24/7 Professional Support</p>
+                      <p className="font-semibold text-slate-800">Availability</p>
+                      <p className="text-slate-600 text-sm">24/7 Professional Support</p>
                     </div>
                   </div>
                 </div>
@@ -147,58 +148,58 @@ const AboutSection = () => {
         </div>
 
         
-        <div className="mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 text-foreground">
+        <div className="mb-16 bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-white/50">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 text-slate-800">
             Our Services
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
-            <Card className="bg-card border border-border shadow-xl hover:shadow-2xl transition-all duration-300 group">
+            <Card className="bg-white/90 backdrop-blur-sm border border-white/50 shadow-xl hover:shadow-2xl transition-all duration-300 group">
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                   <Users className="h-8 w-8 text-primary-foreground" />
                 </div>
-                <h3 className="font-bold text-foreground mb-4 text-xl">
+                <h3 className="font-bold text-slate-800 mb-4 text-xl">
                   Dormitory Accommodations
                 </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                <p className="text-slate-600 text-sm leading-relaxed mb-4">
                   Comprehensive dormitory facilities featuring mixed, female-only, and economy options.
                 </p>
-                <div className="text-sm text-muted-foreground bg-secondary p-3 rounded-lg">
+                <div className="text-sm text-slate-600 bg-slate-50 p-3 rounded-lg">
                   <strong>Features:</strong> 6-bed & 8-bed dorms, premium amenities
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-card border border-border shadow-xl hover:shadow-2xl transition-all duration-300 group">
+            <Card className="bg-white/90 backdrop-blur-sm border border-white/50 shadow-xl hover:shadow-2xl transition-all duration-300 group">
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                   <Globe className="h-8 w-8 text-primary-foreground" />
                 </div>
-                <h3 className="font-bold text-foreground mb-4 text-xl">
+                <h3 className="font-bold text-slate-800 mb-4 text-xl">
                   Northeast India Tours
                 </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                <p className="text-slate-600 text-sm leading-relaxed mb-4">
                   Expertly designed tour packages showcasing Northeast India's hidden gems.
                 </p>
-                <div className="text-sm text-muted-foreground bg-secondary p-3 rounded-lg">
+                <div className="text-sm text-slate-600 bg-slate-50 p-3 rounded-lg">
                   <strong>Specialties:</strong> Meghalaya tours, cultural immersion
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-card border border-border shadow-xl hover:shadow-2xl transition-all duration-300 group">
+            <Card className="bg-white/90 backdrop-blur-sm border border-white/50 shadow-xl hover:shadow-2xl transition-all duration-300 group">
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                   <Camera className="h-8 w-8 text-primary-foreground" />
                 </div>
-                <h3 className="font-bold text-foreground mb-4 text-xl">
+                <h3 className="font-bold text-slate-800 mb-4 text-xl">
                   270° Panorama Glass Ensuite
                 </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                <p className="text-slate-600 text-sm leading-relaxed mb-4">
                   Shillong's first and only 270° Panorama Glass Ensuite offering unparalleled mountain views.
                 </p>
-                <div className="text-sm text-muted-foreground bg-secondary p-3 rounded-lg">
+                <div className="text-sm text-slate-600 bg-slate-50 p-3 rounded-lg">
                   <strong>Features:</strong> Panoramic views, luxury amenities
                 </div>
               </CardContent>
@@ -207,7 +208,7 @@ const AboutSection = () => {
         </div>
 
         
-        <div className="bg-primary rounded-3xl p-8 sm:p-12 text-primary-foreground mb-16">
+        <div className="bg-primary rounded-3xl p-8 sm:p-12 text-primary-foreground mb-16 shadow-xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
               Our Excellence
@@ -249,3 +250,4 @@ const AboutSection = () => {
 };
 
 export default AboutSection;
+
