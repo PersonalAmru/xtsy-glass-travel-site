@@ -119,7 +119,7 @@ const XTSY270: React.FC = () => {
 
             {/* Hero Title */}
             <div className="text-center mb-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 bg-gradient-to-br from-foreground via-foreground to-muted-foreground bg-clip-text text-transparent leading-tight">
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-muted-foreground leading-tight">
                 XTSY 270°
               </h1>
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-light mb-4 text-muted-foreground">
