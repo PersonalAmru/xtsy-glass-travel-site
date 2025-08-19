@@ -281,38 +281,12 @@ ${formData.specialRequests || 'None'}
                     <h4 className="font-semibold">Breakfast</h4>
                     <p className="text-sm text-muted-foreground">{formatPrice(150)} per person per day</p>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handleInputChange('guests', Math.max(20, formData.guests - 1))}
-                    >
-                      <Minus className="h-4 w-4" />
-                    </Button>
-                    <Input
-                      type="number"
-                      min="20"
-                      max="100"
-                      value={formData.guests}
-                      onChange={(e) => handleInputChange('guests', parseInt(e.target.value) || 20)}
-                      className="text-center w-20"
-                    />
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handleInputChange('guests', Math.min(100, formData.guests + 1))}
-                    >
-                      <Plus className="h-4 w-4" />
-                    </Button>
-                    <input
-                      type="checkbox"
-                      checked={formData.breakfast}
-                      onChange={(e) => handleInputChange('breakfast', e.target.checked)}
-                      className="w-5 h-5 text-primary ml-2"
-                    />
-                  </div>
+                  <input
+                    type="checkbox"
+                    checked={formData.breakfast}
+                    onChange={(e) => handleInputChange('breakfast', e.target.checked)}
+                    className="w-5 h-5 text-primary"
+                  />
                 </div>
 
                 {/* Dinner */}
@@ -322,12 +296,38 @@ ${formData.specialRequests || 'None'}
                       <h4 className="font-semibold">Dinner Thali</h4>
                       <p className="text-sm text-muted-foreground">{formatPrice(300)} per person per day (Veg/Non-Veg)</p>
                     </div>
-                    <input
-                      type="checkbox"
-                      checked={formData.dinner}
-                      onChange={(e) => handleInputChange('dinner', e.target.checked)}
-                      className="w-5 h-5 text-primary"
-                    />
+                    <div className="flex items-center space-x-2">
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handleInputChange('guests', Math.max(20, formData.guests - 1))}
+                      >
+                        <Minus className="h-4 w-4" />
+                      </Button>
+                      <Input
+                        type="number"
+                        min="20"
+                        max="100"
+                        value={formData.guests}
+                        onChange={(e) => handleInputChange('guests', parseInt(e.target.value) || 20)}
+                        className="text-center w-20"
+                      />
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handleInputChange('guests', Math.min(100, formData.guests + 1))}
+                      >
+                        <Plus className="h-4 w-4" />
+                      </Button>
+                      <input
+                        type="checkbox"
+                        checked={formData.dinner}
+                        onChange={(e) => handleInputChange('dinner', e.target.checked)}
+                        className="w-5 h-5 text-primary ml-2"
+                      />
+                    </div>
                   </div>
                   
                   {formData.dinner && (
