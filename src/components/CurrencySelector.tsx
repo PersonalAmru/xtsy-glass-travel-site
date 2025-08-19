@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Globe } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -42,26 +43,30 @@ const CurrencySelector: React.FC<CurrencySelectorProps> = ({ onCurrencyChange, c
 
   return (
     <div className={`flex items-center gap-2 ${className}`}>
-      <Globe className="h-4 w-4 text-muted-foreground" />
+      <Globe className="h-4 w-4 text-white/80" />
       <Select value={currency.code} onValueChange={handleCurrencyChange}>
-        <SelectTrigger className={`w-28 h-8 text-xs bg-white border border-gray-200 shadow-sm focus:ring-2 focus:ring-primary/20 focus:border-primary hover:border-primary/60 transition-colors ${
+        <SelectTrigger className={`w-28 h-8 text-xs bg-white/10 backdrop-blur-md border border-white/20 text-white shadow-sm focus:ring-2 focus:ring-primary/50 focus:border-primary/50 hover:border-white/40 hover:bg-white/15 transition-all ${
           showCurrencyPrompt ? 'ring-2 ring-primary animate-pulse' : ''
         } ${className.includes('w-full') ? 'w-full h-10' : ''}`}>
-          <SelectValue />
+          <SelectValue className="text-white" />
         </SelectTrigger>
-        <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
+        <SelectContent className="bg-black/90 backdrop-blur-md border border-white/20 shadow-xl z-50">
           {currencies.map((currency) => (
-            <SelectItem key={currency.code} value={currency.code}>
+            <SelectItem 
+              key={currency.code} 
+              value={currency.code}
+              className="text-white hover:bg-white/10 focus:bg-white/20 focus:text-white"
+            >
               <div className="flex items-center gap-2">
-                <span className="font-mono text-xs">{currency.symbol}</span>
-                <span className="text-xs">{currency.code}</span>
+                <span className="font-mono text-xs text-white">{currency.symbol}</span>
+                <span className="text-xs text-white/90">{currency.code}</span>
               </div>
             </SelectItem>
           ))}
         </SelectContent>
       </Select>
       {showCurrencyPrompt && (
-        <div className="absolute top-full left-0 mt-1 p-2 bg-primary text-primary-foreground text-xs rounded shadow-lg z-50">
+        <div className="absolute top-full left-0 mt-1 p-2 bg-primary/90 backdrop-blur-sm text-white text-xs rounded shadow-lg z-50">
           Select your preferred currency
         </div>
       )}
