@@ -103,15 +103,15 @@ const XTSY270: React.FC = () => {
           <div className="container mx-auto max-w-7xl px-4">
             {/* Luxury Badges */}
             <div className="flex flex-wrap justify-center gap-3 mb-8 animate-fade-in">
-              <Badge variant="outline" className="bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/30 text-primary">
+              <Badge variant="outline" className="bg-primary/20 border-primary/50 text-primary font-semibold backdrop-blur-sm">
                 <Award className="w-3 h-3 mr-1" />
                 India's First 270° Glass House
               </Badge>
-              <Badge variant="outline" className="bg-gradient-to-r from-secondary/10 to-primary/10 border-secondary/30 text-secondary">
+              <Badge variant="outline" className="bg-secondary/20 border-secondary/50 text-secondary font-semibold backdrop-blur-sm">
                 <Star className="w-3 h-3 mr-1" />
                 Architectural Excellence
               </Badge>
-              <Badge variant="outline" className="bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/30 text-foreground">
+              <Badge variant="outline" className="bg-primary/20 border-primary/50 text-foreground font-semibold backdrop-blur-sm">
                 <Mountain className="w-3 h-3 mr-1" />
                 Premium Mountain Views
               </Badge>
