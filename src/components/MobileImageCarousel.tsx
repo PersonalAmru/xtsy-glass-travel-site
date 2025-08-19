@@ -34,9 +34,9 @@ const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
   const { preloadAdjacentImages } = useImagePreloader();
 
   const aspectClasses = {
-    video: 'aspect-video min-h-[280px] lg:min-h-[400px]',
-    square: 'aspect-square min-h-[280px] lg:min-h-[400px]', 
-    photo: 'aspect-[3/2] min-h-[320px] lg:min-h-[480px]'
+    video: 'aspect-video',
+    square: 'aspect-square', 
+    photo: 'aspect-[4/3]'
   };
 
   const nextImage = useCallback(() => {
@@ -104,8 +104,8 @@ const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
       return (
         <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
           <div className="text-center">
-            <TreePine className="h-10 w-10 text-gray-400 mx-auto mb-3" />
-            <p className="text-gray-500 text-base">Image unavailable</p>
+            <TreePine className="h-8 w-8 text-gray-400 mx-auto mb-2" />
+            <p className="text-gray-500 text-sm">Image unavailable</p>
           </div>
         </div>
       );
@@ -137,8 +137,8 @@ const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
       <div className={`relative overflow-hidden bg-gray-100 ${aspectClasses[aspectRatio]} ${className}`}>
         <div className="w-full h-full flex items-center justify-center">
           <div className="text-center">
-            <TreePine className="h-14 w-14 text-gray-400 mx-auto mb-3" />
-            <p className="text-gray-500 text-base">No images available</p>
+            <TreePine className="h-12 w-12 text-gray-400 mx-auto mb-2" />
+            <p className="text-gray-500 text-sm">No images available</p>
           </div>
         </div>
       </div>
