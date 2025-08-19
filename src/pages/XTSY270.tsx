@@ -60,10 +60,26 @@ const XTSY270: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white">
       <Header />
-      <main className="pt-20">
-        <header className="py-14 px-4 text-center bg-gradient-to-b from-primary/5 to-background">
+      <main className="pt-20 relative overflow-hidden">
+        {/* Background animations similar to Gallery page */}
+        <div className="absolute inset-0">
+          {[...Array(4)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-r from-orange-400/10 to-red-400/10 rounded-full blur-xl animate-pulse"
+              style={{
+                left: `${15 + i * 20}%`,
+                top: `${10 + i * 20}%`,
+                animationDelay: `${i * 1.5}s`,
+                animationDuration: `${4 + i * 0.5}s`
+              }}
+            />
+          ))}
+        </div>
+
+        <header className="py-14 px-4 text-center relative z-10">
           <div className="container mx-auto max-w-5xl">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">{XTSY270_DATA.name}</h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -82,7 +98,7 @@ const XTSY270: React.FC = () => {
           </div>
         </header>
 
-        <main className="px-4 py-12">
+        <main className="px-4 py-12 relative z-10">
           <article className="container mx-auto max-w-4xl prose dark:prose-invert">
             <section aria-labelledby="overview">
               <h2 id="overview">Overview</h2>
@@ -125,7 +141,7 @@ const XTSY270: React.FC = () => {
           </article>
         </main>
 
-        <section className="py-8" aria-hidden="true">
+        <section className="py-8 relative z-10" aria-hidden="true">
           <div className="container mx-auto max-w-4xl">
             <a href="/" className="inline-flex items-center justify-center px-6 py-3 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
               Book XTSY 270°
