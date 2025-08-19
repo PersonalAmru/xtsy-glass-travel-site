@@ -1,3 +1,4 @@
+
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Phone, Clock, Users, Heart, Globe, Award, Camera } from "lucide-react";
 
@@ -21,12 +22,12 @@ const AboutSection = () => {
         {[...Array(4)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-r from-orange-400/10 to-red-400/10 rounded-full blur-xl animate-pulse"
+            className="absolute w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-r from-orange-400/5 to-red-400/5 rounded-full blur-xl animate-pulse"
             style={{
-              left: `${15 + i * 20}%`,
-              top: `${10 + i * 20}%`,
-              animationDelay: `${i * 1.5}s`,
-              animationDuration: `${4 + i * 0.5}s`
+              left: `${20 + i * 15}%`,
+              top: `${15 + i * 20}%`,
+              animationDelay: `${i * 2}s`,
+              animationDuration: `${5 + i * 0.5}s`
             }}
           />
         ))}
