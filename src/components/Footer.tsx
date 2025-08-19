@@ -13,7 +13,7 @@ const Footer = () => {
               <img 
                 src="/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png" 
                 alt="XTSY Brand Logo" 
-                className="w-32 h-32 sm:w-40 sm:h-40 lg:w-44 lg:h-44 object-contain lg:ml-0" 
+                className="w-44 h-44 sm:w-52 sm:h-52 lg:w-56 lg:h-56 object-contain lg:ml-0" 
               />
               <p className="text-gray-300 text-base leading-relaxed text-center lg:text-left max-w-sm mx-auto lg:mx-0 mt-3 lg:ml-0">
                 Experience the authentic vibe of Shillong and unforgettable adventures with XTSY!
