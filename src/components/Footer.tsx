@@ -10,9 +10,7 @@ const Footer = () => {
             <div className="flex items-center justify-center lg:justify-start">
               <img src="/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png" alt="XTSY Brand Logo" className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 object-contain" />
             </div>
-            <p className="text-gray-300 text-base leading-relaxed text-center lg:text-left max-w-sm mx-auto lg:mx-0">
-              Experience the authentic vibe of Shillong and unforgettable adventures with XTSY!
-            </p>
+            <p className="text-gray-300 text-base leading-relaxed text-center lg:text-left max-w-sm mx-auto lg:mx-0">Experience the authentic vibe of Shillong and unforgettable adventures with XTSY!</p>
             <div className="flex space-x-6 justify-center lg:justify-start">
               <Instagram className="h-6 w-6 text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-300" />
               <Facebook className="h-6 w-6 text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-300" />
