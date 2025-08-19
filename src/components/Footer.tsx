@@ -14,12 +14,12 @@ const Footer = () => {
               <img 
                 src="/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png" 
                 alt="XTSY Brand Logo" 
-                className="w-24 h-24 sm:w-32 sm:h-32 lg:w-36 lg:h-36 object-contain" 
+                className="w-24 h-24 sm:w-32 sm:h-32 lg:w-36 lg:h-36 object-contain lg:ml-0" 
               />
-              <p className="text-gray-300 text-base leading-relaxed text-center lg:text-left max-w-sm mx-auto lg:mx-0 mt-3">
+              <p className="text-gray-300 text-base leading-relaxed text-center lg:text-left max-w-sm mx-auto lg:mx-0 mt-3 lg:ml-0">
                 Experience the authentic vibe of Shillong and unforgettable adventures with XTSY!
               </p>
-              <div className="flex space-x-6 justify-center lg:justify-start mt-4">
+              <div className="flex space-x-6 justify-center lg:justify-start mt-4 lg:ml-0">
                 <Instagram className="h-6 w-6 text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-300" />
                 <Facebook className="h-6 w-6 text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-300" />
                 <Twitter className="h-6 w-6 text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-300" />
