@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Phone, Clock, Users, Heart, Globe, Award, Camera, Building2, Star, Shield, Wifi } from "lucide-react";
 
@@ -110,43 +109,30 @@ const AboutSection = () => {
         </header>
 
         
-        {/* Core Services Section */}
+        {/* Core Services Section - Sliding Tags Only */}
         <section className="mb-12 overflow-hidden bg-white/80 backdrop-blur-sm rounded-2xl shadow-soft border border-white/50">
           <header className="flex items-center py-4 px-6 bg-primary">
             <Award className="w-5 h-5 text-primary-foreground mr-3" />
             <h2 className="text-primary-foreground font-semibold">Core Services & Facilities</h2>
           </header>
-          <div className="flex overflow-x-auto space-x-3 py-6 px-6 scrollbar-hide">
+          <div className="flex overflow-x-auto space-x-4 py-6 px-6 scrollbar-hide">
             {coreServices.map((service, index) => (
               <article 
                 key={index} 
-                className="flex-none w-72 bg-white/95 backdrop-blur-sm rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 group"
+                className="flex-none"
               >
-                <div className="p-5">
-                  <header className="flex items-center space-x-3 mb-4">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
-                      <service.icon className="w-5 h-5 text-primary" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-slate-800 font-semibold text-base leading-tight mb-1">
-                        {service.title}
-                      </h3>
-                      <span className="inline-block bg-primary text-primary-foreground px-2 py-1 rounded-full text-xs font-medium">
-                        {service.category}
-                      </span>
-                    </div>
-                  </header>
-                  <p className="text-slate-600 text-sm leading-relaxed mb-3">
-                    {service.description}
-                  </p>
-                  <ul className="space-y-1">
-                    {service.features.map((feature, idx) => (
-                      <li key={idx} className="text-xs text-slate-500 flex items-center">
-                        <div className="w-1 h-1 bg-primary rounded-full mr-2"></div>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
+                <div className="flex items-center space-x-3 bg-white/95 backdrop-blur-sm rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 group px-4 py-3">
+                  <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                    <service.icon className="w-4 h-4 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="text-slate-800 font-semibold text-sm leading-tight whitespace-nowrap">
+                      {service.title}
+                    </h3>
+                    <span className="inline-block bg-primary text-primary-foreground px-2 py-1 rounded-full text-xs font-medium mt-1">
+                      {service.category}
+                    </span>
+                  </div>
                 </div>
               </article>
             ))}
