@@ -25,11 +25,20 @@ const GallerySection = () => {
     // Luxury Suite Images
     {
       id: 1,
-      title: "270° Panorama Glass Ensuite",
+      title: "270° Panorama Glass Ensuite - Main View",
       category: "luxury-rooms",
       tags: ["panoramic-views", "glass-architecture", "premium-accommodation", "mountain-views"],
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/20250722_0921_Meghalaya%20Getaway%20View_remix_01k0r405w4f66svm6nn0qdtxye%20(1).png",
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140811.png",
       description: "Exclusive 270-degree panoramic views - First in Shillong",
+      featured: true
+    },
+    {
+      id: 1.1,
+      title: "270° Panorama Glass Ensuite - Panoramic Vista",
+      category: "luxury-rooms",
+      tags: ["panoramic-views", "glass-architecture", "premium-accommodation", "mountain-views"],
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140029.png",
+      description: "Breathtaking panoramic vista from the glass suite",
       featured: true
     },
     

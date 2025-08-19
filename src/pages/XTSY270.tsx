@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { XTSY270_DATA } from '@/data/rooms/xtsy270';
-import OptimizedLazyImage from '@/components/OptimizedLazyImage';
+import MobileImageCarousel from '@/components/MobileImageCarousel';
 
 const XTSY270: React.FC = () => {
   const title = XTSY270_DATA.seoTitle;
@@ -85,15 +85,20 @@ const XTSY270: React.FC = () => {
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               {XTSY270_DATA.seoDescription}
             </p>
-            <figure className="mt-6" aria-label="Hero image for XTSY 270° Panorama Glass Ensuite">
-              <div className="w-full aspect-[16/9] rounded-lg overflow-hidden shadow-md bg-muted">
-                <OptimizedLazyImage
-                  src={XTSY270_DATA.image || (XTSY270_DATA.images && XTSY270_DATA.images[0]) || '/placeholder.svg'}
+            <figure className="mt-6" aria-label="Hero images for XTSY 270° Panorama Glass Ensuite">
+              <div className="w-full rounded-lg overflow-hidden shadow-md bg-muted">
+                <MobileImageCarousel
+                  images={XTSY270_DATA.images}
                   alt="270° Panorama Glass Ensuite — panoramic mountain and valley views in Shillong"
-                  className="w-full h-full object-cover object-center block"
+                  aspectRatio="video"
+                  showIndicators={true}
+                  showArrows={true}
+                  autoPlay={true}
+                  autoPlayInterval={4000}
+                  className="w-full h-full"
                 />
               </div>
-              <figcaption className="mt-2 text-sm text-muted-foreground">Signature XTSY Luxury suite with 270° panoramic glass walls.</figcaption>
+              <figcaption className="mt-2 text-sm text-muted-foreground">Signature XTSY Luxury suite with 270° panoramic glass walls - swipe to explore views.</figcaption>
             </figure>
           </div>
         </header>
