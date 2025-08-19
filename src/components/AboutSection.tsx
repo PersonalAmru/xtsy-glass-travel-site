@@ -6,13 +6,13 @@ const AboutSection = () => {
     {
       icon: Building2,
       title: "Biggest Hostel in Shillong",
-      category: "Scale",
+      category: "Scale", 
       description: "Northeast India's largest hostel accommodation facility with 100+ beds across multiple room categories.",
       features: ["100+ Bed Capacity", "Multiple Buildings", "Largest in NE India"]
     },
     {
       icon: Star,
-      title: "Best Budget Accommodation", 
+      title: "Best Budget Accommodation",
       category: "Value",
       description: "Premium amenities at budget-friendly prices, making luxury accessible to all travelers.",
       features: ["Premium Amenities", "Budget Pricing", "Best Value Proposition"]
@@ -115,7 +115,7 @@ const AboutSection = () => {
             <Award className="w-5 h-5 text-primary-foreground mr-3" />
             <h2 className="text-primary-foreground font-semibold">Core Services & Facilities</h2>
           </header>
-          <div className="flex space-x-4 py-6 px-6 animate-slide-right">
+          <div className="flex space-x-4 py-6 px-6 animate-slide-right-fast">
             {coreServices.map((service, index) => (
               <article 
                 key={index} 
@@ -342,10 +342,10 @@ const AboutSection = () => {
               transform: translateX(-50%);
             }
           }
-          .animate-slide-right {
-            animation: slide-right 20s linear infinite;
+          .animate-slide-right-fast {
+            animation: slide-right 12s linear infinite;
           }
-          .animate-slide-right:hover {
+          .animate-slide-right-fast:hover {
             animation-play-state: paused;
           }
         `}
