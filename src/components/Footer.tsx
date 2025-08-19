@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { MapPin, Phone, Mail, Instagram, Facebook, Twitter, Home, Info, Image, Tag, Plane, HelpCircle } from "lucide-react";
+import { MapPin, Phone, Mail, Instagram, Facebook, Youtube, Home, Info, Image, Tag, Plane, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Footer = () => {
@@ -24,7 +24,7 @@ const Footer = () => {
               <li className="flex space-x-6 justify-center lg:justify-start">
                 <Instagram className="h-6 w-6 text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-300" />
                 <Facebook className="h-6 w-6 text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-300" />
-                <Twitter className="h-6 w-6 text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-300" />
+                <Youtube className="h-6 w-6 text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-300" />
               </li>
             </ul>
           </div>
