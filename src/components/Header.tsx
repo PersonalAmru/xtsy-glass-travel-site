@@ -82,7 +82,7 @@ const Header = () => {
             {/* Logo - adjusted with left margin */}
             <Link to="/" className="flex items-center space-x-2 touch-target ml-4 sm:ml-6">
               <img 
-                src="/lovable-uploads/38e79862-b87b-4954-aba3-dd265bc6cf08.png"
+                src="/src/assets/xtsy-color-logo.png"
                 alt="XTSY Travellers Hostel"
                 className="h-10 sm:h-12 w-auto progressive-image hover:opacity-80 transition-opacity cursor-pointer"
                 loading="eager"
