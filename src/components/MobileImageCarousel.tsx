@@ -115,7 +115,7 @@ const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
       <img
         src={images[imageIndex]}
         alt={`${alt} - Image ${imageIndex + 1}`}
-        className={`w-full h-full object-cover transition-all duration-300 ${
+        className={`w-full h-full object-cover object-center transition-all duration-300 ${
           isActive ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
         }`}
         onError={() => handleImageError(imageIndex)}
