@@ -3,6 +3,7 @@ import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+
 const ReviewsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedReview, setSelectedReview] = useState<any>(null);
@@ -87,6 +88,7 @@ const ReviewsSection = () => {
     source: "MakeMyTrip",
     roomType: "Standard 8 Bed Mixed Dormitory"
   }];
+
   const nextReview = () => {
     setCurrentIndex(prev => (prev + 1) % Math.ceil(filteredReviews.length - 2));
   };
@@ -107,22 +109,24 @@ const ReviewsSection = () => {
     const interval = setInterval(nextReview, 5000);
     return () => clearInterval(interval);
   }, []);
+
   return <section id="reviews" className="py-20 px-4 relative bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 overflow-hidden">
-      {/* Enhanced Background Effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-transparent to-indigo-900/30" />
-      <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500" />
-      <div className="absolute -top-32 -right-32 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl" />
-      <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-indigo-500/20 rounded-full blur-3xl" />
+      {/* Enhanced Background Effects - Updated to black and shining */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black animate-pulse" />
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-30 animate-pulse" />
+      <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-white/30 via-gray-300/50 to-white/30 animate-pulse" />
+      <div className="absolute -top-32 -right-32 w-80 h-80 bg-white/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-white/10 rounded-full blur-3xl animate-pulse" />
       
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-16">
-          <div className="inline-block p-6 bg-white/10 backdrop-blur-sm rounded-2xl shadow-2xl mb-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4 font-playfair">
+          <div className="inline-block p-6 bg-white/10 backdrop-blur-sm rounded-2xl shadow-2xl mb-6 border border-white/20">
+            <h2 className="text-2xl font-bold text-white mb-4 font-playfair">
               Guest Reviews
             </h2>
-            <div className="w-32 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 mx-auto rounded-full" />
+            <div className="w-32 h-1 bg-gradient-to-r from-white/50 to-gray-300/50 mx-auto rounded-full" />
           </div>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg">See what our amazing guests have to say about their unforgettable stay at XTSY!</p>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/20">See what our amazing guests have to say about their unforgettable stay at XTSY!</p>
         </div>
 
         {/* Floating Carousel */}
@@ -137,7 +141,7 @@ const ReviewsSection = () => {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
                     {filteredReviews.slice(slideIndex, slideIndex + 3).map((review, index) => <Card 
                         key={index} 
-                        className="backdrop-blur-xl bg-white/10 border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105 hover:shadow-2xl transform-gpu cursor-pointer h-[280px] flex flex-col"
+                        className="backdrop-blur-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-2xl transform-gpu cursor-pointer h-[280px] flex flex-col hover:border-white/20"
                         onClick={() => handleReviewClick(review)}
                       >
                         <CardHeader className="flex-shrink-0 pb-3">
@@ -190,7 +194,7 @@ const ReviewsSection = () => {
           <div className="flex justify-center mt-6 gap-2">
             {Array.from({
             length: Math.ceil(filteredReviews.length - 2)
-          }).map((_, index) => <button key={index} className={`w-3 h-3 rounded-full transition-colors ${index === currentIndex ? 'bg-teal-400' : 'bg-white/30'}`} onClick={() => setCurrentIndex(index)} />)}
+          }).map((_, index) => <button key={index} className={`w-3 h-3 rounded-full transition-colors ${index === currentIndex ? 'bg-white/70' : 'bg-white/30'}`} onClick={() => setCurrentIndex(index)} />)}
           </div>
         </div>
 
