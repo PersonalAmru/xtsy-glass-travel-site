@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Phone, Clock, Users, Heart, Globe, Award, Camera, Building2, Star, Shield, Wifi } from "lucide-react";
 
@@ -240,10 +239,13 @@ const AboutSection = () => {
         </div>
 
         {/* Services Grid */}
-        <div className="mb-16 bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-white/50">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 text-slate-800">
-            Our Services
-          </h2>
+        <div className="mb-16 bg-black rounded-3xl p-8 shadow-lg border border-gray-800">
+          <header className="flex items-center justify-center py-4 px-6 mb-8">
+            <Award className="w-5 h-5 text-white mr-3" />
+            <h2 className="text-3xl sm:text-4xl font-bold text-white">
+              Our Services
+            </h2>
+          </header>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
             <Card className="bg-white/90 backdrop-blur-sm border border-white/50 shadow-xl hover:shadow-2xl transition-all duration-300 group">
