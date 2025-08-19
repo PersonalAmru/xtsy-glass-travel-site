@@ -3,25 +3,49 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+
 const AdventureCallToAction = () => {
   const navigate = useNavigate();
   const [showTravelModal, setShowTravelModal] = useState(false);
+
   const handlePlanAdventure = () => {
     setShowTravelModal(true);
   };
+
   const handleTravelChoice = (type: 'domestic' | 'international') => {
     setShowTravelModal(false);
     navigate(`/travel?tab=${type}`);
   };
-  return <section className="py-16 sm:py-20 px-3 sm:px-4 bg-gradient-to-br from-slate-100 via-white to-slate-100 relative overflow-hidden">
-      {/* Background animations */}
+
+  return (
+    <section className="py-16 sm:py-20 px-3 sm:px-4 bg-gradient-to-br from-slate-100 via-white to-slate-100 relative overflow-hidden">
+      {/* Background animations - More densely packed */}
       <div className="absolute inset-0">
-        {[...Array(5)].map((_, i) => <div key={i} className="absolute w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-r from-orange-400/10 to-red-400/10 rounded-full blur-xl animate-pulse" style={{
-        left: `${15 + i * 18}%`,
-        top: `${10 + i * 18}%`,
-        animationDelay: `${i * 1.2}s`,
-        animationDuration: `${3.5 + i * 0.3}s`
-      }} />)}
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-r from-orange-400/15 to-red-400/15 rounded-full blur-xl animate-pulse"
+            style={{
+              left: `${5 + i * 12}%`,
+              top: `${5 + (i % 3) * 30}%`,
+              animationDelay: `${i * 0.8}s`,
+              animationDuration: `${3 + i * 0.2}s`
+            }}
+          />
+        ))}
+        {/* Additional smaller circles to fill gaps */}
+        {[...Array(6)].map((_, i) => (
+          <div
+            key={`small-${i}`}
+            className="absolute w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-orange-300/10 to-red-300/10 rounded-full blur-lg animate-pulse"
+            style={{
+              left: `${10 + i * 15}%`,
+              top: `${15 + (i % 2) * 40}%`,
+              animationDelay: `${i * 1}s`,
+              animationDuration: `${4 + i * 0.3}s`
+            }}
+          />
+        ))}
       </div>
 
       <div className="container mx-auto max-w-4xl relative z-10">
@@ -58,6 +82,8 @@ const AdventureCallToAction = () => {
           </div>
         </DialogContent>
       </Dialog>
-    </section>;
+    </section>
+  );
 };
+
 export default AdventureCallToAction;
