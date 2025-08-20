@@ -329,13 +329,9 @@ Thank you! 😊`;
                 </CardContent>
               </Card>
             </div>
-          </div>
-        </section>
 
-        {/* Bottom CTA Section */}
-        <section className="py-16 relative z-10">
-          <div className="container mx-auto max-w-7xl px-4">
-            <div className="text-center animate-fade-in">
+            {/* Bottom CTA Section */}
+            <div className="mt-16 mb-8 text-center animate-fade-in">
               <Button 
                 size="lg" 
                 onClick={handleBookingClick}
