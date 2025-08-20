@@ -221,20 +221,6 @@ Thank you! 😊`;
                 India's first 270° panoramic glass house — where architecture meets nature in perfect harmony
               </figcaption>
             </figure>
-
-            {/* CTA Section */}
-            <div className="text-center mt-12 animate-fade-in" style={{ animationDelay: '0.8s' }}>
-              <Button 
-                size="lg" 
-                onClick={handleBookingClick}
-                className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                Reserve Your Luxury Experience
-              </Button>
-              <p className="text-sm text-muted-foreground mt-3">
-                Limited availability • Book 48 hours in advance for exclusive concierge services
-              </p>
-            </div>
           </div>
         </section>
 
@@ -342,6 +328,24 @@ Thank you! 😊`;
                   </div>
                 </CardContent>
               </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Bottom CTA Section */}
+        <section className="py-16 relative z-10">
+          <div className="container mx-auto max-w-7xl px-4">
+            <div className="text-center animate-fade-in">
+              <Button 
+                size="lg" 
+                onClick={handleBookingClick}
+                className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                Reserve Your Luxury Experience
+              </Button>
+              <p className="text-sm text-muted-foreground mt-3">
+                Limited availability • Book 48 hours in advance for exclusive concierge services
+              </p>
             </div>
           </div>
         </section>
