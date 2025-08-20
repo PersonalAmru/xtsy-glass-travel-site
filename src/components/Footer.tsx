@@ -7,11 +7,9 @@ import { useState, useEffect } from "react";
 const Footer = () => {
   const [logoLoaded, setLogoLoaded] = useState(false);
 
-  // Preload logo
+  // Load footer logo immediately (below-the-fold but important)
   useEffect(() => {
-    const img = new window.Image();
-    img.onload = () => setLogoLoaded(true);
-    img.src = "/src/assets/xtsy-brand-logo.png";
+    setLogoLoaded(true);
   }, []);
 
   return (
@@ -21,16 +19,12 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="text-center lg:text-left">
             <div className="flex items-center gap-3 justify-center lg:justify-start mb-8">
-              {logoLoaded ? (
-                <img 
-                  src="/src/assets/xtsy-brand-logo.png" 
-                  alt="XTSY Travellers Hostel Logo"
-                  className="h-16 sm:h-20 w-auto object-contain"
-                  loading="lazy"
-                />
-              ) : (
-                <div className="h-16 sm:h-20 w-32 bg-gray-600/50 animate-pulse rounded"></div>
-              )}
+              <img 
+                src="/src/assets/xtsy-brand-logo.png" 
+                alt="XTSY Travellers Hostel Logo"
+                className="h-16 sm:h-20 w-auto object-contain"
+                loading="lazy"
+              />
             </div>
             <ul className="space-y-6">
               <li className="text-gray-300 text-base leading-relaxed justify-center lg:justify-start">

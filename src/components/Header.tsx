@@ -36,11 +36,9 @@ const Header = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Preload logo
+  // Eager load critical logo immediately
   useEffect(() => {
-    const img = new Image();
-    img.onload = () => setLogoLoaded(true);
-    img.src = "/src/assets/xtsy-brand-logo.png";
+    setLogoLoaded(true); // Load immediately for critical above-the-fold content
   }, []);
 
   // Generate or get session ID for this guest
@@ -86,24 +84,21 @@ const Header = () => {
       <header className="sticky top-0 z-50 safe-top safe-left safe-right bg-black/80 backdrop-blur-md border-b border-white/10">
         <div className="responsive-container mobile-compact">
           <div className="flex justify-between items-center h-14 sm:h-16">
-            {/* Logo - optimized with preloading */}
+            {/* Logo - critical above-the-fold image */}
             <Link to="/" className="flex items-center space-x-2 touch-target ml-4 sm:ml-6">
-              {logoLoaded ? (
-                <img 
-                  src="/src/assets/xtsy-brand-logo.png"
-                  alt="XTSY Travellers Hostel"
-                  className="h-10 sm:h-12 w-auto hover:opacity-80 transition-opacity cursor-pointer"
-                  loading="eager"
-                  decoding="sync"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    window.open('/gallery?category=brand-assets', '_blank');
-                  }}
-                  title="View brand assets in gallery"
-                />
-              ) : (
-                <div className="h-10 sm:h-12 w-24 bg-gray-600/50 animate-pulse rounded"></div>
-              )}
+              <img 
+                src="/src/assets/xtsy-brand-logo.png"
+                alt="XTSY Travellers Hostel"
+                className="h-10 sm:h-12 w-auto hover:opacity-80 transition-opacity cursor-pointer"
+                loading="eager"
+                fetchPriority="high"
+                decoding="sync"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.open('/gallery?category=brand-assets', '_blank');
+                }}
+                title="View brand assets in gallery"
+              />
             </Link>
 
             {/* Desktop Navigation - All items aligned right */}

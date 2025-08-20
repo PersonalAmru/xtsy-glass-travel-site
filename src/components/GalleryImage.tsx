@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { navigateToGallery } from '@/utils/galleryNavigation';
 import { Camera, ExternalLink } from 'lucide-react';
+import OptimizedLazyImage from './OptimizedLazyImage';
 
 interface GalleryImageProps {
   src: string;
@@ -31,11 +32,11 @@ const GalleryImage = ({
       className={`relative group overflow-hidden block ${className}`}
       title={title || `View in Gallery${category ? ` - ${category}` : ''}`}
     >
-      <img 
-        src={src} 
+      <OptimizedLazyImage
+        src={src}
         alt={alt}
         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-        loading="lazy"
+        threshold={0.2}
       />
       
       {overlay && (

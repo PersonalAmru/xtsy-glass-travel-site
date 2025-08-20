@@ -15,10 +15,22 @@ const PerformanceMonitor = () => {
               firstContentfulPaint: navEntry.fetchStart,
             });
           }
+          
+          if (entry.entryType === 'resource' && entry.name.includes('image')) {
+            console.log('Image Load Performance:', {
+              name: entry.name.split('/').pop(),
+              duration: Math.round(entry.duration),
+              size: (entry as any).transferSize || 'cached',
+            });
+          }
+          
+          if (entry.entryType === 'largest-contentful-paint') {
+            console.log('Largest Contentful Paint:', Math.round(entry.startTime) + 'ms');
+          }
         });
       });
 
-      observer.observe({ entryTypes: ['navigation', 'resource'] });
+      observer.observe({ entryTypes: ['navigation', 'resource', 'largest-contentful-paint'] });
 
       // Cleanup
       return () => observer.disconnect();

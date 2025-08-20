@@ -7,9 +7,13 @@ import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import { AppProvider } from "./contexts/AppContext";
 import { initializePerformanceOptimizations } from "./utils/performanceOptimizer";
+import { initializeImageOptimizations } from "./utils/imageOptimization";
 
 // Initialize performance optimizations
 initializePerformanceOptimizations();
+
+// Initialize image optimizations
+initializeImageOptimizations();
 
 // Optimize QueryClient for high traffic
 const queryClient = new QueryClient({

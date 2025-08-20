@@ -1,7 +1,9 @@
 // Bundle optimization utilities
 export const preloadCriticalResources = () => {
-  // Preload critical images
+// Preload critical images
   const criticalImages = [
+    '/src/assets/xtsy-brand-logo.png',
+    '/src/assets/meghalaya-hero.jpg',
     '/placeholder.svg',
     // Add other critical images here
   ];
