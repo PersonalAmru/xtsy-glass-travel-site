@@ -343,29 +343,6 @@ Thank you! 😊`;
                 </CardContent>
               </Card>
             </div>
-
-            {/* Location & Booking */}
-            <div className="text-center animate-fade-in">
-              <Card className="bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-sm border-primary/20 shadow-xl max-w-2xl mx-auto">
-                <CardContent className="p-8">
-                  <MapPin className="w-8 h-8 text-primary mx-auto mb-4" />
-                  <h3 className="text-2xl font-semibold mb-4">Shillong, Meghalaya</h3>
-                  <p className="text-muted-foreground mb-6">
-                    Nestled in the pristine hills of Northeast India's Scotland of the East
-                  </p>
-                  <Button 
-                    size="lg" 
-                    onClick={handleBookingClick}
-                    className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 w-full"
-                  >
-                    Book Your 270° Experience
-                  </Button>
-                  <p className="text-sm text-muted-foreground mt-4">
-                    Starting from ₹{XTSY270_DATA.weekdayPrice.toLocaleString()} per night • Advance booking recommended
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
           </div>
         </section>
       </main>
