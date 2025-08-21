@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { 
@@ -101,11 +102,11 @@ const ServicesSection = () => {
 
       <div className="responsive-container relative z-10">
         <div className="section-header">
-          <div className="section-title-card">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4 font-playfair">
+          <div className="glass-card inline-block px-8 py-6 rounded-3xl bg-white/20 backdrop-blur-md border border-white/30 shadow-xl max-w-4xl">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 font-playfair text-center">
               Amenities & Services
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+            <div className="w-20 sm:w-28 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-4 rounded-full" />
           </div>
         </div>
 

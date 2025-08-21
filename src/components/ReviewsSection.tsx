@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -120,13 +121,13 @@ const ReviewsSection = () => {
       
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-16">
-          <div className="inline-block p-6 bg-white/10 backdrop-blur-sm rounded-2xl shadow-2xl mb-6 border border-white/20">
-            <h2 className="text-2xl font-bold text-white mb-4 font-playfair">
+          <div className="glass-card inline-block px-8 py-6 rounded-3xl bg-white/20 backdrop-blur-md border border-white/30 shadow-xl max-w-4xl">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 font-playfair text-center">
               Guest Reviews
             </h2>
-            <div className="w-32 h-1 bg-gradient-to-r from-white/50 to-gray-300/50 mx-auto rounded-full" />
+            <p className="text-sm sm:text-base md:text-lg text-gray-300 text-center leading-relaxed max-w-2xl mx-auto mb-3">See what our amazing guests have to say about their unforgettable stay at XTSY!</p>
+            <div className="w-20 sm:w-28 h-0.5 bg-gradient-to-r from-white/50 to-gray-300/50 mx-auto mt-4 rounded-full" />
           </div>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/20">See what our amazing guests have to say about their unforgettable stay at XTSY!</p>
         </div>
 
         {/* Floating Carousel */}
