@@ -1,0 +1,161 @@
+import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.7.1'
+
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+}
+
+serve(async (req) => {
+  // Handle CORS preflight requests
+  if (req.method === 'OPTIONS') {
+    return new Response(null, { headers: corsHeaders });
+  }
+
+  try {
+    const supabase = createClient(
+      Deno.env.get('SUPABASE_URL') ?? '',
+      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
+    )
+
+    const { action, email, timeWindow } = await req.json();
+
+    console.log('Security monitoring request:', { action, email, timeWindow });
+
+    switch (action) {
+      case 'check_suspicious_activity':
+        const { data: suspiciousData, error: suspiciousError } = await supabase
+          .rpc('check_suspicious_booking_activity', {
+            email_param: email,
+            time_window_hours: timeWindow || 24
+          });
+
+        if (suspiciousError) {
+          console.error('Error checking suspicious activity:', suspiciousError);
+          throw suspiciousError;
+        }
+
+        console.log('Suspicious activity check result:', suspiciousData);
+        
+        return new Response(
+          JSON.stringify({
+            success: true,
+            data: suspiciousData[0] || {
+              suspicious_indicators: [],
+              risk_score: 0,
+              recent_bookings_count: 0
+            }
+          }),
+          {
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+            status: 200,
+          }
+        );
+
+      case 'get_audit_logs':
+        const { data: auditLogs, error: auditError } = await supabase
+          .from('booking_audit_log')
+          .select('*')
+          .order('created_at', { ascending: false })
+          .limit(100);
+
+        if (auditError) {
+          console.error('Error fetching audit logs:', auditError);
+          throw auditError;
+        }
+
+        return new Response(
+          JSON.stringify({
+            success: true,
+            data: auditLogs
+          }),
+          {
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+            status: 200,
+          }
+        );
+
+      case 'get_security_metrics':
+        // Get recent booking statistics
+        const { data: recentBookings, error: bookingError } = await supabase
+          .from('bookings')
+          .select('created_at, email, total_amount, booking_status')
+          .gte('created_at', new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString())
+          .order('created_at', { ascending: false });
+
+        if (bookingError) {
+          console.error('Error fetching recent bookings:', bookingError);
+          throw bookingError;
+        }
+
+        // Calculate security metrics
+        const totalBookings = recentBookings?.length || 0;
+        const uniqueEmails = new Set(recentBookings?.map(b => b.email) || []).size;
+        const highValueBookings = recentBookings?.filter(b => b.total_amount > 100000).length || 0;
+        const suspiciousRatio = totalBookings > 0 ? (totalBookings - uniqueEmails) / totalBookings : 0;
+
+        const securityMetrics = {
+          total_bookings_24h: totalBookings,
+          unique_users_24h: uniqueEmails,
+          high_value_bookings_24h: highValueBookings,
+          suspicious_ratio: suspiciousRatio,
+          alert_level: suspiciousRatio > 0.5 ? 'HIGH' : suspiciousRatio > 0.2 ? 'MEDIUM' : 'LOW'
+        };
+
+        console.log('Security metrics calculated:', securityMetrics);
+
+        return new Response(
+          JSON.stringify({
+            success: true,
+            data: securityMetrics
+          }),
+          {
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+            status: 200,
+          }
+        );
+
+      case 'block_suspicious_email':
+        // This would require additional table to store blocked emails
+        // For now, just log the request
+        console.log('Block request for email:', email);
+        
+        return new Response(
+          JSON.stringify({
+            success: true,
+            message: 'Email blocking logged for review'
+          }),
+          {
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+            status: 200,
+          }
+        );
+
+      default:
+        return new Response(
+          JSON.stringify({
+            success: false,
+            error: 'Invalid action'
+          }),
+          {
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+            status: 400,
+          }
+        );
+    }
+
+  } catch (error) {
+    console.error('Security monitoring error:', error);
+    
+    return new Response(
+      JSON.stringify({
+        success: false,
+        error: error.message || 'Internal server error'
+      }),
+      {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 500,
+      }
+    );
+  }
+})

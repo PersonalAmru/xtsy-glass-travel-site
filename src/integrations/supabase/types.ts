@@ -76,6 +76,47 @@ export type Database = {
           },
         ]
       }
+      booking_audit_log: {
+        Row: {
+          accessed_fields: string[] | null
+          action_type: string
+          booking_id: string | null
+          created_at: string | null
+          id: string
+          user_agent: string | null
+          user_email: string | null
+          user_ip: unknown | null
+        }
+        Insert: {
+          accessed_fields?: string[] | null
+          action_type: string
+          booking_id?: string | null
+          created_at?: string | null
+          id?: string
+          user_agent?: string | null
+          user_email?: string | null
+          user_ip?: unknown | null
+        }
+        Update: {
+          accessed_fields?: string[] | null
+          action_type?: string
+          booking_id?: string | null
+          created_at?: string | null
+          id?: string
+          user_agent?: string | null
+          user_email?: string | null
+          user_ip?: unknown | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "booking_audit_log_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: false
+            referencedRelation: "bookings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       booking_confirmations: {
         Row: {
           booking_id: string | null
@@ -489,6 +530,14 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      check_suspicious_booking_activity: {
+        Args: { email_param: string; time_window_hours?: number }
+        Returns: {
+          recent_bookings_count: number
+          risk_score: number
+          suspicious_indicators: string[]
+        }[]
+      }
       generate_booking_id: {
         Args: Record<PropertyKey, never>
         Returns: string
