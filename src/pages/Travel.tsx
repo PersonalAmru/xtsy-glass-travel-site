@@ -14,8 +14,25 @@ import SEOContent from "@/components/SEOContent";
 import { TourPricingService } from "@/utils/tourPricingService";
 import OptimizedLazyImage from "@/components/OptimizedLazyImage";
 
-// Import the biodiversity image for the exclusive tour
+// Import images for tour packages
 import meghalayaBiodiversityAuthenticImg from "@/assets/meghalaya-biodiversity-authentic.jpg";
+import wildernessSurvivalImg from "@/assets/wilderness-survival-final.jpg";
+import arunachalTribalImg from "@/assets/arunachal-tribal-festival.jpg";
+import livingRootBridgesImg from "@/assets/living-root-bridges-authentic.jpg";
+import dawkiCrystalClearImg from "@/assets/dawki-crystal-clear-authentic.jpg";
+import assamTeaGardensImg from "@/assets/assam-tea-gardens-new.jpg";
+import manipurLoktakImg from "@/assets/manipur-loktak-premium.jpg";
+import tripuraTribalImg from "@/assets/tripura-tribal-premium.jpg";
+import charDhamYatraImg from "@/assets/char-dham-yatra.jpg";
+import nainitalLakeImg from "@/assets/nainital-lake-district.jpg";
+import sikkimRhododendronImg from "@/assets/sikkim-rhododendrons-premium.jpg";
+import pellingKanchenjungaImg from "@/assets/pelling-kanchenjunga.jpg";
+import gurudongmarLakeImg from "@/assets/gurudongmar-lake.jpg";
+import keralaBackwatersImg from "@/assets/kerala-backwaters-authentic.jpg";
+import munnarTeaGardensImg from "@/assets/munnar-tea-gardens.jpg";
+import thekkadyWildlifeImg from "@/assets/thekkady-wildlife.jpg";
+import tamilNaduTemplesImg from "@/assets/tamil-nadu-temples.jpg";
+import ootyKodaikanalImg from "@/assets/ooty-kodaikanal.jpg";
 
 // Lazy load image imports using dynamic imports
 const loadImages = {
@@ -141,8 +158,8 @@ const Travel = () => {
         duration: "5 Days", 
         difficulty: "Challenging",
         price: TourPricingService.calculatePrice("5 Days", "exclusive", "Challenging", "Northeast India", "Nov-Apr"),
-        image: "",
-        images: ["", "", ""],
+        image: wildernessSurvivalImg,
+        images: [wildernessSurvivalImg, wildernessSurvivalImg, wildernessSurvivalImg],
         rating: 4.8,
         category: "adventure",
         location: "Northeast India",
@@ -173,8 +190,8 @@ const Travel = () => {
         duration: "6 Days",
         difficulty: "Moderate",
         price: TourPricingService.calculatePrice("6 Days", "exclusive", "Moderate", "Northeast India", "Nov-Apr"),
-        image: "",
-        images: ["", "", ""],
+        image: arunachalTribalImg,
+        images: [arunachalTribalImg, arunachalTribalImg, arunachalTribalImg],
         rating: 4.8,
         category: "cultural",
         location: "Northeast India",
@@ -208,8 +225,8 @@ const Travel = () => {
         duration: "5 Days",
         difficulty: "Moderate",
         price: TourPricingService.calculatePrice("5 Days", "adventure", "Moderate", "Meghalaya", "Oct-Mar"),
-        image: "",
-        images: ["", "", ""],
+        image: livingRootBridgesImg,
+        images: [livingRootBridgesImg, livingRootBridgesImg, livingRootBridgesImg],
         rating: 4.8,
         category: "adventure",
         location: "Meghalaya",
@@ -223,8 +240,8 @@ const Travel = () => {
         duration: "2 Days",
         difficulty: "Easy",
         price: TourPricingService.calculatePrice("2 Days", "leisure", "Easy", "Meghalaya", "Nov-May"),
-        image: "",
-        images: ["", "", ""],
+        image: dawkiCrystalClearImg,
+        images: [dawkiCrystalClearImg, dawkiCrystalClearImg, dawkiCrystalClearImg],
         rating: 4.7,
         category: "leisure",
         location: "Meghalaya",
@@ -256,8 +273,8 @@ const Travel = () => {
         duration: "7 Days",
         difficulty: "Easy",
         price: TourPricingService.calculatePrice("7 Days", "leisure", "Easy", "Assam", "Nov-Apr"),
-        image: "",
-        images: ["", "", ""],
+        image: assamTeaGardensImg,
+        images: [assamTeaGardensImg, assamTeaGardensImg, assamTeaGardensImg],
         rating: 4.6,
         category: "leisure",
         location: "Assam",
@@ -271,8 +288,8 @@ const Travel = () => {
         duration: "4 Days",
         difficulty: "Easy",
         price: TourPricingService.calculatePrice("4 Days", "leisure", "Easy", "Manipur", "Oct-Mar"),
-        image: "",
-        images: ["", "", ""],
+        image: manipurLoktakImg,
+        images: [manipurLoktakImg, manipurLoktakImg, manipurLoktakImg],
         rating: 4.7,
         category: "leisure",
         location: "Manipur",
@@ -286,8 +303,8 @@ const Travel = () => {
         duration: "4 Days",
         difficulty: "Moderate",
         price: TourPricingService.calculatePrice("4 Days", "cultural", "Moderate", "Tripura", "Oct-Mar"),
-        image: "",
-        images: ["", "", ""],
+        image: tripuraTribalImg,
+        images: [tripuraTribalImg, tripuraTribalImg, tripuraTribalImg],
         rating: 4.5,
         category: "cultural",
         location: "Tripura",
@@ -304,8 +321,8 @@ const Travel = () => {
         duration: "12 Days",
         difficulty: "Challenging",
         price: TourPricingService.calculatePrice("12 Days", "cultural", "Challenging", "Uttarakhand", "May-Oct"),
-        image: "",
-        images: ["", "", ""],
+        image: charDhamYatraImg,
+        images: [charDhamYatraImg, charDhamYatraImg, charDhamYatraImg],
         rating: 4.9,
         category: "cultural",
         location: "Uttarakhand",
@@ -319,8 +336,8 @@ const Travel = () => {
         duration: "5 Days",
         difficulty: "Easy",
         price: TourPricingService.calculatePrice("5 Days", "leisure", "Easy", "Uttarakhand", "Mar-Jun, Sep-Nov"),
-        image: "",
-        images: ["", "", ""],
+        image: nainitalLakeImg,
+        images: [nainitalLakeImg, nainitalLakeImg, nainitalLakeImg],
         rating: 4.6,
         category: "leisure",
         location: "Uttarakhand",
@@ -337,8 +354,8 @@ const Travel = () => {
         duration: "4 Days",
         difficulty: "Moderate",
         price: TourPricingService.calculatePrice("4 Days", "leisure", "Moderate", "Sikkim", "Mar-May"),
-        image: "",
-        images: ["", "", ""],
+        image: sikkimRhododendronImg,
+        images: [sikkimRhododendronImg, sikkimRhododendronImg, sikkimRhododendronImg],
         rating: 4.7,
         category: "leisure",
         location: "Sikkim",
@@ -352,8 +369,8 @@ const Travel = () => {
         duration: "3 Days",
         difficulty: "Easy",
         price: TourPricingService.calculatePrice("3 Days", "leisure", "Easy", "Sikkim", "Oct-May"),
-        image: "",
-        images: ["", "", ""],
+        image: pellingKanchenjungaImg,
+        images: [pellingKanchenjungaImg, pellingKanchenjungaImg, pellingKanchenjungaImg],
         rating: 4.6,
         category: "leisure",
         location: "Sikkim",
@@ -367,8 +384,8 @@ const Travel = () => {
         duration: "6 Days",
         difficulty: "Challenging",
         price: TourPricingService.calculatePrice("6 Days", "adventure", "Challenging", "Sikkim", "Mar-Jun"),
-        image: "",
-        images: ["", "", ""],
+        image: gurudongmarLakeImg,
+        images: [gurudongmarLakeImg, gurudongmarLakeImg, gurudongmarLakeImg],
         rating: 4.9,
         category: "adventure",
         location: "Sikkim",
@@ -418,8 +435,8 @@ const Travel = () => {
         duration: "5 Days",
         difficulty: "Easy",
         price: TourPricingService.calculatePrice("5 Days", "leisure", "Easy", "Kerala", "Oct-Mar"),
-        image: "",
-        images: ["", "", ""],
+        image: keralaBackwatersImg,
+        images: [keralaBackwatersImg, keralaBackwatersImg, keralaBackwatersImg],
         rating: 4.8,
         category: "leisure",
         location: "Kerala",
@@ -433,8 +450,8 @@ const Travel = () => {
         duration: "4 Days",
         difficulty: "Easy",
         price: TourPricingService.calculatePrice("4 Days", "leisure", "Easy", "Kerala", "Sep-May"),
-        image: "",
-        images: ["", "", ""],
+        image: munnarTeaGardensImg,
+        images: [munnarTeaGardensImg, munnarTeaGardensImg, munnarTeaGardensImg],
         rating: 4.7,
         category: "leisure",
         location: "Kerala",
@@ -448,8 +465,8 @@ const Travel = () => {
         duration: "3 Days",
         difficulty: "Easy",
         price: TourPricingService.calculatePrice("3 Days", "leisure", "Easy", "Kerala", "Oct-Feb"),
-        image: "",
-        images: ["", "", ""],
+        image: thekkadyWildlifeImg,
+        images: [thekkadyWildlifeImg, thekkadyWildlifeImg, thekkadyWildlifeImg],
         rating: 4.6,
         category: "leisure",
         location: "Kerala",
@@ -466,8 +483,8 @@ const Travel = () => {
         duration: "3 Days",
         difficulty: "Easy",
         price: TourPricingService.calculatePrice("3 Days", "leisure", "Easy", "Tamil Nadu", "Apr-Jun, Sep-Nov"),
-        image: "",
-        images: ["", "", ""],
+        image: ootyKodaikanalImg,
+        images: [ootyKodaikanalImg, ootyKodaikanalImg, ootyKodaikanalImg],
         rating: 4.6,
         category: "leisure",
         location: "Tamil Nadu",
@@ -481,8 +498,8 @@ const Travel = () => {
         duration: "3 Days", 
         difficulty: "Easy",
         price: TourPricingService.calculatePrice("3 Days", "leisure", "Easy", "Tamil Nadu", "Apr-Jun, Sep-Nov"),
-        image: "",
-        images: ["", "", ""],
+        image: ootyKodaikanalImg,
+        images: [ootyKodaikanalImg, ootyKodaikanalImg, ootyKodaikanalImg],
         rating: 4.4,
         category: "leisure",
         location: "Tamil Nadu",
