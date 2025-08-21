@@ -18,6 +18,7 @@ import OptimizedLazyImage from "@/components/OptimizedLazyImage";
 import meghalayaBiodiversityAuthenticImg from "@/assets/meghalaya-biodiversity-authentic.jpg";
 import wildernessSurvivalImg from "@/assets/wilderness-survival-authentic.jpg";
 import arunachalTribalImg from "@/assets/arunachal-tribal-premium.jpg";
+import northeastEcologicalImg from "@/assets/northeast-ecological-education-authentic.jpg";
 import livingRootBridgesImg from "@/assets/living-root-bridges-authentic.jpg";
 import dawkiCrystalClearImg from "@/assets/dawki-crystal-clear-authentic.jpg";
 import assamTeaGardensImg from "@/assets/assam-tea-gardens-premium.jpg";
@@ -204,8 +205,8 @@ const Travel = () => {
         duration: "6 Days",
         difficulty: "Moderate",
         price: TourPricingService.calculatePrice("6 Days", "exclusive", "Moderate", "Northeast India", "Nov-Apr"),
-        image: arunachalTribalImg,
-        images: [arunachalTribalImg, arunachalTribalImg, arunachalTribalImg],
+        image: northeastEcologicalImg,
+        images: [northeastEcologicalImg, northeastEcologicalImg, northeastEcologicalImg],
         rating: 4.8,
         category: "cultural",
         location: "Northeast India",
