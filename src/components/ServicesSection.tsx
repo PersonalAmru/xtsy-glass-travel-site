@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { 
@@ -106,6 +105,9 @@ const ServicesSection = () => {
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 font-playfair text-center">
               Amenities & Services
             </h2>
+            <p className="text-sm sm:text-base text-gray-600 text-center mb-4 font-medium">
+              Everything you need for a comfortable and memorable stay
+            </p>
             <div className="w-20 sm:w-28 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-4 rounded-full" />
           </div>
         </div>
