@@ -139,15 +139,15 @@ Thank you! 😊`;
           <div className="container mx-auto max-w-7xl px-4">
             {/* Luxury Badges */}
             <div className="flex flex-wrap justify-center gap-3 mb-8 animate-fade-in">
-              <Badge variant="outline" className="glass-card bg-white/60 border-white/40 text-primary font-semibold backdrop-blur-md">
+              <Badge variant="outline" className="glass-card bg-white/80 border-white/60 text-gray-800 font-semibold backdrop-blur-md">
                 <Award className="w-3 h-3 mr-1" />
                 India's First 270° Glass House
               </Badge>
-              <Badge variant="outline" className="glass-card bg-white/60 border-white/40 text-primary font-semibold backdrop-blur-md">
+              <Badge variant="outline" className="glass-card bg-white/80 border-white/60 text-gray-800 font-semibold backdrop-blur-md">
                 <Star className="w-3 h-3 mr-1" />
                 Architectural Excellence
               </Badge>
-              <Badge variant="outline" className="glass-card bg-white/60 border-white/40 text-primary font-semibold backdrop-blur-md">
+              <Badge variant="outline" className="glass-card bg-white/80 border-white/60 text-gray-800 font-semibold backdrop-blur-md">
                 <Mountain className="w-3 h-3 mr-1" />
                 Premium Mountain Views
               </Badge>
@@ -161,42 +161,42 @@ Thank you! 😊`;
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 Panorama Glass Ensuite
               </h2>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg md:text-xl text-gray-800 font-medium max-w-3xl mx-auto leading-relaxed">
                 Experience India's most innovative architectural marvel — a 200% luxury ensuite with stunning 270° mountain panoramas that redefine hospitality excellence.
               </p>
             </div>
 
             {/* Pricing Display */}
             <div className="flex flex-col md:flex-row justify-center gap-6 mb-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
-              <Card className="glass-card bg-white/60 backdrop-blur-md border-white/40 shadow-xl">
+              <Card className="glass-card bg-white/80 backdrop-blur-md border-white/60 shadow-xl">
                 <CardContent className="p-6 text-center">
                   <div className="flex items-center justify-center gap-4 mb-2">
                     <Calendar className="w-5 h-5 text-primary" />
-                    <span className="text-sm font-medium text-muted-foreground">
+                    <span className="text-sm font-semibold text-gray-800">
                       Weekday Rate
                     </span>
                   </div>
                   <div className="text-3xl font-bold text-primary mb-2">
                     ₹{XTSY270_DATA.weekdayPrice.toLocaleString()}
                   </div>
-                  <div className="text-sm text-muted-foreground">
+                  <div className="text-sm text-gray-700 font-medium">
                     per night • Monday - Friday
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="glass-card bg-white/60 backdrop-blur-md border-white/40 shadow-xl">
+              <Card className="glass-card bg-white/80 backdrop-blur-md border-white/60 shadow-xl">
                 <CardContent className="p-6 text-center">
                   <div className="flex items-center justify-center gap-4 mb-2">
                     <Calendar className="w-5 h-5 text-primary" />
-                    <span className="text-sm font-medium text-muted-foreground">
+                    <span className="text-sm font-semibold text-gray-800">
                       Weekend Rate
                     </span>
                   </div>
                   <div className="text-3xl font-bold text-primary mb-2">
                     ₹{XTSY270_DATA.weekendPrice.toLocaleString()}
                   </div>
-                  <div className="text-sm text-muted-foreground">
+                  <div className="text-sm text-gray-700 font-medium">
                     per night • Saturday - Sunday
                   </div>
                 </CardContent>
@@ -218,7 +218,7 @@ Thank you! 😊`;
                   className="w-full h-[60vh] md:h-[70vh]"
                 />
               </div>
-              <figcaption className="mt-4 text-center text-muted-foreground">
+              <figcaption className="mt-4 text-center text-gray-700 font-medium">
                 India's first 270° panoramic glass house — where architecture meets nature in perfect harmony
               </figcaption>
             </figure>
@@ -235,44 +235,44 @@ Thank you! 😊`;
                 <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                   The Vision
                 </h2>
-                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                <p className="text-xl text-gray-800 font-medium max-w-3xl mx-auto">
                   Pioneering architectural innovation in the heart of Meghalaya's pristine landscapes
                 </p>
               </div>
               
-              <Card className="glass-card bg-white/60 backdrop-blur-md border-white/40 shadow-xl">
+              <Card className="glass-card bg-white/80 backdrop-blur-md border-white/60 shadow-xl">
                 <CardContent className="p-4 md:p-6">
                   <div className="grid md:grid-cols-2 gap-8 items-center">
                     <div>
-                      <h3 className="text-2xl font-semibold mb-4 text-foreground">India's First 270° Glass House</h3>
-                      <p className="text-muted-foreground leading-relaxed mb-6">
+                      <h3 className="text-2xl font-semibold mb-4 text-gray-900">India's First 270° Glass House</h3>
+                      <p className="text-gray-800 font-medium leading-relaxed mb-6">
                         Conceived as a masterpiece of contemporary architecture, XTSY 270° redefines luxury accommodation through 
                         innovative glass engineering. Our transparent sanctuary offers an unparalleled connection with nature while 
                         maintaining the highest standards of comfort and privacy.
                       </p>
                       <div className="grid grid-cols-2 gap-4">
-                        <Badge variant="outline" className="glass-card bg-white/60 border-white/40 text-primary font-semibold backdrop-blur-md text-center justify-center p-4 flex-col">
+                        <Badge variant="outline" className="glass-card bg-white/80 border-white/60 text-gray-800 font-semibold backdrop-blur-md text-center justify-center p-4 flex-col">
                           <Eye className="w-6 h-6 text-primary mb-2" />
-                          <div className="text-sm font-medium">270° Views</div>
+                          <div className="text-sm font-semibold">270° Views</div>
                         </Badge>
-                        <Badge variant="outline" className="glass-card bg-white/60 border-white/40 text-primary font-semibold backdrop-blur-md text-center justify-center p-4 flex-col">
+                        <Badge variant="outline" className="glass-card bg-white/80 border-white/60 text-gray-800 font-semibold backdrop-blur-md text-center justify-center p-4 flex-col">
                           <Award className="w-6 h-6 text-primary mb-2" />
-                          <div className="text-sm font-medium">First in India</div>
+                          <div className="text-sm font-semibold">First in India</div>
                         </Badge>
                       </div>
                     </div>
                     <div className="space-y-4">
-                      <Badge variant="outline" className="glass-card bg-white/60 border-white/40 text-primary font-semibold backdrop-blur-md w-full justify-start p-4">
+                      <Badge variant="outline" className="glass-card bg-white/80 border-white/60 text-gray-800 font-semibold backdrop-blur-md w-full justify-start p-4">
                         <Mountain className="w-5 h-5 text-primary mr-2" />
-                        <span className="text-sm">Panoramic mountain vistas</span>
+                        <span className="text-sm font-medium">Panoramic mountain vistas</span>
                       </Badge>
-                      <Badge variant="outline" className="glass-card bg-white/60 border-white/40 text-primary font-semibold backdrop-blur-md w-full justify-start p-4">
+                      <Badge variant="outline" className="glass-card bg-white/80 border-white/60 text-gray-800 font-semibold backdrop-blur-md w-full justify-start p-4">
                         <Sun className="w-5 h-5 text-primary mr-2" />
-                        <span className="text-sm">Sunrise to sunset immersion</span>
+                        <span className="text-sm font-medium">Sunrise to sunset immersion</span>
                       </Badge>
-                      <Badge variant="outline" className="glass-card bg-white/60 border-white/40 text-primary font-semibold backdrop-blur-md w-full justify-start p-4">
+                      <Badge variant="outline" className="glass-card bg-white/80 border-white/60 text-gray-800 font-semibold backdrop-blur-md w-full justify-start p-4">
                         <Moon className="w-5 h-5 text-primary mr-2" />
-                        <span className="text-sm">Stargazing sanctuary</span>
+                        <span className="text-sm font-medium">Stargazing sanctuary</span>
                       </Badge>
                     </div>
                   </div>
@@ -286,20 +286,20 @@ Thank you! 😊`;
                 <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
                   Luxury Amenities
                 </h2>
-                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                <p className="text-xl text-gray-800 font-medium max-w-3xl mx-auto">
                   Every detail crafted for the discerning traveler seeking uncompromising excellence
                 </p>
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {XTSY270_DATA.luxuryFeatures.map((feature, index) => (
-                  <Card key={index} className="glass-card bg-white/60 backdrop-blur-md border-white/40 shadow-lg hover:shadow-xl transition-all duration-300 group">
+                  <Card key={index} className="glass-card bg-white/80 backdrop-blur-md border-white/60 shadow-lg hover:shadow-xl transition-all duration-300 group">
                     <CardContent className="p-6 text-center">
                       <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
                         <feature.icon className="w-8 h-8 text-primary mx-auto" />
                       </div>
-                      <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                      <p className="text-sm text-muted-foreground">{feature.description}</p>
+                      <h3 className="text-lg font-semibold mb-2 text-gray-900">{feature.title}</h3>
+                      <p className="text-sm text-gray-700 font-medium">{feature.description}</p>
                     </CardContent>
                   </Card>
                 ))}
@@ -308,23 +308,23 @@ Thank you! 😊`;
 
             {/* Experience Details */}
             <div className="mb-20 animate-fade-in">
-              <Card className="glass-card bg-white/60 backdrop-blur-md border-white/40 shadow-xl">
+              <Card className="glass-card bg-white/80 backdrop-blur-md border-white/60 shadow-xl">
                 <CardContent className="p-3 md:p-4">
                   <div className="grid lg:grid-cols-3 gap-3">
-                    <Badge variant="outline" className="glass-card bg-white/60 border-white/40 text-primary font-semibold backdrop-blur-md text-center justify-center p-3 flex-col">
+                    <Badge variant="outline" className="glass-card bg-white/80 border-white/60 text-gray-800 font-semibold backdrop-blur-md text-center justify-center p-3 flex-col">
                       <Users className="w-6 h-6 text-primary mx-auto mb-2" />
                       <h3 className="text-base font-semibold mb-1">Occupancy</h3>
-                      <p className="text-muted-foreground text-sm">Up to 2 guests in supreme comfort</p>
+                      <p className="text-gray-700 text-sm font-medium">Up to 2 guests in supreme comfort</p>
                     </Badge>
-                    <Badge variant="outline" className="glass-card bg-white/60 border-white/40 text-primary font-semibold backdrop-blur-md text-center justify-center p-3 flex-col">
+                    <Badge variant="outline" className="glass-card bg-white/80 border-white/60 text-gray-800 font-semibold backdrop-blur-md text-center justify-center p-3 flex-col">
                       <Bed className="w-6 h-6 text-primary mx-auto mb-2" />
                       <h3 className="text-base font-semibold mb-1">Bedding</h3>
-                      <p className="text-muted-foreground text-sm">Queen bed with premium linens</p>
+                      <p className="text-gray-700 text-sm font-medium">Queen bed with premium linens</p>
                     </Badge>
-                    <Badge variant="outline" className="glass-card bg-white/60 border-white/40 text-primary font-semibold backdrop-blur-md text-center justify-center p-3 flex-col">
+                    <Badge variant="outline" className="glass-card bg-white/80 border-white/60 text-gray-800 font-semibold backdrop-blur-md text-center justify-center p-3 flex-col">
                       <Bath className="w-6 h-6 text-primary mx-auto mb-2" />
                       <h3 className="text-base font-semibold mb-1">Ensuite</h3>
-                      <p className="text-muted-foreground text-sm">Private luxury bathroom</p>
+                      <p className="text-gray-700 text-sm font-medium">Private luxury bathroom</p>
                     </Badge>
                   </div>
                 </CardContent>
@@ -340,7 +340,7 @@ Thank you! 😊`;
               >
                 Reserve Your Luxury Experience
               </Button>
-              <p className="text-sm text-muted-foreground mt-3">
+              <p className="text-sm text-gray-700 font-medium mt-3">
                 Limited availability • Book 48 hours in advance for exclusive concierge services
               </p>
             </div>
