@@ -57,7 +57,6 @@ const Travel = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const [difficultyFilter, setDifficultyFilter] = useState("all");
   const [daysFilter, setDaysFilter] = useState("all");
   const [locationFilter, setLocationFilter] = useState("all");
 
@@ -467,13 +466,11 @@ const Travel = () => {
     { id: "leisure", label: "Leisure" }
   ];
 
-  const difficulties = ["all", "Easy", "Moderate", "Challenging"];
   const days = ["all", "1-3 Days", "4-6 Days", "7+ Days"];
   const locations = ["all", "Meghalaya", "Uttarakhand", "Sikkim", "Himachal Pradesh", "Kerala", "Tamil Nadu", "Assam", "Arunachal Pradesh", "Manipur", "Tripura"];
 
   const filteredItineraries = allItineraries.filter(item => {
     const categoryMatch = selectedCategory === "all" || item.category === selectedCategory;
-    const difficultyMatch = difficultyFilter === "all" || item.difficulty === difficultyFilter;
     const locationMatch = locationFilter === "all" || item.location === locationFilter;
     
     let daysMatch = true;
@@ -484,7 +481,7 @@ const Travel = () => {
       else if (daysFilter === "7+ Days") daysMatch = itemDays >= 7;
     }
     
-    return categoryMatch && difficultyMatch && daysMatch && locationMatch;
+    return categoryMatch && daysMatch && locationMatch;
   });
 
   const meghalayaPackages = filteredItineraries.filter(item => item.location === "Meghalaya");
@@ -492,7 +489,6 @@ const Travel = () => {
 
   const clearFilters = () => {
     setSelectedCategory("all");
-    setDifficultyFilter("all");
     setDaysFilter("all");
     setLocationFilter("all");
   };
@@ -581,19 +577,6 @@ const Travel = () => {
                            </SelectContent>
                          </Select>
 
-                         <Select value={difficultyFilter} onValueChange={setDifficultyFilter}>
-                           <SelectTrigger className="w-40 bg-white text-gray-900 border-gray-300">
-                             <SelectValue placeholder="Difficulty" />
-                           </SelectTrigger>
-                           <SelectContent>
-                             {difficulties.map((difficulty) => (
-                               <SelectItem key={difficulty} value={difficulty}>
-                                 {difficulty === "all" ? "All Levels" : difficulty}
-                               </SelectItem>
-                             ))}
-                           </SelectContent>
-                         </Select>
-
                          <Select value={daysFilter} onValueChange={setDaysFilter}>
                            <SelectTrigger className="w-40 bg-white text-gray-900 border-gray-300">
                              <SelectValue placeholder="Duration" />
@@ -635,7 +618,6 @@ const Travel = () => {
                   {Object.entries(stateWiseTourPackages).map(([state, packages]) => {
                     const filteredStatePackages = packages.filter(pkg => {
                       const categoryMatch = selectedCategory === "all" || pkg.category === selectedCategory;
-                      const difficultyMatch = difficultyFilter === "all" || pkg.difficulty === difficultyFilter;
                       const locationMatch = locationFilter === "all" || pkg.location === locationFilter;
                       
                       let daysMatch = true;
@@ -646,7 +628,7 @@ const Travel = () => {
                         else if (daysFilter === "7+ Days") daysMatch = itemDays >= 7;
                       }
                       
-                      return categoryMatch && difficultyMatch && daysMatch && locationMatch;
+                      return categoryMatch && daysMatch && locationMatch;
                     });
 
                     if (filteredStatePackages.length === 0) return null;
