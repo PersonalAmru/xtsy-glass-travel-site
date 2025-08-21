@@ -8,6 +8,14 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { AppProvider } from "./contexts/AppContext";
 import { initializePerformanceOptimizations } from "./utils/performanceOptimizer";
 import { initializeImageOptimizations } from "./utils/imageOptimization";
+import { performGlobalCleanup } from "./utils/performanceCleanup";
+import { cleanupUnifiedImage } from "./components/UnifiedImage";
+
+// Add cleanup on app exit
+window.addEventListener('beforeunload', () => {
+  performGlobalCleanup();
+  cleanupUnifiedImage();
+});
 
 // Initialize performance optimizations
 initializePerformanceOptimizations();

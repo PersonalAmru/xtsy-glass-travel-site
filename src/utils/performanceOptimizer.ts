@@ -83,7 +83,7 @@ export class PerformanceOptimizer {
     }
   }
 
-  // Monitor performance metrics
+  // Monitor performance metrics with improved thresholds
   static monitorPerformance() {
     if ('performance' in window && 'memory' in performance) {
       const memory = (performance as any).memory;
@@ -94,9 +94,14 @@ export class PerformanceOptimizer {
         timestamp: Date.now()
       };
 
-      // Log warning if memory usage is high
-      if (metrics.usedJSHeapSize > 100) { // 100MB threshold
-        console.warn('High memory usage detected:', metrics);
+      // Improved threshold - only warn if memory usage is critically high
+      if (metrics.usedJSHeapSize > 300) { // 300MB threshold instead of 100MB
+        console.warn('Critical memory usage detected:', metrics);
+        
+        // Trigger garbage collection if available and memory is very high
+        if (metrics.usedJSHeapSize > 500 && 'gc' in window) {
+          (window as any).gc();
+        }
       }
 
       return metrics;
@@ -128,10 +133,13 @@ export const initializePerformanceOptimizations = () => {
     // Add other critical assets
   ]);
 
-  // Monitor performance every 30 seconds in development
+  // Monitor performance every 5 minutes in development (reduced from 30s)
   if (process.env.NODE_ENV === 'development') {
-    setInterval(() => {
+    const monitoringInterval = setInterval(() => {
       PerformanceOptimizer.monitorPerformance();
-    }, 30000);
+    }, 300000); // 5 minutes instead of 30 seconds
+    
+    // Store interval reference for cleanup
+    (window as any).__performanceMonitorInterval = monitoringInterval;
   }
 };

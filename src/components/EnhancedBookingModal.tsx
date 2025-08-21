@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -9,7 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useIsMobile } from "@/hooks/use-mobile";
 import RoomCard from "./RoomCard";
 import { useApp } from "@/contexts/AppContext";
-import OptimizedLazyImage from "./OptimizedLazyImage";
+import UnifiedImage from "./UnifiedImage";
 
 // Room data with Supabase images
 const ROOM_DATA = {
@@ -1189,7 +1189,7 @@ const RoomSelectionCard: React.FC<RoomSelectionCardProps> = ({ room, selectedRoo
   return (
     <Card className="overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow">
       <div className="relative h-48">
-        <OptimizedLazyImage 
+        <UnifiedImage 
           src={room.image} 
           alt={room.name}
           className="w-full h-full object-cover"
@@ -1307,7 +1307,7 @@ const MobileRoomSelectionCard: React.FC<MobileRoomSelectionCardProps> = ({ room,
       <div className="flex gap-3 p-3">
         {/* Room Image */}
         <div className="w-20 h-20 flex-shrink-0">
-          <OptimizedLazyImage 
+          <UnifiedImage 
             src={room.image} 
             alt={room.name}
             className="w-full h-full object-cover rounded"

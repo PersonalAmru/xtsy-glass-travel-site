@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,7 +12,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useApp } from "@/contexts/AppContext";
 import { TourItineraryService } from "@/utils/tourItineraryService";
 import { TourPricingService } from "@/utils/tourPricingService";
-import OptimizedLazyImage from "./OptimizedLazyImage";
+import UnifiedImage from "./UnifiedImage";
 
 import meghalayaHiddenGemsImg from "@/assets/meghalaya-hidden-gems-new.jpg";
 import meghalayaNatureAuthenticImg from "@/assets/meghalaya-nature-authentic.jpg";
@@ -458,15 +458,18 @@ Please check availability for these dates and share pricing details for this exc
     <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-gray-900">
-            {tourPackage.title}
+          <DialogTitle className="text-2xl font-bold mb-2">
+            {tourPackage?.title || "Tour Package"}
           </DialogTitle>
+          <DialogDescription className="sr-only">
+            Book your {tourPackage?.title || "tour package"} with detailed itinerary, pricing, and booking options
+          </DialogDescription>
         </DialogHeader>
 
         <div className="grid grid-cols-1 gap-6">
           <div className="w-full">
             <div className="relative">
-              <OptimizedLazyImage
+              <UnifiedImage
                 src={selectedImage}
                 alt={tourPackage.title}
                 className="w-full h-80 lg:h-96 object-cover rounded-lg"

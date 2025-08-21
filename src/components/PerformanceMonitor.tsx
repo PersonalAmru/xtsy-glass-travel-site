@@ -36,14 +36,19 @@ const PerformanceMonitor = () => {
       return () => observer.disconnect();
     }
 
-    // Memory usage monitoring (if available)
+    // Memory usage monitoring with throttling (only log if memory is high)
     if ('memory' in performance) {
       const memInfo = (performance as any).memory;
-      console.log('Memory Usage:', {
-        used: Math.round(memInfo.usedJSHeapSize / 1048576) + ' MB',
-        total: Math.round(memInfo.totalJSHeapSize / 1048576) + ' MB',
-        limit: Math.round(memInfo.jsHeapSizeLimit / 1048576) + ' MB'
-      });
+      const usedMB = Math.round(memInfo.usedJSHeapSize / 1048576);
+      
+      // Only log if memory usage is concerning (>200MB)
+      if (usedMB > 200) {
+        console.log('Memory Usage Alert:', {
+          used: usedMB + ' MB',
+          total: Math.round(memInfo.totalJSHeapSize / 1048576) + ' MB',
+          limit: Math.round(memInfo.jsHeapSizeLimit / 1048576) + ' MB'
+        });
+      }
     }
   }, []);
 

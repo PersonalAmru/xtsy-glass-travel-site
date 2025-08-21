@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Camera, Eye, MapPin, Users, Mountain, Building, Image, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import OptimizedLazyImage from "./OptimizedLazyImage";
+import UnifiedImage from "./UnifiedImage";
 
 const GallerySection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -288,7 +288,7 @@ const GallerySection = () => {
                   <CardContent className="p-0">
                     <div className="relative overflow-hidden">
                       {item.image ? (
-                        <OptimizedLazyImage 
+                        <UnifiedImage 
                           src={item.image} 
                           alt={item.title}
                           className="w-full h-48 sm:h-56 object-cover group-hover:scale-110 transition-transform duration-500"

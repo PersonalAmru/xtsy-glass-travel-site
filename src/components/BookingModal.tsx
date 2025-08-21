@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
@@ -7,7 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { Calendar, Users, Bed, Clock, Tag, X, Minus, Plus, Bookmark, TreePine } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useApp } from "@/contexts/AppContext";
-import OptimizedLazyImage from "./OptimizedLazyImage";
+import UnifiedImage from "./UnifiedImage";
 
 // Room data with images, availability, and amenities
 const ROOM_DATA = {
@@ -361,6 +361,9 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
             <DialogTitle className="text-xl md:text-2xl font-bold text-black mb-4">
               Book your stay
             </DialogTitle>
+            <DialogDescription className="sr-only">
+              Book your room at XTSY Travellers Hostel with check-in/out dates, number of guests, and add-on services
+            </DialogDescription>
             
             {/* Know before you go section */}
             <div className="bg-white rounded-lg p-4 mb-4">
@@ -415,7 +418,7 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
                   <div className="flex gap-4 p-4">
                     <div className="w-32 h-24 bg-gray-200 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden">
                       {roomImage ? (
-                        <OptimizedLazyImage 
+                        <UnifiedImage 
                           src={roomImage} 
                           alt={room.name}
                           className="w-full h-full object-cover"
