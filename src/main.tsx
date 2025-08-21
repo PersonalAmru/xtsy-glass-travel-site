@@ -11,17 +11,17 @@ import { initializeImageOptimizations } from "./utils/imageOptimization";
 import { performGlobalCleanup } from "./utils/performanceCleanup";
 import { cleanupUnifiedImage } from "./components/UnifiedImage";
 
-// Add cleanup on app exit
-window.addEventListener('beforeunload', () => {
-  performGlobalCleanup();
-  cleanupUnifiedImage();
-});
-
 // Initialize performance optimizations
 initializePerformanceOptimizations();
 
 // Initialize image optimizations
 initializeImageOptimizations();
+
+// Add cleanup on app exit
+window.addEventListener('beforeunload', () => {
+  performGlobalCleanup();
+  cleanupUnifiedImage();
+});
 
 // Optimize QueryClient for high traffic
 const queryClient = new QueryClient({

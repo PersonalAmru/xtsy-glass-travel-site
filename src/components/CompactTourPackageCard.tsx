@@ -4,10 +4,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Star, MapPin, Clock, TrendingUp } from "lucide-react";
 import { useApp } from "@/contexts/AppContext";
-import UnifiedImage from "./UnifiedImage";
+import UnifiedImage from "./UnifiedImage"; // Updated to UnifiedImage
 import { getRelevantTourImage, type TourPackage } from "@/utils/imageSelection";
 
 // Remove interface declaration since it's imported from utils
+// Updated component to use UnifiedImage for better performance
 
 interface CompactTourPackageCardProps {
   tourPackage: TourPackage;

@@ -167,7 +167,7 @@ const UnifiedImage: React.FC<UnifiedImageProps> = ({
 
 export default UnifiedImage;
 
-// Cleanup function to be called on app unmount
+// Cleanup function to be called on app unmount  
 export const cleanupUnifiedImage = () => {
   SharedIntersectionObserver.cleanup();
 };

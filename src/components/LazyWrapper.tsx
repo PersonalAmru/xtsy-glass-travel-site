@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { useLazyLoading } from '@/hooks/useLazyLoading';
+import { useComponentOptimization } from '@/hooks/useOptimizedPerformance';
 
 interface LazyWrapperProps {
   children: React.ReactNode;
@@ -12,11 +12,11 @@ const LazyWrapper: React.FC<LazyWrapperProps> = ({
   fallback = <div className="animate-pulse bg-gray-100 h-32 rounded"></div>,
   threshold = 0.1 
 }) => {
-  const { elementRef, isVisible } = useLazyLoading(threshold);
+  const { elementRef, shouldRender } = useComponentOptimization();
 
   return (
-    <div ref={elementRef}>
-      {isVisible ? (
+    <div ref={elementRef as any}>
+      {shouldRender ? (
         <Suspense fallback={fallback}>
           {children}
         </Suspense>

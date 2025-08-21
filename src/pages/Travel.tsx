@@ -12,7 +12,7 @@ import { AuthModal } from "@/components/AuthModal";
 import LazyWrapper from "@/components/LazyWrapper";
 import SEOContent from "@/components/SEOContent";
 import { TourPricingService } from "@/utils/tourPricingService";
-import OptimizedLazyImage from "@/components/OptimizedLazyImage";
+import UnifiedImage from "@/components/UnifiedImage"; // Updated to UnifiedImage
 
 // Import images for tour packages
 import meghalayaBiodiversityAuthenticImg from "@/assets/meghalaya-biodiversity-authentic.jpg";
