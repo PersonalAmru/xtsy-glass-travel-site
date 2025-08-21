@@ -18,6 +18,7 @@ import OptimizedLazyImage from "./OptimizedLazyImage";
 import meghalayaHiddenGemsImg from "@/assets/meghalaya-hidden-gems-new.jpg";
 import meghalayaNatureAuthenticImg from "@/assets/meghalaya-nature-authentic.jpg";
 import shillongCulturalImg from "@/assets/shillong-meghalaya-real.jpg";
+import shillongCherryBlossomImg from "@/assets/shillong-cherry-blossom.jpg";
 import cherrapunjiMonsoonImg from "@/assets/nohkalikai-falls-real.jpg";
 import dawkiRiverImg from "@/assets/umngot-river-dawki-real.jpg";
 import dawkiCrystalClearAuthenticImg from "@/assets/dawki-crystal-clear-authentic.jpg";
@@ -124,6 +125,7 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
 
     // Meghalaya specific tours with authentic images
     if (content.includes('meghalaya hidden gems') || content.includes('hidden gems')) return meghalayaNatureAuthenticImg;
+    if (content.includes('shillong day tour') || content.includes('cherry blossom')) return shillongCherryBlossomImg;
     if (content.includes('shillong') || content.includes('cultural experience')) return shillongCulturalImg;
     if (content.includes('cherrapunji') || content.includes('nohkalikai') || content.includes('monsoon trek')) return cherrapunjiMonsoonImg;
     if (content.includes('dawki') || content.includes('umngot') || content.includes('crystal clear')) return dawkiCrystalClearAuthenticImg;

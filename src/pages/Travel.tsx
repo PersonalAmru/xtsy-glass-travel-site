@@ -36,6 +36,7 @@ import ootyKodaikanalImg from "@/assets/ooty-kodaikanal.jpg";
 import meghalayaHiddenGemsImg from "@/assets/meghalaya-hidden-gems-final.jpg";
 import cherrapunjiWaterfallsImg from "@/assets/cherrapunji-waterfalls-premium.jpg";
 import shillongCulturalImg from "@/assets/shillong-cultural-new.jpg";
+import shillongCherryBlossomImg from "@/assets/shillong-cherry-blossom.jpg";
 import mawlynnongCleanImg from "@/assets/mawlynnong-cleanest-village-premium.jpg";
 import nagalandHornbillImg from "@/assets/nagaland-hornbill-premium.jpg";
 import mizoramBambooImg from "@/assets/mizoram-bamboo-premium.jpg";
@@ -261,6 +262,21 @@ const Travel = () => {
         location: "Meghalaya",
         highlights: ["Umngot River", "Transparent Water Boating", "Border Views"],
         bestSeason: "Nov-May"
+      },
+      {
+        id: 5,
+        title: "Shillong Day Tour",
+        description: "Explore the Scotland of East with cherry blossoms, colonial architecture, and vibrant local markets",
+        duration: "1 Day",
+        difficulty: "Easy",
+        price: TourPricingService.calculatePrice("1 Day", "cultural", "Easy", "Meghalaya", "Mar-May"),
+        image: shillongCherryBlossomImg,
+        images: [shillongCherryBlossomImg, shillongCherryBlossomImg, shillongCherryBlossomImg],
+        rating: 4.6,
+        category: "cultural",
+        location: "Meghalaya",
+        highlights: ["Cherry Blossom Gardens", "Don Bosco Museum", "Police Bazaar", "Ward's Lake", "Elephant Falls"],
+        bestSeason: "Mar-May"
       },
     ],
     

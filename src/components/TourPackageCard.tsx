@@ -10,6 +10,7 @@ import { getRelevantTourImage, type TourPackage } from "@/utils/imageSelection";
 import meghalayaHiddenGemsImg from "@/assets/meghalaya-hidden-gems-new.jpg";
 import meghalayaNatureAuthenticImg from "@/assets/meghalaya-nature-authentic.jpg";
 import shillongCulturalImg from "@/assets/shillong-meghalaya-real.jpg";
+import shillongCherryBlossomImg from "@/assets/shillong-cherry-blossom.jpg";
 import cherrapunjiMonsoonImg from "@/assets/nohkalikai-falls-real.jpg";
 import dawkiRiverImg from "@/assets/umngot-river-dawki-real.jpg";
 import dawkiCrystalClearAuthenticImg from "@/assets/dawki-crystal-clear-authentic.jpg";
