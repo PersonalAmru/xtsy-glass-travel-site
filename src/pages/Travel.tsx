@@ -776,22 +776,26 @@ const Travel = () => {
                            >
                              <Card className="group hover:shadow-md transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200">
                                <CardContent className="flex flex-col items-center justify-center p-3 sm:p-4 text-center h-full min-h-[120px]">
-                                 <div className="flex items-center justify-center mb-2 w-full">
-                                   <span 
-                                     className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl block leading-none !visible !opacity-100"
-                                     style={{
-                                       fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Twemoji Mozilla", "Android Emoji", sans-serif',
-                                       fontSize: 'clamp(1.5rem, 5vw, 3rem)',
-                                       display: 'block',
-                                       visibility: 'visible',
-                                       opacity: 1,
-                                       color: 'inherit',
-                                       filter: 'none'
-                                     }}
-                                   >
-                                     {item.flag}
-                                   </span>
-                                 </div>
+                                  <div className="flex items-center justify-center mb-2 w-full">
+                                    <span 
+                                      className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-none block md:inline !block !visible !opacity-100"
+                                      style={{
+                                        fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Twemoji Mozilla", "Android Emoji", "EmojiOne Mozilla", "system-ui", sans-serif',
+                                        fontSize: 'clamp(1.5rem, 5vw, 3rem)',
+                                        display: window.innerWidth >= 768 ? 'inline' : 'block',
+                                        visibility: 'visible',
+                                        opacity: 1,
+                                        color: 'inherit',
+                                        filter: 'none',
+                                        unicodeBidi: 'normal',
+                                        textRendering: 'optimizeLegibility',
+                                        WebkitFontSmoothing: 'antialiased',
+                                        MozOsxFontSmoothing: 'grayscale'
+                                      }}
+                                    >
+                                      {item.flag}
+                                    </span>
+                                  </div>
                                  <div className="flex-1 flex flex-col justify-center">
                                    <h4 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">{item.country}</h4>
                                    <p className="text-xs sm:text-sm text-gray-600 mb-2 leading-tight">{item.highlight}</p>
@@ -830,22 +834,26 @@ const Travel = () => {
                            >
                              <Card className="group hover:shadow-md transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200">
                                <CardContent className="flex flex-col items-center justify-center p-3 sm:p-4 text-center h-full min-h-[120px]">
-                                 <div className="flex items-center justify-center mb-2 w-full">
-                                   <span 
-                                     className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl block leading-none !visible !opacity-100"
-                                     style={{
-                                       fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Twemoji Mozilla", "Android Emoji", sans-serif',
-                                       fontSize: 'clamp(1.5rem, 5vw, 3rem)',
-                                       display: 'block',
-                                       visibility: 'visible',
-                                       opacity: 1,
-                                       color: 'inherit',
-                                       filter: 'none'
-                                     }}
-                                   >
-                                     {item.flag}
-                                   </span>
-                                 </div>
+                                  <div className="flex items-center justify-center mb-2 w-full">
+                                    <span 
+                                      className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-none block md:inline !block !visible !opacity-100"
+                                      style={{
+                                        fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Twemoji Mozilla", "Android Emoji", "EmojiOne Mozilla", "system-ui", sans-serif',
+                                        fontSize: 'clamp(1.5rem, 5vw, 3rem)',
+                                        display: window.innerWidth >= 768 ? 'inline' : 'block',
+                                        visibility: 'visible',
+                                        opacity: 1,
+                                        color: 'inherit',
+                                        filter: 'none',
+                                        unicodeBidi: 'normal',
+                                        textRendering: 'optimizeLegibility',
+                                        WebkitFontSmoothing: 'antialiased',
+                                        MozOsxFontSmoothing: 'grayscale'
+                                      }}
+                                    >
+                                      {item.flag}
+                                    </span>
+                                  </div>
                                  <div className="flex-1 flex flex-col justify-center">
                                    <h4 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">{item.country}</h4>
                                    <p className="text-xs sm:text-sm text-gray-600 mb-2 leading-tight">{item.highlight}</p>
