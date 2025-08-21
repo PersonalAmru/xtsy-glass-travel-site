@@ -100,7 +100,6 @@ const Header = () => {
                   alt="XTSY Travellers Hostel"
                   className="h-10 sm:h-12 w-auto hover:opacity-80 transition-opacity cursor-pointer"
                   loading="eager"
-                  fetchPriority="high"
                   decoding="sync"
                   onLoad={handleLogoLoad}
                   onError={handleLogoError}

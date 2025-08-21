@@ -10,6 +10,7 @@ import CompactTourPackageCard from "@/components/CompactTourPackageCard";
 import { LazyTourPackageModal } from "@/components/lazy/LazyTourPackageModal";
 import { AuthModal } from "@/components/AuthModal";
 import LazyWrapper from "@/components/LazyWrapper";
+import UniversalImage from "@/components/UniversalImage";
 import SEOContent from "@/components/SEOContent";
 import { TourPricingService } from "@/utils/tourPricingService";
 import OptimizedLazyImage from "@/components/OptimizedLazyImage";
