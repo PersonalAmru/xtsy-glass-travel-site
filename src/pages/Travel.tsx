@@ -750,7 +750,7 @@ const Travel = () => {
                       </p>
                     </div>
 
-                    {/* Enhanced Asian Countries with lazy loading */}
+                    {/* Enhanced Asian Countries with consistent flag visibility */}
                     <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16">
                       <div className="text-center mb-4 sm:mb-6 md:mb-8">
                         <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-2 flex items-center justify-center gap-2">
@@ -758,7 +758,7 @@ const Travel = () => {
                         </h3>
                       </div>
                       
-                       <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-6 lg:grid-cols-8 gap-2 sm:gap-3 md:gap-4 lg:gap-6 mb-4 sm:mb-6 md:mb-8 px-1">
+                       <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-6 md:mb-8 px-2">
                          {[
                            { country: "Japan", flag: "🇯🇵", highlight: "Cherry Blossoms" },
                            { country: "Thailand", flag: "🇹🇭", highlight: "Tropical Paradise" },
@@ -775,20 +775,25 @@ const Travel = () => {
                              threshold={0.3}
                            >
                              <Card className="group hover:shadow-md transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200">
-                               <CardContent className="p-2 sm:p-3 md:p-4 text-center">
-                                   <div 
-                                     className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-2 leading-none"
+                               <CardContent className="flex flex-col items-center justify-center p-3 sm:p-4 text-center h-full min-h-[120px]">
+                                 <div className="flex items-center justify-center mb-2 w-full">
+                                   <span 
+                                     className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl block opacity-100 leading-none"
                                      style={{
-                                       fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", sans-serif',
-                                       fontSize: 'clamp(1.2rem, 4vw, 2rem)',
-                                       lineHeight: '1'
+                                       fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif',
+                                       fontSize: 'clamp(1.5rem, 5vw, 3rem)',
+                                       display: 'block',
+                                       visibility: 'visible'
                                      }}
                                    >
                                      {item.flag}
-                                   </div>
-                                 <h4 className="font-medium text-gray-900 mb-1 text-xs sm:text-sm md:text-base">{item.country}</h4>
-                                 <p className="text-xs sm:text-sm text-gray-600 mb-2 leading-tight">{item.highlight}</p>
-                                 <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Soon</span>
+                                   </span>
+                                 </div>
+                                 <div className="flex-1 flex flex-col justify-center">
+                                   <h4 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">{item.country}</h4>
+                                   <p className="text-xs sm:text-sm text-gray-600 mb-2 leading-tight">{item.highlight}</p>
+                                   <span className="inline-block text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full font-medium">Soon</span>
+                                 </div>
                                </CardContent>
                              </Card>
                            </LazyWrapper>
@@ -796,7 +801,7 @@ const Travel = () => {
                       </div>
                     </div>
 
-                    {/* Enhanced European Countries with lazy loading */}
+                    {/* Enhanced European Countries with consistent flag visibility */}
                     <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16">
                       <div className="text-center mb-4 sm:mb-6 md:mb-8">
                         <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-2 flex items-center justify-center gap-2">
@@ -804,7 +809,7 @@ const Travel = () => {
                         </h3>
                       </div>
                       
-                      <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-6 lg:grid-cols-8 gap-2 sm:gap-3 md:gap-4 lg:gap-6 mb-4 sm:mb-6 md:mb-8 px-1">
+                      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-6 md:mb-8 px-2">
                          {[
                            { country: "France", flag: "🇫🇷", highlight: "Romance" },
                            { country: "Italy", flag: "🇮🇹", highlight: "Art & History" },
@@ -821,20 +826,25 @@ const Travel = () => {
                              threshold={0.3}
                            >
                              <Card className="group hover:shadow-md transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200">
-                               <CardContent className="p-2 sm:p-3 md:p-4 text-center">
-                                   <div 
-                                     className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-2 leading-none"
+                               <CardContent className="flex flex-col items-center justify-center p-3 sm:p-4 text-center h-full min-h-[120px]">
+                                 <div className="flex items-center justify-center mb-2 w-full">
+                                   <span 
+                                     className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl block opacity-100 leading-none"
                                      style={{
-                                       fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", sans-serif',
-                                       fontSize: 'clamp(1.2rem, 4vw, 2rem)',
-                                       lineHeight: '1'
+                                       fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif',
+                                       fontSize: 'clamp(1.5rem, 5vw, 3rem)',
+                                       display: 'block',
+                                       visibility: 'visible'
                                      }}
                                    >
                                      {item.flag}
-                                   </div>
-                                 <h4 className="font-medium text-gray-900 mb-1 text-xs sm:text-sm md:text-base">{item.country}</h4>
-                                 <p className="text-xs sm:text-sm text-gray-600 mb-2 leading-tight">{item.highlight}</p>
-                                 <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Soon</span>
+                                   </span>
+                                 </div>
+                                 <div className="flex-1 flex flex-col justify-center">
+                                   <h4 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">{item.country}</h4>
+                                   <p className="text-xs sm:text-sm text-gray-600 mb-2 leading-tight">{item.highlight}</p>
+                                   <span className="inline-block text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full font-medium">Soon</span>
+                                 </div>
                                </CardContent>
                              </Card>
                            </LazyWrapper>
