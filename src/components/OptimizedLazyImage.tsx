@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -25,8 +24,8 @@ const OptimizedLazyImage: React.FC<OptimizedLazyImageProps> = ({
   const imgRef = useRef<HTMLImageElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Use the Supabase storage URL as default if no src provided or for specific cases
-  const imageSource = src || 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/download%20(22).jpg';
+  // Use the Supabase storage URL with Arunachal Pradesh image as default
+  const imageSource = src || 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/Complete%20Guide%20To%20Backpacking%20In%20Arunachal%20Pradesh%20-%20Lost%20With%20Purpose.jpg';
 
   useEffect(() => {
     const observer = new IntersectionObserver(
