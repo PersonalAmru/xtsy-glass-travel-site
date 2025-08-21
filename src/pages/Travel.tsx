@@ -28,7 +28,7 @@ import gurudongmarLakeHighAltitude from "@/assets/gurudongmar-lake-high-altitude
 import eastSikkimMonastery from "@/assets/east-sikkim-monastery-stock.jpg";
 import shimlaManaliHoneymoon from "@/assets/shimla-manali-honeymoon-stock.jpg";
 import spitiValleyAdventure from "@/assets/spiti-valley-adventure-stock.jpg";
-import dharamshalaFcleodGanj from "@/assets/dharamshala-mcleod-ganj-stock.jpg";
+import dharamshalaMcleodGanj from "@/assets/dharamshala-mcleod-ganj-stock.jpg";
 import kulluValleyAdventure from "@/assets/kullu-valley-adventure-stock.jpg";
 import kasauliSolanHillStation from "@/assets/kasauli-solan-hill-station-stock.jpg";
 import tamilNaduTempleCircuit from "@/assets/tamil-nadu-temple-circuit-stock.jpg";
@@ -590,8 +590,8 @@ const Travel = () => {
         duration: "5 Days",
         difficulty: "Moderate",
         price: TourPricingService.calculatePrice("5 Days", "cultural", "Moderate", "Himachal Pradesh", "Mar-Jun, Sep-Nov"),
-        image: dharamshalaFcleodGanj,
-        images: [dharamshalaFcleodGanj, "", ""],
+        image: dharamshalaMcleodGanj,
+        images: [dharamshalaMcleodGanj, "", ""],
         rating: 4.7,
         category: "cultural",
         location: "Himachal Pradesh",
