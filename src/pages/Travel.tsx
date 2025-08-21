@@ -142,22 +142,6 @@ const Travel = () => {
         exclusive: true
       },
       {
-        id: 206,
-        title: "XTSY Exclusive: Khasi Hills Wellness & Yoga Sanctuary",
-        description: "Rejuvenate in the sacred Khasi Hills with holistic wellness practices, yoga, and traditional healing therapies",
-        duration: "5 Days",
-        difficulty: "Easy",
-        price: TourPricingService.calculatePrice("5 Days", "exclusive", "Easy", "Meghalaya", "Year Round"),
-        image: "",
-        images: ["", "", ""],
-        rating: 4.8,
-        category: "wellness",
-        location: "Meghalaya",
-        highlights: ["Hatha Yoga", "Forest Bathing", "Traditional Massage", "Organic Detox", "Mindfulness Training", "Chakra Balancing", "Waterfall Meditation"],
-        bestSeason: "Year Round",
-        exclusive: true
-      },
-      {
         id: 207,
         title: "XTSY Exclusive: Arunachal Pradesh Mountain Yoga Retreat",
         description: "Experience profound peace and spiritual awakening amidst the pristine peaks of Arunachal Pradesh",
