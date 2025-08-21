@@ -6,6 +6,7 @@ import MobileImageCarousel from '@/components/MobileImageCarousel';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 import { Calendar, Mountain, Star, Award, Eye, Sun, Moon, Wifi, Coffee, Bath, Bed, Users, MapPin } from 'lucide-react';
 
 const XTSY270: React.FC = () => {
@@ -224,6 +225,11 @@ Thank you! 😊`;
           </div>
         </section>
 
+        {/* Section Separator */}
+        <div className="container mx-auto max-w-7xl px-4">
+          <Separator className="my-8" />
+        </div>
+
         {/* Luxury Content Sections */}
         <section className="py-20 relative z-10">
           <div className="container mx-auto max-w-7xl px-4">
@@ -336,6 +342,9 @@ Thank you! 😊`;
               </Card>
             </div>
 
+            {/* Section Separator */}
+            <Separator className="my-16" />
+
             {/* Luxury Amenities Grid */}
             <div className="mb-20 animate-fade-in">
               <div className="text-center mb-12">
@@ -361,6 +370,9 @@ Thank you! 😊`;
                 ))}
               </div>
             </div>
+
+            {/* Section Separator */}
+            <Separator className="my-16" />
 
             {/* Experience Details - Enhanced Luxury Section */}
             <div className="mb-20 animate-fade-in">
@@ -411,6 +423,9 @@ Thank you! 😊`;
                 </Card>
               </div>
             </div>
+
+            {/* Section Separator */}
+            <Separator className="my-16" />
 
             {/* Bottom CTA Section */}
             <div className="mt-16 mb-8 text-center animate-fade-in">
