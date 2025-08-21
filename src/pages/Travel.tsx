@@ -496,46 +496,46 @@ const Travel = () => {
           <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-red-200/30 rounded-full blur-3xl" />
           
           {/* Optimized mobile padding */}
-          <div className="relative z-10 py-6 sm:py-8">
+          <div className="relative z-10 py-4 sm:py-6">
             <div className="container mx-auto px-1 sm:px-2">
               {/* Mobile-optimized Header */}
-              <div className="text-center mb-3 sm:mb-6">
-                <div className="inline-block p-2 sm:p-3 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg mb-2 sm:mb-3">
-                  <h1 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2 font-playfair">
+              <div className="text-center mb-2 sm:mb-4">
+                <div className="inline-block p-1.5 sm:p-2 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg mb-1 sm:mb-2">
+                  <h1 className="text-base sm:text-lg font-bold text-gray-900 mb-1 font-playfair">
                     XTSY Travel
                   </h1>
-                  <div className="w-12 sm:w-16 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 mx-auto rounded-full" />
+                  <div className="w-10 sm:w-12 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 mx-auto rounded-full" />
                 </div>
-                <p className="text-sm sm:text-base text-gray-700 max-w-2xl mx-auto mb-2 sm:mb-4 bg-white/60 backdrop-blur-sm rounded-lg p-2 sm:p-3 shadow-md mx-2">
+                <p className="text-xs sm:text-sm text-gray-700 max-w-2xl mx-auto mb-1 sm:mb-2 bg-white/60 backdrop-blur-sm rounded-lg p-1.5 sm:p-2 shadow-md mx-2">
                   Embark on extraordinary journeys with XTSY Travel - your gateway to incredible experiences.
                 </p>
               </div>
 
-              {/* Compact Tab Navigation */}
-              <div className="flex justify-center mb-2 sm:mb-4">
-                <div className="bg-white/80 backdrop-blur-sm rounded-lg p-0.5 shadow-md flex w-full max-w-xs">
+              {/* Ultra-compact Tab Navigation */}
+              <div className="flex justify-center mb-1 sm:mb-2">
+                <div className="bg-white/80 backdrop-blur-sm rounded-md p-0.5 shadow-md flex w-full max-w-64">
                   <Button
                     onClick={() => setActiveTab('domestic')}
                     variant={activeTab === 'domestic' ? 'default' : 'ghost'}
-                    className={`flex-1 px-2 py-1 rounded-md text-xs font-medium transition-all duration-200 ${
+                    className={`flex-1 px-1.5 py-0.5 rounded-sm text-xs font-medium transition-all duration-200 h-6 ${
                       activeTab === 'domestic' 
-                        ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white hover:from-orange-600 hover:to-red-700 shadow-md' 
+                        ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white hover:from-orange-600 hover:to-red-700 shadow-sm' 
                         : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100/80'
                     }`}
                   >
-                    <MapPin className="h-3 w-3 mr-1" />
+                    <MapPin className="h-2.5 w-2.5 mr-0.5" />
                     <span className="text-xs">DOM</span>
                   </Button>
                   <Button
                     onClick={() => setActiveTab('international')}
                     variant={activeTab === 'international' ? 'default' : 'ghost'}
-                    className={`flex-1 px-2 py-1 rounded-md text-xs font-medium transition-all duration-200 ${
+                    className={`flex-1 px-1.5 py-0.5 rounded-sm text-xs font-medium transition-all duration-200 h-6 ${
                       activeTab === 'international' 
-                        ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white hover:from-orange-600 hover:to-red-700 shadow-md' 
+                        ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white hover:from-orange-600 hover:to-red-700 shadow-sm' 
                         : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100/80'
                     }`}
                   >
-                    <Globe className="h-3 w-3 mr-1" />
+                    <Globe className="h-2.5 w-2.5 mr-0.5" />
                     <span className="text-xs">INT</span>
                   </Button>
                 </div>
@@ -545,16 +545,16 @@ const Travel = () => {
               {activeTab === 'domestic' && (
                 <div>
                   {/* Ultra-compact Filters */}
-                  <div className="mb-2 sm:mb-3 bg-white/80 backdrop-blur-sm rounded-lg p-2 shadow-lg">
-                    <div className="flex flex-col gap-1">
-                      <div className="flex items-center gap-1">
-                        <Filter className="h-3 w-3 text-gray-600" />
+                  <div className="mb-1 sm:mb-2 bg-white/80 backdrop-blur-sm rounded-md p-1.5 shadow-lg">
+                    <div className="flex flex-col gap-0.5">
+                      <div className="flex items-center gap-0.5">
+                        <Filter className="h-2.5 w-2.5 text-gray-600" />
                         <span className="font-medium text-gray-900 text-xs">Filters:</span>
                       </div>
                       
-                      <div className="flex flex-col sm:flex-row gap-1">
+                      <div className="flex flex-col sm:flex-row gap-0.5">
                         <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                          <SelectTrigger className="w-full sm:w-32 bg-white text-gray-900 border-gray-300 text-xs h-7">
+                          <SelectTrigger className="w-full sm:w-28 bg-white text-gray-900 border-gray-300 text-xs h-5">
                             <SelectValue placeholder="Category" />
                           </SelectTrigger>
                           <SelectContent>
@@ -567,7 +567,7 @@ const Travel = () => {
                         </Select>
 
                         <Select value={locationFilter} onValueChange={setLocationFilter}>
-                          <SelectTrigger className="w-full sm:w-32 bg-white text-gray-900 border-gray-300 text-xs h-7">
+                          <SelectTrigger className="w-full sm:w-28 bg-white text-gray-900 border-gray-300 text-xs h-5">
                             <SelectValue placeholder="Location" />
                           </SelectTrigger>
                           <SelectContent>
@@ -582,7 +582,7 @@ const Travel = () => {
                         <Button 
                           variant="outline" 
                           onClick={clearFilters}
-                          className="bg-white border-2 border-orange-300 text-orange-700 hover:bg-orange-50 hover:border-orange-400 hover:text-orange-800 font-medium px-2 py-1 shadow-sm transition-all duration-200 text-xs w-full sm:w-auto h-7"
+                          className="bg-white border border-orange-300 text-orange-700 hover:bg-orange-50 hover:border-orange-400 hover:text-orange-800 font-medium px-1.5 py-0.5 shadow-sm transition-all duration-200 text-xs w-full sm:w-auto h-5"
                         >
                           Clear
                         </Button>
@@ -616,11 +616,11 @@ const Travel = () => {
                     const info = stateInfo[state] || { icon: "🗺️", desc: "Incredible Destination" };
 
                     return (
-                      <div key={state} className="mb-3 sm:mb-4">
-                        <div className="text-center mb-1 sm:mb-2">
-                          <div className="inline-flex items-center gap-1 p-1 sm:p-2 bg-white/80 backdrop-blur-sm rounded-lg shadow-md mb-1">
-                            <span className="text-sm sm:text-lg">{info.icon}</span>
-                            <h3 className="text-sm sm:text-lg font-bold text-gray-900">
+                      <div key={state} className="mb-2 sm:mb-3">
+                        <div className="text-center mb-1">
+                          <div className="inline-flex items-center gap-0.5 p-1 bg-white/80 backdrop-blur-sm rounded-md shadow-md mb-0.5">
+                            <span className="text-xs sm:text-sm">{info.icon}</span>
+                            <h3 className="text-xs sm:text-sm font-bold text-gray-900">
                               {state}
                             </h3>
                           </div>
@@ -629,7 +629,7 @@ const Travel = () => {
                           </p>
                         </div>
                         {/* Ultra-compact grid for mobile with CompactTourPackageCard */}
-                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1 sm:gap-2">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-0.5 sm:gap-1">
                           {filteredStatePackages.map((itinerary) => (
                             <CompactTourPackageCard
                               key={itinerary.id}
@@ -643,11 +643,11 @@ const Travel = () => {
                   })}
 
                   {filteredItineraries.length === 0 && (
-                    <div className="text-center py-4 sm:py-6">
-                      <p className="text-gray-500 text-sm sm:text-base">No packages found matching your filters.</p>
+                    <div className="text-center py-3 sm:py-4">
+                      <p className="text-gray-500 text-xs sm:text-sm">No packages found matching your filters.</p>
                       <Button 
                         onClick={clearFilters}
-                        className="mt-2 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white text-xs sm:text-sm px-3 py-1"
+                        className="mt-1 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white text-xs px-2 py-0.5 h-6"
                       >
                         Clear All Filters
                       </Button>
