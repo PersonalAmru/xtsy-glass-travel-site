@@ -17,7 +17,7 @@ import OptimizedLazyImage from "@/components/OptimizedLazyImage";
 // Import images for tour packages
 import meghalayaBiodiversityAuthenticImg from "@/assets/meghalaya-biodiversity-authentic.jpg";
 import wildernessSurvivalImg from "@/assets/wilderness-survival-authentic.jpg";
-import northeastBikeExpeditionImg from "@/assets/motorcycle-mountain-road.jpg";
+import northeastBikeExpeditionImg from "@/assets/motorcycle-group-adventure.jpg";
 import arunachalTribalImg from "@/assets/arunachal-tribal-premium.jpg";
 import livingRootBridgesImg from "@/assets/living-root-bridges-authentic.jpg";
 import dawkiCrystalClearImg from "@/assets/dawki-crystal-clear-authentic.jpg";
@@ -233,7 +233,7 @@ const Travel = () => {
       },
       {
         id: 208,
-        title: "XTSY Exclusive: Assam - Arunachal - Meghalaya Bike Expedition",
+        title: "XTSY Exclusive: Assam - Arunachal - Meghalaya RE Expedition",
         description: "Epic motorcycle adventure across Northeast India's three jewels - from Assam's tea gardens through Arunachal's mountains to Meghalaya's living bridges",
         duration: "12 Days",
         difficulty: "Challenging",
