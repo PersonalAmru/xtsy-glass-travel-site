@@ -12,6 +12,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useApp } from "@/contexts/AppContext";
 import { TourItineraryService } from "@/utils/tourItineraryService";
 import { TourPricingService } from "@/utils/tourPricingService";
+import OptimizedLazyImage from "./OptimizedLazyImage";
 
 // Import available image assets (including new authentic sourced images)
 import meghalayaHiddenGemsImg from "@/assets/meghalaya-hidden-gems-new.jpg";
@@ -68,7 +69,8 @@ import guwahatiKamakhyaImg from "@/assets/guwahati-kamakhya-premium.jpg";
 import kohimaWarCemeteryImg from "@/assets/kohima-war-cemetery-premium.jpg";
 import wildernessImg from "@/assets/wilderness-survival-final.jpg";
 import wildernessAuthenticImg from "@/assets/wilderness-survival-authentic.jpg";
-import northeastEcologicalEducationImg from "@/assets/northeast-ecological-education-authentic.jpg";
+// Northeast Ecological Education Program - using Supabase URL
+const northeastEcologicalEducationImg = "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/Complete%20Guide%20To%20Backpacking%20In%20Arunachal%20Pradesh%20-%20Lost%20With%20Purpose.jpg";
 
 interface TourPackage {
   id: number;
@@ -415,10 +417,11 @@ Please check availability for these dates and share pricing details for this exc
           {/* Large Cover Image */}
           <div className="w-full">
             <div className="relative">
-              <img 
-                src={selectedImage} 
+              <OptimizedLazyImage
+                src={selectedImage}
                 alt={tourPackage.title}
                 className="w-full h-80 lg:h-96 object-cover rounded-lg"
+                threshold={0.1}
               />
               <div className="absolute top-4 left-4">
                 <Badge variant="secondary" className="bg-white/90 text-black">
