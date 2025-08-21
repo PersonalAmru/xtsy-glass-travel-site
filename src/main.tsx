@@ -8,12 +8,16 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { AppProvider } from "./contexts/AppContext";
 import { initializePerformanceOptimizations } from "./utils/performanceOptimizer";
 import { initializeImageOptimizations } from "./utils/imageOptimization";
+import { initializeLogoPreloading } from "./utils/logoPreloader";
 
 // Initialize performance optimizations
 initializePerformanceOptimizations();
 
-// Initialize image optimizations
+// Initialize image optimizations  
 initializeImageOptimizations();
+
+// Initialize logo preloading to prevent loading jumps
+initializeLogoPreloading();
 
 // Optimize QueryClient for high traffic
 const queryClient = new QueryClient({
