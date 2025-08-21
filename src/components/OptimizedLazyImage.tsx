@@ -1,6 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { cn } from '@/lib/utils';
+import { XTSY270_DATA } from '@/data/rooms/xtsy270';
 
 interface OptimizedLazyImageProps {
   src: string;
@@ -27,13 +28,13 @@ const OptimizedLazyImage: React.FC<OptimizedLazyImageProps> = ({
   const imgRef = useRef<HTMLImageElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Use the Royal Enfield Himalayan image by default for this selected element
-  const defaultRoyalEnfieldImage = '/src/assets/royal-enfield-himalayan-mountain.jpg';
+  // Use the XTSY 270° Panorama Glass Ensuite images by default for this selected element
+  const defaultXTSY270Image = XTSY270_DATA.image;
   
-  // Validate and use provided src, Royal Enfield image, or fallback
+  // Validate and use provided src, XTSY 270° image, or fallback
   const imageSource = src && src.trim() !== '' ? src : 
-                     src.includes('royal') || src.includes('enfield') || src.includes('himalayan') ? 
-                     defaultRoyalEnfieldImage : fallback;
+                     src.includes('xtsy') || src.includes('270') || src.includes('panorama') || src.includes('glass') ? 
+                     defaultXTSY270Image : fallback;
 
   useEffect(() => {
     // If priority is true, load immediately
