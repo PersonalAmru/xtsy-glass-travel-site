@@ -628,8 +628,8 @@ const Travel = () => {
                             {info.desc}
                           </p>
                         </div>
-                        {/* Responsive spacing: tight on mobile, generous on desktop */}
-                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-3 md:gap-6 lg:gap-8 xl:gap-10 mb-4 md:mb-8 lg:mb-12">
+                        {/* Comprehensive responsive layout with animations */}
+                        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-10 mb-6 md:mb-10 lg:mb-14 animate-fade-in">
                           {filteredStatePackages.map((itinerary) => (
                             <CompactTourPackageCard
                               key={itinerary.id}
