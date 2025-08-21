@@ -14,24 +14,9 @@ import SEOContent from "@/components/SEOContent";
 import { TourPricingService } from "@/utils/tourPricingService";
 
 // Import generated stock images
-import cherrapunjiMonsoonTrek from "@/assets/cherrapunji-monsoon-trek-stock.jpg";
-import mawlynnongCleanVillage from "@/assets/mawlynnong-clean-village-stock.jpg";
 import arunachalEagleFestival from "@/assets/arunachal-eagle-festival-stock.jpg";
-import guwahatiKamakhyaTemple from "@/assets/guwahati-kamakhya-temple-stock.jpg";
-import tripuraUnakoliSculptures from "@/assets/tripura-unakoti-sculptures-stock.jpg";
-import mizoramBambooTribal from "@/assets/mizoram-bamboo-tribal-stock.jpg";
-import rishikeshAdventureSports from "@/assets/rishikesh-adventure-sports-stock.jpg";
-import valleyOfFlowers from "@/assets/valley-of-flowers-stock.jpg";
-import kedarnathTempleTrek from "@/assets/kedarnath-temple-trek-stock.jpg";
-import haridwarRishikeshSpiritual from "@/assets/haridwar-rishikesh-spiritual-stock.jpg";
-import gurudongmarLakeHighAltitude from "@/assets/gurudongmar-lake-high-altitude-stock.jpg";
-import eastSikkimMonastery from "@/assets/east-sikkim-monastery-stock.jpg";
-import shimlaManaliHoneymoon from "@/assets/shimla-manali-honeymoon-stock.jpg";
-import spitiValleyAdventure from "@/assets/spiti-valley-adventure-stock.jpg";
 import dharamshalaMcleodGanj from "@/assets/dharamshala-mcleod-ganj-stock.jpg";
 import kulluValleyAdventure from "@/assets/kullu-valley-adventure-stock.jpg";
-import kasauliSolanHillStation from "@/assets/kasauli-solan-hill-station-stock.jpg";
-import tamilNaduTempleCircuit from "@/assets/tamil-nadu-temple-circuit-stock.jpg";
 
 // All image assets removed - Supabase ready
 // Image arrays for future Supabase URL assignments
@@ -197,36 +182,6 @@ const Travel = () => {
         bestSeason: "Oct-Mar"
       },
       {
-        id: 2,
-        title: "Shillong Cultural Experience",
-        description: "Immerse yourself in Khasi culture, local markets, and traditional cuisine",
-        duration: "3 Days",
-        difficulty: "Easy",
-        price: TourPricingService.calculatePrice("3 Days", "cultural", "Easy", "Meghalaya", "Year Round"),
-        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/Shillong%20Cherry%20Blossom.jpg",
-        images: ["https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/Shillong%20Cherry%20Blossom.jpg", "", ""],
-        rating: 4.6,
-        category: "cultural",
-        location: "Meghalaya",
-        highlights: ["Police Bazaar", "Don Bosco Museum", "Local Food Tours"],
-        bestSeason: "Year Round"
-      },
-      {
-        id: 3,
-        title: "Cherrapunji Monsoon Trek",
-        description: "Experience the wettest place on earth during monsoon season",
-        duration: "4 Days",
-        difficulty: "Challenging",
-        price: TourPricingService.calculatePrice("4 Days", "adventure", "Challenging", "Meghalaya", "Jun-Sep"),
-        image: cherrapunjiMonsoonTrek,
-        images: [cherrapunjiMonsoonTrek, "", ""],
-        rating: 4.9,
-        category: "adventure",
-        location: "Meghalaya",
-        highlights: ["Nohkalikai Falls", "Mawsmai Caves", "Living Root Bridges"],
-        bestSeason: "Jun-Sep"
-      },
-      {
         id: 4,
         title: "Dawki River Adventure",
         description: "Crystal clear waters and boating experience at Indo-Bangladesh border",
@@ -241,21 +196,6 @@ const Travel = () => {
         highlights: ["Umngot River", "Transparent Water Boating", "Border Views"],
         bestSeason: "Nov-May"
       },
-      {
-        id: 5,
-        title: "Mawlynnong Clean Village Tour",
-        description: "Visit Asia's cleanest village and experience sustainable living",
-        duration: "2 Days", 
-        difficulty: "Easy",
-        price: TourPricingService.calculatePrice("2 Days", "cultural", "Easy", "Meghalaya", "Oct-Apr"),
-        image: mawlynnongCleanVillage,
-        images: [mawlynnongCleanVillage, "", ""],
-        rating: 4.5,
-        category: "cultural",
-        location: "Meghalaya",
-        highlights: ["Sky Walk", "Living Root Bridge", "Organic Gardens"],
-        bestSeason: "Oct-Apr"
-      }
     ],
     
     "Northeast States": [
@@ -290,21 +230,6 @@ const Travel = () => {
         bestSeason: "Nov-Apr"
       },
       {
-        id: 23,
-        title: "Nagaland Hornbill Festival",
-        description: "Witness the spectacular Hornbill Festival showcasing Naga tribal culture",
-        duration: "5 Days",
-        difficulty: "Easy",
-        price: TourPricingService.calculatePrice("5 Days", "cultural", "Easy", "Nagaland", "Dec"),
-        image: "",
-        images: ["", "", ""],
-        rating: 4.9,
-        category: "cultural",
-        location: "Nagaland",
-        highlights: ["Tribal Performances", "Traditional Crafts", "Local Cuisine"],
-        bestSeason: "Dec"
-      },
-      {
         id: 24,
         title: "Manipur Loktak Lake & Floating Islands",
         description: "Discover the unique floating islands and phumdis of Loktak Lake",
@@ -317,21 +242,6 @@ const Travel = () => {
         category: "leisure",
         location: "Manipur",
         highlights: ["Keibul Lamjao National Park", "Sangai Deer", "Floating Gardens"],
-        bestSeason: "Oct-Mar"
-      },
-      {
-        id: 25,
-        title: "Guwahati & Kamakhya Temple Circuit",
-        description: "Spiritual journey through ancient temples and Brahmaputra river culture",
-        duration: "3 Days",
-        difficulty: "Easy",
-        price: TourPricingService.calculatePrice("3 Days", "cultural", "Easy", "Assam", "Oct-Mar"),
-        image: guwahatiKamakhyaTemple,
-        images: [guwahatiKamakhyaTemple, "", ""],
-        rating: 4.4,
-        category: "cultural",
-        location: "Assam",
-        highlights: ["Kamakhya Temple", "Brahmaputra River Cruise", "Silk Weaving"],
         bestSeason: "Oct-Mar"
       },
       {
@@ -349,36 +259,6 @@ const Travel = () => {
         highlights: ["Ujjayanta Palace", "Bamboo Handicrafts", "Tribal Museums"],
         bestSeason: "Oct-Mar"
       },
-      {
-        id: 27,
-        title: "Tripura Unakoti Sculptures & Heritage",
-        description: "Ancient rock-cut sculptures and architectural marvels of Tripura",
-        duration: "3 Days",
-        difficulty: "Easy",
-        price: TourPricingService.calculatePrice("3 Days", "cultural", "Easy", "Tripura", "Oct-Apr"),
-        image: tripuraUnakoliSculptures,
-        images: [tripuraUnakoliSculptures, "", ""],
-        rating: 4.6,
-        category: "cultural",
-        location: "Tripura",
-        highlights: ["Unakoti Rock Sculptures", "Ancient Art", "Historical Sites"],
-        bestSeason: "Oct-Apr"
-      },
-      {
-        id: 28,
-        title: "Mizoram Bamboo & Tribal Culture",
-        description: "Sustainable living and tribal traditions in the bamboo forests of Mizoram",
-        duration: "5 Days",
-        difficulty: "Moderate",
-        price: TourPricingService.calculatePrice("5 Days", "cultural", "Moderate", "Mizoram", "Oct-Mar"),
-        image: mizoramBambooTribal,
-        images: [mizoramBambooTribal, "", ""],
-        rating: 4.7,
-        category: "cultural",
-        location: "Mizoram",
-        highlights: ["Bamboo Forests", "Traditional Villages", "Mizo Culture"],
-        bestSeason: "Oct-Mar"
-      }
     ],
     
     "Uttarakhand": [
@@ -398,21 +278,6 @@ const Travel = () => {
         bestSeason: "May-Oct"
       },
       {
-        id: 32,
-        title: "Rishikesh Adventure Sports",
-        description: "Thrilling river rafting, bungee jumping, and yoga by the Ganges",
-        duration: "4 Days",
-        difficulty: "Moderate",
-        price: TourPricingService.calculatePrice("4 Days", "adventure", "Moderate", "Uttarakhand", "Sep-Jun"),
-        image: rishikeshAdventureSports,
-        images: [rishikeshAdventureSports, "", ""],
-        rating: 4.7,
-        category: "adventure",
-        location: "Uttarakhand",
-        highlights: ["White Water Rafting", "Bungee Jumping", "Yoga Sessions"],
-        bestSeason: "Sep-Jun"
-      },
-      {
         id: 33,
         title: "Nainital Lake District",
         description: "Serene lakes, hill stations, and colonial charm in Kumaon hills",
@@ -427,69 +292,9 @@ const Travel = () => {
         highlights: ["Naini Lake", "Snow View Point", "Mall Road"],
         bestSeason: "Mar-Jun, Sep-Nov"
       },
-      {
-        id: 34,
-        title: "Valley of Flowers Trek",
-        description: "UNESCO World Heritage site with alpine flowers and meadows",
-        duration: "6 Days",
-        difficulty: "Challenging",
-        price: TourPricingService.calculatePrice("6 Days", "adventure", "Challenging", "Uttarakhand", "Jul-Sep"),
-        image: valleyOfFlowers,
-        images: [valleyOfFlowers, "", ""],
-        rating: 4.8,
-        category: "adventure",
-        location: "Uttarakhand",
-        highlights: ["Alpine Flowers", "Hemkund Sahib", "Mountain Views"],
-        bestSeason: "Jul-Sep"
-      },
-      {
-        id: 35,
-        title: "Kedarnath Temple Trek",
-        description: "Spiritual trek to one of the most sacred Shiva temples",
-        duration: "4 Days",
-        difficulty: "Challenging",
-        price: TourPricingService.calculatePrice("4 Days", "cultural", "Challenging", "Uttarakhand", "May-Oct"),
-        image: kedarnathTempleTrek,
-        images: [kedarnathTempleTrek, "", ""],
-        rating: 4.9,
-        category: "cultural",
-        location: "Uttarakhand",
-        highlights: ["Kedarnath Temple", "Mountain Trek", "Spiritual Experience"],
-        bestSeason: "May-Oct"
-      },
-      {
-        id: 36,
-        title: "Haridwar & Rishikesh Spiritual Tour",
-        description: "Ganga Aarti, ashrams, and spiritual awakening by the holy river",
-        duration: "3 Days",
-        difficulty: "Easy",
-        price: TourPricingService.calculatePrice("3 Days", "cultural", "Easy", "Uttarakhand", "Oct-Mar"),
-        image: haridwarRishikeshSpiritual,
-        images: [haridwarRishikeshSpiritual, "", ""],
-        rating: 4.5,
-        category: "cultural",
-        location: "Uttarakhand",
-        highlights: ["Ganga Aarti", "Ancient Temples", "Yoga & Meditation"],
-        bestSeason: "Oct-Mar"
-      }
     ],
     
     "Sikkim": [
-      {
-        id: 51,
-        title: "Gurudongmar Lake High Altitude",
-        description: "Sacred high-altitude lake surrounded by snow-capped peaks",
-        duration: "5 Days",
-        difficulty: "Challenging",
-        price: TourPricingService.calculatePrice("5 Days", "adventure", "Challenging", "Sikkim", "Mar-Jun, Sep-Nov"),
-        image: gurudongmarLakeHighAltitude,
-        images: [gurudongmarLakeHighAltitude, "", ""],
-        rating: 4.8,
-        category: "adventure",
-        location: "Sikkim",
-        highlights: ["Sacred Lake", "High Altitude", "Mountain Views"],
-        bestSeason: "Mar-Jun, Sep-Nov"
-      },
       {
         id: 52,
         title: "Sikkim Rhododendron Trail",
@@ -521,21 +326,6 @@ const Travel = () => {
         bestSeason: "Oct-May"
       },
       {
-        id: 54,
-        title: "East Sikkim Monastery Circuit",
-        description: "Spiritual journey through ancient Buddhist monasteries",
-        duration: "4 Days",
-        difficulty: "Moderate",
-        price: TourPricingService.calculatePrice("4 Days", "cultural", "Moderate", "Sikkim", "Oct-May"),
-        image: eastSikkimMonastery,
-        images: [eastSikkimMonastery, "", ""],
-        rating: 4.8,
-        category: "cultural",
-        location: "Sikkim",
-        highlights: ["Rumtek Monastery", "Buddhist Culture", "Prayer Flags"],
-        bestSeason: "Oct-May"
-      },
-      {
         id: 55,
         title: "North Sikkim Adventure",
         description: "Remote mountain landscapes and pristine lakes of North Sikkim",
@@ -553,36 +343,6 @@ const Travel = () => {
     ],
     
     "Himachal Pradesh": [
-      {
-        id: 61,
-        title: "Shimla Manali Honeymoon",
-        description: "Romantic hill stations with colonial charm and mountain views",
-        duration: "7 Days",
-        difficulty: "Easy",
-        price: TourPricingService.calculatePrice("7 Days", "leisure", "Easy", "Himachal Pradesh", "Mar-Jun, Sep-Nov"),
-        image: shimlaManaliHoneymoon,
-        images: [shimlaManaliHoneymoon, "", ""],
-        rating: 4.6,
-        category: "leisure",
-        location: "Himachal Pradesh",
-        highlights: ["Mall Road", "Solang Valley", "Rohtang Pass"],
-        bestSeason: "Mar-Jun, Sep-Nov"
-      },
-      {
-        id: 62,
-        title: "Spiti Valley Adventure",
-        description: "Cold desert landscapes and ancient monasteries in the high Himalayas",
-        duration: "8 Days",
-        difficulty: "Challenging",
-        price: TourPricingService.calculatePrice("8 Days", "adventure", "Challenging", "Himachal Pradesh", "Jun-Sep"),
-        image: spitiValleyAdventure,
-        images: [spitiValleyAdventure, "", ""],
-        rating: 4.9,
-        category: "adventure",
-        location: "Himachal Pradesh",
-        highlights: ["Key Monastery", "Chandratal Lake", "High Altitude Desert"],
-        bestSeason: "Jun-Sep"
-      },
       {
         id: 63,
         title: "Dharamshala McLeod Ganj",
@@ -613,21 +373,6 @@ const Travel = () => {
         highlights: ["River Rafting", "Paragliding", "Apple Orchards"],
         bestSeason: "Apr-Oct"
       },
-      {
-        id: 65,
-        title: "Kasauli Solan Hill Station",
-        description: "Peaceful hill retreat with colonial architecture and nature walks",
-        duration: "3 Days",
-        difficulty: "Easy",
-        price: TourPricingService.calculatePrice("3 Days", "leisure", "Easy", "Himachal Pradesh", "Mar-Nov"),
-        image: kasauliSolanHillStation,
-        images: [kasauliSolanHillStation, "", ""],
-        rating: 4.4,
-        category: "leisure",
-        location: "Himachal Pradesh",
-        highlights: ["Christ Church", "Monkey Point", "Nature Trails"],
-        bestSeason: "Mar-Nov"
-      }
     ],
     
     "Kerala": [
@@ -680,21 +425,6 @@ const Travel = () => {
     
     "Tamil Nadu": [
       {
-        id: 81,
-        title: "Tamil Nadu Temple Circuit",
-        description: "Ancient Dravidian temples and architectural marvels of Tamil Nadu",
-        duration: "8 Days",
-        difficulty: "Moderate",
-        price: TourPricingService.calculatePrice("8 Days", "cultural", "Moderate", "Tamil Nadu", "Oct-Mar"),
-        image: tamilNaduTempleCircuit,
-        images: [tamilNaduTempleCircuit, "", ""],
-        rating: 4.7,
-        category: "cultural",
-        location: "Tamil Nadu",
-        highlights: ["Meenakshi Temple", "Brihadeeswara Temple", "Ancient Architecture"],
-        bestSeason: "Oct-Mar"
-      },
-      {
         id: 82,
         title: "Ooty Kodaikanal Hill Stations",
         description: "Cool hill stations with botanical gardens and scenic railways",
@@ -724,7 +454,7 @@ const Travel = () => {
 
   const difficulties = ["all", "Easy", "Moderate", "Challenging"];
   const days = ["all", "1-3 Days", "4-6 Days", "7+ Days"];
-  const locations = ["all", "Meghalaya", "Uttarakhand", "Sikkim", "Himachal Pradesh", "Kerala", "Tamil Nadu", "Assam", "Arunachal Pradesh", "Nagaland", "Manipur"];
+  const locations = ["all", "Meghalaya", "Uttarakhand", "Sikkim", "Himachal Pradesh", "Kerala", "Tamil Nadu", "Assam", "Arunachal Pradesh", "Manipur", "Tripura"];
 
   const filteredItineraries = allItineraries.filter(item => {
     const categoryMatch = selectedCategory === "all" || item.category === selectedCategory;
