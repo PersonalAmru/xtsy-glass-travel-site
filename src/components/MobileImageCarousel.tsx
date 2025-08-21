@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useCallback } from 'react';
 import { ChevronLeft, ChevronRight, TreePine } from 'lucide-react';
 import { useImagePreloader } from '@/hooks/useImagePreloader';
@@ -34,11 +33,10 @@ const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
   
   const { preloadAdjacentImages } = useImagePreloader();
 
-  // Enhanced aspect ratios for more prominent display
   const aspectClasses = {
-    video: 'aspect-video md:aspect-video',
-    square: 'aspect-square md:aspect-square', 
-    photo: 'aspect-[3/2] md:aspect-[4/3] lg:aspect-[16/10]' // Made wider and more prominent
+    video: 'aspect-video',
+    square: 'aspect-square', 
+    photo: 'aspect-[4/3]'
   };
 
   const nextImage = useCallback(() => {
@@ -149,7 +147,7 @@ const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
 
   return (
     <div 
-      className={`relative overflow-hidden bg-gray-100 group ${aspectClasses[aspectRatio]} ${className} min-h-[300px] md:min-h-[400px] lg:min-h-[500px]`}
+      className={`relative overflow-hidden bg-gray-100 group ${aspectClasses[aspectRatio]} ${className}`}
       {...swipeHandlers}
       style={{ touchAction: 'pan-y pinch-zoom' }}
     >
@@ -178,31 +176,31 @@ const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
           <button
             onClick={prevImage}
             disabled={isTransitioning}
-            className="absolute left-3 md:left-4 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-2 sm:p-3 md:p-4 rounded-full transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100 disabled:opacity-50 touch-target z-10"
+            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-2 sm:p-3 rounded-full transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100 disabled:opacity-50 touch-target z-10"
             aria-label="Previous image"
           >
-            <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
+            <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
           </button>
           <button
             onClick={nextImage}
             disabled={isTransitioning}
-            className="absolute right-3 md:right-4 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-2 sm:p-3 md:p-4 rounded-full transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100 disabled:opacity-50 touch-target z-10"
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-2 sm:p-3 rounded-full transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100 disabled:opacity-50 touch-target z-10"
             aria-label="Next image"
           >
-            <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
+            <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
           </button>
         </>
       )}
 
       {/* Image indicators */}
       {showIndicators && images.length > 1 && (
-        <div className="absolute bottom-3 md:bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-1.5 md:space-x-2 z-10">
+        <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 flex space-x-1 z-10">
           {images.map((_, index) => (
             <button
               key={index}
               onClick={() => goToImage(index)}
               disabled={isTransitioning}
-              className={`w-2 h-2 md:w-2.5 md:h-2.5 rounded-full transition-all duration-200 ${
+              className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all duration-200 ${
                 currentIndex === index 
                   ? 'bg-white scale-110 shadow-md' 
                   : 'bg-white/60 hover:bg-white/80'
@@ -213,15 +211,15 @@ const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
         </div>
       )}
 
-      {/* Image counter */}
+      {/* Image counter - smaller and less intrusive */}
       {images.length > 1 && (
-        <div className="absolute top-3 md:top-4 right-3 md:right-4 bg-black/60 text-white px-2 md:px-3 py-1 md:py-1.5 rounded-lg text-sm md:text-base font-medium z-10 backdrop-blur-sm">
+        <div className="absolute top-1 right-1 bg-black/50 text-white px-1.5 py-0.5 rounded text-xs font-medium z-10">
           {currentIndex + 1}/{images.length}
         </div>
       )}
 
-      {/* Touch indicator for mobile */}
-      <div className="md:hidden absolute bottom-8 md:bottom-10 left-1/2 transform -translate-x-1/2 text-white/60 text-xs opacity-40 pointer-events-none">
+      {/* Touch indicator for mobile - smaller and positioned better */}
+      <div className="md:hidden absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white/60 text-xs opacity-40 pointer-events-none">
         Swipe for more
       </div>
     </div>
