@@ -1,4 +1,3 @@
-
 import * as React from "react"
 import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { X } from "lucide-react"
@@ -34,9 +33,11 @@ const DialogContent = React.forwardRef<
   }
 >(({ className, children, showXTSYDealsOnClose = true, ...props }, ref) => {
   const [showDealsPopup, setShowDealsPopup] = React.useState(false);
+  const hasShownPopup = React.useRef(false);
 
   const handleCloseClick = () => {
-    if (showXTSYDealsOnClose) {
+    if (showXTSYDealsOnClose && !hasShownPopup.current) {
+      hasShownPopup.current = true;
       setShowDealsPopup(true);
     } else {
       // Default close behavior
@@ -47,14 +48,13 @@ const DialogContent = React.forwardRef<
 
   const handleDealsPopupClose = () => {
     setShowDealsPopup(false);
-    // Close the original dialog
-    const event = new Event('dialog-close');
-    document.dispatchEvent(event);
+    // Navigate to home page
+    window.location.href = '/';
   };
 
   const handleReturnHome = () => {
-    // Scroll to hero section
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Navigate to home page
+    window.location.href = '/';
   };
 
   return (
