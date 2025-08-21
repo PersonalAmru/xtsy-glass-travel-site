@@ -1,6 +1,5 @@
 
 import { useEffect, useState } from "react";
-import xtsyLogo from "@/assets/xtsy-brand-logo.png";
 
 interface LoadingScreenProps {
   onLoadingComplete?: () => void;
@@ -28,7 +27,7 @@ const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
         <div className="w-20 h-20 mx-auto mb-6 animate-pulse">
           {!logoError ? (
             <img 
-              src={xtsyLogo}
+              src="https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Color%20logo%20-%20no%20background.png"
               alt="XTSY Logo" 
               className="w-full h-full object-contain"
               onError={() => setLogoError(true)}
