@@ -6,7 +6,7 @@ import { MapPin, Globe, Package, Bell, Mail, Filter } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import TourPackageCard from "@/components/TourPackageCard";
+import CompactTourPackageCard from "@/components/CompactTourPackageCard";
 import { LazyTourPackageModal } from "@/components/lazy/LazyTourPackageModal";
 import { AuthModal } from "@/components/AuthModal";
 import LazyWrapper from "@/components/LazyWrapper";
@@ -495,49 +495,48 @@ const Travel = () => {
           <div className="absolute -top-24 -right-24 w-48 h-48 bg-orange-200/30 rounded-full blur-3xl" />
           <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-red-200/30 rounded-full blur-3xl" />
           
-          <div className="relative z-10 py-12 sm:py-20">
-            <div className="container mx-auto px-2 sm:px-4">
-              {/* Header - Mobile Optimized */}
-              <div className="text-center mb-6 sm:mb-12">
-                <div className="inline-block p-3 sm:p-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl mb-4 sm:mb-6">
-                  <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-4 font-playfair">
+          {/* Optimized mobile padding */}
+          <div className="relative z-10 py-6 sm:py-8">
+            <div className="container mx-auto px-1 sm:px-2">
+              {/* Mobile-optimized Header */}
+              <div className="text-center mb-3 sm:mb-6">
+                <div className="inline-block p-2 sm:p-3 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg mb-2 sm:mb-3">
+                  <h1 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2 font-playfair">
                     XTSY Travel
                   </h1>
-                  <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto rounded-full" />
+                  <div className="w-12 sm:w-16 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 mx-auto rounded-full" />
                 </div>
-                <p className="text-base sm:text-xl text-gray-700 max-w-3xl mx-auto mb-4 sm:mb-8 bg-white/60 backdrop-blur-sm rounded-xl p-4 sm:p-6 shadow-lg">
-                  Embark on extraordinary journeys with XTSY Travel - your gateway to incredible experiences across India and beyond.
+                <p className="text-sm sm:text-base text-gray-700 max-w-2xl mx-auto mb-2 sm:mb-4 bg-white/60 backdrop-blur-sm rounded-lg p-2 sm:p-3 shadow-md mx-2">
+                  Embark on extraordinary journeys with XTSY Travel - your gateway to incredible experiences.
                 </p>
               </div>
 
-              {/* Tab Navigation - Mobile Optimized */}
-              <div className="flex justify-center mb-4 sm:mb-8">
-                <div className="bg-white/80 backdrop-blur-sm rounded-lg p-0.5 shadow-md flex w-full max-w-xs sm:max-w-sm">
+              {/* Compact Tab Navigation */}
+              <div className="flex justify-center mb-2 sm:mb-4">
+                <div className="bg-white/80 backdrop-blur-sm rounded-lg p-0.5 shadow-md flex w-full max-w-xs">
                   <Button
                     onClick={() => setActiveTab('domestic')}
                     variant={activeTab === 'domestic' ? 'default' : 'ghost'}
-                    className={`flex-1 px-2 sm:px-4 py-1.5 sm:py-2.5 rounded-md text-xs sm:text-base font-medium transition-all duration-200 ${
+                    className={`flex-1 px-2 py-1 rounded-md text-xs font-medium transition-all duration-200 ${
                       activeTab === 'domestic' 
                         ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white hover:from-orange-600 hover:to-red-700 shadow-md' 
                         : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100/80'
                     }`}
                   >
-                    <MapPin className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
-                    <span className="hidden sm:inline">Domestic</span>
-                    <span className="sm:hidden text-xs">DOM</span>
+                    <MapPin className="h-3 w-3 mr-1" />
+                    <span className="text-xs">DOM</span>
                   </Button>
                   <Button
                     onClick={() => setActiveTab('international')}
                     variant={activeTab === 'international' ? 'default' : 'ghost'}
-                    className={`flex-1 px-2 sm:px-4 py-1.5 sm:py-2.5 rounded-md text-xs sm:text-base font-medium transition-all duration-200 ${
+                    className={`flex-1 px-2 py-1 rounded-md text-xs font-medium transition-all duration-200 ${
                       activeTab === 'international' 
                         ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white hover:from-orange-600 hover:to-red-700 shadow-md' 
                         : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100/80'
                     }`}
                   >
-                    <Globe className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
-                    <span className="hidden sm:inline">International</span>
-                    <span className="sm:hidden text-xs">INT</span>
+                    <Globe className="h-3 w-3 mr-1" />
+                    <span className="text-xs">INT</span>
                   </Button>
                 </div>
               </div>
@@ -545,17 +544,17 @@ const Travel = () => {
               {/* Content */}
               {activeTab === 'domestic' && (
                 <div>
-                  {/* Filters - Mobile Optimized */}
-                  <div className="mb-4 sm:mb-6 bg-white/80 backdrop-blur-sm rounded-xl p-2 sm:p-6 shadow-lg">
-                    <div className="flex flex-col gap-2 sm:gap-3">
-                      <div className="flex items-center gap-2">
-                        <Filter className="h-3 w-3 sm:h-4 sm:w-4 text-gray-600" />
-                        <span className="font-semibold text-gray-900 text-xs sm:text-sm">Filters:</span>
+                  {/* Ultra-compact Filters */}
+                  <div className="mb-2 sm:mb-3 bg-white/80 backdrop-blur-sm rounded-lg p-2 shadow-lg">
+                    <div className="flex flex-col gap-1">
+                      <div className="flex items-center gap-1">
+                        <Filter className="h-3 w-3 text-gray-600" />
+                        <span className="font-medium text-gray-900 text-xs">Filters:</span>
                       </div>
                       
-                      <div className="flex flex-col sm:flex-row gap-2">
+                      <div className="flex flex-col sm:flex-row gap-1">
                         <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                          <SelectTrigger className="w-full sm:w-40 bg-white text-gray-900 border-gray-300 text-xs sm:text-sm h-8 sm:h-10">
+                          <SelectTrigger className="w-full sm:w-32 bg-white text-gray-900 border-gray-300 text-xs h-7">
                             <SelectValue placeholder="Category" />
                           </SelectTrigger>
                           <SelectContent>
@@ -568,7 +567,7 @@ const Travel = () => {
                         </Select>
 
                         <Select value={locationFilter} onValueChange={setLocationFilter}>
-                          <SelectTrigger className="w-full sm:w-40 bg-white text-gray-900 border-gray-300 text-xs sm:text-sm h-8 sm:h-10">
+                          <SelectTrigger className="w-full sm:w-32 bg-white text-gray-900 border-gray-300 text-xs h-7">
                             <SelectValue placeholder="Location" />
                           </SelectTrigger>
                           <SelectContent>
@@ -583,15 +582,15 @@ const Travel = () => {
                         <Button 
                           variant="outline" 
                           onClick={clearFilters}
-                          className="bg-white border-2 border-orange-300 text-orange-700 hover:bg-orange-50 hover:border-orange-400 hover:text-orange-800 font-medium px-2 sm:px-3 py-1 sm:py-2 shadow-sm transition-all duration-200 text-xs sm:text-sm w-full sm:w-auto h-8 sm:h-10"
+                          className="bg-white border-2 border-orange-300 text-orange-700 hover:bg-orange-50 hover:border-orange-400 hover:text-orange-800 font-medium px-2 py-1 shadow-sm transition-all duration-200 text-xs w-full sm:w-auto h-7"
                         >
-                          Clear Filters
+                          Clear
                         </Button>
                       </div>
                     </div>
                   </div>
 
-                  {/* State-wise Packages Organization - Mobile Optimized */}
+                  {/* Compact State-wise Packages */}
                   {Object.entries(stateWiseTourPackages).map(([state, packages]) => {
                     const filteredStatePackages = packages.filter(pkg => {
                       const categoryMatch = selectedCategory === "all" || pkg.category === selectedCategory;
@@ -610,27 +609,29 @@ const Travel = () => {
                       "Himachal Pradesh": { icon: "⛰️", desc: "Land of Snow" },
                       "Kerala": { icon: "🌴", desc: "God's Own Country" },
                       "Tamil Nadu": { icon: "🏛️", desc: "Land of Temples" },
-                      "Northeast States": { icon: "🌿", desc: "Seven Sisters Region" }
+                      "Northeast States": { icon: "🌿", desc: "Seven Sisters Region" },
+                      "XTSY Exclusive Tours": { icon: "⭐", desc: "Premium Experiences" }
                     };
 
                     const info = stateInfo[state] || { icon: "🗺️", desc: "Incredible Destination" };
 
                     return (
-                      <div key={state} className="mb-4 sm:mb-8">
-                        <div className="text-center mb-2 sm:mb-6">
-                          <div className="inline-flex items-center gap-1 sm:gap-2 p-1.5 sm:p-3 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg mb-1 sm:mb-4">
-                            <span className="text-base sm:text-2xl">{info.icon}</span>
-                            <h3 className="text-base sm:text-2xl font-bold text-gray-900">
+                      <div key={state} className="mb-3 sm:mb-4">
+                        <div className="text-center mb-1 sm:mb-2">
+                          <div className="inline-flex items-center gap-1 p-1 sm:p-2 bg-white/80 backdrop-blur-sm rounded-lg shadow-md mb-1">
+                            <span className="text-sm sm:text-lg">{info.icon}</span>
+                            <h3 className="text-sm sm:text-lg font-bold text-gray-900">
                               {state}
                             </h3>
                           </div>
-                          <p className="text-gray-600 text-xs sm:text-lg">
+                          <p className="text-gray-600 text-xs">
                             {info.desc}
                           </p>
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 lg:gap-6">
+                        {/* Ultra-compact grid for mobile with CompactTourPackageCard */}
+                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1 sm:gap-2">
                           {filteredStatePackages.map((itinerary) => (
-                            <TourPackageCard
+                            <CompactTourPackageCard
                               key={itinerary.id}
                               tourPackage={itinerary}
                               onPackageClick={() => handlePackageClick(itinerary)}
@@ -642,11 +643,11 @@ const Travel = () => {
                   })}
 
                   {filteredItineraries.length === 0 && (
-                    <div className="text-center py-8 sm:py-12">
-                      <p className="text-gray-500 text-base sm:text-lg">No packages found matching your filters.</p>
+                    <div className="text-center py-4 sm:py-6">
+                      <p className="text-gray-500 text-sm sm:text-base">No packages found matching your filters.</p>
                       <Button 
                         onClick={clearFilters}
-                        className="mt-4 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white"
+                        className="mt-2 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white text-xs sm:text-sm px-3 py-1"
                       >
                         Clear All Filters
                       </Button>
@@ -657,152 +658,114 @@ const Travel = () => {
 
               {activeTab === 'international' && (
                 <div className="max-w-6xl mx-auto">
-                  {/* Header Section - Mobile Optimized */}
-                  <div className="text-center mb-8 sm:mb-12">
-                    <div className="inline-flex items-center gap-2 sm:gap-3 p-3 sm:p-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl mb-4 sm:mb-6">
-                      <span className="text-2xl sm:text-4xl">🌏</span>
-                      <h2 className="text-xl sm:text-3xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+                  {/* Compact International Header */}
+                  <div className="text-center mb-4 sm:mb-6">
+                    <div className="inline-flex items-center gap-1 sm:gap-2 p-2 sm:p-3 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg mb-2 sm:mb-3">
+                      <span className="text-lg sm:text-2xl">🌏</span>
+                      <h2 className="text-base sm:text-xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
                         XTSY Asia & Europe
                       </h2>
-                      <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-bold">
-                        Launching Soon
+                      <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-1 sm:px-2 py-0.5 rounded-full text-xs font-bold">
+                        Soon
                       </span>
                     </div>
-                    <p className="text-sm sm:text-lg text-gray-600 max-w-3xl mx-auto px-4">
-                      Get ready to explore the world with XTSY! We're expanding to bring you unforgettable experiences across Asia and Europe.
+                    <p className="text-xs sm:text-sm text-gray-600 max-w-2xl mx-auto px-2">
+                      Get ready to explore the world with XTSY! We're expanding to bring you unforgettable experiences.
                     </p>
                   </div>
 
-                  {/* Asian Countries Section - Mobile Optimized */}
-                  <div className="mb-12 sm:mb-16">
-                    <div className="text-center mb-6 sm:mb-8">
-                      <h3 className="text-lg sm:text-2xl font-bold text-gray-900 mb-2 flex items-center justify-center gap-2">
+                  {/* Ultra-compact Asian Countries */}
+                  <div className="mb-6 sm:mb-8">
+                    <div className="text-center mb-3 sm:mb-4">
+                      <h3 className="text-sm sm:text-lg font-bold text-gray-900 mb-1 flex items-center justify-center gap-1">
                         🏯 Asian Destinations
                       </h3>
-                      <p className="text-gray-600 text-sm sm:text-base">Discover the diverse cultures and landscapes of Asia</p>
                     </div>
                     
-                     <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-4 mb-6 sm:mb-8 px-2 sm:px-0">
+                     <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-1 sm:gap-2 mb-3 sm:mb-4 px-1">
                        {[
-                         { country: "Japan", flag: "🇯🇵", highlight: "Cherry Blossoms & Culture" },
+                         { country: "Japan", flag: "🇯🇵", highlight: "Cherry Blossoms" },
                          { country: "Thailand", flag: "🇹🇭", highlight: "Tropical Paradise" },
-                         { country: "Vietnam", flag: "🇻🇳", highlight: "Street Food & History" },
-                         { country: "South Korea", flag: "🇰🇷", highlight: "K-Culture & Tech" },
-                         { country: "Malaysia", flag: "🇲🇾", highlight: "Multicultural Hub" },
-                         { country: "Singapore", flag: "🇸🇬", highlight: "Modern City-State" },
-                         { country: "Indonesia", flag: "🇮🇩", highlight: "Island Adventures" },
-                         { country: "Philippines", flag: "🇵🇭", highlight: "Beach & Diving" },
-                         { country: "Cambodia", flag: "🇰🇭", highlight: "Ancient Temples" },
-                         { country: "Laos", flag: "🇱🇦", highlight: "Peaceful Landscapes" },
-                         { country: "Myanmar", flag: "🇲🇲", highlight: "Golden Pagodas" },
-                         { country: "Nepal", flag: "🇳🇵", highlight: "Himalayan Peaks" }
+                         { country: "Vietnam", flag: "🇻🇳", highlight: "Street Food" },
+                         { country: "Korea", flag: "🇰🇷", highlight: "K-Culture" },
+                         { country: "Malaysia", flag: "🇲🇾", highlight: "Multicultural" },
+                         { country: "Singapore", flag: "🇸🇬", highlight: "Modern City" },
+                         { country: "Indonesia", flag: "🇮🇩", highlight: "Islands" },
+                         { country: "Philippines", flag: "🇵🇭", highlight: "Beaches" }
                        ].map((item) => (
-                         <Card key={item.country} className="group hover:shadow-lg transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200">
-                           <CardContent className="p-2 sm:p-4 text-center">
+                         <Card key={item.country} className="group hover:shadow-md transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200">
+                           <CardContent className="p-1 sm:p-2 text-center">
                                <div 
-                                 className="text-2xl sm:text-4xl lg:text-5xl mb-1 sm:mb-3 leading-none flag-container"
+                                 className="text-lg sm:text-2xl mb-1 leading-none"
                                  style={{
-                                   fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "EmojiOne Color", "Twemoji Mozilla", "Android Emoji", sans-serif',
-                                   fontSize: 'clamp(1.5rem, 4vw, 3rem)',
-                                   lineHeight: '1',
-                                   display: 'flex',
-                                   alignItems: 'center',
-                                   justifyContent: 'center',
-                                   height: '2rem sm:h-16',
-                                   width: '100%',
-                                   WebkitFontFeatureSettings: '"liga", "kern", "clig", "calt"',
-                                   fontFeatureSettings: '"liga", "kern", "clig", "calt"',
-                                   textRendering: 'optimizeLegibility',
-                                   unicodeBidi: 'isolate',
-                                   fontSynthesis: 'none',
-                                   WebkitFontSmoothing: 'antialiased',
-                                   MozOsxFontSmoothing: 'grayscale'
+                                   fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", sans-serif',
+                                   fontSize: 'clamp(1rem, 3vw, 1.5rem)',
+                                   lineHeight: '1'
                                  }}
                                >
                                  {item.flag}
                                </div>
-                             <h4 className="font-semibold text-gray-900 mb-1 text-xs sm:text-lg">{item.country}</h4>
-                             <p className="text-xs sm:text-sm text-gray-600 mb-1 sm:mb-3 leading-tight">{item.highlight}</p>
-                             <div className="mt-1 sm:mt-2">
-                               <span className="text-xs bg-yellow-100 text-yellow-800 px-1 sm:px-2 py-0.5 sm:py-1 rounded-full">Soon</span>
-                             </div>
+                             <h4 className="font-medium text-gray-900 mb-0.5 text-xs">{item.country}</h4>
+                             <p className="text-xs text-gray-600 mb-1 leading-tight">{item.highlight}</p>
+                             <span className="text-xs bg-yellow-100 text-yellow-800 px-1 py-0.5 rounded-full">Soon</span>
                            </CardContent>
                          </Card>
                       ))}
                     </div>
                   </div>
 
-                  {/* European Countries Section - Mobile Optimized */}
-                  <div className="mb-12 sm:mb-16">
-                    <div className="text-center mb-6 sm:mb-8">
-                      <h3 className="text-lg sm:text-2xl font-bold text-gray-900 mb-2 flex items-center justify-center gap-2">
+                  {/* Ultra-compact European Countries */}
+                  <div className="mb-6 sm:mb-8">
+                    <div className="text-center mb-3 sm:mb-4">
+                      <h3 className="text-sm sm:text-lg font-bold text-gray-900 mb-1 flex items-center justify-center gap-1">
                         🏰 European Destinations
                       </h3>
-                      <p className="text-gray-600 text-sm sm:text-base">Experience the rich history and diverse cultures of Europe</p>
                     </div>
                     
-                    <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-4 mb-6 sm:mb-8 px-2 sm:px-0">
+                    <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-1 sm:gap-2 mb-3 sm:mb-4 px-1">
                        {[
-                         { country: "France", flag: "🇫🇷", highlight: "Romance & Cuisine" },
+                         { country: "France", flag: "🇫🇷", highlight: "Romance" },
                          { country: "Italy", flag: "🇮🇹", highlight: "Art & History" },
-                         { country: "Spain", flag: "🇪🇸", highlight: "Passion & Festivals" },
-                         { country: "Germany", flag: "🇩🇪", highlight: "Castles & Beer" },
-                         { country: "Switzerland", flag: "🇨🇭", highlight: "Alpine Beauty" },
-                         { country: "Netherlands", flag: "🇳🇱", highlight: "Tulips & Canals" },
-                         { country: "United Kingdom", flag: "🇬🇧", highlight: "Royal Heritage" },
-                         { country: "Austria", flag: "🇦🇹", highlight: "Music & Mountains" },
-                         { country: "Czech Republic", flag: "🇨🇿", highlight: "Medieval Charm" },
-                         { country: "Greece", flag: "🇬🇷", highlight: "Ancient Wonders" },
-                         { country: "Portugal", flag: "🇵🇹", highlight: "Coastal Beauty" },
-                         { country: "Norway", flag: "🇳🇴", highlight: "Fjords & Aurora" }
+                         { country: "Spain", flag: "🇪🇸", highlight: "Festivals" },
+                         { country: "Germany", flag: "🇩🇪", highlight: "Castles" },
+                         { country: "Switzerland", flag: "🇨🇭", highlight: "Alps" },
+                         { country: "Netherlands", flag: "🇳🇱", highlight: "Canals" },
+                         { country: "UK", flag: "🇬🇧", highlight: "Royal Heritage" },
+                         { country: "Austria", flag: "🇦🇹", highlight: "Music" }
                        ].map((item) => (
-                         <Card key={item.country} className="group hover:shadow-lg transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200">
-                           <CardContent className="p-2 sm:p-4 text-center">
+                         <Card key={item.country} className="group hover:shadow-md transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200">
+                           <CardContent className="p-1 sm:p-2 text-center">
                                <div 
-                                 className="text-2xl sm:text-4xl lg:text-5xl mb-1 sm:mb-3 leading-none flag-container"
+                                 className="text-lg sm:text-2xl mb-1 leading-none"
                                  style={{
-                                   fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "EmojiOne Color", "Twemoji Mozilla", "Android Emoji", sans-serif',
-                                   fontSize: 'clamp(1.5rem, 4vw, 3rem)',
-                                   lineHeight: '1',
-                                   display: 'flex',
-                                   alignItems: 'center',
-                                   justifyContent: 'center',
-                                   height: '2rem sm:h-16',
-                                   width: '100%',
-                                   WebkitFontFeatureSettings: '"liga", "kern", "clig", "calt"',
-                                   fontFeatureSettings: '"liga", "kern", "clig", "calt"',
-                                   textRendering: 'optimizeLegibility',
-                                   unicodeBidi: 'isolate',
-                                   fontSynthesis: 'none',
-                                   WebkitFontSmoothing: 'antialiased',
-                                   MozOsxFontSmoothing: 'grayscale'
+                                   fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", sans-serif',
+                                   fontSize: 'clamp(1rem, 3vw, 1.5rem)',
+                                   lineHeight: '1'
                                  }}
                                >
                                  {item.flag}
                                </div>
-                             <h4 className="font-semibold text-gray-900 mb-1 text-xs sm:text-lg">{item.country}</h4>
-                             <p className="text-xs sm:text-sm text-gray-600 mb-1 sm:mb-3 leading-tight">{item.highlight}</p>
-                             <div className="mt-1 sm:mt-2">
-                               <span className="text-xs bg-blue-100 text-blue-800 px-1 sm:px-2 py-0.5 sm:py-1 rounded-full">Soon</span>
-                             </div>
+                             <h4 className="font-medium text-gray-900 mb-0.5 text-xs">{item.country}</h4>
+                             <p className="text-xs text-gray-600 mb-1 leading-tight">{item.highlight}</p>
+                             <span className="text-xs bg-blue-100 text-blue-800 px-1 py-0.5 rounded-full">Soon</span>
                            </CardContent>
                          </Card>
                       ))}
                     </div>
                   </div>
 
-                  {/* Newsletter Signup Section - Mobile Optimized */}
-                  <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl p-4 sm:p-8 text-center text-white mx-2 sm:mx-0">
-                    <Bell className="h-12 sm:h-16 w-12 sm:w-16 mx-auto mb-3 sm:mb-4 opacity-90" />
-                    <h3 className="text-lg sm:text-2xl font-bold mb-3 sm:mb-4">Be the First to Know!</h3>
-                    <p className="text-sm sm:text-lg mb-4 sm:mb-6 opacity-90">
-                      Join our newsletter to get exclusive early access to XTSY Asia & Europe packages, special discounts, and travel tips.
+                  {/* Compact Newsletter Section */}
+                  <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl p-3 sm:p-4 text-center text-white mx-1">
+                    <Bell className="h-8 sm:h-10 w-8 sm:w-10 mx-auto mb-2 opacity-90" />
+                    <h3 className="text-sm sm:text-lg font-bold mb-2">Be the First to Know!</h3>
+                    <p className="text-xs sm:text-sm mb-3 opacity-90">
+                      Join our newsletter for exclusive early access and special discounts.
                     </p>
                     <Button 
                       onClick={handleNewsletterClick}
-                      className="bg-white text-blue-600 hover:bg-gray-100 font-semibold px-4 sm:px-8 py-2 sm:py-3 text-sm sm:text-lg"
+                      className="bg-white text-blue-600 hover:bg-gray-100 font-semibold px-3 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm"
                     >
-                      <Mail className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
+                      <Mail className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
                       Join Newsletter
                     </Button>
                   </div>
