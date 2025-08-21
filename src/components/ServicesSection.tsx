@@ -31,7 +31,7 @@ const ServicesSection = () => {
     },
     {
       icon: <Coffee className="h-5 w-5" />,
-      title: "On-site 24/7 convenience store",
+      title: "24/7 travellers store",
       description: "24/7 convenience store with local delicacies",
       badge: "24/7"
     },
