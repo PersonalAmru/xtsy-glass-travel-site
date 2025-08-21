@@ -523,30 +523,32 @@ const Travel = () => {
 
               {/* Tab Navigation */}
               <div className="flex justify-center mb-12">
-                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-1 shadow-lg flex">
+                <div className="bg-white/80 backdrop-blur-sm rounded-lg p-0.5 shadow-md flex max-w-sm w-full sm:max-w-md">
                   <Button
                     onClick={() => setActiveTab('domestic')}
                     variant={activeTab === 'domestic' ? 'default' : 'ghost'}
-                    className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
+                    className={`flex-1 px-3 sm:px-4 py-2 sm:py-2.5 rounded-md text-sm sm:text-base font-medium transition-all duration-200 ${
                       activeTab === 'domestic' 
                         ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white hover:from-orange-600 hover:to-red-700 shadow-md' 
                         : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100/80'
                     }`}
                   >
-                    <MapPin className="h-4 w-4 mr-2" />
-                    Domestic Travel
+                    <MapPin className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                    <span className="hidden sm:inline">Domestic Travel</span>
+                    <span className="sm:hidden">Domestic</span>
                   </Button>
                   <Button
                     onClick={() => setActiveTab('international')}
                     variant={activeTab === 'international' ? 'default' : 'ghost'}
-                    className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
+                    className={`flex-1 px-3 sm:px-4 py-2 sm:py-2.5 rounded-md text-sm sm:text-base font-medium transition-all duration-200 ${
                       activeTab === 'international' 
                         ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white hover:from-orange-600 hover:to-red-700 shadow-md' 
                         : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100/80'
                     }`}
                   >
-                    <Globe className="h-4 w-4 mr-2" />
-                    International Travel
+                    <Globe className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                    <span className="hidden sm:inline">International Travel</span>
+                    <span className="sm:hidden">International</span>
                   </Button>
                 </div>
               </div>
