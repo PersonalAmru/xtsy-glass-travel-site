@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { useImagePreloader } from '@/hooks/useImagePreloader';
@@ -36,6 +37,7 @@ const PerformantImage: React.FC<PerformantImageProps> = ({
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [isIntersecting, setIsIntersecting] = useState(priority);
+  const [isLoading, setIsLoading] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const { preloadAdjacentImages } = useImagePreloader();
@@ -48,12 +50,13 @@ const PerformantImage: React.FC<PerformantImageProps> = ({
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsIntersecting(true);
+          setIsLoading(true);
           observer.disconnect();
         }
       },
       {
         threshold: 0.1,
-        rootMargin: '50px'
+        rootMargin: '100px' // Increased for better preloading
       }
     );
 
@@ -73,17 +76,19 @@ const PerformantImage: React.FC<PerformantImageProps> = ({
 
   const handleLoad = () => {
     setIsLoaded(true);
+    setIsLoading(false);
     onLoad?.();
   };
 
   const handleError = () => {
     setHasError(true);
+    setIsLoading(false);
     onError?.();
   };
 
   const defaultPlaceholder = (
-    <div className="w-full h-full bg-gray-100 animate-pulse flex items-center justify-center">
-      <div className="text-gray-400 text-sm">Loading...</div>
+    <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 animate-pulse flex items-center justify-center">
+      <div className="w-4 h-4 bg-gray-300 rounded-full animate-bounce"></div>
     </div>
   );
 
@@ -97,9 +102,11 @@ const PerformantImage: React.FC<PerformantImageProps> = ({
         placeholder || defaultPlaceholder
       ) : (
         <>
-          {!isLoaded && !hasError && (
-            <div className="absolute inset-0 bg-gray-100 animate-pulse flex items-center justify-center">
-              <div className="text-gray-400 text-sm">Loading...</div>
+          {(isLoading || (!isLoaded && !hasError)) && (
+            <div className="absolute inset-0 z-10">
+              <div className="w-full h-full bg-gradient-to-br from-gray-100 via-gray-50 to-gray-200 animate-pulse flex items-center justify-center">
+                <div className="w-4 h-4 bg-gray-400 rounded-full animate-bounce"></div>
+              </div>
             </div>
           )}
           
@@ -108,8 +115,8 @@ const PerformantImage: React.FC<PerformantImageProps> = ({
             src={src}
             alt={alt}
             className={cn(
-              "w-full h-full object-cover transition-opacity duration-300",
-              isLoaded ? "opacity-100" : "opacity-0"
+              "w-full h-full object-cover transition-all duration-500 ease-out",
+              isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-105"
             )}
             onLoad={handleLoad}
             onError={handleError}
@@ -120,11 +127,18 @@ const PerformantImage: React.FC<PerformantImageProps> = ({
             srcSet={srcSet}
             width={width}
             height={height}
+            style={{
+              filter: isLoaded ? 'none' : 'blur(2px)',
+              transform: isLoaded ? 'scale(1)' : 'scale(1.02)'
+            }}
           />
           
           {hasError && (
-            <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
-              <div className="text-gray-500 text-sm">Failed to load image</div>
+            <div className="absolute inset-0 z-10 bg-gray-100 flex items-center justify-center">
+              <div className="text-center">
+                <div className="text-gray-400 text-sm mb-1">⚠️</div>
+                <div className="text-gray-500 text-xs">Image unavailable</div>
+              </div>
             </div>
           )}
         </>
