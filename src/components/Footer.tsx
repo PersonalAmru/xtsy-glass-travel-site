@@ -1,5 +1,6 @@
+
 import { Link } from "react-router-dom";
-import { MapPin, Phone, Mail, Instagram, Linkedin, Youtube, Home, Info, Image as ImageIcon, Tag, Plane, HelpCircle } from "lucide-react";
+import { Phone, Mail, Instagram, Linkedin, Youtube, Home, Info, Image as ImageIcon, Tag, Plane, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import xtsyLogo from "@/assets/xtsy-brand-logo.png";
@@ -96,7 +97,6 @@ const Footer = () => {
             <h3 className="text-sm sm:text-lg lg:text-xl font-semibold mb-3 sm:mb-4 lg:mb-6 text-white">Contact Us</h3>
             <div className="space-y-2 sm:space-y-3 lg:space-y-4">
               <div className="flex items-start space-x-2 sm:space-x-3 justify-center">
-                <MapPin className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-orange-400 flex-shrink-0" />
                 <div className="text-gray-300 text-xs sm:text-sm lg:text-base leading-relaxed text-center">
                   <div className="font-medium text-white mb-1">XTSY Travellers Hostel</div>
                   <div className="text-xs sm:text-sm">Diengiong, Mawdiangdiang road</div>
