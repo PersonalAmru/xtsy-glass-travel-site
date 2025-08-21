@@ -123,7 +123,9 @@ const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
         decoding="async"
         draggable={false}
         style={{
-          willChange: 'transform, opacity'
+          willChange: 'transform, opacity',
+          minHeight: '100%',
+          minWidth: '100%'
         }}
       />
     );
@@ -131,7 +133,7 @@ const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
 
   if (images.length === 0) {
     return (
-      <div className={`relative overflow-hidden bg-gray-100 ${aspectClasses[aspectRatio]} ${className}`}>
+      <div className={`relative overflow-hidden bg-gray-100 ${aspectClasses[aspectRatio]} ${className}`} style={{ minHeight: '200px' }}>
         <div className="absolute inset-0 w-full h-full flex items-center justify-center">
           <div className="text-center px-2">
             <TreePine className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 text-gray-400 mx-auto mb-2" />
@@ -146,10 +148,13 @@ const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
     <div 
       className={`relative overflow-hidden bg-gray-100 group ${aspectClasses[aspectRatio]} ${className}`}
       {...swipeHandlers}
-      style={{ touchAction: 'pan-y pinch-zoom' }}
+      style={{ 
+        touchAction: 'pan-y pinch-zoom',
+        minHeight: '200px' // Ensure minimum height on mobile
+      }}
     >
       {/* Image container */}
-      <div className="relative w-full h-full">
+      <div className="relative w-full h-full min-h-full">
         {images.map((_, index) => (
           <div
             key={index}
