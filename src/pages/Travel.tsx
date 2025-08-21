@@ -778,13 +778,13 @@ const Travel = () => {
                                <CardContent className="flex flex-col items-center justify-center p-3 sm:p-4 text-center h-full min-h-[120px]">
                                  <div className="flex items-center justify-center mb-2 w-full">
                                    <span 
-                                     className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl block leading-none"
+                                     className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl block leading-none !visible !opacity-100"
                                      style={{
                                        fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Twemoji Mozilla", "Android Emoji", sans-serif',
                                        fontSize: 'clamp(1.5rem, 5vw, 3rem)',
-                                       display: 'block !important',
-                                       visibility: 'visible !important',
-                                       opacity: '1 !important',
+                                       display: 'block',
+                                       visibility: 'visible',
+                                       opacity: 1,
                                        color: 'inherit',
                                        filter: 'none'
                                      }}
@@ -832,13 +832,13 @@ const Travel = () => {
                                <CardContent className="flex flex-col items-center justify-center p-3 sm:p-4 text-center h-full min-h-[120px]">
                                  <div className="flex items-center justify-center mb-2 w-full">
                                    <span 
-                                     className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl block leading-none"
+                                     className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl block leading-none !visible !opacity-100"
                                      style={{
                                        fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Twemoji Mozilla", "Android Emoji", sans-serif',
                                        fontSize: 'clamp(1.5rem, 5vw, 3rem)',
-                                       display: 'block !important',
-                                       visibility: 'visible !important',
-                                       opacity: '1 !important',
+                                       display: 'block',
+                                       visibility: 'visible',
+                                       opacity: 1,
                                        color: 'inherit',
                                        filter: 'none'
                                      }}
