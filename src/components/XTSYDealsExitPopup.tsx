@@ -10,14 +10,16 @@ interface XTSYDealsExitPopupProps {
   isOpen: boolean;
   onClose: () => void;
   onReturnHome: () => void;
+  onViewDeals?: () => void;
 }
 
-const XTSYDealsExitPopup = ({ isOpen, onClose, onReturnHome }: XTSYDealsExitPopupProps) => {
-  const navigate = useNavigate();
-
+const XTSYDealsExitPopup = ({ isOpen, onClose, onReturnHome, onViewDeals }: XTSYDealsExitPopupProps) => {
   const handleViewDeals = () => {
-    navigate('/deals');
-    onClose();
+    if (onViewDeals) {
+      onViewDeals();
+    } else {
+      onClose();
+    }
   };
 
   const handleCloseAndReturnHome = () => {

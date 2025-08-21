@@ -32,29 +32,16 @@ const DialogContent = React.forwardRef<
     showXTSYDealsOnClose?: boolean;
   }
 >(({ className, children, showXTSYDealsOnClose = true, ...props }, ref) => {
-  const [showDealsPopup, setShowDealsPopup] = React.useState(false);
-  const hasShownPopup = React.useRef(false);
-
   const handleCloseClick = () => {
-    if (showXTSYDealsOnClose && !hasShownPopup.current) {
-      hasShownPopup.current = true;
-      setShowDealsPopup(true);
+    if (showXTSYDealsOnClose) {
+      // Emit event for global popup manager to handle
+      const event = new CustomEvent('dialog-exit-request');
+      document.dispatchEvent(event);
     } else {
       // Default close behavior
       const event = new Event('dialog-close');
       document.dispatchEvent(event);
     }
-  };
-
-  const handleDealsPopupClose = () => {
-    setShowDealsPopup(false);
-    // Navigate to home page
-    window.location.href = '/';
-  };
-
-  const handleReturnHome = () => {
-    // Navigate to home page
-    window.location.href = '/';
   };
 
   return (
@@ -77,20 +64,6 @@ const DialogContent = React.forwardRef<
           <span className="sr-only">Close</span>
         </button>
       </DialogPrimitive.Content>
-      
-      {/* XTSY Deals Popup */}
-      {showDealsPopup && (
-        <React.Suspense fallback={null}>
-          {React.createElement(
-            React.lazy(() => import('../XTSYDealsExitPopup')),
-            {
-              isOpen: showDealsPopup,
-              onClose: handleDealsPopupClose,
-              onReturnHome: handleReturnHome,
-            }
-          )}
-        </React.Suspense>
-      )}
     </DialogPortal>
   )
 })

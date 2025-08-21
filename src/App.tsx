@@ -16,6 +16,7 @@ import NotFound from "./pages/NotFound";
 import { preloadCriticalResources, optimizeFontLoading, registerServiceWorker } from "./utils/bundleOptimization";
 import { performGlobalCleanup } from "./utils/performanceCleanup";
 import { cleanupUnifiedImage } from "./components/UnifiedImage";
+import ExitPopupManager from "./components/ExitPopupManager";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -45,6 +46,7 @@ function App() {
   return (
     <div className="dark">
       <PerformanceMonitor />
+      <ExitPopupManager />
       <TooltipProvider>
         <Toaster />
         <Sonner />
