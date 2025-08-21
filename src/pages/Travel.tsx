@@ -17,22 +17,36 @@ import OptimizedLazyImage from "@/components/OptimizedLazyImage";
 // Import images for tour packages
 import meghalayaBiodiversityAuthenticImg from "@/assets/meghalaya-biodiversity-authentic.jpg";
 import wildernessSurvivalImg from "@/assets/wilderness-survival-authentic.jpg";
-import arunachalTribalImg from "@/assets/arunachal-tribal-festival.jpg";
+import arunachalTribalImg from "@/assets/arunachal-tribal-premium.jpg";
 import livingRootBridgesImg from "@/assets/living-root-bridges-authentic.jpg";
 import dawkiCrystalClearImg from "@/assets/dawki-crystal-clear-authentic.jpg";
-import assamTeaGardensImg from "@/assets/assam-tea-gardens-new.jpg";
+import assamTeaGardensImg from "@/assets/assam-tea-gardens-premium.jpg";
 import manipurLoktakImg from "@/assets/manipur-loktak-premium.jpg";
 import tripuraTribalImg from "@/assets/tripura-tribal-premium.jpg";
 import charDhamYatraImg from "@/assets/char-dham-yatra.jpg";
 import nainitalLakeImg from "@/assets/nainital-lake-district.jpg";
 import sikkimRhododendronImg from "@/assets/sikkim-rhododendrons-premium.jpg";
 import pellingKanchenjungaImg from "@/assets/pelling-kanchenjunga.jpg";
-import gurudongmarLakeImg from "@/assets/gurudongmar-lake.jpg";
+import gurudongmarLakeImg from "@/assets/gurudongmar-lake-high-altitude-stock.jpg";
 import keralaBackwatersImg from "@/assets/kerala-backwaters-authentic.jpg";
-import munnarTeaGardensImg from "@/assets/munnar-tea-gardens.jpg";
+import munnarTeaGardensImg from "@/assets/munnar-tea-gardens-new.jpg";
 import thekkadyWildlifeImg from "@/assets/thekkady-wildlife.jpg";
-import tamilNaduTemplesImg from "@/assets/tamil-nadu-temples.jpg";
+import tamilNaduTemplesImg from "@/assets/tamil-nadu-temples-new.jpg";
 import ootyKodaikanalImg from "@/assets/ooty-kodaikanal.jpg";
+import meghalayaHiddenGemsImg from "@/assets/meghalaya-hidden-gems-final.jpg";
+import cherrapunjiWaterfallsImg from "@/assets/cherrapunji-waterfalls-premium.jpg";
+import shillongCulturalImg from "@/assets/shillong-cultural-new.jpg";
+import mawlynnongCleanImg from "@/assets/mawlynnong-cleanest-village-premium.jpg";
+import nagalandHornbillImg from "@/assets/nagaland-hornbill-premium.jpg";
+import mizoramBambooImg from "@/assets/mizoram-bamboo-premium.jpg";
+import kohimaWarImg from "@/assets/kohima-war-cemetery-premium.jpg";
+import valleyOfFlowersImg from "@/assets/valley-of-flowers-stock.jpg";
+import kedarnathTrekImg from "@/assets/kedarnath-temple-trek-stock.jpg";
+import rishikeshAdventureImg from "@/assets/rishikesh-adventure-sports-stock.jpg";
+import haridwarSpiritualImg from "@/assets/haridwar-rishikesh-spiritual-stock.jpg";
+import spitiValleyImg from "@/assets/spiti-valley-adventure-stock.jpg";
+import shimlaManaliImg from "@/assets/shimla-manali-honeymoon-stock.jpg";
+import kasauliSolanImg from "@/assets/kasauli-solan-hill-station-stock.jpg";
 
 // Lazy load image imports using dynamic imports
 const loadImages = {
