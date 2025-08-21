@@ -1,6 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { TourPackage } from '@/types';
+
+// Define TourPackage interface
+interface TourPackage {
+  id: number;
+  title: string;
+  description: string;
+  duration: string;
+  difficulty: string;
+  price: string;
+  rating: number;
+  category: string;
+  location: string;
+  highlights: string[];
+  bestSeason: string;
+  image: string;
+  exclusive?: boolean;
+}
 import TourPackageCard from '@/components/TourPackageCard';
 import TourPackageModal from '@/components/TourPackageModal';
 import { Search } from 'lucide-react';
@@ -42,7 +58,7 @@ import meghalayaBiodiversityAuthenticImg from "@/assets/meghalaya-biodiversity-a
 import wildernessSurvivalImg from "@/assets/wilderness-survival-authentic.jpg";
 import northeastBikeExpeditionImg from "@/assets/royal-enfield-himalayan-group.jpg";
 import arunachalTribalImg from "@/assets/arunachal-tribal-premium.jpg";
-import livingRootBridgesImg from "@/assets/living-root-bridges-authentic.jpg";
+import livingRootBridgesAuthenticImg from "@/assets/living-root-bridges-authentic.jpg";
 import dawkiCrystalClearImg from "@/assets/dawki-crystal-clear-authentic.jpg";
 import teaGardensImg from "@/assets/tea-gardens-authentic.jpg";
 
@@ -280,7 +296,7 @@ const domesticTours: TourPackage[] = [
       "Natural Wonders"
     ],
     bestSeason: "Oct-Apr",
-    image: livingRootBridgesImg
+    image: livingRootBridgesAuthenticImg
   },
   {
     id: 114,
@@ -534,7 +550,6 @@ const TravelPage: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
-  const { isMobile } = useApp();
 
   // Function to handle tab changes
   const handleTabChange = (value: string) => {
