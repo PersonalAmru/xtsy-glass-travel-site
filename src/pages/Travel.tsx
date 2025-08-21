@@ -14,6 +14,9 @@ import SEOContent from "@/components/SEOContent";
 import { TourPricingService } from "@/utils/tourPricingService";
 import OptimizedLazyImage from "@/components/OptimizedLazyImage";
 
+// Import the biodiversity image for the exclusive tour
+import meghalayaBiodiversityAuthenticImg from "@/assets/meghalaya-biodiversity-authentic.jpg";
+
 // Lazy load image imports using dynamic imports
 const loadImages = {
   arunachalEagleFestival: () => import("@/assets/arunachal-eagle-festival-stock.jpg"),
@@ -122,8 +125,8 @@ const Travel = () => {
         duration: "7 Days",
         difficulty: "Moderate",
         price: TourPricingService.calculatePrice("7 Days", "exclusive", "Moderate", "Northeast India", "Oct-Mar"),
-        image: "",
-        images: ["", "", ""],
+        image: meghalayaBiodiversityAuthenticImg,
+        images: [meghalayaBiodiversityAuthenticImg, meghalayaBiodiversityAuthenticImg, meghalayaBiodiversityAuthenticImg],
         rating: 4.9,
         category: "cultural",
         location: "Northeast India",
