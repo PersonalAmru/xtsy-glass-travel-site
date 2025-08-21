@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -26,8 +27,13 @@ const OptimizedLazyImage: React.FC<OptimizedLazyImageProps> = ({
   const imgRef = useRef<HTMLImageElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Validate and use provided src or fallback
-  const imageSource = src && src.trim() !== '' ? src : fallback;
+  // Use the Royal Enfield Himalayan image by default for this selected element
+  const defaultRoyalEnfieldImage = '/src/assets/royal-enfield-himalayan-mountain.jpg';
+  
+  // Validate and use provided src, Royal Enfield image, or fallback
+  const imageSource = src && src.trim() !== '' ? src : 
+                     src.includes('royal') || src.includes('enfield') || src.includes('himalayan') ? 
+                     defaultRoyalEnfieldImage : fallback;
 
   useEffect(() => {
     // If priority is true, load immediately
