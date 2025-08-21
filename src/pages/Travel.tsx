@@ -631,52 +631,6 @@ const Travel = () => {
               {activeTab === 'domestic' && (
                 <LazyWrapper fallback={<div className="animate-pulse bg-gray-100 h-64 rounded"></div>}>
                   <div>
-                    {/* Ultra-compact Filters */}
-                    <div className="mb-1 sm:mb-2 bg-white/80 backdrop-blur-sm rounded-md p-1.5 shadow-lg">
-                      <div className="flex flex-col gap-0.5">
-                        <div className="flex items-center gap-0.5">
-                          <Filter className="h-2.5 w-2.5 text-gray-600" />
-                          <span className="font-medium text-gray-900 text-xs">Filters:</span>
-                        </div>
-                        
-                        <div className="flex flex-col sm:flex-row gap-0.5">
-                          <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                            <SelectTrigger className="w-full sm:w-28 bg-white text-gray-900 border-gray-300 text-xs h-5">
-                              <SelectValue placeholder="Category" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {categories.map((category) => (
-                                <SelectItem key={category.id} value={category.id}>
-                                  {category.label}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-
-                          <Select value={locationFilter} onValueChange={setLocationFilter}>
-                            <SelectTrigger className="w-full sm:w-28 bg-white text-gray-900 border-gray-300 text-xs h-5">
-                              <SelectValue placeholder="Location" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {locations.map((location) => (
-                                <SelectItem key={location} value={location}>
-                                  {location === "all" ? "All Locations" : location}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                          
-                          <Button 
-                            variant="outline" 
-                            onClick={clearFilters}
-                            className="bg-white border border-orange-300 text-orange-700 hover:bg-orange-50 hover:border-orange-400 hover:text-orange-800 font-medium px-1.5 py-0.5 shadow-sm transition-all duration-200 text-xs w-full sm:w-auto h-5"
-                          >
-                            Clear
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-
                     {/* Enhanced State-wise Packages with lazy loading */}
                     {Object.entries(stateWiseTourPackages).map(([state, packages]) => {
                       const filteredStatePackages = packages.filter(pkg => {
