@@ -3,14 +3,25 @@ import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, Instagram, Linkedin, Youtube, Home, Info, Image as ImageIcon, Tag, Plane, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
+import xtsyLogo from "@/assets/xtsy-brand-logo.png";
 
 const Footer = () => {
   const [logoLoaded, setLogoLoaded] = useState(false);
+  const [logoError, setLogoError] = useState(false);
 
-  // Load footer logo immediately (below-the-fold but important)
   useEffect(() => {
     setLogoLoaded(true);
   }, []);
+
+  const handleLogoError = () => {
+    console.error('Footer logo failed to load, using fallback');
+    setLogoError(true);
+  };
+
+  const handleLogoLoad = () => {
+    setLogoLoaded(true);
+    setLogoError(false);
+  };
 
   return (
     <footer className="bg-gray-900 text-white py-12 sm:py-16">
@@ -19,12 +30,20 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="text-center lg:text-left">
             <div className="flex items-center gap-3 justify-center lg:justify-start mb-8">
-              <img 
-                src="/src/assets/xtsy-brand-logo.png" 
-                alt="XTSY Travellers Hostel Logo"
-                className="h-16 sm:h-20 w-auto object-contain"
-                loading="lazy"
-              />
+              {!logoError ? (
+                <img 
+                  src={xtsyLogo}
+                  alt="XTSY Travellers Hostel Logo"
+                  className="h-16 sm:h-20 w-auto object-contain"
+                  loading="lazy"
+                  onLoad={handleLogoLoad}
+                  onError={handleLogoError}
+                />
+              ) : (
+                <div className="h-16 sm:h-20 w-24 bg-gradient-to-r from-orange-500 to-red-600 rounded flex items-center justify-center">
+                  <span className="text-white font-bold text-lg">XTSY</span>
+                </div>
+              )}
             </div>
             <ul className="space-y-6">
               <li className="text-gray-300 text-base leading-relaxed justify-center lg:justify-start">

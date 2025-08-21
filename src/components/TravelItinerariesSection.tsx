@@ -8,7 +8,7 @@ import TourPackageModal from "./TourPackageModal";
 import { useApp } from "@/contexts/AppContext";
 import GalleryImage from "./GalleryImage";
 
-// Import real tour package images from verified sources
+// Import real tour package images from verified sources using direct imports
 import meghalayaHiddenGemsImg from "@/assets/meghalaya-hidden-gems-new.jpg";
 import shillongCulturalImg from "@/assets/shillong-meghalaya-real.jpg";
 import cherrapunjiMonsoonImg from "@/assets/nohkalikai-falls-real.jpg";

@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from "react";
+import xtsyLogo from "@/assets/xtsy-brand-logo.png";
 
 interface LoadingScreenProps {
   onLoadingComplete?: () => void;
@@ -7,6 +8,7 @@ interface LoadingScreenProps {
 
 const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
   const [isVisible, setIsVisible] = useState(true);
+  const [logoError, setLogoError] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -24,11 +26,18 @@ const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
       <div className="text-center">
         {/* XTSY Logo Animation */}
         <div className="w-20 h-20 mx-auto mb-6 animate-pulse">
-          <img 
-            src="/lovable-uploads/160f683c-a41c-41fd-8bdb-700d74a7e027.png" 
-            alt="XTSY Logo" 
-            className="w-full h-full object-contain"
-          />
+          {!logoError ? (
+            <img 
+              src={xtsyLogo}
+              alt="XTSY Logo" 
+              className="w-full h-full object-contain"
+              onError={() => setLogoError(true)}
+            />
+          ) : (
+            <div className="w-20 h-20 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl flex items-center justify-center">
+              <span className="text-white font-bold text-xl">XTSY</span>
+            </div>
+          )}
         </div>
         
         {/* Loading Text */}
