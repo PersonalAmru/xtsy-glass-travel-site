@@ -5,7 +5,8 @@ import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
 import EnhancedBookingModal from "./EnhancedBookingModal";
 import PerformantImage from "./PerformantImage";
-import xtsyLogo from "@/assets/xtsy-brand-logo.png";
+import xtsyColorLogo from "@/assets/xtsy-color-logo.png";
+
 const HeroSection = () => {
   const [checkIn, setCheckIn] = useState(new Date().toISOString().split('T')[0]);
   const [checkOut, setCheckOut] = useState("");
@@ -198,12 +199,12 @@ const HeroSection = () => {
               
               <div className="flex items-center justify-center">
                 <PerformantImage 
-                  src={xtsyLogo} 
-                  alt="XTSY Brand Logo" 
-                  className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-32 lg:h-32 object-contain"
+                  src={xtsyColorLogo} 
+                  alt="XTSY Header Brand Logo" 
+                  className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 aspect-square object-contain"
                   priority={true}
                   placeholder={
-                    <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-32 lg:h-32 bg-gradient-to-r from-orange-500 to-red-600 rounded-full flex items-center justify-center">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 aspect-square bg-gradient-to-r from-orange-500 to-red-600 rounded flex items-center justify-center">
                       <span className="text-white font-bold text-xs sm:text-sm">XTSY</span>
                     </div>
                   }
@@ -301,4 +302,5 @@ const HeroSection = () => {
     }} />
     </>;
 };
+
 export default HeroSection;
