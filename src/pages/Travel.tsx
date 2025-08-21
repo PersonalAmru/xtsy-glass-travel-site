@@ -219,7 +219,7 @@ const Travel = () => {
         duration: "7 Days",
         difficulty: "Easy",
         price: TourPricingService.calculatePrice("7 Days", "exclusive", "Easy", "Northeast India", "Oct-May"),
-        image: meghalayaLivingRootBridges,
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/download%20(26).jpg",
         images: [meghalayaLivingRootBridges, cherrapunjiNohkalikaiFalls, dawkiUmngotRiver],
         rating: 4.9,
         category: "wellness",
