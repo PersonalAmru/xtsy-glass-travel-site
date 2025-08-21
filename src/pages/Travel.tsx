@@ -750,7 +750,7 @@ const Travel = () => {
                       </p>
                     </div>
 
-                    {/* Enhanced Asian Countries with fixed flag visibility */}
+                    {/* Enhanced Asian Countries with Unicode emoji flags */}
                     <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16">
                       <div className="text-center mb-4 sm:mb-6 md:mb-8">
                         <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-2 flex items-center justify-center gap-2">
@@ -778,19 +778,11 @@ const Travel = () => {
                                <CardContent className="flex flex-col items-center justify-center p-3 sm:p-4 text-center h-full min-h-[120px]">
                                   <div className="flex items-center justify-center mb-2 w-full">
                                     <span 
-                                      className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-none block md:inline !block !visible !opacity-100"
+                                      className="leading-none"
                                       style={{
-                                        fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Twemoji Mozilla", "Android Emoji", "EmojiOne Mozilla", "system-ui", sans-serif',
+                                        fontFamily: '"Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif',
                                         fontSize: 'clamp(1.5rem, 5vw, 3rem)',
-                                        display: window.innerWidth >= 768 ? 'inline' : 'block',
-                                        visibility: 'visible',
-                                        opacity: 1,
-                                        color: 'inherit',
-                                        filter: 'none',
-                                        unicodeBidi: 'normal',
-                                        textRendering: 'optimizeLegibility',
-                                        WebkitFontSmoothing: 'antialiased',
-                                        MozOsxFontSmoothing: 'grayscale'
+                                        lineHeight: 1
                                       }}
                                     >
                                       {item.flag}
@@ -808,7 +800,7 @@ const Travel = () => {
                       </div>
                     </div>
 
-                    {/* Enhanced European Countries with fixed flag visibility */}
+                    {/* Enhanced European Countries with Unicode emoji flags */}
                     <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16">
                       <div className="text-center mb-4 sm:mb-6 md:mb-8">
                         <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-2 flex items-center justify-center gap-2">
@@ -836,19 +828,11 @@ const Travel = () => {
                                <CardContent className="flex flex-col items-center justify-center p-3 sm:p-4 text-center h-full min-h-[120px]">
                                   <div className="flex items-center justify-center mb-2 w-full">
                                     <span 
-                                      className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-none block md:inline !block !visible !opacity-100"
+                                      className="leading-none"
                                       style={{
-                                        fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Twemoji Mozilla", "Android Emoji", "EmojiOne Mozilla", "system-ui", sans-serif',
+                                        fontFamily: '"Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif',
                                         fontSize: 'clamp(1.5rem, 5vw, 3rem)',
-                                        display: window.innerWidth >= 768 ? 'inline' : 'block',
-                                        visibility: 'visible',
-                                        opacity: 1,
-                                        color: 'inherit',
-                                        filter: 'none',
-                                        unicodeBidi: 'normal',
-                                        textRendering: 'optimizeLegibility',
-                                        WebkitFontSmoothing: 'antialiased',
-                                        MozOsxFontSmoothing: 'grayscale'
+                                        lineHeight: 1
                                       }}
                                     >
                                       {item.flag}
