@@ -27,12 +27,25 @@ const OptimizedLazyImage: React.FC<OptimizedLazyImageProps> = ({
   const imgRef = useRef<HTMLImageElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Use the XTSY 270° Panorama Glass Ensuite images from the navigation page
-  const defaultXTSY270Images = XTSY270_DATA.images;
-  const primaryXTSY270Image = XTSY270_DATA.image;
-  
-  // Select appropriate XTSY 270° image or use provided src
-  const imageSource = src && src.trim() !== '' ? src : primaryXTSY270Image;
+  // Unified XTSY 270° image selection - use primary image from navigation page data
+  const getUnifiedXTSY270Image = () => {
+    // Check if this is related to XTSY 270° suite
+    const isXTSY270Related = 
+      alt.toLowerCase().includes('xtsy') ||
+      alt.toLowerCase().includes('270') ||
+      alt.toLowerCase().includes('panorama') ||
+      alt.toLowerCase().includes('glass') ||
+      src.includes('xtsy') ||
+      src.includes('270');
+    
+    if (isXTSY270Related || !src || src.trim() === '') {
+      return XTSY270_DATA.image; // Use primary image from navigation page
+    }
+    
+    return src;
+  };
+
+  const imageSource = getUnifiedXTSY270Image();
 
   useEffect(() => {
     // If priority is true, load immediately
