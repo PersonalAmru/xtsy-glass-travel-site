@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Calendar, Users, X, ArrowRight, ArrowLeft, Hotel, Bed, Home, IndianRupee } from "lucide-react";
+import { Calendar, Users, ArrowRight, ArrowLeft, Hotel, Bed, Home, IndianRupee } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useIsMobile } from "@/hooks/use-mobile";
 import RoomCard from "./RoomCard";
@@ -478,14 +478,6 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                   <ArrowLeft className="h-5 w-5 text-gray-900" />
                 </Button>
               )}
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={onClose}
-                className="p-2 text-gray-900 hover:bg-gray-100"
-              >
-                <X className="h-5 w-5 text-gray-900" />
-              </Button>
               <DialogTitle className="text-lg md:text-xl font-bold text-black">
                 {currentStep === 'room-selection' && 'Select Your Room'}
                 {currentStep === 'booking-summary' && 'Booking Summary'}
