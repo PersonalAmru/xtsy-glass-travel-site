@@ -25,7 +25,7 @@ import mawlynnongVillageImg from "@/assets/mawlynnong-village.jpg";
 import garoHillsTribalImg from "@/assets/garo-hills-tribal.jpg";
 import jaintiaCavesImg from "@/assets/jaintia-caves.jpg";
 import photographyTourImg from "@/assets/photography-tour.jpg";
-import wellnessRetreatImg from "@/assets/wellness-retreat.jpg";
+const wellnessRetreatImg = "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/download%20(26).jpg";
 import offbeatCircuitImg from "@/assets/offbeat-circuit.jpg";
 import khasiHillsTrekImg from "@/assets/khasi-hills-trek.jpg";
 import tribalCircuitImg from "@/assets/tribal-circuit.jpg";
