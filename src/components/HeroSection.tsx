@@ -198,7 +198,7 @@ const HeroSection = () => {
               </div>
               
               <div className="flex items-center justify-center">
-                <div className="w-24 h-20 sm:w-28 sm:h-24 md:w-36 md:h-32 lg:w-44 lg:h-40 xl:w-52 xl:h-48 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 flex items-center justify-center p-2 drop-shadow-lg">
+                <div className="w-48 h-20 sm:w-56 sm:h-24 md:w-72 md:h-32 lg:w-88 lg:h-40 xl:w-96 xl:h-48 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 flex items-center justify-center p-2 drop-shadow-lg">
                   <PerformantImage 
                     src={xtsyColorLogo} 
                     alt="XTSY Header Brand Logo" 
