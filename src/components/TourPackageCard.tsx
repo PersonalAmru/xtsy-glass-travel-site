@@ -206,7 +206,7 @@ const TourPackageCard = ({ tourPackage, onPackageClick }: TourPackageCardProps) 
       
       <CardHeader className="flex-grow">
         <div className="flex justify-between items-start mb-2">
-          <CardTitle className="text-xl group-hover:text-primary transition-colors line-clamp-2">
+          <CardTitle className="text-xl group-hover:text-primary transition-colors">
             {tourPackage.title}
           </CardTitle>
           <div className="flex items-center gap-1 text-yellow-500 flex-shrink-0">
