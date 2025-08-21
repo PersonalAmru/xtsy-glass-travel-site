@@ -45,27 +45,27 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
 
   if (isLuxury) {
     return (
-      <Card className="group bg-white hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-0 overflow-hidden h-[500px] flex flex-col mobile-carousel">
+      <Card className="group bg-white hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-0 overflow-hidden min-h-[580px] h-auto flex flex-col mobile-carousel">
         <MobileImageCarousel
           images={images}
           alt={room.name}
-          className="h-80"
+          className="h-72"
           aspectRatio="photo"
           showIndicators={true}
           showArrows={true}
         />
         
-        <CardHeader className="pb-3 flex-grow">
-          <CardTitle className="text-xl font-bold text-gray-900 mb-2 font-playfair">
+        <CardHeader className="pb-2 px-4">
+          <CardTitle className="text-lg font-bold text-gray-900 mb-1 font-playfair">
             {room.name}
           </CardTitle>
-          <CardDescription className="text-gray-600 text-sm font-josefin">
+          <CardDescription className="text-gray-600 text-sm font-josefin line-clamp-2">
             {room.description}
           </CardDescription>
         </CardHeader>
         
-        <CardContent className="space-y-4 flex-grow flex flex-col">
-          <div className="flex-grow">
+        <CardContent className="px-4 pb-4 flex-1 flex flex-col">
+          <div className="mb-4">
             <h4 className="font-semibold text-gray-900 mb-2 font-josefin">Premium Features:</h4>
             <div className="flex flex-wrap gap-1">
               {room.features.slice(0, 6).map((feature, index) => (
@@ -76,7 +76,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
             </div>
           </div>
           
-          <div className="mt-auto pt-4">
+          <div className="mt-auto">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
                 <Users className="h-4 w-4 text-gray-600" />
