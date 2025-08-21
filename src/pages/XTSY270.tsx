@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -305,26 +306,51 @@ Thank you! 😊`;
               </div>
             </div>
 
-            {/* Experience Details */}
+            {/* Experience Details - Enhanced Luxury Section */}
             <div className="mb-20 animate-fade-in">
-              <Card className="glass-card bg-white/80 backdrop-blur-md border-white/60 shadow-xl">
-                <CardContent className="p-3 md:p-4">
-                  <div className="grid lg:grid-cols-3 gap-3">
-                    <Badge variant="outline" className="glass-card bg-white/80 border-white/60 text-gray-800 font-semibold backdrop-blur-md text-center justify-center p-3 flex-col">
-                      <Users className="w-6 h-6 text-primary mx-auto mb-2" />
-                      <h3 className="text-base font-semibold mb-1">Occupancy</h3>
-                      <p className="text-gray-700 text-sm font-medium">Up to 2 guests in supreme comfort</p>
-                    </Badge>
-                    <Badge variant="outline" className="glass-card bg-white/80 border-white/60 text-gray-800 font-semibold backdrop-blur-md text-center justify-center p-3 flex-col">
-                      <Bed className="w-6 h-6 text-primary mx-auto mb-2" />
-                      <h3 className="text-base font-semibold mb-1">Bedding</h3>
-                      <p className="text-gray-700 text-sm font-medium">Queen bed with premium linens</p>
-                    </Badge>
-                    <Badge variant="outline" className="glass-card bg-white/80 border-white/60 text-gray-800 font-semibold backdrop-blur-md text-center justify-center p-3 flex-col">
-                      <Bath className="w-6 h-6 text-primary mx-auto mb-2" />
-                      <h3 className="text-base font-semibold mb-1">Ensuite</h3>
-                      <p className="text-gray-700 text-sm font-medium">Private luxury bathroom</p>
-                    </Badge>
+              <div className="text-center mb-12">
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
+                  Luxury Accommodation Details
+                </h2>
+                <p className="text-xl text-gray-800 font-medium max-w-3xl mx-auto">
+                  Meticulously crafted spaces designed for the ultimate comfort and sophistication
+                </p>
+              </div>
+              <Card className="glass-card bg-white/80 backdrop-blur-md border-white/60 shadow-2xl relative overflow-hidden">
+                {/* Decorative gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-200/20 via-transparent to-orange-200/20 pointer-events-none" />
+                
+                <CardContent className="p-8 md:p-12 relative z-10">
+                  <div className="grid lg:grid-cols-3 gap-8">
+                    <div className="glass-card bg-white/90 border-white/70 text-gray-800 font-semibold backdrop-blur-md text-center p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group">
+                      <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                        <Users className="w-12 h-12 text-primary mx-auto" />
+                      </div>
+                      <h3 className="text-2xl font-bold mb-4 text-gray-900">Exclusive Occupancy</h3>
+                      <p className="text-gray-800 text-lg font-medium leading-relaxed">
+                        Intimate sanctuary for up to <span className="font-bold text-primary">2 distinguished guests</span> seeking unparalleled luxury and privacy
+                      </p>
+                    </div>
+                    
+                    <div className="glass-card bg-white/90 border-white/70 text-gray-800 font-semibold backdrop-blur-md text-center p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group">
+                      <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                        <Bed className="w-12 h-12 text-primary mx-auto" />
+                      </div>
+                      <h3 className="text-2xl font-bold mb-4 text-gray-900">Premium Bedding</h3>
+                      <p className="text-gray-800 text-lg font-medium leading-relaxed">
+                        Sumptuous <span className="font-bold text-primary">Queen bed</span> adorned with the finest Egyptian cotton linens and handcrafted comfort
+                      </p>
+                    </div>
+                    
+                    <div className="glass-card bg-white/90 border-white/70 text-gray-800 font-semibold backdrop-blur-md text-center p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group">
+                      <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                        <Bath className="w-12 h-12 text-primary mx-auto" />
+                      </div>
+                      <h3 className="text-2xl font-bold mb-4 text-gray-900">Luxury Ensuite</h3>
+                      <p className="text-gray-800 text-lg font-medium leading-relaxed">
+                        Private spa-inspired bathroom with <span className="font-bold text-primary">panoramic views</span> and premium Italian fixtures
+                      </p>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
