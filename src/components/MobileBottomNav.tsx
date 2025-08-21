@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Search, Calendar, User, Phone } from 'lucide-react';
+import { Home, Search, Calendar, Tag, Phone } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
 const MobileBottomNav = () => {
@@ -9,7 +9,7 @@ const MobileBottomNav = () => {
     { icon: Home, label: 'Home', path: '/' },
     { icon: Search, label: 'Explore', path: '/gallery' },
     { icon: Calendar, label: 'Book', path: '/', action: 'book' },
-    { icon: User, label: 'Account', path: '/dashboard' },
+    { icon: Tag, label: 'Deals', path: '/deals' },
     { icon: Phone, label: 'Contact', path: 'tel:+918837317070', external: true }
   ];
 

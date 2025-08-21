@@ -91,12 +91,6 @@ const Footer = () => {
                    Travel
                  </Link>
                </li>
-               <li>
-                 <Link to="/faq" className="text-gray-300 hover:text-orange-400 transition-colors duration-300 flex items-center gap-3 text-base justify-center lg:justify-start">
-                   <HelpCircle className="h-5 w-5" />
-                   FAQ
-                 </Link>
-               </li>
             </ul>
           </div>
 

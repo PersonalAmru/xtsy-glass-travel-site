@@ -176,12 +176,6 @@ const Header = () => {
                   <div className="w-8 h-8 animate-pulse bg-white/20 rounded-full"></div>
                 ) : user ? (
                   <div className="flex items-center space-x-2">
-                    <Link to="/dashboard">
-                      <Button variant="ghost" size="sm" className="touch-target text-white hover:text-primary hover:bg-white/10">
-                        <Settings className="h-4 w-4 mr-2" />
-                        Dashboard
-                      </Button>
-                    </Link>
                     <UserMenu />
                   </div>
                 ) : (
@@ -286,17 +280,6 @@ const Header = () => {
                 
                 {user ? (
                   <div className="pt-4 border-t border-white/20">
-                    <Link 
-                      to="/dashboard" 
-                      className="flex items-center text-white hover:text-primary transition-colors mb-4"
-                      onClick={() => {
-                        setIsMenuOpen(false);
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                      }}
-                    >
-                      <Settings className="h-4 w-4 mr-2" />
-                      Dashboard
-                    </Link>
                     <div className="text-sm text-white/60">
                       Signed in as {user.user_metadata?.full_name || user.email}
                     </div>
