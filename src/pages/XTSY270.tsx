@@ -236,12 +236,10 @@ Thank you! 😊`;
                 <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-br from-orange-400/5 via-red-300/3 to-pink-200/8 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }}></div>
               </div>
 
-              <div className="text-center mb-16">
-                <div className="inline-block mb-6">
-                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent relative">
-                    The Vision
-                  </h2>
-                </div>
+              <div className="text-center mb-12">
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
+                  The Vision
+                </h2>
                 <p className="text-xl text-gray-800 font-medium max-w-3xl mx-auto">
                   Pioneering architectural innovation in the heart of Meghalaya's pristine landscapes
                 </p>
