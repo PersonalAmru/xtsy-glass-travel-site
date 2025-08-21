@@ -243,7 +243,7 @@ Thank you! 😊`;
                     <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full"></div>
                   </h2>
                 </div>
-                <p className="text-2xl md:text-3xl text-gray-700 font-light max-w-4xl mx-auto leading-relaxed tracking-wide">
+                <p className="text-xl text-gray-800 font-medium max-w-3xl mx-auto">
                   Pioneering architectural innovation in the heart of Meghalaya's pristine landscapes
                 </p>
               </div>
