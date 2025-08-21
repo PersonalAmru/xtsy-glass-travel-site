@@ -11,6 +11,7 @@ import TourCartModal from "./TourCartModal";
 import TravelSelectionModal from "./TravelSelectionModal";
 import { HoverCard, HoverCardTrigger, HoverCardContent } from "./ui/hover-card";
 import { XTSY270_DATA } from "@/data/rooms/xtsy270";
+import xtsyLogo from "@/assets/xtsy-brand-logo.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,10 +23,10 @@ const Header = () => {
   const [isTravelModalOpen, setIsTravelModalOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [logoLoaded, setLogoLoaded] = useState(false);
+  const [logoError, setLogoError] = useState(false);
   const { user, loading } = useAuth();
   const { setCurrency } = useApp();
 
-  // Mobile detection
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -36,12 +37,10 @@ const Header = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Eager load critical logo immediately
   useEffect(() => {
-    setLogoLoaded(true); // Load immediately for critical above-the-fold content
+    setLogoLoaded(true);
   }, []);
 
-  // Generate or get session ID for this guest
   useEffect(() => {
     let sessionId = localStorage.getItem("current_guest_session");
     if (!sessionId) {
@@ -62,7 +61,6 @@ const Header = () => {
     }
   };
 
-  // Listen for cart updates
   useEffect(() => {
     const handleStorageChange = () => {
       if (currentSessionId) {
@@ -79,26 +77,44 @@ const Header = () => {
     setIsAuthModalOpen(true);
   };
 
+  const handleLogoError = () => {
+    console.error('Logo failed to load, using fallback');
+    setLogoError(true);
+  };
+
+  const handleLogoLoad = () => {
+    setLogoLoaded(true);
+    setLogoError(false);
+  };
+
   return (
     <>
       <header className="sticky top-0 z-50 safe-top safe-left safe-right bg-black/80 backdrop-blur-md border-b border-white/10">
         <div className="responsive-container mobile-compact">
           <div className="flex justify-between items-center h-14 sm:h-16">
-            {/* Logo - critical above-the-fold image */}
+            {/* Logo - critical above-the-fold image with proper error handling */}
             <Link to="/" className="flex items-center space-x-2 touch-target ml-4 sm:ml-6">
-              <img 
-                src="/src/assets/xtsy-brand-logo.png"
-                alt="XTSY Travellers Hostel"
-                className="h-10 sm:h-12 w-auto hover:opacity-80 transition-opacity cursor-pointer"
-                loading="eager"
-                fetchPriority="high"
-                decoding="sync"
-                onClick={(e) => {
-                  e.preventDefault();
-                  window.open('/gallery?category=brand-assets', '_blank');
-                }}
-                title="View brand assets in gallery"
-              />
+              {!logoError ? (
+                <img 
+                  src={xtsyLogo}
+                  alt="XTSY Travellers Hostel"
+                  className="h-10 sm:h-12 w-auto hover:opacity-80 transition-opacity cursor-pointer"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="sync"
+                  onLoad={handleLogoLoad}
+                  onError={handleLogoError}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.open('/gallery?category=brand-assets', '_blank');
+                  }}
+                  title="View brand assets in gallery"
+                />
+              ) : (
+                <div className="h-10 sm:h-12 w-20 bg-gradient-to-r from-orange-500 to-red-600 rounded flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">XTSY</span>
+                </div>
+              )}
             </Link>
 
             {/* Desktop Navigation - All items aligned right */}
