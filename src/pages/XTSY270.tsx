@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -333,14 +332,22 @@ Thank you! 😊`;
 
             {/* Bottom CTA Section */}
             <div className="mt-16 mb-8 text-center animate-fade-in">
+              <div className="text-center mb-8">
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
+                  Reserve Your Experience
+                </h2>
+                <p className="text-xl text-gray-800 font-medium max-w-3xl mx-auto mb-8">
+                  Every detail crafted for the discerning traveler seeking uncompromising excellence
+                </p>
+              </div>
               <Button 
                 size="lg" 
                 onClick={handleBookingClick}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground border-2 border-primary hover:border-primary/70 px-8 py-4 text-lg font-bold shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 ring-4 ring-primary/20 hover:ring-primary/30"
+                className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground border-2 border-primary hover:border-primary/70 px-12 py-6 text-xl font-bold shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 ring-4 ring-primary/20 hover:ring-primary/30"
               >
                 Reserve Your Luxury Experience
               </Button>
-              <p className="text-sm text-gray-700 font-medium mt-3">
+              <p className="text-sm text-gray-800 font-medium mt-4">
                 Limited availability • Book 48 hours in advance for exclusive concierge services
               </p>
             </div>
