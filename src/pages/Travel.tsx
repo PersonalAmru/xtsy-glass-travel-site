@@ -760,14 +760,14 @@ const Travel = () => {
                       
                        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-6 md:mb-8 px-2">
                          {[
-                           { country: "Japan", flagSrc: "/flags/jp.svg", highlight: "Cherry Blossoms" },
-                           { country: "Thailand", flagSrc: "/flags/th.svg", highlight: "Tropical Paradise" },
-                           { country: "Vietnam", flagSrc: "/flags/vn.svg", highlight: "Street Food" },
-                           { country: "Korea", flagSrc: "/flags/kr.svg", highlight: "K-Culture" },
-                           { country: "Malaysia", flagSrc: "/flags/my.svg", highlight: "Multicultural" },
-                           { country: "Singapore", flagSrc: "/flags/sg.svg", highlight: "Modern City" },
-                           { country: "Indonesia", flagSrc: "/flags/id.svg", highlight: "Islands" },
-                           { country: "Philippines", flagSrc: "/flags/ph.svg", highlight: "Beaches" }
+                           { country: "Japan", flag: "🇯🇵", highlight: "Cherry Blossoms" },
+                           { country: "Thailand", flag: "🇹🇭", highlight: "Tropical Paradise" },
+                           { country: "Vietnam", flag: "🇻🇳", highlight: "Street Food" },
+                           { country: "Korea", flag: "🇰🇷", highlight: "K-Culture" },
+                           { country: "Malaysia", flag: "🇲🇾", highlight: "Multicultural" },
+                           { country: "Singapore", flag: "🇸🇬", highlight: "Modern City" },
+                           { country: "Indonesia", flag: "🇮🇩", highlight: "Islands" },
+                           { country: "Philippines", flag: "🇵🇭", highlight: "Beaches" }
                          ].map((item) => (
                            <LazyWrapper 
                              key={item.country}
@@ -777,25 +777,24 @@ const Travel = () => {
                              <Card className="group hover:shadow-md transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200">
                                <CardContent className="flex flex-col items-center justify-center p-3 sm:p-4 text-center h-full min-h-[120px]">
                                   <div className="flex items-center justify-center mb-2 w-full">
-                                    <img
-                                      src={item.flagSrc}
-                                      alt={`${item.country} flag`}
-                                      className="w-6 h-auto align-middle"
+                                    <span 
+                                      className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-none block md:inline !block !visible !opacity-100"
                                       style={{
-                                        width: '24px',
-                                        height: 'auto',
-                                        verticalAlign: 'middle'
+                                        fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Twemoji Mozilla", "Android Emoji", "EmojiOne Mozilla", "system-ui", sans-serif',
+                                        fontSize: 'clamp(1.5rem, 5vw, 3rem)',
+                                        display: window.innerWidth >= 768 ? 'inline' : 'block',
+                                        visibility: 'visible',
+                                        opacity: 1,
+                                        color: 'inherit',
+                                        filter: 'none',
+                                        unicodeBidi: 'normal',
+                                        textRendering: 'optimizeLegibility',
+                                        WebkitFontSmoothing: 'antialiased',
+                                        MozOsxFontSmoothing: 'grayscale'
                                       }}
-                                      onError={(e) => {
-                                        // Fallback to text if SVG fails to load
-                                        const target = e.target as HTMLImageElement;
-                                        target.style.display = 'none';
-                                        const fallback = document.createElement('span');
-                                        fallback.textContent = item.country.slice(0, 2).toUpperCase();
-                                        fallback.className = 'inline-block w-6 h-6 bg-gray-200 rounded text-xs leading-6 text-center font-medium';
-                                        target.parentNode?.appendChild(fallback);
-                                      }}
-                                    />
+                                    >
+                                      {item.flag}
+                                    </span>
                                   </div>
                                  <div className="flex-1 flex flex-col justify-center">
                                    <h4 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">{item.country}</h4>
@@ -809,7 +808,7 @@ const Travel = () => {
                       </div>
                     </div>
 
-                    {/* Enhanced European Countries with SVG flag icons */}
+                    {/* Enhanced European Countries with fixed flag visibility */}
                     <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16">
                       <div className="text-center mb-4 sm:mb-6 md:mb-8">
                         <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-2 flex items-center justify-center gap-2">
@@ -819,14 +818,14 @@ const Travel = () => {
                       
                       <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-6 md:mb-8 px-2">
                          {[
-                           { country: "France", flagSrc: "/flags/fr.svg", highlight: "Romance" },
-                           { country: "Italy", flagSrc: "/flags/it.svg", highlight: "Art & History" },
-                           { country: "Spain", flagSrc: "/flags/es.svg", highlight: "Festivals" },
-                           { country: "Germany", flagSrc: "/flags/de.svg", highlight: "Castles" },
-                           { country: "Switzerland", flagSrc: "/flags/ch.svg", highlight: "Alps" },
-                           { country: "Netherlands", flagSrc: "/flags/nl.svg", highlight: "Canals" },
-                           { country: "UK", flagSrc: "/flags/gb.svg", highlight: "Royal Heritage" },
-                           { country: "Austria", flagSrc: "/flags/at.svg", highlight: "Music" }
+                           { country: "France", flag: "🇫🇷", highlight: "Romance" },
+                           { country: "Italy", flag: "🇮🇹", highlight: "Art & History" },
+                           { country: "Spain", flag: "🇪🇸", highlight: "Festivals" },
+                           { country: "Germany", flag: "🇩🇪", highlight: "Castles" },
+                           { country: "Switzerland", flag: "🇨🇭", highlight: "Alps" },
+                           { country: "Netherlands", flag: "🇳🇱", highlight: "Canals" },
+                           { country: "UK", flag: "🇬🇧", highlight: "Royal Heritage" },
+                           { country: "Austria", flag: "🇦🇹", highlight: "Music" }
                          ].map((item) => (
                            <LazyWrapper 
                              key={item.country}
@@ -836,25 +835,24 @@ const Travel = () => {
                              <Card className="group hover:shadow-md transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200">
                                <CardContent className="flex flex-col items-center justify-center p-3 sm:p-4 text-center h-full min-h-[120px]">
                                   <div className="flex items-center justify-center mb-2 w-full">
-                                    <img
-                                      src={item.flagSrc}
-                                      alt={`${item.country} flag`}
-                                      className="w-6 h-auto align-middle"
+                                    <span 
+                                      className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-none block md:inline !block !visible !opacity-100"
                                       style={{
-                                        width: '24px',
-                                        height: 'auto',
-                                        verticalAlign: 'middle'
+                                        fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Twemoji Mozilla", "Android Emoji", "EmojiOne Mozilla", "system-ui", sans-serif',
+                                        fontSize: 'clamp(1.5rem, 5vw, 3rem)',
+                                        display: window.innerWidth >= 768 ? 'inline' : 'block',
+                                        visibility: 'visible',
+                                        opacity: 1,
+                                        color: 'inherit',
+                                        filter: 'none',
+                                        unicodeBidi: 'normal',
+                                        textRendering: 'optimizeLegibility',
+                                        WebkitFontSmoothing: 'antialiased',
+                                        MozOsxFontSmoothing: 'grayscale'
                                       }}
-                                      onError={(e) => {
-                                        // Fallback to text if SVG fails to load
-                                        const target = e.target as HTMLImageElement;
-                                        target.style.display = 'none';
-                                        const fallback = document.createElement('span');
-                                        fallback.textContent = item.country.slice(0, 2).toUpperCase();
-                                        fallback.className = 'inline-block w-6 h-6 bg-gray-200 rounded text-xs leading-6 text-center font-medium';
-                                        target.parentNode?.appendChild(fallback);
-                                      }}
-                                    />
+                                    >
+                                      {item.flag}
+                                    </span>
                                   </div>
                                  <div className="flex-1 flex flex-col justify-center">
                                    <h4 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">{item.country}</h4>
