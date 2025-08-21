@@ -38,7 +38,7 @@ import dharamshalaMcleodganj from "@/assets/dharamshala-mcleodganj.jpg";
 import pellingKanchenjunga from "@/assets/pelling-kanchenjunga.jpg";
 import assamTeaGardensNew from "@/assets/assam-tea-gardens-premium.jpg";
 import tamilNaduTemplesNew from "@/assets/tamil-nadu-temples-new.jpg";
-import arunachalTribalFestival from "@/assets/arunachal-tribal-premium.jpg";
+
 import tamilNaduTemplesPinterest from "@/assets/tamil-nadu-temples-pinterest.jpg";
 import munnarTeaGardensKerala from "@/assets/munnar-tea-gardens-kerala.jpg";
 import nagalandHornbillFestival from "@/assets/nagaland-hornbill-premium.jpg";
@@ -252,7 +252,7 @@ const Travel = () => {
         difficulty: "Moderate",
         price: TourPricingService.calculatePrice("8 Days", "exclusive", "Moderate", "Arunachal Pradesh", "Mar-Oct"),
         image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/download%20(25).jpg",
-        images: [arunachalTribalFestival, himachalValleys, sikkimRhododendrons],
+        images: ["https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/download%20(25).jpg", himachalValleys, sikkimRhododendrons],
         rating: 4.9,
         category: "wellness",
         location: "Arunachal Pradesh",
@@ -348,8 +348,8 @@ const Travel = () => {
         duration: "6 Days",
         difficulty: "Moderate",
         price: TourPricingService.calculatePrice("6 Days", "cultural", "Moderate", "Arunachal Pradesh", "Dec-Feb"),
-        image: arunachalTribalFestival,
-        images: [arunachalTribalFestival, tribalCircuit, uttarakhandHimalayas],
+        image: nagalandHornbillFestival,
+        images: [nagalandHornbillFestival, tribalCircuit, uttarakhandHimalayas],
         rating: 4.8,
         category: "cultural",
         location: "Arunachal Pradesh",
