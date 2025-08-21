@@ -229,51 +229,103 @@ Thank you! 😊`;
         <section className="py-20 relative z-10">
           <div className="container mx-auto max-w-7xl px-4">
             
-            {/* The Vision Section */}
-            <div className="mb-20 animate-fade-in">
-              <div className="text-center mb-12">
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  The Vision
-                </h2>
-                <p className="text-xl text-gray-800 font-medium max-w-3xl mx-auto">
+            {/* The Vision Section - Enhanced Luxury Design */}
+            <div className="mb-20 animate-fade-in relative">
+              {/* Elegant Background Elements */}
+              <div className="absolute inset-0 -z-10">
+                <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-amber-400/5 via-yellow-300/3 to-orange-200/8 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '4s' }}></div>
+                <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-br from-orange-400/5 via-red-300/3 to-pink-200/8 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }}></div>
+              </div>
+
+              <div className="text-center mb-16">
+                <div className="inline-block mb-6">
+                  <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4 bg-gradient-to-r from-gray-900 via-gray-800 to-black bg-clip-text text-transparent relative">
+                    The Vision
+                    <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full"></div>
+                  </h2>
+                </div>
+                <p className="text-2xl md:text-3xl text-gray-700 font-light max-w-4xl mx-auto leading-relaxed tracking-wide">
                   Pioneering architectural innovation in the heart of Meghalaya's pristine landscapes
                 </p>
               </div>
               
-              <Card className="glass-card bg-white/80 backdrop-blur-md border-white/60 shadow-xl">
-                <CardContent className="p-4 md:p-6">
-                  <div className="grid md:grid-cols-2 gap-8 items-center">
-                    <div>
-                      <h3 className="text-2xl font-semibold mb-4 text-gray-900">India's First 270° Glass House</h3>
-                      <p className="text-gray-800 font-medium leading-relaxed mb-6">
-                        Conceived as a masterpiece of contemporary architecture, XTSY 270° redefines luxury accommodation through 
-                        innovative glass engineering. Our transparent sanctuary offers an unparalleled connection with nature while 
-                        maintaining the highest standards of comfort and privacy.
-                      </p>
-                      <div className="grid grid-cols-2 gap-4">
-                        <Badge variant="outline" className="glass-card bg-white/80 border-white/60 text-gray-800 font-semibold backdrop-blur-md text-center justify-center p-4 flex-col">
-                          <Eye className="w-6 h-6 text-primary mb-2" />
-                          <div className="text-sm font-semibold">270° Views</div>
-                        </Badge>
-                        <Badge variant="outline" className="glass-card bg-white/80 border-white/60 text-gray-800 font-semibold backdrop-blur-md text-center justify-center p-4 flex-col">
-                          <Award className="w-6 h-6 text-primary mb-2" />
-                          <div className="text-sm font-semibold">First in India</div>
-                        </Badge>
+              {/* Premium Card with Enhanced Luxury Styling */}
+              <Card className="relative overflow-hidden bg-gradient-to-br from-white via-gray-50/95 to-white border-2 border-gray-200/60 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.15)] backdrop-blur-xl">
+                {/* Luxury Border Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-amber-400/20 via-transparent to-orange-500/20 rounded-lg blur-sm"></div>
+                <div className="absolute inset-[1px] bg-gradient-to-br from-white via-gray-50/98 to-white rounded-lg"></div>
+                
+                <CardContent className="relative p-8 md:p-12 lg:p-16">
+                  <div className="grid lg:grid-cols-2 gap-12 items-center">
+                    <div className="space-y-8">
+                      <div>
+                        <h3 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900 leading-tight tracking-tight">
+                          India's First 270° Glass House
+                        </h3>
+                        <p className="text-gray-700 text-lg md:text-xl font-medium leading-relaxed mb-8 tracking-wide">
+                          Conceived as a masterpiece of contemporary architecture, XTSY 270° redefines luxury accommodation through 
+                          innovative glass engineering. Our transparent sanctuary offers an unparalleled connection with nature while 
+                          maintaining the highest standards of comfort and privacy.
+                        </p>
+                      </div>
+                      
+                      {/* Premium Feature Badges */}
+                      <div className="grid grid-cols-2 gap-6">
+                        <div className="group bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200/80 rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 hover:border-amber-300/60">
+                          <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                            <Eye className="w-10 h-10 text-amber-500 mx-auto drop-shadow-sm" />
+                          </div>
+                          <div className="text-lg font-bold text-gray-900 mb-2">270° Views</div>
+                          <div className="text-sm text-gray-600 font-medium">Panoramic Excellence</div>
+                        </div>
+                        
+                        <div className="group bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200/80 rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 hover:border-orange-300/60">
+                          <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                            <Award className="w-10 h-10 text-orange-500 mx-auto drop-shadow-sm" />
+                          </div>
+                          <div className="text-lg font-bold text-gray-900 mb-2">First in India</div>
+                          <div className="text-sm text-gray-600 font-medium">Architectural Pioneer</div>
+                        </div>
                       </div>
                     </div>
-                    <div className="space-y-4">
-                      <Badge variant="outline" className="glass-card bg-white/80 border-white/60 text-gray-800 font-semibold backdrop-blur-md w-full justify-start p-4">
-                        <Mountain className="w-5 h-5 text-primary mr-2" />
-                        <span className="text-sm font-medium">Panoramic mountain vistas</span>
-                      </Badge>
-                      <Badge variant="outline" className="glass-card bg-white/80 border-white/60 text-gray-800 font-semibold backdrop-blur-md w-full justify-start p-4">
-                        <Sun className="w-5 h-5 text-primary mr-2" />
-                        <span className="text-sm font-medium">Sunrise to sunset immersion</span>
-                      </Badge>
-                      <Badge variant="outline" className="glass-card bg-white/80 border-white/60 text-gray-800 font-semibold backdrop-blur-md w-full justify-start p-4">
-                        <Moon className="w-5 h-5 text-primary mr-2" />
-                        <span className="text-sm font-medium">Stargazing sanctuary</span>
-                      </Badge>
+                    
+                    {/* Elegant Feature List */}
+                    <div className="space-y-6">
+                      <div className="bg-gradient-to-r from-white via-gray-50 to-white border border-gray-200/60 rounded-2xl p-6 shadow-md hover:shadow-lg transition-all duration-300 group">
+                        <div className="flex items-center gap-4">
+                          <div className="w-12 h-12 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <Mountain className="w-6 h-6 text-white" />
+                          </div>
+                          <div>
+                            <div className="text-lg font-bold text-gray-900 mb-1">Panoramic Mountain Vistas</div>
+                            <div className="text-sm text-gray-600 font-medium">Uninterrupted 270° natural beauty</div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="bg-gradient-to-r from-white via-gray-50 to-white border border-gray-200/60 rounded-2xl p-6 shadow-md hover:shadow-lg transition-all duration-300 group">
+                        <div className="flex items-center gap-4">
+                          <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <Sun className="w-6 h-6 text-white" />
+                          </div>
+                          <div>
+                            <div className="text-lg font-bold text-gray-900 mb-1">Sunrise to Sunset Immersion</div>
+                            <div className="text-sm text-gray-600 font-medium">Complete daylight experience in glass</div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="bg-gradient-to-r from-white via-gray-50 to-white border border-gray-200/60 rounded-2xl p-6 shadow-md hover:shadow-lg transition-all duration-300 group">
+                        <div className="flex items-center gap-4">
+                          <div className="w-12 h-12 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <Moon className="w-6 h-6 text-white" />
+                          </div>
+                          <div>
+                            <div className="text-lg font-bold text-gray-900 mb-1">Stargazing Sanctuary</div>
+                            <div className="text-sm text-gray-600 font-medium">Crystal-clear night sky views</div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
