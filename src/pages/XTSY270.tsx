@@ -108,21 +108,21 @@ Thank you! 😊`;
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-yellow-50/80 to-orange-100/60">
       <Header />
       
       {/* Luxury Hero Section */}
       <main className="pt-16 relative overflow-hidden">
         {/* Premium Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/5 via-transparent to-primary/5">
+        <div className="absolute inset-0 bg-gradient-to-br from-amber-400/10 via-yellow-300/5 to-orange-200/15">
           {[...Array(6)].map((_, i) => (
             <div
               key={i}
-              className="absolute rounded-full animate-pulse opacity-30"
+              className="absolute rounded-full animate-pulse opacity-20"
               style={{
                 width: `${80 + i * 20}px`,
                 height: `${80 + i * 20}px`,
-                background: `linear-gradient(135deg, hsl(var(--primary)) ${10 + i * 15}%, hsl(var(--secondary)) ${50 + i * 10}%)`,
+                background: `linear-gradient(135deg, hsl(45 100% ${65 + i * 5}%), hsl(35 90% ${70 + i * 3}%))`,
                 left: `${10 + i * 15}%`,
                 top: `${5 + i * 12}%`,
                 animationDelay: `${i * 0.8}s`,
