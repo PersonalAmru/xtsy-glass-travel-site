@@ -31,9 +31,6 @@ const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
               src={xtsyLogo}
               alt="XTSY Logo" 
               className="w-full h-full object-contain"
-              loading="eager"
-              fetchPriority="high"
-              decoding="sync"
               onError={() => setLogoError(true)}
             />
           ) : (

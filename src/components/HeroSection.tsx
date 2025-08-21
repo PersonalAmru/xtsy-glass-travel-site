@@ -5,8 +5,6 @@ import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
 import EnhancedBookingModal from "./EnhancedBookingModal";
 import PerformantImage from "./PerformantImage";
-import xtsyColorLogo from "@/assets/xtsy-color-logo.png";
-
 const HeroSection = () => {
   const [checkIn, setCheckIn] = useState(new Date().toISOString().split('T')[0]);
   const [checkOut, setCheckOut] = useState("");
@@ -198,19 +196,17 @@ const HeroSection = () => {
               </div>
               
               <div className="flex items-center justify-center">
-                <div className="w-96 h-20 sm:w-[32rem] sm:h-24 md:w-[40rem] md:h-32 lg:w-[48rem] lg:h-40 xl:w-[56rem] xl:h-48 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 flex items-center justify-center p-2 drop-shadow-lg">
-                  <PerformantImage 
-                    src={xtsyColorLogo} 
-                    alt="XTSY Header Brand Logo" 
-                    className="w-40 h-16 sm:w-48 sm:h-20 md:w-56 md:h-24 lg:w-64 lg:h-28 xl:w-72 xl:h-32 object-contain"
-                    priority={true}
-                    placeholder={
-                      <div className="w-40 h-16 sm:w-48 sm:h-20 md:w-56 md:h-24 lg:w-64 lg:h-28 xl:w-72 xl:h-32 bg-gradient-to-r from-orange-500 to-red-600 rounded-lg flex items-center justify-center">
-                        <span className="text-white font-bold text-sm sm:text-base md:text-lg">XTSY</span>
-                      </div>
-                    }
-                  />
-                </div>
+                <PerformantImage 
+                  src="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png" 
+                  alt="XTSY Brand Symbol" 
+                  className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-32 lg:h-32 object-contain"
+                  priority={true}
+                  placeholder={
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-32 lg:h-32 bg-gradient-to-r from-orange-500 to-red-600 rounded-full flex items-center justify-center">
+                      <span className="text-white font-bold text-xs sm:text-sm">X</span>
+                    </div>
+                  }
+                />
               </div>
             </div>
           </div>
@@ -304,5 +300,4 @@ const HeroSection = () => {
     }} />
     </>;
 };
-
 export default HeroSection;
