@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
 import EnhancedBookingModal from "./EnhancedBookingModal";
-import UniversalImage from "./UniversalImage";
+import PerformantImage from "./PerformantImage";
 const HeroSection = () => {
   const [checkIn, setCheckIn] = useState(new Date().toISOString().split('T')[0]);
   const [checkOut, setCheckOut] = useState("");
@@ -196,14 +196,11 @@ const HeroSection = () => {
               </div>
               
               <div className="flex items-center justify-center">
-                <UniversalImage 
+                <PerformantImage 
                   src="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png" 
                   alt="XTSY Brand Symbol" 
                   className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-32 lg:h-32 object-contain"
                   priority={true}
-                  webp={true}
-                  blur={true}
-                  preload={true}
                   placeholder={
                     <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-32 lg:h-32 bg-gradient-to-r from-orange-500 to-red-600 rounded-full flex items-center justify-center">
                       <span className="text-white font-bold text-xs sm:text-sm">X</span>

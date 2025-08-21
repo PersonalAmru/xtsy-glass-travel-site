@@ -60,14 +60,8 @@ const CompactTourPackageCard: React.FC<CompactTourPackageCardProps> = ({
         <OptimizedLazyImage
           src={imageUrl}
           alt={tourPackage.title}
-          className="w-full h-20 sm:h-24"
-          threshold={0.2}
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-          placeholder={
-            <div className="w-full h-20 sm:h-24 bg-gradient-to-br from-gray-100 to-gray-200 animate-pulse flex items-center justify-center">
-              <div className="w-4 h-4 bg-gray-300 rounded-full animate-bounce"></div>
-            </div>
-          }
+          className="w-full h-20 sm:h-24 object-cover group-hover:scale-110 transition-transform duration-300"
+          threshold={0.1}
         />
         
         {/* Compact badges */}

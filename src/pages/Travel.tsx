@@ -10,7 +10,6 @@ import CompactTourPackageCard from "@/components/CompactTourPackageCard";
 import { LazyTourPackageModal } from "@/components/lazy/LazyTourPackageModal";
 import { AuthModal } from "@/components/AuthModal";
 import LazyWrapper from "@/components/LazyWrapper";
-import UniversalImage from "@/components/UniversalImage";
 import SEOContent from "@/components/SEOContent";
 import { TourPricingService } from "@/utils/tourPricingService";
 import OptimizedLazyImage from "@/components/OptimizedLazyImage";
@@ -580,8 +579,8 @@ const Travel = () => {
               {activeTab === 'domestic' && (
                 <LazyWrapper fallback={<div className="animate-pulse bg-gray-100 h-64 rounded"></div>}>
                   <div>
-                    {/* Ultra-compact Filters with enhanced spacing */}
-                    <div className="mb-4 sm:mb-6 mt-3 sm:mt-4 bg-white/80 backdrop-blur-sm rounded-md p-1.5 shadow-lg">
+                    {/* Ultra-compact Filters */}
+                    <div className="mb-1 sm:mb-2 bg-white/80 backdrop-blur-sm rounded-md p-1.5 shadow-lg">
                       <div className="flex flex-col gap-0.5">
                         <div className="flex items-center gap-0.5">
                           <Filter className="h-2.5 w-2.5 text-gray-600" />

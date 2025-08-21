@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Clock, Star, Calendar, Mountain, Camera } from "lucide-react";
 import { useApp } from "@/contexts/AppContext";
-import UniversalImage from "./UniversalImage";
+import OptimizedLazyImage from "./OptimizedLazyImage";
 
 // Import available image assets (including new authentic sourced images)
 import meghalayaHiddenGemsImg from "@/assets/meghalaya-hidden-gems-new.jpg";
@@ -186,15 +186,11 @@ const TourPackageCard = ({ tourPackage, onPackageClick }: TourPackageCardProps) 
       className="group hover:shadow-2xl hover:scale-105 transition-all duration-500 overflow-hidden border-0 bg-card/90 backdrop-blur-md h-[600px] flex flex-col"
     >
       <div className="relative overflow-hidden">
-        <UniversalImage
+        <OptimizedLazyImage
           src={selectedImage}
           alt={tourPackage.title}
           className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-          threshold={0.2}
-          webp={true}
-          blur={true}
-          adjacentImages={tourPackage.images}
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          threshold={0.3}
         />
         {tourPackage.images && tourPackage.images.length > 1 && (
           <div className="absolute top-4 left-4 bg-background/90 text-foreground px-2 py-1 rounded text-xs font-semibold border border-border">

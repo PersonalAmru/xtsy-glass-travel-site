@@ -14,7 +14,6 @@ import { LazyTravel } from "./pages/lazy/LazyTravel";
 import { LazyXTSY270 } from "./pages/lazy/LazyXTSY270";
 import NotFound from "./pages/NotFound";
 import { preloadCriticalResources, optimizeFontLoading, registerServiceWorker } from "./utils/bundleOptimization";
-import { initializeImageOptimizations } from "./utils/imagePerformanceMonitor";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -24,7 +23,6 @@ function App() {
     preloadCriticalResources();
     optimizeFontLoading();
     registerServiceWorker();
-    initializeImageOptimizations(window.location.pathname);
 
     const timer = setTimeout(() => {
       setIsLoading(false);

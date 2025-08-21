@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Camera, Eye, MapPin, Users, Mountain, Building, Image, Star } from "lucide-react";
-import UniversalImage from "./UniversalImage";
+import OptimizedLazyImage from "./OptimizedLazyImage";
 
 const GallerySection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -189,14 +189,11 @@ const GallerySection = () => {
               <CardContent className="p-0">
                 <div className="relative overflow-hidden">
                   {item.image ? (
-                    <UniversalImage 
+                    <OptimizedLazyImage 
                       src={item.image} 
                       alt={item.title}
                       className="w-full h-48 sm:h-56 object-cover group-hover:scale-110 transition-transform duration-500"
                       threshold={0.1}
-                      webp={true}
-                      blur={true}
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     />
                   ) : (
                     <div className="w-full h-48 sm:h-56 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
