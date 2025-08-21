@@ -30,27 +30,30 @@ const OptimizedLazyImage: React.FC<OptimizedLazyImageProps> = ({
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(priority);
   const [hasError, setHasError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [imageUrl, setImageUrl] = useState<string>('');
   const imgRef = useRef<HTMLImageElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Use the Supabase storage URL with Arunachal Pradesh image as default
+  // Use the provided src or Supabase storage URL as fallback
   const imageSource = src || 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/Complete%20Guide%20To%20Backpacking%20In%20Arunachal%20Pradesh%20-%20Lost%20With%20Purpose.jpg';
 
+  // Set up intersection observer for lazy loading
   useEffect(() => {
-    if (priority) return; // Skip intersection observer for priority images
+    if (priority) {
+      setIsInView(true);
+      return;
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsInView(true);
-          setIsLoading(true);
           observer.disconnect();
         }
       },
       { 
         threshold, 
-        rootMargin: '100px' // Increased root margin for better preloading
+        rootMargin: '50px'
       }
     );
 
@@ -61,40 +64,33 @@ const OptimizedLazyImage: React.FC<OptimizedLazyImageProps> = ({
     return () => observer.disconnect();
   }, [threshold, priority]);
 
-  // Preload the image when it comes into view
+  // Load image when in view
   useEffect(() => {
-    if (!isInView || isLoaded || hasError) return;
+    if (!isInView) return;
 
     const img = new Image();
+    img.crossOrigin = 'anonymous';
+    
     img.onload = () => {
+      setImageUrl(imageSource);
       setIsLoaded(true);
-      setIsLoading(false);
+      setHasError(false);
       onLoad?.();
     };
+    
     img.onerror = () => {
       setHasError(true);
-      setIsLoading(false);
+      setImageUrl(fallback);
       onError?.();
     };
+    
     img.src = imageSource;
 
     return () => {
       img.onload = null;
       img.onerror = null;
     };
-  }, [isInView, imageSource, isLoaded, hasError, onLoad, onError]);
-
-  const handleLoad = () => {
-    setIsLoaded(true);
-    setIsLoading(false);
-    onLoad?.();
-  };
-
-  const handleError = () => {
-    setHasError(true);
-    setIsLoading(false);
-    onError?.();
-  };
+  }, [isInView, imageSource, fallback, onLoad, onError]);
 
   const renderPlaceholder = () => {
     if (placeholder) return placeholder;
@@ -111,22 +107,15 @@ const OptimizedLazyImage: React.FC<OptimizedLazyImageProps> = ({
 
   return (
     <div ref={containerRef} className={cn("relative overflow-hidden", className)}>
-      {!isInView ? (
+      {!isInView || !imageUrl ? (
         renderPlaceholder()
       ) : (
         <>
-          {/* Loading placeholder with improved animation */}
-          {(isLoading || !isLoaded) && !hasError && (
+          {/* Loading state */}
+          {!isLoaded && (
             <div className="absolute inset-0 z-10">
-              <div 
-                className="w-full h-full bg-gradient-to-br from-gray-100 via-gray-50 to-gray-200 animate-pulse"
-                style={{
-                  backgroundImage: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8) 0%, rgba(0,0,0,0.05) 100%)',
-                }}
-              >
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-6 h-6 bg-gray-400 rounded-full animate-bounce"></div>
-                </div>
+              <div className="w-full h-full bg-gradient-to-br from-gray-100 via-gray-50 to-gray-200 animate-pulse flex items-center justify-center">
+                <div className="w-4 h-4 bg-gray-400 rounded-full animate-bounce"></div>
               </div>
             </div>
           )}
@@ -144,23 +133,17 @@ const OptimizedLazyImage: React.FC<OptimizedLazyImageProps> = ({
           {/* Actual image */}
           <img
             ref={imgRef}
-            src={hasError ? fallback : imageSource}
+            src={imageUrl}
             alt={alt}
             className={cn(
-              "w-full h-full object-cover transition-all duration-500 ease-out",
-              isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-105"
+              "w-full h-full object-cover transition-opacity duration-300",
+              isLoaded ? "opacity-100" : "opacity-0"
             )}
-            onLoad={handleLoad}
-            onError={handleError}
             loading={priority ? "eager" : "lazy"}
             fetchPriority={priority ? "high" : "low"}
             decoding={priority ? "sync" : "async"}
             sizes={sizes}
             crossOrigin="anonymous"
-            style={{
-              filter: isLoaded ? 'none' : 'blur(5px)',
-              transform: isLoaded ? 'scale(1)' : 'scale(1.05)'
-            }}
           />
         </>
       )}
