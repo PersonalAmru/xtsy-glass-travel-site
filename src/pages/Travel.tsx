@@ -142,22 +142,6 @@ const Travel = () => {
         exclusive: true
       },
       {
-        id: 205,
-        title: "XTSY Exclusive: Himalayan Yoga & Meditation Retreat",
-        description: "Transform your mind and body with authentic yoga practices in the serene Himalayan foothills of Northeast",
-        duration: "7 Days",
-        difficulty: "Easy",
-        price: TourPricingService.calculatePrice("7 Days", "exclusive", "Easy", "Northeast India", "Oct-May"),
-        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/download%20(26).jpg",
-        images: ["", "", ""],
-        rating: 4.9,
-        category: "wellness",
-        location: "Northeast India",
-        highlights: ["Daily Yoga Sessions", "Guided Meditation", "Pranayama Techniques", "Ayurvedic Meals", "Sound Healing", "Nature Walks", "Spiritual Guidance"],
-        bestSeason: "Oct-May",
-        exclusive: true
-      },
-      {
         id: 206,
         title: "XTSY Exclusive: Khasi Hills Wellness & Yoga Sanctuary",
         description: "Rejuvenate in the sacred Khasi Hills with holistic wellness practices, yoga, and traditional healing therapies",
