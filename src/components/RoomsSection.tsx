@@ -206,13 +206,14 @@ const RoomsSection = () => {
       <div className="absolute -bottom-16 sm:-bottom-24 -left-16 sm:-left-24 w-32 sm:w-48 md:w-64 h-32 sm:h-48 md:h-64 bg-purple-200/30 rounded-full blur-3xl" />
 
       <div className="responsive-container relative z-10">
-        <div className="section-header">
-          <div className="section-title-card">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4 font-playfair">
-              Our Properties
-            </h2>
-            <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
-          </div>
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-3 sm:mb-4 font-playfair px-4">
+            Our Properties
+          </h2>
+          <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto px-4">
+            Choose from our range of accommodations designed for every traveler's needs and budget
+          </p>
+          <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-6 rounded-full" />
         </div>
 
         {/* XTSY Luxury Section - Center Aligned */}
