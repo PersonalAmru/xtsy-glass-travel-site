@@ -119,7 +119,7 @@ export class TourItineraryService {
     const category = tourPackage.category.toLowerCase();
     const location = tourPackage.location.toLowerCase();
     
-    // Day 1 - Arrival activities with relevant highlights
+    // Day 1 - Arrival and initial exploration
     if (day === 1) {
       return {
         id: day,
@@ -134,15 +134,15 @@ export class TourItineraryService {
           group4: this.generateDurationBasedPricing(basePrice, 'group4', totalDays),
           group10: this.generateDurationBasedPricing(basePrice, 'group10', totalDays)
         },
-        source: "Curated by XTSY Travel Experts"
+        source: "XTSY Adventure Specialists"
       };
     }
     
-    // Last day - Departure with final highlights
+    // Last day - Final experiences and departure
     if (day === totalDays) {
       return {
         id: day,
-        title: `Day ${day}: ${this.getDepartureFocus(dayHighlights)} & Departure`,
+        title: `Day ${day}: ${this.getDepartureFocus(dayHighlights)} & Farewell`,
         description: this.getDepartureDescription(title, location, dayHighlights),
         day,
         activities: this.getDepartureActivities(title, category, dayHighlights),
@@ -153,11 +153,11 @@ export class TourItineraryService {
           group4: this.generateDurationBasedPricing(basePrice, 'group4', totalDays),
           group10: this.generateDurationBasedPricing(basePrice, 'group10', totalDays)
         },
-        source: "Local Expert Recommendations"
+        source: "Travel Experience Curators"
       };
     }
     
-    // Middle days - Main activities based on highlights
+    // Middle days - Core adventure and exploration activities
     return {
       id: day,
       title: `Day ${day}: ${this.getMainActivityTitle(dayHighlights, category)}`,
@@ -177,25 +177,25 @@ export class TourItineraryService {
 
   // Get arrival focus based on highlights
   private static getArrivalFocus(highlights: string[]): string {
-    if (highlights.length === 0) return "Welcome Orientation";
+    if (highlights.length === 0) return "Local Exploration";
     
     const firstHighlight = highlights[0].toLowerCase();
-    if (firstHighlight.includes('cultural') || firstHighlight.includes('heritage')) return "Cultural Introduction";
-    if (firstHighlight.includes('nature') || firstHighlight.includes('forest')) return "Nature Orientation";
-    if (firstHighlight.includes('adventure') || firstHighlight.includes('trek')) return "Adventure Briefing";
-    if (firstHighlight.includes('wellness') || firstHighlight.includes('yoga')) return "Wellness Welcome";
+    if (firstHighlight.includes('cultural') || firstHighlight.includes('heritage')) return "Cultural Discovery";
+    if (firstHighlight.includes('nature') || firstHighlight.includes('forest')) return "Nature Introduction";
+    if (firstHighlight.includes('adventure') || firstHighlight.includes('trek')) return "Adventure Preview";
+    if (firstHighlight.includes('wellness') || firstHighlight.includes('yoga')) return "Wellness Journey Start";
     
-    return highlights[0].length > 30 ? "Introduction" : highlights[0];
+    return highlights[0].length > 30 ? "Experience Introduction" : highlights[0];
   }
 
   // Get departure focus based on highlights
   private static getDepartureFocus(highlights: string[]): string {
-    if (highlights.length === 0) return "Final Exploration";
+    if (highlights.length === 0) return "Final Adventures";
     
     const lastHighlight = highlights[highlights.length - 1] || highlights[0];
-    if (lastHighlight.toLowerCase().includes('shopping')) return "Souvenir Collection";
-    if (lastHighlight.toLowerCase().includes('sunset') || lastHighlight.toLowerCase().includes('viewpoint')) return "Farewell Views";
-    if (lastHighlight.toLowerCase().includes('cultural')) return "Cultural Farewell";
+    if (lastHighlight.toLowerCase().includes('shopping')) return "Local Shopping Experience";
+    if (lastHighlight.toLowerCase().includes('sunset') || lastHighlight.toLowerCase().includes('viewpoint')) return "Scenic Farewell";
+    if (lastHighlight.toLowerCase().includes('cultural')) return "Cultural Immersion";
     
     return lastHighlight.length > 30 ? "Final Experience" : lastHighlight;
   }
@@ -206,27 +206,27 @@ export class TourItineraryService {
     
     if (highlights.length === 0) return baseDescription;
     
-    const highlightContext = highlights.slice(0, 2).join(', ');
-    return `${baseDescription} Begin your journey with an introduction to ${highlightContext}.`;
+    const highlightContext = highlights.slice(0, 2).join(' and ');
+    return `${baseDescription} Begin your adventure with ${highlightContext.toLowerCase()}.`;
   }
 
   private static getBaseArrivalDescription(title: string, location: string): string {
     if (title.includes('meghalaya') || location.includes('meghalaya')) {
-      return "Welcome to the abode of clouds! Check-in, orientation session, and local area familiarization with traditional Khasi welcome.";
+      return "Welcome to the enchanting land of clouds! Arrive and immerse yourself in the mystical beauty with a traditional Khasi welcome and local area exploration.";
     }
     if (title.includes('biodiversity') || title.includes('research')) {
-      return "Arrival and briefing session on the research program, equipment distribution, and introduction to local ecosystem guides.";
+      return "Arrival at the biodiversity hotspot with expert naturalist guides who will introduce you to the incredible ecosystem and wildlife you'll encounter.";
     }
     if (title.includes('yoga') || title.includes('wellness')) {
-      return "Peaceful arrival, welcome ceremony, yoga space orientation, and settling into your wellness sanctuary.";
+      return "Peaceful arrival at your wellness sanctuary, followed by a gentle introduction to the healing practices and natural surroundings.";
     }
     if (title.includes('survival') || title.includes('wilderness')) {
-      return "Base camp setup, survival gear briefing, safety orientation, and first wilderness skills demonstration.";
+      return "Adventure begins with wilderness orientation, essential skills introduction, and connecting with the natural environment around you.";
     }
     if (title.includes('char dham') || title.includes('pilgrimage')) {
-      return "Sacred arrival, prayer ceremony, route briefing, and spiritual preparation for the holy journey ahead.";
+      return "Sacred journey commences with traditional prayers, route overview, and spiritual preparation for the divine adventure ahead.";
     }
-    return "Warm welcome and check-in, local area orientation, cultural briefing, and relaxation time to acclimatize.";
+    return "Exciting arrival and warm welcome, followed by local area discovery, cultural introduction, and adventure preview.";
   }
 
   // Generate arrival activities incorporating highlights
@@ -237,7 +237,7 @@ export class TourItineraryService {
     
     // Replace last 1-2 activities with highlight-based activities
     const highlightActivities = highlights.slice(0, 2).map(h => 
-      `Introduction to ${h.toLowerCase()}`
+      `Experience ${h.toLowerCase()}`
     );
     
     return [...baseActivities.slice(0, 3), ...highlightActivities];
@@ -245,24 +245,24 @@ export class TourItineraryService {
 
   private static getBaseArrivalActivities(title: string, location: string): string[] {
     if (title.includes('meghalaya')) {
-      return ["Airport/Station pickup", "Hotel check-in", "Khasi cultural orientation", "Local market visit", "Traditional welcome dinner"];
+      return ["Scenic arrival transfer", "Traditional welcome ceremony", "Local area orientation walk", "Cultural interaction session", "Regional cuisine tasting"];
     }
     if (title.includes('biodiversity') || title.includes('research')) {
-      return ["Equipment distribution", "Research methodology briefing", "Local guide introduction", "Field notebook setup", "Evening documentation session"];
+      return ["Expert guide meeting", "Wildlife introduction session", "Nature walk orientation", "Photography briefing", "Evening wildlife spotting"];
     }
     if (title.includes('yoga') || title.includes('wellness')) {
-      return ["Peaceful check-in", "Wellness consultation", "Yoga mat assignment", "Meditation space visit", "Organic welcome meal"];
+      return ["Serene arrival experience", "Wellness space introduction", "Relaxation session", "Organic meal experience", "Evening meditation"];
     }
     if (title.includes('survival')) {
-      return ["Base camp setup", "Survival kit inspection", "Safety protocol training", "Local terrain assessment", "Group bonding activities"];
+      return ["Adventure briefing", "Essential skills overview", "Natural environment tour", "Group bonding activities", "Campfire gathering"];
     }
-    return ["Check-in assistance", "Welcome briefing", "Local area walk", "Cultural introduction", "Group dinner"];
+    return ["Arrival experience", "Local area exploration", "Cultural introduction", "Adventure preview", "Welcome dinner"];
   }
 
   // Generate main activity titles based on highlights
   private static getMainActivityTitle(highlights: string[], category: string): string {
     if (highlights.length === 0) {
-      return `Main Activities - ${category.charAt(0).toUpperCase() + category.slice(1)}`;
+      return `Adventure & Exploration - ${category.charAt(0).toUpperCase() + category.slice(1)}`;
     }
     
     // Use the primary highlight for the day's title
@@ -278,33 +278,33 @@ export class TourItineraryService {
   // Generate main activity descriptions incorporating highlights
   private static getMainActivityDescription(day: number, totalDays: number, title: string, category: string, location: string, highlights: string[]): string {
     if (highlights.length === 0) {
-      return "Immersive experience with guided exploration, cultural interactions, adventure activities, and authentic local experiences tailored to your interests.";
+      return "Full day of immersive adventures, cultural discoveries, natural exploration, and authentic local experiences that create lasting memories.";
     }
     
     const highlightsList = highlights.join(', ');
     const baseDescription = this.getBaseActivityDescription(title, category);
     
-    return `${baseDescription} Today's focus includes: ${highlightsList}.`;
+    return `${baseDescription} Today's adventures include: ${highlightsList}.`;
   }
 
   private static getBaseActivityDescription(title: string, category: string): string {
     if (title.includes('biodiversity') || title.includes('research')) {
-      return "Intensive field research activities with expert guides, species identification, ecosystem mapping, and data collection in pristine natural habitats.";
+      return "Deep dive into nature's wonders with expert naturalists, discovering unique ecosystems, rare species, and pristine wilderness areas.";
     }
     
     if (title.includes('yoga') || title.includes('wellness')) {
-      return "Comprehensive wellness program including guided yoga sessions, meditation practices, healing therapies, and spiritual guidance in serene natural settings.";
+      return "Transformative wellness journey with guided practices, healing therapies, mindfulness sessions, and rejuvenating natural experiences.";
     }
     
     if (title.includes('hidden gems') || title.includes('waterfalls')) {
-      return "Exploration of lesser-known natural wonders, pristine waterfalls, ancient living root bridges, and untouched landscapes with experienced local guides.";
+      return "Exploration of breathtaking hidden treasures, majestic waterfalls, secret trails, and untouched natural wonders with expert local guides.";
     }
     
     if (title.includes('survival') || title.includes('wilderness')) {
-      return "Hands-on wilderness survival training including shelter building, food foraging, navigation techniques, and emergency preparedness in natural environment.";
+      return "Exciting wilderness adventure learning essential outdoor skills, nature survival techniques, and deep connection with the natural world.";
     }
     
-    return "Immersive experience with guided exploration, cultural interactions, adventure activities, and authentic local experiences.";
+    return "Immersive adventure experiences combining exploration, cultural discovery, natural beauty, and authentic local interactions.";
   }
 
   // Generate main activities based on highlights
@@ -313,40 +313,40 @@ export class TourItineraryService {
       return this.getDefaultActivities(title, category);
     }
     
-    // Convert highlights into actionable activities
+    // Convert highlights into actionable adventure activities
     const highlightActivities = highlights.map(highlight => {
       const h = highlight.toLowerCase();
-      if (h.includes('waterfall')) return "Waterfall exploration";
-      if (h.includes('bridge')) return "Bridge visit and photography";
-      if (h.includes('village')) return "Village interaction and cultural exchange";
-      if (h.includes('trek') || h.includes('hike')) return "Guided trekking experience";
-      if (h.includes('temple') || h.includes('monastery')) return "Spiritual site visit";
-      if (h.includes('market') || h.includes('shopping')) return "Local market exploration";
-      if (h.includes('sunset') || h.includes('sunrise')) return "Scenic viewpoint visit";
-      if (h.includes('cave')) return "Cave exploration";
-      if (h.includes('wildlife')) return "Wildlife spotting and photography";
-      if (h.includes('boat') || h.includes('river')) return "Water activity experience";
+      if (h.includes('waterfall')) return "Waterfall adventure and exploration";
+      if (h.includes('bridge')) return "Living root bridge expedition";
+      if (h.includes('village')) return "Village cultural immersion";
+      if (h.includes('trek') || h.includes('hike')) return "Guided trekking adventure";
+      if (h.includes('temple') || h.includes('monastery')) return "Spiritual site exploration";
+      if (h.includes('market') || h.includes('shopping')) return "Local market discovery";
+      if (h.includes('sunset') || h.includes('sunrise')) return "Scenic viewpoint experience";
+      if (h.includes('cave')) return "Cave exploration adventure";
+      if (h.includes('wildlife')) return "Wildlife safari and spotting";
+      if (h.includes('boat') || h.includes('river')) return "Water adventure experience";
       
-      // Default: make it an activity
-      return `${highlight} experience`;
+      // Default: make it an adventure experience
+      return `${highlight} adventure`;
     });
     
-    // Add some standard activities to fill the day
-    const standardActivities = ["Photography session", "Local interaction", "Refreshment break"];
+    // Add complementary adventure activities
+    const complementaryActivities = ["Photography expedition", "Cultural interaction", "Nature meditation"];
     
-    return [...highlightActivities, ...standardActivities].slice(0, 5);
+    return [...highlightActivities, ...complementaryActivities].slice(0, 5);
   }
 
   private static getDefaultActivities(title: string, category: string): string[] {
     if (title.includes('biodiversity') || title.includes('research')) {
-      return ["Field research expedition", "Species documentation", "Ecosystem photography", "Data analysis session", "Local interaction"];
+      return ["Wildlife tracking expedition", "Nature photography adventure", "Ecosystem exploration", "Bird watching session", "Natural habitat discovery"];
     }
     
     if (title.includes('yoga') || title.includes('wellness')) {
-      return ["Morning yoga session", "Guided meditation", "Healing therapy", "Nature walks", "Wellness consultation"];
+      return ["Sunrise yoga practice", "Guided nature meditation", "Wellness therapy session", "Mindful nature walks", "Rejuvenation experience"];
     }
     
-    return ["Guided exploration", "Cultural interaction", "Photography session", "Local cuisine tasting", "Scenic viewpoints"];
+    return ["Adventure exploration", "Cultural discovery", "Photography expedition", "Local experience", "Scenic adventures"];
   }
 
   // Generate departure descriptions incorporating highlights
@@ -356,17 +356,17 @@ export class TourItineraryService {
     if (highlights.length === 0) return baseDescription;
     
     const finalHighlight = highlights[highlights.length - 1] || highlights[0];
-    return `${baseDescription} Conclude with ${finalHighlight.toLowerCase()} before departure.`;
+    return `${baseDescription} Conclude your journey with ${finalHighlight.toLowerCase()} and cherished memories.`;
   }
 
   private static getBaseDepartureDescription(title: string, location: string): string {
     if (title.includes('research') || title.includes('biodiversity')) {
-      return "Final research compilation, data backup, certificate presentation, and departure with newfound knowledge and research portfolio.";
+      return "Final day of nature exploration, wildlife documentation, and sharing your incredible discoveries with fellow adventurers.";
     }
     if (title.includes('yoga') || title.includes('wellness')) {
-      return "Final yoga session, wellness consultation, takeaway practice guide, and peaceful departure with renewed energy.";
+      return "Concluding wellness session, personal reflection time, and departure with renewed energy and inner peace.";
     }
-    return "Last-minute exploration, souvenir shopping, group photos, heartfelt farewells, and departure with beautiful memories.";
+    return "Last adventure experiences, souvenir collection, memorable farewells, and departure with a heart full of incredible memories.";
   }
 
   // Generate departure activities incorporating highlights
@@ -375,11 +375,11 @@ export class TourItineraryService {
     
     if (highlights.length === 0) return baseActivities;
     
-    // Incorporate final highlights as departure activities
+    // Incorporate final highlights as farewell activities
     const finalHighlight = highlights[highlights.length - 1];
     if (finalHighlight) {
       const finalActivity = finalHighlight.toLowerCase().includes('shopping') ? 
-        "Souvenir collection" : `Final ${finalHighlight.toLowerCase()} experience`;
+        "Souvenir shopping experience" : `Final ${finalHighlight.toLowerCase()} adventure`;
       
       return [finalActivity, ...baseActivities.slice(1)];
     }
@@ -389,23 +389,23 @@ export class TourItineraryService {
 
   private static getBaseDepartureActivities(title: string, category: string): string[] {
     if (title.includes('research')) {
-      return ["Research compilation", "Certificate ceremony", "Photo documentation", "Data backup", "Departure transfer"];
+      return ["Final nature expedition", "Adventure sharing session", "Photo compilation", "Memory documentation", "Farewell celebration"];
     }
     if (title.includes('yoga') || title.includes('wellness')) {
-      return ["Final yoga session", "Wellness consultation", "Practice guide", "Group meditation", "Peaceful departure"];
+      return ["Final wellness session", "Personal reflection time", "Journey sharing circle", "Peaceful meditation", "Grateful departure"];
     }
-    return ["Final exploration", "Souvenir shopping", "Group photos", "Farewell ceremony", "Departure transfer"];
+    return ["Last adventure exploration", "Souvenir shopping", "Group photo session", "Farewell gathering", "Departure with memories"];
   }
 
   // Get activity source based on category
   private static getActivitySource(category: string): string {
     const sources = {
-      adventure: "Adventure Travel India",
-      cultural: "Cultural Heritage Foundation",
-      wellness: "Wellness Tourism Board",
-      research: "Biodiversity Research Institute",
-      exclusive: "XTSY Exclusive Experiences"
+      adventure: "Adventure Travel Experts",
+      cultural: "Cultural Experience Guides",
+      wellness: "Wellness Travel Specialists",
+      research: "Nature Exploration Teams",
+      exclusive: "XTSY Adventure Curators"
     };
-    return sources[category as keyof typeof sources] || "Local Tourism Board";
+    return sources[category as keyof typeof sources] || "Local Adventure Specialists";
   }
 }
