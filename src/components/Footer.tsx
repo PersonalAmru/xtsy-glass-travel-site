@@ -27,9 +27,9 @@ const Footer = () => {
     <footer className="bg-gray-900 text-white py-4 sm:py-8 md:py-12 lg:py-16">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-          {/* Brand Section - Optimized for mobile */}
-          <div className="text-center lg:text-left order-1 lg:order-1">
-            <div className="flex items-center gap-2 justify-center lg:justify-start mb-3 sm:mb-4 lg:mb-6">
+          {/* Brand Section - Center aligned for all screens */}
+          <div className="text-center order-1 lg:order-1">
+            <div className="flex items-center gap-2 justify-center mb-3 sm:mb-4 lg:mb-6">
               {!logoError ? (
                 <img 
                   src={xtsyLogo}
@@ -45,46 +45,46 @@ const Footer = () => {
                 </div>
               )}
             </div>
-            <p className="text-gray-300 text-xs sm:text-sm lg:text-base leading-relaxed mb-3 sm:mb-4 lg:mb-6 px-2 lg:px-0">
+            <p className="text-gray-300 text-xs sm:text-sm lg:text-base leading-relaxed mb-3 sm:mb-4 lg:mb-6 px-2">
               Experience the authentic vibe of Shillong and unforgettable adventures with XTSY!
             </p>
-            <div className="flex space-x-4 sm:space-x-6 justify-center lg:justify-start">
+            <div className="flex space-x-4 sm:space-x-6 justify-center">
               <Instagram className="h-5 w-5 sm:h-6 sm:w-6 text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-300 touch-manipulation" />
               <Linkedin className="h-5 w-5 sm:h-6 sm:w-6 text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-300 touch-manipulation" />
               <Youtube className="h-5 w-5 sm:h-6 sm:w-6 text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-300 touch-manipulation" />
             </div>
           </div>
 
-          {/* Quick Links - Mobile optimized */}
-          <div className="text-center lg:text-left order-2 lg:order-2">
+          {/* Quick Links - Center aligned for all screens */}
+          <div className="text-center order-2 lg:order-2">
             <h3 className="text-sm sm:text-lg lg:text-xl font-semibold mb-3 sm:mb-4 lg:mb-6 text-white">Quick Links</h3>
             <ul className="space-y-2 sm:space-y-3 lg:space-y-4">
               <li>
-                <Link to="/" className="text-gray-300 hover:text-orange-400 transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm lg:text-base justify-center lg:justify-start py-1 touch-manipulation">
+                <Link to="/" className="text-gray-300 hover:text-orange-400 transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm lg:text-base justify-center py-1 touch-manipulation">
                   <Home className="h-4 w-4 sm:h-5 sm:w-5" />
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-gray-300 hover:text-orange-400 transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm lg:text-base justify-center lg:justify-start py-1 touch-manipulation">
+                <Link to="/about" className="text-gray-300 hover:text-orange-400 transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm lg:text-base justify-center py-1 touch-manipulation">
                   <Info className="h-4 w-4 sm:h-5 sm:w-5" />
                   About
                 </Link>
               </li>
               <li>
-                <Link to="/gallery" className="text-gray-300 hover:text-orange-400 transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm lg:text-base justify-center lg:justify-start py-1 touch-manipulation">
+                <Link to="/gallery" className="text-gray-300 hover:text-orange-400 transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm lg:text-base justify-center py-1 touch-manipulation">
                   <ImageIcon className="h-4 w-4 sm:h-5 sm:w-5" />
                   Gallery
                 </Link>
               </li>
               <li>
-                <Link to="/deals" className="text-gray-300 hover:text-orange-400 transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm lg:text-base justify-center lg:justify-start py-1 touch-manipulation">
+                <Link to="/deals" className="text-gray-300 hover:text-orange-400 transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm lg:text-base justify-center py-1 touch-manipulation">
                   <Tag className="h-4 w-4 sm:h-5 sm:w-5" />
                   Deals
                 </Link>
               </li>
                <li>
-                 <Link to="/travel" className="text-gray-300 hover:text-orange-400 transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm lg:text-base justify-center lg:justify-start py-1 touch-manipulation">
+                 <Link to="/travel" className="text-gray-300 hover:text-orange-400 transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm lg:text-base justify-center py-1 touch-manipulation">
                    <Plane className="h-4 w-4 sm:h-5 sm:w-5" />
                    Travel
                  </Link>
@@ -92,35 +92,35 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Info - Mobile optimized */}
-          <div className="text-center lg:text-left order-3 lg:order-3">
+          {/* Contact Info - Center aligned for all screens */}
+          <div className="text-center order-3 lg:order-3">
             <h3 className="text-sm sm:text-lg lg:text-xl font-semibold mb-3 sm:mb-4 lg:mb-6 text-white">Contact Us</h3>
             <div className="space-y-2 sm:space-y-3 lg:space-y-4">
-              <div className="flex items-start space-x-2 sm:space-x-3 justify-center lg:justify-start">
+              <div className="flex items-start space-x-2 sm:space-x-3 justify-center">
                 <MapPin className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-orange-400 mt-0.5 flex-shrink-0" />
-                <div className="text-gray-300 text-xs sm:text-sm lg:text-base leading-relaxed text-left">
+                <div className="text-gray-300 text-xs sm:text-sm lg:text-base leading-relaxed text-center">
                   <div className="font-medium text-white mb-1">XTSY Travellers Hostel</div>
                   <div className="text-xs sm:text-sm">Diengiong, Mawdiangdiang road</div>
                   <div className="text-xs sm:text-sm">New Shillong Township, Meghalaya - 793018</div>
                 </div>
               </div>
               
-              <div className="flex items-start space-x-2 sm:space-x-3 justify-center lg:justify-start">
+              <div className="flex items-start space-x-2 sm:space-x-3 justify-center">
                 <Phone className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-orange-400 mt-0.5 flex-shrink-0" />
-                <div className="text-gray-300 text-xs sm:text-sm lg:text-base text-left">
+                <div className="text-gray-300 text-xs sm:text-sm lg:text-base text-center">
                   <div className="font-medium">Bookings: +91 88373 17070</div>
                   <div className="font-medium">Reception: +91 98633 17070</div>
                 </div>
               </div>
               
-              <div className="flex items-center space-x-2 sm:space-x-3 justify-center lg:justify-start">
+              <div className="flex items-center space-x-2 sm:space-x-3 justify-center">
                 <Mail className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-orange-400 flex-shrink-0" />
                 <div className="text-gray-300 text-xs sm:text-sm lg:text-base font-medium">
                   booking@xtsy.one
                 </div>
               </div>
               
-              <div className="pt-2 sm:pt-3 lg:pt-4">
+              <div className="pt-2 sm:pt-3 lg:pt-4 flex justify-center">
                 <Button 
                   onClick={() => window.open('https://maps.app.goo.gl/Apj4xBxDWv8hBbSm6', '_blank')} 
                   className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white text-xs sm:text-sm lg:text-base px-4 sm:px-6 lg:px-8 py-2 sm:py-2.5 lg:py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105 shadow-lg min-h-[44px] touch-manipulation"
