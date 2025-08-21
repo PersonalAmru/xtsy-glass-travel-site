@@ -45,7 +45,7 @@ import shimlaManaliImg from "@/assets/shimla-manali-honeymoon.jpg";
 import rishikeshAdventureImg from "@/assets/rishikesh-adventure.jpg";
 import keralaBakwatersImg from "@/assets/kerala-backwaters.jpg";
 import keralaBackwatersAuthenticImg from "@/assets/kerala-backwaters-authentic.jpg";
-import munnarTeaGardensImg from "@/assets/munnar-tea-gardens-kerala.jpg";
+
 import thekkadyWildlifeImg from "@/assets/thekkady-wildlife.jpg";
 import tamilNaduTemplesImg from "@/assets/tamil-nadu-temples-new.jpg";
 import dharamshalaImg from "@/assets/dharamshala-mcleodganj.jpg";
@@ -159,7 +159,7 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
 
     // South India destinations with authentic images
     if (content.includes('kerala') || content.includes('backwater')) return keralaBackwatersAuthenticImg;
-    if (content.includes('munnar') || content.includes('tea garden') || content.includes('tea plantation')) return munnarTeaGardensImg;
+    
     if (content.includes('thekkady') || content.includes('wildlife') || content.includes('periyar')) return thekkadyWildlifeImg;
     if (content.includes('tamil nadu') || content.includes('temple') || content.includes('dravidian')) return tamilNaduTemplesImg;
     if (content.includes('ooty') || content.includes('kodaikanal') || content.includes('nilgiri')) return ootyImg;

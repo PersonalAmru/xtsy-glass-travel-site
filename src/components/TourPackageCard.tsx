@@ -37,7 +37,7 @@ import shimlaManaliImg from "@/assets/shimla-manali-honeymoon.jpg";
 import rishikeshAdventureImg from "@/assets/rishikesh-adventure.jpg";
 import keralaBakwatersImg from "@/assets/kerala-backwaters.jpg";
 import keralaBackwatersAuthenticImg from "@/assets/kerala-backwaters-authentic.jpg";
-import munnarTeaGardensImg from "@/assets/munnar-tea-gardens-kerala.jpg";
+
 import thekkadyWildlifeImg from "@/assets/thekkady-wildlife.jpg";
 import tamilNaduTemplesImg from "@/assets/tamil-nadu-temples-new.jpg";
 import dharamshalaImg from "@/assets/dharamshala-mcleodganj.jpg";

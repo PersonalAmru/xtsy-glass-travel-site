@@ -29,7 +29,7 @@ import sikkimRhododendronImg from "@/assets/sikkim-rhododendrons-premium.jpg";
 import pellingKanchenjungaImg from "@/assets/pelling-kanchenjunga.jpg";
 import gurudongmarLakeImg from "@/assets/gurudongmar-lake-high-altitude-stock.jpg";
 import keralaBackwatersImg from "@/assets/kerala-backwaters-authentic.jpg";
-import munnarTeaGardensImg from "@/assets/munnar-tea-gardens-new.jpg";
+
 import thekkadyWildlifeImg from "@/assets/thekkady-wildlife.jpg";
 import tamilNaduTemplesImg from "@/assets/tamil-nadu-temples-new.jpg";
 import ootyKodaikanalImg from "@/assets/ooty-kodaikanal.jpg";
@@ -456,21 +456,6 @@ const Travel = () => {
         location: "Kerala",
         highlights: ["Houseboat Cruise", "Coconut Lagoons", "Local Cuisine"],
         bestSeason: "Oct-Mar"
-      },
-      {
-        id: 72,
-        title: "Munnar Tea Gardens",
-        description: "Rolling tea plantations, mountain views, and cool climate",
-        duration: "4 Days",
-        difficulty: "Easy",
-        price: TourPricingService.calculatePrice("4 Days", "leisure", "Easy", "Kerala", "Sep-May"),
-        image: munnarTeaGardensImg,
-        images: [munnarTeaGardensImg, munnarTeaGardensImg, munnarTeaGardensImg],
-        rating: 4.7,
-        category: "leisure",
-        location: "Kerala",
-        highlights: ["Tea Museums", "Eravikulam National Park", "Mountain Views"],
-        bestSeason: "Sep-May"
       },
       {
         id: 73,
