@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { 
@@ -39,7 +38,7 @@ const ServicesSection = () => {
     {
       icon: <Utensils className="h-5 w-5" />,
       title: "Kitchen Access",
-      description: "Shared kitchen facilities for guests",
+      description: "Shared kitchen facilities for guests - only for monthly stay guests",
       badge: "Self-service"
     },
     {
@@ -51,7 +50,7 @@ const ServicesSection = () => {
     {
       icon: <Shirt className="h-5 w-5" />,
       title: "Laundry",
-      description: "Washing and drying facilities",
+      description: "Washing and drying facilities - only for monthly stay guests",
       badge: "Paid"
     },
     {
@@ -87,7 +86,7 @@ const ServicesSection = () => {
     {
       icon: <Clock className="h-5 w-5" />,
       title: "Flexible Check-in",
-      description: "Convenient check-in and check-out times",
+      description: "Convenient check-in and check-out times - only for monthly stay guests",
       badge: "Flexible"
     }
   ];
