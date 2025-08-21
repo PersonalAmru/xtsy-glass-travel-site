@@ -1,3 +1,4 @@
+
 interface ItineraryHighlight {
   id: number;
   title: string;
@@ -11,6 +12,7 @@ interface ItineraryHighlight {
     group10: string;
   };
   source: string;
+  highlights: string[]; // Add highlights to each day
 }
 
 interface TourPackage {
@@ -59,45 +61,74 @@ export class TourItineraryService {
     return `₹${finalPrice.toLocaleString()}`;
   }
 
-  // Generate relevant itinerary highlights based on package details
+  // Generate relevant itinerary highlights based on package details and highlights
   static generateItineraryHighlights(tourPackage: TourPackage): ItineraryHighlight[] {
     const days = this.extractDays(tourPackage.duration);
     const highlights: ItineraryHighlight[] = [];
     
-    // Parse package title for key activities and destinations
-    const title = tourPackage.title.toLowerCase();
-    const category = tourPackage.category.toLowerCase();
-    const location = tourPackage.location.toLowerCase();
+    // Distribute package highlights across days intelligently
+    const highlightGroups = this.distributeHighlightsAcrossDays(tourPackage.highlights, days);
     
-    // Generate day-by-day itinerary based on package specifics
+    // Generate day-by-day itinerary based on package specifics and highlights
     for (let day = 1; day <= days; day++) {
-      const highlight = this.generateDayHighlight(day, days, title, category, location, tourPackage);
+      const dayHighlights = highlightGroups[day - 1] || [];
+      const highlight = this.generateDayHighlight(day, days, tourPackage, dayHighlights);
       highlights.push(highlight);
     }
     
     return highlights;
   }
 
-  // Generate specific day highlight based on tour details
+  // Intelligently distribute highlights across days
+  private static distributeHighlightsAcrossDays(highlights: string[], days: number): string[][] {
+    const result: string[][] = Array(days).fill([]).map(() => []);
+    
+    if (highlights.length === 0) return result;
+    
+    // For single day trips, put all highlights in day 1
+    if (days === 1) {
+      result[0] = [...highlights];
+      return result;
+    }
+    
+    // For multi-day trips, distribute strategically
+    const highlightsPerDay = Math.ceil(highlights.length / days);
+    
+    highlights.forEach((highlight, index) => {
+      const dayIndex = Math.floor(index / highlightsPerDay);
+      if (dayIndex < days) {
+        result[dayIndex].push(highlight);
+      } else {
+        // If we have extras, add to the last day
+        result[days - 1].push(highlight);
+      }
+    });
+    
+    return result;
+  }
+
+  // Generate specific day highlight based on tour details and assigned highlights
   private static generateDayHighlight(
     day: number, 
     totalDays: number, 
-    title: string, 
-    category: string, 
-    location: string,
-    tourPackage: TourPackage
+    tourPackage: TourPackage,
+    dayHighlights: string[]
   ): ItineraryHighlight {
     const basePrice = tourPackage.duration;
+    const title = tourPackage.title.toLowerCase();
+    const category = tourPackage.category.toLowerCase();
+    const location = tourPackage.location.toLowerCase();
     
-    // Day 1 - Arrival activities
+    // Day 1 - Arrival activities with relevant highlights
     if (day === 1) {
       return {
         id: day,
-        title: `Day ${day}: Arrival & Welcome`,
-        description: this.getArrivalDescription(title, location),
+        title: `Day ${day}: Arrival & ${this.getArrivalFocus(dayHighlights)}`,
+        description: this.getArrivalDescription(title, location, dayHighlights),
         day,
-        activities: this.getArrivalActivities(title, location),
+        activities: this.getArrivalActivities(title, location, dayHighlights),
         duration: "Full Day",
+        highlights: dayHighlights,
         pricing: {
           perPerson: this.generateDurationBasedPricing(basePrice, 'person', totalDays),
           group4: this.generateDurationBasedPricing(basePrice, 'group4', totalDays),
@@ -107,15 +138,16 @@ export class TourItineraryService {
       };
     }
     
-    // Last day - Departure
+    // Last day - Departure with final highlights
     if (day === totalDays) {
       return {
         id: day,
-        title: `Day ${day}: Final Exploration & Departure`,
-        description: this.getDepartureDescription(title, location),
+        title: `Day ${day}: ${this.getDepartureFocus(dayHighlights)} & Departure`,
+        description: this.getDepartureDescription(title, location, dayHighlights),
         day,
-        activities: this.getDepartureActivities(title, category),
+        activities: this.getDepartureActivities(title, category, dayHighlights),
         duration: "Half Day",
+        highlights: dayHighlights,
         pricing: {
           perPerson: this.generateDurationBasedPricing(basePrice, 'person', totalDays),
           group4: this.generateDurationBasedPricing(basePrice, 'group4', totalDays),
@@ -125,14 +157,15 @@ export class TourItineraryService {
       };
     }
     
-    // Middle days - Main activities
+    // Middle days - Main activities based on highlights
     return {
       id: day,
-      title: `Day ${day}: ${this.getMainActivityTitle(day, title, category)}`,
-      description: this.getMainActivityDescription(day, totalDays, title, category, location),
+      title: `Day ${day}: ${this.getMainActivityTitle(dayHighlights, category)}`,
+      description: this.getMainActivityDescription(day, totalDays, title, category, location, dayHighlights),
       day,
-      activities: this.getMainActivities(day, title, category, location, tourPackage.highlights),
+      activities: this.getMainActivities(day, title, category, location, dayHighlights),
       duration: "Full Day",
+      highlights: dayHighlights,
       pricing: {
         perPerson: this.generateDurationBasedPricing(basePrice, 'person', totalDays),
         group4: this.generateDurationBasedPricing(basePrice, 'group4', totalDays),
@@ -142,8 +175,42 @@ export class TourItineraryService {
     };
   }
 
-  // Generate arrival descriptions based on destination
-  private static getArrivalDescription(title: string, location: string): string {
+  // Get arrival focus based on highlights
+  private static getArrivalFocus(highlights: string[]): string {
+    if (highlights.length === 0) return "Welcome Orientation";
+    
+    const firstHighlight = highlights[0].toLowerCase();
+    if (firstHighlight.includes('cultural') || firstHighlight.includes('heritage')) return "Cultural Introduction";
+    if (firstHighlight.includes('nature') || firstHighlight.includes('forest')) return "Nature Orientation";
+    if (firstHighlight.includes('adventure') || firstHighlight.includes('trek')) return "Adventure Briefing";
+    if (firstHighlight.includes('wellness') || firstHighlight.includes('yoga')) return "Wellness Welcome";
+    
+    return highlights[0].length > 30 ? "Introduction" : highlights[0];
+  }
+
+  // Get departure focus based on highlights
+  private static getDepartureFocus(highlights: string[]): string {
+    if (highlights.length === 0) return "Final Exploration";
+    
+    const lastHighlight = highlights[highlights.length - 1] || highlights[0];
+    if (lastHighlight.toLowerCase().includes('shopping')) return "Souvenir Collection";
+    if (lastHighlight.toLowerCase().includes('sunset') || lastHighlight.toLowerCase().includes('viewpoint')) return "Farewell Views";
+    if (lastHighlight.toLowerCase().includes('cultural')) return "Cultural Farewell";
+    
+    return lastHighlight.length > 30 ? "Final Experience" : lastHighlight;
+  }
+
+  // Generate arrival descriptions based on destination and highlights
+  private static getArrivalDescription(title: string, location: string, highlights: string[]): string {
+    const baseDescription = this.getBaseArrivalDescription(title, location);
+    
+    if (highlights.length === 0) return baseDescription;
+    
+    const highlightContext = highlights.slice(0, 2).join(', ');
+    return `${baseDescription} Begin your journey with an introduction to ${highlightContext}.`;
+  }
+
+  private static getBaseArrivalDescription(title: string, location: string): string {
     if (title.includes('meghalaya') || location.includes('meghalaya')) {
       return "Welcome to the abode of clouds! Check-in, orientation session, and local area familiarization with traditional Khasi welcome.";
     }
@@ -162,8 +229,21 @@ export class TourItineraryService {
     return "Warm welcome and check-in, local area orientation, cultural briefing, and relaxation time to acclimatize.";
   }
 
-  // Generate arrival activities
-  private static getArrivalActivities(title: string, location: string): string[] {
+  // Generate arrival activities incorporating highlights
+  private static getArrivalActivities(title: string, location: string, highlights: string[]): string[] {
+    const baseActivities = this.getBaseArrivalActivities(title, location);
+    
+    if (highlights.length === 0) return baseActivities;
+    
+    // Replace last 1-2 activities with highlight-based activities
+    const highlightActivities = highlights.slice(0, 2).map(h => 
+      `Introduction to ${h.toLowerCase()}`
+    );
+    
+    return [...baseActivities.slice(0, 3), ...highlightActivities];
+  }
+
+  private static getBaseArrivalActivities(title: string, location: string): string[] {
     if (title.includes('meghalaya')) {
       return ["Airport/Station pickup", "Hotel check-in", "Khasi cultural orientation", "Local market visit", "Traditional welcome dinner"];
     }
@@ -179,35 +259,37 @@ export class TourItineraryService {
     return ["Check-in assistance", "Welcome briefing", "Local area walk", "Cultural introduction", "Group dinner"];
   }
 
-  // Generate main activity titles
-  private static getMainActivityTitle(day: number, title: string, category: string): string {
-    if (title.includes('hidden gems') || title.includes('waterfalls')) {
-      return ["Hidden Waterfalls Exploration", "Living Root Bridges Trek", "Sacred Groves Discovery"][day % 3] || "Adventure Exploration";
+  // Generate main activity titles based on highlights
+  private static getMainActivityTitle(highlights: string[], category: string): string {
+    if (highlights.length === 0) {
+      return `Main Activities - ${category.charAt(0).toUpperCase() + category.slice(1)}`;
     }
-    if (title.includes('biodiversity') || title.includes('research')) {
-      return ["Field Research & Data Collection", "Species Documentation", "Ecosystem Analysis"][day % 3] || "Research Activities";
+    
+    // Use the primary highlight for the day's title
+    const primaryHighlight = highlights[0];
+    if (primaryHighlight.length > 40) {
+      // Shorten very long highlights
+      return primaryHighlight.substring(0, 37) + "...";
     }
-    if (title.includes('yoga') || title.includes('wellness')) {
-      return ["Deep Yoga Practice", "Meditation & Mindfulness", "Healing Therapies"][day % 3] || "Wellness Activities";
-    }
-    if (title.includes('monsoon') || title.includes('cherrapunji')) {
-      return ["Monsoon Waterfalls Trek", "Cave Exploration", "Valley Views"][day % 3] || "Monsoon Adventures";
-    }
-    if (title.includes('char dham')) {
-      return ["Sacred Temple Visit", "Pilgrimage Trek", "Spiritual Ceremonies"][day % 3] || "Pilgrimage Journey";
-    }
-    return `Main Activities - Day ${day}`;
+    
+    return primaryHighlight;
   }
 
-  // Generate main activity descriptions
-  private static getMainActivityDescription(day: number, totalDays: number, title: string, category: string, location: string): string {
-    const midPoint = Math.ceil(totalDays / 2);
+  // Generate main activity descriptions incorporating highlights
+  private static getMainActivityDescription(day: number, totalDays: number, title: string, category: string, location: string, highlights: string[]): string {
+    if (highlights.length === 0) {
+      return "Immersive experience with guided exploration, cultural interactions, adventure activities, and authentic local experiences tailored to your interests.";
+    }
     
+    const highlightsList = highlights.join(', ');
+    const baseDescription = this.getBaseActivityDescription(title, category);
+    
+    return `${baseDescription} Today's focus includes: ${highlightsList}.`;
+  }
+
+  private static getBaseActivityDescription(title: string, category: string): string {
     if (title.includes('biodiversity') || title.includes('research')) {
-      if (day <= midPoint) {
-        return "Intensive field research activities with expert guides, species identification, ecosystem mapping, and data collection in pristine natural habitats.";
-      }
-      return "Advanced research techniques, sample analysis, documentation photography, and compilation of research findings with local expert insights.";
+      return "Intensive field research activities with expert guides, species identification, ecosystem mapping, and data collection in pristine natural habitats.";
     }
     
     if (title.includes('yoga') || title.includes('wellness')) {
@@ -222,36 +304,62 @@ export class TourItineraryService {
       return "Hands-on wilderness survival training including shelter building, food foraging, navigation techniques, and emergency preparedness in natural environment.";
     }
     
-    return "Immersive experience with guided exploration, cultural interactions, adventure activities, and authentic local experiences tailored to your interests.";
+    return "Immersive experience with guided exploration, cultural interactions, adventure activities, and authentic local experiences.";
   }
 
-  // Generate main activities based on tour specifics
+  // Generate main activities based on highlights
   private static getMainActivities(day: number, title: string, category: string, location: string, highlights: string[]): string[] {
-    // Use tour highlights as base activities
-    const baseActivities = highlights.slice(0, 4); // Take first 4 highlights
+    if (highlights.length === 0) {
+      return this.getDefaultActivities(title, category);
+    }
     
+    // Convert highlights into actionable activities
+    const highlightActivities = highlights.map(highlight => {
+      const h = highlight.toLowerCase();
+      if (h.includes('waterfall')) return "Waterfall exploration";
+      if (h.includes('bridge')) return "Bridge visit and photography";
+      if (h.includes('village')) return "Village interaction and cultural exchange";
+      if (h.includes('trek') || h.includes('hike')) return "Guided trekking experience";
+      if (h.includes('temple') || h.includes('monastery')) return "Spiritual site visit";
+      if (h.includes('market') || h.includes('shopping')) return "Local market exploration";
+      if (h.includes('sunset') || h.includes('sunrise')) return "Scenic viewpoint visit";
+      if (h.includes('cave')) return "Cave exploration";
+      if (h.includes('wildlife')) return "Wildlife spotting and photography";
+      if (h.includes('boat') || h.includes('river')) return "Water activity experience";
+      
+      // Default: make it an activity
+      return `${highlight} experience`;
+    });
+    
+    // Add some standard activities to fill the day
+    const standardActivities = ["Photography session", "Local interaction", "Refreshment break"];
+    
+    return [...highlightActivities, ...standardActivities].slice(0, 5);
+  }
+
+  private static getDefaultActivities(title: string, category: string): string[] {
     if (title.includes('biodiversity') || title.includes('research')) {
-      return ["Field research expedition", "Species documentation", "Ecosystem photography", "Data analysis session", ...baseActivities.slice(0, 2)];
+      return ["Field research expedition", "Species documentation", "Ecosystem photography", "Data analysis session", "Local interaction"];
     }
     
     if (title.includes('yoga') || title.includes('wellness')) {
-      return ["Morning yoga session", "Guided meditation", "Healing therapy", "Nature walks", ...baseActivities.slice(0, 2)];
+      return ["Morning yoga session", "Guided meditation", "Healing therapy", "Nature walks", "Wellness consultation"];
     }
     
-    if (title.includes('hidden gems') || title.includes('waterfalls')) {
-      return ["Waterfall trekking", "Root bridge exploration", "Photography session", "Local interaction", ...baseActivities.slice(0, 2)];
-    }
-    
-    if (title.includes('survival') || title.includes('wilderness')) {
-      return ["Survival skills training", "Shelter construction", "Foraging techniques", "Navigation practice", ...baseActivities.slice(0, 2)];
-    }
-    
-    // Default activities incorporating tour highlights
-    return ["Guided exploration", "Cultural interaction", "Photography session", ...baseActivities.slice(0, 3)];
+    return ["Guided exploration", "Cultural interaction", "Photography session", "Local cuisine tasting", "Scenic viewpoints"];
   }
 
-  // Generate departure descriptions
-  private static getDepartureDescription(title: string, location: string): string {
+  // Generate departure descriptions incorporating highlights
+  private static getDepartureDescription(title: string, location: string, highlights: string[]): string {
+    const baseDescription = this.getBaseDepartureDescription(title, location);
+    
+    if (highlights.length === 0) return baseDescription;
+    
+    const finalHighlight = highlights[highlights.length - 1] || highlights[0];
+    return `${baseDescription} Conclude with ${finalHighlight.toLowerCase()} before departure.`;
+  }
+
+  private static getBaseDepartureDescription(title: string, location: string): string {
     if (title.includes('research') || title.includes('biodiversity')) {
       return "Final research compilation, data backup, certificate presentation, and departure with newfound knowledge and research portfolio.";
     }
@@ -261,8 +369,25 @@ export class TourItineraryService {
     return "Last-minute exploration, souvenir shopping, group photos, heartfelt farewells, and departure with beautiful memories.";
   }
 
-  // Generate departure activities
-  private static getDepartureActivities(title: string, category: string): string[] {
+  // Generate departure activities incorporating highlights
+  private static getDepartureActivities(title: string, category: string, highlights: string[]): string[] {
+    const baseActivities = this.getBaseDepartureActivities(title, category);
+    
+    if (highlights.length === 0) return baseActivities;
+    
+    // Incorporate final highlights as departure activities
+    const finalHighlight = highlights[highlights.length - 1];
+    if (finalHighlight) {
+      const finalActivity = finalHighlight.toLowerCase().includes('shopping') ? 
+        "Souvenir collection" : `Final ${finalHighlight.toLowerCase()} experience`;
+      
+      return [finalActivity, ...baseActivities.slice(1)];
+    }
+    
+    return baseActivities;
+  }
+
+  private static getBaseDepartureActivities(title: string, category: string): string[] {
     if (title.includes('research')) {
       return ["Research compilation", "Certificate ceremony", "Photo documentation", "Data backup", "Departure transfer"];
     }

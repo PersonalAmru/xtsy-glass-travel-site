@@ -476,21 +476,53 @@ Please check availability for these dates and share pricing details for this exc
 
               {/* Itinerary Highlights Section */}
               <div>
-                <h4 className="font-semibold text-gray-900 mb-3">Itinerary Highlights:</h4>
+                <h4 className="font-semibold text-gray-900 mb-3">Day-by-Day Itinerary:</h4>
                 {isLoadingItinerary ? (
                   <div className="flex items-center justify-center py-8">
                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div>
-                    <span className="ml-2 text-sm text-gray-600">Loading itinerary...</span>
+                    <span className="ml-2 text-sm text-gray-600">Creating personalized itinerary...</span>
                   </div>
                 ) : (
                   <div className="space-y-4">
                     {itineraryHighlights.map((item) => (
-                      <Card key={item.id} className="p-4 border border-gray-200">
-                        <div className="space-y-2">
-                          <div>
-                            <h5 className="font-medium text-gray-900 text-sm">{item.title}</h5>
+                      <Card key={item.id} className="p-4 border border-gray-200 hover:border-orange-300 transition-colors">
+                        <div className="space-y-3">
+                          <div className="flex items-start justify-between">
+                            <h5 className="font-medium text-gray-900 text-sm leading-tight">{item.title}</h5>
+                            <Badge variant="outline" className="text-xs">{item.duration}</Badge>
                           </div>
+                          
                           <p className="text-xs text-gray-600 leading-relaxed">{item.description}</p>
+                          
+                          {/* Package Highlights for this day */}
+                          {item.highlights && item.highlights.length > 0 && (
+                            <div className="bg-orange-50 p-3 rounded-lg">
+                              <p className="text-xs font-medium text-orange-800 mb-2">Today's Package Highlights:</p>
+                              <div className="space-y-1">
+                                {item.highlights.map((highlight, index) => (
+                                  <div key={index} className="flex items-center gap-2">
+                                    <div className="w-1 h-1 bg-orange-500 rounded-full" />
+                                    <span className="text-xs text-orange-700">{highlight}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                          
+                          {/* Activities for this day */}
+                          {item.activities && item.activities.length > 0 && (
+                            <div>
+                              <p className="text-xs font-medium text-gray-700 mb-2">Activities:</p>
+                              <div className="grid grid-cols-2 gap-1">
+                                {item.activities.slice(0, 4).map((activity, index) => (
+                                  <div key={index} className="flex items-center gap-1">
+                                    <div className="w-1 h-1 bg-gray-400 rounded-full" />
+                                    <span className="text-xs text-gray-600">{activity}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
                         </div>
                       </Card>
                     ))}
@@ -514,7 +546,7 @@ Please check availability for these dates and share pricing details for this exc
                           </div>
                         </div>
                         <div className="text-xs text-gray-500 text-center mt-3">
-                          *Pricing sourced from international travel platforms
+                          *Itinerary based on package highlights & sourced from travel platforms
                         </div>
                       </CardContent>
                     </Card>
