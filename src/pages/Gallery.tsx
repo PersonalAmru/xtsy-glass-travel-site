@@ -40,7 +40,7 @@ const Gallery = () => {
     <div className="min-h-screen bg-white">
       <SEOContent page="gallery" />
       <Header />
-      <div className="pt-20"> {/* Add padding to account for fixed header */}
+      <div className="pt-4"> {/* Reduced from pt-20 to pt-4 to minimize gap */}
         <GallerySection />
       </div>
       <Footer />
