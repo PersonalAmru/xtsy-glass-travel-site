@@ -750,7 +750,7 @@ const Travel = () => {
                       </p>
                     </div>
 
-                    {/* Enhanced Asian Countries with consistent flag visibility */}
+                    {/* Enhanced Asian Countries with fixed flag visibility */}
                     <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16">
                       <div className="text-center mb-4 sm:mb-6 md:mb-8">
                         <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-2 flex items-center justify-center gap-2">
@@ -778,12 +778,15 @@ const Travel = () => {
                                <CardContent className="flex flex-col items-center justify-center p-3 sm:p-4 text-center h-full min-h-[120px]">
                                  <div className="flex items-center justify-center mb-2 w-full">
                                    <span 
-                                     className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl block opacity-100 leading-none"
+                                     className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl block leading-none"
                                      style={{
-                                       fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif',
+                                       fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Twemoji Mozilla", "Android Emoji", sans-serif',
                                        fontSize: 'clamp(1.5rem, 5vw, 3rem)',
-                                       display: 'block',
-                                       visibility: 'visible'
+                                       display: 'block !important',
+                                       visibility: 'visible !important',
+                                       opacity: '1 !important',
+                                       color: 'inherit',
+                                       filter: 'none'
                                      }}
                                    >
                                      {item.flag}
@@ -801,7 +804,7 @@ const Travel = () => {
                       </div>
                     </div>
 
-                    {/* Enhanced European Countries with consistent flag visibility */}
+                    {/* Enhanced European Countries with fixed flag visibility */}
                     <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16">
                       <div className="text-center mb-4 sm:mb-6 md:mb-8">
                         <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-2 flex items-center justify-center gap-2">
@@ -829,12 +832,15 @@ const Travel = () => {
                                <CardContent className="flex flex-col items-center justify-center p-3 sm:p-4 text-center h-full min-h-[120px]">
                                  <div className="flex items-center justify-center mb-2 w-full">
                                    <span 
-                                     className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl block opacity-100 leading-none"
+                                     className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl block leading-none"
                                      style={{
-                                       fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif',
+                                       fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Twemoji Mozilla", "Android Emoji", sans-serif',
                                        fontSize: 'clamp(1.5rem, 5vw, 3rem)',
-                                       display: 'block',
-                                       visibility: 'visible'
+                                       display: 'block !important',
+                                       visibility: 'visible !important',
+                                       opacity: '1 !important',
+                                       color: 'inherit',
+                                       filter: 'none'
                                      }}
                                    >
                                      {item.flag}
