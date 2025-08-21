@@ -16,7 +16,7 @@ const GroupBookingSection = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12">
-          <div className="inline-block px-4 py-3 bg-white/90 backdrop-blur-sm rounded-xl shadow-2xl mb-6 max-w-lg">
+          <div className="glass-card inline-block px-4 py-3 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 shadow-xl mb-6 max-w-lg">
             <h2 className="text-2xl font-bold text-gray-900 mb-1 font-playfair">
               Group & Entire Property Booking
             </h2>
