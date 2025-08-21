@@ -12,11 +12,14 @@ import { AuthModal } from "@/components/AuthModal";
 import LazyWrapper from "@/components/LazyWrapper";
 import SEOContent from "@/components/SEOContent";
 import { TourPricingService } from "@/utils/tourPricingService";
+import OptimizedLazyImage from "@/components/OptimizedLazyImage";
 
-// Import generated stock images
-import arunachalEagleFestival from "@/assets/arunachal-eagle-festival-stock.jpg";
-import dharamshalaMcleodGanj from "@/assets/dharamshala-mcleod-ganj-stock.jpg";
-import kulluValleyAdventure from "@/assets/kullu-valley-adventure-stock.jpg";
+// Lazy load image imports using dynamic imports
+const loadImages = {
+  arunachalEagleFestival: () => import("@/assets/arunachal-eagle-festival-stock.jpg"),
+  dharamshalaMcleodGanj: () => import("@/assets/dharamshala-mcleod-ganj-stock.jpg"),
+  kulluValleyAdventure: () => import("@/assets/kullu-valley-adventure-stock.jpg")
+};
 
 // All image assets removed - Supabase ready
 // Image arrays for future Supabase URL assignments
@@ -58,6 +61,22 @@ const Travel = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [locationFilter, setLocationFilter] = useState("all");
+  const [loadedImages, setLoadedImages] = useState<{[key: string]: string}>({});
+
+  // Lazy load images on demand
+  const loadImageAsync = async (imageKey: string) => {
+    if (loadedImages[imageKey]) return loadedImages[imageKey];
+    
+    try {
+      const imageModule = await loadImages[imageKey as keyof typeof loadImages]();
+      const imageSrc = imageModule.default;
+      setLoadedImages(prev => ({ ...prev, [imageKey]: imageSrc }));
+      return imageSrc;
+    } catch (error) {
+      console.warn(`Failed to load image: ${imageKey}`);
+      return "";
+    }
+  };
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -68,6 +87,21 @@ const Travel = () => {
     // Scroll to top when navigating to this page
     window.scrollTo(0, 0);
   }, [location.search]);
+
+  // Preload critical images after component mounts
+  useEffect(() => {
+    const preloadCriticalImages = async () => {
+      await Promise.all([
+        loadImageAsync('arunachalEagleFestival'),
+        loadImageAsync('dharamshalaMcleodGanj'),
+        loadImageAsync('kulluValleyAdventure')
+      ]);
+    };
+    
+    // Delay preloading to not block initial render
+    const timer = setTimeout(preloadCriticalImages, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handlePackageClick = (itinerary: any) => {
     setSelectedPackage(itinerary);
@@ -204,8 +238,8 @@ const Travel = () => {
         duration: "6 Days",
         difficulty: "Moderate",
         price: TourPricingService.calculatePrice("6 Days", "cultural", "Moderate", "Arunachal Pradesh", "Dec-Feb"),
-        image: arunachalEagleFestival,
-        images: [arunachalEagleFestival, "", ""],
+        image: loadedImages.arunachalEagleFestival || "",
+        images: [loadedImages.arunachalEagleFestival || "", "", ""],
         rating: 4.8,
         category: "cultural",
         location: "Arunachal Pradesh",
@@ -348,8 +382,8 @@ const Travel = () => {
         duration: "5 Days",
         difficulty: "Moderate",
         price: TourPricingService.calculatePrice("5 Days", "cultural", "Moderate", "Himachal Pradesh", "Mar-Jun, Sep-Nov"),
-        image: dharamshalaMcleodGanj,
-        images: [dharamshalaMcleodGanj, "", ""],
+        image: loadedImages.dharamshalaMcleodGanj || "",
+        images: [loadedImages.dharamshalaMcleodGanj || "", "", ""],
         rating: 4.7,
         category: "cultural",
         location: "Himachal Pradesh",
@@ -363,8 +397,8 @@ const Travel = () => {
         duration: "4 Days",
         difficulty: "Moderate",
         price: TourPricingService.calculatePrice("4 Days", "adventure", "Moderate", "Himachal Pradesh", "Apr-Oct"),
-        image: kulluValleyAdventure,
-        images: [kulluValleyAdventure, "", ""],
+        image: loadedImages.kulluValleyAdventure || "",
+        images: [loadedImages.kulluValleyAdventure || "", "", ""],
         rating: 4.5,
         category: "adventure",
         location: "Himachal Pradesh",
@@ -495,18 +529,18 @@ const Travel = () => {
           <div className="absolute -top-24 -right-24 w-48 h-48 bg-orange-200/30 rounded-full blur-3xl" />
           <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-red-200/30 rounded-full blur-3xl" />
           
-          {/* Optimized mobile padding */}
-          <div className="relative z-10 py-4 sm:py-6">
-            <div className="container mx-auto px-1 sm:px-2">
+          {/* Optimized mobile padding with proper lazy loading */}
+          <div className="relative z-10 py-6 sm:py-8 md:py-12 lg:py-16">
+            <div className="container mx-auto px-2 sm:px-4 md:px-6 lg:px-8">
               {/* Mobile-optimized Header */}
-              <div className="text-center mb-2 sm:mb-4">
-                <div className="inline-block p-1.5 sm:p-2 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg mb-1 sm:mb-2">
-                  <h1 className="text-base sm:text-lg font-bold text-gray-900 mb-1 font-playfair">
+              <div className="text-center mb-4 sm:mb-6 md:mb-8 lg:mb-10">
+                <div className="inline-block p-2 sm:p-3 md:p-4 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg mb-2 sm:mb-3 md:mb-4">
+                  <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-2 font-playfair">
                     XTSY Travel
                   </h1>
-                  <div className="w-10 sm:w-12 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 mx-auto rounded-full" />
+                  <div className="w-12 sm:w-16 md:w-20 lg:w-24 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 mx-auto rounded-full" />
                 </div>
-                <p className="text-xs sm:text-sm text-gray-700 max-w-2xl mx-auto mb-1 sm:mb-2 bg-white/60 backdrop-blur-sm rounded-lg p-1.5 sm:p-2 shadow-md mx-2">
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 max-w-2xl mx-auto mb-2 sm:mb-3 md:mb-4 bg-white/60 backdrop-blur-sm rounded-lg p-2 sm:p-3 md:p-4 shadow-md mx-2">
                   Embark on extraordinary journeys with XTSY Travel - your gateway to incredible experiences.
                 </p>
               </div>
@@ -543,233 +577,254 @@ const Travel = () => {
 
               {/* Content */}
               {activeTab === 'domestic' && (
-                <div>
-                  {/* Ultra-compact Filters */}
-                  <div className="mb-1 sm:mb-2 bg-white/80 backdrop-blur-sm rounded-md p-1.5 shadow-lg">
-                    <div className="flex flex-col gap-0.5">
-                      <div className="flex items-center gap-0.5">
-                        <Filter className="h-2.5 w-2.5 text-gray-600" />
-                        <span className="font-medium text-gray-900 text-xs">Filters:</span>
-                      </div>
-                      
-                      <div className="flex flex-col sm:flex-row gap-0.5">
-                        <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                          <SelectTrigger className="w-full sm:w-28 bg-white text-gray-900 border-gray-300 text-xs h-5">
-                            <SelectValue placeholder="Category" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {categories.map((category) => (
-                              <SelectItem key={category.id} value={category.id}>
-                                {category.label}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-
-                        <Select value={locationFilter} onValueChange={setLocationFilter}>
-                          <SelectTrigger className="w-full sm:w-28 bg-white text-gray-900 border-gray-300 text-xs h-5">
-                            <SelectValue placeholder="Location" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {locations.map((location) => (
-                              <SelectItem key={location} value={location}>
-                                {location === "all" ? "All Locations" : location}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                <LazyWrapper fallback={<div className="animate-pulse bg-gray-100 h-64 rounded"></div>}>
+                  <div>
+                    {/* Ultra-compact Filters */}
+                    <div className="mb-1 sm:mb-2 bg-white/80 backdrop-blur-sm rounded-md p-1.5 shadow-lg">
+                      <div className="flex flex-col gap-0.5">
+                        <div className="flex items-center gap-0.5">
+                          <Filter className="h-2.5 w-2.5 text-gray-600" />
+                          <span className="font-medium text-gray-900 text-xs">Filters:</span>
+                        </div>
                         
+                        <div className="flex flex-col sm:flex-row gap-0.5">
+                          <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                            <SelectTrigger className="w-full sm:w-28 bg-white text-gray-900 border-gray-300 text-xs h-5">
+                              <SelectValue placeholder="Category" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {categories.map((category) => (
+                                <SelectItem key={category.id} value={category.id}>
+                                  {category.label}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+
+                          <Select value={locationFilter} onValueChange={setLocationFilter}>
+                            <SelectTrigger className="w-full sm:w-28 bg-white text-gray-900 border-gray-300 text-xs h-5">
+                              <SelectValue placeholder="Location" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {locations.map((location) => (
+                                <SelectItem key={location} value={location}>
+                                  {location === "all" ? "All Locations" : location}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          
+                          <Button 
+                            variant="outline" 
+                            onClick={clearFilters}
+                            className="bg-white border border-orange-300 text-orange-700 hover:bg-orange-50 hover:border-orange-400 hover:text-orange-800 font-medium px-1.5 py-0.5 shadow-sm transition-all duration-200 text-xs w-full sm:w-auto h-5"
+                          >
+                            Clear
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Enhanced State-wise Packages with lazy loading */}
+                    {Object.entries(stateWiseTourPackages).map(([state, packages]) => {
+                      const filteredStatePackages = packages.filter(pkg => {
+                        const categoryMatch = selectedCategory === "all" || pkg.category === selectedCategory;
+                        const locationMatch = locationFilter === "all" || pkg.location === locationFilter;
+                        
+                        return categoryMatch && locationMatch;
+                      });
+
+                      if (filteredStatePackages.length === 0) return null;
+
+                      // State-specific icons and descriptions
+                      const stateInfo = {
+                        "Meghalaya": { icon: "🏔️", desc: "The Abode of Clouds" },
+                        "Uttarakhand": { icon: "🏔️", desc: "Land of the Gods" },
+                        "Sikkim": { icon: "🗻", desc: "Gateway to the Himalayas" },
+                        "Himachal Pradesh": { icon: "⛰️", desc: "Land of Snow" },
+                        "Kerala": { icon: "🌴", desc: "God's Own Country" },
+                        "Tamil Nadu": { icon: "🏛️", desc: "Land of Temples" },
+                        "Northeast States": { icon: "🌿", desc: "Seven Sisters Region" },
+                        "XTSY Exclusive Tours": { icon: "⭐", desc: "Premium Experiences" }
+                      };
+
+                      const info = stateInfo[state] || { icon: "🗺️", desc: "Incredible Destination" };
+
+                      return (
+                        <div key={state} className="mb-6 sm:mb-8 md:mb-12 lg:mb-16">
+                          <div className="text-center mb-2 sm:mb-3 md:mb-4 lg:mb-6">
+                            <div className="inline-flex items-center gap-1 sm:gap-2 p-2 sm:p-3 bg-white/80 backdrop-blur-sm rounded-md shadow-md mb-1 sm:mb-2">
+                              <span className="text-sm sm:text-base md:text-lg lg:text-xl">{info.icon}</span>
+                              <h3 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold text-gray-900">
+                                {state}
+                              </h3>
+                            </div>
+                            <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-lg">
+                              {info.desc}
+                            </p>
+                          </div>
+                          {/* Comprehensive responsive layout with animations and lazy loading */}
+                          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-10 mb-6 md:mb-10 lg:mb-14 animate-fade-in">
+                            {filteredStatePackages.map((itinerary) => (
+                              <LazyWrapper 
+                                key={itinerary.id}
+                                fallback={<div className="animate-pulse bg-gray-100 h-64 rounded-lg"></div>}
+                                threshold={0.2}
+                              >
+                                <CompactTourPackageCard
+                                  tourPackage={itinerary}
+                                  onPackageClick={() => handlePackageClick(itinerary)}
+                                />
+                              </LazyWrapper>
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    })}
+
+                    {filteredItineraries.length === 0 && (
+                      <div className="text-center py-3 sm:py-4">
+                        <p className="text-gray-500 text-xs sm:text-sm">No packages found matching your filters.</p>
                         <Button 
-                          variant="outline" 
                           onClick={clearFilters}
-                          className="bg-white border border-orange-300 text-orange-700 hover:bg-orange-50 hover:border-orange-400 hover:text-orange-800 font-medium px-1.5 py-0.5 shadow-sm transition-all duration-200 text-xs w-full sm:w-auto h-5"
+                          className="mt-1 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white text-xs px-2 py-0.5 h-6"
                         >
-                          Clear
+                          Clear All Filters
                         </Button>
                       </div>
-                    </div>
+                    )}
                   </div>
-
-                  {/* Compact State-wise Packages with increased spacing */}
-                  {Object.entries(stateWiseTourPackages).map(([state, packages]) => {
-                    const filteredStatePackages = packages.filter(pkg => {
-                      const categoryMatch = selectedCategory === "all" || pkg.category === selectedCategory;
-                      const locationMatch = locationFilter === "all" || pkg.location === locationFilter;
-                      
-                      return categoryMatch && locationMatch;
-                    });
-
-                    if (filteredStatePackages.length === 0) return null;
-
-                    // State-specific icons and descriptions
-                    const stateInfo = {
-                      "Meghalaya": { icon: "🏔️", desc: "The Abode of Clouds" },
-                      "Uttarakhand": { icon: "🏔️", desc: "Land of the Gods" },
-                      "Sikkim": { icon: "🗻", desc: "Gateway to the Himalayas" },
-                      "Himachal Pradesh": { icon: "⛰️", desc: "Land of Snow" },
-                      "Kerala": { icon: "🌴", desc: "God's Own Country" },
-                      "Tamil Nadu": { icon: "🏛️", desc: "Land of Temples" },
-                      "Northeast States": { icon: "🌿", desc: "Seven Sisters Region" },
-                      "XTSY Exclusive Tours": { icon: "⭐", desc: "Premium Experiences" }
-                    };
-
-                    const info = stateInfo[state] || { icon: "🗺️", desc: "Incredible Destination" };
-
-                    return (
-                      <div key={state} className="mb-2 sm:mb-3">
-                        <div className="text-center mb-1">
-                          <div className="inline-flex items-center gap-0.5 p-1 bg-white/80 backdrop-blur-sm rounded-md shadow-md mb-0.5">
-                            <span className="text-xs sm:text-sm">{info.icon}</span>
-                            <h3 className="text-xs sm:text-sm font-bold text-gray-900">
-                              {state}
-                            </h3>
-                          </div>
-                          <p className="text-gray-600 text-xs">
-                            {info.desc}
-                          </p>
-                        </div>
-                        {/* Comprehensive responsive layout with animations */}
-                        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-10 mb-6 md:mb-10 lg:mb-14 animate-fade-in">
-                          {filteredStatePackages.map((itinerary) => (
-                            <CompactTourPackageCard
-                              key={itinerary.id}
-                              tourPackage={itinerary}
-                              onPackageClick={() => handlePackageClick(itinerary)}
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    );
-                  })}
-
-                  {filteredItineraries.length === 0 && (
-                    <div className="text-center py-3 sm:py-4">
-                      <p className="text-gray-500 text-xs sm:text-sm">No packages found matching your filters.</p>
-                      <Button 
-                        onClick={clearFilters}
-                        className="mt-1 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white text-xs px-2 py-0.5 h-6"
-                      >
-                        Clear All Filters
-                      </Button>
-                    </div>
-                  )}
-                </div>
+                </LazyWrapper>
               )}
 
               {activeTab === 'international' && (
-                <div className="max-w-6xl mx-auto">
-                  {/* Compact International Header */}
-                  <div className="text-center mb-4 sm:mb-6">
-                    <div className="inline-flex items-center gap-1 sm:gap-2 p-2 sm:p-3 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg mb-2 sm:mb-3">
-                      <span className="text-lg sm:text-2xl">🌏</span>
-                      <h2 className="text-base sm:text-xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-                        XTSY Asia & Europe
-                      </h2>
-                      <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-1 sm:px-2 py-0.5 rounded-full text-xs font-bold">
-                        Soon
-                      </span>
+                <LazyWrapper fallback={<div className="animate-pulse bg-gray-100 h-96 rounded"></div>}>
+                  <div className="max-w-6xl mx-auto">
+                    {/* Compact International Header */}
+                    <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12">
+                      <div className="inline-flex items-center gap-2 sm:gap-3 md:gap-4 p-3 sm:p-4 md:p-6 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg mb-3 sm:mb-4 md:mb-6">
+                        <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl">🌏</span>
+                        <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+                          XTSY Asia & Europe
+                        </h2>
+                        <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-bold">
+                          Soon
+                        </span>
+                      </div>
+                      <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto px-2">
+                        Get ready to explore the world with XTSY! We're expanding to bring you unforgettable experiences.
+                      </p>
                     </div>
-                    <p className="text-xs sm:text-sm text-gray-600 max-w-2xl mx-auto px-2">
-                      Get ready to explore the world with XTSY! We're expanding to bring you unforgettable experiences.
-                    </p>
-                  </div>
 
-                  {/* Ultra-compact Asian Countries */}
-                  <div className="mb-6 sm:mb-8">
-                    <div className="text-center mb-3 sm:mb-4">
-                      <h3 className="text-sm sm:text-lg font-bold text-gray-900 mb-1 flex items-center justify-center gap-1">
-                        🏯 Asian Destinations
-                      </h3>
+                    {/* Enhanced Asian Countries with lazy loading */}
+                    <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16">
+                      <div className="text-center mb-4 sm:mb-6 md:mb-8">
+                        <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-2 flex items-center justify-center gap-2">
+                          🏯 Asian Destinations
+                        </h3>
+                      </div>
+                      
+                       <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-6 lg:grid-cols-8 gap-2 sm:gap-3 md:gap-4 lg:gap-6 mb-4 sm:mb-6 md:mb-8 px-1">
+                         {[
+                           { country: "Japan", flag: "🇯🇵", highlight: "Cherry Blossoms" },
+                           { country: "Thailand", flag: "🇹🇭", highlight: "Tropical Paradise" },
+                           { country: "Vietnam", flag: "🇻🇳", highlight: "Street Food" },
+                           { country: "Korea", flag: "🇰🇷", highlight: "K-Culture" },
+                           { country: "Malaysia", flag: "🇲🇾", highlight: "Multicultural" },
+                           { country: "Singapore", flag: "🇸🇬", highlight: "Modern City" },
+                           { country: "Indonesia", flag: "🇮🇩", highlight: "Islands" },
+                           { country: "Philippines", flag: "🇵🇭", highlight: "Beaches" }
+                         ].map((item) => (
+                           <LazyWrapper 
+                             key={item.country}
+                             fallback={<div className="animate-pulse bg-gray-100 h-24 rounded"></div>}
+                             threshold={0.3}
+                           >
+                             <Card className="group hover:shadow-md transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200">
+                               <CardContent className="p-2 sm:p-3 md:p-4 text-center">
+                                   <div 
+                                     className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-2 leading-none"
+                                     style={{
+                                       fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", sans-serif',
+                                       fontSize: 'clamp(1.2rem, 4vw, 2rem)',
+                                       lineHeight: '1'
+                                     }}
+                                   >
+                                     {item.flag}
+                                   </div>
+                                 <h4 className="font-medium text-gray-900 mb-1 text-xs sm:text-sm md:text-base">{item.country}</h4>
+                                 <p className="text-xs sm:text-sm text-gray-600 mb-2 leading-tight">{item.highlight}</p>
+                                 <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Soon</span>
+                               </CardContent>
+                             </Card>
+                           </LazyWrapper>
+                        ))}
+                      </div>
                     </div>
-                    
-                     <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-1 sm:gap-2 mb-3 sm:mb-4 px-1">
-                       {[
-                         { country: "Japan", flag: "🇯🇵", highlight: "Cherry Blossoms" },
-                         { country: "Thailand", flag: "🇹🇭", highlight: "Tropical Paradise" },
-                         { country: "Vietnam", flag: "🇻🇳", highlight: "Street Food" },
-                         { country: "Korea", flag: "🇰🇷", highlight: "K-Culture" },
-                         { country: "Malaysia", flag: "🇲🇾", highlight: "Multicultural" },
-                         { country: "Singapore", flag: "🇸🇬", highlight: "Modern City" },
-                         { country: "Indonesia", flag: "🇮🇩", highlight: "Islands" },
-                         { country: "Philippines", flag: "🇵🇭", highlight: "Beaches" }
-                       ].map((item) => (
-                         <Card key={item.country} className="group hover:shadow-md transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200">
-                           <CardContent className="p-1 sm:p-2 text-center">
-                               <div 
-                                 className="text-lg sm:text-2xl mb-1 leading-none"
-                                 style={{
-                                   fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", sans-serif',
-                                   fontSize: 'clamp(1rem, 3vw, 1.5rem)',
-                                   lineHeight: '1'
-                                 }}
-                               >
-                                 {item.flag}
-                               </div>
-                             <h4 className="font-medium text-gray-900 mb-0.5 text-xs">{item.country}</h4>
-                             <p className="text-xs text-gray-600 mb-1 leading-tight">{item.highlight}</p>
-                             <span className="text-xs bg-yellow-100 text-yellow-800 px-1 py-0.5 rounded-full">Soon</span>
-                           </CardContent>
-                         </Card>
-                      ))}
-                    </div>
-                  </div>
 
-                  {/* Ultra-compact European Countries */}
-                  <div className="mb-6 sm:mb-8">
-                    <div className="text-center mb-3 sm:mb-4">
-                      <h3 className="text-sm sm:text-lg font-bold text-gray-900 mb-1 flex items-center justify-center gap-1">
-                        🏰 European Destinations
-                      </h3>
+                    {/* Enhanced European Countries with lazy loading */}
+                    <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16">
+                      <div className="text-center mb-4 sm:mb-6 md:mb-8">
+                        <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-2 flex items-center justify-center gap-2">
+                          🏰 European Destinations
+                        </h3>
+                      </div>
+                      
+                      <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-6 lg:grid-cols-8 gap-2 sm:gap-3 md:gap-4 lg:gap-6 mb-4 sm:mb-6 md:mb-8 px-1">
+                         {[
+                           { country: "France", flag: "🇫🇷", highlight: "Romance" },
+                           { country: "Italy", flag: "🇮🇹", highlight: "Art & History" },
+                           { country: "Spain", flag: "🇪🇸", highlight: "Festivals" },
+                           { country: "Germany", flag: "🇩🇪", highlight: "Castles" },
+                           { country: "Switzerland", flag: "🇨🇭", highlight: "Alps" },
+                           { country: "Netherlands", flag: "🇳🇱", highlight: "Canals" },
+                           { country: "UK", flag: "🇬🇧", highlight: "Royal Heritage" },
+                           { country: "Austria", flag: "🇦🇹", highlight: "Music" }
+                         ].map((item) => (
+                           <LazyWrapper 
+                             key={item.country}
+                             fallback={<div className="animate-pulse bg-gray-100 h-24 rounded"></div>}
+                             threshold={0.3}
+                           >
+                             <Card className="group hover:shadow-md transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200">
+                               <CardContent className="p-2 sm:p-3 md:p-4 text-center">
+                                   <div 
+                                     className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-2 leading-none"
+                                     style={{
+                                       fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", sans-serif',
+                                       fontSize: 'clamp(1.2rem, 4vw, 2rem)',
+                                       lineHeight: '1'
+                                     }}
+                                   >
+                                     {item.flag}
+                                   </div>
+                                 <h4 className="font-medium text-gray-900 mb-1 text-xs sm:text-sm md:text-base">{item.country}</h4>
+                                 <p className="text-xs sm:text-sm text-gray-600 mb-2 leading-tight">{item.highlight}</p>
+                                 <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Soon</span>
+                               </CardContent>
+                             </Card>
+                           </LazyWrapper>
+                        ))}
+                      </div>
                     </div>
-                    
-                    <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-1 sm:gap-2 mb-3 sm:mb-4 px-1">
-                       {[
-                         { country: "France", flag: "🇫🇷", highlight: "Romance" },
-                         { country: "Italy", flag: "🇮🇹", highlight: "Art & History" },
-                         { country: "Spain", flag: "🇪🇸", highlight: "Festivals" },
-                         { country: "Germany", flag: "🇩🇪", highlight: "Castles" },
-                         { country: "Switzerland", flag: "🇨🇭", highlight: "Alps" },
-                         { country: "Netherlands", flag: "🇳🇱", highlight: "Canals" },
-                         { country: "UK", flag: "🇬🇧", highlight: "Royal Heritage" },
-                         { country: "Austria", flag: "🇦🇹", highlight: "Music" }
-                       ].map((item) => (
-                         <Card key={item.country} className="group hover:shadow-md transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200">
-                           <CardContent className="p-1 sm:p-2 text-center">
-                               <div 
-                                 className="text-lg sm:text-2xl mb-1 leading-none"
-                                 style={{
-                                   fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", sans-serif',
-                                   fontSize: 'clamp(1rem, 3vw, 1.5rem)',
-                                   lineHeight: '1'
-                                 }}
-                               >
-                                 {item.flag}
-                               </div>
-                             <h4 className="font-medium text-gray-900 mb-0.5 text-xs">{item.country}</h4>
-                             <p className="text-xs text-gray-600 mb-1 leading-tight">{item.highlight}</p>
-                             <span className="text-xs bg-blue-100 text-blue-800 px-1 py-0.5 rounded-full">Soon</span>
-                           </CardContent>
-                         </Card>
-                      ))}
-                    </div>
-                  </div>
 
-                  {/* Compact Newsletter Section */}
-                  <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl p-3 sm:p-4 text-center text-white mx-1">
-                    <Bell className="h-8 sm:h-10 w-8 sm:w-10 mx-auto mb-2 opacity-90" />
-                    <h3 className="text-sm sm:text-lg font-bold mb-2">Be the First to Know!</h3>
-                    <p className="text-xs sm:text-sm mb-3 opacity-90">
-                      Join our newsletter for exclusive early access and special discounts.
-                    </p>
-                    <Button 
-                      onClick={handleNewsletterClick}
-                      className="bg-white text-blue-600 hover:bg-gray-100 font-semibold px-3 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm"
-                    >
-                      <Mail className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
-                      Join Newsletter
-                    </Button>
+                    {/* Enhanced Newsletter Section */}
+                    <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl p-4 sm:p-6 md:p-8 text-center text-white mx-1">
+                      <Bell className="h-10 sm:h-12 md:h-16 w-10 sm:w-12 md:w-16 mx-auto mb-3 sm:mb-4 opacity-90" />
+                      <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold mb-3 sm:mb-4">Be the First to Know!</h3>
+                      <p className="text-sm sm:text-base md:text-lg mb-4 sm:mb-6 opacity-90">
+                        Join our newsletter for exclusive early access and special discounts.
+                      </p>
+                      <Button 
+                        onClick={handleNewsletterClick}
+                        className="bg-white text-blue-600 hover:bg-gray-100 font-semibold px-4 sm:px-6 md:px-8 py-2 sm:py-3 text-sm sm:text-base md:text-lg"
+                      >
+                        <Mail className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
+                        Join Newsletter
+                      </Button>
+                    </div>
                   </div>
-                </div>
+                </LazyWrapper>
               )}
             </div>
           </div>
