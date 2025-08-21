@@ -437,7 +437,7 @@ Thank you! 😊`;
                   Reserve Your Experience
                 </h2>
                 <p className="text-xl text-gray-800 font-medium max-w-3xl mx-auto mb-8">
-                  Every detail crafted for the discerning traveler seeking uncompromising excellence
+                  Every detail crafted for the discerning traveler seeking uncompromising excellence. Only one suite available for the night in india
                 </p>
               </div>
               <Button 
