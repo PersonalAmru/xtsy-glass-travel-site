@@ -27,26 +27,12 @@ const OptimizedLazyImage: React.FC<OptimizedLazyImageProps> = ({
   const imgRef = useRef<HTMLImageElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Function to determine if this should use XTSY 270° unified image
-  const getUnifiedImageSource = () => {
-    const altText = alt.toLowerCase();
-    const srcPath = src.toLowerCase();
-    
-    // Check if this is for XTSY 270° Panorama Glass Ensuite
-    if (altText.includes('xtsy') && altText.includes('270') && altText.includes('panorama')) {
-      return XTSY270_DATA.image;
-    }
-    
-    // Check if src path indicates XTSY 270 room
-    if (srcPath.includes('xtsy') || srcPath.includes('270') || altText.includes('xtsy 270')) {
-      return XTSY270_DATA.image;
-    }
-    
-    // For all other room types, use the original src
-    return src;
-  };
-
-  const imageSource = getUnifiedImageSource();
+  // Use the XTSY 270° Panorama Glass Ensuite images from the navigation page
+  const defaultXTSY270Images = XTSY270_DATA.images;
+  const primaryXTSY270Image = XTSY270_DATA.image;
+  
+  // Select appropriate XTSY 270° image or use provided src
+  const imageSource = src && src.trim() !== '' ? src : primaryXTSY270Image;
 
   useEffect(() => {
     // If priority is true, load immediately
