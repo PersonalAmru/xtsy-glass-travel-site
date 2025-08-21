@@ -267,7 +267,7 @@ Thank you! 😊`;
                     <div className="space-y-8">
                       <div>
                         <h3 className="text-3xl md:text-4xl font-bold mb-6 text-white leading-tight tracking-tight">
-                          India's First 270° Glass House
+                          270° Panorama Glass Ensuite
                         </h3>
                         <p className="text-gray-200 text-lg md:text-xl font-medium leading-relaxed mb-8 tracking-wide">
                           Conceived as a masterpiece of contemporary architecture, XTSY 270° redefines luxury accommodation through 
