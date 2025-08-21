@@ -523,14 +523,14 @@ const Travel = () => {
 
               {/* Tab Navigation */}
               <div className="flex justify-center mb-12">
-                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-2 shadow-lg">
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-1 shadow-lg flex">
                   <Button
                     onClick={() => setActiveTab('domestic')}
                     variant={activeTab === 'domestic' ? 'default' : 'ghost'}
-                    className={`mr-2 ${
+                    className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
                       activeTab === 'domestic' 
-                        ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white hover:from-orange-600 hover:to-red-700' 
-                        : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
+                        ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white hover:from-orange-600 hover:to-red-700 shadow-md' 
+                        : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100/80'
                     }`}
                   >
                     <MapPin className="h-4 w-4 mr-2" />
@@ -539,10 +539,10 @@ const Travel = () => {
                   <Button
                     onClick={() => setActiveTab('international')}
                     variant={activeTab === 'international' ? 'default' : 'ghost'}
-                    className={`${
+                    className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
                       activeTab === 'international' 
-                        ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white hover:from-orange-600 hover:to-red-700' 
-                        : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
+                        ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white hover:from-orange-600 hover:to-red-700 shadow-md' 
+                        : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100/80'
                     }`}
                   >
                     <Globe className="h-4 w-4 mr-2" />
