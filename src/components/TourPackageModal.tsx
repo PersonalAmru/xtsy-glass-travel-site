@@ -58,7 +58,7 @@ import assamTeaGardensImg from "@/assets/assam-tea-gardens-new.jpg";
 import teaGardensAuthenticImg from "@/assets/tea-gardens-authentic.jpg";
 import nagalandHornbillImg from "@/assets/nagaland-hornbill-premium.jpg";
 import sikkimRhododendronsImg from "@/assets/sikkim-rhododendrons-premium.jpg";
-import arunachalTribalImg from "@/assets/arunachal-tribal-premium.jpg";
+const arunachalTribalImg = "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/download%20(25).jpg";
 import manipurLoktakImg from "@/assets/manipur-loktak-premium.jpg";
 import mizoramBambooImg from "@/assets/mizoram-bamboo-premium.jpg";
 import tripuraTribalImg from "@/assets/tripura-tribal-premium.jpg";

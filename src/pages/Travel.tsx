@@ -251,7 +251,7 @@ const Travel = () => {
         duration: "8 Days",
         difficulty: "Moderate",
         price: TourPricingService.calculatePrice("8 Days", "exclusive", "Moderate", "Arunachal Pradesh", "Mar-Oct"),
-        image: arunachalTribalFestival,
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/download%20(25).jpg",
         images: [arunachalTribalFestival, himachalValleys, sikkimRhododendrons],
         rating: 4.9,
         category: "wellness",
