@@ -658,17 +658,6 @@ const Travel = () => {
 
                       return (
                         <div key={state} className="mb-6 sm:mb-8 md:mb-12 lg:mb-16">
-                          <div className="text-center mb-2 sm:mb-3 md:mb-4 lg:mb-6">
-                            <div className="inline-flex items-center gap-1 sm:gap-2 p-2 sm:p-3 bg-white/80 backdrop-blur-sm rounded-md shadow-md mb-1 sm:mb-2">
-                              <span className="text-sm sm:text-base md:text-lg lg:text-xl">{info.icon}</span>
-                              <h3 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold text-gray-900">
-                                {state}
-                              </h3>
-                            </div>
-                            <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-lg">
-                              {info.desc}
-                            </p>
-                          </div>
                           {/* Comprehensive responsive layout with animations and lazy loading */}
                           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-10 mb-6 md:mb-10 lg:mb-14 animate-fade-in">
                             {filteredStatePackages.map((itinerary) => (
