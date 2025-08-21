@@ -98,23 +98,7 @@ const Footer = () => {
               <div className="flex items-start space-x-2 sm:space-x-3 justify-center">
                 <MapPin className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-orange-400 flex-shrink-0" />
                 <div className="text-gray-300 text-xs sm:text-sm lg:text-base leading-relaxed text-center">
-                  <div className="font-medium text-white mb-1 flex items-center justify-center gap-2">
-                    XTSY Travellers Hostel
-                    {!logoError ? (
-                      <img 
-                        src={xtsyLogo}
-                        alt="XTSY Logo"
-                        className="h-4 sm:h-5 lg:h-6 w-auto object-contain"
-                        loading="lazy"
-                        onLoad={handleLogoLoad}
-                        onError={handleLogoError}
-                      />
-                    ) : (
-                      <div className="h-4 sm:h-5 lg:h-6 w-6 sm:w-7 lg:w-8 bg-gradient-to-r from-orange-500 to-red-600 rounded flex items-center justify-center">
-                        <span className="text-white font-bold text-xs">X</span>
-                      </div>
-                    )}
-                  </div>
+                  <div className="font-medium text-white mb-1">XTSY Travellers Hostel</div>
                   <div className="text-xs sm:text-sm">Diengiong, Mawdiangdiang road</div>
                   <div className="text-xs sm:text-sm">New Shillong Township, Meghalaya - 793018</div>
                 </div>
