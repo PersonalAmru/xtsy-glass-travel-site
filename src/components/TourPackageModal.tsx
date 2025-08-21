@@ -14,7 +14,6 @@ import { TourItineraryService } from "@/utils/tourItineraryService";
 import { TourPricingService } from "@/utils/tourPricingService";
 import OptimizedLazyImage from "./OptimizedLazyImage";
 
-// Import available image assets (including new authentic sourced images)
 import meghalayaHiddenGemsImg from "@/assets/meghalaya-hidden-gems-new.jpg";
 import meghalayaNatureAuthenticImg from "@/assets/meghalaya-nature-authentic.jpg";
 import shillongCulturalImg from "@/assets/shillong-meghalaya-real.jpg";
@@ -46,7 +45,6 @@ import shimlaManaliImg from "@/assets/shimla-manali-honeymoon.jpg";
 import rishikeshAdventureImg from "@/assets/rishikesh-adventure.jpg";
 import keralaBakwatersImg from "@/assets/kerala-backwaters.jpg";
 import keralaBackwatersAuthenticImg from "@/assets/kerala-backwaters-authentic.jpg";
-
 import thekkadyWildlifeImg from "@/assets/thekkady-wildlife.jpg";
 import tamilNaduTemplesImg from "@/assets/tamil-nadu-temples-new.jpg";
 import dharamshalaImg from "@/assets/dharamshala-mcleodganj.jpg";
@@ -71,7 +69,6 @@ import kohimaWarCemeteryImg from "@/assets/kohima-war-cemetery-premium.jpg";
 import wildernessImg from "@/assets/wilderness-survival-final.jpg";
 import wildernessAuthenticImg from "@/assets/wilderness-survival-authentic.jpg";
 import northeastBikeExpeditionImg from "@/assets/motorcycle-group-adventure.jpg";
-// Northeast Ecological Education Program - using Supabase URL
 const northeastEcologicalEducationImg = "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/Complete%20Guide%20To%20Backpacking%20In%20Arunachal%20Pradesh%20-%20Lost%20With%20Purpose.jpg";
 
 interface TourPackage {
@@ -95,10 +92,18 @@ interface TourPackageModalProps {
   tourPackage: TourPackage | null;
 }
 
+interface OverallItinerary {
+  phase: string;
+  duration: string;
+  description: string;
+  highlights: string[];
+  activities: string[];
+}
+
 const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, tourPackage }) => {
   const [guests, setGuests] = useState(1);
   const [selectedDate, setSelectedDate] = useState("");
-  const [itineraryHighlights, setItineraryHighlights] = useState<any[]>([]);
+  const [overallItinerary, setOverallItinerary] = useState<OverallItinerary[]>([]);
   const [isLoadingItinerary, setIsLoadingItinerary] = useState(false);
   const [guestDetails, setGuestDetails] = useState({
     name: "",
@@ -110,7 +115,6 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
   const navigate = useNavigate();
   const { currency, formatPrice } = useApp();
 
-  // Function to get appropriate image based on tour package content with authentic sourced images
   const getRelevantImage = () => {
     if (!tourPackage) return meghalayaNatureAuthenticImg;
     
@@ -119,13 +123,11 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
     const highlights = tourPackage.highlights.join(' ').toLowerCase();
     const content = `${title} ${description} ${highlights}`;
 
-    // XTSY Exclusive packages with authentic images - prioritize specific matches
     if (content.includes('northeast ecological education') || content.includes('ecological education program')) return northeastEcologicalEducationImg;
     if (content.includes('bike expedition') || content.includes('motorcycle') || content.includes('assam arunachal meghalaya')) return northeastBikeExpeditionImg;
     if (content.includes('biodiversity') || content.includes('research') || content.includes('ecological')) return meghalayaBiodiversityAuthenticImg;
     if (content.includes('wilderness') || content.includes('survival skills') || content.includes('bushcraft')) return wildernessAuthenticImg;
 
-    // Meghalaya specific tours with authentic images
     if (content.includes('meghalaya hidden gems') || content.includes('hidden gems')) return meghalayaNatureAuthenticImg;
     if (content.includes('shillong day tour') || content.includes('cherry blossom')) return shillongCherryBlossomImg;
     if (content.includes('shillong') || content.includes('cultural experience')) return shillongCulturalImg;
@@ -137,7 +139,6 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
     if (content.includes('living root bridges') || content.includes('root bridge')) return livingRootBridgesAuthenticImg;
     if (content.includes('khasi hills') || content.includes('khasi')) return khasiHillsTrekImg;
     
-    // Adventure and activity based
     if (content.includes('photography') || content.includes('photo')) return photographyTourImg;
     if (content.includes('wellness') || content.includes('yoga') || content.includes('meditation')) return wellnessRetreatImg;
     if (content.includes('offbeat') || content.includes('circuit')) return offbeatCircuitImg;
@@ -150,7 +151,6 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
     if (content.includes('heritage') || content.includes('historical')) return heritageTrailImg;
     if (content.includes('extreme weather') || content.includes('survival')) return extremeWeatherImg;
 
-    // North India destinations
     if (content.includes('valley of flowers') || content.includes('uttarakhand flowers')) return valleyOfFlowersImg;
     if (content.includes('spiti') || content.includes('cold desert')) return spitivalleyImg;
     if (content.includes('shimla') || content.includes('manali') || content.includes('honeymoon')) return shimlaManaliImg;
@@ -161,14 +161,12 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
     if (content.includes('uttarakhand') || content.includes('himalaya')) return uttarakhandHimalayasImg;
     if (content.includes('himachal') || content.includes('valleys')) return himachalValleysImg;
 
-    // South India destinations with authentic images
     if (content.includes('kerala') || content.includes('backwater')) return keralaBackwatersAuthenticImg;
     
     if (content.includes('thekkady') || content.includes('wildlife') || content.includes('periyar')) return thekkadyWildlifeImg;
     if (content.includes('tamil nadu') || content.includes('temple') || content.includes('dravidian')) return tamilNaduTemplesImg;
     if (content.includes('ooty') || content.includes('kodaikanal') || content.includes('nilgiri')) return ootyImg;
 
-    // Northeast India destinations with authentic images
     if (content.includes('assam') || content.includes('tea garden')) return teaGardensAuthenticImg;
     if (content.includes('nagaland') || content.includes('hornbill') || content.includes('festival')) return nagalandHornbillImg;
     if (content.includes('sikkim') || content.includes('rhododendron') || content.includes('flower')) return sikkimRhododendronsImg;
@@ -182,7 +180,6 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
     if (content.includes('guwahati') || content.includes('kamakhya')) return guwahatiKamakhyaImg;
     if (content.includes('kohima') || content.includes('war cemetery')) return kohimaWarCemeteryImg;
 
-    // Default fallback images based on category with authentic images
     switch (tourPackage.category) {
       case 'adventure':
         return highAltitudeTrekImg;
@@ -195,14 +192,12 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
     }
   };
 
-  // Fetch itinerary highlights when modal opens
   useEffect(() => {
     if (isOpen && tourPackage) {
-      fetchItineraryHighlights();
+      fetchOverallItinerary();
     }
   }, [isOpen, tourPackage]);
 
-  // Store current tab when modal opens
   useEffect(() => {
     if (isOpen && location.pathname === '/travel') {
       const urlParams = new URLSearchParams(location.search);
@@ -211,7 +206,6 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
     }
   }, [isOpen, location]);
 
-  // Custom close handler that preserves tab state
   const handleClose = () => {
     if (location.pathname === '/travel') {
       const lastTab = localStorage.getItem('lastTravelTab') || 'domestic';
@@ -220,79 +214,142 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
     onClose();
   };
 
-  // Fetch itinerary highlights based on tour package details
-  const fetchItineraryHighlights = async () => {
+  const fetchOverallItinerary = async () => {
     if (!tourPackage) return;
     
     setIsLoadingItinerary(true);
     try {
-      // Generate dynamic itinerary based on tour package specifics
-      const dynamicItinerary = TourItineraryService.generateItineraryHighlights(tourPackage);
-      setItineraryHighlights(dynamicItinerary);
+      const days = TourItineraryService.extractDays(tourPackage.duration);
+      const overallView = generateOverallItineraryView(tourPackage, days);
+      setOverallItinerary(overallView);
     } catch (error) {
-      console.error('Error generating itinerary highlights:', error);
-      // Fallback to basic itinerary if generation fails
-      setItineraryHighlights(generateFallbackItinerary());
+      console.error('Error generating overall itinerary:', error);
+      setOverallItinerary(generateFallbackOverallItinerary());
     } finally {
       setIsLoadingItinerary(false);
     }
   };
 
-  // Generate pricing based on group type and duration
-  const generatePricing = (type: 'person' | 'group4' | 'group10') => {
-    if (!tourPackage) return '₹0';
+  const generateOverallItineraryView = (tourPackage: TourPackage, totalDays: number): OverallItinerary[] => {
+    const phases: OverallItinerary[] = [];
     
-    const days = TourItineraryService.extractDays(tourPackage.duration);
-    const basePricing = TourItineraryService.generateDurationBasedPricing(tourPackage.price, type, days);
-    
-    // Convert to selected currency if needed
-    if (currency.code !== 'INR') {
-      const priceValue = parseInt(basePricing.replace(/[^\d]/g, ''));
-      return currency.code === 'USD' ? `$${Math.round(priceValue * 0.012)}` :
-             `€${Math.round(priceValue * 0.011)}`;
+    const arrivalDuration = totalDays <= 3 ? "Day 1" : totalDays <= 5 ? "Days 1-2" : "Days 1-2";
+    phases.push({
+      phase: "Arrival & Introduction",
+      duration: arrivalDuration,
+      description: getArrivalPhaseDescription(tourPackage),
+      highlights: getArrivalHighlights(tourPackage.highlights),
+      activities: getArrivalActivities(tourPackage)
+    });
+
+    if (totalDays > 1) {
+      const coreDuration = totalDays <= 3 ? "Day 2" : totalDays <= 5 ? "Days 3-4" : `Days 3-${totalDays-1}`;
+      phases.push({
+        phase: "Adventure & Exploration",
+        duration: coreDuration,
+        description: getCorePhaseDescription(tourPackage),
+        highlights: getCoreHighlights(tourPackage.highlights),
+        activities: getCoreActivities(tourPackage)
+      });
     }
-    
-    return basePricing;
+
+    if (totalDays >= 3) {
+      phases.push({
+        phase: "Final Experiences & Farewell",
+        duration: `Day ${totalDays}`,
+        description: getFinalPhaseDescription(tourPackage),
+        highlights: getFinalHighlights(tourPackage.highlights),
+        activities: getFinalActivities(tourPackage)
+      });
+    }
+
+    return phases;
   };
 
-  // Fallback itinerary data from travel sites
-  const generateFallbackItinerary = () => [
+  const getArrivalPhaseDescription = (tourPackage: TourPackage): string => {
+    const title = tourPackage.title.toLowerCase();
+    if (title.includes('meghalaya')) {
+      return "Welcome to the enchanting land of clouds! Experience traditional Khasi hospitality and begin your journey through mystical landscapes.";
+    }
+    if (title.includes('biodiversity') || title.includes('research')) {
+      return "Meet expert naturalists and get introduced to the incredible ecosystems and wildlife you'll encounter during your adventure.";
+    }
+    if (title.includes('wellness') || title.includes('yoga')) {
+      return "Arrive at your wellness sanctuary and begin your transformative journey with gentle introduction to healing practices.";
+    }
+    return "Warm welcome and introduction to your adventure destination with local culture immersion and journey overview.";
+  };
+
+  const getCorePhaseDescription = (tourPackage: TourPackage): string => {
+    const category = tourPackage.category.toLowerCase();
+    const title = tourPackage.title.toLowerCase();
+    
+    if (title.includes('biodiversity') || title.includes('research')) {
+      return "Deep exploration of pristine wilderness, wildlife tracking, and nature discovery with expert guides.";
+    }
+    if (category === 'adventure') {
+      return "Thrilling adventures through breathtaking landscapes, challenging treks, and unforgettable experiences.";
+    }
+    if (category === 'cultural') {
+      return "Immersive cultural experiences, traditional interactions, and authentic local lifestyle discovery.";
+    }
+    return "Core adventure activities showcasing the best of your chosen destination with expert local guidance.";
+  };
+
+  const getFinalPhaseDescription = (tourPackage: TourPackage): string => {
+    return "Conclude your adventure with final explorations, souvenir collection, and cherished memories to last a lifetime.";
+  };
+
+  const getArrivalHighlights = (highlights: string[]): string[] => {
+    return highlights.slice(0, Math.ceil(highlights.length * 0.3));
+  };
+
+  const getCoreHighlights = (highlights: string[]): string[] => {
+    const start = Math.ceil(highlights.length * 0.3);
+    return highlights.slice(start, start + Math.ceil(highlights.length * 0.5));
+  };
+
+  const getFinalHighlights = (highlights: string[]): string[] => {
+    const start = Math.ceil(highlights.length * 0.8);
+    return highlights.slice(start);
+  };
+
+  const getArrivalActivities = (tourPackage: TourPackage): string[] => {
+    return ["Welcome ceremony", "Local area orientation", "Cultural introduction", "Adventure briefing"];
+  };
+
+  const getCoreActivities = (tourPackage: TourPackage): string[] => {
+    const title = tourPackage.title.toLowerCase();
+    if (title.includes('trek') || title.includes('adventure')) {
+      return ["Guided expeditions", "Nature exploration", "Photography sessions", "Adventure activities"];
+    }
+    if (title.includes('cultural')) {
+      return ["Village visits", "Cultural performances", "Traditional crafts", "Local interactions"];
+    }
+    return ["Main attractions", "Adventure activities", "Local experiences", "Scenic exploration"];
+  };
+
+  const getFinalActivities = (tourPackage: TourPackage): string[] => {
+    return ["Final adventures", "Souvenir shopping", "Memory sharing", "Farewell celebration"];
+  };
+
+  const generateFallbackOverallItinerary = (): OverallItinerary[] => [
     {
-      id: 1,
-      title: "Day 1-2: Arrival & Local Exploration",
-      description: "Welcome reception, local sightseeing, cultural orientation, and acclimatization activities with guided tours.",
-      pricing: {
-        perPerson: generatePricing('person'),
-        group4: generatePricing('group4'),
-        group10: generatePricing('group10')
-      },
-      source: "TripAdvisor"
+      phase: "Arrival & Welcome",
+      duration: "Day 1",
+      description: "Warm welcome and introduction to your adventure destination.",
+      highlights: ["Local welcome", "Journey briefing"],
+      activities: ["Arrival experience", "Local orientation"]
     },
     {
-      id: 2,
-      title: "Day 3-4: Main Attractions & Adventures",
-      description: "Visit primary destinations, adventure activities, guided tours, local experiences, and cultural immersion.",
-      pricing: {
-        perPerson: generatePricing('person'),
-        group4: generatePricing('group4'),
-        group10: generatePricing('group10')
-      },
-      source: "Thrillophilia"
-    },
-    {
-      id: 3,
-      title: "Final Day: Departure & Memories",
-      description: "Last-minute shopping, farewell activities, departure preparations, and transfer arrangements with souvenirs.",
-      pricing: {
-        perPerson: generatePricing('person'),
-        group4: generatePricing('group4'),
-        group10: generatePricing('group10')
-      },
-      source: "Travel Guide"
+      phase: "Adventure & Exploration",
+      duration: "Main Days",
+      description: "Core adventure activities and unforgettable experiences.",
+      highlights: ["Main attractions", "Adventure activities"],
+      activities: ["Guided tours", "Adventure experiences"]
     }
   ];
 
-  // Calculate end date based on selected start date and package duration
   const calculateEndDate = (startDate: string, duration: string) => {
     if (!startDate) return "";
     const days = parseInt(duration.split(" ")[0]);
@@ -306,37 +363,28 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
 
   if (!tourPackage) return null;
 
-  // Calculate pricing using EXACT same logic as TourPackageCard
   const calculatePricing = () => {
-    // Use the exact same calculation as TourPackageCard
     const basePrice = parseInt(tourPackage.price.replace(/[^\d]/g, ''));
     let displayPrice = basePrice;
     
-    // Check if selected date is weekend (for USD/EUR pricing)
     const isWeekend = selectedDate ? 
       [0, 6].includes(new Date(selectedDate).getDay()) : false;
     
-    // For USD/EUR guests: Add 10% base hike (15% on weekends)
     if (currency.code !== 'INR') {
-      const weekendHike = isWeekend ? 1.15 : 1.10; // 15% weekend, 10% weekday
+      const weekendHike = isWeekend ? 1.15 : 1.10;
       displayPrice = Math.round(basePrice * weekendHike);
     }
     
-    // Get the final converted price (this is what shows as $164)
-    // We need to extract the numeric value from formatPrice result
     const formattedPrice = formatPrice(displayPrice);
-    // Extract just the number from the formatted price (e.g., "$164" -> 164)
     const finalDisplayPrice = parseFloat(formattedPrice.replace(/[^\d.]/g, ''));
     
     const days = parseInt(tourPackage.duration.split(" ")[0]);
     
-    // Calculate all amounts using the final display price
     const subtotal = finalDisplayPrice * guests;
     const gstRate = 0.05;
     const gstAmount = Math.round(subtotal * gstRate);
     const finalTotal = subtotal + gstAmount;
     
-    // For WhatsApp (always in INR)
     const baseRateINR = currency.code !== 'INR' ? displayPrice : basePrice;
     const subtotalINR = baseRateINR * guests;
     const gstAmountINR = Math.round(subtotalINR * gstRate);
@@ -350,7 +398,7 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
       gstRate: gstRate * 100,
       days,
       isWeekend,
-      rawSubtotal: subtotalINR, // for WhatsApp message in INR
+      rawSubtotal: subtotalINR,
       rawGstAmount: gstAmountINR,
       rawTotal: finalTotalINR
     };
@@ -368,7 +416,6 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
       return;
     }
 
-    // Create WhatsApp message for availability inquiry
     const whatsappMessage = `Tour Package Availability Inquiry - XTSY Travellers Hostel & XTSY Luxury
 
 *Package Details:*
@@ -394,7 +441,6 @@ ${tourPackage.highlights.map(highlight => `• ${highlight}`).join('\n')}
 
 Please check availability for these dates and share pricing details for this exclusive tour package.`;
 
-    // Redirect to WhatsApp
     const whatsappURL = `https://wa.me/918837317070?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(whatsappURL, '_blank');
 
@@ -418,7 +464,6 @@ Please check availability for these dates and share pricing details for this exc
         </DialogHeader>
 
         <div className="grid grid-cols-1 gap-6">
-          {/* Large Cover Image */}
           <div className="w-full">
             <div className="relative">
               <OptimizedLazyImage
@@ -432,7 +477,6 @@ Please check availability for these dates and share pricing details for this exc
                   {tourPackage.category}
                 </Badge>
               </div>
-              {/* Price tag removed as requested */}
               <div className="absolute bottom-4 right-4 flex items-center gap-1 bg-black/70 text-white px-2 py-1 rounded">
                 <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
                 <span className="text-sm">{tourPackage.rating}</span>
@@ -440,9 +484,7 @@ Please check availability for these dates and share pricing details for this exc
             </div>
           </div>
 
-          {/* Content Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Package Details */}
             <div className="space-y-6">
               <div>
               <p className="text-gray-600 mb-4">{tourPackage.description}</p>
@@ -474,33 +516,31 @@ Please check availability for these dates and share pricing details for this exc
                 </div>
               </div>
 
-              {/* Itinerary Highlights Section */}
               <div>
-                <h4 className="font-semibold text-gray-900 mb-3">Day-by-Day Itinerary:</h4>
+                <h4 className="font-semibold text-gray-900 mb-3">Overall Itinerary Overview:</h4>
                 {isLoadingItinerary ? (
                   <div className="flex items-center justify-center py-8">
                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div>
-                    <span className="ml-2 text-sm text-gray-600">Creating personalized itinerary...</span>
+                    <span className="ml-2 text-sm text-gray-600">Creating tour overview...</span>
                   </div>
                 ) : (
                   <div className="space-y-4">
-                    {itineraryHighlights.map((item) => (
-                      <Card key={item.id} className="p-4 border border-gray-200 hover:border-orange-300 transition-colors">
+                    {overallItinerary.map((phase, index) => (
+                      <Card key={index} className="p-4 border border-gray-200 hover:border-orange-300 transition-colors">
                         <div className="space-y-3">
                           <div className="flex items-start justify-between">
-                            <h5 className="font-medium text-gray-900 text-sm leading-tight">{item.title}</h5>
-                            <Badge variant="outline" className="text-xs">{item.duration}</Badge>
+                            <h5 className="font-medium text-gray-900 text-sm leading-tight">{phase.phase}</h5>
+                            <Badge variant="outline" className="text-xs">{phase.duration}</Badge>
                           </div>
                           
-                          <p className="text-xs text-gray-600 leading-relaxed">{item.description}</p>
+                          <p className="text-xs text-gray-600 leading-relaxed">{phase.description}</p>
                           
-                          {/* Package Highlights for this day */}
-                          {item.highlights && item.highlights.length > 0 && (
+                          {phase.highlights && phase.highlights.length > 0 && (
                             <div className="bg-orange-50 p-3 rounded-lg">
-                              <p className="text-xs font-medium text-orange-800 mb-2">Today's Package Highlights:</p>
+                              <p className="text-xs font-medium text-orange-800 mb-2">Phase Highlights:</p>
                               <div className="space-y-1">
-                                {item.highlights.map((highlight, index) => (
-                                  <div key={index} className="flex items-center gap-2">
+                                {phase.highlights.map((highlight, hIndex) => (
+                                  <div key={hIndex} className="flex items-center gap-2">
                                     <div className="w-1 h-1 bg-orange-500 rounded-full" />
                                     <span className="text-xs text-orange-700">{highlight}</span>
                                   </div>
@@ -509,13 +549,12 @@ Please check availability for these dates and share pricing details for this exc
                             </div>
                           )}
                           
-                          {/* Activities for this day */}
-                          {item.activities && item.activities.length > 0 && (
+                          {phase.activities && phase.activities.length > 0 && (
                             <div>
-                              <p className="text-xs font-medium text-gray-700 mb-2">Activities:</p>
+                              <p className="text-xs font-medium text-gray-700 mb-2">Key Activities:</p>
                               <div className="grid grid-cols-2 gap-1">
-                                {item.activities.slice(0, 4).map((activity, index) => (
-                                  <div key={index} className="flex items-center gap-1">
+                                {phase.activities.map((activity, aIndex) => (
+                                  <div key={aIndex} className="flex items-center gap-1">
                                     <div className="w-1 h-1 bg-gray-400 rounded-full" />
                                     <span className="text-xs text-gray-600">{activity}</span>
                                   </div>
@@ -527,26 +566,25 @@ Please check availability for these dates and share pricing details for this exc
                       </Card>
                     ))}
                     
-                    {/* Single Pricing Tile at Bottom */}
                     <Card className="bg-orange-50 border-orange-200 mt-6">
                       <CardContent className="p-4">
-                        <h4 className="font-semibold text-gray-900 mb-3 text-center">Package Pricing</h4>
+                        <h4 className="font-semibold text-gray-900 mb-3 text-center">Tour Package Pricing</h4>
                         <div className="grid grid-cols-3 gap-4">
                           <div className="text-center bg-white rounded-lg p-3 border border-orange-100">
                             <p className="text-xs text-gray-500 mb-1">Per Person</p>
-                            <p className="font-bold text-lg text-orange-600">{itineraryHighlights[0]?.pricing.perPerson}</p>
+                            <p className="font-bold text-lg text-orange-600">{formatPrice(parseInt(tourPackage.price.replace(/[^\d]/g, '')))}</p>
                           </div>
                           <div className="text-center bg-white rounded-lg p-3 border border-orange-100">
                             <p className="text-xs text-gray-500 mb-1">Group of 4</p>
-                            <p className="font-bold text-lg text-orange-600">{itineraryHighlights[0]?.pricing.group4}</p>
+                            <p className="font-bold text-lg text-orange-600">{formatPrice(parseInt(tourPackage.price.replace(/[^\d]/g, '')) * 3.5)}</p>
                           </div>
                           <div className="text-center bg-white rounded-lg p-3 border border-orange-100">
                             <p className="text-xs text-gray-500 mb-1">Group of 10</p>
-                            <p className="font-bold text-lg text-orange-600">{itineraryHighlights[0]?.pricing.group10}</p>
+                            <p className="font-bold text-lg text-orange-600">{formatPrice(parseInt(tourPackage.price.replace(/[^\d]/g, '')) * 8.5)}</p>
                           </div>
                         </div>
                         <div className="text-xs text-gray-500 text-center mt-3">
-                          *Itinerary based on package highlights & sourced from travel platforms
+                          *Overall itinerary based on package highlights & exclusive experiences
                         </div>
                       </CardContent>
                     </Card>
@@ -556,7 +594,6 @@ Please check availability for these dates and share pricing details for this exc
             </div>
             </div>
 
-            {/* Booking Form */}
             <div className="space-y-6">
             <Card className="p-6">
               <h3 className="text-lg font-semibold mb-4">Book This Journey</h3>
@@ -668,7 +705,6 @@ Please check availability for these dates and share pricing details for this exc
               </div>
             </Card>
 
-            {/* Pricing Summary removed for exclusive packages */}
             <Card className="p-6 bg-gradient-to-br from-orange-50 to-red-50">
               <div className="text-center space-y-4">
                 <h3 className="text-lg font-semibold">Exclusive Tour Package</h3>
