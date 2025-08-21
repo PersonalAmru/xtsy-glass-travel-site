@@ -426,18 +426,33 @@ const Travel = () => {
     "Tamil Nadu": [
       {
         id: 82,
-        title: "Ooty Kodaikanal Hill Stations",
-        description: "Cool hill stations with botanical gardens and scenic railways",
-        duration: "6 Days",
+        title: "Ooty Hill Station Experience", 
+        description: "Queen of Hill Stations with botanical gardens, toy train, and tea plantations",
+        duration: "3 Days",
         difficulty: "Easy",
-        price: TourPricingService.calculatePrice("6 Days", "leisure", "Easy", "Tamil Nadu", "Apr-Jun, Sep-Nov"),
+        price: TourPricingService.calculatePrice("3 Days", "leisure", "Easy", "Tamil Nadu", "Apr-Jun, Sep-Nov"),
         image: "",
         images: ["", "", ""],
-        rating: 4.5,
+        rating: 4.6,
         category: "leisure",
         location: "Tamil Nadu",
-        highlights: ["Toy Train", "Botanical Gardens", "Lake Views"],
-        bestSeason: "Oct-Dec"
+        highlights: ["Nilgiri Toy Train", "Botanical Gardens", "Rose Garden", "Tea Factory Visit"],
+        bestSeason: "Apr-Jun, Sep-Nov"
+      },
+      {
+        id: 83,
+        title: "Kodaikanal Princess of Hills",
+        description: "Misty mountains, pristine lakes, and cool climate in the Western Ghats",
+        duration: "3 Days", 
+        difficulty: "Easy",
+        price: TourPricingService.calculatePrice("3 Days", "leisure", "Easy", "Tamil Nadu", "Apr-Jun, Sep-Nov"),
+        image: "",
+        images: ["", "", ""],
+        rating: 4.4,
+        category: "leisure",
+        location: "Tamil Nadu",
+        highlights: ["Kodai Lake", "Coaker's Walk", "Bryant Park", "Pillar Rocks"],
+        bestSeason: "Apr-Jun, Sep-Nov"
       }
     ]
   };
