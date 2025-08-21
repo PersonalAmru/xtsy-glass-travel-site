@@ -70,6 +70,7 @@ import guwahatiKamakhyaImg from "@/assets/guwahati-kamakhya-premium.jpg";
 import kohimaWarCemeteryImg from "@/assets/kohima-war-cemetery-premium.jpg";
 import wildernessImg from "@/assets/wilderness-survival-final.jpg";
 import wildernessAuthenticImg from "@/assets/wilderness-survival-authentic.jpg";
+import northeastBikeExpeditionImg from "@/assets/northeast-bike-expedition.jpg";
 // Northeast Ecological Education Program - using Supabase URL
 const northeastEcologicalEducationImg = "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/Complete%20Guide%20To%20Backpacking%20In%20Arunachal%20Pradesh%20-%20Lost%20With%20Purpose.jpg";
 
@@ -120,6 +121,7 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
 
     // XTSY Exclusive packages with authentic images - prioritize specific matches
     if (content.includes('northeast ecological education') || content.includes('ecological education program')) return northeastEcologicalEducationImg;
+    if (content.includes('bike expedition') || content.includes('motorcycle') || content.includes('assam arunachal meghalaya')) return northeastBikeExpeditionImg;
     if (content.includes('biodiversity') || content.includes('research') || content.includes('ecological')) return meghalayaBiodiversityAuthenticImg;
     if (content.includes('wilderness') || content.includes('survival skills') || content.includes('bushcraft')) return wildernessAuthenticImg;
 

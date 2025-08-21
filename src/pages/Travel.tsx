@@ -17,6 +17,7 @@ import OptimizedLazyImage from "@/components/OptimizedLazyImage";
 // Import images for tour packages
 import meghalayaBiodiversityAuthenticImg from "@/assets/meghalaya-biodiversity-authentic.jpg";
 import wildernessSurvivalImg from "@/assets/wilderness-survival-authentic.jpg";
+import northeastBikeExpeditionImg from "@/assets/northeast-bike-expedition.jpg";
 import arunachalTribalImg from "@/assets/arunachal-tribal-premium.jpg";
 import livingRootBridgesImg from "@/assets/living-root-bridges-authentic.jpg";
 import dawkiCrystalClearImg from "@/assets/dawki-crystal-clear-authentic.jpg";
@@ -228,6 +229,22 @@ const Travel = () => {
         location: "Arunachal Pradesh",
         highlights: ["Alpine Yoga", "Buddhist Meditation", "Mountain Trekking", "Monastery Visits", "Tibetan Healing", "High Altitude Training", "Sunrise Sadhana"],
         bestSeason: "Mar-Oct",
+        exclusive: true
+      },
+      {
+        id: 208,
+        title: "XTSY Exclusive: Assam - Arunachal - Meghalaya Bike Expedition",
+        description: "Epic motorcycle adventure across Northeast India's three jewels - from Assam's tea gardens through Arunachal's mountains to Meghalaya's living bridges",
+        duration: "12 Days",
+        difficulty: "Challenging",
+        price: TourPricingService.calculatePrice("12 Days", "exclusive", "Challenging", "Northeast India", "Oct-Apr"),
+        image: northeastBikeExpeditionImg,
+        images: [northeastBikeExpeditionImg, northeastBikeExpeditionImg, northeastBikeExpeditionImg],
+        rating: 4.9,
+        category: "adventure",
+        location: "Northeast India",
+        highlights: ["Royal Enfield Bikes", "Mountain Passes", "Tea Garden Rides", "Tribal Villages", "Living Root Bridges", "Border Roads", "Mechanic Support", "Local Guides"],
+        bestSeason: "Oct-Apr",
         exclusive: true
       }
     ],
