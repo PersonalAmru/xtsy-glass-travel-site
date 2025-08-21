@@ -198,14 +198,14 @@ const HeroSection = () => {
               </div>
               
               <div className="flex items-center justify-center">
-                <div className="w-80 h-20 sm:w-96 sm:h-24 md:w-[32rem] md:h-32 lg:w-[40rem] lg:h-40 xl:w-[48rem] xl:h-48 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 flex items-center justify-center p-2 drop-shadow-lg">
+                <div className="w-96 h-20 sm:w-[32rem] sm:h-24 md:w-[40rem] md:h-32 lg:w-[48rem] lg:h-40 xl:w-[56rem] xl:h-48 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 flex items-center justify-center p-2 drop-shadow-lg">
                   <PerformantImage 
                     src={xtsyColorLogo} 
                     alt="XTSY Header Brand Logo" 
-                    className="w-32 h-12 sm:w-40 sm:h-16 md:w-48 md:h-20 lg:w-56 lg:h-24 xl:w-64 xl:h-28 object-contain"
+                    className="w-40 h-16 sm:w-48 sm:h-20 md:w-56 md:h-24 lg:w-64 lg:h-28 xl:w-72 xl:h-32 object-contain"
                     priority={true}
                     placeholder={
-                      <div className="w-32 h-12 sm:w-40 sm:h-16 md:w-48 md:h-20 lg:w-56 lg:h-24 xl:w-64 xl:h-28 bg-gradient-to-r from-orange-500 to-red-600 rounded-lg flex items-center justify-center">
+                      <div className="w-40 h-16 sm:w-48 sm:h-20 md:w-56 md:h-24 lg:w-64 lg:h-28 xl:w-72 xl:h-32 bg-gradient-to-r from-orange-500 to-red-600 rounded-lg flex items-center justify-center">
                         <span className="text-white font-bold text-sm sm:text-base md:text-lg">XTSY</span>
                       </div>
                     }
