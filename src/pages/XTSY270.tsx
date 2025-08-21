@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -255,8 +254,16 @@ Thank you! 😊`;
                 <div className="absolute inset-0 bg-gradient-to-r from-amber-400/20 via-transparent to-orange-500/20 rounded-lg blur-sm"></div>
                 <div className="absolute inset-[1px] bg-gradient-to-br from-white via-gray-50/98 to-white rounded-lg"></div>
                 
-                <CardContent className="relative p-8 md:p-12 lg:p-16">
-                  <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <CardContent className="relative p-8 md:p-12 lg:p-16 bg-gradient-to-br from-black/95 via-gray-900/90 to-black/95 backdrop-blur-xl border border-white/20 shadow-2xl">
+                  {/* Glassmorphism overlay effects */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/3 rounded-lg pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent rounded-lg pointer-events-none" />
+                  
+                  {/* Luxury glass reflection effects */}
+                  <div className="absolute top-0 left-1/4 w-32 h-32 bg-gradient-to-br from-white/10 to-transparent rounded-full blur-2xl opacity-60" />
+                  <div className="absolute bottom-0 right-1/4 w-24 h-24 bg-gradient-to-tl from-amber-400/20 to-transparent rounded-full blur-xl opacity-40" />
+                  
+                  <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
                     <div className="space-y-8">
                       <div>
                         <h3 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900 leading-tight tracking-tight">
