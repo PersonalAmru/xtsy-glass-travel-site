@@ -221,6 +221,9 @@ Thank you! 😊`;
               <figcaption className="mt-4 text-center text-gray-700 font-medium">
                 India's first 270° panoramic glass house — where architecture meets nature in perfect harmony
               </figcaption>
+              <p className="mt-2 text-center text-sm text-gray-600 font-medium">
+                Architectural marvel purely designed and curated by Team XTSY
+              </p>
             </figure>
           </div>
         </section>
