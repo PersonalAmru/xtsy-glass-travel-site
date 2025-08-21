@@ -495,23 +495,23 @@ const Travel = () => {
           <div className="absolute -top-24 -right-24 w-48 h-48 bg-orange-200/30 rounded-full blur-3xl" />
           <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-red-200/30 rounded-full blur-3xl" />
           
-          <div className="relative z-10 py-20">
-            <div className="container mx-auto px-4">
-              {/* Header */}
-              <div className="text-center mb-12">
-                <div className="inline-block p-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl mb-6">
-                  <h1 className="text-2xl font-bold text-gray-900 mb-4 font-playfair">
+          <div className="relative z-10 py-12 sm:py-20">
+            <div className="container mx-auto px-2 sm:px-4">
+              {/* Header - Mobile Optimized */}
+              <div className="text-center mb-6 sm:mb-12">
+                <div className="inline-block p-3 sm:p-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl mb-4 sm:mb-6">
+                  <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-4 font-playfair">
                     XTSY Travel
                   </h1>
-                  <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto rounded-full" />
+                  <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto rounded-full" />
                 </div>
-                <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8 bg-white/60 backdrop-blur-sm rounded-xl p-6 shadow-lg">
+                <p className="text-base sm:text-xl text-gray-700 max-w-3xl mx-auto mb-4 sm:mb-8 bg-white/60 backdrop-blur-sm rounded-xl p-4 sm:p-6 shadow-lg">
                   Embark on extraordinary journeys with XTSY Travel - your gateway to incredible experiences across India and beyond.
                 </p>
               </div>
 
               {/* Tab Navigation - Mobile Optimized */}
-              <div className="flex justify-center mb-8">
+              <div className="flex justify-center mb-4 sm:mb-8">
                 <div className="bg-white/80 backdrop-blur-sm rounded-lg p-0.5 shadow-md flex w-full max-w-xs sm:max-w-sm">
                   <Button
                     onClick={() => setActiveTab('domestic')}
@@ -545,18 +545,17 @@ const Travel = () => {
               {/* Content */}
               {activeTab === 'domestic' && (
                 <div>
-
                   {/* Filters - Mobile Optimized */}
-                  <div className="mb-6 bg-white/80 backdrop-blur-sm rounded-xl p-3 sm:p-6 shadow-lg">
-                    <div className="flex flex-col gap-3">
+                  <div className="mb-4 sm:mb-6 bg-white/80 backdrop-blur-sm rounded-xl p-2 sm:p-6 shadow-lg">
+                    <div className="flex flex-col gap-2 sm:gap-3">
                       <div className="flex items-center gap-2">
-                        <Filter className="h-4 w-4 text-gray-600" />
-                        <span className="font-semibold text-gray-900 text-sm">Filters:</span>
+                        <Filter className="h-3 w-3 sm:h-4 sm:w-4 text-gray-600" />
+                        <span className="font-semibold text-gray-900 text-xs sm:text-sm">Filters:</span>
                       </div>
                       
-                      <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
+                      <div className="flex flex-col sm:flex-row gap-2">
                         <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                          <SelectTrigger className="w-full sm:w-40 bg-white text-gray-900 border-gray-300 text-sm">
+                          <SelectTrigger className="w-full sm:w-40 bg-white text-gray-900 border-gray-300 text-xs sm:text-sm h-8 sm:h-10">
                             <SelectValue placeholder="Category" />
                           </SelectTrigger>
                           <SelectContent>
@@ -569,7 +568,7 @@ const Travel = () => {
                         </Select>
 
                         <Select value={locationFilter} onValueChange={setLocationFilter}>
-                          <SelectTrigger className="w-full sm:w-40 bg-white text-gray-900 border-gray-300 text-sm">
+                          <SelectTrigger className="w-full sm:w-40 bg-white text-gray-900 border-gray-300 text-xs sm:text-sm h-8 sm:h-10">
                             <SelectValue placeholder="Location" />
                           </SelectTrigger>
                           <SelectContent>
@@ -584,7 +583,7 @@ const Travel = () => {
                         <Button 
                           variant="outline" 
                           onClick={clearFilters}
-                          className="bg-white border-2 border-orange-300 text-orange-700 hover:bg-orange-50 hover:border-orange-400 hover:text-orange-800 font-medium px-3 py-2 shadow-sm transition-all duration-200 text-sm w-full sm:w-auto"
+                          className="bg-white border-2 border-orange-300 text-orange-700 hover:bg-orange-50 hover:border-orange-400 hover:text-orange-800 font-medium px-2 sm:px-3 py-1 sm:py-2 shadow-sm transition-all duration-200 text-xs sm:text-sm w-full sm:w-auto h-8 sm:h-10"
                         >
                           Clear Filters
                         </Button>
@@ -617,19 +616,19 @@ const Travel = () => {
                     const info = stateInfo[state] || { icon: "🗺️", desc: "Incredible Destination" };
 
                     return (
-                      <div key={state} className="mb-8 sm:mb-16">
-                        <div className="text-center mb-4 sm:mb-8">
-                          <div className="inline-flex items-center gap-2 p-2 sm:p-3 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg mb-2 sm:mb-4">
-                            <span className="text-lg sm:text-2xl">{info.icon}</span>
-                            <h3 className="text-lg sm:text-2xl font-bold text-gray-900">
+                      <div key={state} className="mb-4 sm:mb-8">
+                        <div className="text-center mb-2 sm:mb-6">
+                          <div className="inline-flex items-center gap-1 sm:gap-2 p-1.5 sm:p-3 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg mb-1 sm:mb-4">
+                            <span className="text-base sm:text-2xl">{info.icon}</span>
+                            <h3 className="text-base sm:text-2xl font-bold text-gray-900">
                               {state}
                             </h3>
                           </div>
-                          <p className="text-gray-600 text-sm sm:text-lg">
+                          <p className="text-gray-600 text-xs sm:text-lg">
                             {info.desc}
                           </p>
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 lg:gap-6">
                           {filteredStatePackages.map((itinerary) => (
                             <TourPackageCard
                               key={itinerary.id}
@@ -643,8 +642,8 @@ const Travel = () => {
                   })}
 
                   {filteredItineraries.length === 0 && (
-                    <div className="text-center py-12">
-                      <p className="text-gray-500 text-lg">No packages found matching your filters.</p>
+                    <div className="text-center py-8 sm:py-12">
+                      <p className="text-gray-500 text-base sm:text-lg">No packages found matching your filters.</p>
                       <Button 
                         onClick={clearFilters}
                         className="mt-4 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white"
@@ -658,32 +657,32 @@ const Travel = () => {
 
               {activeTab === 'international' && (
                 <div className="max-w-6xl mx-auto">
-                  {/* Header Section */}
-                  <div className="text-center mb-12">
-                    <div className="inline-flex items-center gap-3 p-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl mb-6">
-                      <span className="text-4xl">🌏</span>
-                      <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+                  {/* Header Section - Mobile Optimized */}
+                  <div className="text-center mb-8 sm:mb-12">
+                    <div className="inline-flex items-center gap-2 sm:gap-3 p-3 sm:p-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl mb-4 sm:mb-6">
+                      <span className="text-2xl sm:text-4xl">🌏</span>
+                      <h2 className="text-xl sm:text-3xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
                         XTSY Asia & Europe
                       </h2>
-                      <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                      <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-bold">
                         Launching Soon
                       </span>
                     </div>
-                    <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                    <p className="text-sm sm:text-lg text-gray-600 max-w-3xl mx-auto px-4">
                       Get ready to explore the world with XTSY! We're expanding to bring you unforgettable experiences across Asia and Europe.
                     </p>
                   </div>
 
-                  {/* Asian Countries Section */}
-                  <div className="mb-16">
-                    <div className="text-center mb-8">
-                      <h3 className="text-2xl font-bold text-gray-900 mb-2 flex items-center justify-center gap-2">
+                  {/* Asian Countries Section - Mobile Optimized */}
+                  <div className="mb-12 sm:mb-16">
+                    <div className="text-center mb-6 sm:mb-8">
+                      <h3 className="text-lg sm:text-2xl font-bold text-gray-900 mb-2 flex items-center justify-center gap-2">
                         🏯 Asian Destinations
                       </h3>
-                      <p className="text-gray-600">Discover the diverse cultures and landscapes of Asia</p>
+                      <p className="text-gray-600 text-sm sm:text-base">Discover the diverse cultures and landscapes of Asia</p>
                     </div>
                     
-                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-6 gap-4 mb-8">
+                     <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-4 mb-6 sm:mb-8 px-2 sm:px-0">
                        {[
                          { country: "Japan", flag: "🇯🇵", highlight: "Cherry Blossoms & Culture" },
                          { country: "Thailand", flag: "🇹🇭", highlight: "Tropical Paradise" },
@@ -699,17 +698,17 @@ const Travel = () => {
                          { country: "Nepal", flag: "🇳🇵", highlight: "Himalayan Peaks" }
                        ].map((item) => (
                          <Card key={item.country} className="group hover:shadow-lg transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200">
-                           <CardContent className="p-4 text-center">
+                           <CardContent className="p-2 sm:p-4 text-center">
                                <div 
-                                 className="text-5xl lg:text-6xl mb-3 leading-none flag-container"
+                                 className="text-2xl sm:text-4xl lg:text-5xl mb-1 sm:mb-3 leading-none flag-container"
                                  style={{
                                    fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "EmojiOne Color", "Twemoji Mozilla", "Android Emoji", sans-serif',
-                                   fontSize: 'clamp(3rem, 5vw, 4rem)',
+                                   fontSize: 'clamp(1.5rem, 4vw, 3rem)',
                                    lineHeight: '1',
                                    display: 'flex',
                                    alignItems: 'center',
                                    justifyContent: 'center',
-                                   height: '4rem',
+                                   height: '2rem sm:h-16',
                                    width: '100%',
                                    WebkitFontFeatureSettings: '"liga", "kern", "clig", "calt"',
                                    fontFeatureSettings: '"liga", "kern", "clig", "calt"',
@@ -722,10 +721,10 @@ const Travel = () => {
                                >
                                  {item.flag}
                                </div>
-                             <h4 className="font-semibold text-gray-900 mb-1 text-lg">{item.country}</h4>
-                             <p className="text-sm text-gray-600 mb-3">{item.highlight}</p>
-                             <div className="mt-2">
-                               <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Soon</span>
+                             <h4 className="font-semibold text-gray-900 mb-1 text-xs sm:text-lg">{item.country}</h4>
+                             <p className="text-xs sm:text-sm text-gray-600 mb-1 sm:mb-3 leading-tight">{item.highlight}</p>
+                             <div className="mt-1 sm:mt-2">
+                               <span className="text-xs bg-yellow-100 text-yellow-800 px-1 sm:px-2 py-0.5 sm:py-1 rounded-full">Soon</span>
                              </div>
                            </CardContent>
                          </Card>
@@ -733,16 +732,16 @@ const Travel = () => {
                     </div>
                   </div>
 
-                  {/* European Countries Section */}
-                  <div className="mb-16">
-                    <div className="text-center mb-8">
-                      <h3 className="text-2xl font-bold text-gray-900 mb-2 flex items-center justify-center gap-2">
+                  {/* European Countries Section - Mobile Optimized */}
+                  <div className="mb-12 sm:mb-16">
+                    <div className="text-center mb-6 sm:mb-8">
+                      <h3 className="text-lg sm:text-2xl font-bold text-gray-900 mb-2 flex items-center justify-center gap-2">
                         🏰 European Destinations
                       </h3>
-                      <p className="text-gray-600">Experience the rich history and diverse cultures of Europe</p>
+                      <p className="text-gray-600 text-sm sm:text-base">Experience the rich history and diverse cultures of Europe</p>
                     </div>
                     
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-6 gap-4 mb-8">
+                    <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-4 mb-6 sm:mb-8 px-2 sm:px-0">
                        {[
                          { country: "France", flag: "🇫🇷", highlight: "Romance & Cuisine" },
                          { country: "Italy", flag: "🇮🇹", highlight: "Art & History" },
@@ -758,17 +757,17 @@ const Travel = () => {
                          { country: "Norway", flag: "🇳🇴", highlight: "Fjords & Aurora" }
                        ].map((item) => (
                          <Card key={item.country} className="group hover:shadow-lg transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200">
-                           <CardContent className="p-4 text-center">
+                           <CardContent className="p-2 sm:p-4 text-center">
                                <div 
-                                 className="text-5xl lg:text-6xl mb-3 leading-none flag-container"
+                                 className="text-2xl sm:text-4xl lg:text-5xl mb-1 sm:mb-3 leading-none flag-container"
                                  style={{
                                    fontFamily: '"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "EmojiOne Color", "Twemoji Mozilla", "Android Emoji", sans-serif',
-                                   fontSize: 'clamp(3rem, 5vw, 4rem)',
+                                   fontSize: 'clamp(1.5rem, 4vw, 3rem)',
                                    lineHeight: '1',
                                    display: 'flex',
                                    alignItems: 'center',
                                    justifyContent: 'center',
-                                   height: '4rem',
+                                   height: '2rem sm:h-16',
                                    width: '100%',
                                    WebkitFontFeatureSettings: '"liga", "kern", "clig", "calt"',
                                    fontFeatureSettings: '"liga", "kern", "clig", "calt"',
@@ -781,10 +780,10 @@ const Travel = () => {
                                >
                                  {item.flag}
                                </div>
-                             <h4 className="font-semibold text-gray-900 mb-1 text-lg">{item.country}</h4>
-                             <p className="text-sm text-gray-600 mb-3">{item.highlight}</p>
-                             <div className="mt-2">
-                               <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Soon</span>
+                             <h4 className="font-semibold text-gray-900 mb-1 text-xs sm:text-lg">{item.country}</h4>
+                             <p className="text-xs sm:text-sm text-gray-600 mb-1 sm:mb-3 leading-tight">{item.highlight}</p>
+                             <div className="mt-1 sm:mt-2">
+                               <span className="text-xs bg-blue-100 text-blue-800 px-1 sm:px-2 py-0.5 sm:py-1 rounded-full">Soon</span>
                              </div>
                            </CardContent>
                          </Card>
@@ -792,18 +791,18 @@ const Travel = () => {
                     </div>
                   </div>
 
-                  {/* Newsletter Signup Section */}
-                  <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl p-8 text-center text-white">
-                    <Bell className="h-16 w-16 mx-auto mb-4 opacity-90" />
-                    <h3 className="text-2xl font-bold mb-4">Be the First to Know!</h3>
-                    <p className="text-lg mb-6 opacity-90">
+                  {/* Newsletter Signup Section - Mobile Optimized */}
+                  <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl p-4 sm:p-8 text-center text-white mx-2 sm:mx-0">
+                    <Bell className="h-12 sm:h-16 w-12 sm:w-16 mx-auto mb-3 sm:mb-4 opacity-90" />
+                    <h3 className="text-lg sm:text-2xl font-bold mb-3 sm:mb-4">Be the First to Know!</h3>
+                    <p className="text-sm sm:text-lg mb-4 sm:mb-6 opacity-90">
                       Join our newsletter to get exclusive early access to XTSY Asia & Europe packages, special discounts, and travel tips.
                     </p>
                     <Button 
                       onClick={handleNewsletterClick}
-                      className="bg-white text-blue-600 hover:bg-gray-100 font-semibold px-8 py-3 text-lg"
+                      className="bg-white text-blue-600 hover:bg-gray-100 font-semibold px-4 sm:px-8 py-2 sm:py-3 text-sm sm:text-lg"
                     >
-                      <Mail className="h-5 w-5 mr-2" />
+                      <Mail className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
                       Join Newsletter
                     </Button>
                   </div>
