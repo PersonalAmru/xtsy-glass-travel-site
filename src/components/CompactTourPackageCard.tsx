@@ -5,22 +5,9 @@ import { Badge } from "@/components/ui/badge";
 import { Star, MapPin, Clock, TrendingUp } from "lucide-react";
 import { useApp } from "@/contexts/AppContext";
 import OptimizedLazyImage from "./OptimizedLazyImage";
+import { getRelevantTourImage, type TourPackage } from "@/utils/imageSelection";
 
-interface TourPackage {
-  id: number;
-  title: string;
-  description: string;
-  duration: string;
-  difficulty: string;
-  price: string;
-  image: string;
-  rating: number;
-  category: string;
-  location: string;
-  highlights: string[];
-  bestSeason: string;
-  exclusive?: boolean;
-}
+// Remove interface declaration since it's imported from utils
 
 interface CompactTourPackageCardProps {
   tourPackage: TourPackage;
@@ -48,8 +35,8 @@ const CompactTourPackageCard: React.FC<CompactTourPackageCardProps> = ({
 
   const displayPrice = calculateDisplayPrice();
 
-  // Fallback image
-  const imageUrl = tourPackage.image || "/placeholder.svg";
+  // Get intelligent image selection
+  const imageUrl = getRelevantTourImage(tourPackage);
 
   return (
     <Card 
@@ -61,7 +48,8 @@ const CompactTourPackageCard: React.FC<CompactTourPackageCardProps> = ({
           src={imageUrl}
           alt={tourPackage.title}
           className="w-full h-20 sm:h-24 object-cover group-hover:scale-110 transition-transform duration-300"
-          threshold={0.1}
+          threshold={0.05}
+          priority={false}
         />
         
         {/* Compact badges */}

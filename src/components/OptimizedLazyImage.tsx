@@ -8,6 +8,7 @@ interface OptimizedLazyImageProps {
   fallback?: string;
   placeholder?: React.ReactNode;
   threshold?: number;
+  priority?: boolean;
 }
 
 const OptimizedLazyImage: React.FC<OptimizedLazyImageProps> = ({
@@ -16,7 +17,8 @@ const OptimizedLazyImage: React.FC<OptimizedLazyImageProps> = ({
   className,
   fallback = '/placeholder.svg',
   placeholder,
-  threshold = 0.1
+  threshold = 0.05,
+  priority = false
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(false);
@@ -24,10 +26,16 @@ const OptimizedLazyImage: React.FC<OptimizedLazyImageProps> = ({
   const imgRef = useRef<HTMLImageElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Use the Supabase storage URL with Arunachal Pradesh image as default
-  const imageSource = src || 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/Complete%20Guide%20To%20Backpacking%20In%20Arunachal%20Pradesh%20-%20Lost%20With%20Purpose.jpg';
+  // Validate and use provided src or fallback
+  const imageSource = src && src.trim() !== '' ? src : fallback;
 
   useEffect(() => {
+    // If priority is true, load immediately
+    if (priority) {
+      setIsInView(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -35,7 +43,7 @@ const OptimizedLazyImage: React.FC<OptimizedLazyImageProps> = ({
           observer.disconnect();
         }
       },
-      { threshold, rootMargin: '50px' }
+      { threshold, rootMargin: '100px' }
     );
 
     if (containerRef.current) {
@@ -43,7 +51,7 @@ const OptimizedLazyImage: React.FC<OptimizedLazyImageProps> = ({
     }
 
     return () => observer.disconnect();
-  }, [threshold]);
+  }, [threshold, priority]);
 
   const handleLoad = () => {
     setIsLoaded(true);
@@ -58,15 +66,15 @@ const OptimizedLazyImage: React.FC<OptimizedLazyImageProps> = ({
     <div ref={containerRef} className={cn("relative overflow-hidden", className)}>
       {!isInView ? (
         placeholder || (
-          <div className="w-full h-full bg-gray-100 animate-pulse flex items-center justify-center">
-            <div className="text-gray-400 text-sm">Loading...</div>
+          <div className="w-full h-full bg-muted animate-pulse flex items-center justify-center">
+            <div className="text-muted-foreground text-xs">Loading...</div>
           </div>
         )
       ) : (
         <>
           {!isLoaded && (
-            <div className="absolute inset-0 bg-gray-100 animate-pulse flex items-center justify-center">
-              <div className="text-gray-400 text-sm">Loading...</div>
+            <div className="absolute inset-0 bg-muted animate-pulse flex items-center justify-center z-10">
+              <div className="text-muted-foreground text-xs">Loading...</div>
             </div>
           )}
           <img
@@ -79,7 +87,7 @@ const OptimizedLazyImage: React.FC<OptimizedLazyImageProps> = ({
             )}
             onLoad={handleLoad}
             onError={handleError}
-            loading="lazy"
+            loading={priority ? "eager" : "lazy"}
             crossOrigin="anonymous"
           />
         </>
