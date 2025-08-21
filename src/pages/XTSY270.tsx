@@ -154,10 +154,10 @@ Thank you! 😊`;
 
             {/* Hero Title */}
             <div className="text-center mb-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-muted-foreground leading-tight">
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent leading-tight">
                 XTSY 270°
               </h1>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-muted-foreground">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 Panorama Glass Ensuite
               </h2>
               <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
