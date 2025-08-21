@@ -187,7 +187,7 @@ const Travel = () => {
         duration: "8 Days",
         difficulty: "Easy",
         price: TourPricingService.calculatePrice("8 Days", "exclusive", "Easy", "Northeast India", "Oct-Mar"),
-        image: dawkiUmngotRiver,
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/Complete%20Guide%20To%20Backpacking%20In%20Arunachal%20Pradesh%20-%20Lost%20With%20Purpose.jpg",
         images: [meghalayaLivingRootBridges, cherrapunjiNohkalikaiFalls, dawkiUmngotRiver],
         rating: 4.9,
         category: "educational",
