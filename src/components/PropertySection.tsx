@@ -55,16 +55,16 @@ const PropertySection = ({ title, description, rooms, propertyType, onSelectRoom
 
   return (
     <div className="w-full mb-12">
-      {/* Property Header - Smaller Glass Card */}
+      {/* Property Header - Compact Glass Card */}
       <div className="section-header">
-        <div className="glass-card inline-block px-4 py-3 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 shadow-lg max-w-2xl">
-          <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-2 font-playfair text-center">
+        <div className="glass-card inline-block px-3 py-2 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 shadow-lg max-w-lg">
+          <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-1 font-playfair text-center">
             {title}
           </h3>
-          <p className="text-xs sm:text-sm md:text-base text-gray-700 text-center leading-relaxed max-w-xl mx-auto mb-2">
+          <p className="text-xs sm:text-sm text-gray-600 text-center font-medium">
             {description}
           </p>
-          <div className="w-16 sm:w-20 h-0.5 bg-gradient-to-r from-orange-500 to-red-600 mx-auto mt-2 rounded-full" />
+          <div className="w-12 sm:w-16 h-0.5 bg-gradient-to-r from-orange-500 to-red-600 mx-auto mt-2 rounded-full" />
         </div>
       </div>
 

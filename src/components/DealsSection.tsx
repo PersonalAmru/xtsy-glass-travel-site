@@ -48,12 +48,15 @@ const DealsSection = () => {
 
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-3 sm:mb-4 font-serif-sans px-4">
-            Deals & Offers
-          </h2>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto font-seasons px-4">
-            Choose from our range of accommodations designed for every traveler's needs and budget
-          </p>
+          <div className="inline-block px-4 py-3 bg-white/90 backdrop-blur-sm rounded-xl shadow-xl mb-6 max-w-lg">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-1 font-serif-sans">
+              Deals & Offers
+            </h2>
+            <p className="text-sm sm:text-base text-gray-600 font-seasons">
+              Special accommodations for every traveler's needs
+            </p>
+            <div className="w-16 sm:w-20 h-0.5 bg-gradient-to-r from-orange-500 to-red-600 mx-auto mt-2 rounded-full" />
+          </div>
         </div>
 
         {/* Enhanced Tab Toggle Buttons - Mobile Optimized */}
