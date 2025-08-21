@@ -55,16 +55,16 @@ const PropertySection = ({ title, description, rooms, propertyType, onSelectRoom
 
   return (
     <div className="w-full mb-12">
-      {/* Property Header - Center Aligned */}
+      {/* Property Header - Center Aligned with Glassmorphism */}
       <div className="section-header">
-        <div className="section-title-card">
-          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 mb-2 sm:mb-3 font-playfair px-4">
+        <div className="glass-card inline-block px-8 py-6 rounded-3xl bg-white/20 backdrop-blur-md border border-white/30 shadow-xl max-w-4xl">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 font-playfair text-center">
             {title}
           </h3>
-          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4 mb-2">
+          <p className="text-sm sm:text-base md:text-lg text-gray-700 text-center leading-relaxed max-w-2xl mx-auto mb-3">
             {description}
           </p>
-          <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-orange-500 to-red-600 mx-auto mt-4 rounded-full" />
+          <div className="w-20 sm:w-28 h-0.5 bg-gradient-to-r from-orange-500 to-red-600 mx-auto mt-4 rounded-full" />
         </div>
       </div>
 
