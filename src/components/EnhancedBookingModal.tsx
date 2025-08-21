@@ -334,20 +334,67 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
       'MEGHALAYA20': 20,
     };
 
-    if (validPromoCodes[promoCode.toUpperCase()]) {
-      setPromoDiscount(validPromoCodes[promoCode.toUpperCase()]);
-      setPromoApplied(true);
-      toast({
-        title: "Promo code applied!",
-        description: `You got ${validPromoCodes[promoCode.toUpperCase()]}% discount`,
-      });
-    } else {
+    const code = promoCode.toUpperCase();
+    
+    // Check if promo code exists
+    if (!validPromoCodes[code]) {
       toast({
         title: "Invalid promo code",
         description: "Please check your promo code and try again",
         variant: "destructive",
       });
+      return;
     }
+
+    // Calculate total guests and beds from selected rooms
+    const totalGuests = selectedRooms.reduce((sum, room) => sum + room.selection.guests, 0);
+    const totalBeds = selectedRooms.reduce((sum, room) => {
+      if (room.type === 'dorm') {
+        return sum + room.selection.guests; // For dorms, each guest gets a bed
+      } else {
+        return sum + room.selection.rooms; // For private rooms, assume 1 bed per room (can be adjusted)
+      }
+    }, 0);
+    
+    // Check eligibility conditions for specific promo codes
+    if (code === 'XTSY10') {
+      // Condition: Min 4 guests, 4 beds, 2+ nights
+      const errors = [];
+      if (totalGuests < 4) errors.push(`minimum 4 guests (current: ${totalGuests})`);
+      if (totalBeds < 4) errors.push(`minimum 4 beds (current: ${totalBeds})`);
+      if (nights < 2) errors.push(`minimum 2 nights (current: ${nights})`);
+      
+      if (errors.length > 0) {
+        toast({
+          title: "Promo code not eligible",
+          description: `XTSY10 requires: ${errors.join(', ')}`,
+          variant: "destructive",
+        });
+        return;
+      }
+    }
+    
+    if (code === 'WELCOME15') {
+      // Condition: Only for 270° Panorama Glass Ensuite room
+      const hasPanoramaRoom = selectedRooms.some(room => room.id === '270-panorama-glass-ensuite');
+      
+      if (!hasPanoramaRoom) {
+        toast({
+          title: "Promo code not eligible",
+          description: "WELCOME15 is exclusive to 270° Panorama Glass Ensuite room only",
+          variant: "destructive",
+        });
+        return;
+      }
+    }
+
+    // Apply promo code if all conditions are met
+    setPromoDiscount(validPromoCodes[code]);
+    setPromoApplied(true);
+    toast({
+      title: "Promo code applied!",
+      description: `You got ${validPromoCodes[code]}% discount`,
+    });
   };
 
   const removePromoCode = () => {
@@ -728,9 +775,15 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                          Price Summary
                        </h3>
                        
-                       {/* Promocode Section */}
+                       {/* Promocode Section with Eligibility Info */}
                        <div className="mb-4 p-3 bg-white rounded-lg border">
                          <label className="block text-sm font-medium text-gray-700 mb-2">Promo Code</label>
+                         
+                         {/* Eligibility Information */}
+                         <div className="mb-3 text-xs text-gray-600 space-y-1">
+                           <div><strong>XTSY10 (10% off):</strong> Min 4 guests, 4 beds, 2+ nights</div>
+                           <div><strong>WELCOME15 (15% off):</strong> Exclusive for 270° Panorama Glass Ensuite</div>
+                         </div>
                          {!promoApplied ? (
                            <div className="flex gap-2">
                              <input
@@ -1035,9 +1088,15 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                       Price Summary
                     </h4>
                     
-                    {/* Promocode Section */}
-                    <div className="mb-4 p-3 bg-gray-50 rounded-lg border">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Promo Code</label>
+                     {/* Promocode Section with Eligibility Info */}
+                     <div className="mb-4 p-3 bg-gray-50 rounded-lg border">
+                       <label className="block text-sm font-medium text-gray-700 mb-2">Promo Code</label>
+                       
+                       {/* Eligibility Information */}
+                       <div className="mb-3 text-xs text-gray-600 space-y-1">
+                         <div><strong>XTSY10 (10% off):</strong> Min 4 guests, 4 beds, 2+ nights</div>
+                         <div><strong>WELCOME15 (15% off):</strong> Exclusive for 270° Panorama Glass Ensuite</div>
+                       </div>
                       {!promoApplied ? (
                         <div className="flex gap-2">
                           <input
