@@ -16,7 +16,7 @@ import OptimizedLazyImage from "@/components/OptimizedLazyImage";
 
 // Import images for tour packages
 import meghalayaBiodiversityAuthenticImg from "@/assets/meghalaya-biodiversity-authentic.jpg";
-import wildernessSurvivalImg from "@/assets/wilderness-survival-final.jpg";
+import wildernessSurvivalImg from "@/assets/wilderness-survival-authentic.jpg";
 import arunachalTribalImg from "@/assets/arunachal-tribal-festival.jpg";
 import livingRootBridgesImg from "@/assets/living-root-bridges-authentic.jpg";
 import dawkiCrystalClearImg from "@/assets/dawki-crystal-clear-authentic.jpg";
