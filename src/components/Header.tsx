@@ -205,10 +205,10 @@ const Header = () => {
             {/* Mobile and Tablet Navigation */}
             {isMenuOpen && (
               <div className="lg:hidden py-4 border-t border-white/20 safe-area-padding">
-                <nav className="flex flex-col space-y-3">
+                <nav className="flex flex-col px-4 sm:px-6">
                   <Link 
                     to="/" 
-                    className="text-white hover:text-primary transition-colors"
+                    className="px-4 py-3 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200 font-medium touch-target text-left"
                     onClick={() => {
                       setIsMenuOpen(false);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -218,7 +218,7 @@ const Header = () => {
                   </Link>
                   <Link 
                     to="/about" 
-                    className="text-white hover:text-primary transition-colors"
+                    className="px-4 py-3 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200 font-medium touch-target text-left"
                     onClick={() => {
                       setIsMenuOpen(false);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -228,7 +228,7 @@ const Header = () => {
                   </Link>
                   <Link 
                     to="/gallery" 
-                    className="text-white hover:text-primary transition-colors"
+                    className="px-4 py-3 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200 font-medium touch-target text-left"
                     onClick={() => {
                       setIsMenuOpen(false);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -236,41 +236,41 @@ const Header = () => {
                   >
                     Gallery
                   </Link>
-                   <Link 
-                     to="/deals" 
-                     className="text-white hover:text-primary transition-colors"
-                     onClick={() => {
-                       setIsMenuOpen(false);
-                       window.scrollTo({ top: 0, behavior: 'smooth' });
-                     }}
-                   >
-                     Deals
-                   </Link>
-                   <Link 
-                     to={XTSY270_DATA.path} 
-                     className="text-white hover:text-primary transition-colors"
-                     aria-label={`${XTSY270_DATA.name} details`}
-                     title={XTSY270_DATA.seoTitle}
-                     onClick={() => {
-                       setIsMenuOpen(false);
-                       window.scrollTo({ top: 0, behavior: 'smooth' });
-                     }}
-                   >
-                     {XTSY270_DATA.shortName}
-                   </Link>
+                  <Link 
+                    to="/deals" 
+                    className="px-4 py-3 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200 font-medium touch-target text-left"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                  >
+                    Deals
+                  </Link>
+                  <Link 
+                    to={XTSY270_DATA.path} 
+                    className="px-4 py-3 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200 font-medium touch-target text-left"
+                    aria-label={`${XTSY270_DATA.name} details`}
+                    title={XTSY270_DATA.seoTitle}
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                  >
+                    {XTSY270_DATA.shortName}
+                  </Link>
                   
-                   <button
+                  <button
                     onClick={() => {
                       setIsTravelModalOpen(true);
                       setIsMenuOpen(false);
                     }}
-                    className="text-white hover:text-primary transition-colors text-left"
+                    className="px-4 py-3 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200 font-medium touch-target text-left"
                   >
                     Travel
                   </button>
                 
                   {/* Currency Selector for Mobile */}
-                  <div className="pt-3 pb-2 border-t border-white/20">
+                  <div className="mx-4 mt-4 pt-4 pb-2 border-t border-white/20">
                     <div className="text-sm font-medium text-white/80 mb-3">Select Currency:</div>
                     <CurrencySelector 
                       className="w-full bg-black/50 border border-white/20 rounded-md text-white" 
@@ -278,30 +278,30 @@ const Header = () => {
                     />
                   </div>
                 
-                {user ? (
-                  <div className="pt-4 border-t border-white/20">
-                    <div className="text-sm text-white/60">
-                      Signed in as {user.user_metadata?.full_name || user.email}
+                  {user ? (
+                    <div className="mx-4 pt-4 border-t border-white/20">
+                      <div className="text-sm text-white/60 px-4 py-2">
+                        Signed in as {user.user_metadata?.full_name || user.email}
+                      </div>
                     </div>
-                  </div>
-                ) : (
-                  <div className="pt-4 border-t border-white/20 space-y-2">
-                    <Button 
-                      variant="ghost" 
-                      className="w-full justify-start text-green-400 hover:text-green-300 hover:bg-white/10"
-                      onClick={() => {
-                        handleAuthClick('newsletter');
-                        setIsMenuOpen(false);
-                      }}
-                    >
-                      <Users className="h-4 w-4 mr-2" />
-                      Newsletter
-                    </Button>
-                  </div>
-                )}
-              </nav>
-            </div>
-          )}
+                  ) : (
+                    <div className="mx-4 pt-4 border-t border-white/20">
+                      <Button 
+                        variant="ghost" 
+                        className="w-full justify-start px-4 py-3 text-green-400 hover:text-green-300 hover:bg-white/10 rounded-md touch-target"
+                        onClick={() => {
+                          handleAuthClick('newsletter');
+                          setIsMenuOpen(false);
+                        }}
+                      >
+                        <Users className="h-4 w-4 mr-2" />
+                        Newsletter
+                      </Button>
+                    </div>
+                  )}
+                </nav>
+              </div>
+            )}
         </div>
       </header>
 
