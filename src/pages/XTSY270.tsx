@@ -318,37 +318,37 @@ Thank you! 😊`;
               </div>
               <Card className="glass-card bg-white/80 backdrop-blur-md border-white/60 shadow-2xl relative overflow-hidden">
                 {/* Decorative gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-amber-200/20 via-transparent to-orange-200/20 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-900/10 via-black/5 to-gray-800/15 pointer-events-none" />
                 
-                <CardContent className="p-8 md:p-12 relative z-10">
+                <CardContent className="p-8 md:p-12 relative z-10 bg-gradient-to-br from-gray-900/80 via-black/70 to-gray-800/85 backdrop-blur-lg">
                   <div className="grid lg:grid-cols-3 gap-8">
-                    <div className="glass-card bg-white/90 border-white/70 text-gray-800 font-semibold backdrop-blur-md text-center p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group">
+                    <div className="bg-gradient-to-br from-gray-900/90 via-black/80 to-gray-800/90 border border-gray-700/50 text-white font-semibold backdrop-blur-md text-center p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group">
                       <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300">
-                        <Users className="w-12 h-12 text-primary mx-auto" />
+                        <Users className="w-12 h-12 text-amber-400 mx-auto" />
                       </div>
-                      <h3 className="text-2xl font-bold mb-4 text-gray-900">Exclusive Occupancy</h3>
-                      <p className="text-gray-800 text-lg font-medium leading-relaxed">
-                        Intimate sanctuary for up to <span className="font-bold text-primary">2 distinguished guests</span> seeking unparalleled luxury and privacy
+                      <h3 className="text-2xl font-bold mb-4 text-white">Exclusive Occupancy</h3>
+                      <p className="text-gray-200 text-lg font-medium leading-relaxed">
+                        Intimate sanctuary for up to <span className="font-bold text-amber-400">2 distinguished guests</span> seeking unparalleled luxury and privacy
                       </p>
                     </div>
                     
-                    <div className="glass-card bg-white/90 border-white/70 text-gray-800 font-semibold backdrop-blur-md text-center p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group">
+                    <div className="bg-gradient-to-br from-gray-900/90 via-black/80 to-gray-800/90 border border-gray-700/50 text-white font-semibold backdrop-blur-md text-center p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group">
                       <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300">
-                        <Bed className="w-12 h-12 text-primary mx-auto" />
+                        <Bed className="w-12 h-12 text-amber-400 mx-auto" />
                       </div>
-                      <h3 className="text-2xl font-bold mb-4 text-gray-900">Premium Bedding</h3>
-                      <p className="text-gray-800 text-lg font-medium leading-relaxed">
-                        Sumptuous <span className="font-bold text-primary">Queen bed</span> adorned with the finest Egyptian cotton linens and handcrafted comfort
+                      <h3 className="text-2xl font-bold mb-4 text-white">Premium Bedding</h3>
+                      <p className="text-gray-200 text-lg font-medium leading-relaxed">
+                        Sumptuous <span className="font-bold text-amber-400">Queen bed</span> adorned with the finest Egyptian cotton linens and handcrafted comfort
                       </p>
                     </div>
                     
-                    <div className="glass-card bg-white/90 border-white/70 text-gray-800 font-semibold backdrop-blur-md text-center p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group">
+                    <div className="bg-gradient-to-br from-gray-900/90 via-black/80 to-gray-800/90 border border-gray-700/50 text-white font-semibold backdrop-blur-md text-center p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group">
                       <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300">
-                        <Bath className="w-12 h-12 text-primary mx-auto" />
+                        <Bath className="w-12 h-12 text-amber-400 mx-auto" />
                       </div>
-                      <h3 className="text-2xl font-bold mb-4 text-gray-900">Luxury Ensuite</h3>
-                      <p className="text-gray-800 text-lg font-medium leading-relaxed">
-                        Private spa-inspired bathroom with <span className="font-bold text-primary">panoramic views</span> and premium Italian fixtures
+                      <h3 className="text-2xl font-bold mb-4 text-white">Luxury Ensuite</h3>
+                      <p className="text-gray-200 text-lg font-medium leading-relaxed">
+                        Private spa-inspired bathroom with <span className="font-bold text-amber-400">panoramic views</span> and premium Italian fixtures
                       </p>
                     </div>
                   </div>
