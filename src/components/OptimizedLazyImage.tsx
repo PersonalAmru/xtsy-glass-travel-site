@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { XTSY270_DATA } from '@/data/rooms/xtsy270';
@@ -28,13 +27,12 @@ const OptimizedLazyImage: React.FC<OptimizedLazyImageProps> = ({
   const imgRef = useRef<HTMLImageElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Use the XTSY 270° Panorama Glass Ensuite images by default for this selected element
-  const defaultXTSY270Image = XTSY270_DATA.image;
+  // Use the XTSY 270° Panorama Glass Ensuite images from the navigation page
+  const defaultXTSY270Images = XTSY270_DATA.images;
+  const primaryXTSY270Image = XTSY270_DATA.image;
   
-  // Validate and use provided src, XTSY 270° image, or fallback
-  const imageSource = src && src.trim() !== '' ? src : 
-                     src.includes('xtsy') || src.includes('270') || src.includes('panorama') || src.includes('glass') ? 
-                     defaultXTSY270Image : fallback;
+  // Select appropriate XTSY 270° image or use provided src
+  const imageSource = src && src.trim() !== '' ? src : primaryXTSY270Image;
 
   useEffect(() => {
     // If priority is true, load immediately
