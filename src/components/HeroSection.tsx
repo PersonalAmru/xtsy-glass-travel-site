@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Calendar, Users, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -190,7 +191,7 @@ const HeroSection = () => {
         </div>
 
         {/* Main Content */}
-        <div className="responsive-container relative z-10 text-center text-white w-full">
+        <div className="responsive-container relative z-10 text-center text-white w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
           {/* Hero Text with Floating Languages */}
           <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16 mt-4 sm:mt-6 md:mt-8 lg:mt-12">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 sm:mb-10 md:mb-12 lg:mb-16 bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent animate-fade-in">Live the XTSY Vibe</h1>
