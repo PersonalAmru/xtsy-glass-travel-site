@@ -628,8 +628,8 @@ const Travel = () => {
                             {info.desc}
                           </p>
                         </div>
-                        {/* Increased grid gaps for better spacing between tiles */}
-                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
+                        {/* Responsive spacing: tight on mobile, generous on desktop */}
+                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-3 md:gap-6 lg:gap-8 xl:gap-10 mb-4 md:mb-8 lg:mb-12">
                           {filteredStatePackages.map((itinerary) => (
                             <CompactTourPackageCard
                               key={itinerary.id}
