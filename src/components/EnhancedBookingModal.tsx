@@ -9,6 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useIsMobile } from "@/hooks/use-mobile";
 import RoomCard from "./RoomCard";
 import { useApp } from "@/contexts/AppContext";
+import OptimizedLazyImage from "./OptimizedLazyImage";
 
 // Room data with Supabase images
 const ROOM_DATA = {
@@ -1196,13 +1197,11 @@ const RoomSelectionCard: React.FC<RoomSelectionCardProps> = ({ room, selectedRoo
   return (
     <Card className="overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow">
       <div className="relative h-48">
-        <img 
+        <OptimizedLazyImage 
           src={room.image} 
           alt={room.name}
           className="w-full h-full object-cover"
-          onError={(e) => {
-            e.currentTarget.src = '/placeholder.svg';
-          }}
+          threshold={0.1}
         />
         <div className="absolute top-2 right-2">
           <span className="bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-medium">
@@ -1316,13 +1315,11 @@ const MobileRoomSelectionCard: React.FC<MobileRoomSelectionCardProps> = ({ room,
       <div className="flex gap-3 p-3">
         {/* Room Image */}
         <div className="w-20 h-20 flex-shrink-0">
-          <img 
+          <OptimizedLazyImage 
             src={room.image} 
             alt={room.name}
             className="w-full h-full object-cover rounded"
-            onError={(e) => {
-              e.currentTarget.src = '/placeholder.svg';
-            }}
+            threshold={0.1}
           />
         </div>
         

@@ -7,6 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { Calendar, Users, Bed, Clock, Tag, X, Minus, Plus, Bookmark, TreePine } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useApp } from "@/contexts/AppContext";
+import OptimizedLazyImage from "./OptimizedLazyImage";
 
 // Room data with images, availability, and amenities
 const ROOM_DATA = {
@@ -414,15 +415,11 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
                   <div className="flex gap-4 p-4">
                     <div className="w-32 h-24 bg-gray-200 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden">
                       {roomImage ? (
-                        <img 
+                        <OptimizedLazyImage 
                           src={roomImage} 
                           alt={room.name}
                           className="w-full h-full object-cover"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            target.style.display = 'none';
-                            target.nextElementSibling?.classList.remove('hidden');
-                          }}
+                          threshold={0.1}
                         />
                       ) : null}
                       <div className={`text-center ${roomImage ? 'hidden' : ''}`}>
