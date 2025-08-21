@@ -706,19 +706,16 @@ const Travel = () => {
               {activeTab === 'international' && (
                 <LazyWrapper fallback={<div className="animate-pulse bg-gray-100 h-96 rounded"></div>}>
                   <div className="max-w-6xl mx-auto">
-                    {/* Compact International Header */}
-                    <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12">
-                      <div className="inline-flex items-center gap-2 sm:gap-3 md:gap-4 p-3 sm:p-4 md:p-6 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg mb-3 sm:mb-4 md:mb-6">
-                        <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl">🌏</span>
-                        <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+                    {/* Updated International Header to match XTSY Exclusive Tours styling */}
+                    <div className="text-center mb-2 sm:mb-3 md:mb-4 lg:mb-6">
+                      <div className="inline-flex items-center gap-1 sm:gap-2 p-2 sm:p-3 bg-white/80 backdrop-blur-sm rounded-md shadow-md mb-1 sm:mb-2">
+                        <span className="text-sm sm:text-base md:text-lg lg:text-xl">🌏</span>
+                        <h3 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold text-gray-900">
                           XTSY Asia & Europe
-                        </h2>
-                        <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-bold">
-                          Soon
-                        </span>
+                        </h3>
                       </div>
-                      <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto px-2">
-                        Get ready to explore the world with XTSY! We're expanding to bring you unforgettable experiences.
+                      <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-lg">
+                        Global Adventures Coming Soon
                       </p>
                     </div>
 
