@@ -590,7 +590,7 @@ const Travel = () => {
                     </div>
                   </div>
 
-                  {/* Compact State-wise Packages */}
+                  {/* Compact State-wise Packages with increased spacing */}
                   {Object.entries(stateWiseTourPackages).map(([state, packages]) => {
                     const filteredStatePackages = packages.filter(pkg => {
                       const categoryMatch = selectedCategory === "all" || pkg.category === selectedCategory;
@@ -628,8 +628,8 @@ const Travel = () => {
                             {info.desc}
                           </p>
                         </div>
-                        {/* Ultra-compact grid for mobile with CompactTourPackageCard */}
-                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-0.5 sm:gap-1">
+                        {/* Increased grid gaps for better spacing between tiles */}
+                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
                           {filteredStatePackages.map((itinerary) => (
                             <CompactTourPackageCard
                               key={itinerary.id}
