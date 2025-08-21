@@ -139,15 +139,15 @@ Thank you! 😊`;
           <div className="container mx-auto max-w-7xl px-4">
             {/* Luxury Badges */}
             <div className="flex flex-wrap justify-center gap-3 mb-8 animate-fade-in">
-              <Badge variant="outline" className="glass-card bg-white/20 border-white/30 text-primary font-semibold backdrop-blur-md">
+              <Badge variant="outline" className="glass-card bg-white/60 border-white/40 text-primary font-semibold backdrop-blur-md">
                 <Award className="w-3 h-3 mr-1" />
                 India's First 270° Glass House
               </Badge>
-              <Badge variant="outline" className="glass-card bg-white/20 border-white/30 text-primary font-semibold backdrop-blur-md">
+              <Badge variant="outline" className="glass-card bg-white/60 border-white/40 text-primary font-semibold backdrop-blur-md">
                 <Star className="w-3 h-3 mr-1" />
                 Architectural Excellence
               </Badge>
-              <Badge variant="outline" className="glass-card bg-white/20 border-white/30 text-primary font-semibold backdrop-blur-md">
+              <Badge variant="outline" className="glass-card bg-white/60 border-white/40 text-primary font-semibold backdrop-blur-md">
                 <Mountain className="w-3 h-3 mr-1" />
                 Premium Mountain Views
               </Badge>
@@ -168,7 +168,7 @@ Thank you! 😊`;
 
             {/* Pricing Display */}
             <div className="flex flex-col md:flex-row justify-center gap-6 mb-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
-              <Card className="glass-card bg-white/20 backdrop-blur-md border-white/30 shadow-xl">
+              <Card className="glass-card bg-white/60 backdrop-blur-md border-white/40 shadow-xl">
                 <CardContent className="p-6 text-center">
                   <div className="flex items-center justify-center gap-4 mb-2">
                     <Calendar className="w-5 h-5 text-primary" />
@@ -185,7 +185,7 @@ Thank you! 😊`;
                 </CardContent>
               </Card>
 
-              <Card className="glass-card bg-white/20 backdrop-blur-md border-white/30 shadow-xl">
+              <Card className="glass-card bg-white/60 backdrop-blur-md border-white/40 shadow-xl">
                 <CardContent className="p-6 text-center">
                   <div className="flex items-center justify-center gap-4 mb-2">
                     <Calendar className="w-5 h-5 text-primary" />
@@ -240,7 +240,7 @@ Thank you! 😊`;
                 </p>
               </div>
               
-              <Card className="glass-card bg-white/20 backdrop-blur-md border-white/30 shadow-xl">
+              <Card className="glass-card bg-white/60 backdrop-blur-md border-white/40 shadow-xl">
                 <CardContent className="p-4 md:p-6">
                   <div className="grid md:grid-cols-2 gap-8 items-center">
                     <div>
@@ -251,26 +251,26 @@ Thank you! 😊`;
                         maintaining the highest standards of comfort and privacy.
                       </p>
                       <div className="grid grid-cols-2 gap-4">
-                        <Badge variant="outline" className="glass-card bg-white/20 border-white/30 text-primary font-semibold backdrop-blur-md text-center justify-center p-4 flex-col">
+                        <Badge variant="outline" className="glass-card bg-white/60 border-white/40 text-primary font-semibold backdrop-blur-md text-center justify-center p-4 flex-col">
                           <Eye className="w-6 h-6 text-primary mb-2" />
                           <div className="text-sm font-medium">270° Views</div>
                         </Badge>
-                        <Badge variant="outline" className="glass-card bg-white/20 border-white/30 text-primary font-semibold backdrop-blur-md text-center justify-center p-4 flex-col">
+                        <Badge variant="outline" className="glass-card bg-white/60 border-white/40 text-primary font-semibold backdrop-blur-md text-center justify-center p-4 flex-col">
                           <Award className="w-6 h-6 text-primary mb-2" />
                           <div className="text-sm font-medium">First in India</div>
                         </Badge>
                       </div>
                     </div>
                     <div className="space-y-4">
-                      <Badge variant="outline" className="glass-card bg-white/20 border-white/30 text-primary font-semibold backdrop-blur-md w-full justify-start p-4">
+                      <Badge variant="outline" className="glass-card bg-white/60 border-white/40 text-primary font-semibold backdrop-blur-md w-full justify-start p-4">
                         <Mountain className="w-5 h-5 text-primary mr-2" />
                         <span className="text-sm">Panoramic mountain vistas</span>
                       </Badge>
-                      <Badge variant="outline" className="glass-card bg-white/20 border-white/30 text-primary font-semibold backdrop-blur-md w-full justify-start p-4">
+                      <Badge variant="outline" className="glass-card bg-white/60 border-white/40 text-primary font-semibold backdrop-blur-md w-full justify-start p-4">
                         <Sun className="w-5 h-5 text-primary mr-2" />
                         <span className="text-sm">Sunrise to sunset immersion</span>
                       </Badge>
-                      <Badge variant="outline" className="glass-card bg-white/20 border-white/30 text-primary font-semibold backdrop-blur-md w-full justify-start p-4">
+                      <Badge variant="outline" className="glass-card bg-white/60 border-white/40 text-primary font-semibold backdrop-blur-md w-full justify-start p-4">
                         <Moon className="w-5 h-5 text-primary mr-2" />
                         <span className="text-sm">Stargazing sanctuary</span>
                       </Badge>
@@ -293,7 +293,7 @@ Thank you! 😊`;
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {XTSY270_DATA.luxuryFeatures.map((feature, index) => (
-                  <Card key={index} className="glass-card bg-white/20 backdrop-blur-md border-white/30 shadow-lg hover:shadow-xl transition-all duration-300 group">
+                  <Card key={index} className="glass-card bg-white/60 backdrop-blur-md border-white/40 shadow-lg hover:shadow-xl transition-all duration-300 group">
                     <CardContent className="p-6 text-center">
                       <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
                         <feature.icon className="w-8 h-8 text-primary mx-auto" />
@@ -308,20 +308,20 @@ Thank you! 😊`;
 
             {/* Experience Details */}
             <div className="mb-20 animate-fade-in">
-              <Card className="glass-card bg-white/20 backdrop-blur-md border-white/30 shadow-xl">
+              <Card className="glass-card bg-white/60 backdrop-blur-md border-white/40 shadow-xl">
                 <CardContent className="p-3 md:p-4">
                   <div className="grid lg:grid-cols-3 gap-3">
-                    <Badge variant="outline" className="glass-card bg-white/20 border-white/30 text-primary font-semibold backdrop-blur-md text-center justify-center p-3 flex-col">
+                    <Badge variant="outline" className="glass-card bg-white/60 border-white/40 text-primary font-semibold backdrop-blur-md text-center justify-center p-3 flex-col">
                       <Users className="w-6 h-6 text-primary mx-auto mb-2" />
                       <h3 className="text-base font-semibold mb-1">Occupancy</h3>
                       <p className="text-muted-foreground text-sm">Up to 2 guests in supreme comfort</p>
                     </Badge>
-                    <Badge variant="outline" className="glass-card bg-white/20 border-white/30 text-primary font-semibold backdrop-blur-md text-center justify-center p-3 flex-col">
+                    <Badge variant="outline" className="glass-card bg-white/60 border-white/40 text-primary font-semibold backdrop-blur-md text-center justify-center p-3 flex-col">
                       <Bed className="w-6 h-6 text-primary mx-auto mb-2" />
                       <h3 className="text-base font-semibold mb-1">Bedding</h3>
                       <p className="text-muted-foreground text-sm">Queen bed with premium linens</p>
                     </Badge>
-                    <Badge variant="outline" className="glass-card bg-white/20 border-white/30 text-primary font-semibold backdrop-blur-md text-center justify-center p-3 flex-col">
+                    <Badge variant="outline" className="glass-card bg-white/60 border-white/40 text-primary font-semibold backdrop-blur-md text-center justify-center p-3 flex-col">
                       <Bath className="w-6 h-6 text-primary mx-auto mb-2" />
                       <h3 className="text-base font-semibold mb-1">Ensuite</h3>
                       <p className="text-muted-foreground text-sm">Private luxury bathroom</p>
