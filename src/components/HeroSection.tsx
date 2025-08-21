@@ -229,11 +229,13 @@ const HeroSection = () => {
               <div className="space-y-1 sm:space-y-2 text-center">
                 <label className="block text-xs sm:text-sm font-medium text-gray-200 text-center">Check-in</label>
                 <div className="relative cursor-pointer text-center" onClick={() => document.getElementById('checkin-input')?.focus()}>
-                  <Input id="checkin-input" type="date" value={checkIn} onChange={e => setCheckIn(e.target.value)} className="pl-8 sm:pl-10 h-9 sm:h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-sm cursor-pointer date-input-mobile text-center [&::-webkit-calendar-picker-indicator]:opacity-0 [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:right-2 [&::-webkit-calendar-picker-indicator]:w-4 [&::-webkit-calendar-picker-indicator]:h-4" min={new Date().toISOString().split('T')[0]} style={{
+                  <Input id="checkin-input" type="date" value={checkIn} onChange={e => setCheckIn(e.target.value)} className="pl-8 sm:pl-10 h-9 sm:h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-sm cursor-pointer date-input-mobile text-center [&::-webkit-calendar-picker-indicator]:opacity-0 [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:right-2 [&::-webkit-calendar-picker-indicator]:w-4 [&::-webkit-calendar-picker-indicator]:h-4 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-datetime-edit]:text-center [&::-webkit-datetime-edit-fields-wrapper]:justify-center" min={new Date().toISOString().split('T')[0]} style={{
                   WebkitAppearance: 'none',
                   MozAppearance: 'textfield',
                   colorScheme: 'dark',
-                  textAlign: 'center'
+                  textAlign: 'center',
+                  textAlignLast: 'center',
+                  direction: 'ltr'
                 }} />
                   <Calendar className="absolute left-2 sm:left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-300 pointer-events-none" />
                 </div>
@@ -242,11 +244,13 @@ const HeroSection = () => {
               <div className="space-y-1 sm:space-y-2 text-center">
                 <label className="block text-xs sm:text-sm font-medium text-gray-200 text-center">Check-out</label>
                 <div className="relative cursor-pointer text-center" onClick={() => document.getElementById('checkout-input')?.focus()}>
-                  <Input id="checkout-input" type="date" value={checkOut} onChange={e => setCheckOut(e.target.value)} className="pl-8 sm:pl-10 h-9 sm:h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-sm cursor-pointer date-input-mobile text-center [&::-webkit-calendar-picker-indicator]:opacity-0 [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:right-2 [&::-webkit-calendar-picker-indicator]:w-4 [&::-webkit-calendar-picker-indicator]:h-4" min={checkIn ? new Date(new Date(checkIn).getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0] : new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]} placeholder="dd-mm-yyyy" style={{
+                  <Input id="checkout-input" type="date" value={checkOut} onChange={e => setCheckOut(e.target.value)} className="pl-8 sm:pl-10 h-9 sm:h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-sm cursor-pointer date-input-mobile text-center [&::-webkit-calendar-picker-indicator]:opacity-0 [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:right-2 [&::-webkit-calendar-picker-indicator]:w-4 [&::-webkit-calendar-picker-indicator]:h-4 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-datetime-edit]:text-center [&::-webkit-datetime-edit-fields-wrapper]:justify-center" min={checkIn ? new Date(new Date(checkIn).getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0] : new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]} placeholder="dd-mm-yyyy" style={{
                   WebkitAppearance: 'none',
                   MozAppearance: 'textfield',
                   colorScheme: 'dark',
-                  textAlign: 'center'
+                  textAlign: 'center',
+                  textAlignLast: 'center',
+                  direction: 'ltr'
                 }} />
                   <Calendar className="absolute left-2 sm:left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-300 pointer-events-none" />
                 </div>
