@@ -448,7 +448,7 @@ Thank you! 😊`;
                 <span className="relative z-10 bg-gradient-to-r from-yellow-300 via-white to-yellow-300 bg-clip-text text-transparent animate-pulse text-center">
                   Will it be yours?
                 </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 via-white/30 to-yellow-400/20 opacity-50 group-hover:opacity-70 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/3 opacity-50 group-hover:opacity-70 transition-opacity duration-300" />
               </Button>
               <p className="text-sm text-gray-800 font-medium mt-4">
                 Limited availability • Book 48 hours in advance for exclusive concierge services
