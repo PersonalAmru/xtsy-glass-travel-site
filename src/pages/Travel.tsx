@@ -57,7 +57,6 @@ const Travel = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const [daysFilter, setDaysFilter] = useState("all");
   const [locationFilter, setLocationFilter] = useState("all");
 
   useEffect(() => {
@@ -466,22 +465,13 @@ const Travel = () => {
     { id: "leisure", label: "Leisure" }
   ];
 
-  const days = ["all", "1-3 Days", "4-6 Days", "7+ Days"];
   const locations = ["all", "Meghalaya", "Uttarakhand", "Sikkim", "Himachal Pradesh", "Kerala", "Tamil Nadu", "Assam", "Arunachal Pradesh", "Manipur", "Tripura"];
 
   const filteredItineraries = allItineraries.filter(item => {
     const categoryMatch = selectedCategory === "all" || item.category === selectedCategory;
     const locationMatch = locationFilter === "all" || item.location === locationFilter;
     
-    let daysMatch = true;
-    if (daysFilter !== "all") {
-      const itemDays = parseInt(item.duration);
-      if (daysFilter === "1-3 Days") daysMatch = itemDays >= 1 && itemDays <= 3;
-      else if (daysFilter === "4-6 Days") daysMatch = itemDays >= 4 && itemDays <= 6;
-      else if (daysFilter === "7+ Days") daysMatch = itemDays >= 7;
-    }
-    
-    return categoryMatch && daysMatch && locationMatch;
+    return categoryMatch && locationMatch;
   });
 
   const meghalayaPackages = filteredItineraries.filter(item => item.location === "Meghalaya");
@@ -489,7 +479,6 @@ const Travel = () => {
 
   const clearFilters = () => {
     setSelectedCategory("all");
-    setDaysFilter("all");
     setLocationFilter("all");
   };
 
@@ -558,58 +547,45 @@ const Travel = () => {
                 <div>
 
                   {/* Filters */}
-                  <div className="mb-8 bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg">
-                    <div className="flex flex-wrap items-center gap-4 mb-4">
+                  <div className="mb-8 bg-white/80 backdrop-blur-sm rounded-xl p-4 sm:p-6 shadow-lg">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                       <div className="flex items-center gap-2">
-                        <Filter className="h-5 w-5 text-gray-600" />
-                        <span className="font-semibold text-gray-900">Filters:</span>
+                        <Filter className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600" />
+                        <span className="font-semibold text-gray-900 text-sm sm:text-base">Filters:</span>
                       </div>
                       
-                       <div className="flex flex-wrap gap-4">
-                         <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                           <SelectTrigger className="w-40 bg-white text-gray-900 border-gray-300">
-                             <SelectValue placeholder="Category" />
-                           </SelectTrigger>
-                           <SelectContent>
-                             {categories.map((category) => (
-                               <SelectItem key={category.id} value={category.id}>
-                                 {category.label}
-                               </SelectItem>
-                             ))}
-                           </SelectContent>
-                         </Select>
+                      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 flex-1">
+                        <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                          <SelectTrigger className="w-full sm:w-40 bg-white text-gray-900 border-gray-300 text-sm">
+                            <SelectValue placeholder="Category" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {categories.map((category) => (
+                              <SelectItem key={category.id} value={category.id}>
+                                {category.label}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
 
-                         <Select value={daysFilter} onValueChange={setDaysFilter}>
-                           <SelectTrigger className="w-40 bg-white text-gray-900 border-gray-300">
-                             <SelectValue placeholder="Duration" />
-                           </SelectTrigger>
-                           <SelectContent>
-                             {days.map((day) => (
-                               <SelectItem key={day} value={day}>
-                                 {day === "all" ? "Any Duration" : day}
-                                 </SelectItem>
-                             ))}
-                           </SelectContent>
-                         </Select>
-
-                         <Select value={locationFilter} onValueChange={setLocationFilter}>
-                           <SelectTrigger className="w-40 bg-white text-gray-900 border-gray-300">
-                             <SelectValue placeholder="Location" />
-                           </SelectTrigger>
-                           <SelectContent>
-                             {locations.map((location) => (
-                               <SelectItem key={location} value={location}>
-                                 {location === "all" ? "All Locations" : location}
-                               </SelectItem>
-                             ))}
-                           </SelectContent>
-                         </Select>
+                        <Select value={locationFilter} onValueChange={setLocationFilter}>
+                          <SelectTrigger className="w-full sm:w-40 bg-white text-gray-900 border-gray-300 text-sm">
+                            <SelectValue placeholder="Location" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {locations.map((location) => (
+                              <SelectItem key={location} value={location}>
+                                {location === "all" ? "All Locations" : location}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
                       </div>
                       
                       <Button 
                         variant="outline" 
                         onClick={clearFilters}
-                        className="ml-auto bg-white border-2 border-orange-300 text-orange-700 hover:bg-orange-50 hover:border-orange-400 hover:text-orange-800 font-medium px-4 py-2 shadow-sm transition-all duration-200"
+                        className="bg-white border-2 border-orange-300 text-orange-700 hover:bg-orange-50 hover:border-orange-400 hover:text-orange-800 font-medium px-4 py-2 shadow-sm transition-all duration-200 text-sm"
                       >
                         Clear Filters
                       </Button>
@@ -622,15 +598,7 @@ const Travel = () => {
                       const categoryMatch = selectedCategory === "all" || pkg.category === selectedCategory;
                       const locationMatch = locationFilter === "all" || pkg.location === locationFilter;
                       
-                      let daysMatch = true;
-                      if (daysFilter !== "all") {
-                        const itemDays = parseInt(pkg.duration);
-                        if (daysFilter === "1-3 Days") daysMatch = itemDays >= 1 && itemDays <= 3;
-                        else if (daysFilter === "4-6 Days") daysMatch = itemDays >= 4 && itemDays <= 6;
-                        else if (daysFilter === "7+ Days") daysMatch = itemDays >= 7;
-                      }
-                      
-                      return categoryMatch && daysMatch && locationMatch;
+                      return categoryMatch && locationMatch;
                     });
 
                     if (filteredStatePackages.length === 0) return null;
