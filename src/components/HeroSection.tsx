@@ -219,17 +219,17 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Search Form - Smaller padding on mobile only */}
+          {/* Search Form - Center aligned components */}
           <div className="bg-white/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-6 md:p-7 lg:p-8 border border-white/20 shadow-2xl animate-fade-in w-full max-w-4xl mx-auto" style={{
           animationDelay: '0.9s'
         }}>
             <h2 className="text-base sm:text-xl md:text-2xl font-semibold mb-3 sm:mb-6 md:mb-7 lg:mb-8 text-center">Find Your Perfect Stay</h2>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 md:gap-5 lg:gap-6 mb-3 sm:mb-6 md:mb-7 lg:mb-8">
-              <div className="space-y-1 sm:space-y-2">
+              <div className="space-y-1 sm:space-y-2 text-center">
                 <label className="block text-xs sm:text-sm font-medium text-gray-200">Check-in</label>
                 <div className="relative cursor-pointer" onClick={() => document.getElementById('checkin-input')?.focus()}>
-                  <Input id="checkin-input" type="date" value={checkIn} onChange={e => setCheckIn(e.target.value)} className="pl-8 sm:pl-10 h-9 sm:h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-sm cursor-pointer date-input-mobile" min={new Date().toISOString().split('T')[0]} style={{
+                  <Input id="checkin-input" type="date" value={checkIn} onChange={e => setCheckIn(e.target.value)} className="pl-8 sm:pl-10 h-9 sm:h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-sm cursor-pointer date-input-mobile text-center" min={new Date().toISOString().split('T')[0]} style={{
                   WebkitAppearance: 'none',
                   MozAppearance: 'textfield',
                   colorScheme: 'dark'
@@ -238,10 +238,10 @@ const HeroSection = () => {
                 </div>
               </div>
 
-              <div className="space-y-1 sm:space-y-2">
+              <div className="space-y-1 sm:space-y-2 text-center">
                 <label className="block text-xs sm:text-sm font-medium text-gray-200">Check-out</label>
                 <div className="relative cursor-pointer" onClick={() => document.getElementById('checkout-input')?.focus()}>
-                  <Input id="checkout-input" type="date" value={checkOut} onChange={e => setCheckOut(e.target.value)} className="pl-8 sm:pl-10 h-9 sm:h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-sm cursor-pointer date-input-mobile" min={checkIn ? new Date(new Date(checkIn).getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0] : new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]} placeholder="dd-mm-yyyy" style={{
+                  <Input id="checkout-input" type="date" value={checkOut} onChange={e => setCheckOut(e.target.value)} className="pl-8 sm:pl-10 h-9 sm:h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-sm cursor-pointer date-input-mobile text-center" min={checkIn ? new Date(new Date(checkIn).getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0] : new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]} placeholder="dd-mm-yyyy" style={{
                   WebkitAppearance: 'none',
                   MozAppearance: 'textfield',
                   colorScheme: 'dark'
@@ -250,15 +250,15 @@ const HeroSection = () => {
                 </div>
               </div>
 
-              <div className="space-y-1 sm:space-y-2">
+              <div className="space-y-1 sm:space-y-2 text-center">
                 <label className="block text-xs sm:text-sm font-medium text-gray-200">Total Guests</label>
                 <div className="relative">
-                  <Input type="number" value={guests} onChange={e => setGuests(e.target.value)} min="1" max="20" className="pl-8 sm:pl-10 h-9 sm:h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-sm" placeholder="4" />
+                  <Input type="number" value={guests} onChange={e => setGuests(e.target.value)} min="1" max="20" className="pl-8 sm:pl-10 h-9 sm:h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-sm text-center" placeholder="4" />
                   <Users className="absolute left-2 sm:left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-300" />
                 </div>
               </div>
 
-              <div className="flex items-end col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-1">
+              <div className="flex items-end col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-1 justify-center">
                 <Button onClick={handleSearch} className="w-full h-9 sm:h-12 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold py-2 sm:py-3 px-3 sm:px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-sm hover-lift">
                   <Search className="mr-1 sm:mr-2 h-3 w-3 sm:h-5 sm:w-5" />
                   Book Your Stay
