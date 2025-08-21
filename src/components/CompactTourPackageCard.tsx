@@ -37,6 +37,33 @@ const CompactTourPackageCard: React.FC<CompactTourPackageCardProps> = ({
 
   // Get intelligent image selection
   const imageUrl = getRelevantTourImage(tourPackage);
+  
+  // Generate descriptive alt text based on tour content
+  const generateAltText = () => {
+    const title = tourPackage.title.toLowerCase();
+    
+    if (title.includes('biodiversity') || title.includes('research')) {
+      return "Black bear in Meghalaya forest during biodiversity research expedition";
+    }
+    if (title.includes('living root bridge')) {
+      return "Living root bridge spanning across Meghalaya valley";
+    }
+    if (title.includes('cherrapunji') || title.includes('monsoon')) {
+      return "Nohkalikai Falls cascading through Cherrapunji's misty landscape";
+    }
+    if (title.includes('dawki') || title.includes('crystal clear')) {
+      return "Crystal clear Umngot River in Dawki with visible riverbed";
+    }
+    if (title.includes('shillong')) {
+      return "Shillong cultural landscape with traditional Khasi architecture";
+    }
+    if (title.includes('mawlynnong')) {
+      return "Clean village of Mawlynnong with bamboo walkways and lush greenery";
+    }
+    
+    // Default descriptive alt text
+    return `${tourPackage.title} - ${tourPackage.location} travel experience showing ${tourPackage.category} activities`;
+  };
 
   return (
     <Card 
@@ -46,7 +73,7 @@ const CompactTourPackageCard: React.FC<CompactTourPackageCardProps> = ({
       <div className="relative overflow-hidden rounded-t-lg">
         <OptimizedLazyImage
           src={imageUrl}
-          alt={tourPackage.title}
+          alt={generateAltText()}
           className="w-full h-20 sm:h-24 object-cover group-hover:scale-110 transition-transform duration-300"
           threshold={0.05}
           priority={false}
