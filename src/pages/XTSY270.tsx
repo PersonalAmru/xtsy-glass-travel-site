@@ -335,7 +335,7 @@ Thank you! 😊`;
               <Button 
                 size="lg" 
                 onClick={handleBookingClick}
-                className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground border-2 border-primary hover:border-primary/70 px-8 py-4 text-lg font-bold shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 ring-4 ring-primary/20 hover:ring-primary/30"
               >
                 Reserve Your Luxury Experience
               </Button>
