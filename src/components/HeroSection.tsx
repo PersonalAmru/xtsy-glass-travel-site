@@ -201,11 +201,11 @@ const HeroSection = () => {
                 <PerformantImage 
                   src={xtsyColorLogo} 
                   alt="XTSY Header Brand Logo" 
-                  className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 aspect-square object-contain"
+                  className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 xl:w-48 xl:h-48 aspect-square object-contain drop-shadow-lg"
                   priority={true}
                   placeholder={
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 aspect-square bg-gradient-to-r from-orange-500 to-red-600 rounded flex items-center justify-center">
-                      <span className="text-white font-bold text-xs sm:text-sm">XTSY</span>
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 xl:w-48 xl:h-48 aspect-square bg-gradient-to-r from-orange-500 to-red-600 rounded flex items-center justify-center drop-shadow-lg">
+                      <span className="text-white font-bold text-sm sm:text-base md:text-lg">XTSY</span>
                     </div>
                   }
                 />
