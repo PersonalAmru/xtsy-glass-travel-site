@@ -1,0 +1,90 @@
+/* Enhanced Responsive Styles for XTSY - Tablet & Mobile Optimizations */
+
+/* Tablet View Padding Fixes (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .responsive-container {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+  
+  .tablet-padding-fix {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+  
+  /* Property cards spacing */
+  .property-card-tablet {
+    margin: 0 1rem;
+  }
+  
+  /* Service cards better spacing */
+  .services-tablet-grid {
+    gap: 1.5rem !important;
+  }
+}
+
+/* Mobile Optimizations (320px - 767px) */
+@media (max-width: 767px) {
+  .responsive-container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  /* Mobile touch targets */
+  .mobile-touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Mobile text scaling */
+  .mobile-text-scale {
+    font-size: 0.9rem;
+  }
+  
+  /* Mobile image loading optimizations */
+  .mobile-image-lazy {
+    loading: lazy;
+    decoding: async;
+  }
+  
+  /* Mobile form improvements */
+  .mobile-form-spacing {
+    margin-bottom: 1rem;
+  }
+  
+  /* Mobile navigation improvements */
+  .mobile-nav-spacing {
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* Performance optimizations for mobile */
+@media (max-width: 767px) {
+  /* Reduce animation complexity on mobile */
+  .mobile-reduce-animations * {
+    animation-duration: 0.2s !important;
+    transition-duration: 0.2s !important;
+  }
+  
+  /* Optimize background effects for mobile performance */
+  .mobile-bg-optimize {
+    background-attachment: scroll !important;
+    backdrop-filter: none !important;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .high-dpi-optimize {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Landscape mobile orientation */
+@media (max-width: 767px) and (orientation: landscape) {
+  .landscape-mobile {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+}

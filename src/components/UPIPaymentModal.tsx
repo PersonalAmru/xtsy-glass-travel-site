@@ -62,7 +62,7 @@ const UPIPaymentModal = ({ isOpen, onClose, bookingData }: UPIPaymentModalProps)
     }
     
     if (bookingData.addOns.transportation) {
-      addOns.push(`• Transportation Services: Price match guarantee`);
+      addOns.push(`• Transportation Services: Best rates available`);
     }
     
     if (bookingData.addOns.itineraryPlanning) {
