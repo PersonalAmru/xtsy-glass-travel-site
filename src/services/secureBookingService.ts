@@ -90,41 +90,79 @@ export class SecureBookingService {
   static validateBookingData(data: Partial<BookingData>): { isValid: boolean; errors: string[] } {
     const errors: string[] = [];
 
-    // Required fields validation
-    if (!data.guestName?.trim()) errors.push('Guest name is required');
-    if (!data.email?.trim()) errors.push('Email is required');
-    if (!data.whatsappNumber?.trim()) errors.push('WhatsApp number is required');
-    if (!data.checkIn) errors.push('Check-in date is required');
-    if (!data.checkOut) errors.push('Check-out date is required');
-    if (!data.guests || data.guests < 1) errors.push('Number of guests must be at least 1');
-    if (!data.roomDetails || data.roomDetails.length === 0) errors.push('At least one room must be selected');
-
-    // Email format validation
-    if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
-      errors.push('Invalid email format');
+    // Enhanced validation with comprehensive security checks
+    if (!data.email || typeof data.email !== 'string') {
+      errors.push('Email is required');
+    } else {
+      // Enhanced email validation
+      const emailPattern = /^[A-Za-z0-9]([A-Za-z0-9._%-]*[A-Za-z0-9])?@[A-Za-z0-9]([A-Za-z0-9.-]*[A-Za-z0-9])?\.[A-Za-z]{2,}$/;
+      if (!emailPattern.test(data.email)) {
+        errors.push('Invalid email format');
+      }
+      
+      // Check for suspicious email patterns
+      if (data.email.match(/(test|fake|spam|bot|admin|root)/i) && !data.email.match(/@(gmail|yahoo|outlook|hotmail)/i)) {
+        errors.push('Email address not allowed');
+      }
     }
 
-    // Phone number validation
-    if (data.whatsappNumber && !/^[+]?[\d\s\-\(\)]{8,}$/.test(data.whatsappNumber)) {
-      errors.push('Invalid phone number format');
+    if (!data.guestName || typeof data.guestName !== 'string' || data.guestName.trim().length < 2) {
+      errors.push('Guest name is required (minimum 2 characters)');
+    } else if (data.guestName.length > 100) {
+      errors.push('Guest name is too long (maximum 100 characters)');
+    } else if (data.guestName.match(/[<>"'&%;()\\+]/)) {
+      errors.push('Guest name contains invalid characters');
     }
 
-    // Date validation
-    if (data.checkIn && data.checkOut) {
-      const checkInDate = new Date(data.checkIn);
-      const checkOutDate = new Date(data.checkOut);
+    if (!data.whatsappNumber || typeof data.whatsappNumber !== 'string') {
+      errors.push('WhatsApp number is required');
+    } else {
+      const phonePattern = /^\+?[1-9]\d{7,14}$/;
+      if (!phonePattern.test(data.whatsappNumber.replace(/[^0-9+]/g, ''))) {
+        errors.push('Invalid WhatsApp number format');
+      }
+    }
+
+    // Enhanced date validation
+    if (!data.checkIn || !data.checkOut) {
+      errors.push('Check-in and check-out dates are required');
+    } else {
+      const checkIn = new Date(data.checkIn);
+      const checkOut = new Date(data.checkOut);
       const today = new Date();
       today.setHours(0, 0, 0, 0);
 
-      if (checkInDate < today) {
+      if (checkIn < today) {
         errors.push('Check-in date cannot be in the past');
       }
 
-      if (checkOutDate <= checkInDate) {
+      if (checkOut <= checkIn) {
         errors.push('Check-out date must be after check-in date');
+      }
+
+      const daysDiff = Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24));
+      if (daysDiff > 365) {
+        errors.push('Booking duration cannot exceed 365 days');
       }
     }
 
-    return { isValid: errors.length === 0, errors };
+    // Enhanced guest validation
+    if (!data.guests || typeof data.guests !== 'number' || data.guests < 1) {
+      errors.push('At least 1 guest is required');
+    } else if (data.guests > 20) {
+      errors.push('Maximum 20 guests allowed per booking');
+    }
+
+    // Enhanced amount validation
+    if (!data.totalAmount || typeof data.totalAmount !== 'number' || data.totalAmount <= 0) {
+      errors.push('Invalid booking amount');
+    } else if (data.totalAmount > 10000000) { // 1 crore limit
+      errors.push('Booking amount exceeds maximum limit');
+    }
+
+    return {
+      isValid: errors.length === 0,
+      errors
+    };
   }
 }

@@ -179,17 +179,52 @@ export class SecurityService {
   ): Promise<{ isValid: boolean; errors: string[] }> {
     const errors: string[] = [];
 
-    // Basic validation
-    if (amount <= 0 || amount > 1000000) {
-      errors.push('Invalid booking amount. Must be between ₹1 and ₹10,000');
+    // Enhanced validation with comprehensive checks
+    if (amount <= 0 || amount > 10000000) {
+      errors.push('Invalid booking amount. Must be between ₹1 and ₹1,00,00,000');
     }
 
-    if (guests <= 0 || guests > 10) {
-      errors.push('Invalid guest count. Must be between 1 and 10');
+    if (guests <= 0 || guests > 20) {
+      errors.push('Invalid guest count. Must be between 1 and 20');
     }
 
     if (nights <= 0 || nights > 365) {
       errors.push('Invalid stay duration. Must be between 1 and 365 nights');
+    }
+
+    // Input sanitization check
+    const emailPattern = /^[A-Za-z0-9]([A-Za-z0-9._%-]*[A-Za-z0-9])?@[A-Za-z0-9]([A-Za-z0-9.-]*[A-Za-z0-9])?\.[A-Za-z]{2,}$/;
+    if (!emailPattern.test(email)) {
+      errors.push('Invalid email format');
+    }
+
+    // Check for suspicious email patterns
+    if (email.match(/(test|fake|spam|bot|admin|root)/i) && !email.match(/@(gmail|yahoo|outlook|hotmail)/i)) {
+      await this.createSecurityAlert(
+        'suspicious_email',
+        'medium',
+        { email, pattern: 'suspicious_email_domain' }
+      );
+    }
+
+    // Rate limiting check
+    try {
+      const { data: recentBookings } = await supabase
+        .from('bookings')
+        .select('id')
+        .eq('email', email)
+        .gte('created_at', new Date(Date.now() - 15 * 60 * 1000).toISOString());
+
+      if (recentBookings && recentBookings.length >= 3) {
+        errors.push('Rate limit exceeded. Please wait before creating another booking.');
+        await this.createSecurityAlert(
+          'rate_limit_exceeded',
+          'high',
+          { email, count: recentBookings.length }
+        );
+      }
+    } catch (error) {
+      console.error('Error checking rate limits:', error);
     }
 
     // Check for suspicious patterns
@@ -197,17 +232,15 @@ export class SecurityService {
       await this.createSecurityAlert(
         'high_value_booking',
         'medium',
-        { email, amount, guests, nights },
-        undefined
+        { email, amount, guests, nights }
       );
     }
 
-    if (guests > 8) {
+    if (guests > 10) {
       await this.createSecurityAlert(
         'large_group_booking',
         'low',
-        { email, amount, guests, nights },
-        undefined
+        { email, amount, guests, nights }
       );
     }
 
@@ -215,6 +248,49 @@ export class SecurityService {
       isValid: errors.length === 0,
       errors
     };
+  }
+
+  static async checkRateLimit(identifier: string, type: 'email' | 'ip'): Promise<{ 
+    blocked: boolean; 
+    remaining?: number; 
+    resetAt?: Date;
+  }> {
+    try {
+      const { data, error } = await supabase
+        .from('booking_rate_limits')
+        .select('*')
+        .eq('identifier', identifier)
+        .eq('identifier_type', type)
+        .maybeSingle();
+
+      if (error) throw error;
+
+      if (!data) {
+        return { blocked: false };
+      }
+
+      if (data.is_blocked && data.blocked_until && new Date(data.blocked_until) > new Date()) {
+        return { 
+          blocked: true, 
+          resetAt: new Date(data.blocked_until)
+        };
+      }
+
+      // Check if within rate limit window
+      const windowStart = new Date(Date.now() - 15 * 60 * 1000); // 15 minutes
+      if (data.first_booking_at && new Date(data.first_booking_at) > windowStart) {
+        const remaining = Math.max(0, 3 - data.booking_count);
+        return { 
+          blocked: data.booking_count >= 3,
+          remaining
+        };
+      }
+
+      return { blocked: false };
+    } catch (error) {
+      console.error('Rate limit check failed:', error);
+      return { blocked: false };
+    }
   }
 
   static async applySecurityPolicies(): Promise<{ success: boolean; error?: string }> {
