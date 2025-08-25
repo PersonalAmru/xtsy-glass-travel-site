@@ -1,13 +1,11 @@
 // Bundle optimization utilities
-// Enhanced bundle optimization utilities for 0.25s target loading
 export const preloadCriticalResources = () => {
-  // Critical above-the-fold images
+// Preload critical images
   const criticalImages = [
     '/src/assets/xtsy-brand-logo.png',
     '/src/assets/meghalaya-hero.jpg',
-    '/src/assets/xtsy-logo.png',
-    '/src/assets/xtsy-color-logo.png',
     '/placeholder.svg',
+    // Add other critical images here
   ];
 
   criticalImages.forEach(src => {
@@ -15,17 +13,8 @@ export const preloadCriticalResources = () => {
     link.rel = 'preload';
     link.as = 'image';
     link.href = src;
-    link.fetchPriority = 'high';
     document.head.appendChild(link);
   });
-
-  // Preload critical CSS
-  const criticalCSS = document.createElement('link');
-  criticalCSS.rel = 'preload';
-  criticalCSS.as = 'style';
-  criticalCSS.href = '/src/styles/tailwind.css';
-  criticalCSS.fetchPriority = 'high';
-  document.head.appendChild(criticalCSS);
 };
 
 // Defer non-critical scripts

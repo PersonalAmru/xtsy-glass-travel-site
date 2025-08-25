@@ -199,69 +199,11 @@ const ReviewsSection = () => {
           </div>
         </div>
 
-        {/* OTA Review Badges */}
-        <div className="mt-12 text-center">
-          <h3 className="text-lg sm:text-xl font-semibold text-white mb-6">Our Ratings Across Platforms</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
-            <div className="glass-card bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 hover:bg-white/15 transition-all duration-300">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-orange-400 mb-1">9.8</div>
-                <div className="flex justify-center mb-2">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-yellow-400 text-sm">⭐</span>
-                  ))}
-                </div>
-                <div className="text-xs text-white font-medium">Booking.com</div>
-              </div>
-            </div>
-            
-            <div className="glass-card bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 hover:bg-white/15 transition-all duration-300">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-orange-400 mb-1">4.4</div>
-                <div className="flex justify-center mb-2">
-                  {[...Array(4)].map((_, i) => (
-                    <span key={i} className="text-yellow-400 text-sm">⭐</span>
-                  ))}
-                  <span className="text-gray-400 text-sm">⭐</span>
-                </div>
-                <div className="text-xs text-white font-medium">MakeMyTrip</div>
-              </div>
-            </div>
-            
-            <div className="glass-card bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 hover:bg-white/15 transition-all duration-300">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-orange-400 mb-1">4.4</div>
-                <div className="flex justify-center mb-2">
-                  {[...Array(4)].map((_, i) => (
-                    <span key={i} className="text-yellow-400 text-sm">⭐</span>
-                  ))}
-                  <span className="text-gray-400 text-sm">⭐</span>
-                </div>
-                <div className="text-xs text-white font-medium">GoIbibo</div>
-              </div>
-            </div>
-            
-            <div className="glass-card bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 hover:bg-white/15 transition-all duration-300">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-orange-400 mb-1">9.8</div>
-                <div className="flex justify-center mb-2">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-yellow-400 text-sm">⭐</span>
-                  ))}
-                </div>
-                <div className="text-xs text-white font-medium">Expedia</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Integration Notice */}
-        <div className="text-center mt-8">
-          <div className="glass-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 max-w-md mx-auto">
-            <p className="text-white/80 text-sm">
-              <span className="text-orange-400 font-semibold">✨ Enhanced Integration:</span> Reviews automatically synced from all major booking platforms
-            </p>
-          </div>
+        <div className="text-center">
+          <p className="text-gray-400 text-sm font-['Inter']">
+            Reviews are automatically integrated from Google, Booking.com, HostelWorld, and MakeMyTrip
+          </p>
         </div>
       </div>
 

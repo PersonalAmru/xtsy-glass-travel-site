@@ -6,7 +6,6 @@ import { Routes, Route } from "react-router-dom";
 import { useState, useEffect, Suspense } from "react";
 import LoadingScreen from "./components/LoadingScreen";
 import PerformanceMonitor from "./components/PerformanceMonitor";
-import SecurityHeaders from "./components/SecurityHeaders";
 import Index from "./pages/Index";
 import { LazyAbout } from "./pages/lazy/LazyAbout";
 import { LazyGallery } from "./pages/lazy/LazyGallery";
@@ -45,7 +44,6 @@ function App() {
 
   return (
     <div className="dark">
-      <SecurityHeaders />
       <PerformanceMonitor />
       <TooltipProvider>
         <Toaster />

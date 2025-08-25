@@ -62,7 +62,7 @@ const BookingConfirmation = ({ bookingData }: BookingConfirmationProps) => {
     }
     
     if (bookingData.addOns.transportation) {
-      addOns.push(`• Transportation Services: Best rates available`);
+      addOns.push(`• Transportation Services: Price match guarantee`);
     }
     
     if (bookingData.addOns.itineraryPlanning) {
@@ -211,7 +211,7 @@ Thank you for choosing XTSY!
                 )}
                 {bookingData.addOns.transportation && (
                   <div className="text-blue-600">
-                    • Transportation Services: Best rates available
+                    • Transportation Services: Price match guarantee
                   </div>
                 )}
                 {bookingData.addOns.itineraryPlanning && (

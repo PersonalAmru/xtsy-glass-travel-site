@@ -42,8 +42,8 @@ const GroupBookingSection = () => {
         {/* Additional Info */}
         <div className="text-center space-y-4">
           <div className="flex flex-wrap justify-center gap-4 mb-6">
-            <Badge className="bg-gradient-to-r from-blue-500 to-purple-500 text-white text-lg px-6 py-3">
-              🎯 Best Value Guaranteed
+            <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white text-lg px-6 py-3">
+              🎯 Price Match Guarantee
             </Badge>
             <Badge className="bg-gradient-to-r from-blue-500 to-purple-500 text-white text-lg px-6 py-3">
               ✅ 100% Fulfillment

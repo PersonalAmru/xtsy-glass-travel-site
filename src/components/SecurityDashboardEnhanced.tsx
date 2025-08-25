@@ -7,10 +7,11 @@ import { Shield, AlertTriangle, Eye, Users, TrendingUp, Clock } from 'lucide-rea
 import { supabase } from '@/integrations/supabase/client';
 
 interface SecurityMetrics {
-  bookings24h: number;
-  uniqueUsers24h: number;
-  highValueBookings24h: number;
-  alertLevel: string;
+  total_bookings_24h: number;
+  unique_users_24h: number;
+  high_value_bookings_24h: number;
+  suspicious_ratio: number;
+  alert_level: 'LOW' | 'MEDIUM' | 'HIGH';
 }
 
 interface AuditLog {
@@ -44,41 +45,27 @@ const SecurityDashboardEnhanced: React.FC = () => {
   const loadSecurityData = async () => {
     setLoading(true);
     try {
-      // Get enhanced security metrics
-      const { data: metricsResult } = await supabase.functions.invoke('security-monitoring', {
+      // Load security metrics
+      const { data: metricsData } = await supabase.functions.invoke('security-monitoring', {
         body: { action: 'get_security_metrics' }
       });
-
-      if (metricsResult?.success) {
-        setMetrics({
-          bookings24h: metricsResult.data.total_bookings_24h,
-          uniqueUsers24h: metricsResult.data.unique_users_24h,
-          highValueBookings24h: metricsResult.data.high_value_bookings_24h,
-          alertLevel: metricsResult.data.alert_level
-        });
+      
+      if (metricsData?.success) {
+        setMetrics(metricsData.data);
       }
 
-      // Get audit logs
-      const { data: auditResult } = await supabase.functions.invoke('security-monitoring', {
+      // Load recent audit logs
+      const { data: auditData } = await supabase.functions.invoke('security-monitoring', {
         body: { action: 'get_audit_logs' }
       });
-
-      if (auditResult?.success) {
-        setAuditLogs(auditResult.data.slice(0, 10)); // Latest 10 entries
+      
+      if (auditData?.success) {
+        setAuditLogs(auditData.data);
       }
-
     } catch (error) {
       console.error('Error loading security data:', error);
-      setMetrics({
-        bookings24h: 0,
-        uniqueUsers24h: 0,
-        highValueBookings24h: 0,
-        alertLevel: 'unknown'
-      });
-      setAuditLogs([]);
-    } finally {
-      setLoading(false);
     }
+    setLoading(false);
   };
 
   const checkSuspiciousActivity = async () => {
@@ -141,7 +128,7 @@ const SecurityDashboardEnhanced: React.FC = () => {
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{metrics?.bookings24h || 0}</div>
+            <div className="text-2xl font-bold">{metrics?.total_bookings_24h || 0}</div>
           </CardContent>
         </Card>
 
@@ -151,7 +138,7 @@ const SecurityDashboardEnhanced: React.FC = () => {
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{metrics?.uniqueUsers24h || 0}</div>
+            <div className="text-2xl font-bold">{metrics?.unique_users_24h || 0}</div>
           </CardContent>
         </Card>
 
@@ -161,7 +148,7 @@ const SecurityDashboardEnhanced: React.FC = () => {
             <AlertTriangle className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{metrics?.highValueBookings24h || 0}</div>
+            <div className="text-2xl font-bold">{metrics?.high_value_bookings_24h || 0}</div>
           </CardContent>
         </Card>
 
@@ -171,8 +158,8 @@ const SecurityDashboardEnhanced: React.FC = () => {
             <Shield className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <Badge variant={getAlertLevelColor(metrics?.alertLevel || 'LOW')}>
-              {metrics?.alertLevel || 'LOW'}
+            <Badge variant={getAlertLevelColor(metrics?.alert_level || 'LOW')}>
+              {metrics?.alert_level || 'LOW'}
             </Badge>
           </CardContent>
         </Card>

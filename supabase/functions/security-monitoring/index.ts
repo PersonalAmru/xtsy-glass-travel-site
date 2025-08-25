@@ -88,43 +88,21 @@ serve(async (req) => {
           throw bookingError;
         }
 
-        // Get security alerts
-        const { data: securityAlerts, error: alertsError } = await supabase
-          .from('security_alerts')
-          .select('severity, alert_type, created_at')
-          .gte('created_at', new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString());
-
-        if (alertsError) {
-          console.error('Error fetching security alerts:', alertsError);
-          throw alertsError;
-        }
-
-        // Calculate enhanced security metrics
+        // Calculate security metrics
         const totalBookings = recentBookings?.length || 0;
         const uniqueEmails = new Set(recentBookings?.map(b => b.email) || []).size;
-        const highValueBookings = recentBookings?.filter(b => b.total_amount > 50000).length || 0;
-        
-        // Count alerts by severity
-        const alertCounts = securityAlerts?.reduce((acc: any, alert: any) => {
-          acc[alert.severity] = (acc[alert.severity] || 0) + 1;
-          return acc;
-        }, {}) || {};
-
-        // Determine overall alert level
-        const alertLevel = alertCounts.critical > 0 ? 'critical' : 
-                          alertCounts.high > 0 ? 'high' :
-                          alertCounts.medium > 0 ? 'medium' : 'low';
+        const highValueBookings = recentBookings?.filter(b => b.total_amount > 100000).length || 0;
+        const suspiciousRatio = totalBookings > 0 ? (totalBookings - uniqueEmails) / totalBookings : 0;
 
         const securityMetrics = {
           total_bookings_24h: totalBookings,
           unique_users_24h: uniqueEmails,
           high_value_bookings_24h: highValueBookings,
-          alert_level: alertLevel,
-          alert_counts: alertCounts,
-          total_alerts_24h: securityAlerts?.length || 0
+          suspicious_ratio: suspiciousRatio,
+          alert_level: suspiciousRatio > 0.5 ? 'HIGH' : suspiciousRatio > 0.2 ? 'MEDIUM' : 'LOW'
         };
 
-        console.log('Enhanced security metrics calculated:', securityMetrics);
+        console.log('Security metrics calculated:', securityMetrics);
 
         return new Response(
           JSON.stringify({
@@ -137,41 +115,15 @@ serve(async (req) => {
           }
         );
 
-      case 'get_security_alerts':
-        const { data: alerts, error: alertsError } = await supabase
-          .from('security_alerts')
-          .select('*')
-          .order('created_at', { ascending: false })
-          .limit(timeWindow || 50);
-
-        if (alertsError) {
-          console.error('Error fetching security alerts:', alertsError);
-          throw alertsError;
-        }
-
-        return new Response(
-          JSON.stringify({
-            success: true,
-            data: alerts
-          }),
-          {
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-            status: 200,
-          }
-        );
-
-      case 'cleanup_rate_limits':
-        const { error: cleanupError } = await supabase.rpc('cleanup_rate_limits');
+      case 'block_suspicious_email':
+        // This would require additional table to store blocked emails
+        // For now, just log the request
+        console.log('Block request for email:', email);
         
-        if (cleanupError) {
-          console.error('Error cleaning up rate limits:', cleanupError);
-          throw cleanupError;
-        }
-
         return new Response(
           JSON.stringify({
             success: true,
-            message: 'Rate limits cleaned up successfully'
+            message: 'Email blocking logged for review'
           }),
           {
             headers: { ...corsHeaders, 'Content-Type': 'application/json' },

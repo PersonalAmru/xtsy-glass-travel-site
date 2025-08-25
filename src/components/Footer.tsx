@@ -131,23 +131,8 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-700 mt-4 sm:mt-6 lg:mt-8 pt-3 sm:pt-4 lg:pt-6">
-          {/* Policy Links */}
-          <div className="text-center mb-4 sm:mb-6">
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs sm:text-sm">
-              <Link to="/cancellation-policy" className="text-gray-400 hover:text-orange-400 transition-colors duration-300 py-1">
-                Cancellation Policy
-              </Link>
-              <Link to="/travel-policies" className="text-gray-400 hover:text-orange-400 transition-colors duration-300 py-1">
-                Travel Policies
-              </Link>
-              <Link to="/hostel-terms" className="text-gray-400 hover:text-orange-400 transition-colors duration-300 py-1">
-                Hostel Terms & Conditions
-              </Link>
-            </div>
-          </div>
-          
-          <p className="text-gray-400 text-xs sm:text-sm lg:text-base text-center">© 2024 XTSY. All rights reserved. Experience the XTSY Vibe.</p>
+        <div className="border-t border-gray-700 mt-4 sm:mt-6 lg:mt-8 pt-3 sm:pt-4 lg:pt-6 text-center">
+          <p className="text-gray-400 text-xs sm:text-sm lg:text-base">© 2024 XTSY. All rights reserved. Experience the XTSY Vibe.</p>
         </div>
       </div>
     </footer>

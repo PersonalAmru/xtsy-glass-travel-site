@@ -628,7 +628,7 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
                           <span className="text-2xl">🚗</span>
                           <div>
                             <span className="text-black font-semibold">Transportation Services</span>
-                            <div className="text-sm text-gray-600">Best rates available • Professional service</div>
+                            <div className="text-sm text-gray-600">Price match guarantee • Best rates</div>
                           </div>
                         </div>
                         <input
