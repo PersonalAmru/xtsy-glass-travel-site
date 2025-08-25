@@ -226,17 +226,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
   const isMobile = useIsMobile();
   
   // For tablet view, we want to use desktop layout. Only use mobile flow for actual mobile devices
-  const [isActualMobile, setIsActualMobile] = useState(false);
-
-  useEffect(() => {
-    const checkScreenSize = () => {
-      setIsActualMobile(window.innerWidth < 640); // sm breakpoint
-    };
-
-    checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
-    return () => window.removeEventListener('resize', checkScreenSize);
-  }, []);
+  const isActualMobile = window.innerWidth < 640; // Immediate mobile detection to prevent loading issues
 
   const roomsArray = Object.values(ROOM_DATA);
   const nights = initialData.checkIn && initialData.checkOut ? 
