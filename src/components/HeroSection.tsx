@@ -193,7 +193,7 @@ const HeroSection = () => {
         <div className="responsive-container relative z-10 text-center text-white w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
           {/* Hero Text with Floating Languages */}
           <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16 mt-4 sm:mt-6 md:mt-8 lg:mt-12">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 sm:mb-10 md:mb-12 lg:mb-16 bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent animate-fade-in">Live the XTSY Vibe</h1>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-8 sm:mb-10 md:mb-12 lg:mb-16 bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent animate-fade-in">Live the XTSY Vibe</h1>
             
             {/* Floating Languages Section */}
             <div className="relative h-20 sm:h-24 md:h-28 lg:h-36 flex flex-col items-center justify-center">

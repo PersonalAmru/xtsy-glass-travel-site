@@ -158,6 +158,45 @@ export type Database = {
           },
         ]
       }
+      booking_rate_limits: {
+        Row: {
+          blocked_until: string | null
+          booking_count: number | null
+          created_at: string | null
+          first_booking_at: string | null
+          id: string
+          identifier: string
+          identifier_type: string
+          is_blocked: boolean | null
+          last_booking_at: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          blocked_until?: string | null
+          booking_count?: number | null
+          created_at?: string | null
+          first_booking_at?: string | null
+          id?: string
+          identifier: string
+          identifier_type: string
+          is_blocked?: boolean | null
+          last_booking_at?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          blocked_until?: string | null
+          booking_count?: number | null
+          created_at?: string | null
+          first_booking_at?: string | null
+          id?: string
+          identifier?: string
+          identifier_type?: string
+          is_blocked?: boolean | null
+          last_booking_at?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       bookings: {
         Row: {
           address: string | null
@@ -472,6 +511,45 @@ export type Database = {
           },
         ]
       }
+      security_alerts: {
+        Row: {
+          alert_type: string
+          created_at: string | null
+          details: Json | null
+          id: string
+          ip_address: string | null
+          resolved: boolean | null
+          resolved_at: string | null
+          resolved_by: string | null
+          severity: string
+          user_id: string | null
+        }
+        Insert: {
+          alert_type: string
+          created_at?: string | null
+          details?: Json | null
+          id?: string
+          ip_address?: string | null
+          resolved?: boolean | null
+          resolved_at?: string | null
+          resolved_by?: string | null
+          severity: string
+          user_id?: string | null
+        }
+        Update: {
+          alert_type?: string
+          created_at?: string | null
+          details?: Json | null
+          id?: string
+          ip_address?: string | null
+          resolved?: boolean | null
+          resolved_at?: string | null
+          resolved_by?: string | null
+          severity?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       transactions: {
         Row: {
           amount: number
@@ -537,6 +615,10 @@ export type Database = {
           risk_score: number
           suspicious_indicators: string[]
         }[]
+      }
+      cleanup_rate_limits: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
       }
       generate_booking_id: {
         Args: Record<PropertyKey, never>

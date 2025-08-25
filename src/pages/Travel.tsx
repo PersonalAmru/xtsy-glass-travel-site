@@ -17,7 +17,7 @@ import UnifiedImage from "@/components/UnifiedImage"; // Updated to UnifiedImage
 // Import images for tour packages
 import meghalayaBiodiversityAuthenticImg from "@/assets/meghalaya-biodiversity-authentic.jpg";
 import wildernessSurvivalImg from "@/assets/wilderness-survival-authentic.jpg";
-import northeastBikeExpeditionImg from "@/assets/motorcycle-group-adventure.jpg";
+
 import arunachalTribalImg from "@/assets/arunachal-tribal-premium.jpg";
 import livingRootBridgesImg from "@/assets/living-root-bridges-authentic.jpg";
 import dawkiCrystalClearImg from "@/assets/dawki-crystal-clear-authentic.jpg";
@@ -231,22 +231,6 @@ const Travel = () => {
         bestSeason: "Mar-Oct",
         exclusive: true
       },
-      {
-        id: 208,
-        title: "XTSY Exclusive: Assam - Arunachal - Meghalaya RE Expedition",
-        description: "Epic motorcycle adventure across Northeast India's three jewels - from Assam's tea gardens through Arunachal's mountains to Meghalaya's living bridges",
-        duration: "12 Days",
-        difficulty: "Challenging",
-        price: TourPricingService.calculatePrice("12 Days", "exclusive", "Challenging", "Northeast India", "Oct-Apr"),
-        image: northeastBikeExpeditionImg,
-        images: [northeastBikeExpeditionImg, northeastBikeExpeditionImg, northeastBikeExpeditionImg],
-        rating: 4.9,
-        category: "adventure",
-        location: "Northeast India",
-        highlights: ["Royal Enfield Bikes", "Mountain Passes", "Tea Garden Rides", "Tribal Villages", "Living Root Bridges", "Border Roads", "Mechanic Support", "Local Guides"],
-        bestSeason: "Oct-Apr",
-        exclusive: true
-      }
     ],
     
     "Meghalaya": [
@@ -586,11 +570,11 @@ const Travel = () => {
             <div className="container mx-auto px-2 sm:px-4 md:px-6 lg:px-8">
               {/* Mobile-optimized Header */}
               <div className="text-center mb-4 sm:mb-6 md:mb-8 lg:mb-10">
-                <div className="inline-block p-2 sm:p-3 md:p-4 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg mb-2 sm:mb-3 md:mb-4">
-                  <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-2 font-playfair">
+                <div className="inline-flex items-center gap-1 sm:gap-2 p-2 sm:p-3 md:p-4 bg-white/80 backdrop-blur-sm rounded-md shadow-md mb-2 sm:mb-3 md:mb-4">
+                  <span className="text-sm sm:text-base md:text-lg lg:text-xl">🧳</span>
+                  <h1 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold text-gray-900">
                     XTSY Travel
                   </h1>
-                  <div className="w-12 sm:w-16 md:w-20 lg:w-24 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 mx-auto rounded-full" />
                 </div>
                 <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 max-w-2xl mx-auto mb-2 sm:mb-3 md:mb-4 bg-white/60 backdrop-blur-sm rounded-lg p-2 sm:p-3 md:p-4 shadow-md mx-2">
                   Embark on extraordinary journeys with XTSY Travel - your gateway to incredible experiences.

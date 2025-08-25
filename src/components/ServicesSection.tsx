@@ -93,44 +93,46 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section className="py-12 md:py-16 lg:py-20 safe-area-padding bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 relative overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-100/30 via-transparent to-purple-100/30" />
-      <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" />
-      <div className="absolute -top-16 -right-16 w-48 h-48 bg-blue-200/30 rounded-full blur-3xl" />
-      <div className="absolute -bottom-16 -left-16 w-48 h-48 bg-purple-200/30 rounded-full blur-3xl" />
+    <section className="py-12 md:py-16 lg:py-20 safe-area-padding bg-gradient-to-br from-purple-900/20 via-pink-900/10 to-orange-900/20 relative overflow-hidden">
+      {/* Enhanced Background Effects with Glassmorphism */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-100/20 via-pink-100/10 to-orange-100/20" />
+      <div className="absolute inset-0 backdrop-blur-3xl" />
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500" />
+      <div className="absolute -top-20 -right-20 w-64 h-64 bg-purple-400/20 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-pink-400/20 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-orange-300/10 rounded-full blur-3xl" />
 
       <div className="responsive-container relative z-10 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
-        <div className="section-header">
-          <div className="glass-card inline-block px-4 py-3 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 shadow-xl max-w-lg">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-1 font-playfair text-center">
+        <div className="text-center mb-12 sm:mb-16">
+          <div className="glass-card inline-block p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 bg-clip-text text-transparent mb-3 font-playfair">
               Amenities & Services
             </h2>
-            <p className="text-sm sm:text-base text-gray-600 text-center font-medium">
+            <p className="text-lg sm:text-xl text-gray-700 font-medium max-w-2xl mx-auto">
               Everything you need for a comfortable stay
             </p>
-            <div className="w-16 sm:w-20 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-2 rounded-full" />
+            <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 mx-auto mt-4 rounded-full" />
           </div>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 mt-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6 mt-8 services-tablet-grid mobile-reduce-animations">
           {services.map((service, index) => (
-            <Card key={index} className="bg-white/80 backdrop-blur-sm border border-gray-200 hover:border-orange-300 hover:shadow-md transition-all duration-300 h-32 sm:h-36 flex flex-col">
-              <CardHeader className="p-2 pb-1 flex-1">
-                <div className="flex items-center justify-between mb-1">
-                  <div className="text-orange-500 flex-shrink-0">
+            <Card key={index} className="glass-card bg-white/10 backdrop-blur-md border border-white/20 hover:border-white/30 hover:bg-white/15 hover:shadow-xl transition-all duration-500 h-36 sm:h-40 flex flex-col group hover:scale-105 mobile-touch-target">
+              <CardHeader className="p-3 pb-2 flex-1">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="text-purple-600 group-hover:text-pink-600 transition-colors duration-300 flex-shrink-0">
                     {service.icon}
                   </div>
-                  <Badge variant="outline" className="text-xs border-orange-300 text-orange-600 bg-orange-50 px-1 py-0.5 flex-shrink-0">
+                  <Badge variant="outline" className="text-xs border-purple-300/50 text-purple-700 bg-white/20 backdrop-blur-sm px-2 py-1 flex-shrink-0 font-medium">
                     {service.badge}
                   </Badge>
                 </div>
-                <CardTitle className="text-xs sm:text-sm font-bold text-gray-900 leading-tight">
+                <CardTitle className="text-sm sm:text-base font-bold text-gray-900 leading-tight group-hover:text-purple-900 transition-colors duration-300 mobile-text-scale">
                   {service.title}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-2 pt-0 flex-1 flex items-start">
-                <CardDescription className="text-xs text-gray-600 leading-tight overflow-hidden">
+              <CardContent className="p-3 pt-0 flex-1 flex items-start">
+                <CardDescription className="text-xs sm:text-sm text-gray-700 leading-tight overflow-hidden group-hover:text-gray-800 transition-colors duration-300 mobile-text-scale">
                   {service.description}
                 </CardDescription>
               </CardContent>

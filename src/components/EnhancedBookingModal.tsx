@@ -226,21 +226,29 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
   const isMobile = useIsMobile();
   
   // For tablet view, we want to use desktop layout. Only use mobile flow for actual mobile devices
-  const [isActualMobile, setIsActualMobile] = useState(false);
-
-  useEffect(() => {
-    const checkScreenSize = () => {
-      setIsActualMobile(window.innerWidth < 640); // sm breakpoint
-    };
-
-    checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
-    return () => window.removeEventListener('resize', checkScreenSize);
-  }, []);
+  const isActualMobile = window.innerWidth < 640; // Immediate mobile detection to prevent loading issues
 
   const roomsArray = Object.values(ROOM_DATA);
   const nights = initialData.checkIn && initialData.checkOut ? 
     Math.ceil((new Date(initialData.checkOut).getTime() - new Date(initialData.checkIn).getTime()) / (1000 * 3600 * 24)) : 1;
+
+  // Calculate total accommodated guests from selected rooms
+  const getTotalAccommodatedGuests = () => {
+    return selectedRooms.reduce((total, room) => {
+      const roomData = ROOM_DATA[room.id as keyof typeof ROOM_DATA];
+      if (roomData.type === 'dorm') {
+        return total + room.selection.guests; // Each bed accommodates 1 guest
+      } else {
+        return total + (roomData.maxGuests * room.selection.rooms); // Each room can accommodate maxGuests
+      }
+    }, 0);
+  };
+
+  // Validate if current selection meets guest requirement
+  const isGuestRequirementMet = () => {
+    const totalAccommodated = getTotalAccommodatedGuests();
+    return totalAccommodated >= initialData.guests;
+  };
 
   const calculateTotal = () => {
     // Check if selected date is weekend (for USD/EUR pricing)
@@ -334,20 +342,67 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
       'MEGHALAYA20': 20,
     };
 
-    if (validPromoCodes[promoCode.toUpperCase()]) {
-      setPromoDiscount(validPromoCodes[promoCode.toUpperCase()]);
-      setPromoApplied(true);
-      toast({
-        title: "Promo code applied!",
-        description: `You got ${validPromoCodes[promoCode.toUpperCase()]}% discount`,
-      });
-    } else {
+    const code = promoCode.toUpperCase();
+    
+    // Check if promo code exists
+    if (!validPromoCodes[code]) {
       toast({
         title: "Invalid promo code",
         description: "Please check your promo code and try again",
         variant: "destructive",
       });
+      return;
     }
+
+    // Calculate total guests and beds from selected rooms
+    const totalSelectedGuests = selectedRooms.reduce((sum, room) => sum + room.selection.guests, 0);
+    const totalBeds = selectedRooms.reduce((sum, room) => {
+      if (room.type === 'dorm') {
+        return sum + room.selection.guests; // For dorms, each guest gets a bed
+      } else {
+        return sum + room.selection.rooms; // For private rooms, assume 1 bed per room (can be adjusted)
+      }
+    }, 0);
+    
+    // Check eligibility conditions for specific promo codes
+    if (code === 'XTSY10') {
+      // Condition: Min 4 guests, 4 beds, 2+ nights
+      const errors = [];
+      if (totalSelectedGuests < 4) errors.push(`minimum 4 guests selected (current: ${totalSelectedGuests})`);
+      if (totalBeds < 4) errors.push(`minimum 4 beds (current: ${totalBeds})`);
+      if (nights < 2) errors.push(`minimum 2 nights (current: ${nights})`);
+      
+      if (errors.length > 0) {
+        toast({
+          title: "Promo code not eligible",
+          description: `XTSY10 requires: ${errors.join(', ')}`,
+          variant: "destructive",
+        });
+        return;
+      }
+    }
+    
+    if (code === 'WELCOME15') {
+      // Condition: Only for 270° Panorama Glass Ensuite room
+      const hasPanoramaRoom = selectedRooms.some(room => room.id === 'signature-270-glass-suite');
+      
+      if (!hasPanoramaRoom) {
+        toast({
+          title: "Promo code not eligible",
+          description: "WELCOME15 is exclusive to 270° Panorama Glass Ensuite room only",
+          variant: "destructive",
+        });
+        return;
+      }
+    }
+
+    // Apply promo code if all conditions are met
+    setPromoDiscount(validPromoCodes[code]);
+    setPromoApplied(true);
+    toast({
+      title: "Promo code applied!",
+      description: `You got ${validPromoCodes[code]}% discount`,
+    });
   };
 
   const removePromoCode = () => {
@@ -402,6 +457,18 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
         });
         return;
       }
+      
+      // Check if guest requirement is met
+      if (!isGuestRequirementMet()) {
+        const totalAccommodated = getTotalAccommodatedGuests();
+        toast({
+          title: "Insufficient Accommodation",
+          description: `You need accommodation for ${initialData.guests} guests but only selected ${totalAccommodated} beds/spaces. Please add more rooms or beds.`,
+          variant: "destructive"
+        });
+        return;
+      }
+      
       setCurrentStep('booking-summary');
     } else if (currentStep === 'booking-summary') {
       setCurrentStep('guest-details');
@@ -421,6 +488,17 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
       toast({
         title: "No Rooms Selected",
         description: "Please select at least one room",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Check if guest requirement is met
+    if (!isGuestRequirementMet()) {
+      const totalAccommodated = getTotalAccommodatedGuests();
+      toast({
+        title: "Insufficient Accommodation",
+        description: `You need accommodation for ${initialData.guests} guests but only selected ${totalAccommodated} beds/spaces. Please add more rooms or beds.`,
         variant: "destructive"
       });
       return;
@@ -464,7 +542,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
         <DialogContent className="w-full h-full max-w-none max-h-none md:max-w-7xl lg:max-w-[90vw] md:max-h-[95vh] md:h-auto bg-white border-0 p-0 overflow-hidden">
-        <div className="flex flex-col h-full max-h-[100vh] md:max-h-[95vh] pb-safe-bottom">{/* Fixed layout structure with safe bottom */}
+        <div className="flex flex-col h-full max-h-[100dvh] md:max-h-[95vh]">{/* Fixed layout structure with safe bottom */}
           {/* Header */}
           <div className="flex-shrink-0 p-4 md:p-6 border-b bg-gradient-to-r from-orange-50 to-red-50">
             <div className="flex items-center gap-3 mb-4">
@@ -485,13 +563,19 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
               </DialogTitle>
             </div>
             
-            {/* Date selection */}
+            {/* Date selection with guest info */}
             <div className="bg-blue-100 rounded-lg p-3 text-center">
               <div className="text-black font-bold text-base">
                 {initialData.checkIn && initialData.checkOut 
                   ? `${formatDate(initialData.checkIn)} → ${formatDate(initialData.checkOut)} (${nights} nights)`
                   : "Select your dates"
                 }
+              </div>
+              <div className="text-sm text-blue-700 mt-1">
+                {initialData.guests} {initialData.guests === 1 ? 'Guest' : 'Guests'} • Need {getTotalAccommodatedGuests()}/{initialData.guests} beds selected
+                {!isGuestRequirementMet() && (
+                  <span className="text-red-600 font-semibold"> - Need more beds!</span>
+                )}
               </div>
             </div>
 
@@ -508,12 +592,12 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
           </div>
 
           {/* Content */}
-          <div className="flex-1 overflow-y-auto min-h-0">
+          <div className="flex-1 overflow-y-auto min-h-0" style={{ maxHeight: 'calc(100dvh - 140px)' }}>
             {/* Mobile only: Multi-step flow */}
             {isActualMobile && (
               <>
                 {currentStep === 'room-selection' && (
-                  <div className="p-4 space-y-6 pb-40">
+                  <div className="p-4 space-y-6 pb-24">
                     {/* Live the Shillong Vibe Hero Section - Mobile */}
                     <div className="relative h-32 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl overflow-hidden">
                       <div className="absolute inset-0 bg-black/20"></div>
@@ -536,7 +620,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                         </div>
                         <div className="space-y-3">
                           {roomsArray.filter(room => room.propertyType === 'luxury').map((room) => (
-                            <MobileRoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} formatPrice={formatPrice} />
+                            <MobileRoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} formatPrice={formatPrice} initialGuests={initialData.guests} />
                           ))}
                         </div>
                       </div>
@@ -550,7 +634,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                         </div>
                         <div className="space-y-3">
                           {roomsArray.filter(room => room.propertyType === 'hostel').map((room) => (
-                            <MobileRoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} formatPrice={formatPrice} />
+                            <MobileRoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} formatPrice={formatPrice} initialGuests={initialData.guests} />
                           ))}
                         </div>
                       </div>
@@ -564,7 +648,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                         </div>
                         <div className="space-y-3">
                           {roomsArray.filter(room => room.propertyType === 'economy').map((room) => (
-                            <MobileRoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} formatPrice={formatPrice} />
+                            <MobileRoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} formatPrice={formatPrice} initialGuests={initialData.guests} />
                           ))}
                         </div>
                       </div>
@@ -573,7 +657,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                 )}
 
                 {currentStep === 'booking-summary' && (
-                  <div className="p-4 md:p-6 space-y-6 pb-40">
+                  <div className="p-4 md:p-6 space-y-6 pb-24">
                     {/* Selected Rooms */}
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-4">Selected Rooms</h3>
@@ -728,9 +812,15 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                          Price Summary
                        </h3>
                        
-                       {/* Promocode Section */}
+                       {/* Promocode Section with Eligibility Info */}
                        <div className="mb-4 p-3 bg-white rounded-lg border">
                          <label className="block text-sm font-medium text-gray-700 mb-2">Promo Code</label>
+                         
+                         {/* Eligibility Information */}
+                         <div className="mb-3 text-xs text-gray-600 space-y-1">
+                           <div><strong>XTSY10 (10% off):</strong> Min 4 guests selected, 4 beds, 2+ nights</div>
+                           <div><strong>WELCOME15 (15% off):</strong> Exclusive for 270° Panorama Glass Ensuite</div>
+                         </div>
                          {!promoApplied ? (
                            <div className="flex gap-2">
                              <input
@@ -828,7 +918,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                       </div>
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                         {roomsArray.filter(room => room.propertyType === 'luxury').map((room) => (
-                          <RoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} formatPrice={formatPrice} />
+                          <RoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} formatPrice={formatPrice} initialGuests={initialData.guests} />
                         ))}
                       </div>
                     </div>
@@ -842,7 +932,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                       </div>
                       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
                         {roomsArray.filter(room => room.propertyType === 'hostel').map((room) => (
-                          <RoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} formatPrice={formatPrice} />
+                          <RoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} formatPrice={formatPrice} initialGuests={initialData.guests} />
                         ))}
                       </div>
                     </div>
@@ -856,7 +946,7 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                       </div>
                       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
                         {roomsArray.filter(room => room.propertyType === 'economy').map((room) => (
-                          <RoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} formatPrice={formatPrice} />
+                          <RoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} formatPrice={formatPrice} initialGuests={initialData.guests} />
                         ))}
                       </div>
                     </div>
@@ -866,6 +956,21 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                 {/* Right side - Booking Summary */}
                 <div className="w-96 bg-gray-50 border-l p-6 overflow-y-auto">
                   <h3 className="text-xl font-semibold text-gray-900 mb-6">Booking Summary</h3>
+                  
+                  {/* Guest requirement status */}
+                  <div className={`mb-4 p-3 rounded-lg border ${isGuestRequirementMet() ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
+                    <div className="text-sm">
+                      <span className="font-medium">Guest accommodation: </span>
+                      <span className={isGuestRequirementMet() ? 'text-green-700' : 'text-red-700'}>
+                        {getTotalAccommodatedGuests()}/{initialData.guests} guests
+                      </span>
+                    </div>
+                    {!isGuestRequirementMet() && (
+                      <div className="text-xs text-red-600 mt-1">
+                        Need {initialData.guests - getTotalAccommodatedGuests()} more beds/spaces
+                      </div>
+                    )}
+                  </div>
                   
                   {/* Selected Rooms */}
                   <div className="mb-6">
@@ -1035,9 +1140,15 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                       Price Summary
                     </h4>
                     
-                    {/* Promocode Section */}
-                    <div className="mb-4 p-3 bg-gray-50 rounded-lg border">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Promo Code</label>
+                     {/* Promocode Section with Eligibility Info */}
+                     <div className="mb-4 p-3 bg-gray-50 rounded-lg border">
+                       <label className="block text-sm font-medium text-gray-700 mb-2">Promo Code</label>
+                       
+                       {/* Eligibility Information */}
+                       <div className="mb-3 text-xs text-gray-600 space-y-1">
+                         <div><strong>XTSY10 (10% off):</strong> Min 4 guests selected, 4 beds, 2+ nights</div>
+                         <div><strong>WELCOME15 (15% off):</strong> Exclusive for 270° Panorama Glass Ensuite</div>
+                       </div>
                       {!promoApplied ? (
                         <div className="flex gap-2">
                           <input
@@ -1097,10 +1208,10 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
                     </div>
                     <Button
                       onClick={handleBookNow}
-                      disabled={selectedRooms.length === 0}
-                      className="w-full mt-4 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-3 text-lg rounded-lg shadow-lg"
+                      disabled={selectedRooms.length === 0 || !isGuestRequirementMet()}
+                      className="w-full mt-4 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-3 text-lg rounded-lg shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      Book Now
+                      {!isGuestRequirementMet() ? `Need ${initialData.guests - getTotalAccommodatedGuests()} More Beds` : "Book Now"}
                     </Button>
                   </Card>
                 </div>
@@ -1110,23 +1221,24 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
 
           {/* Footer - Only for actual mobile devices */}
           {isActualMobile && (
-            <div className="flex-shrink-0 p-4 border-t bg-white shadow-lg fixed bottom-0 left-0 right-0 z-50">
+            <div className="flex-shrink-0 p-4 border-t bg-white shadow-lg fixed bottom-0 left-0 right-0 z-50 safe-bottom">
               {currentStep === 'room-selection' && (
                 <Button
                   onClick={handleNext}
-                  disabled={selectedRooms.length === 0}
-                  className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-3 text-lg rounded-lg"
+                  disabled={selectedRooms.length === 0 || !isGuestRequirementMet()}
+                  className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-3 text-lg rounded-lg disabled:opacity-50"
                 >
-                  Next - Review Booking <ArrowRight className="ml-2 h-5 w-5" />
+                  {!isGuestRequirementMet() ? `Need ${initialData.guests - getTotalAccommodatedGuests()} More Beds` : `Next - Review Booking`} <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               )}
 
               {currentStep === 'booking-summary' && (
                 <Button
                   onClick={handleBookNow}
-                  className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-3 text-lg rounded-lg"
+                  disabled={!isGuestRequirementMet()}
+                  className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-3 text-lg rounded-lg disabled:opacity-50"
                 >
-                  Book Now <ArrowRight className="ml-2 h-5 w-5" />
+                  {!isGuestRequirementMet() ? `Need ${initialData.guests - getTotalAccommodatedGuests()} More Beds` : "Book Now"} <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               )}
             </div>
@@ -1144,9 +1256,10 @@ interface RoomSelectionCardProps {
   setSelectedRooms: React.Dispatch<React.SetStateAction<SelectedRoom[]>>;
   nights: number;
   formatPrice: (price: number) => string;
+  initialGuests: number;
 }
 
-const RoomSelectionCard: React.FC<RoomSelectionCardProps> = ({ room, selectedRooms, setSelectedRooms, nights, formatPrice }) => {
+const RoomSelectionCard: React.FC<RoomSelectionCardProps> = ({ room, selectedRooms, setSelectedRooms, nights, formatPrice, initialGuests }) => {
   const [quantity, setQuantity] = useState(0);
   const { toast } = useToast();
 
@@ -1200,6 +1313,11 @@ const RoomSelectionCard: React.FC<RoomSelectionCardProps> = ({ room, selectedRoo
             {formatPrice(room.price)}/night
           </span>
         </div>
+        <div className="absolute top-2 left-2">
+          <span className="bg-blue-500/90 backdrop-blur-sm text-white px-2 py-1 rounded-full text-xs font-medium">
+            Max {room.maxGuests} guests
+          </span>
+        </div>
       </div>
       
       <CardContent className="p-4">
@@ -1249,6 +1367,9 @@ const RoomSelectionCard: React.FC<RoomSelectionCardProps> = ({ room, selectedRoo
                 {formatPrice(room.type === 'dorm' ? room.price * currentQuantity * nights : room.price * currentQuantity * nights)}
               </span>
             </div>
+            <div className="text-xs text-gray-600 mt-1">
+              Accommodates: {room.type === 'dorm' ? currentQuantity : currentQuantity * room.maxGuests} guests
+            </div>
           </div>
         )}
       </CardContent>
@@ -1263,9 +1384,10 @@ interface MobileRoomSelectionCardProps {
   setSelectedRooms: React.Dispatch<React.SetStateAction<SelectedRoom[]>>;
   nights: number;
   formatPrice: (price: number) => string;
+  initialGuests: number;
 }
 
-const MobileRoomSelectionCard: React.FC<MobileRoomSelectionCardProps> = ({ room, selectedRooms, setSelectedRooms, nights, formatPrice }) => {
+const MobileRoomSelectionCard: React.FC<MobileRoomSelectionCardProps> = ({ room, selectedRooms, setSelectedRooms, nights, formatPrice, initialGuests }) => {
   const { toast } = useToast();
 
   const handleQuantityChange = (newQuantity: number) => {
@@ -1320,6 +1442,7 @@ const MobileRoomSelectionCard: React.FC<MobileRoomSelectionCardProps> = ({ room,
           <h4 className="font-semibold text-gray-900 text-sm mb-1">{room.name}</h4>
           <p className="text-xs text-gray-600 mb-2 line-clamp-2">{room.description}</p>
           <div className="text-sm font-bold text-orange-600">{formatPrice(room.price)}/night</div>
+          <div className="text-xs text-gray-500">Max {room.maxGuests} guests</div>
         </div>
         
         {/* Quantity Selector */}
@@ -1349,8 +1472,13 @@ const MobileRoomSelectionCard: React.FC<MobileRoomSelectionCardProps> = ({ room,
             </Button>
           </div>
           {currentQuantity > 0 && (
-            <div className="text-xs text-center font-bold text-gray-900">
-              {formatPrice(room.type === 'dorm' ? room.price * currentQuantity * nights : room.price * currentQuantity * nights)}
+            <div className="text-xs text-center">
+              <div className="font-bold text-gray-900">
+                {formatPrice(room.type === 'dorm' ? room.price * currentQuantity * nights : room.price * currentQuantity * nights)}
+              </div>
+              <div className="text-gray-600">
+                {room.type === 'dorm' ? currentQuantity : currentQuantity * room.maxGuests} guests
+              </div>
             </div>
           )}
         </div>
