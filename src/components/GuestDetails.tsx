@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -54,8 +54,35 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
     emergencyRelation: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isHeaderCompact, setIsHeaderCompact] = useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const lastScrollTop = useRef(0);
+  
   const { toast } = useToast();
   const { formatPrice } = useApp();
+
+  // Scroll detection for header compacting
+  useEffect(() => {
+    const scrollContainer = scrollContainerRef.current;
+    if (!scrollContainer) return;
+
+    const handleScroll = () => {
+      const currentScrollTop = scrollContainer.scrollTop;
+      const scrollingDown = currentScrollTop > lastScrollTop.current;
+      
+      // Compact header when scrolling down past 100px, expand when scrolling up
+      if (scrollingDown && currentScrollTop > 100) {
+        setIsHeaderCompact(true);
+      } else if (!scrollingDown && currentScrollTop < 50) {
+        setIsHeaderCompact(false);
+      }
+      
+      lastScrollTop.current = currentScrollTop;
+    };
+
+    scrollContainer.addEventListener('scroll', handleScroll, { passive: true });
+    return () => scrollContainer.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Validate email format
   const validateEmail = (email: string) => {
@@ -330,8 +357,10 @@ Until then—safe travels & pack light 🧳🌿
       <Dialog open={isOpen} onOpenChange={onClose}>
         <DialogContent className="w-full h-full max-w-none max-h-none md:max-w-2xl lg:max-w-3xl md:max-h-[95vh] md:h-auto bg-white border-0 p-0 overflow-hidden">
           <div className="flex flex-col h-full max-h-[100vh] md:max-h-[95vh]">
-            {/* Header - Fixed */}
-            <div className="flex-shrink-0 p-4 md:p-6 border-b bg-gradient-to-r from-orange-50 to-red-50">
+            {/* Header - Fixed with Dynamic Sizing */}
+            <div className={`flex-shrink-0 border-b bg-gradient-to-r from-orange-50 to-red-50 transition-all duration-300 ${
+              isHeaderCompact ? 'p-2 md:p-3' : 'p-4 md:p-6'
+            }`}>
               <div className="flex items-center gap-3 mb-2">
                 <Button
                   variant="ghost"
@@ -341,37 +370,51 @@ Until then—safe travels & pack light 🧳🌿
                 >
                   <ArrowLeft className="h-5 w-5 text-gray-900" />
                 </Button>
-                <DialogTitle className="text-xl md:text-2xl font-bold text-gray-900">
+                <DialogTitle className={`font-bold text-gray-900 transition-all duration-300 ${
+                  isHeaderCompact ? 'text-lg md:text-xl' : 'text-xl md:text-2xl'
+                }`}>
                   Booking Summary and Guest Details
                 </DialogTitle>
               </div>
               
-              {/* Booking Summary */}
-              <div className="bg-white rounded-lg p-3 mt-4 shadow-sm">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+              {/* Booking Summary - Collapsible */}
+              <div className={`bg-white rounded-lg shadow-sm transition-all duration-300 overflow-hidden ${
+                isHeaderCompact ? 'p-2 mt-2' : 'p-3 mt-4'
+              }`}>
+                <div className={`grid gap-3 transition-all duration-300 ${
+                  isHeaderCompact ? 'grid-cols-4 text-xs' : 'grid-cols-2 md:grid-cols-4 text-sm'
+                }`}>
                   <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4 text-orange-500" />
+                    <Calendar className={`text-orange-500 transition-all duration-300 ${
+                      isHeaderCompact ? 'h-3 w-3' : 'h-4 w-4'
+                    }`} />
                     <div>
                       <div className="text-gray-700 font-medium">Check-in</div>
                       <div className="font-semibold text-gray-900">{new Date(bookingData.checkIn).toLocaleDateString()}</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4 text-orange-500" />
+                    <Calendar className={`text-orange-500 transition-all duration-300 ${
+                      isHeaderCompact ? 'h-3 w-3' : 'h-4 w-4'
+                    }`} />
                     <div>
                       <div className="text-gray-700 font-medium">Check-out</div>
                       <div className="font-semibold text-gray-900">{new Date(bookingData.checkOut).toLocaleDateString()}</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Users className="h-4 w-4 text-orange-500" />
+                    <Users className={`text-orange-500 transition-all duration-300 ${
+                      isHeaderCompact ? 'h-3 w-3' : 'h-4 w-4'
+                    }`} />
                     <div>
                       <div className="text-gray-700 font-medium">Guests</div>
                       <div className="font-semibold text-gray-900">{bookingData.guests}</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4 text-orange-500" />
+                    <Calendar className={`text-orange-500 transition-all duration-300 ${
+                      isHeaderCompact ? 'h-3 w-3' : 'h-4 w-4'
+                    }`} />
                     <div>
                       <div className="text-gray-700 font-medium">Nights</div>
                       <div className="font-semibold text-gray-900">{bookingData.nights}</div>
@@ -380,97 +423,99 @@ Until then—safe travels & pack light 🧳🌿
                 </div>
               </div>
 
-              {/* Detailed Booking Summary */}
-              <div className="mt-3 p-3 rounded-lg bg-blue-50 border border-blue-200">
-                <div className="text-sm font-medium text-blue-800 mb-2">
-                  📋 Booking Details
-                </div>
-                
-                {/* Room Details */}
-                <div className="space-y-2">
-                  {bookingData.selectedRooms.map((room, index) => {
-                    const isDorm = room.type === 'dorm';
-                    const quantity = isDorm ? room.selection.guests : room.selection.rooms;
-                    const unitPrice = room.price;
-                    const totalPrice = unitPrice * quantity * bookingData.nights;
+              {/* Detailed Booking Summary - Hidden when compact */}
+              {!isHeaderCompact && (
+                <div className="mt-3 p-3 rounded-lg bg-blue-50 border border-blue-200 transition-all duration-300">
+                  <div className="text-sm font-medium text-blue-800 mb-2">
+                    📋 Booking Details
+                  </div>
+                  
+                  {/* Room Details */}
+                  <div className="space-y-2">
+                    {bookingData.selectedRooms.map((room, index) => {
+                      const isDorm = room.type === 'dorm';
+                      const quantity = isDorm ? room.selection.guests : room.selection.rooms;
+                      const unitPrice = room.price;
+                      const totalPrice = unitPrice * quantity * bookingData.nights;
+                      
+                      return (
+                        <div key={index} className="flex justify-between items-center text-xs text-blue-700">
+                          <span className="font-medium">
+                            {room.name}: {quantity} {isDorm ? 'beds' : 'rooms'} × {bookingData.nights} nights
+                          </span>
+                          <span className="font-semibold">{formatPrice(totalPrice)}</span>
+                        </div>
+                      );
+                    })}
                     
-                    return (
-                      <div key={index} className="flex justify-between items-center text-xs text-blue-700">
-                        <span className="font-medium">
-                          {room.name}: {quantity} {isDorm ? 'beds' : 'rooms'} × {bookingData.nights} nights
-                        </span>
-                        <span className="font-semibold">{formatPrice(totalPrice)}</span>
-                      </div>
-                    );
-                  })}
-                  
-                  {/* Add-ons */}
-                  {bookingData.addOns && (
-                    <>
-                      {bookingData.addOns.breakfast > 0 && (
-                        <div className="flex justify-between items-center text-xs text-blue-700">
-                          <span>Breakfast: {bookingData.addOns.breakfast} persons × {bookingData.nights} nights</span>
-                          <span>Included</span>
-                        </div>
-                      )}
-                      {bookingData.addOns.dinnerVeg > 0 && (
-                        <div className="flex justify-between items-center text-xs text-blue-700">
-                          <span>Dinner (Veg): {bookingData.addOns.dinnerVeg} persons × {bookingData.nights} nights</span>
-                          <span>Included</span>
-                        </div>
-                      )}
-                      {bookingData.addOns.dinnerNonVeg > 0 && (
-                        <div className="flex justify-between items-center text-xs text-blue-700">
-                          <span>Dinner (Non-Veg): {bookingData.addOns.dinnerNonVeg} persons × {bookingData.nights} nights</span>
-                          <span>Included</span>
-                        </div>
-                      )}
-                      {bookingData.addOns.transportation && (
-                        <div className="flex justify-between items-center text-xs text-blue-700">
-                          <span>Transportation</span>
-                          <span>On request</span>
-                        </div>
-                      )}
-                      {bookingData.addOns.itineraryPlanning && (
-                        <div className="flex justify-between items-center text-xs text-blue-700">
-                          <span>Itinerary Planning</span>
-                          <span>On request</span>
-                        </div>
-                      )}
-                    </>
-                  )}
-                  
-                  {/* Pricing Breakdown */}
-                  <div className="border-t border-blue-300 pt-2 mt-2">
-                    <div className="flex justify-between items-center text-xs text-blue-700">
-                      <span>Subtotal</span>
-                      <span>{formatPrice(bookingData.subtotal)}</span>
-                    </div>
-                    {bookingData.discountAmount > 0 && (
-                      <div className="flex justify-between items-center text-xs text-blue-700">
-                        <span>Discount {bookingData.couponCode && `(${bookingData.couponCode})`}</span>
-                        <span>-{formatPrice(bookingData.discountAmount)}</span>
-                      </div>
+                    {/* Add-ons */}
+                    {bookingData.addOns && (
+                      <>
+                        {bookingData.addOns.breakfast > 0 && (
+                          <div className="flex justify-between items-center text-xs text-blue-700">
+                            <span>Breakfast: {bookingData.addOns.breakfast} persons × {bookingData.nights} nights</span>
+                            <span>Included</span>
+                          </div>
+                        )}
+                        {bookingData.addOns.dinnerVeg > 0 && (
+                          <div className="flex justify-between items-center text-xs text-blue-700">
+                            <span>Dinner (Veg): {bookingData.addOns.dinnerVeg} persons × {bookingData.nights} nights</span>
+                            <span>Included</span>
+                          </div>
+                        )}
+                        {bookingData.addOns.dinnerNonVeg > 0 && (
+                          <div className="flex justify-between items-center text-xs text-blue-700">
+                            <span>Dinner (Non-Veg): {bookingData.addOns.dinnerNonVeg} persons × {bookingData.nights} nights</span>
+                            <span>Included</span>
+                          </div>
+                        )}
+                        {bookingData.addOns.transportation && (
+                          <div className="flex justify-between items-center text-xs text-blue-700">
+                            <span>Transportation</span>
+                            <span>On request</span>
+                          </div>
+                        )}
+                        {bookingData.addOns.itineraryPlanning && (
+                          <div className="flex justify-between items-center text-xs text-blue-700">
+                            <span>Itinerary Planning</span>
+                            <span>On request</span>
+                          </div>
+                        )}
+                      </>
                     )}
-                    <div className="flex justify-between items-center text-xs text-blue-700">
-                      <span>GST {bookingData.gstAmount === 0 ? '(Exempt)' : ''}</span>
-                      <span>{formatPrice(bookingData.gstAmount)}</span>
-                    </div>
-                    <div className="flex justify-between items-center text-sm font-semibold text-blue-800 border-t border-blue-300 pt-1 mt-1">
-                      <span>Total Amount</span>
-                      <span>{formatPrice(bookingData.totalAmount)}</span>
+                    
+                    {/* Pricing Breakdown */}
+                    <div className="border-t border-blue-300 pt-2 mt-2">
+                      <div className="flex justify-between items-center text-xs text-blue-700">
+                        <span>Subtotal</span>
+                        <span>{formatPrice(bookingData.subtotal)}</span>
+                      </div>
+                      {bookingData.discountAmount > 0 && (
+                        <div className="flex justify-between items-center text-xs text-blue-700">
+                          <span>Discount {bookingData.couponCode && `(${bookingData.couponCode})`}</span>
+                          <span>-{formatPrice(bookingData.discountAmount)}</span>
+                        </div>
+                      )}
+                      <div className="flex justify-between items-center text-xs text-blue-700">
+                        <span>GST {bookingData.gstAmount === 0 ? '(Exempt)' : ''}</span>
+                        <span>{formatPrice(bookingData.gstAmount)}</span>
+                      </div>
+                      <div className="flex justify-between items-center text-sm font-semibold text-blue-800 border-t border-blue-300 pt-1 mt-1">
+                        <span>Total Amount</span>
+                        <span>{formatPrice(bookingData.totalAmount)}</span>
+                      </div>
                     </div>
                   </div>
+                  
+                  <div className="text-xs mt-2 text-blue-600">
+                    Complete booking via WhatsApp with payment details
+                  </div>
                 </div>
-                
-                <div className="text-xs mt-2 text-blue-600">
-                  Complete booking via WhatsApp with payment details
-                </div>
-              </div>
+              )}
             </div>
 
             {/* Scrollable Form Content */}
-            <div className="flex-1 overflow-y-auto min-h-0">
+            <div ref={scrollContainerRef} className="flex-1 overflow-y-auto min-h-0">
               <div className="p-4 md:p-6 space-y-6 pb-40 md:pb-6">
                 {/* Primary Guest Info */}
                 <div className="space-y-4">
