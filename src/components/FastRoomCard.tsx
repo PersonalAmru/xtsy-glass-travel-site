@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -54,16 +55,6 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
           }`}
           loading="lazy"
         />
-        <div className={`absolute ${isMobileView ? 'top-2 right-2' : 'top-3 right-3'}`}>
-          <Badge 
-            variant="secondary" 
-            className={`bg-white/90 text-foreground ${
-              isMobileView ? 'text-xs px-2 py-1' : ''
-            }`}
-          >
-            Max {room.maxGuests}
-          </Badge>
-        </div>
       </div>
 
       <CardHeader className={`${isMobileView ? 'pb-2 px-3 pt-3' : 'pb-3'}`}>

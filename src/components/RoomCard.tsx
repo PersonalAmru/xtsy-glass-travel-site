@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -94,7 +95,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
                 <Users className="h-4 w-4 text-gray-600" />
-                <span className="text-sm text-gray-600 font-josefin">Max {room.maxGuests} guests</span>
+                <span className="text-sm text-gray-600 font-josefin">{room.maxGuests} guests</span>
               </div>
               <span className="text-lg font-bold text-orange-600 font-playfair">{formatPrice(displayPrice)}/night</span>
             </div>
@@ -147,7 +148,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
               <Users className="h-4 w-4 text-gray-600" />
-              <span className="text-sm text-gray-600 font-josefin">Max {room.maxGuests} guests</span>
+              <span className="text-sm text-gray-600 font-josefin">{room.maxGuests} guests</span>
             </div>
             <span className="text-lg font-bold text-orange-600 font-playfair">{formatPrice(displayPrice)}/night</span>
           </div>
