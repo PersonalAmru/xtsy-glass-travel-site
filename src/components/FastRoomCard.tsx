@@ -74,7 +74,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
           {/* Image Section */}
           <div className={`relative overflow-hidden ${
             isXTSY270 
-              ? `${isMobile ? 'w-2/5 h-40' : isTablet ? 'w-2/5 h-44' : 'w-2/5 h-48'} rounded-l-lg`
+              ? `${isMobile ? 'w-2/5 h-32' : isTablet ? 'w-2/5 h-36' : 'w-2/5 h-40'} rounded-l-lg`
               : 'rounded-t-lg'
           }`}>
             <img
@@ -83,7 +83,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
               className={`w-full object-cover transition-transform duration-300 hover:scale-105 ${
                 isXTSY270 
                   ? 'h-full'
-                  : (isMobile ? 'h-40' : isTablet ? 'h-44' : 'h-48')
+                  : (isMobile ? 'h-32' : isTablet ? 'h-36' : 'h-40')
               }`}
               loading="lazy"
             />
@@ -91,82 +91,78 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
 
           {/* Content Section */}
           <div className={`${isXTSY270 ? 'flex-1 flex flex-col' : ''}`}>
-            <CardHeader className={`spacing-responsive ${
-              isMobile ? 'pb-2 px-3 pt-3' : 'pb-3'
-            } ${isXTSY270 ? 'pb-1 pt-3 px-4' : ''}`}>
+            <CardHeader className={`${
+              isMobile ? 'pb-2 px-3 pt-2' : 'pb-2 pt-3'
+            } ${isXTSY270 ? 'pb-1 pt-2 px-3' : ''}`}>
               <div className={`flex items-start justify-between ${
-                isMobile ? 'flex-col space-y-2' : ''
+                isMobile ? 'flex-col space-y-1' : ''
               }`}>
                 <CardTitle className={`font-semibold text-white ${
-                  isMobile ? 'text-responsive-sm' : 'text-responsive-base'
-                } ${isXTSY270 ? 'text-lg' : ''}`}>
+                  isMobile ? 'text-sm' : 'text-base'
+                } ${isXTSY270 ? 'text-base' : ''} leading-tight`}>
                   {room.name}
                 </CardTitle>
-                <div className={`text-right ${isMobile ? 'self-end' : ''}`}>
+                <div className={`text-right ${isMobile ? 'self-end mt-1' : 'ml-2 flex-shrink-0'}`}>
                   <div className={`font-bold text-primary ${
-                    isMobile ? 'text-responsive-base' : isTablet ? 'text-responsive-lg' : 'text-responsive-xl'
-                  } ${isXTSY270 ? 'text-xl' : ''}`}>
+                    isMobile ? 'text-base' : isTablet ? 'text-lg' : 'text-xl'
+                  } ${isXTSY270 ? 'text-lg' : ''} leading-tight`}>
                     ₹{room.price?.toLocaleString() || '0'}
                   </div>
                   <div className={`text-gray-300 ${
-                    isMobile ? 'text-responsive-xs' : 'text-responsive-sm'
-                  } ${isXTSY270 ? 'text-sm' : ''}`}>
+                    isMobile ? 'text-xs' : 'text-sm'
+                  } ${isXTSY270 ? 'text-xs' : ''} leading-tight`}>
                     per night
                   </div>
                 </div>
               </div>
             </CardHeader>
 
-            <CardContent className={`pt-0 spacing-responsive ${
-              isXTSY270 ? 'py-2 px-4 flex-1 flex flex-col' : ''
+            <CardContent className={`pt-0 px-3 pb-3 ${
+              isXTSY270 ? 'flex-1 flex flex-col' : ''
             }`}>
-              <p className={`text-gray-300 mb-4 ${
-                isMobile ? 'text-responsive-xs' : 'text-responsive-sm'
-              } ${isXTSY270 ? 'text-sm mb-3' : ''}`}>
+              <p className={`text-gray-300 mb-2 ${
+                isMobile ? 'text-xs' : 'text-sm'
+              } ${isXTSY270 ? 'text-xs mb-2' : ''} leading-relaxed line-clamp-2`}>
                 {room.description}
               </p>
 
-              <div className={`flex flex-wrap mb-4 gap-responsive ${
-                isXTSY270 ? 'mb-3' : ''
+              <div className={`flex flex-wrap mb-3 gap-1 ${
+                isXTSY270 ? 'mb-2' : ''
               }`}>
-                {room.amenities.slice(0, isMobile ? 2 : 4).map((amenity) => (
+                {room.amenities.slice(0, isMobile ? 2 : 3).map((amenity) => (
                   <Badge 
                     key={amenity} 
                     variant="outline" 
-                    className={`${
-                      isMobile ? 'text-xs px-2 py-0.5' : 'text-xs'
-                    } border-gray-600 text-gray-200 bg-gray-800 ${
-                      isXTSY270 ? 'text-sm px-2 py-1' : ''
+                    className={`text-xs px-2 py-0.5 border-gray-600 text-gray-200 bg-gray-800 ${
+                      isXTSY270 ? 'text-xs px-2 py-0.5' : ''
                     }`}
                   >
                     {amenity}
                   </Badge>
                 ))}
-                {room.amenities.length > (isMobile ? 2 : 4) && (
+                {room.amenities.length > (isMobile ? 2 : 3) && (
                   <Badge 
                     variant="outline" 
-                    className={`${
-                      isMobile ? 'text-xs px-2 py-0.5' : 'text-xs'
-                    } border-gray-600 text-gray-200 bg-gray-800 ${
-                      isXTSY270 ? 'text-sm px-2 py-1' : ''
+                    className={`text-xs px-2 py-0.5 border-gray-600 text-gray-200 bg-gray-800 ${
+                      isXTSY270 ? 'text-xs px-2 py-0.5' : ''
                     }`}
                   >
-                    +{room.amenities.length - (isMobile ? 2 : 4)} more
+                    +{room.amenities.length - (isMobile ? 2 : 3)} more
                   </Badge>
                 )}
               </div>
 
               {isSelected && (
-                <div className={`space-y-4 pt-4 border-t border-gray-700 gap-responsive ${
-                  isMobile ? 'space-y-3 pt-3' : ''
-                } ${isXTSY270 ? 'space-y-3 pt-3 mt-auto' : ''}`}>
+                <div className={`space-y-3 pt-3 border-t border-gray-700 ${
+                  isMobile ? 'space-y-2 pt-2' : ''
+                } ${isXTSY270 ? 'space-y-2 pt-2 mt-auto' : ''}`}>
                   <div className="flex items-center justify-between">
                     <span className={`font-medium text-white ${
-                      isMobile ? 'text-responsive-xs' : 'text-responsive-sm'
-                    } ${isXTSY270 ? 'text-sm' : ''}`}>
+                      isMobile ? 'text-xs' : 'text-sm'
+                    } ${isXTSY270 ? 'text-xs' : ''}`}>
                       Guests:
                     </span>
-                    <div className={`flex items-center gap-responsive`}>
+                    <div className={`flex items-center gap-2`}>
                       <Button
                         variant="outline"
                         size="sm"
@@ -176,16 +172,16 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                         }}
                         disabled={selection.guests <= 1}
                         className={`touch-target border-gray-600 bg-gray-800 text-white hover:bg-gray-700 ${
-                          isMobile ? 'h-7 w-7 p-0' : 'h-8 w-8 p-0'
-                        } ${isXTSY270 ? 'h-8 w-8 p-0' : ''}`}
+                          isMobile ? 'h-6 w-6 p-0' : 'h-7 w-7 p-0'
+                        } ${isXTSY270 ? 'h-6 w-6 p-0' : ''}`}
                       >
                         <Minus className={`${
-                          isMobile ? 'h-3 w-3' : 'h-4 w-4'
-                        } ${isXTSY270 ? 'h-4 w-4' : ''}`} />
+                          isMobile ? 'h-3 w-3' : 'h-3 w-3'
+                        } ${isXTSY270 ? 'h-3 w-3' : ''}`} />
                       </Button>
                       <span className={`text-center font-medium text-white ${
-                        isMobile ? 'w-6 text-xs' : 'w-8 text-sm'
-                      } ${isXTSY270 ? 'w-8 text-sm' : ''}`}>
+                        isMobile ? 'w-5 text-xs' : 'w-6 text-sm'
+                      } ${isXTSY270 ? 'w-5 text-xs' : ''}`}>
                         {selection.guests}
                       </span>
                       <Button
@@ -197,23 +193,23 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                         }}
                         disabled={selection.guests >= room.maxGuests}
                         className={`touch-target border-gray-600 bg-gray-800 text-white hover:bg-gray-700 ${
-                          isMobile ? 'h-7 w-7 p-0' : 'h-8 w-8 p-0'
-                        } ${isXTSY270 ? 'h-8 w-8 p-0' : ''}`}
+                          isMobile ? 'h-6 w-6 p-0' : 'h-7 w-7 p-0'
+                        } ${isXTSY270 ? 'h-6 w-6 p-0' : ''}`}
                       >
                         <Plus className={`${
-                          isMobile ? 'h-3 w-3' : 'h-4 w-4'
-                        } ${isXTSY270 ? 'h-4 w-4' : ''}`} />
+                          isMobile ? 'h-3 w-3' : 'h-3 w-3'
+                        } ${isXTSY270 ? 'h-3 w-3' : ''}`} />
                       </Button>
                     </div>
                   </div>
 
                   <div className="flex items-center justify-between">
                     <span className={`font-medium text-white ${
-                      isMobile ? 'text-responsive-xs' : 'text-responsive-sm'
-                    } ${isXTSY270 ? 'text-sm' : ''}`}>
+                      isMobile ? 'text-xs' : 'text-sm'
+                    } ${isXTSY270 ? 'text-xs' : ''}`}>
                       Rooms:
                     </span>
-                    <div className={`flex items-center gap-responsive`}>
+                    <div className={`flex items-center gap-2`}>
                       <Button
                         variant="outline"
                         size="sm"
@@ -223,16 +219,16 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                         }}
                         disabled={selection.rooms <= 1}
                         className={`touch-target border-gray-600 bg-gray-800 text-white hover:bg-gray-700 ${
-                          isMobile ? 'h-7 w-7 p-0' : 'h-8 w-8 p-0'
-                        } ${isXTSY270 ? 'h-8 w-8 p-0' : ''}`}
+                          isMobile ? 'h-6 w-6 p-0' : 'h-7 w-7 p-0'
+                        } ${isXTSY270 ? 'h-6 w-6 p-0' : ''}`}
                       >
                         <Minus className={`${
-                          isMobile ? 'h-3 w-3' : 'h-4 w-4'
-                        } ${isXTSY270 ? 'h-4 w-4' : ''}`} />
+                          isMobile ? 'h-3 w-3' : 'h-3 w-3'
+                        } ${isXTSY270 ? 'h-3 w-3' : ''}`} />
                       </Button>
                       <span className={`text-center font-medium text-white ${
-                        isMobile ? 'w-6 text-xs' : 'w-8 text-sm'
-                      } ${isXTSY270 ? 'w-8 text-sm' : ''}`}>
+                        isMobile ? 'w-5 text-xs' : 'w-6 text-sm'
+                      } ${isXTSY270 ? 'w-5 text-xs' : ''}`}>
                         {selection.rooms}
                       </span>
                       <Button
@@ -244,27 +240,27 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                         }}
                         disabled={selection.rooms >= 5}
                         className={`touch-target border-gray-600 bg-gray-800 text-white hover:bg-gray-700 ${
-                          isMobile ? 'h-7 w-7 p-0' : 'h-8 w-8 p-0'
-                        } ${isXTSY270 ? 'h-8 w-8 p-0' : ''}`}
+                          isMobile ? 'h-6 w-6 p-0' : 'h-7 w-7 p-0'
+                        } ${isXTSY270 ? 'h-6 w-6 p-0' : ''}`}
                       >
                         <Plus className={`${
-                          isMobile ? 'h-3 w-3' : 'h-4 w-4'
-                        } ${isXTSY270 ? 'h-4 w-4' : ''}`} />
+                          isMobile ? 'h-3 w-3' : 'h-3 w-3'
+                        } ${isXTSY270 ? 'h-3 w-3' : ''}`} />
                       </Button>
                     </div>
                   </div>
 
                   <div className={`flex items-center justify-between pt-2 border-t border-gray-700 ${
                     isMobile ? 'pt-1.5' : ''
-                  } ${isXTSY270 ? 'pt-2' : ''}`}>
+                  } ${isXTSY270 ? 'pt-1.5' : ''}`}>
                     <span className={`font-medium text-white ${
-                      isMobile ? 'text-responsive-xs' : 'text-responsive-sm'
-                    } ${isXTSY270 ? 'text-sm' : ''}`}>
+                      isMobile ? 'text-xs' : 'text-sm'
+                    } ${isXTSY270 ? 'text-xs' : ''}`}>
                       Subtotal:
                     </span>
                     <span className={`font-bold text-primary ${
-                      isMobile ? 'text-responsive-base' : isTablet ? 'text-responsive-lg' : 'text-responsive-xl'
-                    } ${isXTSY270 ? 'text-lg' : ''}`}>
+                      isMobile ? 'text-sm' : isTablet ? 'text-base' : 'text-lg'
+                    } ${isXTSY270 ? 'text-sm' : ''}`}>
                       ₹{((room.price || 0) * selection.guests * selection.rooms).toLocaleString()}
                     </span>
                   </div>
