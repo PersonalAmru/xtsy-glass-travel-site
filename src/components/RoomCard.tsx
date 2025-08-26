@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -47,15 +48,16 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
       return;
     }
 
-    // For all other rooms, navigate to booking flow with pre-selected room and property type
-    const params = new URLSearchParams({
-      checkIn: new Date().toISOString().split('T')[0],
-      checkOut: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().split('T')[0], // Tomorrow
-      guests: '1',
-      roomType: room.id,
-      propertyType: propertyType
-    });
-    navigate(`/booking?${params.toString()}`);
+    // For all other rooms, navigate to home page (Hero section)
+    navigate('/');
+    
+    // Scroll to hero section after navigation
+    setTimeout(() => {
+      const heroSection = document.getElementById('home');
+      if (heroSection) {
+        heroSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
   };
   
   const displayPrice = getDisplayPrice();
