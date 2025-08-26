@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -42,7 +41,13 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
   };
 
   const handleRoomSelection = () => {
-    // Navigate to booking flow with pre-selected room and property type
+    // Check if this is the XTSY 270 room - navigate to its dedicated page
+    if (room.id === "signature-270-glass-suite") {
+      navigate('/xtsy-270');
+      return;
+    }
+
+    // For all other rooms, navigate to booking flow with pre-selected room and property type
     const params = new URLSearchParams({
       checkIn: new Date().toISOString().split('T')[0],
       checkOut: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().split('T')[0], // Tomorrow
@@ -103,7 +108,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
               onClick={handleRoomSelection}
               className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 font-josefin mobile-button"
             >
-              {buttonText.split(' - ')[0]}
+              {room.id === "signature-270-glass-suite" ? "View Suite Details" : buttonText.split(' - ')[0]}
             </Button>
           </div>
         </CardContent>
@@ -111,7 +116,6 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
     );
   }
 
-  // Standard room card
   return (
     <Card className="group bg-black text-white hover:shadow-lg transition-all duration-300 border-gray-700 overflow-hidden h-auto flex flex-col mobile-carousel">
       <MobileImageCarousel
