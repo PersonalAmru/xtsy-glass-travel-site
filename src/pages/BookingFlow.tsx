@@ -346,7 +346,7 @@ const BookingFlow = () => {
                     <h1 className="text-4xl md:text-5xl font-bold text-white mb-2 font-playfair">
                       Live the Shillong Vibe
                     </h1>
-                    <p className="text-lg text-gray-200/80 font-medium">
+                    <p className="text-lg text-white font-medium drop-shadow-lg">
                       Experience the magic of the hills
                     </p>
                   </div>
