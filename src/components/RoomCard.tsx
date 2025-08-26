@@ -45,6 +45,10 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
     // Check if this is the XTSY 270 room - navigate to its dedicated page
     if (room.id === "signature-270-glass-suite") {
       navigate('/xtsy-270');
+      // Scroll to top after navigation
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
       return;
     }
 
@@ -56,6 +60,9 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
       const heroSection = document.getElementById('home');
       if (heroSection) {
         heroSection.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        // Fallback to scroll to top if hero section not found
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }, 100);
   };
