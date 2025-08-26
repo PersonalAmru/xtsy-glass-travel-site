@@ -683,10 +683,21 @@ export default function BookingFlow() {
               <div className={`flex justify-end pt-6 ${
                 isMobileView ? 'px-4' : ''
               }`}>
-                <Button onClick={handleNext} size={isMobileView ? "default" : "lg"}>
-                  Next: Guest Details 
-                  <User className={`${isMobileView ? 'ml-1 h-3 w-3' : 'ml-2'}`} />
-                </Button>
+                <button
+                  onClick={handleNext}
+                  className={`group relative overflow-hidden backdrop-blur-md bg-gradient-to-r from-blue-500/80 to-purple-600/80 
+                    hover:from-blue-600/90 hover:to-purple-700/90 text-white font-semibold 
+                    rounded-xl border border-white/20 shadow-lg hover:shadow-xl 
+                    transition-all duration-300 transform hover:scale-105 active:scale-95
+                    ${isMobileView ? 'px-6 py-3 text-sm' : 'px-8 py-4 text-base'}
+                  `}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="relative flex items-center gap-2">
+                    <span>Next: Complete Your Booking</span>
+                    <User className={`${isMobileView ? 'h-4 w-4' : 'h-5 w-5'} transition-transform group-hover:translate-x-1`} />
+                  </div>
+                </button>
               </div>
             </div>
           )}
