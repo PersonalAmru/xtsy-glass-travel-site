@@ -357,15 +357,20 @@ const BookingFlow = () => {
 
           {step === 'rooms' && (
             <div className="space-y-8">
-              <div className="text-center">
-                <h2 className="text-2xl font-bold mb-2">Choose Your Accommodation</h2>
-                <p className="text-gray-600">Select from our available rooms and customize your stay</p>
+              <div className="text-center mb-12">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-3 sm:mb-4 font-playfair">
+                  Choose Your Accommodation
+                </h2>
+                <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
+                  Select from our available rooms and customize your stay
+                </p>
+                <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-6 rounded-full" />
               </div>
               
               {/* XTSY Luxury Section */}
               {roomsByProperty.luxury.length > 0 && (
                 <div className="space-y-4">
-                  <h3 className="text-xl font-semibold text-center bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 text-center font-playfair bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
                     XTSY Luxury
                   </h3>
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -393,7 +398,7 @@ const BookingFlow = () => {
               {/* XTSY Travellers Hostel Section */}
               {roomsByProperty.hostel.length > 0 && (
                 <div className="space-y-4">
-                  <h3 className="text-xl font-semibold text-center bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 text-center font-playfair bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
                     XTSY Travellers Hostel
                   </h3>
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -421,7 +426,7 @@ const BookingFlow = () => {
               {/* XTSY Economy Section */}
               {roomsByProperty.economy.length > 0 && (
                 <div className="space-y-4">
-                  <h3 className="text-xl font-semibold text-center bg-gradient-to-r from-green-500 to-teal-600 bg-clip-text text-transparent">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 text-center font-playfair bg-gradient-to-r from-green-500 to-teal-600 bg-clip-text text-transparent">
                     XTSY Economy
                   </h3>
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -456,9 +461,14 @@ const BookingFlow = () => {
 
           {step === 'guest' && (
             <div className="space-y-6">
-              <div className="text-center">
-                <h2 className="text-2xl font-bold mb-2">Guest Details Complete</h2>
-                <p className="text-gray-600">Your contact information has been saved</p>
+              <div className="text-center mb-12">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-3 sm:mb-4 font-playfair">
+                  Guest Details Complete
+                </h2>
+                <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
+                  Your contact information has been saved
+                </p>
+                <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-6 rounded-full" />
               </div>
 
               <Card>
@@ -483,9 +493,14 @@ const BookingFlow = () => {
 
           {step === 'payment' && (
             <div className="space-y-6">
-              <div className="text-center">
-                <h2 className="text-2xl font-bold mb-2">Payment</h2>
-                <p className="text-gray-600">Choose your payment method to complete the booking</p>
+              <div className="text-center mb-12">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-3 sm:mb-4 font-playfair">
+                  Payment
+                </h2>
+                <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
+                  Choose your payment method to complete the booking
+                </p>
+                <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-6 rounded-full" />
               </div>
 
               <Card>
