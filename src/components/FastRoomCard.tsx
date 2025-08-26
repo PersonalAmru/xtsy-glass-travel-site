@@ -48,7 +48,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
       return (
         <div className="flex justify-center w-full">
           <div className={`${
-            isMobile ? 'w-full max-w-md' : isTablet ? 'w-full max-w-lg' : 'w-full max-w-xl'
+            isMobile ? 'w-full max-w-lg' : isTablet ? 'w-full max-w-xl' : 'w-full max-w-2xl'
           }`}>
             {children}
           </div>
@@ -76,7 +76,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
             alt={room.name}
             className={`w-full object-cover transition-transform duration-300 hover:scale-105 ${
               isXTSY270 
-                ? (isMobile ? 'h-32' : isTablet ? 'h-36' : 'h-40')
+                ? (isMobile ? 'h-28' : isTablet ? 'h-32' : 'h-36')
                 : (isMobile ? 'h-40' : isTablet ? 'h-44' : 'h-48')
             }`}
             loading="lazy"
@@ -85,7 +85,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
 
         <CardHeader className={`spacing-responsive ${
           isMobile ? 'pb-2 px-3 pt-3' : 'pb-3'
-        } ${isXTSY270 ? 'pb-1 pt-2' : ''}`}>
+        } ${isXTSY270 ? 'pb-1 pt-1.5' : ''}`}>
           <div className={`flex items-start justify-between ${
             isMobile ? 'flex-col space-y-2' : ''
           }`}>
@@ -110,7 +110,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
         </CardHeader>
 
         <CardContent className={`pt-0 spacing-responsive ${
-          isXTSY270 ? 'py-2 px-3' : ''
+          isXTSY270 ? 'py-1.5 px-3' : ''
         }`}>
           <p className={`text-gray-300 mb-4 ${
             isMobile ? 'text-responsive-xs' : 'text-responsive-sm'
