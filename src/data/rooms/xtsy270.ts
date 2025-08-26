@@ -1,4 +1,3 @@
-
 import { Wifi, Coffee, Bath, Bed, Mountain, Star, Award, Eye, Sun, Moon, Users, MapPin, Wind, Thermometer, Shield, Camera } from 'lucide-react';
 
 export const XTSY270_DATA = {
@@ -81,6 +80,21 @@ export const XTSY270_DATA = {
     'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140811.png',
     'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140029.png'
   ],
+};
+
+// Export for backward compatibility with BookingFlow
+export const ROOM_DATA = {
+  'xtsy-270': {
+    id: 'xtsy-270',
+    name: XTSY270_DATA.name,
+    price: XTSY270_DATA.price,
+    image: XTSY270_DATA.image,
+    description: XTSY270_DATA.description,
+    amenities: XTSY270_DATA.features,
+    type: 'private' as const,
+    maxGuests: XTSY270_DATA.maxGuests,
+    propertyType: 'luxury-glass-house'
+  }
 };
 
 export type Xtsy270Data = typeof XTSY270_DATA;

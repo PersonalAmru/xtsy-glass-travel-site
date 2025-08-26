@@ -19,7 +19,7 @@ interface UnifiedImageProps {
 
 // Optimized intersection observer for ultra-fast loading
 class FastIntersectionObserver {
-  private static observer: IntersectionObserver | null = null;
+  static observer: IntersectionObserver | null = null; // Made public
   private static callbacks = new Map<Element, () => void>();
 
   static getInstance(): IntersectionObserver {

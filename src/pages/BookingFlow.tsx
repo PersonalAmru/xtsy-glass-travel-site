@@ -1,6 +1,7 @@
+
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Header } from '@/components/Header';
+import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -8,11 +9,11 @@ import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { CalendarDays, Users, MapPin, Phone, Mail, User, CreditCard } from 'lucide-react';
-import { RoomCard } from '@/components/RoomCard';
+import RoomCard from '@/components/RoomCard';
 import FastRoomCard from '@/components/FastRoomCard';
-import { GuestDetails } from '@/components/GuestDetails';
-import { PaymentHandler } from '@/components/PaymentHandler';
-import { UPIPaymentModal } from '@/components/UPIPaymentModal';
+import GuestDetails from '@/components/GuestDetails';
+import PaymentHandler from '@/components/PaymentHandler';
+import UPIPaymentModal from '@/components/UPIPaymentModal';
 import { toast } from 'sonner';
 import { ROOM_DATA } from '@/data/rooms/xtsy270';
 
