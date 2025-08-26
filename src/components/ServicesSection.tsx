@@ -15,8 +15,12 @@ import {
   Phone,
   Clock
 } from "lucide-react";
+import { useScreenSize, useIsMobile } from "@/hooks/use-mobile";
 
 const ServicesSection = () => {
+  const screenSize = useScreenSize();
+  const isMobile = useIsMobile();
+
   const services = [
     {
       icon: <Wifi className="h-5 w-5" />,
@@ -92,6 +96,20 @@ const ServicesSection = () => {
     }
   ];
 
+  // Responsive grid classes based on screen size
+  const getGridClasses = () => {
+    if (isMobile) return "grid-cols-2";
+    if (screenSize === 'tablet') return "grid-cols-3 md:grid-cols-4";
+    return "grid-cols-4 lg:grid-cols-6";
+  };
+
+  // Responsive card height based on screen size
+  const getCardHeight = () => {
+    if (isMobile) return "h-44";
+    if (screenSize === 'tablet') return "h-40";
+    return "h-36 sm:h-40";
+  };
+
   return (
     <section className="py-12 md:py-16 lg:py-20 safe-area-padding bg-gradient-to-br from-purple-900/20 via-pink-900/10 to-orange-900/20 relative overflow-hidden">
       {/* Enhanced Background Effects with Glassmorphism */}
@@ -115,10 +133,10 @@ const ServicesSection = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6 mt-8 services-tablet-grid mobile-reduce-animations">
+        <div className={`grid ${getGridClasses()} gap-4 sm:gap-6 mt-8 mobile-reduce-animations`}>
           {services.map((service, index) => (
-            <Card key={index} className="glass-card bg-white/10 backdrop-blur-md border border-white/20 hover:border-white/30 hover:bg-white/15 hover:shadow-xl transition-all duration-500 h-36 sm:h-40 flex flex-col group hover:scale-105 mobile-touch-target">
-              <CardHeader className="p-3 pb-2 flex-1">
+            <Card key={index} className={`glass-card bg-white/10 backdrop-blur-md border border-white/20 hover:border-white/30 hover:bg-white/15 hover:shadow-xl transition-all duration-500 ${getCardHeight()} flex flex-col group hover:scale-105 mobile-touch-target`}>
+              <CardHeader className="p-3 pb-2 flex-shrink-0">
                 <div className="flex items-center justify-between mb-2">
                   <div className="text-purple-600 group-hover:text-pink-600 transition-colors duration-300 flex-shrink-0">
                     {service.icon}
@@ -127,12 +145,20 @@ const ServicesSection = () => {
                     {service.badge}
                   </Badge>
                 </div>
-                <CardTitle className="text-sm sm:text-base font-bold text-gray-900 leading-tight group-hover:text-purple-900 transition-colors duration-300 mobile-text-scale">
+                <CardTitle className={`font-bold text-gray-900 leading-tight group-hover:text-purple-900 transition-colors duration-300 ${
+                  isMobile ? 'text-sm' : 'text-sm sm:text-base'
+                }`}>
                   {service.title}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-3 pt-0 flex-1 flex items-start">
-                <CardDescription className="text-xs sm:text-sm text-gray-700 leading-tight overflow-hidden group-hover:text-gray-800 transition-colors duration-300 mobile-text-scale">
+              <CardContent className="p-3 pt-0 flex-1 flex items-start overflow-hidden">
+                <CardDescription className={`text-gray-700 leading-tight group-hover:text-gray-800 transition-colors duration-300 ${
+                  isMobile 
+                    ? 'text-xs line-clamp-3' 
+                    : screenSize === 'tablet' 
+                      ? 'text-xs line-clamp-2'
+                      : 'text-xs sm:text-sm line-clamp-2'
+                }`}>
                   {service.description}
                 </CardDescription>
               </CardContent>
