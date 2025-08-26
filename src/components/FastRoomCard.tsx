@@ -180,7 +180,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
               <div className={`flex flex-wrap mb-3 gap-1 ${
                 isXTSY270 ? 'mb-2' : ''
               }`}>
-                {room.amenities.slice(0, isMobile ? 2 : 3).map((amenity) => (
+                {room.amenities.map((amenity) => (
                   <Badge 
                     key={amenity} 
                     variant="outline" 
@@ -192,18 +192,6 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                   </Badge>
                 ))}
               </div>
-              {room.amenities.length > (isMobile ? 2 : 3) && (
-                <div className="mb-3">
-                  <Badge 
-                    variant="outline" 
-                    className={`text-xs px-2 py-0.5 border-gray-600 text-gray-200 bg-gray-800 ${
-                      isXTSY270 ? 'text-xs px-2 py-0.5' : ''
-                    }`}
-                  >
-                    +{room.amenities.length - (isMobile ? 2 : 3)} more
-                  </Badge>
-                </div>
-              )}
 
               {/* Room selection only */}
               <div className={`space-y-2 pt-2 border-t border-gray-700 ${
