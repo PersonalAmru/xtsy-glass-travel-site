@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -340,7 +339,6 @@ const BookingFlow = () => {
         <div className="max-w-6xl mx-auto space-y-8">
           <div className="text-center">
             <h1 className="text-3xl font-bold">Booking Flow</h1>
-            <p className="text-gray-600">Step {step === 'rooms' ? '1' : step === 'guest' ? '2' : '3'} of 3</p>
           </div>
 
           {step === 'rooms' && (
