@@ -17,6 +17,7 @@ interface FastRoomCardProps {
     type: 'dorm' | 'private';
     maxGuests: number;
     propertyType: string;
+    maxRooms?: number;
   };
   isSelected: boolean;
   selection: { guests: number; rooms: number };
@@ -151,12 +152,12 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
               <div className={`space-y-2 pt-2 border-t border-gray-700 ${
                 isMobile ? 'space-y-2 pt-2' : ''
               } ${isXTSY270 ? 'space-y-2 pt-2 mt-auto' : ''}`}>
-                {/* Room Selection */}
+              {/* Bed/Room Selection */}
                 <div className="flex items-center justify-between">
                   <span className={`font-medium text-white ${
                     isMobile ? 'text-xs' : 'text-sm'
                   } ${isXTSY270 ? 'text-xs' : ''}`}>
-                    Rooms:
+                    {room.type === 'dorm' ? 'Beds:' : 'Rooms:'}
                   </span>
                   <div className="flex items-center gap-2">
                     <Button
@@ -185,9 +186,10 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                       size="sm"
                       onClick={(e) => {
                         e.stopPropagation();
-                        onRoomChange(room.id, Math.min(5, selection.rooms + 1));
+                        const maxSelection = room.maxRooms || 5;
+                        onRoomChange(room.id, Math.min(maxSelection, selection.rooms + 1));
                       }}
-                      disabled={selection.rooms >= 5}
+                      disabled={selection.rooms >= (room.maxRooms || 5)}
                       className={`border-gray-600 bg-gray-800 text-white hover:bg-gray-700 ${
                         isMobile ? 'h-6 w-6 p-0' : 'h-7 w-7 p-0'
                       } ${isXTSY270 ? 'h-6 w-6 p-0' : ''}`}
@@ -211,7 +213,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                   <span className={`font-bold text-primary ${
                     isMobile ? 'text-sm' : isTablet ? 'text-base' : 'text-lg'
                   } ${isXTSY270 ? 'text-sm' : ''}`}>
-                    ₹{((room.price || 0) * selection.guests * selection.rooms).toLocaleString()}
+                    ₹{((room.price || 0) * selection.rooms).toLocaleString()}
                   </span>
                 </div>
               </div>

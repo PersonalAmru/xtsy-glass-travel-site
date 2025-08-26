@@ -23,6 +23,7 @@ interface Room {
   type: 'dorm' | 'private';
   maxGuests: number;
   propertyType: string;
+  maxRooms?: number; // Available beds/rooms for selection
 }
 
 interface SelectedRoom {
@@ -36,32 +37,34 @@ interface SelectedRoom {
   };
 }
 
-// All available rooms from the home page
+// All available rooms from the home page with precise pricing and capacity
 const ALL_ROOMS_DATA: { [key: string]: Room } = {
   // XTSY Luxury
   'xtsy-270': {
     id: 'xtsy-270',
-    name: XTSY270_DATA.name,
-    price: XTSY270_DATA.price,
+    name: '270° Panorama Glass Ensuite',
+    price: 18000,
     image: XTSY270_DATA.image,
     description: XTSY270_DATA.description,
     amenities: XTSY270_DATA.features,
     type: 'private',
-    maxGuests: XTSY270_DATA.maxGuests,
-    propertyType: 'luxury'
+    maxGuests: 2,
+    propertyType: 'luxury',
+    maxRooms: 1
   },
   
   // XTSY Travellers Hostel
   '4-bed-female-only-dorm': {
     id: '4-bed-female-only-dorm',
-    name: 'Bed in 4 Bed Female Only Dorm',
+    name: 'Bed in 4 Bed Female Dorm',
     price: 850,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg',
     description: 'Female-only dormitory with modern amenities and comfortable beds',
     amenities: ['Female only', 'Attached bathroom', 'Wi-Fi', 'Locker', 'Common area', 'Reading lights', 'Power outlets', 'Premium Breakfast'],
     type: 'dorm',
-    maxGuests: 4,
-    propertyType: 'hostel'
+    maxGuests: 1, // Per bed
+    propertyType: 'hostel',
+    maxRooms: 4 // 4 beds available
   },
   
   '4-bed-mixed-female-dorm': {
@@ -72,8 +75,9 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
     description: 'Mixed or female dormitory with shared facilities and social atmosphere',
     amenities: ['Mixed/Female', 'Attached bathroom', 'Wi-Fi', 'Locker', 'Common area', 'Reading lights', 'Power outlets', 'Premium Breakfast'],
     type: 'dorm',
-    maxGuests: 4,
-    propertyType: 'hostel'
+    maxGuests: 1, // Per bed
+    propertyType: 'hostel',
+    maxRooms: 4 // 4 beds available
   },
   
   '6-bed-mixed-female-dorm': {
@@ -84,8 +88,9 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
     description: 'Spacious mixed or female dormitory with modern amenities',
     amenities: ['Mixed/Female', 'Attached bathroom', 'Wi-Fi', 'Locker', 'Common area', 'Reading lights', 'Power outlets', 'Premium Breakfast'],
     type: 'dorm',
-    maxGuests: 6,
-    propertyType: 'hostel'
+    maxGuests: 1, // Per bed
+    propertyType: 'hostel',
+    maxRooms: 6 // 6 beds available
   },
   
   'king-double-room': {
@@ -96,8 +101,9 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
     description: 'Spacious private room with king bed for two guests',
     amenities: ['King bed', 'Valley view', 'Attached bath', 'Wi-Fi', 'Premium amenities', 'Mini fridge', 'Premium Breakfast'],
     type: 'private',
-    maxGuests: 4,
-    propertyType: 'hostel'
+    maxGuests: 2, // Max 2 guests per room
+    propertyType: 'hostel',
+    maxRooms: 2 // 2 rooms available
   },
   
   'king-triple-room': {
@@ -109,7 +115,8 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
     amenities: ['King bed + extra bed', 'Panoramic view', 'Attached bath', 'Wi-Fi', 'Premium amenities', 'Mini fridge', 'Premium Breakfast'],
     type: 'private',
     maxGuests: 3,
-    propertyType: 'hostel'
+    propertyType: 'hostel',
+    maxRooms: 1 // 1 room available
   },
   
   // XTSY Economy
@@ -121,8 +128,9 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
     description: 'Budget-friendly mixed dormitory with essential amenities',
     amenities: ['Mixed/Female', 'AC', 'Reading lights', 'Lockers', 'Budget Friendly'],
     type: 'dorm',
-    maxGuests: 6,
-    propertyType: 'economy'
+    maxGuests: 1, // Per bed
+    propertyType: 'economy',
+    maxRooms: 6 // 6 beds available
   },
   
   '8-bed-mixed-economy-dorm': {
@@ -133,8 +141,9 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
     description: 'Most economical option for backpackers and budget travelers',
     amenities: ['Mixed', 'AC', 'Reading lights', 'Lockers', 'Budget Friendly'],
     type: 'dorm',
-    maxGuests: 8,
-    propertyType: 'economy'
+    maxGuests: 1, // Per bed
+    propertyType: 'economy',
+    maxRooms: 8 // 8 beds available
   }
 };
 
@@ -194,8 +203,8 @@ export default function BookingFlow() {
             price: room.price,
             type: room.type,
             selection: {
-              guests: room.type === 'private' ? 1 : 1,
-              rooms: room.type === 'private' ? 1 : 0
+              guests: room.type === 'dorm' ? 1 : room.maxGuests,
+              rooms: 1 // Start with 1 bed/room selected
             }
           }]);
         }
@@ -213,16 +222,16 @@ export default function BookingFlow() {
       if (isSelected) {
         return prev.filter(r => r.id !== roomId);
       } else {
-        return [...prev, {
-          id: room.id,
-          name: room.name,
-          price: room.price,
-          type: room.type,
-          selection: {
-            guests: room.type === 'private' ? 1 : 1,
-            rooms: room.type === 'private' ? 1 : 0
-          }
-        }];
+          return [...prev, {
+            id: room.id,
+            name: room.name,
+            price: room.price,
+            type: room.type,
+            selection: {
+              guests: room.type === 'dorm' ? 1 : room.maxGuests,
+              rooms: 1 // Start with 1 bed/room selected
+            }
+          }];
       }
     });
   };
@@ -249,12 +258,37 @@ export default function BookingFlow() {
     });
   };
 
+  // Validate guest accommodation
+  const validateGuestAccommodation = () => {
+    if (selectedRooms.length === 0) return false;
+    
+    const totalAccommodatedGuests = selectedRooms.reduce((total, room) => {
+      if (room.type === 'dorm') {
+        // Each bed can accommodate 1 guest
+        return total + room.selection.rooms;
+      } else {
+        // Each private room can accommodate maxGuests
+        const roomData = ALL_ROOMS_DATA[room.id];
+        return total + (room.selection.rooms * roomData.maxGuests);
+      }
+    }, 0);
+    
+    return totalAccommodatedGuests >= bookingDates.guests;
+  };
+
   const handleNext = () => {
     if (currentStep === 'rooms') {
       if (selectedRooms.length === 0) {
-        toast.error('Please select at least one room');
+        toast.error('Please select at least one room or bed');
         return;
       }
+      
+      // Validate guest accommodation
+      if (!validateGuestAccommodation()) {
+        toast.error(`Please select enough beds/rooms to accommodate all ${bookingDates.guests} guests`);
+        return;
+      }
+      
       setShowGuestModal(true);
     } else if (currentStep === 'guest') {
       if (!guestDetails.firstName || !guestDetails.email) {
@@ -290,7 +324,13 @@ export default function BookingFlow() {
 
   const calculateTotalAmount = () => {
     return selectedRooms.reduce((total, room) => {
-      return total + (room.price * room.selection.guests * (room.type === 'private' ? room.selection.rooms : 1) * nights);
+      // For dorms: price per bed * number of beds * nights
+      // For private rooms: price per room * number of rooms * nights
+      if (room.type === 'dorm') {
+        return total + (room.price * room.selection.rooms * nights);
+      } else {
+        return total + (room.price * room.selection.rooms * nights);
+      }
     }, 0);
   };
 
@@ -481,7 +521,7 @@ export default function BookingFlow() {
                     {roomsByProperty.luxury.map((room) => {
                       const selectedRoom = selectedRooms.find(r => r.id === room.id);
                       const isSelected = !!selectedRoom;
-                      const selection = selectedRoom?.selection || { guests: 1, rooms: room.type === 'private' ? 1 : 0 };
+                       const selection = selectedRoom?.selection || { guests: 1, rooms: 1 };
                       
                       return (
                         <FastRoomCard
@@ -513,7 +553,7 @@ export default function BookingFlow() {
                     {roomsByProperty.hostel.map((room) => {
                       const selectedRoom = selectedRooms.find(r => r.id === room.id);
                       const isSelected = !!selectedRoom;
-                      const selection = selectedRoom?.selection || { guests: 1, rooms: room.type === 'private' ? 1 : 0 };
+                       const selection = selectedRoom?.selection || { guests: 1, rooms: 1 };
                       
                       return (
                         <FastRoomCard
@@ -545,7 +585,7 @@ export default function BookingFlow() {
                     {roomsByProperty.economy.map((room) => {
                       const selectedRoom = selectedRooms.find(r => r.id === room.id);
                       const isSelected = !!selectedRoom;
-                      const selection = selectedRoom?.selection || { guests: 1, rooms: room.type === 'private' ? 1 : 0 };
+                      const selection = selectedRoom?.selection || { guests: 1, rooms: 1 };
                       
                       return (
                         <FastRoomCard
