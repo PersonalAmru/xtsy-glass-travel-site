@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -15,7 +14,7 @@ import GuestDetails from '@/components/GuestDetails';
 import PaymentHandler from '@/components/PaymentHandler';
 import UPIPaymentModal from '@/components/UPIPaymentModal';
 import { toast } from 'sonner';
-import { ROOM_DATA } from '@/data/rooms/xtsy270';
+import { ROOM_DATA, XTSY270_DATA } from '@/data/rooms/xtsy270';
 
 interface Room {
   id: string;
@@ -40,6 +39,108 @@ interface SelectedRoom {
   };
 }
 
+// All available rooms from the home page
+const ALL_ROOMS_DATA: { [key: string]: Room } = {
+  // XTSY Luxury
+  'xtsy-270': {
+    id: 'xtsy-270',
+    name: XTSY270_DATA.name,
+    price: XTSY270_DATA.price,
+    image: XTSY270_DATA.image,
+    description: XTSY270_DATA.description,
+    amenities: XTSY270_DATA.features,
+    type: 'private',
+    maxGuests: XTSY270_DATA.maxGuests,
+    propertyType: 'luxury'
+  },
+  
+  // XTSY Travellers Hostel
+  '4-bed-female-only-dorm': {
+    id: '4-bed-female-only-dorm',
+    name: 'Bed in 4 Bed Female Only Dorm',
+    price: 850,
+    image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg',
+    description: 'Female-only dormitory with modern amenities and comfortable beds',
+    amenities: ['Female only', 'Attached bathroom', 'Wi-Fi', 'Locker', 'Common area', 'Reading lights', 'Power outlets', 'Complimentary breakfast'],
+    type: 'dorm',
+    maxGuests: 4,
+    propertyType: 'hostel'
+  },
+  
+  '4-bed-mixed-female-dorm': {
+    id: '4-bed-mixed-female-dorm',
+    name: 'Bed in 4 Bed Mixed/Female Dorm',
+    price: 800,
+    image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/3.jpg',
+    description: 'Mixed or female dormitory with shared facilities and social atmosphere',
+    amenities: ['Mixed/Female', 'Attached bathroom', 'Wi-Fi', 'Locker', 'Common area', 'Reading lights', 'Power outlets', 'Complimentary breakfast'],
+    type: 'dorm',
+    maxGuests: 4,
+    propertyType: 'hostel'
+  },
+  
+  '6-bed-mixed-female-dorm': {
+    id: '6-bed-mixed-female-dorm',
+    name: 'Bed in 6 Bed Mixed/Female Dorm',
+    price: 700,
+    image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
+    description: 'Spacious mixed or female dormitory with modern amenities',
+    amenities: ['Mixed/Female', 'Attached bathroom', 'Wi-Fi', 'Locker', 'Common area', 'Reading lights', 'Power outlets', 'Complimentary breakfast'],
+    type: 'dorm',
+    maxGuests: 6,
+    propertyType: 'hostel'
+  },
+  
+  'king-double-room': {
+    id: 'king-double-room',
+    name: 'King Double Room',
+    price: 3200,
+    image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg',
+    description: 'Spacious private room with king bed for two guests',
+    amenities: ['King bed', 'Valley view', 'Attached bath', 'Wi-Fi', 'Premium amenities', 'Mini fridge', 'Complimentary breakfast'],
+    type: 'private',
+    maxGuests: 4,
+    propertyType: 'hostel'
+  },
+  
+  'king-triple-room': {
+    id: 'king-triple-room',
+    name: 'King Triple Room',
+    price: 4200,
+    image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/1.jpg',
+    description: 'Luxurious private room accommodating up to three guests',
+    amenities: ['King bed + extra bed', 'Panoramic view', 'Attached bath', 'Wi-Fi', 'Premium amenities', 'Mini fridge', 'Complimentary breakfast'],
+    type: 'private',
+    maxGuests: 3,
+    propertyType: 'hostel'
+  },
+  
+  // XTSY Economy
+  '6-bed-mixed-economy-dorm': {
+    id: '6-bed-mixed-economy-dorm',
+    name: 'Bed in 6 Bed Mixed Dormitory',
+    price: 550,
+    image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
+    description: 'Budget-friendly mixed dormitory with essential amenities',
+    amenities: ['Mixed/Female', 'AC', 'Reading lights', 'Lockers', 'Budget Friendly'],
+    type: 'dorm',
+    maxGuests: 6,
+    propertyType: 'economy'
+  },
+  
+  '8-bed-mixed-economy-dorm': {
+    id: '8-bed-mixed-economy-dorm',
+    name: 'Bed in 8 Bed Mixed Dormitory',
+    price: 450,
+    image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg',
+    description: 'Most economical option for backpackers and budget travelers',
+    amenities: ['Mixed', 'AC', 'Reading lights', 'Lockers', 'Budget Friendly'],
+    type: 'dorm',
+    maxGuests: 8,
+    propertyType: 'economy'
+  }
+};
+
 const BookingFlow = () => {
   const [searchParams] = useSearchParams();
   const preSelectedRoom = searchParams.get('room');
@@ -61,13 +162,13 @@ const BookingFlow = () => {
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const [isGuestModalOpen, setIsGuestModalOpen] = useState(false);
 
-  const roomsArray: Room[] = Object.values(ROOM_DATA);
+  const roomsArray: Room[] = Object.values(ALL_ROOMS_DATA);
 
   // Pre-select room immediately when params are available
   useEffect(() => {
     if (preSelectedRoom && preSelectedProperty) {
       try {
-        const room = ROOM_DATA[preSelectedRoom as keyof typeof ROOM_DATA];
+        const room = ALL_ROOMS_DATA[preSelectedRoom as keyof typeof ALL_ROOMS_DATA];
         if (room && room.propertyType === preSelectedProperty) {
           setSelectedRooms([{
             id: room.id,
@@ -88,7 +189,7 @@ const BookingFlow = () => {
 
   const handleRoomSelect = (roomId: string) => {
     setSelectedRooms(prev => {
-      const room = ROOM_DATA[roomId as keyof typeof ROOM_DATA];
+      const room = ALL_ROOMS_DATA[roomId as keyof typeof ALL_ROOMS_DATA];
       const isSelected = prev.find(r => r.id === roomId);
 
       if (isSelected) {
@@ -226,45 +327,118 @@ const BookingFlow = () => {
     }
   };
 
+  // Group rooms by property type for better organization
+  const roomsByProperty = {
+    luxury: roomsArray.filter(room => room.propertyType === 'luxury'),
+    hostel: roomsArray.filter(room => room.propertyType === 'hostel'),
+    economy: roomsArray.filter(room => room.propertyType === 'economy')
+  };
+
   return (
     <>
       <Header />
       <main className="container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto space-y-8">
+        <div className="max-w-6xl mx-auto space-y-8">
           <div className="text-center">
             <h1 className="text-3xl font-bold">Booking Flow</h1>
             <p className="text-gray-600">Step {step === 'rooms' ? '1' : step === 'guest' ? '2' : '3'} of 3</p>
           </div>
 
           {step === 'rooms' && (
-            <div className="space-y-6">
+            <div className="space-y-8">
               <div className="text-center">
                 <h2 className="text-2xl font-bold mb-2">Choose Your Accommodation</h2>
                 <p className="text-gray-600">Select from our available rooms and customize your stay</p>
               </div>
               
-              <div className="grid md:grid-cols-2 gap-6">
-                {roomsArray.map((room) => {
-                  const selectedRoom = selectedRooms.find(r => r.id === room.id);
-                  const isSelected = !!selectedRoom;
-                  const selection = selectedRoom?.selection || { guests: 1, rooms: room.type === 'private' ? 1 : 0 };
-                  
-                  return (
-                    <FastRoomCard
-                      key={room.id}
-                      room={room}
-                      isSelected={isSelected}
-                      selection={selection}
-                      onSelect={handleRoomSelect}
-                      onGuestChange={handleGuestChange}
-                      onRoomChange={handleRoomChange}
-                    />
-                  );
-                })}
-              </div>
+              {/* XTSY Luxury Section */}
+              {roomsByProperty.luxury.length > 0 && (
+                <div className="space-y-4">
+                  <h3 className="text-xl font-semibold text-center bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
+                    XTSY Luxury
+                  </h3>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {roomsByProperty.luxury.map((room) => {
+                      const selectedRoom = selectedRooms.find(r => r.id === room.id);
+                      const isSelected = !!selectedRoom;
+                      const selection = selectedRoom?.selection || { guests: 1, rooms: room.type === 'private' ? 1 : 0 };
+                      
+                      return (
+                        <FastRoomCard
+                          key={room.id}
+                          room={room}
+                          isSelected={isSelected}
+                          selection={selection}
+                          onSelect={handleRoomSelect}
+                          onGuestChange={handleGuestChange}
+                          onRoomChange={handleRoomChange}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
 
-              <div className="flex justify-end">
-                <Button onClick={handleNext}>Next: Guest Details <User className="ml-2" /></Button>
+              {/* XTSY Travellers Hostel Section */}
+              {roomsByProperty.hostel.length > 0 && (
+                <div className="space-y-4">
+                  <h3 className="text-xl font-semibold text-center bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+                    XTSY Travellers Hostel
+                  </h3>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {roomsByProperty.hostel.map((room) => {
+                      const selectedRoom = selectedRooms.find(r => r.id === room.id);
+                      const isSelected = !!selectedRoom;
+                      const selection = selectedRoom?.selection || { guests: 1, rooms: room.type === 'private' ? 1 : 0 };
+                      
+                      return (
+                        <FastRoomCard
+                          key={room.id}
+                          room={room}
+                          isSelected={isSelected}
+                          selection={selection}
+                          onSelect={handleRoomSelect}
+                          onGuestChange={handleGuestChange}
+                          onRoomChange={handleRoomChange}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* XTSY Economy Section */}
+              {roomsByProperty.economy.length > 0 && (
+                <div className="space-y-4">
+                  <h3 className="text-xl font-semibold text-center bg-gradient-to-r from-green-500 to-teal-600 bg-clip-text text-transparent">
+                    XTSY Economy
+                  </h3>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {roomsByProperty.economy.map((room) => {
+                      const selectedRoom = selectedRooms.find(r => r.id === room.id);
+                      const isSelected = !!selectedRoom;
+                      const selection = selectedRoom?.selection || { guests: 1, rooms: room.type === 'private' ? 1 : 0 };
+                      
+                      return (
+                        <FastRoomCard
+                          key={room.id}
+                          room={room}
+                          isSelected={isSelected}
+                          selection={selection}
+                          onSelect={handleRoomSelect}
+                          onGuestChange={handleGuestChange}
+                          onRoomChange={handleRoomChange}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              <div className="flex justify-end pt-6">
+                <Button onClick={handleNext} size="lg">
+                  Next: Guest Details <User className="ml-2" />
+                </Button>
               </div>
             </div>
           )}
@@ -349,6 +523,7 @@ const BookingFlow = () => {
           onClose={handleGuestModalClose}
           onBack={handleGuestModalBack}
           bookingData={getBookingData()!}
+          onGuestDetailsChange={(details) => setGuestDetails(details)}
         />
       )}
 
