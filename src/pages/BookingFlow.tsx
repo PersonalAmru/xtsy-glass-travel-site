@@ -352,8 +352,31 @@ export default function BookingFlow() {
       isMobileView ? 'pb-20' : ''
     }`}>
       <Header />
+      
+      {/* Top Left Corner - Book Your Stay Button */}
+      <div className={`absolute top-20 left-4 z-10 ${
+        isMobileView ? 'top-16 left-2' : isTabletView ? 'top-18 left-4' : 'top-20 left-6'
+      }`}>
+        <div className="flex items-center gap-3">
+          <Button
+            variant="ghost"
+            onClick={() => navigate('/')}
+            className={`text-gray-600 hover:text-gray-900 ${
+              isMobileView ? 'p-2' : ''
+            }`}
+          >
+            <ArrowLeft className="h-4 w-4" />
+          </Button>
+          <h1 className={`font-bold text-gray-900 ${
+            isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'
+          }`}>
+            Book Your Stay
+          </h1>
+        </div>
+      </div>
+
       <div className={`container mx-auto py-8 ${
-        isMobileView ? 'px-2 py-4' : isTabletView ? 'px-4' : 'px-6'
+        isMobileView ? 'px-2 py-4 pt-20' : isTabletView ? 'px-4 pt-24' : 'px-6 pt-28'
       }`}>
         {/* Booking Summary at Top Center */}
         <div className="flex justify-center mb-8">
@@ -377,27 +400,6 @@ export default function BookingFlow() {
         <div className="w-full">
           {/* Progress Bar */}
           <div className={`mb-8 ${isMobileView ? 'mb-4' : ''}`}>
-            <div className={`flex items-center justify-between mb-4 ${
-              isMobileView ? 'mb-2 px-2' : ''
-            }`}>
-              <div className="flex items-center gap-3">
-                <Button
-                  variant="ghost"
-                  onClick={() => navigate('/')}
-                  className={`text-gray-600 hover:text-gray-900 ${
-                    isMobileView ? 'p-2' : ''
-                  }`}
-                >
-                  <ArrowLeft className="h-4 w-4" />
-                </Button>
-                <h1 className={`font-bold text-gray-900 ${
-                  isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'
-                }`}>
-                  Book Your Stay
-                </h1>
-              </div>
-            </div>
-            
             <div className={`flex items-center space-x-4 ${
               isMobileView ? 'px-2 space-x-2' : ''
             }`}>
