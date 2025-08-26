@@ -60,7 +60,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
 
   if (isLuxury) {
     return (
-      <Card className="group bg-white hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-0 overflow-hidden min-h-[580px] h-auto flex flex-col mobile-carousel">
+      <Card className="group bg-black text-white hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-gray-700 overflow-hidden min-h-[580px] h-auto flex flex-col mobile-carousel">
         <MobileImageCarousel
           images={images}
           alt={room.name}
@@ -71,20 +71,20 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
         />
         
         <CardHeader className="pb-2 px-4">
-          <CardTitle className="text-lg font-bold text-gray-900 mb-1 font-playfair">
+          <CardTitle className="text-lg font-bold text-white mb-1 font-playfair">
             {room.name}
           </CardTitle>
-          <CardDescription className="text-gray-600 text-sm font-josefin line-clamp-2">
+          <CardDescription className="text-gray-300 text-sm font-josefin line-clamp-2">
             {room.description}
           </CardDescription>
         </CardHeader>
         
         <CardContent className="px-4 pb-4 flex-1 flex flex-col">
           <div className="mb-4">
-            <h4 className="font-semibold text-gray-900 mb-2 font-josefin">Premium Features:</h4>
+            <h4 className="font-semibold text-white mb-2 font-josefin">Premium Features:</h4>
             <div className="flex flex-wrap gap-1">
               {room.features.slice(0, 6).map((feature, index) => (
-                <Badge key={index} variant="secondary" className="text-xs bg-gradient-to-r from-orange-100 to-red-100 text-orange-700 border-orange-200">
+                <Badge key={index} variant="secondary" className="text-xs bg-gradient-to-r from-orange-800 to-red-900 text-orange-200 border-orange-600">
                   {feature}
                 </Badge>
               ))}
@@ -94,10 +94,10 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
           <div className="mt-auto">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
-                <Users className="h-4 w-4 text-gray-600" />
-                <span className="text-sm text-gray-600 font-josefin">{room.maxGuests} guests</span>
+                <Users className="h-4 w-4 text-gray-300" />
+                <span className="text-sm text-gray-300 font-josefin">{room.maxGuests} guests</span>
               </div>
-              <span className="text-lg font-bold text-orange-600 font-playfair">{formatPrice(displayPrice)}/night</span>
+              <span className="text-lg font-bold text-orange-400 font-playfair">{formatPrice(displayPrice)}/night</span>
             </div>
             <Button 
               onClick={handleRoomSelection}
@@ -113,7 +113,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
 
   // Standard room card
   return (
-    <Card className="group bg-white hover:shadow-lg transition-all duration-300 border border-gray-200 overflow-hidden h-auto flex flex-col mobile-carousel">
+    <Card className="group bg-black text-white hover:shadow-lg transition-all duration-300 border-gray-700 overflow-hidden h-auto flex flex-col mobile-carousel">
       <MobileImageCarousel
         images={images}
         alt={room.name}
@@ -124,20 +124,20 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
       />
       
       <CardHeader className="pb-3 flex-grow">
-        <CardTitle className="text-lg font-bold text-gray-900 mb-2 line-clamp-2 font-playfair">
+        <CardTitle className="text-lg font-bold text-white mb-2 line-clamp-2 font-playfair">
           {room.name}
         </CardTitle>
-        <CardDescription className="text-gray-600 text-sm line-clamp-2 font-josefin">
+        <CardDescription className="text-gray-300 text-sm line-clamp-2 font-josefin">
           {room.description}
         </CardDescription>
       </CardHeader>
       
       <CardContent className="space-y-3 flex-grow flex flex-col">
         <div className="flex-grow">
-          <h4 className="font-semibold text-gray-900 mb-2 font-josefin">Features:</h4>
+          <h4 className="font-semibold text-white mb-2 font-josefin">Features:</h4>
           <div className="flex flex-wrap gap-1">
             {room.features.slice(0, 4).map((feature, index) => (
-              <Badge key={index} variant="outline" className="text-xs border-gray-300 text-gray-600 bg-gray-50">
+              <Badge key={index} variant="outline" className="text-xs border-gray-600 text-gray-200 bg-gray-800">
                 {feature}
               </Badge>
             ))}
@@ -147,10 +147,10 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
         <div className="mt-auto pt-3">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
-              <Users className="h-4 w-4 text-gray-600" />
-              <span className="text-sm text-gray-600 font-josefin">{room.maxGuests} guests</span>
+              <Users className="h-4 w-4 text-gray-300" />
+              <span className="text-sm text-gray-300 font-josefin">{room.maxGuests} guests</span>
             </div>
-            <span className="text-lg font-bold text-orange-600 font-playfair">{formatPrice(displayPrice)}/night</span>
+            <span className="text-lg font-bold text-orange-400 font-playfair">{formatPrice(displayPrice)}/night</span>
           </div>
           <Button 
             onClick={handleRoomSelection}

@@ -41,10 +41,10 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
 
   return (
     <Card 
-      className={`transition-all duration-300 cursor-pointer hover:shadow-lg smooth-transition touch-feedback ${
+      className={`transition-all duration-300 cursor-pointer hover:shadow-lg smooth-transition touch-feedback bg-black text-white border-gray-700 ${
         isSelected 
-          ? 'ring-2 ring-primary shadow-lg bg-primary/5' 
-          : 'hover:shadow-md'
+          ? 'ring-2 ring-primary shadow-lg bg-gray-900' 
+          : 'hover:shadow-md hover:bg-gray-900'
       } ${isMobile ? 'mx-2' : ''}`}
       onClick={() => onRoomSelect(room.id)}
     >
@@ -63,7 +63,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
         <div className={`flex items-start justify-between ${
           isMobile ? 'flex-col space-y-2' : ''
         }`}>
-          <CardTitle className={`font-semibold ${
+          <CardTitle className={`font-semibold text-white ${
             isMobile ? 'text-responsive-sm' : 'text-responsive-base'
           }`}>
             {room.name}
@@ -74,7 +74,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
             }`}>
               ₹{room.price?.toLocaleString() || '0'}
             </div>
-            <div className={`text-muted-foreground ${
+            <div className={`text-gray-300 ${
               isMobile ? 'text-responsive-xs' : 'text-responsive-sm'
             }`}>
               per night
@@ -84,7 +84,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
       </CardHeader>
 
       <CardContent className={`pt-0 spacing-responsive`}>
-        <p className={`text-muted-foreground mb-4 line-clamp-2 ${
+        <p className={`text-gray-300 mb-4 line-clamp-2 ${
           isMobile ? 'text-responsive-xs' : 'text-responsive-sm'
         }`}>
           {room.description}
@@ -95,7 +95,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
             <Badge 
               key={amenity} 
               variant="outline" 
-              className={isMobile ? 'text-xs px-2 py-0.5' : 'text-xs'}
+              className={`${isMobile ? 'text-xs px-2 py-0.5' : 'text-xs'} border-gray-600 text-gray-200 bg-gray-800`}
             >
               {amenity}
             </Badge>
@@ -103,7 +103,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
           {room.amenities.length > (isMobile ? 2 : 3) && (
             <Badge 
               variant="outline" 
-              className={isMobile ? 'text-xs px-2 py-0.5' : 'text-xs'}
+              className={`${isMobile ? 'text-xs px-2 py-0.5' : 'text-xs'} border-gray-600 text-gray-200 bg-gray-800`}
             >
               +{room.amenities.length - (isMobile ? 2 : 3)} more
             </Badge>
@@ -111,11 +111,11 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
         </div>
 
         {isSelected && (
-          <div className={`space-y-4 pt-4 border-t gap-responsive ${
+          <div className={`space-y-4 pt-4 border-t border-gray-700 gap-responsive ${
             isMobile ? 'space-y-3 pt-3' : ''
           }`}>
             <div className="flex items-center justify-between">
-              <span className={`font-medium ${
+              <span className={`font-medium text-white ${
                 isMobile ? 'text-responsive-xs' : 'text-responsive-sm'
               }`}>
                 Guests:
@@ -129,11 +129,11 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                     onGuestChange(room.id, Math.max(1, selection.guests - 1));
                   }}
                   disabled={selection.guests <= 1}
-                  className={`touch-target ${isMobile ? 'h-7 w-7 p-0' : 'h-8 w-8 p-0'}`}
+                  className={`touch-target border-gray-600 bg-gray-800 text-white hover:bg-gray-700 ${isMobile ? 'h-7 w-7 p-0' : 'h-8 w-8 p-0'}`}
                 >
                   <Minus className={isMobile ? 'h-3 w-3' : 'h-4 w-4'} />
                 </Button>
-                <span className={`text-center font-medium ${
+                <span className={`text-center font-medium text-white ${
                   isMobile ? 'w-6 text-xs' : 'w-8 text-sm'
                 }`}>
                   {selection.guests}
@@ -146,7 +146,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                     onGuestChange(room.id, Math.min(room.maxGuests, selection.guests + 1));
                   }}
                   disabled={selection.guests >= room.maxGuests}
-                  className={`touch-target ${isMobile ? 'h-7 w-7 p-0' : 'h-8 w-8 p-0'}`}
+                  className={`touch-target border-gray-600 bg-gray-800 text-white hover:bg-gray-700 ${isMobile ? 'h-7 w-7 p-0' : 'h-8 w-8 p-0'}`}
                 >
                   <Plus className={isMobile ? 'h-3 w-3' : 'h-4 w-4'} />
                 </Button>
@@ -154,7 +154,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
             </div>
 
             <div className="flex items-center justify-between">
-              <span className={`font-medium ${
+              <span className={`font-medium text-white ${
                 isMobile ? 'text-responsive-xs' : 'text-responsive-sm'
               }`}>
                 Rooms:
@@ -168,11 +168,11 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                     onRoomChange(room.id, Math.max(1, selection.rooms - 1));
                   }}
                   disabled={selection.rooms <= 1}
-                  className={`touch-target ${isMobile ? 'h-7 w-7 p-0' : 'h-8 w-8 p-0'}`}
+                  className={`touch-target border-gray-600 bg-gray-800 text-white hover:bg-gray-700 ${isMobile ? 'h-7 w-7 p-0' : 'h-8 w-8 p-0'}`}
                 >
                   <Minus className={isMobile ? 'h-3 w-3' : 'h-4 w-4'} />
                 </Button>
-                <span className={`text-center font-medium ${
+                <span className={`text-center font-medium text-white ${
                   isMobile ? 'w-6 text-xs' : 'w-8 text-sm'
                 }`}>
                   {selection.rooms}
@@ -185,17 +185,17 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                     onRoomChange(room.id, Math.min(5, selection.rooms + 1));
                   }}
                   disabled={selection.rooms >= 5}
-                  className={`touch-target ${isMobile ? 'h-7 w-7 p-0' : 'h-8 w-8 p-0'}`}
+                  className={`touch-target border-gray-600 bg-gray-800 text-white hover:bg-gray-700 ${isMobile ? 'h-7 w-7 p-0' : 'h-8 w-8 p-0'}`}
                 >
                   <Plus className={isMobile ? 'h-3 w-3' : 'h-4 w-4'} />
                 </Button>
               </div>
             </div>
 
-            <div className={`flex items-center justify-between pt-2 border-t ${
+            <div className={`flex items-center justify-between pt-2 border-t border-gray-700 ${
               isMobile ? 'pt-1.5' : ''
             }`}>
-              <span className={`font-medium ${
+              <span className={`font-medium text-white ${
                 isMobile ? 'text-responsive-xs' : 'text-responsive-sm'
               }`}>
                 Subtotal:
