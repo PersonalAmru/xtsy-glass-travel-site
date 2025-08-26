@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -645,30 +646,41 @@ export default function BookingFlow() {
           {/* Step Content */}
           {currentStep === 'rooms' && (
             <div className="space-y-8">
+              {/* Main heading with glassmorphism card */}
               <div className={`text-center ${isMobileView ? 'mb-6' : 'mb-12'}`}>
-                <h2 className={`font-bold text-gray-800 mb-3 font-playfair ${
-                  isMobileView ? 'text-2xl' : isTabletView ? 'text-3xl' : 'text-4xl'
-                }`}>
-                  Choose Your Accommodation
-                </h2>
-                <p className={`text-gray-600 max-w-2xl mx-auto ${
-                  isMobileView ? 'text-base px-4' : isTabletView ? 'text-lg px-6' : 'text-xl'
-                }`}>
-                  Select from our available rooms and customize your stay
-                </p>
-                <div className={`bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-6 rounded-full ${
-                  isMobileView ? 'w-20 h-1' : 'w-24 h-1'
-                }`} />
+                <div className="backdrop-blur-md bg-white/30 border border-white/20 rounded-3xl shadow-xl mx-auto p-8 max-w-4xl">
+                  <h2 className={`font-bold text-gray-800 mb-3 font-playfair ${
+                    isMobileView ? 'text-2xl' : isTabletView ? 'text-3xl' : 'text-4xl'
+                  }`}>
+                    Choose Your Accommodation
+                  </h2>
+                  <p className={`text-gray-600 max-w-2xl mx-auto ${
+                    isMobileView ? 'text-base px-4' : isTabletView ? 'text-lg px-6' : 'text-xl'
+                  }`}>
+                    Select from our available rooms and customize your stay
+                  </p>
+                  <div className={`bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-6 rounded-full ${
+                    isMobileView ? 'w-20 h-1' : 'w-24 h-1'
+                  }`} />
+                </div>
               </div>
               
               {/* XTSY Luxury Section */}
               {roomsByProperty.luxury.length > 0 && (
                 <div className="space-y-4">
-                  <h3 className={`font-bold text-center font-playfair bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent ${
-                    isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'
-                  }`}>
-                    XTSY Luxury
-                  </h3>
+                  <div className="backdrop-blur-md bg-white/20 border border-white/20 rounded-2xl shadow-lg mx-auto p-6 max-w-2xl">
+                    <h3 className={`font-bold text-center font-playfair bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent ${
+                      isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'
+                    }`}>
+                      XTSY Luxury
+                    </h3>
+                    <p className={`text-center text-gray-600 mt-2 ${
+                      isMobileView ? 'text-sm' : 'text-base'
+                    }`}>
+                      Premium accommodations with panoramic views
+                    </p>
+                    <div className="w-16 h-0.5 bg-gradient-to-r from-orange-500 to-red-600 mx-auto mt-3 rounded-full" />
+                  </div>
                   <div className={`grid gap-6 ${
                     isMobileView ? 'grid-cols-1' : isTabletView ? 'grid-cols-2' : 'grid-cols-3'
                   }`}>
@@ -696,11 +708,19 @@ export default function BookingFlow() {
               {/* XTSY Travellers Hostel Section */}
               {roomsByProperty.hostel.length > 0 && (
                 <div className="space-y-4">
-                  <h3 className={`font-bold text-center font-playfair bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent ${
-                    isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'
-                  }`}>
-                    XTSY Travellers Hostel
-                  </h3>
+                  <div className="backdrop-blur-md bg-white/20 border border-white/20 rounded-2xl shadow-lg mx-auto p-6 max-w-2xl">
+                    <h3 className={`font-bold text-center font-playfair bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent ${
+                      isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'
+                    }`}>
+                      XTSY Travellers Hostel
+                    </h3>
+                    <p className={`text-center text-gray-600 mt-2 ${
+                      isMobileView ? 'text-sm' : 'text-base'
+                    }`}>
+                      Comfortable stays with modern amenities
+                    </p>
+                    <div className="w-16 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mt-3 rounded-full" />
+                  </div>
                   <div className={`grid gap-6 ${
                     isMobileView ? 'grid-cols-1' : isTabletView ? 'grid-cols-2' : 'grid-cols-3'
                   }`}>
@@ -728,11 +748,19 @@ export default function BookingFlow() {
               {/* XTSY Economy Section */}
               {roomsByProperty.economy.length > 0 && (
                 <div className="space-y-4">
-                  <h3 className={`font-bold text-center font-playfair bg-gradient-to-r from-green-500 to-teal-600 bg-clip-text text-transparent ${
-                    isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'
-                  }`}>
-                    XTSY Economy
-                  </h3>
+                  <div className="backdrop-blur-md bg-white/20 border border-white/20 rounded-2xl shadow-lg mx-auto p-6 max-w-2xl">
+                    <h3 className={`font-bold text-center font-playfair bg-gradient-to-r from-green-500 to-teal-600 bg-clip-text text-transparent ${
+                      isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'
+                    }`}>
+                      XTSY Economy
+                    </h3>
+                    <p className={`text-center text-gray-600 mt-2 ${
+                      isMobileView ? 'text-sm' : 'text-base'
+                    }`}>
+                      Budget-friendly options for backpackers
+                    </p>
+                    <div className="w-16 h-0.5 bg-gradient-to-r from-green-500 to-teal-600 mx-auto mt-3 rounded-full" />
+                  </div>
                   <div className={`grid gap-6 ${
                     isMobileView ? 'grid-cols-1' : isTabletView ? 'grid-cols-2' : 'grid-cols-3'
                   }`}>
@@ -757,13 +785,13 @@ export default function BookingFlow() {
                 </div>
               )}
 
-              <div className={`flex justify-end pt-6 ${
+              <div className={`flex justify-center pt-6 ${
                 isMobileView ? 'px-4' : ''
               }`}>
                 <button
                   onClick={handleNext}
-                  className={`group relative overflow-hidden backdrop-blur-md bg-gradient-to-r from-blue-500/80 to-purple-600/80 
-                    hover:from-blue-600/90 hover:to-purple-700/90 text-white font-semibold 
+                  className={`group relative overflow-hidden backdrop-blur-md bg-gradient-to-r from-orange-500/80 to-red-600/80 
+                    hover:from-orange-600/90 hover:to-red-700/90 text-white font-semibold 
                     rounded-xl border border-white/20 shadow-lg hover:shadow-xl 
                     transition-all duration-300 transform hover:scale-105 active:scale-95
                     ${isMobileView ? 'px-6 py-3 text-sm' : 'px-8 py-4 text-base'}
