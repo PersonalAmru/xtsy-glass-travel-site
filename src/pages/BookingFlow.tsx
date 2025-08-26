@@ -370,7 +370,7 @@ const BookingFlow = () => {
               {/* XTSY Luxury Section */}
               {roomsByProperty.luxury.length > 0 && (
                 <div className="space-y-4">
-                  <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 text-center font-playfair bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-center font-playfair bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
                     XTSY Luxury
                   </h3>
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -398,7 +398,7 @@ const BookingFlow = () => {
               {/* XTSY Travellers Hostel Section */}
               {roomsByProperty.hostel.length > 0 && (
                 <div className="space-y-4">
-                  <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 text-center font-playfair bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-center font-playfair bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
                     XTSY Travellers Hostel
                   </h3>
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -426,7 +426,7 @@ const BookingFlow = () => {
               {/* XTSY Economy Section */}
               {roomsByProperty.economy.length > 0 && (
                 <div className="space-y-4">
-                  <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 text-center font-playfair bg-gradient-to-r from-green-500 to-teal-600 bg-clip-text text-transparent">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-center font-playfair bg-gradient-to-r from-green-500 to-teal-600 bg-clip-text text-transparent">
                     XTSY Economy
                   </h3>
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
