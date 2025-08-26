@@ -46,8 +46,8 @@ export const BookingSummary: React.FC<BookingSummaryProps> = ({
     }`}>
       <CardHeader className="transition-all duration-300 pb-2 pt-3 px-3">
         <div className="flex items-center justify-between">
-          <CardTitle className="transition-all duration-300 text-base">
-            {isMobileView ? 'Stay Details' : 'Your Stay'}
+          <CardTitle className="transition-all duration-300 text-base text-center flex-1">
+            Your Stay
           </CardTitle>
           {onEdit && (
             <Button
