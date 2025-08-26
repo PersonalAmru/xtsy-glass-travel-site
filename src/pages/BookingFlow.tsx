@@ -204,7 +204,7 @@ export default function BookingFlow() {
             type: room.type,
             selection: {
               guests: room.type === 'dorm' ? 1 : room.maxGuests,
-              rooms: 1 // Start with 1 bed/room selected
+              rooms: 0 // Start with 0 beds/rooms selected
             }
           }]);
         }
@@ -229,7 +229,7 @@ export default function BookingFlow() {
             type: room.type,
             selection: {
               guests: room.type === 'dorm' ? 1 : room.maxGuests,
-              rooms: 1 // Start with 1 bed/room selected
+              rooms: 0 // Start with 0 beds/rooms selected
             }
           }];
       }
@@ -521,7 +521,7 @@ export default function BookingFlow() {
                     {roomsByProperty.luxury.map((room) => {
                       const selectedRoom = selectedRooms.find(r => r.id === room.id);
                       const isSelected = !!selectedRoom;
-                       const selection = selectedRoom?.selection || { guests: 1, rooms: 1 };
+                       const selection = selectedRoom?.selection || { guests: 1, rooms: 0 };
                       
                       return (
                         <FastRoomCard
@@ -532,6 +532,7 @@ export default function BookingFlow() {
                           onRoomSelect={handleRoomSelect}
                           onGuestChange={handleGuestChange}
                           onRoomChange={handleRoomChange}
+                          nights={nights}
                         />
                       );
                     })}
@@ -553,7 +554,7 @@ export default function BookingFlow() {
                     {roomsByProperty.hostel.map((room) => {
                       const selectedRoom = selectedRooms.find(r => r.id === room.id);
                       const isSelected = !!selectedRoom;
-                       const selection = selectedRoom?.selection || { guests: 1, rooms: 1 };
+                       const selection = selectedRoom?.selection || { guests: 1, rooms: 0 };
                       
                       return (
                         <FastRoomCard
@@ -564,6 +565,7 @@ export default function BookingFlow() {
                           onRoomSelect={handleRoomSelect}
                           onGuestChange={handleGuestChange}
                           onRoomChange={handleRoomChange}
+                          nights={nights}
                         />
                       );
                     })}
@@ -585,7 +587,7 @@ export default function BookingFlow() {
                     {roomsByProperty.economy.map((room) => {
                       const selectedRoom = selectedRooms.find(r => r.id === room.id);
                       const isSelected = !!selectedRoom;
-                      const selection = selectedRoom?.selection || { guests: 1, rooms: 1 };
+                      const selection = selectedRoom?.selection || { guests: 1, rooms: 0 };
                       
                       return (
                         <FastRoomCard
@@ -596,6 +598,7 @@ export default function BookingFlow() {
                           onRoomSelect={handleRoomSelect}
                           onGuestChange={handleGuestChange}
                           onRoomChange={handleRoomChange}
+                          nights={nights}
                         />
                       );
                     })}
