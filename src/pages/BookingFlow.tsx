@@ -380,21 +380,23 @@ export default function BookingFlow() {
             <div className={`flex items-center justify-between mb-4 ${
               isMobileView ? 'mb-2 px-2' : ''
             }`}>
-              <h1 className={`font-bold text-gray-900 ${
-                isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'
-              }`}>
-                {isMobileView ? 'Book Stay' : 'Book Your Stay'}
-              </h1>
-              <Button
-                variant="ghost"
-                onClick={() => navigate(-1)}
-                className={`text-gray-600 hover:text-gray-900 ${
-                  isMobileView ? 'p-2' : ''
-                }`}
-              >
-                <ArrowLeft className={`h-4 w-4 ${isMobileView ? '' : 'mr-2'}`} />
-                {!isMobileView && 'Back'}
-              </Button>
+              <div className="flex items-center gap-3">
+                <h1 className={`font-bold text-gray-900 ${
+                  isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'
+                }`}>
+                  {isMobileView ? 'Book Stay' : 'Book Your Stay'}
+                </h1>
+                <Button
+                  variant="ghost"
+                  onClick={() => navigate('/')}
+                  className={`text-gray-600 hover:text-gray-900 ${
+                    isMobileView ? 'p-2' : ''
+                  }`}
+                >
+                  <ArrowLeft className={`h-4 w-4 ${isMobileView ? '' : 'mr-2'}`} />
+                  {!isMobileView && 'Back'}
+                </Button>
+              </div>
             </div>
             
             <div className={`flex items-center space-x-4 ${
@@ -678,7 +680,6 @@ export default function BookingFlow() {
         </div>
       </div>
 
-      {/* Guest Details Modal */}
       <GuestDetails
         isOpen={showGuestModal}
         onClose={handleGuestModalClose}
@@ -686,7 +687,6 @@ export default function BookingFlow() {
         bookingData={getBookingData()}
       />
 
-      {/* UPI Payment Modal */}
       <UPIPaymentModal 
         isOpen={showUPIModal} 
         onClose={() => setShowUPIModal(false)}
