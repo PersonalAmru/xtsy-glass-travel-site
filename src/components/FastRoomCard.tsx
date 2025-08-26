@@ -144,18 +144,18 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
               isMobile ? 'pb-2 px-3 pt-2' : 'pb-2 pt-3'
             } ${isXTSY270 ? 'pb-2 pt-2 px-3' : ''}`}>
               <div className="flex items-start justify-between">
-                <CardTitle className={`font-semibold text-white ${
+                <CardTitle className={`font-semibold text-white text-left ${
                   isMobile ? 'text-sm' : 'text-base'
                 } ${isXTSY270 ? 'text-sm leading-tight' : 'leading-tight'}`}>
                   {room.name}
                 </CardTitle>
                 <div className={`text-right ml-2 flex-shrink-0`}>
-                  <div className={`font-bold text-primary ${
+                  <div className={`font-bold text-primary text-right ${
                     isMobile ? 'text-base' : isTablet ? 'text-lg' : 'text-xl'
                   } ${isXTSY270 ? 'text-base' : ''} leading-tight`}>
                     ₹{room.price?.toLocaleString() || '0'}
                   </div>
-                  <div className={`text-gray-300 ${
+                  <div className={`text-gray-300 text-right ${
                     isMobile ? 'text-xs' : 'text-sm'
                   } ${isXTSY270 ? 'text-xs' : ''} leading-tight`}>
                     per night
@@ -167,7 +167,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
             <CardContent className={`pt-0 px-3 pb-3 ${
               isXTSY270 ? 'flex-1 flex flex-col' : ''
             }`}>
-              <p className={`text-gray-300 mb-2 ${
+              <p className={`text-gray-300 mb-2 text-left ${
                 isMobile ? 'text-xs' : 'text-sm'
               } ${isXTSY270 ? 'text-xs mb-2' : ''} leading-relaxed line-clamp-2`}>
                 {room.description}
@@ -205,7 +205,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
               } ${isXTSY270 ? 'space-y-2 pt-2 mt-auto' : ''}`}>
               {/* Bed/Room Selection */}
                 <div className="flex items-center justify-between" data-toggle-container onClick={(e) => e.stopPropagation()}>
-                  <span className={`font-medium text-white ${
+                  <span className={`font-medium text-white text-left ${
                     isMobile ? 'text-xs' : 'text-sm'
                   } ${isXTSY270 ? 'text-xs' : ''}`}>
                     {room.type === 'dorm' ? 'Beds:' : 'Rooms:'}
@@ -249,12 +249,12 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                 <div className={`flex items-center justify-between pt-2 border-t border-gray-700 ${
                   isMobile ? 'pt-1.5' : ''
                 } ${isXTSY270 ? 'pt-1.5' : ''}`}>
-                  <span className={`font-medium text-white ${
+                  <span className={`font-medium text-white text-left ${
                     isMobile ? 'text-xs' : 'text-sm'
                   } ${isXTSY270 ? 'text-xs' : ''}`}>
                     Subtotal:
                   </span>
-                  <span className={`font-bold text-primary ${
+                  <span className={`font-bold text-primary text-right ${
                     isMobile ? 'text-sm' : isTablet ? 'text-base' : 'text-lg'
                   } ${isXTSY270 ? 'text-sm' : ''}`}>
                     ₹{calculateSubtotal().toLocaleString()}
