@@ -189,6 +189,8 @@ const BookingFlow = () => {
     const totalAmount = calculateTotalAmount();
     
     return {
+      bookingId: generateBookingId(),
+      guestName: `${guestDetails.firstName} ${guestDetails.lastName}`,
       checkIn: checkIn.toISOString(),
       checkOut: checkOut.toISOString(),
       guests,
@@ -199,7 +201,16 @@ const BookingFlow = () => {
       subtotal: totalAmount,
       discountAmount: 0,
       couponCode: '',
-      couponDiscount: 0
+      couponDiscount: 0,
+      whatsappNumber: guestDetails.phone,
+      addOns: {
+        breakfast: 0,
+        dinnerVeg: 0,
+        dinnerNonVeg: 0,
+        transportation: false,
+        itineraryPlanning: false
+      },
+      addOnTotal: 0
     };
   };
 
