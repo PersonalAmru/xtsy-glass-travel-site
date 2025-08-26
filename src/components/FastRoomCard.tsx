@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -47,11 +46,11 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
     return (room.price || 0) * nights * selection.rooms;
   };
 
-  // Handle increment with comprehensive event prevention
+  // Handle increment with proper React event prevention
   const handleIncrement = React.useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    e.stopImmediatePropagation();
+    e.nativeEvent.stopImmediatePropagation();
     
     const maxSelection = room.maxRooms || 5;
     if (selection.rooms < maxSelection) {
@@ -59,11 +58,11 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
     }
   }, [room.id, room.maxRooms, selection.rooms, onRoomChange]);
 
-  // Handle decrement with comprehensive event prevention
+  // Handle decrement with proper React event prevention
   const handleDecrement = React.useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    e.stopImmediatePropagation();
+    e.nativeEvent.stopImmediatePropagation();
     
     if (selection.rooms > 0) {
       onRoomChange(room.id, selection.rooms - 1);
