@@ -214,49 +214,63 @@ export default function BookingFlow() {
     }
   }, [preSelectedRoom, preSelectedProperty]);
 
-  const handleRoomSelect = (roomId: string) => {
+  const handleRoomSelect = React.useCallback((roomId: string) => {
+    console.log('Room select called for:', roomId);
     setSelectedRooms(prev => {
       const room = ALL_ROOMS_DATA[roomId as keyof typeof ALL_ROOMS_DATA];
       const isSelected = prev.find(r => r.id === roomId);
 
+      console.log('Room data:', room);
+      console.log('Is selected:', !!isSelected);
+
       if (isSelected) {
+        console.log('Removing room from selection');
         return prev.filter(r => r.id !== roomId);
       } else {
-          return [...prev, {
-            id: room.id,
-            name: room.name,
-            price: room.price,
-            type: room.type,
-            selection: {
-              guests: room.type === 'dorm' ? 1 : room.maxGuests,
-              rooms: 0 // Start with 0 beds/rooms selected
-            }
-          }];
+        console.log('Adding room to selection');
+        const newRoom = {
+          id: room.id,
+          name: room.name,
+          price: room.price,
+          type: room.type,
+          selection: {
+            guests: room.type === 'dorm' ? 1 : room.maxGuests,
+            rooms: 0 // Start with 0 beds/rooms selected
+          }
+        };
+        console.log('New room object:', newRoom);
+        return [...prev, newRoom];
       }
     });
-  };
+  }, []);
 
-  const handleGuestChange = (roomId: string, guests: number) => {
+  const handleGuestChange = React.useCallback((roomId: string, guests: number) => {
+    console.log('Guest change called for room:', roomId, 'guests:', guests);
     setSelectedRooms(prev => {
       return prev.map(room => {
         if (room.id === roomId) {
-          return { ...room, selection: { ...room.selection, guests } };
+          const updated = { ...room, selection: { ...room.selection, guests } };
+          console.log('Updated room with guests:', updated);
+          return updated;
         }
         return room;
       });
     });
-  };
+  }, []);
 
-  const handleRoomChange = (roomId: string, rooms: number) => {
+  const handleRoomChange = React.useCallback((roomId: string, rooms: number) => {
+    console.log('Room change called for room:', roomId, 'rooms:', rooms);
     setSelectedRooms(prev => {
       return prev.map(room => {
         if (room.id === roomId) {
-          return { ...room, selection: { ...room.selection, rooms } };
+          const updated = { ...room, selection: { ...room.selection, rooms } };
+          console.log('Updated room with room count:', updated);
+          return updated;
         }
         return room;
       });
     });
-  };
+  }, []);
 
   // Validate guest accommodation
   const validateGuestAccommodation = () => {
@@ -386,6 +400,21 @@ export default function BookingFlow() {
     hostel: roomsArray.filter(room => room.propertyType === 'hostel'),
     economy: roomsArray.filter(room => room.propertyType === 'economy')
   };
+
+  // Helper function to get selection for a room
+  const getRoomSelection = React.useCallback((roomId: string) => {
+    const selectedRoom = selectedRooms.find(r => r.id === roomId);
+    const selection = selectedRoom?.selection || { guests: 1, rooms: 0 };
+    console.log('Getting selection for room:', roomId, 'selection:', selection);
+    return selection;
+  }, [selectedRooms]);
+
+  // Helper function to check if room is selected
+  const isRoomSelected = React.useCallback((roomId: string) => {
+    const isSelected = !!selectedRooms.find(r => r.id === roomId);
+    console.log('Checking if room is selected:', roomId, 'result:', isSelected);
+    return isSelected;
+  }, [selectedRooms]);
 
   return (
     <div className={`min-h-screen bg-gradient-to-br from-orange-50 via-red-50 to-pink-50 ${
@@ -519,9 +548,8 @@ export default function BookingFlow() {
                     isMobileView ? 'grid-cols-1' : isTabletView ? 'grid-cols-2' : 'grid-cols-3'
                   }`}>
                     {roomsByProperty.luxury.map((room) => {
-                      const selectedRoom = selectedRooms.find(r => r.id === room.id);
-                      const isSelected = !!selectedRoom;
-                      const selection = selectedRoom?.selection || { guests: 1, rooms: 0 };
+                      const isSelected = isRoomSelected(room.id);
+                      const selection = getRoomSelection(room.id);
                       
                       return (
                         <FastRoomCard
@@ -552,9 +580,8 @@ export default function BookingFlow() {
                     isMobileView ? 'grid-cols-1' : isTabletView ? 'grid-cols-2' : 'grid-cols-3'
                   }`}>
                     {roomsByProperty.hostel.map((room) => {
-                      const selectedRoom = selectedRooms.find(r => r.id === room.id);
-                      const isSelected = !!selectedRoom;
-                      const selection = selectedRoom?.selection || { guests: 1, rooms: 0 };
+                      const isSelected = isRoomSelected(room.id);
+                      const selection = getRoomSelection(room.id);
                       
                       return (
                         <FastRoomCard
@@ -585,9 +612,8 @@ export default function BookingFlow() {
                     isMobileView ? 'grid-cols-1' : isTabletView ? 'grid-cols-2' : 'grid-cols-3'
                   }`}>
                     {roomsByProperty.economy.map((room) => {
-                      const selectedRoom = selectedRooms.find(r => r.id === room.id);
-                      const isSelected = !!selectedRoom;
-                      const selection = selectedRoom?.selection || { guests: 1, rooms: 0 };
+                      const isSelected = isRoomSelected(room.id);
+                      const selection = getRoomSelection(room.id);
                       
                       return (
                         <FastRoomCard
