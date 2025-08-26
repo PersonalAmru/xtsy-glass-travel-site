@@ -13,6 +13,7 @@ interface MobileImageCarouselProps {
   autoPlay?: boolean;
   autoPlayInterval?: number;
   onImageChange?: (index: number) => void;
+  onImageClick?: (images: string[], currentIndex: number) => void;
 }
 
 const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
@@ -24,7 +25,8 @@ const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
   showArrows = true,
   autoPlay = false,
   autoPlayInterval = 5000,
-  onImageChange
+  onImageChange,
+  onImageClick
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -71,6 +73,12 @@ const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
     setTimeout(() => setIsTransitioning(false), 300);
   }, [currentIndex, isTransitioning, onImageChange]);
 
+  const handleImageClick = useCallback(() => {
+    if (onImageClick && images.length > 0) {
+      onImageClick(images, currentIndex);
+    }
+  }, [onImageClick, images, currentIndex]);
+
   // Swipe gestures
   const swipeHandlers = useSwipeGestures({
     onSwipeLeft: nextImage,
@@ -115,10 +123,11 @@ const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
       <img
         src={images[imageIndex]}
         alt={`${alt} - Image ${imageIndex + 1}`}
-        className={`absolute inset-0 w-full h-full object-cover object-center transition-all duration-300 ${
+        className={`absolute inset-0 w-full h-full object-cover object-center transition-all duration-300 cursor-pointer ${
           isActive ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
         }`}
         onError={() => handleImageError(imageIndex)}
+        onClick={handleImageClick}
         loading={imageIndex === 0 ? 'eager' : 'lazy'}
         decoding="async"
         draggable={false}
@@ -150,7 +159,7 @@ const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
       {...swipeHandlers}
       style={{ 
         touchAction: 'pan-y pinch-zoom',
-        minHeight: '200px' // Ensure minimum height on mobile
+        minHeight: '200px'
       }}
     >
       {/* Image container */}

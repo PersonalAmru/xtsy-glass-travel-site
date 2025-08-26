@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Users, Minus, Plus, Bed } from 'lucide-react';
 import { useMediaQuery } from '@/hooks/use-mobile';
 import { useApp } from '@/contexts/AppContext';
+import ImageLightbox from './ImageLightbox';
 
 interface FastRoomCardProps {
   room: {
@@ -18,6 +19,7 @@ interface FastRoomCardProps {
     maxGuests: number;
     propertyType: string;
     maxRooms?: number;
+    images?: string[];
   };
   isSelected: boolean;
   selection: { guests: number; rooms: number };
@@ -39,6 +41,16 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
   const isMobile = useMediaQuery('(max-width: 767px)');
   const isTablet = useMediaQuery('(min-width: 768px) and (max-width: 1023px)');
   const { formatPrice } = useApp();
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+
+  // Get all available images for the room
+  const roomImages = room.images && room.images.length > 0 ? room.images : [room.image];
+
+  const handleImageClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setLightboxOpen(true);
+  };
 
   // Check if this is the XTSY 270 room
   const isXTSY270 = room.name === "XTSY 270 Panorama Glass Ensuite";
@@ -109,157 +121,174 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
   };
 
   return (
-    <CardWrapper>
-      <Card 
-        className={`transition-all duration-300 cursor-pointer hover:shadow-lg bg-black text-white border-gray-700 ${
-          isSelected 
-            ? 'ring-2 ring-primary shadow-lg bg-gray-900' 
-            : 'hover:shadow-md hover:bg-gray-900'
-        } ${isMobile ? 'mx-2' : ''} ${
-          isXTSY270 ? 'h-auto landscape-card' : ''
-        }`}
-        onClick={handleCardClick}
-      >
-        <div className={`${isXTSY270 ? 'flex' : 'block'}`}>
-          {/* Image Section */}
-          <div className={`relative overflow-hidden ${
-            isXTSY270 
-              ? `${isMobile ? 'w-2/5 h-32' : isTablet ? 'w-2/5 h-36' : 'w-2/5 h-40'} rounded-l-lg`
-              : 'rounded-t-lg'
-          }`}>
-            <img
-              src={room.image}
-              alt={room.name}
-              className={`w-full object-cover transition-transform duration-300 hover:scale-105 ${
-                isXTSY270 
-                  ? 'h-full'
-                  : (isMobile ? 'h-32' : isTablet ? 'h-36' : 'h-40')
-              }`}
-              loading="lazy"
-            />
-          </div>
-
-          {/* Content Section */}
-          <div className={`${isXTSY270 ? 'flex-1 flex flex-col' : ''}`}>
-            <CardHeader className={`${
-              isMobile ? 'pb-2 px-3 pt-2' : 'pb-2 pt-3'
-            } ${isXTSY270 ? 'pb-2 pt-2 px-3' : ''}`}>
-              <div className="flex items-start justify-between">
-                <CardTitle className={`font-semibold text-white text-left ${
-                  isMobile ? 'text-sm' : 'text-base'
-                } ${isXTSY270 ? 'text-sm leading-tight' : 'leading-tight'}`}>
-                  {room.name}
-                </CardTitle>
-                <div className={`text-right ml-2 flex-shrink-0`}>
-                  <div className={`font-bold text-primary text-right ${
-                    isMobile ? 'text-base' : isTablet ? 'text-lg' : 'text-xl'
-                  } ${isXTSY270 ? 'text-base' : ''} leading-tight`}>
-                    {formatPrice(room.price || 0)}
-                  </div>
-                  <div className={`text-gray-300 text-right ${
-                    isMobile ? 'text-xs' : 'text-sm'
-                  } ${isXTSY270 ? 'text-xs' : ''} leading-tight`}>
-                    per night
-                  </div>
-                </div>
-              </div>
-            </CardHeader>
-
-            <CardContent className={`pt-0 px-3 pb-3 ${
-              isXTSY270 ? 'flex-1 flex flex-col' : ''
+    <>
+      <CardWrapper>
+        <Card 
+          className={`transition-all duration-300 cursor-pointer hover:shadow-lg bg-black text-white border-gray-700 ${
+            isSelected 
+              ? 'ring-2 ring-primary shadow-lg bg-gray-900' 
+              : 'hover:shadow-md hover:bg-gray-900'
+          } ${isMobile ? 'mx-2' : ''} ${
+            isXTSY270 ? 'h-auto landscape-card' : ''
+          }`}
+          onClick={handleCardClick}
+        >
+          <div className={`${isXTSY270 ? 'flex' : 'block'}`}>
+            {/* Image Section */}
+            <div className={`relative overflow-hidden ${
+              isXTSY270 
+                ? `${isMobile ? 'w-2/5 h-32' : isTablet ? 'w-2/5 h-36' : 'w-2/5 h-40'} rounded-l-lg`
+                : 'rounded-t-lg'
             }`}>
-              <p className={`text-gray-300 mb-2 text-left ${
-                isMobile ? 'text-xs' : 'text-sm'
-              } ${isXTSY270 ? 'text-xs mb-2' : ''} leading-relaxed`}>
-                {isXTSY270 
-                  ? "Experience India's most innovative architectural marvel — a 200% luxury ensuite with stunning 270° mountain panoramas"
-                  : room.description
-                }
-              </p>
+              <img
+                src={room.image}
+                alt={room.name}
+                className={`w-full object-cover transition-transform duration-300 hover:scale-105 cursor-pointer ${
+                  isXTSY270 
+                    ? 'h-full'
+                    : (isMobile ? 'h-32' : isTablet ? 'h-36' : 'h-40')
+                }`}
+                loading="lazy"
+                onClick={handleImageClick}
+              />
+              {/* Image count indicator */}
+              {roomImages.length > 1 && (
+                <div className="absolute top-2 right-2 bg-black/60 text-white px-2 py-1 rounded text-xs">
+                  {roomImages.length} photos
+                </div>
+              )}
+            </div>
 
-              <div className={`flex flex-wrap mb-3 gap-1 ${
-                isXTSY270 ? 'mb-2' : ''
-              }`}>
-                {room.amenities.map((amenity) => (
-                  <Badge 
-                    key={amenity} 
-                    variant="outline" 
-                    className={`text-xs px-2 py-0.5 border-gray-600 text-gray-200 bg-gray-800 ${
-                      isXTSY270 ? 'text-xs px-2 py-0.5' : ''
-                    }`}
-                  >
-                    {amenity}
-                  </Badge>
-                ))}
-              </div>
-
-              {/* Room selection only */}
-              <div className={`space-y-2 pt-2 border-t border-gray-700 ${
-                isMobile ? 'space-y-2 pt-2' : ''
-              } ${isXTSY270 ? 'space-y-2 pt-2 mt-auto' : ''}`}>
-              {/* Bed/Room Selection */}
-                <div className="flex items-center justify-between" data-toggle-container onClick={(e) => e.stopPropagation()}>
-                  <span className={`font-medium text-white text-left ${
-                    isMobile ? 'text-xs' : 'text-sm'
-                  } ${isXTSY270 ? 'text-xs' : ''}`}>
-                    {room.type === 'dorm' ? 'Beds:' : 'Rooms:'}
-                  </span>
-                  <div className="flex items-center gap-3">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={handleDecrement}
-                      disabled={selection.rooms <= 0}
-                      className={buttonClasses}
-                      aria-label={`Decrease ${room.type === 'dorm' ? 'beds' : 'rooms'}`}
-                      type="button"
-                    >
-                      <Minus className={`${
-                        isMobile ? 'h-4 w-4' : 'h-4 w-4'
-                      } ${isXTSY270 ? 'h-4 w-4' : ''}`} />
-                    </Button>
-                    <span className={`text-center font-medium text-white min-w-[2rem] flex items-center justify-center ${
-                      isMobile ? 'text-sm' : 'text-base'
-                    } ${isXTSY270 ? 'text-sm' : ''}`}>
-                      {selection.rooms}
-                    </span>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={handleIncrement}
-                      disabled={selection.rooms >= (room.maxRooms || 5)}
-                      className={buttonClasses}
-                      aria-label={`Increase ${room.type === 'dorm' ? 'beds' : 'rooms'}`}
-                      type="button"
-                    >
-                      <Plus className={`${
-                        isMobile ? 'h-4 w-4' : 'h-4 w-4'
-                      } ${isXTSY270 ? 'h-4 w-4' : ''}`} />
-                    </Button>
+            {/* Content Section */}
+            <div className={`${isXTSY270 ? 'flex-1 flex flex-col' : ''}`}>
+              <CardHeader className={`${
+                isMobile ? 'pb-2 px-3 pt-2' : 'pb-2 pt-3'
+              } ${isXTSY270 ? 'pb-2 pt-2 px-3' : ''}`}>
+                <div className="flex items-start justify-between">
+                  <CardTitle className={`font-semibold text-white text-left ${
+                    isMobile ? 'text-sm' : 'text-base'
+                  } ${isXTSY270 ? 'text-sm leading-tight' : 'leading-tight'}`}>
+                    {room.name}
+                  </CardTitle>
+                  <div className={`text-right ml-2 flex-shrink-0`}>
+                    <div className={`font-bold text-primary text-right ${
+                      isMobile ? 'text-base' : isTablet ? 'text-lg' : 'text-xl'
+                    } ${isXTSY270 ? 'text-base' : ''} leading-tight`}>
+                      {formatPrice(room.price || 0)}
+                    </div>
+                    <div className={`text-gray-300 text-right ${
+                      isMobile ? 'text-xs' : 'text-sm'
+                    } ${isXTSY270 ? 'text-xs' : ''} leading-tight`}>
+                      per night
+                    </div>
                   </div>
                 </div>
+              </CardHeader>
 
-                {/* Subtotal */}
-                <div className={`flex items-center justify-between pt-2 border-t border-gray-700 ${
-                  isMobile ? 'pt-1.5' : ''
-                } ${isXTSY270 ? 'pt-1.5' : ''}`}>
-                  <span className={`font-medium text-white text-left ${
-                    isMobile ? 'text-xs' : 'text-sm'
-                  } ${isXTSY270 ? 'text-xs' : ''}`}>
-                    Subtotal:
-                  </span>
-                  <span className={`font-bold text-primary text-right ${
-                    isMobile ? 'text-sm' : isTablet ? 'text-base' : 'text-lg'
-                  } ${isXTSY270 ? 'text-sm' : ''}`}>
-                    {formatPrice(calculateSubtotal())}
-                  </span>
+              <CardContent className={`pt-0 px-3 pb-3 ${
+                isXTSY270 ? 'flex-1 flex flex-col' : ''
+              }`}>
+                <p className={`text-gray-300 mb-2 text-left ${
+                  isMobile ? 'text-xs' : 'text-sm'
+                } ${isXTSY270 ? 'text-xs mb-2' : ''} leading-relaxed`}>
+                  {isXTSY270 
+                    ? "Experience India's most innovative architectural marvel — a 200% luxury ensuite with stunning 270° mountain panoramas"
+                    : room.description
+                  }
+                </p>
+
+                <div className={`flex flex-wrap mb-3 gap-1 ${
+                  isXTSY270 ? 'mb-2' : ''
+                }`}>
+                  {room.amenities.map((amenity) => (
+                    <Badge 
+                      key={amenity} 
+                      variant="outline" 
+                      className={`text-xs px-2 py-0.5 border-gray-600 text-gray-200 bg-gray-800 ${
+                        isXTSY270 ? 'text-xs px-2 py-0.5' : ''
+                      }`}
+                    >
+                      {amenity}
+                    </Badge>
+                  ))}
                 </div>
-              </div>
-            </CardContent>
+
+                {/* Room selection only */}
+                <div className={`space-y-2 pt-2 border-t border-gray-700 ${
+                  isMobile ? 'space-y-2 pt-2' : ''
+                } ${isXTSY270 ? 'space-y-2 pt-2 mt-auto' : ''}`}>
+                {/* Bed/Room Selection */}
+                  <div className="flex items-center justify-between" data-toggle-container onClick={(e) => e.stopPropagation()}>
+                    <span className={`font-medium text-white text-left ${
+                      isMobile ? 'text-xs' : 'text-sm'
+                    } ${isXTSY270 ? 'text-xs' : ''}`}>
+                      {room.type === 'dorm' ? 'Beds:' : 'Rooms:'}
+                    </span>
+                    <div className="flex items-center gap-3">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={handleDecrement}
+                        disabled={selection.rooms <= 0}
+                        className={buttonClasses}
+                        aria-label={`Decrease ${room.type === 'dorm' ? 'beds' : 'rooms'}`}
+                        type="button"
+                      >
+                        <Minus className={`${
+                          isMobile ? 'h-4 w-4' : 'h-4 w-4'
+                        } ${isXTSY270 ? 'h-4 w-4' : ''}`} />
+                      </Button>
+                      <span className={`text-center font-medium text-white min-w-[2rem] flex items-center justify-center ${
+                        isMobile ? 'text-sm' : 'text-base'
+                      } ${isXTSY270 ? 'text-sm' : ''}`}>
+                        {selection.rooms}
+                      </span>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={handleIncrement}
+                        disabled={selection.rooms >= (room.maxRooms || 5)}
+                        className={buttonClasses}
+                        aria-label={`Increase ${room.type === 'dorm' ? 'beds' : 'rooms'}`}
+                        type="button"
+                      >
+                        <Plus className={`${
+                          isMobile ? 'h-4 w-4' : 'h-4 w-4'
+                        } ${isXTSY270 ? 'h-4 w-4' : ''}`} />
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Subtotal */}
+                  <div className={`flex items-center justify-between pt-2 border-t border-gray-700 ${
+                    isMobile ? 'pt-1.5' : ''
+                  } ${isXTSY270 ? 'pt-1.5' : ''}`}>
+                    <span className={`font-medium text-white text-left ${
+                      isMobile ? 'text-xs' : 'text-sm'
+                    } ${isXTSY270 ? 'text-xs' : ''}`}>
+                      Subtotal:
+                    </span>
+                    <span className={`font-bold text-primary text-right ${
+                      isMobile ? 'text-sm' : isTablet ? 'text-base' : 'text-lg'
+                    } ${isXTSY270 ? 'text-sm' : ''}`}>
+                      {formatPrice(calculateSubtotal())}
+                    </span>
+                  </div>
+                </div>
+              </CardContent>
+            </div>
           </div>
-        </div>
-      </Card>
-    </CardWrapper>
+        </Card>
+      </CardWrapper>
+
+      <ImageLightbox
+        isOpen={lightboxOpen}
+        images={roomImages}
+        initialIndex={0}
+        onClose={() => setLightboxOpen(false)}
+        alt={room.name}
+      />
+    </>
   );
 });
 
