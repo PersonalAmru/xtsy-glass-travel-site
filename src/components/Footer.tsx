@@ -4,10 +4,15 @@ import { Phone, Mail, Instagram, Linkedin, Youtube, Home, Info, Image as ImageIc
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import xtsyLogo from "@/assets/xtsy-brand-logo.png";
+import PolicyModal from "./PolicyModals";
 
 const Footer = () => {
   const [logoLoaded, setLogoLoaded] = useState(false);
   const [logoError, setLogoError] = useState(false);
+  const [policyModal, setPolicyModal] = useState<{isOpen: boolean, type: 'cancellation' | 'travel' | 'terms' | null}>({
+    isOpen: false,
+    type: null
+  });
 
   useEffect(() => {
     setLogoLoaded(true);
@@ -135,21 +140,39 @@ const Footer = () => {
           {/* Policy Links */}
           <div className="text-center mb-4 sm:mb-6">
             <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs sm:text-sm">
-              <Link to="/cancellation-policy" className="text-gray-400 hover:text-orange-400 transition-colors duration-300 py-1">
+              <button 
+                onClick={() => setPolicyModal({isOpen: true, type: 'cancellation'})}
+                className="text-gray-400 hover:text-orange-400 transition-colors duration-300 py-1"
+              >
                 Cancellation Policy
-              </Link>
-              <Link to="/travel-policies" className="text-gray-400 hover:text-orange-400 transition-colors duration-300 py-1">
+              </button>
+              <button 
+                onClick={() => setPolicyModal({isOpen: true, type: 'travel'})}
+                className="text-gray-400 hover:text-orange-400 transition-colors duration-300 py-1"
+              >
                 Travel Policies
-              </Link>
-              <Link to="/hostel-terms" className="text-gray-400 hover:text-orange-400 transition-colors duration-300 py-1">
+              </button>
+              <button 
+                onClick={() => setPolicyModal({isOpen: true, type: 'terms'})}
+                className="text-gray-400 hover:text-orange-400 transition-colors duration-300 py-1"
+              >
                 Hostel Terms & Conditions
-              </Link>
+              </button>
             </div>
           </div>
           
           <p className="text-gray-400 text-xs sm:text-sm lg:text-base text-center">© 2024 XTSY. All rights reserved. Experience the XTSY Vibe.</p>
         </div>
       </div>
+      
+      {/* Policy Modals */}
+      {policyModal.type && (
+        <PolicyModal
+          isOpen={policyModal.isOpen}
+          onClose={() => setPolicyModal({isOpen: false, type: null})}
+          type={policyModal.type}
+        />
+      )}
     </footer>
   );
 };

@@ -105,7 +105,7 @@ const ServicesSection = () => {
       <div className="responsive-container relative z-10 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
         <div className="text-center mb-12 sm:mb-16">
           <div className="glass-card inline-block p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 bg-clip-text text-transparent mb-3 font-playfair">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-purple-600 mb-3 font-playfair">
               Amenities & Services
             </h2>
             <p className="text-lg sm:text-xl text-gray-700 font-medium max-w-2xl mx-auto">

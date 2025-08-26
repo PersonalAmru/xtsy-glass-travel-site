@@ -276,15 +276,13 @@ const GallerySection = () => {
           })}
         </div>
 
-        {/* Scrollable Gallery Container */}
+        {/* Vertical Gallery Grid */}
         <div className="relative">
-          {/* Scrollable Gallery Grid */}
-          <div className="overflow-x-auto scrollbar-hide pb-6">
-            <div className="flex gap-4 sm:gap-6" style={{ width: 'max-content' }}>
-              {filteredItems.map((item) => (
-                <Card key={item.id} className={`group overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex-shrink-0 w-80 sm:w-96 ${
-                  item.featured ? "ring-2 ring-orange-500 ring-opacity-50" : ""
-                }`}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+            {filteredItems.map((item) => (
+              <Card key={item.id} className={`group overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:scale-105 ${
+                item.featured ? "ring-2 ring-orange-500 ring-opacity-50" : ""
+              }`}>
                   <CardContent className="p-0">
                     <div className="relative overflow-hidden">
                       {item.image ? (
@@ -346,14 +344,6 @@ const GallerySection = () => {
                   </CardContent>
                 </Card>
               ))}
-            </div>
-          </div>
-
-          {/* Scroll Indicator */}
-          <div className="flex justify-center mt-4">
-            <div className="text-sm text-gray-500 bg-white/80 backdrop-blur-sm rounded-full px-4 py-2">
-              ← Scroll to explore more →
-            </div>
           </div>
         </div>
         

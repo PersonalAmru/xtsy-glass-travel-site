@@ -1,0 +1,318 @@
+import React from "react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Card, CardContent } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { Clock, Shield, FileText, AlertTriangle, CheckCircle, XCircle, Calendar, CreditCard } from "lucide-react";
+
+interface PolicyModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  type: 'cancellation' | 'travel' | 'terms';
+}
+
+const PolicyModal = ({ isOpen, onClose, type }: PolicyModalProps) => {
+  const renderCancellationPolicy = () => (
+    <div className="space-y-6">
+      <div className="text-center">
+        <Clock className="h-12 w-12 text-orange-500 mx-auto mb-3" />
+        <h3 className="text-xl font-bold text-gray-800 mb-2">Cancellation Policy</h3>
+        <p className="text-gray-600">Flexible cancellation terms for your peace of mind</p>
+      </div>
+
+      <Card>
+        <CardContent className="p-4">
+          <h4 className="font-semibold text-green-600 mb-3 flex items-center">
+            <CheckCircle className="h-4 w-4 mr-2" />
+            Free Cancellation (7+ Days Before)
+          </h4>
+          <p className="text-sm text-gray-700 mb-3">
+            Cancel your booking 7 days or more before check-in for a full refund. No questions asked!
+          </p>
+          <ul className="text-xs text-gray-600 space-y-1">
+            <li>• 100% refund guaranteed</li>
+            <li>• Processing within 5-7 business days</li>
+            <li>• No cancellation fees</li>
+          </ul>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardContent className="p-4">
+          <h4 className="font-semibold text-yellow-600 mb-3 flex items-center">
+            <AlertTriangle className="h-4 w-4 mr-2" />
+            Partial Refund (Less than 7 Days)
+          </h4>
+          <p className="text-sm text-gray-700 mb-3">
+            Cancellations made less than 7 days before check-in receive 50% refund.
+          </p>
+          <ul className="text-xs text-gray-600 space-y-1">
+            <li>• 50% of total booking amount refunded</li>
+            <li>• Processing fees may apply</li>
+            <li>• Refund processed within 7-10 business days</li>
+          </ul>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardContent className="p-4">
+          <h4 className="font-semibold text-red-600 mb-3 flex items-center">
+            <XCircle className="h-4 w-4 mr-2" />
+            No Refund (Less than 24 Hours)
+          </h4>
+          <p className="text-sm text-gray-700 mb-3">
+            Cancellations made less than 24 hours before check-in are not eligible for refunds.
+          </p>
+          <ul className="text-xs text-gray-600 space-y-1">
+            <li>• No refund available</li>
+            <li>• Booking amount is non-refundable</li>
+            <li>• Consider rescheduling instead</li>
+          </ul>
+        </CardContent>
+      </Card>
+
+      <Card className="bg-orange-50">
+        <CardContent className="p-4">
+          <h4 className="font-semibold text-orange-600 mb-3 flex items-center">
+            <Calendar className="h-4 w-4 mr-2" />
+            Seasonal Surcharges
+          </h4>
+          <p className="text-sm text-gray-700 mb-2">
+            Additional charges may apply based on booking season:
+          </p>
+          <ul className="text-xs text-gray-600 space-y-1">
+            <li>• Peak season (Oct-Feb): 10% surcharge on cancellation fees</li>
+            <li>• Festival periods: 15% surcharge on cancellation fees</li>
+            <li>• Summer season (Mar-Sep): Standard rates apply</li>
+          </ul>
+        </CardContent>
+      </Card>
+
+      <div className="bg-blue-50 p-4 rounded-lg">
+        <p className="text-sm text-blue-800">
+          <strong>Need to modify your booking?</strong> Contact our support team at +91 88373 17070 or booking@xtsy.one 
+          for assistance with date changes or room modifications.
+        </p>
+      </div>
+    </div>
+  );
+
+  const renderTravelPolicies = () => (
+    <div className="space-y-6">
+      <div className="text-center">
+        <Shield className="h-12 w-12 text-blue-500 mx-auto mb-3" />
+        <h3 className="text-xl font-bold text-gray-800 mb-2">Travel Policies</h3>
+        <p className="text-gray-600">Important guidelines for your stay at XTSY</p>
+      </div>
+
+      <Card>
+        <CardContent className="p-4">
+          <h4 className="font-semibold text-blue-600 mb-3 flex items-center">
+            <CreditCard className="h-4 w-4 mr-2" />
+            ID Verification & Check-in
+          </h4>
+          <ul className="text-sm text-gray-700 space-y-2">
+            <li>• Valid government-issued photo ID required for all guests</li>
+            <li>• Foreign nationals must present passport and valid visa</li>
+            <li>• Check-in starts at 2:00 PM, Check-out by 11:00 AM</li>
+            <li>• Early check-in subject to availability (additional charges may apply)</li>
+            <li>• All guests must register at reception upon arrival</li>
+          </ul>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardContent className="p-4">
+          <h4 className="font-semibold text-purple-600 mb-3 flex items-center">
+            <Clock className="h-4 w-4 mr-2" />
+            Late Check-in Policy
+          </h4>
+          <ul className="text-sm text-gray-700 space-y-2">
+            <li>• Late check-in allowed until 11:00 PM with prior notification</li>
+            <li>• After 11:00 PM: ₹500 late check-in fee applies</li>
+            <li>• 24/7 reception available for emergencies</li>
+            <li>• Self check-in options available for verified bookings</li>
+            <li>• Contact +91 98633 17070 for late arrivals</li>
+          </ul>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardContent className="p-4">
+          <h4 className="font-semibold text-green-600 mb-3 flex items-center">
+            <Shield className="h-4 w-4 mr-2" />
+            Quiet Hours & Community Guidelines
+          </h4>
+          <ul className="text-sm text-gray-700 space-y-2">
+            <li>• Quiet hours: 11:00 PM to 6:00 AM daily</li>
+            <li>• Common areas close at 11:00 PM</li>
+            <li>• Respect fellow travelers and maintain noise levels</li>
+            <li>• No loud music or parties in dormitories</li>
+            <li>• Terrace and outdoor areas have extended hours until 12:00 AM</li>
+          </ul>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardContent className="p-4">
+          <h4 className="font-semibold text-orange-600 mb-3">Age & Booking Requirements</h4>
+          <ul className="text-sm text-gray-700 space-y-2">
+            <li>• Minimum age for booking: 18 years</li>
+            <li>• Guests under 18 must be accompanied by parent/guardian</li>
+            <li>• Group bookings (8+ people) require advance notice</li>
+            <li>• Corporate rates available for business travelers</li>
+          </ul>
+        </CardContent>
+      </Card>
+
+      <div className="bg-green-50 p-4 rounded-lg">
+        <p className="text-sm text-green-800">
+          <strong>Questions about our policies?</strong> Our friendly staff is available 24/7 to assist you. 
+          Contact us at reception or call +91 88373 17070 for any clarifications.
+        </p>
+      </div>
+    </div>
+  );
+
+  const renderHostelTerms = () => (
+    <div className="space-y-6">
+      <div className="text-center">
+        <FileText className="h-12 w-12 text-purple-500 mx-auto mb-3" />
+        <h3 className="text-xl font-bold text-gray-800 mb-2">Hostel Terms & Conditions</h3>
+        <p className="text-gray-600">Community guidelines and accommodation rules</p>
+      </div>
+
+      <Card>
+        <CardContent className="p-4">
+          <h4 className="font-semibold text-purple-600 mb-3">Shared Space Etiquette</h4>
+          <ul className="text-sm text-gray-700 space-y-2">
+            <li>• Keep dormitories clean and organized at all times</li>
+            <li>• Use provided lockers for valuables and personal items</li>
+            <li>• Respect privacy curtains and personal space boundaries</li>
+            <li>• Clean up after yourself in kitchen and common areas</li>
+            <li>• Share common facilities respectfully with other guests</li>
+            <li>• Report any issues to reception immediately</li>
+          </ul>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardContent className="p-4">
+          <h4 className="font-semibold text-red-600 mb-3">Prohibited Items & Activities</h4>
+          <ul className="text-sm text-gray-700 space-y-2">
+            <li>• No smoking inside the premises (designated outdoor areas only)</li>
+            <li>• Alcohol consumption only in designated areas after 8:00 PM</li>
+            <li>• No drugs or illegal substances (zero tolerance policy)</li>
+            <li>• No weapons or sharp objects in dormitories</li>
+            <li>• No outside visitors in dormitories after 10:00 PM</li>
+            <li>• No cooking with strong spices in shared kitchen</li>
+          </ul>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardContent className="p-4">
+          <h4 className="font-semibold text-orange-600 mb-3">Damage Charges & Liability</h4>
+          <ul className="text-sm text-gray-700 space-y-2">
+            <li>• Guests liable for damage to property or equipment</li>
+            <li>• Lost key card replacement: ₹200</li>
+            <li>• Damaged bed linens or towels: ₹500 per item</li>
+            <li>• Common area damage will be charged to responsible party</li>
+            <li>• XTSY not liable for lost or stolen personal items</li>
+            <li>• Security deposit may be required for group bookings</li>
+          </ul>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardContent className="p-4">
+          <h4 className="font-semibold text-blue-600 mb-3">Staff Authority & Enforcement</h4>
+          <ul className="text-sm text-gray-700 space-y-2">
+            <li>• XTSY staff have authority to enforce all policies</li>
+            <li>• Violation of rules may result in immediate eviction</li>
+            <li>• No refund for bookings terminated due to policy violations</li>
+            <li>• Management reserves right to refuse service</li>
+            <li>• Final decisions on disputes rest with management</li>
+            <li>• CCTV monitoring in common areas for safety</li>
+          </ul>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardContent className="p-4">
+          <h4 className="font-semibold text-green-600 mb-3">Guest Rights & Services</h4>
+          <ul className="text-sm text-gray-700 space-y-2">
+            <li>• Right to clean and safe accommodation</li>
+            <li>• 24/7 security and emergency assistance</li>
+            <li>• Access to all advertised amenities and services</li>
+            <li>• Privacy and respectful treatment by staff</li>
+            <li>• Complaint resolution through proper channels</li>
+            <li>• Equal treatment regardless of nationality or background</li>
+          </ul>
+        </CardContent>
+      </Card>
+
+      <div className="bg-purple-50 p-4 rounded-lg">
+        <p className="text-sm text-purple-800">
+          <strong>Legal Disclaimer:</strong> These terms constitute a binding agreement between guests and XTSY Travellers Hostel. 
+          By completing your booking, you agree to abide by all stated terms and conditions. 
+          Management reserves the right to modify these terms with prior notice.
+        </p>
+      </div>
+    </div>
+  );
+
+  const getContent = () => {
+    switch (type) {
+      case 'cancellation':
+        return renderCancellationPolicy();
+      case 'travel':
+        return renderTravelPolicies();
+      case 'terms':
+        return renderHostelTerms();
+      default:
+        return null;
+    }
+  };
+
+  const getTitle = () => {
+    switch (type) {
+      case 'cancellation':
+        return 'Cancellation Policy';
+      case 'travel':
+        return 'Travel Policies';
+      case 'terms':
+        return 'Hostel Terms & Conditions';
+      default:
+        return 'Policy';
+    }
+  };
+
+  return (
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle className="text-center text-2xl font-bold text-gray-800">
+            {getTitle()}
+          </DialogTitle>
+        </DialogHeader>
+        
+        <div className="mt-4">
+          {getContent()}
+        </div>
+
+        <Separator className="my-4" />
+        
+        <div className="text-center text-xs text-gray-500">
+          <p>Last updated: January 2024 | XTSY Travellers Hostel</p>
+          <p className="mt-1">
+            For questions about these policies, contact us at{" "}
+            <span className="text-orange-600 font-medium">booking@xtsy.one</span> or{" "}
+            <span className="text-orange-600 font-medium">+91 88373 17070</span>
+          </p>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
+export default PolicyModal;

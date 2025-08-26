@@ -224,9 +224,6 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
 
   const { toast } = useToast();
   const isMobile = useIsMobile();
-  
-  // For tablet view, we want to use desktop layout. Only use mobile flow for actual mobile devices
-  const isActualMobile = window.innerWidth < 640; // Immediate mobile detection to prevent loading issues
 
   const roomsArray = Object.values(ROOM_DATA);
   const nights = initialData.checkIn && initialData.checkOut ? 
@@ -580,24 +577,19 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
             </div>
 
             {/* Progress indicator */}
-            {isActualMobile && (
-              <div className="flex justify-center mt-4">
-                <div className="flex space-x-2">
-                  <div className={`w-3 h-3 rounded-full ${currentStep === 'room-selection' ? 'bg-orange-500' : 'bg-gray-300'}`} />
-                  <div className={`w-3 h-3 rounded-full ${currentStep === 'booking-summary' ? 'bg-orange-500' : 'bg-gray-300'}`} />
-                  <div className={`w-3 h-3 rounded-full ${currentStep === 'guest-details' ? 'bg-orange-500' : 'bg-gray-300'}`} />
-                </div>
+            <div className="flex justify-center mt-4">
+              <div className="flex space-x-2">
+                <div className={`w-3 h-3 rounded-full ${currentStep === 'room-selection' ? 'bg-orange-500' : 'bg-gray-300'}`} />
+                <div className={`w-3 h-3 rounded-full ${currentStep === 'booking-summary' ? 'bg-orange-500' : 'bg-gray-300'}`} />
+                <div className={`w-3 h-3 rounded-full ${currentStep === 'guest-details' ? 'bg-orange-500' : 'bg-gray-300'}`} />
               </div>
-            )}
+            </div>
           </div>
 
           {/* Content */}
           <div className="flex-1 overflow-y-auto min-h-0" style={{ maxHeight: 'calc(100dvh - 140px)' }}>
-            {/* Mobile only: Multi-step flow */}
-            {isActualMobile && (
-              <>
-                {currentStep === 'room-selection' && (
-                  <div className="p-4 space-y-6 pb-24">
+            {/* Desktop/Tablet flow */}
+            <div className="p-6 space-y-6">
                     {/* Live the Shillong Vibe Hero Section - Mobile */}
                     <div className="relative h-32 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl overflow-hidden">
                       <div className="absolute inset-0 bg-black/20"></div>

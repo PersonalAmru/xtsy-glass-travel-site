@@ -730,19 +730,11 @@ const Travel = () => {
                              <Card className="group hover:shadow-md transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200 h-32 sm:h-36 md:h-40">
                                <CardContent className="flex flex-col items-center justify-center p-2 sm:p-3 text-center h-full">
                                   <div className="flex items-center justify-center mb-2 flex-shrink-0">
-                                    <span 
-                                      className="leading-none"
-                                      style={{
-                                        fontFamily: '"Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif',
-                                        fontSize: 'clamp(1.2rem, 4vw, 2rem)',
-                                        lineHeight: 1
-                                      }}
-                                    >
-                                      {item.flag}
-                                    </span>
+                                    <h3 className="destination-title emoji-text font-semibold text-gray-900 mb-1 text-xs sm:text-sm leading-tight truncate w-full flex items-center justify-center gap-1">
+                                      <span className="emoji-text">{item.flag}</span>
+                                      {item.country}
+                                    </h3>
                                   </div>
-                                 <div className="flex flex-col items-center justify-center flex-1 min-h-0">
-                                   <h4 className="font-semibold text-gray-900 mb-1 text-xs sm:text-sm leading-tight truncate w-full">{item.country}</h4>
                                    <p className="text-xs text-gray-600 mb-2 leading-tight truncate w-full">{item.highlight}</p>
                                    <span className="inline-block text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full font-medium">Soon</span>
                                  </div>

@@ -1,5 +1,17 @@
 /* Enhanced Responsive Styles for XTSY - Tablet & Mobile Optimizations */
 
+/* Emoji Text Support */
+.emoji-text {
+  font-family:
+    'TwitterColorEmoji-SVGinOT',
+    'Noto Color Emoji',
+    'Segoe UI Emoji',
+    'Apple Color Emoji',
+    'Segoe UI Symbol',
+    sans-serif;
+  font-style: normal;
+}
+
 /* Tablet View Padding Fixes (768px - 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
   .responsive-container {

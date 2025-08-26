@@ -207,9 +207,7 @@ const ReviewsSection = () => {
               <div className="text-center">
                 <div className="text-2xl font-bold text-orange-400 mb-1">9.8</div>
                 <div className="flex justify-center mb-2">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-yellow-400 text-sm">⭐</span>
-                  ))}
+                  <span className="text-yellow-400 text-sm">⭐</span>
                 </div>
                 <div className="text-xs text-white font-medium">Booking.com</div>
               </div>
@@ -219,10 +217,7 @@ const ReviewsSection = () => {
               <div className="text-center">
                 <div className="text-2xl font-bold text-orange-400 mb-1">4.4</div>
                 <div className="flex justify-center mb-2">
-                  {[...Array(4)].map((_, i) => (
-                    <span key={i} className="text-yellow-400 text-sm">⭐</span>
-                  ))}
-                  <span className="text-gray-400 text-sm">⭐</span>
+                  <span className="text-yellow-400 text-sm">⭐</span>
                 </div>
                 <div className="text-xs text-white font-medium">MakeMyTrip</div>
               </div>
@@ -232,10 +227,7 @@ const ReviewsSection = () => {
               <div className="text-center">
                 <div className="text-2xl font-bold text-orange-400 mb-1">4.4</div>
                 <div className="flex justify-center mb-2">
-                  {[...Array(4)].map((_, i) => (
-                    <span key={i} className="text-yellow-400 text-sm">⭐</span>
-                  ))}
-                  <span className="text-gray-400 text-sm">⭐</span>
+                  <span className="text-yellow-400 text-sm">⭐</span>
                 </div>
                 <div className="text-xs text-white font-medium">GoIbibo</div>
               </div>
@@ -245,9 +237,7 @@ const ReviewsSection = () => {
               <div className="text-center">
                 <div className="text-2xl font-bold text-orange-400 mb-1">9.8</div>
                 <div className="flex justify-center mb-2">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-yellow-400 text-sm">⭐</span>
-                  ))}
+                  <span className="text-yellow-400 text-sm">⭐</span>
                 </div>
                 <div className="text-xs text-white font-medium">Expedia</div>
               </div>
