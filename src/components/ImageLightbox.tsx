@@ -100,7 +100,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({
       {/* Close button */}
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/50 hover:bg-black/70 text-white transition-colors"
+        className="absolute top-4 left-4 z-10 p-2 rounded-full bg-black/50 hover:bg-black/70 text-white transition-colors"
         aria-label="Close lightbox"
       >
         <X className="h-6 w-6" />
@@ -136,23 +136,26 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({
       )}
 
       {/* Main image */}
-      <div className="relative max-w-7xl max-h-full w-full h-full flex items-center justify-center">
+      <div className="relative flex items-center justify-center">
         {isLoading && (
-          <div className="absolute inset-0 flex items-center justify-center">
+          <div className="absolute inset-0 flex items-center justify-center z-10">
             <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin" />
           </div>
         )}
         
-        <img
-          src={images[currentIndex]}
-          alt={`${alt} - Image ${currentIndex + 1}`}
-          className={cn(
-            "max-w-full max-h-full object-contain transition-opacity duration-300",
-            isLoading ? "opacity-0" : "opacity-100"
-          )}
-          onLoad={handleImageLoad}
-          draggable={false}
-        />
+        {/* Instagram post size container (4:5 aspect ratio) */}
+        <div className="w-72 h-[360px] md:w-80 md:h-[400px] lg:w-[432px] lg:h-[540px] aspect-[4/5] bg-black/20 rounded-lg overflow-hidden">
+          <img
+            src={images[currentIndex]}
+            alt={`${alt} - Image ${currentIndex + 1}`}
+            className={cn(
+              "w-full h-full object-cover transition-opacity duration-300",
+              isLoading ? "opacity-0" : "opacity-100"
+            )}
+            onLoad={handleImageLoad}
+            draggable={false}
+          />
+        </div>
       </div>
 
       {/* Image indicators */}
