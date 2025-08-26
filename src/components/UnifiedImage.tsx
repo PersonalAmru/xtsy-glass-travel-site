@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { cn } from "@/lib/utils";
 
@@ -16,12 +17,12 @@ interface UnifiedImageProps {
   rootMargin?: string;
 }
 
-// Shared intersection observer instance for better performance
-class SharedIntersectionObserver {
+// Optimized intersection observer for ultra-fast loading
+class FastIntersectionObserver {
   private static observer: IntersectionObserver | null = null;
   private static callbacks = new Map<Element, () => void>();
 
-  static getInstance(options: IntersectionObserverInit = {}): IntersectionObserver {
+  static getInstance(): IntersectionObserver {
     if (!this.observer) {
       this.observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -34,9 +35,8 @@ class SharedIntersectionObserver {
           }
         });
       }, {
-        threshold: 0.1,
-        rootMargin: '50px',
-        ...options
+        threshold: 0,
+        rootMargin: '200px' // Aggressive preloading
       });
     }
     return this.observer;
@@ -53,14 +53,6 @@ class SharedIntersectionObserver {
       this.observer.unobserve(element);
     }
   }
-
-  static cleanup() {
-    if (this.observer) {
-      this.observer.disconnect();
-      this.observer = null;
-    }
-    this.callbacks.clear();
-  }
 }
 
 const UnifiedImage: React.FC<UnifiedImageProps> = ({
@@ -74,18 +66,15 @@ const UnifiedImage: React.FC<UnifiedImageProps> = ({
   onError,
   sizes,
   srcSet,
-  threshold = 0.1,
-  rootMargin = '50px'
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isInView, setIsInView] = useState(priority); // Load immediately if priority
+  const [isInView, setIsInView] = useState(priority);
   const [hasError, setHasError] = useState(false);
   const [currentSrc, setCurrentSrc] = useState(priority ? src : '');
   
   const containerRef = useRef<HTMLDivElement>(null);
-  const imgRef = useRef<HTMLImageElement>(null);
 
-  // Set up intersection observer for lazy loading
+  // Ultra-fast intersection observer setup
   useEffect(() => {
     if (priority || !containerRef.current) return;
 
@@ -94,11 +83,11 @@ const UnifiedImage: React.FC<UnifiedImageProps> = ({
       setCurrentSrc(src);
     };
 
-    SharedIntersectionObserver.observe(containerRef.current, handleIntersection);
+    FastIntersectionObserver.observe(containerRef.current, handleIntersection);
 
     return () => {
       if (containerRef.current) {
-        SharedIntersectionObserver.unobserve(containerRef.current);
+        FastIntersectionObserver.unobserve(containerRef.current);
       }
     };
   }, [priority, src]);
@@ -118,32 +107,21 @@ const UnifiedImage: React.FC<UnifiedImageProps> = ({
     }
   }, [hasError, fallback, currentSrc, onError]);
 
-  // Cleanup observer on unmount
-  useEffect(() => {
-    return () => {
-      if (containerRef.current) {
-        SharedIntersectionObserver.unobserve(containerRef.current);
-      }
-    };
-  }, []);
-
-  const defaultPlaceholder = (
-    <div className={cn("animate-pulse bg-muted rounded", className)}>
-      <div className="w-full h-full flex items-center justify-center">
-        <div className="w-8 h-8 bg-muted-foreground/20 rounded" />
-      </div>
+  // Optimized placeholder that renders immediately
+  const optimizedPlaceholder = (
+    <div className={cn("bg-gray-100 flex items-center justify-center", className)}>
+      <div className="w-8 h-8 bg-gray-300 rounded animate-pulse" />
     </div>
   );
 
   return (
-    <div ref={containerRef} className={cn("overflow-hidden", className)}>
+    <div ref={containerRef} className={cn("relative overflow-hidden", className)}>
       {(isInView || priority) && currentSrc && (
         <img
-          ref={imgRef}
           src={currentSrc}
           alt={alt}
           className={cn(
-            "transition-opacity duration-300",
+            "transition-opacity duration-150",
             isLoaded ? "opacity-100" : "opacity-0",
             className
           )}
@@ -156,9 +134,9 @@ const UnifiedImage: React.FC<UnifiedImageProps> = ({
         />
       )}
       
-      {(!isInView || !isLoaded || (hasError && !fallback)) && (
+      {(!isLoaded || (hasError && !fallback)) && (
         <div className={cn("absolute inset-0", className)}>
-          {placeholder || defaultPlaceholder}
+          {placeholder || optimizedPlaceholder}
         </div>
       )}
     </div>
@@ -167,7 +145,6 @@ const UnifiedImage: React.FC<UnifiedImageProps> = ({
 
 export default UnifiedImage;
 
-// Cleanup function to be called on app unmount  
 export const cleanupUnifiedImage = () => {
-  SharedIntersectionObserver.cleanup();
+  FastIntersectionObserver.observer?.disconnect();
 };
