@@ -395,7 +395,7 @@ export default function BookingFlow() {
                 <h1 className={`font-bold text-gray-900 ${
                   isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'
                 }`}>
-                  {isMobileView ? 'Book Stay' : 'Book Your Stay'}
+                  Book Your Stay
                 </h1>
               </div>
             </div>
