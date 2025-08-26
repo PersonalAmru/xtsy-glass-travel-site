@@ -150,6 +150,7 @@ const BookingFlow = () => {
   const { formatPrice, currency } = useApp();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0);
 
   // URL parameters
   const checkIn = searchParams.get('checkIn') || new Date().toISOString().split('T')[0];
@@ -187,13 +188,40 @@ const BookingFlow = () => {
   const nights = checkIn && checkOut ? 
     Math.ceil((new Date(checkOut).getTime() - new Date(checkIn).getTime()) / (1000 * 3600 * 24)) : 1;
 
-  // Initialize loading state
+  // Enhanced loading state with progress tracking
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 100); // Short delay to ensure proper initialization
+    const initializeBookingFlow = async () => {
+      setLoadingProgress(20);
+      
+      // Simulate proper initialization
+      await new Promise(resolve => setTimeout(resolve, 300));
+      setLoadingProgress(50);
+      
+      // Preload critical images
+      const criticalImages = roomsArray.slice(0, 3).map(room => room.image);
+      await Promise.allSettled(
+        criticalImages.map(src => {
+          return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.onload = resolve;
+            img.onerror = resolve; // Don't fail on image errors
+            img.src = src;
+          });
+        })
+      );
+      setLoadingProgress(80);
+      
+      // Final initialization delay
+      await new Promise(resolve => setTimeout(resolve, 200));
+      setLoadingProgress(100);
+      
+      // Small delay before showing content
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 100);
+    };
 
-    return () => clearTimeout(timer);
+    initializeBookingFlow();
   }, []);
 
   // Pre-select room if specified
@@ -600,9 +628,27 @@ Please confirm this booking and provide payment details.
         <Header />
         <main className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto">
-            <div className="text-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600 mx-auto mb-4"></div>
-              <p className="text-gray-600">Loading booking flow...</p>
+            <div className="text-center space-y-6">
+              <div className="relative">
+                <div className="animate-spin rounded-full h-16 w-16 border-4 border-orange-200 border-t-orange-600 mx-auto"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-sm font-medium text-orange-600">{Math.round(loadingProgress)}%</span>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <h2 className="text-xl font-semibold text-gray-900">Setting up your booking</h2>
+                <div className="w-full max-w-md mx-auto bg-gray-200 rounded-full h-2">
+                  <div 
+                    className="bg-orange-600 h-2 rounded-full transition-all duration-300 ease-out"
+                    style={{ width: `${loadingProgress}%` }}
+                  ></div>
+                </div>
+                <p className="text-gray-600">
+                  {loadingProgress < 30 && "Initializing booking flow..."}
+                  {loadingProgress >= 30 && loadingProgress < 70 && "Loading room details..."}
+                  {loadingProgress >= 70 && "Almost ready..."}
+                </p>
+              </div>
             </div>
           </div>
         </main>
