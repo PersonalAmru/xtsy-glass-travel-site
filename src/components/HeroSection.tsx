@@ -47,21 +47,20 @@ const HeroSection = () => {
   }, [languages.length]);
 
   useEffect(() => {
-    // Load universal click count using a simple approach with localStorage + server sync
+    // Load universal click count - always use saved value if it exists
     const loadUniversalClickCount = () => {
-      // Try to get from localStorage first
       const savedClicks = localStorage.getItem('universalBookNowClicks');
       if (savedClicks) {
         const currentCount = parseInt(savedClicks, 10);
-        if (currentCount > 551) {
-          setBookNowClicks(currentCount);
-          return;
-        }
+        // Always use the saved count, don't reset it
+        setBookNowClicks(currentCount);
+        console.log('Loaded saved click count:', currentCount);
+      } else {
+        // Only set initial value if no saved count exists
+        setBookNowClicks(551);
+        localStorage.setItem('universalBookNowClicks', '551');
+        console.log('Initialized click count to 551');
       }
-      
-      // If no saved count or count is too low, start from 551
-      setBookNowClicks(551);
-      localStorage.setItem('universalBookNowClicks', '551');
     };
 
     loadUniversalClickCount();
@@ -143,6 +142,7 @@ const HeroSection = () => {
     
     // Save to localStorage to persist across sessions for this browser
     localStorage.setItem('universalBookNowClicks', newCount.toString());
+    console.log('Updated click count to:', newCount);
     
     // Navigate to booking flow instead of opening modal
     const params = new URLSearchParams({
