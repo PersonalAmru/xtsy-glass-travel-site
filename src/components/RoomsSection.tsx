@@ -35,7 +35,7 @@ const RoomsSection = () => {
   const hostelRooms = [
     {
       id: "4-bed-female-only-dorm",
-      name: "Bed in 4 Bed Female Only Dorm",
+      name: "Bed in 4 Bed Female Only Dormitory",
       price: 850,
       description: "Female-only dormitory with modern amenities and comfortable beds",
       features: ["Female only", "Attached bathroom", "Wi-Fi", "Locker", "Common area", "Reading lights", "Power outlets", "Premium Breakfast", "Games room access"],
@@ -55,7 +55,7 @@ const RoomsSection = () => {
     },
     {
       id: "4-bed-mixed-female-dorm",
-      name: "Bed in 4 Bed Mixed Dorm", 
+      name: "Bed in 4 Bed Mixed Dormitory", 
       price: 800,
       description: "Mixed dormitory with shared facilities and social atmosphere",
       features: ["Mixed", "Attached bathroom", "Wi-Fi", "Locker", "Common area", "Reading lights", "Power outlets", "Premium Breakfast", "Games room access"],
@@ -71,7 +71,7 @@ const RoomsSection = () => {
     },
     {
       id: "6-bed-mixed-female-dorm",
-      name: "Bed in 6 Bed Female Dorm",
+      name: "Bed in 6 Bed Female Only Dormitory",
       price: 700,
       description: "Spacious mixed or female dormitory with modern amenities",
       features: ["Mixed/Female", "Attached bathroom", "Wi-Fi", "Locker", "Common area", "Reading lights", "Power outlets", "Premium Breakfast", "Games room access"],
