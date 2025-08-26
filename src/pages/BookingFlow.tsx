@@ -149,6 +149,7 @@ const BookingFlow = () => {
   const navigate = useNavigate();
   const { formatPrice, currency } = useApp();
   const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(true);
 
   // URL parameters
   const checkIn = searchParams.get('checkIn') || new Date().toISOString().split('T')[0];
@@ -185,6 +186,15 @@ const BookingFlow = () => {
   const roomsArray = Object.values(ROOM_DATA);
   const nights = checkIn && checkOut ? 
     Math.ceil((new Date(checkOut).getTime() - new Date(checkIn).getTime()) / (1000 * 3600 * 24)) : 1;
+
+  // Initialize loading state
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 100); // Short delay to ensure proper initialization
+
+    return () => clearTimeout(timer);
+  }, []);
 
   // Pre-select room if specified
   useEffect(() => {
@@ -582,6 +592,24 @@ Please confirm this booking and provide payment details.
       </Card>
     );
   };
+
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Header />
+        <main className="container mx-auto px-4 py-8">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600 mx-auto mb-4"></div>
+              <p className="text-gray-600">Loading booking flow...</p>
+            </div>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
