@@ -102,11 +102,7 @@ const Header = () => {
                   decoding="sync"
                   onLoad={handleLogoLoad}
                   onError={handleLogoError}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    window.open('/gallery?category=brand-assets', '_blank');
-                  }}
-                  title="View brand assets in gallery"
+                  title="Go to home page"
                 />
               ) : (
                 <div className={`bg-gradient-to-r from-orange-500 to-red-600 rounded flex items-center justify-center ${
