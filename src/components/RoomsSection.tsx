@@ -71,7 +71,7 @@ const RoomsSection = () => {
     },
     {
       id: "6-bed-mixed-female-dorm",
-      name: "Bed in 6 Bed Mixed/Female Dorm",
+      name: "Bed in 6 Bed Female Dorm",
       price: 700,
       description: "Spacious mixed or female dormitory with modern amenities",
       features: ["Mixed/Female", "Attached bathroom", "Wi-Fi", "Locker", "Common area", "Reading lights", "Power outlets", "Premium Breakfast", "Games room access"],
