@@ -270,7 +270,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                   </div>
                 </div>
               )}
-            </div>
+            </CardContent>
           </div>
         </div>
       </Card>
