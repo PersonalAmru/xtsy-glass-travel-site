@@ -12,6 +12,7 @@ import { CalendarDays, Users, MapPin, Phone, Mail, User, CreditCard } from 'luci
 import RoomCard from '@/components/RoomCard';
 import FastRoomCard from '@/components/FastRoomCard';
 import GuestDetails from '@/components/GuestDetails';
+import PaymentHandler from '@/components/PaymentHandler';
 import UPIPaymentModal from '@/components/UPIPaymentModal';
 import { toast } from 'sonner';
 import { ROOM_DATA } from '@/data/rooms/xtsy270';
@@ -58,6 +59,7 @@ const BookingFlow = () => {
   } | null>(null);
   const [paymentMethod, setPaymentMethod] = useState<'card' | 'upi' | null>(null);
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+  const [isGuestModalOpen, setIsGuestModalOpen] = useState(false);
 
   const roomsArray: Room[] = Object.values(ROOM_DATA);
 
@@ -134,7 +136,7 @@ const BookingFlow = () => {
         toast.error('Please select at least one room');
         return;
       }
-      setStep('guest');
+      setIsGuestModalOpen(true);
     } else if (step === 'guest') {
       if (!guestDetails) {
         toast.error('Please fill in your details');
@@ -163,19 +165,6 @@ const BookingFlow = () => {
     }
   };
 
-  const setGuestInfo = (details: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    phone: string;
-    address: string;
-    city: string;
-    country: string;
-    zipCode: string;
-  }) => {
-    setGuestDetails(details);
-  };
-
   const handlePayment = (method: 'card' | 'upi') => {
     setPaymentMethod(method);
   };
@@ -193,14 +182,37 @@ const BookingFlow = () => {
   const getBookingData = () => {
     if (!guestDetails) return null;
     
+    const checkIn = new Date();
+    const checkOut = new Date(Date.now() + 24 * 60 * 60 * 1000);
+    const nights = 1;
+    const guests = selectedRooms.reduce((total, room) => total + room.selection.guests, 0);
+    const totalAmount = calculateTotalAmount();
+    
     return {
-      bookingId: generateBookingId(),
-      guestName: `${guestDetails.firstName} ${guestDetails.lastName}`,
-      checkIn: new Date().toISOString(),
-      checkOut: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
-      totalAmount: calculateTotalAmount(),
-      whatsappNumber: guestDetails.phone
+      checkIn: checkIn.toISOString(),
+      checkOut: checkOut.toISOString(),
+      guests,
+      nights,
+      selectedRooms,
+      totalAmount,
+      gstAmount: 0,
+      subtotal: totalAmount,
+      discountAmount: 0,
+      couponCode: '',
+      couponDiscount: 0
     };
+  };
+
+  const handleGuestModalBack = () => {
+    setIsGuestModalOpen(false);
+    setStep('rooms');
+  };
+
+  const handleGuestModalClose = () => {
+    setIsGuestModalOpen(false);
+    if (guestDetails) {
+      setStep('guest');
+    }
   };
 
   return (
@@ -249,11 +261,22 @@ const BookingFlow = () => {
           {step === 'guest' && (
             <div className="space-y-6">
               <div className="text-center">
-                <h2 className="text-2xl font-bold mb-2">Guest Details</h2>
-                <p className="text-gray-600">Please provide your contact information for the booking</p>
+                <h2 className="text-2xl font-bold mb-2">Guest Details Complete</h2>
+                <p className="text-gray-600">Your contact information has been saved</p>
               </div>
 
-              <GuestDetails onGuestDetailsChange={setGuestInfo} />
+              <Card>
+                <CardContent className="p-6">
+                  <h3 className="font-semibold mb-4">Guest Information</h3>
+                  {guestDetails && (
+                    <div className="space-y-2 text-sm">
+                      <p><strong>Name:</strong> {guestDetails.firstName} {guestDetails.lastName}</p>
+                      <p><strong>Email:</strong> {guestDetails.email}</p>
+                      <p><strong>Phone:</strong> {guestDetails.phone}</p>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
 
               <div className="flex justify-between">
                 <Button variant="outline" onClick={handlePrevious}><CalendarDays className="mr-2" /> Previous: Rooms</Button>
@@ -308,6 +331,17 @@ const BookingFlow = () => {
         </div>
       </main>
 
+      {/* Guest Details Modal */}
+      {getBookingData() && (
+        <GuestDetails
+          isOpen={isGuestModalOpen}
+          onClose={handleGuestModalClose}
+          onBack={handleGuestModalBack}
+          bookingData={getBookingData()!}
+        />
+      )}
+
+      {/* UPI Payment Modal */}
       {getBookingData() && (
         <UPIPaymentModal 
           isOpen={isPaymentModalOpen} 
