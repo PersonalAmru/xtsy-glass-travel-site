@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Users, Minus, Plus, Bed } from 'lucide-react';
 import { useMediaQuery } from '@/hooks/use-mobile';
+import { useApp } from '@/contexts/AppContext';
 
 interface FastRoomCardProps {
   room: {
@@ -37,6 +38,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
 }) => {
   const isMobile = useMediaQuery('(max-width: 767px)');
   const isTablet = useMediaQuery('(min-width: 768px) and (max-width: 1023px)');
+  const { formatPrice } = useApp();
 
   // Check if this is the XTSY 270 room
   const isXTSY270 = room.name === "XTSY 270 Panorama Glass Ensuite";
@@ -152,7 +154,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                   <div className={`font-bold text-primary text-right ${
                     isMobile ? 'text-base' : isTablet ? 'text-lg' : 'text-xl'
                   } ${isXTSY270 ? 'text-base' : ''} leading-tight`}>
-                    ₹{room.price?.toLocaleString() || '0'}
+                    {formatPrice(room.price || 0)}
                   </div>
                   <div className={`text-gray-300 text-right ${
                     isMobile ? 'text-xs' : 'text-sm'
@@ -258,7 +260,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                   <span className={`font-bold text-primary text-right ${
                     isMobile ? 'text-sm' : isTablet ? 'text-base' : 'text-lg'
                   } ${isXTSY270 ? 'text-sm' : ''}`}>
-                    ₹{calculateSubtotal().toLocaleString()}
+                    {formatPrice(calculateSubtotal())}
                   </span>
                 </div>
               </div>

@@ -12,6 +12,7 @@ import { toast } from 'sonner';
 import { differenceInDays, parseISO } from 'date-fns';
 import Header from '@/components/Header';
 import { ROOM_DATA, XTSY270_DATA } from '@/data/rooms/xtsy270';
+import { useApp } from '@/contexts/AppContext';
 
 interface Room {
   id: string;
@@ -150,6 +151,7 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
 export default function BookingFlow() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const { formatPrice } = useApp();
   const [currentStep, setCurrentStep] = useState<'rooms' | 'guest' | 'payment'>('rooms');
   const [selectedRooms, setSelectedRooms] = useState<SelectedRoom[]>([]);
   const [guestDetails, setGuestDetails] = useState({
@@ -774,7 +776,7 @@ export default function BookingFlow() {
                       <span className={`font-bold text-orange-600 ${
                         isMobileView ? 'text-lg' : 'text-xl'
                       }`}>
-                        ₹{calculateTotalAmount().toLocaleString()}
+                        {formatPrice(calculateTotalAmount())}
                       </span>
                     </div>
                   </div>

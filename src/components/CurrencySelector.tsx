@@ -11,11 +11,7 @@ interface Currency {
   rate: number;
 }
 
-const currencies: Currency[] = [
-  { code: 'INR', symbol: '₹', name: 'Indian Rupee', rate: 1 },
-  { code: 'USD', symbol: '$', name: 'US Dollar', rate: 0.012 },
-  { code: 'EUR', symbol: '€', name: 'Euro', rate: 0.011 },
-];
+// Remove local currencies array - use global state from AppContext
 
 interface CurrencySelectorProps {
   onCurrencyChange?: (currency: Currency) => void;
@@ -23,8 +19,15 @@ interface CurrencySelectorProps {
 }
 
 const CurrencySelector: React.FC<CurrencySelectorProps> = ({ onCurrencyChange, className = '' }) => {
-  const { currency } = useApp();
+  const { currency, setCurrency } = useApp();
   const [showCurrencyPrompt, setShowCurrencyPrompt] = useState(false);
+  
+  // Available currencies (should match AppContext)
+  const availableCurrencies = [
+    { code: 'INR', symbol: '₹', name: 'Indian Rupee', rate: 1 },
+    { code: 'USD', symbol: '$', name: 'US Dollar', rate: 0.012 },
+    { code: 'EUR', symbol: '€', name: 'Euro', rate: 0.011 },
+  ];
 
   useEffect(() => {
     // Show currency selection prompt for new users who haven't selected a currency
@@ -35,8 +38,14 @@ const CurrencySelector: React.FC<CurrencySelectorProps> = ({ onCurrencyChange, c
   }, []);
 
   const handleCurrencyChange = (currencyCode: string) => {
-    const selectedCurrency = currencies.find(c => c.code === currencyCode) || currencies[0];
+    const selectedCurrency = availableCurrencies.find(c => c.code === currencyCode) || availableCurrencies[0];
+    
+    // Update global currency state
+    setCurrency(selectedCurrency);
+    
+    // Call optional callback for backward compatibility
     onCurrencyChange?.(selectedCurrency);
+    
     setShowCurrencyPrompt(false);
     console.log('Currency changed to:', selectedCurrency.code, selectedCurrency.symbol);
   };
@@ -51,7 +60,7 @@ const CurrencySelector: React.FC<CurrencySelectorProps> = ({ onCurrencyChange, c
           <SelectValue className="text-white" />
         </SelectTrigger>
         <SelectContent className="bg-black/90 backdrop-blur-md border border-white/20 shadow-xl z-50">
-          {currencies.map((currency) => (
+          {availableCurrencies.map((currency) => (
             <SelectItem 
               key={currency.code} 
               value={currency.code}
