@@ -338,7 +338,21 @@ const BookingFlow = () => {
       <main className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto space-y-8">
           <div className="text-center">
-            <h1 className="text-3xl font-bold">Booking Flow</h1>
+            <div className="inline-block">
+              <div className="glass-card rounded-3xl p-8 mx-auto max-w-2xl bg-gradient-to-br from-white/20 via-white/10 to-transparent backdrop-blur-xl border border-white/30 shadow-2xl">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-orange-500/20 rounded-2xl blur-xl"></div>
+                  <div className="relative z-10">
+                    <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-orange-600 bg-clip-text text-transparent mb-2 font-playfair">
+                      Live the shillong vibe
+                    </h1>
+                    <p className="text-lg text-gray-600/80 font-medium">
+                      Experience the magic of the hills
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           {step === 'rooms' && (
