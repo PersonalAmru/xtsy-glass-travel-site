@@ -61,6 +61,20 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
   const { toast } = useToast();
   const { formatPrice } = useApp();
 
+  // Calculate actual guests from room selections
+  const actualGuests = bookingData.selectedRooms.reduce((total, room) => {
+    if (room.type === 'dorm') {
+      // For dorms, each bed = 1 guest, so total guests = number of beds selected
+      return total + room.selection.rooms;
+    } else {
+      // For private rooms, use the guests specified in selection
+      return total + (room.selection.guests * room.selection.rooms);
+    }
+  }, 0);
+
+  // Use the calculated guests instead of bookingData.guests
+  const displayGuests = actualGuests > 0 ? actualGuests : bookingData.guests;
+
   // Scroll detection for header compacting
   useEffect(() => {
     const scrollContainer = scrollContainerRef.current;
@@ -407,7 +421,7 @@ Until then—safe travels & pack light 🧳🌿
                     }`} />
                     <div>
                       <div className="text-gray-700 font-medium">Guests</div>
-                      <div className="font-semibold text-gray-900">{bookingData.guests}</div>
+                      <div className="font-semibold text-gray-900">{displayGuests}</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
