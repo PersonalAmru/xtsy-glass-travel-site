@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { ArrowLeft, ArrowRight, Users, Calendar, MapPin, User, CreditCard, Phone, Tag, Check, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Users, Calendar, MapPin, User, CreditCard, Phone } from 'lucide-react';
 import { BookingSummary } from '@/components/BookingSummary';
 import FastRoomCard from '@/components/FastRoomCard';
 import GuestDetails from '@/components/GuestDetails';
@@ -217,13 +216,6 @@ export default function BookingFlow() {
     }
   }, [preSelectedRoom, preSelectedProperty]);
 
-  const [promoCode, setPromoCode] = useState('');
-  const [appliedPromo, setAppliedPromo] = useState<{
-    code: string;
-    discount: number;
-    type: 'percentage' | 'fixed';
-  } | null>(null);
-
   const handleRoomSelect = React.useCallback((roomId: string) => {
     console.log('Room select called for:', roomId);
     setSelectedRooms(prev => {
@@ -344,88 +336,6 @@ export default function BookingFlow() {
     }, 0);
     
     return totalAccommodatedGuests >= bookingDates.guests;
-  };
-
-  const validatePromoCode = (code: string) => {
-    const upperCode = code.toUpperCase();
-    
-    // Check if booking is within 3 days for LASTMIN-DEAL
-    const checkInDate = new Date(bookingDates.checkIn);
-    const today = new Date();
-    const diffTime = checkInDate.getTime() - today.getTime();
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    const isUrgentBooking = diffDays <= 3 && diffDays >= 0;
-
-    // Count hostel beds (dorm type rooms)
-    const hostelBeds = selectedRooms
-      .filter(room => room.type === 'dorm')
-      .reduce((total, room) => total + room.selection.rooms, 0);
-
-    // Check date range for XTSY-DEAL (same day or within 7 days)
-    const isValidXTSYDate = diffDays >= 0 && diffDays <= 7;
-
-    switch (upperCode) {
-      case 'XTSY-DEAL':
-        if (hostelBeds >= 4 && isValidXTSYDate) {
-          return { code: 'XTSY-DEAL', discount: 10, type: 'percentage' as const };
-        }
-        throw new Error('XTSY-DEAL requires minimum 4 hostel beds and booking within 7 days');
-        
-      case 'LASTMIN-DEAL':
-        if (isUrgentBooking) {
-          return { code: 'LASTMIN-DEAL', discount: 15, type: 'percentage' as const };
-        }
-        throw new Error('LASTMIN-DEAL is only valid for bookings within 3 days');
-        
-      case 'WELCOME10':
-        return { code: 'WELCOME10', discount: 10, type: 'percentage' as const };
-        
-      case 'SAVE500':
-        if (calculateTotalAmount() >= 5000) {
-          return { code: 'SAVE500', discount: 500, type: 'fixed' as const };
-        }
-        throw new Error('SAVE500 requires minimum booking of ₹5,000');
-        
-      default:
-        throw new Error('Invalid promo code');
-    }
-  };
-
-  const applyPromoCode = () => {
-    if (!promoCode.trim()) {
-      toast.error('Please enter a promo code');
-      return;
-    }
-
-    try {
-      const promoDetails = validatePromoCode(promoCode);
-      setAppliedPromo(promoDetails);
-      toast.success(`Promo code ${promoDetails.code} applied successfully!`);
-    } catch (error) {
-      toast.error(error instanceof Error ? error.message : 'Invalid promo code');
-    }
-  };
-
-  const removePromoCode = () => {
-    setAppliedPromo(null);
-    setPromoCode('');
-    toast.success('Promo code removed');
-  };
-
-  const calculateDiscountAmount = () => {
-    if (!appliedPromo) return 0;
-    
-    const totalAmount = calculateTotalAmount();
-    
-    if (appliedPromo.type === 'percentage') {
-      return Math.round(totalAmount * (appliedPromo.discount / 100));
-    } else {
-      return appliedPromo.discount;
-    }
-  };
-
-  const calculateFinalAmount = () => {
-    return calculateTotalAmount() - calculateDiscountAmount();
   };
 
   const handleNext = () => {
@@ -585,132 +495,21 @@ export default function BookingFlow() {
       <div className={`container mx-auto py-8 ${
         isMobileView ? 'px-2 py-4 pt-20' : isTabletView ? 'px-4 pt-24' : 'px-6 pt-28'
       }`}>
-        {/* Booking Summary and Promo Code Section */}
+        {/* Booking Summary at Top Center */}
         <div className="flex justify-center mb-8">
-          <div className={`flex gap-4 ${
+          <div className={`${
             isMobileView 
-              ? 'flex-col w-full max-w-sm' 
+              ? 'w-full max-w-sm' 
               : isTabletView 
-                ? 'flex-col w-full max-w-md' 
-                : 'flex-row w-full max-w-4xl'
+                ? 'w-full max-w-md' 
+                : 'w-full max-w-lg'
           }`}>
-            {/* Promo Code Section */}
-            <div className={`${
-              isMobileView || isTabletView ? 'w-full' : 'w-80'
-            }`}>
-              <Card className="bg-gradient-to-br from-yellow-50 to-orange-50 border-2 border-yellow-200/50 shadow-lg">
-                <CardHeader className={`${isMobileView ? 'pb-3' : 'pb-4'}`}>
-                  <CardTitle className={`flex items-center gap-2 text-orange-700 ${
-                    isMobileView ? 'text-lg' : 'text-xl'
-                  }`}>
-                    <Tag className="h-5 w-5" />
-                    Promo Codes
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {!appliedPromo ? (
-                    <>
-                      <div className="space-y-2">
-                        <Input
-                          placeholder="Enter promo code"
-                          value={promoCode}
-                          onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
-                          className="border-yellow-300 focus:border-orange-400"
-                        />
-                        <Button 
-                          onClick={applyPromoCode}
-                          className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700"
-                        >
-                          Apply Code
-                        </Button>
-                      </div>
-                      
-                      <div className="space-y-2">
-                        <h4 className="font-semibold text-sm text-gray-700">Available Codes:</h4>
-                        <div className="space-y-1 text-xs text-gray-600">
-                          <div className="bg-white/50 p-2 rounded border">
-                            <strong>XTSY-DEAL:</strong> 10% off for 4+ hostel beds (valid for bookings within 7 days)
-                          </div>
-                          <div className="bg-white/50 p-2 rounded border">
-                            <strong>LASTMIN-DEAL:</strong> 15% off for bookings within 3 days
-                          </div>
-                          <div className="bg-white/50 p-2 rounded border">
-                            <strong>WELCOME10:</strong> 10% off on any booking
-                          </div>
-                          <div className="bg-white/50 p-2 rounded border">
-                            <strong>SAVE500:</strong> ₹500 off on bookings above ₹5,000
-                          </div>
-                        </div>
-                      </div>
-                    </>
-                  ) : (
-                    <div className="space-y-3">
-                      <div className="bg-green-100 border border-green-300 rounded-lg p-3">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            <Check className="h-4 w-4 text-green-600" />
-                            <span className="font-semibold text-green-800">{appliedPromo.code}</span>
-                          </div>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={removePromoCode}
-                            className="text-green-700 hover:text-green-800 h-6 w-6 p-0"
-                          >
-                            <X className="h-4 w-4" />
-                          </Button>
-                        </div>
-                        <p className="text-sm text-green-700 mt-1">
-                          {appliedPromo.type === 'percentage' 
-                            ? `${appliedPromo.discount}% discount applied` 
-                            : `₹${appliedPromo.discount} discount applied`
-                          }
-                        </p>
-                        <p className="text-sm font-semibold text-green-800">
-                          You save: ₹{calculateDiscountAmount()}
-                        </p>
-                      </div>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Booking Summary */}
-            <div className={`${
-              isMobileView || isTabletView ? 'w-full' : 'flex-1'
-            }`}>
-              <BookingSummary
-                checkIn={bookingDates.checkIn}
-                checkOut={bookingDates.checkOut}
-                guests={bookingDates.guests}
-                nights={nights}
-              />
-              
-              {/* Price Summary */}
-              {selectedRooms.length > 0 && (
-                <Card className="mt-4 bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200/50">
-                  <CardContent className="p-4">
-                    <div className="space-y-2 text-sm">
-                      <div className="flex justify-between">
-                        <span className="text-gray-700">Subtotal:</span>
-                        <span className="font-medium">₹{calculateTotalAmount()}</span>
-                      </div>
-                      {appliedPromo && (
-                        <div className="flex justify-between text-green-600">
-                          <span>Discount ({appliedPromo.code}):</span>
-                          <span>-₹{calculateDiscountAmount()}</span>
-                        </div>
-                      )}
-                      <div className="border-t pt-2 flex justify-between font-bold text-lg">
-                        <span>Total:</span>
-                        <span className="text-orange-600">₹{calculateFinalAmount()}</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              )}
-            </div>
+            <BookingSummary
+              checkIn={bookingDates.checkIn}
+              checkOut={bookingDates.checkOut}
+              guests={bookingDates.guests}
+              nights={nights}
+            />
           </div>
         </div>
 
@@ -1014,13 +813,7 @@ export default function BookingFlow() {
         isOpen={showGuestModal}
         onClose={handleGuestModalClose}
         onBack={handleGuestModalBack}
-        bookingData={{
-          ...getBookingData(),
-          totalAmount: calculateFinalAmount(),
-          discountAmount: calculateDiscountAmount(),
-          couponCode: appliedPromo?.code || '',
-          couponDiscount: calculateDiscountAmount()
-        }}
+        bookingData={getBookingData()}
       />
 
       <UPIPaymentModal 
