@@ -19,21 +19,21 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-white/98 backdrop-blur-xl border border-gray-200/50 shadow-2xl max-w-md">
+      <DialogContent className="bg-white border border-gray-300 shadow-2xl max-w-md">
         <DialogHeader>
           <div className="flex items-center justify-between mb-4">
-            <div className="text-purple-600 flex-shrink-0 bg-purple-50 p-2 rounded-lg">
+            <div className="text-purple-600 flex-shrink-0 bg-purple-100 p-3 rounded-lg">
               {service.icon}
             </div>
-            <Badge variant="outline" className="border-purple-300 text-purple-700 bg-purple-50/80 font-medium">
+            <Badge variant="outline" className="border-purple-400 text-purple-800 bg-purple-100 font-semibold">
               {service.badge}
             </Badge>
           </div>
-          <DialogTitle className="text-xl font-bold text-gray-900 text-left">
+          <DialogTitle className="text-2xl font-bold text-gray-900 text-left">
             {service.title}
           </DialogTitle>
         </DialogHeader>
-        <DialogDescription className="text-gray-800 leading-relaxed text-left text-base">
+        <DialogDescription className="text-gray-700 leading-relaxed text-left text-lg font-medium">
           {service.description}
         </DialogDescription>
       </DialogContent>
