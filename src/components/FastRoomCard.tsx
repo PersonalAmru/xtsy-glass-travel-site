@@ -164,9 +164,9 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                       size="sm"
                       onClick={(e) => {
                         e.stopPropagation();
-                        onRoomChange(room.id, Math.max(1, selection.rooms - 1));
+                        onRoomChange(room.id, Math.max(0, selection.rooms - 1));
                       }}
-                      disabled={selection.rooms <= 1}
+                      disabled={selection.rooms <= 0}
                       className={`border-gray-600 bg-gray-800 text-white hover:bg-gray-700 ${
                         isMobile ? 'h-6 w-6 p-0' : 'h-7 w-7 p-0'
                       } ${isXTSY270 ? 'h-6 w-6 p-0' : ''}`}
