@@ -247,28 +247,74 @@ export default function BookingFlow() {
   const handleGuestChange = React.useCallback((roomId: string, guests: number) => {
     console.log('Guest change called for room:', roomId, 'guests:', guests);
     setSelectedRooms(prev => {
-      return prev.map(room => {
-        if (room.id === roomId) {
-          const updated = { ...room, selection: { ...room.selection, guests } };
-          console.log('Updated room with guests:', updated);
-          return updated;
+      const existingRoom = prev.find(room => room.id === roomId);
+      
+      if (existingRoom) {
+        // Update existing room
+        return prev.map(room => {
+          if (room.id === roomId) {
+            const updated = { ...room, selection: { ...room.selection, guests } };
+            console.log('Updated existing room with guests:', updated);
+            return updated;
+          }
+          return room;
+        });
+      } else {
+        // Auto-add room if it doesn't exist
+        const roomData = ALL_ROOMS_DATA[roomId as keyof typeof ALL_ROOMS_DATA];
+        if (roomData) {
+          const newRoom = {
+            id: roomData.id,
+            name: roomData.name,
+            price: roomData.price,
+            type: roomData.type,
+            selection: {
+              guests,
+              rooms: 0
+            }
+          };
+          console.log('Auto-added room with guests:', newRoom);
+          return [...prev, newRoom];
         }
-        return room;
-      });
+        return prev;
+      }
     });
   }, []);
 
   const handleRoomChange = React.useCallback((roomId: string, rooms: number) => {
     console.log('Room change called for room:', roomId, 'rooms:', rooms);
     setSelectedRooms(prev => {
-      return prev.map(room => {
-        if (room.id === roomId) {
-          const updated = { ...room, selection: { ...room.selection, rooms } };
-          console.log('Updated room with room count:', updated);
-          return updated;
+      const existingRoom = prev.find(room => room.id === roomId);
+      
+      if (existingRoom) {
+        // Update existing room
+        return prev.map(room => {
+          if (room.id === roomId) {
+            const updated = { ...room, selection: { ...room.selection, rooms } };
+            console.log('Updated existing room with room count:', updated);
+            return updated;
+          }
+          return room;
+        });
+      } else if (rooms > 0) {
+        // Auto-add room if it doesn't exist and rooms > 0
+        const roomData = ALL_ROOMS_DATA[roomId as keyof typeof ALL_ROOMS_DATA];
+        if (roomData) {
+          const newRoom = {
+            id: roomData.id,
+            name: roomData.name,
+            price: roomData.price,
+            type: roomData.type,
+            selection: {
+              guests: roomData.type === 'dorm' ? 1 : roomData.maxGuests,
+              rooms
+            }
+          };
+          console.log('Auto-added room with room count:', newRoom);
+          return [...prev, newRoom];
         }
-        return room;
-      });
+      }
+      return prev;
     });
   }, []);
 
