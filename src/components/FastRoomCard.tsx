@@ -47,24 +47,49 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
     return (room.price || 0) * nights * selection.rooms;
   };
 
-  // Handle increment with proper event stopping
-  const handleIncrement = (e: React.MouseEvent) => {
+  // Handle increment with comprehensive event prevention
+  const handleIncrement = React.useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
+    e.stopImmediatePropagation();
+    
     const maxSelection = room.maxRooms || 5;
     if (selection.rooms < maxSelection) {
       onRoomChange(room.id, selection.rooms + 1);
     }
-  };
+  }, [room.id, room.maxRooms, selection.rooms, onRoomChange]);
 
-  // Handle decrement with proper event stopping
-  const handleDecrement = (e: React.MouseEvent) => {
+  // Handle decrement with comprehensive event prevention
+  const handleDecrement = React.useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
+    e.stopImmediatePropagation();
+    
     if (selection.rooms > 0) {
       onRoomChange(room.id, selection.rooms - 1);
     }
-  };
+  }, [room.id, selection.rooms, onRoomChange]);
+
+  // Handle card selection with proper event checking
+  const handleCardClick = React.useCallback((e: React.MouseEvent) => {
+    // Prevent card selection if clicking on buttons or their containers
+    const target = e.target as HTMLElement;
+    if (target.closest('button') || target.closest('[data-toggle-container]')) {
+      return;
+    }
+    onRoomSelect(room.id);
+  }, [room.id, onRoomSelect]);
+
+  // Calculate button sizing and styling
+  const getButtonStyles = () => ({
+    base: `border-gray-600 bg-gray-800 text-white hover:bg-gray-700 focus:ring-2 focus:ring-primary focus:outline-none transition-all duration-200`,
+    disabled: `disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-gray-800`,
+    mobile: isMobile ? 'h-8 w-8 p-0' : isTablet ? 'h-9 w-9 p-0' : 'h-10 w-10 p-0',
+    xtsy270: isXTSY270 ? 'h-8 w-8 p-0' : ''
+  });
+
+  const buttonStyles = getButtonStyles();
+  const buttonClasses = `${buttonStyles.base} ${buttonStyles.disabled} ${buttonStyles.mobile} ${buttonStyles.xtsy270}`;
 
   // Special container wrapper for XTSY 270
   const CardWrapper = ({ children }: { children: React.ReactNode }) => {
@@ -92,7 +117,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
         } ${isMobile ? 'mx-2' : ''} ${
           isXTSY270 ? 'h-auto landscape-card' : ''
         }`}
-        onClick={() => onRoomSelect(room.id)}
+        onClick={handleCardClick}
       >
         <div className={`${isXTSY270 ? 'flex' : 'block'}`}>
           {/* Image Section */}
@@ -179,29 +204,29 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                 isMobile ? 'space-y-2 pt-2' : ''
               } ${isXTSY270 ? 'space-y-2 pt-2 mt-auto' : ''}`}>
               {/* Bed/Room Selection */}
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between" data-toggle-container>
                   <span className={`font-medium text-white ${
                     isMobile ? 'text-xs' : 'text-sm'
                   } ${isXTSY270 ? 'text-xs' : ''}`}>
                     {room.type === 'dorm' ? 'Beds:' : 'Rooms:'}
                   </span>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-3">
                     <Button
                       variant="outline"
                       size="sm"
                       onClick={handleDecrement}
                       disabled={selection.rooms <= 0}
-                      className={`border-gray-600 bg-gray-800 text-white hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed ${
-                        isMobile ? 'h-6 w-6 p-0' : 'h-7 w-7 p-0'
-                      } ${isXTSY270 ? 'h-6 w-6 p-0' : ''}`}
+                      className={buttonClasses}
+                      aria-label={`Decrease ${room.type === 'dorm' ? 'beds' : 'rooms'}`}
+                      type="button"
                     >
                       <Minus className={`${
-                        isMobile ? 'h-3 w-3' : 'h-3 w-3'
-                      } ${isXTSY270 ? 'h-3 w-3' : ''}`} />
+                        isMobile ? 'h-4 w-4' : 'h-4 w-4'
+                      } ${isXTSY270 ? 'h-4 w-4' : ''}`} />
                     </Button>
-                    <span className={`text-center font-medium text-white min-w-0 ${
-                      isMobile ? 'w-5 text-xs' : 'w-6 text-sm'
-                    } ${isXTSY270 ? 'w-5 text-xs' : ''}`}>
+                    <span className={`text-center font-medium text-white min-w-[2rem] flex items-center justify-center ${
+                      isMobile ? 'text-sm' : 'text-base'
+                    } ${isXTSY270 ? 'text-sm' : ''}`}>
                       {selection.rooms}
                     </span>
                     <Button
@@ -209,13 +234,13 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                       size="sm"
                       onClick={handleIncrement}
                       disabled={selection.rooms >= (room.maxRooms || 5)}
-                      className={`border-gray-600 bg-gray-800 text-white hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed ${
-                        isMobile ? 'h-6 w-6 p-0' : 'h-7 w-7 p-0'
-                      } ${isXTSY270 ? 'h-6 w-6 p-0' : ''}`}
+                      className={buttonClasses}
+                      aria-label={`Increase ${room.type === 'dorm' ? 'beds' : 'rooms'}`}
+                      type="button"
                     >
                       <Plus className={`${
-                        isMobile ? 'h-3 w-3' : 'h-3 w-3'
-                      } ${isXTSY270 ? 'h-3 w-3' : ''}`} />
+                        isMobile ? 'h-4 w-4' : 'h-4 w-4'
+                      } ${isXTSY270 ? 'h-4 w-4' : ''}`} />
                     </Button>
                   </div>
                 </div>
