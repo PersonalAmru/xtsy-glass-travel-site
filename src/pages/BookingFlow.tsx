@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { differenceInDays, parseISO } from 'date-fns';
 import Header from '@/components/Header';
+import BookingSummary from '@/components/BookingSummary';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -15,6 +17,7 @@ import PaymentHandler from '@/components/PaymentHandler';
 import UPIPaymentModal from '@/components/UPIPaymentModal';
 import { toast } from 'sonner';
 import { ROOM_DATA, XTSY270_DATA } from '@/data/rooms/xtsy270';
+import { DynamicPricingService } from '@/utils/dynamicPricingService';
 
 interface Room {
   id: string;
@@ -145,6 +148,11 @@ const BookingFlow = () => {
   const [searchParams] = useSearchParams();
   const preSelectedRoom = searchParams.get('room');
   const preSelectedProperty = searchParams.get('property');
+  
+  // Extract booking parameters from URL
+  const urlCheckIn = searchParams.get('checkIn') || new Date().toISOString().split('T')[0];
+  const urlCheckOut = searchParams.get('checkOut') || new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+  const urlGuests = parseInt(searchParams.get('guests') || '4');
 
   const [step, setStep] = useState<'rooms' | 'guest' | 'payment'>('rooms');
   const [selectedRooms, setSelectedRooms] = useState<SelectedRoom[]>([]);
@@ -161,6 +169,22 @@ const BookingFlow = () => {
   const [paymentMethod, setPaymentMethod] = useState<'card' | 'upi' | null>(null);
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const [isGuestModalOpen, setIsGuestModalOpen] = useState(false);
+  
+  // Booking state from URL parameters
+  const [bookingDates, setBookingDates] = useState({
+    checkIn: urlCheckIn,
+    checkOut: urlCheckOut,
+    guests: urlGuests
+  });
+
+  // Calculate nights from dates
+  const nights = React.useMemo(() => {
+    try {
+      return differenceInDays(parseISO(bookingDates.checkOut), parseISO(bookingDates.checkIn));
+    } catch {
+      return 1;
+    }
+  }, [bookingDates.checkIn, bookingDates.checkOut]);
 
   const roomsArray: Room[] = Object.values(ALL_ROOMS_DATA);
 
@@ -272,8 +296,34 @@ const BookingFlow = () => {
 
   const calculateTotalAmount = () => {
     return selectedRooms.reduce((total, room) => {
-      return total + (room.price * room.selection.guests * (room.type === 'private' ? room.selection.rooms : 1));
+      const basePrice = room.price;
+      const pricingResult = DynamicPricingService.calculateTotalStayCost(
+        basePrice,
+        bookingDates.checkIn,
+        bookingDates.checkOut,
+        room.selection.guests,
+        room.type === 'private' ? room.selection.rooms : 1
+      );
+      return total + pricingResult.totalCost;
     }, 0);
+  };
+
+  // Get detailed pricing breakdown for display
+  const getPricingBreakdown = () => {
+    return selectedRooms.map(room => {
+      const basePrice = room.price;
+      const pricingResult = DynamicPricingService.calculateTotalStayCost(
+        basePrice,
+        bookingDates.checkIn,
+        bookingDates.checkOut,
+        room.selection.guests,
+        room.type === 'private' ? room.selection.rooms : 1
+      );
+      return {
+        room,
+        pricing: pricingResult
+      };
+    });
   };
 
   const generateBookingId = () => {
@@ -281,17 +331,14 @@ const BookingFlow = () => {
   };
 
   const getBookingData = () => {
-    const checkIn = new Date();
-    const checkOut = new Date(Date.now() + 24 * 60 * 60 * 1000);
-    const nights = 1;
     const guests = selectedRooms.reduce((total, room) => total + room.selection.guests, 0);
     const totalAmount = calculateTotalAmount();
     
     return {
       bookingId: generateBookingId(),
       guestName: guestDetails ? `${guestDetails.firstName} ${guestDetails.lastName}` : '',
-      checkIn: checkIn.toISOString(),
-      checkOut: checkOut.toISOString(),
+      checkIn: bookingDates.checkIn,
+      checkOut: bookingDates.checkOut,
       guests,
       nights,
       selectedRooms,
@@ -337,6 +384,14 @@ const BookingFlow = () => {
       <Header />
       <main className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto space-y-8">
+          {/* Booking Summary */}
+          <BookingSummary
+            checkIn={bookingDates.checkIn}
+            checkOut={bookingDates.checkOut}
+            guests={bookingDates.guests}
+            nights={nights}
+          />
+
           <div className="text-center">
             <div className="inline-block">
               <div className="glass-card rounded-3xl p-8 mx-auto max-w-2xl bg-gradient-to-br from-white/20 via-white/10 to-transparent backdrop-blur-xl border border-white/30 shadow-2xl">
@@ -385,6 +440,8 @@ const BookingFlow = () => {
                           room={room}
                           isSelected={isSelected}
                           selection={selection}
+                          checkIn={bookingDates.checkIn}
+                          checkOut={bookingDates.checkOut}
                           onSelect={handleRoomSelect}
                           onGuestChange={handleGuestChange}
                           onRoomChange={handleRoomChange}
@@ -413,6 +470,8 @@ const BookingFlow = () => {
                           room={room}
                           isSelected={isSelected}
                           selection={selection}
+                          checkIn={bookingDates.checkIn}
+                          checkOut={bookingDates.checkOut}
                           onSelect={handleRoomSelect}
                           onGuestChange={handleGuestChange}
                           onRoomChange={handleRoomChange}
@@ -441,6 +500,8 @@ const BookingFlow = () => {
                           room={room}
                           isSelected={isSelected}
                           selection={selection}
+                          checkIn={bookingDates.checkIn}
+                          checkOut={bookingDates.checkOut}
                           onSelect={handleRoomSelect}
                           onGuestChange={handleGuestChange}
                           onRoomChange={handleRoomChange}
