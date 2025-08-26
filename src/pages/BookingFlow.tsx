@@ -58,7 +58,7 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
     price: 850,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg',
     description: 'Female-only dormitory with modern amenities and comfortable beds',
-    amenities: ['Female only', 'Attached bathroom', 'Wi-Fi', 'Locker', 'Common area', 'Reading lights', 'Power outlets', 'Complimentary breakfast'],
+    amenities: ['Female only', 'Attached bathroom', 'Wi-Fi', 'Locker', 'Common area', 'Reading lights', 'Power outlets', 'Premium Breakfast'],
     type: 'dorm',
     maxGuests: 4,
     propertyType: 'hostel'
@@ -70,7 +70,7 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
     price: 800,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/3.jpg',
     description: 'Mixed or female dormitory with shared facilities and social atmosphere',
-    amenities: ['Mixed/Female', 'Attached bathroom', 'Wi-Fi', 'Locker', 'Common area', 'Reading lights', 'Power outlets', 'Complimentary breakfast'],
+    amenities: ['Mixed/Female', 'Attached bathroom', 'Wi-Fi', 'Locker', 'Common area', 'Reading lights', 'Power outlets', 'Premium Breakfast'],
     type: 'dorm',
     maxGuests: 4,
     propertyType: 'hostel'
@@ -82,7 +82,7 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
     price: 700,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
     description: 'Spacious mixed or female dormitory with modern amenities',
-    amenities: ['Mixed/Female', 'Attached bathroom', 'Wi-Fi', 'Locker', 'Common area', 'Reading lights', 'Power outlets', 'Complimentary breakfast'],
+    amenities: ['Mixed/Female', 'Attached bathroom', 'Wi-Fi', 'Locker', 'Common area', 'Reading lights', 'Power outlets', 'Premium Breakfast'],
     type: 'dorm',
     maxGuests: 6,
     propertyType: 'hostel'
@@ -94,7 +94,7 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
     price: 3200,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg',
     description: 'Spacious private room with king bed for two guests',
-    amenities: ['King bed', 'Valley view', 'Attached bath', 'Wi-Fi', 'Premium amenities', 'Mini fridge', 'Complimentary breakfast'],
+    amenities: ['King bed', 'Valley view', 'Attached bath', 'Wi-Fi', 'Premium amenities', 'Mini fridge', 'Premium Breakfast'],
     type: 'private',
     maxGuests: 4,
     propertyType: 'hostel'
@@ -106,7 +106,7 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
     price: 4200,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/1.jpg',
     description: 'Luxurious private room accommodating up to three guests',
-    amenities: ['King bed + extra bed', 'Panoramic view', 'Attached bath', 'Wi-Fi', 'Premium amenities', 'Mini fridge', 'Complimentary breakfast'],
+    amenities: ['King bed + extra bed', 'Panoramic view', 'Attached bath', 'Wi-Fi', 'Premium amenities', 'Mini fridge', 'Premium Breakfast'],
     type: 'private',
     maxGuests: 3,
     propertyType: 'hostel'

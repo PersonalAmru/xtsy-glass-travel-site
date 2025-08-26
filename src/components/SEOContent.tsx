@@ -97,7 +97,7 @@ const SEOContent: React.FC<SEOContentProps> = ({ page = 'home' }) => {
             <li>Northeast India Tour Packages - Authentic cultural immersion and adventure tours</li>
             <li>Living Root Bridges Tours - Exclusive access to Meghalaya's hidden natural wonders</li>
             <li>Curated Travel Experiences - From waterfalls to tribal culture, we offer authentic local tours</li>
-            <li>Premium amenities including high-speed WiFi, AC, complimentary breakfast, and social spaces</li>
+            <li>Premium amenities including high-speed WiFi, AC, Premium Breakfast, and social spaces</li>
             <li>Eco-friendly practices and sustainable tourism initiatives for conscious travelers</li>
             <li>24/7 co-working spaces perfect for digital nomads and remote workers</li>
           </ul>

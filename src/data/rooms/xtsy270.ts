@@ -18,7 +18,7 @@ export const XTSY270_DATA = {
     'Private ensuite bathroom',
     'Premium mountain and valley view',
     'High-speed Wi‑Fi',
-    'Complimentary breakfast',
+    'Premium Breakfast',
     'Climate control',
   ],
   luxuryFeatures: [

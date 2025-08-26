@@ -21,7 +21,7 @@ const FAQ = () => {
         },
         {
           question: "What's included with the Glass Suite booking?",
-          answer: "Your stay includes complimentary breakfast, high-speed Wi-Fi, climate control, and access to all our common areas. The suite has a private ensuite bathroom and can accommodate up to 2 guests with a premium queen bed."
+          answer: "Your stay includes Premium Breakfast, high-speed Wi-Fi, climate control, and access to all our common areas. The suite has a private ensuite bathroom and can accommodate up to 2 guests with a premium queen bed."
         },
         {
           question: "How do I book the Glass Suite?",
