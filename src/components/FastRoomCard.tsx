@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -84,7 +83,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
       </CardHeader>
 
       <CardContent className={`pt-0 spacing-responsive`}>
-        <p className={`text-gray-300 mb-4 line-clamp-2 ${
+        <p className={`text-gray-300 mb-4 ${
           isMobile ? 'text-responsive-xs' : 'text-responsive-sm'
         }`}>
           {room.description}
