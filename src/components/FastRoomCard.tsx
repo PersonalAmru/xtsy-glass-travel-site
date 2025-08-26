@@ -171,7 +171,10 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
               <p className={`text-gray-300 mb-2 text-left ${
                 isMobile ? 'text-xs' : 'text-sm'
               } ${isXTSY270 ? 'text-xs mb-2' : ''} leading-relaxed line-clamp-2`}>
-                {room.description}
+                {isXTSY270 
+                  ? "Experience India's most innovative architectural marvel — a 200% luxury ensuite with stunning 270° mountain panoramas"
+                  : room.description
+                }
               </p>
 
               <div className={`flex flex-wrap mb-3 gap-1 ${
