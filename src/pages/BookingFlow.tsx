@@ -25,6 +25,7 @@ interface Room {
   maxGuests: number;
   propertyType: string;
   maxRooms?: number; // Available beds/rooms for selection
+  images?: string[];
 }
 
 interface SelectedRoom {
@@ -51,7 +52,8 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
     type: 'private',
     maxGuests: 2,
     propertyType: 'luxury',
-    maxRooms: 1
+    maxRooms: 1,
+    images: XTSY270_DATA.images || [XTSY270_DATA.image]
   },
   
   // XTSY Travellers Hostel
@@ -65,7 +67,13 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
     type: 'dorm',
     maxGuests: 1, // Per bed
     propertyType: 'hostel',
-    maxRooms: 4 // 4 beds available
+    maxRooms: 4, // 4 beds available
+    images: [
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg',
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/2.jpg',
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/3.jpg',
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/4.jpg'
+    ]
   },
   
   '4-bed-mixed-female-dorm': {
@@ -78,7 +86,13 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
     type: 'dorm',
     maxGuests: 1, // Per bed
     propertyType: 'hostel',
-    maxRooms: 4 // 4 beds available
+    maxRooms: 4, // 4 beds available
+    images: [
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/1.jpg',
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/2.jpg',
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/3.jpg',
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/4.jpg'
+    ]
   },
   
   '6-bed-mixed-female-dorm': {
@@ -91,7 +105,13 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
     type: 'dorm',
     maxGuests: 1, // Per bed
     propertyType: 'hostel',
-    maxRooms: 6 // 6 beds available
+    maxRooms: 6, // 6 beds available
+    images: [
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/2.JPG',
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/3.JPG',
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/4.JPG'
+    ]
   },
 
   // Add the missing room from home page
@@ -105,7 +125,13 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
     type: 'dorm',
     maxGuests: 1, // Per bed
     propertyType: 'hostel',
-    maxRooms: 6 // 6 beds available
+    maxRooms: 6, // 6 beds available
+    images: [
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/2.JPG',
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/3.JPG',
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/4.JPG'
+    ]
   },
   
   'king-double-room': {
@@ -118,7 +144,13 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
     type: 'private',
     maxGuests: 2, // Max 2 guests per room
     propertyType: 'hostel',
-    maxRooms: 2 // 2 rooms available
+    maxRooms: 2, // 2 rooms available
+    images: [
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg',
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/2.jpg',
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/3.jpg',
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/4.jpg'
+    ]
   },
   
   'king-triple-room': {
@@ -131,7 +163,13 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
     type: 'private',
     maxGuests: 3,
     propertyType: 'hostel',
-    maxRooms: 1 // 1 room available
+    maxRooms: 1, // 1 room available
+    images: [
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/1.jpg',
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/2.jpg',
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/3.jpg',
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/4.jpg'
+    ]
   },
   
   // XTSY Economy
@@ -145,7 +183,12 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
     type: 'dorm',
     maxGuests: 1, // Per bed
     propertyType: 'economy',
-    maxRooms: 6 // 6 beds available
+    maxRooms: 6, // 6 beds available
+    images: [
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/2.JPG',
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/3.JPG'
+    ]
   },
   
   '8-bed-mixed-economy-dorm': {
@@ -158,7 +201,13 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
     type: 'dorm',
     maxGuests: 1, // Per bed
     propertyType: 'economy',
-    maxRooms: 8 // 8 beds available
+    maxRooms: 8, // 8 beds available
+    images: [
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/1.jpg',
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/2.jpg',
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg',
+      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/4.jpg'
+    ]
   }
 };
 

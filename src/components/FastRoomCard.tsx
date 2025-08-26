@@ -6,6 +6,7 @@ import { Users, Minus, Plus, Bed } from 'lucide-react';
 import { useMediaQuery } from '@/hooks/use-mobile';
 import { useApp } from '@/contexts/AppContext';
 import ImageLightbox from './ImageLightbox';
+import MobileImageCarousel from './MobileImageCarousel';
 
 interface FastRoomCardProps {
   room: {
@@ -42,13 +43,15 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
   const isTablet = useMediaQuery('(min-width: 768px) and (max-width: 1023px)');
   const { formatPrice } = useApp();
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxImages, setLightboxImages] = useState<string[]>([]);
+  const [lightboxInitialIndex, setLightboxInitialIndex] = useState(0);
 
   // Get all available images for the room
   const roomImages = room.images && room.images.length > 0 ? room.images : [room.image];
 
-  const handleImageClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const handleImageClick = (images: string[], currentIndex: number) => {
+    setLightboxImages(images);
+    setLightboxInitialIndex(currentIndex);
     setLightboxOpen(true);
   };
 
@@ -140,22 +143,34 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                 ? `${isMobile ? 'w-2/5 h-32' : isTablet ? 'w-2/5 h-36' : 'w-2/5 h-40'} rounded-l-lg`
                 : 'rounded-t-lg'
             }`}>
-              <img
-                src={room.image}
-                alt={room.name}
-                className={`w-full object-cover transition-transform duration-300 hover:scale-105 cursor-pointer ${
-                  isXTSY270 
-                    ? 'h-full'
-                    : (isMobile ? 'h-32' : isTablet ? 'h-36' : 'h-40')
-                }`}
-                loading="lazy"
-                onClick={handleImageClick}
-              />
-              {/* Image count indicator */}
-              {roomImages.length > 1 && (
-                <div className="absolute top-2 right-2 bg-black/60 text-white px-2 py-1 rounded text-xs">
-                  {roomImages.length} photos
-                </div>
+              {isXTSY270 ? (
+                // For XTSY 270, keep the simple image display
+                <>
+                  <img
+                    src={room.image}
+                    alt={room.name}
+                    className={`w-full object-cover transition-transform duration-300 hover:scale-105 cursor-pointer h-full`}
+                    loading="lazy"
+                    onClick={() => handleImageClick(roomImages, 0)}
+                  />
+                  {/* Image count indicator */}
+                  {roomImages.length > 1 && (
+                    <div className="absolute top-2 right-2 bg-black/60 text-white px-2 py-1 rounded text-xs">
+                      {roomImages.length} photos
+                    </div>
+                  )}
+                </>
+              ) : (
+                // For other rooms, use the mobile carousel
+                <MobileImageCarousel
+                  images={roomImages}
+                  alt={room.name}
+                  className={isMobile ? 'h-32' : isTablet ? 'h-36' : 'h-40'}
+                  aspectRatio="photo"
+                  showIndicators={true}
+                  showArrows={true}
+                  onImageClick={handleImageClick}
+                />
               )}
             </div>
 
@@ -283,8 +298,8 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
 
       <ImageLightbox
         isOpen={lightboxOpen}
-        images={roomImages}
-        initialIndex={0}
+        images={lightboxImages}
+        initialIndex={lightboxInitialIndex}
         onClose={() => setLightboxOpen(false)}
         alt={room.name}
       />
