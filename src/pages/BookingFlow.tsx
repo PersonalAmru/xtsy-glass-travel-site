@@ -57,7 +57,7 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
   // XTSY Travellers Hostel
   '4-bed-female-only-dorm': {
     id: '4-bed-female-only-dorm',
-    name: 'Bed in 4 Bed Female Dorm',
+    name: 'Bed in 4 Bed Female Only Dormitory',
     price: 850,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg',
     description: 'Female-only dormitory with modern amenities and comfortable beds',
@@ -70,11 +70,11 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
   
   '4-bed-mixed-female-dorm': {
     id: '4-bed-mixed-female-dorm',
-    name: 'Bed in 4 Bed Mixed/Female Dorm',
+    name: 'Bed in 4 Bed Mixed Dormitory',
     price: 800,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/3.jpg',
-    description: 'Mixed or female dormitory with shared facilities and social atmosphere',
-    amenities: ['Mixed/Female', 'Attached bathroom', 'Wi-Fi', 'Locker', 'Common area', 'Reading lights', 'Power outlets', 'Premium Breakfast'],
+    description: 'Mixed dormitory with shared facilities and social atmosphere',
+    amenities: ['Mixed', 'Attached bathroom', 'Wi-Fi', 'Locker', 'Common area', 'Reading lights', 'Power outlets', 'Premium Breakfast'],
     type: 'dorm',
     maxGuests: 1, // Per bed
     propertyType: 'hostel',
@@ -83,11 +83,25 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
   
   '6-bed-mixed-female-dorm': {
     id: '6-bed-mixed-female-dorm',
-    name: 'Bed in 6 Bed Mixed/Female Dorm',
+    name: 'Bed in 6 Bed Female Only Dormitory',
     price: 700,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
     description: 'Spacious mixed or female dormitory with modern amenities',
     amenities: ['Mixed/Female', 'Attached bathroom', 'Wi-Fi', 'Locker', 'Common area', 'Reading lights', 'Power outlets', 'Premium Breakfast'],
+    type: 'dorm',
+    maxGuests: 1, // Per bed
+    propertyType: 'hostel',
+    maxRooms: 6 // 6 beds available
+  },
+
+  // Add the missing room from home page
+  '6-bed-mixed-dorm': {
+    id: '6-bed-mixed-dorm',
+    name: 'Bed in 6 Bed Mixed Dormitory',
+    price: 700,
+    image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
+    description: 'Spacious mixed dormitory with modern amenities',
+    amenities: ['Mixed', 'Attached bathroom', 'Wi-Fi', 'Locker', 'Common area', 'Reading lights', 'Power outlets', 'Premium Breakfast'],
     type: 'dorm',
     maxGuests: 1, // Per bed
     propertyType: 'hostel',
