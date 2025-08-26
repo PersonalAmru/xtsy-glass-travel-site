@@ -55,10 +55,10 @@ const RoomsSection = () => {
     },
     {
       id: "4-bed-mixed-female-dorm",
-      name: "Bed in 4 Bed Mixed/Female Dorm", 
+      name: "Bed in 4 Bed Mixed Dorm", 
       price: 800,
-      description: "Mixed or female dormitory with shared facilities and social atmosphere",
-      features: ["Mixed/Female", "Attached bathroom", "Wi-Fi", "Locker", "Common area", "Reading lights", "Power outlets", "Premium Breakfast", "Games room access"],
+      description: "Mixed dormitory with shared facilities and social atmosphere",
+      features: ["Mixed", "Attached bathroom", "Wi-Fi", "Locker", "Common area", "Reading lights", "Power outlets", "Premium Breakfast", "Games room access"],
       maxGuests: 4,
       maxRooms: 1,
       image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/3.jpg",
