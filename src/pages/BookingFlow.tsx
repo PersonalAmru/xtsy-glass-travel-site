@@ -17,7 +17,6 @@ import PaymentHandler from '@/components/PaymentHandler';
 import UPIPaymentModal from '@/components/UPIPaymentModal';
 import { toast } from 'sonner';
 import { ROOM_DATA, XTSY270_DATA } from '@/data/rooms/xtsy270';
-import { DynamicPricingService } from '@/utils/dynamicPricingService';
 
 interface Room {
   id: string;
@@ -296,34 +295,8 @@ const BookingFlow = () => {
 
   const calculateTotalAmount = () => {
     return selectedRooms.reduce((total, room) => {
-      const basePrice = room.price;
-      const pricingResult = DynamicPricingService.calculateTotalStayCost(
-        basePrice,
-        bookingDates.checkIn,
-        bookingDates.checkOut,
-        room.selection.guests,
-        room.type === 'private' ? room.selection.rooms : 1
-      );
-      return total + pricingResult.totalCost;
+      return total + (room.price * room.selection.guests * (room.type === 'private' ? room.selection.rooms : 1) * nights);
     }, 0);
-  };
-
-  // Get detailed pricing breakdown for display
-  const getPricingBreakdown = () => {
-    return selectedRooms.map(room => {
-      const basePrice = room.price;
-      const pricingResult = DynamicPricingService.calculateTotalStayCost(
-        basePrice,
-        bookingDates.checkIn,
-        bookingDates.checkOut,
-        room.selection.guests,
-        room.type === 'private' ? room.selection.rooms : 1
-      );
-      return {
-        room,
-        pricing: pricingResult
-      };
-    });
   };
 
   const generateBookingId = () => {
