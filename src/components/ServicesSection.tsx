@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { 
@@ -16,10 +15,14 @@ import {
   Clock
 } from "lucide-react";
 import { useScreenSize, useIsMobile } from "@/hooks/use-mobile";
+import { useState } from 'react';
+import ServiceModal from './ServiceModal';
 
 const ServicesSection = () => {
   const screenSize = useScreenSize();
   const isMobile = useIsMobile();
+  const [selectedService, setSelectedService] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const services = [
     {
@@ -96,23 +99,30 @@ const ServicesSection = () => {
     }
   ];
 
-  // Responsive grid classes based on screen size
   const getGridClasses = () => {
     if (isMobile) return "grid-cols-2";
     if (screenSize === 'tablet') return "grid-cols-3 md:grid-cols-4";
     return "grid-cols-4 lg:grid-cols-6";
   };
 
-  // Responsive card height based on screen size
   const getCardHeight = () => {
     if (isMobile) return "h-44";
     if (screenSize === 'tablet') return "h-40";
     return "h-36 sm:h-40";
   };
 
+  const handleServiceClick = (service: any) => {
+    setSelectedService(service);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedService(null);
+  };
+
   return (
     <section className="py-12 md:py-16 lg:py-20 safe-area-padding bg-gradient-to-br from-purple-900/20 via-pink-900/10 to-orange-900/20 relative overflow-hidden">
-      {/* Enhanced Background Effects with Glassmorphism */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-100/20 via-pink-100/10 to-orange-100/20" />
       <div className="absolute inset-0 backdrop-blur-3xl" />
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500" />
@@ -135,7 +145,11 @@ const ServicesSection = () => {
 
         <div className={`grid ${getGridClasses()} gap-4 sm:gap-6 mt-8 mobile-reduce-animations`}>
           {services.map((service, index) => (
-            <Card key={index} className={`glass-card bg-white/10 backdrop-blur-md border border-white/20 hover:border-white/30 hover:bg-white/15 hover:shadow-xl transition-all duration-500 ${getCardHeight()} flex flex-col group hover:scale-105 mobile-touch-target`}>
+            <Card 
+              key={index} 
+              className={`glass-card bg-white/10 backdrop-blur-md border border-white/20 hover:border-white/30 hover:bg-white/15 hover:shadow-xl transition-all duration-500 ${getCardHeight()} flex flex-col group hover:scale-105 mobile-touch-target cursor-pointer`}
+              onClick={() => handleServiceClick(service)}
+            >
               <CardHeader className="p-3 pb-2 flex-shrink-0">
                 <div className="flex items-center justify-between mb-2">
                   <div className="text-purple-600 group-hover:text-pink-600 transition-colors duration-300 flex-shrink-0">
@@ -166,6 +180,12 @@ const ServicesSection = () => {
           ))}
         </div>
       </div>
+
+      <ServiceModal 
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        service={selectedService}
+      />
     </section>
   );
 };
