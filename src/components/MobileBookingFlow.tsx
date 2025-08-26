@@ -185,7 +185,7 @@ const MobileBookingFlow = ({ isOpen, onClose, initialData }: MobileBookingFlowPr
     dinnerVeg: 0,
     dinnerNonVeg: 0,
     transportation: false,
-    itinerary: false,
+    itineraryPlanning: false,
   });
   const [promoCode, setPromoCode] = useState('');
   const [promoDiscount, setPromoDiscount] = useState(0);
@@ -373,7 +373,7 @@ ${addOns.breakfast > 0 ? `• Breakfast: ${addOns.breakfast} persons` : ''}
 ${addOns.dinnerVeg > 0 ? `• Veg Dinner: ${addOns.dinnerVeg} persons` : ''}
 ${addOns.dinnerNonVeg > 0 ? `• Non-Veg Dinner: ${addOns.dinnerNonVeg} persons` : ''}
 ${addOns.transportation ? '• Transportation required' : ''}
-${addOns.itinerary ? '• Itinerary planning required' : ''}
+${addOns.itineraryPlanning ? '• Itinerary planning required' : ''}
 
 *Total Amount:* ${formatPrice(totals.total)}
 
@@ -475,12 +475,11 @@ Please confirm availability and booking process.`;
                     <RoomCard
                       key={room.id}
                       room={room}
-                      nights={nights}
-                      currency={currency}
-                      formatPrice={formatPrice}
-                      selectedRooms={selectedRoom ? [selectedRoom] : []}
                       onRoomSelect={handleRoomSelection}
-                      totalGuests={initialData.guests}
+                      selectedRooms={selectedRoom ? [selectedRoom] : []}
+                      setSelectedRooms={setSelectedRooms}
+                      formatPrice={formatPrice}
+                      initialGuests={initialData.guests}
                       isMobile={true}
                     />
                   );
@@ -601,8 +600,8 @@ Please confirm availability and booking process.`;
 
                       <div className="flex items-center space-x-3">
                         <Checkbox 
-                          checked={addOns.itinerary}
-                          onCheckedChange={(checked) => setAddOns(prev => ({ ...prev, itinerary: !!checked }))}
+                          checked={addOns.itineraryPlanning}
+                          onCheckedChange={(checked) => setAddOns(prev => ({ ...prev, itineraryPlanning: !!checked }))}
                         />
                         <div>
                           <p className="font-medium text-sm">Itinerary Planning</p>
@@ -652,23 +651,17 @@ Please confirm availability and booking process.`;
 
             {currentPage === 'details' && (
               <div className="p-4">
-                <GuestDetails
-                  isOpen={true}
-                  onClose={() => {}}
-                  bookingData={{
-                    selectedRooms,
-                    addOns,
-                    totals: calculateTotal(),
-                    nights,
-                    checkIn: initialData.checkIn,
-                    checkOut: initialData.checkOut,
-                    guests: initialData.guests,
-                    promoCode: promoApplied ? promoCode : '',
-                    promoDiscount: promoApplied ? promoDiscount : 0
-                  }}
-                  onBackToBooking={() => setCurrentPage('summary')}
-                  isMobileFlow={true}
-                />
+                <div className="text-center space-y-4">
+                  <h3 className="text-xl font-bold">Complete Your Booking</h3>
+                  <p className="text-gray-600">Click below to finalize your booking via WhatsApp</p>
+                  <Button 
+                    onClick={handleBookNow}
+                    className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700"
+                  >
+                    <MessageCircle className="mr-2 h-4 w-4" />
+                    Complete Booking via WhatsApp
+                  </Button>
+                </div>
               </div>
             )}
           </div>

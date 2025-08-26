@@ -208,7 +208,6 @@ interface SelectedRoom {
 
 const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingModalProps) => {
   const { formatPrice, currency } = useApp();
-  // console.log("🎯 Enhanced Booking Modal opened with Transportation/Itinerary checkboxes!");
   const [currentStep, setCurrentStep] = useState<'room-selection' | 'booking-summary' | 'guest-details'>('room-selection');
   const [selectedRooms, setSelectedRooms] = useState<SelectedRoom[]>([]);
   const [addOns, setAddOns] = useState({
@@ -371,61 +370,51 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
       
       if (errors.length > 0) {
         toast({
-          title: "Promo code not eligible",
-          description: `XTSY10 requires: ${errors.join(', ')}`,
+          title: "XTSY10 not eligible",
+          description: `This promo requires: ${errors.join(', ')}`,
           variant: "destructive",
         });
         return;
       }
-    }
-    
-    if (code === 'WELCOME15') {
-      // Condition: Only for 270° Panorama Glass Ensuite room
-      const hasPanoramaRoom = selectedRooms.some(room => room.id === 'signature-270-glass-suite');
+    } else if (code === 'WELCOME15') {
+      // Condition: Min 2 guests, 2+ nights
+      const errors = [];
+      if (totalSelectedGuests < 2) errors.push(`minimum 2 guests selected (current: ${totalSelectedGuests})`);
+      if (nights < 2) errors.push(`minimum 2 nights (current: ${nights})`);
       
-      if (!hasPanoramaRoom) {
+      if (errors.length > 0) {
         toast({
-          title: "Promo code not eligible",
-          description: "WELCOME15 is exclusive to 270° Panorama Glass Ensuite room only",
+          title: "WELCOME15 not eligible",
+          description: `This promo requires: ${errors.join(', ')}`,
+          variant: "destructive",
+        });
+        return;
+      }
+    } else if (code === 'MEGHALAYA20') {
+      // Condition: Min 2 guests, 3+ nights
+      const errors = [];
+      if (totalSelectedGuests < 2) errors.push(`minimum 2 guests selected (current: ${totalSelectedGuests})`);
+      if (nights < 3) errors.push(`minimum 3 nights (current: ${nights})`);
+      
+      if (errors.length > 0) {
+        toast({
+          title: "MEGHALAYA20 not eligible",
+          description: `This promo requires: ${errors.join(', ')}`,
           variant: "destructive",
         });
         return;
       }
     }
 
-    // Apply promo code if all conditions are met
-    setPromoDiscount(validPromoCodes[code]);
+    setPromoDiscount((validPromoCodes as any)[code]);
     setPromoApplied(true);
     toast({
       title: "Promo code applied!",
-      description: `You got ${validPromoCodes[code]}% discount`,
+      description: `${(validPromoCodes as any)[code]}% discount applied to your booking`,
     });
   };
 
-  const removePromoCode = () => {
-    setPromoCode('');
-    setPromoDiscount(0);
-    setPromoApplied(false);
-    toast({
-      title: "Promo code removed",
-      description: "Discount has been removed from your booking",
-    });
-  };
-
-  const handleRoomSelect = (roomId: string) => {
-    const room = ROOM_DATA[roomId as keyof typeof ROOM_DATA];
-    if (!room) return;
-
-    const existingRoom = selectedRooms.find(r => r.id === roomId);
-    if (existingRoom) {
-      toast({
-        title: "Room Already Selected",
-        description: "This room is already in your selection",
-        variant: "destructive"
-      });
-      return;
-    }
-
+  const handleRoomSelection = (room: any) => {
     const newRoom: SelectedRoom = {
       id: room.id,
       name: room.name,
@@ -538,8 +527,8 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-        <DialogContent className="w-full h-full max-w-none max-h-none md:max-w-7xl lg:max-w-[90vw] md:max-h-[95vh] md:h-auto bg-white border-0 p-0 overflow-hidden">
-        <div className="flex flex-col h-full max-h-[100dvh] md:max-h-[95vh]">{/* Fixed layout structure with safe bottom */}
+      <DialogContent className="w-full h-full max-w-none max-h-none md:max-w-7xl lg:max-w-[90vw] md:max-h-[95vh] md:h-auto bg-white border-0 p-0 overflow-hidden">
+        <div className="flex flex-col h-full max-h-[100dvh] md:max-h-[95vh]">
           {/* Header */}
           <div className="flex-shrink-0 p-4 md:p-6 border-b bg-gradient-to-r from-orange-50 to-red-50">
             <div className="flex items-center gap-3 mb-4">
@@ -588,645 +577,280 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
 
           {/* Content */}
           <div className="flex-1 overflow-y-auto min-h-0" style={{ maxHeight: 'calc(100dvh - 140px)' }}>
-            {/* Desktop/Tablet flow */}
-            <div className="p-6 space-y-6">
-                    {/* Live the Shillong Vibe Hero Section - Mobile */}
-                    <div className="relative h-32 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl overflow-hidden">
-                      <div className="absolute inset-0 bg-black/20"></div>
-                      <div className="relative h-full flex items-center justify-center text-center px-4">
-                        <div>
-                          <h2 className="text-lg font-bold text-white mb-1">Live the Shillong Vibe</h2>
-                          <p className="text-white/90 text-xs">Experience the best of Meghalaya</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Room Type Classifications - Mobile */}
-                    <div className="space-y-6">
-                      {/* XTSY Luxury */}
-                      <div>
-                        <div className="flex items-center gap-2 mb-3">
-                          <Hotel className="h-5 w-5 text-orange-600" />
-                          <h3 className="text-lg font-bold text-gray-900">XTSY Luxury</h3>
-                          <span className="text-xs text-orange-600 bg-orange-50 px-2 py-1 rounded-full">Premium</span>
-                        </div>
-                        <div className="space-y-3">
-                          {roomsArray.filter(room => room.propertyType === 'luxury').map((room) => (
-                            <MobileRoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} formatPrice={formatPrice} initialGuests={initialData.guests} />
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* XTSY Travellers Hostel */}
-                      <div>
-                        <div className="flex items-center gap-2 mb-3">
-                          <Users className="h-5 w-5 text-orange-600" />
-                          <h3 className="text-lg font-bold text-gray-900">XTSY Travellers Hostel</h3>
-                          <span className="text-xs text-orange-600 bg-orange-50 px-2 py-1 rounded-full">Social</span>
-                        </div>
-                        <div className="space-y-3">
-                          {roomsArray.filter(room => room.propertyType === 'hostel').map((room) => (
-                            <MobileRoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} formatPrice={formatPrice} initialGuests={initialData.guests} />
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* XTSY Economy */}
-                      <div>
-                        <div className="flex items-center gap-2 mb-3">
-                          <Home className="h-5 w-5 text-orange-600" />
-                          <h3 className="text-lg font-bold text-gray-900">XTSY Economy</h3>
-                          <span className="text-xs text-orange-600 bg-orange-50 px-2 py-1 rounded-full">Budget</span>
-                        </div>
-                        <div className="space-y-3">
-                          {roomsArray.filter(room => room.propertyType === 'economy').map((room) => (
-                            <MobileRoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} formatPrice={formatPrice} initialGuests={initialData.guests} />
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {currentStep === 'booking-summary' && (
-                  <div className="p-4 md:p-6 space-y-6 pb-24">
-                    {/* Selected Rooms */}
+            {currentStep === 'room-selection' && (
+              <div className="p-6 space-y-6">
+                {/* Live the Shillong Vibe Hero Section */}
+                <div className="relative h-32 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl overflow-hidden">
+                  <div className="absolute inset-0 bg-black/20"></div>
+                  <div className="relative h-full flex items-center justify-center text-center px-4">
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Selected Rooms</h3>
-                      <div className="space-y-3">
-                        {selectedRooms.map((room, index) => (
-                          <Card key={index} className="p-4">
-                            <div className="flex justify-between items-center">
-                              <div>
-                                <h4 className="font-medium text-gray-900">{room.name}</h4>
-                                <p className="text-sm text-gray-600">
-                                  {room.type === 'dorm' ? `${room.selection.guests} beds` : `${room.selection.rooms} rooms`} × {nights} nights
-                                </p>
-                              </div>
-                              <div className="text-right">
-                                <div className="font-bold text-gray-900">
-                                {formatPrice(room.type === 'dorm' ? room.price * room.selection.guests * nights : room.price * room.selection.rooms * nights)}
-                                </div>
-                                <div className="text-sm text-gray-600">{formatPrice(room.price)}/night</div>
-                              </div>
-                            </div>
-                          </Card>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Add-on Services */}
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Add-on Services</h3>
-                      <div className="space-y-4">
-                        <div className="grid grid-cols-1 gap-4">
-                          <Card className="p-4 bg-white border border-gray-200">
-                            <div className="flex justify-between items-center">
-                              <div>
-                                <h4 className="font-medium text-gray-900">Breakfast</h4>
-                                <p className="text-sm text-gray-600">{formatPrice(calculateTotal().breakfastPrice)} per person per day</p>
-                              </div>
-                              <div className="flex items-center gap-2">
-                                <Button 
-                                  variant="outline" 
-                                  size="sm" 
-                                  onClick={() => setAddOns(prev => ({ ...prev, breakfast: Math.max(0, prev.breakfast - 1) }))}
-                                  className="bg-white text-black border-black hover:bg-gray-100"
-                                >
-                                  -
-                                </Button>
-                                <span className="w-8 text-center bg-white text-black font-bold border border-black rounded px-2 py-1">{addOns.breakfast}</span>
-                                <Button 
-                                  variant="outline" 
-                                  size="sm" 
-                                  onClick={() => setAddOns(prev => ({ ...prev, breakfast: prev.breakfast + 1 }))}
-                                  className="bg-white text-black border-black hover:bg-gray-100"
-                                >
-                                  +
-                                </Button>
-                              </div>
-                            </div>
-                          </Card>
-
-                          <Card className="p-4 bg-white border border-gray-200">
-                            <div className="flex justify-between items-center">
-                              <div>
-                                <h4 className="font-medium text-gray-900">Dinner - Veg</h4>
-                                <p className="text-sm text-gray-600">{formatPrice(calculateTotal().dinnerVegPrice)} per person per day</p>
-                              </div>
-                              <div className="flex items-center gap-2">
-                                <Button 
-                                  variant="outline" 
-                                  size="sm" 
-                                  onClick={() => setAddOns(prev => ({ ...prev, dinnerVeg: Math.max(0, prev.dinnerVeg - 1) }))}
-                                  className="bg-white text-black border-black hover:bg-gray-100"
-                                >
-                                  -
-                                </Button>
-                                <span className="w-8 text-center bg-white text-black font-bold border border-black rounded px-2 py-1">{addOns.dinnerVeg}</span>
-                                <Button 
-                                  variant="outline" 
-                                  size="sm" 
-                                  onClick={() => setAddOns(prev => ({ ...prev, dinnerVeg: prev.dinnerVeg + 1 }))}
-                                  className="bg-white text-black border-black hover:bg-gray-100"
-                                >
-                                  +
-                                </Button>
-                              </div>
-                            </div>
-                          </Card>
-
-                          <Card className="p-4 bg-white border border-gray-200">
-                            <div className="flex justify-between items-center">
-                              <div>
-                                <h4 className="font-medium text-gray-900">Dinner - Non Veg</h4>
-                                <p className="text-sm text-gray-600">{formatPrice(calculateTotal().dinnerNonVegPrice)} per person per day</p>
-                              </div>
-                              <div className="flex items-center gap-2">
-                                <Button 
-                                  variant="outline" 
-                                  size="sm" 
-                                  onClick={() => setAddOns(prev => ({ ...prev, dinnerNonVeg: Math.max(0, prev.dinnerNonVeg - 1) }))}
-                                  className="bg-white text-black border-black hover:bg-gray-100"
-                                >
-                                  -
-                                </Button>
-                                <span className="w-8 text-center bg-white text-black font-bold border border-black rounded px-2 py-1">{addOns.dinnerNonVeg}</span>
-                                <Button 
-                                  variant="outline" 
-                                  size="sm" 
-                                  onClick={() => setAddOns(prev => ({ ...prev, dinnerNonVeg: prev.dinnerNonVeg + 1 }))}
-                                  className="bg-white text-black border-black hover:bg-gray-100"
-                                >
-                                  +
-                                </Button>
-                              </div>
-                            </div>
-                           </Card>
-
-                          <Card className="p-4 bg-white border border-gray-200">
-                            <div className="flex justify-between items-center">
-                              <div>
-                                <h4 className="font-medium text-gray-900">Transportation arrangement</h4>
-                                <p className="text-sm text-gray-600">On request basis</p>
-                              </div>
-                              <div className="flex items-center">
-                                <Checkbox 
-                                  checked={addOns.transportation}
-                                  onCheckedChange={(checked) => setAddOns(prev => ({ ...prev, transportation: checked as boolean }))}
-                                />
-                              </div>
-                            </div>
-                          </Card>
-
-                          <Card className="p-4 bg-white border border-gray-200">
-                            <div className="flex justify-between items-center">
-                              <div>
-                                <h4 className="font-medium text-gray-900">Itinerary planning</h4>
-                                <p className="text-sm text-gray-600">On request basis</p>
-                              </div>
-                              <div className="flex items-center">
-                                <Checkbox 
-                                  checked={addOns.itinerary}
-                                  onCheckedChange={(checked) => setAddOns(prev => ({ ...prev, itinerary: checked as boolean }))}
-                                />
-                              </div>
-                            </div>
-                          </Card>
-                         </div>
-                       </div>
-                     </div>
-
-                      {/* Mobile Price Summary - Enhanced */}
-                     <Card className="p-4 bg-gradient-to-br from-orange-50 to-red-50 border-orange-200">
-                       <h3 className="text-lg font-semibold text-orange-900 mb-4 flex items-center">
-                         <IndianRupee className="h-5 w-5 mr-2" />
-                         Price Summary
-                       </h3>
-                       
-                       {/* Promocode Section with Eligibility Info */}
-                       <div className="mb-4 p-3 bg-white rounded-lg border">
-                         <label className="block text-sm font-medium text-gray-700 mb-2">Promo Code</label>
-                         
-                         {/* Eligibility Information */}
-                         <div className="mb-3 text-xs text-gray-600 space-y-1">
-                           <div><strong>XTSY10 (10% off):</strong> Min 4 guests selected, 4 beds, 2+ nights</div>
-                           <div><strong>WELCOME15 (15% off):</strong> Exclusive for 270° Panorama Glass Ensuite</div>
-                         </div>
-                         {!promoApplied ? (
-                           <div className="flex gap-2">
-                             <input
-                               type="text"
-                               value={promoCode}
-                               onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
-                               placeholder="Enter promo code"
-                               className="flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
-                             />
-                             <Button 
-                               onClick={applyPromoCode}
-                               disabled={!promoCode.trim()}
-                               size="sm"
-                               className="bg-orange-500 hover:bg-orange-600 text-white"
-                             >
-                               Apply
-                             </Button>
-                           </div>
-                         ) : (
-                           <div className="flex items-center justify-between bg-green-50 border border-green-200 rounded-md p-2">
-                             <div className="flex items-center gap-2">
-                               <span className="text-green-600 font-medium text-sm">{promoCode}</span>
-                               <span className="text-green-600 text-sm">({promoDiscount}% off)</span>
-                             </div>
-                             <Button 
-                               onClick={removePromoCode}
-                               size="sm"
-                               variant="ghost"
-                               className="text-red-500 hover:text-red-700 h-6 w-6 p-0"
-                             >
-                               ×
-                             </Button>
-                           </div>
-                         )}
-                       </div>
-
-                       <div className="space-y-3 text-sm">
-                         <div className="flex justify-between">
-                           <span className="text-gray-700">Subtotal</span>
-                            <span className="font-semibold text-gray-900">{formatPrice(calculateTotal().subtotal)}</span>
-                         </div>
-                         {promoApplied && (
-                           <div className="flex justify-between text-green-600">
-                             <span>Discount ({promoCode})</span>
-                              <span className="font-semibold">-{formatPrice(calculateTotal().discountAmount)}</span>
-                           </div>
-                         )}
-                         <div className="flex justify-between">
-                           <span className="text-gray-700">GST ({calculateTotal().gstAmount > 0 ? '12-18%' : '0%'})</span>
-                            <span className="font-semibold text-gray-900">{formatPrice(calculateTotal().gstAmount)}</span>
-                         </div>
-                         <Separator className="bg-orange-200" />
-                         <div className="flex justify-between font-bold text-lg bg-white rounded-lg p-3 border border-orange-200">
-                           <span className="text-orange-900">Total Amount</span>
-                            <span className="text-orange-900">{formatPrice(calculateTotal().total)}</span>
-                         </div>
-                      </div>
-                    </Card>
-
-                    {/* Fixed bottom booking button for mobile */}
-                    <div className="fixed bottom-0 left-0 right-0 bg-white border-t p-4">
-                      <Button onClick={() => setCurrentStep('guest-details')} className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold text-lg py-3">
-                        Book Now - {formatPrice(calculateTotal().total)}
-                      </Button>
-                    </div>
-                  </div>
-                )}
-              </>
-            )}
-
-            {/* Desktop/Tablet: Side-by-side layout with proper room selection */}
-            {!isActualMobile && (
-              <div className="flex h-full">
-                {/* Left side - Room Selection */}
-                <div className="flex-1 p-6 overflow-y-auto">
-                  {/* Live the Shillong Vibe Hero Section */}
-                  <div className="relative mb-8 h-40 bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl overflow-hidden">
-                    <div className="absolute inset-0 bg-black/20"></div>
-                    <div className="relative h-full flex items-center justify-center text-center px-6">
-                      <div>
-                        <h2 className="text-2xl font-bold text-white mb-2">Live the Shillong Vibe</h2>
-                        <p className="text-white/90 text-sm">Experience the best of Meghalaya with our premium accommodations</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Room Type Classifications */}
-                  <div className="space-y-8">
-                    {/* XTSY Luxury */}
-                    <div>
-                      <div className="flex items-center gap-3 mb-4">
-                        <Hotel className="h-6 w-6 text-orange-600" />
-                        <h3 className="text-xl font-bold text-gray-900">XTSY Luxury</h3>
-                        <span className="text-sm text-orange-600 bg-orange-50 px-2 py-1 rounded-full">Premium Experience</span>
-                      </div>
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                        {roomsArray.filter(room => room.propertyType === 'luxury').map((room) => (
-                          <RoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} formatPrice={formatPrice} initialGuests={initialData.guests} />
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* XTSY Travellers Hostel */}
-                    <div>
-                      <div className="flex items-center gap-3 mb-4">
-                        <Bed className="h-6 w-6 text-blue-600" />
-                        <h3 className="text-xl font-bold text-gray-900">XTSY Travellers Hostel</h3>
-                        <span className="text-sm text-blue-600 bg-blue-50 px-2 py-1 rounded-full">Free Breakfast & Games Room</span>
-                      </div>
-                      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-                        {roomsArray.filter(room => room.propertyType === 'hostel').map((room) => (
-                          <RoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} formatPrice={formatPrice} initialGuests={initialData.guests} />
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* XTSY Economy */}
-                    <div>
-                      <div className="flex items-center gap-3 mb-4">
-                        <Users className="h-6 w-6 text-green-600" />
-                        <h3 className="text-xl font-bold text-gray-900">XTSY Economy</h3>
-                        <span className="text-sm text-green-600 bg-green-50 px-2 py-1 rounded-full">Budget Friendly</span>
-                      </div>
-                      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-                        {roomsArray.filter(room => room.propertyType === 'economy').map((room) => (
-                          <RoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} formatPrice={formatPrice} initialGuests={initialData.guests} />
-                        ))}
-                      </div>
+                      <h2 className="text-lg font-bold text-white mb-1">Live the Shillong Vibe</h2>
+                      <p className="text-white/90 text-xs">Experience the best of Meghalaya</p>
                     </div>
                   </div>
                 </div>
 
-                {/* Right side - Booking Summary */}
-                <div className="w-96 bg-gray-50 border-l p-6 overflow-y-auto">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-6">Booking Summary</h3>
-                  
-                  {/* Guest requirement status */}
-                  <div className={`mb-4 p-3 rounded-lg border ${isGuestRequirementMet() ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
-                    <div className="text-sm">
-                      <span className="font-medium">Guest accommodation: </span>
-                      <span className={isGuestRequirementMet() ? 'text-green-700' : 'text-red-700'}>
-                        {getTotalAccommodatedGuests()}/{initialData.guests} guests
-                      </span>
+                {/* Room Type Classifications */}
+                <div className="space-y-6">
+                  {/* XTSY Luxury */}
+                  <div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <Hotel className="h-5 w-5 text-orange-600" />
+                      <h3 className="text-lg font-bold text-gray-900">XTSY Luxury</h3>
+                      <span className="text-xs text-orange-600 bg-orange-50 px-2 py-1 rounded-full">Premium</span>
                     </div>
-                    {!isGuestRequirementMet() && (
-                      <div className="text-xs text-red-600 mt-1">
-                        Need {initialData.guests - getTotalAccommodatedGuests()} more beds/spaces
-                      </div>
-                    )}
-                  </div>
-                  
-                  {/* Selected Rooms */}
-                  <div className="mb-6">
-                    <h4 className="text-lg font-medium text-gray-900 mb-4">Selected Rooms</h4>
-                    {selectedRooms.length === 0 ? (
-                      <p className="text-gray-600 text-sm">No rooms selected yet</p>
-                    ) : (
-                      <div className="space-y-3">
-                        {selectedRooms.map((room, index) => (
-                          <Card key={index} className="p-3">
-                            <div className="space-y-2">
-                              <h5 className="font-medium text-gray-900 text-sm">{room.name}</h5>
-                              <p className="text-xs text-gray-600">
-                                {room.type === 'dorm' ? `${room.selection.guests} beds` : `${room.selection.rooms} rooms`} × {nights} nights
-                              </p>
-                              <div className="flex justify-between items-center">
-                                <span className="text-xs text-gray-600">{formatPrice(room.price)}/night</span>
-                                <span className="font-bold text-gray-900">
-                                  {formatPrice(room.type === 'dorm' ? room.price * room.selection.guests * nights : room.price * room.selection.rooms * nights)}
-                                </span>
-                              </div>
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() => setSelectedRooms(prev => prev.filter((_, i) => i !== index))}
-                                className="w-full text-xs bg-white text-red-600 border-red-200 hover:bg-red-50"
-                              >
-                                Remove
-                              </Button>
-                            </div>
-                          </Card>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Add-on Services */}
-                  <div className="mb-6">
-                    <h4 className="text-lg font-medium text-gray-900 mb-4">Add-on Services</h4>
                     <div className="space-y-3">
-                      <Card className="p-3 bg-white border border-gray-200">
-                        <div className="space-y-2">
-                          <div className="flex justify-between items-center">
-                            <div>
-                              <h5 className="font-medium text-gray-900 text-sm">Breakfast</h5>
-                              <p className="text-xs text-gray-600">{formatPrice(calculateTotal().breakfastPrice)} per person per day</p>
-                            </div>
-                          </div>
-                          <div className="flex items-center justify-center gap-2">
-                            <Button 
-                              variant="outline" 
-                              size="sm" 
-                              onClick={() => setAddOns(prev => ({ ...prev, breakfast: Math.max(0, prev.breakfast - 1) }))}
-                              className="bg-white text-black border-black hover:bg-gray-100 h-8 w-8 p-0"
-                            >
-                              -
-                            </Button>
-                            <span className="w-8 text-center bg-white text-black font-bold border border-black rounded px-2 py-1 text-sm">{addOns.breakfast}</span>
-                            <Button 
-                              variant="outline" 
-                              size="sm" 
-                              onClick={() => setAddOns(prev => ({ ...prev, breakfast: prev.breakfast + 1 }))}
-                              className="bg-white text-black border-black hover:bg-gray-100 h-8 w-8 p-0"
-                            >
-                              +
-                            </Button>
-                          </div>
-                        </div>
-                      </Card>
-
-                      <Card className="p-3 bg-white border border-gray-200">
-                        <div className="space-y-2">
-                          <div className="flex justify-between items-center">
-                            <div>
-                              <h5 className="font-medium text-gray-900 text-sm">Dinner - Veg</h5>
-                              <p className="text-xs text-gray-600">{formatPrice(calculateTotal().dinnerVegPrice)} per person per day</p>
-                            </div>
-                          </div>
-                          <div className="flex items-center justify-center gap-2">
-                            <Button 
-                              variant="outline" 
-                              size="sm" 
-                              onClick={() => setAddOns(prev => ({ ...prev, dinnerVeg: Math.max(0, prev.dinnerVeg - 1) }))}
-                              className="bg-white text-black border-black hover:bg-gray-100 h-8 w-8 p-0"
-                            >
-                              -
-                            </Button>
-                            <span className="w-8 text-center bg-white text-black font-bold border border-black rounded px-2 py-1 text-sm">{addOns.dinnerVeg}</span>
-                            <Button 
-                              variant="outline" 
-                              size="sm" 
-                              onClick={() => setAddOns(prev => ({ ...prev, dinnerVeg: prev.dinnerVeg + 1 }))}
-                              className="bg-white text-black border-black hover:bg-gray-100 h-8 w-8 p-0"
-                            >
-                              +
-                            </Button>
-                          </div>
-                        </div>
-                      </Card>
-
-                      <Card className="p-3 bg-white border border-gray-200">
-                        <div className="space-y-2">
-                          <div className="flex justify-between items-center">
-                            <div>
-                              <h5 className="font-medium text-gray-900 text-sm">Dinner - Non Veg</h5>
-                              <p className="text-xs text-gray-600">{formatPrice(calculateTotal().dinnerNonVegPrice)} per person per day</p>
-                            </div>
-                          </div>
-                          <div className="flex items-center justify-center gap-2">
-                            <Button 
-                              variant="outline" 
-                              size="sm" 
-                              onClick={() => setAddOns(prev => ({ ...prev, dinnerNonVeg: Math.max(0, prev.dinnerNonVeg - 1) }))}
-                              className="bg-white text-black border-black hover:bg-gray-100 h-8 w-8 p-0"
-                            >
-                              -
-                            </Button>
-                            <span className="w-8 text-center bg-white text-black font-bold border border-black rounded px-2 py-1 text-sm">{addOns.dinnerNonVeg}</span>
-                            <Button 
-                              variant="outline" 
-                              size="sm" 
-                              onClick={() => setAddOns(prev => ({ ...prev, dinnerNonVeg: prev.dinnerNonVeg + 1 }))}
-                              className="bg-white text-black border-black hover:bg-gray-100 h-8 w-8 p-0"
-                            >
-                              +
-                            </Button>
-                          </div>
-                        </div>
-                       </Card>
-
-                      <Card className="p-3 bg-white border border-gray-200">
-                        <div className="flex justify-between items-center">
-                          <div>
-                            <h5 className="font-medium text-gray-900 text-sm">Transportation arrangement</h5>
-                            <p className="text-xs text-gray-600">On request basis</p>
-                          </div>
-                          <div className="flex items-center">
-                            <Checkbox 
-                              checked={addOns.transportation}
-                              onCheckedChange={(checked) => setAddOns(prev => ({ ...prev, transportation: checked as boolean }))}
-                            />
-                          </div>
-                        </div>
-                      </Card>
-
-                      <Card className="p-3 bg-white border border-gray-200">
-                        <div className="flex justify-between items-center">
-                          <div>
-                            <h5 className="font-medium text-gray-900 text-sm">Itinerary planning</h5>
-                            <p className="text-xs text-gray-600">On request basis</p>
-                          </div>
-                          <div className="flex items-center">
-                            <Checkbox 
-                              checked={addOns.itinerary}
-                              onCheckedChange={(checked) => setAddOns(prev => ({ ...prev, itinerary: checked as boolean }))}
-                            />
-                          </div>
-                        </div>
-                      </Card>
+                      {roomsArray.filter(room => room.propertyType === 'luxury').map((room) => (
+                        <MobileRoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} formatPrice={formatPrice} initialGuests={initialData.guests} />
+                      ))}
                     </div>
                   </div>
 
-                  {/* Price Summary */}
-                  <Card className="p-4 bg-gradient-to-br from-orange-50 to-red-50 border-orange-200">
-                    <h4 className="text-lg font-semibold text-orange-900 mb-3 flex items-center">
-                      <IndianRupee className="h-5 w-5 mr-2" />
-                      Price Summary
-                    </h4>
-                    
-                     {/* Promocode Section with Eligibility Info */}
-                     <div className="mb-4 p-3 bg-gray-50 rounded-lg border">
-                       <label className="block text-sm font-medium text-gray-700 mb-2">Promo Code</label>
-                       
-                       {/* Eligibility Information */}
-                       <div className="mb-3 text-xs text-gray-600 space-y-1">
-                         <div><strong>XTSY10 (10% off):</strong> Min 4 guests selected, 4 beds, 2+ nights</div>
-                         <div><strong>WELCOME15 (15% off):</strong> Exclusive for 270° Panorama Glass Ensuite</div>
-                       </div>
-                      {!promoApplied ? (
-                        <div className="flex gap-2">
-                          <input
-                            type="text"
-                            value={promoCode}
-                            onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
-                            placeholder="Enter promo code"
-                            className="flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
-                          />
-                          <Button 
-                            onClick={applyPromoCode}
-                            disabled={!promoCode.trim()}
-                            size="sm"
-                            className="bg-orange-500 hover:bg-orange-600 text-white"
-                          >
-                            Apply
-                          </Button>
-                        </div>
-                      ) : (
-                        <div className="flex items-center justify-between bg-green-50 border border-green-200 rounded-md p-2">
-                          <div className="flex items-center gap-2">
-                            <span className="text-green-600 font-medium text-sm">{promoCode}</span>
-                            <span className="text-green-600 text-sm">({promoDiscount}% off)</span>
+                  {/* XTSY Travellers Hostel */}
+                  <div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <Users className="h-5 w-5 text-orange-600" />
+                      <h3 className="text-lg font-bold text-gray-900">XTSY Travellers Hostel</h3>
+                      <span className="text-xs text-orange-600 bg-orange-50 px-2 py-1 rounded-full">Social</span>
+                    </div>
+                    <div className="space-y-3">
+                      {roomsArray.filter(room => room.propertyType === 'hostel').map((room) => (
+                        <MobileRoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} formatPrice={formatPrice} initialGuests={initialData.guests} />
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* XTSY Economy */}
+                  <div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <Home className="h-5 w-5 text-orange-600" />
+                      <h3 className="text-lg font-bold text-gray-900">XTSY Economy</h3>
+                      <span className="text-xs text-orange-600 bg-orange-50 px-2 py-1 rounded-full">Budget</span>
+                    </div>
+                    <div className="space-y-3">
+                      {roomsArray.filter(room => room.propertyType === 'economy').map((room) => (
+                        <MobileRoomSelectionCard key={room.id} room={room} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms} nights={nights} formatPrice={formatPrice} initialGuests={initialData.guests} />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {currentStep === 'booking-summary' && (
+              <div className="p-6 space-y-6">
+                {/* Selected Rooms */}
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Selected Rooms</h3>
+                  <div className="space-y-3">
+                    {selectedRooms.map((room, index) => (
+                      <Card key={index} className="p-4">
+                        <div className="flex justify-between items-center">
+                          <div>
+                            <h4 className="font-medium text-gray-900">{room.name}</h4>
+                            <p className="text-sm text-gray-600">
+                              {room.type === 'dorm' ? `${room.selection.guests} beds` : `${room.selection.rooms} rooms`} × {nights} nights
+                            </p>
                           </div>
-                          <Button 
-                            onClick={removePromoCode}
-                            size="sm"
-                            variant="ghost"
-                            className="text-red-500 hover:text-red-700 h-6 w-6 p-0"
-                          >
-                            ×
-                          </Button>
+                          <div className="text-right">
+                            <div className="font-bold text-gray-900">
+                            {formatPrice(room.type === 'dorm' ? room.price * room.selection.guests * nights : room.price * room.selection.rooms * nights)}
+                            </div>
+                            <div className="text-sm text-gray-600">{formatPrice(room.price)}/night</div>
+                          </div>
                         </div>
-                      )}
+                      </Card>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Add-ons */}
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Add-ons</h3>
+                  <div className="space-y-4">
+                    {/* Breakfast */}
+                    <div className="flex items-center justify-between p-4 border rounded-lg">
+                      <div>
+                        <h4 className="font-medium">Breakfast</h4>
+                        <p className="text-sm text-gray-600">{formatPrice(calculateTotal().breakfastPrice)} per person per day</p>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          onClick={() => setAddOns(prev => ({ ...prev, breakfast: Math.max(0, prev.breakfast - 1) }))}
+                        >
+                          -
+                        </Button>
+                        <span className="w-8 text-center">{addOns.breakfast}</span>
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          onClick={() => setAddOns(prev => ({ ...prev, breakfast: prev.breakfast + 1 }))}
+                        >
+                          +
+                        </Button>
+                      </div>
                     </div>
 
-                    <div className="space-y-3 text-sm">
-                      <div className="flex justify-between">
-                        <span className="text-gray-700">Subtotal</span>
-                        <span className="font-semibold text-gray-900">{formatPrice(calculateTotal().subtotal)}</span>
+                    {/* Veg Dinner */}
+                    <div className="flex items-center justify-between p-4 border rounded-lg">
+                      <div>
+                        <h4 className="font-medium">Vegetarian Dinner</h4>
+                        <p className="text-sm text-gray-600">{formatPrice(calculateTotal().dinnerVegPrice)} per person per day</p>
                       </div>
-                      {promoApplied && (
-                        <div className="flex justify-between text-green-600">
-                          <span>Discount ({promoCode})</span>
-                          <span className="font-semibold">-{formatPrice(calculateTotal().discountAmount)}</span>
-                        </div>
-                      )}
-                      <div className="flex justify-between">
-                        <span className="text-gray-700">{currency.code === 'INR' ? 'GST' : 'Tax (as per India)'} ({calculateTotal().gstAmount > 0 ? '12-18%' : '0%'})</span>
-                        <span className="font-semibold text-gray-900">{formatPrice(calculateTotal().gstAmount)}</span>
-                      </div>
-                      <Separator className="bg-orange-200" />
-                      <div className="flex justify-between font-bold text-lg bg-white rounded-lg p-3 border border-orange-200">
-                        <span className="text-orange-900">Total Amount</span>
-                        <span className="text-orange-900">{formatPrice(calculateTotal().total)}</span>
+                      <div className="flex items-center gap-2">
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          onClick={() => setAddOns(prev => ({ ...prev, dinnerVeg: Math.max(0, prev.dinnerVeg - 1) }))}
+                        >
+                          -
+                        </Button>
+                        <span className="w-8 text-center">{addOns.dinnerVeg}</span>
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          onClick={() => setAddOns(prev => ({ ...prev, dinnerVeg: prev.dinnerVeg + 1 }))}
+                        >
+                          +
+                        </Button>
                       </div>
                     </div>
-                    <Button
-                      onClick={handleBookNow}
-                      disabled={selectedRooms.length === 0 || !isGuestRequirementMet()}
-                      className="w-full mt-4 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-3 text-lg rounded-lg shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+
+                    {/* Non-Veg Dinner */}
+                    <div className="flex items-center justify-between p-4 border rounded-lg">
+                      <div>
+                        <h4 className="font-medium">Non-Vegetarian Dinner</h4>
+                        <p className="text-sm text-gray-600">{formatPrice(calculateTotal().dinnerNonVegPrice)} per person per day</p>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          onClick={() => setAddOns(prev => ({ ...prev, dinnerNonVeg: Math.max(0, prev.dinnerNonVeg - 1) }))}
+                        >
+                          -
+                        </Button>
+                        <span className="w-8 text-center">{addOns.dinnerNonVeg}</span>
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          onClick={() => setAddOns(prev => ({ ...prev, dinnerNonVeg: prev.dinnerNonVeg + 1 }))}
+                        >
+                          +
+                        </Button>
+                      </div>
+                    </div>
+
+                    {/* Transportation */}
+                    <div className="flex items-center justify-between p-4 border rounded-lg">
+                      <div>
+                        <h4 className="font-medium">Transportation</h4>
+                        <p className="text-sm text-gray-600">Local transport and transfers</p>
+                      </div>
+                      <Checkbox 
+                        checked={addOns.transportation}
+                        onCheckedChange={(checked) => setAddOns(prev => ({ ...prev, transportation: checked as boolean }))}
+                      />
+                    </div>
+
+                    {/* Itinerary */}
+                    <div className="flex items-center justify-between p-4 border rounded-lg">
+                      <div>
+                        <h4 className="font-medium">Curated Itinerary</h4>
+                        <p className="text-sm text-gray-600">Personalized travel plan</p>
+                      </div>
+                      <Checkbox 
+                        checked={addOns.itinerary}
+                        onCheckedChange={(checked) => setAddOns(prev => ({ ...prev, itinerary: checked as boolean }))}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Promo Code */}
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Promo Code</h3>
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      value={promoCode}
+                      onChange={(e) => setPromoCode(e.target.value)}
+                      placeholder="Enter promo code"
+                      className="flex-1 px-3 py-2 border rounded-lg"
+                      disabled={promoApplied}
+                    />
+                    <Button 
+                      onClick={applyPromoCode}
+                      disabled={promoApplied || !promoCode.trim()}
+                      variant={promoApplied ? "secondary" : "default"}
                     >
-                      {!isGuestRequirementMet() ? `Need ${initialData.guests - getTotalAccommodatedGuests()} More Beds` : "Book Now"}
+                      {promoApplied ? "Applied" : "Apply"}
                     </Button>
-                  </Card>
+                  </div>
+                </div>
+
+                {/* Price Summary */}
+                <Card className="p-4 bg-gray-50">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Price Summary</h3>
+                  <div className="space-y-2">
+                    <div className="flex justify-between">
+                      <span>Subtotal</span>
+                      <span>{formatPrice(calculateTotal().subtotal)}</span>
+                    </div>
+                    {promoApplied && (
+                      <div className="flex justify-between text-green-600">
+                        <span>Discount ({promoDiscount}%)</span>
+                        <span>-{formatPrice(calculateTotal().discountAmount)}</span>
+                      </div>
+                    )}
+                    <div className="flex justify-between">
+                      <span>GST</span>
+                      <span>{formatPrice(calculateTotal().gstAmount)}</span>
+                    </div>
+                    <Separator />
+                    <div className="flex justify-between text-lg font-bold">
+                      <span>Total</span>
+                      <span className="text-orange-900">{formatPrice(calculateTotal().total)}</span>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+            )}
+
+            {currentStep === 'guest-details' && (
+              <div className="p-6">
+                <div className="text-center">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Almost Done!</h3>
+                  <p className="text-gray-600 mb-6">Click below to complete your booking via WhatsApp</p>
+                  <Button
+                    onClick={handleBookNow}
+                    disabled={!isGuestRequirementMet()}
+                    className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-3 text-lg rounded-lg disabled:opacity-50"
+                  >
+                    {!isGuestRequirementMet() ? `Need ${initialData.guests - getTotalAccommodatedGuests()} More Beds` : "Complete Booking via WhatsApp"} <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
                 </div>
               </div>
             )}
           </div>
 
-          {/* Footer - Only for actual mobile devices */}
-          {isActualMobile && (
-            <div className="flex-shrink-0 p-4 border-t bg-white shadow-lg fixed bottom-0 left-0 right-0 z-50 safe-bottom">
+          {/* Fixed bottom navigation */}
+          {currentStep !== 'guest-details' && (
+            <div className="flex-shrink-0 p-4 border-t bg-white">
               {currentStep === 'room-selection' && (
                 <Button
                   onClick={handleNext}
-                  disabled={selectedRooms.length === 0 || !isGuestRequirementMet()}
+                  disabled={!isGuestRequirementMet()}
                   className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-3 text-lg rounded-lg disabled:opacity-50"
                 >
-                  {!isGuestRequirementMet() ? `Need ${initialData.guests - getTotalAccommodatedGuests()} More Beds` : `Next - Review Booking`} <ArrowRight className="ml-2 h-5 w-5" />
+                  {!isGuestRequirementMet() ? `Need ${initialData.guests - getTotalAccommodatedGuests()} More Beds` : "Continue"} <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               )}
-
               {currentStep === 'booking-summary' && (
                 <Button
-                  onClick={handleBookNow}
+                  onClick={handleNext}
                   disabled={!isGuestRequirementMet()}
                   className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-3 text-lg rounded-lg disabled:opacity-50"
                 >
@@ -1238,134 +862,6 @@ const EnhancedBookingModal = ({ isOpen, onClose, initialData }: EnhancedBookingM
         </div>
       </DialogContent>
     </Dialog>
-  );
-};
-
-// Room Selection Card Component for Desktop
-interface RoomSelectionCardProps {
-  room: any;
-  selectedRooms: SelectedRoom[];
-  setSelectedRooms: React.Dispatch<React.SetStateAction<SelectedRoom[]>>;
-  nights: number;
-  formatPrice: (price: number) => string;
-  initialGuests: number;
-}
-
-const RoomSelectionCard: React.FC<RoomSelectionCardProps> = ({ room, selectedRooms, setSelectedRooms, nights, formatPrice, initialGuests }) => {
-  const [quantity, setQuantity] = useState(0);
-  const { toast } = useToast();
-
-  const handleQuantityChange = (newQuantity: number) => {
-    setQuantity(newQuantity);
-    
-    if (newQuantity === 0) {
-      // Remove room from selection
-      setSelectedRooms(prev => prev.filter(r => r.id !== room.id));
-    } else {
-      // Add or update room selection
-      const roomSelection: SelectedRoom = {
-        id: room.id,
-        name: room.name,
-        price: room.price,
-        type: room.type,
-        selection: {
-          guests: room.type === 'dorm' ? newQuantity : newQuantity,
-          rooms: room.type === 'dorm' ? 1 : newQuantity
-        }
-      };
-
-      setSelectedRooms(prev => {
-        const existingIndex = prev.findIndex(r => r.id === room.id);
-        if (existingIndex >= 0) {
-          const updated = [...prev];
-          updated[existingIndex] = roomSelection;
-          return updated;
-        } else {
-          return [...prev, roomSelection];
-        }
-      });
-    }
-  };
-
-  const currentSelection = selectedRooms.find(r => r.id === room.id);
-  const currentQuantity = currentSelection ? 
-    (room.type === 'dorm' ? currentSelection.selection.guests : currentSelection.selection.rooms) : 0;
-
-  return (
-    <Card className="overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow">
-      <div className="relative h-48">
-        <UnifiedImage 
-          src={room.image} 
-          alt={room.name}
-          className="w-full h-full object-cover"
-          threshold={0.1}
-        />
-        <div className="absolute top-2 right-2">
-          <span className="bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-medium">
-            {formatPrice(room.price)}/night
-          </span>
-        </div>
-        <div className="absolute top-2 left-2">
-          <span className="bg-blue-500/90 backdrop-blur-sm text-white px-2 py-1 rounded-full text-xs font-medium">
-            Max {room.maxGuests} guests
-          </span>
-        </div>
-      </div>
-      
-      <CardContent className="p-4">
-        <h4 className="font-semibold text-gray-900 mb-2">{room.name}</h4>
-        <p className="text-sm text-gray-600 mb-3">{room.description}</p>
-        
-        <div className="flex flex-wrap gap-1 mb-4">
-          {room.features.slice(0, 3).map((feature: string, index: number) => (
-            <span key={index} className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded">
-              {feature}
-            </span>
-          ))}
-        </div>
-
-        <div className="flex items-center justify-between">
-          <div className="text-sm text-gray-600">
-            {room.type === 'dorm' ? 'Beds' : 'Rooms'}
-          </div>
-          <div className="flex items-center gap-2">
-            <Button 
-              variant="outline" 
-              size="sm" 
-              onClick={() => handleQuantityChange(Math.max(0, currentQuantity - 1))}
-              className="bg-white text-black border-black hover:bg-gray-100 h-8 w-8 p-0"
-            >
-              -
-            </Button>
-            <span className="w-8 text-center bg-white text-black font-bold border border-black rounded px-2 py-1 text-sm">
-              {currentQuantity}
-            </span>
-            <Button 
-              variant="outline" 
-              size="sm" 
-              onClick={() => handleQuantityChange(currentQuantity + 1)}
-              className="bg-white text-black border-black hover:bg-gray-100 h-8 w-8 p-0"
-            >
-              +
-            </Button>
-          </div>
-        </div>
-        
-        {currentQuantity > 0 && (
-          <div className="mt-3 pt-3 border-t">
-            <div className="flex justify-between text-sm">
-              <span>Total for {nights} nights:</span>
-              <span className="font-bold">
-                {formatPrice(room.type === 'dorm' ? room.price * currentQuantity * nights : room.price * currentQuantity * nights)}
-              </span>
-            </div>
-            <div className="text-xs text-gray-600 mt-1">
-              Accommodates: {room.type === 'dorm' ? currentQuantity : currentQuantity * room.maxGuests} guests
-            </div>
-          </div>
-        )}
-      </CardContent>
-    </Card>
   );
 };
 

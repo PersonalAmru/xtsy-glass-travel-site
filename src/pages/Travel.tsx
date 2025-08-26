@@ -730,14 +730,13 @@ const Travel = () => {
                              <Card className="group hover:shadow-md transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200 h-32 sm:h-36 md:h-40">
                                <CardContent className="flex flex-col items-center justify-center p-2 sm:p-3 text-center h-full">
                                   <div className="flex items-center justify-center mb-2 flex-shrink-0">
-                                    <h3 className="destination-title emoji-text font-semibold text-gray-900 mb-1 text-xs sm:text-sm leading-tight truncate w-full flex items-center justify-center gap-1">
-                                      <span className="emoji-text">{item.flag}</span>
-                                      {item.country}
-                                    </h3>
-                                  </div>
-                                   <p className="text-xs text-gray-600 mb-2 leading-tight truncate w-full">{item.highlight}</p>
-                                   <span className="inline-block text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full font-medium">Soon</span>
-                                 </div>
+                                     <h3 className="destination-title emoji-text font-semibold text-gray-900 mb-1 text-xs sm:text-sm leading-tight truncate w-full flex items-center justify-center gap-1">
+                                       <span className="emoji-text">{item.flag}</span>
+                                       {item.country}
+                                     </h3>
+                                   </div>
+                                    <p className="text-xs text-gray-600 mb-2 leading-tight truncate w-full">{item.highlight}</p>
+                                    <span className="inline-block text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full font-medium">Soon</span>
                                </CardContent>
                              </Card>
                            </LazyWrapper>
