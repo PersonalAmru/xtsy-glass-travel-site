@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -281,8 +282,6 @@ const BookingFlow = () => {
   };
 
   const getBookingData = () => {
-    if (!guestDetails) return null;
-    
     const checkIn = new Date();
     const checkOut = new Date(Date.now() + 24 * 60 * 60 * 1000);
     const nights = 1;
@@ -291,7 +290,7 @@ const BookingFlow = () => {
     
     return {
       bookingId: generateBookingId(),
-      guestName: `${guestDetails.firstName} ${guestDetails.lastName}`,
+      guestName: guestDetails ? `${guestDetails.firstName} ${guestDetails.lastName}` : '',
       checkIn: checkIn.toISOString(),
       checkOut: checkOut.toISOString(),
       guests,
@@ -303,7 +302,7 @@ const BookingFlow = () => {
       discountAmount: 0,
       couponCode: '',
       couponDiscount: 0,
-      whatsappNumber: guestDetails.phone,
+      whatsappNumber: guestDetails?.phone || '',
       addOns: {
         breakfast: 0,
         dinnerVeg: 0,
@@ -517,24 +516,19 @@ const BookingFlow = () => {
       </main>
 
       {/* Guest Details Modal */}
-      {getBookingData() && (
-        <GuestDetails
-          isOpen={isGuestModalOpen}
-          onClose={handleGuestModalClose}
-          onBack={handleGuestModalBack}
-          bookingData={getBookingData()!}
-          onGuestDetailsChange={(details) => setGuestDetails(details)}
-        />
-      )}
+      <GuestDetails
+        isOpen={isGuestModalOpen}
+        onClose={handleGuestModalClose}
+        onBack={handleGuestModalBack}
+        bookingData={getBookingData()}
+      />
 
       {/* UPI Payment Modal */}
-      {getBookingData() && (
-        <UPIPaymentModal 
-          isOpen={isPaymentModalOpen} 
-          onClose={() => setIsPaymentModalOpen(false)}
-          bookingData={getBookingData()!}
-        />
-      )}
+      <UPIPaymentModal 
+        isOpen={isPaymentModalOpen} 
+        onClose={() => setIsPaymentModalOpen(false)}
+        bookingData={getBookingData()}
+      />
     </>
   );
 };
