@@ -355,20 +355,14 @@ export default function BookingFlow() {
       <div className={`container mx-auto py-8 ${
         isMobileView ? 'px-2 py-4' : isTabletView ? 'px-4' : 'px-6'
       }`}>
-        <div className={`${
-          isMobileView 
-            ? 'flex flex-col space-y-4' 
-            : isTabletView 
-              ? 'grid grid-cols-1 gap-6' 
-              : 'grid grid-cols-3 gap-8'
-        }`}>
-          {/* Booking Summary */}
+        {/* Booking Summary at Top Center */}
+        <div className="flex justify-center mb-8">
           <div className={`${
             isMobileView 
-              ? 'order-1' 
+              ? 'w-full max-w-sm' 
               : isTabletView 
-                ? 'order-1 max-w-md mx-auto w-full' 
-                : 'col-span-1 order-2'
+                ? 'w-full max-w-md' 
+                : 'w-full max-w-lg'
           }`}>
             <BookingSummary
               checkIn={bookingDates.checkIn}
@@ -377,316 +371,310 @@ export default function BookingFlow() {
               nights={nights}
             />
           </div>
+        </div>
 
-          {/* Main Content */}
-          <div className={`${
-            isMobileView 
-              ? 'order-2' 
-              : isTabletView 
-                ? 'order-2' 
-                : 'col-span-2 order-1'
-          }`}>
-            {/* Progress Bar */}
-            <div className={`mb-8 ${isMobileView ? 'mb-4' : ''}`}>
-              <div className={`flex items-center justify-between mb-4 ${
-                isMobileView ? 'mb-2 px-2' : ''
+        {/* Main Content - Full Width */}
+        <div className="w-full">
+          {/* Progress Bar */}
+          <div className={`mb-8 ${isMobileView ? 'mb-4' : ''}`}>
+            <div className={`flex items-center justify-between mb-4 ${
+              isMobileView ? 'mb-2 px-2' : ''
+            }`}>
+              <h1 className={`font-bold text-gray-900 ${
+                isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'
               }`}>
-                <h1 className={`font-bold text-gray-900 ${
-                  isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'
+                {isMobileView ? 'Book Stay' : 'Book Your Stay'}
+              </h1>
+              <Button
+                variant="ghost"
+                onClick={() => navigate(-1)}
+                className={`text-gray-600 hover:text-gray-900 ${
+                  isMobileView ? 'p-2' : ''
+                }`}
+              >
+                <ArrowLeft className={`h-4 w-4 ${isMobileView ? '' : 'mr-2'}`} />
+                {!isMobileView && 'Back'}
+              </Button>
+            </div>
+            
+            <div className={`flex items-center space-x-4 ${
+              isMobileView ? 'px-2 space-x-2' : ''
+            }`}>
+              <div className={`flex items-center ${currentStep === 'rooms' ? 'text-primary' : 'text-muted-foreground'}`}>
+                <div className={`rounded-full flex items-center justify-center text-sm font-medium ${
+                  currentStep === 'rooms' ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'
+                } ${isMobileView ? 'w-6 h-6 text-xs' : 'w-8 h-8'}`}>
+                  1
+                </div>
+                <span className={`ml-2 font-medium ${
+                  isMobileView ? 'text-xs' : ''
                 }`}>
-                  {isMobileView ? 'Book Stay' : 'Book Your Stay'}
-                </h1>
-                <Button
-                  variant="ghost"
-                  onClick={() => navigate(-1)}
-                  className={`text-gray-600 hover:text-gray-900 ${
-                    isMobileView ? 'p-2' : ''
-                  }`}
-                >
-                  <ArrowLeft className={`h-4 w-4 ${isMobileView ? '' : 'mr-2'}`} />
-                  {!isMobileView && 'Back'}
-                </Button>
+                  {isMobileView ? 'Rooms' : 'Select Rooms'}
+                </span>
               </div>
               
-              <div className={`flex items-center space-x-4 ${
-                isMobileView ? 'px-2 space-x-2' : ''
-              }`}>
-                <div className={`flex items-center ${currentStep === 'rooms' ? 'text-primary' : 'text-muted-foreground'}`}>
-                  <div className={`rounded-full flex items-center justify-center text-sm font-medium ${
-                    currentStep === 'rooms' ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'
-                  } ${isMobileView ? 'w-6 h-6 text-xs' : 'w-8 h-8'}`}>
-                    1
-                  </div>
-                  <span className={`ml-2 font-medium ${
-                    isMobileView ? 'text-xs' : ''
-                  }`}>
-                    {isMobileView ? 'Rooms' : 'Select Rooms'}
-                  </span>
+              <div className="flex-1 h-0.5 bg-muted" />
+              
+              <div className={`flex items-center ${currentStep === 'guest' ? 'text-primary' : 'text-muted-foreground'}`}>
+                <div className={`rounded-full flex items-center justify-center text-sm font-medium ${
+                  currentStep === 'guest' ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'
+                } ${isMobileView ? 'w-6 h-6 text-xs' : 'w-8 h-8'}`}>
+                  2
                 </div>
-                
-                <div className="flex-1 h-0.5 bg-muted" />
-                
-                <div className={`flex items-center ${currentStep === 'guest' ? 'text-primary' : 'text-muted-foreground'}`}>
-                  <div className={`rounded-full flex items-center justify-center text-sm font-medium ${
-                    currentStep === 'guest' ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'
-                  } ${isMobileView ? 'w-6 h-6 text-xs' : 'w-8 h-8'}`}>
-                    2
-                  </div>
-                  <span className={`ml-2 font-medium ${
-                    isMobileView ? 'text-xs' : ''
-                  }`}>
-                    {isMobileView ? 'Details' : 'Guest Details'}
-                  </span>
+                <span className={`ml-2 font-medium ${
+                  isMobileView ? 'text-xs' : ''
+                }`}>
+                  {isMobileView ? 'Details' : 'Guest Details'}
+                </span>
+              </div>
+              
+              <div className="flex-1 h-0.5 bg-muted" />
+              
+              <div className={`flex items-center ${currentStep === 'payment' ? 'text-primary' : 'text-muted-foreground'}`}>
+                <div className={`rounded-full flex items-center justify-center text-sm font-medium ${
+                  currentStep === 'payment' ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'
+                } ${isMobileView ? 'w-6 h-6 text-xs' : 'w-8 h-8'}`}>
+                  3
                 </div>
-                
-                <div className="flex-1 h-0.5 bg-muted" />
-                
-                <div className={`flex items-center ${currentStep === 'payment' ? 'text-primary' : 'text-muted-foreground'}`}>
-                  <div className={`rounded-full flex items-center justify-center text-sm font-medium ${
-                    currentStep === 'payment' ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'
-                  } ${isMobileView ? 'w-6 h-6 text-xs' : 'w-8 h-8'}`}>
-                    3
-                  </div>
-                  <span className={`ml-2 font-medium ${
-                    isMobileView ? 'text-xs' : ''
-                  }`}>
-                    Payment
-                  </span>
-                </div>
+                <span className={`ml-2 font-medium ${
+                  isMobileView ? 'text-xs' : ''
+                }`}>
+                  Payment
+                </span>
               </div>
             </div>
-
-            {/* Step Content */}
-            {currentStep === 'rooms' && (
-              <div className="space-y-8">
-                <div className={`text-center ${isMobileView ? 'mb-6' : 'mb-12'}`}>
-                  <h2 className={`font-bold text-gray-800 mb-3 font-playfair ${
-                    isMobileView ? 'text-2xl' : isTabletView ? 'text-3xl' : 'text-4xl'
-                  }`}>
-                    Choose Your Accommodation
-                  </h2>
-                  <p className={`text-gray-600 max-w-2xl mx-auto ${
-                    isMobileView ? 'text-base px-4' : isTabletView ? 'text-lg px-6' : 'text-xl'
-                  }`}>
-                    Select from our available rooms and customize your stay
-                  </p>
-                  <div className={`bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-6 rounded-full ${
-                    isMobileView ? 'w-20 h-1' : 'w-24 h-1'
-                  }`} />
-                </div>
-                
-                {/* XTSY Luxury Section */}
-                {roomsByProperty.luxury.length > 0 && (
-                  <div className="space-y-4">
-                    <h3 className={`font-bold text-center font-playfair bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent ${
-                      isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'
-                    }`}>
-                      XTSY Luxury
-                    </h3>
-                    <div className={`grid gap-6 ${
-                      isMobileView ? 'grid-cols-1' : isTabletView ? 'grid-cols-1' : 'grid-cols-2'
-                    }`}>
-                      {roomsByProperty.luxury.map((room) => {
-                        const selectedRoom = selectedRooms.find(r => r.id === room.id);
-                        const isSelected = !!selectedRoom;
-                        const selection = selectedRoom?.selection || { guests: 1, rooms: room.type === 'private' ? 1 : 0 };
-                        
-                        return (
-                          <FastRoomCard
-                            key={room.id}
-                            room={room}
-                            isSelected={isSelected}
-                            selection={selection}
-                            onRoomSelect={handleRoomSelect}
-                            onGuestChange={handleGuestChange}
-                            onRoomChange={handleRoomChange}
-                          />
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
-
-                {/* XTSY Travellers Hostel Section */}
-                {roomsByProperty.hostel.length > 0 && (
-                  <div className="space-y-4">
-                    <h3 className={`font-bold text-center font-playfair bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent ${
-                      isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'
-                    }`}>
-                      XTSY Travellers Hostel
-                    </h3>
-                    <div className={`grid gap-6 ${
-                      isMobileView ? 'grid-cols-1' : isTabletView ? 'grid-cols-2' : 'grid-cols-3'
-                    }`}>
-                      {roomsByProperty.hostel.map((room) => {
-                        const selectedRoom = selectedRooms.find(r => r.id === room.id);
-                        const isSelected = !!selectedRoom;
-                        const selection = selectedRoom?.selection || { guests: 1, rooms: room.type === 'private' ? 1 : 0 };
-                        
-                        return (
-                          <FastRoomCard
-                            key={room.id}
-                            room={room}
-                            isSelected={isSelected}
-                            selection={selection}
-                            onRoomSelect={handleRoomSelect}
-                            onGuestChange={handleGuestChange}
-                            onRoomChange={handleRoomChange}
-                          />
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
-
-                {/* XTSY Economy Section */}
-                {roomsByProperty.economy.length > 0 && (
-                  <div className="space-y-4">
-                    <h3 className={`font-bold text-center font-playfair bg-gradient-to-r from-green-500 to-teal-600 bg-clip-text text-transparent ${
-                      isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'
-                    }`}>
-                      XTSY Economy
-                    </h3>
-                    <div className={`grid gap-6 ${
-                      isMobileView ? 'grid-cols-1' : isTabletView ? 'grid-cols-2' : 'grid-cols-3'
-                    }`}>
-                      {roomsByProperty.economy.map((room) => {
-                        const selectedRoom = selectedRooms.find(r => r.id === room.id);
-                        const isSelected = !!selectedRoom;
-                        const selection = selectedRoom?.selection || { guests: 1, rooms: room.type === 'private' ? 1 : 0 };
-                        
-                        return (
-                          <FastRoomCard
-                            key={room.id}
-                            room={room}
-                            isSelected={isSelected}
-                            selection={selection}
-                            onRoomSelect={handleRoomSelect}
-                            onGuestChange={handleGuestChange}
-                            onRoomChange={handleRoomChange}
-                          />
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
-
-                <div className={`flex justify-end pt-6 ${
-                  isMobileView ? 'px-4' : ''
-                }`}>
-                  <Button onClick={handleNext} size={isMobileView ? "default" : "lg"}>
-                    Next: Guest Details 
-                    <User className={`${isMobileView ? 'ml-1 h-3 w-3' : 'ml-2'}`} />
-                  </Button>
-                </div>
-              </div>
-            )}
-
-            {currentStep === 'guest' && (
-              <div className="space-y-6">
-                <div className="text-center mb-12">
-                  <h2 className={`font-bold text-gray-800 mb-3 font-playfair ${
-                    isMobileView ? 'text-2xl' : 'text-3xl sm:text-4xl md:text-5xl'
-                  }`}>
-                    Guest Details Complete
-                  </h2>
-                  <p className={`text-gray-600 max-w-2xl mx-auto ${
-                    isMobileView ? 'text-base px-4' : 'text-lg sm:text-xl'
-                  }`}>
-                    Your contact information has been saved
-                  </p>
-                  <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-6 rounded-full" />
-                </div>
-
-                <Card>
-                  <CardContent className={isMobileView ? 'p-4' : 'p-6'}>
-                    <h3 className="font-semibold mb-4">Guest Information</h3>
-                    {guestDetails.firstName && (
-                      <div className="space-y-2 text-sm">
-                        <p><strong>Name:</strong> {guestDetails.firstName} {guestDetails.lastName}</p>
-                        <p><strong>Email:</strong> {guestDetails.email}</p>
-                        <p><strong>Phone:</strong> {guestDetails.phone}</p>
-                      </div>
-                    )}
-                  </CardContent>
-                </Card>
-
-                <div className="flex justify-between">
-                  <Button variant="outline" onClick={handlePrevious}>
-                    <Calendar className="mr-2 h-4 w-4" /> 
-                    {isMobileView ? 'Rooms' : 'Previous: Rooms'}
-                  </Button>
-                  <Button onClick={handleNext}>
-                    {isMobileView ? 'Payment' : 'Next: Payment'} 
-                    <CreditCard className="ml-2 h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
-            )}
-
-            {currentStep === 'payment' && (
-              <div className="space-y-6">
-                <div className="text-center mb-12">
-                  <h2 className={`font-bold text-gray-800 mb-3 font-playfair ${
-                    isMobileView ? 'text-2xl' : 'text-3xl sm:text-4xl md:text-5xl'
-                  }`}>
-                    Payment
-                  </h2>
-                  <p className={`text-gray-600 max-w-2xl mx-auto ${
-                    isMobileView ? 'text-base px-4' : 'text-lg sm:text-xl'
-                  }`}>
-                    Choose your payment method to complete the booking
-                  </p>
-                  <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-6 rounded-full" />
-                </div>
-
-                <Card>
-                  <CardContent className={isMobileView ? 'p-4 space-y-4' : 'p-6 space-y-4'}>
-                    <h3 className="font-semibold mb-4">Select Payment Method</h3>
-                    <div className="space-y-3">
-                      <Button
-                        variant={paymentMethod === 'card' ? 'default' : 'outline'}
-                        className="w-full justify-start"
-                        onClick={() => handlePayment('card')}
-                      >
-                        <CreditCard className="mr-2 h-4 w-4" />
-                        Credit/Debit Card
-                      </Button>
-                      <Button
-                        variant={paymentMethod === 'upi' ? 'default' : 'outline'}
-                        className="w-full justify-start"
-                        onClick={() => handlePayment('upi')}
-                      >
-                        <Phone className="mr-2 h-4 w-4" />
-                        UPI Payment
-                      </Button>
-                    </div>
-                    <div className="pt-4 border-t">
-                      <div className="flex justify-between items-center">
-                        <span className="font-semibold">Total Amount:</span>
-                        <span className={`font-bold text-orange-600 ${
-                          isMobileView ? 'text-lg' : 'text-xl'
-                        }`}>
-                          ₹{calculateTotalAmount().toLocaleString()}
-                        </span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <div className="flex justify-between">
-                  <Button variant="outline" onClick={handlePrevious}>
-                    <User className="mr-2 h-4 w-4" /> 
-                    {isMobileView ? 'Details' : 'Previous: Guest Details'}
-                  </Button>
-                  <Button onClick={handleNext}>
-                    {isMobileView ? 'Complete' : 'Complete Booking'} 
-                    <CreditCard className="ml-2 h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
-            )}
           </div>
+
+          {/* Step Content */}
+          {currentStep === 'rooms' && (
+            <div className="space-y-8">
+              <div className={`text-center ${isMobileView ? 'mb-6' : 'mb-12'}`}>
+                <h2 className={`font-bold text-gray-800 mb-3 font-playfair ${
+                  isMobileView ? 'text-2xl' : isTabletView ? 'text-3xl' : 'text-4xl'
+                }`}>
+                  Choose Your Accommodation
+                </h2>
+                <p className={`text-gray-600 max-w-2xl mx-auto ${
+                  isMobileView ? 'text-base px-4' : isTabletView ? 'text-lg px-6' : 'text-xl'
+                }`}>
+                  Select from our available rooms and customize your stay
+                </p>
+                <div className={`bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-6 rounded-full ${
+                  isMobileView ? 'w-20 h-1' : 'w-24 h-1'
+                }`} />
+              </div>
+              
+              {/* XTSY Luxury Section */}
+              {roomsByProperty.luxury.length > 0 && (
+                <div className="space-y-4">
+                  <h3 className={`font-bold text-center font-playfair bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent ${
+                    isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'
+                  }`}>
+                    XTSY Luxury
+                  </h3>
+                  <div className={`grid gap-6 ${
+                    isMobileView ? 'grid-cols-1' : isTabletView ? 'grid-cols-2' : 'grid-cols-3'
+                  }`}>
+                    {roomsByProperty.luxury.map((room) => {
+                      const selectedRoom = selectedRooms.find(r => r.id === room.id);
+                      const isSelected = !!selectedRoom;
+                      const selection = selectedRoom?.selection || { guests: 1, rooms: room.type === 'private' ? 1 : 0 };
+                      
+                      return (
+                        <FastRoomCard
+                          key={room.id}
+                          room={room}
+                          isSelected={isSelected}
+                          selection={selection}
+                          onRoomSelect={handleRoomSelect}
+                          onGuestChange={handleGuestChange}
+                          onRoomChange={handleRoomChange}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* XTSY Travellers Hostel Section */}
+              {roomsByProperty.hostel.length > 0 && (
+                <div className="space-y-4">
+                  <h3 className={`font-bold text-center font-playfair bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent ${
+                    isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'
+                  }`}>
+                    XTSY Travellers Hostel
+                  </h3>
+                  <div className={`grid gap-6 ${
+                    isMobileView ? 'grid-cols-1' : isTabletView ? 'grid-cols-2' : 'grid-cols-3'
+                  }`}>
+                    {roomsByProperty.hostel.map((room) => {
+                      const selectedRoom = selectedRooms.find(r => r.id === room.id);
+                      const isSelected = !!selectedRoom;
+                      const selection = selectedRoom?.selection || { guests: 1, rooms: room.type === 'private' ? 1 : 0 };
+                      
+                      return (
+                        <FastRoomCard
+                          key={room.id}
+                          room={room}
+                          isSelected={isSelected}
+                          selection={selection}
+                          onRoomSelect={handleRoomSelect}
+                          onGuestChange={handleGuestChange}
+                          onRoomChange={handleRoomChange}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* XTSY Economy Section */}
+              {roomsByProperty.economy.length > 0 && (
+                <div className="space-y-4">
+                  <h3 className={`font-bold text-center font-playfair bg-gradient-to-r from-green-500 to-teal-600 bg-clip-text text-transparent ${
+                    isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'
+                  }`}>
+                    XTSY Economy
+                  </h3>
+                  <div className={`grid gap-6 ${
+                    isMobileView ? 'grid-cols-1' : isTabletView ? 'grid-cols-2' : 'grid-cols-3'
+                  }`}>
+                    {roomsByProperty.economy.map((room) => {
+                      const selectedRoom = selectedRooms.find(r => r.id === room.id);
+                      const isSelected = !!selectedRoom;
+                      const selection = selectedRoom?.selection || { guests: 1, rooms: room.type === 'private' ? 1 : 0 };
+                      
+                      return (
+                        <FastRoomCard
+                          key={room.id}
+                          room={room}
+                          isSelected={isSelected}
+                          selection={selection}
+                          onRoomSelect={handleRoomSelect}
+                          onGuestChange={handleGuestChange}
+                          onRoomChange={handleRoomChange}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              <div className={`flex justify-end pt-6 ${
+                isMobileView ? 'px-4' : ''
+              }`}>
+                <Button onClick={handleNext} size={isMobileView ? "default" : "lg"}>
+                  Next: Guest Details 
+                  <User className={`${isMobileView ? 'ml-1 h-3 w-3' : 'ml-2'}`} />
+                </Button>
+              </div>
+            </div>
+          )}
+
+          {currentStep === 'guest' && (
+            <div className="space-y-6">
+              <div className="text-center mb-12">
+                <h2 className={`font-bold text-gray-800 mb-3 font-playfair ${
+                  isMobileView ? 'text-2xl' : 'text-3xl sm:text-4xl md:text-5xl'
+                }`}>
+                  Guest Details Complete
+                </h2>
+                <p className={`text-gray-600 max-w-2xl mx-auto ${
+                  isMobileView ? 'text-base px-4' : 'text-lg sm:text-xl'
+                }`}>
+                  Your contact information has been saved
+                </p>
+                <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-6 rounded-full" />
+              </div>
+
+              <Card>
+                <CardContent className={isMobileView ? 'p-4' : 'p-6'}>
+                  <h3 className="font-semibold mb-4">Guest Information</h3>
+                  {guestDetails.firstName && (
+                    <div className="space-y-2 text-sm">
+                      <p><strong>Name:</strong> {guestDetails.firstName} {guestDetails.lastName}</p>
+                      <p><strong>Email:</strong> {guestDetails.email}</p>
+                      <p><strong>Phone:</strong> {guestDetails.phone}</p>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+
+              <div className="flex justify-between">
+                <Button variant="outline" onClick={handlePrevious}>
+                  <Calendar className="mr-2 h-4 w-4" /> 
+                  {isMobileView ? 'Rooms' : 'Previous: Rooms'}
+                </Button>
+                <Button onClick={handleNext}>
+                  {isMobileView ? 'Payment' : 'Next: Payment'} 
+                  <CreditCard className="ml-2 h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+          )}
+
+          {currentStep === 'payment' && (
+            <div className="space-y-6">
+              <div className="text-center mb-12">
+                <h2 className={`font-bold text-gray-800 mb-3 font-playfair ${
+                  isMobileView ? 'text-2xl' : 'text-3xl sm:text-4xl md:text-5xl'
+                }`}>
+                  Payment
+                </h2>
+                <p className={`text-gray-600 max-w-2xl mx-auto ${
+                  isMobileView ? 'text-base px-4' : 'text-lg sm:text-xl'
+                }`}>
+                  Choose your payment method to complete the booking
+                </p>
+                <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-6 rounded-full" />
+              </div>
+
+              <Card>
+                <CardContent className={isMobileView ? 'p-4 space-y-4' : 'p-6 space-y-4'}>
+                  <h3 className="font-semibold mb-4">Select Payment Method</h3>
+                  <div className="space-y-3">
+                    <Button
+                      variant={paymentMethod === 'card' ? 'default' : 'outline'}
+                      className="w-full justify-start"
+                      onClick={() => handlePayment('card')}
+                    >
+                      <CreditCard className="mr-2 h-4 w-4" />
+                      Credit/Debit Card
+                    </Button>
+                    <Button
+                      variant={paymentMethod === 'upi' ? 'default' : 'outline'}
+                      className="w-full justify-start"
+                      onClick={() => handlePayment('upi')}
+                    >
+                      <Phone className="mr-2 h-4 w-4" />
+                      UPI Payment
+                    </Button>
+                  </div>
+                  <div className="pt-4 border-t">
+                    <div className="flex justify-between items-center">
+                      <span className="font-semibold">Total Amount:</span>
+                      <span className={`font-bold text-orange-600 ${
+                        isMobileView ? 'text-lg' : 'text-xl'
+                      }`}>
+                        ₹{calculateTotalAmount().toLocaleString()}
+                      </span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <div className="flex justify-between">
+                <Button variant="outline" onClick={handlePrevious}>
+                  <User className="mr-2 h-4 w-4" /> 
+                  {isMobileView ? 'Details' : 'Previous: Guest Details'}
+                </Button>
+                <Button onClick={handleNext}>
+                  {isMobileView ? 'Complete' : 'Complete Booking'} 
+                  <CreditCard className="ml-2 h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
