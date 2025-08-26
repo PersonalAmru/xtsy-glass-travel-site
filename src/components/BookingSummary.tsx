@@ -1,10 +1,8 @@
-
-import React, { useState, useEffect } from 'react';
-import { CalendarDays, Users, Clock, Edit3 } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
+import React, { useEffect, useState } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { format, differenceInDays, parseISO } from 'date-fns';
+import { Calendar, Users, MapPin, Clock, Edit } from 'lucide-react';
+import { useScreenSize } from '@/hooks/use-mobile';
 
 interface BookingSummaryProps {
   checkIn: string;
@@ -14,7 +12,7 @@ interface BookingSummaryProps {
   onEdit?: () => void;
 }
 
-const BookingSummary: React.FC<BookingSummaryProps> = ({
+export const BookingSummary: React.FC<BookingSummaryProps> = ({
   checkIn,
   checkOut,
   guests,
@@ -22,11 +20,12 @@ const BookingSummary: React.FC<BookingSummaryProps> = ({
   onEdit
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const screenSize = useScreenSize();
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      setIsScrolled(scrollTop > 100); // Trigger after 100px scroll
+      setIsScrolled(scrollTop > 100);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -34,128 +33,166 @@ const BookingSummary: React.FC<BookingSummaryProps> = ({
   }, []);
 
   const formatDate = (dateString: string) => {
-    try {
-      const date = parseISO(dateString);
-      return format(date, isScrolled ? 'MMM dd' : 'EEE, MMM dd');
-    } catch {
-      return dateString;
+    const date = new Date(dateString);
+    if (isScrolled || screenSize === 'mobile') {
+      return date.toLocaleDateString('en-US', { 
+        month: 'short', 
+        day: 'numeric' 
+      });
     }
+    return date.toLocaleDateString('en-US', { 
+      weekday: 'short', 
+      month: 'long', 
+      day: 'numeric' 
+    });
   };
 
+  const isMobileView = screenSize === 'mobile';
+  const isCompactView = isScrolled || isMobileView;
+
   return (
-    <Card className={`sticky top-4 z-10 shadow-lg border-2 border-orange-200 bg-gradient-to-r from-orange-50 to-red-50 transition-all duration-300 ${
-      isScrolled ? 'scale-90 shadow-md' : 'scale-100'
+    <Card className={`transition-all duration-300 backdrop-blur-sm bg-card/95 ${
+      isMobileView 
+        ? 'sticky top-2 mx-2 shadow-md border-border/60' 
+        : isScrolled 
+          ? 'sticky top-4 shadow-sm border-border/50' 
+          : 'sticky top-4 shadow-lg border-border'
     }`}>
-      <CardContent className={`transition-all duration-300 ${isScrolled ? 'p-4' : 'p-6'}`}>
-        <div className="flex items-center justify-between mb-4">
-          <h3 className={`font-bold text-gray-800 flex items-center transition-all duration-300 ${
-            isScrolled ? 'text-lg' : 'text-xl'
+      <CardHeader className={`transition-all duration-300 ${
+        isCompactView ? 'pb-2 pt-3 px-3' : 'pb-4 pt-6 px-6'
+      }`}>
+        <div className="flex items-center justify-between">
+          <CardTitle className={`transition-all duration-300 ${
+            isCompactView ? 'text-base' : 'text-xl'
           }`}>
-            <CalendarDays className={`mr-2 text-orange-500 transition-all duration-300 ${
-              isScrolled ? 'h-4 w-4' : 'h-5 w-5'
-            }`} />
-            {isScrolled ? 'Booking' : 'Your Booking Details'}
-          </h3>
+            {isMobileView ? 'Stay Details' : 'Your Stay'}
+          </CardTitle>
           {onEdit && (
-            <Button 
-              variant="outline" 
-              size={isScrolled ? "sm" : "sm"} 
-              onClick={onEdit} 
-              className="border-orange-300 text-orange-600 hover:bg-orange-50"
+            <Button
+              variant="ghost"
+              size={isMobileView ? "sm" : "default"}
+              onClick={onEdit}
+              className="text-muted-foreground hover:text-foreground transition-colors shrink-0"
             >
-              <Edit3 className="h-4 w-4 mr-1" />
-              Edit
+              <Edit className={`${isMobileView ? 'h-3 w-3' : 'h-4 w-4'} ${isMobileView ? '' : 'mr-1'}`} />
+              {!isMobileView && 'Edit'}
             </Button>
           )}
         </div>
-        
-        <div className={`grid gap-4 transition-all duration-300 ${
-          isScrolled ? 'md:grid-cols-4' : 'md:grid-cols-3'
+      </CardHeader>
+      
+      <CardContent className={`transition-all duration-300 ${
+        isCompactView ? 'pt-0 pb-3 px-3' : 'pt-0 pb-6 px-6'
+      }`}>
+        <div className={`grid transition-all duration-300 ${
+          isMobileView 
+            ? 'grid-cols-3 gap-1' 
+            : isScrolled 
+              ? 'grid-cols-3 gap-2' 
+              : 'grid-cols-1 gap-4'
         }`}>
-          <div className={`flex items-center space-x-3 bg-white rounded-lg border border-orange-100 transition-all duration-300 ${
-            isScrolled ? 'p-2' : 'p-3'
+          {/* Check-in */}
+          <div className={`flex items-center transition-all duration-300 ${
+            isCompactView ? 'flex-col text-center' : 'space-x-3'
           }`}>
-            <div className={`bg-orange-100 rounded-full transition-all duration-300 ${
-              isScrolled ? 'p-1.5' : 'p-2'
+            <div className={`flex items-center justify-center transition-all duration-300 ${
+              isMobileView
+                ? 'w-6 h-6 mb-1 bg-primary/10 rounded-full' 
+                : isScrolled 
+                  ? 'w-8 h-8 mb-1 bg-primary/10 rounded-full' 
+                  : 'w-10 h-10 bg-primary/10 rounded-full'
             }`}>
-              <CalendarDays className={`text-orange-600 transition-all duration-300 ${
-                isScrolled ? 'h-3 w-3' : 'h-4 w-4'
-              }`} />
+              <Calendar className={`transition-all duration-300 ${
+                isMobileView ? 'h-3 w-3' : isScrolled ? 'h-3 w-3' : 'h-4 w-4'
+              } text-primary`} />
             </div>
             <div>
-              <p className={`text-gray-500 transition-all duration-300 ${
-                isScrolled ? 'text-xs' : 'text-sm'
-              }`}>Check-in</p>
-              <p className={`font-semibold text-gray-800 transition-all duration-300 ${
-                isScrolled ? 'text-sm' : 'text-base'
-              }`}>{formatDate(checkIn)}</p>
-            </div>
-          </div>
-          
-          <div className={`flex items-center space-x-3 bg-white rounded-lg border border-orange-100 transition-all duration-300 ${
-            isScrolled ? 'p-2' : 'p-3'
-          }`}>
-            <div className={`bg-red-100 rounded-full transition-all duration-300 ${
-              isScrolled ? 'p-1.5' : 'p-2'
-            }`}>
-              <CalendarDays className={`text-red-600 transition-all duration-300 ${
-                isScrolled ? 'h-3 w-3' : 'h-4 w-4'
-              }`} />
-            </div>
-            <div>
-              <p className={`text-gray-500 transition-all duration-300 ${
-                isScrolled ? 'text-xs' : 'text-sm'
-              }`}>Check-out</p>
-              <p className={`font-semibold text-gray-800 transition-all duration-300 ${
-                isScrolled ? 'text-sm' : 'text-base'
-              }`}>{formatDate(checkOut)}</p>
-            </div>
-          </div>
-          
-          <div className={`flex items-center space-x-3 bg-white rounded-lg border border-orange-100 transition-all duration-300 ${
-            isScrolled ? 'p-2' : 'p-3'
-          }`}>
-            <div className={`bg-purple-100 rounded-full transition-all duration-300 ${
-              isScrolled ? 'p-1.5' : 'p-2'
-            }`}>
-              <Users className={`text-purple-600 transition-all duration-300 ${
-                isScrolled ? 'h-3 w-3' : 'h-4 w-4'
-              }`} />
-            </div>
-            <div>
-              <p className={`text-gray-500 transition-all duration-300 ${
-                isScrolled ? 'text-xs' : 'text-sm'
-              }`}>Guests</p>
-              <p className={`font-semibold text-gray-800 transition-all duration-300 ${
-                isScrolled ? 'text-sm' : 'text-base'
-              }`}>{guests} {guests === 1 ? 'Guest' : 'Guests'}</p>
+              <p className={`font-medium transition-all duration-300 ${
+                isMobileView ? 'text-xs' : isScrolled ? 'text-xs' : 'text-sm'
+              }`}>
+                Check-in
+              </p>
+              <p className={`text-foreground transition-all duration-300 ${
+                isMobileView ? 'text-xs font-medium' : isScrolled ? 'text-xs font-medium' : 'text-base font-semibold'
+              }`}>
+                {formatDate(checkIn)}
+              </p>
             </div>
           </div>
 
-          {isScrolled && (
-            <div className="flex items-center space-x-3 p-2 bg-white rounded-lg border border-orange-100">
-              <div className="bg-blue-100 p-1.5 rounded-full">
-                <Clock className="h-3 w-3 text-blue-600" />
-              </div>
-              <div>
-                <p className="text-xs text-gray-500">Nights</p>
-                <p className="text-sm font-semibold text-gray-800">{nights}</p>
-              </div>
+          {/* Check-out */}
+          <div className={`flex items-center transition-all duration-300 ${
+            isCompactView ? 'flex-col text-center' : 'space-x-3'
+          }`}>
+            <div className={`flex items-center justify-center transition-all duration-300 ${
+              isMobileView
+                ? 'w-6 h-6 mb-1 bg-primary/10 rounded-full' 
+                : isScrolled 
+                  ? 'w-8 h-8 mb-1 bg-primary/10 rounded-full' 
+                  : 'w-10 h-10 bg-primary/10 rounded-full'
+            }`}>
+              <Calendar className={`transition-all duration-300 ${
+                isMobileView ? 'h-3 w-3' : isScrolled ? 'h-3 w-3' : 'h-4 w-4'
+              } text-primary`} />
             </div>
-          )}
+            <div>
+              <p className={`font-medium transition-all duration-300 ${
+                isMobileView ? 'text-xs' : isScrolled ? 'text-xs' : 'text-sm'
+              }`}>
+                Check-out
+              </p>
+              <p className={`text-foreground transition-all duration-300 ${
+                isMobileView ? 'text-xs font-medium' : isScrolled ? 'text-xs font-medium' : 'text-base font-semibold'
+              }`}>
+                {formatDate(checkOut)}
+              </p>
+            </div>
+          </div>
+
+          {/* Guests */}
+          <div className={`flex items-center transition-all duration-300 ${
+            isCompactView ? 'flex-col text-center' : 'space-x-3'
+          }`}>
+            <div className={`flex items-center justify-center transition-all duration-300 ${
+              isMobileView
+                ? 'w-6 h-6 mb-1 bg-primary/10 rounded-full' 
+                : isScrolled 
+                  ? 'w-8 h-8 mb-1 bg-primary/10 rounded-full' 
+                  : 'w-10 h-10 bg-primary/10 rounded-full'
+            }`}>
+              <Users className={`transition-all duration-300 ${
+                isMobileView ? 'h-3 w-3' : isScrolled ? 'h-3 w-3' : 'h-4 w-4'
+              } text-primary`} />
+            </div>
+            <div>
+              <p className={`font-medium transition-all duration-300 ${
+                isMobileView ? 'text-xs' : isScrolled ? 'text-xs' : 'text-sm'
+              }`}>
+                Guests
+              </p>
+              <p className={`text-foreground transition-all duration-300 ${
+                isMobileView ? 'text-xs font-medium' : isScrolled ? 'text-xs font-medium' : 'text-base font-semibold'
+              }`}>
+                {guests}
+              </p>
+            </div>
+          </div>
         </div>
-        
-        {!isScrolled && (
-          <div className="mt-4 flex items-center justify-between">
+
+        {/* Duration and Location - Only show when not compact view */}
+        {!isCompactView && (
+          <div className="flex items-center justify-between mt-6 pt-4 border-t">
             <div className="flex items-center space-x-2">
-              <Clock className="h-4 w-4 text-gray-500" />
-              <span className="text-sm text-gray-600">Duration:</span>
-              <Badge variant="secondary" className="bg-orange-100 text-orange-800">
-                {nights} {nights === 1 ? 'Night' : 'Nights'}
-              </Badge>
+              <Clock className="h-4 w-4 text-muted-foreground" />
+              <span className="text-sm text-muted-foreground">
+                {nights} night{nights !== 1 ? 's' : ''}
+              </span>
             </div>
-            <div className="text-sm text-gray-500">
-              📍 Shillong, Meghalaya
+            <div className="flex items-center space-x-2">
+              <MapPin className="h-4 w-4 text-muted-foreground" />
+              <span className="text-sm text-muted-foreground">
+                XTSY270, Meghalaya
+              </span>
             </div>
           </div>
         )}
