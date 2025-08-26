@@ -28,14 +28,17 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
   const { formatPrice, currency } = useApp();
   const navigate = useNavigate();
   
-  // Fixed price of 650 across all breakpoints
+  // Apply weekend/weekday hike for USD/EUR guests to the displayed price
   const getDisplayPrice = () => {
-    const fixedPrice = 650;
+    let price = room.price;
     if (currency.code !== 'INR') {
-      // Convert to other currencies using exchange rate
-      return Math.round(fixedPrice * currency.rate);
+      // Check if current date is weekend (approximate for pricing display)
+      const today = new Date();
+      const isWeekend = [0, 6].includes(today.getDay());
+      const hike = isWeekend ? 1.15 : 1.10; // 15% weekend, 10% weekday
+      price = Math.round(price * hike);
     }
-    return fixedPrice;
+    return price;
   };
 
   const handleRoomSelection = () => {
