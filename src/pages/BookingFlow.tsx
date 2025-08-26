@@ -521,7 +521,7 @@ export default function BookingFlow() {
                     {roomsByProperty.luxury.map((room) => {
                       const selectedRoom = selectedRooms.find(r => r.id === room.id);
                       const isSelected = !!selectedRoom;
-                       const selection = selectedRoom?.selection || { guests: 1, rooms: 0 };
+                      const selection = selectedRoom?.selection || { guests: 1, rooms: 0 };
                       
                       return (
                         <FastRoomCard
@@ -554,7 +554,7 @@ export default function BookingFlow() {
                     {roomsByProperty.hostel.map((room) => {
                       const selectedRoom = selectedRooms.find(r => r.id === room.id);
                       const isSelected = !!selectedRoom;
-                       const selection = selectedRoom?.selection || { guests: 1, rooms: 0 };
+                      const selection = selectedRoom?.selection || { guests: 1, rooms: 0 };
                       
                       return (
                         <FastRoomCard
