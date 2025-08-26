@@ -17,26 +17,36 @@ const Index = () => {
     <div className="min-h-screen">
       <SEOContent page="home" />
       <Header />
-      <main className="space-y-12 sm:space-y-16 md:space-y-20">
+      <main>
         <HeroSection />
         <LazyWrapper fallback={<div className="h-96 bg-gray-100 animate-pulse rounded-lg mx-4"></div>}>
           <RoomsSection />
         </LazyWrapper>
-        <LazyWrapper fallback={<div className="h-64 bg-gray-100 animate-pulse rounded-lg mx-4 my-8"></div>}>
-          <ServicesSection />
-        </LazyWrapper>
-        <LazyWrapper fallback={<div className="h-64 bg-gray-100 animate-pulse rounded-lg mx-4 my-8"></div>}>
-          <ReviewsSection />
-        </LazyWrapper>
-        <LazyWrapper fallback={<div className="h-48 bg-gray-100 animate-pulse rounded-lg mx-4 my-8"></div>}>
-          <GroupBookingSection />
-        </LazyWrapper>
-        <LazyWrapper fallback={<div className="h-48 bg-gray-100 animate-pulse rounded-lg mx-4 my-8"></div>}>
-          <AdventureCallToAction />
-        </LazyWrapper>
-        <LazyWrapper fallback={<div className="h-64 bg-gray-100 animate-pulse rounded-lg mx-4 my-8"></div>}>
-          <FAQSection />
-        </LazyWrapper>
+        <div className="mt-12 sm:mt-16 md:mt-20">
+          <LazyWrapper fallback={<div className="h-64 bg-gray-100 animate-pulse rounded-lg mx-4 my-8"></div>}>
+            <ServicesSection />
+          </LazyWrapper>
+        </div>
+        <div className="mt-12 sm:mt-16 md:mt-20">
+          <LazyWrapper fallback={<div className="h-64 bg-gray-100 animate-pulse rounded-lg mx-4 my-8"></div>}>
+            <ReviewsSection />
+          </LazyWrapper>
+        </div>
+        <div className="mt-12 sm:mt-16 md:mt-20">
+          <LazyWrapper fallback={<div className="h-48 bg-gray-100 animate-pulse rounded-lg mx-4 my-8"></div>}>
+            <GroupBookingSection />
+          </LazyWrapper>
+        </div>
+        <div className="mt-12 sm:mt-16 md:mt-20">
+          <LazyWrapper fallback={<div className="h-48 bg-gray-100 animate-pulse rounded-lg mx-4 my-8"></div>}>
+            <AdventureCallToAction />
+          </LazyWrapper>
+        </div>
+        <div className="mt-12 sm:mt-16 md:mt-20">
+          <LazyWrapper fallback={<div className="h-64 bg-gray-100 animate-pulse rounded-lg mx-4 my-8"></div>}>
+            <FAQSection />
+          </LazyWrapper>
+        </div>
       </main>
       <Footer />
     </div>
