@@ -47,6 +47,25 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
     return (room.price || 0) * nights * selection.rooms;
   };
 
+  // Handle increment with proper event stopping
+  const handleIncrement = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const maxSelection = room.maxRooms || 5;
+    if (selection.rooms < maxSelection) {
+      onRoomChange(room.id, selection.rooms + 1);
+    }
+  };
+
+  // Handle decrement with proper event stopping
+  const handleDecrement = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (selection.rooms > 0) {
+      onRoomChange(room.id, selection.rooms - 1);
+    }
+  };
+
   // Special container wrapper for XTSY 270
   const CardWrapper = ({ children }: { children: React.ReactNode }) => {
     if (isXTSY270) {
@@ -170,12 +189,9 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                     <Button
                       variant="outline"
                       size="sm"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onRoomChange(room.id, Math.max(0, selection.rooms - 1));
-                      }}
+                      onClick={handleDecrement}
                       disabled={selection.rooms <= 0}
-                      className={`border-gray-600 bg-gray-800 text-white hover:bg-gray-700 ${
+                      className={`border-gray-600 bg-gray-800 text-white hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed ${
                         isMobile ? 'h-6 w-6 p-0' : 'h-7 w-7 p-0'
                       } ${isXTSY270 ? 'h-6 w-6 p-0' : ''}`}
                     >
@@ -183,7 +199,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                         isMobile ? 'h-3 w-3' : 'h-3 w-3'
                       } ${isXTSY270 ? 'h-3 w-3' : ''}`} />
                     </Button>
-                    <span className={`text-center font-medium text-white ${
+                    <span className={`text-center font-medium text-white min-w-0 ${
                       isMobile ? 'w-5 text-xs' : 'w-6 text-sm'
                     } ${isXTSY270 ? 'w-5 text-xs' : ''}`}>
                       {selection.rooms}
@@ -191,13 +207,9 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                     <Button
                       variant="outline"
                       size="sm"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        const maxSelection = room.maxRooms || 5;
-                        onRoomChange(room.id, Math.min(maxSelection, selection.rooms + 1));
-                      }}
+                      onClick={handleIncrement}
                       disabled={selection.rooms >= (room.maxRooms || 5)}
-                      className={`border-gray-600 bg-gray-800 text-white hover:bg-gray-700 ${
+                      className={`border-gray-600 bg-gray-800 text-white hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed ${
                         isMobile ? 'h-6 w-6 p-0' : 'h-7 w-7 p-0'
                       } ${isXTSY270 ? 'h-6 w-6 p-0' : ''}`}
                     >
