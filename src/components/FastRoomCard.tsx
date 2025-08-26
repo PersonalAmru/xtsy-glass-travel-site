@@ -24,6 +24,7 @@ interface FastRoomCardProps {
   onRoomSelect: (roomId: string) => void;
   onGuestChange: (roomId: string, guests: number) => void;
   onRoomChange: (roomId: string, rooms: number) => void;
+  nights: number;
 }
 
 const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
@@ -32,13 +33,19 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
   selection,
   onRoomSelect,
   onGuestChange,
-  onRoomChange
+  onRoomChange,
+  nights
 }) => {
   const isMobile = useMediaQuery('(max-width: 767px)');
   const isTablet = useMediaQuery('(min-width: 768px) and (max-width: 1023px)');
 
   // Check if this is the XTSY 270 room
   const isXTSY270 = room.name === "XTSY 270 Panorama Glass Ensuite";
+
+  // Calculate subtotal: price × nights × selected rooms/beds
+  const calculateSubtotal = () => {
+    return (room.price || 0) * nights * selection.rooms;
+  };
 
   // Special container wrapper for XTSY 270
   const CardWrapper = ({ children }: { children: React.ReactNode }) => {
@@ -213,7 +220,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                   <span className={`font-bold text-primary ${
                     isMobile ? 'text-sm' : isTablet ? 'text-base' : 'text-lg'
                   } ${isXTSY270 ? 'text-sm' : ''}`}>
-                    ₹{((room.price || 0) * selection.rooms).toLocaleString()}
+                    ₹{calculateSubtotal().toLocaleString()}
                   </span>
                 </div>
               </div>
