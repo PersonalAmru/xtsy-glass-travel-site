@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -187,7 +186,9 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                     {amenity}
                   </Badge>
                 ))}
-                {room.amenities.length > (isMobile ? 2 : 3) && (
+              </div>
+              {room.amenities.length > (isMobile ? 2 : 3) && (
+                <div className="mb-3">
                   <Badge 
                     variant="outline" 
                     className={`text-xs px-2 py-0.5 border-gray-600 text-gray-200 bg-gray-800 ${
@@ -196,8 +197,8 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                   >
                     +{room.amenities.length - (isMobile ? 2 : 3)} more
                   </Badge>
-                )}
-              </div>
+                </div>
+              )}
 
               {/* Room selection only */}
               <div className={`space-y-2 pt-2 border-t border-gray-700 ${
