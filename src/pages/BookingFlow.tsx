@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -381,11 +382,6 @@ export default function BookingFlow() {
               isMobileView ? 'mb-2 px-2' : ''
             }`}>
               <div className="flex items-center gap-3">
-                <h1 className={`font-bold text-gray-900 ${
-                  isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'
-                }`}>
-                  {isMobileView ? 'Book Stay' : 'Book Your Stay'}
-                </h1>
                 <Button
                   variant="ghost"
                   onClick={() => navigate('/')}
@@ -396,6 +392,11 @@ export default function BookingFlow() {
                   <ArrowLeft className={`h-4 w-4 ${isMobileView ? '' : 'mr-2'}`} />
                   {!isMobileView && 'Back'}
                 </Button>
+                <h1 className={`font-bold text-gray-900 ${
+                  isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'
+                }`}>
+                  {isMobileView ? 'Book Stay' : 'Book Your Stay'}
+                </h1>
               </div>
             </div>
             
