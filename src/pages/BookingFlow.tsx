@@ -188,37 +188,18 @@ const BookingFlow = () => {
   const nights = checkIn && checkOut ? 
     Math.ceil((new Date(checkOut).getTime() - new Date(checkIn).getTime()) / (1000 * 3600 * 24)) : 1;
 
-  // Enhanced loading state with progress tracking
+  // Simplified loading initialization
   useEffect(() => {
-    const initializeBookingFlow = async () => {
-      setLoadingProgress(20);
-      
-      // Simulate proper initialization
-      await new Promise(resolve => setTimeout(resolve, 300));
-      setLoadingProgress(50);
-      
-      // Preload critical images
-      const criticalImages = roomsArray.slice(0, 3).map(room => room.image);
-      await Promise.allSettled(
-        criticalImages.map(src => {
-          return new Promise((resolve, reject) => {
-            const img = new Image();
-            img.onload = resolve;
-            img.onerror = resolve; // Don't fail on image errors
-            img.src = src;
-          });
-        })
-      );
-      setLoadingProgress(80);
-      
-      // Final initialization delay
-      await new Promise(resolve => setTimeout(resolve, 200));
-      setLoadingProgress(100);
-      
-      // Small delay before showing content
-      setTimeout(() => {
+    const initializeBookingFlow = () => {
+      try {
+        // Simple delay to ensure DOM is ready
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 150);
+      } catch (error) {
+        console.error('Error initializing booking flow:', error);
         setIsLoading(false);
-      }, 100);
+      }
     };
 
     initializeBookingFlow();
@@ -226,22 +207,26 @@ const BookingFlow = () => {
 
   // Pre-select room if specified
   useEffect(() => {
-    if (preSelectedRoom && preSelectedProperty) {
-      const room = ROOM_DATA[preSelectedRoom as keyof typeof ROOM_DATA];
-      if (room && room.propertyType === preSelectedProperty) {
-        setSelectedRooms([{
-          id: room.id,
-          name: room.name,
-          price: room.price,
-          type: room.type,
-          selection: {
-            guests: room.type === 'dorm' ? 1 : 1,
-            rooms: room.type === 'dorm' ? 0 : 1
-          }
-        }]);
+    if (preSelectedRoom && preSelectedProperty && !isLoading) {
+      try {
+        const room = ROOM_DATA[preSelectedRoom as keyof typeof ROOM_DATA];
+        if (room && room.propertyType === preSelectedProperty) {
+          setSelectedRooms([{
+            id: room.id,
+            name: room.name,
+            price: room.price,
+            type: room.type,
+            selection: {
+              guests: room.type === 'dorm' ? 1 : 1,
+              rooms: room.type === 'dorm' ? 0 : 1
+            }
+          }]);
+        }
+      } catch (error) {
+        console.error('Error pre-selecting room:', error);
       }
     }
-  }, [preSelectedRoom, preSelectedProperty]);
+  }, [preSelectedRoom, preSelectedProperty, isLoading]);
 
   // Calculate total accommodated guests from selected rooms
   const getTotalAccommodatedGuests = () => {
@@ -628,26 +613,11 @@ Please confirm this booking and provide payment details.
         <Header />
         <main className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto">
-            <div className="text-center space-y-6">
-              <div className="relative">
-                <div className="animate-spin rounded-full h-16 w-16 border-4 border-orange-200 border-t-orange-600 mx-auto"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-sm font-medium text-orange-600">{Math.round(loadingProgress)}%</span>
-                </div>
-              </div>
-              <div className="space-y-3">
-                <h2 className="text-xl font-semibold text-gray-900">Setting up your booking</h2>
-                <div className="w-full max-w-md mx-auto bg-gray-200 rounded-full h-2">
-                  <div 
-                    className="bg-orange-600 h-2 rounded-full transition-all duration-300 ease-out"
-                    style={{ width: `${loadingProgress}%` }}
-                  ></div>
-                </div>
-                <p className="text-gray-600">
-                  {loadingProgress < 30 && "Initializing booking flow..."}
-                  {loadingProgress >= 30 && loadingProgress < 70 && "Loading room details..."}
-                  {loadingProgress >= 70 && "Almost ready..."}
-                </p>
+            <div className="text-center space-y-4">
+              <div className="animate-spin rounded-full h-12 w-12 border-4 border-orange-200 border-t-orange-600 mx-auto"></div>
+              <div className="space-y-2">
+                <h2 className="text-lg font-medium text-gray-900">Loading booking flow...</h2>
+                <p className="text-sm text-gray-600">Please wait while we prepare your booking experience</p>
               </div>
             </div>
           </div>
