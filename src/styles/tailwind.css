@@ -123,9 +123,105 @@ img {
   @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 max-w-7xl;
 }
 
-/* Preconnect for fonts */
-@supports (font-display: swap) {
-  .font-swap {
-    font-display: swap;
-  }
+/* Responsive utilities */
+.responsive-container {
+  @apply container mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.mobile-compact {
+  @apply sm:px-4 md:px-6 lg:px-8;
+}
+
+.touch-target {
+  @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+}
+
+.safe-area-padding {
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-left {
+  padding-left: env(safe-area-inset-left);
+}
+
+.safe-right {
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Enhanced responsive breakpoint utilities */
+.mobile-only {
+  @apply block sm:hidden;
+}
+
+.tablet-only {
+  @apply hidden sm:block lg:hidden;
+}
+
+.desktop-only {
+  @apply hidden lg:block;
+}
+
+.mobile-tablet {
+  @apply block lg:hidden;
+}
+
+.tablet-desktop {
+  @apply hidden sm:block;
+}
+
+/* Responsive text scaling */
+.text-responsive-xs {
+  @apply text-xs sm:text-sm md:text-base;
+}
+
+.text-responsive-sm {
+  @apply text-sm sm:text-base md:text-lg;
+}
+
+.text-responsive-base {
+  @apply text-base sm:text-lg md:text-xl;
+}
+
+.text-responsive-lg {
+  @apply text-lg sm:text-xl md:text-2xl;
+}
+
+.text-responsive-xl {
+  @apply text-xl sm:text-2xl md:text-3xl;
+}
+
+/* Responsive spacing */
+.spacing-responsive {
+  @apply p-3 sm:p-4 md:p-6 lg:p-8;
+}
+
+.gap-responsive {
+  @apply gap-3 sm:gap-4 md:gap-6 lg:gap-8;
+}
+
+/* Responsive grid systems */
+.grid-responsive-2 {
+  @apply grid grid-cols-1 sm:grid-cols-2;
+}
+
+.grid-responsive-3 {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
+}
+
+.grid-responsive-4 {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+}
+
+/* Enhanced interaction utilities */
+.hover-lift {
+  @apply transition-all duration-200 hover:scale-105 hover:shadow-lg;
+}
+
+.touch-feedback {
+  @apply active:scale-95 transition-transform duration-100;
 }

@@ -1,61 +1,60 @@
 import * as React from "react"
 
-const MOBILE_BREAKPOINT = 640
-const TABLET_BREAKPOINT = 1024
+// Consistent breakpoint constants
+export const BREAKPOINTS = {
+  mobile: 320,
+  tablet: 768,
+  desktop: 1024,
+  large: 1440
+} as const
 
-export function useIsMobile() {
-  const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined)
+const MOBILE_BREAKPOINT = BREAKPOINTS.tablet
+const TABLET_BREAKPOINT = BREAKPOINTS.desktop
+
+// Enhanced useMediaQuery hook
+export function useMediaQuery(query: string) {
+  const [matches, setMatches] = React.useState<boolean>(false)
 
   React.useEffect(() => {
-    const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`)
-    const onChange = () => {
-      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
+    const media = window.matchMedia(query)
+    if (media.matches !== matches) {
+      setMatches(media.matches)
     }
-    mql.addEventListener("change", onChange)
-    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
-    return () => mql.removeEventListener("change", onChange)
-  }, [])
+    const listener = () => setMatches(media.matches)
+    media.addEventListener('change', listener)
+    return () => media.removeEventListener('change', listener)
+  }, [matches, query])
 
-  return !!isMobile
+  return matches
+}
+
+export function useIsMobile() {
+  return useMediaQuery(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`)
 }
 
 export function useIsTablet() {
-  const [isTablet, setIsTablet] = React.useState<boolean | undefined>(undefined)
-
-  React.useEffect(() => {
-    const mql = window.matchMedia(`(min-width: ${MOBILE_BREAKPOINT}px) and (max-width: ${TABLET_BREAKPOINT - 1}px)`)
-    const onChange = () => {
-      const width = window.innerWidth
-      setIsTablet(width >= MOBILE_BREAKPOINT && width < TABLET_BREAKPOINT)
-    }
-    mql.addEventListener("change", onChange)
-    const width = window.innerWidth
-    setIsTablet(width >= MOBILE_BREAKPOINT && width < TABLET_BREAKPOINT)
-    return () => mql.removeEventListener("change", onChange)
-  }, [])
-
-  return !!isTablet
+  return useMediaQuery(`(min-width: ${MOBILE_BREAKPOINT}px) and (max-width: ${TABLET_BREAKPOINT - 1}px)`)
 }
 
 export function useScreenSize() {
-  const [screenSize, setScreenSize] = React.useState<'mobile' | 'tablet' | 'desktop'>('desktop')
+  const isMobile = useIsMobile()
+  const isTablet = useIsTablet()
+  
+  if (isMobile) return 'mobile'
+  if (isTablet) return 'tablet'
+  return 'desktop'
+}
 
-  React.useEffect(() => {
-    const updateScreenSize = () => {
-      const width = window.innerWidth
-      if (width < MOBILE_BREAKPOINT) {
-        setScreenSize('mobile')
-      } else if (width < TABLET_BREAKPOINT) {
-        setScreenSize('tablet')
-      } else {
-        setScreenSize('desktop')
-      }
-    }
+// Additional responsive utilities
+export function useIsDesktop() {
+  return useMediaQuery(`(min-width: ${TABLET_BREAKPOINT}px)`)
+}
 
-    updateScreenSize()
-    window.addEventListener('resize', updateScreenSize)
-    return () => window.removeEventListener('resize', updateScreenSize)
-  }, [])
+export function useIsLarge() {
+  return useMediaQuery(`(min-width: ${BREAKPOINTS.large}px)`)
+}
 
-  return screenSize
+// Touch device detection
+export function useIsTouchDevice() {
+  return useMediaQuery('(hover: none) and (pointer: coarse)')
 }

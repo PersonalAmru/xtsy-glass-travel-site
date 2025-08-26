@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 import PerformantImage from "./PerformantImage";
+import { useMediaQuery } from "@/hooks/use-mobile";
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -15,6 +16,11 @@ const HeroSection = () => {
   const [bookNowClicks, setBookNowClicks] = useState(551);
   const [averageRating, setAverageRating] = useState(4.9);
   const [tourCount, setTourCount] = useState<number>(45);
+
+  // Use the new responsive hooks
+  const isMobile = useMediaQuery('(max-width: 767px)');
+  const isTablet = useMediaQuery('(min-width: 768px) and (max-width: 1023px)');
+  const isDesktop = useMediaQuery('(min-width: 1024px)');
 
   // 12 most common travel-friendly languages
   const languages = ["Hello", "नमस्ते", "হ্যালো", "Hola", "Bonjour", "Hallo", "Ciao", "こんにちは", "안녕하세요", "Olá", "Привет", "مرحبا"];
