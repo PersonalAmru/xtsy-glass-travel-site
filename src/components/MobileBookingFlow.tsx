@@ -4,11 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ArrowRight, ArrowLeft, IndianRupee, Users, Calendar, MessageCircle } from "lucide-react";
+import { ArrowRight, ArrowLeft, Users, Calendar, MessageCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import RoomCard from "./RoomCard";
 import { useApp } from "@/contexts/AppContext";
-import GuestDetails from "./GuestDetails";
+import { Input } from "@/components/ui/input";
 
 const ROOM_DATA = {
   "signature-270-glass-suite": {
@@ -190,8 +190,6 @@ const MobileBookingFlow = ({ isOpen, onClose, initialData }: MobileBookingFlowPr
   const [promoCode, setPromoCode] = useState('');
   const [promoDiscount, setPromoDiscount] = useState(0);
   const [promoApplied, setPromoApplied] = useState(false);
-  const [showGuestDetails, setShowGuestDetails] = useState(false);
-  const [bookingData, setBookingData] = useState<any>(null);
 
   const { toast } = useToast();
   const roomsArray = Object.values(ROOM_DATA);
@@ -295,31 +293,29 @@ const MobileBookingFlow = ({ isOpen, onClose, initialData }: MobileBookingFlowPr
     };
   };
 
-  const handleRoomSelection = (roomId: string, guests: number, rooms: number) => {
+  const handleRoomSelection = (roomId: string) => {
+    // This is a simple room selection for mobile - just add/remove from selection
     const roomData = ROOM_DATA[roomId as keyof typeof ROOM_DATA];
     if (!roomData) return;
 
     setSelectedRooms(prev => {
       const existing = prev.find(r => r.id === roomId);
       if (existing) {
-        if (guests === 0 && rooms === 0) {
-          return prev.filter(r => r.id !== roomId);
-        }
-        return prev.map(r =>
-          r.id === roomId
-            ? { ...r, selection: { guests, rooms } }
-            : r
-        );
-      } else if (guests > 0 || rooms > 0) {
+        // Remove if already selected
+        return prev.filter(r => r.id !== roomId);
+      } else {
+        // Add with default selection
         return [...prev, {
           id: roomId,
           name: roomData.name,
           price: roomData.price,
           type: roomData.type,
-          selection: { guests, rooms }
+          selection: { 
+            guests: roomData.type === 'dorm' ? 1 : 1, 
+            rooms: roomData.type === 'dorm' ? 0 : 1 
+          }
         }];
       }
-      return prev;
     });
   };
 
@@ -391,7 +387,7 @@ Please confirm availability and booking process.`;
   };
 
   const applyPromoCode = () => {
-    const validPromoCodes = {
+    const validPromoCodes: Record<string, number> = {
       'XTSY10': 10,
       'WELCOME15': 15,
       'MEGHALAYA20': 20,
@@ -470,17 +466,14 @@ Please confirm availability and booking process.`;
                 </div>
                 
                 {roomsArray.map((room) => {
-                  const selectedRoom = selectedRooms.find(r => r.id === room.id);
+                  const isSelected = selectedRooms.find(r => r.id === room.id);
                   return (
                     <RoomCard
                       key={room.id}
                       room={room}
-                      onRoomSelect={handleRoomSelection}
-                      selectedRooms={selectedRoom ? [selectedRoom] : []}
-                      setSelectedRooms={setSelectedRooms}
-                      formatPrice={formatPrice}
-                      initialGuests={initialData.guests}
-                      isMobile={true}
+                      propertyType={room.propertyType}
+                      onSelectRoom={() => handleRoomSelection(room.id)}
+                      isLuxury={room.propertyType === "luxury"}
                     />
                   );
                 })}
@@ -609,6 +602,33 @@ Please confirm availability and booking process.`;
                         </div>
                       </div>
                     </div>
+                  </CardContent>
+                </Card>
+
+                {/* Promo Code */}
+                <Card>
+                  <CardContent className="p-4">
+                    <h3 className="font-bold mb-3">Promo Code</h3>
+                    <div className="flex space-x-2">
+                      <Input
+                        placeholder="Enter promo code"
+                        value={promoCode}
+                        onChange={(e) => setPromoCode(e.target.value)}
+                        className="flex-1"
+                      />
+                      <Button 
+                        onClick={applyPromoCode}
+                        disabled={!promoCode || promoApplied}
+                        size="sm"
+                      >
+                        Apply
+                      </Button>
+                    </div>
+                    {promoApplied && (
+                      <p className="text-green-600 text-sm mt-2">
+                        {promoDiscount}% discount applied!
+                      </p>
+                    )}
                   </CardContent>
                 </Card>
 
