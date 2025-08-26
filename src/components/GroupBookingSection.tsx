@@ -10,7 +10,7 @@ const GroupBookingSection = () => {
   const [showB2BForm, setShowB2BForm] = useState(false);
 
   return (
-    <section id="group-booking-section" className="py-16 bg-gradient-to-br from-orange-50 via-red-50 to-pink-50 relative overflow-hidden">
+    <section id="group-booking-section" className="pt-12 pb-16 bg-gradient-to-br from-orange-50 via-red-50 to-pink-50 relative overflow-hidden -mt-1">
       <div className="absolute inset-0 bg-gradient-to-br from-orange-100/30 via-transparent to-red-100/30" />
       <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-orange-500 via-red-500 to-pink-500" />
       

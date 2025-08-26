@@ -19,7 +19,7 @@ const AdventureCallToAction = () => {
   };
 
   return (
-    <section className="py-16 sm:py-20 px-3 sm:px-4 bg-gradient-to-br from-slate-100 via-white to-slate-100 relative overflow-hidden">
+    <section className="pt-12 pb-16 bg-gradient-to-br from-slate-100 via-white to-slate-100 relative overflow-hidden -mt-1">
       {/* Background animations - More densely packed */}
       <div className="absolute inset-0">
         {[...Array(8)].map((_, i) => (

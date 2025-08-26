@@ -111,7 +111,7 @@ const ReviewsSection = () => {
     return () => clearInterval(interval);
   }, []);
 
-  return <section id="reviews" className="py-20 px-4 relative bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 overflow-hidden">
+  return <section id="reviews" className="pt-16 pb-20 px-4 relative bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 overflow-hidden -mt-1">
       {/* Enhanced Background Effects - Updated to black and shining */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black animate-pulse" />
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-30 animate-pulse" />
