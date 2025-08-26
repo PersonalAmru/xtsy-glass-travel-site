@@ -12,7 +12,6 @@ import { CalendarDays, Users, MapPin, Phone, Mail, User, CreditCard } from 'luci
 import RoomCard from '@/components/RoomCard';
 import FastRoomCard from '@/components/FastRoomCard';
 import GuestDetails from '@/components/GuestDetails';
-import PaymentHandler from '@/components/PaymentHandler';
 import UPIPaymentModal from '@/components/UPIPaymentModal';
 import { toast } from 'sonner';
 import { ROOM_DATA } from '@/data/rooms/xtsy270';
@@ -58,15 +57,9 @@ const BookingFlow = () => {
     zipCode: string;
   } | null>(null);
   const [paymentMethod, setPaymentMethod] = useState<'card' | 'upi' | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
 
   const roomsArray: Room[] = Object.values(ROOM_DATA);
-
-  // Ultra-fast loading initialization
-  useEffect(() => {
-    setIsLoading(false); // Immediate load
-  }, []);
 
   // Pre-select room immediately when params are available
   useEffect(() => {
@@ -80,8 +73,8 @@ const BookingFlow = () => {
             price: room.price,
             type: room.type,
             selection: {
-              guests: room.type === 'dorm' ? 1 : 1,
-              rooms: room.type === 'dorm' ? 0 : 1
+              guests: room.type === 'private' ? 1 : 1,
+              rooms: room.type === 'private' ? 1 : 0
             }
           }]);
         }
@@ -105,8 +98,8 @@ const BookingFlow = () => {
           price: room.price,
           type: room.type,
           selection: {
-            guests: room.type === 'dorm' ? 1 : 1,
-            rooms: room.type === 'dorm' ? 0 : 1
+            guests: room.type === 'private' ? 1 : 1,
+            rooms: room.type === 'private' ? 1 : 0
           }
         }];
       }
@@ -187,19 +180,28 @@ const BookingFlow = () => {
     setPaymentMethod(method);
   };
 
-  // Instant loading screen
-  if (isLoading) {
-    return (
-      <>
-        <Header />
-        <main className="container mx-auto px-4 py-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="animate-spin rounded-full h-6 w-6 border-2 border-orange-200 border-t-orange-600 mx-auto"></div>
-          </div>
-        </main>
-      </>
-    );
-  }
+  const calculateTotalAmount = () => {
+    return selectedRooms.reduce((total, room) => {
+      return total + (room.price * room.selection.guests * (room.type === 'private' ? room.selection.rooms : 1));
+    }, 0);
+  };
+
+  const generateBookingId = () => {
+    return `XTSY-${Date.now()}-${Math.random().toString(36).substr(2, 5).toUpperCase()}`;
+  };
+
+  const getBookingData = () => {
+    if (!guestDetails) return null;
+    
+    return {
+      bookingId: generateBookingId(),
+      guestName: `${guestDetails.firstName} ${guestDetails.lastName}`,
+      checkIn: new Date().toISOString(),
+      checkOut: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+      totalAmount: calculateTotalAmount(),
+      whatsappNumber: guestDetails.phone
+    };
+  };
 
   return (
     <>
@@ -222,7 +224,7 @@ const BookingFlow = () => {
                 {roomsArray.map((room) => {
                   const selectedRoom = selectedRooms.find(r => r.id === room.id);
                   const isSelected = !!selectedRoom;
-                  const selection = selectedRoom?.selection || { guests: 1, rooms: room.type === 'dorm' ? 0 : 1 };
+                  const selection = selectedRoom?.selection || { guests: 1, rooms: room.type === 'private' ? 1 : 0 };
                   
                   return (
                     <FastRoomCard
@@ -251,7 +253,7 @@ const BookingFlow = () => {
                 <p className="text-gray-600">Please provide your contact information for the booking</p>
               </div>
 
-              <GuestDetails setGuestInfo={setGuestInfo} />
+              <GuestDetails onGuestDetailsChange={setGuestInfo} />
 
               <div className="flex justify-between">
                 <Button variant="outline" onClick={handlePrevious}><CalendarDays className="mr-2" /> Previous: Rooms</Button>
@@ -267,7 +269,35 @@ const BookingFlow = () => {
                 <p className="text-gray-600">Choose your payment method to complete the booking</p>
               </div>
 
-              <PaymentHandler handlePayment={handlePayment} />
+              <Card>
+                <CardContent className="p-6 space-y-4">
+                  <h3 className="font-semibold mb-4">Select Payment Method</h3>
+                  <div className="space-y-3">
+                    <Button
+                      variant={paymentMethod === 'card' ? 'default' : 'outline'}
+                      className="w-full justify-start"
+                      onClick={() => handlePayment('card')}
+                    >
+                      <CreditCard className="mr-2 h-4 w-4" />
+                      Credit/Debit Card
+                    </Button>
+                    <Button
+                      variant={paymentMethod === 'upi' ? 'default' : 'outline'}
+                      className="w-full justify-start"
+                      onClick={() => handlePayment('upi')}
+                    >
+                      <Phone className="mr-2 h-4 w-4" />
+                      UPI Payment
+                    </Button>
+                  </div>
+                  <div className="pt-4 border-t">
+                    <div className="flex justify-between items-center">
+                      <span className="font-semibold">Total Amount:</span>
+                      <span className="text-xl font-bold text-orange-600">₹{calculateTotalAmount()}</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
 
               <div className="flex justify-between">
                 <Button variant="outline" onClick={handlePrevious}><User className="mr-2" /> Previous: Guest Details</Button>
@@ -278,7 +308,13 @@ const BookingFlow = () => {
         </div>
       </main>
 
-      <UPIPaymentModal isOpen={isPaymentModalOpen} onClose={() => setIsPaymentModalOpen(false)} />
+      {getBookingData() && (
+        <UPIPaymentModal 
+          isOpen={isPaymentModalOpen} 
+          onClose={() => setIsPaymentModalOpen(false)}
+          bookingData={getBookingData()!}
+        />
+      )}
     </>
   );
 };
