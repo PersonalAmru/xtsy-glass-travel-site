@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -127,7 +128,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
     <>
       <CardWrapper>
         <Card 
-          className={`transition-all duration-300 cursor-pointer hover:shadow-lg bg-black text-white border-gray-700 ${
+          className={`transition-all duration-300 cursor-pointer hover:shadow-lg bg-black text-white border-gray-700 overflow-hidden ${
             isSelected 
               ? 'ring-2 ring-primary shadow-lg bg-gray-900' 
               : 'hover:shadow-md hover:bg-gray-900'
@@ -141,7 +142,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
             <div className={`relative overflow-hidden ${
               isXTSY270 
                 ? `${isMobile ? 'w-2/5 h-32' : isTablet ? 'w-2/5 h-36' : 'w-2/5 h-40'} rounded-l-lg`
-                : 'rounded-t-lg'
+                : 'rounded-t-lg w-full'
             }`}>
               {isXTSY270 ? (
                 // For XTSY 270, keep the simple image display
@@ -149,7 +150,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                   <img
                     src={room.image}
                     alt={room.name}
-                    className={`w-full object-cover transition-transform duration-300 hover:scale-105 cursor-pointer h-full`}
+                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
                     loading="lazy"
                     onClick={() => handleImageClick(roomImages, 0)}
                   />
@@ -161,16 +162,18 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                   )}
                 </>
               ) : (
-                // For other rooms, use the mobile carousel
-                <MobileImageCarousel
-                  images={roomImages}
-                  alt={room.name}
-                  className={isMobile ? 'h-32' : isTablet ? 'h-36' : 'h-40'}
-                  aspectRatio="photo"
-                  showIndicators={true}
-                  showArrows={true}
-                  onImageClick={handleImageClick}
-                />
+                // For other rooms, use the mobile carousel with full width
+                <div className="w-full">
+                  <MobileImageCarousel
+                    images={roomImages}
+                    alt={room.name}
+                    className={`w-full ${isMobile ? 'h-32' : isTablet ? 'h-36' : 'h-40'}`}
+                    aspectRatio="photo"
+                    showIndicators={true}
+                    showArrows={true}
+                    onImageClick={handleImageClick}
+                  />
+                </div>
               )}
             </div>
 
