@@ -89,8 +89,8 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
           {/* Content Section */}
           <div className={`${isXTSY270 ? 'flex-1 flex flex-col' : ''}`}>
             <CardHeader className={`${
-              isMobile ? 'pb-1 px-3 pt-2' : 'pb-1 pt-3'
-            } ${isXTSY270 ? 'pb-1 pt-2 px-3' : ''}`}>
+              isMobile ? 'pb-2 px-3 pt-2' : 'pb-2 pt-3'
+            } ${isXTSY270 ? 'pb-2 pt-2 px-3' : ''}`}>
               <div className="flex items-start justify-between">
                 <CardTitle className={`font-semibold text-white ${
                   isMobile ? 'text-sm' : 'text-base'
@@ -147,58 +147,10 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                 )}
               </div>
 
-              {/* Always visible room/guest selection */}
+              {/* Room selection only */}
               <div className={`space-y-2 pt-2 border-t border-gray-700 ${
                 isMobile ? 'space-y-2 pt-2' : ''
               } ${isXTSY270 ? 'space-y-2 pt-2 mt-auto' : ''}`}>
-                {/* Guest Selection */}
-                <div className="flex items-center justify-between">
-                  <span className={`font-medium text-white ${
-                    isMobile ? 'text-xs' : 'text-sm'
-                  } ${isXTSY270 ? 'text-xs' : ''}`}>
-                    Guests:
-                  </span>
-                  <div className="flex items-center gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onGuestChange(room.id, Math.max(1, selection.guests - 1));
-                      }}
-                      disabled={selection.guests <= 1}
-                      className={`border-gray-600 bg-gray-800 text-white hover:bg-gray-700 ${
-                        isMobile ? 'h-6 w-6 p-0' : 'h-7 w-7 p-0'
-                      } ${isXTSY270 ? 'h-6 w-6 p-0' : ''}`}
-                    >
-                      <Minus className={`${
-                        isMobile ? 'h-3 w-3' : 'h-3 w-3'
-                      } ${isXTSY270 ? 'h-3 w-3' : ''}`} />
-                    </Button>
-                    <span className={`text-center font-medium text-white ${
-                      isMobile ? 'w-5 text-xs' : 'w-6 text-sm'
-                    } ${isXTSY270 ? 'w-5 text-xs' : ''}`}>
-                      {selection.guests}
-                    </span>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onGuestChange(room.id, Math.min(room.maxGuests, selection.guests + 1));
-                      }}
-                      disabled={selection.guests >= room.maxGuests}
-                      className={`border-gray-600 bg-gray-800 text-white hover:bg-gray-700 ${
-                        isMobile ? 'h-6 w-6 p-0' : 'h-7 w-7 p-0'
-                      } ${isXTSY270 ? 'h-6 w-6 p-0' : ''}`}
-                    >
-                      <Plus className={`${
-                        isMobile ? 'h-3 w-3' : 'h-3 w-3'
-                      } ${isXTSY270 ? 'h-3 w-3' : ''}`} />
-                    </Button>
-                  </div>
-                </div>
-
                 {/* Room Selection */}
                 <div className="flex items-center justify-between">
                   <span className={`font-medium text-white ${
