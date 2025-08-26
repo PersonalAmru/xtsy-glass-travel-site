@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -46,11 +47,10 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
     return (room.price || 0) * nights * selection.rooms;
   };
 
-  // Handle increment with proper React event prevention
+  // Handle increment with proper event prevention
   const handleIncrement = React.useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    e.nativeEvent.stopImmediatePropagation();
     
     const maxSelection = room.maxRooms || 5;
     if (selection.rooms < maxSelection) {
@@ -58,11 +58,10 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
     }
   }, [room.id, room.maxRooms, selection.rooms, onRoomChange]);
 
-  // Handle decrement with proper React event prevention
+  // Handle decrement with proper event prevention
   const handleDecrement = React.useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    e.nativeEvent.stopImmediatePropagation();
     
     if (selection.rooms > 0) {
       onRoomChange(room.id, selection.rooms - 1);
@@ -74,6 +73,8 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
     // Prevent card selection if clicking on buttons or their containers
     const target = e.target as HTMLElement;
     if (target.closest('button') || target.closest('[data-toggle-container]')) {
+      e.preventDefault();
+      e.stopPropagation();
       return;
     }
     onRoomSelect(room.id);
@@ -203,7 +204,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                 isMobile ? 'space-y-2 pt-2' : ''
               } ${isXTSY270 ? 'space-y-2 pt-2 mt-auto' : ''}`}>
               {/* Bed/Room Selection */}
-                <div className="flex items-center justify-between" data-toggle-container>
+                <div className="flex items-center justify-between" data-toggle-container onClick={(e) => e.stopPropagation()}>
                   <span className={`font-medium text-white ${
                     isMobile ? 'text-xs' : 'text-sm'
                   } ${isXTSY270 ? 'text-xs' : ''}`}>
