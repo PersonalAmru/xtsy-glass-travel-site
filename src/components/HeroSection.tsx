@@ -3,14 +3,14 @@ import { Calendar, Users, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
-import EnhancedBookingModal from "./EnhancedBookingModal";
+import { useNavigate } from "react-router-dom";
 import PerformantImage from "./PerformantImage";
 
 const HeroSection = () => {
+  const navigate = useNavigate();
   const [checkIn, setCheckIn] = useState(new Date().toISOString().split('T')[0]);
   const [checkOut, setCheckOut] = useState("");
   const [guests, setGuests] = useState("4");
-  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [currentLanguageIndex, setCurrentLanguageIndex] = useState(0);
   const [bookNowClicks, setBookNowClicks] = useState(551);
   const [averageRating, setAverageRating] = useState(4.9);
@@ -31,19 +31,7 @@ const HeroSection = () => {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const handleReopenBookingModal = (event: any) => {
-      const bookingData = event.detail;
-      if (bookingData && bookingData.checkIn && bookingData.checkOut) {
-        setCheckIn(bookingData.checkIn);
-        setCheckOut(bookingData.checkOut);
-        setGuests(bookingData.guests?.toString() || "4");
-        setIsBookingModalOpen(true);
-      }
-    };
-    window.addEventListener('reopenBookingModal', handleReopenBookingModal);
-    return () => window.removeEventListener('reopenBookingModal', handleReopenBookingModal);
-  }, []);
+  // Removed reopenBookingModal listener since we're not using modals anymore
 
   useEffect(() => {
     const languageInterval = setInterval(() => {
@@ -150,7 +138,13 @@ const HeroSection = () => {
     // Save to localStorage to persist across sessions for this browser
     localStorage.setItem('universalBookNowClicks', newCount.toString());
     
-    setIsBookingModalOpen(true);
+    // Navigate to booking flow instead of opening modal
+    const params = new URLSearchParams({
+      checkIn,
+      checkOut,
+      guests
+    });
+    navigate(`/booking?${params.toString()}`);
   };
 
   const handleSearch = () => {
@@ -307,11 +301,6 @@ const HeroSection = () => {
         </div>
       </section>
 
-      <EnhancedBookingModal isOpen={isBookingModalOpen} onClose={() => setIsBookingModalOpen(false)} initialData={{
-      checkIn,
-      checkOut,
-      guests: parseInt(guests) || 1
-    }} />
     </>;
 };
 

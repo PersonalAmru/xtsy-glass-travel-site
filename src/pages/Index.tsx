@@ -8,41 +8,11 @@ import GroupBookingSection from "@/components/GroupBookingSection";
 import AdventureCallToAction from "@/components/AdventureCallToAction";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import GuestDetails from "@/components/GuestDetails";
 import LazyWrapper from "@/components/LazyWrapper";
 import SEOContent from "@/components/SEOContent";
 import FAQSection from "@/components/FAQSection";
 
 const Index = () => {
-  const [showGuestDetails, setShowGuestDetails] = useState(false);
-  const [bookingData, setBookingData] = useState<any>(null);
-
-  useEffect(() => {
-    const handleOpenGuestDetails = (event: CustomEvent) => {
-      setBookingData(event.detail);
-      setShowGuestDetails(true);
-    };
-
-    window.addEventListener('openGuestDetails', handleOpenGuestDetails as EventListener);
-
-    return () => {
-      window.removeEventListener('openGuestDetails', handleOpenGuestDetails as EventListener);
-    };
-  }, []);
-
-  const handleCloseGuestDetails = () => {
-    setShowGuestDetails(false);
-    setBookingData(null);
-  };
-
-  const handleBackToBooking = () => {
-    setShowGuestDetails(false);
-    // Reopen the booking modal
-    window.dispatchEvent(new CustomEvent('reopenBookingModal', { 
-      detail: bookingData 
-    }));
-  };
-
   return (
     <div className="min-h-screen">
       <SEOContent page="home" />
@@ -69,15 +39,6 @@ const Index = () => {
         </LazyWrapper>
       </main>
       <Footer />
-      
-      {showGuestDetails && bookingData && (
-        <GuestDetails
-          isOpen={true}
-          onClose={handleCloseGuestDetails}
-          onBack={handleBackToBooking}
-          bookingData={bookingData}
-        />
-      )}
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Users } from "lucide-react";
 import { useApp } from "@/contexts/AppContext";
+import { useNavigate } from "react-router-dom";
 import MobileImageCarousel from "./MobileImageCarousel";
 
 interface RoomCardProps {
@@ -24,6 +25,7 @@ interface RoomCardProps {
 
 const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCardProps) => {
   const { formatPrice, currency } = useApp();
+  const navigate = useNavigate();
   
   // Apply weekend/weekday hike for USD/EUR guests to the displayed price
   const getDisplayPrice = () => {
@@ -36,6 +38,18 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
       price = Math.round(price * hike);
     }
     return price;
+  };
+
+  const handleRoomSelection = () => {
+    // Navigate to booking flow with pre-selected room and property type
+    const params = new URLSearchParams({
+      checkIn: new Date().toISOString().split('T')[0],
+      checkOut: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().split('T')[0], // Tomorrow
+      guests: '1',
+      roomType: room.id,
+      propertyType: propertyType
+    });
+    navigate(`/booking?${params.toString()}`);
   };
   
   const displayPrice = getDisplayPrice();
@@ -85,7 +99,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
               <span className="text-lg font-bold text-orange-600 font-playfair">{formatPrice(displayPrice)}/night</span>
             </div>
             <Button 
-              onClick={onSelectRoom}
+              onClick={handleRoomSelection}
               className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 font-josefin mobile-button"
             >
               {buttonText.split(' - ')[0]}
@@ -138,7 +152,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
             <span className="text-lg font-bold text-orange-600 font-playfair">{formatPrice(displayPrice)}/night</span>
           </div>
           <Button 
-            onClick={onSelectRoom}
+            onClick={handleRoomSelection}
             className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 font-josefin mobile-button"
           >
             {buttonText.split(' - ')[0]}
