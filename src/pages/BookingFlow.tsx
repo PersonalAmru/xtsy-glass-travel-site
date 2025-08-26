@@ -344,7 +344,7 @@ const BookingFlow = () => {
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-orange-500/20 rounded-2xl blur-xl"></div>
                   <div className="relative z-10">
                     <h1 className="text-4xl md:text-5xl font-bold text-white mb-2 font-playfair">
-                      Live the shillong vibe
+                      Live the Shillong Vibe
                     </h1>
                     <p className="text-lg text-gray-200/80 font-medium">
                       Experience the magic of the hills
