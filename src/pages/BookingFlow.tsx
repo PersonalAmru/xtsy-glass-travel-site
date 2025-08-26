@@ -120,7 +120,7 @@ const BookingFlow = () => {
       toast({
         title: "Missing Information",
         description: "Please select a room and check-in/check-out dates to continue.",
-        variant: "warning",
+        variant: "destructive",
       });
       return;
     }
