@@ -154,6 +154,7 @@ export default function BookingFlow() {
   const [showUPIModal, setShowUPIModal] = useState(false);
   const screenSize = useScreenSize();
   const isMobileView = screenSize === 'mobile';
+  const isTabletView = screenSize === 'tablet';
   
   const preSelectedRoom = searchParams.get('room');
   const preSelectedProperty = searchParams.get('property');
@@ -351,14 +352,24 @@ export default function BookingFlow() {
       isMobileView ? 'pb-20' : ''
     }`}>
       <Header />
-      <div className={`container mx-auto px-4 py-8 ${
-        isMobileView ? 'px-2 py-4' : ''
+      <div className={`container mx-auto py-8 ${
+        isMobileView ? 'px-2 py-4' : isTabletView ? 'px-4' : 'px-6'
       }`}>
-        <div className={`grid gap-8 ${
-          isMobileView ? 'grid-cols-1' : 'grid-cols-1 lg:grid-cols-3'
+        <div className={`${
+          isMobileView 
+            ? 'flex flex-col space-y-4' 
+            : isTabletView 
+              ? 'grid grid-cols-1 gap-6' 
+              : 'grid grid-cols-3 gap-8'
         }`}>
-          {/* Booking Summary - Mobile: Show first, Desktop: Show on right */}
-          <div className={isMobileView ? 'order-1' : 'lg:col-start-3'}>
+          {/* Booking Summary */}
+          <div className={`${
+            isMobileView 
+              ? 'order-1' 
+              : isTabletView 
+                ? 'order-1 max-w-md mx-auto w-full' 
+                : 'col-span-1 order-2'
+          }`}>
             <BookingSummary
               checkIn={bookingDates.checkIn}
               checkOut={bookingDates.checkOut}
@@ -368,14 +379,20 @@ export default function BookingFlow() {
           </div>
 
           {/* Main Content */}
-          <div className={isMobileView ? 'order-2' : 'lg:col-span-2'}>
+          <div className={`${
+            isMobileView 
+              ? 'order-2' 
+              : isTabletView 
+                ? 'order-2' 
+                : 'col-span-2 order-1'
+          }`}>
             {/* Progress Bar */}
             <div className={`mb-8 ${isMobileView ? 'mb-4' : ''}`}>
               <div className={`flex items-center justify-between mb-4 ${
                 isMobileView ? 'mb-2 px-2' : ''
               }`}>
                 <h1 className={`font-bold text-gray-900 ${
-                  isMobileView ? 'text-xl' : 'text-3xl'
+                  isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'
                 }`}>
                   {isMobileView ? 'Book Stay' : 'Book Your Stay'}
                 </h1>
@@ -442,30 +459,32 @@ export default function BookingFlow() {
             {/* Step Content */}
             {currentStep === 'rooms' && (
               <div className="space-y-8">
-                <div className="text-center mb-12">
+                <div className={`text-center ${isMobileView ? 'mb-6' : 'mb-12'}`}>
                   <h2 className={`font-bold text-gray-800 mb-3 font-playfair ${
-                    isMobileView ? 'text-2xl' : 'text-3xl sm:text-4xl md:text-5xl'
+                    isMobileView ? 'text-2xl' : isTabletView ? 'text-3xl' : 'text-4xl'
                   }`}>
                     Choose Your Accommodation
                   </h2>
                   <p className={`text-gray-600 max-w-2xl mx-auto ${
-                    isMobileView ? 'text-base px-4' : 'text-lg sm:text-xl'
+                    isMobileView ? 'text-base px-4' : isTabletView ? 'text-lg px-6' : 'text-xl'
                   }`}>
                     Select from our available rooms and customize your stay
                   </p>
-                  <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-6 rounded-full" />
+                  <div className={`bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-6 rounded-full ${
+                    isMobileView ? 'w-20 h-1' : 'w-24 h-1'
+                  }`} />
                 </div>
                 
                 {/* XTSY Luxury Section */}
                 {roomsByProperty.luxury.length > 0 && (
                   <div className="space-y-4">
                     <h3 className={`font-bold text-center font-playfair bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent ${
-                      isMobileView ? 'text-xl' : 'text-2xl sm:text-3xl'
+                      isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'
                     }`}>
                       XTSY Luxury
                     </h3>
                     <div className={`grid gap-6 ${
-                      isMobileView ? 'grid-cols-1' : 'md:grid-cols-2 lg:grid-cols-3'
+                      isMobileView ? 'grid-cols-1' : isTabletView ? 'grid-cols-1' : 'grid-cols-2'
                     }`}>
                       {roomsByProperty.luxury.map((room) => {
                         const selectedRoom = selectedRooms.find(r => r.id === room.id);
@@ -492,12 +511,12 @@ export default function BookingFlow() {
                 {roomsByProperty.hostel.length > 0 && (
                   <div className="space-y-4">
                     <h3 className={`font-bold text-center font-playfair bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent ${
-                      isMobileView ? 'text-xl' : 'text-2xl sm:text-3xl'
+                      isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'
                     }`}>
                       XTSY Travellers Hostel
                     </h3>
                     <div className={`grid gap-6 ${
-                      isMobileView ? 'grid-cols-1' : 'md:grid-cols-2 lg:grid-cols-3'
+                      isMobileView ? 'grid-cols-1' : isTabletView ? 'grid-cols-2' : 'grid-cols-3'
                     }`}>
                       {roomsByProperty.hostel.map((room) => {
                         const selectedRoom = selectedRooms.find(r => r.id === room.id);
@@ -524,12 +543,12 @@ export default function BookingFlow() {
                 {roomsByProperty.economy.length > 0 && (
                   <div className="space-y-4">
                     <h3 className={`font-bold text-center font-playfair bg-gradient-to-r from-green-500 to-teal-600 bg-clip-text text-transparent ${
-                      isMobileView ? 'text-xl' : 'text-2xl sm:text-3xl'
+                      isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'
                     }`}>
                       XTSY Economy
                     </h3>
                     <div className={`grid gap-6 ${
-                      isMobileView ? 'grid-cols-1' : 'md:grid-cols-2 lg:grid-cols-3'
+                      isMobileView ? 'grid-cols-1' : isTabletView ? 'grid-cols-2' : 'grid-cols-3'
                     }`}>
                       {roomsByProperty.economy.map((room) => {
                         const selectedRoom = selectedRooms.find(r => r.id === room.id);

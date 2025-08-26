@@ -77,9 +77,9 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
           </CardTitle>
           <div className={`text-right ${isMobileView ? 'self-end' : ''}`}>
             <div className={`font-bold text-primary ${
-              isMobileView ? 'text-lg' : 'text-2xl'
+              isMobileView ? 'text-lg' : isTabletView ? 'text-xl' : 'text-2xl'
             }`}>
-              ₹{room.price.toLocaleString()}
+              ₹{room.price?.toLocaleString() || '0'}
             </div>
             <div className={`text-muted-foreground ${
               isMobileView ? 'text-xs' : 'text-sm'
@@ -214,9 +214,9 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                 Subtotal:
               </span>
               <span className={`font-bold text-primary ${
-                isMobileView ? 'text-base' : 'text-lg'
+                isMobileView ? 'text-base' : isTabletView ? 'text-lg' : 'text-xl'
               }`}>
-                ₹{(room.price * selection.guests * selection.rooms).toLocaleString()}
+                ₹{((room.price || 0) * selection.guests * selection.rooms).toLocaleString()}
               </span>
             </div>
           </div>
