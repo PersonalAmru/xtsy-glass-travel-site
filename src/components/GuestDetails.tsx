@@ -107,7 +107,6 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
   };
 
   const validateForm = () => {
-    // All fields are mandatory except emergency contact fields
     const requiredFields = ['guestName', 'email', 'whatsappNumber', 'address', 'city', 'state', 'pincode'];
     const hasRequiredFields = requiredFields.every(field => formData[field as keyof typeof formData].trim() !== '');
     
@@ -423,95 +422,22 @@ Until then—safe travels & pack light 🧳🌿
                 </div>
               </div>
 
-              {/* Detailed Booking Summary - Hidden when compact */}
-              {!isHeaderCompact && (
-                <div className="mt-3 p-3 rounded-lg bg-blue-50 border border-blue-200 transition-all duration-300">
-                  <div className="text-sm font-medium text-blue-800 mb-2">
-                    📋 Booking Details
+              {/* Compact Booking Summary - Always visible but minimal */}
+              <div className="mt-2 p-2 rounded-md bg-blue-50 border border-blue-200 transition-all duration-300">
+                <div className="flex items-center justify-between">
+                  <div className="text-xs text-blue-700">
+                    {bookingData.selectedRooms.length} room{bookingData.selectedRooms.length > 1 ? 's' : ''} • {bookingData.nights} night{bookingData.nights > 1 ? 's' : ''}
+                    {bookingData.discountAmount > 0 && ` • Discount applied`}
                   </div>
-                  
-                  {/* Room Details */}
-                  <div className="space-y-2">
-                    {bookingData.selectedRooms.map((room, index) => {
-                      const isDorm = room.type === 'dorm';
-                      const quantity = isDorm ? room.selection.guests : room.selection.rooms;
-                      const unitPrice = room.price;
-                      const totalPrice = unitPrice * quantity * bookingData.nights;
-                      
-                      return (
-                        <div key={index} className="flex justify-between items-center text-xs text-blue-700">
-                          <span className="font-medium">
-                            {room.name}: {quantity} {isDorm ? 'beds' : 'rooms'} × {bookingData.nights} nights
-                          </span>
-                          <span className="font-semibold">{formatPrice(totalPrice)}</span>
-                        </div>
-                      );
-                    })}
-                    
-                    {/* Add-ons */}
-                    {bookingData.addOns && (
-                      <>
-                        {bookingData.addOns.breakfast > 0 && (
-                          <div className="flex justify-between items-center text-xs text-blue-700">
-                            <span>Breakfast: {bookingData.addOns.breakfast} persons × {bookingData.nights} nights</span>
-                            <span>Included</span>
-                          </div>
-                        )}
-                        {bookingData.addOns.dinnerVeg > 0 && (
-                          <div className="flex justify-between items-center text-xs text-blue-700">
-                            <span>Dinner (Veg): {bookingData.addOns.dinnerVeg} persons × {bookingData.nights} nights</span>
-                            <span>Included</span>
-                          </div>
-                        )}
-                        {bookingData.addOns.dinnerNonVeg > 0 && (
-                          <div className="flex justify-between items-center text-xs text-blue-700">
-                            <span>Dinner (Non-Veg): {bookingData.addOns.dinnerNonVeg} persons × {bookingData.nights} nights</span>
-                            <span>Included</span>
-                          </div>
-                        )}
-                        {bookingData.addOns.transportation && (
-                          <div className="flex justify-between items-center text-xs text-blue-700">
-                            <span>Transportation</span>
-                            <span>On request</span>
-                          </div>
-                        )}
-                        {bookingData.addOns.itineraryPlanning && (
-                          <div className="flex justify-between items-center text-xs text-blue-700">
-                            <span>Itinerary Planning</span>
-                            <span>On request</span>
-                          </div>
-                        )}
-                      </>
-                    )}
-                    
-                    {/* Pricing Breakdown */}
-                    <div className="border-t border-blue-300 pt-2 mt-2">
-                      <div className="flex justify-between items-center text-xs text-blue-700">
-                        <span>Subtotal</span>
-                        <span>{formatPrice(bookingData.subtotal)}</span>
-                      </div>
-                      {bookingData.discountAmount > 0 && (
-                        <div className="flex justify-between items-center text-xs text-blue-700">
-                          <span>Discount {bookingData.couponCode && `(${bookingData.couponCode})`}</span>
-                          <span>-{formatPrice(bookingData.discountAmount)}</span>
-                        </div>
-                      )}
-                      <div className="flex justify-between items-center text-xs text-blue-700">
-                        <span>GST {bookingData.gstAmount === 0 ? '(Exempt)' : ''}</span>
-                        <span>{formatPrice(bookingData.gstAmount)}</span>
-                      </div>
-                      <div className="flex justify-between items-center text-sm font-semibold text-blue-800 border-t border-blue-300 pt-1 mt-1">
-                        <span>Total Amount</span>
-                        <span>{formatPrice(bookingData.totalAmount)}</span>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="text-xs mt-2 text-blue-600">
-                    Complete booking via WhatsApp with payment details
+                  <div className="text-right">
+                    <div className="text-xl font-bold text-blue-800">{formatPrice(bookingData.totalAmount)}</div>
                   </div>
                 </div>
-              )}
+                
+                <div className="text-xs mt-1 text-blue-600">
+                  Complete booking via WhatsApp with payment details
+                </div>
+              </div>
             </div>
 
             {/* Scrollable Form Content */}
