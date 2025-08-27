@@ -62,7 +62,7 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
         ];
       case 'In-House Cafe':
         return [
-          { property: 'XTSY Economy', note: 'No In-House cafe; Upgrade your stay plan to avail In-House Cafe', type: 'restriction' }
+          { property: 'XTSY Economy', note: 'No in-house cafe available', type: 'restriction' }
         ];
       case 'Games Room':
         return [
