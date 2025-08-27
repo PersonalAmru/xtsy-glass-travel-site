@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -142,11 +141,11 @@ const ReviewsSection = () => {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
                     {filteredReviews.slice(slideIndex, slideIndex + 3).map((review, index) => <Card 
                         key={index} 
-                        className="backdrop-blur-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-2xl transform-gpu cursor-pointer h-[280px] flex flex-col hover:border-white/20"
+                        className="backdrop-blur-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-2xl transform-gpu cursor-pointer h-[320px] flex flex-col hover:border-white/20"
                         onClick={() => handleReviewClick(review)}
                       >
                         <CardHeader className="flex-shrink-0 pb-3">
-                          <div className="flex items-center justify-between">
+                          <div className="flex items-center justify-between mb-2">
                             <CardTitle className="text-lg font-semibold text-white font-['Poppins'] truncate">
                               {review.name}
                             </CardTitle>
@@ -157,6 +156,14 @@ const ReviewsSection = () => {
                               <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                             </div>
                           </div>
+                          
+                          {/* XTSY Travellers Hostel Tag */}
+                          <div className="mb-3">
+                            <span className="inline-block bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-sm">
+                              XTSY Travellers Hostel
+                            </span>
+                          </div>
+
                           <CardDescription className="text-gray-400 text-sm font-['Inter']">
                             <div className="flex items-center gap-2 mb-1">
                               <span>{review.date}</span>
@@ -260,7 +267,12 @@ const ReviewsSection = () => {
         <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="flex items-center justify-between">
-              <span className="text-xl font-semibold">{selectedReview?.name}</span>
+              <div className="flex flex-col gap-2">
+                <span className="text-xl font-semibold">{selectedReview?.name}</span>
+                <span className="inline-block bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-sm w-fit">
+                  XTSY Travellers Hostel
+                </span>
+              </div>
               <div className="flex items-center gap-2">
                 <span className="text-yellow-600 font-bold">
                   {selectedReview?.source === "MakeMyTrip" ? `${selectedReview?.rating}/5` : `${selectedReview?.rating}/10`}
