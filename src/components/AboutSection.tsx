@@ -1,7 +1,57 @@
+
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Phone, Clock, Users, Heart, Globe, Award, Camera, Building2, Star, Shield, Wifi } from "lucide-react";
+import { useEffect } from "react";
 
 const AboutSection = () => {
+  useEffect(() => {
+    // Update document head with SEO meta tags
+    document.title = "XTSY India | Hostels, Budget & Luxury Stay in Shillong and Across India";
+    
+    // Update meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Discover XTSY – premium hostels, boutique rooms, and curated tours in Shillong, Meghalaya and beyond. Loved by global travelers.');
+    } else {
+      const newMetaDescription = document.createElement('meta');
+      newMetaDescription.name = 'description';
+      newMetaDescription.content = 'Discover XTSY – premium hostels, boutique rooms, and curated tours in Shillong, Meghalaya and beyond. Loved by global travelers.';
+      document.head.appendChild(newMetaDescription);
+    }
+
+    // Update meta keywords
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) {
+      metaKeywords.setAttribute('content', 'hostel India, luxury stay Shillong, budget travel Meghalaya, backpackers, India travel, global tourism');
+    } else {
+      const newMetaKeywords = document.createElement('meta');
+      newMetaKeywords.name = 'keywords';
+      newMetaKeywords.content = 'hostel India, luxury stay Shillong, budget travel Meghalaya, backpackers, India travel, global tourism';
+      document.head.appendChild(newMetaKeywords);
+    }
+
+    // Update Open Graph tags
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) {
+      ogTitle.setAttribute('content', 'XTSY | Stay in Shillong & Explore Northeast India');
+    } else {
+      const newOgTitle = document.createElement('meta');
+      newOgTitle.setAttribute('property', 'og:title');
+      newOgTitle.content = 'XTSY | Stay in Shillong & Explore Northeast India';
+      document.head.appendChild(newOgTitle);
+    }
+
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    if (ogDescription) {
+      ogDescription.setAttribute('content', 'Experience India through XTSY\'s stays and travel packages. Based in Shillong, built for global explorers.');
+    } else {
+      const newOgDescription = document.createElement('meta');
+      newOgDescription.setAttribute('property', 'og:description');
+      newOgDescription.content = 'Experience India through XTSY\'s stays and travel packages. Based in Shillong, built for global explorers.';
+      document.head.appendChild(newOgDescription);
+    }
+  }, []);
+
   const coreServices = [
     {
       icon: Building2,
@@ -73,7 +123,7 @@ const AboutSection = () => {
   }];
 
   return (
-    <section id="about" className="pt-20 py-16 sm:py-20 px-3 sm:px-4 bg-gradient-to-br from-slate-50 via-white to-slate-100 relative overflow-hidden">
+    <main id="about" className="pt-20 py-16 sm:py-20 px-3 sm:px-4 bg-gradient-to-br from-slate-50 via-white to-slate-100 relative overflow-hidden">
       
       {/* Background Animation Elements */}
       <div className="absolute inset-0">
@@ -93,21 +143,57 @@ const AboutSection = () => {
 
       <div className="container mx-auto max-w-7xl relative z-10">
         
-        {/* Header Section */}
-        <header className="text-center mb-12 sm:mb-16 bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-white/50">
+        {/* SEO-Optimized Header Section with Semantic HTML */}
+        <section className="text-center mb-12 sm:mb-16 bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-white/50">
           <div className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-elegant">
             <Award className="w-4 h-4" />
             <span>Premium Hospitality Excellence</span>
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-800 mb-6">About XTSY!</h1>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-800 mb-6">About XTSY – Stay & Travel India</h1>
           <p className="text-lg sm:text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
-            <strong className="text-slate-800">India's Premier Hostel Experience</strong> in Shillong, Meghalaya. 
-            Featuring our exclusive <strong className="text-slate-800">270° Panorama Glass Ensuite</strong>, 
-            comprehensive dormitory facilities, and expertly curated 
-            <strong className="text-slate-800"> Meghalaya tour packages</strong>.
+            Welcome to <strong className="text-slate-800">XTSY – India's emerging travel and stay brand</strong>, based in 
+            <strong className="text-slate-800"> Shillong, Meghalaya</strong>. We offer curated stays from panoramic luxury suites 
+            to budget-friendly hostels across Northeast India and beyond. <strong className="text-slate-800">Top hostel destination 
+            for international travelers</strong> seeking authentic experiences in India.
           </p>
-        </header>
+        </section>
 
+        {/* Why Global Travelers Choose XTSY */}
+        <section className="mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 text-center mb-8">Why Global Travelers Choose XTSY</h2>
+          <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-elegant border border-white/50">
+            <ul className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+              <li className="p-6 bg-slate-50 rounded-xl">
+                <Camera className="w-12 h-12 text-primary mx-auto mb-4" />
+                <h3 className="font-semibold text-slate-800 mb-2">Panoramic Luxury Suites in Shillong</h3>
+                <p className="text-slate-600 text-sm">Experience <strong>Shillong panoramic views</strong> from our exclusive 270° Glass Ensuite</p>
+              </li>
+              <li className="p-6 bg-slate-50 rounded-xl">
+                <Users className="w-12 h-12 text-primary mx-auto mb-4" />
+                <h3 className="font-semibold text-slate-800 mb-2">Curated Backpacker Hostels Across India</h3>
+                <p className="text-slate-600 text-sm">Perfect for <strong>India backpacker routes</strong> and budget-conscious travelers</p>
+              </li>
+              <li className="p-6 bg-slate-50 rounded-xl">
+                <Globe className="w-12 h-12 text-primary mx-auto mb-4" />
+                <h3 className="font-semibold text-slate-800 mb-2">Immersive Cultural Tours in Northeast India</h3>
+                <p className="text-slate-600 text-sm">Authentic local experiences <strong>trusted by international guests across EU and UK</strong></p>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        {/* Our Presence Across India */}
+        <section className="mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 text-center mb-8">Our Presence Across India</h2>
+          <div className="bg-primary rounded-3xl p-8 text-primary-foreground shadow-xl">
+            <p className="text-lg leading-relaxed text-center max-w-4xl mx-auto">
+              From the highlands of Meghalaya to the tea gardens of Assam and the tribal trails of Nagaland, 
+              <strong> XTSY operates across 7 Northeast states and growing</strong>. Our mission is to connect travelers 
+              to authentic, locally hosted experiences. We provide <strong>affordable luxury for digital nomads</strong> 
+              and serve as the gateway for those who <strong>stay in Shillong, India</strong> and explore the region.
+            </p>
+          </div>
+        </section>
         
         {/* Core Services Section - Sliding Tags Only */}
         <section className="mb-12 overflow-hidden bg-black rounded-2xl shadow-soft border border-gray-800">
@@ -299,7 +385,32 @@ const AboutSection = () => {
               </CardContent>
             </Card>
           </div>
-        </div>
+        </section>
+
+        {/* Book Direct. Experience Local. */}
+        <section className="mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 text-center mb-8">Book Direct. Experience Local.</h2>
+          <div className="text-center bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-elegant border border-white/50">
+            <p className="text-lg text-slate-600 mb-6">
+              With XTSY - Book your stay or explore our 7-state travel packages today.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a 
+                href="/booking" 
+                className="inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground rounded-xl font-semibold hover:bg-primary/90 transition-colors duration-300"
+              >
+                Book Now
+              </a>
+              <span className="text-slate-400 self-center">|</span>
+              <a 
+                href="/travel" 
+                className="inline-flex items-center justify-center px-8 py-3 bg-slate-800 text-white rounded-xl font-semibold hover:bg-slate-700 transition-colors duration-300"
+              >
+                View Tours
+              </a>
+            </div>
+          </div>
+        </section>
 
         {/* Excellence Highlights */}
         <div className="bg-primary rounded-3xl p-8 sm:p-12 text-primary-foreground mb-16 shadow-xl">
@@ -353,7 +464,7 @@ const AboutSection = () => {
           }
         `}
       </style>
-    </section>
+    </main>
   );
 };
 
