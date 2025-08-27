@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { 
@@ -67,7 +66,7 @@ const ServicesSection = () => {
       icon: <ShieldCheck className="h-5 w-5" />,
       title: "24/7 Security",
       description: "Round-the-clock security and reception",
-      badge: "Always"
+      badge: "24/7"
     },
     {
       icon: <MapPin className="h-5 w-5" />,
