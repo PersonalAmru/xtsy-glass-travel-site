@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { 
@@ -12,7 +13,8 @@ import {
   Users, 
   Calendar,
   Phone,
-  Clock
+  Clock,
+  Sofa
 } from "lucide-react";
 import { useScreenSize, useIsMobile } from "@/hooks/use-mobile";
 import { useState } from 'react';
@@ -44,10 +46,10 @@ const ServicesSection = () => {
       badge: "9 AM to 9 PM"
     },
     {
-      icon: <Utensils className="h-5 w-5" />,
-      title: "In-House Cafe",
-      description: "Fresh coffee, local snacks and delicacies available 24/7",
-      badge: "9 AM to 9 PM"
+      icon: <Sofa className="h-5 w-5" />,
+      title: "Shared Lounge",
+      description: "Netflix and chill",
+      badge: "24/7"
     },
     {
       icon: <Gamepad2 className="h-5 w-5" />,

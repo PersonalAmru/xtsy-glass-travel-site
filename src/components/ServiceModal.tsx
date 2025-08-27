@@ -30,6 +30,8 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
         return ['XTSY Travellers Hostel', 'XTSY Luxury'];
       case 'In-House Cafe':
         return ['XTSY Travellers Hostel', 'XTSY Luxury'];
+      case 'Shared Lounge':
+        return ['XTSY Travellers Hostel', 'XTSY Luxury'];
       case 'Games Room':
         return ['XTSY Travellers Hostel', 'XTSY Luxury'];
       case 'Laundry':
@@ -62,7 +64,11 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
         ];
       case 'In-House Cafe':
         return [
-          { property: 'XTSY Economy', note: 'No in-house cafe available', type: 'restriction' }
+          { property: 'XTSY Economy', note: 'No In-House cafe; Upgrade your stay plan to avail In-House Cafe', type: 'restriction' }
+        ];
+      case 'Shared Lounge':
+        return [
+          { property: 'XTSY Economy', note: 'Strictly No', type: 'restriction' }
         ];
       case 'Games Room':
         return [
