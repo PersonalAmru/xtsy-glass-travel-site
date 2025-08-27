@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { 
@@ -24,80 +25,100 @@ const ServicesSection = () => {
   const [selectedService, setSelectedService] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const services = [
+  const allServices = [
     {
       icon: <Wifi className="h-5 w-5" />,
       title: "Free WiFi",
       description: "High-speed internet throughout the property",
-      badge: "Free"
+      badge: "Free",
+      availableFor: ["economy", "hostel", "luxury"]
     },
     {
       icon: <Car className="h-5 w-5" />,
       title: "Free parking",
       description: "Secure parking available for guests",
-      badge: "Free"
+      badge: "Free",
+      availableFor: ["hostel", "luxury"]
     },
     {
       icon: <Coffee className="h-5 w-5" />,
       title: "In-House Cafe",
       description: "24/7 cafe serving fresh coffee, snacks and local delicacies",
-      badge: "9 AM to 9 PM"
+      badge: "9 AM to 9 PM",
+      availableFor: ["hostel", "luxury"]
     },
     {
       icon: <Utensils className="h-5 w-5" />,
       title: "In-House Cafe",
       description: "Fresh coffee, local snacks and delicacies available 24/7",
-      badge: "9 AM to 9 PM"
+      badge: "9 AM to 9 PM",
+      availableFor: ["hostel", "luxury"]
     },
     {
       icon: <Gamepad2 className="h-5 w-5" />,
       title: "Games Room",
       description: "Recreation area with games and entertainment",
-      badge: "Free Access"
+      badge: "Free Access",
+      availableFor: ["hostel", "luxury"]
     },
     {
       icon: <Shirt className="h-5 w-5" />,
       title: "Laundry",
       description: "Washing and drying facilities",
-      badge: "Paid"
+      badge: "Paid",
+      availableFor: ["hostel", "luxury"]
     },
     {
       icon: <ShieldCheck className="h-5 w-5" />,
       title: "24/7 Security",
       description: "Round-the-clock security and reception",
-      badge: "Always"
+      badge: "Always",
+      availableFor: ["hostel", "luxury"]
     },
     {
       icon: <MapPin className="h-5 w-5" />,
       title: "Tour Assistance",
       description: "Local tour planning and bookings",
-      badge: "Expert Help"
+      badge: "Expert Help",
+      availableFor: ["hostel", "luxury"]
     },
     {
       icon: <Users className="h-5 w-5" />,
       title: "Group Bookings",
       description: "Special rates for group reservations",
-      badge: "Discounts"
+      badge: "Discounts",
+      availableFor: ["hostel", "luxury"]
     },
     {
       icon: <Calendar className="h-5 w-5" />,
       title: "Event Space",
       description: "Special events, photoshoots, retreats, and programs booking",
-      badge: "Bookable"
+      badge: "Bookable",
+      availableFor: ["hostel", "luxury"]
     },
     {
       icon: <Phone className="h-5 w-5" />,
       title: "24/7 Support",
       description: "Round-the-clock guest assistance",
-      badge: "Always Available"
+      badge: "Always Available",
+      availableFor: ["hostel", "luxury"]
     },
     {
       icon: <Clock className="h-5 w-5" />,
       title: "Flexible Check-in",
       description: "Convenient check-in and check-out times",
-      badge: "Flexible"
+      badge: "Flexible",
+      availableFor: ["hostel", "luxury"]
     }
   ];
+
+  // For demo purposes, showing all services (hostel/luxury view)
+  // In a real app, this would be determined by the user's booking type
+  const currentAccommodationType = "hostel"; // This could be "economy", "hostel", or "luxury"
+  
+  const services = allServices.filter(service => 
+    service.availableFor.includes(currentAccommodationType)
+  );
 
   const getGridClasses = () => {
     if (isMobile) return "grid-cols-2";
@@ -137,11 +158,24 @@ const ServicesSection = () => {
               Amenities & Services
             </h2>
             <p className="text-lg sm:text-xl text-gray-700 font-medium max-w-2xl mx-auto">
-              Everything you need for a comfortable stay
+              {currentAccommodationType === "economy" 
+                ? "Basic amenities for budget travelers" 
+                : "Everything you need for a comfortable stay"
+              }
             </p>
             <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 mx-auto mt-4 rounded-full" />
           </div>
         </div>
+
+        {currentAccommodationType === "economy" && (
+          <div className="mb-8 text-center">
+            <div className="glass-card inline-block p-4 rounded-xl bg-orange-100/20 backdrop-blur-md border border-orange-200/30 shadow-lg">
+              <p className="text-orange-800 font-semibold text-sm sm:text-base">
+                🔒 XTSY Economy includes only bed & Wi-Fi. For additional amenities like terrace, common lounge, and games room, please upgrade to XTSY Travellers Hostel or XTSY Luxury.
+              </p>
+            </div>
+          </div>
+        )}
 
         <div className={`grid ${getGridClasses()} gap-4 sm:gap-6 mt-8 mobile-reduce-animations`}>
           {services.map((service, index) => (
