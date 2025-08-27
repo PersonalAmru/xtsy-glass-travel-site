@@ -1,129 +1,94 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { 
-  Wifi, 
-  Car, 
-  Coffee, 
-  Utensils, 
-  Gamepad2, 
-  Shirt, 
-  ShieldCheck, 
-  MapPin, 
-  Users, 
-  Calendar,
-  Phone,
-  Clock,
-  Sofa
-} from "lucide-react";
+import { Wifi, Car, Coffee, Utensils, Gamepad2, Shirt, ShieldCheck, MapPin, Users, Calendar, Phone, Clock, Sofa } from "lucide-react";
 import { useScreenSize, useIsMobile } from "@/hooks/use-mobile";
 import { useState } from 'react';
 import ServiceModal from './ServiceModal';
-
 const ServicesSection = () => {
   const screenSize = useScreenSize();
   const isMobile = useIsMobile();
   const [selectedService, setSelectedService] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const services = [
-    {
-      icon: <Wifi className="h-5 w-5" />,
-      title: "Free Wi-Fi",
-      description: "High-speed internet throughout the property",
-      badge: "Free"
-    },
-    {
-      icon: <Car className="h-5 w-5" />,
-      title: "Free Parking",
-      description: "Secure parking available for guests",
-      badge: "Free"
-    },
-    {
-      icon: <Coffee className="h-5 w-5" />,
-      title: "In-House Cafe",
-      description: "24/7 cafe serving fresh coffee, snacks and local delicacies",
-      badge: "9 AM to 9 PM"
-    },
-    {
-      icon: <Sofa className="h-5 w-5" />,
-      title: "Shared Lounge",
-      description: "Netflix & Chill",
-      badge: "24/7"
-    },
-    {
-      icon: <Gamepad2 className="h-5 w-5" />,
-      title: "Games Room",
-      description: "Recreation area with games and entertainment",
-      badge: "Free Access"
-    },
-    {
-      icon: <Shirt className="h-5 w-5" />,
-      title: "Laundry",
-      description: "Washing And Drying Facilities",
-      badge: "Paid"
-    },
-    {
-      icon: <ShieldCheck className="h-5 w-5" />,
-      title: "24/7 Security",
-      description: "Round-the-clock security and reception",
-      badge: "24/7"
-    },
-    {
-      icon: <MapPin className="h-5 w-5" />,
-      title: "Tour Assistance",
-      description: "Local tour planning and bookings",
-      badge: "Expert Help"
-    },
-    {
-      icon: <Users className="h-5 w-5" />,
-      title: "Group Bookings",
-      description: "Special rates for group reservations",
-      badge: "Discounts"
-    },
-    {
-      icon: <Calendar className="h-5 w-5" />,
-      title: "Event Space",
-      description: "Special events, photo shoots, retreats, and programs booking",
-      badge: "Bookable"
-    },
-    {
-      icon: <Phone className="h-5 w-5" />,
-      title: "24/7 Support",
-      description: "Round-the-clock guest assistance",
-      badge: "24/7"
-    },
-    {
-      icon: <Clock className="h-5 w-5" />,
-      title: "Flexible Check-in",
-      description: "Convenient check-in and check-out times",
-      badge: "Flexible"
-    }
-  ];
-
+  const services = [{
+    icon: <Wifi className="h-5 w-5" />,
+    title: "Free Wi-Fi",
+    description: "High-speed internet throughout the property",
+    badge: "Free"
+  }, {
+    icon: <Car className="h-5 w-5" />,
+    title: "Free Parking",
+    description: "Secure parking available for guests",
+    badge: "Free"
+  }, {
+    icon: <Coffee className="h-5 w-5" />,
+    title: "In-House Cafe",
+    description: "24/7 cafe serving fresh coffee, snacks and local delicacies",
+    badge: "9 AM to 9 PM"
+  }, {
+    icon: <Sofa className="h-5 w-5" />,
+    title: "Shared Lounge",
+    description: "Netflix & Chill",
+    badge: "24/7"
+  }, {
+    icon: <Gamepad2 className="h-5 w-5" />,
+    title: "Games Room",
+    description: "Recreation area with games and entertainment",
+    badge: "Free Access"
+  }, {
+    icon: <Shirt className="h-5 w-5" />,
+    title: "Laundry",
+    description: "Washing And Drying Facilities",
+    badge: "Paid"
+  }, {
+    icon: <ShieldCheck className="h-5 w-5" />,
+    title: "24/7 Security",
+    description: "Round-the-clock security and reception",
+    badge: "24/7"
+  }, {
+    icon: <MapPin className="h-5 w-5" />,
+    title: "Tour Assistance",
+    description: "Local tour planning and bookings",
+    badge: "Expert Help"
+  }, {
+    icon: <Users className="h-5 w-5" />,
+    title: "Group Bookings",
+    description: "Special rates for group reservations",
+    badge: "Discounts"
+  }, {
+    icon: <Calendar className="h-5 w-5" />,
+    title: "Event Space",
+    description: "Special events, photo shoots, retreats, and programs booking",
+    badge: "Bookable"
+  }, {
+    icon: <Phone className="h-5 w-5" />,
+    title: "24/7 Support",
+    description: "Round-the-clock guest assistance",
+    badge: "24/7"
+  }, {
+    icon: <Clock className="h-5 w-5" />,
+    title: "Flexible Check-in",
+    description: "Convenient check-in and check-out times",
+    badge: "Flexible"
+  }];
   const getGridClasses = () => {
     if (isMobile) return "grid-cols-2";
     if (screenSize === 'tablet') return "grid-cols-3 md:grid-cols-4";
     return "grid-cols-4 lg:grid-cols-6";
   };
-
   const getCardHeight = () => {
     if (isMobile) return "h-52";
     if (screenSize === 'tablet') return "h-48";
     return "h-44 sm:h-48";
   };
-
   const handleServiceClick = (service: any) => {
     setSelectedService(service);
     setIsModalOpen(true);
   };
-
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedService(null);
   };
-
-  return (
-    <section className="pt-12 md:pt-16 lg:pt-20 pb-12 md:pb-16 lg:pb-20 safe-area-padding bg-gradient-to-br from-purple-900/20 via-pink-900/10 to-orange-900/20 relative overflow-hidden -mt-1">
+  return <section className="pt-12 md:pt-16 lg:pt-20 pb-12 md:pb-16 lg:pb-20 safe-area-padding bg-gradient-to-br from-purple-900/20 via-pink-900/10 to-orange-900/20 relative overflow-hidden -mt-1">
       <div className="absolute inset-0 bg-gradient-to-br from-purple-100/20 via-pink-100/10 to-orange-100/20" />
       <div className="absolute inset-0 backdrop-blur-3xl" />
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500" />
@@ -137,20 +102,13 @@ const ServicesSection = () => {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-purple-600 mb-3 font-playfair">
               Amenities & Services
             </h2>
-            <p className="text-lg sm:text-xl text-gray-700 font-medium max-w-2xl mx-auto">
-              From essential comforts to premium experiences - choose your perfect stay level
-            </p>
+            <p className="text-lg sm:text-xl text-gray-700 font-medium max-w-2xl mx-auto">From essential comforts to premium experiences - choose your perfect stay level [Preffered: XTSY Travellers Hostel / Luxury]</p>
             <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 mx-auto mt-4 rounded-full" />
           </div>
         </div>
 
         <div className={`grid ${getGridClasses()} gap-4 sm:gap-6 mt-8 mobile-reduce-animations`}>
-          {services.map((service, index) => (
-            <Card 
-              key={index} 
-              className={`glass-card bg-white/10 backdrop-blur-md border border-white/20 hover:border-white/30 hover:bg-white/15 hover:shadow-xl transition-all duration-500 ${getCardHeight()} flex flex-col group hover:scale-105 mobile-touch-target cursor-pointer`}
-              onClick={() => handleServiceClick(service)}
-            >
+          {services.map((service, index) => <Card key={index} className={`glass-card bg-white/10 backdrop-blur-md border border-white/20 hover:border-white/30 hover:bg-white/15 hover:shadow-xl transition-all duration-500 ${getCardHeight()} flex flex-col group hover:scale-105 mobile-touch-target cursor-pointer`} onClick={() => handleServiceClick(service)}>
               <CardHeader className="p-3 pb-2 flex-shrink-0">
                 <div className="flex items-center justify-between mb-2">
                   <div className="text-purple-600 group-hover:text-pink-600 transition-colors duration-300 flex-shrink-0">
@@ -160,35 +118,20 @@ const ServicesSection = () => {
                     {service.badge}
                   </Badge>
                 </div>
-                <CardTitle className={`font-bold text-gray-900 leading-tight group-hover:text-purple-900 transition-colors duration-300 ${
-                  isMobile ? 'text-sm' : 'text-sm sm:text-base'
-                }`}>
+                <CardTitle className={`font-bold text-gray-900 leading-tight group-hover:text-purple-900 transition-colors duration-300 ${isMobile ? 'text-sm' : 'text-sm sm:text-base'}`}>
                   {service.title}
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-3 pt-0 flex-1 flex items-start overflow-hidden">
-                <CardDescription className={`text-gray-700 leading-relaxed group-hover:text-gray-800 transition-colors duration-300 ${
-                  isMobile 
-                    ? 'text-xs line-clamp-4' 
-                    : screenSize === 'tablet' 
-                      ? 'text-xs line-clamp-3'
-                      : 'text-xs sm:text-sm line-clamp-3'
-                }`}>
+                <CardDescription className={`text-gray-700 leading-relaxed group-hover:text-gray-800 transition-colors duration-300 ${isMobile ? 'text-xs line-clamp-4' : screenSize === 'tablet' ? 'text-xs line-clamp-3' : 'text-xs sm:text-sm line-clamp-3'}`}>
                   {service.description}
                 </CardDescription>
               </CardContent>
-            </Card>
-          ))}
+            </Card>)}
         </div>
       </div>
 
-      <ServiceModal 
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        service={selectedService}
-      />
-    </section>
-  );
+      <ServiceModal isOpen={isModalOpen} onClose={handleCloseModal} service={selectedService} />
+    </section>;
 };
-
 export default ServicesSection;
