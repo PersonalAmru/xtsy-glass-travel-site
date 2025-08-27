@@ -101,8 +101,61 @@ const PolicyModal = ({ isOpen, onClose, type }: PolicyModalProps) => {
       <div className="text-center">
         <Shield className="h-12 w-12 text-blue-500 mx-auto mb-3" />
         <h3 className="text-xl font-bold text-gray-800 mb-2">Travel Policies</h3>
-        <p className="text-gray-600">Important guidelines for your stay at XTSY</p>
+        <p className="text-gray-600">Important guidelines for your stay at XTSY properties</p>
       </div>
+
+      <Card className="bg-red-50 border-red-200">
+        <CardContent className="p-4">
+          <h4 className="font-semibold text-red-600 mb-3 flex items-center">
+            <AlertTriangle className="h-4 w-4 mr-2" />
+            Universal Rules (All Properties) - Strict Enforcement
+          </h4>
+          <ul className="text-sm text-gray-700 space-y-2">
+            <li>• <strong>Respect fellow travelers & staff</strong> at all times</li>
+            <li>• <strong>Maintain cleanliness:</strong> ₹500 fine for littering in rooms/common areas</li>
+            <li>• <strong>Smoking policy:</strong> Designated outdoor zones only (₹2000 fine for indoor smoking)</li>
+            <li>• <strong>Alcohol restrictions:</strong> Only in Bonfire & Terrace zones (₹10,000 fine + legal action for violations)</li>
+            <li>• <strong>Bed assignments:</strong> Use assigned beds only (₹500 fine for unauthorized bed use)</li>
+            <li>• <strong>24/7 CCTV monitoring</strong> in all common areas for safety</li>
+            <li>• <strong>Round-the-clock caretakers</strong> available for assistance</li>
+          </ul>
+        </CardContent>
+      </Card>
+
+      <Card className="bg-orange-50 border-orange-200">
+        <CardContent className="p-4">
+          <h4 className="font-semibold text-orange-600 mb-3 flex items-center">
+            <Clock className="h-4 w-4 mr-2" />
+            Property-Specific Rules
+          </h4>
+          <div className="space-y-3">
+            <div>
+              <p className="font-medium text-gray-800">XTSY Economy Dorms:</p>
+              <ul className="text-sm text-gray-700 space-y-1 mt-1">
+                <li>• Quiet hours: 11 PM – 6 AM (strictly enforced)</li>
+                <li>• No food allowed in dorms (₹2000 fine)</li>
+                <li>• Upgrade required for common areas, terrace, bonfire access</li>
+              </ul>
+            </div>
+            <div>
+              <p className="font-medium text-gray-800">XTSY Travellers Hostel:</p>
+              <ul className="text-sm text-gray-700 space-y-1 mt-1">
+                <li>• Flexible quiet hours with guest consideration</li>
+                <li>• Food allowed in designated areas</li>
+                <li>• Free access to all amenities and experiences</li>
+              </ul>
+            </div>
+            <div>
+              <p className="font-medium text-gray-800">XTSY Luxury:</p>
+              <ul className="text-sm text-gray-700 space-y-1 mt-1">
+                <li>• No strict quiet hours, premium privacy</li>
+                <li>• All privileges included with room service</li>
+                <li>• Exclusive signature stay experience</li>
+              </ul>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
       <Card>
         <CardContent className="p-4">
@@ -115,51 +168,8 @@ const PolicyModal = ({ isOpen, onClose, type }: PolicyModalProps) => {
             <li>• Foreign nationals must present passport and valid visa</li>
             <li>• Check-in starts at 2:00 PM, Check-out by 11:00 AM</li>
             <li>• Early check-in subject to availability (additional charges may apply)</li>
+            <li>• Late check-in until 11:00 PM free, after 11:00 PM ₹500 fee</li>
             <li>• All guests must register at reception upon arrival</li>
-          </ul>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardContent className="p-4">
-          <h4 className="font-semibold text-purple-600 mb-3 flex items-center">
-            <Clock className="h-4 w-4 mr-2" />
-            Late Check-in Policy
-          </h4>
-          <ul className="text-sm text-gray-700 space-y-2">
-            <li>• Late check-in allowed until 11:00 PM with prior notification</li>
-            <li>• After 11:00 PM: ₹500 late check-in fee applies</li>
-            <li>• 24/7 reception available for emergencies</li>
-            <li>• Self check-in options available for verified bookings</li>
-            <li>• Contact +91 98633 17070 for late arrivals</li>
-          </ul>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardContent className="p-4">
-          <h4 className="font-semibold text-green-600 mb-3 flex items-center">
-            <Shield className="h-4 w-4 mr-2" />
-            Quiet Hours & Community Guidelines
-          </h4>
-          <ul className="text-sm text-gray-700 space-y-2">
-            <li>• Quiet hours: 11:00 PM to 6:00 AM daily</li>
-            <li>• Common areas close at 11:00 PM</li>
-            <li>• Respect fellow travelers and maintain noise levels</li>
-            <li>• No loud music or parties in dormitories</li>
-            <li>• Terrace and outdoor areas have extended hours until 12:00 AM</li>
-          </ul>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardContent className="p-4">
-          <h4 className="font-semibold text-orange-600 mb-3">Age & Booking Requirements</h4>
-          <ul className="text-sm text-gray-700 space-y-2">
-            <li>• Minimum age for booking: 18 years</li>
-            <li>• Guests under 18 must be accompanied by parent/guardian</li>
-            <li>• Group bookings (8+ people) require advance notice</li>
-            <li>• Corporate rates available for business travelers</li>
           </ul>
         </CardContent>
       </Card>
@@ -178,8 +188,27 @@ const PolicyModal = ({ isOpen, onClose, type }: PolicyModalProps) => {
       <div className="text-center">
         <FileText className="h-12 w-12 text-purple-500 mx-auto mb-3" />
         <h3 className="text-xl font-bold text-gray-800 mb-2">Hostel Terms & Conditions</h3>
-        <p className="text-gray-600">Community guidelines and accommodation rules</p>
+        <p className="text-gray-600">Community guidelines and accommodation rules with enforcement</p>
       </div>
+
+      <Card className="bg-red-50 border-red-200">
+        <CardContent className="p-4">
+          <h4 className="font-semibold text-red-600 mb-3 flex items-center">
+            <XCircle className="h-4 w-4 mr-2" />
+            Prohibited Activities & Fines
+          </h4>
+          <ul className="text-sm text-gray-700 space-y-2">
+            <li>• <strong>Indoor smoking:</strong> ₹2000 fine (designated outdoor areas only)</li>
+            <li>• <strong>Alcohol violations:</strong> ₹10,000 fine + legal action (Bonfire & Terrace zones only)</li>
+            <li>• <strong>Unauthorized bed use:</strong> ₹500 fine (use assigned beds only)</li>
+            <li>• <strong>Littering/uncleanliness:</strong> ₹500 fine (maintain room/common area cleanliness)</li>
+            <li>• <strong>XTSY Economy food in dorms:</strong> ₹2000 fine (no food allowed in dorms)</li>
+            <li>• <strong>Zero tolerance:</strong> Drugs or illegal substances (immediate eviction + legal action)</li>
+            <li>• <strong>Weapons/sharp objects:</strong> Not allowed in dormitories</li>
+            <li>• <strong>Outside visitors in dorms:</strong> Not allowed after 10:00 PM</li>
+          </ul>
+        </CardContent>
+      </Card>
 
       <Card>
         <CardContent className="p-4">
@@ -197,15 +226,34 @@ const PolicyModal = ({ isOpen, onClose, type }: PolicyModalProps) => {
 
       <Card>
         <CardContent className="p-4">
-          <h4 className="font-semibold text-red-600 mb-3">Prohibited Items & Activities</h4>
-          <ul className="text-sm text-gray-700 space-y-2">
-            <li>• No smoking inside the premises (designated outdoor areas only)</li>
-            <li>• Alcohol consumption only in designated areas after 8:00 PM</li>
-            <li>• No drugs or illegal substances (zero tolerance policy)</li>
-            <li>• No weapons or sharp objects in dormitories</li>
-            <li>• No outside visitors in dormitories after 10:00 PM</li>
-            <li>• No cooking with strong spices in shared kitchen</li>
-          </ul>
+          <h4 className="font-semibold text-orange-600 mb-3">Property-Specific Access Rules</h4>
+          <div className="space-y-3">
+            <div>
+              <p className="font-medium text-orange-700">XTSY Economy Dorms:</p>
+              <ul className="text-xs text-gray-600 space-y-1 mt-1">
+                <li>• Common areas: Upgrade required</li>
+                <li>• Terrace access: Upgrade required</li>
+                <li>• Bonfire nights: Upgrade required</li>
+                <li>• No charging points, study lights, or complimentary breakfast</li>
+              </ul>
+            </div>
+            <div>
+              <p className="font-medium text-green-700">XTSY Travellers Hostel:</p>
+              <ul className="text-xs text-gray-600 space-y-1 mt-1">
+                <li>• Free access to all amenities and common areas</li>
+                <li>• 10% discount at convenience store</li>
+                <li>• BBQ experiences available (paid)</li>
+              </ul>
+            </div>
+            <div>
+              <p className="font-medium text-blue-700">XTSY Luxury:</p>
+              <ul className="text-xs text-gray-600 space-y-1 mt-1">
+                <li>• All services included</li>
+                <li>• Exclusive premium facilities and experiences</li>
+                <li>• Dedicated concierge service</li>
+              </ul>
+            </div>
+          </div>
         </CardContent>
       </Card>
 
@@ -213,12 +261,13 @@ const PolicyModal = ({ isOpen, onClose, type }: PolicyModalProps) => {
         <CardContent className="p-4">
           <h4 className="font-semibold text-orange-600 mb-3">Damage Charges & Liability</h4>
           <ul className="text-sm text-gray-700 space-y-2">
-            <li>• Guests liable for damage to property or equipment</li>
-            <li>• Lost key card replacement: ₹200</li>
-            <li>• Damaged bed linens or towels: ₹500 per item</li>
-            <li>• Common area damage will be charged to responsible party</li>
+            <li>• <strong>Lost key card replacement:</strong> ₹200</li>
+            <li>• <strong>Damaged bed linens or towels:</strong> ₹500 per item</li>
+            <li>• <strong>Room cleanliness violations:</strong> ₹500 littering fine</li>
+            <li>• <strong>Common area damage:</strong> Charged to responsible party</li>
+            <li>• <strong>Group bookings (8+ people):</strong> Security deposit may be required</li>
             <li>• XTSY not liable for lost or stolen personal items</li>
-            <li>• Security deposit may be required for group bookings</li>
+            <li>• Guests liable for all damage to property or equipment</li>
           </ul>
         </CardContent>
       </Card>
@@ -227,12 +276,13 @@ const PolicyModal = ({ isOpen, onClose, type }: PolicyModalProps) => {
         <CardContent className="p-4">
           <h4 className="font-semibold text-blue-600 mb-3">Staff Authority & Enforcement</h4>
           <ul className="text-sm text-gray-700 space-y-2">
-            <li>• XTSY staff have authority to enforce all policies</li>
-            <li>• Violation of rules may result in immediate eviction</li>
+            <li>• XTSY staff have authority to enforce all policies and fines</li>
+            <li>• Violation of rules may result in immediate eviction without refund</li>
             <li>• No refund for bookings terminated due to policy violations</li>
             <li>• Management reserves right to refuse service</li>
             <li>• Final decisions on disputes rest with management</li>
-            <li>• CCTV monitoring in common areas for safety</li>
+            <li>• 24/7 CCTV monitoring in common areas for safety and enforcement</li>
+            <li>• All fines must be paid before check-out</li>
           </ul>
         </CardContent>
       </Card>
@@ -243,19 +293,20 @@ const PolicyModal = ({ isOpen, onClose, type }: PolicyModalProps) => {
           <ul className="text-sm text-gray-700 space-y-2">
             <li>• Right to clean and safe accommodation</li>
             <li>• 24/7 security and emergency assistance</li>
-            <li>• Access to all advertised amenities and services</li>
+            <li>• Access to all advertised amenities per property tier</li>
             <li>• Privacy and respectful treatment by staff</li>
             <li>• Complaint resolution through proper channels</li>
             <li>• Equal treatment regardless of nationality or background</li>
+            <li>• Clear communication of all applicable charges and fines</li>
           </ul>
         </CardContent>
       </Card>
 
       <div className="bg-purple-50 p-4 rounded-lg">
         <p className="text-sm text-purple-800">
-          <strong>Legal Disclaimer:</strong> These terms constitute a binding agreement between guests and XTSY Travellers Hostel. 
-          By completing your booking, you agree to abide by all stated terms and conditions. 
-          Management reserves the right to modify these terms with prior notice.
+          <strong>Legal Disclaimer:</strong> These terms constitute a binding agreement between guests and XTSY properties. 
+          By completing your booking, you agree to abide by all stated terms, conditions, and fine structures. 
+          Management reserves the right to modify these terms with prior notice. All fines are enforceable and must be paid before departure.
         </p>
       </div>
     </div>

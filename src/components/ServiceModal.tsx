@@ -17,75 +17,103 @@ interface ServiceModalProps {
 const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
   if (!service) return null;
 
-  // Define which properties offer each service
+  // Enhanced property-specific amenity access rules
   const getPropertyTags = (serviceTitle: string) => {
-    switch (serviceTitle) {
-      case 'Free Wi-Fi':
-        return ['XTSY Travellers Hostel', 'XTSY Luxury'];
-      case 'High Speed Wi-Fi':
-        return ['XTSY Luxury'];
-      case 'Flexible Check-in':
-        return ['XTSY Travellers Hostel', 'XTSY Luxury'];
-      case 'Free Parking':
-        return ['XTSY Travellers Hostel', 'XTSY Luxury'];
-      case 'In-House Cafe':
-        return ['XTSY Travellers Hostel', 'XTSY Luxury'];
-      case 'Shared Lounge':
-        return ['XTSY Travellers Hostel', 'XTSY Luxury'];
-      case 'Games Room':
-        return ['XTSY Travellers Hostel', 'XTSY Luxury'];
-      case 'Laundry':
-        return ['XTSY Travellers Hostel', 'XTSY Luxury'];
-      case '24/7 Security':
-        return ['XTSY Travellers Hostel', 'XTSY Luxury'];
-      case 'Tour Assistance':
-        return ['XTSY Travellers Hostel', 'XTSY Luxury'];
-      case 'Group Bookings':
-        return ['XTSY Travellers Hostel'];
-      case 'Event Space':
-        return ['XTSY Travellers Hostel', 'XTSY Luxury'];
-      case '24/7 Support':
-        return ['XTSY Travellers Hostel', 'XTSY Luxury'];
-      default:
-        return ['XTSY Travellers Hostel', 'XTSY Luxury'];
-    }
+    const amenityMatrix = {
+      'Free Wi-Fi': ['XTSY Travellers Hostel ✅', 'XTSY Luxury ✅'],
+      'High Speed Wi-Fi': ['XTSY Luxury ✅'],
+      'Flexible Check-in': ['XTSY Travellers Hostel ✅', 'XTSY Luxury ✅'],
+      'Free Parking': ['XTSY Travellers Hostel ✅', 'XTSY Luxury ✅'],
+      'In-House Cafe': ['XTSY Travellers Hostel ✅', 'XTSY Luxury ✅'],
+      'Shared Lounge': ['XTSY Travellers Hostel ✅', 'XTSY Economy (Upgrade Required)', 'XTSY Luxury ✅'],
+      'Common Room': ['XTSY Travellers Hostel ✅', 'XTSY Economy (Upgrade Required)', 'XTSY Luxury ✅'],
+      'Games Room': ['XTSY Travellers Hostel ✅', 'XTSY Luxury ✅'],
+      'Laundry': ['XTSY Travellers Hostel ✅', 'XTSY Luxury ✅'],
+      'Terrace Access': ['XTSY Travellers Hostel ✅', 'XTSY Economy (Upgrade Required)', 'XTSY Luxury ✅'],
+      'Bonfire Nights': ['XTSY Travellers Hostel ✅', 'XTSY Economy (Upgrade Required)', 'XTSY Luxury ✅'],
+      'BBQ Experience': ['XTSY Travellers Hostel (Paid)', 'XTSY Economy (Upgrade Required)', 'XTSY Luxury ✅'],
+      'Dome Photoshoot': ['XTSY Travellers Hostel ✅', 'XTSY Economy (Upgrade Required)', 'XTSY Luxury ✅'],
+      'Convenience Store': ['XTSY Travellers Hostel (10% Off)', 'XTSY Economy (MRP Pricing)', 'XTSY Luxury ✅'],
+      'Charging Point': ['XTSY Travellers Hostel ✅', 'XTSY Economy 🚫', 'XTSY Luxury ✅'],
+      'Study Light': ['XTSY Travellers Hostel ✅', 'XTSY Economy 🚫', 'XTSY Luxury ✅'],
+      'Complimentary Breakfast': ['XTSY Travellers Hostel ✅', 'XTSY Economy 🚫', 'XTSY Luxury ✅'],
+      'Free Room Upgrade': ['XTSY Travellers Hostel ✅', 'XTSY Economy 🚫', 'XTSY Luxury ✅'],
+      '24/7 Security': ['XTSY Travellers Hostel ✅', 'XTSY Economy ✅', 'XTSY Luxury ✅'],
+      'Tour Assistance': ['XTSY Travellers Hostel ✅', 'XTSY Economy ✅', 'XTSY Luxury ✅'],
+      'Group Bookings': ['XTSY Travellers Hostel ✅', 'XTSY Economy ✅', 'XTSY Luxury ✅'],
+      'Event Space': ['XTSY Travellers Hostel ✅', 'XTSY Luxury ✅'],
+      '24/7 Support': ['XTSY Travellers Hostel ✅', 'XTSY Economy ✅', 'XTSY Luxury ✅']
+    };
+
+    return amenityMatrix[serviceTitle] || ['XTSY Travellers Hostel ✅', 'XTSY Luxury ✅'];
   };
 
-  // Get special notes for specific services and properties
+  // Enhanced special notes with property-specific access rules
   const getSpecialNotes = (serviceTitle: string) => {
-    switch (serviceTitle) {
-      case 'Flexible Check-in':
-        return [];
-      case 'Free Parking':
-        return [];
-      case 'In-House Cafe':
-        return [];
-      case 'Shared Lounge':
-        return [];
-      case 'Games Room':
-        return [];
-      case 'Laundry':
-        return [
-          { property: 'XTSY Travellers Hostel', note: '50% Off', type: 'info' },
-          { property: 'XTSY Luxury', note: 'Free', type: 'premium' }
-        ];
-      case 'Tour Assistance':
-        return [
-          { property: 'XTSY Luxury', note: 'Dedicated tour concierge', type: 'premium' }
-        ];
-      case 'Group Bookings':
-        return [
-          { property: 'XTSY Luxury', note: 'Exclusive signature stay - only 1 available per night in India', type: 'premium' }
-        ];
-      case 'Event Space':
-        return [
-          { property: 'XTSY Luxury', note: 'Premium event facilities', type: 'premium' }
-        ];
-      case '24/7 Support':
-        return [];
-      default:
-        return [];
-    }
+    const accessRules = {
+      'Shared Lounge': [
+        { property: 'XTSY Travellers Hostel', note: 'Free access included', type: 'info' },
+        { property: 'XTSY Economy', note: 'Upgrade required for access', type: 'restriction' },
+        { property: 'XTSY Luxury', note: 'Premium lounge access included', type: 'premium' }
+      ],
+      'Common Room': [
+        { property: 'XTSY Travellers Hostel', note: 'Free access included', type: 'info' },
+        { property: 'XTSY Economy', note: 'Upgrade required for access', type: 'restriction' },
+        { property: 'XTSY Luxury', note: 'Exclusive common room access', type: 'premium' }
+      ],
+      'Terrace Access': [
+        { property: 'XTSY Travellers Hostel', note: 'Free terrace access', type: 'info' },
+        { property: 'XTSY Economy', note: 'Upgrade required for terrace', type: 'restriction' },
+        { property: 'XTSY Luxury', note: 'Private terrace access', type: 'premium' }
+      ],
+      'Bonfire Nights': [
+        { property: 'XTSY Travellers Hostel', note: 'Free participation', type: 'info' },
+        { property: 'XTSY Economy', note: 'Upgrade required to join', type: 'restriction' },
+        { property: 'XTSY Luxury', note: 'VIP bonfire experience', type: 'premium' }
+      ],
+      'BBQ Experience': [
+        { property: 'XTSY Travellers Hostel', note: 'Paid experience available', type: 'info' },
+        { property: 'XTSY Economy', note: 'Upgrade required + fees', type: 'restriction' },
+        { property: 'XTSY Luxury', note: 'Complimentary BBQ included', type: 'premium' }
+      ],
+      'Dome Photoshoot': [
+        { property: 'XTSY Travellers Hostel', note: 'Included experience', type: 'info' },
+        { property: 'XTSY Economy', note: 'Upgrade required for access', type: 'restriction' },
+        { property: 'XTSY Luxury', note: 'Professional photoshoot included', type: 'premium' }
+      ],
+      'Convenience Store': [
+        { property: 'XTSY Travellers Hostel', note: '10% discount on all items', type: 'info' },
+        { property: 'XTSY Economy', note: 'MRP pricing applies', type: 'restriction' },
+        { property: 'XTSY Luxury', note: 'Complimentary store credit included', type: 'premium' }
+      ],
+      'Charging Point': [
+        { property: 'XTSY Economy', note: 'Not available - upgrade needed', type: 'restriction' }
+      ],
+      'Study Light': [
+        { property: 'XTSY Economy', note: 'Not available - upgrade needed', type: 'restriction' }
+      ],
+      'Complimentary Breakfast': [
+        { property: 'XTSY Economy', note: 'Not included - upgrade needed', type: 'restriction' }
+      ],
+      'Free Room Upgrade': [
+        { property: 'XTSY Economy', note: 'Not available', type: 'restriction' }
+      ],
+      'Laundry': [
+        { property: 'XTSY Travellers Hostel', note: '50% discount on laundry services', type: 'info' },
+        { property: 'XTSY Luxury', note: 'Complimentary laundry service', type: 'premium' }
+      ],
+      'Tour Assistance': [
+        { property: 'XTSY Luxury', note: 'Dedicated tour concierge service', type: 'premium' }
+      ],
+      'Group Bookings': [
+        { property: 'XTSY Luxury', note: 'Exclusive signature stay - only 1 available per night in India', type: 'premium' }
+      ],
+      'Event Space': [
+        { property: 'XTSY Luxury', note: 'Premium event facilities with catering', type: 'premium' }
+      ]
+    };
+
+    return accessRules[serviceTitle] || [];
   };
 
   const propertyTags = getPropertyTags(service.title);

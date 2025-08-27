@@ -6,6 +6,46 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 const FAQSection = () => {
   const faqData = [
     {
+      question: "What are hostel quiet hours?",
+      answer: "XTSY Economy Dorms: Quiet hours are strictly enforced from 11 PM to 6 AM daily. XTSY Travellers Hostel: More flexible policy with consideration for fellow guests. XTSY Luxury: No strict quiet hours, premium privacy experience."
+    },
+    {
+      question: "Are food/alcohol allowed in rooms?",
+      answer: "XTSY Economy: No food allowed in dorms (₹2000 fine), alcohol only in designated areas. XTSY Travellers: Food allowed in designated areas, alcohol permitted in Bonfire & Terrace zones after 8 PM (₹10,000 fine for violations + legal action). XTSY Luxury: All privileges included with room service options."
+    },
+    {
+      question: "What rules apply to dorm beds?",
+      answer: "Use only your assigned bed (₹500 fine for using unassigned beds). Keep your area clean and organized. Respect privacy curtains and personal space. Report any issues to reception immediately. All properties monitored by 24/7 CCTV for safety."
+    },
+    {
+      question: "Do both properties offer the same amenities?",
+      answer: "No, amenities vary by property: XTSY Economy has basic facilities with upgrade requirements for premium services. XTSY Travellers Hostel includes most amenities (free room upgrades, breakfast, charging points, study lights). XTSY Luxury includes all services plus exclusive premium options."
+    },
+    {
+      question: "What's your smoking policy?",
+      answer: "Smoking is only allowed in designated outdoor areas. ₹2000 fine for smoking inside any room or indoor area. Designated smoking zones are available on terraces and specified outdoor areas. Zero tolerance policy for violations."
+    },
+    {
+      question: "What amenities are included at XTSY Luxury?",
+      answer: "XTSY Luxury includes ALL services: Free room upgrades, complimentary breakfast, high-speed WiFi, charging points, study lights, access to all common areas, terrace, bonfire nights, BBQ experiences, dome photoshoot, convenience store discounts, dedicated tour concierge, and exclusive premium facilities."
+    },
+    {
+      question: "How do I upgrade from Economy to Travellers Hostel?",
+      answer: "Upgrades are subject to availability. Economy guests can upgrade to Travellers Hostel for access to complimentary breakfast, charging points, study lights, and free access to common areas, terrace, and bonfire nights. Contact reception for upgrade pricing."
+    },
+    {
+      question: "What are the check-in and check-out times?",
+      answer: "Standard check-in: 2:00 PM | Check-out: 11:00 AM | Early check-in available (subject to availability, additional charges may apply) | Late check-in until 11:00 PM free, after 11:00 PM ₹500 fee | 24/7 reception for emergencies | Self check-in available for verified bookings"
+    },
+    {
+      question: "Is there a security deposit?",
+      answer: "Individual bookings: No security deposit required | Group bookings (8+ people): Security deposit may be required | Damage charges: ₹200 for lost key cards, ₹500 for damaged linens/towels | Guests liable for property damage"
+    },
+    {
+      question: "What happens if I damage something?",
+      answer: "Damage charges apply: Lost key card ₹200, damaged bed linens/towels ₹500 per item, common area damage charged to responsible party. Room cleanliness violations ₹500 littering fine. XTSY not liable for lost personal items."
+    },
+    {
       question: "What makes XTSY Travellers Hostel special?",
       answer: "XTSY offers India's first tech-integrated hostel experience with our signature 270° Panorama Glass Suite, sustainable practices, and authentic Northeast India cultural immersion. We're not just accommodation - we're your gateway to hidden gems."
     },
@@ -23,7 +63,7 @@ const FAQSection = () => {
     },
     {
       question: "What's your booking and cancellation policy?",
-      answer: "Book online or via WhatsApp. Glass Suite requires 2-3 weeks advance booking. Room cancellations accepted up to 48 hours before check-in for full refund. Tour packages have varying policies based on complexity."
+      answer: "Book online or via WhatsApp. Glass Suite requires 2-3 weeks advance booking. Free cancellation 7+ days before check-in. Partial refund (50%) for cancellations less than 7 days. No refund for cancellations less than 24 hours. Seasonal surcharges may apply."
     },
     {
       question: "Do you cater to digital nomads?",
@@ -66,16 +106,16 @@ const FAQSection = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a 
-              href="tel:+1234567890" 
+              href="tel:+918837317070" 
               className="bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
             >
-              Call Now
+              Call +91 88373 17070
             </a>
             <a 
-              href="mailto:help@xtsy.com" 
+              href="mailto:booking@xtsy.one" 
               className="bg-background text-foreground border border-border px-6 py-3 rounded-lg font-semibold hover:bg-accent transition-colors"
             >
-              Email Us
+              Email booking@xtsy.one
             </a>
           </div>
         </div>

@@ -138,34 +138,34 @@ const ReviewsSection = () => {
               {Array.from({
               length: Math.ceil(filteredReviews.length - 2)
             }).map((_, slideIndex) => <div key={slideIndex} className="w-full flex-shrink-0">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
-                    {filteredReviews.slice(slideIndex, slideIndex + 3).map((review, index) => <Card 
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4 px-4">
+                     {filteredReviews.slice(slideIndex, slideIndex + 4).map((review, index) => <Card 
                         key={index} 
-                        className="backdrop-blur-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-2xl transform-gpu cursor-pointer h-[320px] flex flex-col hover:border-white/20"
+                        className="backdrop-blur-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-2xl transform-gpu cursor-pointer h-[260px] flex flex-col hover:border-white/20"
                         onClick={() => handleReviewClick(review)}
                       >
-                        <CardHeader className="flex-shrink-0 pb-3">
+                        <CardHeader className="flex-shrink-0 pb-2">
                           <div className="flex items-center justify-between mb-2">
-                            <CardTitle className="text-lg font-semibold text-white font-['Poppins'] truncate">
+                            <CardTitle className="text-base font-semibold text-white font-['Poppins'] truncate">
                               {review.name}
                             </CardTitle>
                             <div className="flex items-center gap-1">
-                              <span className="text-yellow-400 font-bold">
+                              <span className="text-yellow-400 font-bold text-sm">
                                 {review.source === "MakeMyTrip" ? `${review.rating}/5` : `${review.rating}/10`}
                               </span>
-                              <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                              <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
                             </div>
                           </div>
                           
                           {/* XTSY Travellers Hostel Tag */}
-                          <div className="mb-3">
-                            <span className="inline-block bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-sm">
+                          <div className="mb-2">
+                            <span className="inline-block bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs font-semibold px-2 py-1 rounded-full shadow-sm">
                               XTSY Travellers Hostel
                             </span>
                           </div>
 
-                          <CardDescription className="text-gray-400 text-sm font-['Inter']">
-                            <div className="flex items-center gap-2 mb-1">
+                          <CardDescription className="text-gray-400 text-xs font-['Inter']">
+                            <div className="flex items-center gap-1 mb-1">
                               <span>{review.date}</span>
                               <span>•</span>
                               <span className="text-teal-400">{review.source}</span>
@@ -175,12 +175,12 @@ const ReviewsSection = () => {
                             )}
                           </CardDescription>
                         </CardHeader>
-                        <CardContent className="flex-grow flex flex-col justify-between">
-                          <p className="text-gray-300 font-['Inter'] text-sm leading-relaxed flex-grow">
-                            {truncateText(review.comment)}
+                        <CardContent className="flex-grow flex flex-col justify-between p-3">
+                          <p className="text-gray-300 font-['Inter'] text-xs leading-relaxed flex-grow">
+                            {truncateText(review.comment, 80)}
                           </p>
-                          {review.comment.length > 120 && (
-                            <p className="text-teal-400 text-xs mt-2 font-medium">Click to read more...</p>
+                          {review.comment.length > 80 && (
+                            <p className="text-teal-400 text-xs mt-1 font-medium">Click to read more...</p>
                           )}
                         </CardContent>
                       </Card>)}
@@ -206,47 +206,57 @@ const ReviewsSection = () => {
           </div>
         </div>
 
-        {/* OTA Review Badges */}
-        <div className="mt-12 text-center">
+        {/* Enhanced Five-Star Rating Display */}
+        <div className="mt-8 text-center">
           <h3 className="text-lg sm:text-xl font-semibold text-white mb-6">Our Ratings Across Platforms</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
             <div className="glass-card bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 hover:bg-white/15 transition-all duration-300">
               <div className="text-center">
-                <div className="text-2xl font-bold text-orange-400 mb-1">9.8</div>
-                <div className="flex justify-center mb-2">
-                  <span className="text-yellow-400 text-sm">⭐</span>
+                <div className="text-xl font-bold text-white mb-1">Booking.com</div>
+                <div className="text-3xl font-bold text-orange-400 mb-2">9.8</div>
+                <div className="flex justify-center mb-2 gap-0.5">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                  ))}
                 </div>
-                <div className="text-xs text-white font-medium">Booking.com</div>
               </div>
             </div>
             
             <div className="glass-card bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 hover:bg-white/15 transition-all duration-300">
               <div className="text-center">
-                <div className="text-2xl font-bold text-orange-400 mb-1">4.4</div>
-                <div className="flex justify-center mb-2">
-                  <span className="text-yellow-400 text-sm">⭐</span>
+                <div className="text-xl font-bold text-white mb-1">MakeMyTrip</div>
+                <div className="text-3xl font-bold text-orange-400 mb-2">4.4</div>
+                <div className="flex justify-center mb-2 gap-0.5">
+                  {[...Array(4)].map((_, i) => (
+                    <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                  ))}
+                  <Star className="h-4 w-4 fill-yellow-400/40 text-yellow-400/40" />
                 </div>
-                <div className="text-xs text-white font-medium">MakeMyTrip</div>
               </div>
             </div>
             
             <div className="glass-card bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 hover:bg-white/15 transition-all duration-300">
               <div className="text-center">
-                <div className="text-2xl font-bold text-orange-400 mb-1">4.4</div>
-                <div className="flex justify-center mb-2">
-                  <span className="text-yellow-400 text-sm">⭐</span>
+                <div className="text-xl font-bold text-white mb-1">GoIbibo</div>
+                <div className="text-3xl font-bold text-orange-400 mb-2">4.4</div>
+                <div className="flex justify-center mb-2 gap-0.5">
+                  {[...Array(4)].map((_, i) => (
+                    <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                  ))}
+                  <Star className="h-4 w-4 fill-yellow-400/40 text-yellow-400/40" />
                 </div>
-                <div className="text-xs text-white font-medium">GoIbibo</div>
               </div>
             </div>
             
             <div className="glass-card bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 hover:bg-white/15 transition-all duration-300">
               <div className="text-center">
-                <div className="text-2xl font-bold text-orange-400 mb-1">9.8</div>
-                <div className="flex justify-center mb-2">
-                  <span className="text-yellow-400 text-sm">⭐</span>
+                <div className="text-xl font-bold text-white mb-1">Expedia</div>
+                <div className="text-3xl font-bold text-orange-400 mb-2">9.8</div>
+                <div className="flex justify-center mb-2 gap-0.5">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                  ))}
                 </div>
-                <div className="text-xs text-white font-medium">Expedia</div>
               </div>
             </div>
           </div>

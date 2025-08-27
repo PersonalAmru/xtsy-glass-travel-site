@@ -10,7 +10,7 @@ import SecurityHeaders from "./components/SecurityHeaders";
 import Index from "./pages/Index";
 import { LazyAbout } from "./pages/lazy/LazyAbout";
 import { LazyGallery } from "./pages/lazy/LazyGallery";
-import { LazyDeals } from "./pages/lazy/LazyDeals";
+
 import { LazyTravel } from "./pages/lazy/LazyTravel";
 import { LazyXTSY270 } from "./pages/lazy/LazyXTSY270";
 import BookingFlow from "./pages/BookingFlow";
@@ -61,11 +61,6 @@ function App() {
           <Route path="/gallery" element={
             <Suspense fallback={<LoadingScreen />}>
               <LazyGallery />
-            </Suspense>
-          } />
-          <Route path="/deals" element={
-            <Suspense fallback={<LoadingScreen />}>
-              <LazyDeals />
             </Suspense>
           } />
           <Route path="/travel" element={
