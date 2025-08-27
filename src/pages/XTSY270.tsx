@@ -420,7 +420,7 @@ Thank you! 😊`;
                     </div>
                     <h3 className="text-2xl font-bold mb-4 text-gray-900">Luxury Ensuite</h3>
                     <p className="text-gray-700 text-lg font-medium leading-relaxed">
-                      Private spa-inspired bathroom with <span className="font-bold text-primary">panoramic views</span> and premium Italian fixtures
+                      Private spa-inspired washroom with <span className="font-bold text-primary">panoramic views</span> and premium Italian fixtures
                     </p>
                   </CardContent>
                 </Card>
