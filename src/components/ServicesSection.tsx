@@ -139,7 +139,7 @@ const ServicesSection = () => {
               Amenities & Services
             </h2>
             <p className="text-lg sm:text-xl text-gray-700 font-medium max-w-2xl mx-auto">
-              Everything you need for a comfortable stay
+              From essential comforts to premium experiences - choose your perfect stay level
             </p>
             <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 mx-auto mt-4 rounded-full" />
           </div>
