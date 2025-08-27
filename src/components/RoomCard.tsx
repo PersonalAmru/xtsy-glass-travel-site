@@ -70,7 +70,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
   };
   
   const displayPrice = getDisplayPrice();
-  const buttonText = propertyType === "hostel" ? `Select Bed - ${formatPrice(displayPrice)}/night` : propertyType === "luxury" ? `Select Suite - ${formatPrice(displayPrice)}/night` : `Select Room - ${formatPrice(displayPrice)}/night`;
+  const buttonText = propertyType === "hostel" ? `Select Bed - ${formatPrice(displayPrice)}/night` : propertyType === "luxury" ? `Select Suite - ${formatPrice(displayPrice)}/night` : propertyType === "economy" ? `Select Bed - ${formatPrice(displayPrice)}/night` : `Select Room - ${formatPrice(displayPrice)}/night`;
   
   const images = room.images && room.images.length > 0 ? room.images : [room.image];
 

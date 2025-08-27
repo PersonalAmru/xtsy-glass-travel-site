@@ -186,12 +186,12 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
   '6-bed-mixed-economy-dorm': {
     id: '6-bed-mixed-economy-dorm',
     name: 'Bed in 6 Bed Mixed Dormitory',
-    price: 550,
+    price: 500,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
     description: 'Budget-friendly mixed dormitory with essential amenities',
     amenities: ['Mixed', 'Only Bed', 'Wi-Fi'],
     type: 'dorm',
-    maxGuests: 1, // Per bed
+    maxGuests: 6, // 6 guests per room
     propertyType: 'economy',
     maxRooms: 6, // 6 beds available
     images: [
@@ -207,12 +207,12 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
   '8-bed-mixed-economy-dorm': {
     id: '8-bed-mixed-economy-dorm',
     name: 'Bed in 8 Bed Mixed Dormitory',
-    price: 450,
+    price: 400,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg',
     description: 'Most economical option for backpackers and budget travelers',
     amenities: ['Mixed', 'Only Bed', 'Wi-Fi'],
     type: 'dorm',
-    maxGuests: 1, // Per bed
+    maxGuests: 8, // 8 guests per room
     propertyType: 'economy',
     maxRooms: 8, // 8 beds available
     images: [
