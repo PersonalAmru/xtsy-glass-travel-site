@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { Phone, Mail, Instagram, Linkedin, Youtube, Home, Info, Image as ImageIcon, Tag, Plane, HelpCircle } from "lucide-react";
+import { Phone, Mail, Instagram, Youtube, Home, Info, Image as ImageIcon, Camera, Plane, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import xtsyLogo from "@/assets/xtsy-brand-logo.png";
@@ -54,9 +54,12 @@ const Footer = () => {
               Experience the authentic vibe of Shillong and unforgettable adventures with XTSY!
             </p>
             <div className="flex space-x-4 sm:space-x-6 justify-center">
-              <Instagram className="h-5 w-5 sm:h-6 sm:w-6 text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-300 touch-manipulation" />
-              <Linkedin className="h-5 w-5 sm:h-6 sm:w-6 text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-300 touch-manipulation" />
-              <Youtube className="h-5 w-5 sm:h-6 sm:w-6 text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-300 touch-manipulation" />
+              <a href="https://www.instagram.com/xtsy.one/?next=%2F" target="_blank" rel="noopener noreferrer">
+                <Instagram className="h-5 w-5 sm:h-6 sm:w-6 text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-300 touch-manipulation" />
+              </a>
+              <a href="https://www.youtube.com/@XTSY_Shillong" target="_blank" rel="noopener noreferrer">
+                <Youtube className="h-5 w-5 sm:h-6 sm:w-6 text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-300 touch-manipulation" />
+              </a>
             </div>
           </div>
 
@@ -83,9 +86,9 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/deals" className="text-gray-300 hover:text-orange-400 transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm lg:text-base justify-center py-1 touch-manipulation">
-                  <Tag className="h-4 w-4 sm:h-5 sm:w-5" />
-                  Deals
+                <Link to="/xtsy-270" className="text-gray-300 hover:text-orange-400 transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm lg:text-base justify-center py-1 touch-manipulation">
+                  <Camera className="h-4 w-4 sm:h-5 sm:w-5" />
+                  XTSY 270°
                 </Link>
               </li>
                <li>

@@ -496,6 +496,15 @@ const AboutSection = () => {
               >
                 Explore Our Tours
               </a>
+              <span className="text-slate-400 self-center">|</span>
+              <a
+                href="https://wa.me/918837317070?text=Hi%20Team%20XTSY%2C%20I%20just%20visited%20your%20site%20and%20would%20like%20to%20know%20more%20about%20stays%20and%20packages."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-8 py-3 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 transition-colors duration-300"
+              >
+                Contact via WhatsApp
+              </a>
             </div>
           </div>
         </section>

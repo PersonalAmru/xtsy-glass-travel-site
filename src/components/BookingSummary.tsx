@@ -18,6 +18,7 @@ export const BookingSummary: React.FC<BookingSummaryProps> = ({
   onEdit
 }) => {
   const screenSize = useScreenSize();
+  
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     if (screenSize === 'mobile') {
@@ -30,6 +31,36 @@ export const BookingSummary: React.FC<BookingSummaryProps> = ({
       month: 'short',
       day: 'numeric'
     });
+  };
+
+  const handleWhatsAppClick = () => {
+    // Validate required fields
+    if (!checkIn || !checkOut || !guests || nights <= 0) {
+      alert("Please fill in all required booking details including dates and guest count");
+      return;
+    }
+
+    // Build WhatsApp message
+    const message = `🏨 *XTSY Booking Request* 🏨
+
+📅 *Booking Details:*
+Check-in: ${checkIn}
+Check-out: ${checkOut}
+Nights: ${nights}
+Guests: ${guests}
+
+🏠 *Property:* XTSY Travellers Hostel & Luxury
+📍 *Location:* Shillong, Meghalaya
+
+💭 *Message:*
+Hi XTSY Team! I would like to complete my booking for the above dates. Please confirm availability and provide final pricing details.
+
+Looking forward to experiencing the Shillong vibe! ✨
+
+Thank you! 😊`;
+
+    const whatsappUrl = `https://wa.me/918837317070?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, "_blank", "noopener noreferrer");
   };
   const isMobileView = screenSize === 'mobile';
   return <Card className={`transition-all duration-300 backdrop-blur-sm bg-card/95 ${isMobileView ? 'sticky top-2 mx-2 shadow-md border-border/60' : 'sticky top-4 shadow-sm border-border/50'}`}>
@@ -91,6 +122,16 @@ export const BookingSummary: React.FC<BookingSummaryProps> = ({
           </div>
         </div>
       </CardContent>
+      
+      {/* WhatsApp Booking Button */}
+      <div className="px-3 pb-3">
+        <button
+          onClick={handleWhatsAppClick}
+          className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg text-sm"
+        >
+          Complete Booking via WhatsApp
+        </button>
+      </div>
     </Card>;
 };
 export default BookingSummary;

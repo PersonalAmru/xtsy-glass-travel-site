@@ -8,11 +8,17 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { AppProvider } from "./contexts/AppContext";
 import { initializePerformanceOptimizations } from "./utils/performanceOptimizer";
 import { initializeImageOptimizations } from "./utils/imageOptimization";
+import { initializePerformanceEnhancements } from "./utils/performanceEnhancer";
+import { initializeAdvancedLazyLoading } from "./utils/lazyLoadingOptimizer";
+import { initializeNetworkOptimizations } from "./utils/networkOptimizer";
 import { performGlobalCleanup } from "./utils/performanceCleanup";
 import { cleanupUnifiedImage } from "./components/UnifiedImage";
 
-// Initialize performance optimizations
+// Initialize all performance optimizations
 initializePerformanceOptimizations();
+initializePerformanceEnhancements();
+initializeAdvancedLazyLoading();
+initializeNetworkOptimizations();
 
 // Initialize image optimizations
 initializeImageOptimizations();
