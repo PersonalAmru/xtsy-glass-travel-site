@@ -21,9 +21,9 @@ const SEOContent: React.FC<SEOContentProps> = ({ page = 'home' }) => {
         };
       case 'about':
         return {
-          title: "About XTSY Travellers Hostel | India's First Tech-Based Hostel by 2026 | Better than Zostel, The Hosteller, goSTOPS",
-          description: "Discover XTSY Travellers Hostel - India's best alternative to Zostel, The Hosteller, goSTOPS, Moustache Hostels, and Madpackers. Becoming India's first tech-based hostel by 2026 with AI-powered services, IoT rooms, and authentic Northeast India experiences.",
-          keywords: "about XTSY hostel, India first tech hostel 2026, alternative to Zostel, better than The Hosteller, goSTOPS alternative, Moustache Hostels competitor, Madpackers alternative, chain hostel comparison, unique hostel India, independent hostel India, tech-based hospitality India, authentic Northeast India experience, AI-powered accommodation, smart hostel India"
+          title: "XTSY Travellers Hostel & Luxury | India's First 270° Glass Ensuite & Biggest Hostel in North East India",
+          description: "Discover XTSY – India's biggest hostel in North East India and highest-rated traveller hostel. Featuring India's first 270° stargazing glass suite and premium group accommodations. Powered by xtsyonellp.",
+          keywords: "biggest hostel north east india, biggest hostel shillong meghalaya, highest rated traveller hostel north east, best honeymoon stay india, group travel hostel india, luxury stargazing suite india, 270° glass room shillong, pan india travel brand, xtsyonellp, XTSY Travellers Hostel, XTSY luxury, northeast india accommodation, stargazing glass suite, architectural innovation india, photographer friendly stay india, couple travel india 2025, backpacker hostel northeast india"
         };
       case 'deals':
         return {

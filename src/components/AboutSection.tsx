@@ -5,80 +5,123 @@ import { useEffect } from "react";
 
 const AboutSection = () => {
   useEffect(() => {
-    // Update document head with SEO meta tags
-    document.title = "XTSY India | Hostels, Budget & Luxury Stay in Shillong and Across India";
+    // Enhanced SEO meta tags for primary keyword rankings
+    document.title = 'XTSY Travellers Hostel & Luxury | India\'s First 270° Glass Ensuite & Biggest Hostel in North East India';
     
-    // Update meta description
+    // Update meta description with strategic keyword integration
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Discover XTSY – premium hostels, boutique rooms, and curated tours in Shillong, Meghalaya and beyond. Loved by global travelers.');
+      metaDescription.setAttribute('content', 'Discover XTSY – India\'s biggest hostel in North East India and highest-rated traveller hostel. Featuring India\'s first 270° stargazing glass suite and premium group accommodations. Powered by xtsyonellp.');
     } else {
       const newMetaDescription = document.createElement('meta');
       newMetaDescription.name = 'description';
-      newMetaDescription.content = 'Discover XTSY – premium hostels, boutique rooms, and curated tours in Shillong, Meghalaya and beyond. Loved by global travelers.';
+      newMetaDescription.content = 'Discover XTSY – India\'s biggest hostel in North East India and highest-rated traveller hostel. Featuring India\'s first 270° stargazing glass suite and premium group accommodations. Powered by xtsyonellp.';
       document.head.appendChild(newMetaDescription);
     }
 
-    // Update meta keywords
+    // Enhanced meta keywords with primary target phrases
     const metaKeywords = document.querySelector('meta[name="keywords"]');
     if (metaKeywords) {
-      metaKeywords.setAttribute('content', 'hostel India, luxury stay Shillong, budget travel Meghalaya, backpackers, India travel, global tourism');
+      metaKeywords.setAttribute('content', 'biggest hostel north east india, biggest hostel shillong meghalaya, highest rated traveller hostel north east, best honeymoon stay india, group travel hostel india, luxury stargazing suite india, 270° glass room shillong, pan india travel brand, xtsyonellp, XTSY Travellers Hostel, XTSY luxury, northeast india accommodation, stargazing glass suite, architectural innovation india, photographer friendly stay india, couple travel india 2025, backpacker hostel northeast india');
     } else {
       const newMetaKeywords = document.createElement('meta');
       newMetaKeywords.name = 'keywords';
-      newMetaKeywords.content = 'hostel India, luxury stay Shillong, budget travel Meghalaya, backpackers, India travel, global tourism';
+      newMetaKeywords.content = 'biggest hostel north east india, biggest hostel shillong meghalaya, highest rated traveller hostel north east, best honeymoon stay india, group travel hostel india, luxury stargazing suite india, 270° glass room shillong, pan india travel brand, xtsyonellp, XTSY Travellers Hostel, XTSY luxury, northeast india accommodation, stargazing glass suite, architectural innovation india, photographer friendly stay india, couple travel india 2025, backpacker hostel northeast india';
       document.head.appendChild(newMetaKeywords);
     }
 
-    // Update Open Graph tags
+    // Enhanced Open Graph tags
     const ogTitle = document.querySelector('meta[property="og:title"]');
     if (ogTitle) {
-      ogTitle.setAttribute('content', 'XTSY | Stay in Shillong & Explore Northeast India');
+      ogTitle.setAttribute('content', 'XTSY | India\'s First 270° Glass Ensuite & Biggest Hostel in North East India');
     } else {
       const newOgTitle = document.createElement('meta');
       newOgTitle.setAttribute('property', 'og:title');
-      newOgTitle.content = 'XTSY | Stay in Shillong & Explore Northeast India';
+      newOgTitle.content = 'XTSY | India\'s First 270° Glass Ensuite & Biggest Hostel in North East India';
       document.head.appendChild(newOgTitle);
     }
 
     const ogDescription = document.querySelector('meta[property="og:description"]');
     if (ogDescription) {
-      ogDescription.setAttribute('content', 'Experience India through XTSY\'s stays and travel packages. Based in Shillong, built for global explorers.');
+      ogDescription.setAttribute('content', 'India\'s most innovative travel brand. Experience XTSY\'s 270° stargazing glass suite, biggest hostel in North East India, and curated pan-India experiences. Powered by xtsyonellp.');
     } else {
       const newOgDescription = document.createElement('meta');
       newOgDescription.setAttribute('property', 'og:description');
-      newOgDescription.content = 'Experience India through XTSY\'s stays and travel packages. Based in Shillong, built for global explorers.';
+      newOgDescription.content = 'India\'s most innovative travel brand. Experience XTSY\'s 270° stargazing glass suite, biggest hostel in North East India, and curated pan-India experiences. Powered by xtsyonellp.';
       document.head.appendChild(newOgDescription);
     }
+    
+    // Enhanced structured data for better SEO
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@type": "LodgingBusiness",
+      "name": "XTSY Travellers Hostel & Luxury",
+      "description": "India's biggest hostel in North East India featuring the first 270° stargazing glass suite and highest-rated traveller experience",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Shillong",
+        "addressRegion": "Meghalaya", 
+        "addressCountry": "India"
+      },
+      "brand": {
+        "@type": "Brand",
+        "name": "XTSY",
+        "description": "Powered by xtsyonellp"
+      },
+      "amenityFeature": [
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "270° Panoramic Glass Suite"
+        },
+        {
+          "@type": "LocationFeatureSpecification", 
+          "name": "50+ Guest Capacity"
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Biggest Hostel in North East India"
+        }
+      ],
+      "priceRange": "₹₹",
+      "telephone": "+91 88373 17070"
+    };
+    
+    let scriptTag = document.querySelector('script[type="application/ld+json"]') as HTMLScriptElement;
+    if (!scriptTag) {
+      scriptTag = document.createElement('script');
+      scriptTag.type = 'application/ld+json';
+      document.head.appendChild(scriptTag);
+    }
+    scriptTag.textContent = JSON.stringify(structuredData);
   }, []);
 
   const coreServices = [
     {
       icon: Building2,
-      title: "Biggest Hostel in Shillong",
+      title: "Biggest Hostel in North East India",
       category: "Scale", 
       description: "Northeast India's largest hostel accommodation facility with 100+ beds across multiple room categories.",
       features: ["100+ Bed Capacity", "Multiple Buildings", "Largest in NE India"]
     },
     {
       icon: Star,
-      title: "Best Budget Accommodation",
-      category: "Value",
-      description: "Premium amenities at budget-friendly prices, making luxury accessible to all travelers.",
-      features: ["Premium Amenities", "Budget Pricing", "Best Value Proposition"]
+      title: "Highest-Rated Traveller Experience",
+      category: "Excellence",
+      description: "Northeast's highest-rated traveller hostel with exceptional guest reviews and premium service standards.",
+      features: ["5-Star Reviews", "Premium Service", "Guest Excellence"]
     },
     {
       icon: Camera,
       title: "270° Panorama Glass Ensuite",
       category: "Luxury",
-      description: "Shillong's exclusive panoramic mountain view experience with floor-to-ceiling glass walls.",
+      description: "India's first 270° glass room in Shillong offering exclusive panoramic mountain view experience with floor-to-ceiling glass walls.",
       features: ["360° Mountain Views", "Glass Architecture", "Exclusive Experience"]
     },
     {
       icon: Users,
       title: "Comprehensive Dormitories",
       category: "Accommodation",
-      description: "Mixed, female-only, and economy dormitory options with premium comfort standards.",
+      description: "Mixed, female-only, and economy dormitory options with premium comfort standards for group travel hostel India.",
       features: ["6-Bed & 8-Bed Dorms", "Female-Only Options", "Economy Categories"]
     },
     {
@@ -149,48 +192,94 @@ const AboutSection = () => {
             <Award className="w-4 h-4" />
             <span>Premium Hospitality Excellence</span>
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-800 mb-6">About XTSY – Stay & Travel India</h1>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-800 mb-6">About XTSY Travellers Hostel & Luxury</h1>
           <p className="text-lg sm:text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
-            Welcome to <strong className="text-slate-800">XTSY – India's emerging travel and stay brand</strong>, based in 
-            <strong className="text-slate-800"> Shillong, Meghalaya</strong>. We offer curated stays from panoramic luxury suites 
-            to budget-friendly hostels across Northeast India and beyond. <strong className="text-slate-800">Top hostel destination 
-            for international travelers</strong> seeking authentic experiences in India.
+            Welcome to <strong className="text-slate-800">XTSY — India's most promising travel and hospitality brand</strong>. 
+            Based in <strong className="text-slate-800">Shillong and powered by XTSY ONE LLP</strong>, we're redefining the way the world 
+            travels in and across India. <strong className="text-slate-800">XTSY stepping into Global Travel Destinations across Asia and EU shortly</strong>.
           </p>
         </section>
 
-        {/* Why Global Travelers Choose XTSY */}
+        {/* India's First 270° Panorama Glass Ensuite */}
         <section className="mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 text-center mb-8">Why Global Travelers Choose XTSY</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 text-center mb-8">India's First 270° Panorama Glass Ensuite</h2>
           <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-elegant border border-white/50">
-            <ul className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-              <li className="p-6 bg-slate-50 rounded-xl">
-                <Camera className="w-12 h-12 text-primary mx-auto mb-4" />
-                <h3 className="font-semibold text-slate-800 mb-2">Panoramic Luxury Suites in Shillong</h3>
-                <p className="text-slate-600 text-sm">Experience <strong>Shillong panoramic views</strong> from our exclusive 270° Glass Ensuite</p>
+            <p className="text-lg text-slate-600 leading-relaxed text-center max-w-4xl mx-auto">
+              Our flagship innovation — the <strong className="text-slate-800">XTSY Luxury Glass Suite</strong> — is India's first 270° panoramic stargazing accommodation. 
+              It's not just a room; it's an architectural and experiential revolution, rivaling stays in Iceland, Finland, and the Himalayas. 
+              <strong className="text-slate-800">Only 1 exclusive suite available in India for the Night</strong> — making it the 
+              <strong className="text-slate-800">best honeymoon stay in India</strong> and a <strong className="text-slate-800">luxury stargazing suite India</strong> 
+              has never seen before.
+            </p>
+          </div>
+        </section>
+
+        {/* Biggest & Highest-Rated Hostel in Northeast India */}
+        <section className="mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 text-center mb-8">
+            Biggest & Highest-Rated Hostel in Northeast India
+          </h2>
+          <div className="bg-primary rounded-3xl p-8 text-primary-foreground shadow-xl">
+            <p className="text-lg leading-relaxed text-center max-w-4xl mx-auto">
+              <strong>XTSY Travellers Hostel in Shillong</strong> is the region's largest, most highly reviewed group hostel, with capacity for 50+ guests — 
+              ideal for backpackers, student groups, digital nomads or international travel communities. As the 
+              <strong> biggest hostel in North East India</strong> and <strong>biggest hostel in Shillong, Meghalaya</strong>, we're also the 
+              <strong> highest-rated traveller hostel in North East</strong> according to guest reviews and the leading 
+              <strong> group travel hostel India</strong> depends on for authentic experiences.
+            </p>
+          </div>
+        </section>
+
+        {/* Who We're For */}
+        <section className="mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 text-center mb-8">Who We're For</h2>
+          <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-elegant border border-white/50">
+            <ul className="grid grid-cols-2 md:grid-cols-3 gap-4 text-center">
+              <li className="p-4 bg-slate-50 rounded-xl">
+                <Heart className="w-8 h-8 text-primary mx-auto mb-2" />
+                <h3 className="font-semibold text-slate-800">Married Couples</h3>
+                <p className="text-slate-600 text-sm">Best honeymoon stay in India</p>
               </li>
-              <li className="p-6 bg-slate-50 rounded-xl">
-                <Users className="w-12 h-12 text-primary mx-auto mb-4" />
-                <h3 className="font-semibold text-slate-800 mb-2">Curated Backpacker Hostels Across India</h3>
-                <p className="text-slate-600 text-sm">Perfect for <strong>India backpacker routes</strong> and budget-conscious travelers</p>
+              <li className="p-4 bg-slate-50 rounded-xl">
+                <Users className="w-8 h-8 text-primary mx-auto mb-2" />
+                <h3 className="font-semibold text-slate-800">Backpackers & Solo Travelers</h3>
+                <p className="text-slate-600 text-sm">Backpacker hostel Northeast India</p>
               </li>
-              <li className="p-6 bg-slate-50 rounded-xl">
-                <Globe className="w-12 h-12 text-primary mx-auto mb-4" />
-                <h3 className="font-semibold text-slate-800 mb-2">Immersive Cultural Tours in Northeast India</h3>
-                <p className="text-slate-600 text-sm">Authentic local experiences <strong>trusted by international guests across EU and UK</strong></p>
+              <li className="p-4 bg-slate-50 rounded-xl">
+                <Globe className="w-8 h-8 text-primary mx-auto mb-2" />
+                <h3 className="font-semibold text-slate-800">Group Travel Organizers</h3>
+                <p className="text-slate-600 text-sm">Group travel hostel India</p>
+              </li>
+              <li className="p-4 bg-slate-50 rounded-xl">
+                <Camera className="w-8 h-8 text-primary mx-auto mb-2" />
+                <h3 className="font-semibold text-slate-800">Photographers & Content Creators</h3>
+                <p className="text-slate-600 text-sm">Photographer friendly stay India</p>
+              </li>
+              <li className="p-4 bg-slate-50 rounded-xl">
+                <Star className="w-8 h-8 text-primary mx-auto mb-2" />
+                <h3 className="font-semibold text-slate-800">Stargazers</h3>
+                <p className="text-slate-600 text-sm">270° glass room Shillong</p>
+              </li>
+              <li className="p-4 bg-slate-50 rounded-xl">
+                <Building2 className="w-8 h-8 text-primary mx-auto mb-2" />
+                <h3 className="font-semibold text-slate-800">Architecture Lovers</h3>
+                <p className="text-slate-600 text-sm">Architectural innovation India</p>
               </li>
             </ul>
           </div>
         </section>
 
-        {/* Our Presence Across India */}
+        {/* Built in Shillong. Scaling Across India. Ready for the World. */}
         <section className="mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 text-center mb-8">Our Presence Across India</h2>
-          <div className="bg-primary rounded-3xl p-8 text-primary-foreground shadow-xl">
-            <p className="text-lg leading-relaxed text-center max-w-4xl mx-auto">
-              From the highlands of Meghalaya to the tea gardens of Assam and the tribal trails of Nagaland, 
-              <strong> XTSY operates across 7 Northeast states and growing</strong>. Our mission is to connect travelers 
-              to authentic, locally hosted experiences. We provide <strong>affordable luxury for digital nomads</strong> 
-              and serve as the gateway for those who <strong>stay in Shillong, India</strong> and explore the region.
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 text-center mb-8">
+            Built in Shillong. Scaling Across India. Ready for the World.
+          </h2>
+          <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-elegant border border-white/50">
+            <p className="text-lg text-slate-600 leading-relaxed text-center max-w-4xl mx-auto">
+              We started in the green hills of Meghalaya. Today, <strong className="text-slate-800">XTSY operates across 7 states in Northeast India</strong> 
+              and is rapidly expanding. We are proudly Indian, and globally ambitious — offering travel that feels personal, local, and unforgettable. 
+              As a <strong className="text-slate-800">pan India travel brand</strong> <strong className="text-slate-800">powered by xtsyonellp</strong>, 
+              we're setting new standards for hospitality excellence.
             </p>
           </div>
         </section>
@@ -387,9 +476,9 @@ const AboutSection = () => {
           </div>
         </div>
 
-        {/* Book Direct. Experience Local. */}
+        {/* Book Direct. Travel Deeper. */}
         <section className="mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 text-center mb-8">Book Direct. Experience Local.</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 text-center mb-8">Book Direct. Travel Deeper.</h2>
           <div className="text-center bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-elegant border border-white/50">
             <p className="text-lg text-slate-600 mb-6">
               With XTSY - Book your stay or explore our 7-state travel packages today.
@@ -399,14 +488,14 @@ const AboutSection = () => {
                 href="/booking" 
                 className="inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground rounded-xl font-semibold hover:bg-primary/90 transition-colors duration-300"
               >
-                Book Now
+                Book Your Stay
               </a>
               <span className="text-slate-400 self-center">|</span>
               <a 
                 href="/travel" 
                 className="inline-flex items-center justify-center px-8 py-3 bg-slate-800 text-white rounded-xl font-semibold hover:bg-slate-700 transition-colors duration-300"
               >
-                View Tours
+                Explore Our Tours
               </a>
             </div>
           </div>
