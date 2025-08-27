@@ -182,7 +182,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
               <CardHeader className={`${
                 isMobile ? 'pb-2 px-3 pt-2' : 'pb-2 pt-3'
               } ${isXTSY270 ? 'pb-2 pt-2 px-3' : ''}`}>
-                <div className="flex items-start justify-between gap-2">
+                <div className="flex items-center justify-between gap-2">
                   <CardTitle className={`font-semibold text-white text-left flex-1 ${
                     isMobile ? 'text-sm' : 'text-base'
                   } ${isXTSY270 ? 'text-sm leading-tight' : 'leading-tight'}`}>
