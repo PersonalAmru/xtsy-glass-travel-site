@@ -226,7 +226,7 @@ const RoomsSection = () => {
         <div className="center-aligned mb-16">
           <PropertySection
             title="XTSY Economy"
-            description="Most affordable accommodation options perfect for backpackers and budget travelers without compromising on essential amenities"
+            description="Most affordable accommodation options perfect for ultra-budget travelers—includes only bed & Wi-Fi. No access to terrace, common lounge, or games room."
             rooms={economyRooms}
             propertyType="economy"
             onSelectRoom={scrollToCalendar}
