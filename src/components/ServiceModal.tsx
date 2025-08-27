@@ -39,7 +39,7 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
       'Complimentary Breakfast': ['XTSY Travellers Hostel ✅', 'XTSY Economy 🚫', 'XTSY Luxury ✅'],
       'Free Room Upgrade': ['XTSY Travellers Hostel ✅', 'XTSY Economy 🚫', 'XTSY Luxury ✅'],
       '24/7 Security': ['XTSY Travellers Hostel ✅', 'XTSY Economy ✅', 'XTSY Luxury ✅'],
-      'Tour Assistance': ['XTSY Travellers Hostel ✅', 'XTSY Economy ✅', 'XTSY Luxury ✅'],
+      'Tour Assistance': ['XTSY Travellers Hostel ✅', 'XTSY Luxury ✅'],
       'Group Bookings': ['XTSY Travellers Hostel ✅', 'XTSY Economy ✅', 'XTSY Luxury ✅'],
       'Event Space': ['XTSY Travellers Hostel ✅', 'XTSY Luxury ✅'],
       '24/7 Support': ['XTSY Travellers Hostel ✅', 'XTSY Economy ✅', 'XTSY Luxury ✅']
@@ -51,6 +51,12 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
   // Enhanced special notes with property-specific access rules
   const getSpecialNotes = (serviceTitle: string) => {
     const accessRules = {
+      'Free Parking': [
+        { property: 'XTSY Economy', note: 'Not available for XTSY Economy bookings', type: 'restriction' }
+      ],
+      'In-House Cafe': [
+        { property: 'XTSY Economy', note: 'Upgrade required for service', type: 'restriction' }
+      ],
       'Shared Lounge': [
         { property: 'XTSY Travellers Hostel', note: 'Free access included', type: 'info' },
         { property: 'XTSY Economy', note: 'Upgrade required for access', type: 'restriction' },
@@ -60,6 +66,14 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
         { property: 'XTSY Travellers Hostel', note: 'Free access included', type: 'info' },
         { property: 'XTSY Economy', note: 'Upgrade required for access', type: 'restriction' },
         { property: 'XTSY Luxury', note: 'Exclusive common room access', type: 'premium' }
+      ],
+      'Games Room': [
+        { property: 'XTSY Economy', note: 'Strictly NOT available', type: 'restriction' }
+      ],
+      'Laundry': [
+        { property: 'XTSY Travellers Hostel', note: '50% discount on laundry services', type: 'info' },
+        { property: 'XTSY Economy', note: 'Upgrade required for service', type: 'restriction' },
+        { property: 'XTSY Luxury', note: 'Complimentary laundry service', type: 'premium' }
       ],
       'Terrace Access': [
         { property: 'XTSY Travellers Hostel', note: 'Free terrace access', type: 'info' },
@@ -98,18 +112,23 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
       'Free Room Upgrade': [
         { property: 'XTSY Economy', note: 'Not available', type: 'restriction' }
       ],
-      'Laundry': [
-        { property: 'XTSY Travellers Hostel', note: '50% discount on laundry services', type: 'info' },
-        { property: 'XTSY Luxury', note: 'Complimentary laundry service', type: 'premium' }
-      ],
       'Tour Assistance': [
+        { property: 'XTSY Economy', note: 'Strictly NOT available', type: 'restriction' },
         { property: 'XTSY Luxury', note: 'Dedicated tour concierge service', type: 'premium' }
       ],
       'Group Bookings': [
-        { property: 'XTSY Luxury', note: 'Exclusive signature stay - only 1 available per night in India', type: 'premium' }
+        { property: 'XTSY Economy', note: 'Group size capped at 8 guests', type: 'restriction' },
+        { property: 'XTSY Luxury', note: 'Exclusive signature stay – only 1 available per night in India. Limited edition. Book fast.', type: 'premium' }
       ],
       'Event Space': [
+        { property: 'XTSY Economy', note: 'Upgrade required for access', type: 'restriction' },
         { property: 'XTSY Luxury', note: 'Premium event facilities with catering', type: 'premium' }
+      ],
+      '24/7 Support': [
+        { property: 'All Properties', note: 'WhatsApp support only during working hours', type: 'info' }
+      ],
+      'Flexible Check-in': [
+        { property: 'XTSY Economy', note: 'Strictly NOT allowed', type: 'restriction' }
       ]
     };
 
