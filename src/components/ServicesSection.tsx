@@ -41,13 +41,13 @@ const ServicesSection = () => {
       icon: <Coffee className="h-5 w-5" />,
       title: "In-House Cafe",
       description: "24/7 cafe serving fresh coffee, snacks and local delicacies",
-      badge: "24/7"
+      badge: "9 AM to 9 PM"
     },
     {
       icon: <Utensils className="h-5 w-5" />,
       title: "In-House Cafe",
       description: "Fresh coffee, local snacks and delicacies available 24/7",
-      badge: "24/7"
+      badge: "9 AM to 9 PM"
     },
     {
       icon: <Gamepad2 className="h-5 w-5" />,
