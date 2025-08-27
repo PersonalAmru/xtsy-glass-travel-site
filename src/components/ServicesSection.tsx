@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { 
@@ -112,9 +111,9 @@ const ServicesSection = () => {
     }
   ];
 
-  // For demo purposes, showing all services (hostel/luxury view)
-  // In a real app, this would be determined by the user's booking type
-  const currentAccommodationType = "hostel"; // This could be "economy", "hostel", or "luxury"
+  // For demo purposes, this could be "economy", "hostel", or "luxury"
+  // In a real app, this would come from user's booking context or props
+  const currentAccommodationType: "economy" | "hostel" | "luxury" = "hostel";
   
   const services = allServices.filter(service => 
     service.availableFor.includes(currentAccommodationType)
