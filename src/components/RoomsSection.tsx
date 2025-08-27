@@ -33,13 +33,48 @@ const RoomsSection = () => {
     }
   ];
 
+  // Helper function to generate standardized feature tags
+  const generateFeatures = (propertyType: string, roomName: string, roomType: 'dorm' | 'private') => {
+    if (propertyType === 'economy') {
+      // XTSY Economy: exactly 3 tags, no Female tag ever
+      return ["Mixed", "Only Bed", "Wi-Fi"].slice(0, 3);
+    } else if (propertyType === 'hostel') {
+      // XTSY Travellers Hostel: max 7 tags with conditional Female/Mixed
+      let features = [];
+      
+      // Add Female or Mixed tag first (never both)
+      if (roomName.toLowerCase().includes('female')) {
+        features.push("Female");
+      } else if (roomName.toLowerCase().includes('mixed')) {
+        features.push("Mixed");
+      }
+      
+      // For private rooms (King Double/Triple), use specific features
+      if (roomType === 'private') {
+        if (roomName.includes('Double')) {
+          features = features.concat(["King Bed", "Valley View", "Attached Washroom", "Wi-Fi", "Premium Amenities", "Mini Fridge"]);
+        } else if (roomName.includes('Triple')) {
+          features = features.concat(["King Bed + Extra Bed", "Panoramic View", "Attached Washroom", "Wi-Fi", "Premium Amenities", "Mini Fridge"]);
+        }
+      } else {
+        // For dorm rooms, use standard hostel features
+        features = features.concat(["Premium Breakfast", "Attached Washroom", "Wi-Fi", "Locker", "Reading Lights", "Charging Point"]);
+      }
+      
+      return features.slice(0, 7);
+    } else {
+      // Fallback for other property types
+      return [];
+    }
+  };
+
   const hostelRooms = [
     {
       id: "4-bed-female-only-dorm",
       name: "Bed in 4-Bed Female Dormitory",
       price: 850,
       description: "Female-only dormitory with modern amenities and comfortable beds",
-      features: ["Female Only", "Attached Washroom", "Wi-Fi", "Locker", "Charging Point", "Mountain View Balcony"],
+      features: generateFeatures('hostel', 'Bed in 4-Bed Female Dormitory', 'dorm'),
       maxGuests: 4,
       maxRooms: 1,
       image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg",
@@ -59,7 +94,7 @@ const RoomsSection = () => {
       name: "Bed in 4-Bed Mixed Dormitory", 
       price: 800,
       description: "Mixed dormitory with shared facilities and social atmosphere",
-      features: ["Mixed", "Attached Washroom", "Wi-Fi", "Locker", "Charging Point", "Mountain View Balcony"],
+      features: generateFeatures('hostel', 'Bed in 4-Bed Mixed Dormitory', 'dorm'),
       maxGuests: 4,
       maxRooms: 1,
       image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/3.jpg",
@@ -75,7 +110,7 @@ const RoomsSection = () => {
       name: "Bed in 6-Bed Female Dormitory",
       price: 750,
       description: "Spacious female dormitory with modern amenities",
-      features: ["Female Only", "Attached Washroom", "Wi-Fi", "Locker", "Charging Point", "Mountain View Balcony"],
+      features: generateFeatures('hostel', 'Bed in 6-Bed Female Dormitory', 'dorm'),
       maxGuests: 6,
       maxRooms: 5,
       image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG",
@@ -93,7 +128,7 @@ const RoomsSection = () => {
       name: "Bed in 6-Bed Mixed Dormitory",
       price: 700,
       description: "Budget-friendly mixed dormitory with essential amenities",
-      features: ["Mixed", "Attached Washroom", "Wi-Fi", "Locker", "Charging Point", "Mountain View Balcony"],
+      features: generateFeatures('hostel', 'Bed in 6-Bed Mixed Dormitory', 'dorm'),
       maxGuests: 6,
       maxRooms: 6,
       image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG",
@@ -111,7 +146,7 @@ const RoomsSection = () => {
       name: "King Double Room",
       price: 3200,
       description: "Spacious private room with king bed for two guests",
-      features: ["King Bed", "Attached Washroom", "Wi-Fi", "Mountain Views", "Premium Breakfast", "Lover's Seat"],
+      features: generateFeatures('hostel', 'King Double Room', 'private'),
       maxGuests: 2,
       maxRooms: 2,
       image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg",
@@ -127,7 +162,7 @@ const RoomsSection = () => {
       name: "King Triple Room",
       price: 4200,
       description: "Luxurious private room accommodating up to three guests",
-      features: ["King Bed + Single Bed", "Attached Washroom", "Wi-Fi", "Mountain Views", "Premium Breakfast", "Lover's Seat"],
+      features: generateFeatures('hostel', 'King Triple Room', 'private'),
       maxGuests: 3,
       maxRooms: 1,
       image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/1.jpg",
@@ -147,7 +182,7 @@ const RoomsSection = () => {
       name: "Bed in 6-Bed Mixed Dormitory",
       price: 550,
       description: "Budget-friendly mixed dormitory with essential amenities",
-      features: ["Mixed", "Only Bed", "Wi-Fi"],
+      features: generateFeatures('economy', 'Bed in 6-Bed Mixed Dormitory', 'dorm'),
       maxGuests: 6,
       maxRooms: 6,
       image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG",
@@ -165,7 +200,7 @@ const RoomsSection = () => {
       name: "Bed in 8-Bed Mixed Dormitory", 
       price: 450,
       description: "Most economical option for backpackers and budget travelers",
-      features: ["Mixed", "Only Bed", "Wi-Fi"],
+      features: generateFeatures('economy', 'Bed in 8-Bed Mixed Dormitory', 'dorm'),
       maxGuests: 8,
       maxRooms: 8,
       image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg",

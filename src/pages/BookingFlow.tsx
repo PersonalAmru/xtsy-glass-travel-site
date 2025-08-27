@@ -39,6 +39,41 @@ interface SelectedRoom {
   };
 }
 
+// Helper function to generate standardized feature tags - matches RoomsSection.tsx exactly
+const generateFeatures = (propertyType: string, roomName: string, roomType: 'dorm' | 'private') => {
+  if (propertyType === 'economy') {
+    // XTSY Economy: exactly 3 tags, no Female tag ever
+    return ["Mixed", "Only Bed", "Wi-Fi"].slice(0, 3);
+  } else if (propertyType === 'hostel') {
+    // XTSY Travellers Hostel: max 7 tags with conditional Female/Mixed
+    let features = [];
+    
+    // Add Female or Mixed tag first (never both)
+    if (roomName.toLowerCase().includes('female')) {
+      features.push("Female");
+    } else if (roomName.toLowerCase().includes('mixed')) {
+      features.push("Mixed");
+    }
+    
+    // For private rooms (King Double/Triple), use specific features
+    if (roomType === 'private') {
+      if (roomName.includes('Double')) {
+        features = features.concat(["King Bed", "Valley View", "Attached Washroom", "Wi-Fi", "Premium Amenities", "Mini Fridge"]);
+      } else if (roomName.includes('Triple')) {
+        features = features.concat(["King Bed + Extra Bed", "Panoramic View", "Attached Washroom", "Wi-Fi", "Premium Amenities", "Mini Fridge"]);
+      }
+    } else {
+      // For dorm rooms, use standard hostel features
+      features = features.concat(["Premium Breakfast", "Attached Washroom", "Wi-Fi", "Locker", "Reading Lights", "Charging Point"]);
+    }
+    
+    return features.slice(0, 7);
+  } else {
+    // Fallback for other property types
+    return [];
+  }
+};
+
 // All available rooms from the home page with precise pricing and capacity
 const ALL_ROOMS_DATA: {
   [key: string]: Room;
@@ -64,7 +99,7 @@ const ALL_ROOMS_DATA: {
     price: 850,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg',
     description: 'Female-only dormitory with modern amenities and comfortable beds',
-    amenities: ['Female Only', 'Attached Washroom', 'Wi-Fi', 'Locker', 'Common Area', 'Reading Lights', 'Power Outlets', 'Premium Breakfast'],
+    amenities: generateFeatures('hostel', 'Bed in 4-Bed Female Only Dormitory', 'dorm'),
     type: 'dorm',
     maxGuests: 1,
     // Per bed
@@ -79,7 +114,7 @@ const ALL_ROOMS_DATA: {
     price: 800,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/3.jpg',
     description: 'Mixed dormitory with shared facilities and social atmosphere',
-    amenities: ['Mixed', 'Attached Washroom', 'Wi-Fi', 'Locker', 'Common Area', 'Reading Lights', 'Power Outlets', 'Premium Breakfast'],
+    amenities: generateFeatures('hostel', 'Bed in 4-Bed Mixed Dormitory', 'dorm'),
     type: 'dorm',
     maxGuests: 1,
     // Per bed
@@ -94,7 +129,7 @@ const ALL_ROOMS_DATA: {
     price: 750,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
     description: 'Spacious mixed or female dormitory with modern amenities',
-    amenities: ['Mixed/Female', 'Attached Washroom', 'Wi-Fi', 'Locker', 'Common Area', 'Reading Lights', 'Power Outlets', 'Premium Breakfast'],
+    amenities: generateFeatures('hostel', 'Bed in 6-Bed Female Only Dormitory', 'dorm'),
     type: 'dorm',
     maxGuests: 1,
     // Per bed
@@ -110,7 +145,7 @@ const ALL_ROOMS_DATA: {
     price: 700,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
     description: 'Spacious mixed dormitory with modern amenities',
-    amenities: ['Mixed', 'Attached Washroom', 'Wi-Fi', 'Locker', 'Common Area', 'Reading Lights', 'Power Outlets', 'Premium Breakfast'],
+    amenities: generateFeatures('hostel', 'Bed in 6-Bed Mixed Dormitory', 'dorm'),
     type: 'dorm',
     maxGuests: 1,
     // Per bed
@@ -125,7 +160,7 @@ const ALL_ROOMS_DATA: {
     price: 3200,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg',
     description: 'Spacious private room with king bed for two guests',
-    amenities: ['King Bed', 'Valley View', 'Attached Washroom', 'Wi-Fi', 'Premium Amenities', 'Mini Fridge', 'Premium Breakfast'],
+    amenities: generateFeatures('hostel', 'King Double Room', 'private'),
     type: 'private',
     maxGuests: 2,
     // Max 2 guests per room
@@ -140,7 +175,7 @@ const ALL_ROOMS_DATA: {
     price: 4200,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/1.jpg',
     description: 'Luxurious private room accommodating up to three guests',
-    amenities: ['King Bed + Extra Bed', 'Panoramic View', 'Attached Washroom', 'Wi-Fi', 'Premium Amenities', 'Mini Fridge', 'Premium Breakfast'],
+    amenities: generateFeatures('hostel', 'King Triple Room', 'private'),
     type: 'private',
     maxGuests: 3,
     propertyType: 'hostel',
@@ -155,7 +190,7 @@ const ALL_ROOMS_DATA: {
     price: 550,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
     description: 'Budget-friendly mixed dormitory with essential amenities',
-    amenities: ['Mixed/Female', 'AC', 'Reading Lights', 'Lockers', 'Budget Friendly'],
+    amenities: generateFeatures('economy', 'Bed in 6-Bed Mixed Dormitory', 'dorm'),
     type: 'dorm',
     maxGuests: 1,
     // Per bed
@@ -170,7 +205,7 @@ const ALL_ROOMS_DATA: {
     price: 450,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg',
     description: 'Most economical option for backpackers and budget travelers',
-    amenities: ['Mixed', 'AC', 'Reading Lights', 'Lockers', 'Budget Friendly'],
+    amenities: generateFeatures('economy', 'Bed in 8-Bed Mixed Dormitory', 'dorm'),
     type: 'dorm',
     maxGuests: 1,
     // Per bed
