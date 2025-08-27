@@ -58,6 +58,9 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
 
   // Check if this is the XTSY 270 room
   const isXTSY270 = room.name === "XTSY 270 Panorama Glass Ensuite";
+  
+  // Check if this is a luxury room
+  const isLuxury = room.propertyType === "luxury";
 
   // Calculate subtotal: price × nights × selected rooms/beds
   const calculateSubtotal = () => {
@@ -183,7 +186,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                 isMobile ? 'pb-2 px-3 pt-2' : 'pb-2 pt-3'
               } ${isXTSY270 ? 'pb-2 pt-2 px-3' : ''}`}>
                 <div className="flex items-center justify-between gap-2">
-                  <CardTitle className={`font-semibold text-white text-left flex-1 ${
+                  <CardTitle className={`font-semibold text-white ${isLuxury ? 'text-center' : 'text-center'} flex-1 ${
                     isMobile ? 'text-sm' : 'text-base'
                   } ${isXTSY270 ? 'text-sm leading-tight' : 'leading-tight'}`}>
                     {room.name}
@@ -206,7 +209,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
               <CardContent className={`pt-0 px-3 pb-3 ${
                 isXTSY270 ? 'flex-1 flex flex-col' : ''
               }`}>
-                <p className={`text-gray-300 mb-2 text-left ${
+                <p className={`text-gray-300 mb-2 ${isLuxury ? 'text-center text-justify' : 'text-center'} ${
                   isMobile ? 'text-xs' : 'text-sm'
                 } ${isXTSY270 ? 'text-xs mb-2' : ''} leading-relaxed`}>
                   {isXTSY270 
@@ -215,7 +218,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                   }
                 </p>
 
-                <div className={`flex flex-wrap mb-3 gap-1 ${
+                <div className={`flex flex-wrap mb-3 gap-1 justify-center ${
                   isXTSY270 ? 'mb-2' : ''
                 }`}>
                   {(() => {
@@ -248,7 +251,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                 } ${isXTSY270 ? 'space-y-2 pt-2 mt-auto' : ''}`}>
                 {/* Bed/Room Selection */}
                   <div className="flex items-center justify-between" data-toggle-container onClick={(e) => e.stopPropagation()}>
-                    <span className={`font-medium text-white text-left ${
+                    <span className={`font-medium text-white text-center ${
                       isMobile ? 'text-xs' : 'text-sm'
                     } ${isXTSY270 ? 'text-xs' : ''}`}>
                       {room.type === 'dorm' ? 'Beds:' : 'Rooms:'}
@@ -293,7 +296,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                     <div className={`flex items-center justify-between pt-2 border-t border-gray-700 ${
                       isMobile ? 'pt-1.5' : ''
                     } ${isXTSY270 ? 'pt-1.5' : ''}`}>
-                      <span className={`font-medium text-white text-left ${
+                      <span className={`font-medium text-white text-center ${
                         isMobile ? 'text-xs' : 'text-sm'
                       } ${isXTSY270 ? 'text-xs' : ''}`}>
                         Subtotal:
