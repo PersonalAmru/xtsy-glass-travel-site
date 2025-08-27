@@ -20,13 +20,13 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
   // Define which properties offer each service
   const getPropertyTags = (serviceTitle: string) => {
     switch (serviceTitle) {
-      case 'Free WiFi':
-        return ['XTSY Economy', 'XTSY Travellers Hostel', 'XTSY Luxury'];
-      case 'High Speed WiFi':
+      case 'Free Wi-Fi':
+        return ['XTSY Travellers Hostel', 'XTSY Luxury'];
+      case 'High Speed Wi-Fi':
         return ['XTSY Luxury'];
       case 'Flexible Check-in':
         return ['XTSY Travellers Hostel', 'XTSY Luxury'];
-      case 'Free parking':
+      case 'Free Parking':
         return ['XTSY Travellers Hostel', 'XTSY Luxury'];
       case 'In-House Cafe':
         return ['XTSY Travellers Hostel', 'XTSY Luxury'];
@@ -35,9 +35,9 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
       case 'Games Room':
         return ['XTSY Travellers Hostel', 'XTSY Luxury'];
       case 'Laundry':
-        return ['XTSY Economy', 'XTSY Travellers Hostel', 'XTSY Luxury'];
+        return ['XTSY Travellers Hostel', 'XTSY Luxury'];
       case '24/7 Security':
-        return ['XTSY Economy', 'XTSY Travellers Hostel', 'XTSY Luxury'];
+        return ['XTSY Travellers Hostel', 'XTSY Luxury'];
       case 'Tour Assistance':
         return ['XTSY Travellers Hostel', 'XTSY Luxury'];
       case 'Group Bookings':
@@ -45,7 +45,7 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
       case 'Event Space':
         return ['XTSY Travellers Hostel', 'XTSY Luxury'];
       case '24/7 Support':
-        return ['XTSY Economy', 'XTSY Travellers Hostel', 'XTSY Luxury'];
+        return ['XTSY Travellers Hostel', 'XTSY Luxury'];
       default:
         return ['XTSY Travellers Hostel', 'XTSY Luxury'];
     }
@@ -55,50 +55,34 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
   const getSpecialNotes = (serviceTitle: string) => {
     switch (serviceTitle) {
       case 'Flexible Check-in':
-        return [
-          { property: 'XTSY Economy', note: 'Strictly No Flexible check-in', type: 'restriction' }
-        ];
-      case 'Free parking':
-        return [
-          { property: 'XTSY Economy', note: 'Not sure; based on rush hours', type: 'info' }
-        ];
+        return [];
+      case 'Free Parking':
+        return [];
       case 'In-House Cafe':
-        return [
-          { property: 'XTSY Economy', note: 'No In-House cafe; Upgrade your stay plan to avail In-House Cafe', type: 'restriction' }
-        ];
+        return [];
       case 'Shared Lounge':
-        return [
-          { property: 'XTSY Economy', note: 'Strictly No', type: 'restriction' }
-        ];
+        return [];
       case 'Games Room':
-        return [
-          { property: 'XTSY Economy', note: 'No games room facility', type: 'restriction' }
-        ];
+        return [];
       case 'Laundry':
         return [
-          { property: 'XTSY Economy', note: 'Paid service [with taxes]', type: 'restriction' },
           { property: 'XTSY Travellers Hostel', note: '50% Off', type: 'info' },
           { property: 'XTSY Luxury', note: 'Free', type: 'premium' }
         ];
       case 'Tour Assistance':
         return [
-          { property: 'XTSY Economy', note: 'Basic assistance only', type: 'restriction' },
           { property: 'XTSY Luxury', note: 'Dedicated tour concierge', type: 'premium' }
         ];
       case 'Group Bookings':
         return [
-          { property: 'XTSY Economy', note: 'Strictly not more than 8 guests', type: 'restriction' },
           { property: 'XTSY Luxury', note: 'Exclusive signature stay - only 1 available per night in India', type: 'premium' }
         ];
       case 'Event Space':
         return [
-          { property: 'XTSY Economy', note: 'No event space available', type: 'restriction' },
           { property: 'XTSY Luxury', note: 'Premium event facilities', type: 'premium' }
         ];
       case '24/7 Support':
-        return [
-          { property: 'XTSY Economy', note: 'WhatsApp support on working hours', type: 'restriction' }
-        ];
+        return [];
       default:
         return [];
     }

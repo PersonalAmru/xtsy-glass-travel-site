@@ -28,13 +28,13 @@ const ServicesSection = () => {
   const services = [
     {
       icon: <Wifi className="h-5 w-5" />,
-      title: "Free WiFi",
+      title: "Free Wi-Fi",
       description: "High-speed internet throughout the property",
       badge: "Free"
     },
     {
       icon: <Car className="h-5 w-5" />,
-      title: "Free parking",
+      title: "Free Parking",
       description: "Secure parking available for guests",
       badge: "Free"
     },
@@ -47,7 +47,7 @@ const ServicesSection = () => {
     {
       icon: <Sofa className="h-5 w-5" />,
       title: "Shared Lounge",
-      description: "Netflix and chill",
+      description: "Netflix & Chill",
       badge: "24/7"
     },
     {
@@ -59,7 +59,7 @@ const ServicesSection = () => {
     {
       icon: <Shirt className="h-5 w-5" />,
       title: "Laundry",
-      description: "Washing and drying facilities",
+      description: "Washing And Drying Facilities",
       badge: "Paid"
     },
     {
@@ -83,7 +83,7 @@ const ServicesSection = () => {
     {
       icon: <Calendar className="h-5 w-5" />,
       title: "Event Space",
-      description: "Special events, photoshoots, retreats, and programs booking",
+      description: "Special events, photo shoots, retreats, and programs booking",
       badge: "Bookable"
     },
     {

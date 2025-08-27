@@ -60,11 +60,11 @@ const ALL_ROOMS_DATA: {
   // XTSY Travellers Hostel
   '4-bed-female-only-dorm': {
     id: '4-bed-female-only-dorm',
-    name: 'Bed in 4 Bed Female Only Dormitory',
+    name: 'Bed in 4-Bed Female Only Dormitory',
     price: 850,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg',
     description: 'Female-only dormitory with modern amenities and comfortable beds',
-    amenities: ['Female only', 'Attached washroom', 'Wi-Fi', 'Locker', 'Common area', 'Reading lights', 'Power outlets', 'Premium Breakfast'],
+    amenities: ['Female Only', 'Attached Washroom', 'Wi-Fi', 'Locker', 'Common Area', 'Reading Lights', 'Power Outlets', 'Premium Breakfast'],
     type: 'dorm',
     maxGuests: 1,
     // Per bed
@@ -75,11 +75,11 @@ const ALL_ROOMS_DATA: {
   },
   '4-bed-mixed-female-dorm': {
     id: '4-bed-mixed-female-dorm',
-    name: 'Bed in 4 Bed Mixed Dormitory',
+    name: 'Bed in 4-Bed Mixed Dormitory',
     price: 800,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/3.jpg',
     description: 'Mixed dormitory with shared facilities and social atmosphere',
-    amenities: ['Mixed', 'Attached washroom', 'Wi-Fi', 'Locker', 'Common area', 'Reading lights', 'Power outlets', 'Premium Breakfast'],
+    amenities: ['Mixed', 'Attached Washroom', 'Wi-Fi', 'Locker', 'Common Area', 'Reading Lights', 'Power Outlets', 'Premium Breakfast'],
     type: 'dorm',
     maxGuests: 1,
     // Per bed
@@ -90,11 +90,11 @@ const ALL_ROOMS_DATA: {
   },
   '6-bed-mixed-female-dorm': {
     id: '6-bed-mixed-female-dorm',
-    name: 'Bed in 6 Bed Female Only Dormitory',
-    price: 700,
+    name: 'Bed in 6-Bed Female Only Dormitory',
+    price: 750,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
     description: 'Spacious mixed or female dormitory with modern amenities',
-    amenities: ['Mixed/Female', 'Attached washroom', 'Wi-Fi', 'Locker', 'Common area', 'Reading lights', 'Power outlets', 'Premium Breakfast'],
+    amenities: ['Mixed/Female', 'Attached Washroom', 'Wi-Fi', 'Locker', 'Common Area', 'Reading Lights', 'Power Outlets', 'Premium Breakfast'],
     type: 'dorm',
     maxGuests: 1,
     // Per bed
@@ -106,11 +106,11 @@ const ALL_ROOMS_DATA: {
   // Add the missing room from home page
   '6-bed-mixed-dorm': {
     id: '6-bed-mixed-dorm',
-    name: 'Bed in 6 Bed Mixed Dormitory',
+    name: 'Bed in 6-Bed Mixed Dormitory',
     price: 700,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
     description: 'Spacious mixed dormitory with modern amenities',
-    amenities: ['Mixed', 'Attached washroom', 'Wi-Fi', 'Locker', 'Common area', 'Reading lights', 'Power outlets', 'Premium Breakfast'],
+    amenities: ['Mixed', 'Attached Washroom', 'Wi-Fi', 'Locker', 'Common Area', 'Reading Lights', 'Power Outlets', 'Premium Breakfast'],
     type: 'dorm',
     maxGuests: 1,
     // Per bed
@@ -125,7 +125,7 @@ const ALL_ROOMS_DATA: {
     price: 3200,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg',
     description: 'Spacious private room with king bed for two guests',
-    amenities: ['King bed', 'Valley view', 'Attached bath', 'Wi-Fi', 'Premium amenities', 'Mini fridge', 'Premium Breakfast'],
+    amenities: ['King Bed', 'Valley View', 'Attached Washroom', 'Wi-Fi', 'Premium Amenities', 'Mini Fridge', 'Premium Breakfast'],
     type: 'private',
     maxGuests: 2,
     // Max 2 guests per room
@@ -140,7 +140,7 @@ const ALL_ROOMS_DATA: {
     price: 4200,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/1.jpg',
     description: 'Luxurious private room accommodating up to three guests',
-    amenities: ['King bed + extra bed', 'Panoramic view', 'Attached bath', 'Wi-Fi', 'Premium amenities', 'Mini fridge', 'Premium Breakfast'],
+    amenities: ['King Bed + Extra Bed', 'Panoramic View', 'Attached Washroom', 'Wi-Fi', 'Premium Amenities', 'Mini Fridge', 'Premium Breakfast'],
     type: 'private',
     maxGuests: 3,
     propertyType: 'hostel',
@@ -151,11 +151,11 @@ const ALL_ROOMS_DATA: {
   // XTSY Economy
   '6-bed-mixed-economy-dorm': {
     id: '6-bed-mixed-economy-dorm',
-    name: 'Bed in 6 Bed Mixed Dormitory',
+    name: 'Bed in 6-Bed Mixed Dormitory',
     price: 550,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
     description: 'Budget-friendly mixed dormitory with essential amenities',
-    amenities: ['Mixed/Female', 'AC', 'Reading lights', 'Lockers', 'Budget Friendly'],
+    amenities: ['Mixed/Female', 'AC', 'Reading Lights', 'Lockers', 'Budget Friendly'],
     type: 'dorm',
     maxGuests: 1,
     // Per bed
@@ -166,11 +166,11 @@ const ALL_ROOMS_DATA: {
   },
   '8-bed-mixed-economy-dorm': {
     id: '8-bed-mixed-economy-dorm',
-    name: 'Bed in 8 Bed Mixed Dormitory',
+    name: 'Bed in 8-Bed Mixed Dormitory',
     price: 450,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg',
     description: 'Most economical option for backpackers and budget travelers',
-    amenities: ['Mixed', 'AC', 'Reading lights', 'Lockers', 'Budget Friendly'],
+    amenities: ['Mixed', 'AC', 'Reading Lights', 'Lockers', 'Budget Friendly'],
     type: 'dorm',
     maxGuests: 1,
     // Per bed

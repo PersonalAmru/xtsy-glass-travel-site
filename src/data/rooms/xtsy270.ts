@@ -15,14 +15,14 @@ export const XTSY270_DATA = {
   bed: { type: 'Queen', count: 1 },
   features: [
     'Premium Breakfast',
-    '270° panoramic glass walls',
-    'Luxury ensuite washroom',
-    'Premium mountain views',
-    'High-speed Wi‑Fi',
-    'Air-Conditioning',
+    '270° Panoramic Glass Walls',
+    'Luxury Ensuite Washroom',
+    'Premium Mountain Views',
+    'High-Speed Wi-Fi',
+    'Air Conditioning',
     '4K QLED Television',
     'Netflix & Chill',
-    'Instagram moments',
+    'Instagram Moments',
   ],
   luxuryFeatures: [
     {
@@ -42,7 +42,7 @@ export const XTSY270_DATA = {
     },
     {
       icon: Wifi,
-      title: 'High-Speed Connectivity',
+      title: 'High-Speed Wi-Fi',
       description: 'Seamless internet for remote work and streaming with mountain views'
     },
     {
