@@ -8,7 +8,6 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useApp } from "@/contexts/AppContext";
 import UPIPaymentModal from "./UPIPaymentModal";
-
 interface GuestDetailsProps {
   isOpen: boolean;
   onClose: () => void;
@@ -23,7 +22,10 @@ interface GuestDetailsProps {
       name: string;
       price: number;
       type: string;
-      selection: { guests: number; rooms: number };
+      selection: {
+        guests: number;
+        rooms: number;
+      };
     }>;
     totalAmount: number;
     gstAmount: number;
@@ -40,8 +42,12 @@ interface GuestDetailsProps {
     };
   };
 }
-
-const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProps) => {
+const GuestDetails = ({
+  isOpen,
+  onClose,
+  onBack,
+  bookingData
+}: GuestDetailsProps) => {
   const [formData, setFormData] = useState({
     guestName: "",
     email: "",
@@ -57,9 +63,12 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
   const [isHeaderCompact, setIsHeaderCompact] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const lastScrollTop = useRef(0);
-  
-  const { toast } = useToast();
-  const { formatPrice } = useApp();
+  const {
+    toast
+  } = useToast();
+  const {
+    formatPrice
+  } = useApp();
 
   // Calculate actual guests from room selections
   const actualGuests = bookingData.selectedRooms.reduce((total, room) => {
@@ -68,7 +77,7 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
       return total + room.selection.rooms;
     } else {
       // For private rooms, use the guests specified in selection
-      return total + (room.selection.guests * room.selection.rooms);
+      return total + room.selection.guests * room.selection.rooms;
     }
   }, 0);
 
@@ -79,22 +88,21 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
   useEffect(() => {
     const scrollContainer = scrollContainerRef.current;
     if (!scrollContainer) return;
-
     const handleScroll = () => {
       const currentScrollTop = scrollContainer.scrollTop;
       const scrollingDown = currentScrollTop > lastScrollTop.current;
-      
+
       // Compact header when scrolling down past 100px, expand when scrolling up
       if (scrollingDown && currentScrollTop > 100) {
         setIsHeaderCompact(true);
       } else if (!scrollingDown && currentScrollTop < 50) {
         setIsHeaderCompact(false);
       }
-      
       lastScrollTop.current = currentScrollTop;
     };
-
-    scrollContainer.addEventListener('scroll', handleScroll, { passive: true });
+    scrollContainer.addEventListener('scroll', handleScroll, {
+      passive: true
+    });
     return () => scrollContainer.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -114,23 +122,21 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
   const sanitizeInput = (input: string) => {
     return input.trim().replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
   };
-
   const handleInputChange = (field: string, value: string) => {
     const sanitizedValue = sanitizeInput(value);
-    setFormData(prev => ({ ...prev, [field]: sanitizedValue }));
+    setFormData(prev => ({
+      ...prev,
+      [field]: sanitizedValue
+    }));
   };
-
   const validateForm = () => {
     const requiredFields = ['guestName', 'email', 'whatsappNumber', 'address', 'city', 'state', 'pincode'];
     const hasRequiredFields = requiredFields.every(field => formData[field as keyof typeof formData].trim() !== '');
-    
     if (!hasRequiredFields) return false;
     if (!validateEmail(formData.email)) return false;
     if (!validatePhone(formData.whatsappNumber)) return false;
-    
     return true;
   };
-
   const handleSubmit = async () => {
     if (!validateForm()) {
       toast({
@@ -140,19 +146,19 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
       });
       return;
     }
-
     setIsSubmitting(true);
 
     // Generate booking ID outside try block for later use
     let bookingId = '';
-
     try {
       // Import the secure booking service
-      const { SecureBookingService } = await import('@/services/secureBookingService');
-      
+      const {
+        SecureBookingService
+      } = await import('@/services/secureBookingService');
+
       // Generate a unique booking ID
       bookingId = SecureBookingService.generateBookingId();
-      
+
       // Prepare booking data for secure storage
       const secureBookingData = {
         bookingId,
@@ -170,9 +176,7 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
           price: room.price,
           quantity: room.selection.rooms || room.selection.guests,
           guests: room.selection.guests,
-          totalPrice: room.type === 'dorm' 
-            ? room.price * room.selection.guests * bookingData.nights
-            : room.price * room.selection.rooms * bookingData.nights
+          totalPrice: room.type === 'dorm' ? room.price * room.selection.guests * bookingData.nights : room.price * room.selection.rooms * bookingData.nights
         })),
         subtotal: bookingData.subtotal,
         gstAmount: bookingData.gstAmount,
@@ -190,7 +194,7 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
           dinnerVeg: bookingData.addOns?.dinnerVeg || 0,
           dinnerNonVeg: bookingData.addOns?.dinnerNonVeg || 0,
           transportation: bookingData.addOns?.transportation || false,
-          itinerary: bookingData.addOns?.itineraryPlanning || false,
+          itinerary: bookingData.addOns?.itineraryPlanning || false
         }
       };
 
@@ -208,7 +212,6 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
 
       // Create booking through secure service
       const result = await SecureBookingService.createBooking(secureBookingData);
-      
       if (!result.success) {
         toast({
           title: "Booking creation failed",
@@ -218,12 +221,10 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
         setIsSubmitting(false);
         return;
       }
-
       toast({
         title: "Booking Saved Securely",
-        description: `Your booking ${bookingId} has been saved. Proceeding to WhatsApp...`,
+        description: `Your booking ${bookingId} has been saved. Proceeding to WhatsApp...`
       });
-
     } catch (error) {
       console.error('Secure booking creation error:', error);
       toast({
@@ -245,15 +246,9 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
     };
 
     // Determine property type based on room selection
-    const hasLuxuryRooms = bookingData.selectedRooms.some(room => 
-      room.name.toLowerCase().includes('luxury') || 
-      room.name.toLowerCase().includes('suite') || 
-      room.name.toLowerCase().includes('deluxe')
-    );
-    const hasDormRooms = bookingData.selectedRooms.some(room => 
-      room.name.toLowerCase().includes('dorm')
-    );
-    
+    const hasLuxuryRooms = bookingData.selectedRooms.some(room => room.name.toLowerCase().includes('luxury') || room.name.toLowerCase().includes('suite') || room.name.toLowerCase().includes('deluxe'));
+    const hasDormRooms = bookingData.selectedRooms.some(room => room.name.toLowerCase().includes('dorm'));
+
     // Determine property name based on room types
     let propertyName = '';
     if (hasLuxuryRooms && hasDormRooms) {
@@ -269,7 +264,6 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
       const isDorm = room.name.toLowerCase().includes('dorm');
       const selection = room.selection;
       const nights = bookingData.nights;
-      
       if (isDorm) {
         const totalPrice = room.price * selection.guests * nights;
         return `• ${room.name}: ${selection.guests} beds × ${nights} nights = ${formatPrice(totalPrice)}`;
@@ -280,11 +274,7 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
     }).join('\n');
 
     // Include emergency contact if provided
-    const emergencyContactText = formData.emergencyContact && formData.emergencyRelation 
-      ? `\n• Emergency Contact: ${formData.emergencyContact} (${formData.emergencyRelation})`
-      : formData.emergencyContact 
-        ? `\n• Emergency Contact: ${formData.emergencyContact}`
-        : '';
+    const emergencyContactText = formData.emergencyContact && formData.emergencyRelation ? `\n• Emergency Contact: ${formData.emergencyContact} (${formData.emergencyRelation})` : formData.emergencyContact ? `\n• Emergency Contact: ${formData.emergencyContact}` : '';
 
     // Format add-on services
     const addOnServices = [];
@@ -303,13 +293,10 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
     if (bookingData.addOns?.itineraryPlanning) {
       addOnServices.push(`• Itinerary planning: On request basis`);
     }
-
-    const addOnServicesText = addOnServices.length > 0 
-      ? `\n\n🍽️ Add-on Services\n${addOnServices.join('\n')}`
-      : '';
+    const addOnServicesText = addOnServices.length > 0 ? `\n\n🍽️ Add-on Services\n${addOnServices.join('\n')}` : '';
 
     // Use the booking ID generated earlier
-    
+
     const whatsappMessage = `🏔️ *NEW BOOKING REQUEST* 🏔️
 ✨ Property: ${propertyName}
 📋 Booking ID: ${bookingId}
@@ -348,86 +335,62 @@ We're hyped to host you! Stay tuned for confirmation.
 Until then—safe travels & pack light 🧳🌿
 
 — Team XTSY`;
-
     const whatsappURL = `https://wa.me/918837317070?text=${encodeURIComponent(whatsappMessage)}`;
-    
+
     // Open WhatsApp in new tab
     window.open(whatsappURL, '_blank');
-    
+
     // Show success message and close modal
     toast({
       title: "Redirecting to WhatsApp",
-      description: "Your booking details have been prepared. Complete the booking via WhatsApp.",
+      description: "Your booking details have been prepared. Complete the booking via WhatsApp."
     });
-    
+
     // Clear booking data and close modal
     localStorage.removeItem('xtsy_current_booking');
     onClose();
   };
-
-  return (
-    <>
+  return <>
       <Dialog open={isOpen} onOpenChange={onClose}>
         <DialogContent className="w-full h-full max-w-none max-h-none md:max-w-2xl lg:max-w-3xl md:max-h-[95vh] md:h-auto bg-white border-0 p-0 overflow-hidden">
           <div className="flex flex-col h-full max-h-[100vh] md:max-h-[95vh]">
             {/* Header - Fixed with Dynamic Sizing */}
-            <div className={`flex-shrink-0 border-b bg-gradient-to-r from-orange-50 to-red-50 transition-all duration-300 ${
-              isHeaderCompact ? 'p-2 md:p-3' : 'p-4 md:p-6'
-            }`}>
+            <div className={`flex-shrink-0 border-b bg-gradient-to-r from-orange-50 to-red-50 transition-all duration-300 ${isHeaderCompact ? 'p-2 md:p-3' : 'p-4 md:p-6'}`}>
               <div className="flex items-center gap-3 mb-2">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={onBack}
-                  className="p-2 text-gray-900 hover:bg-gray-100"
-                >
+                <Button variant="ghost" size="sm" onClick={onBack} className="p-2 text-gray-900 hover:bg-gray-100">
                   <ArrowLeft className="h-5 w-5 text-gray-900" />
                 </Button>
-                <DialogTitle className={`font-bold text-gray-900 transition-all duration-300 ${
-                  isHeaderCompact ? 'text-lg md:text-xl' : 'text-xl md:text-2xl'
-                }`}>
+                <DialogTitle className={`font-bold text-gray-900 transition-all duration-300 ${isHeaderCompact ? 'text-lg md:text-xl' : 'text-xl md:text-2xl'}`}>
                   Booking Summary and Guest Details
                 </DialogTitle>
               </div>
               
               {/* Booking Summary - Collapsible */}
-              <div className={`bg-white rounded-lg shadow-sm transition-all duration-300 overflow-hidden ${
-                isHeaderCompact ? 'p-2 mt-2' : 'p-3 mt-4'
-              }`}>
-                <div className={`grid gap-3 transition-all duration-300 ${
-                  isHeaderCompact ? 'grid-cols-4 text-xs' : 'grid-cols-2 md:grid-cols-4 text-sm'
-                }`}>
+              <div className={`bg-white rounded-lg shadow-sm transition-all duration-300 overflow-hidden ${isHeaderCompact ? 'p-2 mt-2' : 'p-3 mt-4'}`}>
+                <div className={`grid gap-3 transition-all duration-300 ${isHeaderCompact ? 'grid-cols-4 text-xs' : 'grid-cols-2 md:grid-cols-4 text-sm'}`}>
                   <div className="flex items-center gap-2">
-                    <Calendar className={`text-orange-500 transition-all duration-300 ${
-                      isHeaderCompact ? 'h-3 w-3' : 'h-4 w-4'
-                    }`} />
+                    <Calendar className={`text-orange-500 transition-all duration-300 ${isHeaderCompact ? 'h-3 w-3' : 'h-4 w-4'}`} />
                     <div>
                       <div className="text-gray-700 font-medium">Check-in</div>
                       <div className="font-semibold text-gray-900">{new Date(bookingData.checkIn).toLocaleDateString()}</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Calendar className={`text-orange-500 transition-all duration-300 ${
-                      isHeaderCompact ? 'h-3 w-3' : 'h-4 w-4'
-                    }`} />
+                    <Calendar className={`text-orange-500 transition-all duration-300 ${isHeaderCompact ? 'h-3 w-3' : 'h-4 w-4'}`} />
                     <div>
                       <div className="text-gray-700 font-medium">Check-out</div>
                       <div className="font-semibold text-gray-900">{new Date(bookingData.checkOut).toLocaleDateString()}</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Users className={`text-orange-500 transition-all duration-300 ${
-                      isHeaderCompact ? 'h-3 w-3' : 'h-4 w-4'
-                    }`} />
+                    <Users className={`text-orange-500 transition-all duration-300 ${isHeaderCompact ? 'h-3 w-3' : 'h-4 w-4'}`} />
                     <div>
                       <div className="text-gray-700 font-medium">Guests</div>
                       <div className="font-semibold text-gray-900">{displayGuests}</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Calendar className={`text-orange-500 transition-all duration-300 ${
-                      isHeaderCompact ? 'h-3 w-3' : 'h-4 w-4'
-                    }`} />
+                    <Calendar className={`text-orange-500 transition-all duration-300 ${isHeaderCompact ? 'h-3 w-3' : 'h-4 w-4'}`} />
                     <div>
                       <div className="text-gray-700 font-medium">Nights</div>
                       <div className="font-semibold text-gray-900">{bookingData.nights}</div>
@@ -439,10 +402,7 @@ Until then—safe travels & pack light 🧳🌿
               {/* Compact Booking Summary - Always visible but minimal */}
               <div className="mt-2 p-2 rounded-md bg-blue-50 border border-blue-200 transition-all duration-300">
                 <div className="flex items-center justify-between">
-                  <div className="text-xs text-blue-700">
-                    {bookingData.selectedRooms.length} room{bookingData.selectedRooms.length > 1 ? 's' : ''} • {bookingData.nights} night{bookingData.nights > 1 ? 's' : ''}
-                    {bookingData.discountAmount > 0 && ` • Discount applied`}
-                  </div>
+                  
                   <div className="text-right">
                     <div className="text-xl font-bold text-blue-800">{formatPrice(bookingData.totalAmount)}</div>
                   </div>
@@ -469,46 +429,21 @@ Until then—safe travels & pack light 🧳🌿
                       <Label htmlFor="guestName" className="text-sm font-medium text-gray-700">
                         Full Name *
                       </Label>
-                      <Input
-                        id="guestName"
-                        value={formData.guestName}
-                        onChange={(e) => handleInputChange('guestName', e.target.value)}
-                        placeholder="Enter your full name"
-                        className="mt-1"
-                        maxLength={100}
-                        required
-                      />
+                      <Input id="guestName" value={formData.guestName} onChange={e => handleInputChange('guestName', e.target.value)} placeholder="Enter your full name" className="mt-1" maxLength={100} required />
                     </div>
                     
                     <div>
                       <Label htmlFor="email" className="text-sm font-medium text-gray-700">
                         Email Address *
                       </Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={(e) => handleInputChange('email', e.target.value)}
-                        placeholder="your@example.com"
-                        className="mt-1"
-                        maxLength={100}
-                        required
-                      />
+                      <Input id="email" type="email" value={formData.email} onChange={e => handleInputChange('email', e.target.value)} placeholder="your@example.com" className="mt-1" maxLength={100} required />
                     </div>
                     
                     <div>
                       <Label htmlFor="whatsappNumber" className="text-sm font-medium text-gray-700">
                         WhatsApp Number *
                       </Label>
-                      <Input
-                        id="whatsappNumber"
-                        value={formData.whatsappNumber}
-                        onChange={(e) => handleInputChange('whatsappNumber', e.target.value)}
-                        placeholder="+91 9876543210"
-                        className="mt-1"
-                        maxLength={20}
-                        required
-                      />
+                      <Input id="whatsappNumber" value={formData.whatsappNumber} onChange={e => handleInputChange('whatsappNumber', e.target.value)} placeholder="+91 9876543210" className="mt-1" maxLength={20} required />
                     </div>
                   </div>
                 </div>
@@ -525,15 +460,7 @@ Until then—safe travels & pack light 🧳🌿
                       <Label htmlFor="address" className="text-sm font-medium text-gray-700">
                         Full Address *
                       </Label>
-                      <Input
-                        id="address"
-                        value={formData.address}
-                        onChange={(e) => handleInputChange('address', e.target.value)}
-                        placeholder="House No, Street, Area"
-                        className="mt-1"
-                        maxLength={200}
-                        required
-                      />
+                      <Input id="address" value={formData.address} onChange={e => handleInputChange('address', e.target.value)} placeholder="House No, Street, Area" className="mt-1" maxLength={200} required />
                     </div>
                     
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -541,45 +468,21 @@ Until then—safe travels & pack light 🧳🌿
                         <Label htmlFor="city" className="text-sm font-medium text-gray-700">
                           City *
                         </Label>
-                        <Input
-                          id="city"
-                          value={formData.city}
-                          onChange={(e) => handleInputChange('city', e.target.value)}
-                          placeholder="City"
-                          className="mt-1"
-                          maxLength={50}
-                          required
-                        />
+                        <Input id="city" value={formData.city} onChange={e => handleInputChange('city', e.target.value)} placeholder="City" className="mt-1" maxLength={50} required />
                       </div>
                       
                       <div>
                         <Label htmlFor="state" className="text-sm font-medium text-gray-700">
                           State *
                         </Label>
-                        <Input
-                          id="state"
-                          value={formData.state}
-                          onChange={(e) => handleInputChange('state', e.target.value)}
-                          placeholder="State"
-                          className="mt-1"
-                          maxLength={50}
-                          required
-                        />
+                        <Input id="state" value={formData.state} onChange={e => handleInputChange('state', e.target.value)} placeholder="State" className="mt-1" maxLength={50} required />
                       </div>
                       
                       <div>
                         <Label htmlFor="pincode" className="text-sm font-medium text-gray-700">
                           Pincode *
                         </Label>
-                        <Input
-                          id="pincode"
-                          value={formData.pincode}
-                          onChange={(e) => handleInputChange('pincode', e.target.value)}
-                          placeholder="123456"
-                          className="mt-1"
-                          maxLength={10}
-                          required
-                        />
+                        <Input id="pincode" value={formData.pincode} onChange={e => handleInputChange('pincode', e.target.value)} placeholder="123456" className="mt-1" maxLength={10} required />
                       </div>
                     </div>
                   </div>
@@ -597,28 +500,14 @@ Until then—safe travels & pack light 🧳🌿
                       <Label htmlFor="emergencyContact" className="text-sm font-medium text-gray-700">
                         Emergency Contact Number
                       </Label>
-                      <Input
-                        id="emergencyContact"
-                        value={formData.emergencyContact}
-                        onChange={(e) => handleInputChange('emergencyContact', e.target.value)}
-                        placeholder="+91 9876543210"
-                        className="mt-1"
-                        maxLength={20}
-                      />
+                      <Input id="emergencyContact" value={formData.emergencyContact} onChange={e => handleInputChange('emergencyContact', e.target.value)} placeholder="+91 9876543210" className="mt-1" maxLength={20} />
                     </div>
                     
                     <div>
                       <Label htmlFor="emergencyRelation" className="text-sm font-medium text-gray-700">
                         Relationship
                       </Label>
-                      <Input
-                        id="emergencyRelation"
-                        value={formData.emergencyRelation}
-                        onChange={(e) => handleInputChange('emergencyRelation', e.target.value)}
-                        placeholder="e.g., Father, Mother, Friend"
-                        className="mt-1"
-                        maxLength={50}
-                      />
+                      <Input id="emergencyRelation" value={formData.emergencyRelation} onChange={e => handleInputChange('emergencyRelation', e.target.value)} placeholder="e.g., Father, Mother, Friend" className="mt-1" maxLength={50} />
                     </div>
                   </div>
                 </div>
@@ -660,19 +549,11 @@ Until then—safe travels & pack light 🧳🌿
 
             {/* Footer - Fixed */}
             <div className="flex-shrink-0 p-4 md:p-6 border-t bg-gray-50 md:relative fixed bottom-0 left-0 right-0 z-50">
-              <Button
-                onClick={handleSubmit}
-                disabled={isSubmitting || !validateForm()}
-                className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-3 text-lg"
-              >
-                {isSubmitting ? (
-                  <div className="flex items-center gap-2">
+              <Button onClick={handleSubmit} disabled={isSubmitting || !validateForm()} className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-3 text-lg">
+                {isSubmitting ? <div className="flex items-center gap-2">
                     <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                     Processing...
-                  </div>
-                 ) : (
-                  "Complete Booking via WhatsApp"
-                 )}
+                  </div> : "Complete Booking via WhatsApp"}
                </Button>
                <p className="text-xs text-gray-500 text-center mt-2">
                  Complete your booking through WhatsApp with payment details
@@ -681,8 +562,6 @@ Until then—safe travels & pack light 🧳🌿
            </div>
          </DialogContent>
        </Dialog>
-    </>
-  );
+    </>;
 };
-
 export default GuestDetails;
