@@ -17,6 +17,20 @@ interface ServiceModalProps {
 const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
   if (!service) return null;
 
+  // Define which properties offer each service
+  const getPropertyTags = (serviceTitle: string) => {
+    switch (serviceTitle) {
+      case 'Free WiFi':
+        return ['XTSY Economy', 'XTSY Travellers Hostel', 'XTSY Luxury'];
+      case 'High Speed WiFi':
+        return ['XTSY Luxury'];
+      default:
+        return ['XTSY Travellers Hostel', 'XTSY Luxury'];
+    }
+  };
+
+  const propertyTags = getPropertyTags(service.title);
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="bg-white border border-gray-300 shadow-2xl max-w-md">
@@ -33,9 +47,25 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
             {service.title}
           </DialogTitle>
         </DialogHeader>
-        <DialogDescription className="text-gray-700 leading-relaxed text-left text-lg font-medium">
+        <DialogDescription className="text-gray-700 leading-relaxed text-left text-lg font-medium mb-4">
           {service.description}
         </DialogDescription>
+        
+        {/* Property Tags */}
+        <div className="space-y-2">
+          <p className="text-sm font-semibold text-gray-600">Available at:</p>
+          <div className="flex flex-wrap gap-2">
+            {propertyTags.map((property, index) => (
+              <Badge 
+                key={index}
+                variant="outline" 
+                className="border-green-400 text-green-800 bg-green-50 font-medium text-xs"
+              >
+                {property}
+              </Badge>
+            ))}
+          </div>
+        </div>
       </DialogContent>
     </Dialog>
   );
