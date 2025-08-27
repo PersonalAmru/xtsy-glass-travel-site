@@ -91,7 +91,7 @@ const ServicesSection = () => {
       icon: <Phone className="h-5 w-5" />,
       title: "24/7 Support",
       description: "Round-the-clock guest assistance",
-      badge: "Always Available"
+      badge: "24/7"
     },
     {
       icon: <Clock className="h-5 w-5" />,
