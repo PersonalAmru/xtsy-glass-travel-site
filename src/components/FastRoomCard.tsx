@@ -218,17 +218,28 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                 <div className={`flex flex-wrap mb-3 gap-1 ${
                   isXTSY270 ? 'mb-2' : ''
                 }`}>
-                  {room.amenities.map((amenity) => (
-                    <Badge 
-                      key={amenity} 
-                      variant="outline" 
-                      className={`text-xs px-2 py-0.5 border-gray-600 text-gray-200 bg-gray-800 ${
-                        isXTSY270 ? 'text-xs px-2 py-0.5' : ''
-                      }`}
-                    >
-                      {amenity}
-                    </Badge>
-                  ))}
+                  {(() => {
+                    let displayAmenities = room.amenities;
+                    
+                    // Replace "Common area" with "Free Breakfast" for dormitory rooms in XTSY Travellers Hostel
+                    if (room.propertyType === "hostel" && room.name.toLowerCase().includes("dormitory")) {
+                      displayAmenities = room.amenities.map(amenity => 
+                        amenity === "Common area" ? "Free Breakfast" : amenity
+                      );
+                    }
+                    
+                    return displayAmenities.map((amenity) => (
+                      <Badge 
+                        key={amenity} 
+                        variant="outline" 
+                        className={`text-xs px-2 py-0.5 border-gray-600 text-gray-200 bg-gray-800 ${
+                          isXTSY270 ? 'text-xs px-2 py-0.5' : ''
+                        }`}
+                      >
+                        {amenity}
+                      </Badge>
+                    ));
+                  })()}
                 </div>
 
                 {/* Room selection only */}
