@@ -385,7 +385,7 @@ const AboutSection = () => {
               </CardContent>
             </Card>
           </div>
-        </section>
+        </div>
 
         {/* Book Direct. Experience Local. */}
         <section className="mb-16">
