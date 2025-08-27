@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import PropertySection from "./PropertySection";
 import GalleryImage from "./GalleryImage";
 import { XTSY270_DATA } from "@/data/rooms/xtsy270";
+import { generateStandardizedFeatures } from "@/utils/roomFeatures";
 
 const RoomsSection = () => {
   const scrollToCalendar = () => {
@@ -33,40 +34,8 @@ const RoomsSection = () => {
     }
   ];
 
-  // Helper function to generate standardized feature tags
-  const generateFeatures = (propertyType: string, roomName: string, roomType: 'dorm' | 'private') => {
-    if (propertyType === 'economy') {
-      // XTSY Economy: exactly 3 tags, no Female tag ever
-      return ["Mixed", "Only Bed", "Wi-Fi"].slice(0, 3);
-    } else if (propertyType === 'hostel') {
-      // XTSY Travellers Hostel: max 7 tags with conditional Female/Mixed
-      let features = [];
-      
-      // Add Female or Mixed tag first (never both)
-      if (roomName.toLowerCase().includes('female')) {
-        features.push("Female");
-      } else if (roomName.toLowerCase().includes('mixed')) {
-        features.push("Mixed");
-      }
-      
-      // For private rooms (King Double/Triple), use specific features
-      if (roomType === 'private') {
-        if (roomName.includes('Double')) {
-          features = features.concat(["King Bed", "Valley View", "Attached Washroom", "Wi-Fi", "Premium Amenities", "Mini Fridge"]);
-        } else if (roomName.includes('Triple')) {
-          features = features.concat(["King Bed + Extra Bed", "Panoramic View", "Attached Washroom", "Wi-Fi", "Premium Amenities", "Mini Fridge"]);
-        }
-      } else {
-        // For dorm rooms, use standard hostel features
-        features = features.concat(["Premium Breakfast", "Attached Washroom", "Wi-Fi", "Locker", "Reading Lights", "Charging Point"]);
-      }
-      
-      return features.slice(0, 7);
-    } else {
-      // Fallback for other property types
-      return [];
-    }
-  };
+  // Use shared standardized feature generation utility
+  const generateFeatures = generateStandardizedFeatures;
 
   const hostelRooms = [
     {
@@ -144,7 +113,7 @@ const RoomsSection = () => {
     {
       id: "king-double-room",
       name: "King Double Room",
-      price: 3200,
+      price: 3500,
       description: "Spacious private room with king bed for two guests",
       features: generateFeatures('hostel', 'King Double Room', 'private'),
       maxGuests: 2,
@@ -160,7 +129,7 @@ const RoomsSection = () => {
     {
       id: "king-triple-room",
       name: "King Triple Room",
-      price: 4200,
+      price: 4500,
       description: "Luxurious private room accommodating up to three guests",
       features: generateFeatures('hostel', 'King Triple Room', 'private'),
       maxGuests: 3,
@@ -180,7 +149,7 @@ const RoomsSection = () => {
     {
       id: "6-bed-mixed-economy-dorm",
       name: "Bed in 6-Bed Mixed Dormitory",
-      price: 550,
+      price: 450,
       description: "Budget-friendly mixed dormitory with essential amenities",
       features: generateFeatures('economy', 'Bed in 6-Bed Mixed Dormitory', 'dorm'),
       maxGuests: 6,
@@ -198,7 +167,7 @@ const RoomsSection = () => {
     {
       id: "8-bed-mixed-economy-dorm",
       name: "Bed in 8-Bed Mixed Dormitory", 
-      price: 450,
+      price: 350,
       description: "Most economical option for backpackers and budget travelers",
       features: generateFeatures('economy', 'Bed in 8-Bed Mixed Dormitory', 'dorm'),
       maxGuests: 8,

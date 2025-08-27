@@ -13,6 +13,7 @@ import { differenceInDays, parseISO } from 'date-fns';
 import Header from '@/components/Header';
 import { ROOM_DATA, XTSY270_DATA } from '@/data/rooms/xtsy270';
 import { useApp } from '@/contexts/AppContext';
+import { generateStandardizedFeatures } from '@/utils/roomFeatures';
 
 interface Room {
   id: string;
@@ -39,40 +40,8 @@ interface SelectedRoom {
   };
 }
 
-// Helper function to generate standardized feature tags - matches RoomsSection.tsx exactly
-const generateFeatures = (propertyType: string, roomName: string, roomType: 'dorm' | 'private') => {
-  if (propertyType === 'economy') {
-    // XTSY Economy: exactly 3 tags, no Female tag ever
-    return ["Mixed", "Only Bed", "Wi-Fi"].slice(0, 3);
-  } else if (propertyType === 'hostel') {
-    // XTSY Travellers Hostel: max 7 tags with conditional Female/Mixed
-    let features = [];
-    
-    // Add Female or Mixed tag first (never both)
-    if (roomName.toLowerCase().includes('female')) {
-      features.push("Female");
-    } else if (roomName.toLowerCase().includes('mixed')) {
-      features.push("Mixed");
-    }
-    
-    // For private rooms (King Double/Triple), use specific features
-    if (roomType === 'private') {
-      if (roomName.includes('Double')) {
-        features = features.concat(["King Bed", "Valley View", "Attached Washroom", "Wi-Fi", "Premium Amenities", "Mini Fridge"]);
-      } else if (roomName.includes('Triple')) {
-        features = features.concat(["King Bed + Extra Bed", "Panoramic View", "Attached Washroom", "Wi-Fi", "Premium Amenities", "Mini Fridge"]);
-      }
-    } else {
-      // For dorm rooms, use standard hostel features
-      features = features.concat(["Premium Breakfast", "Attached Washroom", "Wi-Fi", "Locker", "Reading Lights", "Charging Point"]);
-    }
-    
-    return features.slice(0, 7);
-  } else {
-    // Fallback for other property types
-    return [];
-  }
-};
+// Use shared standardized feature generation utility
+const generateFeatures = generateStandardizedFeatures;
 
 // All available rooms from the home page with precise pricing and capacity
 const ALL_ROOMS_DATA: {
@@ -157,7 +126,7 @@ const ALL_ROOMS_DATA: {
   'king-double-room': {
     id: 'king-double-room',
     name: 'King Double Room',
-    price: 3200,
+    price: 3500,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg',
     description: 'Spacious private room with king bed for two guests',
     amenities: generateFeatures('hostel', 'King Double Room', 'private'),
@@ -172,7 +141,7 @@ const ALL_ROOMS_DATA: {
   'king-triple-room': {
     id: 'king-triple-room',
     name: 'King Triple Room',
-    price: 4200,
+    price: 4500,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/1.jpg',
     description: 'Luxurious private room accommodating up to three guests',
     amenities: generateFeatures('hostel', 'King Triple Room', 'private'),
@@ -187,7 +156,7 @@ const ALL_ROOMS_DATA: {
   '6-bed-mixed-economy-dorm': {
     id: '6-bed-mixed-economy-dorm',
     name: 'Bed in 6-Bed Mixed Dormitory',
-    price: 550,
+    price: 450,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
     description: 'Budget-friendly mixed dormitory with essential amenities',
     amenities: generateFeatures('economy', 'Bed in 6-Bed Mixed Dormitory', 'dorm'),
@@ -202,7 +171,7 @@ const ALL_ROOMS_DATA: {
   '8-bed-mixed-economy-dorm': {
     id: '8-bed-mixed-economy-dorm',
     name: 'Bed in 8-Bed Mixed Dormitory',
-    price: 450,
+    price: 350,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg',
     description: 'Most economical option for backpackers and budget travelers',
     amenities: generateFeatures('economy', 'Bed in 8-Bed Mixed Dormitory', 'dorm'),

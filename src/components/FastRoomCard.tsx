@@ -8,6 +8,7 @@ import { useMediaQuery } from '@/hooks/use-mobile';
 import { useApp } from '@/contexts/AppContext';
 import ImageLightbox from './ImageLightbox';
 import MobileImageCarousel from './MobileImageCarousel';
+import { generateStandardizedFeatures } from '@/utils/roomFeatures';
 
 interface FastRoomCardProps {
   room: {
@@ -222,24 +223,19 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                   isXTSY270 ? 'mb-2' : ''
                 }`}>
                   {(() => {
-                    let displayAmenities = room.amenities;
+                    // Use standardized feature generation utility
+                    const roomType = (room.name.includes("King Double") || room.name.includes("King Triple") || room.name === "XTSY 270 Panorama Glass Ensuite") ? 'private' : 'dorm';
+                    const standardizedFeatures = generateStandardizedFeatures(room.propertyType || 'hostel', room.name, roomType);
                     
-                    // Replace "Common area" with "Free Breakfast" for dormitory rooms in XTSY Travellers Hostel
-                    if (room.propertyType === "hostel" && room.name.toLowerCase().includes("dormitory")) {
-                      displayAmenities = room.amenities.map(amenity => 
-                        amenity === "Common area" ? "Free Breakfast" : amenity
-                      );
-                    }
-                    
-                    return displayAmenities.map((amenity) => (
+                    return standardizedFeatures.map((feature, index) => (
                       <Badge 
-                        key={amenity} 
+                        key={index} 
                         variant="outline" 
                         className={`text-xs px-2 py-0.5 border-gray-600 text-gray-200 bg-gray-800 ${
-                          isXTSY270 ? 'text-xs px-2 py-0.5' : ''
+                          isXTSY270 ? 'text-xs px-2 py-0.5 bg-gradient-to-r from-orange-800 to-red-900 text-orange-200 border-orange-600' : ''
                         }`}
                       >
-                        {amenity}
+                        {feature}
                       </Badge>
                     ));
                   })()}
