@@ -14,11 +14,11 @@ export const XTSY270_DATA = {
   occupancy: { min: 1, max: 2 },
   bed: { type: 'Queen', count: 1 },
   features: [
+    'Premium Breakfast',
     '270° panoramic glass walls',
     'Luxury ensuite washroom',
     'Premium mountain views',
     'High-speed Wi‑Fi',
-    'Premium Breakfast',
     'Climate control',
   ],
   luxuryFeatures: [
