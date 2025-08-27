@@ -36,7 +36,7 @@ const RoomsSection = () => {
   const hostelRooms = [
     {
       id: "4-bed-female-only-dorm",
-      name: "Bed in 4 Bed Female Only Dormitory",
+      name: "Bed in 4 Bed Female Dormitory",
       price: 850,
       description: "Female-only dormitory with modern amenities and comfortable beds",
       features: ["Female Only", "Attached washroom", "Wi-Fi", "Locker", "Charging point", "Mountain View Balcony"],
@@ -72,11 +72,11 @@ const RoomsSection = () => {
     },
     {
       id: "6-bed-mixed-female-dorm",
-      name: "Bed in 6 Bed Female Only Dormitory",
-      price: 700,
-      description: "Spacious mixed or female dormitory with modern amenities",
+      name: "Bed in 6 Bed Female Dormitory",
+      price: 750,
+      description: "Spacious female dormitory with modern amenities",
       features: ["Female Only", "Attached washroom", "Wi-Fi", "Locker", "Charging point", "Mountain View Balcony"],
-      maxGuests: 30,
+      maxGuests: 6,
       maxRooms: 5,
       image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG",
       images: [
@@ -91,10 +91,10 @@ const RoomsSection = () => {
     {
       id: "6-bed-mixed-economy-dorm",
       name: "Bed in 6 Bed Mixed Dormitory",
-      price: 550,
+      price: 700,
       description: "Budget-friendly mixed dormitory with essential amenities",
       features: ["Mixed", "Attached washroom", "Wi-Fi", "Locker", "Charging point", "Mountain View Balcony"],
-      maxGuests: 1,
+      maxGuests: 6,
       maxRooms: 6,
       image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG",
       images: [
@@ -109,10 +109,10 @@ const RoomsSection = () => {
     {
       id: "king-double-room",
       name: "King Double Room",
-      price: 3200,
+      price: 3500,
       description: "Spacious private room with king bed for two guests",
-      features: ["Attached washroom", "Wi-Fi", "Locker", "Charging point", "Mountain View Balcony"],
-      maxGuests: 4,
+      features: ["King Bed", "Attached washroom", "Wi-Fi", "Mountain Views", "Free Breakfast", "Lover's Seat"],
+      maxGuests: 2,
       maxRooms: 2,
       image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg",
       images: [
@@ -125,9 +125,9 @@ const RoomsSection = () => {
     {
       id: "king-triple-room",
       name: "King Triple Room",
-      price: 4200,
+      price: 4500,
       description: "Luxurious private room accommodating up to three guests",
-      features: ["Attached washroom", "Wi-Fi", "Locker", "Charging point", "Mountain View Balcony"],
+      features: ["King Bed + single bed", "Attached washroom", "Wi-Fi", "Mountain Views", "Free Breakfast", "Lover's Seat"],
       maxGuests: 3,
       maxRooms: 1,
       image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/1.jpg",

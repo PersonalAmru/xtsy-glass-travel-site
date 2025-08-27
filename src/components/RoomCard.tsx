@@ -32,17 +32,9 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
   const [lightboxImages, setLightboxImages] = useState<string[]>([]);
   const [lightboxInitialIndex, setLightboxInitialIndex] = useState(0);
   
-  // Apply weekend/weekday hike for USD/EUR guests to the displayed price
+  // Use the fixed price without any weekend/weekday logic
   const getDisplayPrice = () => {
-    let price = room.price;
-    if (currency.code !== 'INR') {
-      // Check if current date is weekend (approximate for pricing display)
-      const today = new Date();
-      const isWeekend = [0, 6].includes(today.getDay());
-      const hike = isWeekend ? 1.15 : 1.10; // 15% weekend, 10% weekday
-      price = Math.round(price * hike);
-    }
-    return price;
+    return room.price;
   };
 
   const handleRoomSelection = () => {
@@ -129,7 +121,9 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
                 onClick={handleRoomSelection}
                 className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 font-josefin mobile-button"
               >
-                {room.id === "signature-270-glass-suite" ? "View Suite Details" : buttonText.split(' - ')[0]}
+                {room.id === "signature-270-glass-suite" ? "View Suite Details" : 
+                 (room.id === "king-double-room" || room.id === "king-triple-room") ? "Select Room" : 
+                 buttonText.split(' - ')[0]}
               </Button>
             </div>
           </CardContent>
@@ -176,30 +170,36 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
                 let featuresToShow: string[] = [];
                 
                 if (propertyType === "hostel") {
-                  // Standard hostel features
-                  const standardFeatures = ["Free breakfast", "Attached washroom", "Wi-Fi", "Locker", "Reading lights", "Charging point"];
-                  featuresToShow = [...standardFeatures];
-                  
-                  // Add room-specific features (up to 7 total)
-                  const roomFeatures = room.features.slice(0, 7 - standardFeatures.length);
-                  featuresToShow = [...featuresToShow, ...roomFeatures];
-                  
-                  // Add conditional tags based on room title
-                  const roomTitle = room.name.toLowerCase();
-                  if (roomTitle.includes("female")) {
-                    featuresToShow.push("Female");
-                  } else if (roomTitle.includes("mixed")) {
-                    featuresToShow.push("Mixed");
+                  // Check if King rooms have specific features
+                  if (room.id === "king-double-room" || room.id === "king-triple-room") {
+                    // King rooms use their specific features with slice(0, 6)
+                    featuresToShow = room.features.slice(0, 6);
+                  } else {
+                    // Standard hostel features for dormitories
+                    const standardFeatures = ["Free breakfast", "Attached washroom", "Wi-Fi", "Locker", "Reading lights", "Charging point"];
+                    featuresToShow = [...standardFeatures];
+                    
+                    // Add room-specific features (up to 7 total)
+                    const roomFeatures = room.features.slice(0, 7 - standardFeatures.length);
+                    featuresToShow = [...featuresToShow, ...roomFeatures];
+                    
+                    // Add conditional tags based on room title
+                    const roomTitle = room.name.toLowerCase();
+                    if (roomTitle.includes("female")) {
+                      featuresToShow.push("Female");
+                    } else if (roomTitle.includes("mixed")) {
+                      featuresToShow.push("Mixed");
+                    }
+                    
+                    // Limit to 7 features total
+                    featuresToShow = featuresToShow.slice(0, 7);
                   }
-                  
-                  // Limit to 7 features total
-                  featuresToShow = featuresToShow.slice(0, 7);
                 } else if (propertyType === "economy") {
                   // Always 3 standard economy features
                   featuresToShow = ["Mixed", "Only Bed", "Wi-Fi"];
                 } else {
                   // Default behavior for other property types
-                  featuresToShow = room.features.slice(0, 4);
+                  featuresToShow = room.features;
                 }
                 
                 return featuresToShow.map((feature, index) => (
@@ -223,7 +223,8 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
               onClick={handleRoomSelection}
               className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 font-josefin mobile-button"
             >
-              {buttonText.split(' - ')[0]}
+              {(room.id === "king-double-room" || room.id === "king-triple-room") ? "Select Room" : 
+               buttonText.split(' - ')[0]}
             </Button>
           </div>
         </CardContent>
