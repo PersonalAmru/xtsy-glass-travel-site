@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { 
@@ -107,9 +106,9 @@ const ServicesSection = () => {
   };
 
   const getCardHeight = () => {
-    if (isMobile) return "h-44";
-    if (screenSize === 'tablet') return "h-40";
-    return "h-36 sm:h-40";
+    if (isMobile) return "h-52";
+    if (screenSize === 'tablet') return "h-48";
+    return "h-44 sm:h-48";
   };
 
   const handleServiceClick = (service: any) => {
@@ -167,12 +166,12 @@ const ServicesSection = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-3 pt-0 flex-1 flex items-start overflow-hidden">
-                <CardDescription className={`text-gray-700 leading-tight group-hover:text-gray-800 transition-colors duration-300 ${
+                <CardDescription className={`text-gray-700 leading-relaxed group-hover:text-gray-800 transition-colors duration-300 ${
                   isMobile 
-                    ? 'text-xs line-clamp-3' 
+                    ? 'text-xs line-clamp-4' 
                     : screenSize === 'tablet' 
-                      ? 'text-xs line-clamp-2'
-                      : 'text-xs sm:text-sm line-clamp-2'
+                      ? 'text-xs line-clamp-3'
+                      : 'text-xs sm:text-sm line-clamp-3'
                 }`}>
                   {service.description}
                 </CardDescription>
