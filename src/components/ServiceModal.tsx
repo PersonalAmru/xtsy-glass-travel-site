@@ -58,7 +58,7 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
         ];
       case 'Free parking':
         return [
-          { property: 'XTSY Economy', note: 'Limited parking spaces', type: 'restriction' }
+          { property: 'XTSY Economy', note: 'Not sure; based on rush hours', type: 'info' }
         ];
       case 'In-House Cafe':
         return [
