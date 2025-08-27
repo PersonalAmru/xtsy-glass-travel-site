@@ -109,7 +109,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
             <div className="mb-4">
               <h4 className="font-semibold text-white mb-2 font-josefin">Premium Features:</h4>
               <div className="flex flex-wrap gap-1">
-                {room.features.slice(0, 6).map((feature, index) => (
+                {room.features.map((feature, index) => (
                   <Badge key={index} variant="secondary" className="text-xs bg-gradient-to-r from-orange-800 to-red-900 text-orange-200 border-orange-600">
                     {feature}
                   </Badge>
