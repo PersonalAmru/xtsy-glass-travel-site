@@ -1,3 +1,4 @@
+
 import { Wifi, Coffee, Bath, Bed, Mountain, Star, Award, Eye, Sun, Moon, Users, MapPin, Wind, Thermometer, Shield, Camera } from 'lucide-react';
 
 export const XTSY270_DATA = {
@@ -19,7 +20,7 @@ export const XTSY270_DATA = {
     'Luxury ensuite washroom',
     'Premium mountain views',
     'High-speed Wi‑Fi',
-    'Climate control',
+    'Air-Conditioning',
   ],
   luxuryFeatures: [
     {
