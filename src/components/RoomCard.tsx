@@ -172,11 +172,42 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
           <div className="flex-grow">
             <h4 className="font-semibold text-white mb-2 font-josefin">Features:</h4>
             <div className="flex flex-wrap gap-1">
-              {room.features.slice(0, 4).map((feature, index) => (
-                <Badge key={index} variant="outline" className="text-xs border-gray-600 text-gray-200 bg-gray-800">
-                  {feature}
-                </Badge>
-              ))}
+              {(() => {
+                let featuresToShow: string[] = [];
+                
+                if (propertyType === "hostel") {
+                  // Standard hostel features
+                  const standardFeatures = ["Free breakfast", "Attached washroom", "Wi-Fi", "Locker", "Reading lights", "Charging point"];
+                  featuresToShow = [...standardFeatures];
+                  
+                  // Add room-specific features (up to 7 total)
+                  const roomFeatures = room.features.slice(0, 7 - standardFeatures.length);
+                  featuresToShow = [...featuresToShow, ...roomFeatures];
+                  
+                  // Add conditional tags based on room title
+                  const roomTitle = room.name.toLowerCase();
+                  if (roomTitle.includes("female")) {
+                    featuresToShow.push("Female");
+                  } else if (roomTitle.includes("mixed")) {
+                    featuresToShow.push("Mixed");
+                  }
+                  
+                  // Limit to 7 features total
+                  featuresToShow = featuresToShow.slice(0, 7);
+                } else if (propertyType === "economy") {
+                  // Always 3 standard economy features
+                  featuresToShow = ["Mixed", "Only Bed", "Wi-Fi"];
+                } else {
+                  // Default behavior for other property types
+                  featuresToShow = room.features.slice(0, 4);
+                }
+                
+                return featuresToShow.map((feature, index) => (
+                  <Badge key={index} variant="outline" className="text-xs border-gray-600 text-gray-200 bg-gray-800">
+                    {feature}
+                  </Badge>
+                ));
+              })()}
             </div>
           </div>
           
