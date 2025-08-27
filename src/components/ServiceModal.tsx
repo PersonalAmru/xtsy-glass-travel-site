@@ -70,8 +70,9 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
         ];
       case 'Laundry':
         return [
-          { property: 'XTSY Economy', note: 'Self-service only', type: 'info' },
-          { property: 'XTSY Luxury', note: 'Full-service laundry available', type: 'premium' }
+          { property: 'XTSY Economy', note: 'Paid service [with taxes]', type: 'restriction' },
+          { property: 'XTSY Travellers Hostel', note: '50% Off', type: 'info' },
+          { property: 'XTSY Luxury', note: 'Free', type: 'premium' }
         ];
       case 'Tour Assistance':
         return [
