@@ -26,6 +26,24 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
         return ['XTSY Luxury'];
       case 'Flexible Check-in':
         return ['XTSY Travellers Hostel', 'XTSY Luxury'];
+      case 'Free parking':
+        return ['XTSY Travellers Hostel', 'XTSY Luxury'];
+      case 'In-House Cafe':
+        return ['XTSY Travellers Hostel', 'XTSY Luxury'];
+      case 'Games Room':
+        return ['XTSY Travellers Hostel', 'XTSY Luxury'];
+      case 'Laundry':
+        return ['XTSY Economy', 'XTSY Travellers Hostel', 'XTSY Luxury'];
+      case '24/7 Security':
+        return ['XTSY Economy', 'XTSY Travellers Hostel', 'XTSY Luxury'];
+      case 'Tour Assistance':
+        return ['XTSY Travellers Hostel', 'XTSY Luxury'];
+      case 'Group Bookings':
+        return ['XTSY Economy', 'XTSY Travellers Hostel', 'XTSY Luxury'];
+      case 'Event Space':
+        return ['XTSY Travellers Hostel', 'XTSY Luxury'];
+      case '24/7 Support':
+        return ['XTSY Economy', 'XTSY Travellers Hostel', 'XTSY Luxury'];
       default:
         return ['XTSY Travellers Hostel', 'XTSY Luxury'];
     }
@@ -33,12 +51,45 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
 
   // Get special notes for specific services and properties
   const getSpecialNotes = (serviceTitle: string) => {
-    if (serviceTitle === 'Flexible Check-in') {
-      return [
-        { property: 'XTSY Economy', note: 'Strictly No Flexible check-in', type: 'restriction' }
-      ];
+    switch (serviceTitle) {
+      case 'Flexible Check-in':
+        return [
+          { property: 'XTSY Economy', note: 'Strictly No Flexible check-in', type: 'restriction' }
+        ];
+      case 'Free parking':
+        return [
+          { property: 'XTSY Economy', note: 'Limited parking spaces', type: 'restriction' }
+        ];
+      case 'In-House Cafe':
+        return [
+          { property: 'XTSY Economy', note: 'No in-house cafe available', type: 'restriction' }
+        ];
+      case 'Games Room':
+        return [
+          { property: 'XTSY Economy', note: 'No games room facility', type: 'restriction' }
+        ];
+      case 'Laundry':
+        return [
+          { property: 'XTSY Economy', note: 'Self-service only', type: 'info' },
+          { property: 'XTSY Luxury', note: 'Full-service laundry available', type: 'premium' }
+        ];
+      case 'Tour Assistance':
+        return [
+          { property: 'XTSY Economy', note: 'Basic assistance only', type: 'restriction' },
+          { property: 'XTSY Luxury', note: 'Dedicated tour concierge', type: 'premium' }
+        ];
+      case 'Event Space':
+        return [
+          { property: 'XTSY Economy', note: 'No event space available', type: 'restriction' },
+          { property: 'XTSY Luxury', note: 'Premium event facilities', type: 'premium' }
+        ];
+      case '24/7 Support':
+        return [
+          { property: 'XTSY Economy', note: 'Phone support only', type: 'info' }
+        ];
+      default:
+        return [];
     }
-    return [];
   };
 
   const propertyTags = getPropertyTags(service.title);
@@ -88,7 +139,13 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
                   <Badge 
                     key={index}
                     variant="outline" 
-                    className="border-red-400 text-red-800 bg-red-50 font-medium text-xs"
+                    className={`font-medium text-xs ${
+                      note.type === 'restriction' 
+                        ? 'border-red-400 text-red-800 bg-red-50' 
+                        : note.type === 'premium'
+                        ? 'border-blue-400 text-blue-800 bg-blue-50'
+                        : 'border-amber-400 text-amber-800 bg-amber-50'
+                    }`}
                   >
                     {note.property}: {note.note}
                   </Badge>
