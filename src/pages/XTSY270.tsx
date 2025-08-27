@@ -67,7 +67,7 @@ I'm interested in booking the XTSY 270° - India's first panoramic glass house e
 
 🛏️ *Room Features:*
 • Queen bed accommodation for up to 2 guests
-• Private ensuite bathroom
+• Private ensuite washroom
 • 270° panoramic mountain views
 • Architectural excellence with transparent sanctuary design
 
