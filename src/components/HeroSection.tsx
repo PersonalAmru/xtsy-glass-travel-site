@@ -6,6 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 import PerformantImage from "./PerformantImage";
 import { useMediaQuery } from "@/hooks/use-mobile";
+import { useHappyGuests } from "@/hooks/useHappyGuests";
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -13,9 +14,11 @@ const HeroSection = () => {
   const [checkOut, setCheckOut] = useState("");
   const [guests, setGuests] = useState("4");
   const [currentLanguageIndex, setCurrentLanguageIndex] = useState(0);
-  const [bookNowClicks, setBookNowClicks] = useState(551);
   const [averageRating, setAverageRating] = useState(4.9);
   const [tourCount, setTourCount] = useState<number>(22);
+
+  // Use the happy guests hook for Supabase integration
+  const { happyGuestsCount, incrementHappyGuests, isLoading: happyGuestsLoading } = useHappyGuests();
 
   // Use the new responsive hooks
   const isMobile = useMediaQuery('(max-width: 767px)');
@@ -37,34 +40,12 @@ const HeroSection = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Removed reopenBookingModal listener since we're not using modals anymore
-
   useEffect(() => {
     const languageInterval = setInterval(() => {
       setCurrentLanguageIndex(prev => (prev + 1) % languages.length);
     }, 2000);
     return () => clearInterval(languageInterval);
   }, [languages.length]);
-
-  useEffect(() => {
-    // Load universal click count - always use saved value if it exists
-    const loadUniversalClickCount = () => {
-      const savedClicks = localStorage.getItem('universalBookNowClicks');
-      if (savedClicks) {
-        const currentCount = parseInt(savedClicks, 10);
-        // Always use the saved count, don't reset it
-        setBookNowClicks(currentCount);
-        console.log('Loaded saved click count:', currentCount);
-      } else {
-        // Only set initial value if no saved count exists
-        setBookNowClicks(551);
-        localStorage.setItem('universalBookNowClicks', '551');
-        console.log('Initialized click count to 551');
-      }
-    };
-
-    loadUniversalClickCount();
-  }, []);
 
   useEffect(() => {
     // Fetch reviews and calculate average rating with caching and error handling
@@ -133,15 +114,11 @@ const HeroSection = () => {
     calculateTourCount();
   }, []);
 
-  const handleBookNowClick = () => {
-    const newCount = bookNowClicks + 1;
-    setBookNowClicks(newCount);
+  const handleBookNowClick = async () => {
+    // Increment happy guests count in Supabase
+    await incrementHappyGuests();
     
-    // Save to localStorage to persist across sessions for this browser
-    localStorage.setItem('universalBookNowClicks', newCount.toString());
-    console.log('Updated click count to:', newCount);
-    
-    // Navigate to booking flow instead of opening modal
+    // Navigate to booking flow
     const params = new URLSearchParams({
       checkIn,
       checkOut,
@@ -274,12 +251,14 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Quick Stats - Fully responsive grid */}
+          {/* Quick Stats - Updated to use dynamic happy guests count */}
           <div className="mt-6 sm:mt-8 md:mt-10 lg:mt-12 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6 animate-fade-in" style={{
           animationDelay: '1.2s'
         }}>
             <div className="text-center fade-in">
-              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">{bookNowClicks}+</div>
+              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
+                {happyGuestsLoading ? '610+' : `${happyGuestsCount}+`}
+              </div>
               <div className="text-xs sm:text-sm text-gray-300 mt-1">Happy Guests!</div>
             </div>
             <div className="text-center fade-in" style={{

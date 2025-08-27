@@ -628,6 +628,12 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: string
       }
+      increment_happy_guests: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          new_count: number
+        }[]
+      }
       increment_metric: {
         Args: { p_inc?: number; p_key: string }
         Returns: {
