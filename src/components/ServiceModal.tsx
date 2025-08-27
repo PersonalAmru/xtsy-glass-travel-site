@@ -97,7 +97,7 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
         ];
       case '24/7 Support':
         return [
-          { property: 'XTSY Economy', note: 'Phone support only', type: 'info' }
+          { property: 'XTSY Economy', note: 'WhatsApp support on working hours', type: 'restriction' }
         ];
       default:
         return [];
