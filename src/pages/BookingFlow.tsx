@@ -574,7 +574,7 @@ export default function BookingFlow() {
                       XTSY Luxury
                     </h3>
                     <p className={`text-center text-gray-600 mt-2 ${isMobileView ? 'text-sm' : 'text-base'}`}>
-                      Premium accommodations with panoramic views
+                      Premium accommodations with panoramic views. Ultra Luxury Views is a 200% Guarantee
                     </p>
                     <div className="w-16 h-0.5 bg-gradient-to-r from-orange-500 to-red-600 mx-auto mt-3 rounded-full" />
                   </div>
