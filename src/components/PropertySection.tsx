@@ -61,7 +61,7 @@ const PropertySection = ({ title, description, rooms, propertyType, onSelectRoom
           <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-1 font-playfair text-center">
             {title}
           </h3>
-          <p className="text-sm sm:text-base text-gray-600 text-center font-medium line-clamp-2 leading-relaxed max-w-md mx-auto">
+          <p className="text-xs sm:text-sm text-gray-600 text-center font-medium">
             {description}
           </p>
           <div className="w-12 sm:w-16 h-0.5 bg-gradient-to-r from-orange-500 to-red-600 mx-auto mt-2 rounded-full" />
