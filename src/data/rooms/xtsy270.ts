@@ -20,6 +20,11 @@ export const XTSY270_DATA = {
     'Premium mountain views',
     'High-speed Wi‑Fi',
     'Climate control',
+    '4K QLED TV',
+    'Netflix & Chill',
+    'Free Valet Parking',
+    'Guest Assistance',
+    'Concierge & Baggage Support',
   ],
   luxuryFeatures: [
     {
