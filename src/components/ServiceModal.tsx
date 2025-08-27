@@ -41,7 +41,7 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
       case 'Tour Assistance':
         return ['XTSY Travellers Hostel', 'XTSY Luxury'];
       case 'Group Bookings':
-        return ['XTSY Economy', 'XTSY Travellers Hostel', 'XTSY Luxury'];
+        return ['XTSY Travellers Hostel'];
       case 'Event Space':
         return ['XTSY Travellers Hostel', 'XTSY Luxury'];
       case '24/7 Support':
@@ -84,6 +84,11 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
         return [
           { property: 'XTSY Economy', note: 'Basic assistance only', type: 'restriction' },
           { property: 'XTSY Luxury', note: 'Dedicated tour concierge', type: 'premium' }
+        ];
+      case 'Group Bookings':
+        return [
+          { property: 'XTSY Economy', note: 'Strictly not more than 8 guests', type: 'restriction' },
+          { property: 'XTSY Luxury', note: 'Exclusive signature stay - only 1 available per night in India', type: 'premium' }
         ];
       case 'Event Space':
         return [
