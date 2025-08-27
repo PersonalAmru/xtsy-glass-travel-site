@@ -24,12 +24,25 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
         return ['XTSY Economy', 'XTSY Travellers Hostel', 'XTSY Luxury'];
       case 'High Speed WiFi':
         return ['XTSY Luxury'];
+      case 'Flexible Check-in':
+        return ['XTSY Travellers Hostel', 'XTSY Luxury'];
       default:
         return ['XTSY Travellers Hostel', 'XTSY Luxury'];
     }
   };
 
+  // Get special notes for specific services and properties
+  const getSpecialNotes = (serviceTitle: string) => {
+    if (serviceTitle === 'Flexible Check-in') {
+      return [
+        { property: 'XTSY Economy', note: 'Strictly No Flexible check-in', type: 'restriction' }
+      ];
+    }
+    return [];
+  };
+
   const propertyTags = getPropertyTags(service.title);
+  const specialNotes = getSpecialNotes(service.title);
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -65,6 +78,24 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
               </Badge>
             ))}
           </div>
+          
+          {/* Special Notes/Restrictions */}
+          {specialNotes.length > 0 && (
+            <div className="mt-3">
+              <p className="text-sm font-semibold text-gray-600 mb-2">Special Notes:</p>
+              <div className="flex flex-wrap gap-2">
+                {specialNotes.map((note, index) => (
+                  <Badge 
+                    key={index}
+                    variant="outline" 
+                    className="border-red-400 text-red-800 bg-red-50 font-medium text-xs"
+                  >
+                    {note.property}: {note.note}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </DialogContent>
     </Dialog>
