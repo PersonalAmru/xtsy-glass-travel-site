@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Phone, Clock, Users, Heart, Globe, Award, Camera, Building2, Star, Shield, Wifi } from "lucide-react";
 import { useEffect } from "react";
@@ -223,9 +222,9 @@ const AboutSection = () => {
             <p className="text-lg leading-relaxed text-center max-w-4xl mx-auto">
               <strong>XTSY Travellers Hostel in Shillong</strong> is the region's largest, most highly reviewed group hostel, with capacity for 50+ guests — 
               ideal for backpackers, student groups, digital nomads or international travel communities. As the 
-              <strong> biggest hostel in North East India</strong> and <strong>biggest hostel in Shillong, Meghalaya</strong>, we're also the 
-              <strong> highest-rated traveller hostel in North East</strong> according to guest reviews and the leading 
-              <strong> group travel hostel India</strong> depends on for authentic experiences.
+             <strong> biggest hostel in North East India</strong> and <strong>biggest hostel in Shillong, Meghalaya</strong>, we're also the 
+             <strong> highest-rated traveller hostel in North East</strong> according to guest reviews and the leading 
+             <strong> group travel hostel India</strong> depends on for authentic experiences.
             </p>
           </div>
         </section>
