@@ -1,3 +1,4 @@
+
 import { MapPin } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import PropertySection from "./PropertySection";
@@ -146,7 +147,7 @@ const RoomsSection = () => {
       name: "Bed in 6 Bed Mixed Dormitory",
       price: 550,
       description: "Budget-friendly mixed dormitory with essential amenities",
-      features: ["Mixed", "Attached washroom", "Wi-Fi", "Mountain View Balcony"],
+      features: ["Mixed", "Attached washroom", "Wi-Fi"],
       maxGuests: 1,
       maxRooms: 6,
       image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG",
@@ -164,7 +165,7 @@ const RoomsSection = () => {
       name: "Bed in 8 Bed Mixed Dormitory", 
       price: 450,
       description: "Most economical option for backpackers and budget travelers",
-      features: ["Mixed", "Attached washroom", "Wi-Fi", "Mountain View Balcony"],
+      features: ["Mixed", "Attached washroom", "Wi-Fi"],
       maxGuests: 1,
       maxRooms: 8,
       image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg",
