@@ -13,6 +13,7 @@ import { differenceInDays, parseISO } from 'date-fns';
 import Header from '@/components/Header';
 import { ROOM_DATA, XTSY270_DATA } from '@/data/rooms/xtsy270';
 import { useApp } from '@/contexts/AppContext';
+
 interface Room {
   id: string;
   name: string;
@@ -26,6 +27,7 @@ interface Room {
   maxRooms?: number; // Available beds/rooms for selection
   images?: string[];
 }
+
 interface SelectedRoom {
   id: string;
   name: string;
@@ -178,6 +180,7 @@ const ALL_ROOMS_DATA: {
     images: ['https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/4.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/5.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/6.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/8.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/9.jpg']
   }
 };
+
 export default function BookingFlow() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -487,6 +490,7 @@ export default function BookingFlow() {
     console.log('Checking if room is selected:', roomId, 'result:', isSelected);
     return isSelected;
   }, [selectedRooms]);
+
   return <div className={`min-h-screen bg-gradient-to-br from-orange-50 via-red-50 to-pink-50 ${isMobileView ? 'pb-20' : ''}`}>
       <Header />
       
@@ -590,7 +594,7 @@ export default function BookingFlow() {
                       XTSY Travellers Hostel
                     </h3>
                     <p className={`text-center text-gray-600 mt-2 ${isMobileView ? 'text-sm' : 'text-base'}`}>
-                      Comfortable stays with modern amenities
+                      Comfortable stays with modern amenities. This isn't just a stay. It's a vibe
                     </p>
                     <div className="w-16 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mt-3 rounded-full" />
                   </div>
@@ -609,7 +613,7 @@ export default function BookingFlow() {
                     <h3 className={`font-bold text-center font-playfair bg-gradient-to-r from-green-500 to-teal-600 bg-clip-text text-transparent ${isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'}`}>
                       XTSY Economy
                     </h3>
-                    <p className={`text-center text-gray-600 mt-2 ${isMobileView ? 'text-sm' : 'text-base'}`}>Budget-friendly options for backpackers. 
+                    <p className={`text-center text-gray-600 mt-2 ${isMobileView ? 'text-sm' : 'text-base'}`}>Budget-friendly options for backpackers. 
 No access to Common Area, Shared Lounge or Games Room.</p>
                     <div className="w-16 h-0.5 bg-gradient-to-r from-green-500 to-teal-600 mx-auto mt-3 rounded-full" />
                   </div>
