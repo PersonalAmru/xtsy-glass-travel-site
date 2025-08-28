@@ -412,7 +412,7 @@ export default function BookingFlow() {
             <ArrowLeft className="h-4 w-4" />
           </Button>
           <h1 className={`font-bold text-gray-900 ${isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'}`}>
-            Book Your Stay
+            Choose Your Stay
           </h1>
         </div>
       </div>
@@ -437,17 +437,6 @@ export default function BookingFlow() {
           {/* ROOMS STEP */}
           {currentStep === 'rooms' && (
             <div className="space-y-8">
-              <div className={`text-center ${isMobileView ? 'mb-6' : 'mb-12'}`}>
-                <div className="backdrop-blur-md bg-white/30 border border-white/20 rounded-3xl shadow-xl mx-auto p-8 max-w-4xl">
-                  <h2 className={`font-bold text-gray-800 mb-3 font-playfair ${isMobileView ? 'text-2xl' : isTabletView ? 'text-3xl' : 'text-4xl'}`}>
-                    Choose Your Accommodation
-                  </h2>
-                  <p className={`text-gray-600 max-w-2xl mx-auto ${isMobileView ? 'text-base px-4' : isTabletView ? 'text-lg px-6' : 'text-xl'}`}>
-                    Select from our available rooms and customize your stay
-                  </p>
-                  <div className={`bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-6 rounded-full ${isMobileView ? 'w-20 h-1' : 'w-24 h-1'}`} />
-                </div>
-              </div>
 
               {/* Luxury */}
               {roomsByProperty.luxury.length > 0 && (
