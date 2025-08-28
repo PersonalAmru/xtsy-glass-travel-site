@@ -157,16 +157,6 @@ Thank you!`.trim();
           </div>
         </div>
       </CardContent>
-      
-      {/* WhatsApp Booking Button */}
-      <div className="px-3 pb-3">
-        <button
-          onClick={handleWhatsAppBooking}
-          className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg text-sm"
-        >
-          Complete Booking via WhatsApp
-        </button>
-      </div>
     </Card>;
 };
 export default BookingSummary;
