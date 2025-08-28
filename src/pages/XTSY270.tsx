@@ -8,9 +8,11 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Calendar, Mountain, Star, Award, Eye, Sun, Moon, Wifi, Coffee, Bath, Bed, Users, MapPin } from 'lucide-react';
+import XTSY270Modal from '@/components/XTSY270Modal';
 
 const XTSY270: React.FC = () => {
   const [isWeekend, setIsWeekend] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const title = XTSY270_DATA.seoTitle;
   const description = XTSY270_DATA.seoDescription;
   const canonicalUrl = XTSY270_DATA.canonicalUrl;
@@ -180,7 +182,7 @@ Thank you! 😊`;
                     ₹{XTSY270_DATA.weekdayPrice.toLocaleString()}
                   </div>
                   <div className="text-sm text-gray-700 font-medium">
-                    per night • Monday - Friday
+                    per night • Monday to Thursday
                   </div>
                 </CardContent>
               </Card>
@@ -197,7 +199,7 @@ Thank you! 😊`;
                     ₹{XTSY270_DATA.weekendPrice.toLocaleString()}
                   </div>
                   <div className="text-sm text-gray-700 font-medium">
-                    per night • Saturday - Sunday
+                    per night • Friday to Sunday
                   </div>
                 </CardContent>
               </Card>
@@ -445,16 +447,16 @@ Thank you! 😊`;
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Button 
-                  size="lg" 
-                  onClick={handleBookingClick}
-                  className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground border-2 border-primary hover:border-primary/70 px-12 py-6 text-xl font-bold shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 ring-4 ring-primary/20 hover:ring-primary/30 relative overflow-hidden group"
-                >
-                  <span className="relative z-10 bg-gradient-to-r from-yellow-300 via-white to-yellow-300 bg-clip-text text-transparent animate-pulse text-center">
-                    Will it be yours?
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/3 opacity-50 group-hover:opacity-70 transition-opacity duration-300" />
-                </Button>
+              <Button 
+                size="lg" 
+                onClick={() => setIsModalOpen(true)}
+                className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground border-2 border-primary hover:border-primary/70 px-12 py-6 text-xl font-bold shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 ring-4 ring-primary/20 hover:ring-primary/30 relative overflow-hidden group"
+              >
+                <span className="relative z-10 bg-gradient-to-r from-yellow-300 via-white to-yellow-300 bg-clip-text text-transparent animate-pulse text-center">
+                  Will it be yours?
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/3 opacity-50 group-hover:opacity-70 transition-opacity duration-300" />
+              </Button>
               </a>
               <p className="text-sm text-gray-800 font-medium mt-4">
                 Limited availability • Book 48 hours in advance for exclusive concierge services
@@ -465,6 +467,7 @@ Thank you! 😊`;
       </main>
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(roomLd) }} />
+      <XTSY270Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       <Footer />
     </div>
   );

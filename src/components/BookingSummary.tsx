@@ -3,19 +3,34 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Calendar, Users, Edit } from 'lucide-react';
 import { useScreenSize } from '@/hooks/use-mobile';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from '@/hooks/use-toast';
 interface BookingSummaryProps {
   checkIn: string;
   checkOut: string;
   guests: number;
   nights: number;
   onEdit?: () => void;
+  // Additional props for full booking integration
+  roomType?: string;
+  totalPrice?: number;
+  guestName?: string;
+  email?: string;
+  phone?: string;
+  address?: string;
 }
 export const BookingSummary: React.FC<BookingSummaryProps> = ({
   checkIn,
   checkOut,
   guests,
   nights,
-  onEdit
+  onEdit,
+  roomType = "XTSY Accommodation",
+  totalPrice = 0,
+  guestName = "",
+  email = "",
+  phone = "",
+  address = ""
 }) => {
   const screenSize = useScreenSize();
   
@@ -33,34 +48,54 @@ export const BookingSummary: React.FC<BookingSummaryProps> = ({
     });
   };
 
-  const handleWhatsAppClick = () => {
+  const handleWhatsAppBooking = async () => {
     // Validate required fields
     if (!checkIn || !checkOut || !guests || nights <= 0) {
-      alert("Please fill in all required booking details including dates and guest count");
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required booking details including dates and guest count",
+        variant: "destructive"
+      });
       return;
     }
 
-    // Build WhatsApp message
-    const message = `🏨 *XTSY Booking Request* 🏨
+    // Build comprehensive WhatsApp message
+    const message = `Hello XTSY Team, I'd like to book:
 
-📅 *Booking Details:*
-Check-in: ${checkIn}
-Check-out: ${checkOut}
-Nights: ${nights}
+🏨 *BOOKING DETAILS:*
+Room Type: ${roomType}
 Guests: ${guests}
+Dates: ${checkIn} – ${checkOut} (${nights} nights)
+Total: ₹${totalPrice?.toLocaleString() || 'TBD'}
 
-🏠 *Property:* XTSY Travellers Hostel & Luxury
-📍 *Location:* Shillong, Meghalaya
+👤 *MY DETAILS:*
+Name: ${guestName || 'To be provided'}
+Email: ${email || 'To be provided'}
+Phone: ${phone || 'To be provided'}
+Address: ${address || 'To be provided'}
 
-💭 *Message:*
-Hi XTSY Team! I would like to complete my booking for the above dates. Please confirm availability and provide final pricing details.
+Please confirm availability and provide final booking confirmation.
+Thank you!`.trim();
 
-Looking forward to experiencing the Shillong vibe! ✨
+    // Silent logging to Supabase
+    try {
+      await supabase.from("whatsapp_logs").insert([
+        {
+          type: "booking",
+          phone: phone || null,
+          email: email || null,
+          message: message,
+          created_at: new Date().toISOString(),
+        }
+      ]);
+    } catch (error) {
+      // Silent fail - don't block user experience
+      console.log("Logging failed:", error);
+    }
 
-Thank you! 😊`;
-
-    const whatsappUrl = `https://wa.me/918837317070?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, "_blank", "noopener noreferrer");
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappURL = `https://wa.me/918837317070?text=${encodedMessage}`;
+    window.open(whatsappURL, "_blank", "noopener noreferrer");
   };
   const isMobileView = screenSize === 'mobile';
   return <Card className={`transition-all duration-300 backdrop-blur-sm bg-card/95 ${isMobileView ? 'sticky top-2 mx-2 shadow-md border-border/60' : 'sticky top-4 shadow-sm border-border/50'}`}>
@@ -126,7 +161,7 @@ Thank you! 😊`;
       {/* WhatsApp Booking Button */}
       <div className="px-3 pb-3">
         <button
-          onClick={handleWhatsAppClick}
+          onClick={handleWhatsAppBooking}
           className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg text-sm"
         >
           Complete Booking via WhatsApp

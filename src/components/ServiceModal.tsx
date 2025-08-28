@@ -20,15 +20,14 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
   // Enhanced property-specific amenity access rules
   const getPropertyTags = (serviceTitle: string) => {
     const amenityMatrix = {
-      'Free Wi-Fi': ['XTSY Travellers Hostel ✅', 'XTSY Luxury ✅'],
+      'Free Wi-Fi': ['XTSY Travellers Hostel ✅', 'XTSY Economy ✅', 'XTSY Luxury ✅'],
       'High Speed Wi-Fi': ['XTSY Luxury ✅'],
-      'Flexible Check-in': ['XTSY Travellers Hostel ✅', 'XTSY Luxury ✅'],
-      'Free Parking': ['XTSY Travellers Hostel ✅', 'XTSY Luxury ✅'],
-      'In-House Cafe': ['XTSY Travellers Hostel ✅', 'XTSY Luxury ✅'],
+      'Free Parking': ['XTSY Travellers Hostel ✅', 'XTSY Economy ❗ Not available', 'XTSY Luxury ✅'],
+      'In-House Cafe': ['XTSY Travellers Hostel ✅', 'XTSY Economy ❗ Upgrade required', 'XTSY Luxury ✅'],
       'Shared Lounge': ['XTSY Travellers Hostel ✅', 'XTSY Economy (Upgrade Required)', 'XTSY Luxury ✅'],
       'Common Room': ['XTSY Travellers Hostel ✅', 'XTSY Economy (Upgrade Required)', 'XTSY Luxury ✅'],
-      'Games Room': ['XTSY Travellers Hostel ✅', 'XTSY Luxury ✅'],
-      'Laundry': ['XTSY Travellers Hostel ✅', 'XTSY Luxury ✅'],
+      'Games Room': ['XTSY Travellers Hostel ✅', 'XTSY Economy ❗ Strictly NOT available', 'XTSY Luxury ✅'],
+      'Laundry': ['XTSY Travellers Hostel ✅', 'XTSY Economy ❗ Upgrade required', 'XTSY Luxury ✅'],
       'Terrace Access': ['XTSY Travellers Hostel ✅', 'XTSY Economy (Upgrade Required)', 'XTSY Luxury ✅'],
       'Bonfire Nights': ['XTSY Travellers Hostel ✅', 'XTSY Economy (Upgrade Required)', 'XTSY Luxury ✅'],
       'BBQ Experience': ['XTSY Travellers Hostel (Paid)', 'XTSY Economy (Upgrade Required)', 'XTSY Luxury ✅'],
@@ -39,10 +38,11 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
       'Complimentary Breakfast': ['XTSY Travellers Hostel ✅', 'XTSY Economy 🚫', 'XTSY Luxury ✅'],
       'Free Room Upgrade': ['XTSY Travellers Hostel ✅', 'XTSY Economy 🚫', 'XTSY Luxury ✅'],
       '24/7 Security': ['XTSY Travellers Hostel ✅', 'XTSY Economy ✅', 'XTSY Luxury ✅'],
-      'Tour Assistance': ['XTSY Travellers Hostel ✅', 'XTSY Luxury ✅'],
-      'Group Bookings': ['XTSY Travellers Hostel ✅', 'XTSY Economy ✅', 'XTSY Luxury ✅'],
-      'Event Space': ['XTSY Travellers Hostel ✅', 'XTSY Luxury ✅'],
-      '24/7 Support': ['XTSY Travellers Hostel ✅', 'XTSY Economy ✅', 'XTSY Luxury ✅']
+      'Tour Assistance': ['XTSY Travellers Hostel ✅', 'XTSY Economy ❗ Strictly NOT available', 'XTSY Luxury ✅'],
+      'Group Bookings': ['XTSY Travellers Hostel ✅', 'XTSY Economy ❗ Group size capped at 8 guests', 'XTSY Luxury 💎 Exclusive signature stay – only 1 available per night in India. Limited edition. Book fast.'],
+      'Event Space': ['XTSY Travellers Hostel ✅', 'XTSY Economy ❗ Upgrade required', 'XTSY Luxury ✅'],
+      '24/7 Support': ['XTSY Travellers Hostel ✅', 'XTSY Economy 🕐 WhatsApp support only during working hours', 'XTSY Luxury ✅'],
+      'Flexible Check-in': ['XTSY Travellers Hostel ✅', 'XTSY Economy ❗ Strictly NOT allowed', 'XTSY Luxury ✅']
     };
 
     return amenityMatrix[serviceTitle] || ['XTSY Travellers Hostel ✅', 'XTSY Luxury ✅'];

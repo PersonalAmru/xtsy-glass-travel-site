@@ -603,6 +603,36 @@ export type Database = {
           },
         ]
       }
+      whatsapp_logs: {
+        Row: {
+          created_at: string
+          email: string | null
+          id: string
+          ip_address: string | null
+          message: string
+          phone: string | null
+          type: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          ip_address?: string | null
+          message: string
+          phone?: string | null
+          type: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          ip_address?: string | null
+          message?: string
+          phone?: string | null
+          type?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

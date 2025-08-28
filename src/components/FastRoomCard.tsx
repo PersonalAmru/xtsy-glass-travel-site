@@ -57,6 +57,37 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
     setLightboxOpen(true);
   };
 
+  // Memoize image components to prevent flickering
+  const memoizedImageCarousel = React.useMemo(() => (
+    <MobileImageCarousel
+      images={roomImages}
+      alt={room.name}
+      className={`w-full ${isMobile ? 'h-32' : isTablet ? 'h-36' : 'h-40'}`}
+      aspectRatio="photo"
+      showIndicators={true}
+      showArrows={true}
+      onImageClick={handleImageClick}
+    />
+  ), [roomImages, room.name, isMobile, isTablet, handleImageClick]);
+
+  const memoizedXTSYImage = React.useMemo(() => (
+    <>
+      <img
+        src={room.image}
+        alt={room.name}
+        className="w-full h-full object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
+        loading="lazy"
+        onClick={() => handleImageClick(roomImages, 0)}
+      />
+      {/* Image count indicator */}
+      {roomImages.length > 1 && (
+        <div className="absolute top-2 right-2 bg-black/60 text-white px-2 py-1 rounded text-xs">
+          {roomImages.length} photos
+        </div>
+      )}
+    </>
+  ), [room.image, room.name, roomImages, handleImageClick]);
+
   // Check if this is the XTSY 270 room
   const isXTSY270 = room.name === "XTSY 270 Panorama Glass Ensuite";
   
@@ -149,34 +180,12 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                 : 'rounded-t-lg w-full'
             }`}>
               {isXTSY270 ? (
-                // For XTSY 270, keep the simple image display
-                <>
-                  <img
-                    src={room.image}
-                    alt={room.name}
-                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
-                    loading="lazy"
-                    onClick={() => handleImageClick(roomImages, 0)}
-                  />
-                  {/* Image count indicator */}
-                  {roomImages.length > 1 && (
-                    <div className="absolute top-2 right-2 bg-black/60 text-white px-2 py-1 rounded text-xs">
-                      {roomImages.length} photos
-                    </div>
-                  )}
-                </>
+                // For XTSY 270, use memoized image display
+                memoizedXTSYImage
               ) : (
-                // For other rooms, use the mobile carousel with full width
+                // For other rooms, use memoized carousel
                 <div className="w-full">
-                  <MobileImageCarousel
-                    images={roomImages}
-                    alt={room.name}
-                    className={`w-full ${isMobile ? 'h-32' : isTablet ? 'h-36' : 'h-40'}`}
-                    aspectRatio="photo"
-                    showIndicators={true}
-                    showArrows={true}
-                    onImageClick={handleImageClick}
-                  />
+                  {memoizedImageCarousel}
                 </div>
               )}
             </div>
