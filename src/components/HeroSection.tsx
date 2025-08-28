@@ -31,7 +31,7 @@ const HeroSection = () => {
   useEffect(() => {
     const elements = document.querySelectorAll('.floating-element');
     const interval = setInterval(() => {
-      elements.forEach((element, index) => {
+      elements.forEach((element) => {
         const randomX = Math.random() * 20 - 10;
         const randomY = Math.random() * 20 - 10;
         (element as HTMLElement).style.transform = `translate(${randomX}px, ${randomY}px)`;
@@ -114,10 +114,8 @@ const HeroSection = () => {
     calculateTourCount();
   }, []);
 
+  // NOTE: we no longer increment here to avoid double counting.
   const handleBookNowClick = async () => {
-    // Increment happy guests count in Supabase
-    await incrementHappyGuests();
-    
     // Navigate to booking flow
     const params = new URLSearchParams({
       checkIn,
@@ -128,6 +126,9 @@ const HeroSection = () => {
   };
 
   const handleSearch = () => {
+    // Increment on EVERY CTA click (fire-and-forget; don't block UI)
+    try { incrementHappyGuests(); } catch (_) {}
+
     if (!checkIn || !checkOut || !guests) {
       alert("Please fill in all search fields");
       return;
@@ -155,12 +156,8 @@ const HeroSection = () => {
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="floating-element absolute top-1/4 left-1/4 w-20 sm:w-32 md:w-48 lg:w-64 h-20 sm:h-32 md:h-48 lg:h-64 bg-orange-500/10 rounded-full blur-xl animate-pulse"></div>
-          <div className="floating-element absolute top-3/4 right-1/4 w-16 sm:w-24 md:w-32 lg:w-48 h-16 sm:h-24 md:h-32 lg:h-48 bg-red-500/10 rounded-full blur-xl animate-pulse" style={{
-          animationDelay: '1s'
-        }}></div>
-          <div className="floating-element absolute bottom-1/4 left-1/3 w-12 sm:w-16 md:w-24 lg:w-32 h-12 sm:h-16 md:h-24 lg:h-32 bg-yellow-500/10 rounded-full blur-xl animate-pulse" style={{
-          animationDelay: '2s'
-        }}></div>
+          <div className="floating-element absolute top-3/4 right-1/4 w-16 sm:w-24 md:w-32 lg:w-48 h-16 sm:h-24 md:h-32 lg:h-48 bg-red-500/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="floating-element absolute bottom-1/4 left-1/3 w-12 sm:w-16 md:w-24 lg:w-32 h-12 sm:h-16 md:h-24 lg:h-32 bg-yellow-500/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '2s' }}></div>
         </div>
 
         {/* Main Content */}
@@ -194,23 +191,22 @@ const HeroSection = () => {
           </div>
 
           {/* Search Form - Center aligned components */}
-          <div className="bg-white/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-6 md:p-7 lg:p-8 border border-white/20 shadow-2xl animate-fade-in w-full max-w-4xl mx-auto text-center" style={{
-          animationDelay: '0.9s'
-        }}>
+          <div className="bg-white/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-6 md:p-7 lg:p-8 border border-white/20 shadow-2xl animate-fade-in w-full max-w-4xl mx-auto text-center" style={{ animationDelay: '0.9s' }}>
             <h2 className="text-base sm:text-xl md:text-2xl font-semibold mb-3 sm:mb-6 md:mb-7 lg:mb-8 text-center">Find Your Perfect Stay</h2>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 md:gap-5 lg:gap-6 mb-3 sm:mb-6 md:mb-7 lg:mb-8">
               <div className="space-y-1 sm:space-y-2 text-center">
                 <label className="block text-xs sm:text-sm font-medium text-gray-200 text-center">Check-in</label>
                 <div className="relative cursor-pointer text-center" onClick={() => document.getElementById('checkin-input')?.focus()}>
-                  <Input id="checkin-input" type="date" value={checkIn} onChange={e => setCheckIn(e.target.value)} className="pl-8 sm:pl-10 h-9 sm:h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-sm cursor-pointer date-input-mobile text-center [&::-webkit-calendar-picker-indicator]:opacity-100 [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:right-2 [&::-webkit-calendar-picker-indicator]:w-4 [&::-webkit-calendar-picker-indicator]:h-4 [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-datetime-edit]:text-center [&::-webkit-datetime-edit-fields-wrapper]:justify-center" min={new Date().toISOString().split('T')[0]} style={{
-                  WebkitAppearance: 'none',
-                  MozAppearance: 'textfield',
-                  colorScheme: 'dark',
-                  textAlign: 'center',
-                  textAlignLast: 'center',
-                  direction: 'ltr'
-                }} />
+                  <Input
+                    id="checkin-input"
+                    type="date"
+                    value={checkIn}
+                    onChange={e => setCheckIn(e.target.value)}
+                    className="pl-8 sm:pl-10 h-9 sm:h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-sm cursor-pointer date-input-mobile text-center [&::-webkit-calendar-picker-indicator]:opacity-100 [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:right-2 [&::-webkit-calendar-picker-indicator]:w-4 [&::-webkit-calendar-picker-indicator]:h-4 [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-datetime-edit]:text-center [&::-webkit-datetime-edit-fields-wrapper]:justify-center"
+                    min={new Date().toISOString().split('T')[0]}
+                    style={{ WebkitAppearance: 'none', MozAppearance: 'textfield', colorScheme: 'dark', textAlign: 'center', textAlignLast: 'center', direction: 'ltr' }}
+                  />
                   <Calendar className="absolute left-2 sm:left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-300 pointer-events-none" />
                 </div>
               </div>
@@ -218,14 +214,16 @@ const HeroSection = () => {
               <div className="space-y-1 sm:space-y-2 text-center">
                 <label className="block text-xs sm:text-sm font-medium text-gray-200 text-center">Check-out</label>
                 <div className="relative cursor-pointer text-center" onClick={() => document.getElementById('checkout-input')?.focus()}>
-                  <Input id="checkout-input" type="date" value={checkOut} onChange={e => setCheckOut(e.target.value)} className="pl-8 sm:pl-10 h-9 sm:h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-sm cursor-pointer date-input-mobile text-center [&::-webkit-calendar-picker-indicator]:opacity-100 [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:right-2 [&::-webkit-calendar-picker-indicator]:w-4 [&::-webkit-calendar-picker-indicator]:h-4 [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-datetime-edit]:text-center [&::-webkit-datetime-edit-fields-wrapper]:justify-center" min={checkIn ? new Date(new Date(checkIn).getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0] : new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]} placeholder="dd-mm-yyyy" style={{
-                  WebkitAppearance: 'none',
-                  MozAppearance: 'textfield',
-                  colorScheme: 'dark',
-                  textAlign: 'center',
-                  textAlignLast: 'center',
-                  direction: 'ltr'
-                }} />
+                  <Input
+                    id="checkout-input"
+                    type="date"
+                    value={checkOut}
+                    onChange={e => setCheckOut(e.target.value)}
+                    className="pl-8 sm:pl-10 h-9 sm:h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-sm cursor-pointer date-input-mobile text-center [&::-webkit-calendar-picker-indicator]:opacity-100 [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:right-2 [&::-webkit-calendar-picker-indicator]:w-4 [&::-webkit-calendar-picker-indicator]:h-4 [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-datetime-edit]:text-center [&::-webkit-datetime-edit-fields-wrapper]:justify-center"
+                    min={checkIn ? new Date(new Date(checkIn).getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0] : new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]}
+                    placeholder="dd-mm-yyyy"
+                    style={{ WebkitAppearance: 'none', MozAppearance: 'textfield', colorScheme: 'dark', textAlign: 'center', textAlignLast: 'center', direction: 'ltr' }}
+                  />
                   <Calendar className="absolute left-2 sm:left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-300 pointer-events-none" />
                 </div>
               </div>
@@ -233,13 +231,24 @@ const HeroSection = () => {
               <div className="space-y-1 sm:space-y-2 text-center">
                 <label className="block text-xs sm:text-sm font-medium text-gray-200 text-center">Total Guests</label>
                 <div className="relative text-center">
-                  <Input type="number" value={guests} onChange={e => setGuests(e.target.value)} min="1" max="20" className="pl-8 sm:pl-10 h-9 sm:h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-sm text-center" placeholder="4" />
+                  <Input
+                    type="number"
+                    value={guests}
+                    onChange={e => setGuests(e.target.value)}
+                    min="1"
+                    max="20"
+                    className="pl-8 sm:pl-10 h-9 sm:h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-sm text-center"
+                    placeholder="4"
+                  />
                   <Users className="absolute left-2 sm:left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-300" />
                 </div>
               </div>
 
               <div className="flex items-end col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-1 justify-center text-center">
-                <Button onClick={handleSearch} className="w-full h-9 sm:h-12 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold py-2 sm:py-3 px-3 sm:px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-sm hover-lift">
+                <Button
+                  onClick={handleSearch}
+                  className="w-full h-9 sm:h-12 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold py-2 sm:py-3 px-3 sm:px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-sm hover-lift"
+                >
                   <Search className="mr-1 sm:mr-2 h-3 w-3 sm:h-5 sm:w-5" />
                   Book Your Stay
                 </Button>
@@ -252,30 +261,22 @@ const HeroSection = () => {
           </div>
 
           {/* Quick Stats - Updated to use dynamic happy guests count */}
-          <div className="mt-6 sm:mt-8 md:mt-10 lg:mt-12 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6 animate-fade-in" style={{
-          animationDelay: '1.2s'
-        }}>
+          <div className="mt-6 sm:mt-8 md:mt-10 lg:mt-12 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6 animate-fade-in" style={{ animationDelay: '1.2s' }}>
             <div className="text-center fade-in">
               <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
                 {happyGuestsLoading ? '610+' : `${happyGuestsCount}+`}
               </div>
               <div className="text-xs sm:text-sm text-gray-300 mt-1">Happy Guests!</div>
             </div>
-            <div className="text-center fade-in" style={{
-            animationDelay: '0.1s'
-          }}>
+            <div className="text-center fade-in" style={{ animationDelay: '0.1s' }}>
               <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-red-400 to-pink-500 bg-clip-text text-transparent">{tourCount}+</div>
               <div className="text-xs sm:text-sm text-gray-300 mt-1">Tour Packages across IN</div>
             </div>
-            <div className="text-center fade-in" style={{
-            animationDelay: '0.2s'
-          }}>
+            <div className="text-center fade-in" style={{ animationDelay: '0.2s' }}>
               <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">{averageRating}</div>
               <div className="text-xs sm:text-sm text-gray-300 mt-1">Guest Reviews</div>
             </div>
-            <div className="text-center fade-in" style={{
-            animationDelay: '0.3s'
-          }}>
+            <div className="text-center fade-in" style={{ animationDelay: '0.3s' }}>
               <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">24/7</div>
               <div className="text-xs sm:text-sm text-gray-300 mt-1">Travel Support</div>
             </div>
