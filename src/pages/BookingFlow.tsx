@@ -188,9 +188,7 @@ const ALL_ROOMS_DATA: {
 export default function BookingFlow() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const {
-    formatPrice
-  } = useApp();
+  const { formatPrice } = useApp();
   const [currentStep, setCurrentStep] = useState<'rooms' | 'guest' | 'payment'>('rooms');
   const [selectedRooms, setSelectedRooms] = useState<SelectedRoom[]>([]);
   const [guestDetails, setGuestDetails] = useState({
@@ -227,6 +225,7 @@ export default function BookingFlow() {
       return 1;
     }
   }, [bookingDates.checkIn, bookingDates.checkOut]);
+
   const roomsArray: Room[] = Object.values(ALL_ROOMS_DATA);
 
   // Pre-select room immediately when params are available
@@ -251,18 +250,14 @@ export default function BookingFlow() {
       }
     }
   }, [preSelectedRoom, preSelectedProperty]);
+
   const handleRoomSelect = React.useCallback((roomId: string) => {
-    console.log('Room select called for:', roomId);
     setSelectedRooms(prev => {
       const room = ALL_ROOMS_DATA[roomId as keyof typeof ALL_ROOMS_DATA];
       const isSelected = prev.find(r => r.id === roomId);
-      console.log('Room data:', room);
-      console.log('Is selected:', !!isSelected);
       if (isSelected) {
-        console.log('Removing room from selection');
         return prev.filter(r => r.id !== roomId);
       } else {
-        console.log('Adding room to selection');
         const newRoom = {
           id: room.id,
           name: room.name,
@@ -273,33 +268,25 @@ export default function BookingFlow() {
             rooms: 0 // Start with 0 beds/rooms selected
           }
         };
-        console.log('New room object:', newRoom);
         return [...prev, newRoom];
       }
     });
   }, []);
+
   const handleGuestChange = React.useCallback((roomId: string, guests: number) => {
-    console.log('Guest change called for room:', roomId, 'guests:', guests);
     setSelectedRooms(prev => {
       const existingRoom = prev.find(room => room.id === roomId);
       if (existingRoom) {
-        // Update existing room
         return prev.map(room => {
           if (room.id === roomId) {
-            const updated = {
+            return {
               ...room,
-              selection: {
-                ...room.selection,
-                guests
-              }
+              selection: { ...room.selection, guests }
             };
-            console.log('Updated existing room with guests:', updated);
-            return updated;
           }
           return room;
         });
       } else {
-        // Auto-add room if it doesn't exist
         const roomData = ALL_ROOMS_DATA[roomId as keyof typeof ALL_ROOMS_DATA];
         if (roomData) {
           const newRoom = {
@@ -307,40 +294,26 @@ export default function BookingFlow() {
             name: roomData.name,
             price: roomData.price,
             type: roomData.type,
-            selection: {
-              guests,
-              rooms: 0
-            }
+            selection: { guests, rooms: 0 }
           };
-          console.log('Auto-added room with guests:', newRoom);
           return [...prev, newRoom];
         }
         return prev;
       }
     });
   }, []);
+
   const handleRoomChange = React.useCallback((roomId: string, rooms: number) => {
-    console.log('Room change called for room:', roomId, 'rooms:', rooms);
     setSelectedRooms(prev => {
       const existingRoom = prev.find(room => room.id === roomId);
       if (existingRoom) {
-        // Update existing room
         return prev.map(room => {
           if (room.id === roomId) {
-            const updated = {
-              ...room,
-              selection: {
-                ...room.selection,
-                rooms
-              }
-            };
-            console.log('Updated existing room with room count:', updated);
-            return updated;
+            return { ...room, selection: { ...room.selection, rooms } };
           }
           return room;
         });
       } else if (rooms > 0) {
-        // Auto-add room if it doesn't exist and rooms > 0
         const roomData = ALL_ROOMS_DATA[roomId as keyof typeof ALL_ROOMS_DATA];
         if (roomData) {
           const newRoom = {
@@ -348,12 +321,8 @@ export default function BookingFlow() {
             name: roomData.name,
             price: roomData.price,
             type: roomData.type,
-            selection: {
-              guests: roomData.type === 'dorm' ? 1 : roomData.maxGuests,
-              rooms
-            }
+            selection: { guests: roomData.type === 'dorm' ? 1 : roomData.maxGuests, rooms }
           };
-          console.log('Auto-added room with room count:', newRoom);
           return [...prev, newRoom];
         }
       }
@@ -376,14 +345,13 @@ export default function BookingFlow() {
     }, 0);
     return totalAccommodatedGuests >= bookingDates.guests;
   };
+
   const handleNext = () => {
     if (currentStep === 'rooms') {
       if (selectedRooms.length === 0) {
         toast.error('Please select at least one room or bed');
         return;
       }
-
-      // Validate guest accommodation
       if (!validateGuestAccommodation()) {
         toast.error(`Please select enough beds/rooms to accommodate all ${bookingDates.guests} guests`);
         return;
@@ -407,6 +375,7 @@ export default function BookingFlow() {
       }
     }
   };
+
   const handlePrevious = () => {
     if (currentStep === 'guest') {
       setCurrentStep('rooms');
@@ -414,9 +383,11 @@ export default function BookingFlow() {
       setCurrentStep('guest');
     }
   };
+
   const handlePayment = (method: 'card' | 'upi') => {
     setPaymentMethod(method);
   };
+
   const calculateTotalAmount = () => {
     return selectedRooms.reduce((total, room) => {
       // For dorms: price per bed * number of beds * nights
@@ -428,9 +399,11 @@ export default function BookingFlow() {
       }
     }, 0);
   };
+
   const generateBookingId = () => {
     return `XTSY-${Date.now()}-${Math.random().toString(36).substr(2, 5).toUpperCase()}`;
   };
+
   const getBookingData = () => {
     const guests = selectedRooms.reduce((total, room) => total + room.selection.guests, 0);
     const totalAmount = calculateTotalAmount();
@@ -459,10 +432,12 @@ export default function BookingFlow() {
       addOnTotal: 0
     };
   };
+
   const handleGuestModalBack = () => {
     setShowGuestModal(false);
     setCurrentStep('rooms');
   };
+
   const handleGuestModalClose = () => {
     setShowGuestModal(false);
     if (guestDetails.firstName && guestDetails.email) {
@@ -480,24 +455,19 @@ export default function BookingFlow() {
   // Helper function to get selection for a room
   const getRoomSelection = React.useCallback((roomId: string) => {
     const selectedRoom = selectedRooms.find(r => r.id === roomId);
-    const selection = selectedRoom?.selection || {
-      guests: 1,
-      rooms: 0
-    };
-    console.log('Getting selection for room:', roomId, 'selection:', selection);
+    const selection = selectedRoom?.selection || { guests: 1, rooms: 0 };
     return selection;
   }, [selectedRooms]);
 
   // Helper function to check if room is selected
   const isRoomSelected = React.useCallback((roomId: string) => {
-    const isSelected = !!selectedRooms.find(r => r.id === roomId);
-    console.log('Checking if room is selected:', roomId, 'result:', isSelected);
-    return isSelected;
+    return !!selectedRooms.find(r => r.id === roomId);
   }, [selectedRooms]);
 
-  return <div className={`min-h-screen bg-gradient-to-br from-orange-50 via-red-50 to-pink-50 ${isMobileView ? 'pb-20' : ''}`}>
+  return (
+    <div className={`min-h-screen bg-gradient-to-br from-orange-50 via-red-50 to-pink-50`}>
       <Header />
-      
+
       {/* Top Left Corner - Book Your Stay Button */}
       <div className={`absolute top-20 left-4 z-10 ${isMobileView ? 'top-16 left-2' : isTabletView ? 'top-18 left-4' : 'top-20 left-6'}`}>
         <div className="flex items-center gap-3">
@@ -514,7 +484,12 @@ export default function BookingFlow() {
         {/* Booking Summary at Top Center */}
         <div className="flex justify-center mb-8">
           <div className={`${isMobileView ? 'w-full max-w-sm' : isTabletView ? 'w-full max-w-md' : 'w-full max-w-lg'}`}>
-            <BookingSummary checkIn={bookingDates.checkIn} checkOut={bookingDates.checkOut} guests={bookingDates.guests} nights={nights} />
+            <BookingSummary
+              checkIn={bookingDates.checkIn}
+              checkOut={bookingDates.checkOut}
+              guests={bookingDates.guests}
+              nights={nights}
+            />
           </div>
         </div>
 
@@ -531,9 +506,9 @@ export default function BookingFlow() {
                   {isMobileView ? 'Rooms' : 'Select Rooms'}
                 </span>
               </div>
-              
+
               <div className="flex-1 h-0.5 bg-muted" />
-              
+
               <div className={`flex items-center ${currentStep === 'guest' ? 'text-primary' : 'text-muted-foreground'}`}>
                 <div className={`rounded-full flex items-center justify-center text-sm font-medium ${currentStep === 'guest' ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'} ${isMobileView ? 'w-6 h-6 text-xs' : 'w-8 h-8'}`}>
                   2
@@ -542,9 +517,9 @@ export default function BookingFlow() {
                   {isMobileView ? 'Details' : 'Guest Details'}
                 </span>
               </div>
-              
+
               <div className="flex-1 h-0.5 bg-muted" />
-              
+
               <div className={`flex items-center ${currentStep === 'payment' ? 'text-primary' : 'text-muted-foreground'}`}>
                 <div className={`rounded-full flex items-center justify-center text-sm font-medium ${currentStep === 'payment' ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'} ${isMobileView ? 'w-6 h-6 text-xs' : 'w-8 h-8'}`}>
                   3
@@ -557,7 +532,8 @@ export default function BookingFlow() {
           </div>
 
           {/* Step Content */}
-          {currentStep === 'rooms' && <div className="space-y-8">
+          {currentStep === 'rooms' && (
+            <div className="space-y-8">
               {/* Main heading with glassmorphism card */}
               <div className={`text-center ${isMobileView ? 'mb-6' : 'mb-12'}`}>
                 <div className="backdrop-blur-md bg-white/30 border border-white/20 rounded-3xl shadow-xl mx-auto p-8 max-w-4xl">
@@ -570,9 +546,10 @@ export default function BookingFlow() {
                   <div className={`bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-6 rounded-full ${isMobileView ? 'w-20 h-1' : 'w-24 h-1'}`} />
                 </div>
               </div>
-              
+
               {/* XTSY Luxury Section */}
-              {roomsByProperty.luxury.length > 0 && <div className="space-y-4">
+              {roomsByProperty.luxury.length > 0 && (
+                <div className="space-y-4">
                   <div className="backdrop-blur-md bg-white/20 border border-white/20 rounded-2xl shadow-lg mx-auto p-6 max-w-2xl">
                     <h3 className={`font-bold text-center font-playfair bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent ${isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'}`}>
                       XTSY Luxury
@@ -584,15 +561,28 @@ export default function BookingFlow() {
                   </div>
                   <div className={`grid gap-6 ${isMobileView ? 'grid-cols-1' : isTabletView ? 'grid-cols-2' : 'grid-cols-3'}`}>
                     {roomsByProperty.luxury.map(room => {
-                const isSelected = isRoomSelected(room.id);
-                const selection = getRoomSelection(room.id);
-                return <FastRoomCard key={room.id} room={room} isSelected={isSelected} selection={selection} onRoomSelect={handleRoomSelect} onGuestChange={handleGuestChange} onRoomChange={handleRoomChange} nights={nights} />;
-              })}
+                      const isSelected = isRoomSelected(room.id);
+                      const selection = getRoomSelection(room.id);
+                      return (
+                        <FastRoomCard
+                          key={room.id}
+                          room={room}
+                          isSelected={isSelected}
+                          selection={selection}
+                          onRoomSelect={handleRoomSelect}
+                          onGuestChange={handleGuestChange}
+                          onRoomChange={handleRoomChange}
+                          nights={nights}
+                        />
+                      );
+                    })}
                   </div>
-                </div>}
+                </div>
+              )}
 
               {/* XTSY Travellers Hostel Section */}
-              {roomsByProperty.hostel.length > 0 && <div className="space-y-4">
+              {roomsByProperty.hostel.length > 0 && (
+                <div className="space-y-4">
                   <div className="backdrop-blur-md bg-white/20 border border-white/20 rounded-2xl shadow-lg mx-auto p-6 max-w-2xl">
                     <h3 className={`font-bold text-center font-playfair bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent ${isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'}`}>
                       XTSY Travellers Hostel
@@ -604,49 +594,70 @@ export default function BookingFlow() {
                   </div>
                   <div className={`grid gap-6 ${isMobileView ? 'grid-cols-1' : isTabletView ? 'grid-cols-2' : 'grid-cols-3'}`}>
                     {roomsByProperty.hostel.map(room => {
-                const isSelected = isRoomSelected(room.id);
-                const selection = getRoomSelection(room.id);
-                return <FastRoomCard key={room.id} room={room} isSelected={isSelected} selection={selection} onRoomSelect={handleRoomSelect} onGuestChange={handleGuestChange} onRoomChange={handleRoomChange} nights={nights} />;
-              })}
+                      const isSelected = isRoomSelected(room.id);
+                      const selection = getRoomSelection(room.id);
+                      return (
+                        <FastRoomCard
+                          key={room.id}
+                          room={room}
+                          isSelected={isSelected}
+                          selection={selection}
+                          onRoomSelect={handleRoomSelect}
+                          onGuestChange={handleGuestChange}
+                          onRoomChange={handleRoomChange}
+                          nights={nights}
+                        />
+                      );
+                    })}
                   </div>
-                </div>}
+                </div>
+              )}
 
               {/* XTSY Economy Section */}
-              {roomsByProperty.economy.length > 0 && <div className="space-y-4">
+              {roomsByProperty.economy.length > 0 && (
+                <div className="space-y-4">
                   <div className="backdrop-blur-md bg-white/20 border border-white/20 rounded-2xl shadow-lg mx-auto p-6 max-w-2xl">
                     <h3 className={`font-bold text-center font-playfair bg-gradient-to-r from-green-500 to-teal-600 bg-clip-text text-transparent ${isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'}`}>
                       XTSY Economy
                     </h3>
-                    <p className={`text-center text-gray-600 mt-2 ${isMobileView ? 'text-sm' : 'text-base'}`}>Budget-friendly options for backpackers. 
-No access to Common Area, Shared Lounge or Games Room.</p>
+                    <p className={`text-center text-gray-600 mt-2 ${isMobileView ? 'text-sm' : 'text-base'}`}>
+                      Budget-friendly options for backpackers. 
+                      No access to Common Area, Shared Lounge or Games Room.
+                    </p>
                     <div className="w-16 h-0.5 bg-gradient-to-r from-green-500 to-teal-600 mx-auto mt-3 rounded-full" />
                   </div>
                   <div className={`grid gap-6 ${isMobileView ? 'grid-cols-1' : isTabletView ? 'grid-cols-2' : 'grid-cols-3'}`}>
                     {roomsByProperty.economy.map(room => {
-                const isSelected = isRoomSelected(room.id);
-                const selection = getRoomSelection(room.id);
-                return <FastRoomCard key={room.id} room={room} isSelected={isSelected} selection={selection} onRoomSelect={handleRoomSelect} onGuestChange={handleGuestChange} onRoomChange={handleRoomChange} nights={nights} />;
-              })}
+                      const isSelected = isRoomSelected(room.id);
+                      const selection = getRoomSelection(room.id);
+                      return (
+                        <FastRoomCard
+                          key={room.id}
+                          room={room}
+                          isSelected={isSelected}
+                          selection={selection}
+                          onRoomSelect={handleRoomSelect}
+                          onGuestChange={handleGuestChange}
+                          onRoomChange={handleRoomChange}
+                          nights={nights}
+                        />
+                      );
+                    })}
                   </div>
-                </div>}
+                </div>
+              )}
 
-              <div className={`flex justify-center pt-6 ${isMobileView ? 'px-4' : ''}`}>
-                <button onClick={handleNext} className={`group relative overflow-hidden backdrop-blur-md bg-gradient-to-r from-orange-500/80 to-red-600/80 
-                    hover:from-orange-600/90 hover:to-red-700/90 text-white font-semibold 
-                    rounded-xl border border-white/20 shadow-lg hover:shadow-xl 
-                    transition-all duration-300 transform hover:scale-105 active:scale-95
-                    ${isMobileView ? 'px-6 py-3 text-sm' : 'px-8 py-4 text-base'}
-                  `}>
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="relative flex items-center gap-2">
-                    <span>Next: Complete Your Booking</span>
-                    <User className={`${isMobileView ? 'h-4 w-4' : 'h-5 w-5'} transition-transform group-hover:translate-x-1`} />
-                  </div>
-                </button>
-              </div>
-            </div>}
+              {/* (Removed old inline Next button)
+                  It used to live here inside a flex/centered div.
+              */}
 
-          {currentStep === 'guest' && <div className="space-y-6">
+              {/* Spacer so content isn’t hidden behind the fixed Next button */}
+              <div className="h-[92px] md:h-[100px]" />
+            </div>
+          )}
+
+          {currentStep === 'guest' && (
+            <div className="space-y-6">
               <div className="text-center mb-12">
                 <h2 className={`font-bold text-gray-800 mb-3 font-playfair ${isMobileView ? 'text-2xl' : 'text-3xl sm:text-4xl md:text-5xl'}`}>
                   Guest Details Complete
@@ -660,11 +671,13 @@ No access to Common Area, Shared Lounge or Games Room.</p>
               <Card>
                 <CardContent className={isMobileView ? 'p-4' : 'p-6'}>
                   <h3 className="font-semibold mb-4">Guest Information</h3>
-                  {guestDetails.firstName && <div className="space-y-2 text-sm">
+                  {guestDetails.firstName && (
+                    <div className="space-y-2 text-sm">
                       <p><strong>Name:</strong> {guestDetails.firstName} {guestDetails.lastName}</p>
                       <p><strong>Email:</strong> {guestDetails.email}</p>
                       <p><strong>Phone:</strong> {guestDetails.phone}</p>
-                    </div>}
+                    </div>
+                  )}
                 </CardContent>
               </Card>
 
@@ -678,9 +691,11 @@ No access to Common Area, Shared Lounge or Games Room.</p>
                   <CreditCard className="ml-2 h-4 w-4" />
                 </Button>
               </div>
-            </div>}
+            </div>
+          )}
 
-          {currentStep === 'payment' && <div className="space-y-6">
+          {currentStep === 'payment' && (
+            <div className="space-y-6">
               <div className="text-center mb-12">
                 <h2 className={`font-bold text-gray-800 mb-3 font-playfair ${isMobileView ? 'text-2xl' : 'text-3xl sm:text-4xl md:text-5xl'}`}>
                   Payment
@@ -695,11 +710,19 @@ No access to Common Area, Shared Lounge or Games Room.</p>
                 <CardContent className={isMobileView ? 'p-4 space-y-4' : 'p-6 space-y-4'}>
                   <h3 className="font-semibold mb-4">Select Payment Method</h3>
                   <div className="space-y-3">
-                    <Button variant={paymentMethod === 'card' ? 'default' : 'outline'} className="w-full justify-start" onClick={() => handlePayment('card')}>
+                    <Button
+                      variant={paymentMethod === 'card' ? 'default' : 'outline'}
+                      className="w-full justify-start"
+                      onClick={() => handlePayment('card')}
+                    >
                       <CreditCard className="mr-2 h-4 w-4" />
                       Credit/Debit Card
                     </Button>
-                    <Button variant={paymentMethod === 'upi' ? 'default' : 'outline'} className="w-full justify-start" onClick={() => handlePayment('upi')}>
+                    <Button
+                      variant={paymentMethod === 'upi' ? 'default' : 'outline'}
+                      className="w-full justify-start"
+                      onClick={() => handlePayment('upi')}
+                    >
                       <Phone className="mr-2 h-4 w-4" />
                       UPI Payment
                     </Button>
@@ -725,12 +748,50 @@ No access to Common Area, Shared Lounge or Games Room.</p>
                   <CreditCard className="ml-2 h-4 w-4" />
                 </Button>
               </div>
-            </div>}
+            </div>
+          )}
         </div>
       </div>
 
-      <GuestDetails isOpen={showGuestModal} onClose={handleGuestModalClose} onBack={handleGuestModalBack} bookingData={getBookingData()} />
+      {/* Fixed Next button — only on Rooms step */}
+      {currentStep === 'rooms' && (
+        <div
+          className="
+            fixed bottom-0 left-0 right-0 z-50
+            px-4 pb-[calc(env(safe-area-inset-bottom,0px)+12px)] pt-3
+            bg-transparent
+            pointer-events-none
+          "
+        >
+          <div className="mx-auto max-w-5xl flex justify-center">
+            <Button
+              onClick={handleNext}
+              className="
+                pointer-events-auto
+                rounded-xl px-6 md:px-8 py-3 md:py-3.5
+                text-white font-semibold
+                shadow-md hover:shadow-lg transition
+                bg-gradient-to-r from-orange-500 to-red-600
+              "
+            >
+              Next: Complete Your Booking
+            </Button>
+          </div>
+        </div>
+      )}
 
-      <UPIPaymentModal isOpen={showUPIModal} onClose={() => setShowUPIModal(false)} bookingData={getBookingData()} />
-    </div>;
+      <GuestDetails
+        isOpen={showGuestModal}
+        onClose={handleGuestModalClose}
+        onBack={handleGuestModalBack}
+        bookingData={getBookingData()}
+      />
+
+      <UPIPaymentModal
+        isOpen={showUPIModal}
+        onClose={() => setShowUPIModal(false)}
+        bookingData={getBookingData()}
+      />
+    </div>
+  );
 }
