@@ -6,7 +6,7 @@ export const useHappyGuests = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch initial count from Supabase
+  // Fetch the current counter from Supabase
   const fetchHappyGuestsCount = useCallback(async () => {
     try {
       setError(null);
@@ -18,49 +18,55 @@ export const useHappyGuests = () => {
 
       if (fetchError) {
         console.warn('Failed to fetch happy guests count:', fetchError.message);
-        // Keep fallback value of 610
-        return;
+        return; // keep fallback 610
       }
 
-      if (data?.value) {
+      // Accept 0 as valid; ignore only null/undefined
+      if (data && data.value !== undefined && data.value !== null) {
         setHappyGuestsCount(Number(data.value));
+      } else {
+        console.warn('metrics.happy_guests returned null/undefined; using fallback 610');
       }
     } catch (err) {
       console.warn('Error fetching happy guests count:', err);
       setError(err instanceof Error ? err.message : 'Failed to fetch count');
-      // Keep fallback value
     } finally {
       setIsLoading(false);
     }
   }, []);
 
-  // Increment count and update in Supabase
+  // Increment via DB function and reflect latest value
   const incrementHappyGuests = useCallback(async (): Promise<void> => {
     try {
       setError(null);
-      
-      // Call the database function to increment safely
+
       const { data, error: incrementError } = await supabase
         .rpc('increment_happy_guests');
 
       if (incrementError) {
         console.error('Failed to increment happy guests:', incrementError.message);
         setError(incrementError.message);
+        // Try to refresh the current value anyway
+        await fetchHappyGuestsCount();
         return;
       }
 
-      if (data && data.length > 0) {
+      // Expecting [{ new_count: number }]
+      if (data && data.length > 0 && data[0].new_count !== undefined && data[0].new_count !== null) {
         const newCount = Number(data[0].new_count);
         setHappyGuestsCount(newCount);
-        console.log('Happy guests count updated to:', newCount);
+      } else {
+        // If RPC didn’t return a number, refetch from table
+        await fetchHappyGuestsCount();
       }
     } catch (err) {
       console.error('Error incrementing happy guests:', err);
       setError(err instanceof Error ? err.message : 'Failed to increment count');
+      await fetchHappyGuestsCount();
     }
-  }, []);
+  }, [fetchHappyGuestsCount]);
 
-  // Load initial count on mount
+  // Load once on mount
   useEffect(() => {
     fetchHappyGuestsCount();
   }, [fetchHappyGuestsCount]);
@@ -70,6 +76,6 @@ export const useHappyGuests = () => {
     incrementHappyGuests,
     isLoading,
     error,
-    refetch: fetchHappyGuestsCount
+    refetch: fetchHappyGuestsCount,
   };
 };
