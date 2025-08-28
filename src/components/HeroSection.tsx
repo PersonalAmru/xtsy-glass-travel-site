@@ -17,15 +17,15 @@ const HeroSection = () => {
   const [averageRating, setAverageRating] = useState(4.9);
   const [tourCount, setTourCount] = useState<number>(22);
 
-  // Use the happy guests hook for Supabase integration
+  // Supabase-backed counter
   const { happyGuestsCount, incrementHappyGuests, isLoading: happyGuestsLoading } = useHappyGuests();
 
-  // Use the new responsive hooks
+  // Responsive helpers
   const isMobile = useMediaQuery('(max-width: 767px)');
   const isTablet = useMediaQuery('(min-width: 768px) and (max-width: 1023px)');
   const isDesktop = useMediaQuery('(min-width: 1024px)');
 
-  // 12 most common travel-friendly languages
+  // Languages
   const languages = ["Hello", "नमस्ते", "হ্যালো", "Hola", "Bonjour", "Hallo", "Ciao", "こんにちは", "안녕하세요", "Olá", "Привет", "مرحبا"];
 
   useEffect(() => {
@@ -48,14 +48,12 @@ const HeroSection = () => {
   }, [languages.length]);
 
   useEffect(() => {
-    // Fetch reviews and calculate average rating with caching and error handling
+    // Fetch reviews / average rating (cached)
     const fetchAverageRating = async () => {
       try {
-        // Check cache first
         const cachedRating = sessionStorage.getItem('averageRating');
         const cacheTime = sessionStorage.getItem('averageRatingTime');
         const fiveMinutes = 5 * 60 * 1000;
-        
         if (cachedRating && cacheTime && (Date.now() - parseInt(cacheTime)) < fiveMinutes) {
           setAverageRating(Number(cachedRating));
           return;
@@ -64,71 +62,66 @@ const HeroSection = () => {
         const { data: reviews, error } = await supabase
           .from('reviews')
           .select('rating')
-          .limit(100); // Limit to reduce load
-        
+          .limit(100);
+
         if (error) {
           console.warn('Reviews fetch failed, using fallback rating:', error.message);
-          setAverageRating(4.9); // Fallback rating
+          setAverageRating(4.9);
           return;
         }
-        
+
         if (reviews && reviews.length > 0) {
-          const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
+          const totalRating = reviews.reduce((sum, r) => sum + r.rating, 0);
           const avgRating = totalRating / reviews.length;
           const finalRating = Number(avgRating.toFixed(1));
           setAverageRating(finalRating);
-          
-          // Cache the result
           sessionStorage.setItem('averageRating', finalRating.toString());
           sessionStorage.setItem('averageRatingTime', Date.now().toString());
         } else {
-          setAverageRating(4.9); // Fallback if no reviews
+          setAverageRating(4.9);
         }
-      } catch (error) {
-        console.warn('Error calculating average rating, using fallback:', error);
-        setAverageRating(4.9); // Fallback rating
+      } catch (err) {
+        console.warn('Error calculating average rating, using fallback:', err);
+        setAverageRating(4.9);
       }
     };
 
-    // Debounce the fetch to prevent multiple rapid calls
     const timeoutId = setTimeout(fetchAverageRating, 100);
     return () => clearTimeout(timeoutId);
   }, []);
 
   useEffect(() => {
-    // Calculate actual tour packages count from TravelItinerariesSection
+    // Calculate tour count (kept as 22 for now)
     const calculateTourCount = async () => {
       try {
-        // Import the tour data dynamically to get the actual count
-        const module = await import('./TravelItinerariesSection');
-        // Since we can't directly access the itineraries array, we'll use the known count
-        // Based on the TravelItinerariesSection.tsx file, there are 22 total packages
+        await import('./TravelItinerariesSection');
         setTourCount(22);
-      } catch (error) {
-        console.warn('Could not load tour count, using fallback:', error);
-        // Fallback to manual count based on current packages
+      } catch {
         setTourCount(22);
       }
     };
-
     calculateTourCount();
   }, []);
 
-  // NOTE: we no longer increment here to avoid double counting.
+  // Only navigates; increment happens in handleSearch (to avoid double count)
   const handleBookNowClick = async () => {
-    // Navigate to booking flow
-    const params = new URLSearchParams({
-      checkIn,
-      checkOut,
-      guests
-    });
+    const params = new URLSearchParams({ checkIn, checkOut, guests });
     navigate(`/booking?${params.toString()}`);
   };
 
   const handleSearch = () => {
-    // Increment on EVERY CTA click (fire-and-forget; don't block UI)
-    try { incrementHappyGuests(); } catch (_) {}
+    // === Tiny anti-spam cooldown: 1.5s ===
+    const COOLDOWN_MS = 1500;
+    const LAST_KEY = 'xtsy_hg_last_inc';
+    const now = Date.now();
+    const last = Number(localStorage.getItem(LAST_KEY) || 0);
+    if (now - last >= COOLDOWN_MS) {
+      try { incrementHappyGuests(); } catch (_) {}
+      localStorage.setItem(LAST_KEY, String(now));
+    }
+    // === End cooldown ===
 
+    // Validate fields
     if (!checkIn || !checkOut || !guests) {
       alert("Please fill in all search fields");
       return;
@@ -140,20 +133,18 @@ const HeroSection = () => {
     const guestCount = parseInt(guests);
     if (guestCount > 20) {
       alert("For more than 20 guests, please use B2B Corporate Booking or Group Booking options available below.");
-      const groupBookingElement = document.querySelector('#group-booking-section');
-      if (groupBookingElement) {
-        groupBookingElement.scrollIntoView({
-          behavior: 'smooth'
-        });
-      }
+      const el = document.querySelector('#group-booking-section');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
       return;
     }
+
     handleBookNowClick();
   };
 
-  return <>
+  return (
+    <>
       <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
-        {/* Animated Background Elements */}
+        {/* Background Accents */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="floating-element absolute top-1/4 left-1/4 w-20 sm:w-32 md:w-48 lg:w-64 h-20 sm:h-32 md:h-48 lg:h-64 bg-orange-500/10 rounded-full blur-xl animate-pulse"></div>
           <div className="floating-element absolute top-3/4 right-1/4 w-16 sm:w-24 md:w-32 lg:w-48 h-16 sm:h-24 md:h-32 lg:h-48 bg-red-500/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '1s' }}></div>
@@ -162,26 +153,25 @@ const HeroSection = () => {
 
         {/* Main Content */}
         <div className="responsive-container relative z-10 text-center text-white w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
-          {/* Hero Text with Floating Languages */}
+          {/* Title & symbol */}
           <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16 mt-4 sm:mt-6 md:mt-8 lg:mt-12">
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-8 sm:mb-10 md:mb-12 lg:mb-16 bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent animate-fade-in">Live the XTSY Vibe</h1>
-            
-            {/* Floating Languages Section */}
+
             <div className="relative h-20 sm:h-24 md:h-28 lg:h-36 flex flex-col items-center justify-center">
               <div className="relative h-8 sm:h-10 md:h-14 lg:h-18 flex items-center justify-center mb-4 sm:mb-5 md:mb-6 lg:mb-8">
                 <span key={currentLanguageIndex} className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white animate-fade-in transition-opacity duration-500">
                   {languages[currentLanguageIndex]}
                 </span>
               </div>
-              
+
               <div className="flex items-center justify-center">
-                <PerformantImage 
-                  src="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png" 
-                  alt="XTSY Brand Symbol" 
+                <PerformantImage
+                  src="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png"
+                  alt="XTSY Brand Symbol"
                   className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-32 lg:h-32 object-contain"
                   priority={true}
                   placeholder={
-                    <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-32 lg:h-32 bg-gradient-to-r from-orange-500 to-red-600 rounded-full flex items-center justify-center">
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 lg:w-32 bg-gradient-to-r from-orange-500 to-red-600 rounded-full flex items-center justify-center">
                       <span className="text-white font-bold text-xs sm:text-sm">X</span>
                     </div>
                   }
@@ -190,10 +180,10 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Search Form - Center aligned components */}
+          {/* Search Form */}
           <div className="bg-white/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-6 md:p-7 lg:p-8 border border-white/20 shadow-2xl animate-fade-in w-full max-w-4xl mx-auto text-center" style={{ animationDelay: '0.9s' }}>
             <h2 className="text-base sm:text-xl md:text-2xl font-semibold mb-3 sm:mb-6 md:mb-7 lg:mb-8 text-center">Find Your Perfect Stay</h2>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 md:gap-5 lg:gap-6 mb-3 sm:mb-6 md:mb-7 lg:mb-8">
               <div className="space-y-1 sm:space-y-2 text-center">
                 <label className="block text-xs sm:text-sm font-medium text-gray-200 text-center">Check-in</label>
@@ -260,7 +250,7 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Quick Stats - Updated to use dynamic happy guests count */}
+          {/* Stats */}
           <div className="mt-6 sm:mt-8 md:mt-10 lg:mt-12 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6 animate-fade-in" style={{ animationDelay: '1.2s' }}>
             <div className="text-center fade-in">
               <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
@@ -283,8 +273,8 @@ const HeroSection = () => {
           </div>
         </div>
       </section>
-
-    </>;
+    </>
+  );
 };
 
 export default HeroSection;
