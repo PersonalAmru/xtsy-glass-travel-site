@@ -8,57 +8,46 @@ import { GuestDetailsHeader } from "./guest-details/GuestDetailsHeader";
 import { GuestDetailsForm } from "./guest-details/GuestDetailsForm";
 import { useGuestDetailsForm } from "./guest-details/useGuestDetailsForm";
 
-/**
- * Props definition for the GuestDetails component. It accepts the booking data
- * along with callbacks to close or navigate back.
- */
+interface SelectedRoom {
+  id: string;
+  name: string;
+  price: number;
+  type: string; // 'dorm' | 'private'
+  selection: {
+    guests: number;
+    rooms: number;
+  };
+}
+
+interface BookingData {
+  checkIn: string;
+  checkOut: string;
+  guests: number;
+  nights: number;
+  selectedRooms: SelectedRoom[];
+  totalAmount: number;
+  gstAmount: number;
+  subtotal: number;
+  discountAmount: number;
+  couponCode: string;
+  couponDiscount: number;
+  addOns?: {
+    breakfast: number;
+    dinnerVeg: number;
+    dinnerNonVeg: number;
+    transportation: boolean;
+    itineraryPlanning: boolean;
+  };
+}
+
 interface GuestDetailsProps {
   isOpen: boolean;
   onClose: () => void;
   onBack: () => void;
-  bookingData: {
-    checkIn: string;
-    checkOut: string;
-    guests: number;
-    nights: number;
-    selectedRooms: Array<{
-      id: string;
-      name: string;
-      price: number;
-      type: string;
-      selection: {
-        guests: number;
-        rooms: number;
-      };
-    }>;
-    totalAmount: number;
-    gstAmount: number;
-    subtotal: number;
-    discountAmount: number;
-    couponCode: string;
-    couponDiscount: number;
-    addOns?: {
-      breakfast: number;
-      dinnerVeg: number;
-      dinnerNonVeg: number;
-      transportation: boolean;
-      itineraryPlanning: boolean;
-    };
-  };
+  bookingData: BookingData;
 }
 
-/**
- * GuestDetails renders the booking summary and collects guest details. When
- * submitted, it logs the CTA click to Supabase’s `cta_logs` table and then
- * opens WhatsApp with a prefilled message. Any logging errors are caught
- * silently to ensure the redirect always happens.
- */
-export const GuestDetails = ({
-  isOpen,
-  onClose,
-  onBack,
-  bookingData,
-}: GuestDetailsProps) => {
+const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProps) => {
   const { formData, handleInputChange, validateForm } = useGuestDetailsForm();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isHeaderCompact, setIsHeaderCompact] = useState(false);
@@ -68,14 +57,14 @@ export const GuestDetails = ({
   const { toast } = useToast();
   const { formatPrice } = useApp();
 
-  // Derive the number of guests based on selected rooms
+  // Derive actual guests from selected rooms (dorm beds vs private rooms)
   const actualGuests = bookingData.selectedRooms.reduce((total, room) => {
     if (room.type === "dorm") return total + room.selection.rooms;
     return total + room.selection.guests * room.selection.rooms;
   }, 0);
   const displayGuests = actualGuests > 0 ? actualGuests : bookingData.guests;
 
-  // Shrink the header on scroll
+  // Compact header on scroll
   useEffect(() => {
     const el = scrollContainerRef.current;
     if (!el) return;
@@ -90,65 +79,83 @@ export const GuestDetails = ({
     return () => el.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Format date in Indian locale
-  const formatDate = (d: string) =>
-    new Date(d).toLocaleDateString("en-IN", {
-      day: "2-digit",
-      month: "long",
-      year: "numeric",
-    });
 
-  // Build WhatsApp message from booking and guest details
-  const buildWhatsappMessage = () => {
-    const roomLines = bookingData.selectedRooms.map((r) => {
-      const qty = r.selection.rooms || r.selection.guests;
-      return `• ${r.name}: ${qty} × ${bookingData.nights} night${
-        bookingData.nights > 1 ? "s" : ""
-      }`;
-    });
-    return `🏔️ *NEW BOOKING REQUEST* 🏔️\n\n` +
-      `👤 Name: ${formData.guestName}\n` +
-      `📧 Email: ${formData.email}\n` +
-      `📱 Phone: ${formData.whatsappNumber}\n` +
-      `🏠 Address: ${formData.address}, ${formData.city}, ${formData.state} - ${formData.pincode}` +
-      `${formData.emergencyContact ? `\n🆘 Emergency: ${formData.emergencyContact}${formData.emergencyRelation ? ` (${formData.emergencyRelation})` : ""}` : ""}` +
-      `\n\n🛏️ Stay:\n` +
-      `• Check-in: ${formatDate(bookingData.checkIn)}\n` +
-      `• Check-out: ${formatDate(bookingData.checkOut)}\n` +
-      `• Nights: ${bookingData.nights}\n` +
-      `• Guests: ${displayGuests}\n\n` +
-      `Room Selection:\n${roomLines.join("\n")}\n\n` +
-      `💳 Total: ${formatPrice(bookingData.totalAmount)}\n\n` +
-      `Please confirm availability and share the payment details.`;
-  };
-
-  // Handle form submission: validate, log CTA, open WhatsApp, clean up
   const handleSubmit = async () => {
+    console.log("Form data:", formData);
+    console.log("Form validation result:", validateForm());
+    
     if (!validateForm()) {
+      console.log("Form validation failed");
       toast({
         title: "Please fill all required fields",
-        description:
-          "All fields are mandatory except emergency contact information.",
-        variant: "destructive",
+        description: "All fields are mandatory except emergency contact information.",
+        variant: "destructive"
       });
       return;
     }
+
+    console.log("Form validation passed, proceeding with WhatsApp redirect");
     setIsSubmitting(true);
-    // Silent insert into cta_logs; do not block redirect
+
+    // 1) Silent log in Supabase — do not block, no user-facing errors
     try {
-      await supabase.from("cta_logs").insert([
-        { cta_name: "CompleteBookingViaWhatsApp", clicked_at: new Date().toISOString() },
+      await supabase.from("whatsapp_logs").insert([
+        {
+          type: "booking",
+          phone: formData.whatsappNumber,
+          email: formData.email,
+          message: "Complete Booking via WhatsApp",
+          created_at: new Date().toISOString()
+        }
       ]);
     } catch (err) {
+      // Stay silent for guests
       console.error("Silent Supabase log failed:", err);
     }
-    const whatsappMessage = buildWhatsappMessage();
+
+    // 2) Build WhatsApp message
+    const formatDate = (d: string) =>
+      new Date(d).toLocaleDateString("en-IN", { day: "2-digit", month: "long", year: "numeric" });
+
+    const roomLines = bookingData.selectedRooms.map(r => {
+      const qty = r.selection.rooms || r.selection.guests;
+      return `• ${r.name}: ${qty} × ${bookingData.nights} night${bookingData.nights > 1 ? "s" : ""}`;
+    });
+
+    const whatsappMessage = `🏔️ *NEW BOOKING REQUEST* 🏔️
+
+👤 Name: ${formData.guestName}
+📧 Email: ${formData.email}
+📱 Phone: ${formData.whatsappNumber}
+🏠 Address: ${formData.address}, ${formData.city}, ${formData.state} - ${formData.pincode}${formData.emergencyContact ? `\n🆘 Emergency: ${formData.emergencyContact}${formData.emergencyRelation ? ` (${formData.emergencyRelation})` : ""}` : ""}
+
+🛏️ Stay:
+• Check-in: ${formatDate(bookingData.checkIn)}
+• Check-out: ${formatDate(bookingData.checkOut)}
+• Nights: ${bookingData.nights}
+• Guests: ${displayGuests}
+
+Room Selection:
+${roomLines.join("\n")}
+
+💳 Total: ${formatPrice(bookingData.totalAmount)}
+
+Please confirm availability and share the payment details.`;
+
     const whatsappURL = `https://wa.me/918837317070?text=${encodeURIComponent(whatsappMessage)}`;
+
+    console.log("WhatsApp URL:", whatsappURL);
+    console.log("Opening WhatsApp...");
+
+    // 3) Redirect to WhatsApp (always)
     window.open(whatsappURL, "_blank", "noopener,noreferrer");
-    // Clean up and close after short delay
+
+    // 4) Cleanup & close
     try {
       localStorage.removeItem("xtsy_current_booking");
     } catch {}
+    
+    // Don't close immediately, give user time to see WhatsApp opened
     setTimeout(() => {
       onClose();
       setIsSubmitting(false);
@@ -157,21 +164,26 @@ export const GuestDetails = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      {/* Constrain height and keep internals scrollable */}
+      {/* Constrain height & keep internals scrollable */}
       <DialogContent className="w-full md:max-w-2xl lg:max-w-3xl max-h-[95vh] h-full flex flex-col overflow-hidden">
-        <GuestDetailsHeader
+        <GuestDetailsHeader 
           isCompact={isHeaderCompact}
           onBack={onBack}
           bookingData={bookingData}
           displayGuests={displayGuests}
         />
+
         {/* Scrollable content */}
         <div ref={scrollContainerRef} className="flex-1 overflow-y-auto min-h-0">
           <div className="p-4 md:p-6 space-y-6 pb-4">
-            <GuestDetailsForm formData={formData} onInputChange={handleInputChange} />
+            <GuestDetailsForm 
+              formData={formData}
+              onInputChange={handleInputChange}
+            />
           </div>
         </div>
-        {/* Sticky footer (CTA button) */}
+
+        {/* Sticky Footer (clickable and always visible) */}
         <div className="flex-shrink-0 border-t bg-gray-50 p-4 sticky bottom-0">
           <Button
             onClick={handleSubmit}
@@ -185,3 +197,5 @@ export const GuestDetails = ({
     </Dialog>
   );
 };
+
+export default GuestDetails;

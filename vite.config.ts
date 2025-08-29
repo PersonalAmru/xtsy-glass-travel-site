@@ -3,8 +3,7 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
-// This configuration preserves the Lovable tagger plugin and uses the React SWC plugin.
-// It also optimizes dependencies for Supabase to improve dev performance.
+// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
@@ -12,14 +11,12 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    mode === 'development' && componentTagger(),
+    mode === 'development' &&
+    componentTagger(),
   ].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
-  },
-  optimizeDeps: {
-    include: ["@supabase/supabase-js"],
   },
 }));
