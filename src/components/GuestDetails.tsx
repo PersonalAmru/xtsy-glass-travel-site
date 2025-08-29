@@ -1,277 +1,187 @@
-import React, { useMemo, useState } from "react";
-import { createClient } from "@supabase/supabase-js";
+import { useState, useEffect, useRef } from "react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
+import { useApp } from "@/contexts/AppContext";
+import { supabase } from "@/integrations/supabase/client";
+import { GuestDetailsHeader } from "./guest-details/GuestDetailsHeader";
+import { GuestDetailsForm } from "./guest-details/GuestDetailsForm";
+import { useGuestDetailsForm } from "./guest-details/useGuestDetailsForm";
 
 /**
- * Supabase client
- * (Swap this for your shared client import if you already have one.)
+ * Props definition for the GuestDetails component. It accepts the booking data
+ * along with callbacks to close or navigate back.
  */
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL!,
-  import.meta.env.VITE_SUPABASE_ANON_KEY!
-);
-
-/** WhatsApp number in E.164 format (no +, no spaces) */
-const WA_NUMBER = import.meta.env.VITE_WA_NUMBER ?? "918837317070";
-
-/** Build a WhatsApp deep-link with a prefilled message */
-function buildWhatsAppUrl(phoneE164: string, message: string) {
-  return `https://wa.me/${phoneE164}?text=${encodeURIComponent(message)}`;
+interface GuestDetailsProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onBack: () => void;
+  bookingData: {
+    checkIn: string;
+    checkOut: string;
+    guests: number;
+    nights: number;
+    selectedRooms: Array<{
+      id: string;
+      name: string;
+      price: number;
+      type: string;
+      selection: {
+        guests: number;
+        rooms: number;
+      };
+    }>;
+    totalAmount: number;
+    gstAmount: number;
+    subtotal: number;
+    discountAmount: number;
+    couponCode: string;
+    couponDiscount: number;
+    addOns?: {
+      breakfast: number;
+      dinnerVeg: number;
+      dinnerNonVeg: number;
+      transportation: boolean;
+      itineraryPlanning: boolean;
+    };
+  };
 }
 
-/** Silent CTA log → always redirect (even if logging fails) */
-async function logAndRedirectWhatsApp(ctaName: string, waUrl: string) {
-  try {
-    await supabase.from("cta_logs").insert([{ cta_name: ctaName }]);
-  } catch (err) {
-    console.warn("CTA log failed (non-blocking):", err);
-  } finally {
-    window.open(waUrl, "_blank", "noopener,noreferrer");
-  }
-}
+/**
+ * GuestDetails renders the booking summary and collects guest details. When
+ * submitted, it logs the CTA click to Supabase’s `cta_logs` table and then
+ * opens WhatsApp with a prefilled message. Any logging errors are caught
+ * silently to ensure the redirect always happens.
+ */
+export const GuestDetails = ({
+  isOpen,
+  onClose,
+  onBack,
+  bookingData,
+}: GuestDetailsProps) => {
+  const { formData, handleInputChange, validateForm } = useGuestDetailsForm();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isHeaderCompact, setIsHeaderCompact] = useState(false);
 
-const GuestDetails: React.FC = () => {
-  // Dates & counts
-  const [checkIn, setCheckIn] = useState("");
-  const [checkOut, setCheckOut] = useState("");
-  const [nights, setNights] = useState<number | "">("");
-  const [guests, setGuests] = useState<number | "">("");
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const lastScrollTop = useRef(0);
+  const { toast } = useToast();
+  const { formatPrice } = useApp();
 
-  // Contact
-  const [fullName, setFullName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
+  // Derive the number of guests based on selected rooms
+  const actualGuests = bookingData.selectedRooms.reduce((total, room) => {
+    if (room.type === "dorm") return total + room.selection.rooms;
+    return total + room.selection.guests * room.selection.rooms;
+  }, 0);
+  const displayGuests = actualGuests > 0 ? actualGuests : bookingData.guests;
 
-  // Address
-  const [addressLine1, setAddressLine1] = useState("");
-  const [addressLine2, setAddressLine2] = useState("");
-  const [city, setCity] = useState("");
-  const [stateVal, setStateVal] = useState("");
-  const [pincode, setPincode] = useState("");
+  // Shrink the header on scroll
+  useEffect(() => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const st = el.scrollTop;
+      const down = st > lastScrollTop.current;
+      if (down && st > 100) setIsHeaderCompact(true);
+      else if (!down && st < 50) setIsHeaderCompact(false);
+      lastScrollTop.current = st;
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, []);
 
-  // Notes
-  const [specialRequests, setSpecialRequests] = useState("");
+  // Format date in Indian locale
+  const formatDate = (d: string) =>
+    new Date(d).toLocaleDateString("en-IN", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    });
 
-  // Compose a tidy message for WA
-  const bookingMessage = useMemo(() => {
-    const addressParts = [
-      addressLine1,
-      addressLine2,
-      [city, stateVal].filter(Boolean).join(", "),
-      pincode,
-    ].filter(Boolean);
+  // Build WhatsApp message from booking and guest details
+  const buildWhatsappMessage = () => {
+    const roomLines = bookingData.selectedRooms.map((r) => {
+      const qty = r.selection.rooms || r.selection.guests;
+      return `• ${r.name}: ${qty} × ${bookingData.nights} night${
+        bookingData.nights > 1 ? "s" : ""
+      }`;
+    });
+    return `🏔️ *NEW BOOKING REQUEST* 🏔️\n\n` +
+      `👤 Name: ${formData.guestName}\n` +
+      `📧 Email: ${formData.email}\n` +
+      `📱 Phone: ${formData.whatsappNumber}\n` +
+      `🏠 Address: ${formData.address}, ${formData.city}, ${formData.state} - ${formData.pincode}` +
+      `${formData.emergencyContact ? `\n🆘 Emergency: ${formData.emergencyContact}${formData.emergencyRelation ? ` (${formData.emergencyRelation})` : ""}` : ""}` +
+      `\n\n🛏️ Stay:\n` +
+      `• Check-in: ${formatDate(bookingData.checkIn)}\n` +
+      `• Check-out: ${formatDate(bookingData.checkOut)}\n` +
+      `• Nights: ${bookingData.nights}\n` +
+      `• Guests: ${displayGuests}\n\n` +
+      `Room Selection:\n${roomLines.join("\n")}\n\n` +
+      `💳 Total: ${formatPrice(bookingData.totalAmount)}\n\n` +
+      `Please confirm availability and share the payment details.`;
+  };
 
-    return (
-`🧳 *XTSY Booking Request*
-
-Check-in: ${checkIn || "-"}
-Check-out: ${checkOut || "-"}
-Nights: ${nights || "-"}
-Guests: ${guests || "-"}
-
-Name: ${fullName || "-"}
-Phone: ${phone || "-"}
-Email: ${email || "-"}
-
-Address:
-${addressParts.join(", ")}
-
-${specialRequests ? `Notes: ${specialRequests}` : ""}`.trim()
-    );
-  }, [
-    checkIn,
-    checkOut,
-    nights,
-    guests,
-    fullName,
-    phone,
-    email,
-    addressLine1,
-    addressLine2,
-    city,
-    stateVal,
-    pincode,
-    specialRequests,
-  ]);
-
-  async function onCompleteBookingViaWhatsApp() {
-    const url = buildWhatsAppUrl(WA_NUMBER, bookingMessage);
-    await logAndRedirectWhatsApp("CompleteBookingViaWhatsApp", url);
-  }
+  // Handle form submission: validate, log CTA, open WhatsApp, clean up
+  const handleSubmit = async () => {
+    if (!validateForm()) {
+      toast({
+        title: "Please fill all required fields",
+        description:
+          "All fields are mandatory except emergency contact information.",
+        variant: "destructive",
+      });
+      return;
+    }
+    setIsSubmitting(true);
+    // Silent insert into cta_logs; do not block redirect
+    try {
+      await supabase.from("cta_logs").insert([
+        { cta_name: "CompleteBookingViaWhatsApp", clicked_at: new Date().toISOString() },
+      ]);
+    } catch (err) {
+      console.error("Silent Supabase log failed:", err);
+    }
+    const whatsappMessage = buildWhatsappMessage();
+    const whatsappURL = `https://wa.me/918837317070?text=${encodeURIComponent(whatsappMessage)}`;
+    window.open(whatsappURL, "_blank", "noopener,noreferrer");
+    // Clean up and close after short delay
+    try {
+      localStorage.removeItem("xtsy_current_booking");
+    } catch {}
+    setTimeout(() => {
+      onClose();
+      setIsSubmitting(false);
+    }, 1000);
+  };
 
   return (
-    <div className="w-full max-w-2xl mx-auto p-4 sm:p-6 rounded-2xl bg-white/70 dark:bg-neutral-900/60 shadow-md">
-      <h2 className="text-xl sm:text-2xl font-semibold tracking-tight mb-4">
-        Booking Summary and Guest Details
-      </h2>
-
-      <form
-        className="grid grid-cols-1 sm:grid-cols-2 gap-4"
-        onSubmit={(e) => {
-          e.preventDefault();
-          onCompleteBookingViaWhatsApp();
-        }}
-      >
-        {/* Dates & counts */}
-        <div>
-          <label className="block text-sm mb-1">Check-in</label>
-          <input
-            type="date"
-            value={checkIn}
-            onChange={(e) => setCheckIn(e.target.value)}
-            className="w-full rounded-lg border px-3 py-2"
-          />
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      {/* Constrain height and keep internals scrollable */}
+      <DialogContent className="w-full md:max-w-2xl lg:max-w-3xl max-h-[95vh] h-full flex flex-col overflow-hidden">
+        <GuestDetailsHeader
+          isCompact={isHeaderCompact}
+          onBack={onBack}
+          bookingData={bookingData}
+          displayGuests={displayGuests}
+        />
+        {/* Scrollable content */}
+        <div ref={scrollContainerRef} className="flex-1 overflow-y-auto min-h-0">
+          <div className="p-4 md:p-6 space-y-6 pb-4">
+            <GuestDetailsForm formData={formData} onInputChange={handleInputChange} />
+          </div>
         </div>
-        <div>
-          <label className="block text-sm mb-1">Check-out</label>
-          <input
-            type="date"
-            value={checkOut}
-            onChange={(e) => setCheckOut(e.target.value)}
-            className="w-full rounded-lg border px-3 py-2"
-          />
-        </div>
-        <div>
-          <label className="block text-sm mb-1">Nights</label>
-          <input
-            type="number"
-            min={1}
-            value={nights}
-            onChange={(e) =>
-              setNights(e.target.value ? Number(e.target.value) : "")
-            }
-            className="w-full rounded-lg border px-3 py-2"
-            placeholder="e.g., 2"
-          />
-        </div>
-        <div>
-          <label className="block text-sm mb-1">Guests</label>
-          <input
-            type="number"
-            min={1}
-            value={guests}
-            onChange={(e) =>
-              setGuests(e.target.value ? Number(e.target.value) : "")
-            }
-            className="w-full rounded-lg border px-3 py-2"
-            placeholder="e.g., 4"
-          />
-        </div>
-
-        {/* Contact */}
-        <div>
-          <label className="block text-sm mb-1">Full Name</label>
-          <input
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-            className="w-full rounded-lg border px-3 py-2"
-            placeholder="Your name"
-          />
-        </div>
-        <div>
-          <label className="block text-sm mb-1">Phone</label>
-          <input
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            className="w-full rounded-lg border px-3 py-2"
-            placeholder="Your phone"
-          />
-        </div>
-        <div className="sm:col-span-2">
-          <label className="block text-sm mb-1">Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded-lg border px-3 py-2"
-            placeholder="your@email.com"
-          />
-        </div>
-
-        {/* Address */}
-        <div className="sm:col-span-2">
-          <label className="block text-sm mb-1">Address Line 1</label>
-          <input
-            value={addressLine1}
-            onChange={(e) => setAddressLine1(e.target.value)}
-            className="w-full rounded-lg border px-3 py-2"
-            placeholder="Street address"
-          />
-        </div>
-        <div className="sm:col-span-2">
-          <label className="block text-sm mb-1">Address Line 2 (optional)</label>
-          <input
-            value={addressLine2}
-            onChange={(e) => setAddressLine2(e.target.value)}
-            className="w-full rounded-lg border px-3 py-2"
-            placeholder="Apt, suite, building"
-          />
-        </div>
-        <div>
-          <label className="block text-sm mb-1">City</label>
-          <input
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            className="w-full rounded-lg border px-3 py-2"
-            placeholder="Shillong"
-          />
-        </div>
-        <div>
-          <label className="block text-sm mb-1">State</label>
-          <input
-            value={stateVal}
-            onChange={(e) => setStateVal(e.target.value)}
-            className="w-full rounded-lg border px-3 py-2"
-            placeholder="Meghalaya"
-          />
-        </div>
-        <div>
-          <label className="block text-sm mb-1">Pincode</label>
-          <input
-            value={pincode}
-            onChange={(e) => setPincode(e.target.value)}
-            className="w-full rounded-lg border px-3 py-2"
-            placeholder="793001"
-          />
-        </div>
-
-        {/* Notes */}
-        <div className="sm:col-span-2">
-          <label className="block text-sm mb-1">Emergency / Notes (optional)</label>
-          <textarea
-            value={specialRequests}
-            onChange={(e) => setSpecialRequests(e.target.value)}
-            className="w-full rounded-lg border px-3 py-2 min-h-[88px]"
-            placeholder="Any preferences or notes for your stay?"
-          />
-        </div>
-
-        {/* Actions */}
-        <div className="sm:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
-          <button
-            type="button"
-            className="w-full rounded-xl px-4 py-3 font-semibold text-white shadow-lg bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700"
-            onClick={onCompleteBookingViaWhatsApp}
+        {/* Sticky footer (CTA button) */}
+        <div className="flex-shrink-0 border-t bg-gray-50 p-4 sticky bottom-0">
+          <Button
+            onClick={handleSubmit}
+            disabled={isSubmitting || !validateForm()}
+            className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-3 text-lg"
           >
-            Complete Booking via WhatsApp
-          </button>
-
-          <button
-            type="button"
-            className="w-full rounded-xl px-4 py-3 font-semibold border shadow-sm hover:bg-neutral-50 dark:hover:bg-neutral-800"
-            onClick={() => {
-              setCheckIn(""); setCheckOut(""); setNights(""); setGuests("");
-              setFullName(""); setPhone(""); setEmail("");
-              setAddressLine1(""); setAddressLine2("");
-              setCity(""); setStateVal(""); setPincode("");
-              setSpecialRequests("");
-            }}
-          >
-            Reset
-          </button>
+            {isSubmitting ? "Processing..." : "Complete Booking via WhatsApp"}
+          </Button>
         </div>
-      </form>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 };
-
-export default GuestDetails;
