@@ -81,7 +81,11 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
 
 
   const handleSubmit = async () => {
+    console.log("Form data:", formData);
+    console.log("Form validation result:", validateForm());
+    
     if (!validateForm()) {
+      console.log("Form validation failed");
       toast({
         title: "Please fill all required fields",
         description: "All fields are mandatory except emergency contact information.",
@@ -90,6 +94,7 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
       return;
     }
 
+    console.log("Form validation passed, proceeding with WhatsApp redirect");
     setIsSubmitting(true);
 
     // 1) Silent log in Supabase — do not block, no user-facing errors
@@ -139,15 +144,22 @@ Please confirm availability and share the payment details.`;
 
     const whatsappURL = `https://wa.me/918837317070?text=${encodeURIComponent(whatsappMessage)}`;
 
+    console.log("WhatsApp URL:", whatsappURL);
+    console.log("Opening WhatsApp...");
+
     // 3) Redirect to WhatsApp (always)
-    window.open(whatsappURL, "_blank");
+    window.open(whatsappURL, "_blank", "noopener,noreferrer");
 
     // 4) Cleanup & close
     try {
       localStorage.removeItem("xtsy_current_booking");
     } catch {}
-    onClose();
-    setIsSubmitting(false);
+    
+    // Don't close immediately, give user time to see WhatsApp opened
+    setTimeout(() => {
+      onClose();
+      setIsSubmitting(false);
+    }, 1000);
   };
 
   return (
