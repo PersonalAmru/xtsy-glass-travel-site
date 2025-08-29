@@ -122,14 +122,13 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
 
     // 1) Silent log in Supabase — do not block, no user-facing errors
     try {
-      await supabase.from("logs").insert([
+      await supabase.from("whatsapp_logs").insert([
         {
-          log_name: "Complete Booking via Whatsapp",
-          payload: {
-            guest: formData,
-            bookingData,
-            generatedAt: new Date().toISOString()
-          }
+          type: "booking",
+          phone: formData.whatsappNumber,
+          email: formData.email,
+          message: "Complete Booking via WhatsApp",
+          created_at: new Date().toISOString()
         }
       ]);
     } catch (err) {

@@ -670,8 +670,6 @@ export default function BookingFlow() {
         onClose={() => { setShowGuestModal(false); if (guestDetails.firstName && guestDetails.email) setCurrentStep('guest'); }}
         onBack={() => { setShowGuestModal(false); setCurrentStep('rooms'); }}
         bookingData={{
-          bookingId: `XTSY-${Date.now()}`,
-          guestName: guestDetails ? `${guestDetails.firstName} ${guestDetails.lastName}` : '',
           checkIn: bookingDates.checkIn,
           checkOut: bookingDates.checkOut,
           guests: selectedRooms.reduce((t, r) => t + r.selection.guests, 0),
@@ -683,9 +681,7 @@ export default function BookingFlow() {
           discountAmount: 0,
           couponCode: '',
           couponDiscount: 0,
-          whatsappNumber: guestDetails?.phone || '',
-          addOns: { breakfast: 0, dinnerVeg: 0, dinnerNonVeg: 0, transportation: false, itineraryPlanning: false },
-          addOnTotal: 0
+          addOns: { breakfast: 0, dinnerVeg: 0, dinnerNonVeg: 0, transportation: false, itineraryPlanning: false }
         }}
       />
 
@@ -697,15 +693,7 @@ export default function BookingFlow() {
           guestName: guestDetails ? `${guestDetails.firstName} ${guestDetails.lastName}` : '',
           checkIn: bookingDates.checkIn,
           checkOut: bookingDates.checkOut,
-          guests: selectedRooms.reduce((t, r) => t + r.selection.guests, 0),
-          nights,
-          selectedRooms,
           totalAmount: calculateTotalAmount(),
-          gstAmount: 0,
-          subtotal: calculateTotalAmount(),
-          discountAmount: 0,
-          couponCode: '',
-          couponDiscount: 0,
           whatsappNumber: guestDetails?.phone || '',
           addOns: { breakfast: 0, dinnerVeg: 0, dinnerNonVeg: 0, transportation: false, itineraryPlanning: false },
           addOnTotal: 0
