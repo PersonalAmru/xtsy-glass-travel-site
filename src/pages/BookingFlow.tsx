@@ -14,7 +14,6 @@ import Header from '@/components/Header';
 import { ROOM_DATA, XTSY270_DATA } from '@/data/rooms/xtsy270';
 import { useApp } from '@/contexts/AppContext';
 import { generateStandardizedFeatures } from '@/utils/roomFeatures';
-
 interface Room {
   id: string;
   name: string;
@@ -28,7 +27,6 @@ interface Room {
   maxRooms?: number;
   images?: string[];
 }
-
 interface SelectedRoom {
   id: string;
   name: string;
@@ -39,10 +37,10 @@ interface SelectedRoom {
     rooms: number;
   };
 }
-
 const generateFeatures = generateStandardizedFeatures;
-
-const ALL_ROOMS_DATA: { [key: string]: Room } = {
+const ALL_ROOMS_DATA: {
+  [key: string]: Room;
+} = {
   'xtsy-270': {
     id: 'xtsy-270',
     name: '270° Panorama Glass Ensuite',
@@ -67,16 +65,7 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
     maxGuests: 1,
     propertyType: 'hostel',
     maxRooms: 4,
-    images: [
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/2.jpg',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/3.jpg',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/4.JPG',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/5.JPG',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/6.JPG',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/7.JPG',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/IMG_5161.png'
-    ]
+    images: ['https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/2.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/3.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/4.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/5.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/6.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/7.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/IMG_5161.png']
   },
   '4-bed-mixed-female-dorm': {
     id: '4-bed-mixed-female-dorm',
@@ -89,12 +78,7 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
     maxGuests: 1,
     propertyType: 'hostel',
     maxRooms: 4,
-    images: [
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/3.jpg',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/4.JPG',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/5.jpg',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/IMG_5161.png'
-    ]
+    images: ['https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/3.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/4.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/5.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/IMG_5161.png']
   },
   '6-bed-mixed-female-dorm': {
     id: '6-bed-mixed-female-dorm',
@@ -107,14 +91,7 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
     maxGuests: 1,
     propertyType: 'hostel',
     maxRooms: 6,
-    images: [
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/3.jpg',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/4.jpg',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/5.JPG',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/6.JPG',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/IMG_5160.png'
-    ]
+    images: ['https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/3.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/4.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/5.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/6.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/IMG_5160.png']
   },
   '6-bed-mixed-dorm': {
     id: '6-bed-mixed-dorm',
@@ -127,14 +104,7 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
     maxGuests: 1,
     propertyType: 'hostel',
     maxRooms: 6,
-    images: [
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/3.jpg',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/4.jpg',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/5.JPG',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/6.JPG',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/IMG_5160.png'
-    ]
+    images: ['https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/3.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/4.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/5.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/6.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/IMG_5160.png']
   },
   'king-double-room': {
     id: 'king-double-room',
@@ -147,12 +117,7 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
     maxGuests: 2,
     propertyType: 'hostel',
     maxRooms: 2,
-    images: [
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/2.jpg',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/3.JPG',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/IMG_4077.jpg'
-    ]
+    images: ['https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/2.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/3.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/IMG_4077.jpg']
   },
   'king-triple-room': {
     id: 'king-triple-room',
@@ -165,13 +130,7 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
     maxGuests: 3,
     propertyType: 'hostel',
     maxRooms: 1,
-    images: [
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/1.jpg',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/2.jpg',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/3.jpg',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/5.jpg',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/IMG_4077.jpg'
-    ]
+    images: ['https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/1.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/2.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/3.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/5.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/IMG_4077.jpg']
   },
   '6-bed-mixed-economy-dorm': {
     id: '6-bed-mixed-economy-dorm',
@@ -184,14 +143,7 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
     maxGuests: 1,
     propertyType: 'economy',
     maxRooms: 6,
-    images: [
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/3.jpg',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/4.jpg',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/5.JPG',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/6.JPG',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/IMG_5160.png'
-    ]
+    images: ['https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/3.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/4.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/5.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/6.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/IMG_5160.png']
   },
   '8-bed-mixed-economy-dorm': {
     id: '8-bed-mixed-economy-dorm',
@@ -204,22 +156,15 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
     maxGuests: 1,
     propertyType: 'economy',
     maxRooms: 8,
-    images: [
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/4.jpg',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/5.jpg',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/6.jpg',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/8.jpg',
-      'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/9.jpg'
-    ]
+    images: ['https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/4.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/5.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/6.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/8.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/9.jpg']
   }
 };
-
 export default function BookingFlow() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const { formatPrice } = useApp();
-
+  const {
+    formatPrice
+  } = useApp();
   const [currentStep, setCurrentStep] = useState<'rooms' | 'guest' | 'payment'>('rooms');
   const [selectedRooms, setSelectedRooms] = useState<SelectedRoom[]>([]);
   const [guestDetails, setGuestDetails] = useState({
@@ -231,32 +176,28 @@ export default function BookingFlow() {
   });
   const [showGuestModal, setShowGuestModal] = useState(false);
   const [showUPIModal, setShowUPIModal] = useState(false);
-
   const screenSize = useScreenSize();
   const isMobileView = screenSize === 'mobile';
   const isTabletView = screenSize === 'tablet';
-
   const preSelectedRoom = searchParams.get('room');
   const preSelectedProperty = searchParams.get('property');
-
   const urlCheckIn = searchParams.get('checkIn') || new Date().toISOString().split('T')[0];
   const urlCheckOut = searchParams.get('checkOut') || new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().split('T')[0];
   const urlGuests = parseInt(searchParams.get('guests') || '4');
-
   const [paymentMethod, setPaymentMethod] = useState<'card' | 'upi' | null>(null);
   const [bookingDates, setBookingDates] = useState({
     checkIn: urlCheckIn,
     checkOut: urlCheckOut,
     guests: urlGuests
   });
-
   const nights = React.useMemo(() => {
-    try { return differenceInDays(parseISO(bookingDates.checkOut), parseISO(bookingDates.checkIn)); }
-    catch { return 1; }
+    try {
+      return differenceInDays(parseISO(bookingDates.checkOut), parseISO(bookingDates.checkIn));
+    } catch {
+      return 1;
+    }
   }, [bookingDates.checkIn, bookingDates.checkOut]);
-
   const roomsArray: Room[] = Object.values(ALL_ROOMS_DATA);
-
   useEffect(() => {
     if (preSelectedRoom && preSelectedProperty) {
       try {
@@ -278,7 +219,6 @@ export default function BookingFlow() {
       }
     }
   }, [preSelectedRoom, preSelectedProperty]);
-
   const handleRoomSelect = React.useCallback((roomId: string) => {
     setSelectedRooms(prev => {
       const room = ALL_ROOMS_DATA[roomId as keyof typeof ALL_ROOMS_DATA];
@@ -289,40 +229,70 @@ export default function BookingFlow() {
         name: room.name,
         price: room.price,
         type: room.type,
-        selection: { guests: room.type === 'dorm' ? 1 : room.maxGuests, rooms: 0 }
+        selection: {
+          guests: room.type === 'dorm' ? 1 : room.maxGuests,
+          rooms: 0
+        }
       };
       return [...prev, newRoom];
     });
   }, []);
-
   const handleGuestChange = React.useCallback((roomId: string, guests: number) => {
     setSelectedRooms(prev => {
       const existing = prev.find(room => room.id === roomId);
       if (existing) {
-        return prev.map(room => room.id === roomId ? { ...room, selection: { ...room.selection, guests } } : room);
+        return prev.map(room => room.id === roomId ? {
+          ...room,
+          selection: {
+            ...room.selection,
+            guests
+          }
+        } : room);
       }
       const roomData = ALL_ROOMS_DATA[roomId as keyof typeof ALL_ROOMS_DATA];
       if (!roomData) return prev;
-      return [...prev, { id: roomData.id, name: roomData.name, price: roomData.price, type: roomData.type, selection: { guests, rooms: 0 } }];
+      return [...prev, {
+        id: roomData.id,
+        name: roomData.name,
+        price: roomData.price,
+        type: roomData.type,
+        selection: {
+          guests,
+          rooms: 0
+        }
+      }];
     });
   }, []);
-
   const handleRoomChange = React.useCallback((roomId: string, rooms: number) => {
     setSelectedRooms(prev => {
       const existing = prev.find(room => room.id === roomId);
       if (existing) {
-        return prev.map(room => room.id === roomId ? { ...room, selection: { ...room.selection, rooms } } : room);
+        return prev.map(room => room.id === roomId ? {
+          ...room,
+          selection: {
+            ...room.selection,
+            rooms
+          }
+        } : room);
       }
       if (rooms > 0) {
         const roomData = ALL_ROOMS_DATA[roomId as keyof typeof ALL_ROOMS_DATA];
         if (roomData) {
-          return [...prev, { id: roomData.id, name: roomData.name, price: roomData.price, type: roomData.type, selection: { guests: roomData.type === 'dorm' ? 1 : roomData.maxGuests, rooms } }];
+          return [...prev, {
+            id: roomData.id,
+            name: roomData.name,
+            price: roomData.price,
+            type: roomData.type,
+            selection: {
+              guests: roomData.type === 'dorm' ? 1 : roomData.maxGuests,
+              rooms
+            }
+          }];
         }
       }
       return prev;
     });
   }, []);
-
   const validateGuestAccommodation = () => {
     if (selectedRooms.length === 0) return false;
     const totalAccommodated = selectedRooms.reduce((total, room) => {
@@ -332,7 +302,6 @@ export default function BookingFlow() {
     }, 0);
     return totalAccommodated >= bookingDates.guests;
   };
-
   const handleNext = () => {
     if (currentStep === 'rooms') {
       if (selectedRooms.length === 0) return toast.error('Please select at least one room or bed');
@@ -343,24 +312,17 @@ export default function BookingFlow() {
       setCurrentStep('payment');
     } else if (currentStep === 'payment') {
       if (!paymentMethod) return toast.error('Please select a payment method');
-      if (paymentMethod === 'upi') setShowUPIModal(true);
-      else toast.success('Payment processed successfully!');
+      if (paymentMethod === 'upi') setShowUPIModal(true);else toast.success('Payment processed successfully!');
     }
   };
-
   const handlePrevious = () => {
-    if (currentStep === 'guest') setCurrentStep('rooms');
-    else if (currentStep === 'payment') setCurrentStep('guest');
+    if (currentStep === 'guest') setCurrentStep('rooms');else if (currentStep === 'payment') setCurrentStep('guest');
   };
-
   const handlePayment = (method: 'card' | 'upi') => setPaymentMethod(method);
-
   const calculateTotalAmount = () => selectedRooms.reduce((total, room) => {
     return total + room.price * room.selection.rooms * nights;
   }, 0);
-
   const generateBookingId = () => `XTSY-${Date.now()}-${Math.random().toString(36).substr(2, 5).toUpperCase()}`;
-
   const getBookingData = () => {
     const guests = selectedRooms.reduce((t, r) => t + r.selection.guests, 0);
     const totalAmount = calculateTotalAmount();
@@ -379,36 +341,36 @@ export default function BookingFlow() {
       couponCode: '',
       couponDiscount: 0,
       whatsappNumber: guestDetails?.phone || '',
-      addOns: { breakfast: 0, dinnerVeg: 0, dinnerNonVeg: 0, transportation: false, itineraryPlanning: false },
+      addOns: {
+        breakfast: 0,
+        dinnerVeg: 0,
+        dinnerNonVeg: 0,
+        transportation: false,
+        itineraryPlanning: false
+      },
       addOnTotal: 0
     };
   };
-
   const roomsByProperty = {
     luxury: roomsArray.filter(room => room.propertyType === 'luxury'),
     hostel: roomsArray.filter(room => room.propertyType === 'hostel'),
     economy: roomsArray.filter(room => room.propertyType === 'economy')
   };
-
   const getRoomSelection = React.useCallback((roomId: string) => {
     const selected = selectedRooms.find(r => r.id === roomId);
-    return selected?.selection || { guests: 1, rooms: 0 };
+    return selected?.selection || {
+      guests: 1,
+      rooms: 0
+    };
   }, [selectedRooms]);
-
   const isRoomSelected = React.useCallback((roomId: string) => !!selectedRooms.find(r => r.id === roomId), [selectedRooms]);
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-red-50 to-pink-50">
+  return <div className="min-h-screen bg-gradient-to-br from-orange-50 via-red-50 to-pink-50">
       <Header />
 
       {/* Back button + title */}
       <div className={`absolute top-20 left-4 z-10 ${isMobileView ? 'top-16 left-2' : isTabletView ? 'top-18 left-4' : 'top-20 left-6'}`}>
         <div className="flex items-center gap-3">
-          <Button
-            variant="ghost"
-            onClick={() => navigate('/')}
-            className={`text-gray-600 hover:text-gray-900 hover:bg-transparent focus:ring-0 focus:outline-none ${isMobileView ? 'p-2' : ''}`}
-          >
+          <Button variant="ghost" onClick={() => navigate('/')} className={`text-gray-600 hover:text-gray-900 hover:bg-transparent focus:ring-0 focus:outline-none ${isMobileView ? 'p-2' : ''}`}>
             <ArrowLeft className="h-4 w-4" />
           </Button>
           <h1 className={`font-bold text-gray-900 ${isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'}`}>
@@ -421,12 +383,7 @@ export default function BookingFlow() {
         {/* Booking summary */}
         <div className="flex justify-center mb-8">
           <div className={`${isMobileView ? 'w-full max-w-sm' : isTabletView ? 'w-full max-w-md' : 'w-full max-w-lg'}`}>
-            <BookingSummary
-              checkIn={bookingDates.checkIn}
-              checkOut={bookingDates.checkOut}
-              guests={bookingDates.guests}
-              nights={nights}
-            />
+            <BookingSummary checkIn={bookingDates.checkIn} checkOut={bookingDates.checkOut} guests={bookingDates.guests} nights={nights} />
           </div>
         </div>
 
@@ -435,45 +392,28 @@ export default function BookingFlow() {
           {/* Step headings & progress bar omitted for brevity */}
 
           {/* ROOMS STEP */}
-          {currentStep === 'rooms' && (
-            <div className="space-y-8">
+          {currentStep === 'rooms' && <div className="space-y-8">
 
               {/* Luxury */}
-              {roomsByProperty.luxury.length > 0 && (
-                <div className="space-y-4">
+              {roomsByProperty.luxury.length > 0 && <div className="space-y-4">
                   <div className="backdrop-blur-md bg-white/20 border border-white/20 rounded-2xl shadow-lg mx-auto p-6 max-w-2xl">
                     <h3 className={`font-bold text-center font-playfair bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent ${isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'}`}>
                       XTSY Luxury
                     </h3>
-                    <p className={`text-center text-gray-600 mt-2 ${isMobileView ? 'text-sm' : 'text-base'}`}>
-                      Premium accommodations with panoramic views. Ultra Luxury Views is a 200% Guarantee
-                    </p>
+                    <p className={`text-center text-gray-600 mt-2 ${isMobileView ? 'text-sm' : 'text-base'}`}>Luxury ensuite with panoramic views. Ultra Luxury views is a 200% Guarantee</p>
                     <div className="w-16 h-0.5 bg-gradient-to-r from-orange-500 to-red-600 mx-auto mt-3 rounded-full" />
                   </div>
                   <div className={`grid gap-6 ${isMobileView ? 'grid-cols-1' : isTabletView ? 'grid-cols-2' : 'grid-cols-3'}`}>
                     {roomsByProperty.luxury.map(room => {
-                      const isSelected = isRoomSelected(room.id);
-                      const selection = getRoomSelection(room.id);
-                      return (
-                        <FastRoomCard
-                          key={room.id}
-                          room={room}
-                          isSelected={isSelected}
-                          selection={selection}
-                          onRoomSelect={handleRoomSelect}
-                          onGuestChange={handleGuestChange}
-                          onRoomChange={handleRoomChange}
-                          nights={nights}
-                        />
-                      );
-                    })}
+                const isSelected = isRoomSelected(room.id);
+                const selection = getRoomSelection(room.id);
+                return <FastRoomCard key={room.id} room={room} isSelected={isSelected} selection={selection} onRoomSelect={handleRoomSelect} onGuestChange={handleGuestChange} onRoomChange={handleRoomChange} nights={nights} />;
+              })}
                   </div>
-                </div>
-              )}
+                </div>}
 
               {/* Hostel */}
-              {roomsByProperty.hostel.length > 0 && (
-                <div className="space-y-4">
+              {roomsByProperty.hostel.length > 0 && <div className="space-y-4">
                   <div className="backdrop-blur-md bg-white/20 border border-white/20 rounded-2xl shadow-lg mx-auto p-6 max-w-2xl">
                     <h3 className={`font-bold text-center font-playfair bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent ${isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'}`}>
                       XTSY Travellers Hostel
@@ -485,28 +425,15 @@ export default function BookingFlow() {
                   </div>
                   <div className={`grid gap-6 ${isMobileView ? 'grid-cols-1' : isTabletView ? 'grid-cols-2' : 'grid-cols-3'}`}>
                     {roomsByProperty.hostel.map(room => {
-                      const isSelected = isRoomSelected(room.id);
-                      const selection = getRoomSelection(room.id);
-                      return (
-                        <FastRoomCard
-                          key={room.id}
-                          room={room}
-                          isSelected={isSelected}
-                          selection={selection}
-                          onRoomSelect={handleRoomSelect}
-                          onGuestChange={handleGuestChange}
-                          onRoomChange={handleRoomChange}
-                          nights={nights}
-                        />
-                      );
-                    })}
+                const isSelected = isRoomSelected(room.id);
+                const selection = getRoomSelection(room.id);
+                return <FastRoomCard key={room.id} room={room} isSelected={isSelected} selection={selection} onRoomSelect={handleRoomSelect} onGuestChange={handleGuestChange} onRoomChange={handleRoomChange} nights={nights} />;
+              })}
                   </div>
-                </div>
-              )}
+                </div>}
 
               {/* Economy */}
-              {roomsByProperty.economy.length > 0 && (
-                <div className="space-y-4">
+              {roomsByProperty.economy.length > 0 && <div className="space-y-4">
                   <div className="backdrop-blur-md bg-white/20 border border-white/20 rounded-2xl shadow-lg mx-auto p-6 max-w-2xl">
                     <h3 className={`font-bold text-center font-playfair bg-gradient-to-r from-green-500 to-teal-600 bg-clip-text text-transparent ${isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'}`}>
                       XTSY Economy
@@ -519,33 +446,19 @@ export default function BookingFlow() {
                   </div>
                   <div className={`grid gap-6 ${isMobileView ? 'grid-cols-1' : isTabletView ? 'grid-cols-2' : 'grid-cols-3'}`}>
                     {roomsByProperty.economy.map(room => {
-                      const isSelected = isRoomSelected(room.id);
-                      const selection = getRoomSelection(room.id);
-                      return (
-                        <FastRoomCard
-                          key={room.id}
-                          room={room}
-                          isSelected={isSelected}
-                          selection={selection}
-                          onRoomSelect={handleRoomSelect}
-                          onGuestChange={handleGuestChange}
-                          onRoomChange={handleRoomChange}
-                          nights={nights}
-                        />
-                      );
-                    })}
+                const isSelected = isRoomSelected(room.id);
+                const selection = getRoomSelection(room.id);
+                return <FastRoomCard key={room.id} room={room} isSelected={isSelected} selection={selection} onRoomSelect={handleRoomSelect} onGuestChange={handleGuestChange} onRoomChange={handleRoomChange} nights={nights} />;
+              })}
                   </div>
-                </div>
-              )}
+                </div>}
 
               {/* Spacer so content isn't hidden behind the fixed Next button */}
               <div className="h-[92px] md:h-[100px]" />
-            </div>
-          )}
+            </div>}
 
           {/* GUEST STEP */}
-          {currentStep === 'guest' && (
-            <div className="space-y-6">
+          {currentStep === 'guest' && <div className="space-y-6">
               <div className="text-center mb-12">
                 <h2 className={`font-bold text-gray-800 mb-3 font-playfair ${isMobileView ? 'text-2xl' : 'text-3xl sm:text-4xl md:text-5xl'}`}>
                   Guest Details Complete
@@ -559,13 +472,11 @@ export default function BookingFlow() {
               <Card>
                 <CardContent className={isMobileView ? 'p-4' : 'p-6'}>
                   <h3 className="font-semibold mb-4">Guest Information</h3>
-                  {guestDetails.firstName && (
-                    <div className="space-y-2 text-sm">
+                  {guestDetails.firstName && <div className="space-y-2 text-sm">
                       <p><strong>Name:</strong> {guestDetails.firstName} {guestDetails.lastName}</p>
                       <p><strong>Email:</strong> {guestDetails.email}</p>
                       <p><strong>Phone:</strong> {guestDetails.phone}</p>
-                    </div>
-                  )}
+                    </div>}
                 </CardContent>
               </Card>
 
@@ -577,12 +488,10 @@ export default function BookingFlow() {
                   {isMobileView ? 'Payment' : 'Next: Payment'}
                 </Button>
               </div>
-            </div>
-          )}
+            </div>}
 
           {/* PAYMENT STEP */}
-          {currentStep === 'payment' && (
-            <div className="space-y-6">
+          {currentStep === 'payment' && <div className="space-y-6">
               <div className="text-center mb-12">
                 <h2 className={`font-bold text-gray-800 mb-3 font-playfair ${isMobileView ? 'text-2xl' : 'text-3xl sm:text-4xl md:text-5xl'}`}>
                   Payment
@@ -597,19 +506,11 @@ export default function BookingFlow() {
                 <CardContent className={isMobileView ? 'p-4 space-y-4' : 'p-6 space-y-4'}>
                   <h3 className="font-semibold mb-4">Select Payment Method</h3>
                   <div className="space-y-3">
-                    <Button
-                      variant={/* highlight */ 'outline'}
-                      className="w-full justify-start"
-                      onClick={() => setPaymentMethod('card')}
-                    >
+                    <Button variant={/* highlight */'outline'} className="w-full justify-start" onClick={() => setPaymentMethod('card')}>
                       <CreditCard className="mr-2 h-4 w-4" />
                       Credit/Debit Card
                     </Button>
-                    <Button
-                      variant={/* highlight */ 'outline'}
-                      className="w-full justify-start"
-                      onClick={() => setPaymentMethod('upi')}
-                    >
+                    <Button variant={/* highlight */'outline'} className="w-full justify-start" onClick={() => setPaymentMethod('upi')}>
                       <Phone className="mr-2 h-4 w-4" />
                       UPI Payment
                     </Button>
@@ -633,72 +534,72 @@ export default function BookingFlow() {
                   {isMobileView ? 'Complete' : 'Complete Booking'}
                 </Button>
               </div>
-            </div>
-          )}
+            </div>}
         </div>
       </div>
 
       {/* Fixed Next button — only on Rooms step */}
-      {currentStep === 'rooms' && (
-        <div
-          className="
+      {currentStep === 'rooms' && <div className="
             fixed bottom-0 left-0 right-0 z-50
             px-4 pb-[calc(env(safe-area-inset-bottom,0px)+12px)] pt-3
             bg-transparent
             pointer-events-none
-          "
-        >
+          ">
           <div className="mx-auto max-w-5xl flex justify-center">
-            <Button
-              onClick={handleNext}
-              className="
+            <Button onClick={handleNext} className="
                 pointer-events-auto
                 rounded-xl px-6 md:px-8 py-3 md:py-3.5
                 text-white font-semibold
                 shadow-md hover:shadow-lg transition
                 bg-gradient-to-r from-orange-500 to-red-600
-              "
-            >
+              ">
               Next: Complete Your Booking
             </Button>
           </div>
-        </div>
-      )}
+        </div>}
 
-      <GuestDetails
-        isOpen={showGuestModal}
-        onClose={() => { setShowGuestModal(false); if (guestDetails.firstName && guestDetails.email) setCurrentStep('guest'); }}
-        onBack={() => { setShowGuestModal(false); setCurrentStep('rooms'); }}
-        bookingData={{
-          checkIn: bookingDates.checkIn,
-          checkOut: bookingDates.checkOut,
-          guests: selectedRooms.reduce((t, r) => t + r.selection.guests, 0),
-          nights,
-          selectedRooms,
-          totalAmount: calculateTotalAmount(),
-          gstAmount: 0,
-          subtotal: calculateTotalAmount(),
-          discountAmount: 0,
-          couponCode: '',
-          couponDiscount: 0,
-          addOns: { breakfast: 0, dinnerVeg: 0, dinnerNonVeg: 0, transportation: false, itineraryPlanning: false }
-        }}
-      />
+      <GuestDetails isOpen={showGuestModal} onClose={() => {
+      setShowGuestModal(false);
+      if (guestDetails.firstName && guestDetails.email) setCurrentStep('guest');
+    }} onBack={() => {
+      setShowGuestModal(false);
+      setCurrentStep('rooms');
+    }} bookingData={{
+      checkIn: bookingDates.checkIn,
+      checkOut: bookingDates.checkOut,
+      guests: selectedRooms.reduce((t, r) => t + r.selection.guests, 0),
+      nights,
+      selectedRooms,
+      totalAmount: calculateTotalAmount(),
+      gstAmount: 0,
+      subtotal: calculateTotalAmount(),
+      discountAmount: 0,
+      couponCode: '',
+      couponDiscount: 0,
+      addOns: {
+        breakfast: 0,
+        dinnerVeg: 0,
+        dinnerNonVeg: 0,
+        transportation: false,
+        itineraryPlanning: false
+      }
+    }} />
 
-      <UPIPaymentModal
-        isOpen={showUPIModal}
-        onClose={() => setShowUPIModal(false)}
-        bookingData={{
-          bookingId: `XTSY-${Date.now()}`,
-          guestName: guestDetails ? `${guestDetails.firstName} ${guestDetails.lastName}` : '',
-          checkIn: bookingDates.checkIn,
-          checkOut: bookingDates.checkOut,
-          totalAmount: calculateTotalAmount(),
-          whatsappNumber: guestDetails?.phone || '',
-          addOns: { breakfast: 0, dinnerVeg: 0, dinnerNonVeg: 0, transportation: false, itineraryPlanning: false },
-          addOnTotal: 0
-        }}
-      />
-    </div>
-  );
+      <UPIPaymentModal isOpen={showUPIModal} onClose={() => setShowUPIModal(false)} bookingData={{
+      bookingId: `XTSY-${Date.now()}`,
+      guestName: guestDetails ? `${guestDetails.firstName} ${guestDetails.lastName}` : '',
+      checkIn: bookingDates.checkIn,
+      checkOut: bookingDates.checkOut,
+      totalAmount: calculateTotalAmount(),
+      whatsappNumber: guestDetails?.phone || '',
+      addOns: {
+        breakfast: 0,
+        dinnerVeg: 0,
+        dinnerNonVeg: 0,
+        transportation: false,
+        itineraryPlanning: false
+      },
+      addOnTotal: 0
+    }} />
+    </div>;
 }
