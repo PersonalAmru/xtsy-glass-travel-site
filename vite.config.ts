@@ -1,37 +1,25 @@
-import { defineConfig, loadEnv } from "vite";
-import react from "@vitejs/plugin-react";
-import { fileURLToPath, URL } from "node:url";
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
+import path from "path";
+import { componentTagger } from "lovable-tagger";
 
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), "");
-
-  return {
-    plugins: [react()],
-    resolve: {
-      alias: {
-        "@": fileURLToPath(new URL("./src", import.meta.url)),
-      },
+// This configuration preserves the Lovable tagger plugin and uses the React SWC plugin.
+// It also optimizes dependencies for Supabase to improve dev performance.
+export default defineConfig(({ mode }) => ({
+  server: {
+    host: "::",
+    port: 8080,
+  },
+  plugins: [
+    react(),
+    mode === 'development' && componentTagger(),
+  ].filter(Boolean),
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
     },
-    server: {
-      host: true,
-      port: Number(env.VITE_DEV_PORT || 5173),
-      open: false,
-      strictPort: false,
-    },
-    build: {
-      target: "es2022",
-      outDir: "dist",
-      sourcemap: mode !== "production",
-      chunkSizeWarningLimit: 1200,
-    },
-    define: {
-      __APP_VERSION__: JSON.stringify(process.env.npm_package_version),
-    },
-    esbuild: {
-      legalComments: "none",
-    },
-    optimizeDeps: {
-      include: ["@supabase/supabase-js"],
-    },
-  };
-});
+  },
+  optimizeDeps: {
+    include: ["@supabase/supabase-js"],
+  },
+}));
