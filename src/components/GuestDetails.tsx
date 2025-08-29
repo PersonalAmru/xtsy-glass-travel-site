@@ -3,12 +3,11 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { useApp } from "@/contexts/AppContext";
-import { useGuestDetailsForm } from "./guest-details/useGuestDetailsForm";
+import { supabase } from "@/integrations/supabase/client";
 import { GuestDetailsHeader } from "./guest-details/GuestDetailsHeader";
 import { GuestDetailsForm } from "./guest-details/GuestDetailsForm";
-import { openWhatsAppWithLogging } from "@/utils/whatsappLogger";
+import { useGuestDetailsForm } from "./guest-details/useGuestDetailsForm";
 
-// Types for the component props and booking data
 interface SelectedRoom {
   id: string;
   name: string;
@@ -48,17 +47,12 @@ interface GuestDetailsProps {
   bookingData: BookingData;
 }
 
-const GuestDetails = ({
-  isOpen,
-  onClose,
-  onBack,
-  bookingData,
-}: GuestDetailsProps) => {
+const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProps) => {
   const { formData, handleInputChange, validateForm } = useGuestDetailsForm();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isHeaderCompact, setIsHeaderCompact] = useState(false);
 
-  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const lastScrollTop = useRef(0);
   const { toast } = useToast();
   const { formatPrice } = useApp();
@@ -68,14 +62,12 @@ const GuestDetails = ({
     if (room.type === "dorm") return total + room.selection.rooms;
     return total + room.selection.guests * room.selection.rooms;
   }, 0);
-  const displayGuests =
-    actualGuests > 0 ? actualGuests : bookingData.guests;
+  const displayGuests = actualGuests > 0 ? actualGuests : bookingData.guests;
 
-  // Compact the header as the user scrolls down
+  // Compact header on scroll
   useEffect(() => {
     const el = scrollContainerRef.current;
     if (!el) return;
-
     const onScroll = () => {
       const st = el.scrollTop;
       const down = st > lastScrollTop.current;
@@ -83,55 +75,59 @@ const GuestDetails = ({
       else if (!down && st < 50) setIsHeaderCompact(false);
       lastScrollTop.current = st;
     };
-
     el.addEventListener("scroll", onScroll, { passive: true });
     return () => el.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Handle submit and redirect to WhatsApp
-  const handleSubmit = () => {
+
+  const handleSubmit = async () => {
+    console.log("Form data:", formData);
+    console.log("Form validation result:", validateForm());
+    
     if (!validateForm()) {
+      console.log("Form validation failed");
       toast({
         title: "Please fill all required fields",
-        description:
-          "All fields are mandatory except emergency contact information.",
-        variant: "destructive",
+        description: "All fields are mandatory except emergency contact information.",
+        variant: "destructive"
       });
       return;
     }
 
+    console.log("Form validation passed, proceeding with WhatsApp redirect");
     setIsSubmitting(true);
 
-    // Format the booking details into a WhatsApp message
-    const formatDate = (d: string) =>
-      new Date(d).toLocaleDateString("en-IN", {
-        day: "2-digit",
-        month: "long",
-        year: "numeric",
-      });
+    // 1) Silent log in Supabase — do not block, no user-facing errors
+    try {
+      await supabase.from("whatsapp_logs").insert([
+        {
+          type: "booking",
+          phone: formData.whatsappNumber,
+          email: formData.email,
+          message: "Complete Booking via WhatsApp",
+          created_at: new Date().toISOString()
+        }
+      ]);
+    } catch (err) {
+      // Stay silent for guests
+      console.error("Silent Supabase log failed:", err);
+    }
 
-    const roomLines = bookingData.selectedRooms.map((r) => {
+    // 2) Build WhatsApp message
+    const formatDate = (d: string) =>
+      new Date(d).toLocaleDateString("en-IN", { day: "2-digit", month: "long", year: "numeric" });
+
+    const roomLines = bookingData.selectedRooms.map(r => {
       const qty = r.selection.rooms || r.selection.guests;
-      return `• ${r.name}: ${qty} × ${bookingData.nights} night${
-        bookingData.nights > 1 ? "s" : ""
-      }`;
-      });
+      return `• ${r.name}: ${qty} × ${bookingData.nights} night${bookingData.nights > 1 ? "s" : ""}`;
+    });
+
     const whatsappMessage = `🏔️ *NEW BOOKING REQUEST* 🏔️
 
 👤 Name: ${formData.guestName}
 📧 Email: ${formData.email}
 📱 Phone: ${formData.whatsappNumber}
-🏠 Address: ${formData.address}, ${formData.city}, ${
-      formData.state
-    } - ${formData.pincode}${
-      formData.emergencyContact
-        ? `\n🆘 Emergency: ${formData.emergencyContact}${
-            formData.emergencyRelation
-              ? ` (${formData.emergencyRelation})`
-              : ""
-          }`
-        : ""
-    }
+🏠 Address: ${formData.address}, ${formData.city}, ${formData.state} - ${formData.pincode}${formData.emergencyContact ? `\n🆘 Emergency: ${formData.emergencyContact}${formData.emergencyRelation ? ` (${formData.emergencyRelation})` : ""}` : ""}
 
 🛏️ Stay:
 • Check-in: ${formatDate(bookingData.checkIn)}
@@ -146,68 +142,55 @@ ${roomLines.join("\n")}
 
 Please confirm availability and share the payment details.`;
 
-    // Build log data for Supabase
-    const logEntry = {
-      type: "booking" as const,
-      phone: formData.whatsappNumber,
-      email: formData.email,
-      message: "Complete Booking via WhatsApp",
-    };
+    const whatsappURL = `https://wa.me/918837317070?text=${encodeURIComponent(whatsappMessage)}`;
 
-    // Open WhatsApp immediately and log in background
-    openWhatsAppWithLogging(
-      whatsappMessage,
-      logEntry,
-      "918837317070"
-    );
+    console.log("WhatsApp URL:", whatsappURL);
+    console.log("Opening WhatsApp...");
 
-    // Clean up local storage
+    // 3) Redirect to WhatsApp (always)
+    window.open(whatsappURL, "_blank", "noopener,noreferrer");
+
+    // 4) Cleanup & close
     try {
       localStorage.removeItem("xtsy_current_booking");
-    } catch (err) {
-      // ignore
-    }
-
-    // Close the modal and reset state without delay
-    onClose();
-    setIsSubmitting(false);
+    } catch {}
+    
+    // Don't close immediately, give user time to see WhatsApp opened
+    setTimeout(() => {
+      onClose();
+      setIsSubmitting(false);
+    }, 1000);
   };
 
-  // Button disabled state
-  const isDisabled = isSubmitting || !validateForm();
-
   return (
-    <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-xl p-0">
-        {/* Header */}
-        <GuestDetailsHeader
-          compact={isHeaderCompact}
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      {/* Constrain height & keep internals scrollable */}
+      <DialogContent className="w-full md:max-w-2xl lg:max-w-3xl max-h-[95vh] h-full flex flex-col overflow-hidden">
+        <GuestDetailsHeader 
+          isCompact={isHeaderCompact}
           onBack={onBack}
+          bookingData={bookingData}
+          displayGuests={displayGuests}
         />
 
-        {/* Scrollable body */}
-        <div
-          ref={scrollContainerRef}
-          className="flex-grow overflow-y-auto px-4 py-4"
-          style={{ maxHeight: "70vh" }}
-        >
-          <GuestDetailsForm
-            formData={formData}
-            onInputChange={handleInputChange}
-          />
+        {/* Scrollable content */}
+        <div ref={scrollContainerRef} className="flex-1 overflow-y-auto min-h-0">
+          <div className="p-4 md:p-6 space-y-6 pb-4">
+            <GuestDetailsForm 
+              formData={formData}
+              onInputChange={handleInputChange}
+            />
+          </div>
         </div>
 
-        {/* Sticky footer */}
-        <div className="border-t px-4 py-4">
+        {/* Sticky Footer (clickable and always visible) */}
+        <div className="flex-shrink-0 border-t bg-gray-50 p-4 sticky bottom-0">
           <Button
             onClick={handleSubmit}
-            disabled={isDisabled}
-            className="w-full"
-            aria-busy={isSubmitting}
+            disabled={isSubmitting || !validateForm()}
+            className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-3 text-lg"
           >
-            {isSubmitting
-              ? "Processing..."
-              : "Complete Booking via WhatsApp"}
+            {isSubmitting ? "Processing..." : "Complete Booking via WhatsApp"}
           </Button>
         </div>
       </DialogContent>
