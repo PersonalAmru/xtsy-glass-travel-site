@@ -378,13 +378,22 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     <!-- Twemoji Script for Flag Emoji Support -->
-    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
+    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous" onload="initTwemoji()"></script>
     <script>
+      function initTwemoji() {
+        if (typeof twemoji !== 'undefined') {
+          twemoji.parse(document.body, {
+            folder: 'svg',
+            ext: '.svg'
+          });
+        }
+      }
+      
       document.addEventListener("DOMContentLoaded", function () {
-        twemoji.parse(document.body, {
-          folder: 'svg',
-          ext: '.svg'
-        });
+        // Check if twemoji is already loaded
+        if (typeof twemoji !== 'undefined') {
+          initTwemoji();
+        }
       });
     </script>
   </body>
