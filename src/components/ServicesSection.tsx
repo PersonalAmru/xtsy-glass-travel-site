@@ -1,23 +1,64 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ShieldCheck, Sofa } from "lucide-react";
+import { Sofa, ShieldCheck, Gem } from "lucide-react";
+
+type ServiceCard = {
+  icon: React.ReactNode;
+  title: string;
+  badge: string;
+  highlights: string[];
+};
 
 const ServicesSection = () => {
-  // Two property tiles (half + half)
-  const services = [
+  const services: ServiceCard[] = [
     {
       icon: <Sofa className="h-5 w-5" />,
       title: "XTSY Travellers Hostel",
-      description:
-        "Backpacker-friendly flagship with shared lounge, games room, 24/7 support, laundry (paid) and more.",
       badge: "Preferred",
+      highlights: [
+        "FREE WIFI [WFH MODE]",
+        "FREE PARKING",
+        "SHARED LOUNGE",
+        "GAMES ROOM",
+        "LAUNDRY [50% off]",
+        "24/7 travellers MRP store",
+        "24/7 SECURITY",
+        "TOUR ASSISTANCE",
+        "Group booking",
+        "BONFIRE & BBQ [PAID]",
+        "24/7 SUPPORT",
+        "FLEXIBLE CHECK-IN 24/7",
+      ],
     },
     {
       icon: <ShieldCheck className="h-5 w-5" />,
       title: "XTSY Economy",
-      description:
-        "Value-first stays for students & groups: tour assistance, group booking discounts and flexible check-in.",
       badge: "Budget",
+      highlights: [
+        "FREE WIFI",
+        "24/7 SECURITY",
+        "Clean & comfort",
+        "24/7 travellers MRP store",
+        "PAID PARKING [BASED ON AVL.]",
+        "SHARED LOUNGE",
+        "TOUR ASSISTANCE",
+        "LAUNDRY",
+        "BOOKING [MAX 8 PER GROUP]",
+        "11AM - 9PM SUPPORT",
+        "11AM - 9PM CHECK-IN",
+        "Room upgrade available",
+      ],
+    },
+    {
+      icon: <Gem className="h-5 w-5" />,
+      title: "XTSY Luxury",
+      badge: "Premium",
+      highlights: [
+        "EVERYTHING IS INCLUDED WITH PREMIUM SERVICE",
+        "ONE DAY SHILLONG TOUR INCLUDED",
+        "FREE FREE FREE",
+        "Your dream Instagram photo spot ✨",
+      ],
     },
   ];
 
@@ -35,15 +76,14 @@ const ServicesSection = () => {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-purple-600 mb-1 font-playfair">
               Amenities &amp; Services
             </h2>
-            {/* Subheading & color bar removed per request */}
           </div>
         </div>
 
-        {/* Fixed 2-column layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-          {services.map((service, index) => (
+        {/* 3 equal-width tiles */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+          {services.map((service) => (
             <Card
-              key={index}
+              key={service.title}
               className="glass-card bg-white/10 backdrop-blur-md border border-white/20 hover:border-white/30 hover:bg-white/15 hover:shadow-xl transition-all duration-500 flex flex-col group"
             >
               <CardHeader className="p-5 pb-3">
@@ -64,9 +104,14 @@ const ServicesSection = () => {
               </CardHeader>
 
               <CardContent className="px-5 pb-5 pt-0">
-                <CardDescription className="text-gray-700 group-hover:text-gray-800 transition-colors duration-300 text-sm sm:text-base">
-                  {service.description}
-                </CardDescription>
+                <ul className="text-gray-800/90 text-sm sm:text-[0.95rem] leading-relaxed space-y-1.5">
+                  {service.highlights.map((h, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-violet-500" />
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
               </CardContent>
             </Card>
           ))}
