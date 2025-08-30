@@ -32,6 +32,17 @@ const ServicesSection = () => {
       ],
     },
     {
+      // XTSY Luxury
+      icon: <Gem className="h-5 w-5" />,
+      title: "XTSY Luxury",
+      badge: "Premium",
+      highlights: [
+        "EVERYTHING IS INCLUDED WITH PREMIUM SERVICE",
+        "ONE DAY SHILLONG TOUR INCLUDED - FOR FREE BY XTSY",
+        "Your dream Instagram photo spot ✨",
+      ],
+    },
+    {
       // XTSY Economy
       icon: <PiggyBank className="h-5 w-5" />,
       title: "XTSY Economy",
@@ -47,17 +58,6 @@ const ServicesSection = () => {
         "11AM – 9PM SUPPORT",
         "12PM – 9PM CHECK-IN",
         "Room upgrade available",
-      ],
-    },
-    {
-      // XTSY Luxury
-      icon: <Gem className="h-5 w-5" />,
-      title: "XTSY Luxury",
-      badge: "Premium",
-      highlights: [
-        "EVERYTHING IS INCLUDED WITH PREMIUM SERVICE",
-        "ONE DAY SHILLONG TOUR INCLUDED - FOR FREE BY XTSY",
-        "Your dream Instagram photo spot ✨",
       ],
     },
   ];
