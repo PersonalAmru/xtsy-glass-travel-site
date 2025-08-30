@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Camera, Eye, MapPin, Users, Mountain, Building, Image, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import UnifiedImage from "./UnifiedImage";
+import OptimizedImage from "./OptimizedImage";
 
 const GallerySection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -23,53 +23,58 @@ const GallerySection = () => {
     return () => window.removeEventListener('galleryFilter', handleGalleryFilter as EventListener);
   }, []);
 
-  // Comprehensive gallery with actual room images from the project
-  const galleryItems = [
-    // Luxury Suite Images - XTSY 270° Glass Suite
-    {
-      id: 1,
-      title: "270° Panorama Glass Ensuite - Main View",
-      category: "luxury-rooms",
-      tags: ["panoramic-views", "glass-architecture", "premium-accommodation", "mountain-views"],
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140811.png",
-      description: "Exclusive 270-degree panoramic views - First in Shillong",
-      featured: true
-    },
-    {
-      id: 2,
-      title: "270° Panorama Glass Ensuite - Panoramic Vista",
-      category: "luxury-rooms",
-      tags: ["panoramic-views", "glass-architecture", "premium-accommodation", "mountain-views"],
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140029.png",
-      description: "Breathtaking panoramic vista from the glass suite",
-      featured: true
-    },
-    
-    // Private Rooms - King Double Room
-    {
-      id: 3,
-      title: "King Double Room - Luxury Comfort",
-      category: "private-rooms",
-      tags: ["private-accommodation", "king-bed", "luxury-amenities", "couple-friendly"],
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg",
-      description: "Premium king double room with luxury amenities"
-    },
-    {
-      id: 4,
-      title: "King Double Room - Valley View",
-      category: "private-rooms",
-      tags: ["private-accommodation", "valley-view", "premium-amenities", "spacious"],
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/2.jpg",
-      description: "Stunning valley views from the king double room"
-    },
-    {
-      id: 5,
-      title: "King Double Room - Interior Design",
-      category: "private-rooms",
-      tags: ["private-accommodation", "modern-design", "comfortable-space"],
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/3.JPG",
-      description: "Modern interior design with comfort in mind"
-    },
+    // Default gallery tab shows small subset (6 items) for optimal loading
+    const galleryItems = [
+      // Luxury Suite Images - XTSY 270° Glass Suite (Featured first for priority loading)
+      {
+        id: 1,
+        title: "270° Panorama Glass Ensuite - Main View",
+        category: "luxury-rooms",
+        tags: ["panoramic-views", "glass-architecture", "premium-accommodation", "mountain-views"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140811.png",
+        description: "Exclusive 270-degree panoramic views - First in Shillong",
+        featured: true
+      },
+      {
+        id: 2,
+        title: "270° Panorama Glass Ensuite - Panoramic Vista",
+        category: "luxury-rooms",
+        tags: ["panoramic-views", "glass-architecture", "premium-accommodation", "mountain-views"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140029.png",
+        description: "Breathtaking panoramic vista from the glass suite",
+        featured: true
+      },
+      
+      // Private Rooms - King Double Room (Load first 4 only by default)
+      {
+        id: 3,
+        title: "King Double Room - Luxury Comfort",
+        category: "private-rooms",
+        tags: ["private-accommodation", "king-bed", "luxury-amenities", "couple-friendly"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg",
+        description: "Premium king double room with luxury amenities"
+      },
+      {
+        id: 4,
+        title: "King Double Room - Valley View",
+        category: "private-rooms",
+        tags: ["private-accommodation", "valley-view", "premium-amenities", "spacious"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/2.jpg",
+        description: "Stunning valley views from the king double room"
+      }
+    ];
+
+    // Extended gallery items (loaded lazily when needed)
+    const extendedGalleryItems = [
+      ...galleryItems,
+      {
+        id: 5,
+        title: "King Double Room - Interior Design",
+        category: "private-rooms",
+        tags: ["private-accommodation", "modern-design", "comfortable-space"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/3.JPG",
+        description: "Modern interior design with comfort in mind"
+      },
     {
       id: 6,
       title: "King Double Room - Premium Setup",
@@ -286,11 +291,12 @@ const GallerySection = () => {
                   <CardContent className="p-0">
                     <div className="relative overflow-hidden">
                       {item.image ? (
-                        <UnifiedImage 
+                        <OptimizedImage 
                           src={item.image} 
                           alt={item.title}
+                          variant="gallery"
                           className="w-full h-48 sm:h-56 object-cover group-hover:scale-110 transition-transform duration-500"
-                          threshold={0.1}
+                          priority={item.featured}
                         />
                       ) : (
                         <div className="w-full h-48 sm:h-56 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">

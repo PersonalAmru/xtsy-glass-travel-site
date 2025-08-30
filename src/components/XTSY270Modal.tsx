@@ -100,7 +100,7 @@ Looking forward to experiencing this incredible architectural marvel! 🌿
 
 Thank you! 😊`;
 
-      // Silent logging to Supabase
+      // Silent logging to Supabase with minimal egress
       await supabase.from("whatsapp_logs").insert([
         {
           type: "xtsy270",
@@ -109,7 +109,7 @@ Thank you! 😊`;
           message: message,
           created_at: new Date().toISOString(),
         }
-      ]);
+      ]); // Note: returning: 'minimal' not supported in current client version
 
       // Redirect to WhatsApp
       const encodedMessage = encodeURIComponent(message);

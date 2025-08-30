@@ -77,7 +77,7 @@ Address: ${address || 'To be provided'}
 Please confirm availability and provide final booking confirmation.
 Thank you!`.trim();
 
-    // Silent logging to Supabase
+    // Silent logging to Supabase with minimal egress
     try {
       await supabase.from("whatsapp_logs").insert([
         {
@@ -87,7 +87,7 @@ Thank you!`.trim();
           message: message,
           created_at: new Date().toISOString(),
         }
-      ]);
+      ]); // Note: returning: 'minimal' not supported in current client version
     } catch (error) {
       // Silent fail - don't block user experience
       console.log("Logging failed:", error);

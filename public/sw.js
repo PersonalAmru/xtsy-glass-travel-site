@@ -1,5 +1,5 @@
-// High-performance Service Worker optimized for 5000+ concurrent users
-const CACHE_NAME = 'xtsy-performance-v1.3';
+// High-performance Service Worker optimized for 5000+ concurrent users with egress optimization
+const CACHE_NAME = 'xtsy-performance-v1.4';
 const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours
 
 // Critical resources to cache immediately
@@ -8,34 +8,39 @@ const CRITICAL_RESOURCES = [
   '/placeholder.svg'
 ];
 
-// Resources to cache on runtime
+// Resources to cache on runtime - expanded for comprehensive coverage
 const RUNTIME_CACHE_PATTERNS = [
   '/assets/',
   '/lovable-uploads/',
   '.jpg',
+  '.jpeg',
   '.png',
   '.webp',
+  '.avif',
   '.svg',
   '.css',
-  '.js'
+  '.js',
+  '.woff2',
+  '.json',
+  'supabase.co/storage' // Include Supabase Storage URLs
 ];
 
-// Install event - cache critical resources
+// Install event - cache critical resources with fast takeover
 self.addEventListener('install', (event) => {
-  console.log('SW: Installing high-performance service worker');
+  console.log('SW: Installing high-performance service worker with fast takeover');
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
         return cache.addAll(CRITICAL_RESOURCES);
       })
-      .then(() => self.skipWaiting())
+      .then(() => self.skipWaiting()) // Fast takeover
       .catch(err => console.warn('SW: Install cache failed:', err))
   );
 });
 
-// Activate event - clean up old caches
+// Activate event - clean up old caches with fast claim
 self.addEventListener('activate', (event) => {
-  console.log('SW: Activating and cleaning old caches');
+  console.log('SW: Activating and cleaning old caches with fast claim');
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
@@ -46,7 +51,7 @@ self.addEventListener('activate', (event) => {
           }
         })
       );
-    }).then(() => self.clients.claim())
+    }).then(() => self.clients.claim()) // Fast claim for immediate control
   );
 });
 

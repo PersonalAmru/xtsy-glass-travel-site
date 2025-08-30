@@ -107,7 +107,7 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
           message: "Complete Booking via WhatsApp",
           created_at: new Date().toISOString()
         }
-      ]);
+      ]); // Note: returning: 'minimal' not supported in current client version
     } catch (err) {
       // Stay silent for guests
       console.error("Silent Supabase log failed:", err);
