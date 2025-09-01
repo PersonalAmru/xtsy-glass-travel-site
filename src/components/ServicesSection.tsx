@@ -48,7 +48,7 @@ function cardBg(tone: ServiceCard["tone"]) {
 const Line: React.FC<EmojiItem> = ({ e, t }) => (
   <li className="flex items-start gap-2">
     <span className="leading-none select-none text-lg sm:text-xl">{e}</span>
-    <span className="text-gray-900/90 dark:text-gray-100/90">{t}</span>
+    <span className="text-gray-900">{t}</span>
   </li>
 );
 
@@ -138,40 +138,18 @@ const ServicesSection = () => {
             >
               <CardHeader className="p-5 pb-3 relative z-10">
                 <div className="flex items-center justify-between mb-2">
-                  <div
-                    className={
-                      s.tone === "luxury"
-                        ? "text-white/90"
-                        : s.tone === "hostel"
-                        ? "text-violet-100"
-                        : "text-purple-600 group-hover:text-pink-600 transition-colors duration-300"
-                    }
-                  >
+                  <div className="text-gray-900">
                     {s.icon}
                   </div>
                   <Badge
                     variant="outline"
-                    className={
-                      s.tone === "luxury"
-                        ? "text-xs border-white/70 text-white/90 bg-white/20 backdrop-blur-sm px-2 py-1 font-medium"
-                        : s.tone === "hostel"
-                        ? "text-xs border-violet-300/60 text-violet-100 bg-violet-950/30 backdrop-blur-sm px-2 py-1 font-medium"
-                        : "text-xs border-zinc-400/60 text-zinc-700 bg-white/40 backdrop-blur-sm px-2 py-1 font-medium"
-                    }
+                    className="text-xs border-gray-400/60 text-gray-900 bg-white/40 backdrop-blur-sm px-2 py-1 font-medium"
                   >
                     {s.badge}
                   </Badge>
                 </div>
 
-                <CardTitle
-                  className={
-                    s.tone === "luxury"
-                      ? "font-bold text-white drop-shadow-sm text-base sm:text-lg"
-                      : s.tone === "hostel"
-                      ? "font-bold text-violet-50 drop-shadow-sm text-base sm:text-lg"
-                      : "font-bold text-gray-900 text-base sm:text-lg"
-                  }
-                >
+                <CardTitle className="font-bold text-gray-900 text-base sm:text-lg">
                   {s.title}
                 </CardTitle>
               </CardHeader>
