@@ -13,34 +13,32 @@ type ServiceCard = {
   highlights: EmojiItem[];
 };
 
-// ---- Card-specific backgrounds (no images; Tailwind-only) -------------------
+// ---- Apple-style glassmorphism backgrounds -------------------
 function cardBg(tone: ServiceCard["tone"]) {
+  const baseGlass = "relative overflow-hidden backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl ";
+  
   switch (tone) {
-    case "hostel":
-      // Bold & elegant deep purples with subtle radial highlight
-      return (
-        "relative overflow-hidden " +
-        "bg-gradient-to-br from-violet-900/70 via-purple-800/70 to-indigo-900/70 " +
-        "border-white/15 " +
-        "before:absolute before:inset-0 before:bg-[radial-gradient(75%_50%_at_20%_0%,rgba(255,255,255,0.08),transparent)] before:pointer-events-none"
-      );
     case "luxury":
-      // Stunning: vivid gradient, soft conic shimmer, gentle glow
       return (
-        "relative overflow-hidden " +
-        "bg-gradient-to-br from-fuchsia-500/35 via-rose-500/30 to-amber-400/35 " +
-        "border-white/30 " +
-        "before:absolute before:inset-0 before:bg-[radial-gradient(ellipse_at_top,_rgba(255,255,255,0.28),_transparent_60%)] before:pointer-events-none " +
-        "after:absolute after:-inset-28 after:bg-[conic-gradient(from_180deg,_rgba(255,255,255,0.18),_transparent_30%,_rgba(255,255,255,0.18))] after:blur-2xl after:animate-pulse after:pointer-events-none"
+        baseGlass +
+        "before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/20 before:via-white/5 before:to-transparent before:pointer-events-none " +
+        "after:absolute after:inset-0 after:bg-gradient-to-t after:from-purple-500/10 after:via-transparent after:to-pink-500/10 after:pointer-events-none " +
+        "hover:bg-white/15 hover:border-white/30 hover:shadow-3xl transition-all duration-500"
+      );
+    case "hostel":
+      return (
+        baseGlass +
+        "before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/15 before:via-white/5 before:to-transparent before:pointer-events-none " +
+        "after:absolute after:inset-0 after:bg-gradient-to-t after:from-blue-500/8 after:via-transparent after:to-indigo-500/8 after:pointer-events-none " +
+        "hover:bg-white/15 hover:border-white/30 hover:shadow-3xl transition-all duration-500"
       );
     case "economy":
     default:
-      // Average / neutral: soft gray gradient with a faint radial
       return (
-        "relative overflow-hidden " +
-        "bg-gradient-to-br from-zinc-200/80 via-zinc-100/80 to-zinc-200/80 " +
-        "border-white/40 " +
-        "before:absolute before:inset-0 before:bg-[radial-gradient(70%_50%_at_10%_0%,rgba(0,0,0,0.05),transparent)] before:pointer-events-none"
+        baseGlass +
+        "before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/12 before:via-white/4 before:to-transparent before:pointer-events-none " +
+        "after:absolute after:inset-0 after:bg-gradient-to-t after:from-gray-500/6 after:via-transparent after:to-slate-500/6 after:pointer-events-none " +
+        "hover:bg-white/15 hover:border-white/30 hover:shadow-3xl transition-all duration-500"
       );
   }
 }
