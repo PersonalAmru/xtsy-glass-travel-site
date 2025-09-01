@@ -76,7 +76,7 @@ export type Database = {
           },
         ]
       }
-      booking_audit_log: {
+      booking_audit_log_backup: {
         Row: {
           accessed_fields: string[] | null
           action_type: string
@@ -107,17 +107,9 @@ export type Database = {
           user_email?: string | null
           user_ip?: unknown | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "booking_audit_log_booking_id_fkey"
-            columns: ["booking_id"]
-            isOneToOne: false
-            referencedRelation: "bookings"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
-      booking_confirmations: {
+      booking_confirmations_backup: {
         Row: {
           booking_id: string | null
           confirmation_sent_at: string | null
@@ -148,17 +140,9 @@ export type Database = {
           sent_to_property_email?: boolean | null
           sent_to_property_whatsapp?: boolean | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "booking_confirmations_booking_id_fkey"
-            columns: ["booking_id"]
-            isOneToOne: false
-            referencedRelation: "bookings"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
-      booking_rate_limits: {
+      booking_rate_limits_backup: {
         Row: {
           blocked_until: string | null
           booking_count: number | null
@@ -293,30 +277,21 @@ export type Database = {
         }
         Relationships: []
       }
-      chat_conversations: {
+      cta_logs: {
         Row: {
-          created_at: string
+          clicked_at: string
+          cta_name: string
           id: string
-          messages: Json
-          session_id: string
-          updated_at: string
-          user_email: string | null
         }
         Insert: {
-          created_at?: string
+          clicked_at?: string
+          cta_name: string
           id?: string
-          messages?: Json
-          session_id: string
-          updated_at?: string
-          user_email?: string | null
         }
         Update: {
-          created_at?: string
+          clicked_at?: string
+          cta_name?: string
           id?: string
-          messages?: Json
-          session_id?: string
-          updated_at?: string
-          user_email?: string | null
         }
         Relationships: []
       }
@@ -603,39 +578,23 @@ export type Database = {
           },
         ]
       }
-      whatsapp_logs: {
+    }
+    Views: {
+      cta_clicks_last_30d: {
         Row: {
-          created_at: string
-          email: string | null
-          id: string
-          ip_address: string | null
-          message: string
-          phone: string | null
-          type: string
-        }
-        Insert: {
-          created_at?: string
-          email?: string | null
-          id?: string
-          ip_address?: string | null
-          message: string
-          phone?: string | null
-          type: string
-        }
-        Update: {
-          created_at?: string
-          email?: string | null
-          id?: string
-          ip_address?: string | null
-          message?: string
-          phone?: string | null
-          type?: string
+          clicks: number | null
+          cta_name: string | null
+          day: string | null
         }
         Relationships: []
       }
-    }
-    Views: {
-      [_ in never]: never
+      cta_clicks_totals: {
+        Row: {
+          clicks: number | null
+          cta_name: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       check_suspicious_booking_activity: {
