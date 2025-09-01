@@ -55,6 +55,18 @@ const Line: React.FC<EmojiItem> = ({ e, t }) => (
 const ServicesSection = () => {
   const services: ServiceCard[] = [
     {
+      // XTSY Luxury — stunning card
+      tone: "luxury",
+      icon: <Gem className="h-5 w-5" />,
+      title: "XTSY Luxury",
+      badge: "Premium",
+      highlights: [
+        { e: "🧾✨", t: "EVERYTHING IS INCLUDED WITH PREMIUM SERVICE" },
+        { e: "🔥🍖🚌", t: "ONE DAY SHILLONG TOUR + BBQ & BONFIRE INCLUDED" },
+        { e: "📸", t: "Your dream Instagram photo spot" },
+      ],
+    },
+    {
       // XTSY Travellers Hostel — bold & elegant
       tone: "hostel",
       icon: <BedSingle className="h-5 w-5" />,
@@ -73,18 +85,6 @@ const ServicesSection = () => {
         { e: "🔥🍖", t: "BONFIRE & BBQ [PAID]" },
         { e: "📞", t: "24/7 SUPPORT" },
         { e: "🕛", t: "FLEXIBLE CHECK-IN 24/7" },
-      ],
-    },
-    {
-      // XTSY Luxury — stunning card
-      tone: "luxury",
-      icon: <Gem className="h-5 w-5" />,
-      title: "XTSY Luxury",
-      badge: "Premium",
-      highlights: [
-        { e: "🧾✨", t: "EVERYTHING IS INCLUDED WITH PREMIUM SERVICE" },
-        { e: "🔥🍖🚌", t: "ONE DAY SHILLONG TOUR + BBQ & BONFIRE INCLUDED" },
-        { e: "📸", t: "Your dream Instagram photo spot" },
       ],
     },
     {
