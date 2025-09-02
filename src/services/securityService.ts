@@ -255,42 +255,9 @@ export class SecurityService {
     remaining?: number; 
     resetAt?: Date;
   }> {
-    try {
-      const { data, error } = await supabase
-        .from('booking_rate_limits')
-        .select('*')
-        .eq('identifier', identifier)
-        .eq('identifier_type', type)
-        .maybeSingle();
-
-      if (error) throw error;
-
-      if (!data) {
-        return { blocked: false };
-      }
-
-      if (data.is_blocked && data.blocked_until && new Date(data.blocked_until) > new Date()) {
-        return { 
-          blocked: true, 
-          resetAt: new Date(data.blocked_until)
-        };
-      }
-
-      // Check if within rate limit window
-      const windowStart = new Date(Date.now() - 15 * 60 * 1000); // 15 minutes
-      if (data.first_booking_at && new Date(data.first_booking_at) > windowStart) {
-        const remaining = Math.max(0, 3 - data.booking_count);
-        return { 
-          blocked: data.booking_count >= 3,
-          remaining
-        };
-      }
-
-      return { blocked: false };
-    } catch (error) {
-      console.error('Rate limit check failed:', error);
-      return { blocked: false };
-    }
+    // Rate limiting disabled for EU compliance - no PII storage for rate limiting
+    // Consider implementing rate limiting at the edge/CDN level instead
+    return { blocked: false };
   }
 
   static async applySecurityPolicies(): Promise<{ success: boolean; error?: string }> {

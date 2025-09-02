@@ -1,61 +1,27 @@
-import { supabase } from "@/integrations/supabase/client";
-
-export interface WhatsAppLogEntry {
-  type: 'booking' | 'travel' | 'group' | 'xtsy270' | 'contact';
-  phone?: string;
-  email?: string;
-  message: string;
-  ip_address?: string;
-}
+/**
+ * Privacy-compliant WhatsApp utilities for EU compliance
+ * No PII logging, no tracking, user-initiated only
+ */
 
 /**
- * Silent logging utility for WhatsApp interactions.
- * Logs data to Supabase without blocking user experience.
+ * Open WhatsApp with formatted message - NO LOGGING
+ * Pure client-side action with privacy notice
  */
-export const logWhatsAppInteraction = async (
-  logEntry: WhatsAppLogEntry
-): Promise<void> => {
-  try {
-    const { error } = await supabase
-      .from("whatsapp_logs")
-      .insert([{ ...logEntry, created_at: new Date().toISOString() }]);
-    if (error) {
-      console.warn("WhatsApp logging failed:", error);
-    }
-  } catch (error) {
-    console.warn("WhatsApp logging error:", error);
-  }
-};
-
-/**
- * Open WhatsApp with formatted message and log the interaction.
- * Opens the new tab immediately and then logs asynchronously (non-blocking).
- *
- * @param message     Preformatted WhatsApp text.
- * @param logEntry    Data you wish to save in Supabase.
- * @param phoneNumber WhatsApp number to dial (default is the XTSY booking number).
- */
-export function openWhatsAppWithLogging(
+export function openWhatsAppDirectly(
   message: string,
-  logEntry: WhatsAppLogEntry,
   phoneNumber: string = "918837317070"
 ): void {
   const encodedMessage = encodeURIComponent(message);
   const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
-  // 1) Open WhatsApp immediately to avoid popup blockers
+  // Open WhatsApp immediately - no tracking or logging
   if (typeof window !== "undefined") {
     window.open(whatsappURL, "_blank", "noopener,noreferrer");
   }
-
-  // 2) Log in the background (do not await)
-  logWhatsAppInteraction(logEntry).catch(() => {
-    /* swallow errors to keep UX smooth */
-  });
 }
 
 /**
- * Generate WhatsApp message for booking.
+ * Generate WhatsApp message for booking - privacy compliant
  */
 export const generateBookingMessage = (params: {
   roomType?: string;
@@ -88,7 +54,7 @@ Thank you!`;
 };
 
 /**
- * Generate WhatsApp message for XTSY 270°.
+ * Generate WhatsApp message for XTSY 270°
  */
 export const generateXTSY270Message = (params: {
   state: string;
@@ -124,7 +90,7 @@ Thank you! 😊`;
 };
 
 /**
- * Generate WhatsApp message for travel inquiries.
+ * Generate WhatsApp message for travel inquiries
  */
 export const generateTravelMessage = (params: {
   tourName: string;
@@ -164,3 +130,8 @@ Looking forward to exploring with XTSY! 🎒
 
 Thank you! 😊`;
 };
+
+/**
+ * Privacy notice component text
+ */
+export const PRIVACY_NOTICE = "Opens WhatsApp. You control what you send. We don't store this.";

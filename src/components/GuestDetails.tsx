@@ -3,10 +3,10 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { useApp } from "@/contexts/AppContext";
-import { supabase } from "@/integrations/supabase/client";
 import { GuestDetailsHeader } from "./guest-details/GuestDetailsHeader";
 import { GuestDetailsForm } from "./guest-details/GuestDetailsForm";
 import { useGuestDetailsForm } from "./guest-details/useGuestDetailsForm";
+import { PRIVACY_NOTICE } from "@/utils/privacyCompliantWhatsApp";
 
 interface SelectedRoom {
   id: string;
@@ -81,11 +81,7 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
 
 
   const handleSubmit = async () => {
-    console.log("Form data:", formData);
-    console.log("Form validation result:", validateForm());
-    
     if (!validateForm()) {
-      console.log("Form validation failed");
       toast({
         title: "Please fill all required fields",
         description: "All fields are mandatory except emergency contact information.",
@@ -94,26 +90,9 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
       return;
     }
 
-    console.log("Form validation passed, proceeding with WhatsApp redirect");
     setIsSubmitting(true);
 
-    // 1) Silent log in Supabase — do not block, no user-facing errors
-    try {
-      await supabase.from("whatsapp_logs").insert([
-        {
-          type: "booking",
-          phone: formData.whatsappNumber,
-          email: formData.email,
-          message: "Complete Booking via WhatsApp",
-          created_at: new Date().toISOString()
-        }
-      ]); // Note: returning: 'minimal' not supported in current client version
-    } catch (err) {
-      // Stay silent for guests
-      console.error("Silent Supabase log failed:", err);
-    }
-
-    // 2) Build WhatsApp message
+    // Build WhatsApp message - no PII logging, EU compliant
     const formatDate = (d: string) =>
       new Date(d).toLocaleDateString("en-IN", { day: "2-digit", month: "long", year: "numeric" });
 
@@ -144,13 +123,10 @@ Please confirm availability and share the payment details.`;
 
     const whatsappURL = `https://wa.me/918837317070?text=${encodeURIComponent(whatsappMessage)}`;
 
-    console.log("WhatsApp URL:", whatsappURL);
-    console.log("Opening WhatsApp...");
-
-    // 3) Redirect to WhatsApp (always)
+    // Open WhatsApp directly - no logging, privacy compliant
     window.open(whatsappURL, "_blank", "noopener,noreferrer");
 
-    // 4) Cleanup & close
+    // Cleanup & close
     try {
       localStorage.removeItem("xtsy_current_booking");
     } catch {}
@@ -192,6 +168,7 @@ Please confirm availability and share the payment details.`;
           >
             {isSubmitting ? "Processing..." : "Complete Booking via WhatsApp"}
           </Button>
+          <p className="text-xs text-muted-foreground mt-2 text-center">{PRIVACY_NOTICE}</p>
         </div>
       </DialogContent>
     </Dialog>

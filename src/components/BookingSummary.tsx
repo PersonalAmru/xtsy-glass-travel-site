@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Calendar, Users, Edit } from 'lucide-react';
 import { useScreenSize } from '@/hooks/use-mobile';
-import { supabase } from '@/integrations/supabase/client';
+import { openWhatsAppDirectly, generateBookingMessage, PRIVACY_NOTICE } from '@/utils/privacyCompliantWhatsApp';
 import { toast } from '@/hooks/use-toast';
 interface BookingSummaryProps {
   checkIn: string;
@@ -59,43 +59,22 @@ export const BookingSummary: React.FC<BookingSummaryProps> = ({
       return;
     }
 
-    // Build comprehensive WhatsApp message
-    const message = `Hello XTSY Team, I'd like to book:
+    // Build comprehensive WhatsApp message using privacy-compliant utility
+    const message = generateBookingMessage({
+      roomType,
+      guests,
+      checkIn,
+      checkOut,
+      nights,
+      totalPrice,
+      guestName,
+      email,
+      phone,
+      address
+    });
 
-🏨 *BOOKING DETAILS:*
-Room Type: ${roomType}
-Guests: ${guests}
-Dates: ${checkIn} – ${checkOut} (${nights} nights)
-Total: ₹${totalPrice?.toLocaleString() || 'TBD'}
-
-👤 *MY DETAILS:*
-Name: ${guestName || 'To be provided'}
-Email: ${email || 'To be provided'}
-Phone: ${phone || 'To be provided'}
-Address: ${address || 'To be provided'}
-
-Please confirm availability and provide final booking confirmation.
-Thank you!`.trim();
-
-    // Silent logging to Supabase with minimal egress
-    try {
-      await supabase.from("whatsapp_logs").insert([
-        {
-          type: "booking",
-          phone: phone || null,
-          email: email || null,
-          message: message,
-          created_at: new Date().toISOString(),
-        }
-      ]); // Note: returning: 'minimal' not supported in current client version
-    } catch (error) {
-      // Silent fail - don't block user experience
-      console.log("Logging failed:", error);
-    }
-
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappURL = `https://wa.me/918837317070?text=${encodedMessage}`;
-    window.open(whatsappURL, "_blank", "noopener noreferrer");
+    // Open WhatsApp directly - no logging, EU compliant
+    openWhatsAppDirectly(message);
   };
   const isMobileView = screenSize === 'mobile';
   return <Card className={`transition-all duration-300 backdrop-blur-sm bg-card/95 ${isMobileView ? 'sticky top-2 mx-2 shadow-md border-border/60' : 'sticky top-4 shadow-sm border-border/50'}`}>
@@ -155,6 +134,16 @@ Thank you!`.trim();
               </p>
             </div>
           </div>
+        </div>
+        
+        <div className="mt-4">
+          <Button 
+            onClick={handleWhatsAppBooking}
+            className="w-full bg-green-600 hover:bg-green-700 text-white"
+          >
+            Book via WhatsApp
+          </Button>
+          <p className="text-xs text-muted-foreground mt-2 text-center">{PRIVACY_NOTICE}</p>
         </div>
       </CardContent>
     </Card>;

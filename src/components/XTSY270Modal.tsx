@@ -5,8 +5,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { MapPin, Phone, Mail } from 'lucide-react';
-import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/hooks/use-toast';
+import { openWhatsAppDirectly, generateXTSY270Message, PRIVACY_NOTICE } from '@/utils/privacyCompliantWhatsApp';
 
 interface XTSY270ModalProps {
   isOpen: boolean;
@@ -72,49 +72,15 @@ const XTSY270Modal: React.FC<XTSY270ModalProps> = ({ isOpen, onClose }) => {
     setIsSubmitting(true);
 
     try {
-      // Create WhatsApp message
-      const message = `🏔️ *XTSY 270° Panorama Glass Suite Inquiry* 🏔️
+      // Create WhatsApp message using privacy-compliant utility
+      const message = generateXTSY270Message({
+        state: formData.state,
+        mobile: formData.mobile,
+        email: formData.email
+      });
 
-Hi XTSY Team! ✨
-
-I'm interested in reserving the XTSY 270° - India's first panoramic glass house experience!
-
-👤 *My Details:*
-State: ${formData.state}
-Mobile: ${formData.mobile}
-Email: ${formData.email}
-
-🏨 *Property Details:*
-• XTSY 270° Panorama Glass Ensuite
-• Only 1 suite available per night in India
-• Exclusive signature stay – limited edition
-
-💰 *Current Interest:*
-• Weekday rates and availability
-• Weekend rates and availability  
-• Special packages or add-on services
-
-Only one suite available per night in India — I want to reserve it before it's gone!
-
-Looking forward to experiencing this incredible architectural marvel! 🌿
-
-Thank you! 😊`;
-
-      // Silent logging to Supabase with minimal egress
-      await supabase.from("whatsapp_logs").insert([
-        {
-          type: "xtsy270",
-          phone: formData.mobile,
-          email: formData.email,
-          message: message,
-          created_at: new Date().toISOString(),
-        }
-      ]); // Note: returning: 'minimal' not supported in current client version
-
-      // Redirect to WhatsApp
-      const encodedMessage = encodeURIComponent(message);
-      const whatsappURL = `https://wa.me/918837317070?text=${encodedMessage}`;
-      window.open(whatsappURL, "_blank", "noopener noreferrer");
+      // Open WhatsApp directly - no logging, EU compliant
+      openWhatsAppDirectly(message);
 
       // Close modal and reset form
       onClose();
@@ -214,6 +180,8 @@ Thank you! 😊`;
               {isSubmitting ? 'Submitting...' : 'Reserve Now via WhatsApp'}
             </Button>
           </div>
+          
+          <p className="text-xs text-muted-foreground mt-3 text-center">{PRIVACY_NOTICE}</p>
         </form>
       </DialogContent>
     </Dialog>
