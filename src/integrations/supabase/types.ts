@@ -617,6 +617,10 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: string
       }
+      get_user_role: {
+        Args: Record<PropertyKey, never>
+        Returns: string
+      }
       increment_happy_guests: {
         Args: Record<PropertyKey, never>
         Returns: {
@@ -631,6 +635,10 @@ export type Database = {
         }[]
       }
       is_admin: {
+        Args: Record<PropertyKey, never>
+        Returns: boolean
+      }
+      is_admin_or_staff: {
         Args: Record<PropertyKey, never>
         Returns: boolean
       }
