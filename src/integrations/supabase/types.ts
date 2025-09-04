@@ -86,6 +86,90 @@ export type Database = {
         }
         Relationships: []
       }
+      bookings: {
+        Row: {
+          address: string | null
+          booking_id: string
+          booking_status: string
+          cancelled_at: string | null
+          check_in: string
+          check_out: string
+          city: string | null
+          confirmed_at: string | null
+          created_at: string
+          email: string
+          emergency_contact: string | null
+          guest_name: string
+          guests: number
+          id: string
+          payment_status: string | null
+          pincode: string | null
+          room_type: string
+          source: string | null
+          special_requests: string | null
+          state: string | null
+          subtotal: number
+          taxes: number
+          total_amount: number
+          updated_at: string
+          whatsapp_number: string
+        }
+        Insert: {
+          address?: string | null
+          booking_id: string
+          booking_status?: string
+          cancelled_at?: string | null
+          check_in: string
+          check_out: string
+          city?: string | null
+          confirmed_at?: string | null
+          created_at?: string
+          email: string
+          emergency_contact?: string | null
+          guest_name: string
+          guests?: number
+          id?: string
+          payment_status?: string | null
+          pincode?: string | null
+          room_type: string
+          source?: string | null
+          special_requests?: string | null
+          state?: string | null
+          subtotal: number
+          taxes?: number
+          total_amount: number
+          updated_at?: string
+          whatsapp_number: string
+        }
+        Update: {
+          address?: string | null
+          booking_id?: string
+          booking_status?: string
+          cancelled_at?: string | null
+          check_in?: string
+          check_out?: string
+          city?: string | null
+          confirmed_at?: string | null
+          created_at?: string
+          email?: string
+          emergency_contact?: string | null
+          guest_name?: string
+          guests?: number
+          id?: string
+          payment_status?: string | null
+          pincode?: string | null
+          room_type?: string
+          source?: string | null
+          special_requests?: string | null
+          state?: string | null
+          subtotal?: number
+          taxes?: number
+          total_amount?: number
+          updated_at?: string
+          whatsapp_number?: string
+        }
+        Relationships: []
+      }
       destinations: {
         Row: {
           created_at: string

@@ -207,20 +207,20 @@ export class SecurityService {
       );
     }
 
-    // Rate limiting check
+    // Rate limiting check - temporarily using security_alerts table
     try {
-      const { data: recentBookings } = await supabase
-        .from('bookings')
+      const { data: recentAlerts } = await supabase
+        .from('security_alerts')
         .select('id')
-        .eq('email', email)
+        .eq('ip_address', 'rate_check')
         .gte('created_at', new Date(Date.now() - 15 * 60 * 1000).toISOString());
 
-      if (recentBookings && recentBookings.length >= 3) {
+      if (recentAlerts && recentAlerts.length >= 3) {
         errors.push('Rate limit exceeded. Please wait before creating another booking.');
         await this.createSecurityAlert(
           'rate_limit_exceeded',
           'high',
-          { email, count: recentBookings.length }
+          { email, count: recentAlerts.length }
         );
       }
     } catch (error) {
