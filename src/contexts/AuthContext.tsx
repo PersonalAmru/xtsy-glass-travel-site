@@ -36,26 +36,34 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setSession(session);
         setUser(session?.user ?? null);
         
-        // Update last login when user signs in
+        // Update profile when user signs in with enhanced security validation
         if (event === 'SIGNED_IN' && session?.user) {
           setTimeout(async () => {
             try {
-              // Try to update profile, but don't fail if table doesn't exist yet
-              const { error } = await supabase
-                .from('profiles' as any)
-                .upsert({
-                  id: session.user.id,
-                  email: session.user.email,
-                  full_name: session.user.user_metadata?.full_name,
-                  role: session.user.user_metadata?.role || 'guest',
-                  last_login: new Date().toISOString(),
-                });
-              
-              if (error) {
-                console.log('Profile update error:', error);
+              // Sanitize and validate user data before storing
+              const sanitizedEmail = session.user.email?.toLowerCase().trim();
+              const sanitizedName = session.user.user_metadata?.full_name?.toString().trim().slice(0, 100);
+              const userRole = ['guest', 'staff', 'channel_manager', 'admin'].includes(session.user.user_metadata?.role) 
+                ? session.user.user_metadata.role 
+                : 'guest';
+
+              if (sanitizedEmail && /^[A-Za-z0-9]([A-Za-z0-9._%-]*[A-Za-z0-9])?@[A-Za-z0-9]([A-Za-z0-9.-]*[A-Za-z0-9])?\.[A-Za-z]{2,}$/.test(sanitizedEmail)) {
+                const { error } = await supabase
+                  .from('profiles')
+                  .upsert({
+                    id: session.user.id,
+                    email: sanitizedEmail,
+                    full_name: sanitizedName || sanitizedEmail,
+                    role: userRole,
+                    last_login: new Date().toISOString(),
+                  });
+                
+                if (error) {
+                  console.log('Profile update error:', error.message);
+                }
               }
             } catch (error) {
-              console.log('Profile update skipped - table may not exist yet');
+              console.log('Profile update failed:', error);
             }
           }, 0);
         }
