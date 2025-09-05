@@ -536,8 +536,38 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: string
       }
-      get_secure_booking_data: {
-        Args: { booking_id_param: string; user_email: string }
+      get_single_booking_secure: {
+        Args: { booking_id_param: string }
+        Returns: {
+          address: string
+          booking_id: string
+          booking_status: string
+          cancelled_at: string
+          check_in: string
+          check_out: string
+          city: string
+          confirmed_at: string
+          created_at: string
+          email: string
+          emergency_contact: string
+          guest_name: string
+          guests: number
+          id: string
+          payment_status: string
+          pincode: string
+          room_type: string
+          source: string
+          special_requests: string
+          state: string
+          subtotal: number
+          taxes: number
+          total_amount: number
+          updated_at: string
+          whatsapp_number: string
+        }[]
+      }
+      get_user_bookings_secure: {
+        Args: Record<PropertyKey, never>
         Returns: {
           address: string
           booking_id: string
@@ -591,8 +621,8 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: boolean
       }
-      verify_booking_access_secure: {
-        Args: { booking_email: string; booking_id_param: string }
+      verify_booking_owner_only: {
+        Args: { booking_email: string }
         Returns: boolean
       }
     }

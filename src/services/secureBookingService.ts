@@ -51,23 +51,73 @@ export class SecureBookingService {
   }
 
   /**
-   * Verifies a booking exists and belongs to the provided email
+   * Retrieves all bookings for the authenticated user using ultra-secure function
    */
-  static async verifyBooking(bookingId: string, email: string): Promise<{ success: boolean; booking?: any; error?: string }> {
+  static async getUserBookings(): Promise<{ success: boolean; bookings?: any[]; error?: string }> {
     try {
-      const { data, error } = await supabase.functions.invoke('secure-booking-creation', {
-        body: {
-          action: 'verify_booking',
-          bookingData: { bookingId, email }
-        }
+      const { data, error } = await supabase.rpc('get_user_bookings_secure');
+
+      if (error) {
+        console.error('Secure booking retrieval error:', error);
+        return { success: false, error: error.message || 'Failed to retrieve bookings' };
+      }
+
+      return { success: true, bookings: data || [] };
+    } catch (error) {
+      console.error('Secure booking service error:', error);
+      return { success: false, error: 'Network error while retrieving bookings' };
+    }
+  }
+
+  /**
+   * Retrieves a single booking for the authenticated user using ultra-secure function
+   */
+  static async getSingleBooking(bookingId: string): Promise<{ success: boolean; booking?: any; error?: string }> {
+    try {
+      const { data, error } = await supabase.rpc('get_single_booking_secure', {
+        booking_id_param: bookingId
       });
 
       if (error) {
-        console.error('Booking verification error:', error);
-        return { success: false, error: error.message || 'Failed to verify booking' };
+        console.error('Secure single booking retrieval error:', error);
+        return { success: false, error: error.message || 'Failed to retrieve booking' };
       }
 
-      return { success: true, booking: data.booking };
+      // The function returns an array, so get the first item
+      const booking = data && data.length > 0 ? data[0] : null;
+
+      if (!booking) {
+        return { success: false, error: 'Booking not found or access denied' };
+      }
+
+      return { success: true, booking };
+    } catch (error) {
+      console.error('Secure booking service error:', error);
+      return { success: false, error: 'Network error while retrieving booking' };
+    }
+  }
+
+  /**
+   * Verifies a booking exists and belongs to the authenticated user (deprecated - use getSingleBooking)
+   * @deprecated Use getSingleBooking instead for better security
+   */
+  static async verifyBooking(bookingId: string, email: string): Promise<{ success: boolean; booking?: any; error?: string }> {
+    console.warn('verifyBooking is deprecated. Use getSingleBooking for better security.');
+    
+    try {
+      // Use the new secure function instead of the old edge function
+      const result = await this.getSingleBooking(bookingId);
+      
+      if (!result.success) {
+        return result;
+      }
+
+      // Additional email verification for backward compatibility
+      if (result.booking && result.booking.email && result.booking.email.toLowerCase() !== email.toLowerCase()) {
+        return { success: false, error: 'Email mismatch - access denied' };
+      }
+
+      return result;
     } catch (error) {
       console.error('Booking verification error:', error);
       return { success: false, error: 'Network error while verifying booking' };
