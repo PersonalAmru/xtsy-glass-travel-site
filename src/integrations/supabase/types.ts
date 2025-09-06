@@ -112,6 +112,7 @@ export type Database = {
           taxes: number
           total_amount: number
           updated_at: string
+          user_id: string | null
           whatsapp_number: string
         }
         Insert: {
@@ -139,6 +140,7 @@ export type Database = {
           taxes?: number
           total_amount: number
           updated_at?: string
+          user_id?: string | null
           whatsapp_number: string
         }
         Update: {
@@ -166,6 +168,7 @@ export type Database = {
           taxes?: number
           total_amount?: number
           updated_at?: string
+          user_id?: string | null
           whatsapp_number?: string
         }
         Relationships: []
@@ -620,6 +623,10 @@ export type Database = {
       is_admin_or_staff: {
         Args: Record<PropertyKey, never>
         Returns: boolean
+      }
+      norm_email: {
+        Args: { e: string }
+        Returns: string
       }
       verify_booking_owner_only: {
         Args: { booking_email: string }
