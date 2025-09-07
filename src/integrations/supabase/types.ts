@@ -595,6 +595,131 @@ export type Database = {
         }
         Relationships: []
       }
+      newsletter_stats: {
+        Row: {
+          active_subscribers: number | null
+          inactive_subscribers: number | null
+          new_this_month: number | null
+          new_this_week: number | null
+          total_subscribers: number | null
+          unique_interest_combinations: number | null
+        }
+        Relationships: []
+      }
+      secret_access_log_masked: {
+        Row: {
+          access_granted: boolean | null
+          accessed_at: string | null
+          id: string | null
+          ip_address_masked: string | null
+          secret_name: string | null
+          user_agent_truncated: string | null
+          user_email: string | null
+          user_id: string | null
+        }
+        Insert: {
+          access_granted?: boolean | null
+          accessed_at?: string | null
+          id?: string | null
+          ip_address_masked?: never
+          secret_name?: string | null
+          user_agent_truncated?: never
+          user_email?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          access_granted?: boolean | null
+          accessed_at?: string | null
+          id?: string | null
+          ip_address_masked?: never
+          secret_name?: string | null
+          user_agent_truncated?: never
+          user_email?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      security_alerts_masked: {
+        Row: {
+          alert_type: string | null
+          created_at: string | null
+          details: Json | null
+          id: string | null
+          ip_address_masked: string | null
+          resolved: boolean | null
+          resolved_at: string | null
+          resolved_by: string | null
+          severity: string | null
+          user_id: string | null
+        }
+        Insert: {
+          alert_type?: string | null
+          created_at?: string | null
+          details?: Json | null
+          id?: string | null
+          ip_address_masked?: never
+          resolved?: boolean | null
+          resolved_at?: string | null
+          resolved_by?: string | null
+          severity?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          alert_type?: string | null
+          created_at?: string | null
+          details?: Json | null
+          id?: string | null
+          ip_address_masked?: never
+          resolved?: boolean | null
+          resolved_at?: string | null
+          resolved_by?: string | null
+          severity?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      transactions_admin_view: {
+        Row: {
+          amount: number | null
+          booking_id: string | null
+          created_at: string | null
+          currency: string | null
+          id: string | null
+          matched: boolean | null
+          payment_status: string | null
+          razorpay_payment_id: string | null
+          source: string | null
+          txn_id: string | null
+          verified_at: string | null
+        }
+        Insert: {
+          amount?: number | null
+          booking_id?: string | null
+          created_at?: string | null
+          currency?: string | null
+          id?: string | null
+          matched?: boolean | null
+          payment_status?: string | null
+          razorpay_payment_id?: never
+          source?: string | null
+          txn_id?: string | null
+          verified_at?: string | null
+        }
+        Update: {
+          amount?: number | null
+          booking_id?: string | null
+          created_at?: string | null
+          currency?: string | null
+          id?: string | null
+          matched?: boolean | null
+          payment_status?: string | null
+          razorpay_payment_id?: never
+          source?: string | null
+          txn_id?: string | null
+          verified_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       check_suspicious_booking_activity: {
@@ -625,6 +750,17 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: string
       }
+      get_newsletter_subscriber_details_admin: {
+        Args: { p_subscriber_id: string }
+        Returns: {
+          email: string
+          full_name: string
+          id: string
+          interests: string[]
+          is_active: boolean
+          subscribed_at: string
+        }[]
+      }
       get_single_booking_secure: {
         Args: { booking_id_param: string }
         Returns: {
@@ -653,6 +789,20 @@ export type Database = {
           total_amount: number
           updated_at: string
           whatsapp_number: string
+        }[]
+      }
+      get_transaction_details_admin: {
+        Args: { p_transaction_id: string }
+        Returns: {
+          amount: number
+          booking_id: string
+          created_at: string
+          currency: string
+          gateway_response: Json
+          id: string
+          payment_status: string
+          razorpay_payment_id: string
+          txn_id: string
         }[]
       }
       get_user_bookings_secure: {
@@ -713,6 +863,10 @@ export type Database = {
       norm_email: {
         Args: { e: string }
         Returns: string
+      }
+      resolve_security_alert_admin: {
+        Args: { p_alert_id: string; p_resolution_notes?: string }
+        Returns: boolean
       }
       verify_booking_owner_only: {
         Args: { booking_email: string }
