@@ -508,7 +508,93 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      bookings_masked: {
+        Row: {
+          address: string | null
+          booking_id: string | null
+          booking_status: string | null
+          cancelled_at: string | null
+          check_in: string | null
+          check_out: string | null
+          city: string | null
+          confirmed_at: string | null
+          created_at: string | null
+          email: string | null
+          emergency_contact: string | null
+          guest_name: string | null
+          guests: number | null
+          id: string | null
+          payment_status: string | null
+          pincode: string | null
+          room_type: string | null
+          source: string | null
+          special_requests: string | null
+          state: string | null
+          subtotal: number | null
+          taxes: number | null
+          total_amount: number | null
+          updated_at: string | null
+          user_id: string | null
+          whatsapp_number: string | null
+        }
+        Insert: {
+          address?: never
+          booking_id?: string | null
+          booking_status?: string | null
+          cancelled_at?: string | null
+          check_in?: string | null
+          check_out?: string | null
+          city?: string | null
+          confirmed_at?: string | null
+          created_at?: string | null
+          email?: never
+          emergency_contact?: never
+          guest_name?: string | null
+          guests?: number | null
+          id?: string | null
+          payment_status?: string | null
+          pincode?: string | null
+          room_type?: string | null
+          source?: string | null
+          special_requests?: string | null
+          state?: string | null
+          subtotal?: number | null
+          taxes?: number | null
+          total_amount?: number | null
+          updated_at?: string | null
+          user_id?: string | null
+          whatsapp_number?: never
+        }
+        Update: {
+          address?: never
+          booking_id?: string | null
+          booking_status?: string | null
+          cancelled_at?: string | null
+          check_in?: string | null
+          check_out?: string | null
+          city?: string | null
+          confirmed_at?: string | null
+          created_at?: string | null
+          email?: never
+          emergency_contact?: never
+          guest_name?: string | null
+          guests?: number | null
+          id?: string | null
+          payment_status?: string | null
+          pincode?: string | null
+          room_type?: string | null
+          source?: string | null
+          special_requests?: string | null
+          state?: string | null
+          subtotal?: number | null
+          taxes?: number | null
+          total_amount?: number | null
+          updated_at?: string | null
+          user_id?: string | null
+          whatsapp_number?: never
+        }
+        Relationships: []
+      }
     }
     Functions: {
       check_suspicious_booking_activity: {
