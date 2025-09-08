@@ -1,0 +1,66 @@
+# Gitleaks configuration for EU/GDPR compliant secret detection
+
+title = "Gitleaks Security Configuration"
+
+[extend]
+# Use default rules
+useDefault = true
+
+[[rules]]
+id = "supabase-service-key"
+description = "Supabase Service Role Key"
+regex = '''eyJ[A-Za-z0-9_\/+-]*\.eyJ[A-Za-z0-9_\/+-]*\.[A-Za-z0-9_\/+-]*'''
+keywords = ["service_role", "supabase"]
+
+[[rules]]
+id = "razorpay-key"
+description = "Razorpay API Key"
+regex = '''rzp_(test|live)_[A-Za-z0-9]{14}'''
+keywords = ["razorpay"]
+
+[[rules]]
+id = "openai-api-key"
+description = "OpenAI API Key"
+regex = '''sk-[A-Za-z0-9]{48}'''
+keywords = ["openai", "sk-"]
+
+[[rules]]
+id = "google-api-key"
+description = "Google API Key"
+regex = '''AIza[0-9A-Za-z\\-_]{35}'''
+keywords = ["google", "maps", "AIza"]
+
+[[rules]]
+id = "database-url"
+description = "Database Connection String"
+regex = '''postgres(ql)?://[a-zA-Z0-9._-]+:[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+'''
+keywords = ["postgresql", "postgres"]
+
+[[rules]]
+id = "generic-secret"
+description = "Generic Secret Pattern"
+regex = '''(?i)(secret|key|token|password)\s*[:=]\s*["\']?[a-zA-Z0-9_\-]{16,}["\']?'''
+keywords = ["secret", "key", "token", "password"]
+
+[allowlist]
+description = "Allowlist for false positives"
+files = [
+    '''^\.env\.example$''',  # Allow .env.example
+    '''^README\.md$''',      # Allow documentation
+    '''^\.gitleaks\.toml$''' # Allow this config file
+]
+
+regexes = [
+    '''your-[a-z-]+-here''',  # Allow placeholder values
+    '''sk-example''',         # Allow example keys
+    '''rzp_test_example''',   # Allow example razorpay keys
+    '''AIzaexample''',        # Allow example google keys
+]
+
+commits = [
+    # Add specific commit hashes that contained secrets before this config
+]
+
+paths = [
+    '''(.*?)(jpg|gif|doc|pdf|bin)$''',  # Allow binary files
+]

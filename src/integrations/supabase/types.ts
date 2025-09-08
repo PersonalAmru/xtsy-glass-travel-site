@@ -553,7 +553,7 @@ export type Database = {
           guests?: number | null
           id?: string | null
           payment_status?: string | null
-          pincode?: string | null
+          pincode?: never
           room_type?: string | null
           source?: string | null
           special_requests?: string | null
@@ -581,7 +581,7 @@ export type Database = {
           guests?: number | null
           id?: string | null
           payment_status?: string | null
-          pincode?: string | null
+          pincode?: never
           room_type?: string | null
           source?: string | null
           special_requests?: string | null
@@ -722,6 +722,42 @@ export type Database = {
       }
     }
     Functions: {
+      admin_get_booking_pii: {
+        Args: { p_booking_id: string }
+        Returns: {
+          address: string
+          city: string
+          email: string
+          emergency_contact: string
+          guest_name: string
+          id: string
+          pincode: string
+          state: string
+          whatsapp_number: string
+        }[]
+      }
+      admin_search_bookings: {
+        Args: {
+          p_booking_id?: string
+          p_email?: string
+          p_guest_name?: string
+          p_limit?: number
+        }
+        Returns: {
+          booking_id: string
+          booking_status: string
+          check_in: string
+          check_out: string
+          created_at: string
+          email: string
+          guest_name: string
+          guests: number
+          id: string
+          payment_status: string
+          total_amount: number
+          whatsapp_number: string
+        }[]
+      }
       check_suspicious_booking_activity: {
         Args: { email_param: string; time_window_hours?: number }
         Returns: {
@@ -733,6 +769,14 @@ export type Database = {
       cleanup_rate_limits: {
         Args: Record<PropertyKey, never>
         Returns: undefined
+      }
+      delete_my_data: {
+        Args: Record<PropertyKey, never>
+        Returns: boolean
+      }
+      export_my_data: {
+        Args: Record<PropertyKey, never>
+        Returns: Json
       }
       generate_booking_id: {
         Args: Record<PropertyKey, never>
@@ -749,6 +793,35 @@ export type Database = {
       get_jwt_email: {
         Args: Record<PropertyKey, never>
         Returns: string
+      }
+      get_my_booking_pii: {
+        Args: { p_booking_id: string }
+        Returns: {
+          address: string
+          email: string
+          emergency_contact: string
+          id: string
+          whatsapp_number: string
+        }[]
+      }
+      get_my_bookings: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          address_masked: string
+          booking_id: string
+          booking_status: string
+          check_in: string
+          check_out: string
+          created_at: string
+          email_masked: string
+          guest_name: string
+          guests: number
+          id: string
+          payment_status: string
+          room_type: string
+          total_amount: number
+          whatsapp_masked: string
+        }[]
       }
       get_newsletter_subscriber_details_admin: {
         Args: { p_subscriber_id: string }
@@ -859,6 +932,14 @@ export type Database = {
       is_admin_or_staff: {
         Args: Record<PropertyKey, never>
         Returns: boolean
+      }
+      log_pii_access: {
+        Args: {
+          p_access_type: string
+          p_booking_id: string
+          p_success?: boolean
+        }
+        Returns: undefined
       }
       norm_email: {
         Args: { e: string }
