@@ -608,73 +608,64 @@ export type Database = {
       }
       secret_access_log_masked: {
         Row: {
-          access_granted: boolean | null
-          accessed_at: string | null
+          created_at: string | null
+          event: string | null
           id: string | null
-          ip_address_masked: string | null
-          secret_name: string | null
-          user_agent_truncated: string | null
-          user_email: string | null
-          user_id: string | null
+          ip: string | null
+          path_preview: string | null
+          user_agent: string | null
         }
         Insert: {
-          access_granted?: boolean | null
-          accessed_at?: string | null
+          created_at?: string | null
+          event?: never
           id?: string | null
-          ip_address_masked?: never
-          secret_name?: string | null
-          user_agent_truncated?: never
-          user_email?: string | null
-          user_id?: string | null
+          ip?: never
+          path_preview?: never
+          user_agent?: never
         }
         Update: {
-          access_granted?: boolean | null
-          accessed_at?: string | null
+          created_at?: string | null
+          event?: never
           id?: string | null
-          ip_address_masked?: never
-          secret_name?: string | null
-          user_agent_truncated?: never
-          user_email?: string | null
-          user_id?: string | null
+          ip?: never
+          path_preview?: never
+          user_agent?: never
         }
         Relationships: []
       }
       security_alerts_masked: {
         Row: {
-          alert_type: string | null
           created_at: string | null
           details: Json | null
+          event_type: string | null
           id: string | null
-          ip_address_masked: string | null
+          ip: string | null
           resolved: boolean | null
-          resolved_at: string | null
           resolved_by: string | null
           severity: string | null
-          user_id: string | null
+          user_agent: string | null
         }
         Insert: {
-          alert_type?: string | null
           created_at?: string | null
           details?: Json | null
+          event_type?: string | null
           id?: string | null
-          ip_address_masked?: never
+          ip?: never
           resolved?: boolean | null
-          resolved_at?: string | null
           resolved_by?: string | null
           severity?: string | null
-          user_id?: string | null
+          user_agent?: never
         }
         Update: {
-          alert_type?: string | null
           created_at?: string | null
           details?: Json | null
+          event_type?: string | null
           id?: string | null
-          ip_address_masked?: never
+          ip?: never
           resolved?: boolean | null
-          resolved_at?: string | null
           resolved_by?: string | null
           severity?: string | null
-          user_id?: string | null
+          user_agent?: never
         }
         Relationships: []
       }
@@ -684,39 +675,27 @@ export type Database = {
           booking_id: string | null
           created_at: string | null
           currency: string | null
+          gateway: string | null
           id: string | null
-          matched: boolean | null
-          payment_status: string | null
-          razorpay_payment_id: string | null
-          source: string | null
-          txn_id: string | null
-          verified_at: string | null
+          status: string | null
         }
         Insert: {
           amount?: number | null
           booking_id?: string | null
           created_at?: string | null
           currency?: string | null
+          gateway?: string | null
           id?: string | null
-          matched?: boolean | null
-          payment_status?: string | null
-          razorpay_payment_id?: never
-          source?: string | null
-          txn_id?: string | null
-          verified_at?: string | null
+          status?: string | null
         }
         Update: {
           amount?: number | null
           booking_id?: string | null
           created_at?: string | null
           currency?: string | null
+          gateway?: string | null
           id?: string | null
-          matched?: boolean | null
-          payment_status?: string | null
-          razorpay_payment_id?: never
-          source?: string | null
-          txn_id?: string | null
-          verified_at?: string | null
+          status?: string | null
         }
         Relationships: []
       }
@@ -924,6 +903,10 @@ export type Database = {
           key: string
           value: number
         }[]
+      }
+      ip_anonymize: {
+        Args: { ip_text: string }
+        Returns: string
       }
       is_admin: {
         Args: Record<PropertyKey, never>
