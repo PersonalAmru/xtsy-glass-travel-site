@@ -6,11 +6,11 @@ import { Routes, Route } from "react-router-dom";
 import { useState, useEffect, Suspense } from "react";
 import LoadingScreen from "./components/LoadingScreen";
 import PerformanceMonitor from "./components/PerformanceMonitor";
-import SecurityHeaders from "./components/SecurityHeaders";
+import SecurityHeadersProvider from "./components/SecurityHeadersProvider";
+import { logger } from "./utils/piiRedactedLogger";
 import Index from "./pages/Index";
 import { LazyAbout } from "./pages/lazy/LazyAbout";
 import { LazyGallery } from "./pages/lazy/LazyGallery";
-
 import { LazyTravel } from "./pages/lazy/LazyTravel";
 import { LazyXTSY270 } from "./pages/lazy/LazyXTSY270";
 import BookingFlow from "./pages/BookingFlow";
@@ -27,6 +27,14 @@ function App() {
     preloadCriticalResources();
     optimizeFontLoading();
     registerServiceWorker();
+
+    // Log security initialization
+    logger.security('app_initialized', {
+      environment: process.env.NODE_ENV,
+      timestamp: new Date().toISOString(),
+      security_headers_enabled: true,
+      pii_redaction_enabled: true
+    });
 
     const timer = setTimeout(() => {
       setIsLoading(false);
@@ -45,43 +53,47 @@ function App() {
   }
 
   return (
-    <div className="dark">
-      <SecurityHeaders />
-      <PerformanceMonitor />
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/about" element={
-            <Suspense fallback={<LoadingScreen />}>
-              <LazyAbout />
-            </Suspense>
-          } />
-          <Route path="/gallery" element={
-            <Suspense fallback={<LoadingScreen />}>
-              <LazyGallery />
-            </Suspense>
-          } />
-          <Route path="/travel" element={
-            <Suspense fallback={<LoadingScreen />}>
-              <LazyTravel />
-            </Suspense>
-          } />
-          <Route path="/xtsy-270" element={
-            <Suspense fallback={<LoadingScreen />}>
-              <LazyXTSY270 />
-            </Suspense>
-          } />
-          <Route path="/booking" element={
-            <Suspense fallback={<LoadingScreen />}>
-              <BookingFlow />
-            </Suspense>
-          } />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </TooltipProvider>
-    </div>
+    <SecurityHeadersProvider config={{ 
+      isDevelopment: process.env.NODE_ENV === 'development',
+      enableHSTS: process.env.NODE_ENV === 'production'
+    }}>
+      <div className="dark">
+        <PerformanceMonitor />
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/about" element={
+              <Suspense fallback={<LoadingScreen />}>
+                <LazyAbout />
+              </Suspense>
+            } />
+            <Route path="/gallery" element={
+              <Suspense fallback={<LoadingScreen />}>
+                <LazyGallery />
+              </Suspense>
+            } />
+            <Route path="/travel" element={
+              <Suspense fallback={<LoadingScreen />}>
+                <LazyTravel />
+              </Suspense>
+            } />
+            <Route path="/xtsy-270" element={
+              <Suspense fallback={<LoadingScreen />}>
+                <LazyXTSY270 />
+              </Suspense>
+            } />
+            <Route path="/booking" element={
+              <Suspense fallback={<LoadingScreen />}>
+                <BookingFlow />
+              </Suspense>
+            } />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </TooltipProvider>
+      </div>
+    </SecurityHeadersProvider>
   );
 }
 

@@ -1,0 +1,228 @@
+# Production Security Audit Pipeline
+name: Security Audit
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'
+
+jobs:
+  secret-scan:
+    name: Secret Detection
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          config-path: .gitleaks.toml
+
+      - name: Check for hardcoded secrets in source
+        run: |
+          echo "Scanning for potential secrets in source code..."
+          
+          # Check for API key patterns
+          if grep -r "sk-[a-zA-Z0-9]" src/ --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" 2>/dev/null; then
+            echo "❌ Found potential OpenAI API keys in source"
+            exit 1
+          fi
+          
+          # Check for database URLs
+          if grep -r "postgres://" src/ --include="*.ts" --include="*.tsx" 2>/dev/null; then
+            echo "❌ Found potential database URLs in source"
+            exit 1
+          fi
+          
+          # Check for JWT tokens
+          if grep -r "eyJ[A-Za-z0-9]" src/ --include="*.ts" --include="*.tsx" 2>/dev/null; then
+            echo "❌ Found potential JWT tokens in source"
+            exit 1
+          fi
+          
+          # Check for AWS keys
+          if grep -r "AKIA[0-9A-Z]" src/ --include="*.ts" --include="*.tsx" 2>/dev/null; then
+            echo "❌ Found potential AWS access keys in source"
+            exit 1
+          fi
+          
+          echo "✅ No obvious secrets found in source code"
+
+      - name: Validate environment variable usage
+        run: |
+          echo "Checking proper externalization of secrets..."
+          
+          # Check that secrets are accessed via env vars
+          if ! grep -r "process.env\|Deno.env" src/ supabase/functions/ --include="*.ts" --include="*.tsx" 2>/dev/null; then
+            echo "⚠️  No environment variable usage detected - ensure secrets are externalized"
+          else
+            echo "✅ Environment variables are being used"
+          fi
+          
+          # Check for misuse of VITE_ vars for secrets in edge functions
+          if grep -r "VITE_.*SECRET\|VITE_.*KEY\|VITE_.*TOKEN" supabase/functions/ --include="*.ts" 2>/dev/null; then
+            echo "❌ VITE_ variables should not be used for secrets in edge functions"
+            exit 1
+          fi
+          
+          echo "✅ Environment variable usage looks correct"
+
+  dependency-audit:
+    name: Dependency Security Audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run security audit
+        run: |
+          # Check for known vulnerabilities
+          npm audit --audit-level=moderate
+          
+          # Check for outdated packages with security issues
+          npx npm-check-updates --target minor --reject react,react-dom
+          
+          echo "✅ Dependency security audit completed"
+
+  supabase-security:
+    name: Supabase Security Check
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: Link Supabase Project
+        run: supabase link --project-ref ${{ secrets.SUPABASE_PROJECT_ID }}
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+
+      - name: Run Supabase Security Linter
+        run: |
+          echo "Running Supabase security linter..."
+          supabase db lint --level=error
+          
+          echo "✅ Supabase security checks completed"
+
+      - name: Validate RLS Policies
+        run: |
+          echo "Validating Row Level Security policies..."
+          
+          # Check that critical tables have RLS enabled
+          supabase db diff --check-rls bookings,transactions,security_alerts,newsletter_subscribers
+          
+          echo "✅ RLS validation completed"
+
+  security-headers:
+    name: Security Headers Validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check security headers implementation
+        run: |
+          echo "Validating security headers implementation..."
+          
+          # Check that security headers are implemented
+          if ! grep -r "Content-Security-Policy\|X-Frame-Options\|Strict-Transport-Security" src/ --include="*.ts" --include="*.tsx"; then
+            echo "❌ Security headers not found in source code"
+            exit 1
+          fi
+          
+          # Check for HSTS implementation
+          if ! grep -r "Strict-Transport-Security" src/ --include="*.ts"; then
+            echo "⚠️  HSTS headers not found - ensure they're configured for production"
+          fi
+          
+          echo "✅ Security headers validation completed"
+
+  pii-detection:
+    name: PII Detection in Logs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for PII in logging code
+        run: |
+          echo "Scanning for potential PII exposure in logs..."
+          
+          # Check for direct console.log of sensitive data
+          if grep -r "console.log.*email\|console.log.*password\|console.log.*token" src/ --include="*.ts" --include="*.tsx" 2>/dev/null; then
+            echo "⚠️  Potential PII in console.log statements detected"
+            echo "Ensure PII redaction is implemented"
+          fi
+          
+          # Check that PII redaction is being used
+          if ! grep -r "redactPII\|redacted.*log" src/ --include="*.ts" --include="*.tsx" 2>/dev/null; then
+            echo "⚠️  No PII redaction implementation detected"
+            echo "Consider implementing PII-safe logging"
+          fi
+          
+          echo "✅ PII detection scan completed"
+
+  summary:
+    name: Security Audit Summary
+    runs-on: ubuntu-latest
+    needs: [secret-scan, dependency-audit, security-headers, pii-detection]
+    if: always()
+    steps:
+      - name: Security Audit Results
+        run: |
+          echo "🔒 Security Audit Summary"
+          echo "========================"
+          
+          if [[ "${{ needs.secret-scan.result }}" == "success" ]]; then
+            echo "✅ Secret scan: PASSED"
+          else
+            echo "❌ Secret scan: FAILED"
+          fi
+          
+          if [[ "${{ needs.dependency-audit.result }}" == "success" ]]; then
+            echo "✅ Dependency audit: PASSED"
+          else
+            echo "❌ Dependency audit: FAILED"
+          fi
+          
+          if [[ "${{ needs.security-headers.result }}" == "success" ]]; then
+            echo "✅ Security headers: PASSED"
+          else
+            echo "❌ Security headers: FAILED"
+          fi
+          
+          if [[ "${{ needs.pii-detection.result }}" == "success" ]]; then
+            echo "✅ PII detection: PASSED"
+          else
+            echo "❌ PII detection: FAILED"
+          fi
+          
+          # Fail if any critical security checks failed
+          if [[ "${{ needs.secret-scan.result }}" != "success" ]]; then
+            echo ""
+            echo "❌ CRITICAL: Secret scan failed - this must be fixed before deployment"
+            exit 1
+          fi
