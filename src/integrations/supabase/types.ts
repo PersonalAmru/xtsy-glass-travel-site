@@ -999,6 +999,14 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: boolean
       }
+      log_booking_access_attempt: {
+        Args: {
+          p_access_type: string
+          p_booking_id: string
+          p_success?: boolean
+        }
+        Returns: undefined
+      }
       log_pii_access: {
         Args: {
           p_access_type: string
@@ -1017,6 +1025,10 @@ export type Database = {
       }
       resolve_security_alert_admin: {
         Args: { p_alert_id: string; p_resolution_notes?: string }
+        Returns: boolean
+      }
+      verify_booking_access: {
+        Args: { p_booking_id: string }
         Returns: boolean
       }
       verify_booking_owner_only: {
