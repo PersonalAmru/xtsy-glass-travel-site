@@ -737,6 +737,10 @@ export type Database = {
           whatsapp_number: string
         }[]
       }
+      check_newsletter_rate_limit: {
+        Args: { p_email: string; p_ip_address?: string }
+        Returns: boolean
+      }
       check_suspicious_booking_activity: {
         Args: { email_param: string; time_window_hours?: number }
         Returns: {
@@ -768,6 +772,37 @@ export type Database = {
       get_app_secret_secure: {
         Args: { secret_name: string }
         Returns: string
+      }
+      get_bookings_masked_secure: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          address: string
+          booking_id: string
+          booking_status: string
+          cancelled_at: string
+          check_in: string
+          check_out: string
+          city: string
+          confirmed_at: string
+          created_at: string
+          email: string
+          emergency_contact: string
+          guest_name: string
+          guests: number
+          id: string
+          payment_status: string
+          pincode: string
+          room_type: string
+          source: string
+          special_requests: string
+          state: string
+          subtotal: number
+          taxes: number
+          total_amount: number
+          updated_at: string
+          user_id: string
+          whatsapp_number: string
+        }[]
       }
       get_jwt_email: {
         Args: Record<PropertyKey, never>
@@ -802,6 +837,17 @@ export type Database = {
           whatsapp_masked: string
         }[]
       }
+      get_newsletter_stats_secure: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          active_subscribers: number
+          inactive_subscribers: number
+          new_this_month: number
+          new_this_week: number
+          total_subscribers: number
+          unique_interest_combinations: number
+        }[]
+      }
       get_newsletter_subscriber_details_admin: {
         Args: { p_subscriber_id: string }
         Returns: {
@@ -811,6 +857,31 @@ export type Database = {
           interests: string[]
           is_active: boolean
           subscribed_at: string
+        }[]
+      }
+      get_secret_access_log_masked_secure: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          created_at: string
+          event: string
+          id: string
+          ip: string
+          path_preview: string
+          user_agent: string
+        }[]
+      }
+      get_security_alerts_masked_secure: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          created_at: string
+          details: Json
+          event_type: string
+          id: string
+          ip: string
+          resolved: boolean
+          resolved_by: string
+          severity: string
+          user_agent: string
         }[]
       }
       get_single_booking_secure: {
@@ -855,6 +926,18 @@ export type Database = {
           payment_status: string
           razorpay_payment_id: string
           txn_id: string
+        }[]
+      }
+      get_transactions_admin_view_secure: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          amount: number
+          booking_id: string
+          created_at: string
+          currency: string
+          gateway: string
+          id: string
+          status: string
         }[]
       }
       get_user_bookings_secure: {
@@ -922,6 +1005,10 @@ export type Database = {
           p_booking_id: string
           p_success?: boolean
         }
+        Returns: undefined
+      }
+      log_secure_access: {
+        Args: { access_granted?: boolean; function_name: string }
         Returns: undefined
       }
       norm_email: {
