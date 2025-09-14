@@ -508,7 +508,7 @@ export type Database = {
       }
     }
     Views: {
-      bookings_masked: {
+      bookings_masked_secure: {
         Row: {
           address: string | null
           booking_id: string | null
@@ -553,7 +553,7 @@ export type Database = {
           guests?: number | null
           id?: string | null
           payment_status?: string | null
-          pincode?: never
+          pincode?: string | null
           room_type?: string | null
           source?: string | null
           special_requests?: string | null
@@ -581,7 +581,7 @@ export type Database = {
           guests?: number | null
           id?: string | null
           payment_status?: string | null
-          pincode?: never
+          pincode?: string | null
           room_type?: string | null
           source?: string | null
           special_requests?: string | null
