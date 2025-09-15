@@ -164,7 +164,7 @@ const Travel = () => {
         category: "cultural",
         location: "Northeast India",
         highlights: ["Expert Naturalist Guides", "Endemic Species Study", "Research Documentation", "Conservation Workshops", "Field Studies", "Night Safari", "Botanical Gardens"],
-        bestSeason: "Oct-Mar",
+        bestSeason: "Anytime",
         exclusive: true
       },
       {
