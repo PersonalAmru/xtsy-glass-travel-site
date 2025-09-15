@@ -582,36 +582,6 @@ export type Database = {
         }
         Relationships: []
       }
-      transactions_admin_view: {
-        Row: {
-          amount: number | null
-          booking_id: string | null
-          created_at: string | null
-          currency: string | null
-          gateway: string | null
-          id: string | null
-          status: string | null
-        }
-        Insert: {
-          amount?: number | null
-          booking_id?: string | null
-          created_at?: string | null
-          currency?: string | null
-          gateway?: string | null
-          id?: string | null
-          status?: string | null
-        }
-        Update: {
-          amount?: number | null
-          booking_id?: string | null
-          created_at?: string | null
-          currency?: string | null
-          gateway?: string | null
-          id?: string | null
-          status?: string | null
-        }
-        Relationships: []
-      }
     }
     Functions: {
       admin_get_booking_pii: {
@@ -939,6 +909,18 @@ export type Database = {
       resolve_security_alert_admin: {
         Args: { p_alert_id: string; p_resolution_notes?: string }
         Returns: boolean
+      }
+      transactions_admin_secure: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          amount: number
+          booking_id: string
+          created_at: string
+          currency: string
+          gateway: string
+          id: string
+          status: string
+        }[]
       }
       verify_booking_access: {
         Args: { p_booking_id: string }
