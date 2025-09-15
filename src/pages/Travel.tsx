@@ -618,7 +618,7 @@ const Travel = () => {
                         "Sikkim": { icon: "🗻", desc: "Gateway to the Himalayas" },
                         "Himachal Pradesh": { icon: "⛰️", desc: "Land of Snow" },
                         "Kerala": { icon: "🌴", desc: "God's Own Country" },
-                        "Tamil Nadu": { icon: "🏛️", desc: "Land of Temples" },
+                        "Tamil Nadu": { icon: "🏛️", desc: "Western Ghats" },
                         "Northeast States": { icon: "🌿", desc: "Seven Sisters Region" },
                         "XTSY Exclusive Tours": { icon: "⭐", desc: "Premium Experiences" }
                       };
