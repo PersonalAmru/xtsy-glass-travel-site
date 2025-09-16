@@ -1,12 +1,18 @@
 import { DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar, Users } from "lucide-react";
+import { ArrowLeft, Calendar, Users, IndianRupee } from "lucide-react";
 
 interface BookingData {
   checkIn: string;
   checkOut: string;
   guests: number;
   nights: number;
+  roomRate?: number;
+  subtotal?: number;
+  gstAmount?: number;
+  otherTaxes?: number;
+  totalAmount?: number;
+  roomType?: string;
 }
 
 interface GuestDetailsHeaderProps {
@@ -29,7 +35,8 @@ export const GuestDetailsHeader = ({ isCompact, onBack, bookingData, displayGues
       </div>
 
       <div className={`bg-white rounded-lg shadow-sm transition-all duration-300 overflow-hidden ${isCompact ? "p-2 mt-2" : "p-3 mt-4"}`}>
-        <div className={`grid gap-3 ${isCompact ? "grid-cols-4 text-xs" : "grid-cols-2 md:grid-cols-4 text-sm"}`}>
+        {/* Booking Details Row */}
+        <div className={`grid gap-3 mb-4 ${isCompact ? "grid-cols-4 text-xs" : "grid-cols-2 md:grid-cols-4 text-sm"}`}>
           <div className="flex items-center gap-2">
             <Calendar className={`text-orange-500 ${isCompact ? "h-3 w-3" : "h-4 w-4"}`} />
             <div>
@@ -56,6 +63,60 @@ export const GuestDetailsHeader = ({ isCompact, onBack, bookingData, displayGues
             <div>
               <div className="text-gray-700 font-medium">Nights</div>
               <div className="font-semibold text-gray-900">{bookingData.nights}</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Pricing Summary Section */}
+        <div className="border-t pt-3">
+          <div className="flex items-center gap-2 mb-3">
+            <IndianRupee className={`text-green-600 ${isCompact ? "h-3 w-3" : "h-4 w-4"}`} />
+            <h3 className={`font-semibold text-gray-900 ${isCompact ? "text-xs" : "text-sm"}`}>Pricing Summary</h3>
+          </div>
+          
+          <div className={`space-y-2 ${isCompact ? "text-xs" : "text-sm"}`}>
+            {bookingData.roomType && (
+              <div className="flex justify-between items-center">
+                <span className="text-gray-700">Room Type:</span>
+                <span className="font-medium text-gray-900">{bookingData.roomType}</span>
+              </div>
+            )}
+            
+            {bookingData.roomRate && (
+              <div className="flex justify-between items-center">
+                <span className="text-gray-700">Room Rate ({bookingData.nights} nights):</span>
+                <span className="font-medium text-gray-900">₹{bookingData.roomRate.toLocaleString()}</span>
+              </div>
+            )}
+            
+            {bookingData.subtotal && (
+              <div className="flex justify-between items-center">
+                <span className="text-gray-700">Subtotal:</span>
+                <span className="font-medium text-gray-900">₹{bookingData.subtotal.toLocaleString()}</span>
+              </div>
+            )}
+            
+            {bookingData.gstAmount && (
+              <div className="flex justify-between items-center">
+                <span className="text-gray-700">GST (18%):</span>
+                <span className="font-medium text-gray-900">₹{bookingData.gstAmount.toLocaleString()}</span>
+              </div>
+            )}
+            
+            {bookingData.otherTaxes && bookingData.otherTaxes > 0 && (
+              <div className="flex justify-between items-center">
+                <span className="text-gray-700">Other Taxes:</span>
+                <span className="font-medium text-gray-900">₹{bookingData.otherTaxes.toLocaleString()}</span>
+              </div>
+            )}
+            
+            <div className="border-t pt-2 mt-3">
+              <div className="flex justify-between items-center">
+                <span className={`font-bold text-gray-900 ${isCompact ? "text-sm" : "text-base"}`}>Total Payable:</span>
+                <span className={`font-bold text-green-600 ${isCompact ? "text-sm" : "text-lg"}`}>
+                  ₹{(bookingData.totalAmount || 0).toLocaleString()}
+                </span>
+              </div>
             </div>
           </div>
         </div>
