@@ -3,8 +3,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Calendar, Users, Edit } from 'lucide-react';
 import { useScreenSize } from '@/hooks/use-mobile';
-import { openWhatsAppDirectly, generateBookingMessage, PRIVACY_NOTICE } from '@/utils/privacyCompliantWhatsApp';
-import { toast } from '@/hooks/use-toast';
 interface BookingSummaryProps {
   checkIn: string;
   checkOut: string;
@@ -48,34 +46,6 @@ export const BookingSummary: React.FC<BookingSummaryProps> = ({
     });
   };
 
-  const handleWhatsAppBooking = async () => {
-    // Validate required fields
-    if (!checkIn || !checkOut || !guests || nights <= 0) {
-      toast({
-        title: "Missing Information",
-        description: "Please fill in all required booking details including dates and guest count",
-        variant: "destructive"
-      });
-      return;
-    }
-
-    // Build comprehensive WhatsApp message using privacy-compliant utility
-    const message = generateBookingMessage({
-      roomType,
-      guests,
-      checkIn,
-      checkOut,
-      nights,
-      totalPrice,
-      guestName,
-      email,
-      phone,
-      address
-    });
-
-    // Open WhatsApp directly - no logging, EU compliant
-    openWhatsAppDirectly(message);
-  };
   const isMobileView = screenSize === 'mobile';
   return <Card className={`transition-all duration-300 backdrop-blur-sm bg-card/95 ${isMobileView ? 'sticky top-2 mx-2 shadow-md border-border/60' : 'sticky top-4 shadow-sm border-border/50'}`}>
       <CardHeader className="transition-all duration-300 pb-2 pt-3 px-3">
@@ -134,16 +104,6 @@ export const BookingSummary: React.FC<BookingSummaryProps> = ({
               </p>
             </div>
           </div>
-        </div>
-        
-        <div className="mt-4">
-          <Button 
-            onClick={handleWhatsAppBooking}
-            className="w-full bg-green-600 hover:bg-green-700 text-white"
-          >
-            Book via WhatsApp
-          </Button>
-          <p className="text-xs text-muted-foreground mt-2 text-center">{PRIVACY_NOTICE}</p>
         </div>
       </CardContent>
     </Card>;
