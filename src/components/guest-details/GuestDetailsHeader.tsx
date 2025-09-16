@@ -34,32 +34,32 @@ export const GuestDetailsHeader = ({ isCompact, onBack, bookingData, displayGues
         </DialogTitle>
       </div>
 
-      <div className={`bg-white rounded-lg shadow-sm transition-all duration-300 overflow-hidden ${isCompact ? "p-2 mt-2" : "p-3 mt-4"}`}>
+      <div className={`bg-white rounded-lg shadow-sm transition-all duration-300 overflow-hidden ${isCompact ? "p-1.5 mt-1.5" : "p-2 mt-2"}`}>
         {/* Booking Details Row */}
-        <div className={`grid gap-3 mb-4 ${isCompact ? "grid-cols-4 text-xs" : "grid-cols-2 md:grid-cols-4 text-sm"}`}>
-          <div className="flex items-center gap-2">
-            <Calendar className={`text-orange-500 ${isCompact ? "h-3 w-3" : "h-4 w-4"}`} />
+        <div className={`grid gap-2 mb-3 ${isCompact ? "grid-cols-4 text-xs" : "grid-cols-2 md:grid-cols-4 text-xs"}`}>
+          <div className="flex items-center gap-1.5">
+            <Calendar className={`text-orange-500 ${isCompact ? "h-2.5 w-2.5" : "h-3 w-3"}`} />
             <div>
               <div className="text-gray-700 font-medium">Check-in</div>
               <div className="font-semibold text-gray-900">{new Date(bookingData.checkIn).toLocaleDateString()}</div>
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            <Calendar className={`text-orange-500 ${isCompact ? "h-3 w-3" : "h-4 w-4"}`} />
+          <div className="flex items-center gap-1.5">
+            <Calendar className={`text-orange-500 ${isCompact ? "h-2.5 w-2.5" : "h-3 w-3"}`} />
             <div>
               <div className="text-gray-700 font-medium">Check-out</div>
               <div className="font-semibold text-gray-900">{new Date(bookingData.checkOut).toLocaleDateString()}</div>
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            <Users className={`text-orange-500 ${isCompact ? "h-3 w-3" : "h-4 w-4"}`} />
+          <div className="flex items-center gap-1.5">
+            <Users className={`text-orange-500 ${isCompact ? "h-2.5 w-2.5" : "h-3 w-3"}`} />
             <div>
               <div className="text-gray-700 font-medium">Guests</div>
               <div className="font-semibold text-gray-900">{displayGuests}</div>
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            <Calendar className={`text-orange-500 ${isCompact ? "h-3 w-3" : "h-4 w-4"}`} />
+          <div className="flex items-center gap-1.5">
+            <Calendar className={`text-orange-500 ${isCompact ? "h-2.5 w-2.5" : "h-3 w-3"}`} />
             <div>
               <div className="text-gray-700 font-medium">Nights</div>
               <div className="font-semibold text-gray-900">{bookingData.nights}</div>
@@ -68,13 +68,13 @@ export const GuestDetailsHeader = ({ isCompact, onBack, bookingData, displayGues
         </div>
 
         {/* Pricing Summary Section */}
-        <div className="border-t pt-3">
-          <div className="flex items-center gap-2 mb-3">
-            <IndianRupee className={`text-green-600 ${isCompact ? "h-3 w-3" : "h-4 w-4"}`} />
-            <h3 className={`font-semibold text-gray-900 ${isCompact ? "text-xs" : "text-sm"}`}>Pricing Summary</h3>
+        <div className="border-t pt-2">
+          <div className="flex items-center gap-1.5 mb-2">
+            <IndianRupee className={`text-green-600 ${isCompact ? "h-2.5 w-2.5" : "h-3 w-3"}`} />
+            <h3 className={`font-semibold text-gray-900 ${isCompact ? "text-xs" : "text-xs"}`}>Pricing Summary</h3>
           </div>
           
-          <div className={`space-y-2 ${isCompact ? "text-xs" : "text-sm"}`}>
+          <div className={`space-y-1.5 ${isCompact ? "text-xs" : "text-xs"}`}>
             {bookingData.roomType && (
               <div className="flex justify-between items-center">
                 <span className="text-gray-700">Room Type:</span>
@@ -110,10 +110,10 @@ export const GuestDetailsHeader = ({ isCompact, onBack, bookingData, displayGues
               </div>
             )}
             
-            <div className="border-t pt-2 mt-3">
+            <div className="border-t pt-1.5 mt-2">
               <div className="flex justify-between items-center">
-                <span className={`font-bold text-gray-900 ${isCompact ? "text-sm" : "text-base"}`}>Total Payable:</span>
-                <span className={`font-bold text-green-600 ${isCompact ? "text-sm" : "text-lg"}`}>
+                <span className={`font-bold text-gray-900 ${isCompact ? "text-xs" : "text-sm"}`}>Total Payable:</span>
+                <span className={`font-bold text-green-600 ${isCompact ? "text-sm" : "text-base"}`}>
                   ₹{(bookingData.totalAmount || 0).toLocaleString()}
                 </span>
               </div>
