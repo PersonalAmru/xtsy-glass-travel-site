@@ -720,6 +720,17 @@ export type Database = {
           whatsapp_masked: string
         }[]
       }
+      get_newsletter_stats_admin_secure: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          active_subscribers: number
+          inactive_subscribers: number
+          new_this_month: number
+          new_this_week: number
+          total_subscribers: number
+          unique_interest_combinations: number
+        }[]
+      }
       get_newsletter_stats_secure: {
         Args: Record<PropertyKey, never>
         Returns: {
