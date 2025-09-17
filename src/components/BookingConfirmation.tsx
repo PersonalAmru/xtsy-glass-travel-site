@@ -34,7 +34,6 @@ interface BookingConfirmationProps {
 const BookingConfirmation = ({ bookingData }: BookingConfirmationProps) => {
   const [showWhatsAppRedirect, setShowWhatsAppRedirect] = useState(false);
 
-  // Build add-ons lines, if any
   const addOnsText = () => {
     const a = bookingData.addOns;
     if (!a) return '';
@@ -49,7 +48,6 @@ const BookingConfirmation = ({ bookingData }: BookingConfirmationProps) => {
     return lines.length ? `\n🎯 Add-ons Selected:\n${lines.join('\n')}` : '';
   };
 
-  // Build compact WhatsApp text
   const buildWhatsAppText = () => {
     const rooms = (bookingData.items || [])
       .map((r) => `• ${r.roomName} x${r.quantity}`)
@@ -71,13 +69,12 @@ const BookingConfirmation = ({ bookingData }: BookingConfirmationProps) => {
     );
   };
 
-  // Always open WhatsApp in direct response to the click (most reliable)
   const handleWhatsAppClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
     const message = buildWhatsAppText();
     const url = `https://wa.me/918837317070?text=${encodeURIComponent(message)}`;
-    window.location.href = url; // navigation (least likely to be blocked)
+    window.location.href = url;      // direct navigation (least likely to be blocked)
     setShowWhatsAppRedirect(true);
   };
 
@@ -126,8 +123,7 @@ const BookingConfirmation = ({ bookingData }: BookingConfirmationProps) => {
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4 text-gray-400" />
                 <span>
-                  {bookingData.nights} night{bookingData.nights > 1 ? 's' : ''}, {bookingData.guests}{' '}
-                  guest{bookingData.guests > 1 ? 's' : ''}
+                  {bookingData.nights} night{bookingData.nights > 1 ? 's' : ''}, {bookingData.guests} guest{bookingData.guests > 1 ? 's' : ''}
                 </span>
               </div>
             </div>
@@ -222,9 +218,7 @@ const BookingConfirmation = ({ bookingData }: BookingConfirmationProps) => {
           {/* WhatsApp Notice */}
           {showWhatsAppRedirect && (
             <div className="bg-green-100 border border-green-300 rounded-lg p-4 text-center">
-              <div className="text-green-800 font-medium mb-2">
-                Opening WhatsApp…
-              </div>
+              <div className="text-green-800 font-medium mb-2">Opening WhatsApp…</div>
               <div className="text-green-700 text-sm">
                 If a new tab didn’t open, please allow pop-ups for this site and tap the button again.
               </div>
