@@ -104,7 +104,9 @@ export type Database = {
           id: string
           payment_status: string | null
           pincode: string | null
+          quantity: number | null
           room_type: string
+          room_type_id: string | null
           source: string | null
           special_requests: string | null
           state: string | null
@@ -132,7 +134,9 @@ export type Database = {
           id?: string
           payment_status?: string | null
           pincode?: string | null
+          quantity?: number | null
           room_type: string
+          room_type_id?: string | null
           source?: string | null
           special_requests?: string | null
           state?: string | null
@@ -160,7 +164,9 @@ export type Database = {
           id?: string
           payment_status?: string | null
           pincode?: string | null
+          quantity?: number | null
           room_type?: string
+          room_type_id?: string | null
           source?: string | null
           special_requests?: string | null
           state?: string | null
@@ -323,6 +329,59 @@ export type Database = {
         }
         Relationships: []
       }
+      pending_orders: {
+        Row: {
+          amount: number
+          check_in: string
+          check_out: string
+          created_at: string | null
+          customer_email: string
+          customer_name: string | null
+          customer_phone: string | null
+          expires_at: string | null
+          id: string
+          order_id: string
+          quantity: number
+          room_type_id: string
+        }
+        Insert: {
+          amount: number
+          check_in: string
+          check_out: string
+          created_at?: string | null
+          customer_email: string
+          customer_name?: string | null
+          customer_phone?: string | null
+          expires_at?: string | null
+          id?: string
+          order_id: string
+          quantity?: number
+          room_type_id: string
+        }
+        Update: {
+          amount?: number
+          check_in?: string
+          check_out?: string
+          created_at?: string | null
+          customer_email?: string
+          customer_name?: string | null
+          customer_phone?: string | null
+          expires_at?: string | null
+          id?: string
+          order_id?: string
+          quantity?: number
+          room_type_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pending_orders_room_type_id_fkey"
+            columns: ["room_type_id"]
+            isOneToOne: false
+            referencedRelation: "room_types"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -386,6 +445,80 @@ export type Database = {
           rating?: number
           review_text?: string | null
           verified?: boolean | null
+        }
+        Relationships: []
+      }
+      room_inventory: {
+        Row: {
+          available_count: number
+          date: string
+          last_updated: string | null
+          room_type_id: string
+        }
+        Insert: {
+          available_count?: number
+          date: string
+          last_updated?: string | null
+          room_type_id: string
+        }
+        Update: {
+          available_count?: number
+          date?: string
+          last_updated?: string | null
+          room_type_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "room_inventory_room_type_id_fkey"
+            columns: ["room_type_id"]
+            isOneToOne: false
+            referencedRelation: "room_types"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      room_types: {
+        Row: {
+          amenities: string[] | null
+          base_price: number
+          capacity: number
+          category: string
+          created_at: string | null
+          id: string
+          images: string[] | null
+          is_active: boolean | null
+          kind: string
+          name: string
+          total_units: number
+          updated_at: string | null
+        }
+        Insert: {
+          amenities?: string[] | null
+          base_price?: number
+          capacity: number
+          category: string
+          created_at?: string | null
+          id: string
+          images?: string[] | null
+          is_active?: boolean | null
+          kind: string
+          name: string
+          total_units: number
+          updated_at?: string | null
+        }
+        Update: {
+          amenities?: string[] | null
+          base_price?: number
+          capacity?: number
+          category?: string
+          created_at?: string | null
+          id?: string
+          images?: string[] | null
+          is_active?: boolean | null
+          kind?: string
+          name?: string
+          total_units?: number
+          updated_at?: string | null
         }
         Relationships: []
       }
@@ -891,6 +1024,15 @@ export type Database = {
       }
       is_admin_or_staff: {
         Args: Record<PropertyKey, never>
+        Returns: boolean
+      }
+      is_room_available: {
+        Args: {
+          p_check_in: string
+          p_check_out: string
+          p_quantity?: number
+          p_room_type_id: string
+        }
         Returns: boolean
       }
       log_booking_access_attempt: {
