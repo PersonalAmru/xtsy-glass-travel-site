@@ -79,7 +79,6 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
     return () => el.removeEventListener("scroll", onScroll);
   }, []);
 
-
   const handleSubmit = async () => {
     if (!validateForm()) {
       toast({
@@ -123,15 +122,14 @@ Please confirm availability and share the payment details.`;
 
     const whatsappURL = `https://wa.me/918837317070?text=${encodeURIComponent(whatsappMessage)}`;
 
-    // Open WhatsApp directly - no logging, privacy compliant
+    // Open WhatsApp directly on user click (reliable)
     window.open(whatsappURL, "_blank", "noopener,noreferrer");
 
     // Cleanup & close
     try {
       localStorage.removeItem("xtsy_current_booking");
     } catch {}
-    
-    // Don't close immediately, give user time to see WhatsApp opened
+
     setTimeout(() => {
       onClose();
       setIsSubmitting(false);
@@ -159,7 +157,7 @@ Please confirm availability and share the payment details.`;
           </div>
         </div>
 
-        {/* Sticky Footer (clickable and always visible) */}
+        {/* Sticky Footer */}
         <div className="flex-shrink-0 border-t bg-gray-50 p-4 sticky bottom-0">
           <Button
             onClick={handleSubmit}
