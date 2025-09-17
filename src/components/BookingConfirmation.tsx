@@ -1,24 +1,17 @@
 import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Calendar, Users, Phone, Mail, Download, ExternalLink } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { CheckCircle, Calendar, Users, Phone, Mail, Download, ExternalLink } from 'lucide-react';
 
-/**
- * BookingConfirmation.tsx
- * Final version: opens WhatsApp reliably on click (no auto timers, one popup).
- * - Removed auto-open useEffect (popup blockers)
- * - sendWhatsAppMessage now opens exactly ONE wa.me link (property chat)
- * - Kept UI/props identical to your current file
- */
 interface BookingConfirmationProps {
   bookingData: {
     bookingId: string;
     guestName: string;
     email: string;
     whatsappNumber: string;
-    checkIn: string;
-    checkOut: string;
+    checkIn: string;   // ISO date
+    checkOut: string;  // ISO date
     nights: number;
     guests: number;
     totalAmount: number;
@@ -42,60 +35,49 @@ const BookingConfirmation = ({ bookingData }: BookingConfirmationProps) => {
   const [showWhatsAppRedirect, setShowWhatsAppRedirect] = useState(false);
 
   // Build add-ons lines, if any
-  const generateAddOnsMessage = () => {
-    if (!bookingData.addOns) return '';
-    const addOns: string[] = [];
-
-    if (bookingData.addOns.breakfast && bookingData.addOns.breakfast > 0) {
-      addOns.push(`• Breakfast: ${bookingData.addOns.breakfast} meals × ₹150 = ₹${bookingData.addOns.breakfast * 150}`);
+  const addOnsText = () => {
+    const a = bookingData.addOns;
+    if (!a) return '';
+    const lines: string[] = [];
+    if (a.breakfast && a.breakfast > 0) lines.push(`• Breakfast: ${a.breakfast} meals × ₹150 = ₹${a.breakfast * 150}`);
+    if (a.dinnerVeg && a.dinnerVeg > 0) lines.push(`• Dinner (Veg): ${a.dinnerVeg} meals × ₹300 = ₹${a.dinnerVeg * 300}`);
+    if (a.dinnerNonVeg && a.dinnerNonVeg > 0) lines.push(`• Dinner (Non-Veg): ${a.dinnerNonVeg} meals × ₹300 = ₹${a.dinnerNonVeg * 300}`);
+    if (a.transportation) lines.push(`• Transportation Services: Best rates available`);
+    if (a.itineraryPlanning) {
+      lines.push(`• Itinerary Planning: ${a.transportation ? 'Free (with Transportation)' : '5% convenience charges'}`);
     }
-    if (bookingData.addOns.dinnerVeg && bookingData.addOns.dinnerVeg > 0) {
-      addOns.push(`• Dinner (Veg): ${bookingData.addOns.dinnerVeg} meals × ₹300 = ₹${bookingData.addOns.dinnerVeg * 300}`);
-    }
-    if (bookingData.addOns.dinnerNonVeg && bookingData.addOns.dinnerNonVeg > 0) {
-      addOns.push(`• Dinner (Non-Veg): ${bookingData.addOns.dinnerNonVeg} meals × ₹300 = ₹${bookingData.addOns.dinnerNonVeg * 300}`);
-    }
-    if (bookingData.addOns.transportation) {
-      addOns.push(`• Transportation Services: Best rates available`);
-    }
-    if (bookingData.addOns.itineraryPlanning) {
-      const cost = bookingData.addOns.transportation ? 'Free (with Transportation)' : '5% convenience charges';
-      addOns.push(`• Itinerary Planning & Support: ${cost}`);
-    }
-    return addOns.length > 0 ? `\n🎯 Add-ons Selected:\n${addOns.join('\n')}` : '';
+    return lines.length ? `\n🎯 Add-ons Selected:\n${lines.join('\n')}` : '';
   };
 
-  // Open ONE WhatsApp tab reliably on user click
-  const sendWhatsAppMessage = () => {
-    const addOnsMessage = generateAddOnsMessage();
-    const addOnTotalMessage = bookingData.addOnTotal ? `\n💰 Add-ons Total: ₹${bookingData.addOnTotal}` : '';
+  // Build compact WhatsApp text
+  const buildWhatsAppText = () => {
+    const rooms = (bookingData.items || [])
+      .map((r) => `• ${r.roomName} x${r.quantity}`)
+      .join('\n');
 
-    const message = `
-Booking Confirmed! 
+    const addOnTotalLine = bookingData.addOnTotal ? `\n💰 Add-ons Total: ₹${bookingData.addOnTotal}` : '';
 
-📋 Booking ID: ${bookingData.bookingId}
-👤 Guest: ${bookingData.guestName}
-📧 Email: ${bookingData.email}
+    return (
+      `Booking Inquiry\n\n` +
+      `📋 Booking ID: ${bookingData.bookingId}\n` +
+      `👤 Guest: ${bookingData.guestName}\n` +
+      `📧 Email: ${bookingData.email}\n\n` +
+      `📅 Check-in: ${new Date(bookingData.checkIn).toLocaleDateString()}\n` +
+      `📅 Check-out: ${new Date(bookingData.checkOut).toLocaleDateString()}\n` +
+      `🌙 Nights: ${bookingData.nights} | 👥 Guests: ${bookingData.guests}\n\n` +
+      `🏨 Room Details:\n${rooms}${addOnsText()}\n\n` +
+      `💰 Total Amount: ₹${bookingData.totalAmount}${addOnTotalLine}\n\n` +
+      `Thank you for choosing XTSY!`
+    );
+  };
 
-📅 Check-in: ${new Date(bookingData.checkIn).toLocaleDateString()}
-📅 Check-out: ${new Date(bookingData.checkOut).toLocaleDateString()}
-🌙 Nights: ${bookingData.nights}
-👥 Guests: ${bookingData.guests}
-
-🏨 Room Details:
-${bookingData.items.map(room => `• ${room.roomName} x${room.quantity}`).join('\n')}${addOnsMessage}
-
-💰 Total Amount: ₹${bookingData.totalAmount}${addOnTotalMessage}
-💳 Advance Paid: ₹${Math.round(bookingData.totalAmount * 0.21)}
-
-Thank you for choosing XTSY!
-    `.trim();
-
-    // Open exactly one WhatsApp window (property chat)
-    const propertyWhatsAppUrl = `https://wa.me/918837317070?text=${encodeURIComponent(message)}`;
-    window.open(propertyWhatsAppUrl, '_blank', 'noopener,noreferrer');
-
-    // Optional UI banner
+  // Always open WhatsApp in direct response to the click (most reliable)
+  const handleWhatsAppClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const message = buildWhatsAppText();
+    const url = `https://wa.me/918837317070?text=${encodeURIComponent(message)}`;
+    window.location.href = url; // navigation (least likely to be blocked)
     setShowWhatsAppRedirect(true);
   };
 
@@ -116,7 +98,7 @@ Thank you for choosing XTSY!
           </div>
 
           <CardTitle className="text-2xl font-bold text-gray-900 mb-2">
-            Booking Confirmed!
+            Booking Summary and Guest Details
           </CardTitle>
 
           <div className="text-lg font-semibold text-orange-600">
@@ -144,7 +126,8 @@ Thank you for choosing XTSY!
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4 text-gray-400" />
                 <span>
-                  {bookingData.nights} night{bookingData.nights > 1 ? 's' : ''}, {bookingData.guests} guest{bookingData.guests > 1 ? 's' : ''}
+                  {bookingData.nights} night{bookingData.nights > 1 ? 's' : ''}, {bookingData.guests}{' '}
+                  guest{bookingData.guests > 1 ? 's' : ''}
                 </span>
               </div>
             </div>
@@ -165,8 +148,8 @@ Thank you for choosing XTSY!
             </div>
 
             <div className="space-y-2">
-              {bookingData.items.map((room, index) => (
-                <div key={index} className="flex justify-between items-center">
+              {bookingData.items.map((room, idx) => (
+                <div key={idx} className="flex justify-between items-center">
                   <span className="text-gray-700">{room.roomName} x{room.quantity}</span>
                   <Badge variant="outline">₹{room.price}/night</Badge>
                 </div>
@@ -211,7 +194,7 @@ Thank you for choosing XTSY!
 
           {/* Payment Summary */}
           <div className="bg-green-50 rounded-lg p-4">
-            <h3 className="font-semibold text-gray-900 mb-3">Payment Summary</h3>
+            <h3 className="font-semibold text-gray-900 mb-3">Pricing Summary</h3>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
                 <span>Total Amount:</span>
@@ -236,19 +219,19 @@ Thank you for choosing XTSY!
             </div>
           </div>
 
-          {/* WhatsApp Notification */}
+          {/* WhatsApp Notice */}
           {showWhatsAppRedirect && (
             <div className="bg-green-100 border border-green-300 rounded-lg p-4 text-center">
               <div className="text-green-800 font-medium mb-2">
-                Booking confirmation sent to WhatsApp!
+                Opening WhatsApp…
               </div>
               <div className="text-green-700 text-sm">
-                Check your WhatsApp for booking details and contact information.
+                If a new tab didn’t open, please allow pop-ups for this site and tap the button again.
               </div>
             </div>
           )}
 
-          {/* Action Buttons */}
+          {/* Actions */}
           <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t">
             <Button
               type="button"
@@ -262,20 +245,12 @@ Thank you for choosing XTSY!
 
             <Button
               type="button"
-              onClick={sendWhatsAppMessage}
-              className="flex-1 bg-green-600 hover:bg-green-700 text-white flex items-center justify-center gap-2"
-              title="Open WhatsApp with your booking details"
+              onClick={handleWhatsAppClick}
+              className="flex-1 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white flex items-center justify-center gap-2"
+              title="Open WhatsApp"
             >
               <ExternalLink className="w-4 h-4" />
-              Open WhatsApp
-            </Button>
-
-            <Button
-              type="button"
-              onClick={goToHome}
-              className="flex-1 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white"
-            >
-              Back to Home
+              Complete Booking via WhatsApp
             </Button>
           </div>
         </CardContent>
