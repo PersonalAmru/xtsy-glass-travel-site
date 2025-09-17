@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { CheckCircle, Calendar, Users, Phone, Mail, Download, ExternalLink } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { CheckCircle, Calendar, Users, Phone, Mail, Download, ExternalLink } from "lucide-react";
 
 interface BookingConfirmationProps {
   bookingData: {
@@ -10,8 +10,8 @@ interface BookingConfirmationProps {
     guestName: string;
     email: string;
     whatsappNumber: string;
-    checkIn: string;   // ISO date
-    checkOut: string;  // ISO date
+    checkIn: string;
+    checkOut: string;
     nights: number;
     guests: number;
     totalAmount: number;
@@ -34,51 +34,86 @@ interface BookingConfirmationProps {
 const BookingConfirmation = ({ bookingData }: BookingConfirmationProps) => {
   const [showWhatsAppRedirect, setShowWhatsAppRedirect] = useState(false);
 
-  const addOnsText = () => {
-    const a = bookingData.addOns;
-    if (!a) return '';
-    const lines: string[] = [];
-    if (a.breakfast && a.breakfast > 0) lines.push(`• Breakfast: ${a.breakfast} meals × ₹150 = ₹${a.breakfast * 150}`);
-    if (a.dinnerVeg && a.dinnerVeg > 0) lines.push(`• Dinner (Veg): ${a.dinnerVeg} meals × ₹300 = ₹${a.dinnerVeg * 300}`);
-    if (a.dinnerNonVeg && a.dinnerNonVeg > 0) lines.push(`• Dinner (Non-Veg): ${a.dinnerNonVeg} meals × ₹300 = ₹${a.dinnerNonVeg * 300}`);
-    if (a.transportation) lines.push(`• Transportation Services: Best rates available`);
-    if (a.itineraryPlanning) {
-      lines.push(`• Itinerary Planning: ${a.transportation ? 'Free (with Transportation)' : '5% convenience charges'}`);
+  useEffect(() => {
+    // Auto-redirect to WhatsApp after 3 seconds
+    const timer = setTimeout(() => {
+      setShowWhatsAppRedirect(true);
+      sendWhatsAppMessage();
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const generateAddOnsMessage = () => {
+    if (!bookingData.addOns) return '';
+    
+    const addOns = [];
+    
+    if (bookingData.addOns.breakfast && bookingData.addOns.breakfast > 0) {
+      addOns.push(`• Breakfast: ${bookingData.addOns.breakfast} meals × ₹150 = ₹${bookingData.addOns.breakfast * 150}`);
     }
-    return lines.length ? `\n🎯 Add-ons Selected:\n${lines.join('\n')}` : '';
+    
+    if (bookingData.addOns.dinnerVeg && bookingData.addOns.dinnerVeg > 0) {
+      addOns.push(`• Dinner (Veg): ${bookingData.addOns.dinnerVeg} meals × ₹300 = ₹${bookingData.addOns.dinnerVeg * 300}`);
+    }
+    
+    if (bookingData.addOns.dinnerNonVeg && bookingData.addOns.dinnerNonVeg > 0) {
+      addOns.push(`• Dinner (Non-Veg): ${bookingData.addOns.dinnerNonVeg} meals × ₹300 = ₹${bookingData.addOns.dinnerNonVeg * 300}`);
+    }
+    
+    if (bookingData.addOns.transportation) {
+      addOns.push(`• Transportation Services: Best rates available`);
+    }
+    
+    if (bookingData.addOns.itineraryPlanning) {
+      const cost = bookingData.addOns.transportation ? 'Free (with Transportation)' : '5% convenience charges';
+      addOns.push(`• Itinerary Planning & Support: ${cost}`);
+    }
+    
+    return addOns.length > 0 ? `\n🎯 Add-ons Selected:\n${addOns.join('\n')}` : '';
   };
 
-  const buildWhatsAppText = () => {
-    const rooms = (bookingData.items || [])
-      .map((r) => `• ${r.roomName} x${r.quantity}`)
-      .join('\n');
+  const sendWhatsAppMessage = () => {
+    const addOnsMessage = generateAddOnsMessage();
+    const addOnTotalMessage = bookingData.addOnTotal ? `\n💰 Add-ons Total: ₹${bookingData.addOnTotal}` : '';
+    
+    const message = `
+Booking Confirmed! 
 
-    const addOnTotalLine = bookingData.addOnTotal ? `\n💰 Add-ons Total: ₹${bookingData.addOnTotal}` : '';
+📋 Booking ID: ${bookingData.bookingId}
+👤 Guest: ${bookingData.guestName}
+📧 Email: ${bookingData.email}
 
-    return (
-      `Booking Inquiry\n\n` +
-      `📋 Booking ID: ${bookingData.bookingId}\n` +
-      `👤 Guest: ${bookingData.guestName}\n` +
-      `📧 Email: ${bookingData.email}\n\n` +
-      `📅 Check-in: ${new Date(bookingData.checkIn).toLocaleDateString()}\n` +
-      `📅 Check-out: ${new Date(bookingData.checkOut).toLocaleDateString()}\n` +
-      `🌙 Nights: ${bookingData.nights} | 👥 Guests: ${bookingData.guests}\n\n` +
-      `🏨 Room Details:\n${rooms}${addOnsText()}\n\n` +
-      `💰 Total Amount: ₹${bookingData.totalAmount}${addOnTotalLine}\n\n` +
-      `Thank you for choosing XTSY!`
-    );
-  };
+📅 Check-in: ${new Date(bookingData.checkIn).toLocaleDateString()}
+📅 Check-out: ${new Date(bookingData.checkOut).toLocaleDateString()}
+🌙 Nights: ${bookingData.nights}
+👥 Guests: ${bookingData.guests}
 
-  const handleWhatsAppClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const message = buildWhatsAppText();
-    const url = `https://wa.me/918837317070?text=${encodeURIComponent(message)}`;
-    window.location.href = url;      // direct navigation (least likely to be blocked)
-    setShowWhatsAppRedirect(true);
+🏨 Room Details:
+${bookingData.items.map(room => `• ${room.roomName} x${room.quantity}`).join('\n')}${addOnsMessage}
+
+💰 Total Amount: ₹${bookingData.totalAmount}${addOnTotalMessage}
+💳 Advance Paid: ₹${Math.round(bookingData.totalAmount * 0.21)}
+
+Thank you for choosing XTSY!
+    `.trim();
+
+    // Send to property WhatsApp
+    const propertyWhatsAppUrl = `https://wa.me/918837317070?text=${encodeURIComponent(message)}`;
+    window.open(propertyWhatsAppUrl, '_blank');
+
+    // Send to guest WhatsApp
+    const guestWhatsAppUrl = `https://wa.me/${bookingData.whatsappNumber.replace(/\D/g, '')}?text=${encodeURIComponent(
+      `Dear ${bookingData.guestName},\n\n${message}\n\nSee you soon at XTSY! 🏨✨`
+    )}`;
+    
+    setTimeout(() => {
+      window.open(guestWhatsAppUrl, '_blank');
+    }, 1000);
   };
 
   const downloadInvoice = () => {
+    // Placeholder for invoice download
     alert('Invoice download will be available shortly via email and WhatsApp');
   };
 
@@ -93,11 +128,11 @@ const BookingConfirmation = ({ bookingData }: BookingConfirmationProps) => {
           <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <CheckCircle className="w-8 h-8 text-green-600" />
           </div>
-
+          
           <CardTitle className="text-2xl font-bold text-gray-900 mb-2">
-            Booking Summary and Guest Details
+            Booking Confirmed!
           </CardTitle>
-
+          
           <div className="text-lg font-semibold text-orange-600">
             Booking ID: {bookingData.bookingId}
           </div>
@@ -122,9 +157,7 @@ const BookingConfirmation = ({ bookingData }: BookingConfirmationProps) => {
               </div>
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4 text-gray-400" />
-                <span>
-                  {bookingData.nights} night{bookingData.nights > 1 ? 's' : ''}, {bookingData.guests} guest{bookingData.guests > 1 ? 's' : ''}
-                </span>
+                <span>{bookingData.nights} night{bookingData.nights > 1 ? 's' : ''}, {bookingData.guests} guest{bookingData.guests > 1 ? 's' : ''}</span>
               </div>
             </div>
           </div>
@@ -142,10 +175,10 @@ const BookingConfirmation = ({ bookingData }: BookingConfirmationProps) => {
                 <div className="font-medium">{new Date(bookingData.checkOut).toLocaleDateString()}</div>
               </div>
             </div>
-
+            
             <div className="space-y-2">
-              {bookingData.items.map((room, idx) => (
-                <div key={idx} className="flex justify-between items-center">
+              {bookingData.items.map((room, index) => (
+                <div key={index} className="flex justify-between items-center">
                   <span className="text-gray-700">{room.roomName} x{room.quantity}</span>
                   <Badge variant="outline">₹{room.price}/night</Badge>
                 </div>
@@ -153,7 +186,7 @@ const BookingConfirmation = ({ bookingData }: BookingConfirmationProps) => {
             </div>
           </div>
 
-          {/* Add-ons */}
+          {/* Add-ons Display */}
           {bookingData.addOns && (
             <div className="bg-blue-50 rounded-lg p-4">
               <h3 className="font-semibold text-gray-900 mb-3">Selected Add-ons</h3>
@@ -177,7 +210,9 @@ const BookingConfirmation = ({ bookingData }: BookingConfirmationProps) => {
                   </div>
                 )}
                 {bookingData.addOns.transportation && (
-                  <div className="text-blue-600">• Transportation Services: Best rates available</div>
+                  <div className="text-blue-600">
+                    • Transportation Services: Best rates available
+                  </div>
                 )}
                 {bookingData.addOns.itineraryPlanning && (
                   <div className="text-blue-600">
@@ -190,7 +225,7 @@ const BookingConfirmation = ({ bookingData }: BookingConfirmationProps) => {
 
           {/* Payment Summary */}
           <div className="bg-green-50 rounded-lg p-4">
-            <h3 className="font-semibold text-gray-900 mb-3">Pricing Summary</h3>
+            <h3 className="font-semibold text-gray-900 mb-3">Payment Summary</h3>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
                 <span>Total Amount:</span>
@@ -208,27 +243,26 @@ const BookingConfirmation = ({ bookingData }: BookingConfirmationProps) => {
               </div>
               <div className="flex justify-between text-orange-600">
                 <span>Balance at Check-in:</span>
-                <span className="font-medium">
-                  ₹{bookingData.totalAmount - Math.round(bookingData.totalAmount * 0.21)}
-                </span>
+                <span className="font-medium">₹{bookingData.totalAmount - Math.round(bookingData.totalAmount * 0.21)}</span>
               </div>
             </div>
           </div>
 
-          {/* WhatsApp Notice */}
+          {/* WhatsApp Notification */}
           {showWhatsAppRedirect && (
             <div className="bg-green-100 border border-green-300 rounded-lg p-4 text-center">
-              <div className="text-green-800 font-medium mb-2">Opening WhatsApp…</div>
+              <div className="text-green-800 font-medium mb-2">
+                Booking confirmation sent to WhatsApp!
+              </div>
               <div className="text-green-700 text-sm">
-                If a new tab didn’t open, please allow pop-ups for this site and tap the button again.
+                Check your WhatsApp for booking details and contact information.
               </div>
             </div>
           )}
 
-          {/* Actions */}
+          {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t">
             <Button
-              type="button"
               onClick={downloadInvoice}
               variant="outline"
               className="flex-1 flex items-center justify-center gap-2"
@@ -236,15 +270,20 @@ const BookingConfirmation = ({ bookingData }: BookingConfirmationProps) => {
               <Download className="w-4 h-4" />
               Download Invoice
             </Button>
-
+            
             <Button
-              type="button"
-              onClick={handleWhatsAppClick}
-              className="flex-1 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white flex items-center justify-center gap-2"
-              title="Open WhatsApp"
+              onClick={sendWhatsAppMessage}
+              className="flex-1 bg-green-600 hover:bg-green-700 text-white flex items-center justify-center gap-2"
             >
               <ExternalLink className="w-4 h-4" />
-              Complete Booking via WhatsApp
+              Open WhatsApp
+            </Button>
+            
+            <Button
+              onClick={goToHome}
+              className="flex-1 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white"
+            >
+              Back to Home
             </Button>
           </div>
         </CardContent>
