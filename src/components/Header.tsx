@@ -131,13 +131,6 @@ const Header = () => {
                   About
                 </Link>
                 <Link 
-                  to="/gallery" 
-                  className="px-3 py-2 text-white hover:text-primary hover:bg-white/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
-                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                >
-                  Gallery
-                </Link>
-                <Link 
                   to={XTSY270_DATA.path}
                   className="px-3 py-2 text-white hover:text-primary hover:bg-white/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
                   onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -218,16 +211,6 @@ const Header = () => {
                   }}
                 >
                   About
-                </Link>
-                <Link 
-                  to="/gallery" 
-                  className="px-4 py-3 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200 font-medium touch-target text-left"
-                  onClick={() => {
-                    setIsMenuOpen(false);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                >
-                  Gallery
                 </Link>
                 <Link 
                   to={XTSY270_DATA.path} 
