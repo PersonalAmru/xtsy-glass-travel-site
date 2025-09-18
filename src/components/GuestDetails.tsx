@@ -164,9 +164,13 @@ Please confirm availability and share the payment details.`;
           <Button
             onClick={handleSubmit}
             disabled={isSubmitting || !validateForm()}
-            className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-3 text-lg"
+            className={`w-full font-bold py-3 text-lg transition-all duration-300 ${
+              validateForm() && !isSubmitting
+                ? "bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
+                : "bg-gray-300 text-gray-500 cursor-not-allowed"
+            }`}
           >
-            {isSubmitting ? "Processing..." : "Complete Booking via WhatsApp"}
+            {isSubmitting ? "Opening WhatsApp..." : validateForm() ? "Complete Booking via WhatsApp" : "Please fill all required fields"}
           </Button>
           <p className="text-xs text-muted-foreground mt-2 text-center">{PRIVACY_NOTICE}</p>
         </div>
