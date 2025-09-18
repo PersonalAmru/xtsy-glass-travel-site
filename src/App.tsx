@@ -13,6 +13,7 @@ import { LazyAbout } from "./pages/lazy/LazyAbout";
 import { LazyGallery } from "./pages/lazy/LazyGallery";
 import { LazyTravel } from "./pages/lazy/LazyTravel";
 import { LazyXTSY270 } from "./pages/lazy/LazyXTSY270";
+import { LazyAdmin } from "./pages/lazy/LazyAdmin";
 import BookingFlow from "./pages/BookingFlow";
 import NotFound from "./pages/NotFound";
 import { preloadCriticalResources, optimizeFontLoading, registerServiceWorker } from "./utils/bundleOptimization";
@@ -87,6 +88,11 @@ function App() {
             <Route path="/booking" element={
               <Suspense fallback={<LoadingScreen />}>
                 <BookingFlow />
+              </Suspense>
+            } />
+            <Route path="/admin" element={
+              <Suspense fallback={<LoadingScreen />}>
+                <LazyAdmin />
               </Suspense>
             } />
             <Route path="*" element={<NotFound />} />
