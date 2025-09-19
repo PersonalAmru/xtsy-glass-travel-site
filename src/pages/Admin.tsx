@@ -11,21 +11,21 @@ import { Badge } from '@/components/ui/badge';
 import { Calendar, CalendarDays, Users, Settings, AlertTriangle, CheckCircle, XCircle } from 'lucide-react';
 import { toast } from 'sonner';
 import { format, addDays, isWithinInterval } from 'date-fns';
+import { supabase } from '@/integrations/supabase/client';
 
-// Room capacity mapping
-const ROOM_CAPACITIES = {
-  'signature-270-glass-suite': 1,
-  '4-bed-female-only-dorm': 4,
-  '4-bed-mixed-female-dorm': 4,
-  '6-bed-mixed-female-dorm': 30,
-  '6-bed-mixed-economy-dorm': 36,
-  '8-bed-mixed-dorm': 8,
-  '8-bed-mixed-economy-dorm': 64,
-  'king-double-room': 2,
-  'king-triple-room': 1,
-};
+// Room type and inventory interfaces
+interface RoomType {
+  id: string;
+  name: string;
+  total_units: number;
+  is_active: boolean;
+}
 
-const ROOM_TYPES = Object.keys(ROOM_CAPACITIES);
+interface RoomInventory {
+  room_type_id: string;
+  date: string;
+  available_count: number;
+}
 
 interface Booking {
   id: string;
@@ -67,6 +67,8 @@ const Admin: React.FC = () => {
   const { user, signIn, signOut, loading } = useAuth();
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [blockedDates, setBlockedDates] = useState<BlockedDate[]>([]);
+  const [roomTypes, setRoomTypes] = useState<RoomType[]>([]);
+  const [roomInventory, setRoomInventory] = useState<RoomInventory[]>([]);
   const [loginForm, setLoginForm] = useState<LoginFormData>({ email: '', password: '' });
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [editingBooking, setEditingBooking] = useState<Booking | null>(null);
@@ -98,74 +100,117 @@ const Admin: React.FC = () => {
     }
   };
 
-  // Load mock data when admin logs in
+  // Load data when admin logs in
   useEffect(() => {
     if (!isAdmin) return;
 
-    // Mock bookings data
-    setBookings([
-      {
-        id: '1',
-        guest_name: 'John Doe',
-        email: 'john@example.com',
-        whatsapp_number: '+1234567890',
-        room_type: 'signature-270-glass-suite',
-        check_in: '2025-09-20',
-        check_out: '2025-09-22',
-        quantity: 1,
-        booking_status: 'confirmed',
-        payment_status: 'paid',
-        total_amount: 5000,
-        created_at: new Date().toISOString()
-      },
-      {
-        id: '2',
-        guest_name: 'Jane Smith',
-        email: 'jane@example.com',
-        whatsapp_number: '+9876543210',
-        room_type: '4-bed-mixed-female-dorm',
-        check_in: '2025-09-21',
-        check_out: '2025-09-23',
-        quantity: 1,
-        booking_status: 'confirmed',
-        payment_status: 'paid',
-        total_amount: 2000,
-        created_at: new Date().toISOString()
-      }
-    ]);
+    const loadData = async () => {
+      try {
+        // Load room types
+        const { data: roomTypesData, error: roomTypesError } = await supabase
+          .from('room_types')
+          .select('*')
+          .eq('is_active', true)
+          .order('name');
 
-    // Mock blocked dates
-    setBlockedDates([]);
+        if (roomTypesError) {
+          console.error('Error loading room types:', roomTypesError);
+          toast.error('Failed to load room types');
+        } else {
+          setRoomTypes(roomTypesData || []);
+        }
+
+        // Load room inventory for next 30 days
+        const startDate = format(new Date(), 'yyyy-MM-dd');
+        const endDate = format(addDays(new Date(), 30), 'yyyy-MM-dd');
+        
+        const { data: inventoryData, error: inventoryError } = await supabase
+          .from('room_inventory')
+          .select('*')
+          .gte('date', startDate)
+          .lte('date', endDate);
+
+        if (inventoryError) {
+          console.error('Error loading inventory:', inventoryError);
+          toast.error('Failed to load inventory');
+        } else {
+          setRoomInventory(inventoryData || []);
+        }
+
+        // Mock bookings data (can be replaced with real data later)
+        setBookings([
+          {
+            id: '1',
+            guest_name: 'John Doe',
+            email: 'john@example.com',
+            whatsapp_number: '+1234567890',
+            room_type: '6-bed-mixed-female-dorm',
+            check_in: '2025-09-20',
+            check_out: '2025-09-22',
+            quantity: 1,
+            booking_status: 'confirmed',
+            payment_status: 'paid',
+            total_amount: 5000,
+            created_at: new Date().toISOString()
+          },
+          {
+            id: '2',
+            guest_name: 'Jane Smith',
+            email: 'jane@example.com',
+            whatsapp_number: '+9876543210',
+            room_type: '6-bed-mixed-economy-dorm',
+            check_in: '2025-09-21',
+            check_out: '2025-09-23',
+            quantity: 1,
+            booking_status: 'confirmed',
+            payment_status: 'paid',
+            total_amount: 2000,
+            created_at: new Date().toISOString()
+          }
+        ]);
+
+        // Mock blocked dates
+        setBlockedDates([]);
+      } catch (error) {
+        console.error('Error loading admin data:', error);
+        toast.error('Failed to load admin data');
+      }
+    };
+
+    loadData();
   }, [isAdmin]);
 
   // Calculate availability for a specific room type and date
-  const calculateAvailability = (roomType: string, date: Date): { available: number; total: number; isBlocked: boolean } => {
+  const calculateAvailability = (roomTypeId: string, date: Date): { available: number; total: number; isBlocked: boolean } => {
     const dateStr = format(date, 'yyyy-MM-dd');
-    const capacity = ROOM_CAPACITIES[roomType as keyof typeof ROOM_CAPACITIES] || 0;
+    const roomType = roomTypes.find(rt => rt.id === roomTypeId);
+    const capacity = roomType?.total_units || 0;
 
     // Check if date is blocked
     const isBlocked = blockedDates.some(
-      blocked => blocked.room_type === roomType && blocked.date === dateStr && blocked.blocked
+      blocked => blocked.room_type === roomTypeId && blocked.date === dateStr && blocked.blocked
     );
 
     if (isBlocked) {
       return { available: 0, total: capacity, isBlocked: true };
     }
 
-    // Calculate occupied units from bookings
-    const occupiedUnits = bookings
-      .filter(booking => 
-        booking.room_type === roomType &&
-        booking.booking_status === 'confirmed' &&
-        isWithinInterval(date, {
-          start: new Date(booking.check_in),
-          end: new Date(booking.check_out)
-        })
-      )
-      .reduce((sum, booking) => sum + (booking.quantity || 1), 0);
+    // Get available count from room inventory
+    const inventoryRecord = roomInventory.find(
+      inv => inv.room_type_id === roomTypeId && inv.date === dateStr
+    );
 
+    if (inventoryRecord) {
+      return {
+        available: inventoryRecord.available_count,
+        total: capacity,
+        isBlocked: false
+      };
+    }
+
+    // If no inventory record, assume full availability
     return {
-      available: Math.max(0, capacity - occupiedUnits),
+      available: capacity,
       total: capacity,
       isBlocked: false
     };
@@ -361,7 +406,7 @@ const Admin: React.FC = () => {
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{ROOM_TYPES.length}</div>
+            <div className="text-2xl font-bold">{roomTypes.length}</div>
           </CardContent>
         </Card>
       </div>
@@ -390,17 +435,17 @@ const Admin: React.FC = () => {
                 ))}
                 
                 {/* Room availability rows */}
-                {ROOM_TYPES.map(roomType => (
-                  <React.Fragment key={roomType}>
+                {roomTypes.map(roomType => (
+                  <React.Fragment key={roomType.id}>
                     <div className="font-medium p-2 text-xs">
-                      {roomType.replace(/-/g, ' ').toUpperCase()}
+                      {roomType.name.replace(/-/g, ' ').toUpperCase()}
                     </div>
                     {dates.map((date, dateIndex) => {
-                      const { available, total, isBlocked } = calculateAvailability(roomType, date);
+                      const { available, total, isBlocked } = calculateAvailability(roomType.id, date);
                       return (
                         <button
-                          key={`${roomType}-${dateIndex}`}
-                          onClick={() => toggleBlockDate(roomType, date)}
+                          key={`${roomType.id}-${dateIndex}`}
+                          onClick={() => toggleBlockDate(roomType.id, date)}
                           className={`p-1 text-xs rounded border transition-colors ${
                             isBlocked
                               ? 'bg-red-100 text-red-800 hover:bg-red-200'
@@ -510,9 +555,9 @@ const Admin: React.FC = () => {
                                   <SelectValue />
                                 </SelectTrigger>
                                 <SelectContent>
-                                  {ROOM_TYPES.map(type => (
-                                    <SelectItem key={type} value={type}>
-                                      {type.replace(/-/g, ' ').toUpperCase()}
+                                  {roomTypes.map(type => (
+                                    <SelectItem key={type.id} value={type.id}>
+                                      {type.name.replace(/-/g, ' ').toUpperCase()}
                                     </SelectItem>
                                   ))}
                                 </SelectContent>
