@@ -982,11 +982,14 @@ const Admin: React.FC = () => {
                 const isToday = format(cellDate, 'yyyy-MM-dd') === format(new Date(), 'yyyy-MM-dd');
                 const isSelected = selectedCalendarDate && format(cellDate, 'yyyy-MM-dd') === format(selectedCalendarDate, 'yyyy-MM-dd');
                 
-                // Find bookings for this date
+                // Find bookings for this date - only highlight dates when guest is actually staying
                 const dayBookings = bookings.filter(booking => {
-                  const checkIn = new Date(booking.check_in);
-                  const checkOut = new Date(booking.check_out);
-                  return cellDate >= checkIn && cellDate < checkOut;
+                  const checkInDate = new Date(booking.check_in + 'T00:00:00');
+                  const checkOutDate = new Date(booking.check_out + 'T00:00:00');
+                  const currentDate = new Date(cellDate.getFullYear(), cellDate.getMonth(), cellDate.getDate());
+                  
+                  // Guest stays from check-in date (inclusive) to check-out date (exclusive)
+                  return currentDate >= checkInDate && currentDate < checkOutDate;
                 });
                 
                 return (
