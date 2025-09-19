@@ -6,7 +6,7 @@ import { useApp } from "@/contexts/AppContext";
 import { GuestDetailsHeader } from "./guest-details/GuestDetailsHeader";
 import { GuestDetailsForm } from "./guest-details/GuestDetailsForm";
 import { useGuestDetailsForm } from "./guest-details/useGuestDetailsForm";
-import { PRIVACY_NOTICE } from "@/utils/privacyCompliantWhatsApp";
+import { cashfreeService } from "@/services/cashfreePayment";
 
 interface SelectedRoom {
   id: string;
@@ -92,50 +92,27 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
 
     setIsSubmitting(true);
 
-    // Build WhatsApp message - no PII logging, EU compliant
-    const formatDate = (d: string) =>
-      new Date(d).toLocaleDateString("en-IN", { day: "2-digit", month: "long", year: "numeric" });
-
-    const roomLines = bookingData.selectedRooms.map(r => {
-      const qty = r.selection.rooms || r.selection.guests;
-      return `• ${r.name}: ${qty} × ${bookingData.nights} night${bookingData.nights > 1 ? "s" : ""}`;
-    });
-
-    const whatsappMessage = `🏔️ *NEW BOOKING REQUEST* 🏔️
-
-👤 Name: ${formData.guestName}
-📧 Email: ${formData.email}
-📱 Phone: ${formData.whatsappNumber}
-🏠 Address: ${formData.address}, ${formData.city}, ${formData.state} - ${formData.pincode}${formData.emergencyContact ? `\n🆘 Emergency: ${formData.emergencyContact}${formData.emergencyRelation ? ` (${formData.emergencyRelation})` : ""}` : ""}
-
-🛏️ Stay:
-• Check-in: ${formatDate(bookingData.checkIn)}
-• Check-out: ${formatDate(bookingData.checkOut)}
-• Nights: ${bookingData.nights}
-• Guests: ${displayGuests}
-
-Room Selection:
-${roomLines.join("\n")}
-
-💳 Total: ${formatPrice(bookingData.totalAmount)}
-
-Please confirm availability and share the payment details.`;
-
-    const whatsappURL = `https://wa.me/918837317070?text=${encodeURIComponent(whatsappMessage)}`;
-
-    // Open WhatsApp directly - no logging, privacy compliant
-    window.open(whatsappURL, "_blank", "noopener,noreferrer");
-
-    // Cleanup & close
     try {
-      localStorage.removeItem("xtsy_current_booking");
-    } catch {}
-    
-    // Don't close immediately, give user time to see WhatsApp opened
-    setTimeout(() => {
-      onClose();
+      // Create payment session with Cashfree
+      const paymentUrl = await cashfreeService.createPaymentSession(bookingData, formData);
+      
+      toast({
+        title: "Redirecting to Payment Gateway",
+        description: "Please complete your payment to confirm booking.",
+      });
+
+      // Redirect to Cashfree payment gateway
+      window.location.href = paymentUrl;
+      
+    } catch (error) {
+      console.error('Payment initiation error:', error);
+      toast({
+        title: "Payment Error",
+        description: "Failed to initiate payment. Please try again.",
+        variant: "destructive"
+      });
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   return (
@@ -170,9 +147,11 @@ Please confirm availability and share the payment details.`;
                 : "bg-gray-300 text-gray-500 cursor-not-allowed"
             }`}
           >
-            {isSubmitting ? "Opening WhatsApp..." : validateForm() ? "Complete Booking via WhatsApp" : "Please fill all required fields"}
+            {isSubmitting ? "Redirecting to Payment..." : validateForm() ? "Proceed to Payment" : "Please fill all required fields"}
           </Button>
-          <p className="text-xs text-muted-foreground mt-2 text-center">{PRIVACY_NOTICE}</p>
+          <p className="text-xs text-muted-foreground mt-2 text-center">
+            Your payment information is processed securely through Cashfree. Your booking will be confirmed upon successful payment.
+          </p>
         </div>
       </DialogContent>
     </Dialog>

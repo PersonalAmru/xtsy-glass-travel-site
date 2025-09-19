@@ -15,6 +15,7 @@ import { LazyTravel } from "./pages/lazy/LazyTravel";
 import { LazyXTSY270 } from "./pages/lazy/LazyXTSY270";
 import { LazyAdmin } from "./pages/lazy/LazyAdmin";
 import BookingFlow from "./pages/BookingFlow";
+import BookingConfirmationPage from "./pages/BookingConfirmationPage";
 import NotFound from "./pages/NotFound";
 import { preloadCriticalResources, optimizeFontLoading, registerServiceWorker } from "./utils/bundleOptimization";
 import { performGlobalCleanup } from "./utils/performanceCleanup";
@@ -88,6 +89,11 @@ function App() {
             <Route path="/booking" element={
               <Suspense fallback={<LoadingScreen />}>
                 <BookingFlow />
+              </Suspense>
+            } />
+            <Route path="/booking-confirmation" element={
+              <Suspense fallback={<LoadingScreen />}>
+                <BookingConfirmationPage />
               </Suspense>
             } />
             <Route path="/admin" element={
