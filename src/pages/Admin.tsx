@@ -179,6 +179,7 @@ const Admin: React.FC = () => {
     currentAvailable: number;
     totalCapacity: number;
   } | null>(null);
+  const [currentCalendarMonth, setCurrentCalendarMonth] = useState(new Date());
 
   // Check if user is admin
   const isAdmin = user?.role === 'admin';
@@ -886,22 +887,22 @@ const Admin: React.FC = () => {
               <Button
                 variant="outline"
                 onClick={() => {
-                  const prevMonth = new Date();
+                  const prevMonth = new Date(currentCalendarMonth);
                   prevMonth.setMonth(prevMonth.getMonth() - 1);
-                  // Navigation logic can be added here
+                  setCurrentCalendarMonth(prevMonth);
                 }}
               >
                 ← Previous Month
               </Button>
               <h3 className="text-lg font-semibold">
-                {format(new Date(), 'MMMM yyyy')}
+                {format(currentCalendarMonth, 'MMMM yyyy')}
               </h3>
               <Button
                 variant="outline"
                 onClick={() => {
-                  const nextMonth = new Date();
+                  const nextMonth = new Date(currentCalendarMonth);
                   nextMonth.setMonth(nextMonth.getMonth() + 1);
-                  // Navigation logic can be added here
+                  setCurrentCalendarMonth(nextMonth);
                 }}
               >
                 Next Month →
@@ -919,16 +920,15 @@ const Admin: React.FC = () => {
               
               {/* Calendar Days */}
               {Array.from({ length: 35 }, (_, i) => {
-                const currentDate = new Date();
-                const startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+                const startOfMonth = new Date(currentCalendarMonth.getFullYear(), currentCalendarMonth.getMonth(), 1);
                 const startOfCalendar = new Date(startOfMonth);
                 startOfCalendar.setDate(startOfCalendar.getDate() - startOfCalendar.getDay());
                 
                 const cellDate = new Date(startOfCalendar);
                 cellDate.setDate(cellDate.getDate() + i);
                 
-                const isCurrentMonth = cellDate.getMonth() === currentDate.getMonth();
-                const isToday = format(cellDate, 'yyyy-MM-dd') === format(currentDate, 'yyyy-MM-dd');
+                const isCurrentMonth = cellDate.getMonth() === currentCalendarMonth.getMonth();
+                const isToday = format(cellDate, 'yyyy-MM-dd') === format(new Date(), 'yyyy-MM-dd');
                 
                 // Find bookings for this date
                 const dayBookings = bookings.filter(booking => {
