@@ -257,7 +257,7 @@ const Admin: React.FC = () => {
           setRoomInventory(inventoryData || []);
         }
 
-        // Load real bookings from database
+        // Load real bookings from database - include previous 90 days
         const { data: bookingsData, error: bookingsError } = await supabase
           .from('bookings')
           .select(`
@@ -275,8 +275,8 @@ const Admin: React.FC = () => {
             total_amount,
             created_at
           `)
-          .order('created_at', { ascending: false })
-          .limit(50);
+          .gte('created_at', new Date(Date.now() - 90 * 24 * 60 * 60 * 1000).toISOString())
+          .order('created_at', { ascending: false });
 
         if (bookingsError) {
           console.error('Error loading bookings:', bookingsError);
@@ -456,10 +456,10 @@ const Admin: React.FC = () => {
     toast.success('Booking cancelled successfully');
   };
 
-  // Generate 30-day date array
+  // Generate 90-day date array
   const generateDateArray = (): Date[] => {
     const dates: Date[] = [];
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 90; i++) {
       dates.push(addDays(new Date(), i));
     }
     return dates;
@@ -597,7 +597,7 @@ const Admin: React.FC = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <CalendarDays className="h-5 w-5" />
-            Room Availability by Property (Next 30 Days)
+            Room Availability by Property (Next 90 Days)
           </CardTitle>
           <CardDescription>
             Click on a cell to block/unblock that date for a room type
@@ -615,7 +615,7 @@ const Admin: React.FC = () => {
                   <h3 className="text-lg font-semibold mb-4 text-primary">{propertyType}</h3>
                   <div className="overflow-x-auto">
                     <div className="min-w-[800px]">
-                      <div className="grid grid-cols-[200px_repeat(30,1fr)] gap-1 text-xs">
+                      <div className="grid grid-cols-[200px_repeat(90,1fr)] gap-1 text-xs">
                         {/* Header row */}
                         <div className="font-medium p-2">Room Type</div>
                         {dates.map((date, index) => (
@@ -668,8 +668,8 @@ const Admin: React.FC = () => {
       {/* Recent Bookings */}
       <Card>
         <CardHeader>
-          <CardTitle>Recent Bookings</CardTitle>
-          <CardDescription>Latest booking entries with guest details</CardDescription>
+          <CardTitle>Recent Bookings (Last 90 Days)</CardTitle>
+          <CardDescription>All booking entries from the past 90 days with calendar view</CardDescription>
         </CardHeader>
         <CardContent>
           <Table>
