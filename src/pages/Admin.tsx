@@ -106,6 +106,8 @@ const Admin: React.FC = () => {
 
     const loadData = async () => {
       try {
+        console.log('Loading admin data, user role:', user?.role);
+        
         // Load room types
         const { data: roomTypesData, error: roomTypesError } = await supabase
           .from('room_types')
@@ -115,7 +117,14 @@ const Admin: React.FC = () => {
 
         if (roomTypesError) {
           console.error('Error loading room types:', roomTypesError);
-          toast.error('Failed to load room types');
+          toast.error('Failed to load room types: ' + roomTypesError.message);
+          
+          // Fallback mock data if database access fails
+          setRoomTypes([
+            { id: '6-bed-mixed-female-dorm', name: '6 BED MIXED FEMALE DORM', total_units: 24, is_active: true },
+            { id: '6-bed-mixed-economy-dorm', name: '6 BED MIXED ECONOMY DORM', total_units: 6, is_active: true },
+            { id: '8-bed-mixed-economy-dorm', name: '8 BED MIXED ECONOMY DORM', total_units: 8, is_active: true }
+          ]);
         } else {
           setRoomTypes(roomTypesData || []);
         }
@@ -132,7 +141,27 @@ const Admin: React.FC = () => {
 
         if (inventoryError) {
           console.error('Error loading inventory:', inventoryError);
-          toast.error('Failed to load inventory');
+          toast.error('Failed to load inventory: ' + inventoryError.message);
+          
+          // Create fallback inventory data
+          const fallbackInventory: RoomInventory[] = [];
+          const fallbackRoomTypes = roomTypesData || [
+            { id: '6-bed-mixed-female-dorm', name: '6 BED MIXED FEMALE DORM', total_units: 24, is_active: true },
+            { id: '6-bed-mixed-economy-dorm', name: '6 BED MIXED ECONOMY DORM', total_units: 6, is_active: true },
+            { id: '8-bed-mixed-economy-dorm', name: '8 BED MIXED ECONOMY DORM', total_units: 8, is_active: true }
+          ];
+          
+          for (let i = 0; i < 30; i++) {
+            const date = format(addDays(new Date(), i), 'yyyy-MM-dd');
+            fallbackRoomTypes.forEach(roomType => {
+              fallbackInventory.push({
+                room_type_id: roomType.id,
+                date: date,
+                available_count: roomType.total_units
+              });
+            });
+          }
+          setRoomInventory(fallbackInventory);
         } else {
           setRoomInventory(inventoryData || []);
         }
@@ -178,7 +207,7 @@ const Admin: React.FC = () => {
     };
 
     loadData();
-  }, [isAdmin]);
+  }, [isAdmin, user?.role]);
 
   // Calculate availability for a specific room type and date
   const calculateAvailability = (roomTypeId: string, date: Date): { available: number; total: number; isBlocked: boolean } => {
