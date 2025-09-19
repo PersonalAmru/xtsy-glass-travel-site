@@ -962,58 +962,7 @@ const Admin: React.FC = () => {
                   </button>
                 );
               })}
-            </div>
-
-            {/* Selected Date Bookings */}
-            {selectedCalendarDate && (
-              <div className="mt-6 p-4 border rounded-lg">
-                <h4 className="text-sm font-semibold mb-3">
-                  Bookings for {format(selectedCalendarDate, 'MMMM dd, yyyy')}
-                </h4>
-                {(() => {
-                  const selectedDateBookings = bookings.filter(booking => {
-                    const checkIn = new Date(booking.check_in);
-                    const checkOut = new Date(booking.check_out);
-                    return selectedCalendarDate >= checkIn && selectedCalendarDate < checkOut;
-                  });
-                  
-                  if (selectedDateBookings.length === 0) {
-                    return (
-                      <p className="text-sm text-muted-foreground">No bookings for this date</p>
-                    );
-                  }
-                  
-                  return (
-                    <div className="space-y-2">
-                      {selectedDateBookings.map((booking, idx) => (
-                        <div key={idx} className="flex items-center justify-between p-2 bg-muted/50 rounded">
-                          <div>
-                            <div className="text-sm font-medium">{booking.guest_name}</div>
-                             <div className="text-xs text-muted-foreground">
-                               {booking.room_type} • {booking.quantity} guests
-                             </div>
-                          </div>
-                          <div className="text-right">
-                            <div className={`text-xs px-2 py-1 rounded ${
-                              booking.booking_status === 'confirmed' 
-                                ? 'bg-green-100 text-green-800' 
-                                : booking.booking_status === 'cancelled'
-                                ? 'bg-red-100 text-red-800'
-                                : 'bg-yellow-100 text-yellow-800'
-                            }`}>
-                              {booking.booking_status}
-                            </div>
-                            <div className="text-xs text-muted-foreground mt-1">
-                              {format(new Date(booking.check_in), 'MMM dd')} - {format(new Date(booking.check_out), 'MMM dd')}
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  );
-                 })()}
-               </div>
-             )}
+             </div>
 
              {/* Legend */}
             <div className="flex items-center gap-4 text-xs">
@@ -1037,8 +986,31 @@ const Admin: React.FC = () => {
       {/* Recent Bookings */}
       <Card>
         <CardHeader>
-          <CardTitle>Recent Bookings (Last 90 Days)</CardTitle>
-          <CardDescription>All booking entries from the past 90 days with calendar view</CardDescription>
+          <div className="flex items-center justify-between">
+            <div>
+              <CardTitle>
+                {selectedCalendarDate 
+                  ? `Bookings for ${format(selectedCalendarDate, 'MMMM dd, yyyy')}`
+                  : 'Recent Bookings (Last 90 Days)'
+                }
+              </CardTitle>
+              <CardDescription>
+                {selectedCalendarDate 
+                  ? `Showing bookings for the selected date`
+                  : 'All booking entries from the past 90 days with calendar view'
+                }
+              </CardDescription>
+            </div>
+            {selectedCalendarDate && (
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => setSelectedCalendarDate(null)}
+              >
+                Clear Date Filter
+              </Button>
+            )}
+          </div>
         </CardHeader>
         <CardContent>
           <Table>
@@ -1056,7 +1028,27 @@ const Admin: React.FC = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {bookings.map((booking) => (
+              {(() => {
+                // Filter bookings based on selected date or show all recent bookings
+                const displayBookings = selectedCalendarDate 
+                  ? bookings.filter(booking => {
+                      const checkIn = new Date(booking.check_in);
+                      const checkOut = new Date(booking.check_out);
+                      return selectedCalendarDate >= checkIn && selectedCalendarDate < checkOut;
+                    })
+                  : bookings;
+
+                if (selectedCalendarDate && displayBookings.length === 0) {
+                  return (
+                    <TableRow>
+                      <TableCell colSpan={9} className="text-center text-muted-foreground py-8">
+                        No bookings found for {format(selectedCalendarDate, 'MMMM dd, yyyy')}
+                      </TableCell>
+                    </TableRow>
+                  );
+                }
+
+                return displayBookings.map((booking) => (
                 <TableRow key={booking.id}>
                   <TableCell className="font-medium">{booking.booking_id || booking.id}</TableCell>
                   <TableCell className="font-medium">{booking.guest_name}</TableCell>
@@ -1212,8 +1204,9 @@ const Admin: React.FC = () => {
                       </Button>
                     </div>
                   </TableCell>
-                </TableRow>
-              ))}
+                 </TableRow>
+               ));
+              })()}
             </TableBody>
           </Table>
         </CardContent>
