@@ -19,12 +19,6 @@ interface GuestData {
   guestName: string;
   email: string;
   whatsappNumber: string;
-  address: string;
-  city: string;
-  state: string;
-  pincode: string;
-  emergencyContact?: string;
-  emergencyRelation?: string;
 }
 
 interface PaymentData {

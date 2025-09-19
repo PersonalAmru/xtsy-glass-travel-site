@@ -4,25 +4,13 @@ interface FormData {
   guestName: string;
   email: string;
   whatsappNumber: string;
-  address: string;
-  city: string;
-  state: string;
-  pincode: string;
-  emergencyContact: string;
-  emergencyRelation: string;
 }
 
 export const useGuestDetailsForm = () => {
   const [formData, setFormData] = useState<FormData>({
     guestName: "",
     email: "",
-    whatsappNumber: "",
-    address: "",
-    city: "",
-    state: "",
-    pincode: "",
-    emergencyContact: "",
-    emergencyRelation: ""
+    whatsappNumber: ""
   });
 
   // Enhanced email validation with security checks
@@ -87,7 +75,6 @@ export const useGuestDetailsForm = () => {
     // Field-specific sanitization and length limits
     switch (field) {
       case 'guestName':
-      case 'emergencyRelation':
         maxLength = 100;
         break;
       case 'email':
@@ -95,20 +82,8 @@ export const useGuestDetailsForm = () => {
         sanitizedValue = value.toLowerCase().trim();
         break;
       case 'whatsappNumber':
-      case 'emergencyContact':
         maxLength = 20;
         sanitizedValue = value.replace(/[^\d+\-\s()]/g, '');
-        break;
-      case 'address':
-        maxLength = 200;
-        break;
-      case 'city':
-      case 'state':
-        maxLength = 50;
-        break;
-      case 'pincode':
-        maxLength = 6;
-        sanitizedValue = value.replace(/\D/g, '');
         break;
     }
 
@@ -125,7 +100,17 @@ export const useGuestDetailsForm = () => {
   };
 
   const validateForm = () => {
-    // Always return true - no validation required
+    const required: (keyof FormData)[] = ["guestName", "email", "whatsappNumber"];
+    
+    // Check all required fields are filled
+    const allFieldsFilled = required.every(field => formData[field] && formData[field].length > 0);
+    if (!allFieldsFilled) return false;
+    
+    // Validate each field individually
+    if (!validateName(formData.guestName)) return false;
+    if (!validateEmail(formData.email)) return false;
+    if (!validatePhone(formData.whatsappNumber)) return false;
+    
     return true;
   };
 
