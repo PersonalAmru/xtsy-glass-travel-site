@@ -20,7 +20,7 @@ const Events = () => {
       timing: "6:00 pm - 10:00 am",
       location: "Shillong",
       verified: true,
-      image: "/lovable-uploads/shillong-cultural.jpg",
+      image: "/lovable-uploads/anvantara-cosmogonia-poster.jpeg",
       tickets: [
         {
           type: "Solo Pass - Early Birds",
