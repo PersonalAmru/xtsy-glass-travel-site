@@ -1112,7 +1112,12 @@ const Admin: React.FC = () => {
                   <TableCell className="font-medium">{booking.guest_name}</TableCell>
                   <TableCell>{booking.email}</TableCell>
                   <TableCell>{booking.whatsapp_number}</TableCell>
-                  <TableCell>{booking.room_type}</TableCell>
+                  <TableCell>
+                    {(() => {
+                      const roomType = roomTypes.find(rt => rt.id === booking.room_type);
+                      return roomType ? roomType.name : booking.room_type;
+                    })()}
+                  </TableCell>
                   <TableCell>
                     {format(new Date(booking.check_in), 'dd/MM')} - {format(new Date(booking.check_out), 'dd/MM')}
                   </TableCell>
