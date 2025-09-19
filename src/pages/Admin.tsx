@@ -62,7 +62,7 @@ const BOOKING_FLOW_ROOMS = {
   '6-bed-mixed-female-dorm': {
     id: '6-bed-mixed-female-dorm',
     name: '6-Bed Female Only Dormitory',
-    total_units: 24, // Updated capacity
+    total_units: 6, // Updated capacity
     propertyType: 'XTSY Travellers Hostel',
     type: 'dorm',
     price: 750,
@@ -98,7 +98,7 @@ const BOOKING_FLOW_ROOMS = {
   '6-bed-mixed-economy-dorm': {
     id: '6-bed-mixed-economy-dorm',
     name: '6-Bed Mixed Economy Dormitory',
-    total_units: 6, // Updated capacity
+    total_units: 24, // Updated capacity
     propertyType: 'XTSY Economy',
     type: 'dorm',
     price: 450,
