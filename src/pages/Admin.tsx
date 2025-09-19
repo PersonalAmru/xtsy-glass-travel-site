@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
-import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -78,10 +77,9 @@ const Admin: React.FC = () => {
     room_type: '',
     quantity: 1
   });
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
   // Check if user is admin
-  const isAdmin = user?.user_metadata?.role === 'admin';
+  const isAdmin = user?.role === 'admin';
 
   // Handle login
   const handleLogin = async (e: React.FormEvent) => {
@@ -100,94 +98,44 @@ const Admin: React.FC = () => {
     }
   };
 
-  // Load initial data
+  // Load mock data when admin logs in
   useEffect(() => {
     if (!isAdmin) return;
 
-    const loadData = async () => {
-      try {
-        // Load bookings
-        const { data: bookingsData, error: bookingsError } = await supabase
-          .from('bookings')
-          .select('*')
-          .order('created_at', { ascending: false });
-
-        if (bookingsError) throw bookingsError;
-        setBookings(bookingsData || []);
-
-        // Load blocked dates
-        const { data: blockedData, error: blockedError } = await supabase
-          .from('blocked_dates')
-          .select('*')
-          .order('date', { ascending: true });
-
-        if (blockedError) throw blockedError;
-        setBlockedDates(blockedData || []);
-      } catch (error) {
-        console.error('Error loading data:', error);
-        toast.error('Failed to load admin data');
+    // Mock bookings data
+    setBookings([
+      {
+        id: '1',
+        guest_name: 'John Doe',
+        email: 'john@example.com',
+        whatsapp_number: '+1234567890',
+        room_type: 'signature-270-glass-suite',
+        check_in: '2025-09-20',
+        check_out: '2025-09-22',
+        quantity: 1,
+        booking_status: 'confirmed',
+        payment_status: 'paid',
+        total_amount: 5000,
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '2',
+        guest_name: 'Jane Smith',
+        email: 'jane@example.com',
+        whatsapp_number: '+9876543210',
+        room_type: '4-bed-mixed-female-dorm',
+        check_in: '2025-09-21',
+        check_out: '2025-09-23',
+        quantity: 1,
+        booking_status: 'confirmed',
+        payment_status: 'paid',
+        total_amount: 2000,
+        created_at: new Date().toISOString()
       }
-    };
+    ]);
 
-    loadData();
-  }, [isAdmin]);
-
-  // Set up realtime subscriptions
-  useEffect(() => {
-    if (!isAdmin) return;
-
-    // Subscribe to bookings changes
-    const bookingsChannel = supabase
-      .channel('schema-db-changes')
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'bookings'
-        },
-        (payload) => {
-          console.log('Bookings change:', payload);
-          
-          if (payload.eventType === 'INSERT') {
-            setBookings(prev => [payload.new as Booking, ...prev]);
-          } else if (payload.eventType === 'UPDATE') {
-            setBookings(prev => prev.map(booking => 
-              booking.id === payload.new.id ? payload.new as Booking : booking
-            ));
-          } else if (payload.eventType === 'DELETE') {
-            setBookings(prev => prev.filter(booking => booking.id !== payload.old.id));
-          }
-        }
-      )
-      .subscribe();
-
-    // Subscribe to blocked dates changes
-    const blockedDatesChannel = supabase
-      .channel('blocked-dates-changes')
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'blocked_dates'
-        },
-        (payload) => {
-          console.log('Blocked dates change:', payload);
-          
-          if (payload.eventType === 'INSERT') {
-            setBlockedDates(prev => [...prev, payload.new as BlockedDate]);
-          } else if (payload.eventType === 'DELETE') {
-            setBlockedDates(prev => prev.filter(blocked => blocked.id !== payload.old.id));
-          }
-        }
-      )
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(bookingsChannel);
-      supabase.removeChannel(blockedDatesChannel);
-    };
+    // Mock blocked dates
+    setBlockedDates([]);
   }, [isAdmin]);
 
   // Calculate availability for a specific room type and date
@@ -223,39 +171,28 @@ const Admin: React.FC = () => {
     };
   };
 
-  // Toggle block date
-  const toggleBlockDate = async (roomType: string, date: Date) => {
+  // Toggle block date (mock implementation)
+  const toggleBlockDate = (roomType: string, date: Date) => {
     const dateStr = format(date, 'yyyy-MM-dd');
     const existingBlock = blockedDates.find(
       blocked => blocked.room_type === roomType && blocked.date === dateStr
     );
 
-    try {
-      if (existingBlock) {
-        // Remove block
-        const { error } = await supabase
-          .from('blocked_dates')
-          .delete()
-          .eq('id', existingBlock.id);
-
-        if (error) throw error;
-        toast.success('Date unblocked successfully');
-      } else {
-        // Add block
-        const { error } = await supabase
-          .from('blocked_dates')
-          .insert({
-            room_type: roomType,
-            date: dateStr,
-            blocked: true
-          });
-
-        if (error) throw error;
-        toast.success('Date blocked successfully');
-      }
-    } catch (error) {
-      console.error('Error toggling block:', error);
-      toast.error('Failed to toggle date block');
+    if (existingBlock) {
+      // Remove block
+      setBlockedDates(prev => prev.filter(b => b.id !== existingBlock.id));
+      toast.success('Date unblocked successfully');
+    } else {
+      // Add block
+      const newBlock: BlockedDate = {
+        id: Date.now().toString(),
+        room_type: roomType,
+        date: dateStr,
+        blocked: true,
+        created_at: new Date().toISOString()
+      };
+      setBlockedDates(prev => [...prev, newBlock]);
+      toast.success('Date blocked successfully');
     }
   };
 
@@ -271,47 +208,26 @@ const Admin: React.FC = () => {
     });
   };
 
-  const saveBookingEdit = async () => {
+  const saveBookingEdit = () => {
     if (!editingBooking) return;
 
-    try {
-      const { error } = await supabase
-        .from('bookings')
-        .update({
-          guest_name: editForm.guest_name,
-          check_in: editForm.check_in,
-          check_out: editForm.check_out,
-          room_type: editForm.room_type,
-          quantity: editForm.quantity
-        })
-        .eq('id', editingBooking.id);
-
-      if (error) throw error;
-      
-      setEditingBooking(null);
-      toast.success('Booking updated successfully');
-    } catch (error) {
-      console.error('Error updating booking:', error);
-      toast.error('Failed to update booking');
-    }
+    // Update booking in state
+    setBookings(prev => prev.map(booking =>
+      booking.id === editingBooking.id
+        ? { ...booking, ...editForm }
+        : booking
+    ));
+    
+    setEditingBooking(null);
+    toast.success('Booking updated successfully');
   };
 
-  // Cancel booking
-  const cancelBooking = async (bookingId: string) => {
+  // Cancel booking (mock implementation)
+  const cancelBooking = (bookingId: string) => {
     if (!confirm('Are you sure you want to cancel this booking?')) return;
 
-    try {
-      const { error } = await supabase
-        .from('bookings')
-        .delete()
-        .eq('id', bookingId);
-
-      if (error) throw error;
-      toast.success('Booking cancelled successfully');
-    } catch (error) {
-      console.error('Error cancelling booking:', error);
-      toast.error('Failed to cancel booking');
-    }
+    setBookings(prev => prev.filter(booking => booking.id !== bookingId));
+    toast.success('Booking cancelled successfully');
   };
 
   // Generate 30-day date array
@@ -349,7 +265,7 @@ const Admin: React.FC = () => {
                   type="email"
                   value={loginForm.email}
                   onChange={(e) => setLoginForm(prev => ({ ...prev, email: e.target.value }))}
-                  placeholder="admin@example.com"
+                  placeholder="amru@xtsy.one"
                   required
                 />
               </div>
@@ -507,158 +423,120 @@ const Admin: React.FC = () => {
         </CardContent>
       </Card>
 
-      {/* Bookings Table */}
+      {/* Recent Bookings */}
       <Card>
         <CardHeader>
           <CardTitle>Recent Bookings</CardTitle>
-          <CardDescription>Manage and edit existing bookings</CardDescription>
+          <CardDescription>Latest booking entries</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="overflow-x-auto">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Guest Name</TableHead>
-                  <TableHead>Email</TableHead>
-                  <TableHead>Room Type</TableHead>
-                  <TableHead>Check In</TableHead>
-                  <TableHead>Check Out</TableHead>
-                  <TableHead>Quantity</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Amount</TableHead>
-                  <TableHead>Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {bookings.slice(0, 20).map((booking) => (
-                  <TableRow key={booking.id}>
-                    <TableCell className="font-medium">{booking.guest_name}</TableCell>
-                    <TableCell>{booking.email}</TableCell>
-                    <TableCell>
-                      <Badge variant="outline">
-                        {booking.room_type.replace(/-/g, ' ')}
-                      </Badge>
-                    </TableCell>
-                    <TableCell>{format(new Date(booking.check_in), 'dd/MM/yyyy')}</TableCell>
-                    <TableCell>{format(new Date(booking.check_out), 'dd/MM/yyyy')}</TableCell>
-                    <TableCell>{booking.quantity || 1}</TableCell>
-                    <TableCell>
-                      <Badge 
-                        variant={booking.booking_status === 'confirmed' ? 'default' : 'secondary'}
-                      >
-                        {booking.booking_status}
-                      </Badge>
-                    </TableCell>
-                    <TableCell>₹{booking.total_amount?.toLocaleString()}</TableCell>
-                    <TableCell>
-                      <div className="flex gap-2">
-                        <Dialog>
-                          <DialogTrigger asChild>
-                            <Button 
-                              size="sm" 
-                              variant="outline"
-                              onClick={() => handleEditBooking(booking)}
-                            >
-                              Edit
-                            </Button>
-                          </DialogTrigger>
-                          <DialogContent>
-                            <DialogHeader>
-                              <DialogTitle>Edit Booking</DialogTitle>
-                              <DialogDescription>
-                                Make changes to the booking details
-                              </DialogDescription>
-                            </DialogHeader>
-                            <div className="space-y-4">
-                              <div>
-                                <Label htmlFor="guest_name">Guest Name</Label>
-                                <Input
-                                  id="guest_name"
-                                  value={editForm.guest_name}
-                                  onChange={(e) => setEditForm(prev => ({
-                                    ...prev,
-                                    guest_name: e.target.value
-                                  }))}
-                                />
-                              </div>
-                              <div>
-                                <Label htmlFor="check_in">Check In</Label>
-                                <Input
-                                  id="check_in"
-                                  type="date"
-                                  value={editForm.check_in}
-                                  onChange={(e) => setEditForm(prev => ({
-                                    ...prev,
-                                    check_in: e.target.value
-                                  }))}
-                                />
-                              </div>
-                              <div>
-                                <Label htmlFor="check_out">Check Out</Label>
-                                <Input
-                                  id="check_out"
-                                  type="date"
-                                  value={editForm.check_out}
-                                  onChange={(e) => setEditForm(prev => ({
-                                    ...prev,
-                                    check_out: e.target.value
-                                  }))}
-                                />
-                              </div>
-                              <div>
-                                <Label htmlFor="room_type">Room Type</Label>
-                                <Select
-                                  value={editForm.room_type}
-                                  onValueChange={(value) => setEditForm(prev => ({
-                                    ...prev,
-                                    room_type: value
-                                  }))}
-                                >
-                                  <SelectTrigger>
-                                    <SelectValue />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    {ROOM_TYPES.map(type => (
-                                      <SelectItem key={type} value={type}>
-                                        {type.replace(/-/g, ' ').toUpperCase()}
-                                      </SelectItem>
-                                    ))}
-                                  </SelectContent>
-                                </Select>
-                              </div>
-                              <div>
-                                <Label htmlFor="quantity">Quantity</Label>
-                                <Input
-                                  id="quantity"
-                                  type="number"
-                                  min="1"
-                                  value={editForm.quantity}
-                                  onChange={(e) => setEditForm(prev => ({
-                                    ...prev,
-                                    quantity: parseInt(e.target.value)
-                                  }))}
-                                />
-                              </div>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Guest</TableHead>
+                <TableHead>Email</TableHead>
+                <TableHead>Room Type</TableHead>
+                <TableHead>Dates</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Amount</TableHead>
+                <TableHead>Actions</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {bookings.map((booking) => (
+                <TableRow key={booking.id}>
+                  <TableCell className="font-medium">{booking.guest_name}</TableCell>
+                  <TableCell>{booking.email}</TableCell>
+                  <TableCell>{booking.room_type}</TableCell>
+                  <TableCell>
+                    {format(new Date(booking.check_in), 'dd/MM')} - {format(new Date(booking.check_out), 'dd/MM')}
+                  </TableCell>
+                  <TableCell>
+                    <Badge variant={booking.booking_status === 'confirmed' ? 'default' : 'secondary'}>
+                      {booking.booking_status}
+                    </Badge>
+                  </TableCell>
+                  <TableCell>₹{booking.total_amount}</TableCell>
+                  <TableCell>
+                    <div className="flex gap-2">
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => handleEditBooking(booking)}
+                          >
+                            Edit
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                          <DialogHeader>
+                            <DialogTitle>Edit Booking</DialogTitle>
+                            <DialogDescription>
+                              Make changes to the booking details
+                            </DialogDescription>
+                          </DialogHeader>
+                          <div className="space-y-4">
+                            <div>
+                              <Label htmlFor="guest_name">Guest Name</Label>
+                              <Input
+                                id="guest_name"
+                                value={editForm.guest_name}
+                                onChange={(e) => setEditForm(prev => ({ ...prev, guest_name: e.target.value }))}
+                              />
                             </div>
-                            <DialogFooter>
-                              <Button onClick={saveBookingEdit}>Save Changes</Button>
-                            </DialogFooter>
-                          </DialogContent>
-                        </Dialog>
-                        <Button 
-                          size="sm" 
-                          variant="destructive"
-                          onClick={() => cancelBooking(booking.id)}
-                        >
-                          Cancel
-                        </Button>
-                      </div>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
+                            <div>
+                              <Label htmlFor="check_in">Check In</Label>
+                              <Input
+                                id="check_in"
+                                type="date"
+                                value={editForm.check_in}
+                                onChange={(e) => setEditForm(prev => ({ ...prev, check_in: e.target.value }))}
+                              />
+                            </div>
+                            <div>
+                              <Label htmlFor="check_out">Check Out</Label>
+                              <Input
+                                id="check_out"
+                                type="date"
+                                value={editForm.check_out}
+                                onChange={(e) => setEditForm(prev => ({ ...prev, check_out: e.target.value }))}
+                              />
+                            </div>
+                            <div>
+                              <Label htmlFor="room_type">Room Type</Label>
+                              <Select value={editForm.room_type} onValueChange={(value) => setEditForm(prev => ({ ...prev, room_type: value }))}>
+                                <SelectTrigger>
+                                  <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  {ROOM_TYPES.map(type => (
+                                    <SelectItem key={type} value={type}>
+                                      {type.replace(/-/g, ' ').toUpperCase()}
+                                    </SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
+                            </div>
+                          </div>
+                          <DialogFooter>
+                            <Button onClick={saveBookingEdit}>Save Changes</Button>
+                          </DialogFooter>
+                        </DialogContent>
+                      </Dialog>
+                      <Button
+                        variant="destructive"
+                        size="sm"
+                        onClick={() => cancelBooking(booking.id)}
+                      >
+                        Cancel
+                      </Button>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         </CardContent>
       </Card>
     </div>

@@ -18,11 +18,7 @@ export const UserMenu: React.FC = () => {
 
   if (!user) return null;
 
-  const initials = user.user_metadata?.full_name
-    ?.split(' ')
-    .map((n: string) => n[0])
-    .join('')
-    .toUpperCase() || user.email?.[0]?.toUpperCase() || 'U';
+  const initials = user.email?.[0]?.toUpperCase() || 'A';
 
   return (
     <DropdownMenu>
@@ -37,7 +33,7 @@ export const UserMenu: React.FC = () => {
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">
-              {user.user_metadata?.full_name || 'User'}
+              {user.user_metadata?.full_name || 'Admin'}
             </p>
             <p className="text-xs leading-none text-muted-foreground">
               {user.email}

@@ -247,7 +247,7 @@ const Header = () => {
                 {user ? (
                   <div className="mx-4 pt-4 border-t border-white/20">
                     <div className="text-sm text-white/60 px-4 py-2">
-                      Signed in as {user.user_metadata?.full_name || user.email}
+                      Signed in as {user.email}
                     </div>
                   </div>
                 ) : (
