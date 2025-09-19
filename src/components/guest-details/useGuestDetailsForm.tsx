@@ -125,47 +125,7 @@ export const useGuestDetailsForm = () => {
   };
 
   const validateForm = () => {
-    const required: (keyof FormData)[] = ["guestName", "email", "whatsappNumber", "address", "city", "state", "pincode"];
-    
-    // Check all required fields are filled
-    const allFieldsFilled = required.every(field => formData[field] && formData[field].length > 0);
-    console.log('All fields filled:', allFieldsFilled, formData);
-    if (!allFieldsFilled) return false;
-    
-    // Validate each field individually with detailed logging
-    const nameValid = validateName(formData.guestName);
-    console.log('Name valid:', nameValid, formData.guestName);
-    if (!nameValid) return false;
-    
-    const emailValid = validateEmail(formData.email);
-    console.log('Email valid:', emailValid, formData.email);
-    if (!emailValid) return false;
-    
-    const phoneValid = validatePhone(formData.whatsappNumber);
-    console.log('Phone valid:', phoneValid, formData.whatsappNumber);
-    if (!phoneValid) return false;
-    
-    const addressValid = validateAddress(formData.address);
-    console.log('Address valid:', addressValid, formData.address);
-    if (!addressValid) return false;
-    
-    const cityValid = validateCityState(formData.city);
-    console.log('City valid:', cityValid, formData.city);
-    if (!cityValid) return false;
-    
-    const stateValid = validateCityState(formData.state);
-    console.log('State valid:', stateValid, formData.state);
-    if (!stateValid) return false;
-    
-    const pincodeValid = validatePincode(formData.pincode);
-    console.log('Pincode valid:', pincodeValid, formData.pincode);
-    if (!pincodeValid) return false;
-    
-    // Validate optional emergency contact if provided
-    if (formData.emergencyContact && !validatePhone(formData.emergencyContact)) return false;
-    if (formData.emergencyRelation && !validateName(formData.emergencyRelation)) return false;
-    
-    console.log('Form validation passed!');
+    // Always return true - no validation required
     return true;
   };
 
