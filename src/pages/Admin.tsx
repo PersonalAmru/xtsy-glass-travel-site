@@ -321,8 +321,19 @@ const Admin: React.FC = () => {
           setBookings(bookingsData || []);
         }
 
-        // Mock blocked dates
-        setBlockedDates([]);
+        // Load blocked dates from database
+        const { data: blockedDatesData, error: blockedError } = await supabase
+          .from('blocked_dates')
+          .select('*')
+          .eq('blocked', true)
+          .order('date');
+
+        if (blockedError) {
+          console.error('Error loading blocked dates:', blockedError);
+          setBlockedDates([]);
+        } else {
+          setBlockedDates(blockedDatesData || []);
+        }
       } catch (error) {
         console.error('Error loading admin data:', error);
         toast.error('Failed to load admin data');
@@ -330,6 +341,27 @@ const Admin: React.FC = () => {
     };
 
     loadData();
+
+    // Set up real-time subscriptions for live updates
+    const bookingsSubscription = supabase
+      .channel('bookings-changes')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'bookings' }, () => {
+        loadData(); // Refresh data when bookings change
+      })
+      .subscribe();
+
+    const blockedDatesSubscription = supabase
+      .channel('blocked-dates-changes')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'blocked_dates' }, () => {
+        loadData(); // Refresh data when blocked dates change
+      })
+      .subscribe();
+
+    // Cleanup subscriptions on component unmount
+    return () => {
+      bookingsSubscription.unsubscribe();
+      blockedDatesSubscription.unsubscribe();
+    };
   }, [isAdmin, user?.role]);
 
   // Calculate availability for a specific room type and date
@@ -442,29 +474,50 @@ const Admin: React.FC = () => {
     });
   };
 
-  const saveBookingEdit = () => {
+  const saveBookingEdit = async () => {
     if (!editingBooking) return;
 
-    // For now, we'll save the first room selection as the primary booking
-    // In a real implementation, you'd handle multiple room types properly
-    const primaryRoom = editForm.room_selections[0];
-    
-    // Update booking in state
-    setBookings(prev => prev.map(booking =>
-      booking.id === editingBooking.id
-        ? { 
-            ...booking, 
-            guest_name: editForm.guest_name,
-            check_in: editForm.check_in,
-            check_out: editForm.check_out,
-            room_type: primaryRoom?.room_type_id || booking.room_type,
-            quantity: editForm.total_pax
-          }
-        : booking
-    ));
-    
-    setEditingBooking(null);
-    toast.success('Booking updated successfully');
+    try {
+      // For now, we'll save the first room selection as the primary booking
+      const primaryRoom = editForm.room_selections[0];
+      
+      const { error } = await supabase
+        .from('bookings')
+        .update({
+          guest_name: editForm.guest_name,
+          check_in: editForm.check_in,
+          check_out: editForm.check_out,
+          room_type: primaryRoom?.room_type_id || editingBooking.room_type,
+          quantity: editForm.total_pax
+        })
+        .eq('id', editingBooking.id);
+
+      if (error) {
+        console.error('Error updating booking:', error);
+        toast.error('Failed to update booking');
+        return;
+      }
+
+      // Update booking in local state
+      setBookings(prev => prev.map(booking =>
+        booking.id === editingBooking.id
+          ? { 
+              ...booking, 
+              guest_name: editForm.guest_name,
+              check_in: editForm.check_in,
+              check_out: editForm.check_out,
+              room_type: primaryRoom?.room_type_id || booking.room_type,
+              quantity: editForm.total_pax
+            }
+          : booking
+      ));
+      
+      setEditingBooking(null);
+      toast.success('Booking updated successfully and saved to database');
+    } catch (error) {
+      console.error('Error updating booking:', error);
+      toast.error('Failed to update booking');
+    }
   };
 
   // Add new room selection
@@ -514,12 +567,37 @@ const Admin: React.FC = () => {
     });
   };
 
-  // Cancel booking (mock implementation)
-  const cancelBooking = (bookingId: string) => {
-    if (!confirm('Are you sure you want to cancel this booking?')) return;
+  // Cancel booking - permanent deletion from database
+  const cancelBooking = async (bookingId: string) => {
+    if (!confirm('Are you sure you want to cancel this booking? This action cannot be undone.')) return;
 
-    setBookings(prev => prev.filter(booking => booking.id !== bookingId));
-    toast.success('Booking cancelled successfully');
+    try {
+      const { error } = await supabase
+        .from('bookings')
+        .update({ 
+          booking_status: 'cancelled',
+          cancelled_at: new Date().toISOString()
+        })
+        .eq('id', bookingId);
+
+      if (error) {
+        console.error('Error cancelling booking:', error);
+        toast.error('Failed to cancel booking');
+        return;
+      }
+
+      // Update booking in local state
+      setBookings(prev => prev.map(booking =>
+        booking.id === bookingId
+          ? { ...booking, booking_status: 'cancelled' }
+          : booking
+      ));
+      
+      toast.success('Booking cancelled successfully and saved to database');
+    } catch (error) {
+      console.error('Error cancelling booking:', error);
+      toast.error('Failed to cancel booking');
+    }
   };
 
   // Generate 90-day date array
