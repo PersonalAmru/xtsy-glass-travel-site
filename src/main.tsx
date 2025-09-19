@@ -5,6 +5,7 @@ import "./styles/tailwind.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter } from "react-router-dom";
 import { AppProvider } from "./contexts/AppContext";
+import { AuthProvider } from "./contexts/AuthContext";
 import { initializePerformanceOptimizations } from "./utils/performanceOptimizer";
 import { initializeImageOptimizations } from "./utils/imageOptimization";
 import { initializePerformanceEnhancements } from "./utils/performanceEnhancer";
@@ -46,7 +47,9 @@ createRoot(document.getElementById("root")!).render(
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <AppProvider>
-          <App />
+          <AuthProvider>
+            <App />
+          </AuthProvider>
         </AppProvider>
       </BrowserRouter>
     </QueryClientProvider>
