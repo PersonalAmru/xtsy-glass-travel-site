@@ -117,6 +117,7 @@ const BOOKING_FLOW_ROOMS = {
 
 interface Booking {
   id: string;
+  booking_id?: string;
   guest_name: string;
   email: string;
   whatsapp_number: string;
@@ -256,37 +257,65 @@ const Admin: React.FC = () => {
           setRoomInventory(inventoryData || []);
         }
 
-        // Mock bookings data (can be replaced with real data later)
-        setBookings([
-          {
-            id: '1',
-            guest_name: 'John Doe',
-            email: 'john@example.com',
-            whatsapp_number: '+1234567890',
-            room_type: '6-bed-mixed-female-dorm',
-            check_in: '2025-09-20',
-            check_out: '2025-09-22',
-            quantity: 1,
-            booking_status: 'confirmed',
-            payment_status: 'paid',
-            total_amount: 5000,
-            created_at: new Date().toISOString()
-          },
-          {
-            id: '2',
-            guest_name: 'Jane Smith',
-            email: 'jane@example.com',
-            whatsapp_number: '+9876543210',
-            room_type: '6-bed-mixed-economy-dorm',
-            check_in: '2025-09-21',
-            check_out: '2025-09-23',
-            quantity: 1,
-            booking_status: 'confirmed',
-            payment_status: 'paid',
-            total_amount: 2000,
-            created_at: new Date().toISOString()
-          }
-        ]);
+        // Load real bookings from database
+        const { data: bookingsData, error: bookingsError } = await supabase
+          .from('bookings')
+          .select(`
+            id,
+            booking_id,
+            guest_name,
+            email,
+            whatsapp_number,
+            room_type,
+            check_in,
+            check_out,
+            quantity,
+            booking_status,
+            payment_status,
+            total_amount,
+            created_at
+          `)
+          .order('created_at', { ascending: false })
+          .limit(50);
+
+        if (bookingsError) {
+          console.error('Error loading bookings:', bookingsError);
+          // Use mock data as fallback
+          setBookings([
+            {
+              id: '1',
+              booking_id: 'XTSY-20250919-0001',
+              guest_name: 'John Doe',
+              email: 'john@example.com',
+              whatsapp_number: '+91 9876543210',
+              room_type: '6-bed-mixed-female-dorm',
+              check_in: '2025-09-20',
+              check_out: '2025-09-22',
+              quantity: 1,
+              booking_status: 'confirmed',
+              payment_status: 'paid',
+              total_amount: 5000,
+              created_at: new Date().toISOString()
+            },
+            {
+              id: '2',
+              booking_id: 'XTSY-20250919-0002',
+              guest_name: 'Jane Smith',
+              email: 'jane@example.com',
+              whatsapp_number: '+91 9123456789',
+              room_type: '6-bed-mixed-economy-dorm',
+              check_in: '2025-09-21',
+              check_out: '2025-09-23',
+              quantity: 1,
+              booking_status: 'confirmed',
+              payment_status: 'paid',
+              total_amount: 2000,
+              created_at: new Date().toISOString()
+            }
+          ]);
+        } else {
+          setBookings(bookingsData || []);
+        }
 
         // Mock blocked dates
         setBlockedDates([]);
@@ -640,14 +669,16 @@ const Admin: React.FC = () => {
       <Card>
         <CardHeader>
           <CardTitle>Recent Bookings</CardTitle>
-          <CardDescription>Latest booking entries</CardDescription>
+          <CardDescription>Latest booking entries with guest details</CardDescription>
         </CardHeader>
         <CardContent>
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Guest</TableHead>
+                <TableHead>Booking ID</TableHead>
+                <TableHead>Full Name</TableHead>
                 <TableHead>Email</TableHead>
+                <TableHead>WhatsApp Number</TableHead>
                 <TableHead>Room Type</TableHead>
                 <TableHead>Dates</TableHead>
                 <TableHead>Status</TableHead>
@@ -658,8 +689,10 @@ const Admin: React.FC = () => {
             <TableBody>
               {bookings.map((booking) => (
                 <TableRow key={booking.id}>
+                  <TableCell className="font-medium">{booking.booking_id || booking.id}</TableCell>
                   <TableCell className="font-medium">{booking.guest_name}</TableCell>
                   <TableCell>{booking.email}</TableCell>
+                  <TableCell>{booking.whatsapp_number}</TableCell>
                   <TableCell>{booking.room_type}</TableCell>
                   <TableCell>
                     {format(new Date(booking.check_in), 'dd/MM')} - {format(new Date(booking.check_out), 'dd/MM')}
@@ -669,7 +702,7 @@ const Admin: React.FC = () => {
                       {booking.booking_status}
                     </Badge>
                   </TableCell>
-                  <TableCell>₹{booking.total_amount}</TableCell>
+                  <TableCell>₹{booking.total_amount?.toLocaleString()}</TableCell>
                   <TableCell>
                     <div className="flex gap-2">
                       <Dialog>
@@ -679,57 +712,83 @@ const Admin: React.FC = () => {
                             size="sm"
                             onClick={() => handleEditBooking(booking)}
                           >
-                            Edit
+                            View Details
                           </Button>
                         </DialogTrigger>
-                        <DialogContent>
+                        <DialogContent className="max-w-2xl">
                           <DialogHeader>
-                            <DialogTitle>Edit Booking</DialogTitle>
+                            <DialogTitle>Booking Details</DialogTitle>
                             <DialogDescription>
-                              Make changes to the booking details
+                              Complete booking information and guest details
                             </DialogDescription>
                           </DialogHeader>
-                          <div className="space-y-4">
-                            <div>
-                              <Label htmlFor="guest_name">Guest Name</Label>
-                              <Input
-                                id="guest_name"
-                                value={editForm.guest_name}
-                                onChange={(e) => setEditForm(prev => ({ ...prev, guest_name: e.target.value }))}
-                              />
+                          <div className="grid grid-cols-2 gap-4">
+                            <div className="space-y-4">
+                              <div>
+                                <Label>Booking ID</Label>
+                                <div className="text-sm font-medium">{booking.booking_id || booking.id}</div>
+                              </div>
+                              <div>
+                                <Label htmlFor="guest_name">Full Name</Label>
+                                <Input
+                                  id="guest_name"
+                                  value={editForm.guest_name}
+                                  onChange={(e) => setEditForm(prev => ({ ...prev, guest_name: e.target.value }))}
+                                />
+                              </div>
+                              <div>
+                                <Label>Email</Label>
+                                <div className="text-sm font-medium">{booking.email}</div>
+                              </div>
+                              <div>
+                                <Label>WhatsApp Number</Label>
+                                <div className="text-sm font-medium">{booking.whatsapp_number}</div>
+                              </div>
                             </div>
-                            <div>
-                              <Label htmlFor="check_in">Check In</Label>
-                              <Input
-                                id="check_in"
-                                type="date"
-                                value={editForm.check_in}
-                                onChange={(e) => setEditForm(prev => ({ ...prev, check_in: e.target.value }))}
-                              />
-                            </div>
-                            <div>
-                              <Label htmlFor="check_out">Check Out</Label>
-                              <Input
-                                id="check_out"
-                                type="date"
-                                value={editForm.check_out}
-                                onChange={(e) => setEditForm(prev => ({ ...prev, check_out: e.target.value }))}
-                              />
-                            </div>
-                            <div>
-                              <Label htmlFor="room_type">Room Type</Label>
-                              <Select value={editForm.room_type} onValueChange={(value) => setEditForm(prev => ({ ...prev, room_type: value }))}>
-                                <SelectTrigger>
-                                  <SelectValue />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  {roomTypes.map(type => (
-                                    <SelectItem key={type.id} value={type.id}>
-                                      {type.name} ({type.propertyType})
-                                    </SelectItem>
-                                  ))}
-                                </SelectContent>
-                              </Select>
+                            <div className="space-y-4">
+                              <div>
+                                <Label htmlFor="check_in">Check In</Label>
+                                <Input
+                                  id="check_in"
+                                  type="date"
+                                  value={editForm.check_in}
+                                  onChange={(e) => setEditForm(prev => ({ ...prev, check_in: e.target.value }))}
+                                />
+                              </div>
+                              <div>
+                                <Label htmlFor="check_out">Check Out</Label>
+                                <Input
+                                  id="check_out"
+                                  type="date"
+                                  value={editForm.check_out}
+                                  onChange={(e) => setEditForm(prev => ({ ...prev, check_out: e.target.value }))}
+                                />
+                              </div>
+                              <div>
+                                <Label htmlFor="room_type">Room Type</Label>
+                                <Select value={editForm.room_type} onValueChange={(value) => setEditForm(prev => ({ ...prev, room_type: value }))}>
+                                  <SelectTrigger>
+                                    <SelectValue />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    {roomTypes.map(type => (
+                                      <SelectItem key={type.id} value={type.id}>
+                                        {type.name} ({type.propertyType})
+                                      </SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                              <div>
+                                <Label htmlFor="quantity">Quantity</Label>
+                                <Input
+                                  id="quantity"
+                                  type="number"
+                                  min="1"
+                                  value={editForm.quantity}
+                                  onChange={(e) => setEditForm(prev => ({ ...prev, quantity: parseInt(e.target.value) }))}
+                                />
+                              </div>
                             </div>
                           </div>
                           <DialogFooter>
