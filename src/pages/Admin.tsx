@@ -870,6 +870,133 @@ const Admin: React.FC = () => {
         </CardContent>
       </Card>
 
+      {/* Bookings Calendar View */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Calendar className="h-5 w-5" />
+            Bookings Calendar View
+          </CardTitle>
+          <CardDescription>Navigate through past and future bookings</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            {/* Calendar Navigation */}
+            <div className="flex items-center justify-between">
+              <Button
+                variant="outline"
+                onClick={() => {
+                  const prevMonth = new Date();
+                  prevMonth.setMonth(prevMonth.getMonth() - 1);
+                  // Navigation logic can be added here
+                }}
+              >
+                ← Previous Month
+              </Button>
+              <h3 className="text-lg font-semibold">
+                {format(new Date(), 'MMMM yyyy')}
+              </h3>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  const nextMonth = new Date();
+                  nextMonth.setMonth(nextMonth.getMonth() + 1);
+                  // Navigation logic can be added here
+                }}
+              >
+                Next Month →
+              </Button>
+            </div>
+
+            {/* Calendar Grid */}
+            <div className="grid grid-cols-7 gap-2 text-sm">
+              {/* Calendar Header */}
+              {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
+                <div key={day} className="p-2 text-center font-medium text-muted-foreground">
+                  {day}
+                </div>
+              ))}
+              
+              {/* Calendar Days */}
+              {Array.from({ length: 35 }, (_, i) => {
+                const currentDate = new Date();
+                const startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+                const startOfCalendar = new Date(startOfMonth);
+                startOfCalendar.setDate(startOfCalendar.getDate() - startOfCalendar.getDay());
+                
+                const cellDate = new Date(startOfCalendar);
+                cellDate.setDate(cellDate.getDate() + i);
+                
+                const isCurrentMonth = cellDate.getMonth() === currentDate.getMonth();
+                const isToday = format(cellDate, 'yyyy-MM-dd') === format(currentDate, 'yyyy-MM-dd');
+                
+                // Find bookings for this date
+                const dayBookings = bookings.filter(booking => {
+                  const checkIn = new Date(booking.check_in);
+                  const checkOut = new Date(booking.check_out);
+                  return cellDate >= checkIn && cellDate < checkOut;
+                });
+                
+                return (
+                  <div
+                    key={i}
+                    className={`min-h-[80px] p-2 border rounded-lg ${
+                      isCurrentMonth 
+                        ? isToday 
+                          ? 'bg-primary/10 border-primary' 
+                          : 'bg-background hover:bg-muted/50' 
+                        : 'bg-muted/30 text-muted-foreground'
+                    } ${dayBookings.length > 0 ? 'border-blue-300' : ''}`}
+                  >
+                    <div className="text-xs font-medium mb-1">
+                      {cellDate.getDate()}
+                    </div>
+                    <div className="space-y-1">
+                      {dayBookings.slice(0, 2).map((booking, idx) => (
+                        <div
+                          key={idx}
+                          className={`text-xs p-1 rounded truncate ${
+                            booking.booking_status === 'confirmed' 
+                              ? 'bg-green-100 text-green-800' 
+                              : booking.booking_status === 'cancelled'
+                              ? 'bg-red-100 text-red-800'
+                              : 'bg-yellow-100 text-yellow-800'
+                          }`}
+                          title={`${booking.guest_name} - ${booking.room_type}`}
+                        >
+                          {booking.guest_name}
+                        </div>
+                      ))}
+                      {dayBookings.length > 2 && (
+                        <div className="text-xs text-muted-foreground">
+                          +{dayBookings.length - 2} more
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Legend */}
+            <div className="flex items-center gap-4 text-xs">
+              <div className="flex items-center gap-1">
+                <div className="w-3 h-3 rounded bg-green-100 border"></div>
+                <span>Confirmed</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <div className="w-3 h-3 rounded bg-yellow-100 border"></div>
+                <span>Pending</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <div className="w-3 h-3 rounded bg-red-100 border"></div>
+                <span>Cancelled</span>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Recent Bookings */}
       <Card>
         <CardHeader>
