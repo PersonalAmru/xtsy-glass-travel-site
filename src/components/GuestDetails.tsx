@@ -147,7 +147,7 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
                 : "bg-gray-300 text-gray-500 cursor-not-allowed"
             }`}
           >
-            {isSubmitting ? "Redirecting to Payment..." : validateForm() ? "Proceed to Payment" : "Please fill all required fields"}
+            {isSubmitting ? "Processing..." : validateForm() ? "Pay & Confirm" : "Please fill all required fields"}
           </Button>
           <p className="text-xs text-muted-foreground mt-2 text-center">
             Your payment information is processed securely through Cashfree. Your booking will be confirmed upon successful payment.
