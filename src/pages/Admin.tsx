@@ -358,7 +358,7 @@ const Admin: React.FC = () => {
 
         // Update local state
         setBlockedDates(prev => prev.filter(b => b.id !== existingBlock.id));
-        toast.success('Date unblocked successfully');
+        toast.success(`${roomType} unblocked for ${format(date, 'MMM dd, yyyy')} - now available in booking flow`);
       } else {
         // Add block to database
         const { data, error } = await supabase

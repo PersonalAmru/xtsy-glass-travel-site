@@ -258,6 +258,24 @@ export default function BookingFlow() {
     };
 
     loadBlockedDates();
+
+    // Set up real-time subscription for blocked dates updates
+    const subscription = supabase
+      .channel('blocked_dates_changes')
+      .on('postgres_changes', { 
+        event: '*', 
+        schema: 'public', 
+        table: 'blocked_dates' 
+      }, () => {
+        // Reload blocked dates when changes occur
+        loadBlockedDates();
+      })
+      .subscribe();
+
+    // Cleanup subscription on unmount
+    return () => {
+      subscription.unsubscribe();
+    };
   }, [bookingDates.checkIn, bookingDates.checkOut]);
 
   useEffect(() => {
