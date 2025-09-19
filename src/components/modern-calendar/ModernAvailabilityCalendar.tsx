@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { supabase } from '@/integrations/supabase/client';
-import { format, addDays, startOfMonth, endOfMonth, eachDayOfInterval } from 'date-fns';
+import { format, addDays, startOfMonth, endOfMonth, eachDayOfInterval, startOfWeek, endOfWeek } from 'date-fns';
 import { Lock, Unlock, Calendar as CalendarIcon, Users, TrendingUp } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
@@ -335,6 +335,26 @@ export default function ModernAvailabilityCalendar() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
+                <div className="flex items-center justify-between mb-6">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setSelectedDate(addDays(startOfMonth(selectedDate), -1))}
+                  >
+                    ← Previous Month
+                  </Button>
+                  <h3 className="text-lg font-semibold">
+                    {format(selectedDate, 'MMMM yyyy')}
+                  </h3>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setSelectedDate(addDays(endOfMonth(selectedDate), 1))}
+                  >
+                    Next Month →
+                  </Button>
+                </div>
+
                 <div className="grid grid-cols-7 gap-2 mb-4">
                   {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
                     <div key={day} className="p-2 text-center font-medium text-sm text-muted-foreground">
@@ -343,15 +363,20 @@ export default function ModernAvailabilityCalendar() {
                   ))}
                 </div>
 
-                <Calendar
-                  mode="single"
-                  selected={selectedDate}
-                  onSelect={(date) => date && setSelectedDate(date)}
-                  className="w-full"
-                  components={{
-                    Day: ({ day }) => <DayContent date={day.date} roomTypeId={roomType.id} />
-                  }}
-                />
+                <div className="grid grid-cols-7 gap-2">
+                  {/* Generate complete calendar grid including partial weeks */}
+                  {eachDayOfInterval({
+                    start: startOfWeek(startOfMonth(selectedDate)),
+                    end: endOfWeek(endOfMonth(selectedDate))
+                  }).map((date) => {
+                    const isCurrentMonth = format(date, 'MM') === format(selectedDate, 'MM');
+                    return (
+                      <div key={format(date, 'yyyy-MM-dd')} className={`${!isCurrentMonth ? 'opacity-30' : ''}`}>
+                        <DayContent date={date} roomTypeId={roomType.id} />
+                      </div>
+                    );
+                  })}
+                </div>
 
                 <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
                   <div className="flex items-center gap-2">
