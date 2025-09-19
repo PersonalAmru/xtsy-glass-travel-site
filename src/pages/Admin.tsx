@@ -1032,9 +1032,10 @@ const Admin: React.FC = () => {
                 // Filter bookings based on selected date or show all recent bookings
                 const displayBookings = selectedCalendarDate 
                   ? bookings.filter(booking => {
-                      const checkIn = new Date(booking.check_in);
-                      const checkOut = new Date(booking.check_out);
-                      return selectedCalendarDate >= checkIn && selectedCalendarDate < checkOut;
+                      const checkIn = new Date(booking.check_in + 'T00:00:00');
+                      const checkOut = new Date(booking.check_out + 'T00:00:00');
+                      const selectedDate = new Date(selectedCalendarDate.getFullYear(), selectedCalendarDate.getMonth(), selectedCalendarDate.getDate());
+                      return selectedDate >= checkIn && selectedDate < checkOut;
                     })
                   : bookings;
 
