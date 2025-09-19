@@ -180,6 +180,7 @@ const Admin: React.FC = () => {
     totalCapacity: number;
   } | null>(null);
   const [currentCalendarMonth, setCurrentCalendarMonth] = useState(new Date());
+  const [selectedCalendarDate, setSelectedCalendarDate] = useState<Date | null>(null);
 
   // Check if user is admin
   const isAdmin = user?.role === 'admin';
@@ -886,6 +887,7 @@ const Admin: React.FC = () => {
             <div className="flex items-center justify-between">
               <Button
                 variant="outline"
+                size="sm"
                 onClick={() => {
                   const prevMonth = new Date(currentCalendarMonth);
                   prevMonth.setMonth(prevMonth.getMonth() - 1);
@@ -894,11 +896,12 @@ const Admin: React.FC = () => {
               >
                 ← Previous Month
               </Button>
-              <h3 className="text-lg font-semibold">
+              <h3 className="text-base font-semibold">
                 {format(currentCalendarMonth, 'MMMM yyyy')}
               </h3>
               <Button
                 variant="outline"
+                size="sm"
                 onClick={() => {
                   const nextMonth = new Date(currentCalendarMonth);
                   nextMonth.setMonth(nextMonth.getMonth() + 1);
@@ -910,10 +913,10 @@ const Admin: React.FC = () => {
             </div>
 
             {/* Calendar Grid */}
-            <div className="grid grid-cols-7 gap-2 text-sm">
+            <div className="grid grid-cols-7 gap-1 text-sm max-w-md">
               {/* Calendar Header */}
               {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-                <div key={day} className="p-2 text-center font-medium text-muted-foreground">
+                <div key={day} className="p-1 text-center text-xs font-medium text-muted-foreground">
                   {day}
                 </div>
               ))}
@@ -929,6 +932,7 @@ const Admin: React.FC = () => {
                 
                 const isCurrentMonth = cellDate.getMonth() === currentCalendarMonth.getMonth();
                 const isToday = format(cellDate, 'yyyy-MM-dd') === format(new Date(), 'yyyy-MM-dd');
+                const isSelected = selectedCalendarDate && format(cellDate, 'yyyy-MM-dd') === format(selectedCalendarDate, 'yyyy-MM-dd');
                 
                 // Find bookings for this date
                 const dayBookings = bookings.filter(booking => {
@@ -938,47 +942,80 @@ const Admin: React.FC = () => {
                 });
                 
                 return (
-                  <div
+                  <button
                     key={i}
-                    className={`min-h-[80px] p-2 border rounded-lg ${
+                    onClick={() => setSelectedCalendarDate(cellDate)}
+                    className={`h-8 w-8 text-xs border rounded transition-colors ${
                       isCurrentMonth 
-                        ? isToday 
-                          ? 'bg-primary/10 border-primary' 
-                          : 'bg-background hover:bg-muted/50' 
-                        : 'bg-muted/30 text-muted-foreground'
-                    } ${dayBookings.length > 0 ? 'border-blue-300' : ''}`}
+                        ? isSelected
+                          ? 'bg-primary text-primary-foreground border-primary'
+                          : isToday 
+                            ? 'bg-primary/10 border-primary hover:bg-primary/20' 
+                            : 'bg-background hover:bg-muted border-border'
+                        : 'bg-muted/30 text-muted-foreground border-muted'
+                    } ${dayBookings.length > 0 ? 'ring-1 ring-blue-300' : ''}`}
                   >
-                    <div className="text-xs font-medium mb-1">
-                      {cellDate.getDate()}
-                    </div>
-                    <div className="space-y-1">
-                      {dayBookings.slice(0, 2).map((booking, idx) => (
-                        <div
-                          key={idx}
-                          className={`text-xs p-1 rounded truncate ${
-                            booking.booking_status === 'confirmed' 
-                              ? 'bg-green-100 text-green-800' 
-                              : booking.booking_status === 'cancelled'
-                              ? 'bg-red-100 text-red-800'
-                              : 'bg-yellow-100 text-yellow-800'
-                          }`}
-                          title={`${booking.guest_name} - ${booking.room_type}`}
-                        >
-                          {booking.guest_name}
-                        </div>
-                      ))}
-                      {dayBookings.length > 2 && (
-                        <div className="text-xs text-muted-foreground">
-                          +{dayBookings.length - 2} more
-                        </div>
-                      )}
-                    </div>
-                  </div>
+                    {cellDate.getDate()}
+                    {dayBookings.length > 0 && (
+                      <div className="w-1 h-1 bg-blue-500 rounded-full mx-auto mt-0.5"></div>
+                    )}
+                  </button>
                 );
               })}
             </div>
 
-            {/* Legend */}
+            {/* Selected Date Bookings */}
+            {selectedCalendarDate && (
+              <div className="mt-6 p-4 border rounded-lg">
+                <h4 className="text-sm font-semibold mb-3">
+                  Bookings for {format(selectedCalendarDate, 'MMMM dd, yyyy')}
+                </h4>
+                {(() => {
+                  const selectedDateBookings = bookings.filter(booking => {
+                    const checkIn = new Date(booking.check_in);
+                    const checkOut = new Date(booking.check_out);
+                    return selectedCalendarDate >= checkIn && selectedCalendarDate < checkOut;
+                  });
+                  
+                  if (selectedDateBookings.length === 0) {
+                    return (
+                      <p className="text-sm text-muted-foreground">No bookings for this date</p>
+                    );
+                  }
+                  
+                  return (
+                    <div className="space-y-2">
+                      {selectedDateBookings.map((booking, idx) => (
+                        <div key={idx} className="flex items-center justify-between p-2 bg-muted/50 rounded">
+                          <div>
+                            <div className="text-sm font-medium">{booking.guest_name}</div>
+                             <div className="text-xs text-muted-foreground">
+                               {booking.room_type} • {booking.quantity} guests
+                             </div>
+                          </div>
+                          <div className="text-right">
+                            <div className={`text-xs px-2 py-1 rounded ${
+                              booking.booking_status === 'confirmed' 
+                                ? 'bg-green-100 text-green-800' 
+                                : booking.booking_status === 'cancelled'
+                                ? 'bg-red-100 text-red-800'
+                                : 'bg-yellow-100 text-yellow-800'
+                            }`}>
+                              {booking.booking_status}
+                            </div>
+                            <div className="text-xs text-muted-foreground mt-1">
+                              {format(new Date(booking.check_in), 'MMM dd')} - {format(new Date(booking.check_out), 'MMM dd')}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                 })()}
+               </div>
+             )}
+
+             {/* Legend */}
             <div className="flex items-center gap-4 text-xs">
               <div className="flex items-center gap-1">
                 <div className="w-3 h-3 rounded bg-green-100 border"></div>
