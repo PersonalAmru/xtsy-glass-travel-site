@@ -882,7 +882,7 @@ const Admin: React.FC = () => {
           <CardDescription>Navigate through past and future bookings</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
+          <div className="space-y-4 flex flex-col items-center">
             {/* Calendar Navigation */}
             <div className="flex items-center justify-between">
               <Button
