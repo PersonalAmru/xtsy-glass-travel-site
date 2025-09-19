@@ -138,17 +138,6 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
 
         {/* Sticky Footer (clickable and always visible) */}
         <div className="flex-shrink-0 border-t bg-gray-50 p-4 sticky bottom-0">
-          <Button
-            onClick={handleSubmit}
-            disabled={isSubmitting || !validateForm()}
-            className={`w-full font-bold py-3 text-lg transition-all duration-300 ${
-              validateForm() && !isSubmitting
-                ? "bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
-                : "bg-gray-300 text-gray-500 cursor-not-allowed"
-            }`}
-          >
-            {isSubmitting ? "Processing..." : validateForm() ? "Pay & Confirm" : "Please fill all required fields"}
-          </Button>
           <p className="text-xs text-muted-foreground mt-2 text-center">
             Your payment information is processed securely through Cashfree. Your booking will be confirmed upon successful payment.
           </p>
