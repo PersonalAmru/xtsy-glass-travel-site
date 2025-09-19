@@ -764,72 +764,95 @@ const Admin: React.FC = () => {
   const dates = generateDateArray();
 
   return (
-    <div className="min-h-screen bg-background p-4 space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold">Admin Dashboard</h1>
-          <p className="text-muted-foreground">Manage bookings and room availability</p>
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+      {/* Modern Header */}
+      <div className="sticky top-0 z-40 backdrop-blur-xl bg-background/80 border-b border-border/50 shadow-sm">
+        <div className="container mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="space-y-1">
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+                Admin Dashboard
+              </h1>
+              <p className="text-sm text-muted-foreground font-medium">
+                Manage bookings and room availability
+              </p>
+            </div>
+            <Button onClick={signOut} variant="outline" className="shadow-sm hover:shadow-md transition-all duration-200">
+              Sign Out
+            </Button>
+          </div>
         </div>
-        <Button onClick={signOut} variant="outline">
-          Sign Out
-        </Button>
       </div>
 
+      {/* Content Container */}
+      <div className="container mx-auto px-6 py-8 space-y-8">
+
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Bookings</CardTitle>
-            <Calendar className="h-4 w-4 text-muted-foreground" />
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <Card className="backdrop-blur-sm bg-card/50 border-border/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
+            <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Total Bookings</CardTitle>
+            <div className="p-2 bg-primary/10 rounded-full">
+              <Calendar className="h-5 w-5 text-primary" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{bookings.length}</div>
+            <div className="text-3xl font-bold text-foreground">{bookings.length}</div>
           </CardContent>
         </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Confirmed Bookings</CardTitle>
-            <CheckCircle className="h-4 w-4 text-green-600" />
+        <Card className="backdrop-blur-sm bg-card/50 border-border/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
+            <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Confirmed Bookings</CardTitle>
+            <div className="p-2 bg-green-500/10 rounded-full">
+              <CheckCircle className="h-5 w-5 text-green-600" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
+            <div className="text-3xl font-bold text-foreground">
               {bookings.filter(b => b.booking_status === 'confirmed').length}
             </div>
           </CardContent>
         </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Blocked Dates</CardTitle>
-            <XCircle className="h-4 w-4 text-red-600" />
+        <Card className="backdrop-blur-sm bg-card/50 border-border/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
+            <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Blocked Dates</CardTitle>
+            <div className="p-2 bg-red-500/10 rounded-full">
+              <XCircle className="h-5 w-5 text-red-600" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{blockedDates.length}</div>
+            <div className="text-3xl font-bold text-foreground">{blockedDates.length}</div>
           </CardContent>
         </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Room Types</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
+        <Card className="backdrop-blur-sm bg-card/50 border-border/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
+            <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Room Types</CardTitle>
+            <div className="p-2 bg-primary/10 rounded-full">
+              <Users className="h-5 w-5 text-primary" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{roomTypes.length}</div>
+            <div className="text-3xl font-bold text-foreground">{roomTypes.length}</div>
           </CardContent>
         </Card>
       </div>
 
       {/* Availability Grid - Organized by Property Type */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <CalendarDays className="h-5 w-5" />
-            Room Availability by Property (Next 90 Days)
-          </CardTitle>
-          <CardDescription>
-            Click on a cell to block/unblock that date for a room type
-          </CardDescription>
+      <Card className="backdrop-blur-sm bg-card/50 border-border/50 shadow-lg">
+        <CardHeader className="pb-6">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-primary/10 rounded-full">
+              <CalendarDays className="h-6 w-6 text-primary" />
+            </div>
+            <div>
+              <CardTitle className="text-xl font-semibold">Room Availability Dashboard</CardTitle>
+              <CardDescription className="text-sm text-muted-foreground mt-1">
+                Interactive 90-day availability matrix • Click cells to manage room blocking
+              </CardDescription>
+            </div>
+          </div>
         </CardHeader>
-        <CardContent>
+        <CardContent className="space-y-8">
           <div className="space-y-8">
             {/* Group rooms by property type */}
             {['Luxury', 'XTSY Travellers Hostel', 'XTSY Economy'].map(propertyType => {
@@ -892,13 +915,19 @@ const Admin: React.FC = () => {
       </Card>
 
       {/* Bookings Calendar View */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Calendar className="h-5 w-5" />
-            Bookings Calendar View
-          </CardTitle>
-          <CardDescription>Navigate through past and future bookings</CardDescription>
+      <Card className="backdrop-blur-sm bg-card/50 border-border/50 shadow-lg">
+        <CardHeader className="pb-6">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-primary/10 rounded-full">
+              <Calendar className="h-6 w-6 text-primary" />
+            </div>
+            <div>
+              <CardTitle className="text-xl font-semibold">Smart Calendar Navigator</CardTitle>
+              <CardDescription className="text-sm text-muted-foreground mt-1">
+                Browse booking timeline • Select dates to filter bookings
+              </CardDescription>
+            </div>
+          </div>
         </CardHeader>
         <CardContent>
           <div className="space-y-4 flex flex-col items-center">
@@ -1003,28 +1032,34 @@ const Admin: React.FC = () => {
       </Card>
 
       {/* Recent Bookings */}
-      <Card>
-        <CardHeader>
+      <Card className="backdrop-blur-sm bg-card/50 border-border/50 shadow-lg">
+        <CardHeader className="pb-6">
           <div className="flex items-center justify-between">
-            <div>
-              <CardTitle>
-                {selectedCalendarDate 
-                  ? `Bookings for ${format(selectedCalendarDate, 'MMMM dd, yyyy')}`
-                  : 'Recent Bookings (Last 90 Days)'
-                }
-              </CardTitle>
-              <CardDescription>
-                {selectedCalendarDate 
-                  ? `Showing bookings for the selected date`
-                  : 'All booking entries from the past 90 days with calendar view'
-                }
-              </CardDescription>
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-primary/10 rounded-full">
+                <Users className="h-6 w-6 text-primary" />
+              </div>
+              <div>
+                <CardTitle className="text-xl font-semibold">
+                  {selectedCalendarDate 
+                    ? `Bookings for ${format(selectedCalendarDate, 'MMMM dd, yyyy')}`
+                    : 'Recent Bookings Hub'
+                  }
+                </CardTitle>
+                <CardDescription className="text-sm text-muted-foreground mt-1">
+                  {selectedCalendarDate 
+                    ? `Detailed view for selected date`
+                    : 'Comprehensive booking management • Last 90 days'
+                  }
+                </CardDescription>
+              </div>
             </div>
             {selectedCalendarDate && (
               <Button 
                 variant="outline" 
                 size="sm"
                 onClick={() => setSelectedCalendarDate(null)}
+                className="shadow-sm hover:shadow-md transition-all duration-200"
               >
                 Clear Date Filter
               </Button>
@@ -1287,6 +1322,7 @@ const Admin: React.FC = () => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+      </div>
     </div>
   );
 };
