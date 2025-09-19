@@ -13,11 +13,14 @@ import { toast } from 'sonner';
 import { format, addDays, isWithinInterval } from 'date-fns';
 import { supabase } from '@/integrations/supabase/client';
 
-// Room type and inventory interfaces
+// Room type and inventory interfaces based on booking flow
 interface RoomType {
   id: string;
   name: string;
   total_units: number;
+  propertyType: string;
+  type: 'dorm' | 'private';
+  price: number;
   is_active: boolean;
 }
 
@@ -26,6 +29,91 @@ interface RoomInventory {
   date: string;
   available_count: number;
 }
+
+// Booking flow room data structure
+const BOOKING_FLOW_ROOMS = {
+  'xtsy-270': {
+    id: 'xtsy-270',
+    name: '270° Panorama Glass Ensuite',
+    total_units: 1,
+    propertyType: 'Luxury',
+    type: 'private',
+    price: 18000,
+    is_active: true
+  },
+  '4-bed-female-only-dorm': {
+    id: '4-bed-female-only-dorm',
+    name: '4-Bed Female Only Dormitory',
+    total_units: 4,
+    propertyType: 'XTSY Travellers Hostel',
+    type: 'dorm',
+    price: 850,
+    is_active: true
+  },
+  '4-bed-mixed-female-dorm': {
+    id: '4-bed-mixed-female-dorm',
+    name: '4-Bed Mixed Dormitory',
+    total_units: 4,
+    propertyType: 'XTSY Travellers Hostel',
+    type: 'dorm',
+    price: 800,
+    is_active: true
+  },
+  '6-bed-mixed-female-dorm': {
+    id: '6-bed-mixed-female-dorm',
+    name: '6-Bed Female Only Dormitory',
+    total_units: 24, // Updated capacity
+    propertyType: 'XTSY Travellers Hostel',
+    type: 'dorm',
+    price: 750,
+    is_active: true
+  },
+  '6-bed-mixed-dorm': {
+    id: '6-bed-mixed-dorm',
+    name: '6-Bed Mixed Dormitory',
+    total_units: 6,
+    propertyType: 'XTSY Travellers Hostel',
+    type: 'dorm',
+    price: 700,
+    is_active: true
+  },
+  'king-double-room': {
+    id: 'king-double-room',
+    name: 'King Double Room',
+    total_units: 2,
+    propertyType: 'XTSY Travellers Hostel',
+    type: 'private',
+    price: 3500,
+    is_active: true
+  },
+  'king-triple-room': {
+    id: 'king-triple-room',
+    name: 'King Triple Room',
+    total_units: 1,
+    propertyType: 'XTSY Travellers Hostel',
+    type: 'private',
+    price: 4500,
+    is_active: true
+  },
+  '6-bed-mixed-economy-dorm': {
+    id: '6-bed-mixed-economy-dorm',
+    name: '6-Bed Mixed Economy Dormitory',
+    total_units: 6, // Updated capacity
+    propertyType: 'XTSY Economy',
+    type: 'dorm',
+    price: 450,
+    is_active: true
+  },
+  '8-bed-mixed-economy-dorm': {
+    id: '8-bed-mixed-economy-dorm',
+    name: '8-Bed Mixed Economy Dormitory',
+    total_units: 8, // Updated capacity
+    propertyType: 'XTSY Economy',
+    type: 'dorm',
+    price: 350,
+    is_active: true
+  }
+} as const;
 
 interface Booking {
   id: string;
@@ -120,13 +208,19 @@ const Admin: React.FC = () => {
           toast.error('Failed to load room types: ' + roomTypesError.message);
           
           // Fallback mock data if database access fails
-          setRoomTypes([
-            { id: '6-bed-mixed-female-dorm', name: '6 BED MIXED FEMALE DORM', total_units: 24, is_active: true },
-            { id: '6-bed-mixed-economy-dorm', name: '6 BED MIXED ECONOMY DORM', total_units: 6, is_active: true },
-            { id: '8-bed-mixed-economy-dorm', name: '8 BED MIXED ECONOMY DORM', total_units: 8, is_active: true }
-          ]);
+          setRoomTypes(Object.values(BOOKING_FLOW_ROOMS));
         } else {
-          setRoomTypes(roomTypesData || []);
+          // Transform database data to match our interface
+          const transformedRoomTypes = (roomTypesData || []).map(room => ({
+            id: room.id,
+            name: room.name,
+            total_units: room.total_units || 0,
+            propertyType: room.category || 'Unknown',
+            type: (room.kind === 'private' ? 'private' : 'dorm') as 'dorm' | 'private',
+            price: room.base_price || 0,
+            is_active: room.is_active
+          }));
+          setRoomTypes(transformedRoomTypes);
         }
 
         // Load room inventory for next 30 days
@@ -145,11 +239,7 @@ const Admin: React.FC = () => {
           
           // Create fallback inventory data
           const fallbackInventory: RoomInventory[] = [];
-          const fallbackRoomTypes = roomTypesData || [
-            { id: '6-bed-mixed-female-dorm', name: '6 BED MIXED FEMALE DORM', total_units: 24, is_active: true },
-            { id: '6-bed-mixed-economy-dorm', name: '6 BED MIXED ECONOMY DORM', total_units: 6, is_active: true },
-            { id: '8-bed-mixed-economy-dorm', name: '8 BED MIXED ECONOMY DORM', total_units: 8, is_active: true }
-          ];
+          const fallbackRoomTypes = Object.values(BOOKING_FLOW_ROOMS);
           
           for (let i = 0; i < 30; i++) {
             const date = format(addDays(new Date(), i), 'yyyy-MM-dd');
@@ -440,59 +530,75 @@ const Admin: React.FC = () => {
         </Card>
       </div>
 
-      {/* Availability Grid */}
+      {/* Availability Grid - Organized by Property Type */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <CalendarDays className="h-5 w-5" />
-            Room Availability (Next 30 Days)
+            Room Availability by Property (Next 30 Days)
           </CardTitle>
           <CardDescription>
             Click on a cell to block/unblock that date for a room type
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="overflow-x-auto">
-            <div className="min-w-[800px]">
-              <div className="grid grid-cols-[200px_repeat(30,1fr)] gap-1 text-xs">
-                {/* Header row */}
-                <div className="font-medium p-2">Room Type</div>
-                {dates.map((date, index) => (
-                  <div key={index} className="font-medium p-1 text-center">
-                    {format(date, 'dd/MM')}
-                  </div>
-                ))}
-                
-                {/* Room availability rows */}
-                {roomTypes.map(roomType => (
-                  <React.Fragment key={roomType.id}>
-                    <div className="font-medium p-2 text-xs">
-                      {roomType.name.replace(/-/g, ' ').toUpperCase()}
+          <div className="space-y-8">
+            {/* Group rooms by property type */}
+            {['Luxury', 'XTSY Travellers Hostel', 'XTSY Economy'].map(propertyType => {
+              const propertyRooms = roomTypes.filter(room => room.propertyType === propertyType);
+              if (propertyRooms.length === 0) return null;
+              
+              return (
+                <div key={propertyType}>
+                  <h3 className="text-lg font-semibold mb-4 text-primary">{propertyType}</h3>
+                  <div className="overflow-x-auto">
+                    <div className="min-w-[800px]">
+                      <div className="grid grid-cols-[200px_repeat(30,1fr)] gap-1 text-xs">
+                        {/* Header row */}
+                        <div className="font-medium p-2">Room Type</div>
+                        {dates.map((date, index) => (
+                          <div key={index} className="font-medium p-1 text-center">
+                            {format(date, 'dd/MM')}
+                          </div>
+                        ))}
+                        
+                        {/* Room availability rows for this property */}
+                        {propertyRooms.map(roomType => (
+                          <React.Fragment key={roomType.id}>
+                            <div className="font-medium p-2 text-xs">
+                              <div>{roomType.name}</div>
+                              <div className="text-xs text-muted-foreground">
+                                {roomType.type === 'dorm' ? 'Beds' : 'Rooms'}: {roomType.total_units} | ₹{roomType.price}
+                              </div>
+                            </div>
+                            {dates.map((date, dateIndex) => {
+                              const { available, total, isBlocked } = calculateAvailability(roomType.id, date);
+                              return (
+                                <button
+                                  key={`${roomType.id}-${dateIndex}`}
+                                  onClick={() => toggleBlockDate(roomType.id, date)}
+                                  className={`p-1 text-xs rounded border transition-colors ${
+                                    isBlocked
+                                      ? 'bg-red-100 text-red-800 hover:bg-red-200'
+                                      : available === 0
+                                      ? 'bg-orange-100 text-orange-800 hover:bg-orange-200'
+                                      : available < total * 0.3
+                                      ? 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200'
+                                      : 'bg-green-100 text-green-800 hover:bg-green-200'
+                                  }`}
+                                >
+                                  {isBlocked ? 'Blocked' : `${available}/${total}`}
+                                </button>
+                              );
+                            })}
+                          </React.Fragment>
+                        ))}
+                      </div>
                     </div>
-                    {dates.map((date, dateIndex) => {
-                      const { available, total, isBlocked } = calculateAvailability(roomType.id, date);
-                      return (
-                        <button
-                          key={`${roomType.id}-${dateIndex}`}
-                          onClick={() => toggleBlockDate(roomType.id, date)}
-                          className={`p-1 text-xs rounded border transition-colors ${
-                            isBlocked
-                              ? 'bg-red-100 text-red-800 hover:bg-red-200'
-                              : available === 0
-                              ? 'bg-orange-100 text-orange-800 hover:bg-orange-200'
-                              : available < total * 0.3
-                              ? 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200'
-                              : 'bg-green-100 text-green-800 hover:bg-green-200'
-                          }`}
-                        >
-                          {isBlocked ? 'Blocked' : `${available}/${total}`}
-                        </button>
-                      );
-                    })}
-                  </React.Fragment>
-                ))}
-              </div>
-            </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </CardContent>
       </Card>
@@ -586,7 +692,7 @@ const Admin: React.FC = () => {
                                 <SelectContent>
                                   {roomTypes.map(type => (
                                     <SelectItem key={type.id} value={type.id}>
-                                      {type.name.replace(/-/g, ' ').toUpperCase()}
+                                      {type.name} ({type.propertyType})
                                     </SelectItem>
                                   ))}
                                 </SelectContent>
