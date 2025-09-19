@@ -148,8 +148,12 @@ interface EditBookingData {
   guest_name: string;
   check_in: string;
   check_out: string;
-  room_type: string;
-  quantity: number;
+  room_selections: Array<{
+    room_type_id: string;
+    room_type_name: string;
+    quantity: number;
+  }>;
+  total_pax: number;
 }
 
 const Admin: React.FC = () => {
@@ -165,8 +169,8 @@ const Admin: React.FC = () => {
     guest_name: '',
     check_in: '',
     check_out: '',
-    room_type: '',
-    quantity: 1
+    room_selections: [],
+    total_pax: 0
   });
 
   // Check if user is admin
@@ -429,23 +433,85 @@ const Admin: React.FC = () => {
       guest_name: booking.guest_name,
       check_in: booking.check_in,
       check_out: booking.check_out,
-      room_type: booking.room_type,
-      quantity: booking.quantity || 1
+      room_selections: [{
+        room_type_id: booking.room_type,
+        room_type_name: roomTypes.find(rt => rt.id === booking.room_type)?.name || booking.room_type,
+        quantity: booking.quantity || 1
+      }],
+      total_pax: booking.quantity || 1
     });
   };
 
   const saveBookingEdit = () => {
     if (!editingBooking) return;
 
+    // For now, we'll save the first room selection as the primary booking
+    // In a real implementation, you'd handle multiple room types properly
+    const primaryRoom = editForm.room_selections[0];
+    
     // Update booking in state
     setBookings(prev => prev.map(booking =>
       booking.id === editingBooking.id
-        ? { ...booking, ...editForm }
+        ? { 
+            ...booking, 
+            guest_name: editForm.guest_name,
+            check_in: editForm.check_in,
+            check_out: editForm.check_out,
+            room_type: primaryRoom?.room_type_id || booking.room_type,
+            quantity: editForm.total_pax
+          }
         : booking
     ));
     
     setEditingBooking(null);
     toast.success('Booking updated successfully');
+  };
+
+  // Add new room selection
+  const addRoomSelection = () => {
+    setEditForm(prev => ({
+      ...prev,
+      room_selections: [...prev.room_selections, { room_type_id: '', room_type_name: '', quantity: 1 }]
+    }));
+  };
+
+  // Remove room selection
+  const removeRoomSelection = (index: number) => {
+    setEditForm(prev => {
+      const newSelections = prev.room_selections.filter((_, i) => i !== index);
+      const newTotalPax = newSelections.reduce((sum, selection) => sum + selection.quantity, 0);
+      return {
+        ...prev,
+        room_selections: newSelections,
+        total_pax: newTotalPax
+      };
+    });
+  };
+
+  // Update room selection
+  const updateRoomSelection = (index: number, field: string, value: string | number) => {
+    setEditForm(prev => {
+      const newSelections = [...prev.room_selections];
+      if (field === 'room_type_id') {
+        const roomType = roomTypes.find(rt => rt.id === value);
+        newSelections[index] = {
+          ...newSelections[index],
+          room_type_id: value as string,
+          room_type_name: roomType?.name || ''
+        };
+      } else if (field === 'quantity') {
+        newSelections[index] = {
+          ...newSelections[index],
+          quantity: value as number
+        };
+      }
+      const newTotalPax = newSelections.reduce((sum, selection) => sum + selection.quantity, 0);
+      return {
+        ...prev,
+        room_selections: newSelections,
+        total_pax: newTotalPax
+      };
+    });
   };
 
   // Cancel booking (mock implementation)
@@ -715,7 +781,7 @@ const Admin: React.FC = () => {
                             View Details
                           </Button>
                         </DialogTrigger>
-                        <DialogContent className="max-w-2xl">
+                        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
                           <DialogHeader>
                             <DialogTitle>Booking Details</DialogTitle>
                             <DialogDescription>
@@ -744,6 +810,10 @@ const Admin: React.FC = () => {
                                 <Label>WhatsApp Number</Label>
                                 <div className="text-sm font-medium">{booking.whatsapp_number}</div>
                               </div>
+                              <div>
+                                <Label>Total Guests (PAX)</Label>
+                                <div className="text-lg font-bold text-primary">{editForm.total_pax}</div>
+                              </div>
                             </div>
                             <div className="space-y-4">
                               <div>
@@ -764,31 +834,65 @@ const Admin: React.FC = () => {
                                   onChange={(e) => setEditForm(prev => ({ ...prev, check_out: e.target.value }))}
                                 />
                               </div>
-                              <div>
-                                <Label htmlFor="room_type">Room Type</Label>
-                                <Select value={editForm.room_type} onValueChange={(value) => setEditForm(prev => ({ ...prev, room_type: value }))}>
-                                  <SelectTrigger>
-                                    <SelectValue />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    {roomTypes.map(type => (
-                                      <SelectItem key={type.id} value={type.id}>
-                                        {type.name} ({type.propertyType})
-                                      </SelectItem>
-                                    ))}
-                                  </SelectContent>
-                                </Select>
-                              </div>
-                              <div>
-                                <Label htmlFor="quantity">Quantity</Label>
-                                <Input
-                                  id="quantity"
-                                  type="number"
-                                  min="1"
-                                  value={editForm.quantity}
-                                  onChange={(e) => setEditForm(prev => ({ ...prev, quantity: parseInt(e.target.value) }))}
-                                />
-                              </div>
+                            </div>
+                          </div>
+                          
+                          {/* Room Selections Section */}
+                          <div className="mt-6">
+                            <div className="flex items-center justify-between mb-4">
+                              <Label className="text-base font-semibold">Room Selections</Label>
+                              <Button 
+                                type="button" 
+                                variant="outline" 
+                                size="sm"
+                                onClick={addRoomSelection}
+                              >
+                                Add Room Type
+                              </Button>
+                            </div>
+                            
+                            <div className="space-y-3">
+                              {editForm.room_selections.map((selection, index) => (
+                                <div key={index} className="flex items-center gap-3 p-3 border rounded-lg">
+                                  <div className="flex-1">
+                                    <Label>Room Type</Label>
+                                    <Select 
+                                      value={selection.room_type_id} 
+                                      onValueChange={(value) => updateRoomSelection(index, 'room_type_id', value)}
+                                    >
+                                      <SelectTrigger>
+                                        <SelectValue placeholder="Select room type" />
+                                      </SelectTrigger>
+                                      <SelectContent>
+                                        {roomTypes.map(type => (
+                                          <SelectItem key={type.id} value={type.id}>
+                                            {type.name} ({type.propertyType})
+                                          </SelectItem>
+                                        ))}
+                                      </SelectContent>
+                                    </Select>
+                                  </div>
+                                  <div className="w-24">
+                                    <Label>Guests</Label>
+                                    <Input
+                                      type="number"
+                                      min="1"
+                                      value={selection.quantity}
+                                      onChange={(e) => updateRoomSelection(index, 'quantity', parseInt(e.target.value))}
+                                    />
+                                  </div>
+                                  {editForm.room_selections.length > 1 && (
+                                    <Button
+                                      type="button"
+                                      variant="destructive"
+                                      size="sm"
+                                      onClick={() => removeRoomSelection(index)}
+                                    >
+                                      Remove
+                                    </Button>
+                                  )}
+                                </div>
+                              ))}
                             </div>
                           </div>
                           <DialogFooter>
