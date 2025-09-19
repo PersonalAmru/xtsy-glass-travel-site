@@ -49,9 +49,9 @@ class CashfreePaymentService {
   constructor() {
     // Default to sandbox environment
     this.config = {
-      appId: process.env.VITE_CASHFREE_APP_ID || 'sandbox_app_id',
-      secretKey: process.env.VITE_CASHFREE_SECRET_KEY || 'sandbox_secret',
-      environment: (process.env.VITE_CASHFREE_ENV as 'sandbox' | 'production') || 'sandbox'
+      appId: import.meta.env.VITE_CASHFREE_APP_ID || 'sandbox_app_id',
+      secretKey: import.meta.env.VITE_CASHFREE_SECRET_KEY || 'sandbox_secret',
+      environment: (import.meta.env.VITE_CASHFREE_ENV as 'sandbox' | 'production') || 'sandbox'
     };
   }
 
