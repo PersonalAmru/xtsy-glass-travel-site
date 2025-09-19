@@ -1057,7 +1057,7 @@ const Admin: React.FC = () => {
 
       {/* Block Confirmation Modal */}
       <Dialog open={blockModalOpen} onOpenChange={setBlockModalOpen}>
-        <DialogContent className="max-w-md">
+        <DialogContent className="max-w-lg">
           <DialogHeader>
             <DialogTitle>Block Room Availability</DialogTitle>
             <DialogDescription>
