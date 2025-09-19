@@ -35,7 +35,7 @@ const BOOKING_FLOW_ROOMS = {
   'xtsy-270': {
     id: 'xtsy-270',
     name: '270° Panorama Glass Ensuite',
-    total_units: 6, // Updated to 6 beds
+    total_units: 1,
     propertyType: 'Luxury',
     type: 'private',
     price: 18000,
@@ -44,7 +44,7 @@ const BOOKING_FLOW_ROOMS = {
   '4-bed-female-only-dorm': {
     id: '4-bed-female-only-dorm',
     name: '4-Bed Female Only Dormitory',
-    total_units: 6, // Updated to 6 beds
+    total_units: 4,
     propertyType: 'XTSY Travellers Hostel',
     type: 'dorm',
     price: 850,
@@ -53,7 +53,7 @@ const BOOKING_FLOW_ROOMS = {
   '4-bed-mixed-female-dorm': {
     id: '4-bed-mixed-female-dorm',
     name: '4-Bed Mixed Dormitory',
-    total_units: 6, // Updated to 6 beds
+    total_units: 4,
     propertyType: 'XTSY Travellers Hostel',
     type: 'dorm',
     price: 800,
@@ -71,7 +71,7 @@ const BOOKING_FLOW_ROOMS = {
   '6-bed-mixed-dorm': {
     id: '6-bed-mixed-dorm',
     name: '6-Bed Mixed Dormitory',
-    total_units: 6, // Updated to 6 beds
+    total_units: 6,
     propertyType: 'XTSY Travellers Hostel',
     type: 'dorm',
     price: 700,
@@ -80,7 +80,7 @@ const BOOKING_FLOW_ROOMS = {
   'king-double-room': {
     id: 'king-double-room',
     name: 'King Double Room',
-    total_units: 6, // Updated to 6 beds
+    total_units: 2,
     propertyType: 'XTSY Travellers Hostel',
     type: 'private',
     price: 3500,
@@ -89,7 +89,7 @@ const BOOKING_FLOW_ROOMS = {
   'king-triple-room': {
     id: 'king-triple-room',
     name: 'King Triple Room',
-    total_units: 6, // Updated to 6 beds
+    total_units: 1,
     propertyType: 'XTSY Travellers Hostel',
     type: 'private',
     price: 4500,
@@ -98,7 +98,7 @@ const BOOKING_FLOW_ROOMS = {
   '6-bed-mixed-economy-dorm': {
     id: '6-bed-mixed-economy-dorm',
     name: '6-Bed Mixed Economy Dormitory',
-    total_units: 6, // Updated to 6 beds
+    total_units: 24, // Updated capacity
     propertyType: 'XTSY Economy',
     type: 'dorm',
     price: 450,
@@ -107,7 +107,7 @@ const BOOKING_FLOW_ROOMS = {
   '8-bed-mixed-economy-dorm': {
     id: '8-bed-mixed-economy-dorm',
     name: '8-Bed Mixed Economy Dormitory',
-    total_units: 6, // Updated to 6 beds
+    total_units: 8, // Updated capacity
     propertyType: 'XTSY Economy',
     type: 'dorm',
     price: 350,
