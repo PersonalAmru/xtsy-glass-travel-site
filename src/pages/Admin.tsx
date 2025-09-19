@@ -98,7 +98,7 @@ const BOOKING_FLOW_ROOMS = {
   '6-bed-mixed-economy-dorm': {
     id: '6-bed-mixed-economy-dorm',
     name: '6-Bed Mixed Economy Dormitory',
-    total_units: 24, // Updated capacity
+    total_units: 6,
     propertyType: 'XTSY Economy',
     type: 'dorm',
     price: 450,
