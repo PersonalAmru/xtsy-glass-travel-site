@@ -335,28 +335,61 @@ const Admin: React.FC = () => {
     };
   };
 
-  // Toggle block date (mock implementation)
-  const toggleBlockDate = (roomType: string, date: Date) => {
+  // Toggle block date with database integration
+  const toggleBlockDate = async (roomType: string, date: Date) => {
     const dateStr = format(date, 'yyyy-MM-dd');
     const existingBlock = blockedDates.find(
       blocked => blocked.room_type === roomType && blocked.date === dateStr
     );
 
-    if (existingBlock) {
-      // Remove block
-      setBlockedDates(prev => prev.filter(b => b.id !== existingBlock.id));
-      toast.success('Date unblocked successfully');
-    } else {
-      // Add block
-      const newBlock: BlockedDate = {
-        id: Date.now().toString(),
-        room_type: roomType,
-        date: dateStr,
-        blocked: true,
-        created_at: new Date().toISOString()
-      };
-      setBlockedDates(prev => [...prev, newBlock]);
-      toast.success('Date blocked successfully');
+    try {
+      if (existingBlock) {
+        // Remove block from database
+        const { error } = await supabase
+          .from('blocked_dates')
+          .delete()
+          .eq('room_type', roomType)
+          .eq('date', dateStr);
+
+        if (error) {
+          toast.error('Failed to unblock date: ' + error.message);
+          return;
+        }
+
+        // Update local state
+        setBlockedDates(prev => prev.filter(b => b.id !== existingBlock.id));
+        toast.success('Date unblocked successfully');
+      } else {
+        // Add block to database
+        const { data, error } = await supabase
+          .from('blocked_dates')
+          .insert({
+            room_type: roomType,
+            date: dateStr,
+            blocked: true
+          })
+          .select()
+          .single();
+
+        if (error) {
+          toast.error('Failed to block date: ' + error.message);
+          return;
+        }
+
+        // Update local state
+        const newBlock: BlockedDate = {
+          id: data.id,
+          room_type: roomType,
+          date: dateStr,
+          blocked: true,
+          created_at: data.created_at
+        };
+        setBlockedDates(prev => [...prev, newBlock]);
+        toast.success('Date blocked successfully');
+      }
+    } catch (error) {
+      console.error('Error toggling block date:', error);
+      toast.error('Failed to update room availability');
     }
   };
 

@@ -23,6 +23,7 @@ interface FastRoomCardProps {
     propertyType: string;
     maxRooms?: number;
     images?: string[];
+    isBlocked?: boolean;
   };
   isSelected: boolean;
   selection: { guests: number; rooms: number };
@@ -93,6 +94,9 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
   
   // Check if this is a luxury room
   const isLuxury = room.propertyType === "luxury";
+  
+  // Check if room is blocked/sold out
+  const isSoldOut = room.isBlocked;
 
   // Calculate subtotal: price × nights × selected rooms/beds
   const calculateSubtotal = () => {
@@ -122,6 +126,13 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
 
   // Handle card selection with proper event checking
   const handleCardClick = React.useCallback((e: React.MouseEvent) => {
+    // Prevent card selection if room is sold out
+    if (isSoldOut) {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+    
     // Prevent card selection if clicking on buttons or their containers
     const target = e.target as HTMLElement;
     if (target.closest('button') || target.closest('[data-toggle-container]')) {
@@ -130,7 +141,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
       return;
     }
     onRoomSelect(room.id);
-  }, [room.id, onRoomSelect]);
+  }, [room.id, onRoomSelect, isSoldOut]);
 
   // Calculate button sizing and styling
   const getButtonStyles = () => ({
@@ -163,10 +174,14 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
     <>
       <CardWrapper>
         <Card 
-          className={`transition-all duration-300 cursor-pointer hover:shadow-lg bg-black text-white border-gray-700 overflow-hidden ${
-            isSelected 
-              ? 'ring-2 ring-primary shadow-lg bg-gray-900' 
-              : 'hover:shadow-md hover:bg-gray-900'
+          className={`transition-all duration-300 overflow-hidden ${
+            isSoldOut 
+              ? 'bg-gray-800 text-gray-400 border-gray-600 cursor-not-allowed opacity-75'
+              : `cursor-pointer hover:shadow-lg bg-black text-white border-gray-700 ${
+                  isSelected 
+                    ? 'ring-2 ring-primary shadow-lg bg-gray-900' 
+                    : 'hover:shadow-md hover:bg-gray-900'
+                }`
           } ${isMobile ? 'mx-2' : ''} ${
             isXTSY270 ? 'h-auto landscape-card' : ''
           }`}
@@ -202,16 +217,26 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                     {room.name}
                   </CardTitle>
                   <div className={`text-right flex-shrink-0 min-w-0`}>
-                    <div className={`font-bold text-primary text-right ${
-                      isMobile ? 'text-base' : isTablet ? 'text-lg' : 'text-xl'
-                    } ${isXTSY270 ? 'text-base' : ''} leading-tight`}>
-                      {formatPrice(room.price || 0)}
-                    </div>
-                    <div className={`text-gray-300 text-right ${
-                      isMobile ? 'text-xs' : 'text-sm'
-                    } ${isXTSY270 ? 'text-xs' : ''} leading-tight`}>
-                      per night
-                    </div>
+                    {isSoldOut ? (
+                      <div className={`font-bold text-red-400 text-right ${
+                        isMobile ? 'text-base' : isTablet ? 'text-lg' : 'text-xl'
+                      } ${isXTSY270 ? 'text-base' : ''} leading-tight`}>
+                        SOLD OUT
+                      </div>
+                    ) : (
+                      <>
+                        <div className={`font-bold text-primary text-right ${
+                          isMobile ? 'text-base' : isTablet ? 'text-lg' : 'text-xl'
+                        } ${isXTSY270 ? 'text-base' : ''} leading-tight`}>
+                          {formatPrice(room.price || 0)}
+                        </div>
+                        <div className={`text-gray-300 text-right ${
+                          isMobile ? 'text-xs' : 'text-sm'
+                        } ${isXTSY270 ? 'text-xs' : ''} leading-tight`}>
+                          per night
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
               </CardHeader>
@@ -251,69 +276,83 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                 </div>
 
                 {/* Room selection only */}
-                <div className={`space-y-2 pt-2 border-t border-gray-700 ${
-                  isMobile ? 'space-y-2 pt-2' : ''
-                } ${isXTSY270 ? 'space-y-2 pt-2 mt-auto' : ''}`}>
-                {/* Bed/Room Selection */}
-                  <div className="flex items-center justify-between" data-toggle-container onClick={(e) => e.stopPropagation()}>
-                    <span className={`font-medium text-white text-center ${
-                      isMobile ? 'text-xs' : 'text-sm'
-                    } ${isXTSY270 ? 'text-xs' : ''}`}>
-                      {room.type === 'dorm' ? 'Beds:' : 'Rooms:'}
-                    </span>
-                    <div className="flex items-center gap-3">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={handleDecrement}
-                        disabled={selection.rooms <= 0}
-                        className={buttonClasses}
-                        aria-label={`Decrease ${room.type === 'dorm' ? 'beds' : 'rooms'}`}
-                        type="button"
-                      >
-                        <Minus className={`${
-                          isMobile ? 'h-4 w-4' : 'h-4 w-4'
-                        } ${isXTSY270 ? 'h-4 w-4' : ''}`} />
-                      </Button>
-                      <span className={`text-center font-medium text-white min-w-[2rem] flex items-center justify-center ${
+                {isSoldOut ? (
+                  <div className={`space-y-2 pt-2 border-t border-gray-600 ${
+                    isMobile ? 'space-y-2 pt-2' : ''
+                  } ${isXTSY270 ? 'space-y-2 pt-2 mt-auto' : ''}`}>
+                    <div className="flex items-center justify-center py-4">
+                      <span className={`font-bold text-red-400 text-center ${
                         isMobile ? 'text-sm' : 'text-base'
                       } ${isXTSY270 ? 'text-sm' : ''}`}>
-                        {selection.rooms}
+                        Unavailable for selected dates
                       </span>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={handleIncrement}
-                        disabled={selection.rooms >= (room.maxRooms || 5)}
-                        className={buttonClasses}
-                        aria-label={`Increase ${room.type === 'dorm' ? 'beds' : 'rooms'}`}
-                        type="button"
-                      >
-                        <Plus className={`${
-                          isMobile ? 'h-4 w-4' : 'h-4 w-4'
-                        } ${isXTSY270 ? 'h-4 w-4' : ''}`} />
-                      </Button>
                     </div>
                   </div>
-
-                  {/* Subtotal - Only show when rooms > 0 */}
-                  {selection.rooms > 0 && (
-                    <div className={`flex items-center justify-between pt-2 border-t border-gray-700 ${
-                      isMobile ? 'pt-1.5' : ''
-                    } ${isXTSY270 ? 'pt-1.5' : ''}`}>
+                ) : (
+                  <div className={`space-y-2 pt-2 border-t border-gray-700 ${
+                    isMobile ? 'space-y-2 pt-2' : ''
+                  } ${isXTSY270 ? 'space-y-2 pt-2 mt-auto' : ''}`}>
+                  {/* Bed/Room Selection */}
+                    <div className="flex items-center justify-between" data-toggle-container onClick={(e) => e.stopPropagation()}>
                       <span className={`font-medium text-white text-center ${
                         isMobile ? 'text-xs' : 'text-sm'
                       } ${isXTSY270 ? 'text-xs' : ''}`}>
-                        Subtotal:
+                        {room.type === 'dorm' ? 'Beds:' : 'Rooms:'}
                       </span>
-                      <span className={`font-bold text-primary text-right ${
-                        isMobile ? 'text-sm' : isTablet ? 'text-base' : 'text-lg'
-                      } ${isXTSY270 ? 'text-sm' : ''}`}>
-                        {formatPrice(calculateSubtotal())}
-                      </span>
+                      <div className="flex items-center gap-3">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={handleDecrement}
+                          disabled={selection.rooms <= 0}
+                          className={buttonClasses}
+                          aria-label={`Decrease ${room.type === 'dorm' ? 'beds' : 'rooms'}`}
+                          type="button"
+                        >
+                          <Minus className={`${
+                            isMobile ? 'h-4 w-4' : 'h-4 w-4'
+                          } ${isXTSY270 ? 'h-4 w-4' : ''}`} />
+                        </Button>
+                        <span className={`text-center font-medium text-white min-w-[2rem] flex items-center justify-center ${
+                          isMobile ? 'text-sm' : 'text-base'
+                        } ${isXTSY270 ? 'text-sm' : ''}`}>
+                          {selection.rooms}
+                        </span>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={handleIncrement}
+                          disabled={selection.rooms >= (room.maxRooms || 5)}
+                          className={buttonClasses}
+                          aria-label={`Increase ${room.type === 'dorm' ? 'beds' : 'rooms'}`}
+                          type="button"
+                        >
+                          <Plus className={`${
+                            isMobile ? 'h-4 w-4' : 'h-4 w-4'
+                          } ${isXTSY270 ? 'h-4 w-4' : ''}`} />
+                        </Button>
+                      </div>
                     </div>
-                  )}
-                </div>
+
+                    {/* Subtotal - Only show when rooms > 0 and not sold out */}
+                    {!isSoldOut && selection.rooms > 0 && (
+                      <div className={`flex items-center justify-between pt-2 border-t border-gray-700 ${
+                        isMobile ? 'pt-1.5' : ''
+                      } ${isXTSY270 ? 'pt-1.5' : ''}`}>
+                        <span className={`font-medium text-white text-center ${
+                          isMobile ? 'text-xs' : 'text-sm'
+                        } ${isXTSY270 ? 'text-xs' : ''}`}>
+                          Subtotal:
+                        </span>
+                        <span className={`font-bold text-primary text-right ${
+                          isMobile ? 'text-sm' : isTablet ? 'text-base' : 'text-lg'
+                        } ${isXTSY270 ? 'text-sm' : ''}`}>
+                          {formatPrice(calculateSubtotal())}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                )}
               </CardContent>
             </div>
           </div>

@@ -9,11 +9,12 @@ import GuestDetails from '@/components/GuestDetails';
 import UPIPaymentModal from '@/components/UPIPaymentModal';
 import { useScreenSize } from '@/hooks/use-mobile';
 import { toast } from 'sonner';
-import { differenceInDays, parseISO } from 'date-fns';
+import { differenceInDays, parseISO, format, addDays } from 'date-fns';
 import Header from '@/components/Header';
 import { ROOM_DATA, XTSY270_DATA } from '@/data/rooms/xtsy270';
 import { useApp } from '@/contexts/AppContext';
 import { generateStandardizedFeatures } from '@/utils/roomFeatures';
+import { supabase } from '@/integrations/supabase/client';
 interface Room {
   id: string;
   name: string;
@@ -26,6 +27,7 @@ interface Room {
   propertyType: string;
   maxRooms?: number;
   images?: string[];
+  isBlocked?: boolean;
 }
 interface SelectedRoom {
   id: string;
@@ -176,6 +178,8 @@ export default function BookingFlow() {
   });
   const [showGuestModal, setShowGuestModal] = useState(false);
   const [showUPIModal, setShowUPIModal] = useState(false);
+  const [blockedDates, setBlockedDates] = useState<{[key: string]: string[]}>({});
+  const [roomsWithAvailability, setRoomsWithAvailability] = useState<Room[]>([]);
   const screenSize = useScreenSize();
   const isMobileView = screenSize === 'mobile';
   const isTabletView = screenSize === 'tablet';
@@ -197,7 +201,65 @@ export default function BookingFlow() {
       return 1;
     }
   }, [bookingDates.checkIn, bookingDates.checkOut]);
+  // Check if room is blocked for the selected dates
+  const checkRoomAvailability = (roomId: string, checkIn: string, checkOut: string): boolean => {
+    const roomBlockedDates = blockedDates[roomId] || [];
+    const checkInDate = new Date(checkIn);
+    const checkOutDate = new Date(checkOut);
+    
+    // Check each night of the stay
+    let currentDate = new Date(checkInDate);
+    while (currentDate < checkOutDate) {
+      const dateStr = format(currentDate, 'yyyy-MM-dd');
+      if (roomBlockedDates.includes(dateStr)) {
+        return false; // Room is blocked for this date
+      }
+      currentDate = addDays(currentDate, 1);
+    }
+    return true; // Room is available
+  };
+
   const roomsArray: Room[] = Object.values(ALL_ROOMS_DATA);
+  // Load blocked dates on component mount and when booking dates change
+  useEffect(() => {
+    const loadBlockedDates = async () => {
+      try {
+        const { data: blockedData, error } = await supabase
+          .from('blocked_dates')
+          .select('room_type, date')
+          .eq('blocked', true);
+
+        if (error) {
+          console.error('Error loading blocked dates:', error);
+          return;
+        }
+
+        // Group blocked dates by room type
+        const blockedByRoom: {[key: string]: string[]} = {};
+        blockedData?.forEach(block => {
+          if (!blockedByRoom[block.room_type]) {
+            blockedByRoom[block.room_type] = [];
+          }
+          blockedByRoom[block.room_type].push(block.date);
+        });
+
+        setBlockedDates(blockedByRoom);
+
+        // Update rooms with availability status
+        const updatedRooms = Object.values(ALL_ROOMS_DATA).map(room => ({
+          ...room,
+          isBlocked: !checkRoomAvailability(room.id, bookingDates.checkIn, bookingDates.checkOut)
+        }));
+        
+        setRoomsWithAvailability(updatedRooms);
+      } catch (error) {
+        console.error('Error loading room availability:', error);
+      }
+    };
+
+    loadBlockedDates();
+  }, [bookingDates.checkIn, bookingDates.checkOut]);
+
   useEffect(() => {
     if (preSelectedRoom && preSelectedProperty) {
       try {
@@ -352,9 +414,9 @@ export default function BookingFlow() {
     };
   };
   const roomsByProperty = {
-    luxury: roomsArray.filter(room => room.propertyType === 'luxury'),
-    hostel: roomsArray.filter(room => room.propertyType === 'hostel'),
-    economy: roomsArray.filter(room => room.propertyType === 'economy')
+    luxury: roomsWithAvailability.filter(room => room.propertyType === 'luxury'),
+    hostel: roomsWithAvailability.filter(room => room.propertyType === 'hostel'),
+    economy: roomsWithAvailability.filter(room => room.propertyType === 'economy')
   };
   const getRoomSelection = React.useCallback((roomId: string) => {
     const selected = selectedRooms.find(r => r.id === roomId);
