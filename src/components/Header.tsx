@@ -170,15 +170,26 @@ const Header = () => {
                       <UserMenu />
                     </div>
                   ) : (
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      onClick={() => handleAuthClick('newsletter')}
-                      className="text-green-400 hover:text-green-300 hover:bg-white/10 touch-target"
-                    >
-                      <Users className="h-4 w-4 mr-2" />
-                      Newsletter
-                    </Button>
+                     <div className="flex items-center space-x-2">
+                       <Button 
+                         variant="ghost" 
+                         size="sm"
+                         onClick={() => handleAuthClick('signin')}
+                         className="text-white hover:text-primary hover:bg-white/10 touch-target"
+                       >
+                         <User className="h-4 w-4 mr-2" />
+                         Sign In
+                       </Button>
+                       <Button 
+                         variant="ghost" 
+                         size="sm"
+                         onClick={() => handleAuthClick('newsletter')}
+                         className="text-green-400 hover:text-green-300 hover:bg-white/10 touch-target"
+                       >
+                         <Users className="h-4 w-4 mr-2" />
+                         Newsletter
+                       </Button>
+                     </div>
                   )}
                 </div>
               </nav>
