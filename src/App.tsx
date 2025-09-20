@@ -14,6 +14,7 @@ import { LazyGallery } from "./pages/lazy/LazyGallery";
 import { LazyTravel } from "./pages/lazy/LazyTravel";
 import { LazyXTSY270 } from "./pages/lazy/LazyXTSY270";
 import { LazyAdmin } from "./pages/lazy/LazyAdmin";
+import { LazyDashboard } from "./pages/lazy/LazyDashboard";
 import BookingFlow from "./pages/BookingFlow";
 import BookingConfirmationPage from "./pages/BookingConfirmationPage";
 import Events from "./pages/Events";
@@ -100,6 +101,11 @@ function App() {
             <Route path="/events" element={
               <Suspense fallback={<LoadingScreen />}>
                 <Events />
+              </Suspense>
+            } />
+            <Route path="/dashboard" element={
+              <Suspense fallback={<LoadingScreen />}>
+                <LazyDashboard />
               </Suspense>
             } />
             <Route path="/admin" element={

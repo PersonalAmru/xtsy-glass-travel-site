@@ -270,7 +270,18 @@ const Header = () => {
                     </div>
                   </div>
                 ) : (
-                  <div className="mx-4 pt-4 border-t border-white/20">
+                  <div className="mx-4 pt-4 border-t border-white/20 space-y-2">
+                    <Button 
+                      variant="ghost" 
+                      className="w-full justify-start px-4 py-3 text-white hover:text-primary hover:bg-white/10 rounded-md touch-target"
+                      onClick={() => {
+                        handleAuthClick('signin');
+                        setIsMenuOpen(false);
+                      }}
+                    >
+                      <User className="h-4 w-4 mr-2" />
+                      Sign In
+                    </Button>
                     <Button 
                       variant="ghost" 
                       className="w-full justify-start px-4 py-3 text-green-400 hover:text-green-300 hover:bg-white/10 rounded-md touch-target"

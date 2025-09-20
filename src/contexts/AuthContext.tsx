@@ -1,4 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { supabase } from '@/integrations/supabase/client';
+import { User as SupabaseUser } from '@supabase/supabase-js';
 
 interface User {
   id: string;
@@ -14,6 +16,7 @@ interface AuthContextType {
   user: User | null;
   loading: boolean;
   signIn: (email: string, password: string) => Promise<{ error: any }>;
+  signUp: (email: string, password: string, fullName: string) => Promise<{ error: any }>;
   signOut: () => void;
 }
 
@@ -27,32 +30,74 @@ export const useAuth = () => {
   return context;
 };
 
-// Hardcoded credentials
-const VALID_EMAIL = 'amru@xtsy.one';
-const VALID_PASSWORD = 'xtsy.one';
+// Hardcoded admin credentials
+const ADMIN_EMAIL = 'amru@xtsy.one';
+const ADMIN_PASSWORD = 'xtsy.one';
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check if user is already logged in (from localStorage)
-    const storedUser = localStorage.getItem('auth_user');
-    if (storedUser) {
-      try {
-        setUser(JSON.parse(storedUser));
-      } catch (error) {
-        localStorage.removeItem('auth_user');
+    // Check for existing session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session?.user) {
+        setUser({
+          id: session.user.id,
+          email: session.user.email!,
+          role: 'user',
+          user_metadata: session.user.user_metadata
+        });
+      } else {
+        // Check for stored admin session
+        const storedUser = localStorage.getItem('admin_auth');
+        if (storedUser) {
+          try {
+            setUser(JSON.parse(storedUser));
+          } catch (error) {
+            localStorage.removeItem('admin_auth');
+          }
+        }
       }
-    }
-    setLoading(false);
+      setLoading(false);
+    });
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        if (session?.user) {
+          setUser({
+            id: session.user.id,
+            email: session.user.email!,
+            role: 'user',
+            user_metadata: session.user.user_metadata
+          });
+        } else {
+          // Check if admin is still logged in
+          const storedAdmin = localStorage.getItem('admin_auth');
+          if (storedAdmin) {
+            try {
+              setUser(JSON.parse(storedAdmin));
+            } catch (error) {
+              localStorage.removeItem('admin_auth');
+              setUser(null);
+            }
+          } else {
+            setUser(null);
+          }
+        }
+      }
+    );
+
+    return () => subscription.unsubscribe();
   }, []);
 
   const signIn = async (email: string, password: string) => {
-    if (email === VALID_EMAIL && password === VALID_PASSWORD) {
-      const userData: User = {
+    // Check if it's admin login
+    if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+      const adminUser: User = {
         id: 'admin-user',
-        email: VALID_EMAIL,
+        email: ADMIN_EMAIL,
         role: 'admin',
         user_metadata: {
           role: 'admin',
@@ -60,23 +105,52 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }
       };
       
-      setUser(userData);
-      localStorage.setItem('auth_user', JSON.stringify(userData));
+      setUser(adminUser);
+      localStorage.setItem('admin_auth', JSON.stringify(adminUser));
       return { error: null };
-    } else {
-      return { error: { message: 'Invalid email or password' } };
     }
+    
+    // Regular user login via Supabase
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    
+    return { error };
   };
 
-  const signOut = () => {
+  const signUp = async (email: string, password: string, fullName: string) => {
+    const redirectUrl = `${window.location.origin}/`;
+    
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        emailRedirectTo: redirectUrl,
+        data: {
+          full_name: fullName,
+        }
+      }
+    });
+    
+    return { error };
+  };
+
+  const signOut = async () => {
+    // Sign out from Supabase (for regular users)
+    await supabase.auth.signOut();
+    
+    // Clear admin session
+    localStorage.removeItem('admin_auth');
+    
     setUser(null);
-    localStorage.removeItem('auth_user');
   };
 
   const value = {
     user,
     loading,
     signIn,
+    signUp,
     signOut,
   };
 
