@@ -62,7 +62,7 @@ const Events = () => {
                   {/* Event Image */}
                   <div className="md:w-1/3">
                     <div 
-                      className="h-64 md:h-full bg-cover bg-center"
+                      className="h-64 md:h-full bg-contain bg-center bg-no-repeat"
                       style={{ backgroundImage: `url(${event.image})` }}
                     />
                   </div>
