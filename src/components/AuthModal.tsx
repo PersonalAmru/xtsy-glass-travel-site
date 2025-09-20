@@ -7,12 +7,12 @@ import { Label } from './ui/label';
 import { useToast } from './ui/use-toast';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
-import { User, Users, MessageCircle, Eye, EyeOff } from 'lucide-react';
+import { User, Users, Eye, EyeOff } from 'lucide-react';
 
 interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
-  defaultTab?: 'signin' | 'signup' | 'newsletter';
+  defaultTab?: 'signin' | 'signup';
 }
 
 export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, defaultTab = 'signin' }) => {
@@ -21,8 +21,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, defaultTa
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [newsletterEmail, setNewsletterEmail] = useState('');
-  const [newsletterName, setNewsletterName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   const { signIn, signUp } = useAuth();
@@ -116,45 +114,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, defaultTa
   };
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newsletterEmail.trim() || !newsletterName.trim()) {
-      toast({
-        title: "Error",
-        description: "Please fill in all fields.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    setIsLoading(true);
-    try {
-      const { data, error } = await supabase.functions.invoke('newsletter-signup', {
-        body: {
-          email: newsletterEmail.trim(),
-          full_name: newsletterName.trim(),
-          interests: ['travel', 'accommodation']
-        }
-      });
-
-      if (error) throw error;
-
-      toast({
-        title: "Success!",
-        description: "You've been subscribed to our newsletter.",
-      });
-      
-      setNewsletterEmail('');
-      setNewsletterName('');
-      onClose();
-    } catch (error: any) {
-      toast({
-        title: "Error",
-        description: error.message || "Failed to subscribe. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLoading(false);
-    }
+    // Newsletter functionality removed
   };
 
   return (
@@ -162,12 +122,12 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, defaultTa
       <DialogContent className="sm:max-w-[425px] bg-black/90 backdrop-blur-md border-white/20">
         <DialogHeader>
           <DialogTitle className="text-white text-xl font-bold text-center">
-            {activeTab === 'newsletter' ? 'Join XTSY Newsletter' : 'Welcome to XTSY'}
+            Welcome to XTSY
           </DialogTitle>
         </DialogHeader>
         
-        <Tabs value={activeTab} onValueChange={(value: string) => setActiveTab(value as 'signin' | 'signup' | 'newsletter')} className="w-full">
-          <TabsList className="grid w-full grid-cols-3 bg-white/10">
+        <Tabs value={activeTab} onValueChange={(value: string) => setActiveTab(value as 'signin' | 'signup')} className="w-full">
+          <TabsList className="grid w-full grid-cols-2 bg-white/10">
             <TabsTrigger 
               value="signin" 
               className="text-white data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
@@ -181,13 +141,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, defaultTa
             >
               <Users className="w-4 h-4 mr-1" />
               Sign Up
-            </TabsTrigger>
-            <TabsTrigger 
-              value="newsletter" 
-              className="text-white data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
-            >
-              <MessageCircle className="w-4 h-4 mr-1" />
-              Newsletter
             </TabsTrigger>
           </TabsList>
           
@@ -328,60 +281,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, defaultTa
               >
                 Already have an account? Sign in
               </button>
-            </div>
-          </TabsContent>
-
-          <TabsContent value="newsletter" className="space-y-4 mt-6">
-            <form onSubmit={handleNewsletterSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="newsletter-name" className="text-white">Full Name</Label>
-                <Input
-                  id="newsletter-name"
-                  type="text"
-                  placeholder="Enter your full name"
-                  value={newsletterName}
-                  onChange={(e) => setNewsletterName(e.target.value)}
-                  className="bg-white/10 border-white/20 text-white placeholder-white/60"
-                  required
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="newsletter-email" className="text-white">Email</Label>
-                <Input
-                  id="newsletter-email"
-                  type="email"
-                  placeholder="Enter your email"
-                  value={newsletterEmail}
-                  onChange={(e) => setNewsletterEmail(e.target.value)}
-                  className="bg-white/10 border-white/20 text-white placeholder-white/60"
-                  required
-                />
-              </div>
-              
-              <Button 
-                type="submit" 
-                className="w-full bg-primary hover:bg-primary/90" 
-                disabled={isLoading}
-              >
-                {isLoading ? "Subscribing..." : "Subscribe to Newsletter"}
-              </Button>
-            </form>
-            
-            <div className="text-center mt-4">
-              <p className="text-white/60 text-sm mb-3">
-                Or join our WhatsApp channel for instant updates
-              </p>
-              <Button 
-                onClick={() => {
-                  window.open('https://whatsapp.com/channel/0029VbAvWCF7DAWut48dtQ2f', '_blank');
-                  onClose();
-                }}
-                variant="outline"
-                className="w-full border-green-500 text-green-400 hover:bg-green-500/10"
-              >
-                Join WhatsApp Channel
-              </Button>
             </div>
           </TabsContent>
         </Tabs>

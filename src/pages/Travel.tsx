@@ -817,7 +817,7 @@ const Travel = () => {
       <AuthModal 
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
-        defaultTab="newsletter"
+        defaultTab="signin"
       />
     </div>
   );

@@ -17,7 +17,7 @@ import { useMediaQuery } from "@/hooks/use-mobile";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const [authModalTab, setAuthModalTab] = useState<'signin' | 'signup' | 'newsletter'>('signin');
+  const [authModalTab, setAuthModalTab] = useState<'signin' | 'signup'>('signin');
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(0);
   const [currentSessionId, setCurrentSessionId] = useState<string | null>(null);
@@ -68,7 +68,7 @@ const Header = () => {
     return () => window.removeEventListener('storage', handleStorageChange);
   }, [currentSessionId]);
 
-  const handleAuthClick = (tab: 'signin' | 'signup' | 'newsletter') => {
+  const handleAuthClick = (tab: 'signin' | 'signup') => {
     setAuthModalTab(tab);
     setIsAuthModalOpen(true);
   };
@@ -180,15 +180,6 @@ const Header = () => {
                          <User className="h-4 w-4 mr-2" />
                          Sign In
                        </Button>
-                       <Button 
-                         variant="ghost" 
-                         size="sm"
-                         onClick={() => handleAuthClick('newsletter')}
-                         className="text-green-400 hover:text-green-300 hover:bg-white/10 touch-target"
-                       >
-                         <Users className="h-4 w-4 mr-2" />
-                         Newsletter
-                       </Button>
                      </div>
                   )}
                 </div>
@@ -292,17 +283,6 @@ const Header = () => {
                     >
                       <User className="h-4 w-4 mr-2" />
                       Sign In
-                    </Button>
-                    <Button 
-                      variant="ghost" 
-                      className="w-full justify-start px-4 py-3 text-green-400 hover:text-green-300 hover:bg-white/10 rounded-md touch-target"
-                      onClick={() => {
-                        handleAuthClick('newsletter');
-                        setIsMenuOpen(false);
-                      }}
-                    >
-                      <Users className="h-4 w-4 mr-2" />
-                      Newsletter
                     </Button>
                   </div>
                 )}
