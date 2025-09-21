@@ -12,6 +12,7 @@ import { Calendar, CalendarDays, Users, Settings, AlertTriangle, CheckCircle, XC
 import { toast } from 'sonner';
 import { format, addDays, isWithinInterval } from 'date-fns';
 import { supabase } from '@/integrations/supabase/client';
+import { useNavigate } from 'react-router-dom';
 
 // Room type and inventory interfaces based on booking flow
 interface RoomType {
@@ -158,6 +159,7 @@ interface EditBookingData {
 
 const Admin: React.FC = () => {
   const { user, signIn, signOut, loading } = useAuth();
+  const navigate = useNavigate();
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [blockedDates, setBlockedDates] = useState<BlockedDate[]>([]);
   const [roomTypes, setRoomTypes] = useState<RoomType[]>([]);
@@ -184,6 +186,12 @@ const Admin: React.FC = () => {
 
   // Check if user is admin
   const isAdmin = user?.role === 'admin';
+
+  // Handle sign out with navigation
+  const handleSignOut = async () => {
+    await signOut();
+    navigate('/');
+  };
 
   // Handle login
   const handleLogin = async (e: React.FormEvent) => {
@@ -752,7 +760,7 @@ const Admin: React.FC = () => {
             <CardDescription>You don't have admin privileges</CardDescription>
           </CardHeader>
           <CardContent>
-            <Button onClick={signOut} variant="outline" className="w-full">
+            <Button onClick={handleSignOut} variant="outline" className="w-full">
               Sign Out
             </Button>
           </CardContent>
@@ -777,7 +785,7 @@ const Admin: React.FC = () => {
                 Manage bookings and room availability
               </p>
             </div>
-            <Button onClick={signOut} variant="outline" className="shadow-sm hover:shadow-md transition-all duration-200">
+            <Button onClick={handleSignOut} variant="outline" className="shadow-sm hover:shadow-md transition-all duration-200">
               Sign Out
             </Button>
           </div>
