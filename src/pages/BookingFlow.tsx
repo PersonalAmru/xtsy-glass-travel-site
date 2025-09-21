@@ -179,7 +179,7 @@ export default function BookingFlow() {
   const [showGuestModal, setShowGuestModal] = useState(false);
   const [showUPIModal, setShowUPIModal] = useState(false);
   const [blockedDates, setBlockedDates] = useState<{[key: string]: string[]}>({});
-  const [roomsWithAvailability, setRoomsWithAvailability] = useState<Room[]>([]);
+  const [roomsWithAvailability, setRoomsWithAvailability] = useState<Room[]>(Object.values(ALL_ROOMS_DATA));
   const screenSize = useScreenSize();
   const isMobileView = screenSize === 'mobile';
   const isTabletView = screenSize === 'tablet';
@@ -254,6 +254,8 @@ export default function BookingFlow() {
         setRoomsWithAvailability(updatedRooms);
       } catch (error) {
         console.error('Error loading room availability:', error);
+        // Fallback: show all rooms even if availability can't be loaded
+        setRoomsWithAvailability(Object.values(ALL_ROOMS_DATA));
       }
     };
 
@@ -432,9 +434,9 @@ export default function BookingFlow() {
     };
   };
   const roomsByProperty = {
-    luxury: roomsWithAvailability.filter(room => room.propertyType === 'luxury'),
-    hostel: roomsWithAvailability.filter(room => room.propertyType === 'hostel'),
-    economy: roomsWithAvailability.filter(room => room.propertyType === 'economy')
+    luxury: (roomsWithAvailability.length > 0 ? roomsWithAvailability : Object.values(ALL_ROOMS_DATA)).filter(room => room.propertyType === 'luxury'),
+    hostel: (roomsWithAvailability.length > 0 ? roomsWithAvailability : Object.values(ALL_ROOMS_DATA)).filter(room => room.propertyType === 'hostel'),
+    economy: (roomsWithAvailability.length > 0 ? roomsWithAvailability : Object.values(ALL_ROOMS_DATA)).filter(room => room.propertyType === 'economy')
   };
   const getRoomSelection = React.useCallback((roomId: string) => {
     const selected = selectedRooms.find(r => r.id === roomId);
