@@ -459,13 +459,14 @@ const Admin: React.FC = () => {
       const newAvailableCount = Math.max(0, selectedBlockData.currentAvailable - partialCount);
       
       try {
-        const { error } = await supabase
-          .from('room_inventory')
-          .upsert({
+        const { data, error } = await supabase.functions.invoke('secure-blocking', {
+          body: {
+            action: 'update_inventory',
             room_type_id: selectedBlockData.roomType,
             date: dateStr,
             available_count: newAvailableCount
-          });
+          }
+        });
 
         if (error) {
           toast.error('Failed to block partial beds: ' + error.message);
@@ -500,11 +501,13 @@ const Admin: React.FC = () => {
     try {
       if (existingBlock) {
         // Remove block from database
-        const { error } = await supabase
-          .from('blocked_dates')
-          .delete()
-          .eq('room_type', roomType)
-          .eq('date', dateStr);
+        const { data, error } = await supabase.functions.invoke('secure-blocking', {
+          body: {
+            action: 'unblock_date',
+            room_type: roomType,
+            date: dateStr
+          }
+        });
 
         if (error) {
           toast.error('Failed to unblock date: ' + error.message);
@@ -516,15 +519,13 @@ const Admin: React.FC = () => {
         toast.success(`${roomType} unblocked for ${format(date, 'MMM dd, yyyy')} - now available in booking flow`);
       } else {
         // Add block to database
-        const { data, error } = await supabase
-          .from('blocked_dates')
-          .insert({
+        const { data, error } = await supabase.functions.invoke('secure-blocking', {
+          body: {
+            action: 'block_date',
             room_type: roomType,
-            date: dateStr,
-            blocked: true
-          })
-          .select()
-          .single();
+            date: dateStr
+          }
+        });
 
         if (error) {
           toast.error('Failed to block date: ' + error.message);
@@ -883,7 +884,7 @@ const Admin: React.FC = () => {
                         
                         {/* Room availability rows for this property */}
                         {propertyRooms.map(roomType => (
-                          <React.Fragment key={roomType.id}>
+                          <div key={roomType.id} className="contents">
                             <div className="font-medium p-2 text-xs">
                               <div>{roomType.name}</div>
                               <div className="text-xs text-muted-foreground">
@@ -910,7 +911,7 @@ const Admin: React.FC = () => {
                                 </button>
                               );
                             })}
-                          </React.Fragment>
+                          </div>
                         ))}
                       </div>
                     </div>

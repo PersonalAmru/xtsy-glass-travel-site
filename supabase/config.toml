@@ -1,1 +1,4 @@
 project_id = "oidnydyyjyjfnyadhyzn"
+
+[functions.secure-blocking]
+verify_jwt = false
