@@ -101,6 +101,49 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log('Booking created successfully:', booking);
 
+    // Block room availability for the booked dates
+    for (const room of bookingData.selectedRooms) {
+      const checkInDate = new Date(bookingData.checkIn);
+      const checkOutDate = new Date(bookingData.checkOut);
+      
+      // Block each night in the date range
+      for (let date = new Date(checkInDate); date < checkOutDate; date.setDate(date.getDate() + 1)) {
+        const dateStr = date.toISOString().split('T')[0];
+        
+        try {
+          // Get current inventory or create new record
+          const { data: inventory } = await supabase
+            .from('room_inventory')
+            .select('available_count')
+            .eq('room_type_id', room.id)
+            .eq('date', dateStr)
+            .single();
+          
+          const currentAvailable = inventory?.available_count ?? 10; // Default to room capacity if no inventory record
+          const newAvailable = Math.max(0, currentAvailable - room.selection.rooms);
+          
+          // Update inventory
+          const { error: inventoryError } = await supabase
+            .from('room_inventory')
+            .upsert({
+              room_type_id: room.id,
+              date: dateStr,
+              available_count: newAvailable
+            });
+          
+          if (inventoryError) {
+            console.error('Error updating room inventory:', inventoryError);
+          } else {
+            console.log(`Updated inventory for ${room.id} on ${dateStr}: ${newAvailable} available`);
+          }
+        } catch (inventoryError) {
+          console.error('Error processing inventory for', room.id, 'on', dateStr, ':', inventoryError);
+        }
+      }
+    }
+
+    console.log('Room availability blocked successfully');
+
     return new Response(JSON.stringify({ 
       success: true, 
       bookingId: bookingId,
