@@ -2,3 +2,6 @@ project_id = "oidnydyyjyjfnyadhyzn"
 
 [functions.secure-blocking]
 verify_jwt = false
+
+[functions.save-booking]
+verify_jwt = false

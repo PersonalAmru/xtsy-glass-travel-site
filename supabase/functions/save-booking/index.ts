@@ -49,55 +49,73 @@ const handler = async (req: Request): Promise<Response> => {
     
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-    const { bookingData, guestDetails }: BookingRequest = await req.json();
+  const { bookingData, guestDetails }: BookingRequest = await req.json();
 
-    // Generate booking ID
-    const bookingId = `XTSY-${new Date().getFullYear()}${String(new Date().getMonth() + 1).padStart(2, '0')}${String(new Date().getDate()).padStart(2, '0')}-${Math.random().toString(36).substr(2, 6).toUpperCase()}`;
+  // Validate input data
+  if (!bookingData || !guestDetails) {
+    throw new Error('Missing booking data or guest details');
+  }
 
-    // Calculate total guests and rooms
-    const totalGuests = bookingData.selectedRooms.reduce((total, room) => {
-      if (room.type === "dorm") return total + room.selection.rooms;
-      return total + room.selection.guests * room.selection.rooms;
-    }, 0);
+  if (!bookingData.totalAmount || bookingData.totalAmount <= 0) {
+    throw new Error('Invalid booking amount');
+  }
 
-    const totalRooms = bookingData.selectedRooms.reduce((total, room) => 
-      total + room.selection.rooms, 0
-    );
+  // Sanitize email input
+  const sanitizedEmail = guestDetails.email.toLowerCase().trim();
+  
+  // Generate booking ID
+  const bookingId = `XTSY-${new Date().getFullYear()}${String(new Date().getMonth() + 1).padStart(2, '0')}${String(new Date().getDate()).padStart(2, '0')}-${Math.random().toString(36).substr(2, 6).toUpperCase()}`;
 
-    // Create the main booking record
-    const { data: booking, error: bookingError } = await supabase
-      .from('bookings')
-      .insert({
-        booking_id: bookingId,
-        guest_name: guestDetails.guestName,
-        email: guestDetails.email,
-        whatsapp_number: guestDetails.whatsappNumber,
-        check_in: bookingData.checkIn,
-        check_out: bookingData.checkOut,
-        guests: totalGuests,
-        quantity: totalRooms,
-        room_type: bookingData.selectedRooms.map(r => r.name).join(', '),
-        room_type_id: bookingData.selectedRooms[0]?.id || 'mixed',
-        total_amount: bookingData.totalAmount,
-        subtotal: bookingData.totalAmount,
-        taxes: 0,
-        booking_status: 'pending',
-        payment_status: 'pending',
-        address: guestDetails.address,
-        city: guestDetails.city,
-        state: guestDetails.state,
-        pincode: guestDetails.pincode,
-        emergency_contact: guestDetails.emergencyContact,
-        special_requests: guestDetails.specialRequests,
-        source: 'direct'
-      })
-      .select()
-      .single();
+  // Calculate total guests and rooms
+  const totalGuests = bookingData.selectedRooms.reduce((total, room) => {
+    if (room.type === "dorm") return total + room.selection.rooms;
+    return total + room.selection.guests * room.selection.rooms;
+  }, 0);
 
-    if (bookingError) {
-      console.error('Booking creation error:', bookingError);
-      throw new Error(`Failed to create booking: ${bookingError.message}`);
-    }
+  const totalRooms = bookingData.selectedRooms.reduce((total, room) => 
+    total + room.selection.rooms, 0
+  );
+
+  console.log('Creating booking with sanitized email:', sanitizedEmail);
+  console.log('Booking data:', { bookingId, totalGuests, totalRooms, amount: bookingData.totalAmount });
+
+  // Create the main booking record
+  const { data: booking, error: bookingError } = await supabase
+    .from('bookings')
+    .insert({
+      booking_id: bookingId,
+      guest_name: guestDetails.guestName.trim(),
+      email: sanitizedEmail,
+      whatsapp_number: guestDetails.whatsappNumber,
+      check_in: bookingData.checkIn,
+      check_out: bookingData.checkOut,
+      guests: totalGuests,
+      quantity: totalRooms,
+      room_type: bookingData.selectedRooms.map(r => r.name).join(', '),
+      room_type_id: bookingData.selectedRooms[0]?.id || 'mixed',
+      total_amount: bookingData.totalAmount,
+      subtotal: bookingData.totalAmount,
+      taxes: 0,
+      booking_status: 'pending',
+      payment_status: 'pending',
+      address: guestDetails.address?.trim() || '',
+      city: guestDetails.city?.trim() || '',
+      state: guestDetails.state?.trim() || '',
+      pincode: guestDetails.pincode?.trim() || '',
+      emergency_contact: guestDetails.emergencyContact || '',
+      special_requests: guestDetails.specialRequests || '',
+      source: 'direct'
+    })
+    .select()
+    .single();
+
+  if (bookingError) {
+    console.error('Booking creation error:', bookingError);
+    const errorMessage = bookingError.message || 'Failed to create booking';
+    const errorDetails = bookingError.details || '';
+    console.error('Error details:', { code: bookingError.code, details: errorDetails });
+    throw new Error(`Booking creation failed: ${errorMessage}. ${errorDetails ? `Details: ${errorDetails}` : ''}`);
+  }
 
     console.log('Booking created successfully:', booking);
 
