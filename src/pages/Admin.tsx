@@ -923,9 +923,13 @@ const Admin: React.FC = () => {
                             <div key={roomType.id} className="contents">
                               <div className="font-medium p-2 text-xs">
                                 <div>{roomType.name}</div>
-                                <div className="text-xs text-muted-foreground">
-                                  {roomType.type === 'dorm' ? 'Beds' : 'Rooms'}: {roomType.total_units} | ₹{roomType.price}
-                                </div>
+                                 <div className="text-xs text-muted-foreground">
+                                   {roomType.id.includes('dorm') ? 'Beds' : 'Rooms'}: {roomType.total_units} | ₹{roomType.price}
+                                   <br />
+                                   <span className="text-xs font-medium text-primary">
+                                     {roomType.id.includes('dorm') ? 'Individual beds in shared dormitory' : 'Complete private room'}
+                                   </span>
+                                 </div>
                               </div>
                               {dates.map((date, dateIndex) => {
                                 const { available, total, isBlocked } = calculateAvailability(roomType.id, date);
@@ -933,17 +937,17 @@ const Admin: React.FC = () => {
                                   <button
                                     key={`${roomType.id}-${dateIndex}`}
                                     onClick={() => handleBlockClick(roomType.id, date)}
-                                    className={`p-1 text-xs rounded border transition-colors ${
+                                   className={`p-1 text-xs rounded border transition-colors ${
                                       isBlocked
-                                        ? 'bg-red-100 text-red-800 hover:bg-red-200'
+                                        ? 'bg-destructive/20 text-destructive hover:bg-destructive/30 border-destructive/30'
                                         : available === 0
-                                        ? 'bg-orange-100 text-orange-800 hover:bg-orange-200'
+                                        ? 'bg-orange-100 text-orange-800 hover:bg-orange-200 border-orange-300'
                                         : available < total * 0.3
-                                        ? 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200'
-                                        : 'bg-green-100 text-green-800 hover:bg-green-200'
-                                    }`}
-                                  >
-                                    {isBlocked ? 'Blocked' : `${available}/${total}`}
+                                        ? 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200 border-yellow-300'
+                                        : 'bg-green-100 text-green-800 hover:bg-green-200 border-green-300'
+                                     }`}
+                                   >
+                                     {isBlocked ? 'SOLD OUT' : available === 0 ? 'SOLD OUT' : `${available}/${total}`}
                                   </button>
                                 );
                               })}
@@ -1375,76 +1379,99 @@ const Admin: React.FC = () => {
         </CardContent>
       </Card>
 
-      {/* Block Confirmation Modal */}
+      {/* Room Inventory Management Modal */}
       <Dialog open={blockModalOpen} onOpenChange={setBlockModalOpen}>
         <DialogContent className="max-w-lg">
           <DialogHeader>
-            <DialogTitle>Manage Room Availability</DialogTitle>
+            <DialogTitle>Manage Room Inventory</DialogTitle>
             <DialogDescription>
-              Choose how to modify availability for {selectedBlockData?.roomType} on{' '}
+              Adjust availability for {selectedBlockData?.roomType} on{' '}
               {selectedBlockData && format(selectedBlockData.date, 'MMM dd, yyyy')}
             </DialogDescription>
           </DialogHeader>
           {selectedBlockData && (
             <div className="space-y-4">
-              <div className="p-3 bg-muted rounded-lg">
-                <div className="text-sm font-medium">Current Status:</div>
-                <div className="text-sm text-muted-foreground">
-                  {selectedBlockData.currentAvailable}/{selectedBlockData.totalCapacity} beds available
+              <div className="p-4 bg-muted rounded-lg">
+                <div className="space-y-2">
+                  <p className="text-sm">
+                    <strong>Room Type:</strong> {selectedBlockData.roomType}
+                  </p>
+                  <p className="text-sm">
+                    <strong>Date:</strong> {format(selectedBlockData.date, 'PPP')}
+                  </p>
+                  <p className="text-sm">
+                    <strong>Current Status:</strong> {
+                      selectedBlockData.currentAvailable === 0 
+                        ? <span className="text-destructive font-medium">SOLD OUT</span>
+                        : `${selectedBlockData.currentAvailable} / ${selectedBlockData.totalCapacity} available`
+                    }
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-2">
+                    {selectedBlockData.roomType.includes('dorm') 
+                      ? '📝 Dormitory: Each unit represents an individual bed in a shared room'
+                      : '📝 Private Room: Each unit represents a complete private room'
+                    }
+                  </p>
                 </div>
               </div>
-              
+
               <div className="space-y-3">
+                {/* Full Block/Unblock Toggle */}
+                <div className="flex gap-2">
+                  <Button
+                    onClick={() => handleBlockConfirm('full')}
+                    size="sm"
+                    variant={selectedBlockData.currentAvailable === 0 ? "default" : "destructive"}
+                    className="flex-1"
+                  >
+                    {selectedBlockData.currentAvailable === 0 ? '🔓 Unblock All' : '🔒 Block All'}
+                  </Button>
+                </div>
+
+                {/* Partial Block Controls */}
                 {selectedBlockData.currentAvailable > 0 && (
                   <div className="space-y-2">
-                    <Label>Block specific number of beds:</Label>
+                    <Label className="text-sm">Block Units:</Label>
                     <div className="flex gap-2 flex-wrap">
-                      {Array.from({ length: selectedBlockData.currentAvailable }, (_, i) => i + 1).map(count => (
+                      {Array.from({ length: Math.min(selectedBlockData.currentAvailable, 6) }, (_, i) => i + 1).map((count) => (
                         <Button
-                          key={count}
+                          key={`block-${count}`}
                           onClick={() => handleBlockConfirm('partial', count)}
-                          variant="outline"
                           size="sm"
-                          className="flex-1 min-w-[80px]"
+                          variant="secondary"
+                          className="text-xs"
                         >
-                          Block {count}
+                          -{count}
                         </Button>
                       ))}
                     </div>
                   </div>
                 )}
-                
+
+                {/* Partial Unblock Controls */}
                 {selectedBlockData.currentAvailable < selectedBlockData.totalCapacity && (
                   <div className="space-y-2">
-                    <Label>Unblock specific number of beds:</Label>
+                    <Label className="text-sm">Open Units:</Label>
                     <div className="flex gap-2 flex-wrap">
-                      {Array.from({ length: selectedBlockData.totalCapacity - selectedBlockData.currentAvailable }, (_, i) => i + 1).map(count => (
+                      {Array.from({ length: Math.min(selectedBlockData.totalCapacity - selectedBlockData.currentAvailable, 6) }, (_, i) => i + 1).map((count) => (
                         <Button
-                          key={count}
+                          key={`unblock-${count}`}
                           onClick={() => handleBlockConfirm('unblock', count)}
-                          variant="outline"
                           size="sm"
-                          className="flex-1 min-w-[80px] bg-green-50 hover:bg-green-100 text-green-700 border-green-200"
+                          variant="outline"
+                          className="text-xs"
                         >
-                          Open {count}
+                          +{count}
                         </Button>
                       ))}
                     </div>
                   </div>
                 )}
                 
-                <div className="pt-2 border-t">
-                  <Label className="text-sm font-medium">Quick Actions:</Label>
-                  <div className="flex gap-2 mt-2">
-                    <Button
-                      onClick={() => handleBlockConfirm('full')}
-                      variant="destructive"
-                      size="sm"
-                      className="flex-1"
-                    >
-                      {selectedBlockData.currentAvailable === 0 ? 'Unblock All' : 'Block All'}
-                    </Button>
-                  </div>
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+                  <p className="text-xs text-yellow-800">
+                    <strong>⚠️ Important:</strong> Blocked units will permanently show as "SOLD OUT" in the booking calendar until manually unblocked by admin.
+                  </p>
                 </div>
               </div>
             </div>
