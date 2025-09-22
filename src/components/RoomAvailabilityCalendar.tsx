@@ -247,41 +247,50 @@ const RoomAvailabilityCalendar: React.FC<RoomAvailabilityCalendarProps> = ({
 
           {/* Horizontal Scrollable Date Picker */}
           <div className="bg-white border-t">
-            {/* Date Navigation Header */}
-            <div className="px-4 py-2 border-b bg-gray-50">
-              <div className="flex items-center justify-between">
-                <h3 className="text-sm font-semibold text-gray-900">
-                  Select Date
-                </h3>
-                <div className="flex items-center gap-3 text-xs">
-                  <div className="flex items-center gap-1">
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                    <span className="text-gray-600">Available</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                    <span className="text-gray-600">Sold Out</span>
-                  </div>
+            {/* Compact Legend */}
+            <div className="px-3 py-2 border-b bg-gray-50">
+              <div className="flex items-center justify-center gap-4 text-xs">
+                <div className="flex items-center gap-1">
+                  <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                  <span className="text-gray-600">Available</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                  <span className="text-gray-600">Sold Out</span>
                 </div>
               </div>
             </div>
 
             {/* Horizontal Scrolling Date List */}
             <div className="relative">
-              <div className="flex overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 gap-2 p-4 pb-6">
+              <div className="flex overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 gap-1 p-3 pb-4">
                 {(() => {
                   const dates = [];
                   const startDate = new Date();
                   const endDate = new Date();
                   endDate.setMonth(endDate.getMonth() + 3);
+                  let currentMonth = '';
                   
                   for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
                     const currentDate = new Date(d);
+                    const monthYear = currentDate.toLocaleDateString('en-US', { month: 'short', year: '2-digit' });
                     const dayAvailability = getDayAvailability(currentDate);
                     const isSelected = selectedDate && currentDate.toDateString() === selectedDate.toDateString();
                     const isToday = currentDate.toDateString() === new Date().toDateString();
                     const isSoldOut = dayAvailability?.isSoldOut || false;
                     const isBookable = dayAvailability && !dayAvailability.isSoldOut;
+
+                    // Show month divider when month changes
+                    if (monthYear !== currentMonth) {
+                      currentMonth = monthYear;
+                      dates.push(
+                        <div key={`month-${monthYear}`} className="flex-shrink-0 w-12 h-14 flex items-center justify-center border-r border-gray-200 mr-2">
+                          <span className="text-xs font-semibold text-gray-500 transform -rotate-90 whitespace-nowrap">
+                            {monthYear}
+                          </span>
+                        </div>
+                      );
+                    }
 
                     dates.push(
                       <div
@@ -292,44 +301,42 @@ const RoomAvailabilityCalendar: React.FC<RoomAvailabilityCalendarProps> = ({
                           }
                         }}
                         className={cn(
-                          "flex-shrink-0 w-16 h-20 flex flex-col items-center justify-center rounded-lg border-2 transition-all duration-200",
+                          "flex-shrink-0 w-12 h-14 flex flex-col items-center justify-center rounded-md border transition-all duration-200",
                           {
                             // Base styles
                             "bg-white border-gray-200": !isSelected && !isSoldOut && !isBookable,
                             // Bookable dates (green)
-                            "bg-green-50 border-green-200 hover:bg-green-100 cursor-pointer": isBookable && !isSelected,
+                            "bg-green-50 border-green-300 hover:bg-green-100 cursor-pointer hover:scale-105": isBookable && !isSelected,
                             // Sold out dates (red, not clickable)
-                            "bg-red-50 border-red-200 cursor-not-allowed opacity-75": isSoldOut,
+                            "bg-red-50 border-red-300 cursor-not-allowed opacity-75": isSoldOut,
                             // Selected date
-                            "bg-blue-500 border-blue-600 text-white": isSelected && isBookable,
+                            "bg-blue-500 border-blue-600 text-white shadow-md": isSelected && isBookable,
                             "bg-red-500 border-red-600 text-white": isSelected && isSoldOut,
                             // Today highlight
-                            "ring-2 ring-blue-300 ring-offset-1": isToday && !isSelected,
-                            // Hover effects
-                            "hover:scale-105": isBookable,
+                            "ring-1 ring-blue-400": isToday && !isSelected,
                           }
                         )}
                       >
                         {/* Day of week */}
                         <span className={cn(
-                          "text-xs font-medium uppercase",
+                          "text-xs font-medium uppercase leading-none",
                           {
-                            "text-gray-600": !isSelected && !isSoldOut,
-                            "text-green-700": isBookable && !isSelected,
-                            "text-red-600": isSoldOut && !isSelected,
+                            "text-gray-500": !isSelected && !isSoldOut,
+                            "text-green-600": isBookable && !isSelected,
+                            "text-red-500": isSoldOut && !isSelected,
                             "text-white": isSelected,
                           }
                         )}>
-                          {currentDate.toLocaleDateString('en-US', { weekday: 'short' })}
+                          {currentDate.toLocaleDateString('en-US', { weekday: 'short' }).slice(0, 2)}
                         </span>
                         
                         {/* Date number */}
                         <span className={cn(
-                          "text-lg font-bold",
+                          "text-sm font-bold leading-none mt-1",
                           {
                             "text-gray-900": !isSelected && !isSoldOut,
-                            "text-green-800": isBookable && !isSelected,
-                            "text-red-700": isSoldOut && !isSelected,
+                            "text-green-700": isBookable && !isSelected,
+                            "text-red-600": isSoldOut && !isSelected,
                             "text-white": isSelected,
                           }
                         )}>
@@ -340,25 +347,25 @@ const RoomAvailabilityCalendar: React.FC<RoomAvailabilityCalendarProps> = ({
                         <div className="mt-1">
                           {isSoldOut ? (
                             <XCircle className={cn(
-                              "w-3 h-3",
-                              isSelected ? "text-white" : "text-red-600"
+                              "w-2.5 h-2.5",
+                              isSelected ? "text-white" : "text-red-500"
                             )} />
                           ) : isBookable ? (
                             dayAvailability.available <= 2 ? (
                               <span className={cn(
-                                "text-xs font-bold px-1 py-0.5 rounded",
-                                isSelected ? "text-white" : "text-green-700 bg-green-100"
+                                "text-xs font-bold leading-none",
+                                isSelected ? "text-white" : "text-green-600"
                               )}>
                                 {dayAvailability.available}
                               </span>
                             ) : (
                               <CheckCircle className={cn(
-                                "w-3 h-3",
-                                isSelected ? "text-white" : "text-green-600"
+                                "w-2.5 h-2.5",
+                                isSelected ? "text-white" : "text-green-500"
                               )} />
                             )
                           ) : (
-                            <div className="w-3 h-3" />
+                            <div className="w-2.5 h-2.5" />
                           )}
                         </div>
                       </div>
@@ -368,27 +375,18 @@ const RoomAvailabilityCalendar: React.FC<RoomAvailabilityCalendarProps> = ({
                   return dates;
                 })()}
               </div>
-              
-              {/* Scroll indicators */}
-              <div className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/80 rounded-full p-1 shadow-sm">
-                <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-              </div>
-              <div className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/80 rounded-full p-1 shadow-sm">
-                <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-              </div>
             </div>
 
             {/* Selected Date Info */}
             {selectedDate && (
-              <div className="bg-gray-50 border-t p-3">
-                <div className="flex items-center justify-between">
+              <div className="bg-gray-50 border-t p-2">
+                <div className="flex items-center justify-between text-xs">
                   <div>
-                    <div className="text-sm font-medium text-gray-900">
+                    <div className="font-medium text-gray-900">
                       {selectedDate.toLocaleDateString('en-US', { 
-                        weekday: 'long',
-                        month: 'long', 
-                        day: 'numeric',
-                        year: 'numeric'
+                        weekday: 'short',
+                        month: 'short', 
+                        day: 'numeric'
                       })}
                     </div>
                     {(() => {
@@ -396,8 +394,8 @@ const RoomAvailabilityCalendar: React.FC<RoomAvailabilityCalendarProps> = ({
                       if (!dayAvailability) return null;
                       
                       return (
-                        <div className="text-xs text-gray-600 mt-1">
-                          {dayAvailability.available} of {dayAvailability.total} rooms available
+                        <div className="text-gray-600 mt-0.5">
+                          {dayAvailability.available}/{dayAvailability.total} available
                         </div>
                       );
                     })()}
@@ -409,19 +407,19 @@ const RoomAvailabilityCalendar: React.FC<RoomAvailabilityCalendarProps> = ({
                       
                       if (dayAvailability.isSoldOut) {
                         return (
-                          <div className="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs font-medium">
+                          <div className="px-2 py-1 bg-red-100 text-red-700 rounded text-xs font-medium">
                             Sold Out
                           </div>
                         );
                       } else if (dayAvailability.available <= 2) {
                         return (
-                          <div className="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-xs font-medium">
-                            Limited ({dayAvailability.available} left)
+                          <div className="px-2 py-1 bg-orange-100 text-orange-700 rounded text-xs font-medium">
+                            {dayAvailability.available} left
                           </div>
                         );
                       } else {
                         return (
-                          <div className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
+                          <div className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-medium">
                             Available
                           </div>
                         );
