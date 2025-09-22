@@ -800,13 +800,20 @@ const Admin: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <Card className="backdrop-blur-sm bg-card/50 border-border/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
-            <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Total Bookings</CardTitle>
+            <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Today's Bookings</CardTitle>
             <div className="p-2 bg-primary/10 rounded-full">
               <Calendar className="h-5 w-5 text-primary" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-foreground">{bookings.length}</div>
+            <div className="text-3xl font-bold text-foreground">
+              {bookings.filter(booking => {
+                const today = format(new Date(), 'yyyy-MM-dd');
+                const checkIn = booking.check_in;
+                const checkOut = booking.check_out;
+                return checkIn === today || (checkIn <= today && checkOut > today);
+              }).length}
+            </div>
           </CardContent>
         </Card>
         <Card className="backdrop-blur-sm bg-card/50 border-border/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
