@@ -913,6 +913,23 @@ const Admin: React.FC = () => {
         </CardContent>
       </Card>
 
+      {/* Debug Info - Remove after fixing */}
+      <Card className="backdrop-blur-sm bg-card/50 border-border/50 shadow-lg">
+        <CardHeader>
+          <CardTitle>Debug Info</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-2 text-sm">
+            <div>Room Types Count: {roomTypes.length}</div>
+            <div>Dates Count: {dates.length}</div>
+            <div>Blocked Dates Count: {blockedDates.length}</div>
+            <div>Room Inventory Count: {roomInventory.length}</div>
+            <div>First Room Type: {roomTypes[0]?.name || 'None'}</div>
+            <div>Property Types: {Array.from(new Set(roomTypes.map(r => r.propertyType))).join(', ')}</div>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Bookings Calendar View */}
       <Card className="backdrop-blur-sm bg-card/50 border-border/50 shadow-lg">
         <CardHeader className="pb-6">
