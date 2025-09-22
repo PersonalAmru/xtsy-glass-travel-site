@@ -658,6 +658,37 @@ const Admin: React.FC = () => {
     });
   };
 
+  // Permanently delete booking using admin edge function
+  const deleteBookingPermanently = async (bookingId: string) => {
+    if (!confirm('Are you sure you want to PERMANENTLY DELETE this booking? This action cannot be undone and will remove all booking data.')) return;
+
+    try {
+      const { data, error } = await supabase.functions.invoke('admin-delete-booking', {
+        body: { booking_id: bookingId }
+      });
+
+      if (error) {
+        console.error('Error deleting booking:', error);
+        toast.error('Failed to delete booking: ' + error.message);
+        return;
+      }
+
+      if (!data?.success) {
+        console.error('Booking deletion failed:', data);
+        toast.error('Failed to delete booking: ' + (data?.error || 'Unknown error'));
+        return;
+      }
+
+      // Remove booking from local state
+      setBookings(prev => prev.filter(booking => booking.id !== bookingId));
+      
+      toast.success('Booking permanently deleted');
+    } catch (error) {
+      console.error('Error deleting booking:', error);
+      toast.error('Failed to delete booking');
+    }
+  };
+
   // Cancel booking using admin edge function
   const cancelBooking = async (bookingId: string) => {
     if (!confirm('Are you sure you want to cancel this booking? This action cannot be undone.')) return;
@@ -690,6 +721,48 @@ const Admin: React.FC = () => {
     } catch (error) {
       console.error('Error cancelling booking:', error);
       toast.error('Failed to cancel booking');
+    }
+  };
+
+  // Confirm booking using admin edge function
+  const confirmBooking = async (bookingId: string, editFormData: EditBookingData) => {
+    if (!confirm('Are you sure you want to confirm this booking? This will lock room availability for the selected dates.')) return;
+
+    try {
+      const { data, error } = await supabase.functions.invoke('admin-confirm-booking', {
+        body: { 
+          booking_id: bookingId,
+          room_selections: editFormData.room_selections,
+          guest_name: editFormData.guest_name,
+          check_in: editFormData.check_in,
+          check_out: editFormData.check_out
+        }
+      });
+
+      if (error) {
+        console.error('Error confirming booking:', error);
+        toast.error('Failed to confirm booking: ' + error.message);
+        return;
+      }
+
+      if (!data?.success) {
+        console.error('Booking confirmation failed:', data);
+        toast.error('Failed to confirm booking: ' + (data?.error || 'Unknown error'));
+        return;
+      }
+
+      // Update booking in local state
+      setBookings(prev => prev.map(booking =>
+        booking.id === bookingId
+          ? { ...booking, booking_status: 'confirmed' }
+          : booking
+      ));
+      
+      setEditingBooking(null);
+      toast.success('Booking confirmed and room availability locked');
+    } catch (error) {
+      console.error('Error confirming booking:', error);
+      toast.error('Failed to confirm booking');
     }
   };
 
@@ -1157,14 +1230,14 @@ const Admin: React.FC = () => {
                             View Details
                           </Button>
                         </DialogTrigger>
-                        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+                        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
                           <DialogHeader>
-                            <DialogTitle>Booking Details</DialogTitle>
+                            <DialogTitle>Booking Management</DialogTitle>
                             <DialogDescription>
-                              Complete booking information and guest details
+                              Manage booking details, room selections, and booking status
                             </DialogDescription>
                           </DialogHeader>
-                          <div className="grid grid-cols-2 gap-4">
+                          <div className="grid grid-cols-2 gap-6">
                             <div className="space-y-4">
                               <div>
                                 <Label>Booking ID</Label>
@@ -1190,6 +1263,23 @@ const Admin: React.FC = () => {
                                 <Label>Total Guests (PAX)</Label>
                                 <div className="text-lg font-bold text-primary">{editForm.total_pax}</div>
                               </div>
+                              <div>
+                                <Label>Booking Status</Label>
+                                <div className="flex items-center gap-2">
+                                  <Badge variant={booking.booking_status === 'confirmed' ? 'default' : 'secondary'}>
+                                    {booking.booking_status}
+                                  </Badge>
+                                  {booking.booking_status === 'pending' && (
+                                    <Button
+                                      onClick={() => confirmBooking(booking.id, editForm)}
+                                      size="sm"
+                                      className="bg-green-600 hover:bg-green-700"
+                                    >
+                                      Confirm Booking
+                                    </Button>
+                                  )}
+                                </div>
+                              </div>
                             </div>
                             <div className="space-y-4">
                               <div>
@@ -1210,6 +1300,16 @@ const Admin: React.FC = () => {
                                   onChange={(e) => setEditForm(prev => ({ ...prev, check_out: e.target.value }))}
                                 />
                               </div>
+                              <div>
+                                <Label>Payment Status</Label>
+                                <Badge variant={booking.payment_status === 'paid' ? 'default' : 'secondary'}>
+                                  {booking.payment_status}
+                                </Badge>
+                              </div>
+                              <div>
+                                <Label>Total Amount</Label>
+                                <div className="text-lg font-bold">₹{booking.total_amount?.toLocaleString()}</div>
+                              </div>
                             </div>
                           </div>
                           
@@ -1229,7 +1329,7 @@ const Admin: React.FC = () => {
                             
                             <div className="space-y-3">
                               {editForm.room_selections.map((selection, index) => (
-                                <div key={index} className="flex items-center gap-3 p-3 border rounded-lg">
+                                <div key={index} className="flex items-center gap-3 p-4 border rounded-lg bg-muted/20">
                                   <div className="flex-1">
                                     <Label>Room Type</Label>
                                     <Select 
@@ -1242,7 +1342,7 @@ const Admin: React.FC = () => {
                                       <SelectContent>
                                         {roomTypes.map(type => (
                                           <SelectItem key={type.id} value={type.id}>
-                                            {type.name} ({type.propertyType})
+                                            {type.name} ({type.propertyType}) - ₹{type.price}
                                           </SelectItem>
                                         ))}
                                       </SelectContent>
@@ -1271,8 +1371,35 @@ const Admin: React.FC = () => {
                               ))}
                             </div>
                           </div>
-                          <DialogFooter>
-                            <Button onClick={saveBookingEdit}>Save Changes</Button>
+                          
+                          <DialogFooter className="gap-2">
+                            <Button 
+                              variant="outline"
+                              onClick={saveBookingEdit}
+                            >
+                              Save Changes
+                            </Button>
+                            {booking.booking_status !== 'cancelled' && (
+                              <Button
+                                variant="destructive"
+                                onClick={() => {
+                                  setEditingBooking(null);
+                                  cancelBooking(booking.id);
+                                }}
+                              >
+                                Cancel Booking
+                              </Button>
+                            )}
+                            <Button
+                              variant="destructive"
+                              className="bg-red-700 hover:bg-red-800"
+                              onClick={() => {
+                                setEditingBooking(null);
+                                deleteBookingPermanently(booking.id);
+                              }}
+                            >
+                              Delete Permanently
+                            </Button>
                           </DialogFooter>
                         </DialogContent>
                       </Dialog>

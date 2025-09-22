@@ -11,3 +11,9 @@ verify_jwt = false
 
 [functions.admin-cancel-booking]
 verify_jwt = false
+
+[functions.admin-delete-booking]
+verify_jwt = false
+
+[functions.admin-confirm-booking]
+verify_jwt = false
