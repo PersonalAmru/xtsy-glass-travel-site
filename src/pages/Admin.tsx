@@ -355,11 +355,48 @@ const Admin: React.FC = () => {
     setBlockModalOpen(true);
   };
 
-  const handleBlockConfirm = async (blockType: 'full' | 'partial', partialCount?: number) => {
+  const handleBlockConfirm = async (blockType: 'full' | 'partial' | 'unblock', partialCount?: number) => {
     if (!selectedBlockData) return;
     
     if (blockType === 'full') {
       await toggleBlockDate(selectedBlockData.roomType, selectedBlockData.date);
+    } else if (blockType === 'unblock' && partialCount !== undefined) {
+      // Handle unblocking by updating room inventory to increase available count
+      const dateStr = format(selectedBlockData.date, 'yyyy-MM-dd');
+      const newAvailableCount = Math.min(selectedBlockData.totalCapacity, selectedBlockData.currentAvailable + partialCount);
+      
+      try {
+        const { data, error } = await supabase.functions.invoke('admin-room-blocking', {
+          body: {
+            action: 'partial_unblock',
+            room_type: selectedBlockData.roomType,
+            date: dateStr,
+            unblock_count: partialCount
+          }
+        });
+
+        if (error) {
+          toast.error('Failed to unblock beds: ' + error.message);
+          return;
+        }
+
+        if (!data?.success) {
+          toast.error('Failed to unblock beds: ' + (data?.error || 'Unknown error'));
+          return;
+        }
+
+        // Update local state
+        setRoomInventory(prev => prev.map(inv => 
+          inv.room_type_id === selectedBlockData.roomType && inv.date === dateStr
+            ? { ...inv, available_count: newAvailableCount }
+            : inv
+        ));
+        
+        toast.success(data.message || `Opened ${partialCount} beds for ${selectedBlockData.roomType} on ${format(selectedBlockData.date, 'MMM dd, yyyy')}`);
+      } catch (error) {
+        console.error('Error unblocking beds:', error);
+        toast.error('Failed to unblock beds');
+      }
     } else if (blockType === 'partial' && partialCount !== undefined) {
       // Handle partial blocking by updating room inventory
       const dateStr = format(selectedBlockData.date, 'yyyy-MM-dd');
@@ -1342,7 +1379,7 @@ const Admin: React.FC = () => {
       <Dialog open={blockModalOpen} onOpenChange={setBlockModalOpen}>
         <DialogContent className="max-w-lg">
           <DialogHeader>
-            <DialogTitle>Block Room Availability</DialogTitle>
+            <DialogTitle>Manage Room Availability</DialogTitle>
             <DialogDescription>
               Choose how to modify availability for {selectedBlockData?.roomType} on{' '}
               {selectedBlockData && format(selectedBlockData.date, 'MMM dd, yyyy')}
@@ -1358,20 +1395,55 @@ const Admin: React.FC = () => {
               </div>
               
               <div className="space-y-3">
-                <div className="space-y-2">
-                  <Label>Or block specific number of beds:</Label>
-                  <div className="flex gap-2">
-                    {Array.from({ length: selectedBlockData.currentAvailable }, (_, i) => i + 1).map(count => (
-                      <Button
-                        key={count}
-                        onClick={() => handleBlockConfirm('partial', count)}
-                        variant="outline"
-                        size="sm"
-                        className="flex-1"
-                      >
-                        Block {count}
-                      </Button>
-                    ))}
+                {selectedBlockData.currentAvailable > 0 && (
+                  <div className="space-y-2">
+                    <Label>Block specific number of beds:</Label>
+                    <div className="flex gap-2 flex-wrap">
+                      {Array.from({ length: selectedBlockData.currentAvailable }, (_, i) => i + 1).map(count => (
+                        <Button
+                          key={count}
+                          onClick={() => handleBlockConfirm('partial', count)}
+                          variant="outline"
+                          size="sm"
+                          className="flex-1 min-w-[80px]"
+                        >
+                          Block {count}
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                
+                {selectedBlockData.currentAvailable < selectedBlockData.totalCapacity && (
+                  <div className="space-y-2">
+                    <Label>Unblock specific number of beds:</Label>
+                    <div className="flex gap-2 flex-wrap">
+                      {Array.from({ length: selectedBlockData.totalCapacity - selectedBlockData.currentAvailable }, (_, i) => i + 1).map(count => (
+                        <Button
+                          key={count}
+                          onClick={() => handleBlockConfirm('unblock', count)}
+                          variant="outline"
+                          size="sm"
+                          className="flex-1 min-w-[80px] bg-green-50 hover:bg-green-100 text-green-700 border-green-200"
+                        >
+                          Open {count}
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                
+                <div className="pt-2 border-t">
+                  <Label className="text-sm font-medium">Quick Actions:</Label>
+                  <div className="flex gap-2 mt-2">
+                    <Button
+                      onClick={() => handleBlockConfirm('full')}
+                      variant="destructive"
+                      size="sm"
+                      className="flex-1"
+                    >
+                      {selectedBlockData.currentAvailable === 0 ? 'Unblock All' : 'Block All'}
+                    </Button>
                   </div>
                 </div>
               </div>
