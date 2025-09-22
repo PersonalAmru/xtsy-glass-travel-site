@@ -8,3 +8,6 @@ verify_jwt = false
 
 [functions.admin-recent-bookings]
 verify_jwt = false
+
+[functions.admin-cancel-booking]
+verify_jwt = false

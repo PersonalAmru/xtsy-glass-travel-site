@@ -658,22 +658,24 @@ const Admin: React.FC = () => {
     });
   };
 
-  // Cancel booking - permanent deletion from database
+  // Cancel booking using admin edge function
   const cancelBooking = async (bookingId: string) => {
     if (!confirm('Are you sure you want to cancel this booking? This action cannot be undone.')) return;
 
     try {
-      const { error } = await supabase
-        .from('bookings')
-        .update({ 
-          booking_status: 'cancelled',
-          cancelled_at: new Date().toISOString()
-        })
-        .eq('id', bookingId);
+      const { data, error } = await supabase.functions.invoke('admin-cancel-booking', {
+        body: { booking_id: bookingId }
+      });
 
       if (error) {
         console.error('Error cancelling booking:', error);
-        toast.error('Failed to cancel booking');
+        toast.error('Failed to cancel booking: ' + error.message);
+        return;
+      }
+
+      if (!data?.success) {
+        console.error('Booking cancellation failed:', data);
+        toast.error('Failed to cancel booking: ' + (data?.error || 'Unknown error'));
         return;
       }
 
@@ -684,7 +686,7 @@ const Admin: React.FC = () => {
           : booking
       ));
       
-      toast.success('Booking cancelled successfully and saved to database');
+      toast.success('Booking cancelled successfully');
     } catch (error) {
       console.error('Error cancelling booking:', error);
       toast.error('Failed to cancel booking');
