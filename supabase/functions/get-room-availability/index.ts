@@ -43,25 +43,38 @@ serve(async (req) => {
 
     console.log(`Getting availability for room ${room_type_name} from ${start_date} to ${end_date}`);
 
-    // Define room capacity based on room type name (matches admin dashboard logic)
+    // Try to resolve room type by name to get canonical id and total units
+    const { data: roomTypeRow, error: roomTypeError } = await supabaseAdmin
+      .from('room_types')
+      .select('id, total_units')
+      .eq('name', room_type_name)
+      .maybeSingle();
+
+    if (roomTypeError) {
+      console.log('room_types lookup error (non-critical):', roomTypeError);
+    }
+
+    // Define room capacity based on room type name (fallback)
     const getRoomCapacity = (roomName: string): number => {
       if (roomName.includes('270') || roomName.includes('Panorama')) return 1;
-      if (roomName.includes('King Double') || roomName.includes('Double')) return 1;  
       if (roomName.includes('King Triple') || roomName.includes('Triple')) return 1;
-      if (roomName.includes('4-Bed') || roomName.includes('Mixed Dormitory')) return 4;
-      if (roomName.includes('6-Bed')) return 6;
+      if (roomName.includes('King Double') || roomName.includes('Double')) return 1;
       if (roomName.includes('8-Bed')) return 8;
+      if (roomName.includes('6-Bed')) return 6;
+      if (roomName.includes('4-Bed')) return 4;
       return 2; // Default capacity
     };
 
-    const totalUnits = getRoomCapacity(room_type_name);
+    const totalUnits = roomTypeRow?.total_units ?? getRoomCapacity(room_type_name);
+    const altKey = roomTypeRow?.id || null;
+    const keys = altKey ? [room_type_name, altKey] : [room_type_name];
     console.log(`Room capacity for ${room_type_name}: ${totalUnits}`);
 
     // Get inventory data for the date range (using room_type_name)
     const { data: inventory, error: inventoryError } = await supabaseAdmin
       .from('room_inventory')
-      .select('date, available_count')
-      .eq('room_type_id', room_type_name)
+      .select('date, available_count, room_type_id')
+      .in('room_type_id', keys)
       .gte('date', start_date)
       .lte('date', end_date)
       .order('date');
@@ -76,7 +89,7 @@ serve(async (req) => {
     const { data: blockedDates, error: blockedError } = await supabaseAdmin
       .from('blocked_dates')
       .select('date')
-      .eq('room_type', room_type_name)
+      .in('room_type', keys)
       .eq('blocked', true)
       .gte('date', start_date)
       .lte('date', end_date);
@@ -90,8 +103,8 @@ serve(async (req) => {
     // Get confirmed bookings for the period (using room_type field)
     const { data: confirmedBookings, error: bookingsError } = await supabaseAdmin
       .from('bookings')
-      .select('check_in, check_out, quantity')
-      .eq('room_type', room_type_name)
+      .select('check_in, check_out, quantity, room_type')
+      .in('room_type', keys)
       .eq('booking_status', 'confirmed')
       .gte('check_in', start_date)
       .lte('check_out', end_date);

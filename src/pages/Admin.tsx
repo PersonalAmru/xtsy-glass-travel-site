@@ -308,23 +308,29 @@ const Admin: React.FC = () => {
   }, [isAdmin, user?.role]);
 
   // Calculate availability for a specific room type and date
-  const calculateAvailability = (roomTypeId: string, date: Date): { available: number; total: number; isBlocked: boolean } => {
+  const calculateAvailability = (roomKey: string, date: Date): { available: number; total: number; isBlocked: boolean } => {
     const dateStr = format(date, 'yyyy-MM-dd');
-    const roomType = roomTypes.find(rt => rt.id === roomTypeId);
+    const roomType = roomTypes.find(rt => rt.id === roomKey || rt.name === roomKey);
     const capacity = roomType?.total_units || 0;
 
-    // Check if date is blocked
+    const keys = new Set<string>([roomKey]);
+    if (roomType) {
+      keys.add(roomType.id);
+      keys.add(roomType.name);
+    }
+
+    // Check if date is blocked (by id or name)
     const isBlocked = blockedDates.some(
-      blocked => blocked.room_type === roomTypeId && blocked.date === dateStr && blocked.blocked
+      blocked => keys.has(blocked.room_type) && blocked.date === dateStr && blocked.blocked
     );
 
     if (isBlocked) {
       return { available: 0, total: capacity, isBlocked: true };
     }
 
-    // Get available count from room inventory
+    // Get available count from room inventory (by id or name)
     const inventoryRecord = roomInventory.find(
-      inv => inv.room_type_id === roomTypeId && inv.date === dateStr
+      inv => keys.has(inv.room_type_id) && inv.date === dateStr
     );
 
     if (inventoryRecord) {
@@ -385,12 +391,23 @@ const Admin: React.FC = () => {
           return;
         }
 
-        // Update local state
-        setRoomInventory(prev => prev.map(inv => 
-          inv.room_type_id === selectedBlockData.roomType && inv.date === dateStr
-            ? { ...inv, available_count: newAvailableCount }
-            : inv
-        ));
+        // Update local state (by id or name) and upsert if missing
+        setRoomInventory(prev => {
+          const rt = roomTypes.find(rt => rt.name === selectedBlockData.roomType || rt.id === selectedBlockData.roomType);
+          const keys = new Set<string>([selectedBlockData.roomType, rt?.id as string, rt?.name as string].filter(Boolean));
+          let found = false;
+          const updated = prev.map(inv => {
+            if (keys.has(inv.room_type_id) && inv.date === dateStr) {
+              found = true;
+              return { ...inv, available_count: newAvailableCount };
+            }
+            return inv;
+          });
+          if (!found) {
+            updated.push({ room_type_id: selectedBlockData.roomType, date: dateStr, available_count: newAvailableCount });
+          }
+          return updated;
+        });
         
         toast.success(data.message || `Opened ${partialCount} beds for ${selectedBlockData.roomType} on ${format(selectedBlockData.date, 'MMM dd, yyyy')}`);
       } catch (error) {
@@ -425,11 +442,22 @@ const Admin: React.FC = () => {
         // Update local state based on the result
         if (data.action === 'partial_blocked') {
           // Update inventory
-          setRoomInventory(prev => prev.map(inv => 
-            inv.room_type_id === selectedBlockData.roomType && inv.date === dateStr
-              ? { ...inv, available_count: selectedBlockData.totalCapacity - partialCount }
-              : inv
-          ));
+          setRoomInventory(prev => {
+            const rt = roomTypes.find(rt => rt.name === selectedBlockData.roomType || rt.id === selectedBlockData.roomType);
+            const keys = new Set<string>([selectedBlockData.roomType, rt?.id as string, rt?.name as string].filter(Boolean));
+            let found = false;
+            const updated = prev.map(inv => {
+              if (keys.has(inv.room_type_id) && inv.date === dateStr) {
+                found = true;
+                return { ...inv, available_count: selectedBlockData.totalCapacity - partialCount };
+              }
+              return inv;
+            });
+            if (!found) {
+              updated.push({ room_type_id: selectedBlockData.roomType, date: dateStr, available_count: selectedBlockData.totalCapacity - partialCount });
+            }
+            return updated;
+          });
         }
         
         toast.success(data.message || `Blocked ${partialCount} beds for ${selectedBlockData.roomType} on ${format(selectedBlockData.date, 'MMM dd, yyyy')}`);
@@ -446,9 +474,11 @@ const Admin: React.FC = () => {
   // Toggle block date with database integration
   const toggleBlockDate = async (roomType: string, date: Date) => {
     const dateStr = format(date, 'yyyy-MM-dd');
-    const existingBlock = blockedDates.find(
-      blocked => blocked.room_type === roomType && blocked.date === dateStr
-    );
+    const existingBlock = blockedDates.find(b => {
+      const rt = roomTypes.find(rt => rt.name === roomType || rt.id === roomType);
+      const keys = new Set<string>([roomType, rt?.id as string, rt?.name as string].filter(Boolean));
+      return keys.has(b.room_type) && b.date === dateStr;
+    });
 
     try {
       const { data, error } = await supabase.functions.invoke('admin-room-blocking', {
@@ -936,7 +966,7 @@ const Admin: React.FC = () => {
                                 return (
                                   <button
                                     key={`${roomType.id}-${dateIndex}`}
-                                    onClick={() => handleBlockClick(roomType.id, date)}
+                                    onClick={() => handleBlockClick(roomType.name, date)}
                                    className={`p-1 text-xs rounded border transition-colors ${
                                       isBlocked
                                         ? 'bg-destructive/20 text-destructive hover:bg-destructive/30 border-destructive/30'
