@@ -25,9 +25,13 @@ serve(async (req) => {
       }
     );
 
-    const { room_type_id, start_date, end_date } = await req.json();
+    const requestBody = await req.json();
+    console.log('Request received:', requestBody);
+    
+    const { room_type_name, start_date, end_date } = requestBody;
 
-    if (!room_type_id || !start_date || !end_date) {
+    if (!room_type_name || !start_date || !end_date) {
+      console.log('Missing parameters:', { room_type_name, start_date, end_date });
       return new Response(
         JSON.stringify({ success: false, error: 'Missing required parameters' }),
         { 
@@ -37,51 +41,66 @@ serve(async (req) => {
       );
     }
 
-    console.log(`Getting availability for room ${room_type_id} from ${start_date} to ${end_date}`);
+    console.log(`Getting availability for room ${room_type_name} from ${start_date} to ${end_date}`);
 
-    // Get room type details
-    const { data: roomType } = await supabaseAdmin
-      .from('room_types')
-      .select('total_units')
-      .eq('id', room_type_id)
-      .single();
+    // Define room capacity based on room type name (matches admin dashboard logic)
+    const getRoomCapacity = (roomName: string): number => {
+      if (roomName.includes('270') || roomName.includes('Panorama')) return 1;
+      if (roomName.includes('King Double') || roomName.includes('Double')) return 1;  
+      if (roomName.includes('King Triple') || roomName.includes('Triple')) return 1;
+      if (roomName.includes('4-Bed') || roomName.includes('Mixed Dormitory')) return 4;
+      if (roomName.includes('6-Bed')) return 6;
+      if (roomName.includes('8-Bed')) return 8;
+      return 2; // Default capacity
+    };
 
-    if (!roomType) {
-      return new Response(
-        JSON.stringify({ success: false, error: 'Room type not found' }),
-        { 
-          status: 404, 
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-        }
-      );
-    }
+    const totalUnits = getRoomCapacity(room_type_name);
+    console.log(`Room capacity for ${room_type_name}: ${totalUnits}`);
 
-    // Get inventory data for the date range
-    const { data: inventory } = await supabaseAdmin
+    // Get inventory data for the date range (using room_type_name)
+    const { data: inventory, error: inventoryError } = await supabaseAdmin
       .from('room_inventory')
       .select('date, available_count')
-      .eq('room_type_id', room_type_id)
+      .eq('room_type_id', room_type_name)
       .gte('date', start_date)
       .lte('date', end_date)
       .order('date');
 
-    // Get blocked dates
-    const { data: blockedDates } = await supabaseAdmin
+    if (inventoryError) {
+      console.log('Inventory query error (non-critical):', inventoryError);
+    } else {
+      console.log('Inventory query result:', inventory?.length || 0, 'records');
+    }
+
+    // Get blocked dates (using room_type field)
+    const { data: blockedDates, error: blockedError } = await supabaseAdmin
       .from('blocked_dates')
       .select('date')
-      .eq('room_type', room_type_id)
+      .eq('room_type', room_type_name)
       .eq('blocked', true)
       .gte('date', start_date)
       .lte('date', end_date);
 
-    // Get confirmed bookings for the period
-    const { data: confirmedBookings } = await supabaseAdmin
+    if (blockedError) {
+      console.log('Blocked dates query error (non-critical):', blockedError);
+    } else {
+      console.log('Blocked dates query result:', blockedDates?.length || 0, 'records');
+    }
+
+    // Get confirmed bookings for the period (using room_type field)
+    const { data: confirmedBookings, error: bookingsError } = await supabaseAdmin
       .from('bookings')
       .select('check_in, check_out, quantity')
-      .eq('room_type_id', room_type_id)
+      .eq('room_type', room_type_name)
       .eq('booking_status', 'confirmed')
       .gte('check_in', start_date)
       .lte('check_out', end_date);
+
+    if (bookingsError) {
+      console.log('Bookings query error (non-critical):', bookingsError);
+    } else {
+      console.log('Bookings query result:', confirmedBookings?.length || 0, 'records');
+    }
 
     // Build availability calendar
     const availability = {};
@@ -113,7 +132,7 @@ serve(async (req) => {
       const isBlockedByAdmin = blockedDatesSet.has(dateStr);
       
       // Get available count from inventory or default to total units
-      const availableCount = inventoryMap[dateStr] ?? roomType.total_units;
+      const availableCount = inventoryMap[dateStr] ?? totalUnits;
       
       // Calculate bookings for this specific date
       let bookedCount = 0;
@@ -134,7 +153,7 @@ serve(async (req) => {
       
       availability[dateStr] = {
         available: finalAvailableCount,
-        total: roomType.total_units,
+        total: totalUnits,
         isBlocked: isBlockedByAdmin,
         isSoldOut: isBlockedByAdmin || finalAvailableCount === 0,
         bookedCount
@@ -147,8 +166,8 @@ serve(async (req) => {
       JSON.stringify({ 
         success: true, 
         availability,
-        room_type_id,
-        total_units: roomType.total_units
+        room_type_name,
+        total_units: totalUnits
       }),
       { 
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }

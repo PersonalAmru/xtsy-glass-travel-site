@@ -49,7 +49,7 @@ const RoomAvailabilityCalendar: React.FC<RoomAvailabilityCalendarProps> = ({
 
       const { data, error } = await supabase.functions.invoke('get-room-availability', {
         body: {
-          room_type_id: roomTypeId,
+          room_type_name: roomName, // Use room name instead of ID
           start_date: startDate.toISOString().split('T')[0],
           end_date: endDate.toISOString().split('T')[0]
         }

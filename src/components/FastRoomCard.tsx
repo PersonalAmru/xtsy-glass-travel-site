@@ -383,7 +383,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                 {showCalendar && !isSoldOut && (
                   <div className={`mt-3 ${isXTSY270 ? 'mt-2' : ''}`}>
                     <RoomAvailabilityCalendar
-                      roomTypeId={room.id}
+                      roomTypeId={room.name} // Use room name for consistency
                       roomName={room.name}
                       selectedDate={selectedDate}
                       onDateSelect={setSelectedDate}
