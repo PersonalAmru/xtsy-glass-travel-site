@@ -131,6 +131,50 @@ const RoomAvailabilityCalendar: React.FC<RoomAvailabilityCalendarProps> = ({
     );
   };
 
+  const renderModernDay = (day: any) => {
+    const dayDate = day instanceof Date ? day : new Date(day.date || day);
+    const dayAvailability = getDayAvailability(dayDate);
+    const dayNumber = dayDate.getDate();
+    const isToday = dayDate.toDateString() === new Date().toDateString();
+    const isSelected = selectedDate && dayDate.toDateString() === selectedDate.toDateString();
+
+    if (!dayAvailability) {
+      return (
+        <div className="w-full h-10 flex items-center justify-center text-muted-foreground">
+          <span className="text-sm">{dayNumber}</span>
+        </div>
+      );
+    }
+
+    const getStatusColor = () => {
+      if (dayAvailability.isSoldOut) return 'bg-destructive/20 border-destructive/40 text-destructive-foreground';
+      if (dayAvailability.available <= 2) return 'bg-warning/20 border-warning/40 text-warning-foreground';
+      return 'bg-success/20 border-success/40 text-success-foreground';
+    };
+
+    const getStatusIcon = () => {
+      if (dayAvailability.isSoldOut) return <XCircle className="w-3 h-3" />;
+      if (dayAvailability.available <= 2) return <span className="text-xs font-bold">{dayAvailability.available}</span>;
+      return <CheckCircle className="w-3 h-3" />;
+    };
+
+    return (
+      <div className={cn(
+        "w-full h-10 flex flex-col items-center justify-center rounded-lg border-2 transition-all duration-200 cursor-pointer hover:scale-105",
+        getStatusColor(),
+        isToday && "ring-2 ring-primary ring-offset-1",
+        isSelected && "ring-2 ring-foreground ring-offset-2 scale-105"
+      )}>
+        <span className={cn("text-sm font-medium", isToday && "font-bold")}>
+          {dayNumber}
+        </span>
+        <div className="mt-0.5">
+          {getStatusIcon()}
+        </div>
+      </div>
+    );
+  };
+
   if (loading) {
     return (
       <Card className="w-full">
@@ -175,76 +219,107 @@ const RoomAvailabilityCalendar: React.FC<RoomAvailabilityCalendarProps> = ({
           {roomName} Availability
         </CardTitle>
       </CardHeader>
-      <CardContent className="p-3">
-        <Calendar
-          mode="single"
-          selected={selectedDate}
-          onSelect={onDateSelect}
-          modifiers={modifiers}
-          modifiersStyles={modifiersStyles}
-          components={{
-            Day: ({ day }) => renderDay(day)
-          }}
-          className={cn("w-full pointer-events-auto")}
-          disabled={(date) => date < new Date()}
-        />
-        
-        {/* Legend */}
-        <div className="mt-4 space-y-2">
-          <div className="flex flex-wrap gap-2 text-xs">
-            <div className="flex items-center gap-1">
-              <div className="w-3 h-3 rounded-full bg-success"></div>
-              <span>Available</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <div className="w-3 h-3 rounded-full bg-warning"></div>
-              <span>Limited (≤2)</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <div className="w-3 h-3 rounded-full bg-destructive opacity-70"></div>
-              <span>Sold Out</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Selected date info */}
-        {selectedDate && (
-          <div className="mt-3 p-2 bg-muted rounded-md">
-            <div className="text-sm font-medium">
-              {selectedDate.toLocaleDateString('en-US', { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-              })}
-            </div>
-            {(() => {
-              const dayAvailability = getDayAvailability(selectedDate);
-              if (!dayAvailability) return null;
-              
-              return (
-                <div className="text-xs text-muted-foreground mt-1">
-                  {dayAvailability.isSoldOut ? (
-                    <Badge variant="destructive" className="text-xs">
-                      Sold Out
-                    </Badge>
-                  ) : (
-                    <div className="flex items-center gap-2">
-                      <Badge variant="secondary" className="text-xs">
-                        {dayAvailability.available} / {dayAvailability.total} available
-                      </Badge>
-                      {dayAvailability.isBlocked && (
-                        <Badge variant="outline" className="text-xs">
-                          Admin Blocked
-                        </Badge>
-                      )}
-                    </div>
-                  )}
+      <CardContent className="p-0">
+        {/* Modern Scrolling Calendar Container */}
+        <div className="relative">
+          {/* Month Navigation Header */}
+          <div className="sticky top-0 z-10 bg-card border-b px-4 py-3">
+            <div className="flex items-center justify-between">
+              <h3 className="text-sm font-semibold text-foreground">
+                {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+              </h3>
+              <div className="flex items-center gap-2 text-xs">
+                <div className="flex items-center gap-1">
+                  <div className="w-2 h-2 rounded-full bg-success"></div>
+                  <span className="text-muted-foreground">Available</span>
                 </div>
-              );
-            })()}
+                <div className="flex items-center gap-1">
+                  <div className="w-2 h-2 rounded-full bg-warning"></div>
+                  <span className="text-muted-foreground">Limited</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <div className="w-2 h-2 rounded-full bg-destructive"></div>
+                  <span className="text-muted-foreground">Sold Out</span>
+                </div>
+              </div>
+            </div>
           </div>
-        )}
+
+          {/* Scrollable Calendar Grid */}
+          <div className="max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-muted scrollbar-track-background">
+            <div className="p-4">
+              <Calendar
+                mode="single"
+                selected={selectedDate}
+                onSelect={onDateSelect}
+                modifiers={modifiers}
+                modifiersStyles={modifiersStyles}
+                components={{
+                  Day: ({ day }) => renderModernDay(day)
+                }}
+                className={cn("w-full pointer-events-auto")}
+                disabled={(date) => date < new Date()}
+                showOutsideDays={false}
+                numberOfMonths={3}
+              />
+            </div>
+          </div>
+
+          {/* Selected Date Info Panel */}
+          {selectedDate && (
+            <div className="sticky bottom-0 bg-gradient-to-t from-card via-card to-transparent p-4 border-t">
+              <div className="bg-muted/50 backdrop-blur-sm rounded-lg p-3 border">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="text-sm font-medium text-foreground">
+                      {selectedDate.toLocaleDateString('en-US', { 
+                        weekday: 'short', 
+                        month: 'short', 
+                        day: 'numeric' 
+                      })}
+                    </div>
+                    {(() => {
+                      const dayAvailability = getDayAvailability(selectedDate);
+                      if (!dayAvailability) return null;
+                      
+                      return (
+                        <div className="text-xs text-muted-foreground mt-1">
+                          {dayAvailability.available} of {dayAvailability.total} available
+                        </div>
+                      );
+                    })()}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {(() => {
+                      const dayAvailability = getDayAvailability(selectedDate);
+                      if (!dayAvailability) return null;
+                      
+                      if (dayAvailability.isSoldOut) {
+                        return (
+                          <Badge variant="destructive" className="text-xs">
+                            Sold Out
+                          </Badge>
+                        );
+                      } else if (dayAvailability.available <= 2) {
+                        return (
+                          <Badge variant="secondary" className="text-xs bg-warning/20 text-warning-foreground border-warning">
+                            Limited
+                          </Badge>
+                        );
+                      } else {
+                        return (
+                          <Badge variant="secondary" className="text-xs bg-success/20 text-success-foreground border-success">
+                            Available
+                          </Badge>
+                        );
+                      }
+                    })()}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
       </CardContent>
     </Card>
   );
