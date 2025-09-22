@@ -1451,13 +1451,12 @@ const Admin: React.FC = () => {
                 <div className="space-y-2">
                   <Label>Or block specific number of beds:</Label>
                   <div className="flex gap-2">
-                    {[1, 2, 3, 4, 5, 6].map(count => (
+                    {Array.from({ length: selectedBlockData.currentAvailable }, (_, i) => i + 1).map(count => (
                       <Button
                         key={count}
                         onClick={() => handleBlockConfirm('partial', count)}
                         variant="outline"
                         size="sm"
-                        disabled={count > selectedBlockData.currentAvailable}
                         className="flex-1"
                       >
                         Block {count}
