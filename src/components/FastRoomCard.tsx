@@ -9,6 +9,7 @@ import { useApp } from '@/contexts/AppContext';
 import ImageLightbox from './ImageLightbox';
 import MobileImageCarousel from './MobileImageCarousel';
 import { generateStandardizedFeatures } from '@/utils/roomFeatures';
+import RoomAvailabilityCalendar from './RoomAvailabilityCalendar';
 
 interface FastRoomCardProps {
   room: {
@@ -48,6 +49,8 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxImages, setLightboxImages] = useState<string[]>([]);
   const [lightboxInitialIndex, setLightboxInitialIndex] = useState(0);
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>();
 
   // Get all available images for the room
   const roomImages = room.images && room.images.length > 0 ? room.images : [room.image];
@@ -351,6 +354,40 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                         </span>
                       </div>
                     )}
+
+                    {/* Calendar Toggle Button */}
+                    {!isSoldOut && (
+                      <div className={`pt-2 border-t border-gray-700 ${
+                        isMobile ? 'pt-1.5' : ''
+                      } ${isXTSY270 ? 'pt-1.5' : ''}`}>
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setShowCalendar(!showCalendar);
+                          }}
+                          className={`w-full py-2 px-3 text-center rounded-md transition-colors ${
+                            showCalendar 
+                              ? 'bg-primary text-primary-foreground' 
+                              : 'bg-gray-700 text-white hover:bg-gray-600'
+                          } ${isMobile ? 'text-xs py-1.5' : 'text-sm'} ${isXTSY270 ? 'text-xs py-1.5' : ''}`}
+                        >
+                          {showCalendar ? 'Hide' : 'View'} Availability Calendar
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Room Availability Calendar */}
+                {showCalendar && !isSoldOut && (
+                  <div className={`mt-3 ${isXTSY270 ? 'mt-2' : ''}`}>
+                    <RoomAvailabilityCalendar
+                      roomTypeId={room.id}
+                      roomName={room.name}
+                      selectedDate={selectedDate}
+                      onDateSelect={setSelectedDate}
+                    />
                   </div>
                 )}
               </CardContent>

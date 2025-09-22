@@ -17,3 +17,9 @@ verify_jwt = false
 
 [functions.admin-confirm-booking]
 verify_jwt = false
+
+[functions.get-room-availability]
+verify_jwt = false
+
+[functions.get-room-types]
+verify_jwt = false
