@@ -741,6 +741,10 @@ export type Database = {
       }
     }
     Functions: {
+      admin_block_room_date_secure: {
+        Args: { p_block_count?: number; p_date: string; p_room_type: string }
+        Returns: Json
+      }
       admin_get_booking_pii: {
         Args: { p_booking_id: string }
         Returns: {

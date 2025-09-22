@@ -1,5 +1,11 @@
 project_id = "oidnydyyjyjfnyadhyzn"
 
+[functions.admin-room-blocking]
+verify_jwt = false
+
+[functions.admin-get-data]
+verify_jwt = false
+
 [functions.secure-blocking]
 verify_jwt = false
 

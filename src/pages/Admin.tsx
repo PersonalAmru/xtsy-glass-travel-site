@@ -218,160 +218,67 @@ const Admin: React.FC = () => {
       try {
         console.log('Loading admin data, user role:', user?.role);
         
-        // Create a Supabase client with service role for admin operations
-        const adminClient = supabase;
-        
-        // Load room types using admin function or fallback
-        try {
-          const { data: roomTypesData, error: roomTypesError } = await adminClient
-            .from('room_types')
-            .select('*')
-            .eq('is_active', true)
-            .order('name');
+        // Load all admin data via secure edge function
+        const { data, error } = await supabase.functions.invoke('admin-get-data', {
+          body: { type: 'all' }
+        });
 
-          if (roomTypesError) {
-            console.error('Error loading room types:', roomTypesError);
-            // Use fallback data from hardcoded room types
-            setRoomTypes(Object.values(BOOKING_FLOW_ROOMS));
-          } else {
-            const transformedRoomTypes = (roomTypesData || []).map(room => ({
-              id: room.id,
-              name: room.name,
-              total_units: room.total_units || 0,
-              propertyType: room.category || 'Unknown',
-              type: (room.kind === 'private' ? 'private' : 'dorm') as 'dorm' | 'private',
-              price: room.base_price || 0,
-              is_active: room.is_active
-            }));
-            setRoomTypes(transformedRoomTypes.length > 0 ? transformedRoomTypes : Object.values(BOOKING_FLOW_ROOMS));
-          }
-        } catch (error) {
-          console.error('Failed to load room types:', error);
+        if (error) {
+          console.error('Error loading admin data:', error);
+          toast.error('Failed to load admin data: ' + error.message);
+          // Use fallback data
           setRoomTypes(Object.values(BOOKING_FLOW_ROOMS));
-        }
-
-        // Load room inventory for next 30 days
-        const startDate = format(new Date(), 'yyyy-MM-dd');
-        const endDate = format(addDays(new Date(), 30), 'yyyy-MM-dd');
-        
-        try {
-          const { data: inventoryData, error: inventoryError } = await adminClient
-            .from('room_inventory')
-            .select('*')
-            .gte('date', startDate)
-            .lte('date', endDate);
-
-          if (inventoryError) {
-            console.error('Error loading inventory:', inventoryError);
-            // Create fallback inventory data
-            const fallbackInventory: RoomInventory[] = [];
-            const fallbackRoomTypes = Object.values(BOOKING_FLOW_ROOMS);
-            
-            for (let i = 0; i < 30; i++) {
-              const date = format(addDays(new Date(), i), 'yyyy-MM-dd');
-              fallbackRoomTypes.forEach(roomType => {
-                fallbackInventory.push({
-                  room_type_id: roomType.id,
-                  date: date,
-                  available_count: roomType.total_units
-                });
-              });
-            }
-            setRoomInventory(fallbackInventory);
-          } else {
-            setRoomInventory(inventoryData || []);
-          }
-        } catch (error) {
-          console.error('Failed to load inventory:', error);
           setRoomInventory([]);
+          setBlockedDates([]);
+          return;
         }
+
+        if (!data?.success) {
+          console.error('Admin data fetch failed:', data);
+          toast.error('Failed to load admin data: ' + (data?.error || 'Unknown error'));
+          // Use fallback data
+          setRoomTypes(Object.values(BOOKING_FLOW_ROOMS));
+          setRoomInventory([]);
+          setBlockedDates([]);
+          return;
+        }
+
+        // Transform room types data
+        const transformedRoomTypes = (data.data.room_types || []).map(room => ({
+          id: room.id,
+          name: room.name,
+          total_units: room.total_units || 0,
+          propertyType: room.category || 'Unknown',
+          type: (room.kind === 'private' ? 'private' : 'dorm') as 'dorm' | 'private',
+          price: room.base_price || 0,
+          is_active: room.is_active
+        }));
+
+        setRoomTypes(transformedRoomTypes.length > 0 ? transformedRoomTypes : Object.values(BOOKING_FLOW_ROOMS));
+        setRoomInventory(data.data.room_inventory || []);
+        setBlockedDates(data.data.blocked_dates || []);
 
         // Load recent bookings via Edge Function (service role)
         try {
-          const { data, error } = await supabase.functions.invoke('admin-recent-bookings', {
+          const { data: bookingsData, error: bookingsError } = await supabase.functions.invoke('admin-recent-bookings', {
             body: { limit: 100 },
           });
 
-          if (error) {
-            console.error('Error loading bookings via edge function:', error);
-            // Fallback to mock data if secure function fails
-            setBookings([
-              {
-                id: '1',
-                booking_id: 'XTSY-20250920-0001',
-                guest_name: 'John Doe',
-                email: 'john@example.com',
-                whatsapp_number: '+91 9876543210',
-                room_type: '6-bed-mixed-female-dorm',
-                check_in: '2025-09-20',
-                check_out: '2025-09-22',
-                quantity: 1,
-                booking_status: 'confirmed',
-                payment_status: 'paid',
-                total_amount: 1500,
-                created_at: new Date().toISOString()
-              },
-              {
-                id: '2',
-                booking_id: 'XTSY-20250921-0002',
-                guest_name: 'Jane Smith',
-                email: 'jane@example.com',
-                whatsapp_number: '+91 9123456789',
-                room_type: '6-bed-mixed-economy-dorm',
-                check_in: '2025-09-21',
-                check_out: '2025-09-23',
-                quantity: 2,
-                booking_status: 'confirmed',
-                payment_status: 'paid',
-                total_amount: 1400,
-                created_at: new Date().toISOString()
-              }
-            ]);
+          if (bookingsError) {
+            console.error('Error loading bookings via edge function:', bookingsError);
+            setBookings([]);
+          } else if (!bookingsData?.success) {
+            console.error('Bookings fetch failed:', bookingsData);
+            setBookings([]);
           } else {
-            console.log('Loaded bookings from edge function:', data);
-            const list = (data as any)?.bookings ?? [];
-            const transformed = list.map((b: any) => ({
-              id: b.id,
-              booking_id: b.booking_id,
-              guest_name: b.guest_name,
-              email: b.email,
-              whatsapp_number: b.whatsapp_number,
-              room_type: b.room_type,
-              check_in: b.check_in,
-              check_out: b.check_out,
-              quantity: b.quantity ?? 1,
-              booking_status: b.booking_status,
-              payment_status: b.payment_status,
-              total_amount: b.total_amount,
-              created_at: b.created_at,
-            }));
-            setBookings(transformed);
+            setBookings(bookingsData.bookings || []);
           }
         } catch (error) {
           console.error('Failed to load bookings:', error);
           setBookings([]);
         }
-
-        // Load blocked dates from database
-        try {
-          const { data: blockedDatesData, error: blockedError } = await adminClient
-            .from('blocked_dates')
-            .select('*')
-            .eq('blocked', true)
-            .order('date');
-
-          if (blockedError) {
-            console.error('Error loading blocked dates:', blockedError);
-            setBlockedDates([]);
-          } else {
-            setBlockedDates(blockedDatesData || []);
-          }
-        } catch (error) {
-          console.error('Failed to load blocked dates:', error);
-          setBlockedDates([]);
-        }
       } catch (error) {
-        console.error('Error loading admin data:', error);
+        console.error('Error in loadData:', error);
         toast.error('Failed to load admin data');
       }
     };
@@ -459,12 +366,12 @@ const Admin: React.FC = () => {
       const newAvailableCount = Math.max(0, selectedBlockData.currentAvailable - partialCount);
       
       try {
-        const { data, error } = await supabase.functions.invoke('secure-blocking', {
+        const { data, error } = await supabase.functions.invoke('admin-room-blocking', {
           body: {
-            action: 'update_inventory',
-            room_type_id: selectedBlockData.roomType,
+            action: 'partial_block',
+            room_type: selectedBlockData.roomType,
             date: dateStr,
-            available_count: newAvailableCount
+            block_count: partialCount
           }
         });
 
@@ -473,14 +380,22 @@ const Admin: React.FC = () => {
           return;
         }
 
-        // Update local state
-        setRoomInventory(prev => prev.map(inv => 
-          inv.room_type_id === selectedBlockData.roomType && inv.date === dateStr
-            ? { ...inv, available_count: newAvailableCount }
-            : inv
-        ));
+        if (!data?.success) {
+          toast.error('Failed to block partial beds: ' + (data?.error || 'Unknown error'));
+          return;
+        }
+
+        // Update local state based on the result
+        if (data.action === 'partial_blocked') {
+          // Update inventory
+          setRoomInventory(prev => prev.map(inv => 
+            inv.room_type_id === selectedBlockData.roomType && inv.date === dateStr
+              ? { ...inv, available_count: selectedBlockData.totalCapacity - partialCount }
+              : inv
+          ));
+        }
         
-        toast.success(`Blocked ${partialCount} beds for ${selectedBlockData.roomType} on ${format(selectedBlockData.date, 'MMM dd, yyyy')}`);
+        toast.success(data.message || `Blocked ${partialCount} beds for ${selectedBlockData.roomType} on ${format(selectedBlockData.date, 'MMM dd, yyyy')}`);
       } catch (error) {
         console.error('Error blocking partial beds:', error);
         toast.error('Failed to block partial beds');
@@ -499,49 +414,42 @@ const Admin: React.FC = () => {
     );
 
     try {
-      if (existingBlock) {
-        // Remove block from database
-        const { data, error } = await supabase.functions.invoke('secure-blocking', {
-          body: {
-            action: 'unblock_date',
-            room_type: roomType,
-            date: dateStr
-          }
-        });
-
-        if (error) {
-          toast.error('Failed to unblock date: ' + error.message);
-          return;
+      const { data, error } = await supabase.functions.invoke('admin-room-blocking', {
+        body: {
+          action: 'toggle_block',
+          room_type: roomType,
+          date: dateStr
         }
+      });
 
-        // Update local state
-        setBlockedDates(prev => prev.filter(b => b.id !== existingBlock.id));
+      if (error) {
+        toast.error('Failed to toggle block: ' + error.message);
+        return;
+      }
+
+      if (!data?.success) {
+        toast.error('Failed to toggle block: ' + (data?.error || 'Unknown error'));
+        return;
+      }
+
+      // Update local state based on the result
+      if (data.action === 'unblocked') {
+        // Remove from blocked dates
+        setBlockedDates(prev => prev.filter(b => 
+          !(b.room_type === roomType && b.date === dateStr)
+        ));
         toast.success(`${roomType} unblocked for ${format(date, 'MMM dd, yyyy')} - now available in booking flow`);
-      } else {
-        // Add block to database
-        const { data, error } = await supabase.functions.invoke('secure-blocking', {
-          body: {
-            action: 'block_date',
-            room_type: roomType,
-            date: dateStr
-          }
-        });
-
-        if (error) {
-          toast.error('Failed to block date: ' + error.message);
-          return;
-        }
-
-        // Update local state
+      } else if (data.action === 'fully_blocked') {
+        // Add to blocked dates
         const newBlock: BlockedDate = {
-          id: data.id,
+          id: crypto.randomUUID(),
           room_type: roomType,
           date: dateStr,
           blocked: true,
-          created_at: data.created_at
+          created_at: new Date().toISOString()
         };
         setBlockedDates(prev => [...prev, newBlock]);
-        toast.success('Date blocked successfully');
+        toast.success(data.message || 'Date blocked successfully');
       }
     } catch (error) {
       console.error('Error toggling block date:', error);
