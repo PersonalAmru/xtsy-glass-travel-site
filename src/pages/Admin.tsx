@@ -1440,14 +1440,6 @@ const Admin: React.FC = () => {
               </div>
               
               <div className="space-y-3">
-                <Button
-                  onClick={() => handleBlockConfirm('full')}
-                  variant="destructive"
-                  className="w-full"
-                >
-                  Block All Beds (Full Block)
-                </Button>
-                
                 <div className="space-y-2">
                   <Label>Or block specific number of beds:</Label>
                   <div className="flex gap-2">
