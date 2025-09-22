@@ -286,14 +286,14 @@ const Admin: React.FC = () => {
           setRoomInventory([]);
         }
 
-        // Load real bookings from database using secure admin function
+        // Load recent bookings via Edge Function (service role)
         try {
-          const { data: bookingsData, error: bookingsError } = await adminClient.rpc('admin_search_bookings', {
-            p_limit: 100
+          const { data, error } = await supabase.functions.invoke('admin-recent-bookings', {
+            body: { limit: 100 },
           });
 
-          if (bookingsError) {
-            console.error('Error loading bookings:', bookingsError);
+          if (error) {
+            console.error('Error loading bookings via edge function:', error);
             // Fallback to mock data if secure function fails
             setBookings([
               {
@@ -328,14 +328,24 @@ const Admin: React.FC = () => {
               }
             ]);
           } else {
-            console.log('Loaded bookings from database:', bookingsData);
-            // Transform the data to match Booking interface
-            const transformedBookings = (bookingsData || []).map(booking => ({
-              ...booking,
-              room_type: 'Mixed Room', // Default since admin_search_bookings doesn't return room_type
-              quantity: booking.guests || 1 // Map guests to quantity
+            console.log('Loaded bookings from edge function:', data);
+            const list = (data as any)?.bookings ?? [];
+            const transformed = list.map((b: any) => ({
+              id: b.id,
+              booking_id: b.booking_id,
+              guest_name: b.guest_name,
+              email: b.email,
+              whatsapp_number: b.whatsapp_number,
+              room_type: b.room_type,
+              check_in: b.check_in,
+              check_out: b.check_out,
+              quantity: b.quantity ?? 1,
+              booking_status: b.booking_status,
+              payment_status: b.payment_status,
+              total_amount: b.total_amount,
+              created_at: b.created_at,
             }));
-            setBookings(transformedBookings);
+            setBookings(transformed);
           }
         } catch (error) {
           console.error('Failed to load bookings:', error);
