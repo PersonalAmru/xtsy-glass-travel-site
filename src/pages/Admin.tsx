@@ -853,62 +853,72 @@ const Admin: React.FC = () => {
         </CardHeader>
         <CardContent className="space-y-8">
           <div className="space-y-8">
-            {/* Group rooms by property type */}
-            {['Luxury', 'XTSY Travellers Hostel', 'XTSY Economy'].map(propertyType => {
-              const propertyRooms = roomTypes.filter(room => room.propertyType === propertyType);
-              if (propertyRooms.length === 0) return null;
-              
-              return (
-                <div key={propertyType}>
-                  <h3 className="text-lg font-semibold mb-4 text-primary">{propertyType}</h3>
-                  <div className="overflow-x-auto">
-                    <div className="min-w-[800px]">
-                      <div className="grid grid-cols-[200px_repeat(90,1fr)] gap-1 text-xs">
-                        {/* Header row */}
-                        <div className="font-medium p-2">Room Type</div>
-                        {dates.map((date, index) => (
-                          <div key={index} className="font-medium p-1 text-center">
-                            {format(date, 'dd/MM')}
-                          </div>
-                        ))}
-                        
-                        {/* Room availability rows for this property */}
-                        {propertyRooms.map(roomType => (
-                          <div key={roomType.id} className="contents">
-                            <div className="font-medium p-2 text-xs">
-                              <div>{roomType.name}</div>
-                              <div className="text-xs text-muted-foreground">
-                                {roomType.type === 'dorm' ? 'Beds' : 'Rooms'}: {roomType.total_units} | ₹{roomType.price}
-                              </div>
+            {/* Group rooms dynamically by available property/category */}
+            {(() => {
+              // Determine grouping keys from data
+              const keys = Array.from(new Set(roomTypes.map(r => r.propertyType).filter(Boolean)));
+              const groups = keys.length > 0 ? keys : ['Luxury', 'XTSY Travellers Hostel', 'XTSY Economy'];
+              const labelMap: Record<string, string> = {
+                dorm: 'Dormitories',
+                private: 'Private Rooms',
+                Luxury: 'Luxury',
+                'XTSY Travellers Hostel': 'XTSY Travellers Hostel',
+                'XTSY Economy': 'XTSY Economy',
+              };
+              return groups.map((propertyType) => {
+                const propertyRooms = roomTypes.filter(room => room.propertyType === propertyType);
+                if (propertyRooms.length === 0) return null;
+                return (
+                  <div key={propertyType}>
+                    <h3 className="text-lg font-semibold mb-4 text-primary">{labelMap[propertyType] || propertyType}</h3>
+                    <div className="overflow-x-auto">
+                      <div className="min-w-[800px]">
+                        <div className="grid grid-cols-[200px_repeat(90,1fr)] gap-1 text-xs">
+                          {/* Header row */}
+                          <div className="font-medium p-2">Room Type</div>
+                          {dates.map((date, index) => (
+                            <div key={index} className="font-medium p-1 text-center">
+                              {format(date, 'dd/MM')}
                             </div>
-                            {dates.map((date, dateIndex) => {
-                              const { available, total, isBlocked } = calculateAvailability(roomType.id, date);
-                              return (
-                                <button
-                                  key={`${roomType.id}-${dateIndex}`}
-                                  onClick={() => handleBlockClick(roomType.id, date)}
-                                  className={`p-1 text-xs rounded border transition-colors ${
-                                    isBlocked
-                                      ? 'bg-red-100 text-red-800 hover:bg-red-200'
-                                      : available === 0
-                                      ? 'bg-orange-100 text-orange-800 hover:bg-orange-200'
-                                      : available < total * 0.3
-                                      ? 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200'
-                                      : 'bg-green-100 text-green-800 hover:bg-green-200'
-                                  }`}
-                                >
-                                  {isBlocked ? 'Blocked' : `${available}/${total}`}
-                                </button>
-                              );
-                            })}
-                          </div>
-                        ))}
+                          ))}
+                          {/* Room availability rows for this property */}
+                          {propertyRooms.map(roomType => (
+                            <div key={roomType.id} className="contents">
+                              <div className="font-medium p-2 text-xs">
+                                <div>{roomType.name}</div>
+                                <div className="text-xs text-muted-foreground">
+                                  {roomType.type === 'dorm' ? 'Beds' : 'Rooms'}: {roomType.total_units} | ₹{roomType.price}
+                                </div>
+                              </div>
+                              {dates.map((date, dateIndex) => {
+                                const { available, total, isBlocked } = calculateAvailability(roomType.id, date);
+                                return (
+                                  <button
+                                    key={`${roomType.id}-${dateIndex}`}
+                                    onClick={() => handleBlockClick(roomType.id, date)}
+                                    className={`p-1 text-xs rounded border transition-colors ${
+                                      isBlocked
+                                        ? 'bg-red-100 text-red-800 hover:bg-red-200'
+                                        : available === 0
+                                        ? 'bg-orange-100 text-orange-800 hover:bg-orange-200'
+                                        : available < total * 0.3
+                                        ? 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200'
+                                        : 'bg-green-100 text-green-800 hover:bg-green-200'
+                                    }`}
+                                  >
+                                    {isBlocked ? 'Blocked' : `${available}/${total}`}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              });
+            })()}
           </div>
         </CardContent>
       </Card>
