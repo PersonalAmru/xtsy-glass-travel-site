@@ -17,9 +17,9 @@ serve(async (req) => {
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') as string
     );
 
-    const { action, room_type, date, block_count } = await req.json();
+    const { action, room_type, date, block_count, unblock_count } = await req.json();
     
-    console.log('Admin room blocking request:', { action, room_type, date, block_count });
+    console.log('Admin room blocking request:', { action, room_type, date, block_count, unblock_count });
 
     if (!action || !room_type || !date) {
       return new Response(JSON.stringify({ 
@@ -31,11 +31,12 @@ serve(async (req) => {
       });
     }
 
-    // Call the secure database function
+    // Call the secure database function with the action parameter
     const { data, error } = await supabase.rpc('admin_block_room_date_secure', {
       p_room_type: room_type,
       p_date: date,
-      p_block_count: block_count
+      p_block_count: block_count || unblock_count,
+      p_action: action
     });
 
     if (error) {
