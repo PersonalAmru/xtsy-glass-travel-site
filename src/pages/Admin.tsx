@@ -13,6 +13,7 @@ import { toast } from 'sonner';
 import { format, addDays, isWithinInterval } from 'date-fns';
 import { supabase } from '@/integrations/supabase/client';
 import { useNavigate } from 'react-router-dom';
+import { getRoomCapacity, getAvailabilityLabel, isDormitory, getRoomTypeKeys } from '@/utils/roomCapacity';
 
 // Room type and inventory interfaces based on booking flow
 interface RoomType {
@@ -307,27 +308,13 @@ const Admin: React.FC = () => {
     };
   }, [isAdmin, user?.role]);
 
-  // Calculate availability for a specific room type and date - based on room name
+  // Calculate availability for a specific room type and date - using centralized logic
   const calculateAvailability = (roomKey: string, date: Date): { available: number; total: number; isBlocked: boolean } => {
     const dateStr = format(date, 'yyyy-MM-dd');
     const roomType = roomTypes.find(rt => rt.id === roomKey || rt.name === roomKey);
     
-    // Extract capacity from room name (e.g., "4-Bed" = 4, "6-Bed" = 6)
-    const roomName = roomType?.name || roomKey;
-    let capacity = 0;
-    
-    if (roomName.includes('4-Bed')) {
-      capacity = 4;
-    } else if (roomName.includes('6-Bed')) {
-      capacity = 6;
-    } else if (roomName.includes('8-Bed')) {
-      capacity = 8;
-    } else if (roomName.includes('King Double') || roomName.includes('King Triple') || roomName.includes('270°') || roomName.includes('Panorama')) {
-      capacity = 1; // Private rooms = 1 room
-    } else {
-      // Fallback to total_units from database
-      capacity = roomType?.total_units || 0;
-    }
+    // Use centralized room capacity logic
+    const capacity = getRoomCapacity(roomType?.name || roomKey);
 
     const keys = new Set<string>([roomKey]);
     if (roomType) {
@@ -993,7 +980,7 @@ const Admin: React.FC = () => {
                                         : 'bg-green-100 text-green-800 hover:bg-green-200 border-green-300'
                                      }`}
                                    >
-                                     {isBlocked ? 'SOLD OUT' : available === 0 ? 'SOLD OUT' : `${available}/${total}`}
+                                     {isBlocked ? 'SOLD OUT' : available === 0 ? 'SOLD OUT' : getAvailabilityLabel(roomType.name, available)}
                                   </button>
                                 );
                               })}
@@ -1449,11 +1436,11 @@ const Admin: React.FC = () => {
                     <strong>Current Status:</strong> {
                       selectedBlockData.currentAvailable === 0 
                         ? <span className="text-destructive font-medium">SOLD OUT</span>
-                        : `${selectedBlockData.currentAvailable} / ${selectedBlockData.totalCapacity} available`
+                        : getAvailabilityLabel(selectedBlockData.roomType, selectedBlockData.currentAvailable)
                     }
                   </p>
                   <p className="text-xs text-muted-foreground mt-2">
-                    {selectedBlockData.roomType.includes('dorm') 
+                    {isDormitory(selectedBlockData.roomType)
                       ? '📝 Dormitory: Each unit represents an individual bed in a shared room'
                       : '📝 Private Room: Each unit represents a complete private room'
                     }

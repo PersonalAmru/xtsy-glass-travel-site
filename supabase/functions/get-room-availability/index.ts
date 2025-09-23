@@ -54,15 +54,21 @@ serve(async (req) => {
       console.log('room_types lookup error (non-critical):', roomTypeError);
     }
 
-    // Define room capacity based on room type name (fallback)
+    // Define room capacity based on room type name - aligned with frontend logic
     const getRoomCapacity = (roomName: string): number => {
-      if (roomName.includes('270') || roomName.includes('Panorama')) return 1;
-      if (roomName.includes('King Triple') || roomName.includes('Triple')) return 1;
-      if (roomName.includes('King Double') || roomName.includes('Double')) return 1;
-      if (roomName.includes('8-Bed')) return 8;
-      if (roomName.includes('6-Bed')) return 6;
-      if (roomName.includes('4-Bed')) return 4;
-      return 2; // Default capacity
+      const name = roomName.toLowerCase();
+      
+      // Dormitories - capacity = number of beds
+      if (name.includes('8') && name.includes('bed')) return 8;
+      if (name.includes('6') && name.includes('bed')) return 6; 
+      if (name.includes('4') && name.includes('bed')) return 4;
+      
+      // Private rooms - capacity = 1 room (but may accommodate multiple guests)
+      if (name.includes('270') || name.includes('panorama')) return 1;
+      if (name.includes('king triple') || name.includes('triple')) return 1;
+      if (name.includes('king double') || name.includes('double')) return 2; // 2 rooms available
+      
+      return 1; // Default to 1 room
     };
 
     const totalUnits = roomTypeRow?.total_units ?? getRoomCapacity(room_type_name);
