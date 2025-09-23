@@ -307,10 +307,12 @@ const Admin: React.FC = () => {
     };
   }, [isAdmin, user?.role]);
 
-  // Calculate availability for a specific room type and date
+  // Calculate availability for a specific room type and date - aligned with FastRoomCard logic
   const calculateAvailability = (roomKey: string, date: Date): { available: number; total: number; isBlocked: boolean } => {
     const dateStr = format(date, 'yyyy-MM-dd');
     const roomType = roomTypes.find(rt => rt.id === roomKey || rt.name === roomKey);
+    
+    // Use the same capacity logic as FastRoomCard: total_units represents max available beds/rooms
     const capacity = roomType?.total_units || 0;
 
     const keys = new Set<string>([roomKey]);
@@ -341,7 +343,7 @@ const Admin: React.FC = () => {
       };
     }
 
-    // If no inventory record, assume full availability
+    // If no inventory record, assume full availability matches total_units (same as FastRoomCard maxRooms logic)
     return {
       available: capacity,
       total: capacity,
