@@ -307,13 +307,27 @@ const Admin: React.FC = () => {
     };
   }, [isAdmin, user?.role]);
 
-  // Calculate availability for a specific room type and date - aligned with FastRoomCard logic
+  // Calculate availability for a specific room type and date - based on room name
   const calculateAvailability = (roomKey: string, date: Date): { available: number; total: number; isBlocked: boolean } => {
     const dateStr = format(date, 'yyyy-MM-dd');
     const roomType = roomTypes.find(rt => rt.id === roomKey || rt.name === roomKey);
     
-    // Use the same capacity logic as FastRoomCard: total_units represents max available beds/rooms
-    const capacity = roomType?.total_units || 0;
+    // Extract capacity from room name (e.g., "4-Bed" = 4, "6-Bed" = 6)
+    const roomName = roomType?.name || roomKey;
+    let capacity = 0;
+    
+    if (roomName.includes('4-Bed')) {
+      capacity = 4;
+    } else if (roomName.includes('6-Bed')) {
+      capacity = 6;
+    } else if (roomName.includes('8-Bed')) {
+      capacity = 8;
+    } else if (roomName.includes('King Double') || roomName.includes('King Triple') || roomName.includes('270°') || roomName.includes('Panorama')) {
+      capacity = 1; // Private rooms = 1 room
+    } else {
+      // Fallback to total_units from database
+      capacity = roomType?.total_units || 0;
+    }
 
     const keys = new Set<string>([roomKey]);
     if (roomType) {
