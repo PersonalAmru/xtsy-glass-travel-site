@@ -15,6 +15,7 @@ import { ROOM_DATA, XTSY270_DATA } from '@/data/rooms/xtsy270';
 import { useApp } from '@/contexts/AppContext';
 import { generateStandardizedFeatures } from '@/utils/roomFeatures';
 import { supabase } from '@/integrations/supabase/client';
+import { useBlockedDates, checkRoomAvailability } from '@/hooks/useBlockedDates';
 interface Room {
   id: string;
   name: string;
@@ -178,7 +179,6 @@ export default function BookingFlow() {
   });
   const [showGuestModal, setShowGuestModal] = useState(false);
   const [showUPIModal, setShowUPIModal] = useState(false);
-  const [blockedDates, setBlockedDates] = useState<{[key: string]: string[]}>({});
   const [roomsWithAvailability, setRoomsWithAvailability] = useState<Room[]>(Object.values(ALL_ROOMS_DATA));
   const screenSize = useScreenSize();
   const isMobileView = screenSize === 'mobile';
@@ -201,84 +201,20 @@ export default function BookingFlow() {
       return 1;
     }
   }, [bookingDates.checkIn, bookingDates.checkOut]);
-  // Check if room is blocked for the selected dates
-  const checkRoomAvailability = (roomId: string, checkIn: string, checkOut: string): boolean => {
-    const roomBlockedDates = blockedDates[roomId] || [];
-    const checkInDate = new Date(checkIn);
-    const checkOutDate = new Date(checkOut);
-    
-    // Check each night of the stay
-    let currentDate = new Date(checkInDate);
-    while (currentDate < checkOutDate) {
-      const dateStr = format(currentDate, 'yyyy-MM-dd');
-      if (roomBlockedDates.includes(dateStr)) {
-        return false; // Room is blocked for this date
-      }
-      currentDate = addDays(currentDate, 1);
-    }
-    return true; // Room is available
-  };
+  // Use centralized blocked dates hook
+  const { blockedDates: blockedDatesFromHook } = useBlockedDates();
 
   const roomsArray: Room[] = Object.values(ALL_ROOMS_DATA);
-  // Load blocked dates on component mount and when booking dates change
+
+  // Update rooms with availability status whenever blocked dates or booking dates change
   useEffect(() => {
-    const loadBlockedDates = async () => {
-      try {
-        const { data: blockedData, error } = await supabase
-          .from('blocked_dates')
-          .select('room_type, date')
-          .eq('blocked', true);
-
-        if (error) {
-          console.error('Error loading blocked dates:', error);
-          return;
-        }
-
-        // Group blocked dates by room type
-        const blockedByRoom: {[key: string]: string[]} = {};
-        blockedData?.forEach(block => {
-          if (!blockedByRoom[block.room_type]) {
-            blockedByRoom[block.room_type] = [];
-          }
-          blockedByRoom[block.room_type].push(block.date);
-        });
-
-        setBlockedDates(blockedByRoom);
-
-        // Update rooms with availability status
-        const updatedRooms = Object.values(ALL_ROOMS_DATA).map(room => ({
-          ...room,
-          isBlocked: !checkRoomAvailability(room.id, bookingDates.checkIn, bookingDates.checkOut)
-        }));
-        
-        setRoomsWithAvailability(updatedRooms);
-      } catch (error) {
-        console.error('Error loading room availability:', error);
-        // Fallback: show all rooms even if availability can't be loaded
-        setRoomsWithAvailability(Object.values(ALL_ROOMS_DATA));
-      }
-    };
-
-    loadBlockedDates();
-
-    // Set up real-time subscription for blocked dates updates
-    const subscription = supabase
-      .channel('blocked_dates_changes')
-      .on('postgres_changes', { 
-        event: '*', 
-        schema: 'public', 
-        table: 'blocked_dates' 
-      }, () => {
-        // Reload blocked dates when changes occur
-        loadBlockedDates();
-      })
-      .subscribe();
-
-    // Cleanup subscription on unmount
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, [bookingDates.checkIn, bookingDates.checkOut]);
+    const updatedRooms = Object.values(ALL_ROOMS_DATA).map(room => ({
+      ...room,
+      isBlocked: !checkRoomAvailability(room.id, bookingDates.checkIn, bookingDates.checkOut, blockedDatesFromHook)
+    }));
+    
+    setRoomsWithAvailability(updatedRooms);
+  }, [bookingDates.checkIn, bookingDates.checkOut, blockedDatesFromHook]);
 
   useEffect(() => {
     if (preSelectedRoom && preSelectedProperty) {

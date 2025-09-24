@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { CalendarIcon, XCircle, CheckCircle } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
+import { useBlockedDates } from '@/hooks/useBlockedDates';
 import { cn } from '@/lib/utils';
 
 interface RoomAvailabilityCalendarProps {
@@ -30,12 +31,15 @@ const RoomAvailabilityCalendar: React.FC<RoomAvailabilityCalendarProps> = ({
   const [availability, setAvailability] = useState<Record<string, AvailabilityData>>({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  
+  // Use centralized blocked dates hook for real-time updates
+  const { blockedDates } = useBlockedDates();
 
   useEffect(() => {
     if (roomTypeId) {
       loadAvailability();
     }
-  }, [roomTypeId]);
+  }, [roomTypeId, blockedDates]); // Reload when blocked dates change
 
   const loadAvailability = async () => {
     try {
