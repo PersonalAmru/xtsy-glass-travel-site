@@ -126,6 +126,17 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
     }
   }, [room.id, room.name]);
 
+  // Name to use for availability/blocked-dates lookups (exact admin naming)
+  const availabilityName = React.useMemo(() => {
+    switch (room.id) {
+      case '8-bed-mixed-economy-dorm':
+        // Matches admin dashboard entry and blocked_dates.room_type
+        return 'Bed in 8 bed mixed economy dorm';
+      default:
+        return availabilityKey;
+    }
+  }, [room.id, availabilityKey]);
+
   // Calculate subtotal: price × nights × selected rooms/beds
   const calculateSubtotal = () => {
     return (room.price || 0) * nights * selection.rooms;
@@ -387,7 +398,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                   <div className={`mt-3 ${isXTSY270 ? 'mt-2' : ''}`}>
                     <RoomAvailabilityCalendar
                       roomTypeId={availabilityKey}
-                      roomName={room.name}
+                      roomName={availabilityName}
                       selectedDate={selectedDate}
                       onDateSelect={setSelectedDate}
                     />

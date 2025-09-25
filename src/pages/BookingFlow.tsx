@@ -227,6 +227,11 @@ export default function BookingFlow() {
         aliases.add(`Bed in ${economyName}`);
       }
 
+      // Specific admin naming for 8-bed economy mixed dorm
+      if (room.id === '8-bed-mixed-economy-dorm') {
+        aliases.add('Bed in 8 bed mixed economy dorm');
+      }
+
       const blockedSet = new Set<string>();
       aliases.forEach(key => {
         (blockedDatesFromHook[key] || []).forEach(d => blockedSet.add(d));
