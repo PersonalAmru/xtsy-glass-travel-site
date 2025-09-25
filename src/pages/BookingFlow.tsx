@@ -208,11 +208,45 @@ export default function BookingFlow() {
 
   // Update rooms with availability status whenever blocked dates or booking dates change
   useEffect(() => {
-    const updatedRooms = Object.values(ALL_ROOMS_DATA).map(room => ({
-      ...room,
-      isBlocked: !checkRoomAvailability(room.id, bookingDates.checkIn, bookingDates.checkOut, blockedDatesFromHook)
-    }));
-    
+    const updatedRooms = Object.values(ALL_ROOMS_DATA).map(room => {
+      const aliases = new Set<string>([
+        room.id,
+        room.name,
+        `Bed in ${room.name}`,
+        room.name.replace(/Dormitory/i, 'Dorm'),
+        `Bed in ${room.name.replace(/Dormitory/i, 'Dorm')}`,
+      ]);
+
+      // Add economy variants if applicable
+      if (room.id.includes('economy')) {
+        const baseName = room.name.replace(/^Bed in\s+/i, '');
+        const economyName = baseName.includes('Economy')
+          ? baseName
+          : baseName.replace(/Dormitory/i, 'Economy Dormitory');
+        aliases.add(economyName);
+        aliases.add(`Bed in ${economyName}`);
+      }
+
+      const blockedSet = new Set<string>();
+      aliases.forEach(key => {
+        (blockedDatesFromHook[key] || []).forEach(d => blockedSet.add(d));
+      });
+
+      // Check each night in the selected range
+      const checkInDate = new Date(bookingDates.checkIn);
+      const checkOutDate = new Date(bookingDates.checkOut);
+      let available = true;
+      for (let d = new Date(checkInDate); d < checkOutDate; d.setDate(d.getDate() + 1)) {
+        const dateStr = d.toISOString().split('T')[0];
+        if (blockedSet.has(dateStr)) {
+          available = false;
+          break;
+        }
+      }
+
+      return { ...room, isBlocked: !available };
+    });
+
     setRoomsWithAvailability(updatedRooms);
   }, [bookingDates.checkIn, bookingDates.checkOut, blockedDatesFromHook]);
 

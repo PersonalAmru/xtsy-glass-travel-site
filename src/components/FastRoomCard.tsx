@@ -100,6 +100,32 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
   // Check if room is blocked/sold out
   const isSoldOut = room.isBlocked;
 
+  // Availability lookup key to align with admin and edge function naming
+  const availabilityKey = React.useMemo(() => {
+    switch (room.id) {
+      case '8-bed-mixed-economy-dorm':
+        return '8-Bed Mixed Economy Dormitory';
+      case '6-bed-mixed-economy-dorm':
+        return '6-Bed Mixed Economy Dormitory';
+      case '6-bed-mixed-dorm':
+        return '6-Bed Mixed Dormitory';
+      case '6-bed-mixed-female-dorm':
+        return '6-Bed Female Only Dormitory';
+      case '4-bed-mixed-female-dorm':
+        return '4-Bed Mixed Dormitory';
+      case '4-bed-female-only-dorm':
+        return '4-Bed Female Only Dormitory';
+      case 'king-double-room':
+        return 'King Double Room';
+      case 'king-triple-room':
+        return 'King Triple Room';
+      case 'xtsy-270':
+        return '270° Panorama Glass Ensuite';
+      default:
+        return room.name;
+    }
+  }, [room.id, room.name]);
+
   // Calculate subtotal: price × nights × selected rooms/beds
   const calculateSubtotal = () => {
     return (room.price || 0) * nights * selection.rooms;
@@ -360,7 +386,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                 {!isSoldOut && (
                   <div className={`mt-3 ${isXTSY270 ? 'mt-2' : ''}`}>
                     <RoomAvailabilityCalendar
-                      roomTypeId={room.name} // Use room name for consistency
+                      roomTypeId={availabilityKey}
                       roomName={room.name}
                       selectedDate={selectedDate}
                       onDateSelect={setSelectedDate}
