@@ -15,7 +15,7 @@ import { ROOM_DATA, XTSY270_DATA } from '@/data/rooms/xtsy270';
 import { useApp } from '@/contexts/AppContext';
 import { generateStandardizedFeatures } from '@/utils/roomFeatures';
 import { supabase } from '@/integrations/supabase/client';
-import { useBlockedDates, checkRoomAvailability } from '@/hooks/useBlockedDates';
+import { useRoomAvailability, checkDateRangeAvailability } from '@/hooks/useRoomAvailability';
 interface Room {
   id: string;
   name: string;
@@ -201,59 +201,40 @@ export default function BookingFlow() {
       return 1;
     }
   }, [bookingDates.checkIn, bookingDates.checkOut]);
-  // Use centralized blocked dates hook
-  const { blockedDates: blockedDatesFromHook } = useBlockedDates();
-
   const roomsArray: Room[] = Object.values(ALL_ROOMS_DATA);
 
-  // Update rooms with availability status whenever blocked dates or booking dates change
+  // Helper function to get availability name for each room
+  const getAvailabilityName = (room: Room): string => {
+    switch (room.id) {
+      case '8-bed-mixed-economy-dorm':
+        return 'Bed in 8 bed mixed economy dorm';
+      default:
+        return room.name;
+    }
+  };
+
+  // Real-time room availability for all rooms
+  const roomAvailabilityQueries = roomsArray.map(room => {
+    const availabilityName = getAvailabilityName(room);
+    return useRoomAvailability(availabilityName, true);
+  });
+
+  // Update rooms with real-time availability status whenever booking dates change
   useEffect(() => {
-    const updatedRooms = Object.values(ALL_ROOMS_DATA).map(room => {
-      const aliases = new Set<string>([
-        room.id,
-        room.name,
-        `Bed in ${room.name}`,
-        room.name.replace(/Dormitory/i, 'Dorm'),
-        `Bed in ${room.name.replace(/Dormitory/i, 'Dorm')}`,
-      ]);
+    const updatedRooms = roomsArray.map((room, index) => {
+      const availabilityQuery = roomAvailabilityQueries[index];
+      const { availability } = availabilityQuery || { availability: {} };
 
-      // Add economy variants if applicable
-      if (room.id.includes('economy')) {
-        const baseName = room.name.replace(/^Bed in\s+/i, '');
-        const economyName = baseName.includes('Economy')
-          ? baseName
-          : baseName.replace(/Dormitory/i, 'Economy Dormitory');
-        aliases.add(economyName);
-        aliases.add(`Bed in ${economyName}`);
-      }
-
-      // Specific admin naming for 8-bed economy mixed dorm
-      if (room.id === '8-bed-mixed-economy-dorm') {
-        aliases.add('Bed in 8 bed mixed economy dorm');
-      }
-
-      const blockedSet = new Set<string>();
-      aliases.forEach(key => {
-        (blockedDatesFromHook[key] || []).forEach(d => blockedSet.add(d));
-      });
-
-      // Check each night in the selected range
+      // Check if room is available for selected dates using real-time availability
       const checkInDate = new Date(bookingDates.checkIn);
       const checkOutDate = new Date(bookingDates.checkOut);
-      let available = true;
-      for (let d = new Date(checkInDate); d < checkOutDate; d.setDate(d.getDate() + 1)) {
-        const dateStr = d.toISOString().split('T')[0];
-        if (blockedSet.has(dateStr)) {
-          available = false;
-          break;
-        }
-      }
+      const isAvailable = checkDateRangeAvailability(checkInDate, checkOutDate, availability);
 
-      return { ...room, isBlocked: !available };
+      return { ...room, isBlocked: !isAvailable };
     });
 
     setRoomsWithAvailability(updatedRooms);
-  }, [bookingDates.checkIn, bookingDates.checkOut, blockedDatesFromHook]);
+  }, [bookingDates.checkIn, bookingDates.checkOut, roomAvailabilityQueries]);
 
   useEffect(() => {
     if (preSelectedRoom && preSelectedProperty) {

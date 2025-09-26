@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Calendar } from '@/components/ui/calendar';
+import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { CalendarIcon, XCircle, CheckCircle } from 'lucide-react';
-import { supabase } from '@/integrations/supabase/client';
-import { useBlockedDates } from '@/hooks/useBlockedDates';
+import { useRoomAvailability, getAvailabilityStatus } from '@/hooks/useRoomAvailability';
 import { cn } from '@/lib/utils';
 
 interface RoomAvailabilityCalendarProps {
@@ -28,155 +25,12 @@ const RoomAvailabilityCalendar: React.FC<RoomAvailabilityCalendarProps> = ({
   onDateSelect,
   selectedDate
 }) => {
-  const [availability, setAvailability] = useState<Record<string, AvailabilityData>>({});
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  
-  // Use centralized blocked dates hook for real-time updates
-  const { blockedDates } = useBlockedDates();
-
-  useEffect(() => {
-    if (roomTypeId) {
-      loadAvailability();
-    }
-  }, [roomTypeId, blockedDates]); // Reload when blocked dates change
-
-  const loadAvailability = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-
-      // Get availability for next 3 months
-      const startDate = new Date();
-      const endDate = new Date();
-      endDate.setMonth(endDate.getMonth() + 3);
-
-      const { data, error } = await supabase.functions.invoke('get-room-availability', {
-        body: {
-          room_type_name: roomName, // Use room name instead of ID
-          start_date: startDate.toISOString().split('T')[0],
-          end_date: endDate.toISOString().split('T')[0]
-        }
-      });
-
-      if (error) {
-        throw error;
-      }
-
-      if (data?.success) {
-        setAvailability(data.availability);
-      } else {
-        throw new Error(data?.error || 'Failed to load availability');
-      }
-    } catch (err) {
-      console.error('Error loading room availability:', err);
-      setError(err instanceof Error ? err.message : 'Failed to load availability');
-    } finally {
-      setLoading(false);
-    }
-  };
+  // Use the new real-time availability hook
+  const { availability, loading, error } = useRoomAvailability(roomName, !!roomName);
 
   const getDayAvailability = (date: Date): AvailabilityData | null => {
     const dateStr = date.toISOString().split('T')[0];
     return availability[dateStr] || null;
-  };
-
-  const modifiers = {
-    soldOut: (date: Date) => {
-      const dayAvailability = getDayAvailability(date);
-      return dayAvailability?.isSoldOut || false;
-    },
-    available: (date: Date) => {
-      const dayAvailability = getDayAvailability(date);
-      return dayAvailability && !dayAvailability.isSoldOut && dayAvailability.available > 0;
-    },
-    limited: (date: Date) => {
-      const dayAvailability = getDayAvailability(date);
-      return dayAvailability && !dayAvailability.isSoldOut && dayAvailability.available > 0 && dayAvailability.available <= 2;
-    }
-  };
-
-  const modifiersStyles = {
-    soldOut: {
-      backgroundColor: 'hsl(var(--destructive))',
-      color: 'hsl(var(--destructive-foreground))',
-      opacity: 0.7
-    },
-    available: {
-      backgroundColor: 'hsl(var(--success))',
-      color: 'hsl(var(--success-foreground))'
-    },
-    limited: {
-      backgroundColor: 'hsl(var(--warning))',
-      color: 'hsl(var(--warning-foreground))'
-    }
-  };
-
-  const renderDay = (day: any) => {
-    const dayDate = day instanceof Date ? day : new Date(day.date || day);
-    const dayAvailability = getDayAvailability(dayDate);
-    const dayNumber = dayDate.getDate();
-
-    if (!dayAvailability) {
-      return <span>{dayNumber}</span>;
-    }
-
-    return (
-      <div className="relative w-full h-full flex flex-col items-center justify-center">
-        <span className="text-sm font-medium">{dayNumber}</span>
-        {dayAvailability.isSoldOut ? (
-          <XCircle className="w-3 h-3 mt-0.5" />
-        ) : dayAvailability.available <= 2 ? (
-          <span className="text-xs font-bold">{dayAvailability.available}</span>
-        ) : (
-          <CheckCircle className="w-3 h-3 mt-0.5" />
-        )}
-      </div>
-    );
-  };
-
-  const renderModernDay = (day: any) => {
-    const dayDate = day instanceof Date ? day : new Date(day.date || day);
-    const dayAvailability = getDayAvailability(dayDate);
-    const dayNumber = dayDate.getDate();
-    const isToday = dayDate.toDateString() === new Date().toDateString();
-    const isSelected = selectedDate && dayDate.toDateString() === selectedDate.toDateString();
-
-    if (!dayAvailability) {
-      return (
-        <div className="w-full h-10 flex items-center justify-center text-muted-foreground">
-          <span className="text-sm">{dayNumber}</span>
-        </div>
-      );
-    }
-
-    const getStatusColor = () => {
-      if (dayAvailability.isSoldOut) return 'bg-destructive/20 border-destructive/40 text-destructive-foreground';
-      if (dayAvailability.available <= 2) return 'bg-warning/20 border-warning/40 text-warning-foreground';
-      return 'bg-success/20 border-success/40 text-success-foreground';
-    };
-
-    const getStatusIcon = () => {
-      if (dayAvailability.isSoldOut) return <XCircle className="w-3 h-3" />;
-      if (dayAvailability.available <= 2) return <span className="text-xs font-bold">{dayAvailability.available}</span>;
-      return <CheckCircle className="w-3 h-3" />;
-    };
-
-    return (
-      <div className={cn(
-        "w-full h-10 flex flex-col items-center justify-center rounded-lg border-2 transition-all duration-200 cursor-pointer hover:scale-105",
-        getStatusColor(),
-        isToday && "ring-2 ring-primary ring-offset-1",
-        isSelected && "ring-2 ring-foreground ring-offset-2 scale-105"
-      )}>
-        <span className={cn("text-sm font-medium", isToday && "font-bold")}>
-          {dayNumber}
-        </span>
-        <div className="mt-0.5">
-          {getStatusIcon()}
-        </div>
-      </div>
-    );
   };
 
   if (loading) {
@@ -226,29 +80,6 @@ const RoomAvailabilityCalendar: React.FC<RoomAvailabilityCalendarProps> = ({
       <CardContent className="p-0">
         {/* Modern Scrolling Calendar Container */}
         <div className="relative">
-          {/* Month Navigation Header */}
-          <div className="sticky top-0 z-10 bg-card border-b px-4 py-3">
-            <div className="flex items-center justify-between">
-              <h3 className="text-sm font-semibold text-foreground">
-                {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
-              </h3>
-              <div className="flex items-center gap-2 text-xs">
-                <div className="flex items-center gap-1">
-                  <div className="w-2 h-2 rounded-full bg-success"></div>
-                  <span className="text-muted-foreground">Available</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <div className="w-2 h-2 rounded-full bg-warning"></div>
-                  <span className="text-muted-foreground">Limited</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <div className="w-2 h-2 rounded-full bg-destructive"></div>
-                  <span className="text-muted-foreground">Sold Out</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
           {/* Horizontal Scrollable Date Picker */}
           <div className="bg-white border-t">
             {/* Compact Legend */}
@@ -257,6 +88,10 @@ const RoomAvailabilityCalendar: React.FC<RoomAvailabilityCalendarProps> = ({
                 <div className="flex items-center gap-1">
                   <div className="w-2 h-2 rounded-full bg-green-500"></div>
                   <span className="text-gray-600">Available</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <div className="w-2 h-2 rounded-full bg-orange-500"></div>
+                  <span className="text-gray-600">Limited</span>
                 </div>
                 <div className="flex items-center gap-1">
                   <div className="w-2 h-2 rounded-full bg-red-500"></div>
@@ -279,10 +114,14 @@ const RoomAvailabilityCalendar: React.FC<RoomAvailabilityCalendarProps> = ({
                     const currentDate = new Date(d);
                     const monthYear = currentDate.toLocaleDateString('en-US', { month: 'short', year: '2-digit' });
                     const dayAvailability = getDayAvailability(currentDate);
+                    const availabilityStatus = getAvailabilityStatus(currentDate, availability);
                     const isSelected = selectedDate && currentDate.toDateString() === selectedDate.toDateString();
                     const isToday = currentDate.toDateString() === new Date().toDateString();
-                    const isSoldOut = dayAvailability?.isSoldOut || false;
-                    const isBookable = dayAvailability && !dayAvailability.isSoldOut;
+                    
+                    const isSoldOut = availabilityStatus === 'soldOut';
+                    const isLimited = availabilityStatus === 'limited';
+                    const isAvailable = availabilityStatus === 'available';
+                    const isBookable = !isSoldOut;
 
                     // Show month divider when month changes
                     if (monthYear !== currentMonth) {
@@ -308,12 +147,14 @@ const RoomAvailabilityCalendar: React.FC<RoomAvailabilityCalendarProps> = ({
                           "flex-shrink-0 w-12 h-14 flex flex-col items-center justify-center rounded-md border transition-all duration-200",
                           {
                             // Base styles
-                            "bg-white border-gray-200": !isSelected && !isSoldOut && !isBookable,
-                            // Bookable dates (green)
-                            "bg-green-50 border-green-300 hover:bg-green-100 cursor-pointer hover:scale-105": isBookable && !isSelected,
-                            // Sold out dates (red, not clickable)
+                            "bg-white border-gray-200": !isSelected && !isAvailable && !isLimited && !isSoldOut,
+                            // Available dates (green) - ✅
+                            "bg-green-50 border-green-300 hover:bg-green-100 cursor-pointer hover:scale-105": isAvailable && !isSelected,
+                            // Limited availability (orange) - 🟠
+                            "bg-orange-50 border-orange-300 hover:bg-orange-100 cursor-pointer hover:scale-105": isLimited && !isSelected,
+                            // Sold out dates (red) - 🔴
                             "bg-red-50 border-red-300 cursor-not-allowed opacity-75": isSoldOut,
-                            // Selected date
+                            // Selected states
                             "bg-blue-500 border-blue-600 text-white shadow-md": isSelected && isBookable,
                             "bg-red-500 border-red-600 text-white": isSelected && isSoldOut,
                             // Today highlight
@@ -325,8 +166,9 @@ const RoomAvailabilityCalendar: React.FC<RoomAvailabilityCalendarProps> = ({
                         <span className={cn(
                           "text-xs font-medium uppercase leading-none",
                           {
-                            "text-gray-500": !isSelected && !isSoldOut,
-                            "text-green-600": isBookable && !isSelected,
+                            "text-gray-500": !isSelected && !isSoldOut && !isAvailable && !isLimited,
+                            "text-green-600": isAvailable && !isSelected,
+                            "text-orange-600": isLimited && !isSelected,
                             "text-red-500": isSoldOut && !isSelected,
                             "text-white": isSelected,
                           }
@@ -338,8 +180,9 @@ const RoomAvailabilityCalendar: React.FC<RoomAvailabilityCalendarProps> = ({
                         <span className={cn(
                           "text-sm font-bold leading-none mt-1",
                           {
-                            "text-gray-900": !isSelected && !isSoldOut,
-                            "text-green-700": isBookable && !isSelected,
+                            "text-gray-900": !isSelected && !isSoldOut && !isAvailable && !isLimited,
+                            "text-green-700": isAvailable && !isSelected,
+                            "text-orange-700": isLimited && !isSelected,
                             "text-red-600": isSoldOut && !isSelected,
                             "text-white": isSelected,
                           }
@@ -354,20 +197,18 @@ const RoomAvailabilityCalendar: React.FC<RoomAvailabilityCalendarProps> = ({
                               "w-2.5 h-2.5",
                               isSelected ? "text-white" : "text-red-500"
                             )} />
-                          ) : isBookable ? (
-                            dayAvailability.available <= 2 ? (
-                              <span className={cn(
-                                "text-xs font-bold leading-none",
-                                isSelected ? "text-white" : "text-green-600"
-                              )}>
-                                {dayAvailability.available}
-                              </span>
-                            ) : (
-                              <CheckCircle className={cn(
-                                "w-2.5 h-2.5",
-                                isSelected ? "text-white" : "text-green-500"
-                              )} />
-                            )
+                          ) : isLimited && dayAvailability ? (
+                            <span className={cn(
+                              "text-xs font-bold leading-none",
+                              isSelected ? "text-white" : "text-orange-600"
+                            )}>
+                              {dayAvailability.available}
+                            </span>
+                          ) : isAvailable ? (
+                            <CheckCircle className={cn(
+                              "w-2.5 h-2.5",
+                              isSelected ? "text-white" : "text-green-500"
+                            )} />
                           ) : (
                             <div className="w-2.5 h-2.5" />
                           )}
@@ -407,24 +248,26 @@ const RoomAvailabilityCalendar: React.FC<RoomAvailabilityCalendarProps> = ({
                   <div>
                     {(() => {
                       const dayAvailability = getDayAvailability(selectedDate);
-                      if (!dayAvailability) return null;
+                      const status = getAvailabilityStatus(selectedDate, availability);
                       
-                      if (dayAvailability.isSoldOut) {
+                      if (!dayAvailability || !status) return null;
+                      
+                      if (status === 'soldOut') {
                         return (
                           <div className="px-2 py-1 bg-red-100 text-red-700 rounded text-xs font-medium">
-                            Sold Out
+                            🔴 Sold Out
                           </div>
                         );
-                      } else if (dayAvailability.available <= 2) {
+                      } else if (status === 'limited') {
                         return (
                           <div className="px-2 py-1 bg-orange-100 text-orange-700 rounded text-xs font-medium">
-                            {dayAvailability.available} left
+                            🟠 {dayAvailability.available} left
                           </div>
                         );
                       } else {
                         return (
                           <div className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-medium">
-                            Available
+                            ✅ Available
                           </div>
                         );
                       }
