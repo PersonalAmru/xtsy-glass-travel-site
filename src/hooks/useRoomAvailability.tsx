@@ -25,9 +25,13 @@ export const useRoomAvailability = (
   const [error, setError] = useState<string | null>(null);
 
   const loadAvailability = useCallback(async () => {
-    if (!roomName || !enabled) return;
+    if (!roomName || !enabled) {
+      setLoading(false);
+      return;
+    }
 
     try {
+      setLoading(true);
       setError(null);
       console.log(`Loading availability for room: ${roomName}`);
 
@@ -45,18 +49,24 @@ export const useRoomAvailability = (
       });
 
       if (functionError) {
-        throw functionError;
+        console.error(`Edge function error for ${roomName}:`, functionError);
+        throw new Error(`Availability service error: ${functionError.message || 'Unknown error'}`);
       }
 
       if (data?.success) {
         console.log(`Availability loaded for ${roomName}:`, Object.keys(data.availability).length, 'dates');
         setAvailability(data.availability);
+        setError(null);
       } else {
-        throw new Error(data?.error || 'Failed to load availability');
+        console.error(`Availability data error for ${roomName}:`, data);
+        throw new Error(data?.error || 'Failed to load availability data');
       }
     } catch (err) {
       console.error(`Error loading availability for ${roomName}:`, err);
-      setError(err instanceof Error ? err.message : 'Failed to load availability');
+      const errorMessage = err instanceof Error ? err.message : 'Failed to load availability';
+      setError(errorMessage);
+      // Set empty availability on error to prevent infinite loading
+      setAvailability({});
     } finally {
       setLoading(false);
     }

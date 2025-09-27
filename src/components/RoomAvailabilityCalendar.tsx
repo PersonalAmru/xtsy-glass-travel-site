@@ -61,8 +61,20 @@ const RoomAvailabilityCalendar: React.FC<RoomAvailabilityCalendarProps> = ({
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-sm text-muted-foreground text-center py-4">
-            {error}
+          <div className="text-sm text-destructive text-center py-4">
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <XCircle className="w-4 h-4" />
+              Error Loading Availability
+            </div>
+            <div className="text-xs text-muted-foreground">
+              {error}
+            </div>
+            <button 
+              onClick={() => window.location.reload()} 
+              className="mt-2 text-xs text-primary hover:underline"
+            >
+              Refresh Page
+            </button>
           </div>
         </CardContent>
       </Card>
