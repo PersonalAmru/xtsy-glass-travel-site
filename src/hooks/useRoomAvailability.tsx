@@ -33,7 +33,6 @@ export const useRoomAvailability = (
     try {
       setLoading(true);
       setError(null);
-      console.log(`Loading availability for room: ${roomName}`);
 
       // Get availability for next 3 months
       const startDate = new Date();
@@ -49,23 +48,18 @@ export const useRoomAvailability = (
       });
 
       if (functionError) {
-        console.error(`Edge function error for ${roomName}:`, functionError);
         throw new Error(`Availability service error: ${functionError.message || 'Unknown error'}`);
       }
 
       if (data?.success) {
-        console.log(`Availability loaded for ${roomName}:`, Object.keys(data.availability).length, 'dates');
-        setAvailability(data.availability);
+        setAvailability(data.availability || {});
         setError(null);
       } else {
-        console.error(`Availability data error for ${roomName}:`, data);
         throw new Error(data?.error || 'Failed to load availability data');
       }
     } catch (err) {
-      console.error(`Error loading availability for ${roomName}:`, err);
       const errorMessage = err instanceof Error ? err.message : 'Failed to load availability';
       setError(errorMessage);
-      // Set empty availability on error to prevent infinite loading
       setAvailability({});
     } finally {
       setLoading(false);
@@ -84,30 +78,25 @@ export const useRoomAvailability = (
     }
 
     loadAvailability();
+  }, [roomName, enabled]);
 
-    // Create room aliases for subscription matching
-    const createRoomAliases = (roomName: string): string[] => {
-      const aliases = [roomName];
-      const baseName = roomName.replace(/^(Bed in |Room )/i, '');
-      
-      // Add base name without prefixes
-      aliases.push(baseName);
-      
-      // Add specific room type patterns
-      if (roomName.includes('8') && roomName.toLowerCase().includes('bed')) {
-        aliases.push('8-bed-mixed-economy-dorm');
-        aliases.push('Bed in 8 bed mixed economy dorm');
-      }
-      
-      return [...new Set(aliases)];
-    };
+  // Separate effect for real-time subscriptions to prevent re-subscription loops
+  useEffect(() => {
+    if (!enabled || !roomName) {
+      return;
+    }
 
-    const roomAliases = createRoomAliases(roomName);
-    console.log(`Setting up real-time subscriptions for room aliases:`, roomAliases);
+    const roomAliases = [roomName];
+    
+    // Add specific room type patterns for 8-bed dorm
+    if (roomName.includes('8') && roomName.toLowerCase().includes('bed')) {
+      roomAliases.push('8-bed-mixed-economy-dorm');
+      roomAliases.push('Bed in 8 bed mixed economy dorm');
+    }
 
     // Real-time subscription for blocked dates changes
     const blockedDatesChannel = supabase
-      .channel(`blocked_dates_${roomName}`)
+      .channel(`blocked_dates_${roomName}_${Date.now()}`)
       .on(
         'postgres_changes',
         {
@@ -116,13 +105,10 @@ export const useRoomAvailability = (
           table: 'blocked_dates'
         },
         (payload) => {
-          console.log(`Blocked dates changed for ${roomName}:`, payload);
-          // Check if this change affects our room
           const newRecord = payload.new as any;
           const oldRecord = payload.old as any;
           const changedRoomType = newRecord?.room_type || oldRecord?.room_type;
           if (changedRoomType && roomAliases.includes(changedRoomType)) {
-            console.log(`Reloading availability due to blocked dates change for ${changedRoomType}`);
             loadAvailability();
           }
         }
@@ -131,7 +117,7 @@ export const useRoomAvailability = (
 
     // Real-time subscription for booking changes
     const bookingsChannel = supabase
-      .channel(`bookings_${roomName}`)
+      .channel(`bookings_${roomName}_${Date.now()}`)
       .on(
         'postgres_changes',
         {
@@ -140,37 +126,10 @@ export const useRoomAvailability = (
           table: 'bookings'
         },
         (payload) => {
-          console.log(`Booking changed for ${roomName}:`, payload);
-          // Check if this booking affects our room type
           const newRecord = payload.new as any;
           const oldRecord = payload.old as any;
           const changedRoomType = newRecord?.room_type || oldRecord?.room_type;
           if (changedRoomType && roomAliases.includes(changedRoomType)) {
-            console.log(`Reloading availability due to booking change for ${changedRoomType}`);
-            loadAvailability();
-          }
-        }
-      )
-      .subscribe();
-
-    // Real-time subscription for room inventory changes
-    const inventoryChannel = supabase
-      .channel(`inventory_${roomName}`)
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'room_inventory'
-        },
-        (payload) => {
-          console.log(`Room inventory changed for ${roomName}:`, payload);
-          // Check if this inventory change affects our room type
-          const newRecord = payload.new as any;
-          const oldRecord = payload.old as any;
-          const changedRoomTypeId = newRecord?.room_type_id || oldRecord?.room_type_id;
-          if (changedRoomTypeId && roomAliases.includes(changedRoomTypeId)) {
-            console.log(`Reloading availability due to inventory change for ${changedRoomTypeId}`);
             loadAvailability();
           }
         }
@@ -178,12 +137,10 @@ export const useRoomAvailability = (
       .subscribe();
 
     return () => {
-      console.log(`Cleaning up subscriptions for ${roomName}`);
       supabase.removeChannel(blockedDatesChannel);
       supabase.removeChannel(bookingsChannel);
-      supabase.removeChannel(inventoryChannel);
     };
-  }, [roomName, enabled, loadAvailability]);
+  }, [roomName, enabled]);
 
   return {
     availability,
