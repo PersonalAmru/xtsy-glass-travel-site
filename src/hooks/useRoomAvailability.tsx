@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 
 interface AvailabilityData {
@@ -23,6 +23,16 @@ export const useRoomAvailability = (
   const [availability, setAvailability] = useState<Record<string, AvailabilityData>>({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  
+  // Use refs to prevent subscription re-creation loops
+  const roomNameRef = useRef(roomName);
+  const enabledRef = useRef(enabled);
+  
+  // Update refs when values change
+  useEffect(() => {
+    roomNameRef.current = roomName;
+    enabledRef.current = enabled;
+  }, [roomName, enabled]);
 
   const loadAvailability = useCallback(async () => {
     if (!roomName || !enabled) {
@@ -80,67 +90,60 @@ export const useRoomAvailability = (
     loadAvailability();
   }, [roomName, enabled]);
 
-  // Separate effect for real-time subscriptions to prevent re-subscription loops
+  // Stable callback for subscription handlers
+  const handleRealTimeUpdate = useCallback((payload: any) => {
+    const currentRoomName = roomNameRef.current;
+    const currentEnabled = enabledRef.current;
+    
+    if (!currentEnabled || !currentRoomName) return;
+    
+    const newRecord = payload.new as any;
+    const oldRecord = payload.old as any;
+    const changedRoomType = newRecord?.room_type || oldRecord?.room_type;
+    
+    const roomAliases = [currentRoomName];
+    if (currentRoomName.includes('8') && currentRoomName.toLowerCase().includes('bed')) {
+      roomAliases.push('8-bed-mixed-economy-dorm');
+      roomAliases.push('Bed in 8 bed mixed economy dorm');
+    }
+    
+    if (changedRoomType && roomAliases.includes(changedRoomType)) {
+      loadAvailability();
+    }
+  }, [loadAvailability]);
+
+  // Single effect for real-time subscriptions - only create once
   useEffect(() => {
     if (!enabled || !roomName) {
       return;
     }
 
-    const roomAliases = [roomName];
+    // Create unique channel names that don't change on every render
+    const channelId = `${roomName.replace(/\s+/g, '_')}_${Date.now()}`;
     
-    // Add specific room type patterns for 8-bed dorm
-    if (roomName.includes('8') && roomName.toLowerCase().includes('bed')) {
-      roomAliases.push('8-bed-mixed-economy-dorm');
-      roomAliases.push('Bed in 8 bed mixed economy dorm');
-    }
-
-    // Real-time subscription for blocked dates changes
     const blockedDatesChannel = supabase
-      .channel(`blocked_dates_${roomName}_${Date.now()}`)
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'blocked_dates'
-        },
-        (payload) => {
-          const newRecord = payload.new as any;
-          const oldRecord = payload.old as any;
-          const changedRoomType = newRecord?.room_type || oldRecord?.room_type;
-          if (changedRoomType && roomAliases.includes(changedRoomType)) {
-            loadAvailability();
-          }
-        }
-      )
+      .channel(`blocked_dates_${channelId}`)
+      .on('postgres_changes', {
+        event: '*',
+        schema: 'public',
+        table: 'blocked_dates'
+      }, handleRealTimeUpdate)
       .subscribe();
 
-    // Real-time subscription for booking changes
     const bookingsChannel = supabase
-      .channel(`bookings_${roomName}_${Date.now()}`)
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'bookings'
-        },
-        (payload) => {
-          const newRecord = payload.new as any;
-          const oldRecord = payload.old as any;
-          const changedRoomType = newRecord?.room_type || oldRecord?.room_type;
-          if (changedRoomType && roomAliases.includes(changedRoomType)) {
-            loadAvailability();
-          }
-        }
-      )
+      .channel(`bookings_${channelId}`)
+      .on('postgres_changes', {
+        event: '*',
+        schema: 'public',
+        table: 'bookings'
+      }, handleRealTimeUpdate)
       .subscribe();
 
     return () => {
       supabase.removeChannel(blockedDatesChannel);
       supabase.removeChannel(bookingsChannel);
     };
-  }, [roomName, enabled]);
+  }, []); // Empty dependency array - only create subscriptions once
 
   return {
     availability,
