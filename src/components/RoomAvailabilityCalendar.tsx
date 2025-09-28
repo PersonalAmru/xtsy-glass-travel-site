@@ -26,7 +26,7 @@ const RoomAvailabilityCalendar: React.FC<RoomAvailabilityCalendarProps> = ({
   selectedDate
 }) => {
   // Use the new real-time availability hook
-  const { availability, loading, error } = useRoomAvailability(roomName, !!roomName);
+  const { availability, loading, error } = useRoomAvailability(roomName, !!roomName, roomTypeId);
 
   const getDayAvailability = (date: Date): AvailabilityData | null => {
     const dateStr = date.toISOString().split('T')[0];
@@ -160,12 +160,12 @@ const RoomAvailabilityCalendar: React.FC<RoomAvailabilityCalendarProps> = ({
                           {
                             // Base styles
                             "bg-white border-gray-200": !isSelected && !isAvailable && !isLimited && !isSoldOut,
-                            // Available dates (green) - ✅
-                            "bg-green-50 border-green-300 hover:bg-green-100 cursor-pointer hover:scale-105": isAvailable && !isSelected,
-                            // Limited availability (orange) - 🟠
-                            "bg-orange-50 border-orange-300 hover:bg-orange-100 cursor-pointer hover:scale-105": isLimited && !isSelected,
-                            // Sold out dates (red) - 🔴
-                            "bg-red-50 border-red-300 cursor-not-allowed opacity-75": isSoldOut,
+                             // Available dates (green) - ✅
+                             "bg-green-50 border-green-300 hover:bg-green-100 cursor-pointer": isAvailable && !isSelected,
+                             // Limited availability (orange) - 🟠
+                             "bg-orange-50 border-orange-300 hover:bg-orange-100 cursor-pointer": isLimited && !isSelected,
+                             // Sold out dates (red) - 🔴
+                             "bg-red-50 border-red-300 cursor-not-allowed opacity-75": isSoldOut,
                             // Selected states
                             "bg-blue-500 border-blue-600 text-white shadow-md": isSelected && isBookable,
                             "bg-red-500 border-red-600 text-white": isSelected && isSoldOut,

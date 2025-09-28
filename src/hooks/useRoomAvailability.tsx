@@ -18,7 +18,8 @@ interface UseRoomAvailabilityReturn {
 
 export const useRoomAvailability = (
   roomName: string,
-  enabled: boolean = true
+  enabled: boolean = true,
+  roomId?: string
 ): UseRoomAvailabilityReturn => {
   const [availability, setAvailability] = useState<Record<string, AvailabilityData>>({});
   const [loading, setLoading] = useState(true);
@@ -27,12 +28,15 @@ export const useRoomAvailability = (
   // Use refs to prevent subscription re-creation loops
   const roomNameRef = useRef(roomName);
   const enabledRef = useRef(enabled);
+  const roomIdRef = useRef(roomId);
+  const lastRealtimeRefreshRef = useRef<number>(0);
   
   // Update refs when values change
   useEffect(() => {
     roomNameRef.current = roomName;
     enabledRef.current = enabled;
-  }, [roomName, enabled]);
+    roomIdRef.current = roomId;
+  }, [roomName, enabled, roomId]);
 
   const loadAvailability = useCallback(async () => {
     if (!roomName || !enabled) {
@@ -52,6 +56,7 @@ export const useRoomAvailability = (
       const { data, error: functionError } = await supabase.functions.invoke('get-room-availability', {
         body: {
           room_type_name: roomName,
+          room_type_id: roomIdRef.current,
           start_date: startDate.toISOString().split('T')[0],
           end_date: endDate.toISOString().split('T')[0]
         }
@@ -96,6 +101,13 @@ export const useRoomAvailability = (
     const currentEnabled = enabledRef.current;
     
     if (!currentEnabled || !currentRoomName) return;
+
+    // Throttle refreshes to max 1 per second to avoid UI glittering
+    const now = Date.now();
+    if (now - (lastRealtimeRefreshRef.current || 0) < 1000) {
+      return;
+    }
+    lastRealtimeRefreshRef.current = now;
     
     const newRecord = payload.new as any;
     const oldRecord = payload.old as any;
