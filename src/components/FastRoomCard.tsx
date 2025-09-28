@@ -99,6 +99,15 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
   
   // Check if room is blocked/sold out
   const isSoldOut = room.isBlocked;
+  
+  // Get availability status for enhanced UI
+  const getAvailabilityStatus = () => {
+    if (isSoldOut) return { status: 'soldout', label: 'SOLD OUT', color: 'text-red-400' };
+    if (isSelected) return { status: 'selected', label: 'SELECTED', color: 'text-green-400' };
+    return { status: 'available', label: 'AVAILABLE', color: 'text-green-500' };
+  };
+  
+  const availabilityStatus = getAvailabilityStatus();
 
   // Availability lookup key to align with admin and edge function naming
   const availabilityKey = React.useMemo(() => {
@@ -213,7 +222,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
     <>
       <CardWrapper>
         <Card 
-          className={`transition-all duration-300 overflow-hidden ${
+          className={`relative transition-all duration-300 overflow-hidden ${
             isSoldOut 
               ? 'bg-gray-800 text-gray-400 border-gray-600 cursor-not-allowed opacity-75'
               : `cursor-pointer hover:shadow-lg bg-black text-white border-gray-700 ${
@@ -226,6 +235,26 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
           }`}
           onClick={handleCardClick}
         >
+          {/* Availability Status Overlay */}
+          <div className={`absolute top-2 left-2 z-10 px-2 py-1 rounded-md text-xs font-bold ${
+            availabilityStatus.status === 'soldout' 
+              ? 'bg-red-500/90 text-white' 
+              : availabilityStatus.status === 'selected'
+              ? 'bg-green-500/90 text-white'
+              : 'bg-green-600/90 text-white'
+          } backdrop-blur-sm border border-white/20`}>
+            {availabilityStatus.label}
+          </div>
+          
+          {/* Sold Out Overlay */}
+          {isSoldOut && (
+            <div className="absolute inset-0 bg-black/60 z-10 flex items-center justify-center">
+              <div className="text-center">
+                <div className="text-red-400 font-bold text-2xl mb-2">SOLD OUT</div>
+                <div className="text-gray-300 text-sm">Check availability later</div>
+              </div>
+            </div>
+          )}
           <div className={`${isXTSY270 ? 'flex' : 'block'}`}>
             {/* Image Section */}
             <div className={`relative overflow-hidden ${
