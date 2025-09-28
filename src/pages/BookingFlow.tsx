@@ -7,6 +7,7 @@ import { BookingSummary } from '@/components/BookingSummary';
 import FastRoomCard from '@/components/FastRoomCard';
 import GuestDetails from '@/components/GuestDetails';
 import UPIPaymentModal from '@/components/UPIPaymentModal';
+import SharedAvailabilityCalendar from '@/components/SharedAvailabilityCalendar';
 import { useScreenSize } from '@/hooks/use-mobile';
 import { toast } from 'sonner';
 import { differenceInDays, parseISO, format, addDays } from 'date-fns';
@@ -490,6 +491,37 @@ export default function BookingFlow() {
               })}
                   </div>
                 </div>}
+
+              {/* Shared Calendar for Selected Rooms */}
+              {selectedRooms.length > 0 && (
+                <div className="space-y-4">
+                  <div className="backdrop-blur-md bg-white/20 border border-white/20 rounded-2xl shadow-lg mx-auto p-6 max-w-2xl">
+                    <h3 className={`font-bold text-center font-playfair bg-gradient-to-r from-purple-500 to-pink-600 bg-clip-text text-transparent ${isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'}`}>
+                      Real-time Availability
+                    </h3>
+                    <p className={`text-center text-gray-600 mt-2 ${isMobileView ? 'text-sm' : 'text-base'}`}>
+                      Live availability calendar for your selected rooms
+                    </p>
+                    <div className="w-16 h-0.5 bg-gradient-to-r from-purple-500 to-pink-600 mx-auto mt-3 rounded-full" />
+                  </div>
+                  <div className={`max-w-4xl mx-auto space-y-4`}>
+                    {selectedRooms.map((selectedRoom) => {
+                      const room = roomsWithAvailability.find(r => r.id === selectedRoom.id);
+                      if (!room || room.isBlocked) return null;
+                      
+                      const availabilityName = getAvailabilityName(room);
+                      
+                      return (
+                        <SharedAvailabilityCalendar
+                          key={selectedRoom.id}
+                          roomTypeId={selectedRoom.id}
+                          roomName={availabilityName}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
 
               {/* Spacer so content isn't hidden behind the fixed Next button */}
               <div className="h-[92px] md:h-[100px]" />

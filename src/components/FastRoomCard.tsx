@@ -393,15 +393,21 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                   </div>
                 )}
 
-                {/* Always Visible Room Availability Calendar */}
-                {!isSoldOut && (
+                {/* Calendar toggle for selected room */}
+                {!isSoldOut && isSelected && (
                   <div className={`mt-3 ${isXTSY270 ? 'mt-2' : ''}`}>
-                    <RoomAvailabilityCalendar
-                      roomTypeId={availabilityKey}
-                      roomName={availabilityName}
-                      selectedDate={selectedDate}
-                      onDateSelect={setSelectedDate}
-                    />
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        // Calendar functionality would go here
+                      }}
+                      className="w-full text-xs text-white border-gray-600 bg-gray-800 hover:bg-gray-700"
+                    >
+                      View Availability Calendar
+                    </Button>
                   </div>
                 )}
               </CardContent>
