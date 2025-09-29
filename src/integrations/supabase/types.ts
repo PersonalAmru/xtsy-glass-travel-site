@@ -472,6 +472,39 @@ export type Database = {
         }
         Relationships: []
       }
+      room_availability_status: {
+        Row: {
+          admin_note: string | null
+          created_at: string
+          created_by: string | null
+          id: string
+          override_until: string | null
+          room_type_id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          admin_note?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          override_until?: string | null
+          room_type_id: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          admin_note?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          override_until?: string | null
+          room_type_id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       room_inventory: {
         Row: {
           available_count: number
@@ -920,6 +953,10 @@ export type Database = {
           is_active: boolean
           subscribed_at: string
         }[]
+      }
+      get_room_availability_status: {
+        Args: { p_room_type_id: string }
+        Returns: string
       }
       get_secret_access_log_masked_secure: {
         Args: Record<PropertyKey, never>

@@ -3,13 +3,14 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Users, Minus, Plus, Bed } from 'lucide-react';
+import { Users, Minus, Plus, Bed, AlertTriangle } from 'lucide-react';
 import { useMediaQuery } from '@/hooks/use-mobile';
 import { useApp } from '@/contexts/AppContext';
 import ImageLightbox from './ImageLightbox';
 import MobileImageCarousel from './MobileImageCarousel';
 import { generateStandardizedFeatures } from '@/utils/roomFeatures';
 import RoomAvailabilityCalendar from './RoomAvailabilityCalendar';
+import { useRoomAvailabilityStatus } from '@/hooks/useRoomAvailabilityStatus';
 
 interface FastRoomCardProps {
   room: {
@@ -48,6 +49,9 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
   const { formatPrice } = useApp();
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxImages, setLightboxImages] = useState<string[]>([]);
+  
+  // Get admin-controlled availability status
+  const { status: adminStatus, isSoldOut: adminSoldOut, isMaintenance, adminNote } = useRoomAvailabilityStatus(room.id);
   const [lightboxInitialIndex, setLightboxInitialIndex] = useState(0);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>();
 
@@ -97,14 +101,39 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
   // Check if this is a luxury room
   const isLuxury = room.propertyType === "luxury";
   
-  // Check if room is blocked/sold out
-  const isSoldOut = room.isBlocked;
+  // Check if room is blocked/sold out (combine admin status with inventory blocking)
+  const isSoldOut = room.isBlocked || adminSoldOut;
   
   // Get availability status for enhanced UI
   const getAvailabilityStatus = () => {
-    if (isSoldOut) return { status: 'soldout', label: 'SOLD OUT', color: 'text-red-400' };
-    if (isSelected) return { status: 'selected', label: 'SELECTED', color: 'text-green-400' };
-    return { status: 'available', label: 'AVAILABLE', color: 'text-green-500' };
+    if (isMaintenance) return { 
+      status: 'maintenance', 
+      label: 'MAINTENANCE', 
+      color: 'text-yellow-400',
+      bgColor: 'bg-yellow-500/90',
+      icon: AlertTriangle 
+    };
+    if (isSoldOut) return { 
+      status: 'soldout', 
+      label: 'SOLD OUT', 
+      color: 'text-red-400',
+      bgColor: 'bg-red-500/90',
+      icon: null 
+    };
+    if (isSelected) return { 
+      status: 'selected', 
+      label: 'SELECTED', 
+      color: 'text-green-400',
+      bgColor: 'bg-green-500/90',
+      icon: null 
+    };
+    return { 
+      status: 'available', 
+      label: 'AVAILABLE', 
+      color: 'text-green-500',
+      bgColor: 'bg-green-600/90',
+      icon: null 
+    };
   };
   
   const availabilityStatus = getAvailabilityStatus();
@@ -174,8 +203,8 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
 
   // Handle card selection with proper event checking
   const handleCardClick = React.useCallback((e: React.MouseEvent) => {
-    // Prevent card selection if room is sold out
-    if (isSoldOut) {
+    // Prevent card selection if room is sold out or under maintenance
+    if (isSoldOut || isMaintenance) {
       e.preventDefault();
       e.stopPropagation();
       return;
@@ -189,7 +218,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
       return;
     }
     onRoomSelect(room.id);
-  }, [room.id, onRoomSelect, isSoldOut]);
+  }, [room.id, onRoomSelect, isSoldOut, isMaintenance]);
 
   // Calculate button sizing and styling
   const getButtonStyles = () => ({
@@ -236,22 +265,26 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
           onClick={handleCardClick}
         >
           {/* Availability Status Overlay */}
-          <div className={`absolute top-2 left-2 z-10 px-2 py-1 rounded-md text-xs font-bold ${
-            availabilityStatus.status === 'soldout' 
-              ? 'bg-red-500/90 text-white' 
-              : availabilityStatus.status === 'selected'
-              ? 'bg-green-500/90 text-white'
-              : 'bg-green-600/90 text-white'
-          } backdrop-blur-sm border border-white/20`}>
+          <div className={`absolute top-2 left-2 z-10 px-2 py-1 rounded-md text-xs font-bold flex items-center gap-1 ${
+            availabilityStatus.bgColor
+          } text-white backdrop-blur-sm border border-white/20`}>
+            {availabilityStatus.icon && React.createElement(availabilityStatus.icon, { size: 12 })}
             {availabilityStatus.label}
           </div>
           
-          {/* Sold Out Overlay */}
-          {isSoldOut && (
+          {/* Sold Out / Maintenance Overlay */}
+          {(isSoldOut || isMaintenance) && (
             <div className="absolute inset-0 bg-black/60 z-10 flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-red-400 font-bold text-2xl mb-2">SOLD OUT</div>
-                <div className="text-gray-300 text-sm">Check availability later</div>
+              <div className="text-center px-4">
+                <div className={`font-bold text-2xl mb-2 flex items-center justify-center gap-2 ${
+                  isMaintenance ? 'text-yellow-400' : 'text-red-400'
+                }`}>
+                  {isMaintenance && <AlertTriangle size={24} />}
+                  {isMaintenance ? 'UNDER MAINTENANCE' : 'SOLD OUT'}
+                </div>
+                <div className="text-gray-300 text-sm">
+                  {adminNote || (isMaintenance ? 'Temporarily unavailable' : 'Check availability later')}
+                </div>
               </div>
             </div>
           )}
