@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 
-interface AvailabilityData {
+export interface AvailabilityData {
   available: number;
   total: number;
   isBlocked: boolean;
