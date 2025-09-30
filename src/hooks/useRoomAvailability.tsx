@@ -151,9 +151,20 @@ export const useRoomAvailability = (
       }, handleRealTimeUpdate)
       .subscribe();
 
+    // Subscribe to admin room availability status changes
+    const statusChannel = supabase
+      .channel(`room_status_${channelId}`)
+      .on('postgres_changes', {
+        event: '*',
+        schema: 'public',
+        table: 'room_availability_status'
+      }, handleRealTimeUpdate)
+      .subscribe();
+
     return () => {
       supabase.removeChannel(blockedDatesChannel);
       supabase.removeChannel(bookingsChannel);
+      supabase.removeChannel(statusChannel);
     };
   }, []); // Empty dependency array - only create subscriptions once
 
