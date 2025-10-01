@@ -10,6 +10,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Hotel, Users, Calendar, Settings, BarChart3, Globe } from 'lucide-react';
 import { Profile, OTAIntegration } from '@/types/database';
 import { SecurityDashboard } from '@/components/SecurityDashboard';
+import { RoomAvailabilityControl } from '@/components/RoomAvailabilityControl';
 
 export const StaffDashboard: React.FC = () => {
   const { user } = useAuth();
@@ -250,11 +251,49 @@ export const StaffDashboard: React.FC = () => {
         <TabsContent value="inventory" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle>Inventory Management</CardTitle>
-              <CardDescription>Manage room availability and pricing</CardDescription>
+              <CardTitle>Room Availability Management</CardTitle>
+              <CardDescription>Control room availability, block dates, and set maintenance status</CardDescription>
             </CardHeader>
-            <CardContent>
-              <Button>Manage Inventory</Button>
+            <CardContent className="space-y-6">
+              {/* Room availability controls for each room type */}
+              <div className="space-y-4">
+                <RoomAvailabilityControl 
+                  roomTypeId="8-bed-mixed-economy-dorm" 
+                  roomName="Bed in 8-Bed Mixed Dormitory"
+                />
+                <RoomAvailabilityControl 
+                  roomTypeId="6-bed-mixed-economy-dorm" 
+                  roomName="Bed in 6-Bed Mixed Dormitory"
+                />
+                <RoomAvailabilityControl 
+                  roomTypeId="6-bed-mixed-dorm" 
+                  roomName="Bed in 6-Bed Mixed Dormitory"
+                />
+                <RoomAvailabilityControl 
+                  roomTypeId="6-bed-mixed-female-dorm" 
+                  roomName="Bed in 6-Bed Female Only Dormitory"
+                />
+                <RoomAvailabilityControl 
+                  roomTypeId="4-bed-mixed-female-dorm" 
+                  roomName="Bed in 4-Bed Mixed Dormitory"
+                />
+                <RoomAvailabilityControl 
+                  roomTypeId="4-bed-female-only-dorm" 
+                  roomName="Bed in 4-Bed Female Only Dormitory"
+                />
+                <RoomAvailabilityControl 
+                  roomTypeId="king-double-room" 
+                  roomName="King Double Room"
+                />
+                <RoomAvailabilityControl 
+                  roomTypeId="king-triple-room" 
+                  roomName="King Triple Room"
+                />
+                <RoomAvailabilityControl 
+                  roomTypeId="xtsy-270" 
+                  roomName="270° Panorama Glass Ensuite"
+                />
+              </div>
             </CardContent>
           </Card>
         </TabsContent>
