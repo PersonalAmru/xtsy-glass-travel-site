@@ -185,9 +185,14 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
     e.preventDefault();
     e.stopPropagation();
     
+    console.log('Increment clicked:', { roomId: room.id, currentRooms: selection.rooms, maxRooms: room.maxRooms });
+    
     const maxSelection = room.maxRooms || 5;
     if (selection.rooms < maxSelection) {
+      console.log('Calling onRoomChange with:', room.id, selection.rooms + 1);
       onRoomChange(room.id, selection.rooms + 1);
+    } else {
+      console.log('Max rooms reached');
     }
   }, [room.id, room.maxRooms, selection.rooms, onRoomChange]);
 
@@ -196,8 +201,13 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
     e.preventDefault();
     e.stopPropagation();
     
+    console.log('Decrement clicked:', { roomId: room.id, currentRooms: selection.rooms });
+    
     if (selection.rooms > 0) {
+      console.log('Calling onRoomChange with:', room.id, selection.rooms - 1);
       onRoomChange(room.id, selection.rooms - 1);
+    } else {
+      console.log('Already at 0 rooms');
     }
   }, [room.id, selection.rooms, onRoomChange]);
 

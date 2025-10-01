@@ -303,21 +303,29 @@ export default function BookingFlow() {
     });
   }, []);
   const handleRoomChange = React.useCallback((roomId: string, rooms: number) => {
+    console.log('handleRoomChange called:', { roomId, rooms });
+    
     setSelectedRooms(prev => {
+      console.log('Previous selectedRooms:', prev);
+      
       const existing = prev.find(room => room.id === roomId);
       if (existing) {
-        return prev.map(room => room.id === roomId ? {
+        console.log('Room exists, updating count');
+        const updated = prev.map(room => room.id === roomId ? {
           ...room,
           selection: {
             ...room.selection,
             rooms
           }
         } : room);
+        console.log('Updated selectedRooms:', updated);
+        return updated;
       }
       if (rooms > 0) {
         const roomData = ALL_ROOMS_DATA[roomId as keyof typeof ALL_ROOMS_DATA];
         if (roomData) {
-          return [...prev, {
+          console.log('Adding new room to selection');
+          const newSelection = [...prev, {
             id: roomData.id,
             name: roomData.name,
             price: roomData.price,
@@ -327,8 +335,11 @@ export default function BookingFlow() {
               rooms
             }
           }];
+          console.log('New selectedRooms:', newSelection);
+          return newSelection;
         }
       }
+      console.log('No changes, returning prev');
       return prev;
     });
   }, []);
