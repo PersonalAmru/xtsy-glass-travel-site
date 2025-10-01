@@ -404,19 +404,19 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                     isMobile ? 'space-y-2 pt-2' : ''
                   } ${isXTSY270 ? 'space-y-2 pt-2 mt-auto' : ''}`}>
                   {/* Bed/Room Selection */}
-                    <div className="flex items-center justify-between" data-toggle-container onClick={(e) => e.stopPropagation()}>
+                    <div className="flex items-center justify-between relative z-20" data-toggle-container>
                       <span className={`font-medium text-white text-center ${
                         isMobile ? 'text-xs' : 'text-sm'
                       } ${isXTSY270 ? 'text-xs' : ''}`}>
                         {room.type === 'dorm' ? 'Beds:' : 'Rooms:'}
                       </span>
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-3 relative z-20">
                         <Button
                           variant="outline"
                           size="sm"
                           onClick={handleDecrement}
                           disabled={selection.rooms <= 0}
-                          className={buttonClasses}
+                          className={`${buttonClasses} relative z-30 pointer-events-auto`}
                           aria-label={`Decrease ${room.type === 'dorm' ? 'beds' : 'rooms'}`}
                           type="button"
                         >
@@ -434,7 +434,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                           size="sm"
                           onClick={handleIncrement}
                           disabled={selection.rooms >= (room.maxRooms || 5)}
-                          className={buttonClasses}
+                          className={`${buttonClasses} relative z-30 pointer-events-auto`}
                           aria-label={`Increase ${room.type === 'dorm' ? 'beds' : 'rooms'}`}
                           type="button"
                         >
