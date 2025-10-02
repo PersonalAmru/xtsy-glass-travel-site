@@ -14,14 +14,13 @@ import { initializeNetworkOptimizations } from "./utils/networkOptimizer";
 import { performGlobalCleanup } from "./utils/performanceCleanup";
 import { cleanupUnifiedImage } from "./components/UnifiedImage";
 
-// Initialize all performance optimizations
-initializePerformanceOptimizations();
-initializePerformanceEnhancements();
-initializeAdvancedLazyLoading();
-initializeNetworkOptimizations();
-
-// Initialize image optimizations
-initializeImageOptimizations();
+// Initialize only essential optimizations
+if (process.env.NODE_ENV === 'development') {
+  initializeImageOptimizations();
+} else {
+  // Production: minimal optimizations only
+  initializeImageOptimizations();
+}
 
 // Add cleanup on app exit
 window.addEventListener('beforeunload', () => {

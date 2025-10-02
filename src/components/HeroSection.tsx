@@ -43,7 +43,7 @@ const HeroSection = () => {
   useEffect(() => {
     const languageInterval = setInterval(() => {
       setCurrentLanguageIndex(prev => (prev + 1) % languages.length);
-    }, 2000);
+    }, 5000); // Reduced frequency: 5s instead of 2s
     return () => clearInterval(languageInterval);
   }, [languages.length]);
 

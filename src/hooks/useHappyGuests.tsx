@@ -14,7 +14,7 @@ export const useHappyGuests = () => {
         .from('metrics')
         .select('value')
         .eq('key', 'happy_guests')
-        .single();
+        .maybeSingle(); // Use maybeSingle() to handle missing records gracefully
 
       if (fetchError) {
         console.warn('Failed to fetch happy guests count:', fetchError.message);

@@ -133,13 +133,6 @@ export const initializePerformanceOptimizations = () => {
     // Add other critical assets
   ]);
 
-  // Monitor performance every 5 minutes in development (reduced from 30s)
-  if (process.env.NODE_ENV === 'development') {
-    const monitoringInterval = setInterval(() => {
-      PerformanceOptimizer.monitorPerformance();
-    }, 300000); // 5 minutes instead of 30 seconds
-    
-    // Store interval reference for cleanup
-    (window as any).__performanceMonitorInterval = monitoringInterval;
-  }
+  // Disable performance monitoring to reduce overhead
+  // Performance monitoring disabled for better loading speed
 };
