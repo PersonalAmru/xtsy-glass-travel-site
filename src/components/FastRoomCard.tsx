@@ -186,14 +186,14 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
     e.preventDefault();
     e.stopPropagation();
     
-    console.log('Increment clicked:', { roomId: room.id, currentRooms: selection.rooms, maxRooms: room.maxRooms });
+    console.log('🔵 Increment clicked:', { roomId: room.id, currentRooms: selection.rooms, maxRooms: room.maxRooms });
     
     const maxSelection = room.maxRooms || 5;
     if (selection.rooms < maxSelection) {
-      console.log('Calling onRoomChange with:', room.id, selection.rooms + 1);
+      console.log('🟢 Calling onRoomChange with:', room.id, selection.rooms + 1);
       onRoomChange(room.id, selection.rooms + 1);
     } else {
-      console.log('Max rooms reached');
+      console.log('🔴 Max rooms reached');
     }
   }, [room.id, room.maxRooms, selection.rooms, onRoomChange]);
 
@@ -202,30 +202,35 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
     e.preventDefault();
     e.stopPropagation();
     
-    console.log('Decrement clicked:', { roomId: room.id, currentRooms: selection.rooms });
+    console.log('🔵 Decrement clicked:', { roomId: room.id, currentRooms: selection.rooms });
     
     if (selection.rooms > 0) {
-      console.log('Calling onRoomChange with:', room.id, selection.rooms - 1);
+      console.log('🟢 Calling onRoomChange with:', room.id, selection.rooms - 1);
       onRoomChange(room.id, selection.rooms - 1);
     } else {
-      console.log('Already at 0 rooms');
+      console.log('🟡 Already at 0 rooms');
     }
   }, [room.id, selection.rooms, onRoomChange]);
 
-  // Handle card selection with proper event checking
+  // Handle card selection - ONLY for non-button areas
   const handleCardClick = React.useCallback((e: React.MouseEvent) => {
     // Prevent card selection if room is sold out or under maintenance
     if (isSoldOut || isMaintenance) {
-      e.preventDefault();
+      return;
+    }
+    
+    // CRITICAL: Don't interfere with button clicks
+    const target = e.target as HTMLElement;
+    if (
+      target.tagName === 'BUTTON' ||
+      target.closest('button') || 
+      target.closest('[data-toggle-container]')
+    ) {
+      // Let button handle its own event
       e.stopPropagation();
       return;
     }
     
-    // Prevent card selection if clicking on buttons or their containers (let buttons handle their own events)
-    const target = e.target as HTMLElement;
-    if (target.closest('button') || target.closest('[data-toggle-container]')) {
-      return; // Don't interfere with button clicks
-    }
     onRoomSelect(room.id);
   }, [room.id, onRoomSelect, isSoldOut, isMaintenance]);
 
@@ -271,7 +276,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
           } ${isMobile ? 'mx-2' : ''} ${
             isXTSY270 ? 'h-auto landscape-card' : ''
           }`}
-          onClick={handleCardClick}
+          onClick={isSoldOut || isMaintenance ? undefined : handleCardClick}
         >
           {/* Availability Status Overlay */}
           <div className={`absolute top-2 left-2 z-10 px-2 py-1 rounded-md text-xs font-bold flex items-center gap-1 ${
@@ -399,23 +404,29 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                     </div>
                   </div>
                 ) : (
-                  <div className={`space-y-2 pt-2 border-t border-gray-700 ${
+                   <div className={`space-y-2 pt-2 border-t border-gray-700 ${
                     isMobile ? 'space-y-2 pt-2' : ''
                   } ${isXTSY270 ? 'space-y-2 pt-2 mt-auto' : ''}`}>
                    {/* Bed/Room Selection */}
-                    <div className="flex items-center justify-between relative z-20" data-toggle-container>
+                    <div 
+                      className="flex items-center justify-between relative z-50" 
+                      data-toggle-container
+                      onClick={(e) => e.stopPropagation()}
+                    >
                       <span className={`font-medium text-white text-center ${
                         isMobile ? 'text-xs' : 'text-sm'
                       } ${isXTSY270 ? 'text-xs' : ''}`}>
                         {room.type === 'dorm' ? 'Beds:' : 'Rooms:'}
                       </span>
-                      <div className="flex items-center gap-3 relative z-30">
+                      <div className="flex items-center gap-3 relative z-50">
                         <Button
                           variant="outline"
                           size="sm"
                           onClick={handleDecrement}
+                          onMouseDown={(e) => e.stopPropagation()}
+                          onTouchStart={(e) => e.stopPropagation()}
                           disabled={selection.rooms <= 0}
-                          className={`${buttonClasses} relative z-40 pointer-events-auto`}
+                          className={`${buttonClasses} relative z-50 pointer-events-auto`}
                           aria-label={`Decrease ${room.type === 'dorm' ? 'beds' : 'rooms'}`}
                           type="button"
                         >
@@ -432,8 +443,10 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                           variant="outline"
                           size="sm"
                           onClick={handleIncrement}
+                          onMouseDown={(e) => e.stopPropagation()}
+                          onTouchStart={(e) => e.stopPropagation()}
                           disabled={selection.rooms >= (room.maxRooms || 5)}
-                          className={`${buttonClasses} relative z-40 pointer-events-auto`}
+                          className={`${buttonClasses} relative z-50 pointer-events-auto`}
                           aria-label={`Increase ${room.type === 'dorm' ? 'beds' : 'rooms'}`}
                           type="button"
                         >
