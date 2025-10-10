@@ -220,12 +220,10 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
       return;
     }
     
-    // Prevent card selection if clicking on buttons or their containers
+    // Prevent card selection if clicking on buttons or their containers (let buttons handle their own events)
     const target = e.target as HTMLElement;
     if (target.closest('button') || target.closest('[data-toggle-container]')) {
-      e.preventDefault();
-      e.stopPropagation();
-      return;
+      return; // Don't interfere with button clicks
     }
     onRoomSelect(room.id);
   }, [room.id, onRoomSelect, isSoldOut, isMaintenance]);
