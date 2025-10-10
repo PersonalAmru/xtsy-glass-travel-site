@@ -100,3 +100,26 @@
     padding-bottom: 0.5rem !important;
   }
 }
+
+/* Carousel button optimizations - prevent visual glitches */
+.touch-target {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: opacity, transform;
+}
+
+/* Prevent button visual glitches during rapid clicks */
+button {
+  -webkit-tap-highlight-color: transparent;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Ensure proper z-index stacking for interactive elements */
+[data-toggle-container] button {
+  isolation: isolate;
+  backface-visibility: hidden;
+}

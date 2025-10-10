@@ -58,11 +58,12 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
   // Get all available images for the room
   const roomImages = room.images && room.images.length > 0 ? room.images : [room.image];
 
-  const handleImageClick = (images: string[], currentIndex: number) => {
+  // Memoize the handleImageClick callback to prevent unnecessary re-renders
+  const handleImageClick = React.useCallback((images: string[], currentIndex: number) => {
     setLightboxImages(images);
     setLightboxInitialIndex(currentIndex);
     setLightboxOpen(true);
-  };
+  }, []);
 
   // Memoize image components to prevent flickering
   const memoizedImageCarousel = React.useMemo(() => (
@@ -84,7 +85,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
         alt={room.name}
         className="w-full h-full object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
         loading="lazy"
-        onClick={() => handleImageClick(roomImages, 0)}
+        onClick={(e) => { e.stopPropagation(); handleImageClick(roomImages, 0); }}
       />
       {/* Image count indicator */}
       {roomImages.length > 1 && (
@@ -401,20 +402,20 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                   <div className={`space-y-2 pt-2 border-t border-gray-700 ${
                     isMobile ? 'space-y-2 pt-2' : ''
                   } ${isXTSY270 ? 'space-y-2 pt-2 mt-auto' : ''}`}>
-                  {/* Bed/Room Selection */}
+                   {/* Bed/Room Selection */}
                     <div className="flex items-center justify-between relative z-20" data-toggle-container>
                       <span className={`font-medium text-white text-center ${
                         isMobile ? 'text-xs' : 'text-sm'
                       } ${isXTSY270 ? 'text-xs' : ''}`}>
                         {room.type === 'dorm' ? 'Beds:' : 'Rooms:'}
                       </span>
-                      <div className="flex items-center gap-3 relative z-20">
+                      <div className="flex items-center gap-3 relative z-30">
                         <Button
                           variant="outline"
                           size="sm"
                           onClick={handleDecrement}
                           disabled={selection.rooms <= 0}
-                          className={`${buttonClasses} relative z-30 pointer-events-auto`}
+                          className={`${buttonClasses} relative z-40 pointer-events-auto`}
                           aria-label={`Decrease ${room.type === 'dorm' ? 'beds' : 'rooms'}`}
                           type="button"
                         >
@@ -432,7 +433,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                           size="sm"
                           onClick={handleIncrement}
                           disabled={selection.rooms >= (room.maxRooms || 5)}
-                          className={`${buttonClasses} relative z-30 pointer-events-auto`}
+                          className={`${buttonClasses} relative z-40 pointer-events-auto`}
                           aria-label={`Increase ${room.type === 'dorm' ? 'beds' : 'rooms'}`}
                           type="button"
                         >

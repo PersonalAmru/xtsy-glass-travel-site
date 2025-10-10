@@ -185,18 +185,20 @@ const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
       {showArrows && images.length > 1 && (
         <>
           <button
-            onClick={prevImage}
+            onClick={(e) => { e.stopPropagation(); prevImage(); }}
             disabled={isTransitioning}
-            className="absolute left-1 sm:left-2 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-1.5 sm:p-2 md:p-3 rounded-full transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100 disabled:opacity-50 touch-target z-10"
+            className="absolute left-1 sm:left-2 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-1.5 sm:p-2 md:p-3 rounded-full transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100 disabled:opacity-50 disabled:cursor-not-allowed touch-target z-20"
             aria-label="Previous image"
+            type="button"
           >
             <ChevronLeft className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5" />
           </button>
           <button
-            onClick={nextImage}
+            onClick={(e) => { e.stopPropagation(); nextImage(); }}
             disabled={isTransitioning}
-            className="absolute right-1 sm:right-2 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-1.5 sm:p-2 md:p-3 rounded-full transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100 disabled:opacity-50 touch-target z-10"
+            className="absolute right-1 sm:right-2 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-1.5 sm:p-2 md:p-3 rounded-full transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100 disabled:opacity-50 disabled:cursor-not-allowed touch-target z-20"
             aria-label="Next image"
+            type="button"
           >
             <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5" />
           </button>
@@ -209,8 +211,9 @@ const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
           {images.map((_, index) => (
             <button
               key={index}
-              onClick={() => goToImage(index)}
+              onClick={(e) => { e.stopPropagation(); goToImage(index); }}
               disabled={isTransitioning}
+              type="button"
               className={`w-1 h-1 sm:w-1.5 sm:h-1.5 md:w-2 md:h-2 rounded-full transition-all duration-200 ${
                 currentIndex === index 
                   ? 'bg-white scale-110 shadow-md' 
