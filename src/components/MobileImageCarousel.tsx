@@ -187,7 +187,12 @@ const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
           <button
             onClick={(e) => { e.stopPropagation(); prevImage(); }}
             disabled={isTransitioning}
-            className="absolute left-1 sm:left-2 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-1.5 sm:p-2 md:p-3 rounded-full transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100 disabled:opacity-50 disabled:cursor-not-allowed touch-target z-20"
+            className="absolute left-1 sm:left-2 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-1.5 sm:p-2 md:p-3 rounded-full transition-opacity duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100 disabled:opacity-50 disabled:cursor-not-allowed touch-target z-20"
+            style={{ 
+              backfaceVisibility: 'hidden',
+              isolation: 'isolate',
+              willChange: 'opacity'
+            }}
             aria-label="Previous image"
             type="button"
           >
@@ -196,7 +201,12 @@ const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
           <button
             onClick={(e) => { e.stopPropagation(); nextImage(); }}
             disabled={isTransitioning}
-            className="absolute right-1 sm:right-2 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-1.5 sm:p-2 md:p-3 rounded-full transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100 disabled:opacity-50 disabled:cursor-not-allowed touch-target z-20"
+            className="absolute right-1 sm:right-2 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-1.5 sm:p-2 md:p-3 rounded-full transition-opacity duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100 disabled:opacity-50 disabled:cursor-not-allowed touch-target z-20"
+            style={{ 
+              backfaceVisibility: 'hidden',
+              isolation: 'isolate',
+              willChange: 'opacity'
+            }}
             aria-label="Next image"
             type="button"
           >
