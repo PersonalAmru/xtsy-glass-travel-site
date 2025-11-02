@@ -2,13 +2,12 @@ import React, { useState, useEffect, Suspense } from "react";
 import { useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { MapPin, Globe, Package, Bell, Mail, Filter } from "lucide-react";
+import { MapPin, Globe, Package, Filter } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CompactTourPackageCard from "@/components/CompactTourPackageCard";
 import { LazyTourPackageModal } from "@/components/lazy/LazyTourPackageModal";
-import { AuthModal } from "@/components/AuthModal";
 import LazyWrapper from "@/components/LazyWrapper";
 import SEOContent from "@/components/SEOContent";
 import { TourPricingService } from "@/utils/tourPricingService";
@@ -94,7 +93,6 @@ const Travel = () => {
   const [activeTab, setActiveTab] = useState<'domestic' | 'international'>('domestic');
   const [selectedPackage, setSelectedPackage] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [locationFilter, setLocationFilter] = useState("all");
   const [loadedImages, setLoadedImages] = useState<{[key: string]: string}>({});
@@ -142,10 +140,6 @@ const Travel = () => {
   const handlePackageClick = (itinerary: any) => {
     setSelectedPackage(itinerary);
     setIsModalOpen(true);
-  };
-
-  const handleNewsletterClick = () => {
-    setIsAuthModalOpen(true);
   };
 
   // Enhanced tour packages data organized by states
@@ -774,25 +768,9 @@ const Travel = () => {
                                  </div>
                                </CardContent>
                              </Card>
-                           </LazyWrapper>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Enhanced Newsletter Section */}
-                    <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl p-4 sm:p-6 md:p-8 text-center text-white mx-1">
-                      <Bell className="h-10 sm:h-12 md:h-16 w-10 sm:w-12 md:w-16 mx-auto mb-3 sm:mb-4 opacity-90" />
-                      <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold mb-3 sm:mb-4">Be the First to Know!</h3>
-                      <p className="text-sm sm:text-base md:text-lg mb-4 sm:mb-6 opacity-90">
-                        Join our newsletter for exclusive early access and special discounts.
-                      </p>
-                      <Button 
-                        onClick={handleNewsletterClick}
-                        className="bg-white text-blue-600 hover:bg-gray-100 font-semibold px-4 sm:px-6 md:px-8 py-2 sm:py-3 text-sm sm:text-base md:text-lg"
-                      >
-                        <Mail className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
-                        Join Newsletter
-                      </Button>
+                            </LazyWrapper>
+                         ))}
+                       </div>
                     </div>
                   </div>
                 </LazyWrapper>
@@ -813,12 +791,6 @@ const Travel = () => {
           />
         </Suspense>
       )}
-
-      <AuthModal 
-        isOpen={isAuthModalOpen}
-        onClose={() => setIsAuthModalOpen(false)}
-        defaultTab="signin"
-      />
     </div>
   );
 };

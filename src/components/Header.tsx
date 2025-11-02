@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "./ui/button";
-import { Menu, X, User, Settings, Users, ShoppingCart, ChevronDown } from "lucide-react";
-import { useAuth } from "@/contexts/AuthContext";
-import { AuthModal } from "./AuthModal";
-import { UserMenu } from "./UserMenu";
+import { Menu, X } from "lucide-react";
 import { CurrencySelector } from "./CurrencySelector";
 import { useApp } from "@/contexts/AppContext";
 import { Link } from "react-router-dom";
@@ -16,15 +12,12 @@ import { useMediaQuery } from "@/hooks/use-mobile";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const [authModalTab, setAuthModalTab] = useState<'signin' | 'signup'>('signin');
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(0);
   const [currentSessionId, setCurrentSessionId] = useState<string | null>(null);
   const [isTravelModalOpen, setIsTravelModalOpen] = useState(false);
   const [logoLoaded, setLogoLoaded] = useState(false);
   const [logoError, setLogoError] = useState(false);
-  const { user, loading } = useAuth();
   const { setCurrency } = useApp();
   
   // Use the new responsive hooks
@@ -68,10 +61,6 @@ const Header = () => {
     return () => window.removeEventListener('storage', handleStorageChange);
   }, [currentSessionId]);
 
-  const handleAuthClick = (tab: 'signin' | 'signup') => {
-    setAuthModalTab(tab);
-    setIsAuthModalOpen(true);
-  };
 
   const handleLogoError = () => {
     console.error('Logo failed to load, using fallback');
@@ -160,29 +149,6 @@ const Header = () => {
                     onCurrencyChange={setCurrency}
                   />
                 </div>
-                
-                {/* Authentication Section */}
-                <div className="flex items-center space-x-4">
-                  {loading ? (
-                    <div className="w-8 h-8 animate-pulse bg-white/20 rounded-full"></div>
-                  ) : user ? (
-                    <div className="flex items-center space-x-2">
-                      <UserMenu />
-                    </div>
-                  ) : (
-                     <div className="flex items-center space-x-2">
-                       <Button 
-                         variant="ghost" 
-                         size="sm"
-                         onClick={() => handleAuthClick('signin')}
-                         className="text-white hover:text-primary hover:bg-white/10 touch-target"
-                       >
-                         <User className="h-4 w-4 mr-2" />
-                         Sign In
-                       </Button>
-                     </div>
-                  )}
-                </div>
               </nav>
             )}
 
@@ -264,39 +230,11 @@ const Header = () => {
                     onCurrencyChange={setCurrency}
                   />
                 </div>
-              
-                {user ? (
-                  <div className="mx-4 pt-4 border-t border-white/20">
-                    <div className="text-sm text-white/60 px-4 py-2">
-                      Signed in as {user.email}
-                    </div>
-                  </div>
-                ) : (
-                  <div className="mx-4 pt-4 border-t border-white/20 space-y-2">
-                    <Button 
-                      variant="ghost" 
-                      className="w-full justify-start px-4 py-3 text-white hover:text-primary hover:bg-white/10 rounded-md touch-target"
-                      onClick={() => {
-                        handleAuthClick('signin');
-                        setIsMenuOpen(false);
-                      }}
-                    >
-                      <User className="h-4 w-4 mr-2" />
-                      Sign In
-                    </Button>
-                  </div>
-                )}
               </nav>
             </div>
           )}
         </div>
       </header>
-
-      <AuthModal 
-        isOpen={isAuthModalOpen}
-        onClose={() => setIsAuthModalOpen(false)}
-        defaultTab={authModalTab}
-      />
 
       <TourCartModal
         isOpen={isCartOpen}
