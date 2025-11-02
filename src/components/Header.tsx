@@ -128,11 +128,19 @@ const Header = () => {
                 </Link>
                 
                 <Link 
-                  to="/events" 
+                  to="/#reviews" 
                   className="px-3 py-2 text-white hover:text-primary hover:bg-white/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
-                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const reviewsSection = document.getElementById('reviews');
+                    if (window.location.pathname === '/') {
+                      reviewsSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    } else {
+                      window.location.href = '/#reviews';
+                    }
+                  }}
                 >
-                  Events
+                  Reviews
                 </Link>
                 
                 <button
@@ -202,14 +210,20 @@ const Header = () => {
                 </Link>
                 
                 <Link 
-                  to="/events" 
+                  to="/#reviews" 
                   className="px-4 py-3 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200 font-medium touch-target text-left"
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault();
                     setIsMenuOpen(false);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    const reviewsSection = document.getElementById('reviews');
+                    if (window.location.pathname === '/') {
+                      reviewsSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    } else {
+                      window.location.href = '/#reviews';
+                    }
                   }}
                 >
-                  Events
+                  Reviews
                 </Link>
                 
                 <button
