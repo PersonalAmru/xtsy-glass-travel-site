@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { CurrencySelector } from "./CurrencySelector";
 import { useApp } from "@/contexts/AppContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TourCartModal from "./TourCartModal";
 import TravelSelectionModal from "./TravelSelectionModal";
 import { HoverCard, HoverCardTrigger, HoverCardContent } from "./ui/hover-card";
@@ -19,6 +19,7 @@ const Header = () => {
   const [logoLoaded, setLogoLoaded] = useState(false);
   const [logoError, setLogoError] = useState(false);
   const { setCurrency } = useApp();
+  const navigate = useNavigate();
   
   // Use the new responsive hooks
   const isMobile = useMediaQuery('(max-width: 767px)');
@@ -127,21 +128,21 @@ const Header = () => {
                   {XTSY270_DATA.shortName}
                 </Link>
                 
-                <Link 
-                  to="/#reviews" 
+                <button
                   className="px-3 py-2 text-white hover:text-primary hover:bg-white/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const reviewsSection = document.getElementById('reviews');
-                    if (window.location.pathname === '/') {
-                      reviewsSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  onClick={() => {
+                    if (window.location.pathname !== '/') {
+                      navigate('/');
+                      setTimeout(() => {
+                        document.getElementById('reviews')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }, 100);
                     } else {
-                      window.location.href = '/#reviews';
+                      document.getElementById('reviews')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                   }}
                 >
                   Reviews
-                </Link>
+                </button>
                 
                 <button
                   onClick={() => setIsTravelModalOpen(true)}
@@ -209,22 +210,22 @@ const Header = () => {
                   {XTSY270_DATA.shortName}
                 </Link>
                 
-                <Link 
-                  to="/#reviews" 
-                  className="px-4 py-3 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200 font-medium touch-target text-left"
-                  onClick={(e) => {
-                    e.preventDefault();
+                <button
+                  className="px-4 py-3 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200 font-medium touch-target text-left w-full"
+                  onClick={() => {
                     setIsMenuOpen(false);
-                    const reviewsSection = document.getElementById('reviews');
-                    if (window.location.pathname === '/') {
-                      reviewsSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    if (window.location.pathname !== '/') {
+                      navigate('/');
+                      setTimeout(() => {
+                        document.getElementById('reviews')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }, 100);
                     } else {
-                      window.location.href = '/#reviews';
+                      document.getElementById('reviews')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                   }}
                 >
                   Reviews
-                </Link>
+                </button>
                 
                 <button
                   onClick={() => {
