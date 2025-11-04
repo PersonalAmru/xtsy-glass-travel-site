@@ -265,7 +265,7 @@ const AboutSection = () => {
               </h2>
             </div>
             <p className="text-lg text-slate-600 text-center max-w-3xl mx-auto mb-8">
-              XTSY was nominated at the <strong className="text-slate-800">Northeast India Tourism Awards 2025</strong> for:
+              XTSY was nominated at the <strong className="text-slate-800">Northeast India Tourism Awards [NEITA 2025]</strong> for:
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
               <div className="flex items-center gap-4 p-6 bg-amber-50 rounded-2xl border border-amber-200">
