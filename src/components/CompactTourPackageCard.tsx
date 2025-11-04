@@ -109,7 +109,7 @@ const CompactTourPackageCard: React.FC<CompactTourPackageCardProps> = ({
       <CardContent className="p-2 flex-grow flex flex-col">
         {/* Compact title */}
         <h3 className="font-semibold text-gray-900 mb-1 text-xs leading-tight line-clamp-2">
-          {tourPackage.title.replace(/^XTSY Exclusive:\s*/, '')}
+          {tourPackage.title}
         </h3>
         
         {/* Ultra-compact info grid */}
