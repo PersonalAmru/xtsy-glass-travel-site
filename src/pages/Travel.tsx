@@ -19,6 +19,7 @@ import wildernessSurvivalImg from "@/assets/wilderness-survival-authentic.jpg";
 
 import arunachalTribalImg from "@/assets/arunachal-tribal-premium.jpg";
 import doubleDeckerRootBridgeImg from "@/assets/double-decker-root-bridge-cherrapunji.jpg";
+import himachalYogaRetreatImg from "@/assets/himachal-yoga-retreat.jpg";
 import dawkiCrystalClearImg from "@/assets/dawki-crystal-clear-authentic.jpg";
 import assamTeaGardensImg from "@/assets/assam-tea-gardens-premium.jpg";
 import manipurLoktakImg from "@/assets/manipur-loktak-premium.jpg";
@@ -177,6 +178,22 @@ const Travel = () => {
         category: "adventure",
         location: "Northeast India",
         highlights: ["Winter Survival Training", "Wilderness Navigation", "Natural Shelter Building", "Foraging & Wild Edibles", "Water Purification Techniques", "Fire Making Mastery", "Leave No Trace Ethics"],
+        bestSeason: "Oct-Mar",
+        exclusive: true
+      },
+      {
+        id: 205,
+        title: "XTSY Exclusive: Himachal Yoga Retreat Program",
+        description: "Transformative winter yoga and meditation retreat in the peaceful Himalayan foothills - daily asana practice, pranayama, and spiritual workshops",
+        duration: "7 Days",
+        difficulty: "Easy",
+        price: "₹29,500",
+        image: himachalYogaRetreatImg,
+        images: [himachalYogaRetreatImg, himachalYogaRetreatImg, himachalYogaRetreatImg],
+        rating: 4.9,
+        category: "cultural",
+        location: "Himachal Pradesh",
+        highlights: ["Daily Hatha Yoga Sessions", "Guided Meditation Practices", "Pranayama Breathwork", "Ayurvedic Spa Treatments", "Himalayan Nature Walks", "Spiritual Philosophy Classes", "Organic Sattvic Cuisine", "Sound Healing Therapy"],
         bestSeason: "Oct-Mar",
         exclusive: true
       },
