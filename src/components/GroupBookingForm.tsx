@@ -9,6 +9,8 @@ import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { Calendar, Users, IndianRupee, Minus, Plus, ShoppingCart } from "lucide-react";
 import CartModal from "./CartModal";
 import { useApp } from "@/contexts/AppContext";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 interface GroupBookingFormProps {
   isOpen: boolean;
@@ -17,11 +19,14 @@ interface GroupBookingFormProps {
 
 const GroupBookingForm = ({ isOpen, onClose }: GroupBookingFormProps) => {
   const { formatPrice } = useApp();
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     groupName: "",
     contactPerson: "",
     email: "",
     phone: "",
+    city: "",
+    pincode: "",
     checkIn: "",
     checkOut: "",
     arrivalTime: "",
@@ -85,30 +90,71 @@ const GroupBookingForm = ({ isOpen, onClose }: GroupBookingFormProps) => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.checkIn || !formData.checkOut || nights <= 0) {
-      alert("Please fill in all required fields including valid dates");
-      return;
-    }
     
-    // WhatsApp booking functionality
-    const foodDetails = [];
-    if (formData.breakfast) foodDetails.push(`• Breakfast: ${formData.breakfastGuests} guests - ${formatPrice(breakfastCost)}`);
-    if (formData.dinner) foodDetails.push(`• Dinner (${formData.dinnerType}): ${formData.dinnerGuests} guests - ${formatPrice(dinnerCost)}`);
-    
-    const additionalServices = [];
-    if (formData.transportation) additionalServices.push("• Transportation Arrangement");
-    if (formData.itinerary) additionalServices.push("• Travel Itinerary Support");
-    
-    const bookingDetails = `
+    try {
+      // Generate unique booking ID
+      const bookingId = `GROUP-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+      
+      // Save to Supabase
+      const { error } = await supabase
+        .from('bookings')
+        .insert({
+          booking_id: bookingId,
+          room_type: "Group Booking",
+          room_type_id: "group-booking",
+          guest_name: formData.groupName,
+          email: formData.email,
+          whatsapp_number: formData.phone,
+          city: formData.city,
+          pincode: formData.pincode,
+          check_in: formData.checkIn,
+          check_out: formData.checkOut,
+          guests: formData.guests,
+          special_requests: formData.specialRequests,
+          booking_status: 'pending',
+          payment_status: 'pending',
+          subtotal: totalPrice,
+          taxes: gst,
+          total_amount: finalTotal,
+          source: 'group_booking_form'
+        });
+
+      if (error) {
+        console.error('Error saving booking:', error);
+        toast({
+          title: "Booking Error",
+          description: "Failed to save booking. Please try again.",
+          variant: "destructive"
+        });
+        return;
+      }
+
+      toast({
+        title: "Booking Saved!",
+        description: "Your group booking has been recorded successfully.",
+      });
+      
+      // WhatsApp booking functionality
+      const foodDetails = [];
+      if (formData.breakfast) foodDetails.push(`• Breakfast: ${formData.breakfastGuests} guests - ${formatPrice(breakfastCost)}`);
+      if (formData.dinner) foodDetails.push(`• Dinner (${formData.dinnerType}): ${formData.dinnerGuests} guests - ${formatPrice(dinnerCost)}`);
+      
+      const additionalServices = [];
+      if (formData.transportation) additionalServices.push("• Transportation Arrangement");
+      if (formData.itinerary) additionalServices.push("• Travel Itinerary Support");
+      
+      const bookingDetails = `
 🏨 *XTSY Group Booking Request*
+Booking ID: ${bookingId}
 
 👥 *Group Details:*
 Group Name: ${formData.groupName}
 Contact Person: ${formData.contactPerson}
 Email: ${formData.email}
 Phone: ${formData.phone}
+City: ${formData.city}, Pincode: ${formData.pincode}
 
 📅 *Booking Details:*
 Check-in: ${formData.checkIn}
@@ -126,11 +172,19 @@ GST (12%): ${formatPrice(gst)}
 
 📝 *Special Requests:*
 ${formData.specialRequests || 'None'}
-    `.trim();
+      `.trim();
 
-    const whatsappUrl = `https://wa.me/918837317070?text=${encodeURIComponent(bookingDetails)}`;
-    window.open(whatsappUrl, '_blank');
-    onClose();
+      const whatsappUrl = `https://wa.me/918837317070?text=${encodeURIComponent(bookingDetails)}`;
+      window.open(whatsappUrl, '_blank');
+      onClose();
+    } catch (error) {
+      console.error('Error processing booking:', error);
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive"
+      });
+    }
   };
 
   return (
@@ -196,6 +250,30 @@ ${formData.specialRequests || 'None'}
                       value={formData.phone}
                       onChange={(e) => handleInputChange('phone', e.target.value)}
                       placeholder="+91 XXXXXXXXXX"
+                      required
+                    />
+                  </div>
+                </div>
+
+                {/* City & Pincode */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="city">City *</Label>
+                    <Input
+                      id="city"
+                      value={formData.city}
+                      onChange={(e) => handleInputChange('city', e.target.value)}
+                      placeholder="Your city"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="pincode">Pincode *</Label>
+                    <Input
+                      id="pincode"
+                      value={formData.pincode}
+                      onChange={(e) => handleInputChange('pincode', e.target.value)}
+                      placeholder="Your pincode"
                       required
                     />
                   </div>
@@ -289,7 +367,7 @@ ${formData.specialRequests || 'None'}
                       <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border">
                         <div>
                           <h4 className="font-semibold">Breakfast</h4>
-                          <p className="text-sm text-muted-foreground">{formatPrice(150)} per person per day</p>
+                          <p className="text-sm text-muted-foreground">Start your day with a delightful morning feast</p>
                         </div>
                         <div className="flex items-center space-x-2">
                           {formData.breakfast && (
@@ -334,8 +412,8 @@ ${formData.specialRequests || 'None'}
                     <div className="space-y-2">
                       <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border">
                         <div>
-                          <h4 className="font-semibold">Dinner Thali</h4>
-                          <p className="text-sm text-muted-foreground">{formatPrice(300)} per person per day (Veg/Non-Veg)</p>
+                          <h4 className="font-semibold">Dinner</h4>
+                          <p className="text-sm text-muted-foreground">Savor authentic flavors crafted with love</p>
                         </div>
                         <div className="flex items-center space-x-2">
                           {formData.dinner && (
@@ -383,8 +461,8 @@ ${formData.specialRequests || 'None'}
                              <SelectValue />
                            </SelectTrigger>
                            <SelectContent>
-                             <SelectItem value="veg">Vegetarian Thali</SelectItem>
-                             <SelectItem value="nonveg">Non-Vegetarian Thali</SelectItem>
+                             <SelectItem value="veg">Vegetarian</SelectItem>
+                             <SelectItem value="nonveg">Non-Vegetarian</SelectItem>
                            </SelectContent>
                          </Select>
                        </div>
@@ -479,7 +557,6 @@ ${formData.specialRequests || 'None'}
                     <Button 
                     type="submit"
                     className="w-full bg-gradient-to-r from-primary to-orange-600 hover:from-orange-600 hover:to-red-700 text-white font-bold shadow-lg"
-                    disabled={!formData.checkIn || !formData.checkOut || nights <= 0}
                   >
                     <Users className="h-4 w-4 mr-2" />
                     Book Now - {nights > 0 ? formatPrice(finalTotal) : formatPrice(0)}
