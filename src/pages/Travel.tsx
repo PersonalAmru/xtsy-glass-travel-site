@@ -471,6 +471,51 @@ const Travel = () => {
     
     "Tamil Nadu": [
       {
+        id: 81,
+        title: "Grand Tamil Nadu Temple Circuit - Premium Heritage",
+        description: "Ultimate 10-day spiritual odyssey through Tamil Nadu's magnificent Dravidian temples - from Madurai's towering gopurams to Chidambaram's cosmic dance, experience architectural marvels and living traditions",
+        duration: "10 Days",
+        difficulty: "Moderate",
+        price: "₹45,900",
+        image: tamilNaduTemplesImg,
+        images: [tamilNaduTemplesImg, tamilNaduTemplesImg, tamilNaduTemplesImg],
+        rating: 4.9,
+        category: "cultural",
+        location: "Tamil Nadu",
+        highlights: ["Meenakshi Temple Madurai", "Brihadeeswara Temple Thanjavur", "Rameswaram Sacred Pilgrimage", "Chidambaram Nataraja Temple", "Tiruchirappalli Rock Fort", "Temple Architecture Workshops", "Classical Bharatanatyam Performances", "Traditional Temple Cuisine", "Expert Heritage Guides", "Luxury Heritage Hotels"],
+        bestSeason: "Oct-Mar"
+      },
+      {
+        id: 82,
+        title: "Sacred Temples of South India - 9 Day Spiritual Journey",
+        description: "Immersive winter pilgrimage through Tamil Nadu's holiest shrines - witness ancient rituals, experience temple festivals, and explore the profound spirituality of Chola dynasty architecture",
+        duration: "9 Days",
+        difficulty: "Easy",
+        price: "₹42,500",
+        image: tamilNaduTemplesImg,
+        images: [tamilNaduTemplesImg, tamilNaduTemplesImg, tamilNaduTemplesImg],
+        rating: 4.8,
+        category: "cultural",
+        location: "Tamil Nadu",
+        highlights: ["Kanchipuram 1000 Pillar Temple", "Tirupati Venkateswara Darshan", "Mahabalipuram Shore Temple Sunrise", "Kumbakonam Temple Town", "Vedic Chanting Ceremonies", "Temple Priest Interactions", "Sacred Kaveri River Rituals", "Premium AC Transport", "Temple Festival Experiences"],
+        bestSeason: "Oct-Mar"
+      },
+      {
+        id: 84,
+        title: "Dravidian Architecture Masterclass - Premium Cultural Tour",
+        description: "Exclusive 10-day deep dive into Tamil temple architecture with expert archaeologists - decode ancient inscriptions, study sculptural masterpieces, and understand Chola engineering genius",
+        duration: "10 Days",
+        difficulty: "Moderate",
+        price: "₹48,700",
+        image: tamilNaduTemplesImg,
+        images: [tamilNaduTemplesImg, tamilNaduTemplesImg, tamilNaduTemplesImg],
+        rating: 4.9,
+        category: "cultural",
+        location: "Tamil Nadu",
+        highlights: ["UNESCO World Heritage Temples", "Bronze Sculpture Museums", "Ancient Inscription Study", "Gopuram Architecture Analysis", "Chola Art History Lectures", "Temple Astronomy Secrets", "Stone Carving Demonstrations", "Heritage Conservation Insights", "Photography Masterclass", "Luxury Boutique Stays"],
+        bestSeason: "Oct-Mar"
+      },
+      {
         id: 83,
         title: "Kodaikanal Winter Hill Retreat",
         description: "Misty winter mornings and cool Western Ghats climate - romantic hill station escape with lakes and viewpoints",
