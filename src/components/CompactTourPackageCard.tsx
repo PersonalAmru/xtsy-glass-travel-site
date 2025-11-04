@@ -141,6 +141,7 @@ const CompactTourPackageCard: React.FC<CompactTourPackageCardProps> = ({
 
         {/* Compact price and CTA */}
         <div className="mt-auto">
+          <p className="text-xs text-gray-500 mb-0.5">Package starts from</p>
           <div className="flex items-center justify-between mb-1">
             <div className="flex items-center gap-1">
               <TrendingUp className="h-3 w-3 text-green-600" />
