@@ -149,11 +149,11 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
   },
   '6-bed-mixed-economy-dorm': {
     id: '6-bed-mixed-economy-dorm',
-    name: 'Bed in 6 bed female dormitory',
+    name: 'Bed in 6-Bed Female Dormitory',
     price: 325,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
     description: 'Budget-friendly female dormitory with essential amenities',
-    amenities: generateFeatures('economy', 'Bed in 6 bed female dormitory', 'dorm'),
+    amenities: generateFeatures('economy', 'Bed in 6-Bed Female Dormitory', 'dorm'),
     type: 'dorm',
     maxGuests: 1,
     propertyType: 'economy',

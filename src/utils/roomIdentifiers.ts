@@ -34,12 +34,12 @@ export const createRoomAliases = (roomName: string): string[] => {
       aliases.push('6-bed-female-only-dormitory');
       aliases.push('Bed in 6-Bed Female Only Dormitory');
       aliases.push('6-bed-mixed-economy-dorm');
-      aliases.push('Bed in 6 bed female dormitory');
+      aliases.push('Bed in 6-Bed Female Dormitory');
     }
     if (lowerName.includes('economy')) {
       aliases.push('6-bed-mixed-economy-dormitory');
       aliases.push('Bed in 6-Bed Mixed Economy Dormitory');
-      aliases.push('Bed in 6 bed female dormitory');
+      aliases.push('Bed in 6-Bed Female Dormitory');
     }
   }
   

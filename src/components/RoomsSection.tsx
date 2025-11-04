@@ -148,10 +148,10 @@ const RoomsSection = () => {
   const economyRooms = [
     {
       id: "6-bed-mixed-economy-dorm",
-      name: "Bed in 6 bed female dormitory",
+      name: "Bed in 6-Bed Female Dormitory",
       price: 325,
       description: "Budget-friendly female dormitory with essential amenities",
-      features: generateFeatures('economy', 'Bed in 6 bed female dormitory', 'dorm'),
+      features: generateFeatures('economy', 'Bed in 6-Bed Female Dormitory', 'dorm'),
       maxGuests: 6,
       maxRooms: 6,
       image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG",
