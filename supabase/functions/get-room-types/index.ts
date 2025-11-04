@@ -14,10 +14,10 @@ serve(async (req) => {
   }
 
   try {
-    // Create supabase client
+    // Create supabase client with service role to bypass RLS
     const supabaseClient = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
-      Deno.env.get('SUPABASE_ANON_KEY') ?? '',
+      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
     )
 
     // Query room types
