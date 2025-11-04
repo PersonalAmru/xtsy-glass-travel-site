@@ -9,7 +9,6 @@ import { useApp } from '@/contexts/AppContext';
 import ImageLightbox from './ImageLightbox';
 import MobileImageCarousel from './MobileImageCarousel';
 import { generateStandardizedFeatures } from '@/utils/roomFeatures';
-import RoomAvailabilityCalendar from './RoomAvailabilityCalendar';
 import { useRoomAvailabilityStatus } from '@/hooks/useRoomAvailabilityStatus';
 
 interface FastRoomCardProps {
@@ -53,7 +52,6 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
   // Get admin-controlled availability status
   const { status: adminStatus, isSoldOut: adminSoldOut, isMaintenance, adminNote } = useRoomAvailabilityStatus(room.id);
   const [lightboxInitialIndex, setLightboxInitialIndex] = useState(0);
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>();
 
   // Get all available images for the room
   const roomImages = room.images && room.images.length > 0 ? room.images : [room.image];
@@ -400,23 +398,6 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                   </div>
                 )}
 
-                {/* Calendar toggle for selected room */}
-                {!isSoldOut && isSelected && (
-                  <div className={`mt-3 ${isXTSY270 ? 'mt-2' : ''}`}>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        // Calendar functionality would go here
-                      }}
-                      className="w-full text-xs text-white border-gray-600 bg-gray-800 hover:bg-gray-700"
-                    >
-                      View Availability Calendar
-                    </Button>
-                  </div>
-                )}
               </CardContent>
             </div>
           </div>
