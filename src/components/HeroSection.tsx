@@ -259,7 +259,7 @@ const HeroSection = () => {
               <div className="text-xs sm:text-sm text-gray-300 mt-1">Happy Guests!</div>
             </div>
             <div className="text-center fade-in" style={{ animationDelay: '0.1s' }}>
-              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-red-400 to-pink-500 bg-clip-text text-transparent">{tourCount}+</div>
+              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-red-400 to-pink-500 bg-clip-text text-transparent">30+</div>
               <div className="text-xs sm:text-sm text-gray-300 mt-1">Tour Packages across IN</div>
             </div>
             <div className="text-center fade-in" style={{ animationDelay: '0.2s' }}>
