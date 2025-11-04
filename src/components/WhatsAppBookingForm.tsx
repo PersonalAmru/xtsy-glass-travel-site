@@ -57,18 +57,14 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
     }
   }, [formData.checkIn, formData.checkOut]);
 
-  // Fetch room types from Supabase
+  // Fetch room types from Supabase edge function
   useEffect(() => {
     const fetchRoomTypes = async () => {
       setLoadingRooms(true);
       setRoomsError("");
       
       try {
-        const { data, error } = await supabase
-          .from('room_types')
-          .select('id, name, category, base_price, capacity')
-          .eq('is_active', true)
-          .order('category', { ascending: true });
+        const { data, error } = await supabase.functions.invoke('get-room-types');
 
         if (error) {
           console.error('Error fetching room types:', error);
