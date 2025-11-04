@@ -20,8 +20,8 @@ import wildernessSurvivalImg from "@/assets/wilderness-survival-authentic.jpg";
 import arunachalTribalImg from "@/assets/arunachal-tribal-premium.jpg";
 import doubleDeckerRootBridgeImg from "@/assets/double-decker-root-bridge-cherrapunji.jpg";
 import himachalYogaRetreatImg from "@/assets/himachal-yoga-retreat.jpg";
-import dawkiCrystalClearImg from "@/assets/dawki-crystal-clear-authentic.jpg";
 import kremChympeCaveImg from "@/assets/krem-chympe-cave-expedition.jpg";
+import dawkiCrystalClearImg from "@/assets/dawki-crystal-clear-authentic.jpg";
 import assamTeaGardensImg from "@/assets/assam-tea-gardens-premium.jpg";
 import manipurLoktakImg from "@/assets/manipur-loktak-premium.jpg";
 import tripuraTribalImg from "@/assets/tripura-tribal-premium.jpg";
@@ -198,25 +198,25 @@ const Travel = () => {
         bestSeason: "Oct-Mar",
         exclusive: true
       },
-    ],
-    
-    "Meghalaya": [
       {
         id: 206,
         title: "XTSY Exclusive: Khaddum Expedition - Krem Chympe",
-        description: "Ultimate premium caving adventure in India's fifth longest cave system - UNESCO World Heritage site featuring 21.5 km of pristine underground passages, crystal-clear subterranean rivers, and spectacular limestone formations",
+        description: "Epic underground adventure through India's fifth longest cave system - UNESCO World Heritage Site featuring 21+ km of limestone passages, underground rivers, and spectacular geological formations",
         duration: "6 Days",
         difficulty: "Challenging",
-        price: "₹42,900",
+        price: "₹38,900",
         image: kremChympeCaveImg,
         images: [kremChympeCaveImg, kremChympeCaveImg, kremChympeCaveImg],
-        rating: 4.9,
+        rating: 5.0,
         category: "adventure",
         location: "Meghalaya",
-        highlights: ["Technical Cave Exploration", "Underground River Navigation", "UNESCO Heritage Site", "Professional Speleology Training", "Limestone Formation Study", "Cave Photography Workshop", "Camping in Cave Chambers", "Expert Cave Guides", "Safety Equipment Provided", "Limited Group Size (6 max)"],
+        highlights: ["UNESCO Cave System Exploration", "Technical Caving & Rappelling", "Underground River Navigation", "Limestone Formation Study", "Professional Speleology Training", "Cave Photography Workshops", "Geological Heritage Tours", "Expert Cave Guide Team", "Premium Expedition Gear Included"],
         bestSeason: "Oct-Mar",
         exclusive: true
       },
+    ],
+    
+    "Meghalaya": [
       {
         id: 4,
         title: "Dawki Crystal Waters Winter Escape",
