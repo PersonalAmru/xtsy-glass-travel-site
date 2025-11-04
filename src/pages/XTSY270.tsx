@@ -10,8 +10,10 @@ import { Separator } from '@/components/ui/separator';
 import { Calendar, Mountain, Star, Award, Eye, Sun, Moon, Wifi, Coffee, Bath, Bed, Users, MapPin, Sparkles } from 'lucide-react';
 import XTSY270Modal from '@/components/XTSY270Modal';
 import B2BBookingForm from '@/components/B2BBookingForm';
+import { useApp } from '@/contexts/AppContext';
 
 const XTSY270: React.FC = () => {
+  const { formatPrice } = useApp();
   const [isWeekend, setIsWeekend] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isB2BFormOpen, setIsB2BFormOpen] = useState(false);
@@ -181,7 +183,7 @@ Thank you! 😊`;
                     </span>
                   </div>
                   <div className="text-3xl font-bold text-primary mb-2">
-                    ₹{XTSY270_DATA.weekdayPrice.toLocaleString()}
+                    {formatPrice(XTSY270_DATA.weekdayPrice)}
                   </div>
                   <div className="text-sm text-gray-700 font-medium">
                     per night • Monday to Thursday
@@ -198,7 +200,7 @@ Thank you! 😊`;
                     </span>
                   </div>
                   <div className="text-3xl font-bold text-primary mb-2">
-                    ₹{XTSY270_DATA.weekendPrice.toLocaleString()}
+                    {formatPrice(XTSY270_DATA.weekendPrice)}
                   </div>
                   <div className="text-sm text-gray-700 font-medium">
                     per night • Friday to Sunday
