@@ -157,27 +157,6 @@ export const BookingSummary: React.FC<BookingSummaryProps> = ({
             </div>
           </div>
         </div>
-        
-        {/* Edit Controls */}
-        <div className="flex justify-center mt-2">
-          {isEditing ? (
-            <div className="flex items-center gap-2">
-              <Button variant="ghost" size={isMobileView ? "sm" : "default"} onClick={handleSave} className="text-green-600 hover:text-green-700 transition-colors">
-                <Check className={`${isMobileView ? 'h-3 w-3' : 'h-4 w-4'} ${isMobileView ? '' : 'mr-1'}`} />
-                {!isMobileView && 'Save'}
-              </Button>
-              <Button variant="ghost" size={isMobileView ? "sm" : "default"} onClick={handleCancel} className="text-red-600 hover:text-red-700 transition-colors">
-                <X className={`${isMobileView ? 'h-3 w-3' : 'h-4 w-4'} ${isMobileView ? '' : 'mr-1'}`} />
-                {!isMobileView && 'Cancel'}
-              </Button>
-            </div>
-          ) : (
-            <Button variant="ghost" size={isMobileView ? "sm" : "default"} onClick={handleEditClick} className="text-muted-foreground hover:text-foreground transition-colors">
-              <Edit className={`${isMobileView ? 'h-3 w-3' : 'h-4 w-4'} ${isMobileView ? '' : 'mr-1'}`} />
-              {!isMobileView && 'Edit'}
-            </Button>
-          )}
-        </div>
       </CardContent>
     </Card>;
 };
