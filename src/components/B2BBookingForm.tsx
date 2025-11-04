@@ -40,6 +40,7 @@ const B2BBookingForm = ({
     email: "",
     phone: "",
     city: "",
+    pincode: "",
     checkIn: "",
     checkOut: "",
     arrivalTime: "",
@@ -113,6 +114,7 @@ const B2BBookingForm = ({
           email: formData.email,
           whatsapp_number: formData.phone,
           city: formData.city,
+          pincode: formData.pincode,
           check_in: formData.checkIn,
           check_out: formData.checkOut,
           guests: formData.guests,
@@ -150,7 +152,7 @@ Booking ID: ${bookingId}
 ${formData.companyName} & ${formData.contactPerson}
 Email: ${formData.email}
 Phone: ${formData.phone}
-City: ${formData.city}
+City: ${formData.city}, Pincode: ${formData.pincode}
 
 📅 *Booking Details:*
 Check-in: ${formData.checkIn}
@@ -173,7 +175,7 @@ Company: ${formData.companyName}
 Contact Person: ${formData.contactPerson}
 Email: ${formData.email}
 Phone: ${formData.phone}
-City: ${formData.city}
+City: ${formData.city}, Pincode: ${formData.pincode}
 
 📅 *Booking Details:*
 Check-in: ${formData.checkIn}
@@ -275,16 +277,28 @@ ${formData.specialRequests || 'None'}
                 </div>
               </div>
 
-              {/* City */}
-              <div>
-                <Label htmlFor="city">City *</Label>
-                <Input
-                  id="city"
-                  value={formData.city}
-                  onChange={(e) => handleInputChange('city', e.target.value)}
-                  placeholder="Your city"
-                  required
-                />
+              {/* City & Pincode */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="city">City *</Label>
+                  <Input
+                    id="city"
+                    value={formData.city}
+                    onChange={(e) => handleInputChange('city', e.target.value)}
+                    placeholder="Your city"
+                    required
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="pincode">Pincode *</Label>
+                  <Input
+                    id="pincode"
+                    value={formData.pincode}
+                    onChange={(e) => handleInputChange('pincode', e.target.value)}
+                    placeholder="Your pincode"
+                    required
+                  />
+                </div>
               </div>
 
               {/* Booking Details */}
