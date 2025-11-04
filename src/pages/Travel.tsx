@@ -31,10 +31,9 @@ import gurudongmarLakeImg from "@/assets/gurudongmar-lake-high-altitude-stock.jp
 import keralaBackwatersImg from "@/assets/kerala-backwaters-authentic.jpg";
 
 import thekkadyWildlifeImg from "@/assets/thekkady-wildlife.jpg";
-import tamilNaduTemplesImg from "@/assets/tamil-nadu-temples-new.jpg";
-import tamilNaduTemplesPinterestImg from "@/assets/tamil-nadu-temples-pinterest.jpg";
-import tamilNaduTemplesStockImg from "@/assets/tamil-nadu-temple-circuit-stock.jpg";
-import tamilNaduTemplesOriginalImg from "@/assets/tamil-nadu-temples.jpg";
+import tamilNaduMeenakshiTempleImg from "@/assets/tamil-nadu-meenakshi-temple.jpg";
+import tamilNaduKanchipuramTempleImg from "@/assets/tamil-nadu-kanchipuram-temple.jpg";
+import tamilNaduBrihadeeswraUnescoImg from "@/assets/tamil-nadu-brihadeeswara-unesco.jpg";
 import ootyKodaikanalImg from "@/assets/ooty-kodaikanal.jpg";
 import meghalayaHiddenGemsImg from "@/assets/meghalaya-hidden-gems-final.jpg";
 import cherrapunjiWaterfallsImg from "@/assets/cherrapunji-waterfalls-premium.jpg";
@@ -449,8 +448,8 @@ const Travel = () => {
         duration: "10 Days",
         difficulty: "Moderate",
         price: "₹45,900",
-        image: tamilNaduTemplesStockImg,
-        images: [tamilNaduTemplesStockImg, tamilNaduTemplesStockImg, tamilNaduTemplesStockImg],
+        image: tamilNaduMeenakshiTempleImg,
+        images: [tamilNaduMeenakshiTempleImg, tamilNaduMeenakshiTempleImg, tamilNaduMeenakshiTempleImg],
         rating: 4.9,
         category: "cultural",
         location: "Tamil Nadu",
@@ -464,8 +463,8 @@ const Travel = () => {
         duration: "9 Days",
         difficulty: "Easy",
         price: "₹42,500",
-        image: tamilNaduTemplesPinterestImg,
-        images: [tamilNaduTemplesPinterestImg, tamilNaduTemplesPinterestImg, tamilNaduTemplesPinterestImg],
+        image: tamilNaduKanchipuramTempleImg,
+        images: [tamilNaduKanchipuramTempleImg, tamilNaduKanchipuramTempleImg, tamilNaduKanchipuramTempleImg],
         rating: 4.8,
         category: "cultural",
         location: "Tamil Nadu",
@@ -479,8 +478,8 @@ const Travel = () => {
         duration: "10 Days",
         difficulty: "Moderate",
         price: "₹48,700",
-        image: tamilNaduTemplesOriginalImg,
-        images: [tamilNaduTemplesOriginalImg, tamilNaduTemplesOriginalImg, tamilNaduTemplesOriginalImg],
+        image: tamilNaduBrihadeeswraUnescoImg,
+        images: [tamilNaduBrihadeeswraUnescoImg, tamilNaduBrihadeeswraUnescoImg, tamilNaduBrihadeeswraUnescoImg],
         rating: 4.9,
         category: "cultural",
         location: "Tamil Nadu",
