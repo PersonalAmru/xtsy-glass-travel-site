@@ -489,49 +489,7 @@ ${formData.specialRequests || 'None'}
                    </div>
                  </div>
 
-                {/* Price Summary - Always visible when nights > 0 */}
-                {nights > 0 && (
-                  <Card className="bg-primary/10 border-primary/20">
-                    <CardContent className="p-4">
-                      <h3 className="font-bold text-primary mb-2 flex items-center">
-                        <IndianRupee className="h-4 w-4 mr-1" />
-                        Price Summary (Group Rate)
-                      </h3>
-                      <div className="space-y-1 text-sm">
-                        <div className="flex justify-between">
-                          <span>Entire Property × {nights} nights</span>
-                          <span>{formatPrice(15000 * nights)}</span>
-                        </div>
-                        <div className="flex justify-between text-xs text-muted-foreground">
-                          <span>({formData.guests} guests × {nights} nights)</span>
-                          <span></span>
-                        </div>
-                         {formData.breakfast && (
-                           <div className="flex justify-between">
-                             <span>Breakfast ({formData.breakfastGuests} guests × {nights} nights)</span>
-                             <span>{formatPrice(breakfastCost)}</span>
-                           </div>
-                         )}
-                         {formData.dinner && (
-                           <div className="flex justify-between">
-                             <span>Dinner {formData.dinnerType} ({formData.dinnerGuests} guests × {nights} nights)</span>
-                             <span>{formatPrice(dinnerCost)}</span>
-                           </div>
-                         )}
-                        <div className="flex justify-between">
-                          <span>GST (12%)</span>
-                          <span>{formatPrice(gst)}</span>
-                        </div>
-                        <div className="flex justify-between font-bold text-primary pt-2 border-t border-primary/20">
-                          <span>Total Amount</span>
-                          <span>{formatPrice(finalTotal)}</span>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                )}
-
-                {/* Special Requests */}
+                 {/* Special Requests */}
                 <div>
                   <Label htmlFor="specialRequests">Special Requests</Label>
                   <Textarea
@@ -550,7 +508,7 @@ ${formData.specialRequests || 'None'}
                     className="w-full bg-gradient-to-r from-primary to-orange-600 hover:from-orange-600 hover:to-red-700 text-white font-bold shadow-lg"
                   >
                     <Users className="h-4 w-4 mr-2" />
-                    Book Now - {nights > 0 ? formatPrice(finalTotal) : formatPrice(0)}
+                    Book Now
                   </Button>
                 </div>
               </form>
