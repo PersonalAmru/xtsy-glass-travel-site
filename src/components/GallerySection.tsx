@@ -4,8 +4,11 @@ import { Badge } from "@/components/ui/badge";
 import { Camera, Eye, MapPin, Users, Mountain, Building, Image, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import OptimizedImage from "./OptimizedImage";
+import ImageLightbox from "./ImageLightbox";
 const GallerySection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
 
   // Listen for URL parameter changes
   useEffect(() => {
@@ -337,6 +340,13 @@ const GallerySection = () => {
     count: galleryItems.filter(item => item.category === "dormitories").length
   }];
   const filteredItems = activeCategory === "all" ? galleryItems : galleryItems.filter(item => item.category === activeCategory);
+  
+  const handleImageClick = (index: number) => {
+    setLightboxIndex(index);
+    setLightboxOpen(true);
+  };
+  
+  const allImageUrls = filteredItems.map(item => item.image).filter(Boolean) as string[];
   return <section id="gallery" className="py-16 sm:py-20 px-3 sm:px-4 bg-white relative overflow-hidden">
       {/* Background animations */}
       <div className="absolute inset-0">
@@ -373,9 +383,9 @@ const GallerySection = () => {
         {/* Vertical Gallery Grid */}
         <div className="relative">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-            {filteredItems.map(item => <Card key={item.id} className={`group overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:scale-105 ${item.featured ? "ring-2 ring-orange-500 ring-opacity-50" : ""}`}>
+            {filteredItems.map((item, index) => <Card key={item.id} className={`group overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer ${item.featured ? "ring-2 ring-orange-500 ring-opacity-50" : ""}`}>
                   <CardContent className="p-0">
-                    <div className="relative overflow-hidden">
+                    <div className="relative overflow-hidden" onClick={() => handleImageClick(index)}>
                       {item.image ? <img 
                           src={item.image} 
                           alt={item.title} 
@@ -442,6 +452,15 @@ const GallerySection = () => {
           </div>
         </div>
       </div>
+
+      {/* Image Lightbox */}
+      <ImageLightbox
+        isOpen={lightboxOpen}
+        images={allImageUrls}
+        initialIndex={lightboxIndex}
+        onClose={() => setLightboxOpen(false)}
+        alt="Gallery Image"
+      />
 
       <style>
         {`
