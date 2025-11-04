@@ -60,6 +60,12 @@ import dharamshalaMcleodGanjImg from "@/assets/dharamshala-mcleod-ganj-stock.jpg
 import kulluValleyAdventureImg from "@/assets/kullu-valley-adventure-stock.jpg";
 import royalEnfieldHimalayanImg from "@/assets/royal-enfield-himalayan-mountain.jpg";
 import motorcycleMountainRoadImg from "@/assets/motorcycle-mountain-road.jpg";
+import phiPhiWaterfallMeghalayaImg from "@/assets/phi-phi-waterfall-meghalaya.jpg";
+import bumlaPassBikeExpeditionImg from "@/assets/bumla-pass-bike-expedition.jpg";
+import arunachalCulturalFestivalImg from "@/assets/arunachal-cultural-festival.jpg";
+import tripuraBambooHeritageImg from "@/assets/tripura-bamboo-heritage.jpg";
+import tawangMonasteryMountainsImg from "@/assets/tawang-monastery-mountains.jpg";
+import doubleDeckerBridgeNewImg from "@/assets/double-decker-bridge-new.jpg";
 
 // All image assets removed - Supabase ready
 // Image arrays for future Supabase URL assignments
@@ -244,8 +250,8 @@ const Travel = () => {
         duration: "5 Days",
         difficulty: "Moderate",
         price: "₹29,500",
-        image: doubleDeckerRootBridgeImg,
-        images: [doubleDeckerRootBridgeImg, doubleDeckerRootBridgeImg, doubleDeckerRootBridgeImg],
+        image: doubleDeckerBridgeNewImg,
+        images: [doubleDeckerBridgeNewImg, doubleDeckerBridgeNewImg, doubleDeckerBridgeNewImg],
         rating: 4.8,
         category: "adventure",
         location: "Meghalaya",
@@ -289,8 +295,8 @@ const Travel = () => {
         duration: "3 Days",
         difficulty: "Moderate",
         price: "₹16,500",
-        image: phiPhiWaterfallTrekImg,
-        images: [phiPhiWaterfallTrekImg, moopunWaterfallImg, phiPhiWaterfallTrekImg],
+        image: phiPhiWaterfallMeghalayaImg,
+        images: [phiPhiWaterfallMeghalayaImg, moopunWaterfallImg, phiPhiWaterfallMeghalayaImg],
         rating: 4.7,
         category: "adventure",
         location: "Meghalaya",
@@ -352,8 +358,8 @@ const Travel = () => {
         duration: "6 Days",
         difficulty: "Moderate",
         price: "₹36,500",
-        image: arunachalEagleFestivalImg,
-        images: [arunachalEagleFestivalImg, arunachalTribalImg, arunachalEagleFestivalImg],
+        image: arunachalCulturalFestivalImg,
+        images: [arunachalCulturalFestivalImg, arunachalTribalImg, arunachalCulturalFestivalImg],
         rating: 4.8,
         category: "cultural",
         location: "Arunachal Pradesh",
@@ -367,8 +373,8 @@ const Travel = () => {
         duration: "4 Days",
         difficulty: "Moderate",
         price: "₹23,500",
-        image: tripuraTribalImg,
-        images: [tripuraTribalImg, mizoramBambooImg, tripuraTribalImg],
+        image: tripuraBambooHeritageImg,
+        images: [tripuraBambooHeritageImg, mizoramBambooImg, tripuraBambooHeritageImg],
         rating: 4.5,
         category: "cultural",
         location: "Tripura",
@@ -382,8 +388,8 @@ const Travel = () => {
         duration: "8 Days",
         difficulty: "Challenging",
         price: "₹48,500",
-        image: royalEnfieldHimalayanImg,
-        images: [royalEnfieldHimalayanImg, motorcycleMountainRoadImg, royalEnfieldHimalayanImg],
+        image: bumlaPassBikeExpeditionImg,
+        images: [bumlaPassBikeExpeditionImg, motorcycleMountainRoadImg, bumlaPassBikeExpeditionImg],
         rating: 4.9,
         category: "adventure",
         location: "Arunachal Pradesh",
@@ -397,8 +403,8 @@ const Travel = () => {
         duration: "6 Days",
         difficulty: "Moderate",
         price: "₹36,500",
-        image: arunachalTribalImg,
-        images: [arunachalTribalImg, gurudongmarLakeImg, arunachalTribalImg],
+        image: tawangMonasteryMountainsImg,
+        images: [tawangMonasteryMountainsImg, gurudongmarLakeImg, tawangMonasteryMountainsImg],
         rating: 4.8,
         category: "cultural",
         location: "Arunachal Pradesh",
