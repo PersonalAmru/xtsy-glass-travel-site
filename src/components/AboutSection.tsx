@@ -267,26 +267,6 @@ const AboutSection = () => {
             <p className="text-lg text-slate-600 text-center max-w-3xl mx-auto mb-8">
               XTSY was nominated at the <strong className="text-slate-800">Northeast India Tourism Awards [NEITA 2025]</strong> for:
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-              <div className="flex items-center gap-4 p-6 bg-amber-50 rounded-2xl border border-amber-200">
-                <div className="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center flex-shrink-0">
-                  <Award className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-slate-800 mb-1">Best Budget-Friendly Accommodation</h3>
-                  <p className="text-sm text-slate-600">Exceptional value and affordability</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-4 p-6 bg-blue-50 rounded-2xl border border-blue-200">
-                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
-                  <Star className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-slate-800 mb-1">Service Excellence Award</h3>
-                  <p className="text-sm text-slate-600">Outstanding guest experiences</p>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
 
