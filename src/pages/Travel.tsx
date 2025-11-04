@@ -18,7 +18,7 @@ import meghalayaBiodiversityAuthenticImg from "@/assets/meghalaya-biodiversity-a
 import wildernessSurvivalImg from "@/assets/wilderness-survival-authentic.jpg";
 
 import arunachalTribalImg from "@/assets/arunachal-tribal-premium.jpg";
-import livingRootBridgesImg from "@/assets/living-root-bridges-authentic.jpg";
+import doubleDeckerRootBridgeImg from "@/assets/double-decker-root-bridge-cherrapunji.jpg";
 import dawkiCrystalClearImg from "@/assets/dawki-crystal-clear-authentic.jpg";
 import assamTeaGardensImg from "@/assets/assam-tea-gardens-premium.jpg";
 import manipurLoktakImg from "@/assets/manipur-loktak-premium.jpg";
@@ -200,13 +200,13 @@ const Travel = () => {
       },
       {
         id: 1,
-        title: "Living Root Bridges Expedition",
+        title: "Double Decker Root Bridge and Cherrapunji Exploration",
         description: "Trek through pristine winter forests to discover 500-year-old living bridges crafted by nature and tribal wisdom",
         duration: "5 Days",
         difficulty: "Moderate",
         price: "₹16,500",
-        image: livingRootBridgesImg,
-        images: [livingRootBridgesImg, livingRootBridgesImg, livingRootBridgesImg],
+        image: doubleDeckerRootBridgeImg,
+        images: [doubleDeckerRootBridgeImg, doubleDeckerRootBridgeImg, doubleDeckerRootBridgeImg],
         rating: 4.8,
         category: "adventure",
         location: "Meghalaya",
