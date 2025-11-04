@@ -537,21 +537,6 @@ const AboutSection = () => {
           </div>
         </section>
 
-        {/* Excellence Highlights */}
-        <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl p-8 sm:p-12 text-white shadow-2xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {highlights.map((highlight, index) => (
-              <div key={index} className="text-center">
-                <div className="text-5xl sm:text-6xl font-bold mb-2">
-                  {highlight.number}
-                </div>
-                <div className="text-lg font-semibold opacity-90">
-                  {highlight.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
 
     </main>
