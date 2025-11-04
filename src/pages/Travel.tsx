@@ -23,6 +23,9 @@ import himachalYogaRetreatImg from "@/assets/himachal-yoga-retreat.jpg";
 import kremChympeCaveImg from "@/assets/krem-chympe-cave-expedition.jpg";
 import dawkiCrystalClearImg from "@/assets/dawki-crystal-clear-authentic.jpg";
 import assamTeaGardensImg from "@/assets/assam-tea-gardens-premium.jpg";
+import krangSuriWaterfallImg from "@/assets/krang-suri-waterfall.jpg";
+import phiPhiWaterfallTrekImg from "@/assets/phi-phi-waterfall-trek.jpg";
+import moopunWaterfallImg from "@/assets/moopun-waterfall.jpg";
 import manipurLoktakImg from "@/assets/manipur-loktak-premium.jpg";
 import tripuraTribalImg from "@/assets/tripura-tribal-premium.jpg";
 import charDhamYatraImg from "@/assets/char-dham-yatra.jpg";
@@ -260,6 +263,51 @@ const Travel = () => {
         category: "cultural",
         location: "Meghalaya",
         highlights: ["Don Bosco Museum", "Police Bazaar Shopping", "Ward's Lake", "Elephant Falls", "Local Music Scene", "Pine Forest Walks"],
+        bestSeason: "Oct-Mar"
+      },
+      {
+        id: 6,
+        title: "Krang Suri Waterfall Budget Getaway",
+        description: "Affordable 2-day escape to Meghalaya's stunning turquoise waterfall paradise - swim in crystal-clear natural pools surrounded by pristine jungle",
+        duration: "2 Days",
+        difficulty: "Easy",
+        price: "₹6,500",
+        image: krangSuriWaterfallImg,
+        images: [krangSuriWaterfallImg, krangSuriWaterfallImg, krangSuriWaterfallImg],
+        rating: 4.6,
+        category: "leisure",
+        location: "Meghalaya",
+        highlights: ["Crystal Clear Turquoise Pools", "Natural Swimming Experience", "Scenic Jungle Trek", "Photography Paradise", "Budget Homestay", "Local Jaintia Cuisine"],
+        bestSeason: "Oct-Mar"
+      },
+      {
+        id: 7,
+        title: "Phi Phi & Moopun Waterfalls Adventure",
+        description: "Budget-friendly 3-day waterfall hopping tour through Meghalaya's hidden cascades - trek to pristine falls, swim in natural pools, and explore untouched landscapes",
+        duration: "3 Days",
+        difficulty: "Moderate",
+        price: "₹8,900",
+        image: phiPhiWaterfallTrekImg,
+        images: [phiPhiWaterfallTrekImg, moopunWaterfallImg, phiPhiWaterfallTrekImg],
+        rating: 4.7,
+        category: "adventure",
+        location: "Meghalaya",
+        highlights: ["Phi Phi Falls Trek", "Moopun Waterfall Swim", "Hidden Cascade Exploration", "Jungle Trail Adventures", "Village Homestay Experience", "Photography Spots", "Local Guide Tours"],
+        bestSeason: "Oct-Mar"
+      },
+      {
+        id: 8,
+        title: "Meghalaya Waterfalls Budget Circuit",
+        description: "Complete 3-day budget tour covering Krang Suri, Moopun, and multiple hidden waterfalls - perfect for nature lovers seeking affordable adventure",
+        duration: "3 Days",
+        difficulty: "Easy",
+        price: "₹9,200",
+        image: moopunWaterfallImg,
+        images: [moopunWaterfallImg, krangSuriWaterfallImg, moopunWaterfallImg],
+        rating: 4.5,
+        category: "leisure",
+        location: "Meghalaya",
+        highlights: ["Multiple Waterfall Visits", "Natural Swimming Pools", "Budget Accommodation", "Local Food Experience", "Nature Photography", "Relaxed Pace Tour", "Eco-friendly Travel"],
         bestSeason: "Oct-Mar"
       },
     ],
