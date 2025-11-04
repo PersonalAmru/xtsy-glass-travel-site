@@ -408,7 +408,7 @@ ${formData.specialRequests || 'None'}
                   <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border">
                     <div>
                       <h4 className="font-semibold">Breakfast</h4>
-                      <p className="text-sm text-muted-foreground">{formatPrice(150)} per person per day</p>
+                      <p className="text-sm text-muted-foreground">Start your day with a delightful morning feast</p>
                     </div>
                     <div className="flex items-center space-x-2">
                       {formData.breakfast && (
@@ -453,8 +453,8 @@ ${formData.specialRequests || 'None'}
                 <div className="space-y-2">
                   <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border">
                     <div>
-                      <h4 className="font-semibold">Dinner Thali</h4>
-                      <p className="text-sm text-muted-foreground">{formatPrice(300)} per person per day (Veg/Non-Veg)</p>
+                      <h4 className="font-semibold">Dinner</h4>
+                      <p className="text-sm text-muted-foreground">Savor authentic flavors crafted with love</p>
                     </div>
                     <div className="flex items-center space-x-2">
                       {formData.dinner && (
@@ -502,8 +502,8 @@ ${formData.specialRequests || 'None'}
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="veg">Vegetarian Thali</SelectItem>
-                          <SelectItem value="nonveg">Non-Vegetarian Thali</SelectItem>
+                          <SelectItem value="veg">Vegetarian</SelectItem>
+                          <SelectItem value="nonveg">Non-Vegetarian</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
