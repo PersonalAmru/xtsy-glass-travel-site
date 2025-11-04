@@ -144,54 +144,6 @@ const Travel = () => {
 
   // Enhanced tour packages data organized by states - All Oct-Mar friendly & shuffled
   const stateWiseTourPackages = {
-    "Meghalaya": [
-      {
-        id: 4,
-        title: "Dawki Crystal Waters Winter Escape",
-        description: "Experience the world's clearest river during perfect winter weather - boat rides reveal the riverbed 20 feet below like floating on glass",
-        duration: "3 Days",
-        difficulty: "Easy",
-        price: "₹8,900",
-        image: dawkiCrystalClearImg,
-        images: [dawkiCrystalClearImg, dawkiCrystalClearImg, dawkiCrystalClearImg],
-        rating: 4.9,
-        category: "leisure",
-        location: "Meghalaya",
-        highlights: ["Transparent River Boating", "Indo-Bangladesh Border Views", "Winter Photography", "Local Khasi Cuisine", "Riverside Camping"],
-        bestSeason: "Oct-Mar"
-      },
-      {
-        id: 1,
-        title: "Living Root Bridges Expedition",
-        description: "Trek through pristine winter forests to discover 500-year-old living bridges crafted by nature and tribal wisdom",
-        duration: "5 Days",
-        difficulty: "Moderate",
-        price: "₹16,500",
-        image: livingRootBridgesImg,
-        images: [livingRootBridgesImg, livingRootBridgesImg, livingRootBridgesImg],
-        rating: 4.8,
-        category: "adventure",
-        location: "Meghalaya",
-        highlights: ["Double Decker Root Bridge Trek", "Rainbow Falls Swim", "Khasi Village Homestays", "Jungle Survival Skills", "Bio-Luminescent Cave Exploration"],
-        bestSeason: "Oct-Mar"
-      },
-      {
-        id: 5,
-        title: "Shillong Winter Cultural Sojourn",
-        description: "Immerse in the Scotland of East during crisp winter months - explore colonial heritage, vibrant markets, and traditional Khasi culture",
-        duration: "2 Days",
-        difficulty: "Easy",
-        price: "₹7,200",
-        image: shillongCherryBlossomImg,
-        images: [shillongCherryBlossomImg, shillongCherryBlossomImg, shillongCherryBlossomImg],
-        rating: 4.7,
-        category: "cultural",
-        location: "Meghalaya",
-        highlights: ["Don Bosco Museum", "Police Bazaar Shopping", "Ward's Lake", "Elephant Falls", "Local Music Scene", "Pine Forest Walks"],
-        bestSeason: "Oct-Mar"
-      },
-    ],
-    
     "XTSY Exclusive Tours": [
       {
         id: 203,
@@ -256,6 +208,54 @@ const Travel = () => {
         highlights: ["Winter Survival Training", "Wilderness Navigation", "Natural Shelter Building", "Foraging & Wild Edibles", "Water Purification Techniques", "Fire Making Mastery", "Leave No Trace Ethics"],
         bestSeason: "Oct-Mar",
         exclusive: true
+      },
+    ],
+    
+    "Meghalaya": [
+      {
+        id: 4,
+        title: "Dawki Crystal Waters Winter Escape",
+        description: "Experience the world's clearest river during perfect winter weather - boat rides reveal the riverbed 20 feet below like floating on glass",
+        duration: "3 Days",
+        difficulty: "Easy",
+        price: "₹8,900",
+        image: dawkiCrystalClearImg,
+        images: [dawkiCrystalClearImg, dawkiCrystalClearImg, dawkiCrystalClearImg],
+        rating: 4.9,
+        category: "leisure",
+        location: "Meghalaya",
+        highlights: ["Transparent River Boating", "Indo-Bangladesh Border Views", "Winter Photography", "Local Khasi Cuisine", "Riverside Camping"],
+        bestSeason: "Oct-Mar"
+      },
+      {
+        id: 1,
+        title: "Living Root Bridges Expedition",
+        description: "Trek through pristine winter forests to discover 500-year-old living bridges crafted by nature and tribal wisdom",
+        duration: "5 Days",
+        difficulty: "Moderate",
+        price: "₹16,500",
+        image: livingRootBridgesImg,
+        images: [livingRootBridgesImg, livingRootBridgesImg, livingRootBridgesImg],
+        rating: 4.8,
+        category: "adventure",
+        location: "Meghalaya",
+        highlights: ["Double Decker Root Bridge Trek", "Rainbow Falls Swim", "Khasi Village Homestays", "Jungle Survival Skills", "Bio-Luminescent Cave Exploration"],
+        bestSeason: "Oct-Mar"
+      },
+      {
+        id: 5,
+        title: "Shillong Winter Cultural Sojourn",
+        description: "Immerse in the Scotland of East during crisp winter months - explore colonial heritage, vibrant markets, and traditional Khasi culture",
+        duration: "2 Days",
+        difficulty: "Easy",
+        price: "₹7,200",
+        image: shillongCherryBlossomImg,
+        images: [shillongCherryBlossomImg, shillongCherryBlossomImg, shillongCherryBlossomImg],
+        rating: 4.7,
+        category: "cultural",
+        location: "Meghalaya",
+        highlights: ["Don Bosco Museum", "Police Bazaar Shopping", "Ward's Lake", "Elephant Falls", "Local Music Scene", "Pine Forest Walks"],
+        bestSeason: "Oct-Mar"
       },
     ],
     
