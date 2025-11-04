@@ -278,14 +278,6 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
           }`}
           onClick={isSoldOut || isMaintenance ? undefined : handleCardClick}
         >
-          {/* Availability Status Overlay */}
-          <div className={`absolute top-2 left-2 z-10 px-2 py-1 rounded-md text-xs font-bold flex items-center gap-1 ${
-            availabilityStatus.bgColor
-          } text-white backdrop-blur-sm border border-white/20`}>
-            {availabilityStatus.icon && React.createElement(availabilityStatus.icon, { size: 12 })}
-            {availabilityStatus.label}
-          </div>
-          
           {/* Sold Out / Maintenance Overlay */}
           {(isSoldOut || isMaintenance) && (
             <div className="absolute inset-0 bg-black/60 z-10 flex items-center justify-center">
