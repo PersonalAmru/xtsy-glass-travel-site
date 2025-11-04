@@ -390,41 +390,21 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                   })()}
                 </div>
 
-                {/* Room selection only */}
-                {isSoldOut ? (
-                  <div className={`space-y-2 pt-2 border-t border-gray-600 ${
-                    isMobile ? 'space-y-2 pt-2' : ''
-                  } ${isXTSY270 ? 'space-y-2 pt-2 mt-auto' : ''}`}>
-                    <div className="flex items-center justify-center py-4">
-                      <span className={`font-bold text-red-400 text-center ${
-                        isMobile ? 'text-sm' : 'text-base'
-                      } ${isXTSY270 ? 'text-sm' : ''}`}>
-                        Unavailable for selected dates
-                      </span>
-                    </div>
-                  </div>
-                ) : (
-                   <div className={`space-y-2 pt-2 border-t border-gray-700 ${
-                    isMobile ? 'space-y-2 pt-2' : ''
-                   } ${isXTSY270 ? 'space-y-2 pt-2 mt-auto' : ''}`}>
-
-                    {/* Subtotal - Only show when rooms > 0 and not sold out */}
-                    {!isSoldOut && selection.rooms > 0 && (
-                      <div className={`flex items-center justify-between pt-2 border-t border-gray-700 ${
-                        isMobile ? 'pt-1.5' : ''
-                      } ${isXTSY270 ? 'pt-1.5' : ''}`}>
-                        <span className={`font-medium text-white text-center ${
-                          isMobile ? 'text-xs' : 'text-sm'
-                        } ${isXTSY270 ? 'text-xs' : ''}`}>
-                          Subtotal:
-                        </span>
-                        <span className={`font-bold text-primary text-right ${
-                          isMobile ? 'text-sm' : isTablet ? 'text-base' : 'text-lg'
-                        } ${isXTSY270 ? 'text-sm' : ''}`}>
-                          {formatPrice(calculateSubtotal())}
-                        </span>
-                      </div>
-                    )}
+                {/* Subtotal - Only show when rooms > 0 and not sold out */}
+                {!isSoldOut && selection.rooms > 0 && (
+                  <div className={`flex items-center justify-between pt-2 border-t border-gray-700 ${
+                    isMobile ? 'pt-1.5' : ''
+                  } ${isXTSY270 ? 'pt-1.5' : ''}`}>
+                    <span className={`font-medium text-white text-center ${
+                      isMobile ? 'text-xs' : 'text-sm'
+                    } ${isXTSY270 ? 'text-xs' : ''}`}>
+                      Subtotal:
+                    </span>
+                    <span className={`font-bold text-primary text-right ${
+                      isMobile ? 'text-sm' : isTablet ? 'text-base' : 'text-lg'
+                    } ${isXTSY270 ? 'text-sm' : ''}`}>
+                      {formatPrice(calculateSubtotal())}
+                    </span>
                   </div>
                 )}
 
