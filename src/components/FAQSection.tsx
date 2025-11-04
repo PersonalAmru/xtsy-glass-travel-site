@@ -6,68 +6,68 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 const FAQSection = () => {
   const faqData = [
     {
-      question: "What are hostel quiet hours?",
-      answer: "XTSY Economy Dorms: Quiet hours are strictly enforced from 11 PM to 6 AM daily. XTSY Travellers Hostel: More flexible policy with consideration for fellow guests. XTSY Luxury: No strict quiet hours, premium privacy experience."
+      question: "What is the XTSY 270° Glass Suite?",
+      answer: "India's first 270° panoramic glass house offering breathtaking mountain views from floor-to-ceiling glass walls. Features luxury ensuite bathroom, queen bed, premium breakfast, high-speed WiFi, and Netflix. Perfect for couples and special occasions. Weekend rate: ₹9,999/night, Weekday rate: ₹7,999/night."
     },
     {
-      question: "Are food/alcohol allowed in rooms?",
-      answer: "XTSY Economy: No food allowed in dorms (₹2000 fine), alcohol only in designated areas. XTSY Travellers: Food allowed in designated areas, alcohol permitted in Bonfire & Terrace zones after 8 PM (₹10,000 fine for violations + legal action). XTSY Luxury: All privileges included with room service options."
+      question: "What accommodation options do you offer?",
+      answer: "We have 4 tiers: XTSY Luxury (270° Glass Suite - ₹7,999-9,999/night), XTSY Hostel (Private rooms ₹3,500/night, 6-bed dorm ₹700/bed), XTSY Economy (6-bed female dorm ₹325/bed, 8-bed mixed dorm ₹399/bed). All properties located in Shillong, Meghalaya with 24/7 security."
     },
     {
-      question: "What rules apply to dorm beds?",
-      answer: "Use only your assigned bed (₹500 fine for using unassigned beds). Keep your area clean and organized. Respect privacy curtains and personal space. Report any issues to reception immediately. All properties monitored by 24/7 CCTV for safety."
+      question: "How do I book accommodation and tours?",
+      answer: "Book easily via: 1) Our website booking system 2) WhatsApp at +91 88373 17070 3) Email booking@xtsy.one 4) Google Form. We offer instant confirmation for available dates. Glass Suite requires 2-3 weeks advance booking during peak season."
     },
     {
-      question: "Do both properties offer the same amenities?",
-      answer: "No, amenities vary by property: XTSY Economy has basic facilities with upgrade requirements for premium services. XTSY Travellers Hostel includes most amenities (free room upgrades, breakfast, charging points, study lights). XTSY Luxury includes all services plus exclusive premium options."
+      question: "Do you offer customized tour packages?",
+      answer: "Yes! We create personalized itineraries across 12+ states in Northeast India with 30+ tour package options. Our services include transportation, experienced local guides, accommodation, and authentic cultural experiences. Contact us to design your perfect adventure."
     },
     {
-      question: "What's your smoking policy?",
-      answer: "Smoking is only allowed in designated outdoor areas. ₹2000 fine for smoking inside any room or indoor area. Designated smoking zones are available on terraces and specified outdoor areas. Zero tolerance policy for violations."
+      question: "What destinations do you cover in Northeast India?",
+      answer: "We specialize in Meghalaya (Living Root Bridges, Cherrapunji, Dawki, Mawlynnong, Shillong) and cover 12 states including Arunachal Pradesh, Assam, Nagaland, Sikkim, Manipur, and more. From monsoon treks to high-altitude expeditions, we curate authentic Northeast experiences."
     },
     {
-      question: "What amenities are included at XTSY Luxury?",
-      answer: "XTSY Luxury includes ALL services: Free room upgrades, complimentary breakfast, high-speed WiFi, charging points, study lights, access to all common areas, terrace, bonfire nights, BBQ experiences, dome photoshoot, convenience store discounts, dedicated tour concierge, and exclusive premium facilities."
+      question: "What's included in your tour packages?",
+      answer: "Our comprehensive packages include: comfortable transportation, experienced local guides fluent in regional languages, handpicked accommodations, detailed itineraries, safety equipment for adventure activities, and 24/7 support. Meals and entry tickets specified per package."
     },
     {
-      question: "How do I upgrade from Economy to Travellers Hostel?",
-      answer: "Upgrades are subject to availability. Economy guests can upgrade to Travellers Hostel for access to complimentary breakfast, charging points, study lights, and free access to common areas, terrace, and bonfire nights. Contact reception for upgrade pricing."
+      question: "What are your check-in/check-out times and policies?",
+      answer: "Check-in: 2:00 PM | Check-out: 11:00 AM. Early check-in subject to availability (additional charges may apply). Late check-in free until 11:00 PM, ₹500 fee after. 24/7 reception available. Self check-in available for verified bookings."
     },
     {
-      question: "What are the check-in and check-out times?",
-      answer: "Standard check-in: 2:00 PM | Check-out: 11:00 AM | Early check-in available (subject to availability, additional charges may apply) | Late check-in until 11:00 PM free, after 11:00 PM ₹500 fee | 24/7 reception for emergencies | Self check-in available for verified bookings"
+      question: "What is your cancellation and refund policy?",
+      answer: "Free cancellation 7+ days before check-in with full refund. 50% refund for cancellations 3-7 days before. No refund for cancellations less than 48 hours. Glass Suite bookings require 30% advance payment. Tour packages have separate cancellation terms based on itinerary complexity."
     },
     {
-      question: "Is there a security deposit?",
-      answer: "Individual bookings: No security deposit required | Group bookings (8+ people): Security deposit may be required | Damage charges: ₹200 for lost key cards, ₹500 for damaged linens/towels | Guests liable for property damage"
+      question: "Is Northeast India safe for solo and female travelers?",
+      answer: "Absolutely! We provide 24/7 security, CCTV monitoring throughout properties, female-only dormitories, verified local guides, and emergency support. Northeast India is one of India's safest regions with welcoming communities. Our experienced team ensures every traveler feels secure."
     },
     {
-      question: "What happens if I damage something?",
-      answer: "Damage charges apply: Lost key card ₹200, damaged bed linens/towels ₹500 per item, common area damage charged to responsible party. Room cleanliness violations ₹500 littering fine. XTSY not liable for lost personal items."
+      question: "When is the best time to visit Northeast India?",
+      answer: "October to May: Best weather for sightseeing and trekking. June to September: Monsoon season - spectacular for waterfall experiences (Cherrapunji, Nohkalikai Falls). November to February: Winter wonderland, clear Himalayan views. We operate year-round with season-specific experiences."
     },
     {
-      question: "What makes XTSY Travellers Hostel special?",
-      answer: "XTSY offers India's first tech-integrated hostel experience with our signature 270° Panorama Glass Suite, sustainable practices, and authentic Northeast India cultural immersion. We're not just accommodation - we're your gateway to hidden gems."
+      question: "Do you arrange group bookings and events?",
+      answer: "Yes! We specialize in group bookings for corporate retreats, college trips, family reunions, and adventure groups. Discounted rates for 8+ people. Special packages available including bonfire nights, BBQ experiences, and team-building activities. Contact us for customized group proposals."
     },
     {
-      question: "What is the 270° Glass Suite?",
-      answer: "Our signature room features floor-to-ceiling glass walls on three sides, offering breathtaking mountain and valley views. Perfect for sunrise and sunset experiences right from your bed, with complete privacy and luxury amenities."
+      question: "What makes XTSY different from other travel companies?",
+      answer: "We're Northeast India specialists with authentic local expertise, not a generic tour operator. Our unique offerings: India's first 270° Glass Suite, 4-tier accommodation options, 12+ states coverage, sustainable eco-tourism practices, tech-integrated booking, and genuine cultural immersion experiences with local communities."
     },
     {
-      question: "Do you help plan Meghalaya tours?",
-      answer: "Absolutely! We create custom itineraries covering Living Root Bridges, Cherrapunji waterfalls, Dawki's crystal river, Mawlynnong village, and hidden gems. All tours include transportation, guides, and authentic local experiences."
+      question: "Do you provide airport pickup and transportation?",
+      answer: "Yes! We arrange airport transfers from Guwahati Airport (130km from Shillong) and Shillong Airport. All tour packages include comfortable transportation in well-maintained vehicles with experienced drivers. Separate transportation services also available on request."
     },
     {
-      question: "Is Northeast India safe for solo travelers?",
-      answer: "Very safe! We provide 24/7 security, CCTV monitoring, female-only dorms, and local guides who know the terrain intimately. Our team ensures every traveler feels secure and supported throughout their journey."
+      question: "What payment methods do you accept?",
+      answer: "We accept multiple payment options: UPI, Credit/Debit Cards, Net Banking, and Cash on arrival (subject to availability). International guests can pay via PayPal or wire transfer. Glass Suite and tour packages require advance payment. Flexible payment plans available for group bookings."
     },
     {
-      question: "What's your booking and cancellation policy?",
-      answer: "Book online or via WhatsApp. Glass Suite requires 2-3 weeks advance booking. Free cancellation 7+ days before check-in. Partial refund (50%) for cancellations less than 7 days. No refund for cancellations less than 24 hours. Seasonal surcharges may apply."
+      question: "Do you cater to digital nomads and remote workers?",
+      answer: "Absolutely! All properties feature high-speed WiFi (50+ Mbps), co-working spaces, 24/7 power backup, study lights, charging points, and quiet workspaces. Perfect for workations with inspiring mountain views. Monthly stay discounts available. Strong network coverage across Shillong."
     },
     {
-      question: "Do you cater to digital nomads?",
-      answer: "Yes! We offer high-speed WiFi, co-working spaces, 24/7 power backup, and a community of like-minded remote workers. Perfect for workations with stunning mountain views and reliable infrastructure."
+      question: "What amenities are included at each property tier?",
+      answer: "Economy: Basic facilities, shared bathrooms, lockers. Hostel: Free breakfast, charging points, study lights, common areas, terrace access, bonfire nights. Luxury: ALL services included - room service, premium breakfast, exclusive facilities, complimentary upgrades, concierge service, and VIP experiences."
     }
   ];
 
