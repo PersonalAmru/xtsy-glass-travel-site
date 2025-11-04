@@ -58,6 +58,8 @@ import kasauliSolanImg from "@/assets/kasauli-solan-hill-station-stock.jpg";
 import arunachalEagleFestivalImg from "@/assets/arunachal-eagle-festival-stock.jpg";
 import dharamshalaMcleodGanjImg from "@/assets/dharamshala-mcleod-ganj-stock.jpg";
 import kulluValleyAdventureImg from "@/assets/kullu-valley-adventure-stock.jpg";
+import royalEnfieldHimalayanImg from "@/assets/royal-enfield-himalayan-mountain.jpg";
+import motorcycleMountainRoadImg from "@/assets/motorcycle-mountain-road.jpg";
 
 // All image assets removed - Supabase ready
 // Image arrays for future Supabase URL assignments
@@ -351,7 +353,7 @@ const Travel = () => {
         difficulty: "Moderate",
         price: "₹36,500",
         image: arunachalEagleFestivalImg,
-        images: [arunachalEagleFestivalImg, arunachalEagleFestivalImg, arunachalEagleFestivalImg],
+        images: [arunachalEagleFestivalImg, arunachalTribalImg, arunachalEagleFestivalImg],
         rating: 4.8,
         category: "cultural",
         location: "Arunachal Pradesh",
@@ -366,7 +368,7 @@ const Travel = () => {
         difficulty: "Moderate",
         price: "₹23,500",
         image: tripuraTribalImg,
-        images: [tripuraTribalImg, tripuraTribalImg, tripuraTribalImg],
+        images: [tripuraTribalImg, mizoramBambooImg, tripuraTribalImg],
         rating: 4.5,
         category: "cultural",
         location: "Tripura",
@@ -380,8 +382,8 @@ const Travel = () => {
         duration: "8 Days",
         difficulty: "Challenging",
         price: "₹48,500",
-        image: arunachalEagleFestivalImg,
-        images: [arunachalEagleFestivalImg, arunachalTribalImg, arunachalEagleFestivalImg],
+        image: royalEnfieldHimalayanImg,
+        images: [royalEnfieldHimalayanImg, motorcycleMountainRoadImg, royalEnfieldHimalayanImg],
         rating: 4.9,
         category: "adventure",
         location: "Arunachal Pradesh",
@@ -396,7 +398,7 @@ const Travel = () => {
         difficulty: "Moderate",
         price: "₹36,500",
         image: arunachalTribalImg,
-        images: [arunachalTribalImg, arunachalEagleFestivalImg, arunachalTribalImg],
+        images: [arunachalTribalImg, gurudongmarLakeImg, arunachalTribalImg],
         rating: 4.8,
         category: "cultural",
         location: "Arunachal Pradesh",
