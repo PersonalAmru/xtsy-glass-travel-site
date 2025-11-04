@@ -303,15 +303,6 @@ ${formData.specialRequests || 'None'}
                   </div>
                 </div>
 
-                {nights > 0 && (
-                  <div className="bg-primary/10 p-4 rounded-lg border border-primary/20">
-                    <p className="text-primary font-semibold">
-                      <Calendar className="h-4 w-4 inline mr-2" />
-                      Total Nights: {nights}
-                    </p>
-                  </div>
-                )}
-
                 {/* Time of Arrival */}
                 <div>
                   <Label htmlFor="arrivalTime">Expected Time of Arrival</Label>
