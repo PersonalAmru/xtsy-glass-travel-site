@@ -339,92 +339,247 @@ const AboutSection = () => {
           </div>
         </section>
         
-        {/* Core Services */}
+        {/* Core Services - Revamped */}
         <section className="mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 text-center mb-12">Core Services</h2>
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-5 py-2 rounded-full text-sm font-bold mb-4">
+              <Sparkles className="w-4 h-4" />
+              <span>Complete Hospitality Ecosystem</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800 mb-4">
+              Our Core Services
+            </h2>
+            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+              From architectural marvels to curated travel experiences — we offer a complete spectrum of hospitality services designed for every traveler
+            </p>
+          </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-            {/* Accommodation */}
-            <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/50">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            
+            {/* 1. Accommodation Portfolio */}
+            <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-8 shadow-xl border-2 border-amber-200/50 hover:shadow-2xl transition-all duration-300">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center">
-                  <Building2 className="w-6 h-6 text-white" />
+                <div className="w-14 h-14 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg">
+                  <Building2 className="w-7 h-7 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-slate-800">Accommodation</h3>
+                <div>
+                  <h3 className="text-2xl font-bold text-slate-800">Accommodation Portfolio</h3>
+                  <p className="text-sm text-slate-600 font-medium">3-Tier System for Every Budget</p>
+                </div>
               </div>
-              <div className="space-y-3">
-                {accommodationServices.map((service, idx) => (
-                  <div key={idx} className="flex items-start gap-3 p-3 bg-slate-50 rounded-lg">
-                    <service.icon className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+              <div className="space-y-4">
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-amber-200/50">
+                  <div className="flex items-start gap-3">
+                    <Camera className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
                     <div>
-                      <h4 className="font-semibold text-slate-800 text-sm">{service.title}</h4>
-                      <p className="text-xs text-slate-600">{service.description}</p>
+                      <h4 className="font-bold text-slate-800 text-base mb-1">XTSY 270° Luxury Glass Suite</h4>
+                      <p className="text-sm text-slate-600">India's first 270° panoramic glass house with mountain stargazing</p>
                     </div>
                   </div>
-                ))}
+                </div>
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-amber-200/50">
+                  <div className="flex items-start gap-3">
+                    <Star className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-bold text-slate-800 text-base mb-1">XTSY Luxury Private Rooms</h4>
+                      <p className="text-sm text-slate-600">Premium ensuite rooms with modern amenities and concierge service</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-amber-200/50">
+                  <div className="flex items-start gap-3">
+                    <Users className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-bold text-slate-800 text-base mb-1">XTSY Travellers Hostel</h4>
+                      <p className="text-sm text-slate-600">Northeast's biggest & highest-rated hostel — 50+ guest capacity</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-amber-200/50">
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-slate-600 mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-bold text-slate-800 text-base mb-1">XTSY Economy Dorms</h4>
+                      <p className="text-sm text-slate-600">Ultra-budget accommodation with essential facilities</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Safety & Security */}
-            <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/50">
+            {/* 2. Travel & Tour Services */}
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl p-8 shadow-xl border-2 border-blue-200/50 hover:shadow-2xl transition-all duration-300">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center">
-                  <Shield className="w-6 h-6 text-white" />
+                <div className="w-14 h-14 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl flex items-center justify-center shadow-lg">
+                  <Globe className="w-7 h-7 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-slate-800">Safety & Security</h3>
+                <div>
+                  <h3 className="text-2xl font-bold text-slate-800">Travel & Tour Services</h3>
+                  <p className="text-sm text-slate-600 font-medium">Multi-State Coverage Across India</p>
+                </div>
               </div>
-              <div className="space-y-3">
-                {safetyServices.map((service, idx) => (
-                  <div key={idx} className="flex items-start gap-3 p-3 bg-slate-50 rounded-lg">
-                    <service.icon className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+              <div className="space-y-4">
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-blue-200/50">
+                  <div className="flex items-start gap-3">
+                    <MapPin className="w-5 h-5 text-emerald-600 mt-1 flex-shrink-0" />
                     <div>
-                      <h4 className="font-semibold text-slate-800 text-sm">{service.title}</h4>
-                      <p className="text-xs text-slate-600">{service.description}</p>
+                      <h4 className="font-bold text-slate-800 text-base mb-1">Meghalaya Signature Tours</h4>
+                      <p className="text-sm text-slate-600">Living Root Bridges, Dawki Crystal Waters, Cherrapunji, Shillong</p>
                     </div>
                   </div>
-                ))}
+                </div>
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-blue-200/50">
+                  <div className="flex items-start gap-3">
+                    <Camera className="w-5 h-5 text-purple-600 mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-bold text-slate-800 text-base mb-1">Northeast Multi-State Circuits</h4>
+                      <p className="text-sm text-slate-600">Assam, Arunachal, Nagaland, Manipur, Mizoram, Tripura exploration</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-blue-200/50">
+                  <div className="flex items-start gap-3">
+                    <Globe className="w-5 h-5 text-orange-600 mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-bold text-slate-800 text-base mb-1">Pan-India Destinations</h4>
+                      <p className="text-sm text-slate-600">Himachal, Uttarakhand, Kerala, Tamil Nadu, Sikkim tours</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-blue-200/50">
+                  <div className="flex items-start gap-3">
+                    <Star className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-bold text-slate-800 text-base mb-1">International Tours (Coming Soon)</h4>
+                      <p className="text-sm text-slate-600">Asia & Europe expansion in progress</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Modern Amenities */}
-            <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/50">
+            {/* 3. XTSY Exclusive Experiences */}
+            <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl p-8 shadow-xl border-2 border-purple-200/50 hover:shadow-2xl transition-all duration-300">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center">
-                  <Wifi className="w-6 h-6 text-white" />
+                <div className="w-14 h-14 bg-gradient-to-br from-purple-600 to-pink-600 rounded-2xl flex items-center justify-center shadow-lg">
+                  <Sparkles className="w-7 h-7 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-slate-800">Modern Amenities</h3>
+                <div>
+                  <h3 className="text-2xl font-bold text-slate-800">XTSY Exclusive Experiences</h3>
+                  <p className="text-sm text-slate-600 font-medium">Curated Premium Programs</p>
+                </div>
               </div>
-              <div className="space-y-3">
-                {amenitiesServices.map((service, idx) => (
-                  <div key={idx} className="flex items-start gap-3 p-3 bg-slate-50 rounded-lg">
-                    <service.icon className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+              <div className="space-y-4">
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-purple-200/50">
+                  <div className="flex items-start gap-3">
+                    <Target className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
                     <div>
-                      <h4 className="font-semibold text-slate-800 text-sm">{service.title}</h4>
-                      <p className="text-xs text-slate-600">{service.description}</p>
+                      <h4 className="font-bold text-slate-800 text-base mb-1">Biodiversity Research Expeditions</h4>
+                      <p className="text-sm text-slate-600">Expert-led ecological immersion and conservation programs</p>
                     </div>
                   </div>
-                ))}
+                </div>
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-purple-200/50">
+                  <div className="flex items-start gap-3">
+                    <Heart className="w-5 h-5 text-red-600 mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-bold text-slate-800 text-base mb-1">Yoga & Wellness Retreats</h4>
+                      <p className="text-sm text-slate-600">Himalayan meditation, Ayurveda, spiritual transformation programs</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-purple-200/50">
+                  <div className="flex items-start gap-3">
+                    <Camera className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-bold text-slate-800 text-base mb-1">Cave Expeditions & Adventure</h4>
+                      <p className="text-sm text-slate-600">Krem Chympe UNESCO caves, wilderness survival training</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-purple-200/50">
+                  <div className="flex items-start gap-3">
+                    <Globe className="w-5 h-5 text-purple-600 mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-bold text-slate-800 text-base mb-1">Cultural Immersion Programs</h4>
+                      <p className="text-sm text-slate-600">Tribal heritage, ethnobotany, traditional healing arts</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Northeast India Tours */}
-            <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/50">
+            {/* 4. Safety, Wellness & Premium Amenities */}
+            <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-3xl p-8 shadow-xl border-2 border-green-200/50 hover:shadow-2xl transition-all duration-300">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center">
-                  <Globe className="w-6 h-6 text-white" />
+                <div className="w-14 h-14 bg-gradient-to-br from-green-600 to-emerald-700 rounded-2xl flex items-center justify-center shadow-lg">
+                  <Shield className="w-7 h-7 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-slate-800">Northeast India Tours</h3>
+                <div>
+                  <h3 className="text-2xl font-bold text-slate-800">Safety, Wellness & Amenities</h3>
+                  <p className="text-sm text-slate-600 font-medium">Comprehensive Guest Care</p>
+                </div>
               </div>
-              <div className="space-y-3">
-                {tourServices.map((service, idx) => (
-                  <div key={idx} className="flex items-start gap-3 p-3 bg-slate-50 rounded-lg">
-                    <service.icon className="w-5 h-5 text-orange-600 mt-0.5 flex-shrink-0" />
+              <div className="space-y-4">
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-green-200/50">
+                  <div className="flex items-start gap-3">
+                    <Shield className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
                     <div>
-                      <h4 className="font-semibold text-slate-800 text-sm">{service.title}</h4>
-                      <p className="text-xs text-slate-600">{service.description}</p>
+                      <h4 className="font-bold text-slate-800 text-base mb-1">24/7 Security & Surveillance</h4>
+                      <p className="text-sm text-slate-600">Professional staff, CCTV monitoring, emergency response</p>
                     </div>
                   </div>
-                ))}
+                </div>
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-green-200/50">
+                  <div className="flex items-start gap-3">
+                    <Wifi className="w-5 h-5 text-purple-600 mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-bold text-slate-800 text-base mb-1">High-Speed WiFi & Modern Tech</h4>
+                      <p className="text-sm text-slate-600">Fast internet, charging stations, USB-C ports at every bedside</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-green-200/50">
+                  <div className="flex items-start gap-3">
+                    <Heart className="w-5 h-5 text-pink-600 mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-bold text-slate-800 text-base mb-1">Food & Beverage Services</h4>
+                      <p className="text-sm text-slate-600">Complimentary breakfast, BBQ experiences, curated dining</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-green-200/50">
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-bold text-slate-800 text-base mb-1">24/7 Concierge & Travel Assistance</h4>
+                      <p className="text-sm text-slate-600">Guided itineraries, booking support, local expertise</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Service Highlights Banner */}
+          <div className="mt-8 bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 rounded-2xl p-6 shadow-xl">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+              <div>
+                <div className="text-3xl font-bold text-amber-400 mb-1">4</div>
+                <div className="text-sm text-white/90 font-medium">Accommodation Tiers</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-blue-400 mb-1">7+</div>
+                <div className="text-sm text-white/90 font-medium">States Coverage</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-purple-400 mb-1">50+</div>
+                <div className="text-sm text-white/90 font-medium">Tour Packages</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-green-400 mb-1">24/7</div>
+                <div className="text-sm text-white/90 font-medium">Guest Support</div>
               </div>
             </div>
           </div>
