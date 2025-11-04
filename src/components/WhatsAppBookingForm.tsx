@@ -44,6 +44,8 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
   const [roomTypes, setRoomTypes] = useState<RoomType[]>([]);
   const [selectedRoomType, setSelectedRoomType] = useState<string>("");
   const [selectedRooms, setSelectedRooms] = useState<SelectedRoom[]>([]);
+  const [loadingRooms, setLoadingRooms] = useState(false);
+  const [roomsError, setRoomsError] = useState<string>("");
 
   useEffect(() => {
     if (formData.checkIn && formData.checkOut) {
@@ -58,14 +60,28 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
   // Fetch room types from Supabase
   useEffect(() => {
     const fetchRoomTypes = async () => {
-      const { data, error } = await supabase
-        .from('room_types')
-        .select('id, name, category, base_price, capacity')
-        .eq('is_active', true)
-        .order('category', { ascending: true });
+      setLoadingRooms(true);
+      setRoomsError("");
+      
+      try {
+        const { data, error } = await supabase
+          .from('room_types')
+          .select('id, name, category, base_price, capacity')
+          .eq('is_active', true)
+          .order('category', { ascending: true });
 
-      if (data && !error) {
-        setRoomTypes(data);
+        if (error) {
+          console.error('Error fetching room types:', error);
+          setRoomsError('Failed to load room types');
+        } else if (data) {
+          setRoomTypes(data);
+          console.log('Loaded room types:', data.length);
+        }
+      } catch (err) {
+        console.error('Exception fetching room types:', err);
+        setRoomsError('Failed to load room types');
+      } finally {
+        setLoadingRooms(false);
       }
     };
 
@@ -249,38 +265,80 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
 
               {/* Room/Dorm Type Selection */}
               <div className="space-y-4 p-4 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800">
-                <div className="flex items-center gap-2 mb-3">
-                  <Home className="h-5 w-5 text-primary" />
-                  <Label className="text-lg font-semibold">Choose Your Room/Dorm Type</Label>
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-2">
+                    <Home className="h-5 w-5 text-primary" />
+                    <Label className="text-lg font-semibold">Choose Your Room/Dorm Type</Label>
+                  </div>
+                  {loadingRooms && (
+                    <span className="text-xs text-muted-foreground">Loading rooms...</span>
+                  )}
+                  {!loadingRooms && roomTypes.length > 0 && (
+                    <span className="text-xs text-muted-foreground">{roomTypes.length} options available</span>
+                  )}
                 </div>
+
+                {roomsError && (
+                  <div className="p-3 bg-destructive/10 border border-destructive/20 rounded-lg">
+                    <p className="text-sm text-destructive">{roomsError}</p>
+                  </div>
+                )}
 
                 {/* Room Type Selector */}
                 <div className="flex gap-2">
-                  <Select value={selectedRoomType} onValueChange={setSelectedRoomType}>
-                    <SelectTrigger className="flex-1 bg-white dark:bg-slate-800 z-50">
-                      <SelectValue placeholder="Select a room or dorm type" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-white dark:bg-slate-800 z-[100] max-h-[300px]">
-                      {roomTypes.map((roomType) => (
-                        <SelectItem 
-                          key={roomType.id} 
-                          value={roomType.id}
-                          className="cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-700"
-                        >
-                          {roomType.category} - {roomType.name} (₹{roomType.base_price}/night, {roomType.capacity} guests)
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <div className="flex-1 relative">
+                    <Select value={selectedRoomType} onValueChange={setSelectedRoomType}>
+                      <SelectTrigger className="w-full bg-white dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-600 hover:border-primary">
+                        <SelectValue placeholder={
+                          loadingRooms 
+                            ? "Loading room types..." 
+                            : roomTypes.length === 0 
+                              ? "No rooms available" 
+                              : "Select a room or dorm type"
+                        } />
+                      </SelectTrigger>
+                      <SelectContent 
+                        className="bg-white dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-600 shadow-xl z-[9999]"
+                        position="popper"
+                        sideOffset={5}
+                      >
+                        {roomTypes.length === 0 && !loadingRooms && (
+                          <div className="p-4 text-center text-sm text-muted-foreground">
+                            No room types available
+                          </div>
+                        )}
+                        {roomTypes.map((roomType) => (
+                          <SelectItem 
+                            key={roomType.id} 
+                            value={roomType.id}
+                            className="cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-700 py-3 px-4"
+                          >
+                            <div className="flex flex-col gap-1">
+                              <span className="font-semibold">{roomType.category} - {roomType.name}</span>
+                              <span className="text-xs text-muted-foreground">
+                                ₹{roomType.base_price.toLocaleString('en-IN')}/night • Capacity: {roomType.capacity} guests
+                              </span>
+                            </div>
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
                   <Button
                     type="button"
                     onClick={handleAddRoom}
-                    disabled={!selectedRoomType}
-                    className="bg-primary hover:bg-primary/90"
+                    disabled={!selectedRoomType || loadingRooms}
+                    className="bg-primary hover:bg-primary/90 px-6"
                   >
-                    <Plus className="h-4 w-4" />
+                    <Plus className="h-4 w-4 mr-1" />
+                    Add
                   </Button>
                 </div>
+
+                {/* Helper text */}
+                <p className="text-xs text-muted-foreground">
+                  Select a room type and click "Add" to add it to your booking. You can add multiple rooms.
+                </p>
 
                 {/* Selected Rooms Display */}
                 {selectedRooms.length > 0 && (
