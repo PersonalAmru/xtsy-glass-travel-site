@@ -325,15 +325,6 @@ ${formData.specialRequests || 'None'}
                 </div>
               </div>
 
-              {nights > 0 && (
-                <div className="bg-primary/10 p-4 rounded-lg border border-primary/20">
-                  <p className="text-primary font-semibold">
-                    <Calendar className="h-4 w-4 inline mr-2" />
-                    {isCoupleFocused ? `Perfect! ${nights} night${nights > 1 ? 's' : ''} of luxury awaits` : `Total Nights: ${nights}`}
-                  </p>
-                </div>
-              )}
-
               {/* Guest Display - Fixed for couples */}
               {fixedGuests && (
                 <div className="p-4 rounded-lg bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20">
