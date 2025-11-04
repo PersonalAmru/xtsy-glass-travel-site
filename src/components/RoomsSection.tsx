@@ -148,10 +148,10 @@ const RoomsSection = () => {
   const economyRooms = [
     {
       id: "6-bed-mixed-economy-dorm",
-      name: "Bed in 6-Bed Mixed Dormitory",
-      price: 450,
-      description: "Budget-friendly mixed dormitory with essential amenities",
-      features: generateFeatures('economy', 'Bed in 6-Bed Mixed Dormitory', 'dorm'),
+      name: "Bed in 6 bed female dormitory",
+      price: 325,
+      description: "Budget-friendly female dormitory with essential amenities",
+      features: generateFeatures('economy', 'Bed in 6 bed female dormitory', 'dorm'),
       maxGuests: 6,
       maxRooms: 6,
       image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG",
@@ -167,7 +167,7 @@ const RoomsSection = () => {
     {
       id: "8-bed-mixed-economy-dorm",
       name: "Bed in 8-Bed Mixed Dormitory", 
-      price: 350,
+      price: 399,
       description: "Most economical option for backpackers and budget travelers",
       features: generateFeatures('economy', 'Bed in 8-Bed Mixed Dormitory', 'dorm'),
       maxGuests: 8,
