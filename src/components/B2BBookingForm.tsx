@@ -260,7 +260,7 @@ ${formData.specialRequests || 'None'}
                   <div className="flex items-center justify-between">
                     <div>
                       <Label className="text-foreground font-semibold text-lg">
-                        {isCoupleFocused ? "🌟 Exclusive Suite for Two" : "Number of Guests"}
+                        {isCoupleFocused ? "Exclusive suite" : "Number of Guests"}
                       </Label>
                       <p className="text-sm text-muted-foreground mt-1">
                         {isCoupleFocused ? "An intimate escape designed for couples" : "Fixed accommodation"}
