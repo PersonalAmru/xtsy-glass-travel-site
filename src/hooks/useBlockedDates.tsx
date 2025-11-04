@@ -20,10 +20,11 @@ export const useBlockedDates = (): UseBlockedDatesReturn => {
   const loadBlockedDates = async () => {
     try {
       setError(null);
-      const { data: blockedData, error: fetchError } = await supabase
-        .from('blocked_dates')
-        .select('room_type, date')
-        .eq('blocked', true);
+      // Use room_inventory table to determine blocked dates (where available_count = 0)
+      const { data: inventoryData, error: fetchError } = await supabase
+        .from('room_inventory')
+        .select('room_type_id, date, available_count')
+        .eq('available_count', 0);
 
       if (fetchError) {
         throw fetchError;
@@ -31,11 +32,11 @@ export const useBlockedDates = (): UseBlockedDatesReturn => {
 
       // Group blocked dates by room type
       const blockedByRoom: BlockedDatesData = {};
-      blockedData?.forEach(block => {
-        if (!blockedByRoom[block.room_type]) {
-          blockedByRoom[block.room_type] = [];
+      inventoryData?.forEach(item => {
+        if (!blockedByRoom[item.room_type_id]) {
+          blockedByRoom[item.room_type_id] = [];
         }
-        blockedByRoom[block.room_type].push(block.date);
+        blockedByRoom[item.room_type_id].push(item.date);
       });
 
       setBlockedDates(blockedByRoom);
@@ -55,18 +56,18 @@ export const useBlockedDates = (): UseBlockedDatesReturn => {
   useEffect(() => {
     loadBlockedDates();
 
-    // Set up real-time subscription for blocked dates changes
+    // Set up real-time subscription for room inventory changes
     const channel = supabase
-      .channel('blocked_dates_changes')
+      .channel('room_inventory_changes')
       .on(
         'postgres_changes',
         {
           event: '*',
           schema: 'public',
-          table: 'blocked_dates'
+          table: 'room_inventory'
         },
         () => {
-          console.log('Blocked dates updated, reloading...');
+          console.log('Room inventory updated, reloading blocked dates...');
           loadBlockedDates();
         }
       )
