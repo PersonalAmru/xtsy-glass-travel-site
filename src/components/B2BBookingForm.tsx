@@ -8,6 +8,8 @@ import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from "@
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { Building2, Calendar, Users, IndianRupee, Minus, Plus } from "lucide-react";
 import { useApp } from "@/contexts/AppContext";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 interface B2BBookingFormProps {
   isOpen: boolean;
@@ -31,11 +33,13 @@ const B2BBookingForm = ({
   isCoupleFocused = false
 }: B2BBookingFormProps) => {
   const { formatPrice } = useApp();
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     companyName: "",
     contactPerson: "",
     email: "",
     phone: "",
+    city: "",
     checkIn: "",
     checkOut: "",
     arrivalTime: "",
@@ -91,22 +95,62 @@ const B2BBookingForm = ({
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.checkIn || !formData.checkOut || nights <= 0) {
-      alert("Please fill in all required fields including valid dates");
-      return;
-    }
     
-    // WhatsApp booking functionality
-    const bookingDetails = isCoupleFocused 
-      ? `
+    try {
+      // Generate unique booking ID
+      const bookingId = `XTSY270-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+      
+      // Save to Supabase
+      const { error } = await supabase
+        .from('bookings')
+        .insert({
+          booking_id: bookingId,
+          room_type: "XTSY 270",
+          room_type_id: "xtsy-270",
+          guest_name: formData.companyName,
+          email: formData.email,
+          whatsapp_number: formData.phone,
+          city: formData.city,
+          check_in: formData.checkIn,
+          check_out: formData.checkOut,
+          guests: formData.guests,
+          special_requests: formData.specialRequests,
+          booking_status: 'pending',
+          payment_status: 'pending',
+          subtotal: isCoupleFocused ? 0 : totalPrice,
+          taxes: isCoupleFocused ? 0 : gst,
+          total_amount: isCoupleFocused ? 0 : finalTotal,
+          source: 'xtsy270_form'
+        });
+
+      if (error) {
+        console.error('Error saving booking:', error);
+        toast({
+          title: "Booking Error",
+          description: "Failed to save booking. Please try again.",
+          variant: "destructive"
+        });
+        return;
+      }
+
+      toast({
+        title: "Booking Saved!",
+        description: "Your XTSY 270 booking has been recorded successfully.",
+      });
+      
+      // WhatsApp booking functionality
+      const bookingDetails = isCoupleFocused 
+        ? `
 ✨ *XTSY 270° Glass Suite - Romantic Escape*
+Booking ID: ${bookingId}
 
 ❤️ *Guest Details:*
 ${formData.companyName} & ${formData.contactPerson}
 Email: ${formData.email}
 Phone: ${formData.phone}
+City: ${formData.city}
 
 📅 *Booking Details:*
 Check-in: ${formData.checkIn}
@@ -119,15 +163,17 @@ ${formData.eventType ? `Occasion: ${formData.eventType}` : ''}
 ${formData.specialRequests || 'None'}
 
 🌟 *Experience:* India's First 270° Panoramic Glass House
-      `.trim()
-      : `
+        `.trim()
+        : `
 🏢 *XTSY B2B Corporate Booking Request*
+Booking ID: ${bookingId}
 
 🏢 *Company Details:*
 Company: ${formData.companyName}
 Contact Person: ${formData.contactPerson}
 Email: ${formData.email}
 Phone: ${formData.phone}
+City: ${formData.city}
 
 📅 *Booking Details:*
 Check-in: ${formData.checkIn}
@@ -147,11 +193,19 @@ GST (12%): ${formatPrice(gst)}
 
 📝 *Special Requests:*
 ${formData.specialRequests || 'None'}
-      `.trim();
+        `.trim();
 
-    const whatsappUrl = `https://wa.me/918837317070?text=${encodeURIComponent(bookingDetails)}`;
-    window.open(whatsappUrl, '_blank');
-    onClose();
+      const whatsappUrl = `https://wa.me/918837317070?text=${encodeURIComponent(bookingDetails)}`;
+      window.open(whatsappUrl, '_blank');
+      onClose();
+    } catch (error) {
+      console.error('Error processing booking:', error);
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive"
+      });
+    }
   };
 
   return (
@@ -219,6 +273,18 @@ ${formData.specialRequests || 'None'}
                     required
                   />
                 </div>
+              </div>
+
+              {/* City */}
+              <div>
+                <Label htmlFor="city">City *</Label>
+                <Input
+                  id="city"
+                  value={formData.city}
+                  onChange={(e) => handleInputChange('city', e.target.value)}
+                  placeholder="Your city"
+                  required
+                />
               </div>
 
               {/* Booking Details */}
@@ -515,7 +581,6 @@ ${formData.specialRequests || 'None'}
                 <Button 
                   type="submit"
                   className="w-full bg-gradient-to-r from-primary to-orange-600 hover:from-orange-600 hover:to-red-700 text-white font-bold shadow-lg"
-                  disabled={!formData.checkIn || !formData.checkOut || nights <= 0}
                 >
                   {isCoupleFocused ? (
                     <>
