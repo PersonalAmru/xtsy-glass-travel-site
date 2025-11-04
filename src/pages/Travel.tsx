@@ -373,6 +373,51 @@ const Travel = () => {
         highlights: ["Ujjayanta Palace Tour", "Bamboo Craft Workshops", "Tribal Heritage Museums", "Neermahal Water Palace", "Handicraft Village Visits", "Traditional Weaving Demos"],
         bestSeason: "Oct-Mar"
       },
+      {
+        id: 27,
+        title: "Nagaland Hornbill Festival Experience",
+        description: "Immerse yourself in Nagaland's vibrant tribal culture during the famous Hornbill Festival - witness spectacular warrior dances, traditional ceremonies, and authentic Naga heritage",
+        duration: "5 Days",
+        difficulty: "Easy",
+        price: "₹29,500",
+        image: nagalandHornbillImg,
+        images: [nagalandHornbillImg, kohimaWarImg, nagalandHornbillImg],
+        rating: 4.8,
+        category: "cultural",
+        location: "Nagaland",
+        highlights: ["Hornbill Festival Celebrations", "Traditional Naga Warrior Dances", "Tribal Village Visits", "Authentic Naga Cuisine", "Kohima War Cemetery", "Indigenous Craft Markets"],
+        bestSeason: "Nov-Mar"
+      },
+      {
+        id: 28,
+        title: "Arunachal - Bumla Pass Bike Expedition",
+        description: "Epic motorcycle journey to the Indo-China border at 15,200 feet - conquer high-altitude mountain passes through breathtaking Himalayan landscapes and pristine valleys",
+        duration: "8 Days",
+        difficulty: "Challenging",
+        price: "₹48,500",
+        image: arunachalEagleFestivalImg,
+        images: [arunachalEagleFestivalImg, arunachalTribalImg, arunachalEagleFestivalImg],
+        rating: 4.9,
+        category: "adventure",
+        location: "Arunachal Pradesh",
+        highlights: ["Ride to Bumla Pass 15,200 ft", "Tawang Monastery Visit", "Sela Pass Crossing", "Indo-China Border Experience", "High Altitude Biking", "Mountain Valley Exploration"],
+        bestSeason: "Apr-Oct"
+      },
+      {
+        id: 29,
+        title: "Arunachal - Tawang Exploration",
+        description: "Discover the spiritual heart of Arunachal Pradesh with ancient monasteries, pristine mountain valleys, and Monpa tribal culture in the serene Himalayan highlands",
+        duration: "6 Days",
+        difficulty: "Moderate",
+        price: "₹36,500",
+        image: arunachalTribalImg,
+        images: [arunachalTribalImg, arunachalEagleFestivalImg, arunachalTribalImg],
+        rating: 4.8,
+        category: "cultural",
+        location: "Arunachal Pradesh",
+        highlights: ["Tawang Monastery - 400 years old", "Sela Pass Scenic Beauty", "Monpa Tribal Culture", "Madhuri Lake & Waterfalls", "War Memorial Visit", "Traditional Markets"],
+        bestSeason: "Mar-Oct"
+      },
     ],
     
     "Kerala": [
