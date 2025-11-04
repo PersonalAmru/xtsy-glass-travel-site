@@ -23,13 +23,14 @@ const GallerySection = () => {
     return () => window.removeEventListener('galleryFilter', handleGalleryFilter as EventListener);
   }, []);
 
-    // Default gallery tab shows small subset (6 items) for optimal loading
+    // Comprehensive gallery with ALL room images organized by property
     const galleryItems = [
-      // Luxury Suite Images - XTSY 270° Glass Suite (Featured first for priority loading)
+      // XTSY 270° Panorama Glass Suite (Luxury Property - Featured)
       {
         id: 1,
         title: "270° Panorama Glass Ensuite - Main View",
-        category: "luxury-rooms",
+        category: "luxury-suite",
+        property: "XTSY 270° Glass Suite",
         tags: ["panoramic-views", "glass-architecture", "premium-accommodation", "mountain-views"],
         image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140811.png",
         description: "Exclusive 270-degree panoramic views - First in Shillong",
@@ -38,18 +39,20 @@ const GallerySection = () => {
       {
         id: 2,
         title: "270° Panorama Glass Ensuite - Panoramic Vista",
-        category: "luxury-rooms",
+        category: "luxury-suite",
+        property: "XTSY 270° Glass Suite",
         tags: ["panoramic-views", "glass-architecture", "premium-accommodation", "mountain-views"],
         image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140029.png",
         description: "Breathtaking panoramic vista from the glass suite",
         featured: true
       },
       
-      // Private Rooms - King Double Room (Load first 4 only by default)
+      // King Double Room (Private Room)
       {
         id: 3,
         title: "King Double Room - Luxury Comfort",
         category: "private-rooms",
+        property: "King Double Room",
         tags: ["private-accommodation", "king-bed", "luxury-amenities", "couple-friendly"],
         image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg",
         description: "Premium king double room with luxury amenities"
@@ -58,167 +61,298 @@ const GallerySection = () => {
         id: 4,
         title: "King Double Room - Valley View",
         category: "private-rooms",
+        property: "King Double Room",
         tags: ["private-accommodation", "valley-view", "premium-amenities", "spacious"],
         image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/2.jpg",
         description: "Stunning valley views from the king double room"
-      }
-    ];
-
-    // Extended gallery items (loaded lazily when needed)
-    const extendedGalleryItems = [
-      ...galleryItems,
+      },
       {
         id: 5,
         title: "King Double Room - Interior Design",
         category: "private-rooms",
+        property: "King Double Room",
         tags: ["private-accommodation", "modern-design", "comfortable-space"],
         image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/3.JPG",
         description: "Modern interior design with comfort in mind"
       },
-    {
-      id: 6,
-      title: "King Double Room - Premium Setup",
-      category: "private-rooms",
-      tags: ["private-accommodation", "premium-setup", "luxury-furnishing"],
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/IMG_4077.jpg",
-      description: "Premium room setup with luxury furnishing"
-    },
+      {
+        id: 6,
+        title: "King Double Room - Premium Setup",
+        category: "private-rooms",
+        property: "King Double Room",
+        tags: ["private-accommodation", "premium-setup", "luxury-furnishing"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/IMG_4077.jpg",
+        description: "Premium room setup with luxury furnishing"
+      },
 
-    // King Triple Room
-    {
-      id: 7,
-      title: "King Triple Room - Family Space",
-      category: "private-rooms",
-      tags: ["private-accommodation", "family-room", "triple-occupancy", "spacious-layout"],
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/1.jpg",
-      description: "Spacious triple room perfect for families"
-    },
-    {
-      id: 8,
-      title: "King Triple Room - Panoramic View",
-      category: "private-rooms",
-      tags: ["private-accommodation", "panoramic-view", "family-friendly"],
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/2.jpg",
-      description: "Panoramic views from the family triple room"
-    },
-    {
-      id: 9,
-      title: "King Triple Room - Comfort Layout",
-      category: "private-rooms",
-      tags: ["private-accommodation", "comfortable-layout", "extra-space"],
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/3.jpg",
-      description: "Comfortable layout with extra space for families"
-    },
-    
-    // 4 Bed Female Only Dorms
-    {
-      id: 10,
-      title: "4 Bed Female Only Dorm - Interior View",
-      category: "dormitories",
-      tags: ["female-dormitory", "modern-amenities", "comfortable-beds", "social-spaces"],
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg",
-      description: "Comfortable female-only dormitory with modern amenities"
-    },
-    {
-      id: 11,
-      title: "4 Bed Female Dorm - Bed Setup",
-      category: "dormitories",
-      tags: ["female-dormitory", "privacy-curtains", "individual-storage", "reading-lights"],
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/2.jpg",
-      description: "Individual bed spaces with privacy and storage"
-    },
-    {
-      id: 12,
-      title: "4 Bed Female Dorm - Room Layout",
-      category: "dormitories",
-      tags: ["female-dormitory", "spacious-layout", "natural-lighting", "clean-environment"],
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/3.jpg",
-      description: "Spacious layout with natural lighting"
-    },
-    {
-      id: 13,
-      title: "4 Bed Female Dorm - Premium View",
-      category: "dormitories", 
-      tags: ["female-dormitory", "premium-bedding", "organized-space", "comfort-features"],
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/4.JPG",
-      description: "Premium bedding and organized sleeping space"
-    },
-    {
-      id: 14,
-      title: "4 Bed Female Dorm - Modern Facilities",
-      category: "dormitories",
-      tags: ["female-dormitory", "modern-facilities", "clean-space"],
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/5.JPG",
-      description: "Modern facilities with clean and organized space"
-    },
-    
-    // Mixed Dormitories - 4 Bed Mixed/Female
-    {
-      id: 15,
-      title: "4 Bed Mixed Dorm - Social Space",
-      category: "dormitories",
-      tags: ["mixed-dormitory", "social-atmosphere", "modern-design", "shared-facilities"],
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/3.jpg",
-      description: "Mixed dormitory with vibrant social atmosphere"
-    },
-    {
-      id: 16,
-      title: "4 Bed Mixed Dorm - Comfort Setup",
-      category: "dormitories",
-      tags: ["mixed-dormitory", "comfortable-beds", "organized-layout"],
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/4.JPG",
-      description: "Comfortable bed setup with organized layout"
-    },
-    
-    // 6 Bed Mixed Dormitories
-    {
-      id: 17,
-      title: "6 Bed Mixed Dorm - Large Space",
-      category: "dormitories",
-      tags: ["mixed-dormitory", "spacious-room", "multiple-beds", "shared-living"],
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG",
-      description: "Spacious 6-bed mixed dormitory for budget travelers"
-    },
-    {
-      id: 18,
-      title: "6 Bed Mixed Dorm - Interior View",
-      category: "dormitories",
-      tags: ["mixed-dormitory", "budget-friendly", "social-space"],
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/3.jpg",
-      description: "Interior view of budget-friendly mixed dormitory"
-    },
-    {
-      id: 19,
-      title: "6 Bed Mixed Dorm - Bed Arrangement",
-      category: "dormitories",
-      tags: ["mixed-dormitory", "efficient-layout", "backpacker-friendly"],
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/4.jpg",
-      description: "Efficient bed arrangement for backpackers"
-    },
+      // King Triple Room (Private Room)
+      {
+        id: 7,
+        title: "King Triple Room - Family Space",
+        category: "private-rooms",
+        property: "King Triple Room",
+        tags: ["private-accommodation", "family-room", "triple-occupancy", "spacious-layout"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/1.jpg",
+        description: "Spacious triple room perfect for families"
+      },
+      {
+        id: 8,
+        title: "King Triple Room - Panoramic View",
+        category: "private-rooms",
+        property: "King Triple Room",
+        tags: ["private-accommodation", "panoramic-view", "family-friendly"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/2.jpg",
+        description: "Panoramic views from the family triple room"
+      },
+      {
+        id: 9,
+        title: "King Triple Room - Comfort Layout",
+        category: "private-rooms",
+        property: "King Triple Room",
+        tags: ["private-accommodation", "comfortable-layout", "extra-space"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/3.jpg",
+        description: "Comfortable layout with extra space for families"
+      },
+      {
+        id: 10,
+        title: "King Triple Room - Additional View",
+        category: "private-rooms",
+        property: "King Triple Room",
+        tags: ["private-accommodation", "spacious", "family-friendly"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/5.jpg",
+        description: "Additional view of the spacious family room"
+      },
+      
+      // 4 Bed Female Only Dormitory
+      {
+        id: 11,
+        title: "4 Bed Female Only Dorm - Interior View",
+        category: "dormitories",
+        property: "4-Bed Female Only Dorm",
+        tags: ["female-dormitory", "modern-amenities", "comfortable-beds", "social-spaces"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg",
+        description: "Comfortable female-only dormitory with modern amenities"
+      },
+      {
+        id: 12,
+        title: "4 Bed Female Dorm - Bed Setup",
+        category: "dormitories",
+        property: "4-Bed Female Only Dorm",
+        tags: ["female-dormitory", "privacy-curtains", "individual-storage", "reading-lights"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/2.jpg",
+        description: "Individual bed spaces with privacy and storage"
+      },
+      {
+        id: 13,
+        title: "4 Bed Female Dorm - Room Layout",
+        category: "dormitories",
+        property: "4-Bed Female Only Dorm",
+        tags: ["female-dormitory", "spacious-layout", "natural-lighting", "clean-environment"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/3.jpg",
+        description: "Spacious layout with natural lighting"
+      },
+      {
+        id: 14,
+        title: "4 Bed Female Dorm - Premium View",
+        category: "dormitories", 
+        property: "4-Bed Female Only Dorm",
+        tags: ["female-dormitory", "premium-bedding", "organized-space", "comfort-features"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/4.JPG",
+        description: "Premium bedding and organized sleeping space"
+      },
+      {
+        id: 15,
+        title: "4 Bed Female Dorm - Modern Facilities",
+        category: "dormitories",
+        property: "4-Bed Female Only Dorm",
+        tags: ["female-dormitory", "modern-facilities", "clean-space"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/5.JPG",
+        description: "Modern facilities with clean and organized space"
+      },
+      {
+        id: 16,
+        title: "4 Bed Female Dorm - Cozy Setup",
+        category: "dormitories",
+        property: "4-Bed Female Only Dorm",
+        tags: ["female-dormitory", "cozy-atmosphere", "comfortable"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/6.JPG",
+        description: "Cozy and comfortable dormitory atmosphere"
+      },
+      {
+        id: 17,
+        title: "4 Bed Female Dorm - Additional Space",
+        category: "dormitories",
+        property: "4-Bed Female Only Dorm",
+        tags: ["female-dormitory", "spacious", "well-maintained"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/7.JPG",
+        description: "Well-maintained space with ample room"
+      },
+      {
+        id: 18,
+        title: "4 Bed Female Dorm - Overview",
+        category: "dormitories",
+        property: "4-Bed Female Only Dorm",
+        tags: ["female-dormitory", "overview", "clean-organized"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/IMG_5161.png",
+        description: "Overview of the clean and organized dorm"
+      },
+      
+      // 4 Bed Mixed Dormitory
+      {
+        id: 19,
+        title: "4 Bed Mixed Dorm - Social Space",
+        category: "dormitories",
+        property: "4-Bed Mixed Dorm",
+        tags: ["mixed-dormitory", "social-atmosphere", "modern-design", "shared-facilities"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/3.jpg",
+        description: "Mixed dormitory with vibrant social atmosphere"
+      },
+      {
+        id: 20,
+        title: "4 Bed Mixed Dorm - Comfort Setup",
+        category: "dormitories",
+        property: "4-Bed Mixed Dorm",
+        tags: ["mixed-dormitory", "comfortable-beds", "organized-layout"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/4.JPG",
+        description: "Comfortable bed setup with organized layout"
+      },
+      {
+        id: 21,
+        title: "4 Bed Mixed Dorm - Interior",
+        category: "dormitories",
+        property: "4-Bed Mixed Dorm",
+        tags: ["mixed-dormitory", "budget-friendly", "backpacker"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/5.jpg",
+        description: "Budget-friendly interior for backpackers"
+      },
+      {
+        id: 22,
+        title: "4 Bed Mixed Dorm - Overview",
+        category: "dormitories",
+        property: "4-Bed Mixed Dorm",
+        tags: ["mixed-dormitory", "overview", "social"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/IMG_5161.png",
+        description: "Overview of the social mixed dorm space"
+      },
+      
+      // 6 Bed Mixed/Female Dormitory
+      {
+        id: 23,
+        title: "6 Bed Mixed Dorm - Large Space",
+        category: "dormitories",
+        property: "6-Bed Mixed/Female Dorm",
+        tags: ["mixed-dormitory", "spacious-room", "multiple-beds", "shared-living"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG",
+        description: "Spacious 6-bed dormitory for budget travelers"
+      },
+      {
+        id: 24,
+        title: "6 Bed Mixed Dorm - Interior View",
+        category: "dormitories",
+        property: "6-Bed Mixed/Female Dorm",
+        tags: ["mixed-dormitory", "budget-friendly", "social-space"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/3.jpg",
+        description: "Interior view of budget-friendly dormitory"
+      },
+      {
+        id: 25,
+        title: "6 Bed Mixed Dorm - Bed Arrangement",
+        category: "dormitories",
+        property: "6-Bed Mixed/Female Dorm",
+        tags: ["mixed-dormitory", "efficient-layout", "backpacker-friendly"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/4.jpg",
+        description: "Efficient bed arrangement for backpackers"
+      },
+      {
+        id: 26,
+        title: "6 Bed Mixed Dorm - Sleeping Area",
+        category: "dormitories",
+        property: "6-Bed Mixed/Female Dorm",
+        tags: ["mixed-dormitory", "comfortable", "organized"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/5.JPG",
+        description: "Comfortable and organized sleeping area"
+      },
+      {
+        id: 27,
+        title: "6 Bed Mixed Dorm - Additional Space",
+        category: "dormitories",
+        property: "6-Bed Mixed/Female Dorm",
+        tags: ["mixed-dormitory", "spacious", "well-maintained"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/6.JPG",
+        description: "Well-maintained additional space"
+      },
+      {
+        id: 28,
+        title: "6 Bed Mixed Dorm - Overview",
+        category: "dormitories",
+        property: "6-Bed Mixed/Female Dorm",
+        tags: ["mixed-dormitory", "overview", "budget"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/IMG_5160.png",
+        description: "Overview of the budget dormitory space"
+      },
 
-    // 8 Bed Mixed Dormitories
-    {
-      id: 20,
-      title: "8 Bed Mixed Dorm - Budget Space",
-      category: "dormitories",
-      tags: ["mixed-dormitory", "budget-accommodation", "backpacker-space"],
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg",
-      description: "Most economical option for backpackers and budget travelers"
-    },
-    {
-      id: 21,
-      title: "8 Bed Mixed Dorm - Sleeping Area",
-      category: "dormitories",
-      tags: ["mixed-dormitory", "economical-stay", "shared-accommodation"],
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/4.jpg",
-      description: "Economical sleeping area with essential amenities"
-    }
-  ];
+      // 8 Bed Mixed Dormitory
+      {
+        id: 29,
+        title: "8 Bed Mixed Dorm - Budget Space",
+        category: "dormitories",
+        property: "8-Bed Mixed Dorm",
+        tags: ["mixed-dormitory", "budget-accommodation", "backpacker-space"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg",
+        description: "Most economical option for backpackers"
+      },
+      {
+        id: 30,
+        title: "8 Bed Mixed Dorm - Sleeping Area",
+        category: "dormitories",
+        property: "8-Bed Mixed Dorm",
+        tags: ["mixed-dormitory", "economical-stay", "shared-accommodation"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/4.jpg",
+        description: "Economical sleeping area with essential amenities"
+      },
+      {
+        id: 31,
+        title: "8 Bed Mixed Dorm - Interior",
+        category: "dormitories",
+        property: "8-Bed Mixed Dorm",
+        tags: ["mixed-dormitory", "budget", "basic-amenities"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/5.jpg",
+        description: "Basic amenities for budget travelers"
+      },
+      {
+        id: 32,
+        title: "8 Bed Mixed Dorm - Bed Layout",
+        category: "dormitories",
+        property: "8-Bed Mixed Dorm",
+        tags: ["mixed-dormitory", "efficient", "backpacker"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/6.jpg",
+        description: "Efficient bed layout for backpackers"
+      },
+      {
+        id: 33,
+        title: "8 Bed Mixed Dorm - Sleeping Quarters",
+        category: "dormitories",
+        property: "8-Bed Mixed Dorm",
+        tags: ["mixed-dormitory", "budget-friendly", "shared"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/8.jpg",
+        description: "Budget-friendly shared sleeping quarters"
+      },
+      {
+        id: 34,
+        title: "8 Bed Mixed Dorm - Additional View",
+        category: "dormitories",
+        property: "8-Bed Mixed Dorm",
+        tags: ["mixed-dormitory", "economical", "basic"],
+        image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/9.jpg",
+        description: "Additional view of economical accommodation"
+      }
+    ];
 
-  // Dynamic categories based on gallery items (accommodation only)
+
+  // Dynamic categories organized by property type
   const categories = [
     { id: "all", label: "All Photos", icon: Image, count: galleryItems.length },
-    { id: "luxury-rooms", label: "Luxury Suite", icon: Star, count: galleryItems.filter(item => item.category === "luxury-rooms").length },
+    { id: "luxury-suite", label: "Luxury Suite", icon: Star, count: galleryItems.filter(item => item.category === "luxury-suite").length },
     { id: "private-rooms", label: "Private Rooms", icon: Building, count: galleryItems.filter(item => item.category === "private-rooms").length },
     { id: "dormitories", label: "Dormitories", icon: Users, count: galleryItems.filter(item => item.category === "dormitories").length }
   ];
@@ -248,10 +382,10 @@ const GallerySection = () => {
       <div className="container mx-auto max-w-7xl relative z-10">
         <div className="text-center mb-8 sm:mb-12">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4 font-serif-sans">
-            📸 Gallery
+            📸 Property Gallery
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto font-seasons">
-            Explore our beautiful property and room types through our photo gallery
+            Explore all our accommodation options - from luxury suites to cozy dormitories
           </p>
         </div>
 
