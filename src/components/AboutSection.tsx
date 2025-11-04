@@ -1,87 +1,50 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Phone, Clock, Users, Heart, Globe, Award, Camera, Building2, Star, Shield, Wifi } from "lucide-react";
+import { MapPin, Phone, Clock, Users, Heart, Globe, Award, Camera, Building2, Star, Shield, Wifi, Sparkles, TrendingUp, CheckCircle2, Target } from "lucide-react";
 import { useEffect } from "react";
 
 const AboutSection = () => {
   useEffect(() => {
-    // Enhanced SEO meta tags for primary keyword rankings
-    document.title = 'XTSY Travellers Hostel & Luxury | India\'s First 270° Glass Ensuite & Biggest Hostel in North East India';
+    // Enhanced SEO meta tags
+    document.title = 'About XTSY | India\'s Fastest-Growing Travel & Hospitality Brand | First 270° Glass Suite';
     
-    // Update meta description with strategic keyword integration
     const metaDescription = document.querySelector('meta[name="description"]');
+    const descContent = 'XTSY - India\'s fastest-growing travel & hospitality brand. Home to India\'s first 270° panoramic glass suite and Northeast India\'s biggest & highest-rated hostel. Award-nominated excellence. Powered by XTSY ONE LLP.';
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Discover XTSY – India\'s biggest hostel in North East India and highest-rated traveller hostel. Featuring India\'s first 270° stargazing glass suite and premium group accommodations. Powered by xtsyonellp.');
+      metaDescription.setAttribute('content', descContent);
     } else {
-      const newMetaDescription = document.createElement('meta');
-      newMetaDescription.name = 'description';
-      newMetaDescription.content = 'Discover XTSY – India\'s biggest hostel in North East India and highest-rated traveller hostel. Featuring India\'s first 270° stargazing glass suite and premium group accommodations. Powered by xtsyonellp.';
-      document.head.appendChild(newMetaDescription);
+      const newMeta = document.createElement('meta');
+      newMeta.name = 'description';
+      newMeta.content = descContent;
+      document.head.appendChild(newMeta);
     }
 
-    // Enhanced meta keywords with primary target phrases
     const metaKeywords = document.querySelector('meta[name="keywords"]');
+    const keywordsContent = 'XTSY, travel brand India, 270 glass suite, biggest hostel northeast India, luxury stargazing India, XTSY ONE LLP, Shillong hostel, Northeast tourism, award-nominated hospitality, best honeymoon stay India, backpacker hostel, group travel India';
     if (metaKeywords) {
-      metaKeywords.setAttribute('content', 'biggest hostel north east india, biggest hostel shillong meghalaya, highest rated traveller hostel north east, best honeymoon stay india, group travel hostel india, luxury stargazing suite india, 270° glass room shillong, pan india travel brand, xtsyonellp, XTSY Travellers Hostel, XTSY luxury, northeast india accommodation, stargazing glass suite, architectural innovation india, photographer friendly stay india, couple travel india 2025, backpacker hostel northeast india');
+      metaKeywords.setAttribute('content', keywordsContent);
     } else {
-      const newMetaKeywords = document.createElement('meta');
-      newMetaKeywords.name = 'keywords';
-      newMetaKeywords.content = 'biggest hostel north east india, biggest hostel shillong meghalaya, highest rated traveller hostel north east, best honeymoon stay india, group travel hostel india, luxury stargazing suite india, 270° glass room shillong, pan india travel brand, xtsyonellp, XTSY Travellers Hostel, XTSY luxury, northeast india accommodation, stargazing glass suite, architectural innovation india, photographer friendly stay india, couple travel india 2025, backpacker hostel northeast india';
-      document.head.appendChild(newMetaKeywords);
+      const newKeywords = document.createElement('meta');
+      newKeywords.name = 'keywords';
+      newKeywords.content = keywordsContent;
+      document.head.appendChild(newKeywords);
     }
 
-    // Enhanced Open Graph tags
-    const ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) {
-      ogTitle.setAttribute('content', 'XTSY | India\'s First 270° Glass Ensuite & Biggest Hostel in North East India');
-    } else {
-      const newOgTitle = document.createElement('meta');
-      newOgTitle.setAttribute('property', 'og:title');
-      newOgTitle.content = 'XTSY | India\'s First 270° Glass Ensuite & Biggest Hostel in North East India';
-      document.head.appendChild(newOgTitle);
-    }
-
-    const ogDescription = document.querySelector('meta[property="og:description"]');
-    if (ogDescription) {
-      ogDescription.setAttribute('content', 'India\'s most innovative travel brand. Experience XTSY\'s 270° stargazing glass suite, biggest hostel in North East India, and curated pan-India experiences. Powered by xtsyonellp.');
-    } else {
-      const newOgDescription = document.createElement('meta');
-      newOgDescription.setAttribute('property', 'og:description');
-      newOgDescription.content = 'India\'s most innovative travel brand. Experience XTSY\'s 270° stargazing glass suite, biggest hostel in North East India, and curated pan-India experiences. Powered by xtsyonellp.';
-      document.head.appendChild(newOgDescription);
-    }
-    
-    // Enhanced structured data for better SEO
     const structuredData = {
       "@context": "https://schema.org",
-      "@type": "LodgingBusiness",
+      "@type": "Organization",
       "name": "XTSY Travellers Hostel & Luxury",
-      "description": "India's biggest hostel in North East India featuring the first 270° stargazing glass suite and highest-rated traveller experience",
+      "description": "India's fastest-growing travel & hospitality brand",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Shillong",
-        "addressRegion": "Meghalaya", 
+        "addressRegion": "Meghalaya",
         "addressCountry": "India"
       },
       "brand": {
         "@type": "Brand",
         "name": "XTSY",
-        "description": "Powered by xtsyonellp"
+        "description": "Powered by XTSY ONE LLP"
       },
-      "amenityFeature": [
-        {
-          "@type": "LocationFeatureSpecification",
-          "name": "270° Panoramic Glass Suite"
-        },
-        {
-          "@type": "LocationFeatureSpecification", 
-          "name": "50+ Guest Capacity"
-        },
-        {
-          "@type": "LocationFeatureSpecification",
-          "name": "Biggest Hostel in North East India"
-        }
-      ],
-      "priceRange": "₹₹",
       "telephone": "+91 88373 17070"
     };
     
@@ -94,75 +57,92 @@ const AboutSection = () => {
     scriptTag.textContent = JSON.stringify(structuredData);
   }, []);
 
-  const coreServices = [
-    {
-      icon: Building2,
-      title: "Biggest Hostel in North East India",
-      category: "Scale", 
-      description: "Northeast India's largest hostel accommodation facility with 100+ beds across multiple room categories.",
-      features: ["100+ Bed Capacity", "Multiple Buildings", "Largest in NE India"]
-    },
-    {
-      icon: Star,
-      title: "Highest-Rated Traveller Experience",
-      category: "Excellence",
-      description: "Northeast's highest-rated traveller hostel with exceptional guest reviews and premium service standards.",
-      features: ["5-Star Reviews", "Premium Service", "Guest Excellence"]
-    },
+  const accommodationServices = [
     {
       icon: Camera,
       title: "270° Panorama Glass Ensuite",
-      category: "Luxury",
-      description: "India's first 270° glass room in Shillong offering exclusive panoramic mountain view experience with floor-to-ceiling glass walls.",
-      features: ["360° Mountain Views", "Glass Architecture", "Exclusive Experience"]
+      description: "India's first panoramic stargazing accommodation"
+    },
+    {
+      icon: Building2,
+      title: "Premium Private Rooms",
+      description: "Luxury accommodations with modern amenities"
     },
     {
       icon: Users,
-      title: "Comprehensive Dormitories",
-      category: "Accommodation",
-      description: "Mixed, female-only, and economy dormitory options with premium comfort standards for group travel hostel India.",
-      features: ["6-Bed & 8-Bed Dorms", "Female-Only Options", "Economy Categories"]
-    },
-    {
-      icon: Shield,
-      title: "24/7 Security & Safety",
-      category: "Security",
-      description: "Round-the-clock security with CCTV monitoring and trained security personnel.",
-      features: ["24/7 CCTV", "Trained Security", "Safe Environment"]
-    },
-    {
-      icon: Wifi,
-      title: "High-Speed WiFi & Amenities",
-      category: "Technology",
-      description: "Complimentary high-speed internet, modern facilities, and premium guest amenities.",
-      features: ["Free High-Speed WiFi", "Modern Facilities", "Premium Amenities"]
-    },
-    {
-      icon: Globe,
-      title: "Northeast India Tours",
-      category: "Travel",
-      description: "Expertly curated regional exploration packages covering all Northeast states.",
-      features: ["All 8 NE States", "Expert Guides", "Cultural Immersion"]
-    },
-    {
-      icon: MapPin,
-      title: "Prime Shillong Location",
-      category: "Location",
-      description: "Strategically located in the heart of Shillong with easy access to major attractions.",
-      features: ["City Center Location", "Tourist Attractions Nearby", "Easy Transportation"]
+      title: "Mixed, Female-Only & Economy Dorms",
+      description: "Safe, spacious dormitories for all travelers"
     }
   ];
 
-  const highlights = [{
-    number: "★★★★★",
-    label: "Excellence Rating"
-  }, {
-    number: "24/7",
-    label: "Support"
-  }, {
-    number: "100%",
-    label: "Travel Assistance"
-  }];
+  const safetyServices = [
+    {
+      icon: Shield,
+      title: "24/7 Surveillance",
+      description: "Round-the-clock CCTV monitoring"
+    },
+    {
+      icon: CheckCircle2,
+      title: "Professional Staff",
+      description: "Trained on-site security team"
+    },
+    {
+      icon: Star,
+      title: "High Hygiene Standards",
+      description: "Clean, well-maintained facilities"
+    }
+  ];
+
+  const amenitiesServices = [
+    {
+      icon: Wifi,
+      title: "High-Speed WiFi",
+      description: "Complimentary internet access"
+    },
+    {
+      icon: Heart,
+      title: "Breakfast Options",
+      description: "Delicious morning meals"
+    },
+    {
+      icon: Shield,
+      title: "Lockers & Utilities",
+      description: "Secure storage and services"
+    }
+  ];
+
+  const tourServices = [
+    {
+      icon: Globe,
+      title: "Meghalaya Adventure Trails",
+      description: "Explore the abode of clouds"
+    },
+    {
+      icon: Camera,
+      title: "Cultural Experiences",
+      description: "Immerse in local traditions"
+    },
+    {
+      icon: MapPin,
+      title: "Multi-State NE Circuits",
+      description: "Comprehensive Northeast tours"
+    }
+  ];
+
+  const highlights = [
+    {
+      number: "50+",
+      label: "Guest Capacity"
+    },
+    {
+      number: "7",
+      label: "States Coverage"
+    },
+    {
+      number: "24/7",
+      label: "Support"
+    }
+  ];
 
   return (
     <main id="about" className="pt-20 py-16 sm:py-20 px-3 sm:px-4 bg-gradient-to-br from-slate-50 via-white to-slate-100 relative overflow-hidden">
@@ -185,348 +165,387 @@ const AboutSection = () => {
 
       <div className="container mx-auto max-w-7xl relative z-10">
         
-        {/* SEO-Optimized Header Section with Semantic HTML */}
-        <section className="text-center mb-12 sm:mb-16 bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-white/50">
-          <div className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full text-sm font-medium mb-6 shadow-elegant">
-            <Award className="w-4 h-4" />
-            <span>Premium Hospitality Excellence</span>
+        {/* Hero Section */}
+        <section className="text-center mb-16 bg-white/80 backdrop-blur-sm rounded-3xl p-8 sm:p-12 shadow-xl border border-white/50">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-red-600 text-white px-6 py-3 rounded-full text-sm font-bold mb-6 shadow-lg">
+            <TrendingUp className="w-5 h-5" />
+            <span>India's Fastest-Growing Travel & Hospitality Brand</span>
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-800 mb-6">About XTSY Travellers Hostel & Luxury</h1>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 bg-clip-text text-transparent mb-6">
+            About XTSY Travellers Hostel & Luxury
+          </h1>
           <p className="text-lg sm:text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
-            Welcome to <strong className="text-slate-800">XTSY — India's most promising travel and hospitality brand</strong>. 
-            Based in <strong className="text-slate-800">Shillong and powered by XTSY ONE LLP</strong>, we're redefining the way the world 
-            travels in and across India. <strong className="text-slate-800">XTSY stepping into Global Travel Destinations across Asia and EU shortly</strong>.
+            <strong className="text-slate-800">XTSY is where innovation meets exploration.</strong> Based in Shillong and powered by <strong className="text-slate-800">XTSY ONE LLP</strong>, we are redefining how India travels — with experiences that feel personal, architectural, immersive, and unforgettable.
           </p>
+          <div className="mt-6 flex flex-wrap gap-3 justify-center">
+            <span className="px-4 py-2 bg-slate-100 text-slate-700 rounded-full text-sm font-medium">Northeast India</span>
+            <span className="px-4 py-2 bg-slate-100 text-slate-700 rounded-full text-sm font-medium">Pan-India</span>
+            <span className="px-4 py-2 bg-slate-100 text-slate-700 rounded-full text-sm font-medium">Asia & EU Coming Soon</span>
+          </div>
         </section>
 
         {/* India's First 270° Panorama Glass Ensuite */}
         <section className="mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 text-center mb-8">India's First 270° Panorama Glass Ensuite</h2>
-          <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-elegant border border-white/50">
-            <p className="text-lg text-slate-600 leading-relaxed text-center max-w-4xl mx-auto">
-              Our flagship innovation — the <strong className="text-slate-800">XTSY Luxury Glass Suite</strong> — is India's first 270° panoramic stargazing accommodation. 
-              It's not just a room; it's an architectural and experiential revolution, rivaling stays in Iceland, Finland, and the Himalayas. 
-              <strong className="text-slate-800">Only 1 exclusive suite available in India for the Night</strong> — making it the 
-              <strong className="text-slate-800">best honeymoon stay in India</strong> and a <strong className="text-slate-800">luxury stargazing suite India</strong> 
-              has never seen before.
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-orange-600 text-white px-5 py-2 rounded-full text-sm font-bold mb-4">
+              <Sparkles className="w-4 h-4" />
+              <span>Architectural Milestone</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800 mb-4">
+              India's First 270° Panorama Glass Ensuite
+            </h2>
+          </div>
+          <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 sm:p-12 text-white shadow-2xl">
+            <p className="text-lg sm:text-xl leading-relaxed text-center max-w-4xl mx-auto mb-6">
+              Our flagship creation — the <strong className="text-amber-400">XTSY 270° Luxury Glass Suite</strong> — is India's first panoramic stargazing accommodation.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+              <div className="text-center p-6 bg-white/10 rounded-2xl backdrop-blur-sm">
+                <div className="text-3xl font-bold text-amber-400 mb-2">270°</div>
+                <div className="text-sm opacity-90">Uninterrupted Views</div>
+              </div>
+              <div className="text-center p-6 bg-white/10 rounded-2xl backdrop-blur-sm">
+                <div className="text-3xl font-bold text-amber-400 mb-2">Only 1</div>
+                <div className="text-sm opacity-90">In All of India</div>
+              </div>
+              <div className="text-center p-6 bg-white/10 rounded-2xl backdrop-blur-sm">
+                <div className="text-3xl font-bold text-amber-400 mb-2">Luxury</div>
+                <div className="text-sm opacity-90">Stargazing Experience</div>
+              </div>
+            </div>
+            <p className="text-center text-sm opacity-90 mt-8 max-w-3xl mx-auto">
+              A signature honeymoon and anniversary stay inspired by global sky-glass lodges — an architectural milestone unlike anything else in the country.
             </p>
           </div>
         </section>
 
-        {/* Biggest & Highest-Rated Hostel in Northeast India */}
+        {/* Biggest & Highest-Rated Hostel */}
         <section className="mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 text-center mb-8">
-            Biggest & Highest-Rated Hostel in Northeast India
-          </h2>
-          <div className="bg-primary rounded-3xl p-8 text-primary-foreground shadow-xl">
-            <p className="text-lg leading-relaxed text-center max-w-4xl mx-auto">
-              <strong>XTSY Travellers Hostel in Shillong</strong> is the region's largest, most highly reviewed group hostel, with capacity for 50+ guests — 
-              ideal for backpackers, student groups, digital nomads or international travel communities. As the 
-             <strong> biggest hostel in North East India</strong> and <strong>biggest hostel in Shillong, Meghalaya</strong>, we're also the 
-             <strong> highest-rated traveller hostel in North East</strong> according to guest reviews and the leading 
-             <strong> group travel hostel India</strong> depends on for authentic experiences.
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-5 py-2 rounded-full text-sm font-bold mb-4">
+              <Building2 className="w-4 h-4" />
+              <span>Northeast India's #1 Hostel</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800">
+              Biggest & Highest-Rated Hostel
+            </h2>
+          </div>
+          <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl p-8 sm:p-12 text-white shadow-2xl">
+            <p className="text-lg sm:text-xl leading-relaxed text-center max-w-4xl mx-auto mb-8">
+              <strong>XTSY Travellers Hostel</strong> is the largest and most highly reviewed group hostel in Northeast India, with capacity for <strong>50+ guests</strong>. A trusted choice for backpackers, digital nomads, student groups, and international communities traveling through Shillong, Meghalaya.
             </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="text-center p-4 bg-white/10 rounded-xl backdrop-blur-sm">
+                <Star className="w-8 h-8 mx-auto mb-2" />
+                <div className="text-sm font-medium">Highest-Rated</div>
+              </div>
+              <div className="text-center p-4 bg-white/10 rounded-xl backdrop-blur-sm">
+                <Shield className="w-8 h-8 mx-auto mb-2" />
+                <div className="text-sm font-medium">24/7 Security</div>
+              </div>
+              <div className="text-center p-4 bg-white/10 rounded-xl backdrop-blur-sm">
+                <Users className="w-8 h-8 mx-auto mb-2" />
+                <div className="text-sm font-medium">Group-Friendly</div>
+              </div>
+              <div className="text-center p-4 bg-white/10 rounded-xl backdrop-blur-sm">
+                <CheckCircle2 className="w-8 h-8 mx-auto mb-2" />
+                <div className="text-sm font-medium">Clean & Modern</div>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* Who We're For */}
+        {/* Award-Nominated */}
         <section className="mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 text-center mb-8">Who We're For</h2>
-          <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-elegant border border-white/50">
-            <ul className="grid grid-cols-2 md:grid-cols-3 gap-4 text-center">
-              <li className="p-4 bg-slate-50 rounded-xl">
-                <Heart className="w-8 h-8 text-primary mx-auto mb-2" />
-                <h3 className="font-semibold text-slate-800">Married Couples</h3>
-                <p className="text-slate-600 text-sm">Best honeymoon stay in India</p>
-              </li>
-              <li className="p-4 bg-slate-50 rounded-xl">
-                <Users className="w-8 h-8 text-primary mx-auto mb-2" />
-                <h3 className="font-semibold text-slate-800">Backpackers & Solo Travelers</h3>
-                <p className="text-slate-600 text-sm">Backpacker hostel Northeast India</p>
-              </li>
-              <li className="p-4 bg-slate-50 rounded-xl">
-                <Globe className="w-8 h-8 text-primary mx-auto mb-2" />
-                <h3 className="font-semibold text-slate-800">Group Travel Organizers</h3>
-                <p className="text-slate-600 text-sm">Group travel hostel India</p>
-              </li>
-              <li className="p-4 bg-slate-50 rounded-xl">
-                <Camera className="w-8 h-8 text-primary mx-auto mb-2" />
-                <h3 className="font-semibold text-slate-800">Photographers & Content Creators</h3>
-                <p className="text-slate-600 text-sm">Photographer friendly stay India</p>
-              </li>
-              <li className="p-4 bg-slate-50 rounded-xl">
-                <Star className="w-8 h-8 text-primary mx-auto mb-2" />
-                <h3 className="font-semibold text-slate-800">Stargazers</h3>
-                <p className="text-slate-600 text-sm">270° glass room Shillong</p>
-              </li>
-              <li className="p-4 bg-slate-50 rounded-xl">
-                <Building2 className="w-8 h-8 text-primary mx-auto mb-2" />
-                <h3 className="font-semibold text-slate-800">Architecture Lovers</h3>
-                <p className="text-slate-600 text-sm">Architectural innovation India</p>
-              </li>
-            </ul>
+          <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-12 shadow-xl border border-white/50">
+            <div className="text-center mb-8">
+              <Award className="w-16 h-16 text-amber-500 mx-auto mb-4" />
+              <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 mb-4">
+                Award-Nominated Hospitality
+              </h2>
+            </div>
+            <p className="text-lg text-slate-600 text-center max-w-3xl mx-auto mb-8">
+              XTSY was nominated at the <strong className="text-slate-800">Northeast India Tourism Awards 2025</strong> for:
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+              <div className="flex items-center gap-4 p-6 bg-amber-50 rounded-2xl border border-amber-200">
+                <div className="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center flex-shrink-0">
+                  <Award className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-800 mb-1">Best Budget-Friendly Accommodation</h3>
+                  <p className="text-sm text-slate-600">Exceptional value and affordability</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 p-6 bg-blue-50 rounded-2xl border border-blue-200">
+                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                  <Star className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-800 mb-1">Service Excellence Award</h3>
+                  <p className="text-sm text-slate-600">Outstanding guest experiences</p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* Built in Shillong. Scaling Across India. Ready for the World. */}
+        {/* Who We Serve */}
         <section className="mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 text-center mb-8">
-            Built in Shillong. Scaling Across India. Ready for the World.
-          </h2>
-          <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-elegant border border-white/50">
-            <p className="text-lg text-slate-600 leading-relaxed text-center max-w-4xl mx-auto">
-              We started in the green hills of Meghalaya. Today, <strong className="text-slate-800">XTSY operates across 7 states in Northeast India</strong> 
-              and is rapidly expanding. We are proudly Indian, and globally ambitious — offering travel that feels personal, local, and unforgettable. 
-              As a <strong className="text-slate-800">pan India travel brand</strong> <strong className="text-slate-800">powered by xtsyonellp</strong>, 
-              we're setting new standards for hospitality excellence.
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 text-center mb-8">Who We Serve</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-white/50 text-center hover:shadow-xl transition-shadow">
+              <Heart className="w-10 h-10 text-rose-500 mx-auto mb-3" />
+              <h3 className="font-bold text-slate-800 mb-2 text-sm">Couples & Honeymooners</h3>
+              <p className="text-xs text-slate-600">India's most unique romantic stay</p>
+            </div>
+            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-white/50 text-center hover:shadow-xl transition-shadow">
+              <Users className="w-10 h-10 text-blue-600 mx-auto mb-3" />
+              <h3 className="font-bold text-slate-800 mb-2 text-sm">Backpackers & Solo Travelers</h3>
+              <p className="text-xs text-slate-600">Northeast's favorite hub</p>
+            </div>
+            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-white/50 text-center hover:shadow-xl transition-shadow">
+              <Globe className="w-10 h-10 text-green-600 mx-auto mb-3" />
+              <h3 className="font-bold text-slate-800 mb-2 text-sm">Group Organizers</h3>
+              <p className="text-xs text-slate-600">Reliable large-capacity hostel</p>
+            </div>
+            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-white/50 text-center hover:shadow-xl transition-shadow">
+              <Camera className="w-10 h-10 text-purple-600 mx-auto mb-3" />
+              <h3 className="font-bold text-slate-800 mb-2 text-sm">Photographers & Creators</h3>
+              <p className="text-xs text-slate-600">Highly visual spaces</p>
+            </div>
+            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-white/50 text-center hover:shadow-xl transition-shadow">
+              <Star className="w-10 h-10 text-amber-500 mx-auto mb-3" />
+              <h3 className="font-bold text-slate-800 mb-2 text-sm">Stargazers & Nature Lovers</h3>
+              <p className="text-xs text-slate-600">270° night-sky experience</p>
+            </div>
+            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-white/50 text-center hover:shadow-xl transition-shadow">
+              <Building2 className="w-10 h-10 text-slate-700 mx-auto mb-3" />
+              <h3 className="font-bold text-slate-800 mb-2 text-sm">Architecture Enthusiasts</h3>
+              <p className="text-xs text-slate-600">One-of-a-kind concept</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Scaling Story */}
+        <section className="mb-16">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800 mb-4">
+              Built in Shillong. Scaling Across India.<br />Ready for the World.
+            </h2>
+          </div>
+          <div className="bg-gradient-to-br from-emerald-600 to-teal-700 rounded-3xl p-8 sm:p-12 text-white shadow-2xl">
+            <p className="text-lg sm:text-xl leading-relaxed text-center max-w-4xl mx-auto mb-8">
+              XTSY started in the green hills of Meghalaya with a vision to transform hospitality in the Northeast. Today, we operate across <strong>seven states</strong> and continue building a pan-India ecosystem of stays, experiences, and curated travel services.
             </p>
+            <div className="flex flex-wrap gap-3 justify-center">
+              <span className="px-5 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">Proudly Local</span>
+              <span className="px-5 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">Globally Ambitious</span>
+              <span className="px-5 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">Meaningful Journeys</span>
+            </div>
           </div>
         </section>
         
-        {/* Core Services Section - Sliding Tags Only */}
-        <section className="mb-12 overflow-hidden bg-black rounded-2xl shadow-soft border border-gray-800">
-          <header className="flex items-center py-4 px-6 bg-primary">
-            <Award className="w-5 h-5 text-primary-foreground mr-3" />
-            <h2 className="text-primary-foreground font-semibold">Core Services & Facilities</h2>
-          </header>
-          <div className="flex space-x-4 py-6 px-6 animate-slide-right-fast">
-            {coreServices.map((service, index) => (
-              <article 
-                key={index} 
-                className="flex-none"
-              >
-                <div className="flex items-center space-x-3 bg-white/95 backdrop-blur-sm rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 group px-4 py-3">
-                  <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
-                    <service.icon className="w-4 h-4 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-slate-800 font-semibold text-sm leading-tight whitespace-nowrap">
-                      {service.title}
-                    </h3>
-                    <span className="inline-block bg-primary text-primary-foreground px-2 py-1 rounded-full text-xs font-medium mt-1">
-                      {service.category}
-                    </span>
-                  </div>
+        {/* Core Services */}
+        <section className="mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 text-center mb-12">Core Services</h2>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            {/* Accommodation */}
+            <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/50">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center">
+                  <Building2 className="w-6 h-6 text-white" />
                 </div>
-              </article>
-            ))}
-            {coreServices.map((service, index) => (
-              <article 
-                key={`duplicate-${index}`} 
-                className="flex-none"
-              >
-                <div className="flex items-center space-x-3 bg-white/95 backdrop-blur-sm rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 group px-4 py-3">
-                  <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
-                    <service.icon className="w-4 h-4 text-primary" />
+                <h3 className="text-2xl font-bold text-slate-800">Accommodation</h3>
+              </div>
+              <div className="space-y-3">
+                {accommodationServices.map((service, idx) => (
+                  <div key={idx} className="flex items-start gap-3 p-3 bg-slate-50 rounded-lg">
+                    <service.icon className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-slate-800 text-sm">{service.title}</h4>
+                      <p className="text-xs text-slate-600">{service.description}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-slate-800 font-semibold text-sm leading-tight whitespace-nowrap">
-                      {service.title}
-                    </h3>
-                    <span className="inline-block bg-primary text-primary-foreground px-2 py-1 rounded-full text-xs font-medium mt-1">
-                      {service.category}
-                    </span>
-                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Safety & Security */}
+            <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/50">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center">
+                  <Shield className="w-6 h-6 text-white" />
                 </div>
-              </article>
-            ))}
+                <h3 className="text-2xl font-bold text-slate-800">Safety & Security</h3>
+              </div>
+              <div className="space-y-3">
+                {safetyServices.map((service, idx) => (
+                  <div key={idx} className="flex items-start gap-3 p-3 bg-slate-50 rounded-lg">
+                    <service.icon className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-slate-800 text-sm">{service.title}</h4>
+                      <p className="text-xs text-slate-600">{service.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Modern Amenities */}
+            <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/50">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center">
+                  <Wifi className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-slate-800">Modern Amenities</h3>
+              </div>
+              <div className="space-y-3">
+                {amenitiesServices.map((service, idx) => (
+                  <div key={idx} className="flex items-start gap-3 p-3 bg-slate-50 rounded-lg">
+                    <service.icon className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-slate-800 text-sm">{service.title}</h4>
+                      <p className="text-xs text-slate-600">{service.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Northeast India Tours */}
+            <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/50">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center">
+                  <Globe className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-slate-800">Northeast India Tours</h3>
+              </div>
+              <div className="space-y-3">
+                {tourServices.map((service, idx) => (
+                  <div key={idx} className="flex items-start gap-3 p-3 bg-slate-50 rounded-lg">
+                    <service.icon className="w-5 h-5 text-orange-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-slate-800 text-sm">{service.title}</h4>
+                      <p className="text-xs text-slate-600">{service.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-          <footer className="px-6 pb-4">
-            <p className="text-xs text-gray-400 text-center">← Auto-sliding services showcase →</p>
-          </footer>
         </section>
 
         {/* Story and Contact Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 mb-16">
-          <div className="space-y-6">
-            <Card className="bg-white/90 backdrop-blur-sm border border-white/50 shadow-elegant overflow-hidden group hover:shadow-soft transition-shadow duration-300">
-              <div className="h-1 bg-primary"></div>
-              <CardContent className="p-6 sm:p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
-                    <Heart className="w-6 h-6 text-primary-foreground" />
-                  </div>
-                  <h2 className="text-2xl sm:text-3xl font-bold text-slate-800">
-                    Our Story
-                  </h2>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+          <Card className="bg-white/90 backdrop-blur-sm border border-white/50 shadow-xl">
+            <div className="h-1 bg-gradient-to-r from-orange-500 to-red-600"></div>
+            <CardContent className="p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center">
+                  <Heart className="w-6 h-6 text-white" />
                 </div>
-                <p className="text-slate-600 text-base sm:text-lg leading-relaxed mb-4">
-                  Founded with a vision to revolutionize hospitality in Northeast India, XTSY has established 
-                  itself as the premier destination for travelers seeking authentic experiences.
-                </p>
-                <div className="bg-slate-50 border-l-4 border-primary p-4 rounded-r-xl">
-                  <p className="text-slate-800 font-medium">
-                    Excellence in hospitality, authenticity in experience.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+                <h2 className="text-2xl sm:text-3xl font-bold text-slate-800">Our Story</h2>
+              </div>
+              <p className="text-slate-600 text-lg leading-relaxed mb-4">
+                XTSY was created to offer travelers more than just a place to sleep. We wanted to build a <strong className="text-slate-800">community-driven space</strong> where comfort meets design and where every stay becomes a memorable experience.
+              </p>
+              <p className="text-slate-600 text-lg leading-relaxed">
+                Today, XTSY stands for <strong className="text-slate-800">consistent service, traveler trust, and hospitality excellence</strong>.
+              </p>
+            </CardContent>
+          </Card>
 
-          <div className="space-y-6">
-            <Card className="bg-white/90 backdrop-blur-sm border border-white/50 shadow-elegant overflow-hidden group hover:shadow-soft transition-shadow duration-300">
-              <div className="h-1 bg-primary"></div>
-              <CardContent className="p-6 sm:p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
-                    <Phone className="w-6 h-6 text-primary-foreground" />
-                  </div>
-                  <h2 className="text-2xl sm:text-3xl font-bold text-slate-800">
-                    Contact Information
-                  </h2>
+          <Card className="bg-white/90 backdrop-blur-sm border border-white/50 shadow-xl">
+            <div className="h-1 bg-gradient-to-r from-blue-600 to-indigo-600"></div>
+            <CardContent className="p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center">
+                  <Phone className="w-6 h-6 text-white" />
                 </div>
-                
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4 p-4 bg-slate-50 border border-slate-200 rounded-xl hover:bg-slate-100 transition-colors duration-200">
-                    <div className="w-10 h-10 bg-slate-200 rounded-lg flex items-center justify-center">
-                      <MapPin className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-slate-800">Location</p>
-                      <p className="text-slate-600 text-sm">Shillong, Meghalaya, India</p>
-                    </div>
+                <h2 className="text-2xl sm:text-3xl font-bold text-slate-800">Contact Information</h2>
+              </div>
+              <div className="space-y-4">
+                <div className="flex items-center gap-4 p-4 bg-slate-50 border border-slate-200 rounded-xl">
+                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <MapPin className="h-5 w-5 text-blue-600" />
                   </div>
-                  
-                  <div className="flex items-center gap-4 p-4 bg-slate-50 border border-slate-200 rounded-xl hover:bg-slate-100 transition-colors duration-200">
-                    <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                      <Phone className="h-5 w-5 text-primary-foreground" />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-slate-800">WhatsApp</p>
-                      <p className="text-slate-600 text-sm">+91 88373 17070</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center gap-4 p-4 bg-slate-50 border border-slate-200 rounded-xl hover:bg-slate-100 transition-colors duration-200">
-                    <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                      <Clock className="h-5 w-5 text-primary-foreground" />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-slate-800">Availability</p>
-                      <p className="text-slate-600 text-sm">24/7 Professional Support</p>
-                    </div>
+                  <div>
+                    <p className="font-semibold text-slate-800">Location</p>
+                    <p className="text-slate-600 text-sm">Shillong, Meghalaya, India</p>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-          </div>
+                <div className="flex items-center gap-4 p-4 bg-slate-50 border border-slate-200 rounded-xl">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                    <Phone className="h-5 w-5 text-green-600" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-slate-800">WhatsApp</p>
+                    <p className="text-slate-600 text-sm">+91 88373 17070</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 p-4 bg-slate-50 border border-slate-200 rounded-xl">
+                  <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                    <Clock className="h-5 w-5 text-orange-600" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-slate-800">Support</p>
+                    <p className="text-slate-600 text-sm">24/7 Availability</p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
-        {/* Services Grid */}
-        <div className="mb-16 bg-black rounded-3xl p-8 shadow-lg border border-gray-800">
-          <header className="flex items-center justify-center py-4 px-6 mb-8">
-            <Award className="w-5 h-5 text-white mr-3" />
-            <h2 className="text-3xl sm:text-4xl font-bold text-white">
-              Our Services
-            </h2>
-          </header>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            
-            <Card className="bg-white/90 backdrop-blur-sm border border-white/50 shadow-xl hover:shadow-2xl transition-all duration-300 group">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <Users className="h-8 w-8 text-primary-foreground" />
-                </div>
-                <h3 className="font-bold text-slate-800 mb-4 text-xl">
-                  Dormitory Accommodations
-                </h3>
-                <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                  Comprehensive dormitory facilities featuring mixed, female-only, and economy options.
-                </p>
-                <div className="text-sm text-slate-600 bg-slate-50 p-3 rounded-lg">
-                  <strong>Features:</strong> 6-bed & 8-bed dorms, premium amenities
-                </div>
-              </CardContent>
-            </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm border border-white/50 shadow-xl hover:shadow-2xl transition-all duration-300 group">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <Globe className="h-8 w-8 text-primary-foreground" />
-                </div>
-                <h3 className="font-bold text-slate-800 mb-4 text-xl">
-                  Northeast India Tours
-                </h3>
-                <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                  Expertly designed tour packages showcasing Northeast India's hidden gems.
-                </p>
-                <div className="text-sm text-slate-600 bg-slate-50 p-3 rounded-lg">
-                  <strong>Specialties:</strong> Meghalaya tours, cultural immersion
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white/90 backdrop-blur-sm border border-white/50 shadow-xl hover:shadow-2xl transition-all duration-300 group">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <Camera className="h-8 w-8 text-primary-foreground" />
-                </div>
-                <h3 className="font-bold text-slate-800 mb-4 text-xl">
-                  270° Panorama Glass Ensuite
-                </h3>
-                <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                  Shillong's first and only 270° Panorama Glass Ensuite offering unparalleled mountain views.
-                </p>
-                <div className="text-sm text-slate-600 bg-slate-50 p-3 rounded-lg">
-                  <strong>Features:</strong> Panoramic views, luxury amenities
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-
-        {/* Book Direct. Travel Deeper. */}
+        {/* CTA Section */}
         <section className="mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 text-center mb-8">Book Direct. Travel Deeper.</h2>
-          <div className="text-center bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-elegant border border-white/50">
-            <p className="text-lg text-slate-600 mb-6">
-              With XTSY - Book your stay or explore our 7-state travel packages today.
-            </p>
+          <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-8 sm:p-12 text-white shadow-2xl">
+            <div className="text-center mb-8">
+              <Target className="w-16 h-16 text-amber-400 mx-auto mb-4" />
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+                Book Direct. Travel Deeper.
+              </h2>
+              <p className="text-lg sm:text-xl opacity-90 max-w-2xl mx-auto">
+                Explore our stays, luxury suites, and curated Northeast India tours.
+              </p>
+            </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
                 href="/" 
-                className="inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground rounded-xl font-semibold hover:bg-primary/90 transition-colors duration-300"
+                className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-xl font-bold hover:from-orange-600 hover:to-red-700 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
                 Book Your Stay
               </a>
-              <span className="text-slate-400 self-center">|</span>
               <a 
                 href="/travel" 
-                className="inline-flex items-center justify-center px-8 py-3 bg-slate-800 text-white rounded-xl font-semibold hover:bg-slate-700 transition-colors duration-300"
+                className="inline-flex items-center justify-center px-8 py-4 bg-white text-slate-900 rounded-xl font-bold hover:bg-slate-100 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
-                Explore Our Tours
+                Explore Tours
               </a>
-              <span className="text-slate-400 self-center">|</span>
               <a
-                href="https://wa.me/918837317070?text=Hi%20Team%20XTSY%2C%20I%20just%20visited%20your%20site%20and%20would%20like%20to%20know%20more%20about%20stays%20and%20packages."
+                href="https://wa.me/918837317070?text=Hi%20Team%20XTSY%2C%20I%20just%20visited%20your%20site%20and%20would%20like%20to%20know%20more."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-8 py-3 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 transition-colors duration-300"
+                className="inline-flex items-center justify-center px-8 py-4 bg-green-600 text-white rounded-xl font-bold hover:bg-green-700 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
-                Contact via WhatsApp
+                Contact Us
               </a>
             </div>
           </div>
         </section>
 
         {/* Excellence Highlights */}
-        <div className="bg-primary rounded-3xl p-8 sm:p-12 text-primary-foreground mb-16 shadow-xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              Our Excellence
-            </h2>
-            <p className="text-lg opacity-90">
-              Delivering outstanding service and experiences
-            </p>
-          </div>
-          
+        <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl p-8 sm:p-12 text-white shadow-2xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {highlights.map((highlight, index) => (
-              <div key={index} className="text-center group">
-                <div className="text-3xl sm:text-4xl font-bold mb-2 group-hover:scale-105 transition-transform duration-300">
+              <div key={index} className="text-center">
+                <div className="text-5xl sm:text-6xl font-bold mb-2">
                   {highlight.number}
                 </div>
-                <div className="text-lg font-semibold">
+                <div className="text-lg font-semibold opacity-90">
                   {highlight.label}
                 </div>
               </div>
@@ -535,32 +554,6 @@ const AboutSection = () => {
         </div>
       </div>
 
-      {/* Custom Styles */}
-      <style>
-        {`
-          .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-          }
-          .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-          }
-          @keyframes slide-right {
-            0% {
-              transform: translateX(0);
-            }
-            100% {
-              transform: translateX(-50%);
-            }
-          }
-          .animate-slide-right-fast {
-            animation: slide-right 12s linear infinite;
-          }
-          .animate-slide-right-fast:hover {
-            animation-play-state: paused;
-          }
-        `}
-      </style>
     </main>
   );
 };
