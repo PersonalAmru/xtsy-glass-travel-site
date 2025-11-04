@@ -254,7 +254,7 @@ const HeroSection = () => {
           <div className="mt-6 sm:mt-8 md:mt-10 lg:mt-12 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6 animate-fade-in" style={{ animationDelay: '1.2s' }}>
             <div className="text-center fade-in">
               <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
-                {happyGuestsLoading ? '610+' : `${happyGuestsCount}+`}
+                {happyGuestsCount}+
               </div>
               <div className="text-xs sm:text-sm text-gray-300 mt-1">Happy Guests!</div>
             </div>

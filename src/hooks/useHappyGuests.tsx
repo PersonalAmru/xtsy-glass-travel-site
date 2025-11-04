@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 
 export const useHappyGuests = () => {
-  const [happyGuestsCount, setHappyGuestsCount] = useState<number>(610);
+  const [happyGuestsCount, setHappyGuestsCount] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -18,14 +18,14 @@ export const useHappyGuests = () => {
 
       if (fetchError) {
         console.warn('Failed to fetch happy guests count:', fetchError.message);
-        return; // keep fallback 610
+        return;
       }
 
       // Accept 0 as valid; ignore only null/undefined
       if (data && data.value !== undefined && data.value !== null) {
         setHappyGuestsCount(Number(data.value));
       } else {
-        console.warn('metrics.happy_guests returned null/undefined; using fallback 610');
+        console.warn('metrics.happy_guests returned null/undefined');
       }
     } catch (err) {
       console.warn('Error fetching happy guests count:', err);
