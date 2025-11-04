@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Phone, Clock, Users, Heart, Globe, Award, Camera, Building2, Star, Shield, Wifi, Sparkles, TrendingUp, CheckCircle2, Target } from "lucide-react";
 import { useEffect } from "react";
+import neitaAwardCertificate from "@/assets/neita-award-certificate.jpeg";
 
 const AboutSection = () => {
   useEffect(() => {
@@ -267,6 +268,18 @@ const AboutSection = () => {
             <p className="text-lg text-slate-600 text-center max-w-3xl mx-auto mb-8">
               XTSY was nominated at the <strong className="text-slate-800">Northeast India Tourism Awards [NEITA 2025]</strong> for:
             </p>
+            
+            {/* Award Certificate Image */}
+            <div className="max-w-4xl mx-auto mt-8">
+              <img 
+                src={neitaAwardCertificate} 
+                alt="XTSY NEITA 2025 Award Certificate - Best Budget-Friendly Accommodation and Service Excellence Award" 
+                className="w-full h-auto rounded-2xl shadow-2xl border-4 border-amber-100"
+              />
+              <p className="text-center text-sm text-slate-500 mt-4 italic">
+                Northeast India Tourism Awards 2025 - Official Nomination Certificate
+              </p>
+            </div>
           </div>
         </section>
 
