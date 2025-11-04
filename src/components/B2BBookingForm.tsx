@@ -15,6 +15,9 @@ interface B2BBookingFormProps {
   customTitle?: string;
   customDescription?: string;
   customIcon?: React.ComponentType<{ className?: string }>;
+  maxGuests?: number;
+  fixedGuests?: boolean;
+  isCoupleFocused?: boolean;
 }
 
 const B2BBookingForm = ({ 
@@ -22,7 +25,10 @@ const B2BBookingForm = ({
   onClose, 
   customTitle = "B2B Corporate Booking",
   customDescription = "Professional accommodation solutions for corporate events",
-  customIcon: CustomIcon = Building2
+  customIcon: CustomIcon = Building2,
+  maxGuests = 50,
+  fixedGuests = false,
+  isCoupleFocused = false
 }: B2BBookingFormProps) => {
   const { formatPrice } = useApp();
   const [formData, setFormData] = useState({
@@ -33,12 +39,12 @@ const B2BBookingForm = ({
     checkIn: "",
     checkOut: "",
     arrivalTime: "",
-    guests: 20,
+    guests: fixedGuests ? maxGuests : 20,
     eventType: "",
     breakfast: false,
-    breakfastGuests: 20,
+    breakfastGuests: fixedGuests ? maxGuests : 20,
     dinner: false,
-    dinnerGuests: 20,
+    dinnerGuests: fixedGuests ? maxGuests : 20,
     dinnerType: "veg",
     transportation: false,
     itinerary: false,
@@ -93,15 +99,28 @@ const B2BBookingForm = ({
     }
     
     // WhatsApp booking functionality
-    const foodDetails = [];
-    if (formData.breakfast) foodDetails.push(`Breakfast: ${formData.breakfastGuests} guests - ${formatPrice(breakfastCost)}`);
-    if (formData.dinner) foodDetails.push(`Dinner (${formData.dinnerType}): ${formData.dinnerGuests} guests - ${formatPrice(dinnerCost)}`);
-    
-    const additionalServices = [];
-    if (formData.transportation) additionalServices.push("Transportation Arrangement");
-    if (formData.itinerary) additionalServices.push("Travel Itinerary Support");
-    
-    const bookingDetails = `
+    const bookingDetails = isCoupleFocused 
+      ? `
+✨ *XTSY 270° Glass Suite - Romantic Escape*
+
+❤️ *Guest Details:*
+${formData.companyName} & ${formData.contactPerson}
+Email: ${formData.email}
+Phone: ${formData.phone}
+
+📅 *Booking Details:*
+Check-in: ${formData.checkIn}
+Check-out: ${formData.checkOut}
+Nights: ${nights}
+Guests: ${formData.guests} (Couple)
+${formData.eventType ? `Occasion: ${formData.eventType}` : ''}
+
+💝 *Special Requests:*
+${formData.specialRequests || 'None'}
+
+🌟 *Experience:* India's First 270° Panoramic Glass House
+      `.trim()
+      : `
 🏢 *XTSY B2B Corporate Booking Request*
 
 🏢 *Company Details:*
@@ -113,21 +132,22 @@ Phone: ${formData.phone}
 📅 *Booking Details:*
 Check-in: ${formData.checkIn}
 Check-out: ${formData.checkOut}
-${formData.arrivalTime ? `Arrival Time: ${formData.arrivalTime}` : ''}
 Nights: ${nights}
 Total Guests: ${formData.guests}
 Event Type: ${formData.eventType}
 
 💰 *Price Summary (Corporate Rate):*
 Accommodation: ${formatPrice(totalPrice)} (${formatPrice(corporateRate)}/person/night)
-${foodDetails.length > 0 ? `Food Add-ons:\n${foodDetails.join('\n')}` : ''}
-${additionalServices.length > 0 ? `Additional Services:\n${additionalServices.map(service => `• ${service}`).join('\n')}` : ''}
+${formData.breakfast ? `Breakfast: ${formData.breakfastGuests} guests - ${formatPrice(breakfastCost)}` : ''}
+${formData.dinner ? `Dinner (${formData.dinnerType}): ${formData.dinnerGuests} guests - ${formatPrice(dinnerCost)}` : ''}
+${formData.transportation ? '• Transportation Arrangement' : ''}
+${formData.itinerary ? '• Travel Itinerary Support' : ''}
 GST (12%): ${formatPrice(gst)}
 *Total: ${formatPrice(finalTotal)}*
 
 📝 *Special Requests:*
 ${formData.specialRequests || 'None'}
-    `.trim();
+      `.trim();
 
     const whatsappUrl = `https://wa.me/918837317070?text=${encodeURIComponent(bookingDetails)}`;
     window.open(whatsappUrl, '_blank');
@@ -146,31 +166,31 @@ ${formData.specialRequests || 'None'}
               {customTitle}
             </CardTitle>
             <CardDescription className="text-muted-foreground">
-              {customDescription} ({formatPrice(850)}/person/night)
+              {customDescription}{!isCoupleFocused && ` (${formatPrice(850)}/person/night)`}
             </CardDescription>
           </CardHeader>
           
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Company Information */}
+              {/* Guest Information */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="companyName">Company Name *</Label>
+                  <Label htmlFor="companyName">{isCoupleFocused ? "Your Name" : "Company Name"} *</Label>
                   <Input
                     id="companyName"
                     value={formData.companyName}
                     onChange={(e) => handleInputChange('companyName', e.target.value)}
-                    placeholder="Your Company Name"
+                    placeholder={isCoupleFocused ? "Your full name" : "Your Company Name"}
                     required
                   />
                 </div>
                 <div>
-                  <Label htmlFor="contactPerson">Contact Person *</Label>
+                  <Label htmlFor="contactPerson">{isCoupleFocused ? "Partner's Name" : "Contact Person"} *</Label>
                   <Input
                     id="contactPerson"
                     value={formData.contactPerson}
                     onChange={(e) => handleInputChange('contactPerson', e.target.value)}
-                    placeholder="Primary Contact Name"
+                    placeholder={isCoupleFocused ? "Partner's full name" : "Primary Contact Name"}
                     required
                   />
                 </div>
@@ -229,71 +249,79 @@ ${formData.specialRequests || 'None'}
                 <div className="bg-primary/10 p-4 rounded-lg border border-primary/20">
                   <p className="text-primary font-semibold">
                     <Calendar className="h-4 w-4 inline mr-2" />
-                    Total Nights: {nights}
+                    {isCoupleFocused ? `Perfect! ${nights} night${nights > 1 ? 's' : ''} of luxury awaits` : `Total Nights: ${nights}`}
                   </p>
                 </div>
               )}
 
-              {/* Time of Arrival */}
-              <div>
-                <Label htmlFor="arrivalTime">Expected Time of Arrival</Label>
-                <Input
-                  id="arrivalTime"
-                  type="time"
-                  value={formData.arrivalTime}
-                  onChange={(e) => handleInputChange('arrivalTime', e.target.value)}
-                  placeholder="e.g., 14:00"
-                />
-              </div>
-
-              {/* Guest Selection */}
-              <div className="grid grid-cols-1 gap-4">
-                <div>
-                  <Label htmlFor="guests">Total Guests (Min: 20, Max: 100)</Label>
-                  <div className="flex items-center space-x-2">
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handleInputChange('guests', Math.max(20, formData.guests - 1))}
-                    >
-                      <Minus className="h-4 w-4" />
-                    </Button>
-                    <Input
-                      id="guests"
-                      type="number"
-                      min="20"
-                      max="100"
-                      value={formData.guests}
-                      onChange={(e) => handleInputChange('guests', parseInt(e.target.value) || 20)}
-                      className="text-center w-20"
-                    />
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handleInputChange('guests', Math.min(100, formData.guests + 1))}
-                    >
-                      <Plus className="h-4 w-4" />
-                    </Button>
+              {/* Guest Display - Fixed for couples */}
+              {fixedGuests && (
+                <div className="p-4 rounded-lg bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <Label className="text-foreground font-semibold text-lg">
+                        {isCoupleFocused ? "🌟 Exclusive Suite for Two" : "Number of Guests"}
+                      </Label>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        {isCoupleFocused ? "An intimate escape designed for couples" : "Fixed accommodation"}
+                      </p>
+                    </div>
+                    <span className="text-3xl font-bold text-primary">{maxGuests} {isCoupleFocused ? "❤️" : ""}</span>
                   </div>
                 </div>
-              </div>
+              )}
+
+              {/* Guest Selection - For non-fixed bookings */}
+              {!fixedGuests && (
+                <div className="grid grid-cols-1 gap-4">
+                  <div>
+                    <Label htmlFor="guests">Total Guests (Min: 20, Max: 100)</Label>
+                    <div className="flex items-center space-x-2">
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handleInputChange('guests', Math.max(20, formData.guests - 1))}
+                      >
+                        <Minus className="h-4 w-4" />
+                      </Button>
+                      <Input
+                        id="guests"
+                        type="number"
+                        min="20"
+                        max="100"
+                        value={formData.guests}
+                        onChange={(e) => handleInputChange('guests', parseInt(e.target.value) || 20)}
+                        className="text-center w-20"
+                      />
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handleInputChange('guests', Math.min(100, formData.guests + 1))}
+                      >
+                        <Plus className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              )}
 
               <div>
-                <Label htmlFor="eventType">Event Type *</Label>
+                <Label htmlFor="eventType">{isCoupleFocused ? "Special Occasion (Optional)" : "Event Type *"}</Label>
                 <Input
                   id="eventType"
                   value={formData.eventType}
                   onChange={(e) => handleInputChange('eventType', e.target.value)}
-                  placeholder="Conference, Team Building, etc."
-                  required
+                  placeholder={isCoupleFocused ? "Anniversary, Honeymoon, Proposal, or just because..." : "Conference, Team Building, etc."}
+                  required={!isCoupleFocused}
                 />
               </div>
 
-              {/* Food Add-ons & Additional Services */}
-              <div className="space-y-4">
-                <Label className="text-lg font-semibold">Food Add-ons & Additional Services</Label>
+              {/* Food Add-ons & Additional Services - Hide for couple-focused */}
+              {!isCoupleFocused && (
+                <div className="space-y-4">
+                  <Label className="text-lg font-semibold">Food Add-ons & Additional Services</Label>
                 
                 {/* Breakfast */}
                 <div className="space-y-2">
@@ -429,10 +457,11 @@ ${formData.specialRequests || 'None'}
                     className="w-5 h-5 text-primary"
                   />
                 </div>
-              </div>
+                </div>
+              )}
 
               {/* Price Summary */}
-              {nights > 0 && (
+              {nights > 0 && !isCoupleFocused && (
                 <Card className="bg-primary/10 border-primary/20">
                   <CardContent className="p-4">
                     <h3 className="font-bold text-primary mb-2 flex items-center">
@@ -471,12 +500,12 @@ ${formData.specialRequests || 'None'}
 
               {/* Special Requests */}
               <div>
-                <Label htmlFor="specialRequests">Special Requests</Label>
+                <Label htmlFor="specialRequests">{isCoupleFocused ? "Special Requests (Optional)" : "Special Requests"}</Label>
                 <Textarea
                   id="specialRequests"
                   value={formData.specialRequests}
                   onChange={(e) => handleInputChange('specialRequests', e.target.value)}
-                  placeholder="Any special requirements or requests..."
+                  placeholder={isCoupleFocused ? "Any special touches to make your stay memorable? (e.g., flower petals, champagne, special dietary needs)" : "Any special requirements or requests..."}
                   rows={3}
                 />
               </div>
@@ -488,8 +517,17 @@ ${formData.specialRequests || 'None'}
                   className="w-full bg-gradient-to-r from-primary to-orange-600 hover:from-orange-600 hover:to-red-700 text-white font-bold shadow-lg"
                   disabled={!formData.checkIn || !formData.checkOut || nights <= 0}
                 >
-                  <Building2 className="h-4 w-4 mr-2" />
-                  Book Now - {nights > 0 ? formatPrice(finalTotal) : formatPrice(0)}
+                  {isCoupleFocused ? (
+                    <>
+                      <CustomIcon className="h-4 w-4 mr-2" />
+                      Reserve Your Romantic Escape
+                    </>
+                  ) : (
+                    <>
+                      <Building2 className="h-4 w-4 mr-2" />
+                      Book Now - {nights > 0 ? formatPrice(finalTotal) : formatPrice(0)}
+                    </>
+                  )}
                 </Button>
               </div>
             </form>

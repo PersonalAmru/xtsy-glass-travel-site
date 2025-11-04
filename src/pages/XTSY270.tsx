@@ -470,6 +470,9 @@ Thank you! 😊`;
         customTitle="Will it be yours? - XTSY 270° Glass Suite"
         customDescription="India's First 270° Panoramic Glass House - Exclusive luxury experience"
         customIcon={Sparkles}
+        maxGuests={2}
+        fixedGuests={true}
+        isCoupleFocused={true}
       />
       <Footer />
     </div>
