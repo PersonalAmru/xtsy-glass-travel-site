@@ -353,10 +353,6 @@ export default function BookingFlow() {
   }, []);
 
   const handleNext = () => {
-    if (selectedRooms.length === 0) {
-      toast.error('Please select at least one room');
-      return;
-    }
     setShowPropertyDialog(true);
   };
 
@@ -745,7 +741,6 @@ export default function BookingFlow() {
         <div className="mx-auto max-w-5xl flex justify-center">
           <Button
             onClick={handleNext}
-            disabled={selectedRooms.length === 0}
             className="pointer-events-auto rounded-xl px-6 md:px-8 py-3 md:py-3.5 text-white font-semibold shadow-md hover:shadow-lg transition bg-gradient-to-r from-orange-500 to-red-600"
           >
             Next: Complete Your Booking
@@ -753,54 +748,43 @@ export default function BookingFlow() {
         </div>
       </div>
 
-      {/* Property Selection Dialog */}
+      {/* Booking Options Dialog */}
       <Dialog open={showPropertyDialog} onOpenChange={setShowPropertyDialog}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-center">Select Property Type</DialogTitle>
+            <DialogTitle className="text-2xl font-bold text-center">Choose Booking Method</DialogTitle>
             <DialogDescription className="text-center">
-              Choose your preferred accommodation type to complete your booking
+              Select how you'd like to complete your booking
             </DialogDescription>
           </DialogHeader>
           
           <div className="space-y-3 py-4">
-            {/* XTSY Luxury */}
-            <Button
-              variant="outline"
-              className="w-full h-auto py-6 px-6 text-left hover:bg-accent hover:border-primary transition-all"
-              disabled
-            >
-              <div className="flex flex-col items-start gap-1 w-full">
-                <span className="font-semibold text-lg">XTSY Luxury</span>
-                <span className="text-sm text-muted-foreground">Opening Shortly</span>
-              </div>
-            </Button>
-
-            {/* XTSY Travellers Hostel */}
+            {/* Book through WhatsApp */}
             <Button
               variant="outline"
               className="w-full h-auto py-6 px-6 text-left hover:bg-accent hover:border-primary transition-all"
               onClick={() => {
-                window.open('YOUR_HOSTEL_GOOGLE_FORM_LINK', '_blank');
+                // TODO: Add WhatsApp booking logic
+                window.open('https://wa.me/YOUR_WHATSAPP_NUMBER', '_blank');
               }}
             >
               <div className="flex flex-col items-start gap-1 w-full">
-                <span className="font-semibold text-lg">XTSY Travellers Hostel</span>
-                <span className="text-sm text-muted-foreground">Click to book via Google Form</span>
+                <span className="font-semibold text-lg">Book through WhatsApp</span>
+                <span className="text-sm text-muted-foreground">Chat with us to complete your booking</span>
               </div>
             </Button>
 
-            {/* XTSY Economy */}
+            {/* Book via Google Form */}
             <Button
               variant="outline"
               className="w-full h-auto py-6 px-6 text-left hover:bg-accent hover:border-primary transition-all"
               onClick={() => {
-                window.open('YOUR_ECONOMY_GOOGLE_FORM_LINK', '_blank');
+                window.open('YOUR_GOOGLE_FORM_LINK', '_blank');
               }}
             >
               <div className="flex flex-col items-start gap-1 w-full">
-                <span className="font-semibold text-lg">XTSY Economy</span>
-                <span className="text-sm text-muted-foreground">Click to book via Google Form</span>
+                <span className="font-semibold text-lg">Book Directly via Google Form</span>
+                <span className="text-sm text-muted-foreground">Fill out our booking form online</span>
               </div>
             </Button>
           </div>
