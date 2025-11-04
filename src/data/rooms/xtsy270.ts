@@ -7,7 +7,7 @@ export const XTSY270_DATA = {
   shortName: 'XTSY 270°',
   seoTitle: 'XTSY 270° Panorama Glass Ensuite | India\'s First Luxury Glass House Shillong',
   seoDescription:
-    'Experience India\'s first 270° panoramic glass house in Shillong. Luxury ensuite with stunning mountain views, architectural excellence, and premium amenities. From ₹12,000/night.',
+    'Experience India\'s first 270° panoramic glass house in Shillong. Luxury ensuite with stunning mountain views, architectural excellence, and premium amenities. From ₹7,999/night.',
   description:
     'India\'s pioneering 270° panoramic glass house offering unparalleled luxury and breathtaking mountain vistas. Experience architectural innovation meets hospitality excellence.',
   location: 'Shillong, Meghalaya, India',
@@ -72,9 +72,9 @@ export const XTSY270_DATA = {
     }
   ],
   priceCurrency: 'INR',
-  weekendPrice: 18000,
-  weekdayPrice: 12000,
-  price: 18000, // keeping for backward compatibility
+  weekendPrice: 9999,
+  weekdayPrice: 7999,
+  price: 9999, // keeping for backward compatibility
   maxGuests: 2,
   maxRooms: 1,
   image:
