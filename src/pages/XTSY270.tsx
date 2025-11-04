@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { Calendar, Mountain, Star, Award, Eye, Sun, Moon, Wifi, Coffee, Bath, Bed, Users, MapPin } from 'lucide-react';
+import { Calendar, Mountain, Star, Award, Eye, Sun, Moon, Wifi, Coffee, Bath, Bed, Users, MapPin, Sparkles } from 'lucide-react';
 import XTSY270Modal from '@/components/XTSY270Modal';
 import B2BBookingForm from '@/components/B2BBookingForm';
 
@@ -464,7 +464,13 @@ Thank you! 😊`;
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(roomLd) }} />
       <XTSY270Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      <B2BBookingForm isOpen={isB2BFormOpen} onClose={() => setIsB2BFormOpen(false)} />
+      <B2BBookingForm 
+        isOpen={isB2BFormOpen} 
+        onClose={() => setIsB2BFormOpen(false)}
+        customTitle="Will it be yours? - XTSY 270° Glass Suite"
+        customDescription="India's First 270° Panoramic Glass House - Exclusive luxury experience"
+        customIcon={Sparkles}
+      />
       <Footer />
     </div>
   );

@@ -12,9 +12,18 @@ import { useApp } from "@/contexts/AppContext";
 interface B2BBookingFormProps {
   isOpen: boolean;
   onClose: () => void;
+  customTitle?: string;
+  customDescription?: string;
+  customIcon?: React.ComponentType<{ className?: string }>;
 }
 
-const B2BBookingForm = ({ isOpen, onClose }: B2BBookingFormProps) => {
+const B2BBookingForm = ({ 
+  isOpen, 
+  onClose, 
+  customTitle = "B2B Corporate Booking",
+  customDescription = "Professional accommodation solutions for corporate events",
+  customIcon: CustomIcon = Building2
+}: B2BBookingFormProps) => {
   const { formatPrice } = useApp();
   const [formData, setFormData] = useState({
     companyName: "",
@@ -133,11 +142,11 @@ ${formData.specialRequests || 'None'}
         <Card className="bg-card/95 backdrop-blur-sm border-border shadow-2xl border">
           <CardHeader className="text-center pb-6">
             <CardTitle className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
-              <Building2 className="h-8 w-8 mx-auto mb-2 text-primary" />
-              B2B Corporate Booking
+              <CustomIcon className="h-8 w-8 mx-auto mb-2 text-primary" />
+              {customTitle}
             </CardTitle>
             <CardDescription className="text-muted-foreground">
-              Professional accommodation solutions for corporate events ({formatPrice(850)}/person/night)
+              {customDescription} ({formatPrice(850)}/person/night)
             </CardDescription>
           </CardHeader>
           
