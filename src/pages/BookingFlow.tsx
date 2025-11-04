@@ -3,6 +3,7 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowLeft } from 'lucide-react';
+import WhatsAppBookingForm from '@/components/WhatsAppBookingForm';
 import { BookingSummary } from '@/components/BookingSummary';
 import FastRoomCard from '@/components/FastRoomCard';
 import SharedAvailabilityCalendar from '@/components/SharedAvailabilityCalendar';
@@ -181,6 +182,7 @@ export default function BookingFlow() {
   
   const [selectedRooms, setSelectedRooms] = useState<SelectedRoom[]>([]);
   const [showPropertyDialog, setShowPropertyDialog] = useState(false);
+  const [showWhatsAppForm, setShowWhatsAppForm] = useState(false);
   const [roomsWithAvailability, setRoomsWithAvailability] = useState<Room[]>(Object.values(ALL_ROOMS_DATA));
   
   // Form state
@@ -764,8 +766,8 @@ export default function BookingFlow() {
               variant="outline"
               className="w-full h-auto py-6 px-6 text-left hover:bg-accent hover:border-primary transition-all"
               onClick={() => {
-                // TODO: Add WhatsApp booking logic
-                window.open('https://wa.me/YOUR_WHATSAPP_NUMBER', '_blank');
+                setShowPropertyDialog(false);
+                setShowWhatsAppForm(true);
               }}
             >
               <div className="flex flex-col items-start gap-1 w-full">
@@ -790,6 +792,12 @@ export default function BookingFlow() {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* WhatsApp Booking Form */}
+      <WhatsAppBookingForm 
+        isOpen={showWhatsAppForm} 
+        onClose={() => setShowWhatsAppForm(false)} 
+      />
     </div>
   );
 }
