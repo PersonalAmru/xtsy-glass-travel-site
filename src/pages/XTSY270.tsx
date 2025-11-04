@@ -9,10 +9,12 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Calendar, Mountain, Star, Award, Eye, Sun, Moon, Wifi, Coffee, Bath, Bed, Users, MapPin } from 'lucide-react';
 import XTSY270Modal from '@/components/XTSY270Modal';
+import B2BBookingForm from '@/components/B2BBookingForm';
 
 const XTSY270: React.FC = () => {
   const [isWeekend, setIsWeekend] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isB2BFormOpen, setIsB2BFormOpen] = useState(false);
   const title = XTSY270_DATA.seoTitle;
   const description = XTSY270_DATA.seoDescription;
   const canonicalUrl = XTSY270_DATA.canonicalUrl;
@@ -444,7 +446,7 @@ Thank you! 😊`;
             </div>
             <Button 
               size="lg" 
-              onClick={() => setIsModalOpen(true)}
+              onClick={() => setIsB2BFormOpen(true)}
               className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground border-2 border-primary hover:border-primary/70 px-12 py-6 text-xl font-bold shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 ring-4 ring-primary/20 hover:ring-primary/30 relative overflow-hidden group"
             >
               <span className="relative z-10 bg-gradient-to-r from-yellow-300 via-white to-yellow-300 bg-clip-text text-transparent animate-pulse text-center">
@@ -462,6 +464,7 @@ Thank you! 😊`;
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(roomLd) }} />
       <XTSY270Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <B2BBookingForm isOpen={isB2BFormOpen} onClose={() => setIsB2BFormOpen(false)} />
       <Footer />
     </div>
   );
