@@ -85,6 +85,12 @@ const Footer = () => {
                   XTSY 270°
                 </Link>
               </li>
+              <li>
+                <Link to="/gallery" className="text-gray-300 hover:text-orange-400 transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm lg:text-base justify-center py-1 touch-manipulation">
+                  <ImageIcon className="h-4 w-4 sm:h-5 sm:w-5" />
+                  Gallery
+                </Link>
+              </li>
                <li>
                  <Link to="/travel" className="text-gray-300 hover:text-orange-400 transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm lg:text-base justify-center py-1 touch-manipulation">
                    <Plane className="h-4 w-4 sm:h-5 sm:w-5" />
