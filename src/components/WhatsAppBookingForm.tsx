@@ -5,11 +5,28 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
-import { MessageCircle, Calendar, Users, Phone } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { MessageCircle, Calendar, Users, Phone, Plus, Trash2, Home } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 interface WhatsAppBookingFormProps {
   isOpen: boolean;
   onClose: () => void;
+}
+
+interface RoomType {
+  id: string;
+  name: string;
+  category: string;
+  base_price: number;
+  capacity: number;
+}
+
+interface SelectedRoom {
+  roomTypeId: string;
+  roomTypeName: string;
+  quantity: number;
+  price: number;
 }
 
 const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
@@ -24,6 +41,9 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
   });
 
   const [nights, setNights] = useState(0);
+  const [roomTypes, setRoomTypes] = useState<RoomType[]>([]);
+  const [selectedRoomType, setSelectedRoomType] = useState<string>("");
+  const [selectedRooms, setSelectedRooms] = useState<SelectedRoom[]>([]);
 
   useEffect(() => {
     if (formData.checkIn && formData.checkOut) {
@@ -35,12 +55,88 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
     }
   }, [formData.checkIn, formData.checkOut]);
 
+  // Fetch room types from Supabase
+  useEffect(() => {
+    const fetchRoomTypes = async () => {
+      const { data, error } = await supabase
+        .from('room_types')
+        .select('id, name, category, base_price, capacity')
+        .eq('is_active', true)
+        .order('category', { ascending: true });
+
+      if (data && !error) {
+        setRoomTypes(data);
+      }
+    };
+
+    if (isOpen) {
+      fetchRoomTypes();
+    }
+  }, [isOpen]);
+
   const handleInputChange = (field: string, value: any) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
+  const handleAddRoom = () => {
+    if (!selectedRoomType) return;
+
+    const roomType = roomTypes.find(rt => rt.id === selectedRoomType);
+    if (!roomType) return;
+
+    // Check if room already added
+    const existingRoom = selectedRooms.find(r => r.roomTypeId === selectedRoomType);
+    if (existingRoom) {
+      // Increase quantity
+      setSelectedRooms(prev => 
+        prev.map(room => 
+          room.roomTypeId === selectedRoomType 
+            ? { ...room, quantity: room.quantity + 1 }
+            : room
+        )
+      );
+    } else {
+      // Add new room
+      setSelectedRooms(prev => [...prev, {
+        roomTypeId: roomType.id,
+        roomTypeName: `${roomType.category} - ${roomType.name}`,
+        quantity: 1,
+        price: roomType.base_price
+      }]);
+    }
+
+    setSelectedRoomType("");
+  };
+
+  const handleRemoveRoom = (roomTypeId: string) => {
+    setSelectedRooms(prev => prev.filter(room => room.roomTypeId !== roomTypeId));
+  };
+
+  const handleUpdateQuantity = (roomTypeId: string, newQuantity: number) => {
+    if (newQuantity < 1) return;
+    setSelectedRooms(prev =>
+      prev.map(room =>
+        room.roomTypeId === roomTypeId
+          ? { ...room, quantity: newQuantity }
+          : room
+      )
+    );
+  };
+
+  const getTotalAmount = () => {
+    return selectedRooms.reduce((total, room) => total + (room.price * room.quantity * nights), 0);
+  };
+
   const handleBookNow = () => {
-    window.open('https://wa.me/918837317070', '_blank');
+    // Build WhatsApp message with selected rooms
+    const roomsText = selectedRooms.map(room => 
+      `${room.roomTypeName} x ${room.quantity}`
+    ).join(', ');
+
+    const message = `Hi! I'd like to make a booking:\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCheck-in: ${formData.checkIn}\nCheck-out: ${formData.checkOut}\nNights: ${nights}\nGuests: ${formData.guests}\nRooms: ${roomsText || 'Not selected'}\n${formData.specialRequests ? `Special Requests: ${formData.specialRequests}` : ''}`;
+
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/918837317070?text=${encodedMessage}`, '_blank');
     onClose();
   };
 
@@ -149,6 +245,103 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
                     className="w-full"
                   />
                 </div>
+              </div>
+
+              {/* Room/Dorm Type Selection */}
+              <div className="space-y-4 p-4 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800">
+                <div className="flex items-center gap-2 mb-3">
+                  <Home className="h-5 w-5 text-primary" />
+                  <Label className="text-lg font-semibold">Choose Your Room/Dorm Type</Label>
+                </div>
+
+                {/* Room Type Selector */}
+                <div className="flex gap-2">
+                  <Select value={selectedRoomType} onValueChange={setSelectedRoomType}>
+                    <SelectTrigger className="flex-1 bg-white dark:bg-slate-800 z-50">
+                      <SelectValue placeholder="Select a room or dorm type" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-white dark:bg-slate-800 z-[100] max-h-[300px]">
+                      {roomTypes.map((roomType) => (
+                        <SelectItem 
+                          key={roomType.id} 
+                          value={roomType.id}
+                          className="cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-700"
+                        >
+                          {roomType.category} - {roomType.name} (₹{roomType.base_price}/night, {roomType.capacity} guests)
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <Button
+                    type="button"
+                    onClick={handleAddRoom}
+                    disabled={!selectedRoomType}
+                    className="bg-primary hover:bg-primary/90"
+                  >
+                    <Plus className="h-4 w-4" />
+                  </Button>
+                </div>
+
+                {/* Selected Rooms Display */}
+                {selectedRooms.length > 0 && (
+                  <div className="space-y-2 mt-4">
+                    <Label className="text-sm font-medium text-muted-foreground">Selected Rooms:</Label>
+                    {selectedRooms.map((room) => (
+                      <div
+                        key={room.roomTypeId}
+                        className="flex items-center justify-between p-3 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700"
+                      >
+                        <div className="flex-1">
+                          <p className="font-medium text-sm">{room.roomTypeName}</p>
+                          <p className="text-xs text-muted-foreground">
+                            ₹{room.price}/night × {room.quantity} room(s) × {nights || 0} nights = ₹{room.price * room.quantity * (nights || 0)}
+                          </p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-1">
+                            <Button
+                              type="button"
+                              variant="outline"
+                              size="sm"
+                              onClick={() => handleUpdateQuantity(room.roomTypeId, room.quantity - 1)}
+                              className="h-7 w-7 p-0"
+                            >
+                              -
+                            </Button>
+                            <span className="w-8 text-center text-sm font-medium">{room.quantity}</span>
+                            <Button
+                              type="button"
+                              variant="outline"
+                              size="sm"
+                              onClick={() => handleUpdateQuantity(room.roomTypeId, room.quantity + 1)}
+                              className="h-7 w-7 p-0"
+                            >
+                              +
+                            </Button>
+                          </div>
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleRemoveRoom(room.roomTypeId)}
+                            className="h-8 w-8 p-0 text-destructive hover:text-destructive hover:bg-destructive/10"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      </div>
+                    ))}
+                    
+                    {/* Total Amount */}
+                    {nights > 0 && (
+                      <div className="mt-3 p-3 bg-primary/10 rounded-lg border border-primary/20">
+                        <p className="text-primary font-bold text-lg text-right">
+                          Total Estimated Amount: ₹{getTotalAmount()}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
 
               {/* Special Requests */}
