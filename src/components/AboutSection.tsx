@@ -544,7 +544,7 @@ const AboutSection = () => {
                     <Heart className="w-5 h-5 text-pink-600 mt-1 flex-shrink-0" />
                     <div>
                       <h4 className="font-bold text-slate-800 text-base mb-1">Food & Beverage Services</h4>
-                      <p className="text-sm text-slate-600">Complimentary breakfast, BBQ experiences, curated dining</p>
+                      <p className="text-sm text-slate-600">BBQ experiences, curated dining</p>
                     </div>
                   </div>
                 </div>

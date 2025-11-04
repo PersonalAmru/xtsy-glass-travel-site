@@ -234,7 +234,7 @@ const PolicyModal = ({ isOpen, onClose, type }: PolicyModalProps) => {
                 <li>• Common areas: Upgrade required</li>
                 <li>• Terrace access: Upgrade required</li>
                 <li>• Bonfire nights: Upgrade required</li>
-                <li>• No charging points, study lights, or complimentary breakfast</li>
+                <li>• No charging points or study lights</li>
               </ul>
             </div>
             <div>

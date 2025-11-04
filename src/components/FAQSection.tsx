@@ -67,7 +67,7 @@ const FAQSection = () => {
     },
     {
       question: "What amenities are included at each property tier?",
-      answer: "Economy: Bed, Balcony, WiFi only (no other amenities). Hostel: Free breakfast, charging points, study lights, common areas, terrace access, bonfire nights. Luxury: ALL services included - room service, premium breakfast, exclusive facilities, complimentary upgrades, concierge service, and VIP experiences."
+      answer: "Economy: Bed, Balcony, WiFi only (no other amenities). Hostel: Charging points, study lights, common areas, terrace access, bonfire nights. Luxury: ALL services included - room service, premium breakfast, exclusive facilities, complimentary upgrades, concierge service, and VIP experiences."
     }
   ];
 

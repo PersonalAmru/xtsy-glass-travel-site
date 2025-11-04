@@ -35,7 +35,6 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
       'Convenience Store': ['XTSY Travellers Hostel (10% Off)', 'XTSY Economy (MRP Pricing)', 'XTSY Luxury ✅'],
       'Charging Point': ['XTSY Travellers Hostel ✅', 'XTSY Economy 🚫', 'XTSY Luxury ✅'],
       'Study Light': ['XTSY Travellers Hostel ✅', 'XTSY Economy 🚫', 'XTSY Luxury ✅'],
-      'Complimentary Breakfast': ['XTSY Travellers Hostel ✅', 'XTSY Economy 🚫', 'XTSY Luxury ✅'],
       'Free Room Upgrade': ['XTSY Travellers Hostel ✅', 'XTSY Economy 🚫', 'XTSY Luxury ✅'],
       '24/7 Security': ['XTSY Travellers Hostel ✅', 'XTSY Economy ✅', 'XTSY Luxury ✅'],
       'Tour Assistance': ['XTSY Travellers Hostel ✅', 'XTSY Economy ❗ Strictly NOT available', 'XTSY Luxury ✅'],
@@ -105,9 +104,6 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
       ],
       'Study Light': [
         { property: 'XTSY Economy', note: 'Not available - upgrade needed', type: 'restriction' }
-      ],
-      'Complimentary Breakfast': [
-        { property: 'XTSY Economy', note: 'Not included - upgrade needed', type: 'restriction' }
       ],
       'Free Room Upgrade': [
         { property: 'XTSY Economy', note: 'Not available', type: 'restriction' }
