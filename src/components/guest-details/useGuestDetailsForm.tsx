@@ -8,7 +8,6 @@ interface FormData {
   city: string;
   state: string;
   pincode: string;
-  emergencyContact: string;
   specialRequests: string;
 }
 
@@ -21,7 +20,6 @@ export const useGuestDetailsForm = () => {
     city: "",
     state: "",
     pincode: "",
-    emergencyContact: "",
     specialRequests: ""
   });
 
@@ -94,7 +92,6 @@ export const useGuestDetailsForm = () => {
         sanitizedValue = value.toLowerCase().trim();
         break;
       case 'whatsappNumber':
-      case 'emergencyContact':
         maxLength = 20;
         sanitizedValue = value.replace(/[^\d+\-\s()]/g, '');
         break;
@@ -141,9 +138,6 @@ export const useGuestDetailsForm = () => {
     if (!validateCityState(formData.city)) return false;
     if (!validateCityState(formData.state)) return false;
     if (!validatePincode(formData.pincode)) return false;
-    
-    // Emergency contact is optional, but if provided, must be valid
-    if (formData.emergencyContact && !validatePhone(formData.emergencyContact)) return false;
     
     return true;
   };

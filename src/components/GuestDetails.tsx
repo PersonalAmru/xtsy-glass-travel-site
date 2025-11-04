@@ -87,7 +87,7 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
     if (!validateForm()) {
       toast({
         title: "Please fill all required fields",
-        description: "All fields are mandatory except emergency contact information.",
+        description: "All fields are mandatory.",
         variant: "destructive"
       });
       return;

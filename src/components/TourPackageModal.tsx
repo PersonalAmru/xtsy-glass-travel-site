@@ -108,8 +108,7 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
   const [guestDetails, setGuestDetails] = useState({
     name: "",
     email: "",
-    phone: "",
-    emergencyContact: ""
+    phone: ""
   });
   const location = useLocation();
   const navigate = useNavigate();
@@ -429,7 +428,6 @@ Name: ${guestDetails.name}
 Email: ${guestDetails.email}
 Phone: ${guestDetails.phone}
 Number of Guests: ${guests}
-${guestDetails.emergencyContact ? `Emergency Contact: ${guestDetails.emergencyContact}` : ''}
 
 *Booking Details:*
 Preferred Start Date: ${selectedDate}
@@ -690,17 +688,6 @@ Please check availability for these dates and share pricing details for this exc
                       value={guestDetails.phone}
                       onChange={(e) => setGuestDetails(prev => ({ ...prev, phone: e.target.value }))}
                       placeholder="Enter phone number"
-                      className="mt-1"
-                    />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="emergency">Emergency Contact</Label>
-                    <Input
-                      id="emergency"
-                      value={guestDetails.emergencyContact}
-                      onChange={(e) => setGuestDetails(prev => ({ ...prev, emergencyContact: e.target.value }))}
-                      placeholder="Emergency contact number"
                       className="mt-1"
                     />
                   </div>

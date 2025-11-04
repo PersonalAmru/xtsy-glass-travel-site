@@ -11,7 +11,6 @@ interface FormData {
   city: string;
   state: string;
   pincode: string;
-  emergencyContact: string;
   specialRequests: string;
 }
 
@@ -110,22 +109,13 @@ export const GuestDetailsForm = ({ formData, onInputChange }: GuestDetailsFormPr
         </div>
       </div>
 
-      {/* Emergency Contact & Special Requests */}
+      {/* Special Requests */}
       <div className="space-y-4">
         <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
           <Phone className="h-5 w-5 text-green-500" />
           Additional Information
         </h3>
         <div className="space-y-4">
-          <div>
-            <Label htmlFor="emergencyContact">Emergency Contact (Optional)</Label>
-            <Input 
-              id="emergencyContact" 
-              value={formData.emergencyContact} 
-              onChange={e => onInputChange("emergencyContact", e.target.value)} 
-              placeholder="Emergency contact number"
-            />
-          </div>
           <div>
             <Label htmlFor="specialRequests">Special Requests (Optional)</Label>
             <Textarea 
