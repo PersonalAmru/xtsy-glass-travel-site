@@ -406,56 +406,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                 ) : (
                    <div className={`space-y-2 pt-2 border-t border-gray-700 ${
                     isMobile ? 'space-y-2 pt-2' : ''
-                  } ${isXTSY270 ? 'space-y-2 pt-2 mt-auto' : ''}`}>
-                   {/* Bed/Room Selection */}
-                    <div 
-                      className="flex items-center justify-between relative z-50" 
-                      data-toggle-container
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <span className={`font-medium text-white text-center ${
-                        isMobile ? 'text-xs' : 'text-sm'
-                      } ${isXTSY270 ? 'text-xs' : ''}`}>
-                        {room.type === 'dorm' ? 'Beds:' : 'Rooms:'}
-                      </span>
-                      <div className="flex items-center gap-3 relative z-50">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={handleDecrement}
-                          onMouseDown={(e) => e.stopPropagation()}
-                          onTouchStart={(e) => e.stopPropagation()}
-                          disabled={selection.rooms <= 0}
-                          className={`${buttonClasses} relative z-50 pointer-events-auto`}
-                          aria-label={`Decrease ${room.type === 'dorm' ? 'beds' : 'rooms'}`}
-                          type="button"
-                        >
-                          <Minus className={`${
-                            isMobile ? 'h-4 w-4' : 'h-4 w-4'
-                          } ${isXTSY270 ? 'h-4 w-4' : ''}`} />
-                        </Button>
-                        <span className={`text-center font-medium text-white min-w-[2rem] flex items-center justify-center ${
-                          isMobile ? 'text-sm' : 'text-base'
-                        } ${isXTSY270 ? 'text-sm' : ''}`}>
-                          {selection.rooms}
-                        </span>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={handleIncrement}
-                          onMouseDown={(e) => e.stopPropagation()}
-                          onTouchStart={(e) => e.stopPropagation()}
-                          disabled={selection.rooms >= (room.maxRooms || 5)}
-                          className={`${buttonClasses} relative z-50 pointer-events-auto`}
-                          aria-label={`Increase ${room.type === 'dorm' ? 'beds' : 'rooms'}`}
-                          type="button"
-                        >
-                          <Plus className={`${
-                            isMobile ? 'h-4 w-4' : 'h-4 w-4'
-                          } ${isXTSY270 ? 'h-4 w-4' : ''}`} />
-                        </Button>
-                      </div>
-                    </div>
+                   } ${isXTSY270 ? 'space-y-2 pt-2 mt-auto' : ''}`}>
 
                     {/* Subtotal - Only show when rooms > 0 and not sold out */}
                     {!isSoldOut && selection.rooms > 0 && (
