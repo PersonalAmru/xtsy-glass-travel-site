@@ -266,7 +266,7 @@ const AboutSection = () => {
               </h2>
             </div>
             <p className="text-lg text-slate-600 text-center max-w-3xl mx-auto mb-8">
-              We are honored to be officially nominated at the prestigious <strong className="text-slate-800">Northeast India Tourism Awards [NEITA 2025]</strong>, an initiative by the Emerging North-East Eco Forum (ENEEF). XTSY Traveller&apos;s Hostel has been recognized in two distinguished categories: <strong className="text-amber-600">Best Budget-Friendly Accommodation</strong> and <strong className="text-blue-600">Service Excellence Award</strong>. This nomination reflects our unwavering commitment to providing exceptional hospitality experiences while maintaining affordability and delivering world-class service to travelers exploring the enchanting landscapes of Meghalaya and Northeast India. The awards ceremony is scheduled for October 11th, 2025, at Radisson Blu, Guwahati.
+              We are honored to be officially nominated at the prestigious <strong className="text-slate-800">Northeast India Tourism Awards [NEITA 2025]</strong>, an initiative by the Emerging North-East Eco Forum (ENEEF). XTSY Traveller&apos;s Hostel has been recognized as a nominee for <strong className="text-amber-600">Best Budget-Friendly Accommodation</strong> in the Service Excellence Award category. This nomination reflects our unwavering commitment to providing exceptional hospitality experiences while maintaining affordability for travelers exploring the enchanting landscapes of Meghalaya and Northeast India. The awards ceremony is scheduled for October 11th, 2025, at Radisson Blu, Guwahati.
             </p>
             
             {/* Award Certificate Image */}
