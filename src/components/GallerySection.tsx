@@ -376,7 +376,12 @@ const GallerySection = () => {
             {filteredItems.map(item => <Card key={item.id} className={`group overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:scale-105 ${item.featured ? "ring-2 ring-orange-500 ring-opacity-50" : ""}`}>
                   <CardContent className="p-0">
                     <div className="relative overflow-hidden">
-                      {item.image ? <OptimizedImage src={item.image} alt={item.title} variant="gallery" className="w-full h-48 sm:h-56 object-cover group-hover:scale-110 transition-transform duration-500" priority={item.featured} /> : <div className="w-full h-48 sm:h-56 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                      {item.image ? <img 
+                          src={item.image} 
+                          alt={item.title} 
+                          className="w-full h-48 sm:h-56 object-cover group-hover:scale-110 transition-transform duration-500"
+                          loading={item.featured ? "eager" : "lazy"}
+                        /> : <div className="w-full h-48 sm:h-56 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
                           <div className="text-center">
                             <Camera className="h-12 w-12 text-gray-400 mx-auto mb-2" />
                             <p className="text-gray-500 text-sm">Gallery Image</p>
