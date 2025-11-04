@@ -14,63 +14,6 @@ export type Database = {
   }
   public: {
     Tables: {
-      blocked_dates: {
-        Row: {
-          blocked: boolean
-          created_at: string
-          date: string
-          id: string
-          room_type: string
-        }
-        Insert: {
-          blocked?: boolean
-          created_at?: string
-          date: string
-          id?: string
-          room_type: string
-        }
-        Update: {
-          blocked?: boolean
-          created_at?: string
-          date?: string
-          id?: string
-          room_type?: string
-        }
-        Relationships: []
-      }
-      booking_confirmations_backup: {
-        Row: {
-          booking_id: string | null
-          confirmation_sent_at: string | null
-          created_at: string
-          id: string
-          sent_to_guest_email: boolean | null
-          sent_to_guest_whatsapp: boolean | null
-          sent_to_property_email: boolean | null
-          sent_to_property_whatsapp: boolean | null
-        }
-        Insert: {
-          booking_id?: string | null
-          confirmation_sent_at?: string | null
-          created_at?: string
-          id?: string
-          sent_to_guest_email?: boolean | null
-          sent_to_guest_whatsapp?: boolean | null
-          sent_to_property_email?: boolean | null
-          sent_to_property_whatsapp?: boolean | null
-        }
-        Update: {
-          booking_id?: string | null
-          confirmation_sent_at?: string | null
-          created_at?: string
-          id?: string
-          sent_to_guest_email?: boolean | null
-          sent_to_guest_whatsapp?: boolean | null
-          sent_to_property_email?: boolean | null
-          sent_to_property_whatsapp?: boolean | null
-        }
-        Relationships: []
-      }
       booking_rate_limits_backup: {
         Row: {
           blocked_until: string | null
@@ -353,59 +296,6 @@ export type Database = {
         }
         Relationships: []
       }
-      pending_orders: {
-        Row: {
-          amount: number
-          check_in: string
-          check_out: string
-          created_at: string | null
-          customer_email: string
-          customer_name: string | null
-          customer_phone: string | null
-          expires_at: string | null
-          id: string
-          order_id: string
-          quantity: number
-          room_type_id: string
-        }
-        Insert: {
-          amount: number
-          check_in: string
-          check_out: string
-          created_at?: string | null
-          customer_email: string
-          customer_name?: string | null
-          customer_phone?: string | null
-          expires_at?: string | null
-          id?: string
-          order_id: string
-          quantity?: number
-          room_type_id: string
-        }
-        Update: {
-          amount?: number
-          check_in?: string
-          check_out?: string
-          created_at?: string | null
-          customer_email?: string
-          customer_name?: string | null
-          customer_phone?: string | null
-          expires_at?: string | null
-          id?: string
-          order_id?: string
-          quantity?: number
-          room_type_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "pending_orders_room_type_id_fkey"
-            columns: ["room_type_id"]
-            isOneToOne: false
-            referencedRelation: "room_types"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -651,51 +541,6 @@ export type Database = {
         }
         Relationships: []
       }
-      transactions: {
-        Row: {
-          amount: number
-          booking_id: string | null
-          created_at: string
-          currency: string | null
-          gateway_response: Json | null
-          id: string
-          matched: boolean | null
-          payment_status: string | null
-          razorpay_payment_id: string | null
-          source: string | null
-          txn_id: string
-          verified_at: string | null
-        }
-        Insert: {
-          amount: number
-          booking_id?: string | null
-          created_at?: string
-          currency?: string | null
-          gateway_response?: Json | null
-          id?: string
-          matched?: boolean | null
-          payment_status?: string | null
-          razorpay_payment_id?: string | null
-          source?: string | null
-          txn_id: string
-          verified_at?: string | null
-        }
-        Update: {
-          amount?: number
-          booking_id?: string | null
-          created_at?: string
-          currency?: string | null
-          gateway_response?: Json | null
-          id?: string
-          matched?: boolean | null
-          payment_status?: string | null
-          razorpay_payment_id?: string | null
-          source?: string | null
-          txn_id?: string
-          verified_at?: string | null
-        }
-        Relationships: []
-      }
     }
     Views: {
       newsletter_stats: {
@@ -774,17 +619,24 @@ export type Database = {
       }
     }
     Functions: {
-      admin_block_room_date_secure: {
-        Args:
-          | {
+      admin_block_room_date_secure:
+        | {
+            Args: {
+              p_block_count?: number
+              p_date: string
+              p_room_type: string
+            }
+            Returns: Json
+          }
+        | {
+            Args: {
               p_action?: string
               p_block_count?: number
               p_date: string
               p_room_type: string
             }
-          | { p_block_count?: number; p_date: string; p_room_type: string }
-        Returns: Json
-      }
+            Returns: Json
+          }
       admin_get_booking_pii: {
         Args: { p_booking_id: string }
         Returns: {
@@ -833,32 +685,14 @@ export type Database = {
           suspicious_indicators: string[]
         }[]
       }
-      cleanup_rate_limits: {
-        Args: Record<PropertyKey, never>
-        Returns: undefined
-      }
-      delete_my_data: {
-        Args: Record<PropertyKey, never>
-        Returns: boolean
-      }
-      export_my_data: {
-        Args: Record<PropertyKey, never>
-        Returns: Json
-      }
-      generate_booking_id: {
-        Args: Record<PropertyKey, never>
-        Returns: string
-      }
-      get_app_secret: {
-        Args: { secret_name: string }
-        Returns: string
-      }
-      get_app_secret_secure: {
-        Args: { secret_name: string }
-        Returns: string
-      }
+      cleanup_rate_limits: { Args: never; Returns: undefined }
+      delete_my_data: { Args: never; Returns: boolean }
+      export_my_data: { Args: never; Returns: Json }
+      generate_booking_id: { Args: never; Returns: string }
+      get_app_secret: { Args: { secret_name: string }; Returns: string }
+      get_app_secret_secure: { Args: { secret_name: string }; Returns: string }
       get_bookings_masked_secure: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           address: string
           booking_id: string
@@ -888,10 +722,7 @@ export type Database = {
           whatsapp_number: string
         }[]
       }
-      get_jwt_email: {
-        Args: Record<PropertyKey, never>
-        Returns: string
-      }
+      get_jwt_email: { Args: never; Returns: string }
       get_my_booking_pii: {
         Args: { p_booking_id: string }
         Returns: {
@@ -903,7 +734,7 @@ export type Database = {
         }[]
       }
       get_my_bookings: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           address_masked: string
           booking_id: string
@@ -922,7 +753,7 @@ export type Database = {
         }[]
       }
       get_newsletter_stats_admin_secure: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           active_subscribers: number
           inactive_subscribers: number
@@ -933,7 +764,7 @@ export type Database = {
         }[]
       }
       get_newsletter_stats_secure: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           active_subscribers: number
           inactive_subscribers: number
@@ -959,7 +790,7 @@ export type Database = {
         Returns: string
       }
       get_secret_access_log_masked_secure: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           created_at: string
           event: string
@@ -970,7 +801,7 @@ export type Database = {
         }[]
       }
       get_security_alerts_masked_secure: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           created_at: string
           details: Json
@@ -1028,7 +859,7 @@ export type Database = {
         }[]
       }
       get_transactions_admin_view_secure: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           amount: number
           booking_id: string
@@ -1040,7 +871,7 @@ export type Database = {
         }[]
       }
       get_user_bookings_secure: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           address: string
           booking_id: string
@@ -1069,12 +900,9 @@ export type Database = {
           whatsapp_number: string
         }[]
       }
-      get_user_role: {
-        Args: Record<PropertyKey, never>
-        Returns: string
-      }
+      get_user_role: { Args: never; Returns: string }
       increment_happy_guests: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           new_count: number
         }[]
@@ -1086,18 +914,9 @@ export type Database = {
           value: number
         }[]
       }
-      ip_anonymize: {
-        Args: { ip_text: string }
-        Returns: string
-      }
-      is_admin: {
-        Args: Record<PropertyKey, never>
-        Returns: boolean
-      }
-      is_admin_or_staff: {
-        Args: Record<PropertyKey, never>
-        Returns: boolean
-      }
+      ip_anonymize: { Args: { ip_text: string }; Returns: string }
+      is_admin: { Args: never; Returns: boolean }
+      is_admin_or_staff: { Args: never; Returns: boolean }
       is_room_available: {
         Args: {
           p_check_in: string
@@ -1127,16 +946,13 @@ export type Database = {
         Args: { access_granted?: boolean; function_name: string }
         Returns: undefined
       }
-      norm_email: {
-        Args: { e: string }
-        Returns: string
-      }
+      norm_email: { Args: { e: string }; Returns: string }
       resolve_security_alert_admin: {
         Args: { p_alert_id: string; p_resolution_notes?: string }
         Returns: boolean
       }
       transactions_admin_secure: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           amount: number
           booking_id: string
