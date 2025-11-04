@@ -79,6 +79,7 @@ interface TourPackage {
   difficulty: string;
   price: string;
   image: string;
+  images?: string[];
   rating: number;
   category: string;
   highlights: string[];
@@ -450,7 +451,7 @@ Please check availability for these dates and share pricing details for this exc
     handleClose();
   };
 
-  const selectedImage = getRelevantImage();
+  const selectedImage = (tourPackage?.images && tourPackage.images[0]) || tourPackage?.image || getRelevantImage();
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>

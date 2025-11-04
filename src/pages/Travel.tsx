@@ -51,13 +51,9 @@ import haridwarSpiritualImg from "@/assets/haridwar-rishikesh-spiritual-stock.jp
 import spitiValleyImg from "@/assets/spiti-valley-adventure-stock.jpg";
 import shimlaManaliImg from "@/assets/shimla-manali-honeymoon-stock.jpg";
 import kasauliSolanImg from "@/assets/kasauli-solan-hill-station-stock.jpg";
-
-// Lazy load image imports using dynamic imports
-const loadImages = {
-  arunachalEagleFestival: () => import("@/assets/arunachal-eagle-festival-stock.jpg"),
-  dharamshalaMcleodGanj: () => import("@/assets/dharamshala-mcleod-ganj-stock.jpg"),
-  kulluValleyAdventure: () => import("@/assets/kullu-valley-adventure-stock.jpg")
-};
+import arunachalEagleFestivalImg from "@/assets/arunachal-eagle-festival-stock.jpg";
+import dharamshalaMcleodGanjImg from "@/assets/dharamshala-mcleod-ganj-stock.jpg";
+import kulluValleyAdventureImg from "@/assets/kullu-valley-adventure-stock.jpg";
 
 // All image assets removed - Supabase ready
 // Image arrays for future Supabase URL assignments
@@ -98,22 +94,6 @@ const Travel = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [locationFilter, setLocationFilter] = useState("all");
-  const [loadedImages, setLoadedImages] = useState<{[key: string]: string}>({});
-
-  // Lazy load images on demand
-  const loadImageAsync = async (imageKey: string) => {
-    if (loadedImages[imageKey]) return loadedImages[imageKey];
-    
-    try {
-      const imageModule = await loadImages[imageKey as keyof typeof loadImages]();
-      const imageSrc = imageModule.default;
-      setLoadedImages(prev => ({ ...prev, [imageKey]: imageSrc }));
-      return imageSrc;
-    } catch (error) {
-      console.warn(`Failed to load image: ${imageKey}`);
-      return "";
-    }
-  };
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -124,21 +104,6 @@ const Travel = () => {
     // Scroll to top when navigating to this page
     window.scrollTo(0, 0);
   }, [location.search]);
-
-  // Preload critical images after component mounts
-  useEffect(() => {
-    const preloadCriticalImages = async () => {
-      await Promise.all([
-        loadImageAsync('arunachalEagleFestival'),
-        loadImageAsync('dharamshalaMcleodGanj'),
-        loadImageAsync('kulluValleyAdventure')
-      ]);
-    };
-    
-    // Delay preloading to not block initial render
-    const timer = setTimeout(preloadCriticalImages, 100);
-    return () => clearTimeout(timer);
-  }, []);
 
   const handlePackageClick = (itinerary: any) => {
     setSelectedPackage(itinerary);
@@ -156,7 +121,11 @@ const Travel = () => {
         difficulty: "Easy",
         price: "₹34,500",
         image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/Complete%20Guide%20To%20Backpacking%20In%20Arunachal%20Pradesh%20-%20Lost%20With%20Purpose.jpg",
-        images: ["", "", ""],
+        images: [
+          "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/Complete%20Guide%20To%20Backpacking%20In%20Arunachal%20Pradesh%20-%20Lost%20With%20Purpose.jpg",
+          "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/Complete%20Guide%20To%20Backpacking%20In%20Arunachal%20Pradesh%20-%20Lost%20With%20Purpose.jpg",
+          "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/Complete%20Guide%20To%20Backpacking%20In%20Arunachal%20Pradesh%20-%20Lost%20With%20Purpose.jpg"
+        ],
         rating: 4.9,
         category: "educational",
         location: "Northeast India",
@@ -300,8 +269,8 @@ const Travel = () => {
         duration: "6 Days",
         difficulty: "Moderate",
         price: "₹19,800",
-        image: loadedImages.arunachalEagleFestival || "",
-        images: [loadedImages.arunachalEagleFestival || "", "", ""],
+        image: arunachalEagleFestivalImg,
+        images: [arunachalEagleFestivalImg, arunachalEagleFestivalImg, arunachalEagleFestivalImg],
         rating: 4.8,
         category: "cultural",
         location: "Arunachal Pradesh",
@@ -447,8 +416,8 @@ const Travel = () => {
         duration: "4 Days",
         difficulty: "Moderate",
         price: "₹14,700",
-        image: loadedImages.kulluValleyAdventure || "",
-        images: [loadedImages.kulluValleyAdventure || "", "", ""],
+        image: kulluValleyAdventureImg,
+        images: [kulluValleyAdventureImg, kulluValleyAdventureImg, kulluValleyAdventureImg],
         rating: 4.5,
         category: "adventure",
         location: "Himachal Pradesh",
@@ -462,8 +431,8 @@ const Travel = () => {
         duration: "5 Days",
         difficulty: "Moderate",
         price: "₹16,900",
-        image: loadedImages.dharamshalaMcleodGanj || "",
-        images: [loadedImages.dharamshalaMcleodGanj || "", "", ""],
+        image: dharamshalaMcleodGanjImg,
+        images: [dharamshalaMcleodGanjImg, dharamshalaMcleodGanjImg, dharamshalaMcleodGanjImg],
         rating: 4.7,
         category: "cultural",
         location: "Himachal Pradesh",
