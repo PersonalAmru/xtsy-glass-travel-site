@@ -374,21 +374,6 @@ const Travel = () => {
         bestSeason: "Oct-Mar"
       },
       {
-        id: 27,
-        title: "Nagaland Hornbill Festival Experience",
-        description: "Immerse yourself in Nagaland's vibrant tribal culture during the famous Hornbill Festival - witness spectacular warrior dances, traditional ceremonies, and authentic Naga heritage",
-        duration: "5 Days",
-        difficulty: "Easy",
-        price: "₹29,500",
-        image: nagalandHornbillImg,
-        images: [nagalandHornbillImg, kohimaWarImg, nagalandHornbillImg],
-        rating: 4.8,
-        category: "cultural",
-        location: "Nagaland",
-        highlights: ["Hornbill Festival Celebrations", "Traditional Naga Warrior Dances", "Tribal Village Visits", "Authentic Naga Cuisine", "Kohima War Cemetery", "Indigenous Craft Markets"],
-        bestSeason: "Nov-Mar"
-      },
-      {
         id: 28,
         title: "Arunachal - Bumla Pass Bike Expedition",
         description: "Epic motorcycle journey to the Indo-China border at 15,200 feet - conquer high-altitude mountain passes through breathtaking Himalayan landscapes and pristine valleys",
