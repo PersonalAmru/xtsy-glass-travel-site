@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { MapPin, Phone, Mail } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import { openWhatsAppDirectly, generateXTSY270Message, PRIVACY_NOTICE } from '@/utils/privacyCompliantWhatsApp';
+import { saveXTSY270Inquiry } from '@/services/formBookingService';
 
 interface XTSY270ModalProps {
   isOpen: boolean;
@@ -85,6 +86,24 @@ const XTSY270Modal: React.FC<XTSY270ModalProps> = ({ isOpen, onClose }) => {
     setIsSubmitting(true);
 
     try {
+      // Save inquiry to database first
+      const result = await saveXTSY270Inquiry({
+        state: formData.state,
+        city: formData.city,
+        pincode: formData.pincode,
+        mobile: formData.mobile,
+        email: formData.email
+      });
+
+      if (!result.success) {
+        toast({
+          title: "Error",
+          description: "Failed to save inquiry. Please try again.",
+          variant: "destructive"
+        });
+        return;
+      }
+
       // Create WhatsApp message using privacy-compliant utility
       const message = generateXTSY270Message({
         state: formData.state,
@@ -96,6 +115,11 @@ const XTSY270Modal: React.FC<XTSY270ModalProps> = ({ isOpen, onClose }) => {
 
       // Open WhatsApp directly - no logging, EU compliant
       openWhatsAppDirectly(message);
+
+      toast({
+        title: "Inquiry Saved",
+        description: "Your XTSY 270° inquiry has been saved successfully!",
+      });
 
       // Close modal and reset form
       onClose();

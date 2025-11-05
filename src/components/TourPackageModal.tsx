@@ -12,6 +12,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useApp } from "@/contexts/AppContext";
 import { TourItineraryService } from "@/utils/tourItineraryService";
 import { TourPricingService } from "@/utils/tourPricingService";
+import { saveTourInquiry } from "@/services/formBookingService";
 import UnifiedImage from "./UnifiedImage";
 
 import meghalayaHiddenGemsImg from "@/assets/meghalaya-hidden-gems-new.jpg";
@@ -408,11 +409,35 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
 
   const pricing = calculatePricing();
 
-  const handlePayAndConfirm = () => {
+  const handlePayAndConfirm = async () => {
     if (!selectedDate || !guestDetails.name || !guestDetails.email || !guestDetails.phone || !guestDetails.city || !guestDetails.pincode) {
       toast({
         title: "Missing Information",
         description: "Please fill all required fields",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Save tour inquiry to database
+    const result = await saveTourInquiry({
+      name: guestDetails.name,
+      email: guestDetails.email,
+      phone: guestDetails.phone,
+      city: guestDetails.city,
+      pincode: guestDetails.pincode,
+      guests: guests,
+      selectedDate: selectedDate,
+      tourName: tourPackage.title,
+      duration: tourPackage.duration,
+      category: tourPackage.category,
+      basePrice: pricing.rawSubtotal
+    });
+
+    if (!result.success) {
+      toast({
+        title: "Error",
+        description: "Failed to save inquiry. Please try again.",
         variant: "destructive"
       });
       return;
@@ -448,8 +473,8 @@ Please check availability for these dates and share pricing details for this exc
     window.open(whatsappURL, '_blank');
 
     toast({
-      title: "Redirecting to WhatsApp",
-      description: "Please check availability via WhatsApp",
+      title: "Tour Inquiry Saved",
+      description: "Your tour package inquiry has been saved successfully!",
     });
 
     handleClose();

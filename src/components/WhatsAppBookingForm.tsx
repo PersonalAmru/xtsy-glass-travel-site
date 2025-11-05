@@ -8,6 +8,8 @@ import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { MessageCircle, Calendar, Users, Phone, Plus, Trash2, Home } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { toast } from "@/hooks/use-toast";
+import { saveWhatsAppBooking } from "@/services/formBookingService";
 
 interface WhatsAppBookingFormProps {
   isOpen: boolean;
@@ -141,16 +143,58 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
     return selectedRooms.reduce((total, room) => total + (room.price * room.quantity * nights), 0);
   };
 
-  const handleBookNow = () => {
+  const handleBookNow = async () => {
+    // Validate required fields
+    if (!formData.name || !formData.email || !formData.phone || !formData.city || !formData.pincode || !formData.checkIn || !formData.checkOut) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Save to database first
+    const totalAmount = getTotalAmount();
+    const result = await saveWhatsAppBooking({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      city: formData.city,
+      pincode: formData.pincode,
+      checkIn: formData.checkIn,
+      checkOut: formData.checkOut,
+      guests: formData.guests,
+      specialRequests: formData.specialRequests,
+      selectedRooms,
+      nights,
+      totalAmount
+    });
+
+    if (!result.success) {
+      toast({
+        title: "Error",
+        description: "Failed to save booking. Please try again.",
+        variant: "destructive"
+      });
+      return;
+    }
+
     // Build WhatsApp message with selected rooms
     const roomsText = selectedRooms.map(room => 
       `${room.roomTypeName} x ${room.quantity}`
     ).join(', ');
 
-    const message = `Hi! I'd like to make a booking:\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCity: ${formData.city}\nPincode: ${formData.pincode}\nCheck-in: ${formData.checkIn}\nCheck-out: ${formData.checkOut}\nNights: ${nights}\nGuests: ${formData.guests}\nRooms: ${roomsText || 'Not selected'}\n${formData.specialRequests ? `Special Requests: ${formData.specialRequests}` : ''}`;
+    const message = `Hi! I'd like to make a booking:\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCity: ${formData.city}\nPincode: ${formData.pincode}\nCheck-in: ${formData.checkIn}\nCheck-out: ${formData.checkOut}\nNights: ${nights}\nGuests: ${formData.guests}\nRooms: ${roomsText || 'Not selected'}\nEstimated Total: ₹${totalAmount}\n${formData.specialRequests ? `Special Requests: ${formData.specialRequests}` : ''}`;
 
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://api.whatsapp.com/send/?phone=918837317070&text=${encodedMessage}&type=phone_number&app_absent=0`, '_blank');
+    
+    toast({
+      title: "Booking Saved",
+      description: "Your booking inquiry has been saved successfully!",
+    });
+    
     onClose();
   };
 
