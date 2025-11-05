@@ -390,14 +390,14 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
           checkOut: bookingData.checkOut,
           guests: bookingData.guests,
           nights: bookingData.nights || 1,
-          selectedRooms: bookingData.items.map(item => ({
-            id: item.roomId,
-            name: item.roomName,
-            price: item.price,
-            type: item.roomType || 'hostel',
-            selection: { 
-              guests: item.guests || 0,
-              rooms: item.quantity || 0 
+        selectedRooms: bookingData.items.map(item => ({
+          id: item.roomId,
+          name: item.roomName,
+          price: item.price,
+          type: (item.roomType === 'dorm' || item.roomType === 'private') ? item.roomType : 'dorm',
+          selection: { 
+            guests: item.guests || 0,
+            rooms: item.quantity || 0
             }
           })),
           totalAmount: grandTotal,
