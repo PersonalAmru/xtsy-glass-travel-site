@@ -90,6 +90,21 @@
   body {
     @apply font-sans antialiased;
   }
+
+  /* Flag emoji support for cross-platform rendering */
+  .flag-emoji {
+    font-family: "Noto Color Emoji", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Sans Symbols", sans-serif;
+    font-size: 2.5rem;
+    line-height: 1;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  @media (max-width: 640px) {
+    .flag-emoji {
+      font-size: 2rem;
+    }
+  }
 }
 
 /* Glassmorphism utilities */
