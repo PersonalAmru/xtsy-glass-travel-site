@@ -11,6 +11,139 @@ const ReviewsSection = () => {
 
   // Real OTA platform reviews
   const filteredReviews = [{
+    name: "Rohit",
+    rating: 10,
+    comment: "Exceptional",
+    date: "February 2025",
+    source: "Booking.com",
+    roomType: "Bed in 8-Bed Mixed Dormitory Room"
+  }, {
+    name: "Rai",
+    rating: 10,
+    comment: "Exceptional",
+    date: "February 2025",
+    source: "Booking.com",
+    roomType: "Bed in 8-Bed Mixed Dormitory Room"
+  }, {
+    name: "Kashfi",
+    rating: 10,
+    comment: "Exceptional",
+    date: "February 2025",
+    source: "Booking.com",
+    roomType: "Bed in 8-Bed Mixed Dormitory Room"
+  }, {
+    name: "Arun",
+    rating: 10,
+    comment: "Exceptional",
+    date: "February 2025",
+    source: "Booking.com",
+    roomType: "Bed in 6-Bed Mixed Dormitory Room"
+  }, {
+    name: "Himanjit",
+    rating: 10,
+    comment: "Exceptional",
+    date: "February 2025",
+    source: "Booking.com",
+    roomType: "4-Bed Female Dormitory Room"
+  }, {
+    name: "Aman",
+    rating: 10,
+    comment: "Exceptional",
+    date: "April 2025",
+    source: "Booking.com",
+    roomType: "Bed in 8-Bed Mixed Dormitory Room"
+  }, {
+    name: "Vihaan",
+    rating: 10,
+    comment: "Exceptional",
+    date: "April 2025",
+    source: "Booking.com",
+    roomType: "Bed in 6-Bed Mixed Dormitory Room"
+  }, {
+    name: "Alisha",
+    rating: 10,
+    comment: "Exceptional",
+    date: "October 2025",
+    source: "Booking.com",
+    roomType: "Double Room with Lake View"
+  }, {
+    name: "Наталья",
+    rating: 10,
+    comment: "XTSY (ecstasy) travellers hostel was my last stop in India before my visa expired. I stay here one night before going to bangladesh. Hostel very nice clean and peaceful. People friendly, and P is best. He helps with everything. Good news—I get new visa and already book again! Hey P, I come back on 14 Feb! This time I stay longer and explore meghalaya and northeast. See you soon! 😊",
+    date: "February 2025",
+    source: "Booking.com",
+    roomType: "Bed in 6-Bed Female Dormitory Room"
+  }, {
+    name: "Anonymous",
+    rating: 10,
+    comment: "The location was a bit outskirts but it was worth it, The people were very friendly and very engaging, the staffs were very police and easy accessible. Food was also very good.",
+    date: "October 2025",
+    source: "Booking.com",
+    roomType: "4-Bed Female Dormitory Room"
+  }, {
+    name: "Gaurav",
+    rating: 10,
+    comment: "The rooms are very premium. And property is Close to nature.",
+    date: "December 2024",
+    source: "Booking.com",
+    roomType: "Bed in 8-Bed Mixed Dormitory Room"
+  }, {
+    name: "Nitin",
+    rating: 10,
+    comment: "I loved the hospitality and the caring nature of the hosts. They both ensured that our stay was fantastic. Helped us with their two-wheeler to roam around the city and helped us in making our travel plans. We had no clue that sunrise and sunset vary so much in NE India compared to the mainland. Also, I traveled to Shillong with my fiancée who is 100% vegetarian and it is not easy to find a pure veg restaurant in the northeast part of India. The hosts went above and beyond to ensure she got a proper veg meal. They made sure to cook for her before preparing anything non-veg. This level of care for your guests is rare and I'm really grateful that they took care her meals.",
+    date: "January 2025",
+    source: "Booking.com",
+    roomType: "Two-Bedroom Suite"
+  }, {
+    name: "Lahari",
+    rating: 10,
+    comment: "The overall experience was very good! Staff were very much helpful and the host was amazing in ensuring our facilities were available for our stay! Great to be there!",
+    date: "January 2025",
+    source: "Booking.com",
+    roomType: "Bed in 6-Bed Female Dormitory Room"
+  }, {
+    name: "Olivia",
+    rating: 10,
+    comment: "When my friends and I planned our North East India trip, we were hesitant. But XTSY Travellers Hostel changed everything! We instantly felt safe and welcomed—it's honestly one of the safest places we've traveled to. The hostel itself is awesome—clean, cozy, and full of good vibes. The bonfire and BBQ nights on the terrace were a blast, with incredible views and fun conversations. And the location? Perfect! Tucked in peaceful pine forests, from the chaos of city traffic. The host was amazing, organizing trips to stunning spots like Dawki, Cherrapunji, and even hidden gems we'd never have found on our own.",
+    date: "January 2025",
+    source: "Booking.com",
+    roomType: "Bed in 8-Bed Mixed Dormitory Room"
+  }, {
+    name: "Harshit",
+    rating: 10,
+    comment: "The place is very good and have some good facilities too. the host is very friendly and very welcoming. And the food there is too good.",
+    date: "February 2025",
+    source: "Booking.com",
+    roomType: "Bed in 6-Bed Mixed Dormitory Room"
+  }, {
+    name: "Shreya",
+    rating: 10,
+    comment: "Had the best time at XTSY Travellers Hostel! 💖 Super chill vibes, comfy beds, and the coolest people. Perfect spot to crash after exploring. 10/10 would stay again! ✨",
+    date: "January 2025",
+    source: "Booking.com",
+    roomType: "Bed in 8-Bed Mixed Dormitory Room"
+  }, {
+    name: "Hrishikesh",
+    rating: 10,
+    comment: "Amazing owner, very helpful staff and nice place to chill!",
+    date: "February 2025",
+    source: "Booking.com",
+    roomType: "Bed in 4-Bed Mixed Dormitory Room"
+  }, {
+    name: "Amritha",
+    rating: 10,
+    comment: "Even though I booked the property just because it was cheap without much expectations as I was gonna just crash after a long day of travel, the property and staffs really surprised me by providing a very warm experience. The owner, my host Eurica and all other staffs are really friendly and goes above and beyond to make you feel at home and also does their maximum to satisfy your requests. The terrace area with bonfire is also another highlight and I had such an enjoyable experience with the whole XTSY fam there! :D Will definitely be back, try and stop me!!",
+    date: "March 2025",
+    source: "Booking.com",
+    roomType: "4-Bed Female Dormitory Room"
+  }, {
+    name: "Deepak",
+    rating: 10,
+    comment: "This hostel is a hidden gem for backpackers. Its location is absolutely perfect for nature lovers… From the moment I parked my car in spacious parking walked through the door, I felt completely at home. The staff was incredibly welcoming and created such a friendly, inclusive atmosphere. The common area felt like a big living room where it was easy to meet other travelers, whether we were sharing travel stories or joining in on one of the hostel's evening activities. This isn't just a place to sleep—it's a place to connect.",
+    date: "October 2025",
+    source: "Booking.com",
+    roomType: "6-Bed Mixed Dormitory Room"
+  }, {
     name: "T2t",
     rating: 10,
     comment: "Exceptional",
