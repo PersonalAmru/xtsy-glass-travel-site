@@ -116,9 +116,16 @@ serve(async (req) => {
       .single();
 
     if (error) {
-      console.error('Error confirming booking:', error);
+      // Log detailed error information for debugging
+      console.error('Error confirming booking:', {
+        message: error.message,
+        code: error.code,
+        details: error.details,
+        hint: error.hint
+      });
+      // Return generic error message to client
       return new Response(
-        JSON.stringify({ success: false, error: error.message }),
+        JSON.stringify({ success: false, error: 'Failed to confirm booking. Please try again.' }),
         { 
           status: 500, 
           headers: { ...corsHeaders, 'Content-Type': 'application/json' }
@@ -139,10 +146,16 @@ serve(async (req) => {
       }
     );
 
-  } catch (error) {
-    console.error('Error in admin-confirm-booking function:', error);
+  } catch (error: any) {
+    // Log detailed error information for debugging
+    console.error('Error in admin-confirm-booking function:', {
+      message: error?.message,
+      stack: error?.stack,
+      name: error?.name
+    });
+    // Return generic error message to client
     return new Response(
-      JSON.stringify({ success: false, error: error.message }),
+      JSON.stringify({ success: false, error: 'Unable to confirm booking. Please try again.' }),
       { 
         status: 500, 
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }

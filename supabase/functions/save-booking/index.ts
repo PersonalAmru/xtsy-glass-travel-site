@@ -110,11 +110,15 @@ const handler = async (req: Request): Promise<Response> => {
     .single();
 
   if (bookingError) {
-    console.error('Booking creation error:', bookingError);
-    const errorMessage = bookingError.message || 'Failed to create booking';
-    const errorDetails = bookingError.details || '';
-    console.error('Error details:', { code: bookingError.code, details: errorDetails });
-    throw new Error(`Booking creation failed: ${errorMessage}. ${errorDetails ? `Details: ${errorDetails}` : ''}`);
+    // Log detailed error information for debugging
+    console.error('Booking creation error:', {
+      message: bookingError.message,
+      code: bookingError.code,
+      details: bookingError.details,
+      hint: bookingError.hint
+    });
+    // Throw generic error to avoid information leakage
+    throw new Error('Unable to create booking. Please try again.');
   }
 
     console.log('Booking created successfully:', booking);
@@ -175,10 +179,16 @@ const handler = async (req: Request): Promise<Response> => {
     });
 
   } catch (error: any) {
-    console.error('Error in save-booking function:', error);
+    // Log detailed error information for debugging
+    console.error('Error in save-booking function:', {
+      message: error.message,
+      stack: error.stack,
+      name: error.name
+    });
+    // Return generic error message to client
     return new Response(
       JSON.stringify({ 
-        error: error.message || 'Internal server error',
+        error: 'Unable to process booking. Please try again or contact support.',
         success: false 
       }),
       {

@@ -58,8 +58,15 @@ serve(async (req) => {
 
     const { data, error } = await query;
     if (error) {
-      console.error('admin-recent-bookings error:', error);
-      return new Response(JSON.stringify({ success: false, error: error.message }), {
+      // Log detailed error information for debugging
+      console.error('admin-recent-bookings error:', {
+        message: error.message,
+        code: error.code,
+        details: error.details,
+        hint: error.hint
+      });
+      // Return generic error message to client
+      return new Response(JSON.stringify({ success: false, error: 'Failed to retrieve bookings. Please try again.' }), {
         status: 500,
         headers: { 'Content-Type': 'application/json', ...corsHeaders },
       });
@@ -70,8 +77,14 @@ serve(async (req) => {
       headers: { 'Content-Type': 'application/json', ...corsHeaders },
     });
   } catch (e: any) {
-    console.error('admin-recent-bookings exception:', e);
-    return new Response(JSON.stringify({ success: false, error: e?.message || 'Unexpected error' }), {
+    // Log detailed error information for debugging
+    console.error('admin-recent-bookings exception:', {
+      message: e?.message,
+      stack: e?.stack,
+      name: e?.name
+    });
+    // Return generic error message to client
+    return new Response(JSON.stringify({ success: false, error: 'Unable to process request. Please try again.' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json', ...corsHeaders },
     });

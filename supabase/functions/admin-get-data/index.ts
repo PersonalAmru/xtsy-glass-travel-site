@@ -104,11 +104,17 @@ serve(async (req) => {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
 
-  } catch (error) {
-    console.error('Admin get data error:', error);
+  } catch (error: any) {
+    // Log detailed error information for debugging
+    console.error('Admin get data error:', {
+      message: error?.message,
+      stack: error?.stack,
+      name: error?.name
+    });
+    // Return generic error message to client
     return new Response(JSON.stringify({ 
       success: false, 
-      error: error.message 
+      error: 'Failed to retrieve data. Please try again.' 
     }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },

@@ -47,7 +47,14 @@ serve(async (req) => {
       .single();
 
     if (fetchError) {
-      console.error('Error fetching booking for deletion:', fetchError);
+      // Log detailed error information for debugging
+      console.error('Error fetching booking for deletion:', {
+        message: fetchError.message,
+        code: fetchError.code,
+        details: fetchError.details,
+        hint: fetchError.hint
+      });
+      // Return generic error message to client
       return new Response(
         JSON.stringify({ success: false, error: 'Booking not found' }),
         { 
@@ -93,9 +100,16 @@ serve(async (req) => {
       .eq('id', booking_id);
 
     if (error) {
-      console.error('Error deleting booking:', error);
+      // Log detailed error information for debugging
+      console.error('Error deleting booking:', {
+        message: error.message,
+        code: error.code,
+        details: error.details,
+        hint: error.hint
+      });
+      // Return generic error message to client
       return new Response(
-        JSON.stringify({ success: false, error: error.message }),
+        JSON.stringify({ success: false, error: 'Failed to delete booking. Please try again.' }),
         { 
           status: 500, 
           headers: { ...corsHeaders, 'Content-Type': 'application/json' }
@@ -115,10 +129,16 @@ serve(async (req) => {
       }
     );
 
-  } catch (error) {
-    console.error('Error in admin-delete-booking function:', error);
+  } catch (error: any) {
+    // Log detailed error information for debugging
+    console.error('Error in admin-delete-booking function:', {
+      message: error?.message,
+      stack: error?.stack,
+      name: error?.name
+    });
+    // Return generic error message to client
     return new Response(
-      JSON.stringify({ success: false, error: error.message }),
+      JSON.stringify({ success: false, error: 'Unable to process deletion. Please try again.' }),
       { 
         status: 500, 
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
