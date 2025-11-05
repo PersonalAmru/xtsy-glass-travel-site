@@ -13,7 +13,7 @@ interface SelectedRoom {
   id: string;
   name: string;
   price: number;
-  type: string; // 'dorm' | 'private'
+  type: 'dorm' | 'private';
   selection: {
     guests: number;
     rooms: number;
@@ -96,37 +96,23 @@ const GuestDetails = ({ isOpen, onClose, onBack, bookingData }: GuestDetailsProp
     setIsSubmitting(true);
 
     try {
-      // Save booking to database
-      const { data: saveBookingResponse, error: saveBookingError } = await supabase.functions.invoke('save-booking', {
-        body: {
-          bookingData,
-          guestDetails: formData
-        }
+      // Import the secure booking service
+      const { createBooking } = await import('@/services/bookingService');
+      
+      // Create booking using secure client-side service with validation
+      const result = await createBooking({
+        bookingData,
+        guestDetails: formData
       });
 
-      if (saveBookingError) {
-        throw new Error(saveBookingError.message);
+      if (!result.success) {
+        throw new Error(result.error || 'Failed to create booking');
       }
 
-      const { bookingId: newBookingId } = saveBookingResponse;
+      const newBookingId = result.bookingId!;
       setBookingId(newBookingId);
 
-      // Send WhatsApp message
-      const roomsText = bookingData.selectedRooms.map(room => 
-        `${room.name} (${room.selection.rooms} ${room.type === 'dorm' ? 'bed(s)' : 'room(s)'})`
-      ).join(', ');
-
-      await supabase.functions.invoke('send-whatsapp-booking', {
-        body: {
-          bookingId: newBookingId,
-          guestName: formData.guestName,
-          phone: formData.whatsappNumber,
-          checkIn: bookingData.checkIn,
-          checkOut: bookingData.checkOut,
-          rooms: roomsText,
-          totalAmount: bookingData.totalAmount
-        }
-      });
+      // Note: WhatsApp notification removed (send-whatsapp-booking function deleted for security)
 
       toast({
         title: "Booking Submitted Successfully!",
