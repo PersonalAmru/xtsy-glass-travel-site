@@ -14,7 +14,7 @@ const ROOM_DATA = {
   "signature-270-glass-suite": {
     id: "signature-270-glass-suite",
     name: "270° Panorama Glass Ensuite",
-    price: 18000,
+    price: 7999,
     capacity: 2,
     maxAvailable: 1,
     description: "Premium suite with 270-degree panoramic views and luxury amenities",

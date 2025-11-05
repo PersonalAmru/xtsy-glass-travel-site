@@ -113,7 +113,7 @@ const RoomsSection = () => {
     {
       id: "king-double-room",
       name: "King Double Room",
-      price: 3500,
+      price: 2800,
       description: "Spacious private room with king bed for two guests",
       features: generateFeatures('hostel', 'King Double Room', 'private'),
       maxGuests: 2,
@@ -129,7 +129,7 @@ const RoomsSection = () => {
     {
       id: "king-triple-room",
       name: "King Triple Room",
-      price: 4500,
+      price: 3500,
       description: "Luxurious private room accommodating up to three guests",
       features: generateFeatures('hostel', 'King Triple Room', 'private'),
       maxGuests: 3,

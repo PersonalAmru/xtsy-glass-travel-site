@@ -83,7 +83,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
         if (parsedData.items) {
           parsedData.items = parsedData.items.map((item: any) => {
             if (item.roomId === 'sky-glass-suite') {
-              return { ...item, price: 18000 };
+              return { ...item, price: 7999 };
             }
             return item;
           });

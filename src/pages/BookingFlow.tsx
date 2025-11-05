@@ -59,7 +59,7 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
   'xtsy-270': {
     id: 'xtsy-270',
     name: '270° Panorama Glass Ensuite',
-    price: 18000,
+    price: 7999,
     image: XTSY270_DATA.image,
     description: XTSY270_DATA.description,
     amenities: XTSY270_DATA.features,
@@ -124,7 +124,7 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
   'king-double-room': {
     id: 'king-double-room',
     name: 'King Double Room',
-    price: 3500,
+    price: 2800,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg',
     description: 'Spacious private room with king bed for two guests',
     amenities: generateFeatures('hostel', 'King Double Room', 'private'),
@@ -137,7 +137,7 @@ const ALL_ROOMS_DATA: { [key: string]: Room } = {
   'king-triple-room': {
     id: 'king-triple-room',
     name: 'King Triple Room',
-    price: 4500,
+    price: 3500,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/1.jpg',
     description: 'Luxurious private room accommodating up to three guests',
     amenities: generateFeatures('hostel', 'King Triple Room', 'private'),

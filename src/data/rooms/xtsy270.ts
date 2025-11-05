@@ -72,9 +72,9 @@ export const XTSY270_DATA = {
     }
   ],
   priceCurrency: 'INR',
-  weekendPrice: 9999,
+  weekendPrice: 7999,
   weekdayPrice: 7999,
-  price: 9999, // keeping for backward compatibility
+  price: 7999, // keeping for backward compatibility
   maxGuests: 2,
   maxRooms: 1,
   image:
