@@ -95,7 +95,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
   ), [room.image, room.name, roomImages, handleImageClick]);
 
   // Check if this is the XTSY 270 room
-  const isXTSY270 = room.name === "XTSY 270 Panorama Glass Ensuite";
+  const isXTSY270 = room.id === "xtsy-270" || room.name.includes("270°");
   
   // Check if this is a luxury room
   const isLuxury = room.propertyType === "luxury";
