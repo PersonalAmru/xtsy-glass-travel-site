@@ -70,7 +70,6 @@ const services: ServiceCard[] = [
         { e: "🥾", t: "Guided Wellness Hikes & Private Trails" },
         { e: "🍖", t: "Curated Chef BBQ Experience Included" },
         { e: "🛋️", t: "Luxury Ensuite Lounge with Ultra 4k Netflix & Chill" },
-        { e: "🎮", t: "XTSY Games Zone" },
         { e: "🏔️", t: "Candle Light Dinner - On request" },
         { e: "🔥", t: "Themed Bonfire Nights with Live Music - On request" },
         { e: "🎤", t: "Premium Karaoke Lounge with Acoustic Setup - On request" },
