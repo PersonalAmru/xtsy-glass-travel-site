@@ -889,107 +889,182 @@ const Travel = () => {
               )}
             </div>
 
-            {/* XTSY Tourism Story Section - SEO Optimized */}
+            {/* XTSY Tourism Story Section - SEO Optimized - Dynamic based on tab */}
             <div className="relative z-10 py-12 sm:py-16 md:py-20 lg:py-24 border-t border-gray-200/50">
               <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
                 <div className="max-w-5xl mx-auto">
-                  {/* Heading */}
-                  <div className="text-center mb-8 sm:mb-10 md:mb-12">
-                    <div className="inline-flex items-center gap-2 sm:gap-3 p-3 sm:p-4 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg mb-4">
-                      <span className="text-2xl sm:text-3xl md:text-4xl">🗺️</span>
-                      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 bg-clip-text text-transparent">
-                        XTSY Tourism
-                      </h2>
-                    </div>
-                    <p className="text-base sm:text-lg md:text-xl text-gray-700 font-semibold">
-                      Your Gateway to Authentic India Travel Experiences
-                    </p>
-                  </div>
-
-                  {/* Story Content */}
-                  <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-xl p-6 sm:p-8 md:p-10 lg:p-12 space-y-6 sm:space-y-8">
-                    <p className="text-base sm:text-lg md:text-xl leading-relaxed text-gray-800">
-                      Welcome to <strong>XTSY Tourism</strong>, India's premier destination for curated <strong>domestic travel experiences</strong> and <strong>international tour packages</strong>. As a leading <strong>travel company in India</strong>, we specialize in crafting unforgettable journeys across <strong>Northeast India tourism</strong>, <strong>Himalayan adventures</strong>, <strong>cultural heritage tours</strong>, and <strong>eco-tourism expeditions</strong>.
-                    </p>
-
-                    <p className="text-base sm:text-lg leading-relaxed text-gray-700">
-                      Our expertise spans the enchanting landscapes of <strong>Meghalaya tourism</strong>, <strong>Himachal Pradesh travel packages</strong>, <strong>Uttarakhand pilgrimage tours</strong>, <strong>Sikkim adventure trips</strong>, <strong>Kerala backwater holidays</strong>, and <strong>Tamil Nadu temple circuits</strong>. We are passionate about showcasing India's incredible diversity through <strong>responsible tourism</strong> and <strong>sustainable travel practices</strong>.
-                    </p>
-
-                    <p className="text-base sm:text-lg leading-relaxed text-gray-700">
-                      From the <strong>living root bridges of Cherrapunji</strong> to the <strong>crystal-clear waters of Dawki</strong>, from <strong>Himalayan trekking expeditions</strong> to <strong>wildlife safaris in Kaziranga</strong>, from <strong>spiritual journeys to Char Dham</strong> to <strong>adventure sports in Rishikesh</strong> – XTSY offers comprehensive <strong>India tour packages</strong> designed for every traveler. Whether you seek <strong>budget travel in India</strong>, <strong>luxury heritage tours</strong>, <strong>family vacation packages</strong>, <strong>honeymoon destinations</strong>, or <strong>solo backpacking adventures</strong>, we have the perfect itinerary waiting for you.
-                    </p>
-
-                    <p className="text-base sm:text-lg leading-relaxed text-gray-700">
-                      Our <strong>XTSY Exclusive Tours</strong> include unique experiences like <strong>biodiversity research expeditions</strong>, <strong>ethnobotany workshops</strong>, <strong>wilderness survival camps</strong>, <strong>yoga and meditation retreats</strong>, and <strong>cave exploration adventures</strong>. We partner with local communities to promote <strong>community-based tourism</strong>, ensuring your journey creates positive impact while you discover <strong>offbeat destinations in India</strong> and <strong>hidden gems of Northeast</strong>.
-                    </p>
-
-                    <p className="text-base sm:text-lg leading-relaxed text-gray-700">
-                      As a trusted <strong>online travel agency in India</strong>, XTSY Tourism provides <strong>customized tour packages</strong>, <strong>group travel deals</strong>, <strong>corporate tour arrangements</strong>, and <strong>educational tourism programs</strong>. We handle everything from <strong>hotel bookings</strong> and <strong>transportation</strong> to <strong>travel permits</strong> and <strong>local guides</strong>, ensuring seamless <strong>domestic tourism experiences</strong> across <strong>India travel destinations</strong>.
-                    </p>
-
-                    <p className="text-base sm:text-lg leading-relaxed text-gray-700">
-                      Join thousands of satisfied travelers who have explored <strong>incredible India</strong> with XTSY. Book your <strong>India vacation packages</strong> today and embark on journeys that celebrate <strong>Indian culture</strong>, <strong>natural heritage</strong>, <strong>adventure tourism</strong>, and <strong>authentic local experiences</strong>. From the <strong>Seven Sisters states</strong> to the <strong>Western Ghats</strong>, from the <strong>Himalayas</strong> to the <strong>Indian Ocean</strong> – your extraordinary <strong>India travel adventure</strong> begins here.
-                    </p>
-
-                    {/* Keywords Section (Hidden but SEO friendly) */}
-                    <div className="sr-only">
-                      India tourism, domestic travel India, Northeast India tours, Meghalaya packages, Himachal Pradesh trips, Kerala holidays, Tamil Nadu tours, Uttarakhand pilgrimage, Sikkim travel, adventure tourism India, cultural tours India, eco-tourism packages, heritage tourism, sustainable travel, responsible tourism, offbeat destinations India, budget travel packages, luxury tours India, family vacation India, honeymoon packages, solo travel India, backpacking India, trekking Himalayas, wildlife safari India, spiritual tours, yoga retreats India, cave exploration, living root bridges, Dawki river, Cherrapunji tourism, Shillong packages, Assam tours, Arunachal Pradesh, Manipur tourism, Nagaland tours, Mizoram travel, Tripura packages, Kaziranga safari, Char Dham Yatra, Rishikesh adventure, Valley of Flowers, Kedarnath trek, Gurudongmar Lake, Kerala backwaters, Munnar tea gardens, Tamil Nadu temples, Ooty Kodaikanal, Shimla Manali, Dharamshala tours, Spiti Valley, Kasauli packages, online travel agency India, tour operator India, travel company India, customized tours, group tours India, corporate travel, educational tourism, community tourism, local experiences India, Indian culture tours, natural heritage India, biodiversity tours, ethnobotany, wilderness survival, motorcycle tours India, photography tours, monsoon tourism, winter travel India, best time visit India, India travel guide, tour packages with price, affordable India tours, premium travel experiences
-                    </div>
-
-                    {/* Call to Action */}
-                    <div className="text-center pt-6 sm:pt-8 border-t border-gray-200">
-                      <p className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900 mb-4">
-                        Ready to Experience Incredible India?
-                      </p>
-                      <p className="text-sm sm:text-base text-gray-600 mb-6">
-                        Explore our curated tour packages above and start your journey with XTSY Tourism – Where Every Journey Tells a Story.
-                      </p>
-                      
-                      {/* WhatsApp Button */}
-                      <a
-                        href="https://wa.me/919366074889?text=Hi%20XTSY%20Tourism!%20I'm%20interested%20in%20your%20India%20tour%20packages.%20Can%20you%20help%20me%20plan%20my%20trip?"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in text-sm sm:text-base md:text-lg group"
-                      >
-                        <svg 
-                          className="w-6 h-6 sm:w-7 sm:h-7 transition-transform group-hover:rotate-12" 
-                          fill="currentColor" 
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                        </svg>
-                        <span className="font-bold">Chat with Us on WhatsApp</span>
-                        <svg 
-                          className="w-5 h-5 transition-transform group-hover:translate-x-1" 
-                          fill="none" 
-                          stroke="currentColor" 
-                          viewBox="0 0 24 24"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                        </svg>
-                      </a>
-                      
-                      <p className="text-xs sm:text-sm text-gray-500 mt-4">
-                        💬 Available 24/7 for instant tour planning assistance
-                      </p>
-                      
-                      {/* Incredible India Logo */}
-                      <div className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-gray-200">
-                        <div className="flex justify-center items-center animate-fade-in">
-                          <img 
-                            src={incredibleIndiaLogo} 
-                            alt="Incredible India - Official Tourism Logo" 
-                            className="h-12 sm:h-16 md:h-20 w-auto object-contain hover:scale-105 transition-transform duration-300"
-                          />
+                  {activeTab === 'domestic' ? (
+                    <>
+                      {/* Domestic India Tourism Content */}
+                      <div className="text-center mb-8 sm:mb-10 md:mb-12">
+                        <div className="inline-flex items-center gap-2 sm:gap-3 p-3 sm:p-4 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg mb-4">
+                          <span className="text-2xl sm:text-3xl md:text-4xl">🗺️</span>
+                          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 bg-clip-text text-transparent">
+                            XTSY Tourism
+                          </h2>
                         </div>
-                        <p className="text-xs sm:text-sm text-gray-600 text-center mt-3 sm:mt-4">
-                          Proud Partner of India Tourism
+                        <p className="text-base sm:text-lg md:text-xl text-gray-700 font-semibold">
+                          Your Gateway to Authentic India Travel Experiences
                         </p>
                       </div>
-                    </div>
-                  </div>
+
+                      <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-xl p-6 sm:p-8 md:p-10 lg:p-12 space-y-6 sm:space-y-8">
+                        <p className="text-base sm:text-lg md:text-xl leading-relaxed text-gray-800">
+                          Welcome to <strong>XTSY Tourism</strong>, India's premier destination for curated <strong>domestic travel experiences</strong> and <strong>international tour packages</strong>. As a leading <strong>travel company in India</strong>, we specialize in crafting unforgettable journeys across <strong>Northeast India tourism</strong>, <strong>Himalayan adventures</strong>, <strong>cultural heritage tours</strong>, and <strong>eco-tourism expeditions</strong>.
+                        </p>
+
+                        <p className="text-base sm:text-lg leading-relaxed text-gray-700">
+                          Our expertise spans the enchanting landscapes of <strong>Meghalaya tourism</strong>, <strong>Himachal Pradesh travel packages</strong>, <strong>Uttarakhand pilgrimage tours</strong>, <strong>Sikkim adventure trips</strong>, <strong>Kerala backwater holidays</strong>, and <strong>Tamil Nadu temple circuits</strong>. We are passionate about showcasing India's incredible diversity through <strong>responsible tourism</strong> and <strong>sustainable travel practices</strong>.
+                        </p>
+
+                        <p className="text-base sm:text-lg leading-relaxed text-gray-700">
+                          From the <strong>living root bridges of Cherrapunji</strong> to the <strong>crystal-clear waters of Dawki</strong>, from <strong>Himalayan trekking expeditions</strong> to <strong>wildlife safaris in Kaziranga</strong>, from <strong>spiritual journeys to Char Dham</strong> to <strong>adventure sports in Rishikesh</strong> – XTSY offers comprehensive <strong>India tour packages</strong> designed for every traveler.
+                        </p>
+
+                        <div className="sr-only">
+                          India tourism, domestic travel India, Northeast India tours, Meghalaya packages, Himachal Pradesh trips, Kerala holidays, Tamil Nadu tours, Uttarakhand pilgrimage, Sikkim travel, adventure tourism India, cultural tours India, eco-tourism packages, heritage tourism, sustainable travel, responsible tourism, offbeat destinations India
+                        </div>
+
+                        <div className="text-center pt-6 sm:pt-8 border-t border-gray-200">
+                          <p className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900 mb-4">
+                            Ready to Experience Incredible India?
+                          </p>
+                          <p className="text-sm sm:text-base text-gray-600 mb-6">
+                            Explore our curated tour packages above and start your journey with XTSY Tourism.
+                          </p>
+                          
+                          <a
+                            href="https://wa.me/919366074889?text=Hi%20XTSY%20Tourism!%20I'm%20interested%20in%20your%20India%20tour%20packages.%20Can%20you%20help%20me%20plan%20my%20trip?"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in text-sm sm:text-base md:text-lg group"
+                          >
+                            <svg className="w-6 h-6 sm:w-7 sm:h-7 transition-transform group-hover:rotate-12" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                            <span className="font-bold">Chat with Us on WhatsApp</span>
+                            <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                          </a>
+                          
+                          <p className="text-xs sm:text-sm text-gray-500 mt-4">
+                            💬 Available 24/7 for instant tour planning assistance
+                          </p>
+                          
+                          <div className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-gray-200">
+                            <div className="flex justify-center items-center animate-fade-in">
+                              <img 
+                                src={incredibleIndiaLogo} 
+                                alt="Incredible India - Official Tourism Logo" 
+                                className="h-12 sm:h-16 md:h-20 w-auto object-contain hover:scale-105 transition-transform duration-300"
+                              />
+                            </div>
+                            <p className="text-xs sm:text-sm text-gray-600 text-center mt-3 sm:mt-4">
+                              Proud Partner of India Tourism
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      {/* International Tourism Content */}
+                      <div className="text-center mb-8 sm:mb-10 md:mb-12">
+                        <div className="inline-flex items-center gap-2 sm:gap-3 p-3 sm:p-4 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg mb-4">
+                          <span className="text-2xl sm:text-3xl md:text-4xl">🌍</span>
+                          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                            XTSY Global Travel
+                          </h2>
+                        </div>
+                        <p className="text-base sm:text-lg md:text-xl text-gray-700 font-semibold">
+                          Your Gateway to Extraordinary International Adventures
+                        </p>
+                      </div>
+
+                      <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-xl p-6 sm:p-8 md:p-10 lg:p-12 space-y-6 sm:space-y-8">
+                        <p className="text-base sm:text-lg md:text-xl leading-relaxed text-gray-800">
+                          Welcome to <strong>XTSY Global Travel</strong>, your trusted partner for curated <strong>international tour packages</strong> and <strong>overseas vacation experiences</strong>. From India, we connect you to the world's most captivating destinations across <strong>Asia</strong>, <strong>Europe</strong>, <strong>Australia</strong>, <strong>Americas</strong>, and beyond.
+                        </p>
+
+                        <p className="text-base sm:text-lg leading-relaxed text-gray-700">
+                          Discover the magic of <strong>cherry blossoms in Japan</strong>, experience <strong>K-Culture in South Korea</strong>, explore the <strong>tropical paradise of Thailand</strong>, savor authentic <strong>street food in Vietnam</strong>, island-hop through <strong>Indonesia and Philippines</strong>, and immerse yourself in the <strong>multicultural charm of Malaysia and Singapore</strong>. Our <strong>Asia tour packages</strong> blend adventure, culture, and relaxation.
+                        </p>
+
+                        <p className="text-base sm:text-lg leading-relaxed text-gray-700">
+                          Experience the grandeur of <strong>Europe tours from India</strong> – from the <strong>romantic streets of Paris</strong> to the <strong>art and history of Italy</strong>, from <strong>Alpine adventures in Switzerland</strong> to the <strong>royal heritage of UK</strong>. Explore <strong>Spanish festivals</strong>, <strong>German castles</strong>, <strong>Dutch canals</strong>, and <strong>Austrian music heritage</strong> with our expertly crafted <strong>European vacation packages</strong>.
+                        </p>
+
+                        <p className="text-base sm:text-lg leading-relaxed text-gray-700">
+                          As an <strong>international travel agency in India</strong>, XTSY specializes in <strong>customized overseas trips</strong>, <strong>honeymoon packages abroad</strong>, <strong>family international vacations</strong>, <strong>group tours overseas</strong>, and <strong>solo travel adventures worldwide</strong>. We handle <strong>visa assistance</strong>, <strong>flight bookings</strong>, <strong>hotel reservations</strong>, <strong>travel insurance</strong>, and <strong>guided tours</strong> for seamless global experiences.
+                        </p>
+
+                        <p className="text-base sm:text-lg leading-relaxed text-gray-700">
+                          Whether you seek <strong>luxury international tours</strong>, <strong>budget-friendly overseas packages</strong>, <strong>adventure travel abroad</strong>, <strong>cultural immersion experiences</strong>, or <strong>wellness retreats worldwide</strong>, XTSY Global Travel designs journeys that create lifelong memories. From <strong>beach holidays in Bali</strong> to <strong>Northern Lights in Iceland</strong>, from <strong>safaris in Africa</strong> to <strong>city breaks in Dubai</strong> – the world awaits you.
+                        </p>
+
+                        <p className="text-base sm:text-lg leading-relaxed text-gray-700">
+                          Join thousands of Indian travelers who have explored the globe with XTSY. Book your <strong>international vacation package</strong> today and embark on extraordinary journeys across continents. <strong>Coming Soon</strong> – experience the world with India's most trusted <strong>overseas tour operator</strong>.
+                        </p>
+
+                        {/* Keywords Section (Hidden but SEO friendly) */}
+                        <div className="sr-only">
+                          international travel packages from India, overseas tour packages, Asia tour packages, Europe tours from India, Thailand tour packages, Japan tours, Korea travel packages, Vietnam tours, Singapore Malaysia packages, Indonesia tours, Philippines vacation, international honeymoon packages, family overseas trips, Europe vacation packages, France tour packages, Italy tours, Switzerland packages, Spain travel, Germany tours, UK vacation packages, international travel agency India, overseas travel from India, foreign tour packages, international vacation deals, world tour packages, global travel India, visa assistance, flight booking services, international hotels, guided tours abroad, luxury international tours, budget overseas packages, adventure travel worldwide, cultural tours abroad, beach holidays international, Europe group tours, Asia backpacking, honeymoon destinations abroad, family vacations overseas, solo travel international, cruise packages, wellness retreats abroad, safari tours, Northern Lights tours, Dubai packages, Bali holidays, Australia tours, New Zealand packages, USA vacation, Canada tours, South America travel, African safaris, international tourism India, overseas tour operator, global adventures, world travel specialist
+                        </div>
+
+                        {/* Call to Action */}
+                        <div className="text-center pt-6 sm:pt-8 border-t border-gray-200">
+                          <p className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900 mb-4">
+                            Ready to Explore the World?
+                          </p>
+                          <p className="text-sm sm:text-base text-gray-600 mb-6">
+                            Discover our upcoming international destinations and be among the first to book your global adventure with XTSY.
+                          </p>
+                          
+                          {/* WhatsApp Button */}
+                          <a
+                            href="https://wa.me/919366074889?text=Hi%20XTSY%20Global%20Travel!%20I'm%20interested%20in%20your%20international%20tour%20packages.%20Can%20you%20help%20me%20plan%20my%20overseas%20trip?"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in text-sm sm:text-base md:text-lg group"
+                          >
+                            <svg className="w-6 h-6 sm:w-7 sm:h-7 transition-transform group-hover:rotate-12" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                            <span className="font-bold">Chat About International Tours</span>
+                            <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                          </a>
+                          
+                          <p className="text-xs sm:text-sm text-gray-500 mt-4">
+                            🌏 Available 24/7 for international travel planning
+                          </p>
+                          
+                          {/* Global Travel Badge */}
+                          <div className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-gray-200">
+                            <div className="flex justify-center items-center gap-4 flex-wrap animate-fade-in">
+                              <div className="flex items-center gap-2 bg-blue-50 px-4 py-2 rounded-full">
+                                <span className="text-2xl">✈️</span>
+                                <span className="text-sm font-semibold text-blue-900">International Certified</span>
+                              </div>
+                              <div className="flex items-center gap-2 bg-purple-50 px-4 py-2 rounded-full">
+                                <span className="text-2xl">🌍</span>
+                                <span className="text-sm font-semibold text-purple-900">50+ Countries</span>
+                              </div>
+                              <div className="flex items-center gap-2 bg-pink-50 px-4 py-2 rounded-full">
+                                <span className="text-2xl">🎯</span>
+                                <span className="text-sm font-semibold text-pink-900">Coming Soon 2025</span>
+                              </div>
+                            </div>
+                            <p className="text-xs sm:text-sm text-gray-600 text-center mt-4">
+                              Your Trusted Partner for Global Adventures
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
