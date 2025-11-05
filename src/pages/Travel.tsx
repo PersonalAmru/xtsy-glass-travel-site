@@ -896,6 +896,68 @@ const Travel = () => {
                 </LazyWrapper>
               )}
             </div>
+
+            {/* XTSY Tourism Story Section - SEO Optimized */}
+            <div className="relative z-10 py-12 sm:py-16 md:py-20 lg:py-24 border-t border-gray-200/50">
+              <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+                <div className="max-w-5xl mx-auto">
+                  {/* Heading */}
+                  <div className="text-center mb-8 sm:mb-10 md:mb-12">
+                    <div className="inline-flex items-center gap-2 sm:gap-3 p-3 sm:p-4 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg mb-4">
+                      <span className="text-2xl sm:text-3xl md:text-4xl">🗺️</span>
+                      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 bg-clip-text text-transparent">
+                        XTSY Tourism
+                      </h2>
+                    </div>
+                    <p className="text-base sm:text-lg md:text-xl text-gray-700 font-semibold">
+                      Your Gateway to Authentic India Travel Experiences
+                    </p>
+                  </div>
+
+                  {/* Story Content */}
+                  <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-xl p-6 sm:p-8 md:p-10 lg:p-12 space-y-6 sm:space-y-8">
+                    <p className="text-base sm:text-lg md:text-xl leading-relaxed text-gray-800">
+                      Welcome to <strong>XTSY Tourism</strong>, India's premier destination for curated <strong>domestic travel experiences</strong> and <strong>international tour packages</strong>. As a leading <strong>travel company in India</strong>, we specialize in crafting unforgettable journeys across <strong>Northeast India tourism</strong>, <strong>Himalayan adventures</strong>, <strong>cultural heritage tours</strong>, and <strong>eco-tourism expeditions</strong>.
+                    </p>
+
+                    <p className="text-base sm:text-lg leading-relaxed text-gray-700">
+                      Our expertise spans the enchanting landscapes of <strong>Meghalaya tourism</strong>, <strong>Himachal Pradesh travel packages</strong>, <strong>Uttarakhand pilgrimage tours</strong>, <strong>Sikkim adventure trips</strong>, <strong>Kerala backwater holidays</strong>, and <strong>Tamil Nadu temple circuits</strong>. We are passionate about showcasing India's incredible diversity through <strong>responsible tourism</strong> and <strong>sustainable travel practices</strong>.
+                    </p>
+
+                    <p className="text-base sm:text-lg leading-relaxed text-gray-700">
+                      From the <strong>living root bridges of Cherrapunji</strong> to the <strong>crystal-clear waters of Dawki</strong>, from <strong>Himalayan trekking expeditions</strong> to <strong>wildlife safaris in Kaziranga</strong>, from <strong>spiritual journeys to Char Dham</strong> to <strong>adventure sports in Rishikesh</strong> – XTSY offers comprehensive <strong>India tour packages</strong> designed for every traveler. Whether you seek <strong>budget travel in India</strong>, <strong>luxury heritage tours</strong>, <strong>family vacation packages</strong>, <strong>honeymoon destinations</strong>, or <strong>solo backpacking adventures</strong>, we have the perfect itinerary waiting for you.
+                    </p>
+
+                    <p className="text-base sm:text-lg leading-relaxed text-gray-700">
+                      Our <strong>XTSY Exclusive Tours</strong> include unique experiences like <strong>biodiversity research expeditions</strong>, <strong>ethnobotany workshops</strong>, <strong>wilderness survival camps</strong>, <strong>yoga and meditation retreats</strong>, and <strong>cave exploration adventures</strong>. We partner with local communities to promote <strong>community-based tourism</strong>, ensuring your journey creates positive impact while you discover <strong>offbeat destinations in India</strong> and <strong>hidden gems of Northeast</strong>.
+                    </p>
+
+                    <p className="text-base sm:text-lg leading-relaxed text-gray-700">
+                      As a trusted <strong>online travel agency in India</strong>, XTSY Tourism provides <strong>customized tour packages</strong>, <strong>group travel deals</strong>, <strong>corporate tour arrangements</strong>, and <strong>educational tourism programs</strong>. We handle everything from <strong>hotel bookings</strong> and <strong>transportation</strong> to <strong>travel permits</strong> and <strong>local guides</strong>, ensuring seamless <strong>domestic tourism experiences</strong> across <strong>India travel destinations</strong>.
+                    </p>
+
+                    <p className="text-base sm:text-lg leading-relaxed text-gray-700">
+                      Join thousands of satisfied travelers who have explored <strong>incredible India</strong> with XTSY. Book your <strong>India vacation packages</strong> today and embark on journeys that celebrate <strong>Indian culture</strong>, <strong>natural heritage</strong>, <strong>adventure tourism</strong>, and <strong>authentic local experiences</strong>. From the <strong>Seven Sisters states</strong> to the <strong>Western Ghats</strong>, from the <strong>Himalayas</strong> to the <strong>Indian Ocean</strong> – your extraordinary <strong>India travel adventure</strong> begins here.
+                    </p>
+
+                    {/* Keywords Section (Hidden but SEO friendly) */}
+                    <div className="sr-only">
+                      India tourism, domestic travel India, Northeast India tours, Meghalaya packages, Himachal Pradesh trips, Kerala holidays, Tamil Nadu tours, Uttarakhand pilgrimage, Sikkim travel, adventure tourism India, cultural tours India, eco-tourism packages, heritage tourism, sustainable travel, responsible tourism, offbeat destinations India, budget travel packages, luxury tours India, family vacation India, honeymoon packages, solo travel India, backpacking India, trekking Himalayas, wildlife safari India, spiritual tours, yoga retreats India, cave exploration, living root bridges, Dawki river, Cherrapunji tourism, Shillong packages, Assam tours, Arunachal Pradesh, Manipur tourism, Nagaland tours, Mizoram travel, Tripura packages, Kaziranga safari, Char Dham Yatra, Rishikesh adventure, Valley of Flowers, Kedarnath trek, Gurudongmar Lake, Kerala backwaters, Munnar tea gardens, Tamil Nadu temples, Ooty Kodaikanal, Shimla Manali, Dharamshala tours, Spiti Valley, Kasauli packages, online travel agency India, tour operator India, travel company India, customized tours, group tours India, corporate travel, educational tourism, community tourism, local experiences India, Indian culture tours, natural heritage India, biodiversity tours, ethnobotany, wilderness survival, motorcycle tours India, photography tours, monsoon tourism, winter travel India, best time visit India, India travel guide, tour packages with price, affordable India tours, premium travel experiences
+                    </div>
+
+                    {/* Call to Action */}
+                    <div className="text-center pt-6 sm:pt-8 border-t border-gray-200">
+                      <p className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900 mb-4">
+                        Ready to Experience Incredible India?
+                      </p>
+                      <p className="text-sm sm:text-base text-gray-600 mb-6">
+                        Explore our curated tour packages above and start your journey with XTSY Tourism – Where Every Journey Tells a Story.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </main>
