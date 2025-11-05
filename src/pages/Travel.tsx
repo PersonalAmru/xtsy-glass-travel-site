@@ -13,7 +13,7 @@ import SEOContent from "@/components/SEOContent";
 import { TourPricingService } from "@/utils/tourPricingService";
 import UnifiedImage from "@/components/UnifiedImage"; // Updated to UnifiedImage
 import incredibleIndiaLogo from "@/assets/incredible-india-logo.png";
-import reHimalayanNepalExpedition from "@/assets/re-himalayan-nepal-real.jpg";
+import reHimalayanNepalExpedition from "@/assets/re-himalayan-expedition-cover.jpg";
 
 // Import images for tour packages
 import meghalayaBiodiversityAuthenticImg from "@/assets/meghalaya-biodiversity-authentic.jpg";
