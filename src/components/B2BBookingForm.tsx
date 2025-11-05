@@ -505,7 +505,7 @@ ${formData.specialRequests || 'None'}
                 <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border">
                   <div>
                     <h4 className="font-semibold">Transportation Arrangement</h4>
-                    <p className="text-sm text-muted-foreground">Local transport and transfers</p>
+                    <p className="text-sm text-muted-foreground">Local transport and transfers • Self Drive - Car & Bike Rental service</p>
                   </div>
                   <input
                     type="checkbox"
