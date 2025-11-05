@@ -1,25 +1,5 @@
 project_id = "oidnydyyjyjfnyadhyzn"
 
-# Admin functions now require JWT authentication
-# These functions verify both JWT token AND admin/staff role
-[functions.admin-room-blocking]
-verify_jwt = true
-
-[functions.admin-get-data]
-verify_jwt = true
-
-[functions.admin-recent-bookings]
-verify_jwt = true
-
-[functions.admin-cancel-booking]
-verify_jwt = true
-
-[functions.admin-delete-booking]
-verify_jwt = true
-
-[functions.admin-confirm-booking]
-verify_jwt = true
-
 # Public-facing functions (no authentication required)
 [functions.save-booking]
 verify_jwt = false
@@ -30,5 +10,41 @@ verify_jwt = false
 [functions.get-room-types]
 verify_jwt = false
 
-[functions.secure-blocking]
+[functions.send-whatsapp-booking]
+verify_jwt = false
+
+[functions.ai-travel-assistant]
+verify_jwt = false
+
+[functions.gdpr-data-export]
+verify_jwt = false
+
+[functions.gdpr-data-deletion]
+verify_jwt = false
+
+[functions.newsletter-signup]
+verify_jwt = false
+
+[functions.get-room-availability]
+verify_jwt = false
+
+[functions.inventory-sync]
+verify_jwt = false
+
+[functions.ota-webhook-handler]
+verify_jwt = false
+
+[functions.process-booking]
+verify_jwt = false
+
+[functions.payment-webhook]
+verify_jwt = false
+
+[functions.csp-report]
+verify_jwt = false
+
+[functions.security-monitoring]
+verify_jwt = false
+
+[functions.notify-admin]
 verify_jwt = false
