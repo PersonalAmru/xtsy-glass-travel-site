@@ -328,6 +328,17 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                       } ${isXTSY270 ? 'text-base' : ''} leading-tight`}>
                         SOLD OUT
                       </div>
+                    ) : isXTSY270 ? (
+                      <div className="space-y-0.5">
+                        <div className="text-right">
+                          <div className="text-primary font-bold text-base leading-tight">₹7,999</div>
+                          <div className="text-gray-400 text-xs">Mon-Thu</div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-primary font-bold text-base leading-tight">₹9,999</div>
+                          <div className="text-gray-400 text-xs">Fri-Sun</div>
+                        </div>
+                      </div>
                     ) : (
                       <>
                         <div className={`font-bold text-primary text-right ${

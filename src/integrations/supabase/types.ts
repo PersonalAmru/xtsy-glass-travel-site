@@ -435,6 +435,8 @@ export type Database = {
           name: string
           total_units: number
           updated_at: string | null
+          weekday_price: number | null
+          weekend_price: number | null
         }
         Insert: {
           amenities?: string[] | null
@@ -449,6 +451,8 @@ export type Database = {
           name: string
           total_units: number
           updated_at?: string | null
+          weekday_price?: number | null
+          weekend_price?: number | null
         }
         Update: {
           amenities?: string[] | null
@@ -463,6 +467,8 @@ export type Database = {
           name?: string
           total_units?: number
           updated_at?: string | null
+          weekday_price?: number | null
+          weekend_price?: number | null
         }
         Relationships: []
       }
