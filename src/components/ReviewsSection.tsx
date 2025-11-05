@@ -637,7 +637,7 @@ const ReviewsSection = () => {
         <div className="mt-8 text-center">
           <h3 className="text-lg sm:text-xl font-semibold text-white mb-6">Our Ratings Across Platforms</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
-            <div className="glass-card bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 hover:bg-white/15 transition-all duration-300">
+            <div className="glass-card bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 hover:bg-white/15 hover:scale-105 hover:shadow-2xl hover:border-white/40 transition-all duration-300 cursor-pointer">
               <div className="text-center">
                 <div className="text-xl font-bold text-white mb-1">Google</div>
                 <div className="text-3xl font-bold text-orange-400 mb-2">4.9</div>
@@ -650,7 +650,7 @@ const ReviewsSection = () => {
               </div>
             </div>
             
-            <div className="glass-card bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 hover:bg-white/15 transition-all duration-300">
+            <div className="glass-card bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 hover:bg-white/15 hover:scale-105 hover:shadow-2xl hover:border-white/40 transition-all duration-300 cursor-pointer">
               <div className="text-center">
                 <div className="text-xl font-bold text-white mb-1">Booking.com</div>
                 <div className="text-3xl font-bold text-orange-400 mb-2">9.8</div>
@@ -662,7 +662,7 @@ const ReviewsSection = () => {
               </div>
             </div>
             
-            <div className="glass-card bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 hover:bg-white/15 transition-all duration-300">
+            <div className="glass-card bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 hover:bg-white/15 hover:scale-105 hover:shadow-2xl hover:border-white/40 transition-all duration-300 cursor-pointer">
               <div className="text-center">
                 <div className="text-xl font-bold text-white mb-1">Expedia</div>
                 <div className="text-3xl font-bold text-orange-400 mb-2">9.8</div>
@@ -674,7 +674,7 @@ const ReviewsSection = () => {
               </div>
             </div>
             
-            <div className="glass-card bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 hover:bg-white/15 transition-all duration-300">
+            <div className="glass-card bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 hover:bg-white/15 hover:scale-105 hover:shadow-2xl hover:border-white/40 transition-all duration-300 cursor-pointer">
               <div className="text-center">
                 <div className="text-xl font-bold text-white mb-1">MakeMyTrip</div>
                 <div className="text-3xl font-bold text-orange-400 mb-2">4.4</div>
