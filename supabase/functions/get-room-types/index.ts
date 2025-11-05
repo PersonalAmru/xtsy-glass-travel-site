@@ -42,10 +42,14 @@ serve(async (req) => {
     )
 
   } catch (error) {
+    console.error('Error fetching room types:', error);
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ 
+        error: 'Unable to fetch room information. Please try again or contact support.',
+        success: false
+      }),
       { 
-        status: 400,
+        status: 500,
         headers: { 
           ...corsHeaders, 
           'Content-Type': 'application/json' 

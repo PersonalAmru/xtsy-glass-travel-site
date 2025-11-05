@@ -91,7 +91,7 @@ serve(async (req) => {
       // Fetch actual room pricing from database
       const { data: roomType, error: roomError } = await supabase
         .from('room_types')
-        .select('id, name, price_per_night')
+        .select('id, name, base_price')
         .or(`id.eq.${room.id},name.eq.${room.name}`)
         .single();
 
@@ -105,7 +105,7 @@ serve(async (req) => {
         );
       }
 
-      const actualPrice = roomType.price_per_night;
+      const actualPrice = roomType.base_price;
       const roomQuantity = room.type === 'dorm' ? room.selection.guests : room.selection.rooms;
       const roomTotal = actualPrice * roomQuantity * nights;
 

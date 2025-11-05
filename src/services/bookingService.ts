@@ -24,18 +24,43 @@ export async function createBooking(request: BookingRequest): Promise<CreateBook
 
     const { bookingData, guestDetails } = validationResult.data;
 
-    // 2. Generate unique booking ID
+    // 2. Server-side price validation (CRITICAL SECURITY)
+    const { data: validation, error: validationError } = await supabase.functions.invoke('validate-booking', {
+      body: {
+        checkIn: bookingData.checkIn,
+        checkOut: bookingData.checkOut,
+        guests: bookingData.guests,
+        nights: bookingData.nights,
+        selectedRooms: bookingData.selectedRooms,
+        totalAmount: bookingData.totalAmount
+      }
+    });
+
+    if (validationError || !validation?.success) {
+      console.error('Server-side validation failed:', validationError || validation?.error);
+      return { 
+        success: false, 
+        error: validation?.error || 'Booking validation failed. Please refresh and try again.' 
+      };
+    }
+
+    // Use server-validated prices
+    const validatedTotal = validation.validation.total_amount;
+    const validatedSubtotal = validation.validation.subtotal;
+    const validatedGst = validation.validation.gst_amount;
+
+    // 3. Generate unique booking ID
     const bookingId = `XTSY-${new Date().toISOString().split('T')[0].replace(/-/g, '')}-${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`;
 
-    // 3. Prepare booking record
+    // 4. Prepare booking record
     const bookingRecord = {
       booking_id: bookingId,
       check_in: bookingData.checkIn,
       check_out: bookingData.checkOut,
       guests: bookingData.guests,
-      total_amount: bookingData.totalAmount,
-      subtotal: Math.round(bookingData.totalAmount / 1.12), // Remove 12% GST for subtotal
-      taxes: Math.round(bookingData.totalAmount * 0.12),
+      total_amount: validatedTotal, // Use server-validated total
+      subtotal: validatedSubtotal, // Use server-validated subtotal
+      taxes: validatedGst, // Use server-validated GST
       
       // Guest details
       guest_name: guestDetails.guestName,
@@ -62,7 +87,7 @@ export async function createBooking(request: BookingRequest): Promise<CreateBook
       created_at: new Date().toISOString()
     };
 
-    // 4. Insert booking into database (RLS policies will enforce security)
+    // 5. Insert booking into database (RLS policies will enforce security)
     const { data, error } = await supabase
       .from('bookings')
       .insert(bookingRecord)
