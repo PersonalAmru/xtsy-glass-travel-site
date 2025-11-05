@@ -2,6 +2,7 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { Resend } from 'https://esm.sh/resend@2.0.0'
+import { newsletterSchema, escapeHtml, sanitizeArray } from '../_shared/newsletterValidation.ts'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -21,7 +22,38 @@ serve(async (req) => {
 
     const resend = new Resend(Deno.env.get('RESEND_API_KEY'));
 
-    const { email, fullName, interests } = await req.json();
+    const rawData = await req.json();
+    
+    // CRITICAL SECURITY: Validate input data
+    const validationResult = newsletterSchema.safeParse(rawData);
+    if (!validationResult.success) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid input data', details: validationResult.error.issues }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    const { email, fullName, interests } = validationResult.data;
+
+    // CRITICAL SECURITY: Check rate limits
+    const { data: rateLimitAllowed, error: rateLimitError } = await supabase.rpc(
+      'check_newsletter_rate_limit',
+      {
+        p_email: email,
+        p_ip_address: req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || ''
+      }
+    );
+
+    if (rateLimitError) {
+      console.error('Rate limit check error:', rateLimitError);
+    }
+
+    if (rateLimitAllowed === false) {
+      return new Response(
+        JSON.stringify({ error: 'Too many signup attempts. Please try again later.' }),
+        { status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
 
     // Save to database
     const { data: savedData, error: dbError } = await supabase
@@ -41,7 +73,12 @@ serve(async (req) => {
       throw new Error('Failed to save subscription');
     }
 
-    console.log(`Newsletter signup saved: ${fullName} (${email}) - Interests: ${interests.join(', ')}`);
+    console.log(`Newsletter signup saved: ${escapeHtml(fullName)} (${email}) - Interests: ${interests.length}`);
+
+    // SECURITY: Sanitize data for email templates to prevent XSS
+    const safeName = escapeHtml(fullName);
+    const safeEmail = escapeHtml(email);
+    const safeInterests = sanitizeArray(interests);
 
     // Send notification emails to admin team
     const adminEmails = ['pk@xtsy.one', 'amru@xtsy.one', 'admin@xtsy.one'];
@@ -57,9 +94,9 @@ serve(async (req) => {
             <p>A new subscriber has joined the XTSY newsletter:</p>
             
             <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
-              <p><strong>Name:</strong> ${fullName}</p>
-              <p><strong>Email:</strong> ${email}</p>
-              <p><strong>Interests:</strong> ${interests.join(', ')}</p>
+              <p><strong>Name:</strong> ${safeName}</p>
+              <p><strong>Email:</strong> ${safeEmail}</p>
+              <p><strong>Interests:</strong> ${safeInterests.join(', ')}</p>
               <p><strong>Subscribed at:</strong> ${new Date().toLocaleString()}</p>
             </div>
             
@@ -79,7 +116,7 @@ serve(async (req) => {
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <div style="text-align: center; padding: 20px;">
-            <h1 style="color: #d63384;">Welcome to XTSY, ${fullName}!</h1>
+            <h1 style="color: #d63384;">Welcome to XTSY, ${safeName}!</h1>
           </div>
           
           <div style="padding: 20px;">
@@ -87,7 +124,7 @@ serve(async (req) => {
             
             <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
               <h3 style="color: #333; margin-top: 0;">Your Subscription Details:</h3>
-              <p><strong>Interests:</strong> ${interests.join(', ')}</p>
+              <p><strong>Interests:</strong> ${safeInterests.join(', ')}</p>
             </div>
             
             <p>You'll receive updates about:</p>

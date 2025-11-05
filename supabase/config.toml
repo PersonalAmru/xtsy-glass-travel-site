@@ -23,7 +23,7 @@ verify_jwt = false
 verify_jwt = false
 
 [functions.security-monitoring]
-verify_jwt = false
+verify_jwt = true
 
 # GDPR functions (now require authentication)
 [functions.gdpr-data-export]
