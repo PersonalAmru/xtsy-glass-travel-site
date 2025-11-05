@@ -77,25 +77,29 @@ const BookingConfirmation = ({ bookingData }: BookingConfirmationProps) => {
     const addOnsMessage = generateAddOnsMessage();
     const addOnTotalMessage = bookingData.addOnTotal ? `\n💰 Add-ons Total: ₹${bookingData.addOnTotal}` : '';
     
-    const message = `
-Booking Confirmed! 
+    const message = `🌟 *Booking Confirmed - XTSY!* 🌟
 
-📋 Booking ID: ${bookingData.bookingId}
-👤 Guest: ${bookingData.guestName}
-📧 Email: ${bookingData.email}
+Congratulations! Your booking is confirmed! 🎉
 
-📅 Check-in: ${new Date(bookingData.checkIn).toLocaleDateString()}
-📅 Check-out: ${new Date(bookingData.checkOut).toLocaleDateString()}
-🌙 Nights: ${bookingData.nights}
-👥 Guests: ${bookingData.guests}
+📋 *Booking Information:*
+   Booking ID: ${bookingData.bookingId}
+   Guest Name: ${bookingData.guestName}
+   Email: ${bookingData.email}
 
-🏨 Room Details:
-${bookingData.items.map(room => `• ${room.roomName} x${room.quantity}`).join('\n')}${addOnsMessage}
+📅 *Stay Details:*
+   Check-in: ${new Date(bookingData.checkIn).toLocaleDateString()}
+   Check-out: ${new Date(bookingData.checkOut).toLocaleDateString()}
+   Nights: ${bookingData.nights}
+   Guests: ${bookingData.guests}
 
-💰 Total Amount: ₹${bookingData.totalAmount}${addOnTotalMessage}
-💳 Advance Paid: ₹${Math.round(bookingData.totalAmount * 0.21)}
+🏨 *Room Details:*
+${bookingData.items.map(room => `   • ${room.roomName} × ${room.quantity}`).join('\n')}${addOnsMessage}
 
-Thank you for choosing XTSY!
+💰 *Payment Summary:*
+   Total Amount: ₹${bookingData.totalAmount}${addOnTotalMessage}
+   Advance Paid: ₹${Math.round(bookingData.totalAmount * 0.21)}
+
+Thank you for choosing XTSY! We look forward to hosting you! 🏨✨
     `.trim();
 
     // Send to property WhatsApp
@@ -104,7 +108,7 @@ Thank you for choosing XTSY!
 
     // Send to guest WhatsApp
     const guestWhatsAppUrl = `https://wa.me/${bookingData.whatsappNumber.replace(/\D/g, '')}?text=${encodeURIComponent(
-      `Dear ${bookingData.guestName},\n\n${message}\n\nSee you soon at XTSY! 🏨✨`
+      `🌟 Dear ${bookingData.guestName},\n\n${message}\n\nSee you soon at XTSY! 🏨✨`
     )}`;
     
     setTimeout(() => {

@@ -175,7 +175,17 @@ GST (12%): ${formatPrice(gst)}
 ${formData.specialRequests || 'None'}
       `.trim();
 
-      const whatsappUrl = `https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent(bookingDetails)}&type=phone_number&app_absent=0`;
+      const welcomeMessage = `🌟 *Group Booking Inquiry - XTSY* 🌟
+
+Hello XTSY Team! 👋
+
+We're excited to plan a group stay at your property!
+
+${bookingDetails}
+
+Looking forward to your confirmation! 🎉`;
+
+      const whatsappUrl = `https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent(welcomeMessage)}&type=phone_number&app_absent=0`;
       window.open(whatsappUrl, '_blank');
       onClose();
     } catch (error) {
@@ -372,7 +382,10 @@ ${formData.specialRequests || 'None'}
                 <div className="flex justify-center">
                     <Button 
                     type="button"
-                    onClick={() => window.open('https://api.whatsapp.com/send/?phone=918837317070&text&type=phone_number&app_absent=0', '_blank')}
+                    onClick={() => {
+                      const message = encodeURIComponent("🌟 *Hello XTSY Team!* 🌟\n\nI'd like to inquire about group booking options.\n\nPlease share details about:\n• Group rates\n• Available dates\n• Room configurations\n• Special packages\n\nThank you! 😊");
+                      window.open(`https://api.whatsapp.com/send/?phone=918837317070&text=${message}&type=phone_number&app_absent=0`, '_blank');
+                    }}
                     className="w-full bg-gradient-to-r from-primary to-orange-600 hover:from-orange-600 hover:to-red-700 text-white font-bold shadow-lg"
                   >
                     <Users className="h-4 w-4 mr-2" />

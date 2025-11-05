@@ -443,7 +443,11 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
       return;
     }
 
-    const whatsappMessage = `Tour Package Availability Inquiry - XTSY Travellers Hostel & XTSY Luxury
+    const whatsappMessage = `🌟 *Tour Package Inquiry - XTSY* 🌟
+
+Hello XTSY Team! 👋
+
+Tour Package Availability Inquiry
 
 *Package Details:*
 Package: ${tourPackage.title}
@@ -467,7 +471,9 @@ Total Guests: ${guests}
 *Package Highlights:*
 ${tourPackage.highlights.map(highlight => `• ${highlight}`).join('\n')}
 
-Please check availability for these dates and share pricing details for this exclusive tour package.`;
+Looking forward to an amazing tour experience with XTSY! 🎉
+
+Please share availability and pricing details.`;
 
     const whatsappURL = `https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent(whatsappMessage)}&type=phone_number&app_absent=0`;
     window.open(whatsappURL, '_blank');

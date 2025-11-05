@@ -183,8 +183,71 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
     return selectedRooms.reduce((total, room) => total + (room.price * room.quantity * nights), 0);
   };
 
-  const handleBookNow = () => {
-    window.open('https://api.whatsapp.com/send/?phone=918837317070&text&type=phone_number&app_absent=0', '_blank');
+  const handleBookNow = async () => {
+    // Save to database first
+    const totalAmount = getTotalAmount();
+    const saveResult = await saveWhatsAppBooking({
+      name: formData.name || 'Guest',
+      email: formData.email || 'not-provided@example.com',
+      phone: formData.phone || '0000000000',
+      city: formData.city || '',
+      pincode: formData.pincode || '',
+      checkIn: formData.checkIn || new Date().toISOString().split('T')[0],
+      checkOut: formData.checkOut || new Date(Date.now() + 86400000).toISOString().split('T')[0],
+      guests: formData.guests || 1,
+      specialRequests: formData.specialRequests || '',
+      selectedRooms,
+      nights: nights || 1,
+      totalAmount: totalAmount || 0
+    });
+
+    // Build beautiful WhatsApp welcome message for XTSY
+    const roomsText = selectedRooms.length > 0 
+      ? selectedRooms.map(room => `   • ${room.roomTypeName} × ${room.quantity} room(s)`).join('\n')
+      : '   • To be decided';
+
+    const addOnsText = [];
+    if (formData.breakfast) addOnsText.push(`   • Breakfast for ${formData.breakfastGuests} guest(s)`);
+    if (formData.dinner) addOnsText.push(`   • Dinner (${formData.dinnerType}) for ${formData.dinnerGuests} guest(s)`);
+    if (formData.transportation) addOnsText.push(`   • Transportation Service`);
+    if (formData.itinerary) addOnsText.push(`   • Custom Itinerary Planning`);
+
+    const message = `🌟 *Welcome to XTSY 270!* 🌟
+
+Hello XTSY Team! 👋
+
+I'm excited to book my stay at your beautiful property!
+
+👤 *Guest Details:*
+   Name: ${formData.name || 'Not provided'}
+   Email: ${formData.email || 'Not provided'}
+   Phone: ${formData.phone || 'Not provided'}
+   Location: ${formData.city ? `${formData.city}${formData.pincode ? `, ${formData.pincode}` : ''}` : 'Not provided'}
+
+📅 *Booking Details:*
+   Check-in: ${formData.checkIn || 'To be decided'}
+   Check-out: ${formData.checkOut || 'To be decided'}
+   ${nights > 0 ? `Duration: ${nights} night(s)` : ''}
+   Guests: ${formData.guests || 'Not specified'}
+
+🏠 *Room Selection:*
+${roomsText}
+${addOnsText.length > 0 ? `\n🍽️ *Add-on Services:*\n${addOnsText.join('\n')}` : ''}
+${formData.specialRequests ? `\n💬 *Special Requests:*\n   ${formData.specialRequests}` : ''}
+${totalAmount > 0 ? `\n💰 *Estimated Total: ₹${totalAmount.toLocaleString('en-IN')}*` : ''}
+
+Looking forward to an amazing experience at XTSY 270! 🎉`;
+
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://api.whatsapp.com/send/?phone=918837317070&text=${encodedMessage}&type=phone_number&app_absent=0`, '_blank');
+    
+    if (saveResult.success) {
+      toast({
+        title: "Booking Saved",
+        description: "Your booking inquiry has been saved successfully!",
+      });
+    }
+    
     onClose();
   };
 

@@ -92,7 +92,22 @@ const AIChatBot = () => {
   };
 
   const handleWhatsAppConnect = () => {
-    window.open("https://api.whatsapp.com/send/?phone=918837317070&text=Hi!%20I%20need%20help%20with%20property%20and%20travel%20information.&type=phone_number&app_absent=0", "_blank");
+    const message = `🌟 *Welcome to XTSY!* 🌟
+
+Hello! 👋
+
+I'm reaching out from your website and would love to learn more about your properties and travel packages.
+
+Please share information about:
+• Available rooms and properties
+• Travel packages and tours
+• Pricing and availability
+• Booking process
+
+Looking forward to hearing from you! 😊`;
+    
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://api.whatsapp.com/send/?phone=918837317070&text=${encodedMessage}&type=phone_number&app_absent=0`, "_blank");
   };
 
   return (

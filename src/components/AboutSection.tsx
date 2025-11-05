@@ -674,7 +674,7 @@ const AboutSection = () => {
                 Explore Tours
               </a>
               <a
-                href="https://api.whatsapp.com/send/?phone=918837317070&text=Hi%20Team%20XTSY%2C%20I%20just%20visited%20your%20site%20and%20would%20like%20to%20know%20more.&type=phone_number&app_absent=0"
+                href={`https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent("🌟 *Hello XTSY Team!* 🌟\n\nI just visited your website and I'm interested in learning more about your properties and services.\n\nCould you please share:\n• Available accommodations\n• Rates and packages\n• Upcoming availability\n• Special offers\n\nThank you! 😊")}&type=phone_number&app_absent=0`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-8 py-4 bg-green-600 text-white rounded-xl font-bold hover:bg-green-700 transition-all duration-300 shadow-lg hover:shadow-xl"

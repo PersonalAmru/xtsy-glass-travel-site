@@ -77,17 +77,24 @@ const UPIPaymentModal = ({ isOpen, onClose, bookingData }: UPIPaymentModalProps)
     const addOnsMessage = generateAddOnsMessage();
     const addOnTotalMessage = bookingData.addOnTotal ? `\nAdd-ons Total: ₹${bookingData.addOnTotal}` : '';
     
-    const message = `Hi XTSY Team! 
+    const message = `🌟 *UPI Payment Confirmation - XTSY* 🌟
 
-I have made the UPI payment for my booking:
+Hello XTSY Team! 👋
 
-📋 Booking ID: ${bookingData.bookingId}
-👤 Guest Name: ${bookingData.guestName}
-📅 Check-in: ${new Date(bookingData.checkIn).toLocaleDateString()}
-📅 Check-out: ${new Date(bookingData.checkOut).toLocaleDateString()}
-💰 Amount Paid: ₹${upiAmount}${addOnTotalMessage}${addOnsMessage}
+I have successfully made the UPI payment for my booking:
 
-Payment Screenshot: [Please attach your payment screenshot here]
+📋 *Booking Details:*
+   Booking ID: ${bookingData.bookingId}
+   Guest Name: ${bookingData.guestName}
+   Check-in: ${new Date(bookingData.checkIn).toLocaleDateString()}
+   Check-out: ${new Date(bookingData.checkOut).toLocaleDateString()}
+
+💰 *Payment Information:*
+   Amount Paid: ₹${upiAmount}${addOnTotalMessage}${addOnsMessage}
+
+📸 *Payment Screenshot:* [Please attach your payment screenshot here]
+
+Looking forward to my stay at XTSY! 🎉
 
 Please confirm my booking. Thank you!`;
 
