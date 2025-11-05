@@ -97,29 +97,27 @@ const B2BBookingForm = ({
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
+  const handleSubmit = async () => {
     try {
       // Generate unique booking ID
       const bookingId = `XTSY270-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
       
-      // Save to Supabase
+      // Save to Supabase - capture whatever data is available
       const { error } = await supabase
         .from('bookings')
         .insert({
           booking_id: bookingId,
           room_type: "XTSY 270",
           room_type_id: "xtsy-270",
-          guest_name: formData.companyName,
-          email: formData.email,
-          whatsapp_number: formData.phone,
-          city: formData.city,
-          pincode: formData.pincode,
-          check_in: formData.checkIn,
-          check_out: formData.checkOut,
-          guests: formData.guests,
-          special_requests: formData.specialRequests,
+          guest_name: formData.companyName || 'Guest',
+          email: formData.email || 'not-provided@xtsy.com',
+          whatsapp_number: formData.phone || '0000000000',
+          city: formData.city || null,
+          pincode: formData.pincode || null,
+          check_in: formData.checkIn || new Date().toISOString().split('T')[0],
+          check_out: formData.checkOut || new Date(Date.now() + 86400000).toISOString().split('T')[0],
+          guests: formData.guests || 1,
+          special_requests: formData.specialRequests || null,
           booking_status: 'pending',
           payment_status: 'pending',
           subtotal: isCoupleFocused ? 0 : totalPrice,
@@ -128,86 +126,19 @@ const B2BBookingForm = ({
           source: 'xtsy270_form'
         });
 
+      // Log error but don't block WhatsApp redirect
       if (error) {
         console.error('Error saving booking:', error);
-        toast({
-          title: "Booking Error",
-          description: "Failed to save booking. Please try again.",
-          variant: "destructive"
-        });
-        return;
       }
-
-      toast({
-        title: "Booking Saved!",
-        description: "Your XTSY 270 booking has been recorded successfully.",
-      });
       
-      // WhatsApp booking functionality
-      const bookingDetails = isCoupleFocused 
-        ? `
-✨ *XTSY 270° Glass Suite - Romantic Escape*
-Booking ID: ${bookingId}
-
-❤️ *Guest Details:*
-${formData.companyName} & ${formData.contactPerson}
-Email: ${formData.email}
-Phone: ${formData.phone}
-City: ${formData.city}, Pincode: ${formData.pincode}
-
-📅 *Booking Details:*
-Check-in: ${formData.checkIn}
-Check-out: ${formData.checkOut}
-Nights: ${nights}
-Guests: ${formData.guests} (Couple)
-${formData.eventType ? `Occasion: ${formData.eventType}` : ''}
-
-💝 *Special Requests:*
-${formData.specialRequests || 'None'}
-
-🌟 *Experience:* India's First 270° Panoramic Glass House
-        `.trim()
-        : `
-🏢 *XTSY B2B Corporate Booking Request*
-Booking ID: ${bookingId}
-
-🏢 *Company Details:*
-Company: ${formData.companyName}
-Contact Person: ${formData.contactPerson}
-Email: ${formData.email}
-Phone: ${formData.phone}
-City: ${formData.city}, Pincode: ${formData.pincode}
-
-📅 *Booking Details:*
-Check-in: ${formData.checkIn}
-Check-out: ${formData.checkOut}
-Nights: ${nights}
-Total Guests: ${formData.guests}
-Event Type: ${formData.eventType}
-
-💰 *Price Summary (Corporate Rate):*
-Accommodation: ${formatPrice(totalPrice)} (${formatPrice(corporateRate)}/person/night)
-${formData.breakfast ? `Breakfast: ${formData.breakfastGuests} guests - ${formatPrice(breakfastCost)}` : ''}
-${formData.dinner ? `Dinner (${formData.dinnerType}): ${formData.dinnerGuests} guests - ${formatPrice(dinnerCost)}` : ''}
-${formData.transportation ? '• Transportation Arrangement' : ''}
-${formData.itinerary ? '• Travel Itinerary Support' : ''}
-GST (12%): ${formatPrice(gst)}
-*Total: ${formatPrice(finalTotal)}*
-
-📝 *Special Requests:*
-${formData.specialRequests || 'None'}
-        `.trim();
-
-      const whatsappUrl = `https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent(bookingDetails)}&type=phone_number&app_absent=0`;
-      window.open(whatsappUrl, '_blank');
+      // Redirect to WhatsApp immediately
+      window.open('https://api.whatsapp.com/send/?phone=918837317070&text&type=phone_number&app_absent=0', '_blank');
       onClose();
     } catch (error) {
       console.error('Error processing booking:', error);
-      toast({
-        title: "Error",
-        description: "Something went wrong. Please try again.",
-        variant: "destructive"
-      });
+      // Still redirect to WhatsApp even if save fails
+      window.open('https://api.whatsapp.com/send/?phone=918837317070&text&type=phone_number&app_absent=0', '_blank');
+      onClose();
     }
   };
 
