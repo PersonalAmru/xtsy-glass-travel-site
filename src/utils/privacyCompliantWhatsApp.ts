@@ -58,6 +58,8 @@ Thank you!`;
  */
 export const generateXTSY270Message = (params: {
   state: string;
+  city: string;
+  pincode: string;
   mobile: string;
   email: string;
 }): string => {
@@ -69,6 +71,8 @@ I'm interested in reserving the XTSY 270° - India's first panoramic glass house
 
 👤 *My Details:*
 State: ${params.state}
+City: ${params.city}
+Pincode: ${params.pincode}
 Mobile: ${params.mobile}
 Email: ${params.email}
 

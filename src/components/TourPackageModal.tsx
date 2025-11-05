@@ -109,7 +109,9 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
   const [guestDetails, setGuestDetails] = useState({
     name: "",
     email: "",
-    phone: ""
+    phone: "",
+    city: "",
+    pincode: ""
   });
   const location = useLocation();
   const navigate = useNavigate();
@@ -407,7 +409,7 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
   const pricing = calculatePricing();
 
   const handlePayAndConfirm = () => {
-    if (!selectedDate || !guestDetails.name || !guestDetails.email || !guestDetails.phone) {
+    if (!selectedDate || !guestDetails.name || !guestDetails.email || !guestDetails.phone || !guestDetails.city || !guestDetails.pincode) {
       toast({
         title: "Missing Information",
         description: "Please fill all required fields",
@@ -428,6 +430,8 @@ Category: ${tourPackage.category}
 Name: ${guestDetails.name}
 Email: ${guestDetails.email}
 Phone: ${guestDetails.phone}
+City: ${guestDetails.city}
+Pincode: ${guestDetails.pincode}
 Number of Guests: ${guests}
 
 *Booking Details:*
@@ -691,6 +695,30 @@ Please check availability for these dates and share pricing details for this exc
                       placeholder="Enter phone number"
                       className="mt-1"
                     />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <Label htmlFor="city">City *</Label>
+                      <Input
+                        id="city"
+                        value={guestDetails.city}
+                        onChange={(e) => setGuestDetails(prev => ({ ...prev, city: e.target.value }))}
+                        placeholder="Your city"
+                        className="mt-1"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="pincode">Pincode *</Label>
+                      <Input
+                        id="pincode"
+                        value={guestDetails.pincode}
+                        onChange={(e) => setGuestDetails(prev => ({ ...prev, pincode: e.target.value }))}
+                        placeholder="123456"
+                        maxLength={6}
+                        className="mt-1"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>

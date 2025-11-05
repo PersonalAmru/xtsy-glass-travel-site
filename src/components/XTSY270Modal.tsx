@@ -16,6 +16,8 @@ interface XTSY270ModalProps {
 const XTSY270Modal: React.FC<XTSY270ModalProps> = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
     state: '',
+    city: '',
+    pincode: '',
     mobile: '',
     email: ''
   });
@@ -30,10 +32,21 @@ const XTSY270Modal: React.FC<XTSY270ModalProps> = ({ isOpen, onClose }) => {
   ];
 
   const validateForm = () => {
-    if (!formData.state || !formData.mobile || !formData.email) {
+    if (!formData.state || !formData.city || !formData.pincode || !formData.mobile || !formData.email) {
       toast({
         title: "Missing Information",
         description: "Please fill in all required fields",
+        variant: "destructive"
+      });
+      return false;
+    }
+
+    // Pincode validation (6 digits)
+    const pincodeRegex = /^\d{6}$/;
+    if (!pincodeRegex.test(formData.pincode)) {
+      toast({
+        title: "Invalid Pincode",
+        description: "Please enter a valid 6-digit pincode",
         variant: "destructive"
       });
       return false;
@@ -75,6 +88,8 @@ const XTSY270Modal: React.FC<XTSY270ModalProps> = ({ isOpen, onClose }) => {
       // Create WhatsApp message using privacy-compliant utility
       const message = generateXTSY270Message({
         state: formData.state,
+        city: formData.city,
+        pincode: formData.pincode,
         mobile: formData.mobile,
         email: formData.email
       });
@@ -84,7 +99,7 @@ const XTSY270Modal: React.FC<XTSY270ModalProps> = ({ isOpen, onClose }) => {
 
       // Close modal and reset form
       onClose();
-      setFormData({ state: '', mobile: '', email: '' });
+      setFormData({ state: '', city: '', pincode: '', mobile: '', email: '' });
       
     } catch (error) {
       console.error("Form submission failed:", error);
@@ -131,6 +146,30 @@ const XTSY270Modal: React.FC<XTSY270ModalProps> = ({ isOpen, onClose }) => {
                 ))}
               </SelectContent>
             </Select>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <Label htmlFor="city">City</Label>
+              <Input
+                id="city"
+                type="text"
+                placeholder="Your city"
+                value={formData.city}
+                onChange={(e) => setFormData(prev => ({ ...prev, city: e.target.value }))}
+              />
+            </div>
+            <div>
+              <Label htmlFor="pincode">Pincode</Label>
+              <Input
+                id="pincode"
+                type="text"
+                placeholder="123456"
+                value={formData.pincode}
+                onChange={(e) => setFormData(prev => ({ ...prev, pincode: e.target.value }))}
+                maxLength={6}
+              />
+            </div>
           </div>
 
           <div>

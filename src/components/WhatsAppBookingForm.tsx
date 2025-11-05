@@ -34,6 +34,8 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
     name: "",
     email: "",
     phone: "",
+    city: "",
+    pincode: "",
     checkIn: "",
     checkOut: "",
     guests: 2,
@@ -145,7 +147,7 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
       `${room.roomTypeName} x ${room.quantity}`
     ).join(', ');
 
-    const message = `Hi! I'd like to make a booking:\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCheck-in: ${formData.checkIn}\nCheck-out: ${formData.checkOut}\nNights: ${nights}\nGuests: ${formData.guests}\nRooms: ${roomsText || 'Not selected'}\n${formData.specialRequests ? `Special Requests: ${formData.specialRequests}` : ''}`;
+    const message = `Hi! I'd like to make a booking:\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCity: ${formData.city}\nPincode: ${formData.pincode}\nCheck-in: ${formData.checkIn}\nCheck-out: ${formData.checkOut}\nNights: ${nights}\nGuests: ${formData.guests}\nRooms: ${roomsText || 'Not selected'}\n${formData.specialRequests ? `Special Requests: ${formData.specialRequests}` : ''}`;
 
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://api.whatsapp.com/send/?phone=918837317070&text=${encodedMessage}&type=phone_number&app_absent=0`, '_blank');
@@ -207,6 +209,31 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
                   placeholder="your@email.com"
                   required
                 />
+              </div>
+
+              {/* City and Pincode */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="city">City *</Label>
+                  <Input
+                    id="city"
+                    value={formData.city}
+                    onChange={(e) => handleInputChange('city', e.target.value)}
+                    placeholder="Your City"
+                    required
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="pincode">Pincode *</Label>
+                  <Input
+                    id="pincode"
+                    value={formData.pincode}
+                    onChange={(e) => handleInputChange('pincode', e.target.value)}
+                    placeholder="123456"
+                    maxLength={6}
+                    required
+                  />
+                </div>
               </div>
 
               {/* Booking Details */}
