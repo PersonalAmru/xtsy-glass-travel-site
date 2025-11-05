@@ -1,10 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.55.0';
-
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-};
+import { requireAdminOrStaff, corsHeaders } from "../_shared/authGuard.ts";
 
 serve(async (req) => {
   // Handle CORS preflight requests
@@ -13,18 +8,13 @@ serve(async (req) => {
   }
 
   try {
-    // Create Supabase admin client
-    const supabaseAdmin = createClient(
-      Deno.env.get('SUPABASE_URL') ?? '',
-      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
-      {
-        auth: {
-          autoRefreshToken: false,
-          persistSession: false
-        }
-      }
-    );
+    // Verify admin/staff authentication
+    const authCheck = await requireAdminOrStaff(req);
+    if (!authCheck.authorized) {
+      return authCheck.error!;
+    }
 
+    const { supabase } = authCheck;
     const { booking_id, room_selections, guest_name, check_in, check_out } = await req.json();
 
     if (!booking_id) {
@@ -37,7 +27,7 @@ serve(async (req) => {
       );
     }
 
-    console.log(`Confirming booking: ${booking_id}`);
+    console.log(`Admin ${authCheck.user.email} confirming booking: ${booking_id}`);
 
     // Check room availability for all selected rooms
     const checkInDate = new Date(check_in);
@@ -48,7 +38,7 @@ serve(async (req) => {
         const dateStr = date.toISOString().split('T')[0];
         
         // Check availability
-        const { data: inventory } = await supabaseAdmin
+        const { data: inventory } = await supabase
           .from('room_inventory')
           .select('available_count')
           .eq('room_type_id', selection.room_type_id)
@@ -78,14 +68,14 @@ serve(async (req) => {
         const dateStr = date.toISOString().split('T')[0];
         
         // Update inventory to lock availability
-        await supabaseAdmin
+        await supabase
           .from('room_inventory')
           .upsert({
             room_type_id: selection.room_type_id,
             date: dateStr,
             available_count: 
               // Get current availability and subtract quantity
-              await supabaseAdmin
+              await supabase
                 .from('room_inventory')
                 .select('available_count')
                 .eq('room_type_id', selection.room_type_id)
@@ -99,7 +89,7 @@ serve(async (req) => {
     }
 
     // Update booking status to confirmed
-    const { data, error } = await supabaseAdmin
+    const { data, error } = await supabase
       .from('bookings')
       .update({
         booking_status: 'confirmed',

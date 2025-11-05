@@ -362,6 +362,36 @@ export type Database = {
         }
         Relationships: []
       }
+      role_assignment_log: {
+        Row: {
+          action: string
+          assigned_at: string | null
+          assigned_by: string | null
+          id: string
+          notes: string | null
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          action: string
+          assigned_at?: string | null
+          assigned_by?: string | null
+          id?: string
+          notes?: string | null
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          action?: string
+          assigned_at?: string | null
+          assigned_by?: string | null
+          id?: string
+          notes?: string | null
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
       room_availability_status: {
         Row: {
           admin_note: string | null
@@ -541,6 +571,30 @@ export type Database = {
         }
         Relationships: []
       }
+      user_roles: {
+        Row: {
+          assigned_at: string | null
+          assigned_by: string | null
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          assigned_at?: string | null
+          assigned_by?: string | null
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          assigned_at?: string | null
+          assigned_by?: string | null
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       newsletter_stats: {
@@ -672,6 +726,14 @@ export type Database = {
           total_amount: number
           whatsapp_number: string
         }[]
+      }
+      assign_user_role: {
+        Args: {
+          assignment_notes?: string
+          new_role: Database["public"]["Enums"]["app_role"]
+          target_user_id: string
+        }
+        Returns: Json
       }
       check_newsletter_rate_limit: {
         Args: { p_email: string; p_ip_address?: string }
@@ -901,6 +963,13 @@ export type Database = {
         }[]
       }
       get_user_role: { Args: never; Returns: string }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
       increment_happy_guests: {
         Args: never
         Returns: {
@@ -917,6 +986,7 @@ export type Database = {
       ip_anonymize: { Args: { ip_text: string }; Returns: string }
       is_admin: { Args: never; Returns: boolean }
       is_admin_or_staff: { Args: never; Returns: boolean }
+      is_admin_or_staff_secure: { Args: never; Returns: boolean }
       is_room_available: {
         Args: {
           p_check_in: string
@@ -973,7 +1043,7 @@ export type Database = {
       }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "staff" | "guest"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -1100,6 +1170,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "staff", "guest"],
+    },
   },
 } as const

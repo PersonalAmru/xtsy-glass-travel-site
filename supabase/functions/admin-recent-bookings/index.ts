@@ -1,10 +1,5 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2.55.0";
-
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-};
+import { requireAdminOrStaff, corsHeaders } from "../_shared/authGuard.ts";
 
 interface RequestBody {
   limit?: number;
@@ -19,11 +14,16 @@ serve(async (req) => {
   }
 
   try {
+    // Verify admin/staff authentication
+    const authCheck = await requireAdminOrStaff(req);
+    if (!authCheck.authorized) {
+      return authCheck.error!;
+    }
+
+    const { supabase } = authCheck;
     const { limit = 50, booking_id, date_from, date_to }: RequestBody = await req.json().catch(() => ({}));
 
-    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
-    const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
-    const supabase = createClient(supabaseUrl, serviceRoleKey);
+    console.log(`Admin ${authCheck.user.email} retrieving bookings with filters:`, { limit, booking_id, date_from, date_to });
 
     let query = supabase
       .from('bookings')

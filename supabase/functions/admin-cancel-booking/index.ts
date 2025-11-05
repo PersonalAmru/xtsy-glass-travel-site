@@ -1,10 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.55.0';
-
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-};
+import { requireAdminOrStaff, corsHeaders } from "../_shared/authGuard.ts";
 
 serve(async (req) => {
   // Handle CORS preflight requests
@@ -13,18 +8,13 @@ serve(async (req) => {
   }
 
   try {
-    // Create Supabase admin client
-    const supabaseAdmin = createClient(
-      Deno.env.get('SUPABASE_URL') ?? '',
-      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
-      {
-        auth: {
-          autoRefreshToken: false,
-          persistSession: false
-        }
-      }
-    );
+    // Verify admin/staff authentication
+    const authCheck = await requireAdminOrStaff(req);
+    if (!authCheck.authorized) {
+      return authCheck.error!;
+    }
 
+    const { supabase } = authCheck;
     const { booking_id } = await req.json();
 
     if (!booking_id) {
@@ -37,10 +27,10 @@ serve(async (req) => {
       );
     }
 
-    console.log(`Attempting to cancel booking: ${booking_id}`);
+    console.log(`Admin ${authCheck.user.email} attempting to cancel booking: ${booking_id}`);
 
     // Update booking status to cancelled
-    const { data, error } = await supabaseAdmin
+    const { data, error } = await supabase
       .from('bookings')
       .update({
         booking_status: 'cancelled',

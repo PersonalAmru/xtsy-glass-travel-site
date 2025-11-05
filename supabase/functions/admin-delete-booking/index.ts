@@ -1,10 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.55.0';
-
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-};
+import { requireAdminOrStaff, corsHeaders } from "../_shared/authGuard.ts";
 
 serve(async (req) => {
   // Handle CORS preflight requests
@@ -13,18 +8,13 @@ serve(async (req) => {
   }
 
   try {
-    // Create Supabase admin client
-    const supabaseAdmin = createClient(
-      Deno.env.get('SUPABASE_URL') ?? '',
-      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
-      {
-        auth: {
-          autoRefreshToken: false,
-          persistSession: false
-        }
-      }
-    );
+    // Verify admin/staff authentication
+    const authCheck = await requireAdminOrStaff(req);
+    if (!authCheck.authorized) {
+      return authCheck.error!;
+    }
 
+    const { supabase } = authCheck;
     const { booking_id } = await req.json();
 
     if (!booking_id) {
@@ -37,10 +27,10 @@ serve(async (req) => {
       );
     }
 
-    console.log(`Attempting to permanently delete booking: ${booking_id}`);
+    console.log(`Admin ${authCheck.user.email} attempting to permanently delete booking: ${booking_id}`);
 
     // Get booking details before deleting for inventory restoration
-    const { data: bookingData, error: fetchError } = await supabaseAdmin
+    const { data: bookingData, error: fetchError } = await supabase
       .from('bookings')
       .select('*')
       .eq('id', booking_id)
@@ -73,14 +63,14 @@ serve(async (req) => {
       for (let date = new Date(checkInDate); date < checkOutDate; date.setDate(date.getDate() + 1)) {
         const dateStr = date.toISOString().split('T')[0];
         
-        await supabaseAdmin
+        await supabase
           .from('room_inventory')
           .upsert({
             room_type_id: bookingData.room_type_id,
             date: dateStr,
             available_count: 
               // Get current availability and add back the quantity
-              await supabaseAdmin
+              await supabase
                 .from('room_inventory')
                 .select('available_count')
                 .eq('room_type_id', bookingData.room_type_id)
@@ -94,7 +84,7 @@ serve(async (req) => {
     }
 
     // Permanently delete the booking
-    const { error } = await supabaseAdmin
+    const { error } = await supabase
       .from('bookings')
       .delete()
       .eq('id', booking_id);

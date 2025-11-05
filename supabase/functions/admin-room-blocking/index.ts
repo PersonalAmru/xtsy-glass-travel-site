@@ -1,10 +1,5 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2.55.0";
-
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-};
+import { requireAdminOrStaff, corsHeaders } from "../_shared/authGuard.ts";
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -12,14 +7,16 @@ serve(async (req) => {
   }
 
   try {
-    const supabase = createClient(
-      Deno.env.get('SUPABASE_URL') as string,
-      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') as string
-    );
+    // Verify admin/staff authentication
+    const authCheck = await requireAdminOrStaff(req);
+    if (!authCheck.authorized) {
+      return authCheck.error!;
+    }
 
+    const { supabase } = authCheck;
     const { action, room_type, date, block_count, unblock_count } = await req.json();
     
-    console.log('Admin room blocking request:', { action, room_type, date, block_count, unblock_count });
+    console.log('Admin room blocking request:', { action, room_type, date, block_count, unblock_count, user: authCheck.user.email });
 
     if (!action || !room_type || !date) {
       return new Response(JSON.stringify({ 
