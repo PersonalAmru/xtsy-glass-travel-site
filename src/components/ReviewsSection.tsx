@@ -574,7 +574,7 @@ const ReviewsSection = () => {
                             </CardTitle>
                             <div className="flex items-center gap-1">
                               <span className="text-yellow-400 font-bold text-sm">
-                                {review.source === "MakeMyTrip" ? `${review.rating}/5` : `${review.rating}/10`}
+                                {review.source === "Google" || review.source === "MakeMyTrip" ? `${review.rating}/5` : `${review.rating}/10`}
                               </span>
                               <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
                             </div>
@@ -716,7 +716,7 @@ const ReviewsSection = () => {
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-yellow-600 font-bold">
-                  {selectedReview?.source === "MakeMyTrip" ? `${selectedReview?.rating}/5` : `${selectedReview?.rating}/10`}
+                  {selectedReview?.source === "Google" || selectedReview?.source === "MakeMyTrip" ? `${selectedReview?.rating}/5` : `${selectedReview?.rating}/10`}
                 </span>
                 <Star className="h-5 w-5 fill-yellow-500 text-yellow-500" />
               </div>
