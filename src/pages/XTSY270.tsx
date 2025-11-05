@@ -437,7 +437,7 @@ Thank you! 😊`;
             <Separator className="my-16" />
 
             {/* Bottom CTA Section */}
-            <div className="mt-16 mb-8 text-center animate-fade-in">
+            <div className="mt-16 mb-24 text-center animate-fade-in">
               <div className="text-center mb-8">
                 <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
                   Reserve Your Experience
@@ -445,20 +445,26 @@ Thank you! 😊`;
                 <p className="text-xl text-gray-800 font-medium max-w-3xl mx-auto mb-8">
                   Every detail crafted for the discerning traveler seeking uncompromising excellence. Only one suite available for the night in india
                 </p>
-            </div>
-            <Button 
-              size="lg" 
-              onClick={() => setIsB2BFormOpen(true)}
-              className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground border-2 border-primary hover:border-primary/70 px-12 py-6 text-xl font-bold shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 ring-4 ring-primary/20 hover:ring-primary/30 relative overflow-hidden group"
-            >
-              <span className="relative z-10 bg-gradient-to-r from-yellow-300 via-white to-yellow-300 bg-clip-text text-transparent animate-pulse text-center">
-                Will it be yours?
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/3 opacity-50 group-hover:opacity-70 transition-opacity duration-300" />
-            </Button>
+              </div>
               <p className="text-sm text-gray-800 font-medium mt-4">
                 Limited availability • Book 48 hours in advance for exclusive concierge services
               </p>
+            </div>
+
+            {/* Floating Button */}
+            <div className="fixed bottom-0 left-0 right-0 z-50 px-4 pb-[calc(env(safe-area-inset-bottom,0px)+12px)] pt-3 bg-transparent pointer-events-none">
+              <div className="mx-auto max-w-5xl flex justify-center">
+                <Button 
+                  size="lg" 
+                  onClick={() => setIsB2BFormOpen(true)}
+                  className="pointer-events-auto rounded-xl px-8 md:px-12 py-4 md:py-6 text-white font-bold shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 ring-4 ring-primary/20 hover:ring-primary/30 relative overflow-hidden group"
+                >
+                  <span className="relative z-10 bg-gradient-to-r from-yellow-300 via-white to-yellow-300 bg-clip-text text-transparent animate-pulse text-center text-lg md:text-xl">
+                    Will it be yours?
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/3 opacity-50 group-hover:opacity-70 transition-opacity duration-300" />
+                </Button>
+              </div>
             </div>
           </div>
         </section>
