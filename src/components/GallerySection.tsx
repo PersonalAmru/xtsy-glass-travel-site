@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Camera, Eye, MapPin, Users, Mountain, Building, Image, Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { Camera, Eye, MapPin, Users, Mountain, Building, Image, Star, ChevronLeft, ChevronRight, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import OptimizedImage from "./OptimizedImage";
 import ImageLightbox from "./ImageLightbox";
@@ -364,6 +364,25 @@ const GallerySection = () => {
           <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto font-seasons">
             Explore all our accommodation options - from luxury suites to cozy dormitories
           </p>
+          
+          {/* Instagram Follow Section */}
+          <div className="mt-8 mb-4">
+            <a
+              href="https://www.instagram.com/xtsy.one"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 hover:from-pink-600 hover:via-purple-600 hover:to-orange-600 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+            >
+              <Instagram className="h-6 w-6 text-white" />
+              <div className="text-left">
+                <div className="text-white font-bold text-lg">@xtsy.one</div>
+                <div className="text-white/90 text-sm">Follow us for more</div>
+              </div>
+            </a>
+            <p className="text-gray-600 text-sm mt-3 max-w-md mx-auto">
+              ✨ Discover breathtaking views, hidden gems, and unforgettable moments from our guests. Join our community and get inspired for your next adventure!
+            </p>
+          </div>
         </div>
 
         {/* Enhanced Category Filter with Icons and Counts */}
