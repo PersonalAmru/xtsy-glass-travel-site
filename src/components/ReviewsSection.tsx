@@ -227,6 +227,41 @@ const ReviewsSection = () => {
     date: "February 2025",
     source: "MakeMyTrip",
     roomType: "Standard 8 Bed Mixed Dormitory"
+  }, {
+    name: "Brilliant",
+    rating: 10,
+    comment: "Exceptional",
+    date: "August 2025",
+    source: "XTSY Economy",
+    roomType: "Mixed Dormitory Room"
+  }, {
+    name: "Danish",
+    rating: 10,
+    comment: "Exceptional",
+    date: "August 2025",
+    source: "XTSY Economy",
+    roomType: "8-Bed Mixed Dormitory Room"
+  }, {
+    name: "Keita",
+    rating: 10,
+    comment: "Exceptional",
+    date: "September 2025",
+    source: "XTSY Economy",
+    roomType: "Mixed Dormitory Room"
+  }, {
+    name: "Gandharv",
+    rating: 10,
+    comment: "Exceptional",
+    date: "September 2025",
+    source: "XTSY Economy",
+    roomType: "Mixed Dormitory Room"
+  }, {
+    name: "Ritika",
+    rating: 10,
+    comment: "The hostel has a very welcoming atmosphere with friendly staff and a helpful property manager. The food is excellent, cleanliness is always maintained, and Wi-Fi connectivity is smooth. As a student, I never faced any issues, and having Swiggy and Zomato working perfectly was a big plus. The location is also close to beautiful scenic spots, which makes staying here even better.",
+    date: "August 2025",
+    source: "XTSY Economy",
+    roomType: "Female Dormitory Room"
   }];
 
   const nextReview = () => {
