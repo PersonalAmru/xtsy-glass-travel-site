@@ -197,7 +197,7 @@ GST (12%): ${formatPrice(gst)}
 ${formData.specialRequests || 'None'}
         `.trim();
 
-      const whatsappUrl = `https://wa.me/918837317070?text=${encodeURIComponent(bookingDetails)}`;
+      const whatsappUrl = `https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent(bookingDetails)}&type=phone_number&app_absent=0`;
       window.open(whatsappUrl, '_blank');
       onClose();
     } catch (error) {
@@ -547,7 +547,7 @@ ${formData.specialRequests || 'None'}
               <div className="flex justify-center">
                 <Button 
                   type="button"
-                  onClick={() => window.open('https://wa.me/918837317070', '_blank')}
+                  onClick={() => window.open('https://api.whatsapp.com/send/?phone=918837317070&text&type=phone_number&app_absent=0', '_blank')}
                   className="w-full bg-gradient-to-r from-primary to-orange-600 hover:from-orange-600 hover:to-red-700 text-white font-bold shadow-lg"
                 >
                   {isCoupleFocused ? (

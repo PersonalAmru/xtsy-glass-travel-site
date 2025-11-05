@@ -99,7 +99,7 @@ Thank you for choosing XTSY!
     `.trim();
 
     // Send to property WhatsApp
-    const propertyWhatsAppUrl = `https://wa.me/918837317070?text=${encodeURIComponent(message)}`;
+    const propertyWhatsAppUrl = `https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent(message)}&type=phone_number&app_absent=0`;
     window.open(propertyWhatsAppUrl, '_blank');
 
     // Send to guest WhatsApp

@@ -92,7 +92,7 @@ const AIChatBot = () => {
   };
 
   const handleWhatsAppConnect = () => {
-    window.open("https://wa.me/918837317070?text=Hi! I need help with property and travel information.", "_blank");
+    window.open("https://api.whatsapp.com/send/?phone=918837317070&text=Hi!%20I%20need%20help%20with%20property%20and%20travel%20information.&type=phone_number&app_absent=0", "_blank");
   };
 
   return (

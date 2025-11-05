@@ -86,7 +86,7 @@ Looking forward to experiencing this incredible architectural marvel! 🌿
 
 Thank you! 😊`;
 
-    const whatsappUrl = `https://wa.me/918837317070?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent(message)}&type=phone_number&app_absent=0`;
     window.open(whatsappUrl, '_blank');
   };
 

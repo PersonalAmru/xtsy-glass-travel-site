@@ -440,7 +440,7 @@ ${tourPackage.highlights.map(highlight => `• ${highlight}`).join('\n')}
 
 Please check availability for these dates and share pricing details for this exclusive tour package.`;
 
-    const whatsappURL = `https://wa.me/918837317070?text=${encodeURIComponent(whatsappMessage)}`;
+    const whatsappURL = `https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent(whatsappMessage)}&type=phone_number&app_absent=0`;
     window.open(whatsappURL, '_blank');
 
     toast({

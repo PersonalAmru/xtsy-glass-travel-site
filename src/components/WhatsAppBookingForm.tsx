@@ -148,7 +148,7 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
     const message = `Hi! I'd like to make a booking:\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCheck-in: ${formData.checkIn}\nCheck-out: ${formData.checkOut}\nNights: ${nights}\nGuests: ${formData.guests}\nRooms: ${roomsText || 'Not selected'}\n${formData.specialRequests ? `Special Requests: ${formData.specialRequests}` : ''}`;
 
     const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/918837317070?text=${encodedMessage}`, '_blank');
+    window.open(`https://api.whatsapp.com/send/?phone=918837317070&text=${encodedMessage}&type=phone_number&app_absent=0`, '_blank');
     onClose();
   };
 
