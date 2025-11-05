@@ -64,7 +64,6 @@ const services: ServiceCard[] = [
         { e: "📸", t: "Glass Dome Photo + Extended Access + Private Photographer" },
         { e: "🍽️", t: "Gourmet Breakfast & Wellness Options" },
         { e: "🔌", t: "Every Bedside USB-C/Lightning Fast Chargers" },
-        { e: "💡", t: "Designer Lights with Adjustable Brightness" },
         { e: "🧴", t: "Premium Toiletries & Wellness Kit" },
         { e: "🅿️", t: "Reserved + Valet Service" },
         { e: "🧭", t: "24/7 Concierge & Guided Itineraries" },
