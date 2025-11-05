@@ -988,7 +988,7 @@ const Travel = () => {
                         </p>
 
                         <p className="text-base sm:text-lg leading-relaxed text-gray-700">
-                          Discover the magic of <strong>cherry blossoms in Japan</strong>, experience <strong>K-Culture in South Korea</strong>, explore the <strong>tropical paradise of Thailand</strong>, savor authentic <strong>street food in Vietnam</strong>, island-hop through <strong>Indonesia and Philippines</strong>, and immerse yourself in the <strong>multicultural charm of Malaysia and Singapore</strong>. Our <strong>Asia tour packages</strong> blend adventure, culture, and relaxation.
+                          Discover the magic of <strong>cherry blossoms in Japan</strong>, experience <strong>K-Culture in South Korea</strong>, explore the <strong>tropical paradise of Thailand</strong>, savor authentic <strong>street food in Vietnam</strong>, marvel at Singapore's iconic <strong>Gardens by the Bay</strong> where futuristic supertrees meet lush tropical gardens, island-hop through the enchanting archipelagos of <strong>Indonesia and Philippines</strong>, and immerse yourself in the <strong>multicultural charm of Malaysia</strong>. Our <strong>Asia tour packages</strong> blend adventure, culture, and relaxation into unforgettable journeys.
                         </p>
 
                         <p className="text-base sm:text-lg leading-relaxed text-gray-700">
