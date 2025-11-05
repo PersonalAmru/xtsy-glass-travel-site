@@ -414,7 +414,7 @@ ${formData.specialRequests || 'None'}
               <div className="flex justify-center">
                 <Button 
                   type="button"
-                  onClick={() => window.open('https://api.whatsapp.com/send/?phone=918837317070&text&type=phone_number&app_absent=0', '_blank')}
+                  onClick={handleSubmit}
                   className="w-full bg-gradient-to-r from-primary to-orange-600 hover:from-orange-600 hover:to-red-700 text-white font-bold shadow-lg"
                 >
                   {isCoupleFocused ? (
