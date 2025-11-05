@@ -246,6 +246,7 @@ const SEOContent: React.FC<SEOContentProps> = ({ page = 'home' }) => {
       </div>
 
       {/* Structured data specific to each page */}
+      {/* SECURITY: Safe usage of dangerouslySetInnerHTML - Only stringifies static page content (title, description, URL) with no user-generated data */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{
         __html: JSON.stringify({
           "@context": "https://schema.org",

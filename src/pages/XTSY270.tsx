@@ -464,6 +464,7 @@ Thank you! 😊`;
         </section>
       </main>
 
+      {/* SECURITY: Safe usage of dangerouslySetInnerHTML - Only stringifies static room structured data (roomLd) with no user-generated content */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(roomLd) }} />
       <XTSY270Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       <B2BBookingForm 
