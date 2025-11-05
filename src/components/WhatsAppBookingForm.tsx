@@ -370,6 +370,17 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
                           <div className="space-y-2 pl-2">
                             {roomTypes
                               .filter(rt => rt.category === category)
+                              .sort((a, b) => {
+                                // Custom order: King Double Room before King Triple Room
+                                const order = ['King Double Room', 'King Triple Room'];
+                                const aIndex = order.indexOf(a.name);
+                                const bIndex = order.indexOf(b.name);
+                                
+                                if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
+                                if (aIndex !== -1) return -1;
+                                if (bIndex !== -1) return 1;
+                                return a.name.localeCompare(b.name);
+                              })
                               .map(roomType => (
                                 <div
                                   key={roomType.id}
