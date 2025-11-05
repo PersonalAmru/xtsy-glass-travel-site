@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { Star, ChevronLeft, ChevronRight, X, ExternalLink } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -8,6 +8,7 @@ const ReviewsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedReview, setSelectedReview] = useState<any>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isAllReviewsOpen, setIsAllReviewsOpen] = useState(false);
 
   // Real OTA platform reviews
   const allReviews = [{
@@ -697,7 +698,117 @@ const ReviewsSection = () => {
             </p>
           </div>
         </div>
+
+        {/* View All Reviews Button */}
+        <div className="absolute bottom-4 right-4">
+          <Button 
+            onClick={() => setIsAllReviewsOpen(true)}
+            className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+          >
+            View All Reviews
+            <ExternalLink className="ml-2 h-4 w-4" />
+          </Button>
+        </div>
       </div>
+
+      {/* All Reviews Modal */}
+      <Dialog open={isAllReviewsOpen} onOpenChange={setIsAllReviewsOpen}>
+        <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="flex items-center justify-between text-2xl font-bold">
+              <span>All Guest Reviews</span>
+              <Button 
+                variant="ghost" 
+                size="icon"
+                onClick={() => setIsAllReviewsOpen(false)}
+                className="hover:bg-gray-100 rounded-full"
+              >
+                <X className="h-5 w-5" />
+              </Button>
+            </DialogTitle>
+          </DialogHeader>
+          
+          <div className="space-y-8 mt-4">
+            {/* Group reviews by platform */}
+            {["Booking.com", "Google", "MakeMyTrip", "Expedia"].map(platform => {
+              const platformReviews = allReviews.filter(r => r.source === platform);
+              if (platformReviews.length === 0) return null;
+              
+              return (
+                <div key={platform} className="space-y-4">
+                  <h3 className="text-xl font-bold text-gray-800 flex items-center gap-2 border-b-2 border-orange-400 pb-2">
+                    <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                    {platform} Reviews
+                    <span className="text-sm font-normal text-gray-500">({platformReviews.length} reviews)</span>
+                  </h3>
+                  
+                  {/* Group by property within platform */}
+                  {["XTSY Luxury", "XTSY Travellers Hostel", "XTSY Economy"].map(property => {
+                    const propertyReviews = platformReviews.filter(r => r.property === property);
+                    if (propertyReviews.length === 0) return null;
+                    
+                    return (
+                      <div key={property} className="ml-4 space-y-3">
+                        <h4 className="text-lg font-semibold text-gray-700 flex items-center gap-2">
+                          <span className={`inline-block ${
+                            property === "XTSY Economy" 
+                              ? "bg-gradient-to-r from-blue-500 to-blue-600" 
+                              : property === "XTSY Luxury"
+                              ? "bg-gradient-to-r from-purple-500 to-purple-600"
+                              : "bg-gradient-to-r from-orange-500 to-orange-600"
+                          } text-white text-xs font-semibold px-3 py-1 rounded-full shadow-sm`}>
+                            {property}
+                          </span>
+                          <span className="text-sm text-gray-500">({propertyReviews.length})</span>
+                        </h4>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                          {propertyReviews.map((review, idx) => (
+                            <Card 
+                              key={idx}
+                              className="hover:shadow-lg transition-all duration-300 hover:scale-[1.02] border-l-4"
+                              style={{
+                                borderLeftColor: property === "XTSY Economy" ? "#3b82f6" : property === "XTSY Luxury" ? "#a855f7" : "#f97316"
+                              }}
+                            >
+                              <CardHeader className="pb-3">
+                                <div className="flex items-center justify-between mb-2">
+                                  <CardTitle className="text-base font-semibold">
+                                    {review.name}
+                                  </CardTitle>
+                                  <div className="flex items-center gap-1">
+                                    <span className="text-yellow-600 font-bold text-sm">
+                                      {platform === "Google" || platform === "MakeMyTrip" ? `${review.rating}/5` : `${review.rating}/10`}
+                                    </span>
+                                    <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                                  </div>
+                                </div>
+                                <CardDescription className="text-xs">
+                                  <div className="flex items-center gap-1">
+                                    <span>{review.date}</span>
+                                  </div>
+                                  {review.roomType && (
+                                    <div className="text-xs text-gray-500 mt-1">{review.roomType}</div>
+                                  )}
+                                </CardDescription>
+                              </CardHeader>
+                              <CardContent className="pt-0">
+                                <p className="text-sm text-gray-700 leading-relaxed">
+                                  {review.comment}
+                                </p>
+                              </CardContent>
+                            </Card>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Review Detail Modal */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
