@@ -66,6 +66,7 @@ const services: ServiceCard[] = [
         { e: "🔌", t: "Every Bedside USB-C/Lightning Fast Chargers" },
         { e: "🧴", t: "Premium Toiletries & Wellness Kit" },
         { e: "🧺", t: "Laundry Service (Free)" },
+        { e: "🛒", t: "Convenience Store (Free)" },
         { e: "🅿️", t: "Reserved + Valet Service" },
         { e: "🧭", t: "24/7 Concierge & Guided Itineraries" },
         { e: "🥾", t: "Guided Wellness Hikes & Private Trails" },
