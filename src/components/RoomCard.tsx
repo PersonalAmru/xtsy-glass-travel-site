@@ -111,29 +111,13 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
             </div>
             
             <div className="mt-auto">
-              {/* Show weekday/weekend pricing for XTSY 270 */}
-              {room.id === "signature-270-glass-suite" ? (
-                <div className="mb-3 space-y-1.5">
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-gray-300 font-josefin">Weekday Rate</span>
-                    <span className="font-bold text-orange-400 font-playfair">₹7,999 /night</span>
-                  </div>
-                  <p className="text-xs text-gray-400 font-josefin">Monday to Thursday</p>
-                  <div className="flex items-center justify-between text-sm mt-2">
-                    <span className="text-gray-300 font-josefin">Weekend Rate</span>
-                    <span className="font-bold text-orange-400 font-playfair">₹9,999 /night</span>
-                  </div>
-                  <p className="text-xs text-gray-400 font-josefin">Friday to Sunday</p>
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-2">
+                  <Users className="h-4 w-4 text-gray-300" />
+                  <span className="text-sm text-gray-300 font-josefin">{room.maxGuests} guests</span>
                 </div>
-              ) : (
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-2">
-                    <Users className="h-4 w-4 text-gray-300" />
-                    <span className="text-sm text-gray-300 font-josefin">{room.maxGuests} guests</span>
-                  </div>
-                  <span className="text-lg font-bold text-orange-400 font-playfair">{formatPrice(displayPrice)}/night</span>
-                </div>
-              )}
+                <span className="text-lg font-bold text-orange-400 font-playfair">{formatPrice(displayPrice)}/night</span>
+              </div>
               <Button 
                 onClick={handleRoomSelection}
                 className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 font-josefin mobile-button"
