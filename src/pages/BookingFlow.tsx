@@ -565,7 +565,7 @@ export default function BookingFlow() {
                   XTSY Economy
                 </h3>
                 <p className={`text-center text-gray-600 mt-2 ${isMobileView ? 'text-sm' : 'text-base'}`}>
-                  Budget-friendly options for backpackers. No access to Common Area, Shared Lounge or Games Room.
+                  Your Ultra-Budget Stay Without Compromise Simple, clean, and affordable. Designed for backpackers who need a safe, reliable place to crash with all the essentials
                 </p>
                 <div className="w-16 h-0.5 bg-gradient-to-r from-green-500 to-teal-600 mx-auto mt-3 rounded-full" />
               </div>
