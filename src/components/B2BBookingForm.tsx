@@ -152,7 +152,6 @@ const B2BBookingForm = ({
         ? `✨ *Welcome to XTSY 270° Panoramic Glass Suite* ✨
 
 🌟 *India's First 270° Glass House Experience*
-Booking ID: ${bookingId}
 
 ❤️ *Guest Details:*
 ${formData.companyName || 'Guest'}${formData.contactPerson ? ` & ${formData.contactPerson}` : ''}
@@ -172,7 +171,6 @@ ${foodAddons.length > 0 ? `🍴 *Food Add-ons:*\n${foodAddons.join('\n')}\n\n` :
         : `🏢 *XTSY 270° Glass Suite - B2B Booking Request*
 
 🌟 *India's First 270° Panoramic Glass House*
-Booking ID: ${bookingId}
 
 🏢 *Company Details:*
 Company: ${formData.companyName || 'Not provided'}
