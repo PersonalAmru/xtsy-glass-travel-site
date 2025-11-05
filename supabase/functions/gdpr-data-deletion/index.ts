@@ -194,7 +194,7 @@ Deno.serve(async (req) => {
             severity: 'high',
             details: {
               user_id: user.id,
-              error: error.message,
+              error_type: 'deletion_error',
               timestamp: new Date().toISOString()
             },
             user_id: user.id
