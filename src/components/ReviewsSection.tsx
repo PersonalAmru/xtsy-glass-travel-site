@@ -295,9 +295,218 @@ const ReviewsSection = () => {
     rating: 10,
     comment: "The hostel has a very welcoming atmosphere with friendly staff and a helpful property manager. The food is excellent, cleanliness is always maintained, and Wi-Fi connectivity is smooth. As a student, I never faced any issues, and having Swiggy and Zomato working perfectly was a big plus. The location is also close to beautiful scenic spots, which makes staying here even better.",
     date: "August 2025",
-    source: "XTSY Economy",
+    source: "Booking.com",
     roomType: "Female Dormitory Room",
     property: "XTSY Economy"
+  }, {
+    name: "Samdarshi",
+    rating: 5,
+    comment: "Holiday | Friends",
+    date: "4 weeks ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Great value"
+  }, {
+    name: "KaDusH Music",
+    rating: 5,
+    comment: "Business | Solo",
+    date: "3 weeks ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Great value"
+  }, {
+    name: "Raju Paul",
+    rating: 5,
+    comment: "Holiday | Family",
+    date: "3 weeks ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Quiet"
+  }, {
+    name: "Angel Kenny",
+    rating: 5,
+    comment: "Holiday | Friends",
+    date: "3 weeks ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Quiet · Child-friendly · Great value"
+  }, {
+    name: "Reejan",
+    rating: 5,
+    comment: "Stay was a very good experience. Rooms were much comfortable. They do have rooms for all price ranges. Dormitory facilities are also available. Food is prepared to order and to your taste. Thanks Xsty team for your support.",
+    date: "a week ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 4.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Great view · Great value"
+  }, {
+    name: "Deepak D",
+    rating: 5,
+    comment: "This hostel is a hidden gem for backpackers. Its location is absolutely perfect. From the moment I walked through the door, I felt completely at home. The staff was incredibly welcoming and created such a friendly, inclusive atmosphere. The common area felt like a big living room where it was easy to meet other travelers, whether we were sharing travel stories or joining in on one of the hostel's evening activities. This isn't just a place to sleep—it's a place to connect.",
+    date: "6 days ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Luxury · Great view · Romantic · Quiet · Great value · High-tech",
+    details: {
+      rooms: "Cozy soft curtains with hygiene bedspreads",
+      activities: "Very good location for walking jogging falls lake and ponds",
+      safety: "Good",
+      food: "Available both Veg and Non-Veg with snacks"
+    }
+  }, {
+    name: "Vishwas Aditya Chauhan",
+    rating: 5,
+    comment: "Rooms are good and are of wide space. Nearby activity is full of peace and silence yeah but in hostel they provide music systems and fun games for enjoyment. The food is very good as compared to other stays and rooms.",
+    date: "a month ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 4.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Luxury · Great value",
+    details: {
+      walkability: "It is great",
+      food: "The food is very good as compared to other stays and rooms"
+    }
+  }, {
+    name: "Gokarna Shrestha",
+    rating: 5,
+    comment: "Best Budget accommodation ✨",
+    date: "a week ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Great view · Child-friendly · Great value"
+  }, {
+    name: "Dipankar boro Boro",
+    rating: 5,
+    comment: "Best Hostel in Shillong ♥️",
+    date: "a week ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Great view · Romantic · Quiet · Great value"
+  }, {
+    name: "saad sep",
+    rating: 5,
+    comment: "Everything is good in here",
+    date: "2 weeks ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 4.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Romantic · Quiet · Great value"
+  }, {
+    name: "SAHIL BENIWAL",
+    rating: 5,
+    comment: "Very nice place for group stay👍",
+    date: "a month ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel"
+  }, {
+    name: "Dhruba Thakuria",
+    rating: 5,
+    comment: "Very good hospitality and excellent tour package management",
+    date: "a week ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Great view · Romantic · Quiet · Child-friendly · Great value"
+  }, {
+    name: "Mariza Pyngrope",
+    rating: 5,
+    comment: "Unforgettable stay at XTSY Travellers Hostel! From the moment I stepped into XTSY Travellers Hostel, I felt like I'd stumbled into a home away from home. The energy of the place is electric — full of laughter, music, and the kind of conversations that stretch late into the night. What truly sets this hostel apart, though, are the people. Amrudeen and Prabhu are the heartbeat of XTSY. Their warmth is unmatched — they greeted me with huge smiles and instantly made me feel like part of the family. I still remember Prabhu pulling out his guitar one evening and turning a quiet dinner into a spontaneous jam session. Amrudeen, ever the gracious host, made sure everyone had what they needed, whether it was a hot cup of tea or a local travel tip that turned into a hidden gem discovery. The food deserves its own shoutout — every meal was a celebration. From hearty breakfasts that fueled our adventures to cozy dinners that brought everyone together, the flavors were rich and comforting. I especially loved the local touches in the menu — it felt like a culinary tour of Meghalaya without leaving the dining table. The vibe of the hostel is youthful and welcoming. Whether you're a solo traveler or part of a group, there's always someone to chat with, explore with, or just sit quietly and take in the view. The common spaces are designed for connection — I met people from all over the world and shared stories that I'll carry with me for years. If you're heading to Shillong and want more than just a place to sleep — if you want memories, friendships, and a true sense of belonging — XTSY is the place. I'll be back, and next time, I'm bringing friends!",
+    date: "a month ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Luxury · Great view · Romantic · Quiet · Great value · High-tech"
+  }, {
+    name: "Adhiyamaan Arasu",
+    rating: 5,
+    comment: "I had a wonderful experience at Xtsy Traveller Hostel! The staff were super friendly and helpful, and the atmosphere was very welcoming. The rooms were clean and comfortable, and the common areas has games and tv. It felt like a good vibes. Highly recommend this place if you're looking for a great stay!",
+    date: "a month ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Luxury · Great view · Quiet · Child-friendly · Great value · High-tech"
+  }, {
+    name: "chandan chaudhary",
+    rating: 5,
+    comment: "It was a very pleasant stay. Rooms and dorms are very nice, near and clean. Staff is very humble and polite and services are very classy",
+    date: "a month ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 4.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Luxury · Great view · Romantic · Quiet · Child-friendly · Great value · High-tech",
+    details: {
+      rooms: "Near and clean",
+      safety: "Safe",
+      walkability: "Walking space",
+      food: "Good taste at a reasonable price"
+    }
+  }, {
+    name: "Emmanuel Swamy",
+    rating: 5,
+    comment: "A gem in Shillong! Staying at XTSY Travellers Hostel was an absolute delight. From the moment I arrived, I was welcomed with genuine warmth and infectious energy by Amrudeen and Prabhu — two of the most lively and gracious hosts I've ever met. Their hospitality goes beyond expectations, making you feel less like a guest and more like family. The vibe of the hostel is vibrant and full of life — perfect for travelers looking to connect, relax, and soak in the spirit of Shillong. The common areas are cozy and inviting, and there's always something happening that brings people together. And the food? Absolutely delicious! Every meal was prepared with care and flavor, offering a comforting taste of home with a local twist. Whether you're starting your day with a hearty breakfast or winding down with a warm dinner, the kitchen never disappoints. If you're looking for a place that blends comfort, community, and character — XTSY is it. Huge thanks to Amrudeen and Prabhu for making my stay unforgettable. Can't wait to come back!",
+    date: "a month ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Luxury · Great view · Romantic · Quiet · Child-friendly · Great value · High-tech"
+  }, {
+    name: "Sahaa Msd",
+    rating: 5,
+    comment: "Absolutely loved my stay at XTSY Travellers Hostel! The staff here are exceptionally warm, attentive, and truly go above and beyond to make everyone feel welcome and cared for. The beds are incredibly comfortable—like sinking into a cloud after a long day exploring Shillong. Everything was spotlessly clean, and the atmosphere made it easy to relax and recharge. Highly recommend this hostel if friendly service and a good night's sleep are important! Cafe there also provides healthy and tasty food. BBQ set up, DJ party, Panoramic stargaze stay are the main attractions of XTSY",
+    date: "a month ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Luxury · Great view · Quiet · Great value · High-tech",
+    details: {
+      rooms: "Rooms are neat and clean",
+      activities: "Skating, New Legislative Assembly of Shillong, Elephant falls, Laitlum Canyon",
+      safety: "Safe is never compromised 24/7 CCTV",
+      walkability: "Walkable from New Legislative Assembly of Meghalaya",
+      food: "Food, snacks, drinks like beverages are arranged easily for you by friendly management"
+    }
+  }, {
+    name: "Malathi Gunda",
+    rating: 5,
+    comment: "Had a very memorable and pleasant stay. Staff was of great help as we had bad experience with the cab service from Guwahati to Shillong. Thanks to the XTSY staff's timely help in this regard. Would recommend without any hesitation. Thank you XTSY!!!",
+    date: "3 weeks ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Great view · Quiet · Great value",
+    details: {
+      rooms: "Neat and clean",
+      safety: "Suitable for everyone and no issues with safety. We were all women group and had great stay"
+    }
+  }, {
+    name: "Rahul Dev Lenka",
+    rating: 5,
+    comment: "Just one word for XTSY STAYS, 'THE BEST'. It's one of the best stays I have been lately. The support staff is very very helpful and the owners are just awesome. I would strongly recommend everyone to be here if you are travelling in Shillong. The location is also great because it is just in the middle of the new Shillong road.",
+    date: "4 weeks ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Great view · Romantic · Great value · High-tech",
+    details: {
+      rooms: "10/10"
+    }
+  }, {
+    name: "Umapathi Prithiv",
+    rating: 5,
+    comment: "I had an amazing stay at XTSY Travellers Hostel in Meghalaya! The rooms were clean, comfortable, and well-maintained, making it the perfect place to relax after a day of exploring. The service was outstanding—staff were super friendly, helpful, and always went out of their way to make sure everything was perfect. The location is unbeatable, close to key attractions and surrounded by beautiful views, which added so much charm to the trip.",
+    date: "3 weeks ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Great view"
   }];
 
   const nextReview = () => {
