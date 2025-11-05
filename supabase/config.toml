@@ -13,9 +13,6 @@ verify_jwt = false
 [functions.validate-booking]
 verify_jwt = false
 
-[functions.inventory-sync]
-verify_jwt = true
-
 [functions.ota-webhook-handler]
 verify_jwt = false
 
