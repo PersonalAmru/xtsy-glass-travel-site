@@ -183,89 +183,8 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
     return selectedRooms.reduce((total, room) => total + (room.price * room.quantity * nights), 0);
   };
 
-  const handleBookNow = async () => {
-    // Validate required fields
-    if (!formData.name || !formData.email || !formData.phone || !formData.city || !formData.pincode || !formData.checkIn || !formData.checkOut) {
-      toast({
-        title: "Missing Information",
-        description: "Please fill in all required fields",
-        variant: "destructive"
-      });
-      return;
-    }
-
-    // Save to database first
-    const totalAmount = getTotalAmount();
-    const result = await saveWhatsAppBooking({
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone,
-      city: formData.city,
-      pincode: formData.pincode,
-      checkIn: formData.checkIn,
-      checkOut: formData.checkOut,
-      guests: formData.guests,
-      specialRequests: formData.specialRequests,
-      selectedRooms,
-      nights,
-      totalAmount
-    });
-
-    if (!result.success) {
-      toast({
-        title: "Error",
-        description: "Failed to save booking. Please try again.",
-        variant: "destructive"
-      });
-      return;
-    }
-
-    // Build beautiful WhatsApp welcome message for XTSY
-    const roomsText = selectedRooms.map(room => 
-      `   • ${room.roomTypeName} × ${room.quantity} room(s)`
-    ).join('\n');
-
-    const addOnsText = [];
-    if (formData.breakfast) addOnsText.push(`   • Breakfast for ${formData.breakfastGuests} guest(s)`);
-    if (formData.dinner) addOnsText.push(`   • Dinner (${formData.dinnerType}) for ${formData.dinnerGuests} guest(s)`);
-    if (formData.transportation) addOnsText.push(`   • Transportation Service`);
-    if (formData.itinerary) addOnsText.push(`   • Custom Itinerary Planning`);
-
-    const message = `🌟 *XTSY 270 Booking Inquiry* 🌟
-
-Hello XTSY Team! 👋
-
-I'm excited to book my stay at XTSY 270!
-
-👤 *Guest Details:*
-   Name: ${formData.name}
-   Email: ${formData.email}
-   Phone: ${formData.phone}
-   City: ${formData.city}, ${formData.pincode}
-
-📅 *Booking Details:*
-   Check-in: ${formData.checkIn}
-   Check-out: ${formData.checkOut}
-   Duration: ${nights} night(s)
-   Guests: ${formData.guests}
-
-🏠 *Room Selection:*
-${roomsText || '   Not selected yet'}
-${addOnsText.length > 0 ? `\n🍽️ *Add-on Services:*\n${addOnsText.join('\n')}` : ''}
-${formData.specialRequests ? `\n💬 *Special Requests:*\n   ${formData.specialRequests}` : ''}
-
-💰 *Estimated Total: ₹${totalAmount.toLocaleString('en-IN')}*
-
-Looking forward to an amazing experience at XTSY 270! 🎉`;
-
-    const encodedMessage = encodeURIComponent(message);
-    window.open(`https://api.whatsapp.com/send/?phone=918837317070&text=${encodedMessage}&type=phone_number&app_absent=0`, '_blank');
-    
-    toast({
-      title: "Booking Saved",
-      description: "Your booking inquiry has been saved successfully!",
-    });
-    
+  const handleBookNow = () => {
+    window.open('https://api.whatsapp.com/send/?phone=918837317070&text&type=phone_number&app_absent=0', '_blank');
     onClose();
   };
 
@@ -290,17 +209,16 @@ Looking forward to an amazing experience at XTSY 270! 🎉`;
               {/* Personal Information */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="name">Full Name *</Label>
+                  <Label htmlFor="name">Full Name</Label>
                   <Input
                     id="name"
                     value={formData.name}
                     onChange={(e) => handleInputChange('name', e.target.value)}
                     placeholder="Your Name"
-                    required
                   />
                 </div>
                 <div>
-                  <Label htmlFor="phone">Phone Number *</Label>
+                  <Label htmlFor="phone">Phone Number</Label>
                   <div className="flex items-center gap-2">
                     <Phone className="h-4 w-4 text-muted-foreground" />
                     <Input
@@ -308,45 +226,41 @@ Looking forward to an amazing experience at XTSY 270! 🎉`;
                       value={formData.phone}
                       onChange={(e) => handleInputChange('phone', e.target.value)}
                       placeholder="+91 XXXXXXXXXX"
-                      required
                     />
                   </div>
                 </div>
               </div>
 
               <div>
-                <Label htmlFor="email">Email Address *</Label>
+                <Label htmlFor="email">Email Address</Label>
                 <Input
                   id="email"
                   type="email"
                   value={formData.email}
                   onChange={(e) => handleInputChange('email', e.target.value)}
                   placeholder="your@email.com"
-                  required
                 />
               </div>
 
               {/* City and Pincode */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="city">City *</Label>
+                  <Label htmlFor="city">City</Label>
                   <Input
                     id="city"
                     value={formData.city}
                     onChange={(e) => handleInputChange('city', e.target.value)}
                     placeholder="Your City"
-                    required
                   />
                 </div>
                 <div>
-                  <Label htmlFor="pincode">Pincode *</Label>
+                  <Label htmlFor="pincode">Pincode</Label>
                   <Input
                     id="pincode"
                     value={formData.pincode}
                     onChange={(e) => handleInputChange('pincode', e.target.value)}
                     placeholder="123456"
                     maxLength={6}
-                    required
                   />
                 </div>
               </div>
@@ -354,23 +268,21 @@ Looking forward to an amazing experience at XTSY 270! 🎉`;
               {/* Booking Details */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="checkIn">Check-in Date *</Label>
+                  <Label htmlFor="checkIn">Check-in Date</Label>
                   <Input
                     id="checkIn"
                     type="date"
                     value={formData.checkIn}
                     onChange={(e) => handleInputChange('checkIn', e.target.value)}
-                    required
                   />
                 </div>
                 <div>
-                  <Label htmlFor="checkOut">Check-out Date *</Label>
+                  <Label htmlFor="checkOut">Check-out Date</Label>
                   <Input
                     id="checkOut"
                     type="date"
                     value={formData.checkOut}
                     onChange={(e) => handleInputChange('checkOut', e.target.value)}
-                    required
                   />
                 </div>
               </div>
@@ -386,7 +298,7 @@ Looking forward to an amazing experience at XTSY 270! 🎉`;
 
               {/* Guest Selection */}
               <div>
-                <Label htmlFor="guests">Number of Guests *</Label>
+                <Label htmlFor="guests">Number of Guests</Label>
                 <div className="flex items-center gap-2">
                   <Users className="h-4 w-4 text-muted-foreground" />
                   <Input
