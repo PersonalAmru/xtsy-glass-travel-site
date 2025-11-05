@@ -10,7 +10,7 @@ const ReviewsSection = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   // Real OTA platform reviews
-  const filteredReviews = [{
+  const allReviews = [{
     name: "Rohit",
     rating: 10,
     comment: "Exceptional",
@@ -263,7 +263,7 @@ const ReviewsSection = () => {
     rating: 10,
     comment: "Exceptional",
     date: "August 2025",
-    source: "XTSY Economy",
+    source: "Booking.com",
     roomType: "Mixed Dormitory Room",
     property: "XTSY Economy"
   }, {
@@ -271,7 +271,7 @@ const ReviewsSection = () => {
     rating: 10,
     comment: "Exceptional",
     date: "August 2025",
-    source: "XTSY Economy",
+    source: "Booking.com",
     roomType: "8-Bed Mixed Dormitory Room",
     property: "XTSY Economy"
   }, {
@@ -279,7 +279,7 @@ const ReviewsSection = () => {
     rating: 10,
     comment: "Exceptional",
     date: "September 2025",
-    source: "XTSY Economy",
+    source: "Booking.com",
     roomType: "Mixed Dormitory Room",
     property: "XTSY Economy"
   }, {
@@ -287,7 +287,7 @@ const ReviewsSection = () => {
     rating: 10,
     comment: "Exceptional",
     date: "September 2025",
-    source: "XTSY Economy",
+    source: "Booking.com",
     roomType: "Mixed Dormitory Room",
     property: "XTSY Economy"
   }, {
@@ -508,6 +508,9 @@ const ReviewsSection = () => {
     property: "XTSY Travellers Hostel",
     highlights: "Great view"
   }];
+
+  // Sort reviews by comment length (longest first)
+  const filteredReviews = [...allReviews].sort((a, b) => b.comment.length - a.comment.length);
 
   const nextReview = () => {
     setCurrentIndex(prev => (prev + 1) % Math.ceil(filteredReviews.length - 2));
