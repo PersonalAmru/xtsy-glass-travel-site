@@ -11,6 +11,13 @@ const ReviewsSection = () => {
 
   // Real OTA platform reviews
   const filteredReviews = [{
+    name: "T2t",
+    rating: 10,
+    comment: "Exceptional",
+    date: "February 2025",
+    source: "Booking.com",
+    roomType: "6-Bed Mixed Dormitory Room"
+  }, {
     name: "Kush Agarwal",
     rating: 10,
     comment: "Amazing location, clean space. Awesome hosts",
