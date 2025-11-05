@@ -1046,11 +1046,7 @@ const Travel = () => {
                             <div className="flex justify-center items-center gap-4 flex-wrap animate-fade-in">
                               <div className="flex items-center gap-2 bg-blue-50 px-4 py-2 rounded-full">
                                 <span className="text-2xl">✈️</span>
-                                <span className="text-sm font-semibold text-blue-900">International Certified</span>
-                              </div>
-                              <div className="flex items-center gap-2 bg-purple-50 px-4 py-2 rounded-full">
-                                <span className="text-2xl">🌍</span>
-                                <span className="text-sm font-semibold text-purple-900">50+ Countries</span>
+                                <span className="text-sm font-semibold text-blue-900">International Friendly</span>
                               </div>
                               <div className="flex items-center gap-2 bg-pink-50 px-4 py-2 rounded-full">
                                 <span className="text-2xl">🎯</span>
