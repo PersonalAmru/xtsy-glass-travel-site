@@ -5,8 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { MessageCircle, Calendar, Users, Phone, Plus, Trash2, Home } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
+import { MessageCircle, Calendar, Users, Phone, Trash2, Home } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import { saveWhatsAppBooking } from "@/services/formBookingService";
@@ -46,7 +46,7 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
 
   const [nights, setNights] = useState(0);
   const [roomTypes, setRoomTypes] = useState<RoomType[]>([]);
-  const [selectedRoomType, setSelectedRoomType] = useState<string>("");
+  const [selectedRoomIds, setSelectedRoomIds] = useState<Set<string>>(new Set());
   const [selectedRooms, setSelectedRooms] = useState<SelectedRoom[]>([]);
   const [loadingRooms, setLoadingRooms] = useState(false);
   const [roomsError, setRoomsError] = useState<string>("");
@@ -94,38 +94,38 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleAddRoom = () => {
-    if (!selectedRoomType) return;
-
-    const roomType = roomTypes.find(rt => rt.id === selectedRoomType);
+  const handleRoomToggle = (roomTypeId: string) => {
+    const roomType = roomTypes.find(rt => rt.id === roomTypeId);
     if (!roomType) return;
 
-    // Check if room already added
-    const existingRoom = selectedRooms.find(r => r.roomTypeId === selectedRoomType);
-    if (existingRoom) {
-      // Increase quantity
-      setSelectedRooms(prev => 
-        prev.map(room => 
-          room.roomTypeId === selectedRoomType 
-            ? { ...room, quantity: room.quantity + 1 }
-            : room
-        )
-      );
-    } else {
-      // Add new room
-      setSelectedRooms(prev => [...prev, {
-        roomTypeId: roomType.id,
-        roomTypeName: `${roomType.category} - ${roomType.name}`,
-        quantity: 1,
-        price: roomType.base_price
-      }]);
-    }
-
-    setSelectedRoomType("");
+    setSelectedRoomIds(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(roomTypeId)) {
+        newSet.delete(roomTypeId);
+        // Remove from selectedRooms
+        setSelectedRooms(prevRooms => prevRooms.filter(r => r.roomTypeId !== roomTypeId));
+      } else {
+        newSet.add(roomTypeId);
+        // Add to selectedRooms
+        const newRoom: SelectedRoom = {
+          roomTypeId: roomType.id,
+          roomTypeName: `${roomType.category} - ${roomType.name}`,
+          quantity: 1,
+          price: roomType.base_price
+        };
+        setSelectedRooms(prevRooms => [...prevRooms, newRoom]);
+      }
+      return newSet;
+    });
   };
 
   const handleRemoveRoom = (roomTypeId: string) => {
     setSelectedRooms(prev => prev.filter(room => room.roomTypeId !== roomTypeId));
+    setSelectedRoomIds(prev => {
+      const newSet = new Set(prev);
+      newSet.delete(roomTypeId);
+      return newSet;
+    });
   };
 
   const handleUpdateQuantity = (roomTypeId: string, newQuantity: number) => {
@@ -351,60 +351,59 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
                   </div>
                 )}
 
-                {/* Room Type Selector */}
-                <div className="flex gap-2">
-                  <div className="flex-1 relative">
-                    <Select value={selectedRoomType} onValueChange={setSelectedRoomType}>
-                      <SelectTrigger className="w-full bg-white dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-600 hover:border-primary">
-                        <SelectValue placeholder={
-                          loadingRooms 
-                            ? "Loading room types..." 
-                            : roomTypes.length === 0 
-                              ? "No rooms available" 
-                              : "Select a room or dorm type"
-                        } />
-                      </SelectTrigger>
-                      <SelectContent 
-                        className="bg-white dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-600 shadow-xl z-[9999]"
-                        position="popper"
-                        sideOffset={5}
-                      >
-                        {roomTypes.length === 0 && !loadingRooms && (
-                          <div className="p-4 text-center text-sm text-muted-foreground">
-                            No room types available
+                {/* Room Type Checkboxes - Grouped by Property Type */}
+                <div className="space-y-4">
+                  {loadingRooms ? (
+                    <div className="p-4 text-center text-sm text-muted-foreground">
+                      Loading room types...
+                    </div>
+                  ) : roomTypes.length === 0 ? (
+                    <div className="p-4 text-center text-sm text-muted-foreground">
+                      No room types available
+                    </div>
+                  ) : (
+                    <>
+                      {/* Group rooms by category */}
+                      {Array.from(new Set(roomTypes.map(rt => rt.category))).map(category => (
+                        <div key={category} className="space-y-2">
+                          <h4 className="font-semibold text-sm text-primary uppercase tracking-wide">{category}</h4>
+                          <div className="space-y-2 pl-2">
+                            {roomTypes
+                              .filter(rt => rt.category === category)
+                              .map(roomType => (
+                                <div
+                                  key={roomType.id}
+                                  className="flex items-start space-x-3 p-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-primary transition-colors"
+                                >
+                                  <Checkbox
+                                    id={roomType.id}
+                                    checked={selectedRoomIds.has(roomType.id)}
+                                    onCheckedChange={() => handleRoomToggle(roomType.id)}
+                                    className="mt-1"
+                                  />
+                                  <div className="flex-1">
+                                    <Label
+                                      htmlFor={roomType.id}
+                                      className="font-medium cursor-pointer leading-tight"
+                                    >
+                                      {roomType.name}
+                                    </Label>
+                                    <p className="text-xs text-muted-foreground mt-1">
+                                      ₹{roomType.base_price.toLocaleString('en-IN')}/night • Capacity: {roomType.capacity} guests
+                                    </p>
+                                  </div>
+                                </div>
+                              ))}
                           </div>
-                        )}
-                        {roomTypes.map((roomType) => (
-                          <SelectItem 
-                            key={roomType.id} 
-                            value={roomType.id}
-                            className="cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-700 py-3 px-4"
-                          >
-                            <div className="flex flex-col gap-1">
-                              <span className="font-semibold">{roomType.category} - {roomType.name}</span>
-                              <span className="text-xs text-muted-foreground">
-                                ₹{roomType.base_price.toLocaleString('en-IN')}/night • Capacity: {roomType.capacity} guests
-                              </span>
-                            </div>
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <Button
-                    type="button"
-                    onClick={handleAddRoom}
-                    disabled={!selectedRoomType || loadingRooms}
-                    className="bg-primary hover:bg-primary/90 px-6"
-                  >
-                    <Plus className="h-4 w-4 mr-1" />
-                    Add
-                  </Button>
+                        </div>
+                      ))}
+                    </>
+                  )}
                 </div>
 
                 {/* Helper text */}
                 <p className="text-xs text-muted-foreground">
-                  Select a room type and click "Add" to add it to your booking. You can add multiple rooms.
+                  Select one or more room types for your booking. You can adjust quantities below.
                 </p>
 
                 {/* Selected Rooms Display */}
