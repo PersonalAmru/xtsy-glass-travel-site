@@ -172,10 +172,10 @@ const AboutSection = () => {
             <TrendingUp className="w-5 h-5" />
             <span>India's Fastest-Growing Travel & Hospitality Brand</span>
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 bg-clip-text text-transparent mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 bg-clip-text text-transparent mb-6 leading-tight">
             About XTSY Travellers Hostel & Luxury
           </h1>
-          <p className="text-lg sm:text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
             <strong className="text-slate-800">XTSY is where innovation meets exploration.</strong> Based in Shillong and powered by <strong className="text-slate-800">XTSY ONE LLP</strong>, we are redefining how India travels — with experiences that feel personal, architectural, immersive, and unforgettable.
           </p>
           <div className="mt-6 flex flex-wrap gap-3 justify-center">
@@ -192,12 +192,12 @@ const AboutSection = () => {
               <Sparkles className="w-4 h-4" />
               <span>Architectural Milestone</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800 mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-800 mb-4 leading-tight">
               India's First 270° Panorama Glass Ensuite
             </h2>
           </div>
           <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 sm:p-12 text-white shadow-2xl">
-            <p className="text-lg sm:text-xl leading-relaxed text-center max-w-4xl mx-auto mb-6">
+            <p className="text-base sm:text-lg md:text-xl leading-relaxed text-center max-w-4xl mx-auto mb-6">
               Our flagship creation — the <strong className="text-amber-400">XTSY 270° Luxury Glass Suite</strong> — is India's first panoramic stargazing accommodation.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
@@ -227,12 +227,12 @@ const AboutSection = () => {
               <Building2 className="w-4 h-4" />
               <span>Northeast India's #1 Hostel</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-800 leading-tight">
               Biggest & Highest-Rated Hostel
             </h2>
           </div>
           <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl p-8 sm:p-12 text-white shadow-2xl">
-            <p className="text-lg sm:text-xl leading-relaxed text-center max-w-4xl mx-auto mb-8">
+            <p className="text-base sm:text-lg md:text-xl leading-relaxed text-center max-w-4xl mx-auto mb-8">
               <strong>XTSY Travellers Hostel</strong> is the largest and most highly reviewed group hostel in Northeast India, with capacity for <strong>50+ guests</strong>. A trusted choice for backpackers, digital nomads, student groups, and international communities traveling through Shillong, Meghalaya.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -285,17 +285,17 @@ const AboutSection = () => {
 
         {/* Who We Serve */}
         <section className="mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 text-center mb-8">Who We Serve</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 text-center mb-8 leading-tight">Who We Serve</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-white/50 text-center hover:shadow-xl transition-shadow">
               <Heart className="w-10 h-10 text-rose-500 mx-auto mb-3" />
-              <h3 className="font-bold text-slate-800 mb-2 text-sm">Couples & Honeymooners</h3>
-              <p className="text-xs text-slate-600">India's most unique romantic stay</p>
+              <h3 className="font-bold text-slate-800 mb-2 text-sm sm:text-base">Couples & Honeymooners</h3>
+              <p className="text-xs sm:text-sm text-slate-600">India's most unique romantic stay</p>
             </div>
             <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-white/50 text-center hover:shadow-xl transition-shadow">
               <Users className="w-10 h-10 text-blue-600 mx-auto mb-3" />
-              <h3 className="font-bold text-slate-800 mb-2 text-sm">Backpackers & Solo Travelers</h3>
-              <p className="text-xs text-slate-600">Northeast's favorite hub</p>
+              <h3 className="font-bold text-slate-800 mb-2 text-sm sm:text-base">Backpackers & Solo Travelers</h3>
+              <p className="text-xs sm:text-sm text-slate-600">Northeast's favorite hub</p>
             </div>
             <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-white/50 text-center hover:shadow-xl transition-shadow">
               <Globe className="w-10 h-10 text-green-600 mx-auto mb-3" />
