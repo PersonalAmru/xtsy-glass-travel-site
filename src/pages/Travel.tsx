@@ -12,6 +12,7 @@ import LazyWrapper from "@/components/LazyWrapper";
 import SEOContent from "@/components/SEOContent";
 import { TourPricingService } from "@/utils/tourPricingService";
 import UnifiedImage from "@/components/UnifiedImage"; // Updated to UnifiedImage
+import incredibleIndiaLogo from "@/assets/incredible-india-logo.png";
 
 // Import images for tour packages
 import meghalayaBiodiversityAuthenticImg from "@/assets/meghalaya-biodiversity-authentic.jpg";
@@ -982,6 +983,20 @@ const Travel = () => {
                       <p className="text-xs sm:text-sm text-gray-500 mt-4">
                         💬 Available 24/7 for instant tour planning assistance
                       </p>
+                      
+                      {/* Incredible India Logo */}
+                      <div className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-gray-200">
+                        <div className="flex justify-center items-center animate-fade-in">
+                          <img 
+                            src={incredibleIndiaLogo} 
+                            alt="Incredible India - Official Tourism Logo" 
+                            className="h-12 sm:h-16 md:h-20 w-auto object-contain hover:scale-105 transition-transform duration-300"
+                          />
+                        </div>
+                        <p className="text-xs sm:text-sm text-gray-600 text-center mt-3 sm:mt-4">
+                          Proud Partner of India Tourism
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
