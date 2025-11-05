@@ -175,7 +175,10 @@ serve(async (req) => {
   } catch (error) {
     console.error('Newsletter signup error:', error);
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ 
+        error: 'Unable to process newsletter signup. Please try again later or contact support.',
+        success: false 
+      }),
       { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );
   }

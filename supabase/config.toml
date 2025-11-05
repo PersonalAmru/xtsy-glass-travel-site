@@ -10,6 +10,9 @@ verify_jwt = false
 [functions.newsletter-signup]
 verify_jwt = false
 
+[functions.validate-booking]
+verify_jwt = false
+
 [functions.inventory-sync]
 verify_jwt = true
 

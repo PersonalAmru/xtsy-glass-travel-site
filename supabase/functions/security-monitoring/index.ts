@@ -231,7 +231,7 @@ serve(async (req) => {
     return new Response(
       JSON.stringify({
         success: false,
-        error: error.message || 'Internal server error'
+        error: 'Security monitoring operation failed. Please try again or contact support.'
       }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
