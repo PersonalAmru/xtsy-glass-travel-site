@@ -570,8 +570,8 @@ const AboutSection = () => {
                 <div className="text-sm text-white/90 font-medium">Accommodation Tiers</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-blue-400 mb-1">12+</div>
-                <div className="text-sm text-white/90 font-medium">States Coverage</div>
+                <div className="text-3xl font-bold text-blue-400 mb-1">12+ States</div>
+                <div className="text-sm text-white/90 font-medium">3+ Countries Coverage</div>
               </div>
               <div>
                 <div className="text-3xl font-bold text-purple-400 mb-1">30+</div>
