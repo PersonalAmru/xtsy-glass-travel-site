@@ -546,7 +546,8 @@ ${formData.specialRequests || 'None'}
               {/* Submit Button */}
               <div className="flex justify-center">
                 <Button 
-                  type="submit"
+                  type="button"
+                  onClick={() => window.open('https://wa.me/918837317070', '_blank')}
                   className="w-full bg-gradient-to-r from-primary to-orange-600 hover:from-orange-600 hover:to-red-700 text-white font-bold shadow-lg"
                 >
                   {isCoupleFocused ? (
