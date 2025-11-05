@@ -10,6 +10,7 @@ import { MessageCircle, Calendar, Users, Phone, Trash2, Home } from "lucide-reac
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import { saveWhatsAppBooking } from "@/services/formBookingService";
+import FoodAddonsSection from "@/components/FoodAddonsSection";
 
 interface WhatsAppBookingFormProps {
   isOpen: boolean;
@@ -41,7 +42,14 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
     checkIn: "",
     checkOut: "",
     guests: 2,
-    specialRequests: ""
+    specialRequests: "",
+    breakfast: false,
+    breakfastGuests: 1,
+    dinner: false,
+    dinnerGuests: 1,
+    dinnerType: "veg",
+    transportation: false,
+    itinerary: false
   });
 
   const [nights, setNights] = useState(0);
@@ -478,6 +486,12 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
                   </div>
                 )}
               </div>
+
+              {/* Food Add-ons & Additional Services */}
+              <FoodAddonsSection 
+                formData={formData}
+                onInputChange={handleInputChange}
+              />
 
               {/* Special Requests */}
               <div>

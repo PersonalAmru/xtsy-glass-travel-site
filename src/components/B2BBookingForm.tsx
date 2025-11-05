@@ -10,6 +10,7 @@ import { Building2, Calendar, Users, IndianRupee, Minus, Plus } from "lucide-rea
 import { useApp } from "@/contexts/AppContext";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import FoodAddonsSection from "@/components/FoodAddonsSection";
 
 interface B2BBookingFormProps {
   isOpen: boolean;
@@ -391,144 +392,10 @@ ${formData.specialRequests || 'None'}
 
               {/* Food Add-ons & Additional Services - Hide for couple-focused */}
               {!isCoupleFocused && (
-                <div className="space-y-4">
-                  <Label className="text-lg font-semibold">Food Add-ons & Additional Services</Label>
-                
-                {/* Breakfast */}
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border">
-                    <div>
-                      <h4 className="font-semibold">Breakfast</h4>
-                      <p className="text-sm text-muted-foreground">Start your day with a delightful morning feast</p>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      {formData.breakfast && (
-                        <>
-                          <Button
-                            type="button"
-                            variant="outline"
-                            size="sm"
-                            onClick={() => handleInputChange('breakfastGuests', Math.max(1, formData.breakfastGuests - 1))}
-                          >
-                            <Minus className="h-4 w-4" />
-                          </Button>
-                          <Input
-                            type="number"
-                            min="1"
-                            max={formData.guests}
-                            value={formData.breakfastGuests}
-                            onChange={(e) => handleInputChange('breakfastGuests', Math.min(formData.guests, parseInt(e.target.value) || 1))}
-                            className="text-center w-20"
-                          />
-                          <Button
-                            type="button"
-                            variant="outline"
-                            size="sm"
-                            onClick={() => handleInputChange('breakfastGuests', Math.min(formData.guests, formData.breakfastGuests + 1))}
-                          >
-                            <Plus className="h-4 w-4" />
-                          </Button>
-                        </>
-                      )}
-                      <input
-                        type="checkbox"
-                        checked={formData.breakfast}
-                        onChange={(e) => handleInputChange('breakfast', e.target.checked)}
-                        className="w-5 h-5 text-primary ml-2"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Dinner */}
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border">
-                    <div>
-                      <h4 className="font-semibold">Dinner</h4>
-                      <p className="text-sm text-muted-foreground">Savor authentic flavors crafted with love</p>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      {formData.dinner && (
-                        <>
-                          <Button
-                            type="button"
-                            variant="outline"
-                            size="sm"
-                            onClick={() => handleInputChange('dinnerGuests', Math.max(1, formData.dinnerGuests - 1))}
-                          >
-                            <Minus className="h-4 w-4" />
-                          </Button>
-                          <Input
-                            type="number"
-                            min="1"
-                            max={formData.guests}
-                            value={formData.dinnerGuests}
-                            onChange={(e) => handleInputChange('dinnerGuests', Math.min(formData.guests, parseInt(e.target.value) || 1))}
-                            className="text-center w-20"
-                          />
-                          <Button
-                            type="button"
-                            variant="outline"
-                            size="sm"
-                            onClick={() => handleInputChange('dinnerGuests', Math.min(formData.guests, formData.dinnerGuests + 1))}
-                          >
-                            <Plus className="h-4 w-4" />
-                          </Button>
-                        </>
-                      )}
-                      <input
-                        type="checkbox"
-                        checked={formData.dinner}
-                        onChange={(e) => handleInputChange('dinner', e.target.checked)}
-                        className="w-5 h-5 text-primary ml-2"
-                      />
-                    </div>
-                  </div>
-                  
-                  {formData.dinner && (
-                    <div className="ml-4">
-                      <Label>Dinner Type</Label>
-                      <Select value={formData.dinnerType} onValueChange={(value) => handleInputChange('dinnerType', value)}>
-                        <SelectTrigger>
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="veg">Vegetarian</SelectItem>
-                          <SelectItem value="nonveg">Non-Vegetarian</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  )}
-                </div>
-
-                {/* Transportation */}
-                <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border">
-                  <div>
-                    <h4 className="font-semibold">Transportation Arrangement</h4>
-                    <p className="text-sm text-muted-foreground">Local transport and transfers • Self Drive - Car & Bike Rental service</p>
-                  </div>
-                  <input
-                    type="checkbox"
-                    checked={formData.transportation}
-                    onChange={(e) => handleInputChange('transportation', e.target.checked)}
-                    className="w-5 h-5 text-primary"
-                  />
-                </div>
-
-                {/* Travel Itinerary */}
-                <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border">
-                  <div>
-                    <h4 className="font-semibold">Travel Itinerary Support</h4>
-                    <p className="text-sm text-muted-foreground">Customized itinerary planning</p>
-                  </div>
-                  <input
-                    type="checkbox"
-                    checked={formData.itinerary}
-                    onChange={(e) => handleInputChange('itinerary', e.target.checked)}
-                    className="w-5 h-5 text-primary"
-                  />
-                </div>
-                </div>
+                <FoodAddonsSection 
+                  formData={formData}
+                  onInputChange={handleInputChange}
+                />
               )}
 
               {/* Special Requests */}
