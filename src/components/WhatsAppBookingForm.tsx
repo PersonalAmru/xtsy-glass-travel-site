@@ -220,12 +220,43 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
       return;
     }
 
-    // Build WhatsApp message with selected rooms
+    // Build beautiful WhatsApp welcome message for XTSY
     const roomsText = selectedRooms.map(room => 
-      `${room.roomTypeName} x ${room.quantity}`
-    ).join(', ');
+      `   • ${room.roomTypeName} × ${room.quantity} room(s)`
+    ).join('\n');
 
-    const message = `Hi! I'd like to make a booking:\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCity: ${formData.city}\nPincode: ${formData.pincode}\nCheck-in: ${formData.checkIn}\nCheck-out: ${formData.checkOut}\nNights: ${nights}\nGuests: ${formData.guests}\nRooms: ${roomsText || 'Not selected'}\nEstimated Total: ₹${totalAmount}\n${formData.specialRequests ? `Special Requests: ${formData.specialRequests}` : ''}`;
+    const addOnsText = [];
+    if (formData.breakfast) addOnsText.push(`   • Breakfast for ${formData.breakfastGuests} guest(s)`);
+    if (formData.dinner) addOnsText.push(`   • Dinner (${formData.dinnerType}) for ${formData.dinnerGuests} guest(s)`);
+    if (formData.transportation) addOnsText.push(`   • Transportation Service`);
+    if (formData.itinerary) addOnsText.push(`   • Custom Itinerary Planning`);
+
+    const message = `🌟 *XTSY 270 Booking Inquiry* 🌟
+
+Hello XTSY Team! 👋
+
+I'm excited to book my stay at XTSY 270!
+
+👤 *Guest Details:*
+   Name: ${formData.name}
+   Email: ${formData.email}
+   Phone: ${formData.phone}
+   City: ${formData.city}, ${formData.pincode}
+
+📅 *Booking Details:*
+   Check-in: ${formData.checkIn}
+   Check-out: ${formData.checkOut}
+   Duration: ${nights} night(s)
+   Guests: ${formData.guests}
+
+🏠 *Room Selection:*
+${roomsText || '   Not selected yet'}
+${addOnsText.length > 0 ? `\n🍽️ *Add-on Services:*\n${addOnsText.join('\n')}` : ''}
+${formData.specialRequests ? `\n💬 *Special Requests:*\n   ${formData.specialRequests}` : ''}
+
+💰 *Estimated Total: ₹${totalAmount.toLocaleString('en-IN')}*
+
+Looking forward to an amazing experience at XTSY 270! 🎉`;
 
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://api.whatsapp.com/send/?phone=918837317070&text=${encodedMessage}&type=phone_number&app_absent=0`, '_blank');
