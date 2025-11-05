@@ -131,8 +131,73 @@ const B2BBookingForm = ({
         console.error('Error saving booking:', error);
       }
       
-      // Redirect to WhatsApp immediately
-      window.open('https://api.whatsapp.com/send/?phone=918837317070&text&type=phone_number&app_absent=0', '_blank');
+      // Build beautiful WhatsApp message with all details
+      const foodAddons = [];
+      if (formData.breakfast) {
+        foodAddons.push(`🍳 Breakfast: ${formData.breakfastGuests} guests - ${formatPrice(breakfastCost)}`);
+      }
+      if (formData.dinner) {
+        foodAddons.push(`🍽️ Dinner (${formData.dinnerType === 'veg' ? 'Vegetarian' : 'Non-Vegetarian'}): ${formData.dinnerGuests} guests - ${formatPrice(dinnerCost)}`);
+      }
+      
+      const additionalServices = [];
+      if (formData.transportation) {
+        additionalServices.push('🚗 Transportation Arrangement');
+      }
+      if (formData.itinerary) {
+        additionalServices.push('📋 Travel Itinerary Support');
+      }
+      
+      const whatsappMessage = isCoupleFocused 
+        ? `✨ *Welcome to XTSY 270° Panoramic Glass Suite* ✨
+
+🌟 *India's First 270° Glass House Experience*
+Booking ID: ${bookingId}
+
+❤️ *Guest Details:*
+${formData.companyName || 'Guest'}${formData.contactPerson ? ` & ${formData.contactPerson}` : ''}
+📧 Email: ${formData.email || 'Not provided'}
+📱 Phone: ${formData.phone || 'Not provided'}
+📍 City: ${formData.city || 'Not provided'}, PIN: ${formData.pincode || 'Not provided'}
+
+📅 *Booking Details:*
+Check-in: ${formData.checkIn || 'Not selected'}
+Check-out: ${formData.checkOut || 'Not selected'}
+🌙 Nights: ${nights || 0}
+👥 Guests: ${formData.guests || 1} (Couple)
+${formData.eventType ? `💝 Occasion: ${formData.eventType}` : ''}
+
+${foodAddons.length > 0 ? `🍴 *Food Add-ons:*\n${foodAddons.join('\n')}\n\n` : ''}${additionalServices.length > 0 ? `✨ *Additional Services:*\n${additionalServices.join('\n')}\n\n` : ''}${formData.specialRequests ? `💬 *Special Requests:*\n${formData.specialRequests}\n\n` : ''}🏔️ Experience panoramic mountain views like never before!
+        `.trim()
+        : `🏢 *XTSY 270° Glass Suite - B2B Booking Request*
+
+🌟 *India's First 270° Panoramic Glass House*
+Booking ID: ${bookingId}
+
+🏢 *Company Details:*
+Company: ${formData.companyName || 'Not provided'}
+Contact Person: ${formData.contactPerson || 'Not provided'}
+📧 Email: ${formData.email || 'Not provided'}
+📱 Phone: ${formData.phone || 'Not provided'}
+📍 City: ${formData.city || 'Not provided'}, PIN: ${formData.pincode || 'Not provided'}
+
+📅 *Booking Details:*
+Check-in: ${formData.checkIn || 'Not selected'}
+Check-out: ${formData.checkOut || 'Not selected'}
+🌙 Nights: ${nights || 0}
+👥 Total Guests: ${formData.guests || 1}
+🎯 Event Type: ${formData.eventType || 'Not specified'}
+
+💰 *Price Summary (Corporate Rate):*
+Accommodation: ${formatPrice(totalPrice)} (${formatPrice(corporateRate)}/person/night)
+${foodAddons.length > 0 ? foodAddons.join('\n') + '\n' : ''}${additionalServices.length > 0 ? additionalServices.join('\n') + '\n' : ''}GST (12%): ${formatPrice(gst)}
+*Total: ${formatPrice(finalTotal)}*
+
+${formData.specialRequests ? `📝 *Special Requests:*\n${formData.specialRequests}\n\n` : ''}🏔️ Thank you for choosing XTSY 270° - Where luxury meets nature!
+        `.trim();
+      
+      const whatsappUrl = `https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent(whatsappMessage)}&type=phone_number&app_absent=0`;
+      window.open(whatsappUrl, '_blank');
       onClose();
     } catch (error) {
       console.error('Error processing booking:', error);
