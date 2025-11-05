@@ -76,18 +76,50 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
       setRoomsError("");
       
       try {
+        console.log('Fetching room types...');
         const { data, error } = await supabase.functions.invoke('get-room-types');
 
         if (error) {
           console.error('Error fetching room types:', error);
           setRoomsError('Failed to load room types');
+          
+          // Fallback: Load directly from Supabase table
+          console.log('Attempting fallback: loading from room_types table...');
+          const { data: roomTypesData, error: tableError } = await supabase
+            .from('room_types')
+            .select('*')
+            .eq('is_active', true);
+          
+          if (tableError) {
+            console.error('Fallback also failed:', tableError);
+          } else if (roomTypesData) {
+            setRoomTypes(roomTypesData);
+            setRoomsError("");
+            console.log('Loaded room types from fallback:', roomTypesData.length);
+          }
         } else if (data) {
           setRoomTypes(data);
-          console.log('Loaded room types:', data.length);
+          console.log('Loaded room types from edge function:', data.length);
         }
       } catch (err) {
         console.error('Exception fetching room types:', err);
         setRoomsError('Failed to load room types');
+        
+        // Fallback: Load directly from Supabase table
+        try {
+          const { data: roomTypesData, error: tableError } = await supabase
+            .from('room_types')
+            .select('*')
+            .eq('is_active', true);
+          
+          if (!tableError && roomTypesData) {
+            setRoomTypes(roomTypesData);
+            setRoomsError("");
+            console.log('Loaded room types from fallback after exception:', roomTypesData.length);
+          }
+        } catch (fallbackErr) {
+          console.error('Fallback failed:', fallbackErr);
+        }
       } finally {
         setLoadingRooms(false);
       }

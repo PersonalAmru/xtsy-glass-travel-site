@@ -48,18 +48,20 @@ export async function saveWhatsAppBooking(data: WhatsAppBookingData) {
     // Generate a unique booking ID
     const bookingId = `WA-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
     
+    console.log('Attempting to save booking:', { bookingId, data });
+    
     const { data: booking, error } = await supabase
       .from('bookings')
       .insert({
         booking_id: bookingId,
-        guest_name: data.name,
-        email: data.email,
-        whatsapp_number: data.phone,
-        city: data.city,
-        pincode: data.pincode,
-        check_in: data.checkIn,
-        check_out: data.checkOut,
-        guests: data.guests,
+        guest_name: data.name || 'Guest',
+        email: data.email || 'not-provided@example.com',
+        whatsapp_number: data.phone || '0000000000',
+        city: data.city || null,
+        pincode: data.pincode || null,
+        check_in: data.checkIn || new Date().toISOString().split('T')[0],
+        check_out: data.checkOut || new Date(Date.now() + 86400000).toISOString().split('T')[0],
+        guests: data.guests || 1,
         special_requests: data.specialRequests || null,
         room_type: data.selectedRooms.length > 0 
           ? data.selectedRooms.map(r => r.roomTypeName).join(', ')
@@ -67,9 +69,9 @@ export async function saveWhatsAppBooking(data: WhatsAppBookingData) {
         room_type_id: data.selectedRooms.length > 0 
           ? data.selectedRooms[0].roomTypeId 
           : null,
-        quantity: data.selectedRooms.reduce((sum, room) => sum + room.quantity, 0),
-        total_amount: data.totalAmount,
-        subtotal: data.totalAmount,
+        quantity: data.selectedRooms.reduce((sum, room) => sum + room.quantity, 0) || 1,
+        total_amount: data.totalAmount || 0,
+        subtotal: data.totalAmount || 0,
         taxes: 0,
         booking_status: 'inquiry',
         payment_status: 'pending',
@@ -78,11 +80,16 @@ export async function saveWhatsAppBooking(data: WhatsAppBookingData) {
       .select()
       .single();
 
-    if (error) throw error;
+    if (error) {
+      console.error('Supabase insert error:', error);
+      throw error;
+    }
+    
+    console.log('Booking saved successfully:', booking);
     return { success: true, bookingId: booking?.id };
   } catch (error: any) {
     console.error('Error saving WhatsApp booking:', error);
-    return { success: false, error: error.message };
+    return { success: false, error: error.message || 'Unknown error occurred' };
   }
 }
 
