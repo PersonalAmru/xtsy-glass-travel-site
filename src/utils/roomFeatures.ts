@@ -4,7 +4,7 @@
 export const generateStandardizedFeatures = (propertyType: string, roomName: string, roomType: 'dorm' | 'private') => {
   if (propertyType === 'economy') {
     // XTSY Economy: exactly 3 tags, no Female tag ever
-    return ["Mixed", "Only Bed", "Wi-Fi"].slice(0, 3);
+    return ["Mixed", "Only Bed", "Wi-Fi", "Mountain Views"].slice(0, 4);
   } else if (propertyType === 'hostel') {
     // XTSY Travellers Hostel: max 7 tags with conditional Female/Mixed
     let features = [];
@@ -21,7 +21,7 @@ export const generateStandardizedFeatures = (propertyType: string, roomName: str
       return features;
     } else {
       // For dorm rooms, use standard hostel features
-      const baseFeatures = ["Attached washroom", "Wi-Fi", "Locker", "Reading lights", "Charging point"];
+      const baseFeatures = ["Attached washroom", "Wi-Fi", "Locker", "Reading lights", "Charging point", "Mountain Views"];
       
       // Add Female or Mixed tag conditionally (never both)
       if (roomName.toLowerCase().includes('female')) {
