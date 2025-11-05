@@ -639,6 +639,19 @@ const ReviewsSection = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
             <div className="glass-card bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 hover:bg-white/15 transition-all duration-300">
               <div className="text-center">
+                <div className="text-xl font-bold text-white mb-1">Google</div>
+                <div className="text-3xl font-bold text-orange-400 mb-2">4.9</div>
+                <div className="flex justify-center mb-2 gap-0.5">
+                  {[...Array(4)].map((_, i) => (
+                    <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                  ))}
+                  <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" style={{ clipPath: 'inset(0 10% 0 0)' }} />
+                </div>
+              </div>
+            </div>
+            
+            <div className="glass-card bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 hover:bg-white/15 transition-all duration-300">
+              <div className="text-center">
                 <div className="text-xl font-bold text-white mb-1">Booking.com</div>
                 <div className="text-3xl font-bold text-orange-400 mb-2">9.8</div>
                 <div className="flex justify-center mb-2 gap-0.5">
@@ -652,19 +665,6 @@ const ReviewsSection = () => {
             <div className="glass-card bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 hover:bg-white/15 transition-all duration-300">
               <div className="text-center">
                 <div className="text-xl font-bold text-white mb-1">MakeMyTrip</div>
-                <div className="text-3xl font-bold text-orange-400 mb-2">4.4</div>
-                <div className="flex justify-center mb-2 gap-0.5">
-                  {[...Array(4)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                  ))}
-                  <Star className="h-4 w-4 fill-yellow-400/40 text-yellow-400/40" />
-                </div>
-              </div>
-            </div>
-            
-            <div className="glass-card bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 hover:bg-white/15 transition-all duration-300">
-              <div className="text-center">
-                <div className="text-xl font-bold text-white mb-1">GoIbibo</div>
                 <div className="text-3xl font-bold text-orange-400 mb-2">4.4</div>
                 <div className="flex justify-center mb-2 gap-0.5">
                   {[...Array(4)].map((_, i) => (
