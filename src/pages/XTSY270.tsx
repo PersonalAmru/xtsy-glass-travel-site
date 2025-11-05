@@ -483,7 +483,6 @@ Thank you! 😊`;
         fixedGuests={true}
         isCoupleFocused={true}
       />
-      <Footer />
     </div>
   );
 };
