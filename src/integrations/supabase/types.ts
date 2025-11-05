@@ -304,7 +304,6 @@ export type Database = {
           full_name: string | null
           id: string
           last_login: string | null
-          role: string | null
           updated_at: string
         }
         Insert: {
@@ -314,7 +313,6 @@ export type Database = {
           full_name?: string | null
           id: string
           last_login?: string | null
-          role?: string | null
           updated_at?: string
         }
         Update: {
@@ -324,7 +322,6 @@ export type Database = {
           full_name?: string | null
           id?: string
           last_login?: string | null
-          role?: string | null
           updated_at?: string
         }
         Relationships: []
@@ -538,6 +535,24 @@ export type Database = {
           resolved_by?: string | null
           severity?: string
           user_id?: string | null
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
         }
         Relationships: []
       }
@@ -901,6 +916,13 @@ export type Database = {
         }[]
       }
       get_user_role: { Args: never; Returns: string }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
       increment_happy_guests: {
         Args: never
         Returns: {
@@ -973,7 +995,7 @@ export type Database = {
       }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "staff" | "user" | "guest"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -1100,6 +1122,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "staff", "user", "guest"],
+    },
   },
 } as const
