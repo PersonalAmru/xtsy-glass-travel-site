@@ -468,10 +468,10 @@ Hi XTSY Team! I'm excited about exploring Meghalaya with you! 🏔️✨
    End Date: ${endDate}
    Total Guests: ${guests}
 
-✨ *Package Highlights:*
-${tourPackage.highlights.map(highlight => `   • ${highlight}`).join('\n')}
+✨ *What I'm Looking Forward To:*
+${tourPackage.highlights.slice(0, 5).map(highlight => `   • ${highlight}`).join('\n')}
 
-Could you please share availability, detailed itinerary, and pricing? Looking forward to an unforgettable adventure! 🌟`;
+Could you please share availability, detailed itinerary, and pricing? Ready for an unforgettable adventure! 🌟`;
 
     const whatsappURL = `https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent(whatsappMessage)}&type=phone_number&app_absent=0`;
     window.open(whatsappURL, '_blank');

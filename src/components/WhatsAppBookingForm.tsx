@@ -212,9 +212,9 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
     if (formData.transportation) addOnsText.push(`   • Transportation Service`);
     if (formData.itinerary) addOnsText.push(`   • Custom Itinerary Planning`);
 
-    const message = `🏨 *XTSY - Room Booking Request*
+    const message = `🏨 *XTSY - Premium Room Booking*
 
-Hi XTSY Team! Ready to book my stay in Meghalaya! 🏔️
+Hi XTSY Team! Ready to book my stay in beautiful Meghalaya! 🏔️
 
 👤 *Guest Information:*
    Name: ${formData.name || 'Not provided'}

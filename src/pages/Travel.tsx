@@ -1214,7 +1214,7 @@ const Travel = () => {
                           
                           {/* WhatsApp Button */}
                           <a
-                            href="https://wa.me/919366074889?text=Hi%20XTSY%20Global%20Travel!%20I'm%20interested%20in%20your%20international%20tour%20packages.%20Can%20you%20help%20me%20plan%20my%20overseas%20trip?"
+                            href={`https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent("🌍 *International Travel Inquiry - XTSY Global Tours*\n\nHi XTSY Team! I'm excited about exploring international destinations! ✈️\n\nI'm interested in:\n• International tour packages\n• Overseas vacation planning\n• Global adventure experiences\n• Custom travel itineraries\n\nPlease share details about upcoming international tours and help me plan my perfect global getaway!\n\nReady to explore the world! 🌏✨")}&type=phone_number&app_absent=0`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in text-sm sm:text-base md:text-lg group"

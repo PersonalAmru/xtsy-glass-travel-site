@@ -107,8 +107,8 @@ const B2BBookingForm = ({
         .from('bookings')
         .insert({
           booking_id: bookingId,
-          room_type: "XTSY 270",
-          room_type_id: "xtsy-270",
+          room_type: "Group Booking",
+          room_type_id: "group-booking",
           guest_name: formData.companyName || 'Guest',
           email: formData.email || 'not-provided@xtsy.com',
           whatsapp_number: formData.phone || '0000000000',
@@ -149,11 +149,11 @@ const B2BBookingForm = ({
       }
       
       const whatsappMessage = isCoupleFocused 
-        ? `✨ *XTSY 270° - Romantic Getaway Inquiry* ✨
+        ? `✨ *Romantic Getaway Inquiry* ✨
 
-🌟 *Welcome to India's First 270° Panoramic Glass Suite*
+🌟 *Welcome to Premium Panoramic Glass Suite Experience*
 
-Hi XTSY Team! We're planning a romantic escape and would love to experience your stunning glass suite! 💕
+Hi XTSY Team! We're planning a romantic escape and would love to experience your stunning suite! 💕
 
 ❤️ *Guest Details:*
 ${formData.companyName || 'Guest'}${formData.contactPerson ? ` & ${formData.contactPerson}` : ''}
@@ -170,9 +170,9 @@ ${formData.eventType ? `💝 Occasion: ${formData.eventType}` : ''}
 
 ${foodAddons.length > 0 ? `🍴 *Food Add-ons:*\n${foodAddons.join('\n')}\n\n` : ''}${additionalServices.length > 0 ? `✨ *Additional Services:*\n${additionalServices.join('\n')}\n\n` : ''}${formData.specialRequests ? `💬 *Special Requests:*\n${formData.specialRequests}\n\n` : ''}Looking forward to creating magical memories with you! 🏔️✨
         `.trim()
-        : `🏢 *XTSY - Corporate Booking Inquiry* 🏢
+        : `🏢 *Corporate Booking Inquiry* 🏢
 
-🌟 *India's First 270° Panoramic Glass House*
+🌟 *Premium Mountain View Accommodation*
 
 Hello XTSY Team! We'd like to book your property for a corporate event! 🎯
 
@@ -195,7 +195,7 @@ Accommodation: ${formatPrice(totalPrice)} (${formatPrice(corporateRate)}/person/
 ${foodAddons.length > 0 ? foodAddons.join('\n') + '\n' : ''}${additionalServices.length > 0 ? additionalServices.join('\n') + '\n' : ''}GST (12%): ${formatPrice(gst)}
 *Total: ${formatPrice(finalTotal)}*
 
-${formData.specialRequests ? `📝 *Special Requests:*\n${formData.specialRequests}\n\n` : ''}Looking forward to hosting a successful corporate event at XTSY 270°! 🏔️
+${formData.specialRequests ? `📝 *Special Requests:*\n${formData.specialRequests}\n\n` : ''}Looking forward to hosting a successful corporate event at XTSY! 🏔️
         `.trim();
       
       const whatsappUrl = `https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent(whatsappMessage)}&type=phone_number&app_absent=0`;
