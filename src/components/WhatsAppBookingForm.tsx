@@ -212,31 +212,29 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
     if (formData.transportation) addOnsText.push(`   • Transportation Service`);
     if (formData.itinerary) addOnsText.push(`   • Custom Itinerary Planning`);
 
-    const message = `🌟 *Welcome to XTSY 270!* 🌟
+    const message = `🏨 *XTSY - Room Booking Request*
 
-Hello XTSY Team! 👋
+Hi XTSY Team! Ready to book my stay in Meghalaya! 🏔️
 
-I'm excited to book my stay at your beautiful property!
-
-👤 *Guest Details:*
+👤 *Guest Information:*
    Name: ${formData.name || 'Not provided'}
-   Email: ${formData.email || 'Not provided'}
-   Phone: ${formData.phone || 'Not provided'}
-   Location: ${formData.city ? `${formData.city}${formData.pincode ? `, ${formData.pincode}` : ''}` : 'Not provided'}
+   📧 Email: ${formData.email || 'Not provided'}
+   📱 Phone: ${formData.phone || 'Not provided'}
+   📍 Location: ${formData.city ? `${formData.city}${formData.pincode ? `, ${formData.pincode}` : ''}` : 'Not provided'}
 
 📅 *Booking Details:*
    Check-in: ${formData.checkIn || 'To be decided'}
    Check-out: ${formData.checkOut || 'To be decided'}
-   ${nights > 0 ? `Duration: ${nights} night(s)` : ''}
-   Guests: ${formData.guests || 'Not specified'}
+   ${nights > 0 ? `🌙 Nights: ${nights}` : ''}
+   👥 Guests: ${formData.guests || 'Not specified'}
 
-🏠 *Room Selection:*
+🏠 *Selected Rooms:*
 ${roomsText}
-${addOnsText.length > 0 ? `\n🍽️ *Add-on Services:*\n${addOnsText.join('\n')}` : ''}
-${formData.specialRequests ? `\n💬 *Special Requests:*\n   ${formData.specialRequests}` : ''}
+${addOnsText.length > 0 ? `\n🎯 *Add-on Services:*\n${addOnsText.join('\n')}` : ''}
+${formData.specialRequests ? `\n📝 *Special Requests:*\n   ${formData.specialRequests}` : ''}
 ${totalAmount > 0 ? `\n💰 *Estimated Total: ₹${totalAmount.toLocaleString('en-IN')}*` : ''}
 
-Looking forward to an amazing experience at XTSY 270! 🎉`;
+Can't wait to experience XTSY hospitality! Please confirm availability. 🎉✨`;
 
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://api.whatsapp.com/send/?phone=918837317070&text=${encodedMessage}&type=phone_number&app_absent=0`, '_blank');

@@ -77,16 +77,16 @@ const BookingConfirmation = ({ bookingData }: BookingConfirmationProps) => {
     const addOnsMessage = generateAddOnsMessage();
     const addOnTotalMessage = bookingData.addOnTotal ? `\n💰 Add-ons Total: ₹${bookingData.addOnTotal}` : '';
     
-    const message = `🌟 *Booking Confirmed - XTSY!* 🌟
+    const message = `✅ *XTSY - Booking Confirmation*
 
-Congratulations! Your booking is confirmed! 🎉
+Hi XTSY Team! My booking is confirmed! 🎉
 
-📋 *Booking Information:*
+📋 *Booking Details:*
    Booking ID: ${bookingData.bookingId}
    Guest Name: ${bookingData.guestName}
    Email: ${bookingData.email}
 
-📅 *Stay Details:*
+📅 *Stay Information:*
    Check-in: ${new Date(bookingData.checkIn).toLocaleDateString()}
    Check-out: ${new Date(bookingData.checkOut).toLocaleDateString()}
    Nights: ${bookingData.nights}
@@ -99,7 +99,7 @@ ${bookingData.items.map(room => `   • ${room.roomName} × ${room.quantity}`).j
    Total Amount: ₹${bookingData.totalAmount}${addOnTotalMessage}
    Advance Paid: ₹${Math.round(bookingData.totalAmount * 0.21)}
 
-Thank you for choosing XTSY! We look forward to hosting you! 🏨✨
+Super excited for my XTSY experience! See you soon! 🏔️✨
     `.trim();
 
     // Send to property WhatsApp

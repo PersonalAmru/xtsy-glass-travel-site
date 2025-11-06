@@ -56,35 +56,34 @@ const XTSY270: React.FC = () => {
   }, []);
 
   const handleBookingClick = () => {
-    const message = `🏔️ *XTSY 270° Panorama Glass Ensuite Booking Inquiry* 🏔️
+    const message = `🏔️ *XTSY 270° - Panoramic Glass Suite Inquiry*
 
-Hi XTSY Team! ✨
+Hi XTSY Team! I'm absolutely amazed by the 270° Glass Suite! 🌟
 
-I'm interested in booking the XTSY 270° - India's first panoramic glass house experience! 
+I'd love to experience India's first panoramic glass house with breathtaking mountain views!
 
-🏨 *Property Details:*
+🏨 *What I'm Interested In:*
 • XTSY 270° Panorama Glass Ensuite
-• India's first 270° glass house with mountain views
-• Premium luxury accommodation in Shillong, Meghalaya
+• Premium luxury accommodation in Shillong
+• 270° transparent sanctuary experience
+• Queen bed ensuite with panoramic vistas
 
-💰 *Current Rates:*
+💰 *Rates:*
 • Weekday: ₹${XTSY270_DATA.weekdayPrice.toLocaleString()}/night
 • Weekend: ₹${XTSY270_DATA.weekendPrice.toLocaleString()}/night
 
-🛏️ *Room Features:*
-• Queen bed accommodation for up to 2 guests
-• Private ensuite washroom
-• 270° panoramic mountain views
-• Architectural excellence with transparent sanctuary design
+🛏️ *Features I Love:*
+✓ Queen bed accommodation for couples
+✓ Private ensuite washroom
+✓ 270° panoramic mountain views
+✓ Award-winning architectural design
 
-Could you please help me with:
-• Availability for my preferred dates
-• Final pricing and booking process
-• Any special packages or add-on services
+Could you please share:
+📅 Availability for my preferred dates
+💳 Booking process & payment options
+🎁 Special packages or romantic add-ons
 
-Looking forward to experiencing this incredible architectural marvel! 🌿
-
-Thank you! 😊`;
+Can't wait to create unforgettable memories in this architectural masterpiece! 🏔️✨`;
 
     const whatsappUrl = `https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent(message)}&type=phone_number&app_absent=0`;
     window.open(whatsappUrl, '_blank');

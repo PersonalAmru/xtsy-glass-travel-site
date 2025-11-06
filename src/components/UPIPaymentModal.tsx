@@ -77,11 +77,9 @@ const UPIPaymentModal = ({ isOpen, onClose, bookingData }: UPIPaymentModalProps)
     const addOnsMessage = generateAddOnsMessage();
     const addOnTotalMessage = bookingData.addOnTotal ? `\nAdd-ons Total: ₹${bookingData.addOnTotal}` : '';
     
-    const message = `🌟 *UPI Payment Confirmation - XTSY* 🌟
+    const message = `💳 *XTSY - UPI Payment Confirmation*
 
-Hello XTSY Team! 👋
-
-I have successfully made the UPI payment for my booking:
+Hi XTSY Team! Payment completed successfully! ✅
 
 📋 *Booking Details:*
    Booking ID: ${bookingData.bookingId}
@@ -92,11 +90,11 @@ I have successfully made the UPI payment for my booking:
 💰 *Payment Information:*
    Amount Paid: ₹${upiAmount}${addOnTotalMessage}${addOnsMessage}
 
-📸 *Payment Screenshot:* [Please attach your payment screenshot here]
+📸 *Payment Screenshot:* [Attaching payment proof]
 
-Looking forward to my stay at XTSY! 🎉
+Excited for my XTSY experience! Please confirm my booking. 🏔️✨
 
-Please confirm my booking. Thank you!`;
+Thank you!`;
 
     const whatsappUrl = `https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent(message)}&type=phone_number&app_absent=0`;
     window.open(whatsappUrl, '_blank');

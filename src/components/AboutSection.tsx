@@ -674,7 +674,7 @@ const AboutSection = () => {
                 Explore Tours
               </a>
               <a
-                href={`https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent("🌟 *Hello XTSY Team!* 🌟\n\nI just visited your website and I'm interested in learning more about your properties and services.\n\nCould you please share:\n• Available accommodations\n• Rates and packages\n• Upcoming availability\n• Special offers\n\nThank you! 😊")}&type=phone_number&app_absent=0`}
+                href={`https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent("📞 *XTSY - Get in Touch!*\n\nHi XTSY Team! 👋\n\nI'm exploring your amazing properties and travel experiences in Meghalaya! I'd love to learn more about:\n\n🏨 Available accommodations & rates\n🌄 Curated travel packages\n📅 Current availability\n💎 Special offers & deals\n\nExcited to discover what XTSY has to offer! 🏔️✨")}&type=phone_number&app_absent=0`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-8 py-4 bg-green-600 text-white rounded-xl font-bold hover:bg-green-700 transition-all duration-300 shadow-lg hover:shadow-xl"

@@ -447,33 +447,31 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
 
 Hello XTSY Team! 👋
 
-Tour Package Availability Inquiry
+🌄 *XTSY Tours - Travel Package Inquiry*
 
-*Package Details:*
-Package: ${tourPackage.title}
-Duration: ${tourPackage.duration} (${selectedDate} to ${endDate})
-Difficulty: ${tourPackage.difficulty}
-Category: ${tourPackage.category}
+Hi XTSY Team! I'm excited about exploring Meghalaya with you! 🏔️✨
 
-*Guest Details:*
-Name: ${guestDetails.name}
-Email: ${guestDetails.email}
-Phone: ${guestDetails.phone}
-City: ${guestDetails.city}
-Pincode: ${guestDetails.pincode}
-Number of Guests: ${guests}
+📋 *Package Details:*
+   Package: ${tourPackage.title}
+   Duration: ${tourPackage.duration} (${selectedDate} to ${endDate})
+   Difficulty: ${tourPackage.difficulty}
+   Category: ${tourPackage.category}
 
-*Booking Details:*
-Preferred Start Date: ${selectedDate}
-End Date: ${endDate}
-Total Guests: ${guests}
+👤 *Guest Information:*
+   Name: ${guestDetails.name}
+   Email: ${guestDetails.email}
+   Phone: ${guestDetails.phone}
+   City: ${guestDetails.city}, Pincode: ${guestDetails.pincode}
 
-*Package Highlights:*
-${tourPackage.highlights.map(highlight => `• ${highlight}`).join('\n')}
+📅 *Preferred Dates:*
+   Start Date: ${selectedDate}
+   End Date: ${endDate}
+   Total Guests: ${guests}
 
-Looking forward to an amazing tour experience with XTSY! 🎉
+✨ *Package Highlights:*
+${tourPackage.highlights.map(highlight => `   • ${highlight}`).join('\n')}
 
-Please share availability and pricing details.`;
+Could you please share availability, detailed itinerary, and pricing? Looking forward to an unforgettable adventure! 🌟`;
 
     const whatsappURL = `https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent(whatsappMessage)}&type=phone_number&app_absent=0`;
     window.open(whatsappURL, '_blank');

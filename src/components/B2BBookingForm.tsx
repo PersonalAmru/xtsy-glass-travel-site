@@ -149,9 +149,11 @@ const B2BBookingForm = ({
       }
       
       const whatsappMessage = isCoupleFocused 
-        ? `✨ *Welcome to XTSY 270° Panoramic Glass Suite* ✨
+        ? `✨ *XTSY 270° - Romantic Getaway Inquiry* ✨
 
-🌟 *India's First 270° Glass House Experience*
+🌟 *Welcome to India's First 270° Panoramic Glass Suite*
+
+Hi XTSY Team! We're planning a romantic escape and would love to experience your stunning glass suite! 💕
 
 ❤️ *Guest Details:*
 ${formData.companyName || 'Guest'}${formData.contactPerson ? ` & ${formData.contactPerson}` : ''}
@@ -166,11 +168,13 @@ Check-out: ${formData.checkOut || 'Not selected'}
 👥 Guests: ${formData.guests || 1} (Couple)
 ${formData.eventType ? `💝 Occasion: ${formData.eventType}` : ''}
 
-${foodAddons.length > 0 ? `🍴 *Food Add-ons:*\n${foodAddons.join('\n')}\n\n` : ''}${additionalServices.length > 0 ? `✨ *Additional Services:*\n${additionalServices.join('\n')}\n\n` : ''}${formData.specialRequests ? `💬 *Special Requests:*\n${formData.specialRequests}\n\n` : ''}🏔️ Experience panoramic mountain views like never before!
+${foodAddons.length > 0 ? `🍴 *Food Add-ons:*\n${foodAddons.join('\n')}\n\n` : ''}${additionalServices.length > 0 ? `✨ *Additional Services:*\n${additionalServices.join('\n')}\n\n` : ''}${formData.specialRequests ? `💬 *Special Requests:*\n${formData.specialRequests}\n\n` : ''}Looking forward to creating magical memories with you! 🏔️✨
         `.trim()
-        : `🏢 *XTSY 270° Glass Suite - B2B Booking Request*
+        : `🏢 *XTSY - Corporate Booking Inquiry* 🏢
 
 🌟 *India's First 270° Panoramic Glass House*
+
+Hello XTSY Team! We'd like to book your property for a corporate event! 🎯
 
 🏢 *Company Details:*
 Company: ${formData.companyName || 'Not provided'}
@@ -191,7 +195,7 @@ Accommodation: ${formatPrice(totalPrice)} (${formatPrice(corporateRate)}/person/
 ${foodAddons.length > 0 ? foodAddons.join('\n') + '\n' : ''}${additionalServices.length > 0 ? additionalServices.join('\n') + '\n' : ''}GST (12%): ${formatPrice(gst)}
 *Total: ${formatPrice(finalTotal)}*
 
-${formData.specialRequests ? `📝 *Special Requests:*\n${formData.specialRequests}\n\n` : ''}🏔️ Thank you for choosing XTSY 270° - Where luxury meets nature!
+${formData.specialRequests ? `📝 *Special Requests:*\n${formData.specialRequests}\n\n` : ''}Looking forward to hosting a successful corporate event at XTSY 270°! 🏔️
         `.trim();
       
       const whatsappUrl = `https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent(whatsappMessage)}&type=phone_number&app_absent=0`;

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { useImagePreloader } from '@/hooks/useImagePreloader';
+import { optimizeImageLoading } from '@/utils/optimizedLazyLoading';
 
 interface PerformantImageProps {
   src: string;
@@ -40,9 +41,12 @@ const PerformantImage: React.FC<PerformantImageProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const { preloadAdjacentImages } = useImagePreloader();
 
-  // Intersection Observer for lazy loading
+  // Intersection Observer for lazy loading with improved thresholds
   useEffect(() => {
-    if (priority) return; // Skip lazy loading for priority images
+    if (priority) {
+      setIsIntersecting(true);
+      return;
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -52,8 +56,8 @@ const PerformantImage: React.FC<PerformantImageProps> = ({
         }
       },
       {
-        threshold: 0.1,
-        rootMargin: '50px'
+        threshold: 0.01,
+        rootMargin: '100px' // Increased margin for earlier loading
       }
     );
 
@@ -63,6 +67,13 @@ const PerformantImage: React.FC<PerformantImageProps> = ({
 
     return () => observer.disconnect();
   }, [priority]);
+
+  // Apply optimized loading when image becomes visible
+  useEffect(() => {
+    if (isIntersecting && imgRef.current) {
+      optimizeImageLoading(imgRef.current, priority);
+    }
+  }, [isIntersecting, priority]);
 
   // Preload adjacent images when this image loads
   useEffect(() => {
@@ -105,10 +116,11 @@ const PerformantImage: React.FC<PerformantImageProps> = ({
           
           <img
             ref={imgRef}
-            src={src}
+            src={isIntersecting ? src : undefined}
+            data-src={!isIntersecting ? src : undefined}
             alt={alt}
             className={cn(
-              "w-full h-full object-cover transition-opacity duration-300 scale-75",
+              "w-full h-full object-cover transition-opacity duration-300",
               isLoaded ? "opacity-100" : "opacity-0"
             )}
             onLoad={handleLoad}

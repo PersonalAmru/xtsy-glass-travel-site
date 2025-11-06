@@ -92,19 +92,19 @@ const AIChatBot = () => {
   };
 
   const handleWhatsAppConnect = () => {
-    const message = `🌟 *Welcome to XTSY!* 🌟
+    const message = `🤖 *XTSY AI Assistant - Live Support Request*
 
-Hello! 👋
+Hi XTSY Team! 👋
 
-I'm reaching out from your website and would love to learn more about your properties and travel packages.
+I've been exploring your website with the AI assistant and would love to connect with your team directly!
 
-Please share information about:
-• Available rooms and properties
-• Travel packages and tours
-• Pricing and availability
-• Booking process
+I'm interested in:
+• Personalized accommodation recommendations
+• Custom travel itineraries for Meghalaya
+• Detailed booking assistance
+• Special packages and offers
 
-Looking forward to hearing from you! 😊`;
+Ready to plan my perfect XTSY experience! 🏔️✨`;
     
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://api.whatsapp.com/send/?phone=918837317070&text=${encodedMessage}&type=phone_number&app_absent=0`, "_blank");
