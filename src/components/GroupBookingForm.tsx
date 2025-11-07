@@ -91,29 +91,27 @@ const GroupBookingForm = ({ isOpen, onClose }: GroupBookingFormProps) => {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
+  const handleSubmit = async () => {
     try {
       // Generate unique booking ID
       const bookingId = `GROUP-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
       
-      // Save to Supabase
+      // Save to Supabase - capture whatever data is available
       const { error } = await supabase
         .from('bookings')
         .insert({
           booking_id: bookingId,
           room_type: "Group Booking",
           room_type_id: "group-booking",
-          guest_name: formData.groupName,
-          email: formData.email,
-          whatsapp_number: formData.phone,
-          city: formData.city,
-          pincode: formData.pincode,
-          check_in: formData.checkIn,
-          check_out: formData.checkOut,
-          guests: formData.guests,
-          special_requests: formData.specialRequests,
+          guest_name: formData.groupName || 'Guest',
+          email: formData.email || 'not-provided@xtsy.com',
+          whatsapp_number: formData.phone || '0000000000',
+          city: formData.city || null,
+          pincode: formData.pincode || null,
+          check_in: formData.checkIn || new Date().toISOString().split('T')[0],
+          check_out: formData.checkOut || new Date(Date.now() + 86400000).toISOString().split('T')[0],
+          guests: formData.guests || 20,
+          special_requests: formData.specialRequests || null,
           booking_status: 'pending',
           payment_status: 'pending',
           subtotal: totalPrice,
@@ -122,77 +120,62 @@ const GroupBookingForm = ({ isOpen, onClose }: GroupBookingFormProps) => {
           source: 'group_booking_form'
         });
 
+      // Log error but don't block WhatsApp redirect
       if (error) {
         console.error('Error saving booking:', error);
-        toast({
-          title: "Booking Error",
-          description: "Failed to save booking. Please try again.",
-          variant: "destructive"
-        });
-        return;
       }
-
-      toast({
-        title: "Booking Saved!",
-        description: "Your group booking has been recorded successfully.",
-      });
       
-      // WhatsApp booking functionality
-      const foodDetails = [];
-      if (formData.breakfast) foodDetails.push(`• Breakfast: ${formData.breakfastGuests} guests - ${formatPrice(breakfastCost)}`);
-      if (formData.dinner) foodDetails.push(`• Dinner (${formData.dinnerType}): ${formData.dinnerGuests} guests - ${formatPrice(dinnerCost)}`);
+      // Build beautiful WhatsApp message with all details
+      const foodAddons = [];
+      if (formData.breakfast) {
+        foodAddons.push(`🍳 Breakfast: ${formData.breakfastGuests} guests - ${formatPrice(breakfastCost)}`);
+      }
+      if (formData.dinner) {
+        foodAddons.push(`🍽️ Dinner (${formData.dinnerType === 'veg' ? 'Vegetarian' : 'Non-Vegetarian'}): ${formData.dinnerGuests} guests - ${formatPrice(dinnerCost)}`);
+      }
       
       const additionalServices = [];
-      if (formData.transportation) additionalServices.push("• Transportation Arrangement");
-      if (formData.itinerary) additionalServices.push("• Travel Itinerary Support");
+      if (formData.transportation) {
+        additionalServices.push('🚗 Transportation Arrangement');
+      }
+      if (formData.itinerary) {
+        additionalServices.push('📋 Travel Itinerary Support');
+      }
       
-      const bookingDetails = `
-🏨 *XTSY Group Booking Request*
-Booking ID: ${bookingId}
+      const whatsappMessage = `👥 *Group Booking Inquiry* 👥
+
+🌟 *Premium Mountain Retreat Experience*
+
+Hello XTSY Team! We're planning an exciting group adventure in Meghalaya! 🏔️
 
 👥 *Group Details:*
-Group Name: ${formData.groupName}
-Contact Person: ${formData.contactPerson}
-Email: ${formData.email}
-Phone: ${formData.phone}
-City: ${formData.city}, Pincode: ${formData.pincode}
+Group Name: ${formData.groupName || 'Not provided'}
+Contact Person: ${formData.contactPerson || 'Not provided'}
+📧 Email: ${formData.email || 'Not provided'}
+📱 Phone: ${formData.phone || 'Not provided'}
+📍 City: ${formData.city || 'Not provided'}, PIN: ${formData.pincode || 'Not provided'}
 
 📅 *Booking Details:*
-Check-in: ${formData.checkIn}
-Check-out: ${formData.checkOut}
-${formData.arrivalTime ? `Arrival Time: ${formData.arrivalTime}` : ''}
-Nights: ${nights}
-Total Guests: ${formData.guests}
+Check-in: ${formData.checkIn || 'Not selected'}
+Check-out: ${formData.checkOut || 'Not selected'}
+${formData.arrivalTime ? `⏰ Arrival Time: ${formData.arrivalTime}\n` : ''}🌙 Nights: ${nights || 0}
+👥 Total Guests: ${formData.guests || 20}
 
-💰 *Price Summary:*
-Property Rate: ${formatPrice(15000 * nights)}
-${foodDetails.length > 0 ? `Food Add-ons:\n${foodDetails.join('\n')}` : ''}
-${additionalServices.length > 0 ? `Additional Services:\n${additionalServices.join('\n')}` : ''}
-GST (12%): ${formatPrice(gst)}
+💰 *Price Summary (Entire Property):*
+Property Rate: ${formatPrice(totalPrice)} (₹15,000/night)
+${foodAddons.length > 0 ? foodAddons.join('\n') + '\n' : ''}${additionalServices.length > 0 ? additionalServices.join('\n') + '\n' : ''}GST (12%): ${formatPrice(gst)}
 *Total: ${formatPrice(finalTotal)}*
 
-📝 *Special Requests:*
-${formData.specialRequests || 'None'}
-      `.trim();
-
-      const welcomeMessage = `👥 *XTSY - Group Booking Request* 👥
-
-Hi XTSY Team! We're planning an exciting group trip to Meghalaya! 🏔️
-
-${bookingDetails}
-
-We're thrilled to experience XTSY's hospitality with our group! Looking forward to your confirmation! 🎉`;
-
-      const whatsappUrl = `https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent(welcomeMessage)}&type=phone_number&app_absent=0`;
+${formData.specialRequests ? `📝 *Special Requests:*\n${formData.specialRequests}\n\n` : ''}Looking forward to creating unforgettable memories with our group at XTSY! 🎉`.trim();
+      
+      const whatsappUrl = `https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent(whatsappMessage)}&type=phone_number&app_absent=0`;
       window.open(whatsappUrl, '_blank');
       onClose();
     } catch (error) {
       console.error('Error processing booking:', error);
-      toast({
-        title: "Error",
-        description: "Something went wrong. Please try again.",
-        variant: "destructive"
-      });
+      // Still redirect to WhatsApp even if save fails
+      window.open('https://api.whatsapp.com/send/?phone=918837317070&text&type=phone_number&app_absent=0', '_blank');
+      onClose();
     }
   };
 
@@ -214,27 +197,25 @@ We're thrilled to experience XTSY's hospitality with our group! Looking forward 
             </CardHeader>
             
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form className="space-y-6">
                 {/* Group Information */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="groupName">Group Name *</Label>
+                    <Label htmlFor="groupName">Group Name</Label>
                     <Input
                       id="groupName"
                       value={formData.groupName}
                       onChange={(e) => handleInputChange('groupName', e.target.value)}
                       placeholder="Your Group Name"
-                      required
                     />
                   </div>
                   <div>
-                    <Label htmlFor="contactPerson">Contact Person *</Label>
+                    <Label htmlFor="contactPerson">Contact Person</Label>
                     <Input
                       id="contactPerson"
                       value={formData.contactPerson}
                       onChange={(e) => handleInputChange('contactPerson', e.target.value)}
                       placeholder="Group Leader Name"
-                      required
                     />
                   </div>
                 </div>
@@ -242,24 +223,22 @@ We're thrilled to experience XTSY's hospitality with our group! Looking forward 
                 {/* Contact Information */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="email">Email *</Label>
+                    <Label htmlFor="email">Email</Label>
                     <Input
                       id="email"
                       type="email"
                       value={formData.email}
                       onChange={(e) => handleInputChange('email', e.target.value)}
                       placeholder="group@example.com"
-                      required
                     />
                   </div>
                   <div>
-                    <Label htmlFor="phone">Phone *</Label>
+                    <Label htmlFor="phone">Phone</Label>
                     <Input
                       id="phone"
                       value={formData.phone}
                       onChange={(e) => handleInputChange('phone', e.target.value)}
                       placeholder="+91 XXXXXXXXXX"
-                      required
                     />
                   </div>
                 </div>
@@ -267,23 +246,21 @@ We're thrilled to experience XTSY's hospitality with our group! Looking forward 
                 {/* City & Pincode */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="city">City *</Label>
+                    <Label htmlFor="city">City</Label>
                     <Input
                       id="city"
                       value={formData.city}
                       onChange={(e) => handleInputChange('city', e.target.value)}
                       placeholder="Your city"
-                      required
                     />
                   </div>
                   <div>
-                    <Label htmlFor="pincode">Pincode *</Label>
+                    <Label htmlFor="pincode">Pincode</Label>
                     <Input
                       id="pincode"
                       value={formData.pincode}
                       onChange={(e) => handleInputChange('pincode', e.target.value)}
                       placeholder="Your pincode"
-                      required
                     />
                   </div>
                 </div>
@@ -291,23 +268,21 @@ We're thrilled to experience XTSY's hospitality with our group! Looking forward 
                 {/* Booking Details */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="checkIn">Check-in Date *</Label>
+                    <Label htmlFor="checkIn">Check-in Date</Label>
                     <Input
                       id="checkIn"
                       type="date"
                       value={formData.checkIn}
                       onChange={(e) => handleInputChange('checkIn', e.target.value)}
-                      required
                     />
                   </div>
                   <div>
-                    <Label htmlFor="checkOut">Check-out Date *</Label>
+                    <Label htmlFor="checkOut">Check-out Date</Label>
                     <Input
                       id="checkOut"
                       type="date"
                       value={formData.checkOut}
                       onChange={(e) => handleInputChange('checkOut', e.target.value)}
-                      required
                     />
                   </div>
                 </div>
@@ -379,7 +354,7 @@ We're thrilled to experience XTSY's hospitality with our group! Looking forward 
                 {/* Submit Button */}
                 <div className="flex justify-center">
                   <Button 
-                    type="submit"
+                    type="button"
                     onClick={handleSubmit}
                     className="w-full bg-gradient-to-r from-primary to-orange-600 hover:from-orange-600 hover:to-red-700 text-white font-bold shadow-lg"
                   >
