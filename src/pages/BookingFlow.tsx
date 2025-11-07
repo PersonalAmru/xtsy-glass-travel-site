@@ -560,12 +560,15 @@ export default function BookingFlow() {
           {/* Economy */}
           {roomsByProperty.economy.length > 0 && (
             <div className="space-y-4">
-              <div className="backdrop-blur-md bg-white/20 border border-white/20 rounded-2xl shadow-lg mx-auto p-6 max-w-2xl">
+              <div className="backdrop-blur-md bg-white/20 border border-white/20 rounded-2xl shadow-lg mx-auto p-8 max-w-3xl">
                 <h3 className={`font-bold text-center font-playfair bg-gradient-to-r from-green-500 to-teal-600 bg-clip-text text-transparent ${isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'}`}>
                   XTSY Economy
                 </h3>
                 <p className={`text-center text-gray-600 mt-2 ${isMobileView ? 'text-sm' : 'text-base'}`}>
                   Your Ultra-Budget Stay Without Compromise Simple, clean, and affordable. Designed for backpackers who need a safe, reliable place to crash with all the essentials
+                </p>
+                <p className={`text-center text-orange-600 font-semibold mt-2 ${isMobileView ? 'text-xs' : 'text-sm'}`}>
+                  XTSY Economy is exclusively available only on Booking.com
                 </p>
                 <div className="w-16 h-0.5 bg-gradient-to-r from-green-500 to-teal-600 mx-auto mt-3 rounded-full" />
               </div>
