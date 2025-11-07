@@ -65,7 +65,6 @@ const PropertySection = ({ title, description, rooms, propertyType, onSelectRoom
             {description}
           </p>
           <p className="text-xs sm:text-sm text-orange-600 text-center font-semibold mt-2">
-            XTSY Economy is exclusively available only on Booking
           </p>
           <div className="w-12 sm:w-16 h-0.5 bg-gradient-to-r from-orange-500 to-red-600 mx-auto mt-2 rounded-full" />
         </div>
