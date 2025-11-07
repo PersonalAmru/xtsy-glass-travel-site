@@ -699,16 +699,6 @@ const ReviewsSection = () => {
           </div>
         </div>
 
-        {/* View All Reviews Button */}
-        <div className="absolute bottom-4 right-4">
-          <Button 
-            onClick={() => setIsAllReviewsOpen(true)}
-            className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-          >
-            View All Reviews
-            <ExternalLink className="ml-2 h-4 w-4" />
-          </Button>
-        </div>
       </div>
 
       {/* All Reviews Modal */}
