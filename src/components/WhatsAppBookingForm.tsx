@@ -407,8 +407,8 @@ Can't wait to experience XTSY hospitality! Please confirm availability. 🎉✨`
                     </div>
                   ) : (
                     <>
-                      {/* Group rooms by category */}
-                      {Array.from(new Set(roomTypes.map(rt => rt.category))).map(category => (
+                      {/* Group rooms by category - exclude Economy */}
+                      {Array.from(new Set(roomTypes.map(rt => rt.category))).filter(category => category !== 'Economy').map(category => (
                         <div key={category} className="space-y-2">
                           <h4 className="font-semibold text-sm text-primary uppercase tracking-wide">{category}</h4>
                           <div className="space-y-2 pl-2">
