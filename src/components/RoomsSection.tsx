@@ -229,7 +229,7 @@ const RoomsSection = () => {
         {/* XTSY Economy Section - Center Aligned */}
         <div className="center-aligned mb-16">
           <PropertySection
-            title="XTSY Economy"
+            title="XTSY Economy - This Accomodation is exclusively available on Booking.com"
             description="Your Ultra-Budget Stay Without Compromise  Simple, clean, and affordable. Designed for backpackers who need a safe, reliable place to crash with all the essentials"
             rooms={economyRooms}
             propertyType="economy"
