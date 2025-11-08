@@ -947,7 +947,7 @@ const Travel = () => {
                                 {/* CTA Buttons */}
                                 <div className="flex flex-col sm:flex-row gap-3">
                                   <a
-                                    href="https://wa.me/919366074889?text=Hi%20XTSY!%20I'm%20interested%20in%20the%20Royal%20Enfield%20Himalayan%20Tri-Nation%20Expedition%20(India-Nepal-Bhutan).%20Please%20share%20the%20detailed%20itinerary%20and%20booking%20information."
+                                    href={`https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent("Hello XTSY Team! 👋\n\nI'm interested in the \"Royal Enfield Himalayan Tri-Nation Expedition\" tour package. Could you please share more details about availability, itinerary, and pricing?\n\nLooking forward to an amazing adventure! ✨")}&type=phone_number&app_absent=0`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-sm group"

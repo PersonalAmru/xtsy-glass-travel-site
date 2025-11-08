@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Calendar, Clock, Users, Star, MapPin, Minus, Plus, X } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useApp } from "@/contexts/AppContext";
 import { TourItineraryService } from "@/utils/tourItineraryService";
 import { TourPricingService } from "@/utils/tourPricingService";
-import { saveTourInquiry } from "@/services/formBookingService";
 import UnifiedImage from "./UnifiedImage";
 
 import meghalayaHiddenGemsImg from "@/assets/meghalaya-hidden-gems-new.jpg";
@@ -103,20 +99,11 @@ interface OverallItinerary {
 }
 
 const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, tourPackage }) => {
-  const [guests, setGuests] = useState(1);
-  const [selectedDate, setSelectedDate] = useState("");
   const [overallItinerary, setOverallItinerary] = useState<OverallItinerary[]>([]);
   const [isLoadingItinerary, setIsLoadingItinerary] = useState(false);
-  const [guestDetails, setGuestDetails] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    city: "",
-    pincode: ""
-  });
   const location = useLocation();
   const navigate = useNavigate();
-  const { currency, formatPrice } = useApp();
+  const { formatPrice } = useApp();
 
   const getRelevantImage = () => {
     if (!tourPackage) return meghalayaNatureAuthenticImg;
@@ -353,133 +340,14 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
     }
   ];
 
-  const calculateEndDate = (startDate: string, duration: string) => {
-    if (!startDate) return "";
-    const days = parseInt(duration.split(" ")[0]);
-    const start = new Date(startDate);
-    const end = new Date(start.getTime() + (days - 1) * 24 * 60 * 60 * 1000);
-    return end.toISOString().split('T')[0];
-  };
-
-  const endDate = calculateEndDate(selectedDate, tourPackage?.duration || "");
-  const { toast } = useToast();
-
   if (!tourPackage) return null;
 
-  const calculatePricing = () => {
-    const basePrice = parseInt(tourPackage.price.replace(/[^\d]/g, ''));
-    let displayPrice = basePrice;
-    
-    const isWeekend = selectedDate ? 
-      [0, 6].includes(new Date(selectedDate).getDay()) : false;
-    
-    if (currency.code !== 'INR') {
-      const weekendHike = isWeekend ? 1.15 : 1.10;
-      displayPrice = Math.round(basePrice * weekendHike);
-    }
-    
-    const formattedPrice = formatPrice(displayPrice);
-    const finalDisplayPrice = parseFloat(formattedPrice.replace(/[^\d.]/g, ''));
-    
-    const days = parseInt(tourPackage.duration.split(" ")[0]);
-    
-    const subtotal = finalDisplayPrice * guests;
-    const gstRate = 0.05;
-    const gstAmount = Math.round(subtotal * gstRate);
-    const finalTotal = subtotal + gstAmount;
-    
-    const baseRateINR = currency.code !== 'INR' ? displayPrice : basePrice;
-    const subtotalINR = baseRateINR * guests;
-    const gstAmountINR = Math.round(subtotalINR * gstRate);
-    const finalTotalINR = subtotalINR + gstAmountINR;
-    
-    return {
-      basePrice: finalDisplayPrice,
-      subtotal: subtotal,
-      gstAmount: gstAmount,
-      finalTotal: finalTotal,
-      gstRate: gstRate * 100,
-      days,
-      isWeekend,
-      rawSubtotal: subtotalINR,
-      rawGstAmount: gstAmountINR,
-      rawTotal: finalTotalINR
-    };
-  };
+  const handlePayAndConfirm = () => {
+    // Create a welcome message based on the tour package title
+    const welcomeMessage = `Hello XTSY Team! 👋\n\nI'm interested in the "${tourPackage.title}" tour package. Could you please share more details about availability, itinerary, and pricing?\n\nLooking forward to an amazing adventure! ✨`;
 
-  const pricing = calculatePricing();
-
-  const handlePayAndConfirm = async () => {
-    if (!selectedDate || !guestDetails.name || !guestDetails.email || !guestDetails.phone || !guestDetails.city || !guestDetails.pincode) {
-      toast({
-        title: "Missing Information",
-        description: "Please fill all required fields",
-        variant: "destructive"
-      });
-      return;
-    }
-
-    // Save tour inquiry to database
-    const result = await saveTourInquiry({
-      name: guestDetails.name,
-      email: guestDetails.email,
-      phone: guestDetails.phone,
-      city: guestDetails.city,
-      pincode: guestDetails.pincode,
-      guests: guests,
-      selectedDate: selectedDate,
-      tourName: tourPackage.title,
-      duration: tourPackage.duration,
-      category: tourPackage.category,
-      basePrice: pricing.rawSubtotal
-    });
-
-    if (!result.success) {
-      toast({
-        title: "Error",
-        description: "Failed to save inquiry. Please try again.",
-        variant: "destructive"
-      });
-      return;
-    }
-
-    const whatsappMessage = `🌟 *Tour Package Inquiry - XTSY* 🌟
-
-Hello XTSY Team! 👋
-
-🌄 *XTSY Tours - Travel Package Inquiry*
-
-Hi XTSY Team! I'm excited about exploring Meghalaya with you! 🏔️✨
-
-📋 *Package Details:*
-   Package: ${tourPackage.title}
-   Duration: ${tourPackage.duration} (${selectedDate} to ${endDate})
-   Difficulty: ${tourPackage.difficulty}
-   Category: ${tourPackage.category}
-
-👤 *Guest Information:*
-   Name: ${guestDetails.name}
-   Email: ${guestDetails.email}
-   Phone: ${guestDetails.phone}
-   City: ${guestDetails.city}, Pincode: ${guestDetails.pincode}
-
-📅 *Preferred Dates:*
-   Start Date: ${selectedDate}
-   End Date: ${endDate}
-   Total Guests: ${guests}
-
-✨ *What I'm Looking Forward To:*
-${tourPackage.highlights.slice(0, 5).map(highlight => `   • ${highlight}`).join('\n')}
-
-Could you please share availability, detailed itinerary, and pricing? Ready for an unforgettable adventure! 🌟`;
-
-    const whatsappURL = `https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent(whatsappMessage)}&type=phone_number&app_absent=0`;
+    const whatsappURL = `https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent(welcomeMessage)}&type=phone_number&app_absent=0`;
     window.open(whatsappURL, '_blank');
-
-    toast({
-      title: "Tour Inquiry Saved",
-      description: "Your tour package inquiry has been saved successfully!",
-    });
 
     handleClose();
   };
@@ -630,134 +498,11 @@ Could you please share availability, detailed itinerary, and pricing? Ready for 
             </div>
 
             <div className="space-y-6">
-            <Card className="p-6">
-              <h3 className="text-lg font-semibold mb-4">Book This Journey</h3>
-              
-              <div className="space-y-4">
-                <div>
-                  <Label htmlFor="guests">Number of Guests</Label>
-                  <div className="flex items-center gap-3 mt-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => setGuests(Math.max(1, guests - 1))}
-                      disabled={guests <= 1}
-                    >
-                      <Minus className="h-3 w-3" />
-                    </Button>
-                    <span className="w-12 text-center font-medium">{guests}</span>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => setGuests(guests + 1)}
-                    >
-                      <Plus className="h-3 w-3" />
-                    </Button>
-                  </div>
-                </div>
-
-                <div>
-                  <Label htmlFor="date">Preferred Start Date</Label>
-                  <Input
-                    id="date"
-                    type="date"
-                    value={selectedDate}
-                    onChange={(e) => setSelectedDate(e.target.value)}
-                    min={new Date().toISOString().split('T')[0]}
-                    className="mt-2"
-                  />
-                </div>
-
-                {selectedDate && (
-                  <div className="bg-blue-50 p-3 rounded-lg">
-                    <div className="text-sm space-y-1">
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Start Date:</span>
-                        <span className="font-medium">{selectedDate}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">End Date:</span>
-                        <span className="font-medium">{endDate}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Total Days:</span>
-                        <span className="font-medium">{parseInt(tourPackage.duration.split(" ")[0])} days</span>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                <Separator />
-
-                <div className="space-y-3">
-                  <h4 className="font-medium">Lead Guest Details</h4>
-                  
-                  <div>
-                    <Label htmlFor="name">Full Name *</Label>
-                    <Input
-                      id="name"
-                      value={guestDetails.name}
-                      onChange={(e) => setGuestDetails(prev => ({ ...prev, name: e.target.value }))}
-                      placeholder="Enter full name"
-                      className="mt-1"
-                    />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="email">Email *</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={guestDetails.email}
-                      onChange={(e) => setGuestDetails(prev => ({ ...prev, email: e.target.value }))}
-                      placeholder="Enter email address"
-                      className="mt-1"
-                    />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="phone">Phone Number *</Label>
-                    <Input
-                      id="phone"
-                      value={guestDetails.phone}
-                      onChange={(e) => setGuestDetails(prev => ({ ...prev, phone: e.target.value }))}
-                      placeholder="Enter phone number"
-                      className="mt-1"
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-3">
-                    <div>
-                      <Label htmlFor="city">City *</Label>
-                      <Input
-                        id="city"
-                        value={guestDetails.city}
-                        onChange={(e) => setGuestDetails(prev => ({ ...prev, city: e.target.value }))}
-                        placeholder="Your city"
-                        className="mt-1"
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="pincode">Pincode *</Label>
-                      <Input
-                        id="pincode"
-                        value={guestDetails.pincode}
-                        onChange={(e) => setGuestDetails(prev => ({ ...prev, pincode: e.target.value }))}
-                        placeholder="123456"
-                        maxLength={6}
-                        className="mt-1"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Card>
-
             <Card className="p-6 bg-gradient-to-br from-orange-50 to-red-50">
               <div className="text-center space-y-4">
-                <h3 className="text-lg font-semibold">Exclusive Tour Package</h3>
+                <h3 className="text-lg font-semibold">Ready to Explore?</h3>
                 <p className="text-gray-600 text-sm">
-                  This is an exclusive tour experience. Contact us to check availability and get personalized pricing.
+                  Click the button below to chat with us on WhatsApp and check availability for this amazing tour!
                 </p>
                 
                 <Button 
