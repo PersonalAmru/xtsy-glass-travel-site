@@ -148,6 +148,9 @@ const services: ServiceCard[] = [
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-purple-600 mb-1 font-playfair">
               Amenities &amp; Services
             </h2>
+            <p className="text-lg sm:text-xl text-gray-700 font-medium mt-2">
+              🐱 🐶 Pet Friendly
+            </p>
           </div>
         </div>
 
