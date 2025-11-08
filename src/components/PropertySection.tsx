@@ -22,9 +22,10 @@ interface PropertySectionProps {
   propertyType: "hostel" | "luxury" | "economy";
   onSelectRoom: () => void;
   isLuxury?: boolean;
+  economyNotice?: string;
 }
 
-const PropertySection = ({ title, description, rooms, propertyType, onSelectRoom, isLuxury = false }: PropertySectionProps) => {
+const PropertySection = ({ title, description, rooms, propertyType, onSelectRoom, isLuxury = false, economyNotice }: PropertySectionProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -64,8 +65,11 @@ const PropertySection = ({ title, description, rooms, propertyType, onSelectRoom
           <p className="text-sm sm:text-base text-gray-600 text-center font-medium leading-relaxed">
             {description}
           </p>
-          <p className="text-xs sm:text-sm text-orange-600 text-center font-semibold mt-2">
-          </p>
+          {economyNotice && (
+            <p className="text-xs sm:text-sm text-orange-600 text-center font-semibold mt-2">
+              {economyNotice}
+            </p>
+          )}
           <div className="w-12 sm:w-16 h-0.5 bg-gradient-to-r from-orange-500 to-red-600 mx-auto mt-2 rounded-full" />
         </div>
       </div>
