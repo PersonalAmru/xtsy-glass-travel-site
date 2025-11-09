@@ -1,6 +1,9 @@
 project_id = "oidnydyyjyjfnyadhyzn"
 
 # Public-facing functions (no authentication required)
+[functions.fetch-exchange-rates]
+verify_jwt = false
+
 [functions.get-room-availability]
 verify_jwt = false
 

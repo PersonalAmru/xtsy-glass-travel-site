@@ -14,11 +14,8 @@ import { initializeNetworkOptimizations } from "./utils/networkOptimizer";
 import { performGlobalCleanup } from "./utils/performanceCleanup";
 import { cleanupUnifiedImage } from "./components/UnifiedImage";
 
-// Initialize only essential optimizations
-if (process.env.NODE_ENV === 'development') {
-  initializeImageOptimizations();
-} else {
-  // Production: minimal optimizations only
+// Initialize only essential optimizations (production only)
+if (process.env.NODE_ENV === 'production') {
   initializeImageOptimizations();
 }
 
@@ -28,15 +25,16 @@ window.addEventListener('beforeunload', () => {
   cleanupUnifiedImage();
 });
 
-// Optimize QueryClient for high traffic
+// Optimize QueryClient for high-concurrency production traffic
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 5 * 60 * 1000, // 5 minutes
-      gcTime: 10 * 60 * 1000, // 10 minutes
-      retry: 2,
+      staleTime: 10 * 60 * 1000, // 10 minutes - reduce refetching
+      gcTime: 30 * 60 * 1000, // 30 minutes - keep data longer
+      retry: 1, // Reduce retries for faster failures
       retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 30000),
       refetchOnWindowFocus: false,
+      refetchOnMount: false, // Don't refetch on component mount
     },
   },
 });

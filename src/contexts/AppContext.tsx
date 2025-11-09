@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import axios from 'axios';
+import { supabase } from '@/integrations/supabase/client';
 
 interface Currency {
   code: string;
@@ -76,17 +76,19 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   });
   const [isInitialized, setIsInitialized] = useState(false);
 
-  // Fetch real-time exchange rates
+  // Fetch exchange rates from Edge Function (non-blocking)
   const fetchExchangeRates = async () => {
     try {
-      // Using a free API that provides real-time exchange rates
-      const response = await axios.get('https://api.exchangerate-api.com/v4/latest/INR');
-      const rates = response.data.rates;
-      
-      const newRates = {
+      const { data, error } = await supabase.functions.invoke('fetch-exchange-rates', {
+        body: {},
+      });
+
+      if (error) throw error;
+
+      const newRates = data.rates || {
         INR: 1,
-        USD: rates.USD || 0.012,
-        EUR: rates.EUR || 0.011,
+        USD: 0.012,
+        EUR: 0.011,
       };
       
       setExchangeRates(newRates);
@@ -96,14 +98,14 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         curr.rate = newRates[curr.code] || curr.rate;
       });
       
-      console.log('Exchange rates updated:', newRates);
+      console.log('Exchange rates updated from Edge Function:', newRates);
     } catch (error) {
-      console.warn('Failed to fetch exchange rates, using fallback rates:', error);
-      // Keep existing fallback rates
+      console.warn('Failed to fetch exchange rates, using fallback:', error);
+      // Keep existing fallback rates - app remains functional
     }
   };
 
-  // Load saved currency preference and fetch exchange rates on mount
+  // Load saved currency preference and fetch exchange rates (non-blocking)
   useEffect(() => {
     const savedCurrency = localStorage.getItem('selectedCurrency');
     
@@ -117,13 +119,14 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       }
     }
     
-    // Fetch current exchange rates
+    // Mark as initialized immediately (don't block on exchange rates)
+    setIsInitialized(true);
+    
+    // Fetch exchange rates in background (non-blocking)
     fetchExchangeRates();
     
-    // Set up interval to fetch rates every 30 minutes
-    const interval = setInterval(fetchExchangeRates, 30 * 60 * 1000);
-    
-    setIsInitialized(true);
+    // Set up interval to fetch rates every 12 hours (Edge Function handles caching)
+    const interval = setInterval(fetchExchangeRates, 12 * 60 * 60 * 1000);
     
     return () => clearInterval(interval);
   }, []);
