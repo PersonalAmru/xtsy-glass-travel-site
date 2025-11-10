@@ -1,9 +1,9 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-};
+import { corsHeaders } from '../_shared/cors.ts';
+import { createOptimizedClient } from '../_shared/supabaseClient.ts';
+import { checkRateLimit, getClientIp, getRateLimitHeaders } from '../_shared/rateLimiter.ts';
+import { getCacheHeaders } from '../_shared/cacheHeaders.ts';
+import { PerformanceMonitor } from '../_shared/performanceMonitor.ts';
 
 // In-memory cache with 12-hour TTL
 let cachedRates: { rates: Record<string, number>; timestamp: number } | null = null;
@@ -36,17 +36,43 @@ async function fetchWithRetry(url: string, maxRetries = 3): Promise<Response> {
 }
 
 serve(async (req) => {
+  const monitor = new PerformanceMonitor('fetch-exchange-rates');
+  
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
+    const supabase = createOptimizedClient({ useServiceRole: true });
+    
+    // Rate limiting
+    const clientIp = getClientIp(req);
+    const rateLimitResult = await checkRateLimit(supabase, clientIp, 'fetch-exchange-rates');
+    
+    if (!rateLimitResult.allowed) {
+      monitor.complete(429);
+      return new Response(
+        JSON.stringify({ error: 'Rate limit exceeded. Please try again later.' }),
+        { 
+          status: 429,
+          headers: { 
+            ...corsHeaders,
+            ...getCacheHeaders('fetch-exchange-rates'),
+            ...getRateLimitHeaders(rateLimitResult),
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+    }
+
     const now = Date.now();
 
     // Check if cache is still valid
     if (cachedRates && (now - cachedRates.timestamp) < CACHE_TTL) {
       console.log('Returning cached exchange rates');
+      monitor.complete(200, { cacheHit: true });
+      
       return new Response(
         JSON.stringify({ 
           rates: cachedRates.rates,
@@ -55,9 +81,10 @@ serve(async (req) => {
         }),
         { 
           headers: { 
-            ...corsHeaders, 
+            ...corsHeaders,
+            ...getCacheHeaders('fetch-exchange-rates'),
+            ...getRateLimitHeaders(rateLimitResult),
             'Content-Type': 'application/json',
-            'Cache-Control': 'public, max-age=43200', // 12 hours
           } 
         }
       );
@@ -81,6 +108,7 @@ serve(async (req) => {
     };
 
     console.log('Successfully fetched and cached new rates:', rates);
+    monitor.complete(200, { cacheHit: false });
 
     return new Response(
       JSON.stringify({ 
@@ -90,14 +118,16 @@ serve(async (req) => {
       }),
       { 
         headers: { 
-          ...corsHeaders, 
+          ...corsHeaders,
+          ...getCacheHeaders('fetch-exchange-rates'),
+          ...getRateLimitHeaders(rateLimitResult),
           'Content-Type': 'application/json',
-          'Cache-Control': 'public, max-age=43200', // 12 hours
         } 
       }
     );
   } catch (error) {
     console.error('Failed to fetch exchange rates, using fallback:', error);
+    monitor.complete(200, { cacheHit: false });
     
     // Return fallback rates
     return new Response(
@@ -109,7 +139,8 @@ serve(async (req) => {
       }),
       { 
         headers: { 
-          ...corsHeaders, 
+          ...corsHeaders,
+          ...getCacheHeaders('fetch-exchange-rates'),
           'Content-Type': 'application/json',
           'Cache-Control': 'public, max-age=3600', // 1 hour for fallback
         } 

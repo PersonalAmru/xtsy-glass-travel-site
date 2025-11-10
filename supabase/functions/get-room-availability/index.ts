@@ -1,12 +1,13 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.55.0';
-
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-};
+import { corsHeaders } from '../_shared/cors.ts';
+import { createOptimizedClient } from '../_shared/supabaseClient.ts';
+import { checkRateLimit, getClientIp, getRateLimitHeaders } from '../_shared/rateLimiter.ts';
+import { getCacheHeaders } from '../_shared/cacheHeaders.ts';
+import { PerformanceMonitor } from '../_shared/performanceMonitor.ts';
 
 serve(async (req) => {
+  const monitor = new PerformanceMonitor('get-room-availability');
+  
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -14,16 +15,27 @@ serve(async (req) => {
 
   try {
     // Create Supabase admin client
-    const supabaseAdmin = createClient(
-      Deno.env.get('SUPABASE_URL') ?? '',
-      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
-      {
-        auth: {
-          autoRefreshToken: false,
-          persistSession: false
+    const supabaseAdmin = createOptimizedClient({ useServiceRole: true });
+    
+    // Rate limiting
+    const clientIp = getClientIp(req);
+    const rateLimitResult = await checkRateLimit(supabaseAdmin, clientIp, 'get-room-availability');
+    
+    if (!rateLimitResult.allowed) {
+      monitor.complete(429);
+      return new Response(
+        JSON.stringify({ error: 'Rate limit exceeded. Please try again later.' }),
+        { 
+          status: 429,
+          headers: { 
+            ...corsHeaders,
+            ...getCacheHeaders('get-room-availability'),
+            ...getRateLimitHeaders(rateLimitResult),
+            'Content-Type': 'application/json'
+          }
         }
-      }
-    );
+      );
+    }
 
     const requestBody = await req.json();
     console.log('Request received:', requestBody);
@@ -32,11 +44,17 @@ serve(async (req) => {
 
     if (!room_type_name || !start_date || !end_date) {
       console.log('Missing parameters:', { room_type_name, start_date, end_date });
+      monitor.complete(400);
       return new Response(
         JSON.stringify({ success: false, error: 'Missing required parameters' }),
         { 
           status: 400, 
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+          headers: { 
+            ...corsHeaders,
+            ...getCacheHeaders('get-room-availability'),
+            ...getRateLimitHeaders(rateLimitResult),
+            'Content-Type': 'application/json' 
+          }
         }
       );
     }
@@ -91,21 +109,6 @@ serve(async (req) => {
       console.log('Inventory query result:', inventory?.length || 0, 'records');
     }
 
-    // Get blocked dates (using room_type field)
-    const { data: blockedDates, error: blockedError } = await supabaseAdmin
-      .from('blocked_dates')
-      .select('date')
-      .in('room_type', keys)
-      .eq('blocked', true)
-      .gte('date', start_date)
-      .lte('date', end_date);
-
-    if (blockedError) {
-      console.log('Blocked dates query error (non-critical):', blockedError);
-    } else {
-      console.log('Blocked dates query result:', blockedDates?.length || 0, 'records');
-    }
-
     // Get confirmed bookings for the period (using room_type field)
     const { data: confirmedBookings, error: bookingsError } = await supabaseAdmin
       .from('bookings')
@@ -124,19 +127,11 @@ serve(async (req) => {
     // Build availability calendar
     const availability = {};
     const inventoryMap = {};
-    const blockedDatesSet = new Set();
 
     // Map inventory data
     if (inventory) {
       inventory.forEach(item => {
         inventoryMap[item.date] = item.available_count;
-      });
-    }
-
-    // Map blocked dates
-    if (blockedDates) {
-      blockedDates.forEach(item => {
-        blockedDatesSet.add(item.date);
       });
     }
 
@@ -146,9 +141,6 @@ serve(async (req) => {
     
     for (let d = new Date(startDateObj); d <= endDateObj; d.setDate(d.getDate() + 1)) {
       const dateStr = d.toISOString().split('T')[0];
-      
-      // Check if date is blocked by admin
-      const isBlockedByAdmin = blockedDatesSet.has(dateStr);
       
       // Get available count from inventory or default to total units
       const availableCount = inventoryMap[dateStr] ?? totalUnits;
@@ -173,13 +165,14 @@ serve(async (req) => {
       availability[dateStr] = {
         available: finalAvailableCount,
         total: totalUnits,
-        isBlocked: isBlockedByAdmin,
-        isSoldOut: isBlockedByAdmin || finalAvailableCount === 0,
+        isBlocked: availableCount === 0 && bookedCount === 0,
+        isSoldOut: finalAvailableCount === 0,
         bookedCount
       };
     }
 
     console.log('Availability calculated:', Object.keys(availability).length, 'dates');
+    monitor.complete(200, { cacheHit: false });
 
     return new Response(
       JSON.stringify({ 
@@ -189,12 +182,19 @@ serve(async (req) => {
         total_units: totalUnits
       }),
       { 
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        headers: { 
+          ...corsHeaders,
+          ...getCacheHeaders('get-room-availability'),
+          ...getRateLimitHeaders(rateLimitResult),
+          'Content-Type': 'application/json' 
+        }
       }
     );
 
   } catch (error) {
     console.error('Error in get-room-availability function:', error);
+    monitor.complete(500, { error: error.message });
+    
     return new Response(
       JSON.stringify({ 
         success: false, 
@@ -202,7 +202,11 @@ serve(async (req) => {
       }),
       { 
         status: 500, 
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        headers: { 
+          ...corsHeaders,
+          ...getCacheHeaders('get-room-availability'),
+          'Content-Type': 'application/json' 
+        }
       }
     );
   }

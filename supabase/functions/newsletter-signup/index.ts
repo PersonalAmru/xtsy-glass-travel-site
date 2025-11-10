@@ -1,24 +1,21 @@
 
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { Resend } from 'https://esm.sh/resend@2.0.0'
 import { newsletterSchema, escapeHtml, sanitizeArray } from '../_shared/newsletterValidation.ts'
-
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-}
+import { corsHeaders } from '../_shared/cors.ts'
+import { createOptimizedClient } from '../_shared/supabaseClient.ts'
+import { getCacheHeaders } from '../_shared/cacheHeaders.ts'
+import { PerformanceMonitor } from '../_shared/performanceMonitor.ts'
 
 serve(async (req) => {
+  const monitor = new PerformanceMonitor('newsletter-signup');
+  
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    const supabase = createClient(
-      Deno.env.get('SUPABASE_URL') ?? '',
-      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
-    );
+    const supabase = createOptimizedClient({ useServiceRole: true });
 
     const resend = new Resend(Deno.env.get('RESEND_API_KEY'));
 
@@ -27,9 +24,10 @@ serve(async (req) => {
     // CRITICAL SECURITY: Validate input data
     const validationResult = newsletterSchema.safeParse(rawData);
     if (!validationResult.success) {
+      monitor.complete(400);
       return new Response(
         JSON.stringify({ error: 'Invalid input data', details: validationResult.error.issues }),
-        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        { status: 400, headers: { ...corsHeaders, ...getCacheHeaders('newsletter-signup'), 'Content-Type': 'application/json' } }
       );
     }
 
@@ -49,9 +47,10 @@ serve(async (req) => {
     }
 
     if (rateLimitAllowed === false) {
+      monitor.complete(429);
       return new Response(
         JSON.stringify({ error: 'Too many signup attempts. Please try again later.' }),
-        { status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        { status: 429, headers: { ...corsHeaders, ...getCacheHeaders('newsletter-signup'), 'Content-Type': 'application/json' } }
       );
     }
 
@@ -162,6 +161,7 @@ serve(async (req) => {
     await Promise.all([...adminEmailPromises, welcomeEmailPromise]);
 
     console.log('All notification emails sent successfully');
+    monitor.complete(200);
 
     return new Response(
       JSON.stringify({ 
@@ -169,17 +169,19 @@ serve(async (req) => {
         message: 'Successfully subscribed to newsletter',
         subscriber_id: savedData.id 
       }),
-      { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      { headers: { ...corsHeaders, ...getCacheHeaders('newsletter-signup'), 'Content-Type': 'application/json' } }
     );
 
   } catch (error) {
     console.error('Newsletter signup error:', error);
+    monitor.complete(500, { error: error.message });
+    
     return new Response(
       JSON.stringify({ 
         error: 'Unable to process newsletter signup. Please try again later or contact support.',
         success: false 
       }),
-      { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      { status: 500, headers: { ...corsHeaders, ...getCacheHeaders('newsletter-signup'), 'Content-Type': 'application/json' } }
     );
   }
 });

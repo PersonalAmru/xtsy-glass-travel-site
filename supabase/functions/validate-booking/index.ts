@@ -1,11 +1,10 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.55.0';
 import { z } from 'https://deno.land/x/zod@v3.22.4/mod.ts';
-
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-};
+import { corsHeaders } from '../_shared/cors.ts'
+import { createOptimizedClient } from '../_shared/supabaseClient.ts'
+import { checkRateLimit, getClientIp, getRateLimitHeaders } from '../_shared/rateLimiter.ts'
+import { getCacheHeaders } from '../_shared/cacheHeaders.ts'
+import { PerformanceMonitor } from '../_shared/performanceMonitor.ts'
 
 // Room selection schema
 const roomSelectionSchema = z.object({
@@ -30,21 +29,34 @@ const bookingValidationSchema = z.object({
 });
 
 serve(async (req) => {
+  const monitor = new PerformanceMonitor('validate-booking');
+  
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    const supabase = createClient(
-      Deno.env.get('SUPABASE_URL') ?? '',
-      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
-      {
-        auth: {
-          autoRefreshToken: false,
-          persistSession: false
+    const supabase = createOptimizedClient({ useServiceRole: true });
+    
+    // Rate limiting
+    const clientIp = getClientIp(req);
+    const rateLimitResult = await checkRateLimit(supabase, clientIp, 'validate-booking');
+    
+    if (!rateLimitResult.allowed) {
+      monitor.complete(429);
+      return new Response(
+        JSON.stringify({ error: 'Rate limit exceeded. Please try again later.' }),
+        { 
+          status: 429,
+          headers: { 
+            ...corsHeaders,
+            ...getCacheHeaders('validate-booking'),
+            ...getRateLimitHeaders(rateLimitResult),
+            'Content-Type': 'application/json'
+          }
         }
-      }
-    );
+      );
+    }
 
     const requestBody = await req.json();
     
@@ -146,6 +158,8 @@ serve(async (req) => {
       rooms: priceValidationResults
     });
 
+    monitor.complete(200);
+    
     return new Response(
       JSON.stringify({ 
         success: true,
@@ -156,17 +170,28 @@ serve(async (req) => {
           rooms: priceValidationResults
         }
       }),
-      { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      { headers: { 
+        ...corsHeaders,
+        ...getCacheHeaders('validate-booking'),
+        ...getRateLimitHeaders(rateLimitResult),
+        'Content-Type': 'application/json' 
+      } }
     );
 
   } catch (error) {
     console.error('Booking validation error:', error);
+    monitor.complete(500, { error: error.message });
+    
     return new Response(
       JSON.stringify({ 
         success: false, 
         error: 'Unable to validate booking. Please try again or contact support.' 
       }),
-      { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      { status: 500, headers: { 
+        ...corsHeaders,
+        ...getCacheHeaders('validate-booking'),
+        'Content-Type': 'application/json' 
+      } }
     );
   }
 });

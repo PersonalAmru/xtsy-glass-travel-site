@@ -326,6 +326,36 @@ export type Database = {
         }
         Relationships: []
       }
+      rate_limits: {
+        Row: {
+          created_at: string | null
+          endpoint: string
+          expires_at: string
+          id: string
+          ip_address: string
+          request_count: number
+          window_start: string
+        }
+        Insert: {
+          created_at?: string | null
+          endpoint: string
+          expires_at: string
+          id?: string
+          ip_address: string
+          request_count?: number
+          window_start?: string
+        }
+        Update: {
+          created_at?: string | null
+          endpoint?: string
+          expires_at?: string
+          id?: string
+          ip_address?: string
+          request_count?: number
+          window_start?: string
+        }
+        Relationships: []
+      }
       reviews: {
         Row: {
           booking_id: string | null
@@ -706,6 +736,7 @@ export type Database = {
           suspicious_indicators: string[]
         }[]
       }
+      cleanup_expired_rate_limits: { Args: never; Returns: undefined }
       cleanup_rate_limits: { Args: never; Returns: undefined }
       delete_my_data: { Args: never; Returns: boolean }
       export_my_data: { Args: never; Returns: Json }
