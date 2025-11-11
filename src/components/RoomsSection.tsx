@@ -260,7 +260,7 @@ const RoomsSection = () => {
           <PropertySection
             title="XTSY Economy"
             description="Your Ultra-Budget Stay Without Compromise  Simple, clean, and affordable. Designed for backpackers who need a safe, reliable place to crash with all the essentials."
-            economyNotice="XTSY Economy is exclusively available only on Booking.com"
+            economyNotice="XTSY Economy is exclusively available only on Booking.com [No Discounts applicable]"
             rooms={economyRooms}
             propertyType="economy"
             onSelectRoom={scrollToCalendar}
