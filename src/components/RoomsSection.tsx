@@ -203,6 +203,35 @@ const RoomsSection = () => {
           <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-6 rounded-full" />
         </div>
 
+        {/* Winter Offer Banner */}
+        <div className="relative max-w-4xl mx-auto mb-12 sm:mb-16 px-4 sm:px-6">
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 via-blue-100 to-cyan-50 border-2 border-blue-200 shadow-xl">
+            {/* Snowflake decorations */}
+            <div className="absolute top-4 left-4 text-blue-300 opacity-50 animate-pulse">❄</div>
+            <div className="absolute top-8 right-8 text-blue-400 opacity-40 animate-pulse" style={{ animationDelay: '0.5s' }}>❄</div>
+            <div className="absolute bottom-4 left-12 text-cyan-300 opacity-30 animate-pulse" style={{ animationDelay: '1s' }}>❄</div>
+            <div className="absolute bottom-8 right-16 text-blue-300 opacity-50 animate-pulse" style={{ animationDelay: '1.5s' }}>❄</div>
+            
+            {/* Frosty overlay effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shimmer_3s_ease-in-out_infinite]" />
+            
+            <div className="relative z-10 py-8 px-6 sm:py-10 sm:px-8 text-center">
+              <div className="inline-block mb-3 px-4 py-1 bg-blue-500 text-white text-sm font-semibold rounded-full shadow-md">
+                ❄️ WINTER SPECIAL ❄️
+              </div>
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-900 mb-2 font-playfair">
+                10% Flat Off
+              </h3>
+              <p className="text-lg sm:text-xl text-blue-800 font-medium">
+                Winter Offer by XTSY
+              </p>
+              <div className="mt-4 text-sm text-blue-700">
+                Limited time offer on all properties
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* XTSY Luxury Section - Center Aligned */}
         <div className="center-aligned mb-16">
           <PropertySection
@@ -247,6 +276,14 @@ const RoomsSection = () => {
         }
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
+        }
+        @keyframes shimmer {
+          0%, 100% {
+            transform: translateX(-100%);
+          }
+          50% {
+            transform: translateX(100%);
+          }
         }
         `}
       </style>
