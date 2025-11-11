@@ -146,12 +146,13 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
         setSelectedRooms(prevRooms => prevRooms.filter(r => r.roomTypeId !== roomTypeId));
       } else {
         newSet.add(roomTypeId);
-        // Add to selectedRooms
+        // Add to selectedRooms with 10% winter discount
+        const discountedPrice = Math.round(roomType.base_price * 0.9);
         const newRoom: SelectedRoom = {
           roomTypeId: roomType.id,
           roomTypeName: `${roomType.category} - ${roomType.name}`,
           quantity: 1,
-          price: roomType.base_price
+          price: discountedPrice
         };
         setSelectedRooms(prevRooms => [...prevRooms, newRoom]);
       }
@@ -376,6 +377,17 @@ Can't wait to experience XTSY hospitality! Please confirm availability. 🎉✨`
 
               {/* Room/Dorm Type Selection */}
               <div className="space-y-4 p-4 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800">
+                {/* Winter Offer Badge */}
+                <div className="mb-4 p-3 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-950 dark:to-cyan-950 rounded-lg border-2 border-blue-200 dark:border-blue-800">
+                  <div className="flex items-center justify-center gap-2">
+                    <span className="text-2xl">❄️</span>
+                    <p className="text-sm font-bold text-blue-900 dark:text-blue-100">
+                      Winter Offer: 10% Flat Off on All Rooms!
+                    </p>
+                    <span className="text-2xl">❄️</span>
+                  </div>
+                </div>
+                
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
                     <Home className="h-5 w-5 text-primary" />
@@ -437,15 +449,22 @@ Can't wait to experience XTSY hospitality! Please confirm availability. 🎉✨`
                                     className="mt-1"
                                   />
                                   <div className="flex-1">
-                                    <Label
+                                     <Label
                                       htmlFor={roomType.id}
                                       className="font-medium cursor-pointer leading-tight"
                                     >
                                       {roomType.name}
                                     </Label>
-                                    <p className="text-xs text-muted-foreground mt-1">
-                                      ₹{roomType.base_price.toLocaleString('en-IN')}/night • Capacity: {roomType.capacity} guests
-                                    </p>
+                                    <div className="flex items-center gap-2 mt-1">
+                                      <p className="text-xs text-muted-foreground line-through">
+                                        ₹{roomType.base_price.toLocaleString('en-IN')}
+                                      </p>
+                                      <p className="text-xs font-semibold text-green-600">
+                                        ₹{Math.round(roomType.base_price * 0.9).toLocaleString('en-IN')}/night
+                                      </p>
+                                      <span className="text-[10px] bg-blue-500 text-white px-1.5 py-0.5 rounded">10% OFF</span>
+                                      <p className="text-xs text-muted-foreground">• {roomType.capacity} guests</p>
+                                    </div>
                                   </div>
                                 </div>
                               ))}
