@@ -172,6 +172,14 @@ Can't wait to create unforgettable memories in this architectural masterpiece! ð
             </div>
 
             {/* Pricing Display */}
+            <div className="text-center mb-8 animate-fade-in" style={{ animationDelay: '0.35s' }}>
+              <h3 className="text-2xl md:text-3xl font-bold mb-3 text-gray-900">
+                Seasonal offers - prices are dynamic
+              </h3>
+              <p className="text-base md:text-lg text-gray-700 font-medium max-w-2xl mx-auto">
+                Experience luxury at flexible rates that adapt to your travel schedule
+              </p>
+            </div>
             <div className="flex flex-col md:flex-row justify-center gap-6 mb-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
               <Card className="glass-card bg-white/80 backdrop-blur-md border-white/60 shadow-xl">
                 <CardContent className="p-6 text-center">
