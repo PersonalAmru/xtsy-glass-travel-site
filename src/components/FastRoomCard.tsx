@@ -16,6 +16,7 @@ interface FastRoomCardProps {
     id: string;
     name: string;
     price: number;
+    originalPrice?: number;
     image: string;
     description: string;
     amenities: string[];
@@ -331,22 +332,45 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                     ) : isXTSY270 ? (
                       <div className="space-y-0.5">
                         <div className="text-right">
-                          <div className="text-primary font-bold text-base leading-tight">₹7,999</div>
+                          <div className="text-gray-400 text-xs line-through">₹7,999</div>
+                          <div className="text-primary font-bold text-base leading-tight">₹7,199</div>
                           <div className="text-gray-400 text-xs">per night</div>
                         </div>
                       </div>
                     ) : (
                       <>
-                        <div className={`font-bold text-primary text-right ${
-                          isMobile ? 'text-base' : isTablet ? 'text-lg' : 'text-xl'
-                        } ${isXTSY270 ? 'text-base' : ''} leading-tight`}>
-                          {formatPrice(room.price || 0)}
-                        </div>
-                        <div className={`text-gray-300 text-right ${
-                          isMobile ? 'text-xs' : 'text-sm'
-                        } ${isXTSY270 ? 'text-xs' : ''} leading-tight`}>
-                          per night
-                        </div>
+                        {room.originalPrice && room.originalPrice !== room.price ? (
+                          <div className="text-right">
+                            <div className={`text-gray-400 line-through ${
+                              isMobile ? 'text-xs' : 'text-sm'
+                            } ${isXTSY270 ? 'text-xs' : ''} leading-tight`}>
+                              {formatPrice(room.originalPrice)}
+                            </div>
+                            <div className={`font-bold text-primary text-right ${
+                              isMobile ? 'text-base' : isTablet ? 'text-lg' : 'text-xl'
+                            } ${isXTSY270 ? 'text-base' : ''} leading-tight`}>
+                              {formatPrice(room.price || 0)}
+                            </div>
+                            <div className={`text-gray-300 text-right ${
+                              isMobile ? 'text-xs' : 'text-sm'
+                            } ${isXTSY270 ? 'text-xs' : ''} leading-tight`}>
+                              per night
+                            </div>
+                          </div>
+                        ) : (
+                          <>
+                            <div className={`font-bold text-primary text-right ${
+                              isMobile ? 'text-base' : isTablet ? 'text-lg' : 'text-xl'
+                            } ${isXTSY270 ? 'text-base' : ''} leading-tight`}>
+                              {formatPrice(room.price || 0)}
+                            </div>
+                            <div className={`text-gray-300 text-right ${
+                              isMobile ? 'text-xs' : 'text-sm'
+                            } ${isXTSY270 ? 'text-xs' : ''} leading-tight`}>
+                              per night
+                            </div>
+                          </>
+                        )}
                       </>
                     )}
                   </div>

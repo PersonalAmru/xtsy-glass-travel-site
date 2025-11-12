@@ -25,6 +25,7 @@ const RoomsSection = () => {
       id: "signature-270-glass-suite",
       name: XTSY270_DATA.name,
       price: Math.round(XTSY270_DATA.price * 0.9), // 10% winter discount
+      originalPrice: XTSY270_DATA.price,
       description: XTSY270_DATA.description,
       features: XTSY270_DATA.features,
       maxGuests: XTSY270_DATA.maxGuests,
@@ -42,6 +43,7 @@ const RoomsSection = () => {
       id: "4-bed-female-only-dorm",
       name: "Bed in 4-Bed Female Dormitory",
       price: 765, // 10% winter discount (850 * 0.9)
+      originalPrice: 850,
       description: "Female-only dormitory with modern amenities and comfortable beds",
       features: generateFeatures('hostel', 'Bed in 4-Bed Female Dormitory', 'dorm'),
       maxGuests: 4,
@@ -62,6 +64,7 @@ const RoomsSection = () => {
       id: "4-bed-mixed-female-dorm",
       name: "Bed in 4-Bed Mixed Dormitory", 
       price: 720, // 10% winter discount (800 * 0.9)
+      originalPrice: 800,
       description: "Mixed dormitory with shared facilities and social atmosphere",
       features: generateFeatures('hostel', 'Bed in 4-Bed Mixed Dormitory', 'dorm'),
       maxGuests: 4,
@@ -78,6 +81,7 @@ const RoomsSection = () => {
       id: "6-bed-mixed-female-dorm",
       name: "Bed in 6-Bed Female Dormitory",
       price: 675, // 10% winter discount (750 * 0.9)
+      originalPrice: 750,
       description: "Spacious female dormitory with modern amenities",
       features: generateFeatures('hostel', 'Bed in 6-Bed Female Dormitory', 'dorm'),
       maxGuests: 6,
@@ -96,6 +100,7 @@ const RoomsSection = () => {
       id: "6-bed-mixed-economy-dorm",
       name: "Bed in 6-Bed Mixed Dormitory",
       price: 630, // 10% winter discount (700 * 0.9)
+      originalPrice: 700,
       description: "Budget-friendly mixed dormitory with essential amenities",
       features: generateFeatures('hostel', 'Bed in 6-Bed Mixed Dormitory', 'dorm'),
       maxGuests: 6,
@@ -114,6 +119,7 @@ const RoomsSection = () => {
       id: "king-double-room",
       name: "King Double Room",
       price: 2520, // 10% winter discount (2800 * 0.9)
+      originalPrice: 2800,
       description: "Spacious private room with king bed for two guests",
       features: generateFeatures('hostel', 'King Double Room', 'private'),
       maxGuests: 2,
@@ -130,6 +136,7 @@ const RoomsSection = () => {
       id: "king-triple-room",
       name: "King Triple Room",
       price: 3150, // 10% winter discount (3500 * 0.9)
+      originalPrice: 3500,
       description: "Luxurious private room accommodating up to three guests",
       features: generateFeatures('hostel', 'King Triple Room', 'private'),
       maxGuests: 3,

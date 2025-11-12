@@ -8,6 +8,7 @@ interface Room {
   id: string;
   name: string;
   price: number;
+  originalPrice?: number;
   description: string;
   features: string[];
   maxGuests: number;

@@ -24,6 +24,7 @@ interface Room {
   id: string;
   name: string;
   price: number;
+  originalPrice?: number;
   image: string;
   description: string;
   amenities: string[];
@@ -51,7 +52,8 @@ const ALL_ROOMS_DATA: {
   'xtsy-270': {
     id: 'xtsy-270',
     name: '270° Panorama Glass Ensuite',
-    price: 7999,
+    price: Math.round(7999 * 0.9), // 10% winter discount
+    originalPrice: 7999,
     image: XTSY270_DATA.image,
     description: XTSY270_DATA.description,
     amenities: XTSY270_DATA.features,
@@ -64,7 +66,8 @@ const ALL_ROOMS_DATA: {
   '4-bed-female-only-dorm': {
     id: '4-bed-female-only-dorm',
     name: 'Bed in 4-Bed Female Only Dormitory',
-    price: 850,
+    price: 765, // 10% winter discount (850 * 0.9)
+    originalPrice: 850,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg',
     description: 'Female-only dormitory with modern amenities and comfortable beds',
     amenities: generateFeatures('hostel', 'Bed in 4-Bed Female Only Dormitory', 'dorm'),
@@ -77,7 +80,8 @@ const ALL_ROOMS_DATA: {
   '4-bed-mixed-female-dorm': {
     id: '4-bed-mixed-female-dorm',
     name: 'Bed in 4-Bed Mixed Dormitory',
-    price: 800,
+    price: 720, // 10% winter discount (800 * 0.9)
+    originalPrice: 800,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/3.jpg',
     description: 'Mixed dormitory with shared facilities and social atmosphere',
     amenities: generateFeatures('hostel', 'Bed in 4-Bed Mixed Dormitory', 'dorm'),
@@ -90,7 +94,8 @@ const ALL_ROOMS_DATA: {
   '6-bed-mixed-female-dorm': {
     id: '6-bed-mixed-female-dorm',
     name: 'Bed in 6-Bed Female Only Dormitory',
-    price: 750,
+    price: 675, // 10% winter discount (750 * 0.9)
+    originalPrice: 750,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
     description: 'Spacious mixed or female dormitory with modern amenities',
     amenities: generateFeatures('hostel', 'Bed in 6-Bed Female Only Dormitory', 'dorm'),
@@ -103,7 +108,8 @@ const ALL_ROOMS_DATA: {
   '6-bed-mixed-dorm': {
     id: '6-bed-mixed-dorm',
     name: 'Bed in 6-Bed Mixed Dormitory',
-    price: 700,
+    price: 630, // 10% winter discount (700 * 0.9)
+    originalPrice: 700,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
     description: 'Spacious mixed dormitory with modern amenities',
     amenities: generateFeatures('hostel', 'Bed in 6-Bed Mixed Dormitory', 'dorm'),
@@ -116,7 +122,8 @@ const ALL_ROOMS_DATA: {
   'king-double-room': {
     id: 'king-double-room',
     name: 'King Double Room',
-    price: 2800,
+    price: 2520, // 10% winter discount (2800 * 0.9)
+    originalPrice: 2800,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg',
     description: 'Spacious private room with king bed for two guests',
     amenities: generateFeatures('hostel', 'King Double Room', 'private'),
@@ -129,7 +136,8 @@ const ALL_ROOMS_DATA: {
   'king-triple-room': {
     id: 'king-triple-room',
     name: 'King Triple Room',
-    price: 3500,
+    price: 3150, // 10% winter discount (3500 * 0.9)
+    originalPrice: 3500,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/1.jpg',
     description: 'Luxurious private room accommodating up to three guests',
     amenities: generateFeatures('hostel', 'King Triple Room', 'private'),

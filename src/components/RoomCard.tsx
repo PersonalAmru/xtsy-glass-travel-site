@@ -14,6 +14,7 @@ interface RoomCardProps {
     id: string;
     name: string;
     price: number;
+    originalPrice?: number;
     description: string;
     features: string[];
     maxGuests: number;
@@ -116,7 +117,16 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
                   <Users className="h-4 w-4 text-gray-300" />
                   <span className="text-sm text-gray-300 font-josefin">{room.maxGuests} guests</span>
                 </div>
-                <span className="text-lg font-bold text-orange-400 font-playfair">{formatPrice(displayPrice)}/night</span>
+                <div className="text-right">
+                  {room.originalPrice && room.originalPrice !== displayPrice ? (
+                    <div className="flex flex-col items-end">
+                      <span className="text-sm text-gray-400 line-through font-josefin">{formatPrice(room.originalPrice)}</span>
+                      <span className="text-lg font-bold text-orange-400 font-playfair">{formatPrice(displayPrice)}/night</span>
+                    </div>
+                  ) : (
+                    <span className="text-lg font-bold text-orange-400 font-playfair">{formatPrice(displayPrice)}/night</span>
+                  )}
+                </div>
               </div>
               <Button 
                 onClick={handleRoomSelection}
@@ -187,7 +197,16 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
                 <Users className="h-4 w-4 text-gray-300" />
                 <span className="text-sm text-gray-300 font-josefin">{room.maxGuests} guests</span>
               </div>
-              <span className="text-lg font-bold text-orange-400 font-playfair">{formatPrice(displayPrice)}/night</span>
+              <div className="text-right">
+                {room.originalPrice && room.originalPrice !== displayPrice ? (
+                  <div className="flex flex-col items-end">
+                    <span className="text-sm text-gray-400 line-through font-josefin">{formatPrice(room.originalPrice)}</span>
+                    <span className="text-lg font-bold text-orange-400 font-playfair">{formatPrice(displayPrice)}/night</span>
+                  </div>
+                ) : (
+                  <span className="text-lg font-bold text-orange-400 font-playfair">{formatPrice(displayPrice)}/night</span>
+                )}
+              </div>
             </div>
             <Button 
               onClick={handleRoomSelection}
