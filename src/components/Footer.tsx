@@ -1,54 +1,39 @@
-
 import { Link } from "react-router-dom";
 import { Phone, Mail, Instagram, Youtube, Home, Info, Image as ImageIcon, Camera, Plane, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import xtsyLogo from "@/assets/xtsy-brand-logo.png";
 import PolicyModal from "./PolicyModals";
-
 const Footer = () => {
   const [logoLoaded, setLogoLoaded] = useState(false);
   const [logoError, setLogoError] = useState(false);
-  const [policyModal, setPolicyModal] = useState<{isOpen: boolean, type: 'cancellation' | 'travel' | 'terms' | null}>({
+  const [policyModal, setPolicyModal] = useState<{
+    isOpen: boolean;
+    type: 'cancellation' | 'travel' | 'terms' | null;
+  }>({
     isOpen: false,
     type: null
   });
-
   useEffect(() => {
     setLogoLoaded(true);
   }, []);
-
   const handleLogoError = () => {
     console.error('Footer logo failed to load, using fallback');
     setLogoError(true);
   };
-
   const handleLogoLoad = () => {
     setLogoLoaded(true);
     setLogoError(false);
   };
-
-  return (
-    <footer className="bg-gray-900 text-white py-4 sm:py-8 md:py-12 lg:py-16">
+  return <footer className="bg-gray-900 text-white py-4 sm:py-8 md:py-12 lg:py-16">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {/* Brand Section - Center aligned for all screens */}
           <div className="text-center order-1 lg:order-1">
             <div className="flex items-center gap-2 justify-center mb-3 sm:mb-4 lg:mb-6">
-              {!logoError ? (
-                <img 
-                  src={xtsyLogo}
-                  alt="XTSY Travellers Hostel Logo"
-                  className="h-8 sm:h-12 lg:h-16 w-auto object-contain"
-                  loading="lazy"
-                  onLoad={handleLogoLoad}
-                  onError={handleLogoError}
-                />
-              ) : (
-                <div className="h-8 sm:h-12 lg:h-16 w-16 sm:w-20 lg:w-24 bg-gradient-to-r from-orange-500 to-red-600 rounded flex items-center justify-center">
+              {!logoError ? <img src={xtsyLogo} alt="XTSY Travellers Hostel Logo" className="h-8 sm:h-12 lg:h-16 w-auto object-contain" loading="lazy" onLoad={handleLogoLoad} onError={handleLogoError} /> : <div className="h-8 sm:h-12 lg:h-16 w-16 sm:w-20 lg:w-24 bg-gradient-to-r from-orange-500 to-red-600 rounded flex items-center justify-center">
                   <span className="text-white font-bold text-xs sm:text-sm lg:text-lg">XTSY</span>
-                </div>
-              )}
+                </div>}
             </div>
             <p className="text-gray-300 text-xs sm:text-sm lg:text-base leading-relaxed mb-3 sm:mb-4 lg:mb-6 px-2">
               Experience the authentic vibe of Shillong and unforgettable adventures with XTSY!
@@ -115,8 +100,9 @@ const Footer = () => {
               <div className="flex items-start space-x-2 sm:space-x-3 justify-center">
                 <Phone className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-orange-400 mt-0.5 flex-shrink-0" />
                 <div className="text-gray-300 text-xs sm:text-sm lg:text-base text-center">
-                  <div className="font-medium">Group/Corporate Bookings: +91 88373 17070</div>
-                  <div className="font-medium">Receptionist: +91 98633 17070 [Miss. Eurica]</div>
+                  <div className="font-medium">Group/Corporate Bookings: 
++91 88373 17070</div>
+                  <div className="font-medium">Reception: +91 98633 17070 [Eurica]</div>
                 </div>
               </div>
               
@@ -128,10 +114,7 @@ const Footer = () => {
               </div>
               
               <div className="pt-2 sm:pt-3 lg:pt-4 flex justify-center">
-                <Button 
-                  onClick={() => window.open('https://maps.app.goo.gl/Apj4xBxDWv8hBbSm6', '_blank')} 
-                  className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white text-xs sm:text-sm lg:text-base px-4 sm:px-6 lg:px-8 py-2 sm:py-2.5 lg:py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105 shadow-lg min-h-[44px] touch-manipulation"
-                >
+                <Button onClick={() => window.open('https://maps.app.goo.gl/Apj4xBxDWv8hBbSm6', '_blank')} className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white text-xs sm:text-sm lg:text-base px-4 sm:px-6 lg:px-8 py-2 sm:py-2.5 lg:py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105 shadow-lg min-h-[44px] touch-manipulation">
                   Get Directions
                 </Button>
               </div>
@@ -143,22 +126,22 @@ const Footer = () => {
           {/* Policy Links */}
           <div className="text-center mb-4 sm:mb-6">
             <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs sm:text-sm">
-              <button 
-                onClick={() => setPolicyModal({isOpen: true, type: 'cancellation'})}
-                className="text-gray-400 hover:text-orange-400 transition-colors duration-300 py-1"
-              >
+              <button onClick={() => setPolicyModal({
+              isOpen: true,
+              type: 'cancellation'
+            })} className="text-gray-400 hover:text-orange-400 transition-colors duration-300 py-1">
                 Cancellation Policy
               </button>
-              <button 
-                onClick={() => setPolicyModal({isOpen: true, type: 'travel'})}
-                className="text-gray-400 hover:text-orange-400 transition-colors duration-300 py-1"
-              >
+              <button onClick={() => setPolicyModal({
+              isOpen: true,
+              type: 'travel'
+            })} className="text-gray-400 hover:text-orange-400 transition-colors duration-300 py-1">
                 Travel Policies
               </button>
-              <button 
-                onClick={() => setPolicyModal({isOpen: true, type: 'terms'})}
-                className="text-gray-400 hover:text-orange-400 transition-colors duration-300 py-1"
-              >
+              <button onClick={() => setPolicyModal({
+              isOpen: true,
+              type: 'terms'
+            })} className="text-gray-400 hover:text-orange-400 transition-colors duration-300 py-1">
                 Hostel Terms & Conditions
               </button>
             </div>
@@ -169,15 +152,10 @@ const Footer = () => {
       </div>
       
       {/* Policy Modals */}
-      {policyModal.type && (
-        <PolicyModal
-          isOpen={policyModal.isOpen}
-          onClose={() => setPolicyModal({isOpen: false, type: null})}
-          type={policyModal.type}
-        />
-      )}
-    </footer>
-  );
+      {policyModal.type && <PolicyModal isOpen={policyModal.isOpen} onClose={() => setPolicyModal({
+      isOpen: false,
+      type: null
+    })} type={policyModal.type} />}
+    </footer>;
 };
-
 export default Footer;
