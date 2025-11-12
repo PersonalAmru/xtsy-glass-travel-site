@@ -11,9 +11,10 @@ import { Calendar, Mountain, Star, Award, Eye, Sun, Moon, Wifi, Coffee, Bath, Be
 import XTSY270Modal from '@/components/XTSY270Modal';
 import B2BBookingForm from '@/components/B2BBookingForm';
 import { useApp } from '@/contexts/AppContext';
-
 const XTSY270: React.FC = () => {
-  const { formatPrice } = useApp();
+  const {
+    formatPrice
+  } = useApp();
   const [isWeekend, setIsWeekend] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isB2BFormOpen, setIsB2BFormOpen] = useState(false);
@@ -26,9 +27,7 @@ const XTSY270: React.FC = () => {
     const today = new Date().getDay();
     setIsWeekend(today === 0 || today === 6); // Sunday = 0, Saturday = 6
   }, []);
-
   const currentPrice = isWeekend ? XTSY270_DATA.weekendPrice : XTSY270_DATA.weekdayPrice;
-
   const updateOrCreateMeta = (name: string, content: string) => {
     let el = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
     if (!el) {
@@ -38,7 +37,6 @@ const XTSY270: React.FC = () => {
     }
     el.setAttribute('content', content);
   };
-
   const addOrUpdateCanonical = (url: string) => {
     let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
     if (!link) {
@@ -48,13 +46,11 @@ const XTSY270: React.FC = () => {
     }
     link.setAttribute('href', url);
   };
-
   useEffect(() => {
     document.title = title;
     updateOrCreateMeta('description', description);
     addOrUpdateCanonical(canonicalUrl);
   }, []);
-
   const handleBookingClick = () => {
     const message = `🏔️ *XTSY 270° - Panoramic Glass Suite Inquiry*
 
@@ -84,11 +80,9 @@ Could you please share:
 🎁 Special packages or romantic add-ons
 
 Can't wait to create unforgettable memories in this architectural masterpiece! 🏔️✨`;
-
     const whatsappUrl = `https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent(message)}&type=phone_number&app_absent=0`;
     window.open(whatsappUrl, '_blank');
   };
-
   const roomLd = {
     '@context': 'https://schema.org',
     '@type': 'HotelRoom',
@@ -98,45 +92,41 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
     occupancy: {
       '@type': 'QuantitativeValue',
       minValue: XTSY270_DATA.occupancy.min,
-      maxValue: XTSY270_DATA.occupancy.max,
+      maxValue: XTSY270_DATA.occupancy.max
     },
     bed: {
       '@type': 'BedDetails',
       type: XTSY270_DATA.bed.type,
-      numberOfBeds: XTSY270_DATA.bed.count,
+      numberOfBeds: XTSY270_DATA.bed.count
     },
-    amenityFeature: XTSY270_DATA.features.map((f) => ({ '@type': 'LocationFeatureSpecification', name: f, value: true })),
+    amenityFeature: XTSY270_DATA.features.map(f => ({
+      '@type': 'LocationFeatureSpecification',
+      name: f,
+      value: true
+    })),
     offers: {
       '@type': 'Offer',
       availability: 'https://schema.org/InStock',
-      priceCurrency: XTSY270_DATA.priceCurrency,
-    },
+      priceCurrency: XTSY270_DATA.priceCurrency
+    }
   };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-yellow-50/80 to-orange-100/60">
+  return <div className="min-h-screen bg-gradient-to-br from-amber-50 via-yellow-50/80 to-orange-100/60">
       <Header />
       
       {/* Luxury Hero Section */}
       <main className="pt-16 relative overflow-hidden">
         {/* Premium Background Effects */}
         <div className="absolute inset-0 bg-gradient-to-br from-amber-400/10 via-yellow-300/5 to-orange-200/15">
-          {[...Array(6)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute rounded-full animate-pulse opacity-20"
-              style={{
-                width: `${80 + i * 20}px`,
-                height: `${80 + i * 20}px`,
-                background: `linear-gradient(135deg, hsl(45 100% ${65 + i * 5}%), hsl(35 90% ${70 + i * 3}%))`,
-                left: `${10 + i * 15}%`,
-                top: `${5 + i * 12}%`,
-                animationDelay: `${i * 0.8}s`,
-                animationDuration: `${3 + i * 0.3}s`,
-                filter: 'blur(40px)'
-              }}
-            />
-          ))}
+          {[...Array(6)].map((_, i) => <div key={i} className="absolute rounded-full animate-pulse opacity-20" style={{
+          width: `${80 + i * 20}px`,
+          height: `${80 + i * 20}px`,
+          background: `linear-gradient(135deg, hsl(45 100% ${65 + i * 5}%), hsl(35 90% ${70 + i * 3}%))`,
+          left: `${10 + i * 15}%`,
+          top: `${5 + i * 12}%`,
+          animationDelay: `${i * 0.8}s`,
+          animationDuration: `${3 + i * 0.3}s`,
+          filter: 'blur(40px)'
+        }} />)}
         </div>
 
         {/* Hero Section */}
@@ -159,7 +149,9 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
             </div>
 
             {/* Hero Title */}
-            <div className="text-center mb-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            <div className="text-center mb-12 animate-fade-in" style={{
+            animationDelay: '0.2s'
+          }}>
               <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent leading-tight">
                 XTSY 270°
               </h1>
@@ -172,15 +164,17 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
             </div>
 
             {/* Pricing Display */}
-            <div className="text-center mb-8 animate-fade-in" style={{ animationDelay: '0.35s' }}>
-              <h3 className="text-2xl md:text-3xl font-bold mb-3 text-gray-900">
-                Seasonal offers - prices are dynamic
-              </h3>
+            <div className="text-center mb-8 animate-fade-in" style={{
+            animationDelay: '0.35s'
+          }}>
+              <h3 className="text-2xl md:text-3xl font-bold mb-3 text-gray-900">Seasonal offers - Prices might change later!</h3>
               <p className="text-base md:text-lg text-gray-700 font-medium max-w-2xl mx-auto">
                 Experience luxury at flexible rates that adapt to your travel schedule
               </p>
             </div>
-            <div className="flex flex-col md:flex-row justify-center gap-6 mb-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+            <div className="flex flex-col md:flex-row justify-center gap-6 mb-12 animate-fade-in" style={{
+            animationDelay: '0.4s'
+          }}>
               <Card className="glass-card bg-white/80 backdrop-blur-md border-white/60 shadow-xl">
                 <CardContent className="p-6 text-center">
                   <div className="flex items-center justify-center gap-4 mb-2">
@@ -217,19 +211,12 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
             </div>
 
             {/* Hero Image Carousel */}
-            <figure className="animate-fade-in" style={{ animationDelay: '0.6s' }} aria-label="XTSY 270° Panorama Glass Ensuite luxury experience">
+            <figure className="animate-fade-in" style={{
+            animationDelay: '0.6s'
+          }} aria-label="XTSY 270° Panorama Glass Ensuite luxury experience">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl glass-card bg-white/10 backdrop-blur-sm border-white/20">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10" />
-                <MobileImageCarousel
-                  images={XTSY270_DATA.images}
-                  alt="XTSY 270° Panorama Glass Ensuite — India's first luxury glass house with 270-degree mountain views"
-                  aspectRatio="video"
-                  showIndicators={true}
-                  showArrows={true}
-                  autoPlay={true}
-                  autoPlayInterval={5000}
-                  className="w-full h-[60vh] md:h-[70vh]"
-                />
+                <MobileImageCarousel images={XTSY270_DATA.images} alt="XTSY 270° Panorama Glass Ensuite — India's first luxury glass house with 270-degree mountain views" aspectRatio="video" showIndicators={true} showArrows={true} autoPlay={true} autoPlayInterval={5000} className="w-full h-[60vh] md:h-[70vh]" />
               </div>
               <figcaption className="mt-4 text-center text-gray-700 font-medium">
                 India's first 270° panoramic glass house — where architecture meets nature in perfect harmony
@@ -254,8 +241,13 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
             <div className="mb-20 animate-fade-in relative">
               {/* Elegant Background Elements */}
               <div className="absolute inset-0 -z-10">
-                <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-amber-400/5 via-yellow-300/3 to-orange-200/8 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '4s' }}></div>
-                <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-br from-orange-400/5 via-red-300/3 to-pink-200/8 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }}></div>
+                <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-amber-400/5 via-yellow-300/3 to-orange-200/8 rounded-full blur-3xl animate-pulse" style={{
+                animationDuration: '4s'
+              }}></div>
+                <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-br from-orange-400/5 via-red-300/3 to-pink-200/8 rounded-full blur-3xl animate-pulse" style={{
+                animationDuration: '5s',
+                animationDelay: '1s'
+              }}></div>
               </div>
 
               <div className="text-center mb-12">
@@ -373,8 +365,7 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {XTSY270_DATA.luxuryFeatures.map((feature, index) => (
-                  <Card key={index} className="glass-card bg-white/80 backdrop-blur-md border-white/60 shadow-lg hover:shadow-xl transition-all duration-300 group">
+                {XTSY270_DATA.luxuryFeatures.map((feature, index) => <Card key={index} className="glass-card bg-white/80 backdrop-blur-md border-white/60 shadow-lg hover:shadow-xl transition-all duration-300 group">
                     <CardContent className="p-6 text-center">
                       <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
                         <feature.icon className="w-8 h-8 text-primary mx-auto" />
@@ -382,8 +373,7 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
                       <h3 className="text-lg font-semibold mb-2 text-gray-900">{feature.title}</h3>
                       <p className="text-sm text-gray-700 font-medium">{feature.description}</p>
                     </CardContent>
-                  </Card>
-                ))}
+                  </Card>)}
               </div>
             </div>
 
@@ -461,11 +451,7 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
             {/* Floating Button */}
             <div className="fixed bottom-0 left-0 right-0 z-50 px-4 pb-[calc(env(safe-area-inset-bottom,0px)+12px)] pt-3 bg-transparent pointer-events-none">
               <div className="mx-auto max-w-5xl flex justify-center">
-                <Button 
-                  size="lg" 
-                  onClick={() => setIsB2BFormOpen(true)}
-                  className="pointer-events-auto rounded-xl px-8 md:px-12 py-4 md:py-6 text-white font-bold shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 ring-4 ring-primary/20 hover:ring-primary/30 relative overflow-hidden group"
-                >
+                <Button size="lg" onClick={() => setIsB2BFormOpen(true)} className="pointer-events-auto rounded-xl px-8 md:px-12 py-4 md:py-6 text-white font-bold shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 ring-4 ring-primary/20 hover:ring-primary/30 relative overflow-hidden group">
                   <span className="relative z-10 bg-gradient-to-r from-yellow-300 via-white to-yellow-300 bg-clip-text text-transparent animate-pulse text-center text-lg md:text-xl">
                     Will it be yours?
                   </span>
@@ -478,20 +464,11 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
       </main>
 
       {/* SECURITY: Safe usage of dangerouslySetInnerHTML - Only stringifies static room structured data (roomLd) with no user-generated content */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(roomLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{
+      __html: JSON.stringify(roomLd)
+    }} />
       <XTSY270Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      <B2BBookingForm 
-        isOpen={isB2BFormOpen} 
-        onClose={() => setIsB2BFormOpen(false)}
-        customTitle="Will it be yours? - XTSY 270° Glass Suite"
-        customDescription="India's First 270° Panoramic Glass House - Exclusive luxury experience"
-        customIcon={Sparkles}
-        maxGuests={2}
-        fixedGuests={true}
-        isCoupleFocused={true}
-      />
-    </div>
-  );
+      <B2BBookingForm isOpen={isB2BFormOpen} onClose={() => setIsB2BFormOpen(false)} customTitle="Will it be yours? - XTSY 270° Glass Suite" customDescription="India's First 270° Panoramic Glass House - Exclusive luxury experience" customIcon={Sparkles} maxGuests={2} fixedGuests={true} isCoupleFocused={true} />
+    </div>;
 };
-
 export default XTSY270;
