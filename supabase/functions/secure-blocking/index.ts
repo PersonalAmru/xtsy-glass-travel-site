@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.55.0";
+import { invalidateCache } from '../_shared/cacheHeaders.ts';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -39,6 +40,10 @@ serve(async (req) => {
         .select('id, created_at')
         .single();
       if (error) throw error;
+      
+      // Invalidate availability cache for this room type
+      invalidateCache(`availability:${room_type}`);
+      
       return new Response(JSON.stringify({ id: data.id, created_at: data.created_at }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
@@ -57,6 +62,10 @@ serve(async (req) => {
         .eq('room_type', room_type)
         .eq('date', date);
       if (error) throw error;
+      
+      // Invalidate availability cache for this room type
+      invalidateCache(`availability:${room_type}`);
+      
       return new Response(JSON.stringify({ success: true }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
@@ -73,6 +82,10 @@ serve(async (req) => {
         .from('room_inventory')
         .upsert({ room_type_id, date, available_count });
       if (error) throw error;
+      
+      // Invalidate availability cache for this room type
+      invalidateCache(`availability:${room_type_id}`);
+      
       return new Response(JSON.stringify({ success: true }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
