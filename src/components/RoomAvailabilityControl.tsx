@@ -61,8 +61,16 @@ export const RoomAvailabilityControl: React.FC<RoomAvailabilityControlProps> = (
   };
 
   const updateStatus = async () => {
+    // Store previous state for rollback
+    const previousStatus = status;
+    const previousAdminNote = adminNote;
+    const previousOverrideUntil = overrideUntil;
+
     try {
       setIsUpdating(true);
+      
+      // Optimistic update - show immediate feedback
+      toast.info(`Updating room status to ${status.toUpperCase()}...`, { duration: 1000 });
       
       const updateData = {
         room_type_id: roomTypeId,
@@ -80,6 +88,12 @@ export const RoomAvailabilityControl: React.FC<RoomAvailabilityControlProps> = (
 
       if (error) {
         console.error('Error updating status:', error);
+        
+        // Rollback optimistic update
+        setStatus(previousStatus);
+        setAdminNote(previousAdminNote);
+        setOverrideUntil(previousOverrideUntil);
+        
         toast.error('Failed to update room status');
         return;
       }
@@ -87,6 +101,12 @@ export const RoomAvailabilityControl: React.FC<RoomAvailabilityControlProps> = (
       toast.success(`Room status updated to ${status.toUpperCase()}`);
     } catch (error) {
       console.error('Error in updateStatus:', error);
+      
+      // Rollback optimistic update
+      setStatus(previousStatus);
+      setAdminNote(previousAdminNote);
+      setOverrideUntil(previousOverrideUntil);
+      
       toast.error('Failed to update room status');
     } finally {
       setIsUpdating(false);
