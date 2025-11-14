@@ -76,8 +76,23 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   });
   const [isInitialized, setIsInitialized] = useState(false);
 
-  // Fetch exchange rates from Edge Function (non-blocking)
+  // Fetch exchange rates from Edge Function (non-blocking with deduplication)
   const fetchExchangeRates = async () => {
+    // Check sessionStorage cache first (5 min TTL)
+    const cachedRates = sessionStorage.getItem('exchangeRates');
+    const cacheTime = sessionStorage.getItem('exchangeRatesTime');
+    const fiveMinutes = 5 * 60 * 1000;
+    
+    if (cachedRates && cacheTime && (Date.now() - parseInt(cacheTime)) < fiveMinutes) {
+      const rates = JSON.parse(cachedRates);
+      setExchangeRates(rates);
+      availableCurrencies.forEach(curr => {
+        curr.rate = rates[curr.code] || curr.rate;
+      });
+      console.log('Exchange rates loaded from sessionStorage cache');
+      return;
+    }
+
     try {
       const { data, error } = await supabase.functions.invoke('fetch-exchange-rates', {
         body: {},
@@ -97,6 +112,10 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       availableCurrencies.forEach(curr => {
         curr.rate = newRates[curr.code] || curr.rate;
       });
+      
+      // Cache in sessionStorage
+      sessionStorage.setItem('exchangeRates', JSON.stringify(newRates));
+      sessionStorage.setItem('exchangeRatesTime', Date.now().toString());
       
       console.log('Exchange rates updated from Edge Function:', newRates);
     } catch (error) {
