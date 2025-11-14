@@ -185,6 +185,27 @@ export type Database = {
         }
         Relationships: []
       }
+      edge_function_cache: {
+        Row: {
+          created_at: string | null
+          expires_at: string
+          key: string
+          value: Json
+        }
+        Insert: {
+          created_at?: string | null
+          expires_at: string
+          key: string
+          value: Json
+        }
+        Update: {
+          created_at?: string | null
+          expires_at?: string
+          key?: string
+          value?: Json
+        }
+        Relationships: []
+      }
       itineraries: {
         Row: {
           activities: Json
@@ -736,6 +757,7 @@ export type Database = {
           suspicious_indicators: string[]
         }[]
       }
+      cleanup_expired_cache: { Args: never; Returns: number }
       cleanup_expired_rate_limits: { Args: never; Returns: undefined }
       cleanup_rate_limits: { Args: never; Returns: undefined }
       delete_my_data: { Args: never; Returns: boolean }
