@@ -4,10 +4,10 @@ import { createOptimizedClient } from '../_shared/supabaseClient.ts';
 import { checkRateLimit, getClientIp, getRateLimitHeaders } from '../_shared/rateLimiter.ts';
 import { getCacheHeaders } from '../_shared/cacheHeaders.ts';
 import { PerformanceMonitor } from '../_shared/performanceMonitor.ts';
+import { PersistentCache } from '../_shared/persistentCache.ts';
 
-// In-memory cache with 12-hour TTL
-let cachedRates: { rates: Record<string, number>; timestamp: number } | null = null;
-const CACHE_TTL = 12 * 60 * 60 * 1000; // 12 hours
+const CACHE_KEY = 'exchange-rates-inr';
+const CACHE_TTL = 12 * 60 * 60; // 12 hours in seconds
 
 // Fallback rates if API fails
 const FALLBACK_RATES = {
@@ -45,6 +45,7 @@ serve(async (req) => {
 
   try {
     const supabase = createOptimizedClient({ useServiceRole: true });
+    const cache = new PersistentCache(supabase);
     
     // Rate limiting
     const clientIp = getClientIp(req);
@@ -66,23 +67,23 @@ serve(async (req) => {
       );
     }
 
-    const now = Date.now();
-
-    // Check if cache is still valid
-    if (cachedRates && (now - cachedRates.timestamp) < CACHE_TTL) {
-      console.log('Returning cached exchange rates');
+    // Try to get from persistent cache first
+    const cachedData = await cache.get<{ rates: Record<string, number>; timestamp: number }>(CACHE_KEY);
+    
+    if (cachedData) {
+      console.log('Returning rates from persistent cache');
       monitor.complete(200, { cacheHit: true });
       
       return new Response(
         JSON.stringify({ 
-          rates: cachedRates.rates,
+          rates: cachedData.rates,
           cached: true,
-          timestamp: cachedRates.timestamp 
+          timestamp: cachedData.timestamp 
         }),
         { 
           headers: { 
             ...corsHeaders,
-            ...getCacheHeaders('fetch-exchange-rates'),
+            ...getCacheHeaders('fetch-exchange-rates', undefined, { cacheHit: true }),
             ...getRateLimitHeaders(rateLimitResult),
             'Content-Type': 'application/json',
           } 
@@ -101,11 +102,14 @@ serve(async (req) => {
       EUR: data.rates.EUR || FALLBACK_RATES.EUR,
     };
 
-    // Update cache
-    cachedRates = {
+    const now = Date.now();
+    const ratesData = {
       rates,
       timestamp: now,
     };
+
+    // Store in persistent cache
+    await cache.set(CACHE_KEY, ratesData, CACHE_TTL);
 
     console.log('Successfully fetched and cached new rates:', rates);
     monitor.complete(200, { cacheHit: false });
@@ -119,10 +123,10 @@ serve(async (req) => {
       { 
         headers: { 
           ...corsHeaders,
-          ...getCacheHeaders('fetch-exchange-rates'),
+          ...getCacheHeaders('fetch-exchange-rates', undefined, { cacheHit: false }),
           ...getRateLimitHeaders(rateLimitResult),
           'Content-Type': 'application/json',
-        } 
+        }
       }
     );
   } catch (error) {
