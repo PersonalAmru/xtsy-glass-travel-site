@@ -24,104 +24,74 @@ export async function createBooking(request: BookingRequest): Promise<CreateBook
 
     const { bookingData, guestDetails } = validationResult.data;
 
-    // 2. Server-side price validation (CRITICAL SECURITY)
-    const { data: validation, error: validationError } = await supabase.functions.invoke('validate-booking', {
-      body: {
-        checkIn: bookingData.checkIn,
-        checkOut: bookingData.checkOut,
-        guests: bookingData.guests,
-        nights: bookingData.nights,
-        selectedRooms: bookingData.selectedRooms,
-        totalAmount: bookingData.totalAmount
-      }
+    // 2. Calculate subtotal and GST (12%)
+    const totalAmount = bookingData.totalAmount;
+    const subtotal = Math.round(totalAmount / 1.12);
+    const gst = totalAmount - subtotal;
+
+    // 3. Calculate total guests and quantity
+    const totalGuests = bookingData.guests;
+    const totalQuantity = bookingData.selectedRooms.reduce((sum, room) => 
+      sum + (room.selection.guests || room.selection.rooms || 1), 0
+    );
+
+    // 4. Call the secure booking function with comprehensive server-side validation
+    // This function handles: input validation, date validation, availability check,
+    // price validation, rate limiting, and fraud detection
+    const { data, error } = await supabase.rpc('create_booking_secure', {
+      p_guest_name: guestDetails.guestName,
+      p_email: guestDetails.email,
+      p_whatsapp_number: guestDetails.whatsappNumber,
+      p_check_in: bookingData.checkIn,
+      p_check_out: bookingData.checkOut,
+      p_guests: totalGuests,
+      p_room_type: bookingData.selectedRooms[0]?.name || 'Unknown',
+      p_room_type_id: bookingData.selectedRooms[0]?.id || null,
+      p_quantity: totalQuantity,
+      p_subtotal: subtotal,
+      p_taxes: gst,
+      p_total_amount: totalAmount,
+      p_address: guestDetails.address || null,
+      p_city: guestDetails.city || null,
+      p_state: guestDetails.state || null,
+      p_pincode: guestDetails.pincode || null,
+      p_special_requests: guestDetails.specialRequests || null,
+      p_emergency_contact: guestDetails.emergencyContact || null,
     });
 
-    if (validationError || !validation?.success) {
-      console.error('Server-side validation failed:', validationError || validation?.error);
-      return { 
-        success: false, 
-        error: validation?.error || 'Booking validation failed. Please refresh and try again.' 
-      };
-    }
-
-    // Use server-validated prices
-    const validatedTotal = validation.validation.total_amount;
-    const validatedSubtotal = validation.validation.subtotal;
-    const validatedGst = validation.validation.gst_amount;
-
-    // 3. Generate unique booking ID
-    const bookingId = `XTSY-${new Date().toISOString().split('T')[0].replace(/-/g, '')}-${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`;
-
-    // 4. Prepare booking record
-    const bookingRecord = {
-      booking_id: bookingId,
-      check_in: bookingData.checkIn,
-      check_out: bookingData.checkOut,
-      guests: bookingData.guests,
-      total_amount: validatedTotal, // Use server-validated total
-      subtotal: validatedSubtotal, // Use server-validated subtotal
-      taxes: validatedGst, // Use server-validated GST
-      
-      // Guest details
-      guest_name: guestDetails.guestName,
-      email: guestDetails.email,
-      whatsapp_number: guestDetails.whatsappNumber,
-      address: guestDetails.address,
-      city: guestDetails.city,
-      state: guestDetails.state,
-      pincode: guestDetails.pincode,
-      emergency_contact: guestDetails.emergencyContact || null,
-      special_requests: guestDetails.specialRequests || null,
-      
-      // Room details (store first selected room as primary)
-      room_type: bookingData.selectedRooms[0]?.name || 'Unknown',
-      room_type_id: bookingData.selectedRooms[0]?.id || null,
-      quantity: bookingData.selectedRooms.reduce((sum, room) => 
-        sum + (room.selection.guests || room.selection.rooms || 1), 0
-      ),
-      
-      // Metadata
-      booking_status: 'pending',
-      payment_status: 'pending',
-      source: 'web',
-      created_at: new Date().toISOString()
-    };
-
-    // 5. Insert booking into database (RLS policies will enforce security)
-    const { data, error } = await supabase
-      .from('bookings')
-      .insert(bookingRecord)
-      .select()
-      .single();
-
     if (error) {
-      console.error('Booking creation error:', error);
+      console.error('Secure booking function error:', error);
       
-      // Handle specific error codes
-      if (error.code === '23505') {
-        return { success: false, error: 'This booking already exists. Please try again.' };
-      }
-      
-      if (error.code === 'PGRST116') {
-        return { success: false, error: 'Unable to create booking. Please check room availability.' };
-      }
-
       // Check for rate limiting errors
       if (error.message?.includes('rate limit') || error.message?.includes('too many')) {
-        return { success: false, error: 'Too many booking attempts. Please wait 15 minutes and try again.' };
+        return { 
+          success: false, 
+          error: 'Too many booking attempts. Please wait 15 minutes and try again.' 
+        };
       }
       
-      return { 
-        success: false, 
-        error: 'Unable to create booking. Please try again or contact support.' 
+      return {
+        success: false,
+        error: error.message || 'Failed to create booking. Please try again.',
       };
     }
 
-    console.log('Booking created successfully:', bookingId);
+    // Parse the JSON response from the secure function
+    const result = data as { success: boolean; bookingId?: string; error?: string };
+
+    if (!result.success) {
+      console.error('Booking creation failed:', result.error);
+      return { 
+        success: false, 
+        error: result.error || 'Unable to create booking. Please try again or contact support.' 
+      };
+    }
+
+    console.log('Booking created successfully:', result.bookingId);
 
     return {
       success: true,
-      bookingId: data.booking_id
+      bookingId: result.bookingId
     };
 
   } catch (error) {

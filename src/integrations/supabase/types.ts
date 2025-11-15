@@ -760,6 +760,29 @@ export type Database = {
       cleanup_expired_cache: { Args: never; Returns: number }
       cleanup_expired_rate_limits: { Args: never; Returns: undefined }
       cleanup_rate_limits: { Args: never; Returns: undefined }
+      create_booking_secure: {
+        Args: {
+          p_address?: string
+          p_check_in: string
+          p_check_out: string
+          p_city?: string
+          p_email: string
+          p_emergency_contact?: string
+          p_guest_name: string
+          p_guests: number
+          p_pincode?: string
+          p_quantity: number
+          p_room_type: string
+          p_room_type_id: string
+          p_special_requests?: string
+          p_state?: string
+          p_subtotal: number
+          p_taxes: number
+          p_total_amount: number
+          p_whatsapp_number: string
+        }
+        Returns: Json
+      }
       delete_my_data: { Args: never; Returns: boolean }
       export_my_data: { Args: never; Returns: Json }
       generate_booking_id: { Args: never; Returns: string }
