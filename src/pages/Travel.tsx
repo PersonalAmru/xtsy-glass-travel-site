@@ -816,6 +816,8 @@ const Travel = () => {
                                   src={reHimalayanNepalExpedition}
                                   alt="Royal Enfield Himalayan Expedition - Nepal, Bhutan, Northeast India"
                                   className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
+                                  loading="eager"
+                                  fetchPriority="high"
                                 />
                                 <div className="absolute top-4 left-4 flex gap-2">
                                   <span className="bg-gradient-to-r from-amber-500 to-orange-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
@@ -1149,6 +1151,8 @@ const Travel = () => {
                                 src={incredibleIndiaLogo} 
                                 alt="Incredible India - Official Tourism Logo" 
                                 className="h-12 sm:h-16 md:h-20 w-auto object-contain hover:scale-105 transition-transform duration-300"
+                                loading="eager"
+                                fetchPriority="high"
                               />
                             </div>
                             <p className="text-xs sm:text-sm text-gray-600 text-center mt-3 sm:mt-4">

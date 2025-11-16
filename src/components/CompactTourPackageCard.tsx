@@ -4,7 +4,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Star, MapPin, Clock, TrendingUp } from "lucide-react";
 import { useApp } from "@/contexts/AppContext";
-import UnifiedImage from "./UnifiedImage"; // Updated to UnifiedImage
 import { getRelevantTourImage, type TourPackage } from "@/utils/imageSelection";
 
 // Remove interface declaration since it's imported from utils
@@ -72,12 +71,12 @@ const CompactTourPackageCard: React.FC<CompactTourPackageCardProps> = ({
       onClick={() => onPackageClick(tourPackage)}
     >
       <div className="relative overflow-hidden rounded-t-lg">
-        <UnifiedImage
+        <img
           src={imageUrl}
           alt={generateAltText()}
           className="w-full h-20 sm:h-24 object-cover group-hover:scale-110 transition-transform duration-300"
-          threshold={0.05}
-          priority={false}
+          loading="eager"
+          fetchPriority="high"
         />
         
         {/* Compact badges */}
