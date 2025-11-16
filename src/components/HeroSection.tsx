@@ -165,16 +165,13 @@ const HeroSection = () => {
               </div>
 
               <div className="flex items-center justify-center">
-                <PerformantImage
+                <img
                   src="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png"
                   alt="XTSY Brand Symbol"
                   className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-32 lg:h-32 object-contain"
-                  priority={true}
-                  placeholder={
-                    <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 lg:w-32 bg-gradient-to-r from-orange-500 to-red-600 rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold text-xs sm:text-sm">X</span>
-                    </div>
-                  }
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="sync"
                 />
               </div>
             </div>
