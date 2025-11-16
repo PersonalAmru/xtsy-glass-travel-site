@@ -6,10 +6,10 @@ import { checkRateLimit, getClientIp, getRateLimitHeaders } from '../_shared/rat
 import { getCacheHeaders } from '../_shared/cacheHeaders.ts'
 import { PerformanceMonitor } from '../_shared/performanceMonitor.ts'
 
-// Room selection schema
+// Room selection schema with strict validation to prevent injection
 const roomSelectionSchema = z.object({
-  id: z.string(),
-  name: z.string(),
+  id: z.string().regex(/^[a-zA-Z0-9_-]+$/, 'Room ID contains invalid characters').min(1).max(100),
+  name: z.string().regex(/^[a-zA-Z0-9\s_-]+$/, 'Room name contains invalid characters').min(1).max(100),
   price: z.number().int().positive(),
   type: z.enum(['dorm', 'private']),
   selection: z.object({
@@ -100,11 +100,11 @@ serve(async (req) => {
     let serverCalculatedTotal = 0;
 
     for (const room of selectedRooms) {
-      // Fetch actual room pricing from database
+      // Fetch actual room pricing from database - using parameterized query to prevent SQL injection
       const { data: roomType, error: roomError } = await supabase
         .from('room_types')
         .select('id, name, base_price')
-        .or(`id.eq.${room.id},name.eq.${room.name}`)
+        .eq('id', room.id)
         .single();
 
       if (roomError || !roomType) {
