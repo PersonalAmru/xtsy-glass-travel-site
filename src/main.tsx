@@ -13,11 +13,19 @@ import { initializeAdvancedLazyLoading } from "./utils/lazyLoadingOptimizer";
 import { initializeNetworkOptimizations } from "./utils/networkOptimizer";
 import { performGlobalCleanup } from "./utils/performanceCleanup";
 import { cleanupUnifiedImage } from "./components/UnifiedImage";
+import { initializeCriticalImageLoading } from "./utils/criticalImagePreloader";
 
-// Initialize only essential optimizations (production only)
-if (process.env.NODE_ENV === 'production') {
-  initializeImageOptimizations();
-}
+// CRITICAL: Preload images BEFORE React renders
+initializeCriticalImageLoading().then(() => {
+  console.log('✓ Critical resources ready');
+});
+
+// Initialize all performance optimizations for instant loading
+initializeImageOptimizations();
+initializePerformanceEnhancements();
+initializeAdvancedLazyLoading();
+initializeNetworkOptimizations();
+initializePerformanceOptimizations();
 
 // Add cleanup on app exit
 window.addEventListener('beforeunload', () => {
