@@ -1,12 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import WhatsAppBookingForm from "@/components/WhatsAppBookingForm";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { PawPrint, Heart, Shield, Plane, Home, Users, Phone, Globe } from "lucide-react";
+import { PawPrint, Heart, Shield, Plane, Home, Users, Phone, Globe, MessageCircle } from "lucide-react";
 
 const PetFriendly = () => {
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+
   useEffect(() => {
     document.title = "India's 1st Pet Friendly Travellers Hostel | XTSY Prime Pet Travel Accommodation";
     
@@ -54,12 +57,22 @@ const PetFriendly = () => {
               Travel with your furry companions and experience hospitality that cares for both you and your pets.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Button size="lg" className="text-lg px-8">
+              <Button 
+                size="lg" 
+                className="text-lg px-8"
+                onClick={() => setIsBookingModalOpen(true)}
+              >
+                <MessageCircle className="w-5 h-5 mr-2" />
+                Book via WhatsApp
+              </Button>
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="text-lg px-8"
+                onClick={() => window.open('tel:+918837317070', '_self')}
+              >
                 <Phone className="w-5 h-5 mr-2" />
                 Contact Us
-              </Button>
-              <Button size="lg" variant="outline" className="text-lg px-8">
-                View Pet Rooms
               </Button>
             </div>
           </div>
@@ -225,6 +238,86 @@ const PetFriendly = () => {
           </div>
         </section>
 
+        {/* Pet Gallery Section */}
+        <section className="py-16 bg-background">
+          <div className="responsive-container">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                Meet Our Happy Pet Guests
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                See the joy and comfort our furry and feathered friends experience at India's 1st Pet-Friendly Travellers Hostel
+              </p>
+            </div>
+
+            {/* Dogs Gallery */}
+            <div className="mb-16">
+              <h3 className="text-2xl font-semibold mb-6 text-center text-foreground">
+                🐕 Our Canine Companions
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[1, 2, 3, 4, 5, 6].map((i) => (
+                  <div key={`dog-${i}`} className="relative group overflow-hidden rounded-lg shadow-lg aspect-square">
+                    <img
+                      src={`https://images.unsplash.com/photo-${1568572933382 + i * 100}-happy-dog?w=600&h=600&fit=crop&q=80`}
+                      alt={`Happy dog enjoying stay at XTSY pet-friendly hostel in Shillong ${i}`}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      loading="eager"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                      <p className="text-white font-medium">Happy Guest Dog</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Cats Gallery */}
+            <div className="mb-16">
+              <h3 className="text-2xl font-semibold mb-6 text-center text-foreground">
+                🐱 Our Feline Friends
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[1, 2, 3, 4, 5, 6].map((i) => (
+                  <div key={`cat-${i}`} className="relative group overflow-hidden rounded-lg shadow-lg aspect-square">
+                    <img
+                      src={`https://images.unsplash.com/photo-${1514888585729 + i * 100}-cat-relaxing?w=600&h=600&fit=crop&q=80`}
+                      alt={`Comfortable cat relaxing at XTSY pet-friendly accommodation in Meghalaya ${i}`}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      loading="eager"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                      <p className="text-white font-medium">Cozy Cat Guest</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Birds Gallery */}
+            <div>
+              <h3 className="text-2xl font-semibold mb-6 text-center text-foreground">
+                🦜 Our Feathered Visitors
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[1, 2, 3, 4, 5, 6].map((i) => (
+                  <div key={`bird-${i}`} className="relative group overflow-hidden rounded-lg shadow-lg aspect-square">
+                    <img
+                      src={`https://images.unsplash.com/photo-${1552728089 + i * 100}-beautiful-bird?w=600&h=600&fit=crop&q=80`}
+                      alt={`Safe bird accommodations at XTSY pet-friendly travel hostel in Northeast India ${i}`}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      loading="eager"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                      <p className="text-white font-medium">Beautiful Bird Guest</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section className="bg-primary/5 py-16">
           <div className="responsive-container text-center space-y-6">
@@ -236,12 +329,22 @@ const PetFriendly = () => {
               We're here to make your journey comfortable, safe, and memorable for both you and your furry friends.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Button size="lg" className="text-lg px-8">
+              <Button 
+                size="lg" 
+                className="text-lg px-8"
+                onClick={() => setIsBookingModalOpen(true)}
+              >
+                <MessageCircle className="w-5 h-5 mr-2" />
+                Book via WhatsApp
+              </Button>
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="text-lg px-8"
+                onClick={() => window.open('tel:+918837317070', '_self')}
+              >
                 <Phone className="w-5 h-5 mr-2" />
                 Call +91 88373 17070
-              </Button>
-              <Button size="lg" variant="outline" className="text-lg px-8">
-                WhatsApp Us
               </Button>
             </div>
           </div>
@@ -260,6 +363,11 @@ const PetFriendly = () => {
       </main>
       
       <Footer />
+      
+      <WhatsAppBookingForm 
+        isOpen={isBookingModalOpen} 
+        onClose={() => setIsBookingModalOpen(false)}
+      />
     </div>
   );
 };
