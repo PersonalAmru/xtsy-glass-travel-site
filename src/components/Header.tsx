@@ -9,6 +9,14 @@ import { HoverCard, HoverCardTrigger, HoverCardContent } from "./ui/hover-card";
 import { XTSY270_DATA } from "@/data/rooms/xtsy270";
 import xtsyLogo from "@/assets/xtsy-brand-logo.png";
 import { useMediaQuery } from "@/hooks/use-mobile";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -120,13 +128,41 @@ const Header = () => {
                 >
                   About
                 </Link>
-                <Link 
-                  to={XTSY270_DATA.path}
-                  className="px-3 py-2 text-white hover:text-primary hover:bg-white/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
-                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                >
-                  {XTSY270_DATA.shortName}
-                </Link>
+                <NavigationMenu>
+                  <NavigationMenuList>
+                    <NavigationMenuItem>
+                      <NavigationMenuTrigger className="px-3 py-2 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200 font-medium bg-transparent">
+                        XTSY Prime
+                      </NavigationMenuTrigger>
+                      <NavigationMenuContent className="bg-black/95 backdrop-blur-md border border-white/20">
+                        <ul className="w-48 p-2">
+                          <li>
+                            <NavigationMenuLink asChild>
+                              <Link
+                                to={XTSY270_DATA.path}
+                                className="block px-4 py-3 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200"
+                                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                              >
+                                XTSY 270°
+                              </Link>
+                            </NavigationMenuLink>
+                          </li>
+                          <li>
+                            <NavigationMenuLink asChild>
+                              <Link
+                                to="/pet-friendly"
+                                className="block px-4 py-3 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200"
+                                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                              >
+                                Pet Friendly
+                              </Link>
+                            </NavigationMenuLink>
+                          </li>
+                        </ul>
+                      </NavigationMenuContent>
+                    </NavigationMenuItem>
+                  </NavigationMenuList>
+                </NavigationMenu>
                 
                 <Link 
                   to="/gallery" 
@@ -189,18 +225,29 @@ const Header = () => {
                 >
                   About
                 </Link>
-                <Link 
-                  to={XTSY270_DATA.path} 
-                  className="px-4 py-3 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200 font-medium touch-target text-left"
-                  aria-label={`${XTSY270_DATA.name} details`}
-                  title={XTSY270_DATA.seoTitle}
-                  onClick={() => {
-                    setIsMenuOpen(false);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                >
-                  {XTSY270_DATA.shortName}
-                </Link>
+                <div className="space-y-1">
+                  <div className="px-4 py-2 text-white/60 text-sm font-medium">XTSY Prime</div>
+                  <Link 
+                    to={XTSY270_DATA.path} 
+                    className="px-6 py-3 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200 font-medium touch-target text-left block"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                  >
+                    XTSY 270°
+                  </Link>
+                  <Link 
+                    to="/pet-friendly"
+                    className="px-6 py-3 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200 font-medium touch-target text-left block"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                  >
+                    Pet Friendly
+                  </Link>
+                </div>
                 
                 <Link 
                   to="/gallery" 
