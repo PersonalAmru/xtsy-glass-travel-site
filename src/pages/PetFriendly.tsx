@@ -5,6 +5,7 @@ import WhatsAppBookingForm from "@/components/WhatsAppBookingForm";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { PawPrint, Heart, Shield, Plane, Home, Users, Phone, Globe, MessageCircle } from "lucide-react";
 
 const PetFriendly = () => {
@@ -235,6 +236,112 @@ const PetFriendly = () => {
                 </CardContent>
               </Card>
             </div>
+          </div>
+        </section>
+
+        {/* Pet FAQ Section */}
+        <section className="responsive-container py-16">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                Pet Travel FAQs
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Everything you need to know about traveling with your pets to XTSY Prime
+              </p>
+            </div>
+
+            <Accordion type="single" collapsible className="w-full space-y-4">
+              <AccordionItem value="item-1" className="border border-border rounded-lg px-6">
+                <AccordionTrigger className="text-left font-semibold text-foreground hover:text-primary">
+                  What types of pets are welcome at XTSY Prime?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  We welcome dogs, cats, and birds of all sizes and breeds. As India's 1st Pet Friendly Travellers Hostel, we understand that pets are family. However, we recommend contacting Team XTSY in advance to ensure we can accommodate your specific pet's needs and to prepare the room accordingly.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-2" className="border border-border rounded-lg px-6">
+                <AccordionTrigger className="text-left font-semibold text-foreground hover:text-primary">
+                  Are there any additional charges for bringing pets?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  Yes, there is a nominal pet fee to cover additional cleaning and pet amenities. The exact fee depends on the size and type of pet, as well as the duration of your stay. Contact us via WhatsApp or call +91 88373 17070 for detailed pricing information.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-3" className="border border-border rounded-lg px-6">
+                <AccordionTrigger className="text-left font-semibold text-foreground hover:text-primary">
+                  What documents are required for my pet to stay?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  We require up-to-date vaccination records, including rabies vaccination certificate. For domestic travel within India, a fitness certificate from a registered veterinarian is recommended. For international pet travel, additional documentation including pet passports, import permits, and health certificates may be required. Team XTSY can assist you with all documentation requirements.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-4" className="border border-border rounded-lg px-6">
+                <AccordionTrigger className="text-left font-semibold text-foreground hover:text-primary">
+                  Do you help with domestic and international pet travel arrangements?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  Absolutely! XTSY Travel provides comprehensive pet travel support for both domestic and international journeys. We assist with airline bookings, pet carrier arrangements, health certificates, quarantine procedures, and all necessary documentation. Our team coordinates with veterinarians and authorities to ensure smooth travel for your furry companions.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-5" className="border border-border rounded-lg px-6">
+                <AccordionTrigger className="text-left font-semibold text-foreground hover:text-primary">
+                  What pet amenities are provided in the rooms?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  Our pet-friendly rooms include comfortable pet beds, food and water bowls, waste disposal facilities, and designated areas for your pets to relax. We also have outdoor spaces for exercise and walking. Additional amenities like pet toys and grooming supplies can be arranged upon request.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-6" className="border border-border rounded-lg px-6">
+                <AccordionTrigger className="text-left font-semibold text-foreground hover:text-primary">
+                  Can I leave my pet alone in the room?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  We understand that you may need to leave your pet briefly, but we recommend not leaving pets unattended for extended periods. If you need to go out, pet sitting services can be arranged through Team XTSY. We also have 24/7 support available in case your pet needs any assistance during your absence.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-7" className="border border-border rounded-lg px-6">
+                <AccordionTrigger className="text-left font-semibold text-foreground hover:text-primary">
+                  Are there veterinary services nearby?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  Yes, we have partnerships with local veterinary clinics in Shillong and can arrange emergency veterinary services if needed. Team XTSY maintains a list of trusted veterinarians and pet care professionals in the area. We also provide contact details and directions to the nearest animal hospitals.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-8" className="border border-border rounded-lg px-6">
+                <AccordionTrigger className="text-left font-semibold text-foreground hover:text-primary">
+                  What is your pet behavior policy?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  We ask that all pets be well-behaved, non-aggressive, and comfortable around people and other animals. Pets should be house-trained or crate-trained. Owners are responsible for their pet's behavior and any damages caused. We reserve the right to request removal of pets that display aggressive behavior or cause disturbances to other guests.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-9" className="border border-border rounded-lg px-6">
+                <AccordionTrigger className="text-left font-semibold text-foreground hover:text-primary">
+                  Do I need to bring my own pet food and supplies?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  Yes, we recommend bringing your pet's regular food to maintain their dietary routine and avoid stomach issues. However, Team XTSY can provide guidance on local pet stores and can arrange for basic supplies if needed. We provide bowls and basic amenities, but bringing familiar items like toys and blankets will help your pet feel more comfortable.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-10" className="border border-border rounded-lg px-6">
+                <AccordionTrigger className="text-left font-semibold text-foreground hover:text-primary">
+                  How do I book a pet-friendly room at XTSY Prime?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  Booking is easy! Simply click the "Book via WhatsApp" button on this page to connect with Team XTSY directly. Provide details about your pet (type, breed, size, age) along with your travel dates. You can also call us at +91 88373 17070. We recommend booking in advance to ensure availability and allow us to prepare the perfect pet-friendly accommodation for you.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </div>
         </section>
 
