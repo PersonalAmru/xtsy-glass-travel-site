@@ -14,6 +14,11 @@ interface FoodAddonsSectionProps {
     dinnerType: string;
     transportation: boolean;
     itinerary: boolean;
+    petDetails: boolean;
+    petType: string;
+    petBreed: string;
+    petSize: string;
+    petAge: string;
   };
   onInputChange: (field: string, value: any) => void;
 }
@@ -156,6 +161,67 @@ const FoodAddonsSection = ({ formData, onInputChange }: FoodAddonsSectionProps) 
           onChange={(e) => onInputChange('itinerary', e.target.checked)}
           className="w-5 h-5 text-primary"
         />
+      </div>
+
+      {/* Pet Details */}
+      <div className="space-y-2">
+        <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border">
+          <div>
+            <h4 className="font-semibold">Pet Details</h4>
+            <p className="text-sm text-muted-foreground">Details about your pet (type, breed, size, age)</p>
+          </div>
+          <input
+            type="checkbox"
+            checked={formData.petDetails}
+            onChange={(e) => onInputChange('petDetails', e.target.checked)}
+            className="w-5 h-5 text-primary"
+          />
+        </div>
+        
+        {formData.petDetails && (
+          <div className="ml-4 space-y-3">
+            <div>
+              <Label>Pet Type</Label>
+              <Input
+                type="text"
+                placeholder="e.g., Dog, Cat, Bird"
+                value={formData.petType}
+                onChange={(e) => onInputChange('petType', e.target.value)}
+              />
+            </div>
+            <div>
+              <Label>Breed</Label>
+              <Input
+                type="text"
+                placeholder="e.g., Golden Retriever, Persian Cat"
+                value={formData.petBreed}
+                onChange={(e) => onInputChange('petBreed', e.target.value)}
+              />
+            </div>
+            <div>
+              <Label>Size</Label>
+              <Select value={formData.petSize} onValueChange={(value) => onInputChange('petSize', value)}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select size" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="small">Small</SelectItem>
+                  <SelectItem value="medium">Medium</SelectItem>
+                  <SelectItem value="large">Large</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Label>Age</Label>
+              <Input
+                type="text"
+                placeholder="e.g., 2 years, 6 months"
+                value={formData.petAge}
+                onChange={(e) => onInputChange('petAge', e.target.value)}
+              />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

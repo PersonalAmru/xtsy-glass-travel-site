@@ -40,6 +40,11 @@ const GroupBookingForm = ({ isOpen, onClose }: GroupBookingFormProps) => {
     dinnerType: "veg",
     transportation: false,
     itinerary: false,
+    petDetails: false,
+    petType: "",
+    petBreed: "",
+    petSize: "",
+    petAge: "",
     specialRequests: ""
   });
 

@@ -49,7 +49,12 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
     dinnerGuests: 1,
     dinnerType: "veg",
     transportation: false,
-    itinerary: false
+    itinerary: false,
+    petDetails: false,
+    petType: "",
+    petBreed: "",
+    petSize: "",
+    petAge: ""
   });
 
   const [nights, setNights] = useState(0);
