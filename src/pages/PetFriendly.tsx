@@ -311,7 +311,7 @@ const PetFriendly = () => {
                   Are there veterinary services nearby?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground">
-                  Yes, we have partnerships with local veterinary clinics in Shillong and can arrange emergency veterinary services if needed. Team XTSY maintains a list of trusted veterinarians and pet care professionals in the area. We also provide contact details and directions to the nearest animal hospitals.
+                  Yes, we have partnerships with local veterinary clinics in Shillong and around Northeast India and can arrange emergency veterinary services if needed. Team XTSY maintains a list of trusted veterinarians and pet care professionals in the area. We also provide contact details and directions to the nearest animal hospitals.
                 </AccordionContent>
               </AccordionItem>
 
