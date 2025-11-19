@@ -54,6 +54,11 @@ const B2BBookingForm = ({
     dinnerType: "veg",
     transportation: false,
     itinerary: false,
+    petDetails: false,
+    petType: "",
+    petBreed: "",
+    petSize: "",
+    petAge: "",
     specialRequests: ""
   });
 
