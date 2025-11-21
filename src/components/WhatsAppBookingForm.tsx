@@ -186,7 +186,13 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
   };
 
   const getTotalAmount = () => {
-    return selectedRooms.reduce((total, room) => total + (room.price * room.quantity * nights), 0);
+    return selectedRooms.reduce((total, room) => {
+      const isDormitory = room.roomTypeName.toLowerCase().includes('dormitory');
+      const roomTotal = isDormitory 
+        ? room.price * formData.guests * nights
+        : room.price * room.quantity * nights;
+      return total + roomTotal;
+    }, 0);
   };
 
   const handleBookNow = async () => {
@@ -496,9 +502,15 @@ Can't wait to experience XTSY hospitality! Please confirm availability. 🎉✨`
                       >
                         <div className="flex-1">
                           <p className="font-medium text-sm">{room.roomTypeName}</p>
-                          <p className="text-xs text-muted-foreground">
-                            ₹{room.price}/night × {room.quantity} room(s) × {nights || 0} nights = ₹{room.price * room.quantity * (nights || 0)}
-                          </p>
+                          {room.roomTypeName.toLowerCase().includes('dormitory') ? (
+                            <p className="text-xs text-muted-foreground">
+                              ₹{room.price}/night/per person × {formData.guests} guest(s) × {nights || 0} nights = ₹{room.price * formData.guests * (nights || 0)}
+                            </p>
+                          ) : (
+                            <p className="text-xs text-muted-foreground">
+                              ₹{room.price}/night × {room.quantity} room(s) × {nights || 0} nights = ₹{room.price * room.quantity * (nights || 0)}
+                            </p>
+                          )}
                         </div>
                         <div className="flex items-center gap-2">
                           <div className="flex items-center gap-1">
