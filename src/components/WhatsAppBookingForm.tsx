@@ -174,8 +174,23 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
     });
   };
 
+  const getMaxQuantity = (roomTypeName: string): number => {
+    const lowerName = roomTypeName.toLowerCase();
+    if (lowerName.includes('4-bed') && lowerName.includes('dormitory')) return 4;
+    if (lowerName.includes('6-bed') && lowerName.includes('dormitory')) return 6;
+    if (lowerName.includes('panorama glass ensuite')) return 1;
+    if (lowerName.includes('king triple')) return 1;
+    if (lowerName.includes('king double')) return 2;
+    return 10; // Default max
+  };
+
   const handleUpdateQuantity = (roomTypeId: string, newQuantity: number) => {
     if (newQuantity < 1) return;
+    const room = selectedRooms.find(r => r.roomTypeId === roomTypeId);
+    if (!room) return;
+    const maxQty = getMaxQuantity(room.roomTypeName);
+    if (newQuantity > maxQty) return;
+    
     setSelectedRooms(prev =>
       prev.map(room =>
         room.roomTypeId === roomTypeId
@@ -438,8 +453,15 @@ Can't wait to experience XTSY hospitality! Please confirm availability. 🎉✨`
                             {roomTypes
                               .filter(rt => rt.category === category)
                               .sort((a, b) => {
-                                // Custom order: King Double Room before King Triple Room
-                                const order = ['King Double Room', 'King Triple Room'];
+                                // Custom order for rooms
+                                const order = [
+                                  'King Double Room',
+                                  'King Triple Room', 
+                                  'Bed in 4-Bed Female Dormitory',
+                                  'Bed in 4-Bed Mixed Dormitory',
+                                  'Bed in 6-Bed Female Dormitory',
+                                  'Bed in 6-Bed Mixed Dormitory'
+                                ];
                                 const aIndex = order.indexOf(a.name);
                                 const bIndex = order.indexOf(b.name);
                                 
@@ -512,28 +534,31 @@ Can't wait to experience XTSY hospitality! Please confirm availability. 🎉✨`
                             </p>
                           )}
                         </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1">
-                            <Button
-                              type="button"
-                              variant="outline"
-                              size="sm"
-                              onClick={() => handleUpdateQuantity(room.roomTypeId, room.quantity - 1)}
-                              className="h-7 w-7 p-0"
-                            >
-                              -
-                            </Button>
-                            <span className="w-8 text-center text-sm font-medium">{room.quantity}</span>
-                            <Button
-                              type="button"
-                              variant="outline"
-                              size="sm"
-                              onClick={() => handleUpdateQuantity(room.roomTypeId, room.quantity + 1)}
-                              className="h-7 w-7 p-0"
-                            >
-                              +
-                            </Button>
-                          </div>
+                          <div className="flex items-center gap-2">
+                          {!room.roomTypeName.toLowerCase().includes('dormitory') && (
+                            <div className="flex items-center gap-1">
+                              <Button
+                                type="button"
+                                variant="outline"
+                                size="sm"
+                                onClick={() => handleUpdateQuantity(room.roomTypeId, room.quantity - 1)}
+                                className="h-7 w-7 p-0"
+                              >
+                                -
+                              </Button>
+                              <span className="w-8 text-center text-sm font-medium">{room.quantity}</span>
+                              <Button
+                                type="button"
+                                variant="outline"
+                                size="sm"
+                                onClick={() => handleUpdateQuantity(room.roomTypeId, room.quantity + 1)}
+                                disabled={room.quantity >= getMaxQuantity(room.roomTypeName)}
+                                className="h-7 w-7 p-0"
+                              >
+                                +
+                              </Button>
+                            </div>
+                          )}
                           <Button
                             type="button"
                             variant="ghost"
