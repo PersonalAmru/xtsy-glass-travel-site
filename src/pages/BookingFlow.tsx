@@ -65,12 +65,12 @@ const ALL_ROOMS_DATA: {
   },
   '4-bed-female-only-dorm': {
     id: '4-bed-female-only-dorm',
-    name: 'Bed in 4-Bed Female Only Dormitory',
+    name: 'Bed in 4-Bed Female Dormitory',
     price: 765, // 10% winter discount (850 * 0.9)
     originalPrice: 850,
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg',
     description: 'Female-only dormitory with modern amenities and comfortable beds',
-    amenities: generateFeatures('hostel', 'Bed in 4-Bed Female Only Dormitory', 'dorm'),
+    amenities: generateFeatures('hostel', 'Bed in 4-Bed Female Dormitory', 'dorm'),
     type: 'dorm',
     maxGuests: 1,
     propertyType: 'hostel',
