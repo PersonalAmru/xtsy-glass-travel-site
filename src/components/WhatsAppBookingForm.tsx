@@ -159,7 +159,26 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
           quantity: 1,
           price: discountedPrice
         };
-        setSelectedRooms(prevRooms => [...prevRooms, newRoom]);
+        setSelectedRooms(prevRooms => {
+          const updatedRooms = [...prevRooms, newRoom];
+          
+          // Check total capacity vs guests
+          const totalCapacity = updatedRooms.reduce((sum, room) => {
+            const capacity = getMaxQuantity(room.roomTypeName);
+            return sum + (capacity * room.quantity);
+          }, 0);
+          
+          if (totalCapacity < formData.guests) {
+            const remaining = formData.guests - totalCapacity;
+            toast({
+              title: "Additional Rooms Needed",
+              description: `This selection accommodates ${totalCapacity} guest(s). Please select ${remaining} more bed(s)/room(s) to accommodate all ${formData.guests} guests.`,
+              variant: "default",
+            });
+          }
+          
+          return updatedRooms;
+        });
       }
       return newSet;
     });
