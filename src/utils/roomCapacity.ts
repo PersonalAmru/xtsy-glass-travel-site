@@ -14,7 +14,7 @@ export const ROOM_TYPE_INFO: Record<string, RoomTypeInfo> = {
   '6-bed-mixed-economy-dorm': { capacity: 6, unit: 'bed', label: 'Bed in 6-Bed Female Dormitory' },
   
   // Hostel dorms
-  '4-bed-female-only-dorm': { capacity: 4, unit: 'bed', label: 'Bed in 4-Bed Female Only Dormitory' },
+  '4-bed-female-only-dorm': { capacity: 4, unit: 'bed', label: 'Bed in 4-Bed Female Dormitory' },
   '4-bed-mixed-female-dorm': { capacity: 4, unit: 'bed', label: 'Bed in 4-Bed Mixed Dormitory' },
   '6-bed-mixed-female-dorm': { capacity: 6, unit: 'bed', label: 'Bed in 6-Bed Female Only Dormitory' },
   '6-bed-mixed-dorm': { capacity: 6, unit: 'bed', label: 'Bed in 6-Bed Mixed Dormitory' },
@@ -34,8 +34,8 @@ export const ROOM_NAME_MAPPING: Record<string, string> = {
   'Bed in 6-Bed Mixed Economy Dorm': '6-bed-mixed-economy-dorm',
   '6 Bed Mixed Economy Dorm': '6-bed-mixed-economy-dorm',
   '6 Bed Female Dormitory': '6-bed-mixed-economy-dorm',
-  'Bed in 4-Bed Female Only Dormitory': '4-bed-female-only-dorm',
-  '4 Bed Female Only Dormitory': '4-bed-female-only-dorm',
+  'Bed in 4-Bed Female Dormitory': '4-bed-female-only-dorm',
+  '4 Bed Female Dormitory': '4-bed-female-only-dorm',
   'Bed in 4-Bed Mixed Dormitory': '4-bed-mixed-female-dorm',
   '4 Bed Mixed Dormitory': '4-bed-mixed-female-dorm',
   'Bed in 6-Bed Female Only Dormitory': '6-bed-mixed-female-dorm',

@@ -51,7 +51,7 @@ export const createRoomAliases = (roomName: string): string[] => {
     }
     if (lowerName.includes('female')) {
       aliases.push('4-bed-female-only-dormitory');
-      aliases.push('Bed in 4-Bed Female Only Dormitory');
+      aliases.push('Bed in 4-Bed Female Dormitory');
     }
   }
   
