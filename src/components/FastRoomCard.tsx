@@ -152,7 +152,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
       case '4-bed-mixed-female-dorm':
         return '4-Bed Mixed Dormitory';
       case '4-bed-female-only-dorm':
-        return '4-Bed Female Only Dormitory';
+        return '4-Bed Female Dormitory';
       case 'king-double-room':
         return 'King Double Room';
       case 'king-triple-room':
