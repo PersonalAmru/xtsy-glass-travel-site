@@ -153,10 +153,11 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
         newSet.add(roomTypeId);
         // Add to selectedRooms with 10% winter discount
         const discountedPrice = Math.round(roomType.base_price * 0.9);
+        const isDormitory = roomType.name.toLowerCase().includes('dormitory');
         const newRoom: SelectedRoom = {
           roomTypeId: roomType.id,
           roomTypeName: `${roomType.category} - ${roomType.name}`,
-          quantity: 1,
+          quantity: isDormitory ? formData.guests : 1,
           price: discountedPrice
         };
         setSelectedRooms(prevRooms => {
@@ -208,15 +209,37 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
     const room = selectedRooms.find(r => r.roomTypeId === roomTypeId);
     if (!room) return;
     const maxQty = getMaxQuantity(room.roomTypeName);
-    if (newQuantity > maxQty) return;
+    const isDormitory = room.roomTypeName.toLowerCase().includes('dormitory');
     
-    setSelectedRooms(prev =>
-      prev.map(room =>
-        room.roomTypeId === roomTypeId
-          ? { ...room, quantity: newQuantity }
-          : room
-      )
-    );
+    // For dormitory rooms, update the guest count
+    if (isDormitory) {
+      if (newQuantity > maxQty) {
+        toast({
+          title: "Capacity Exceeded",
+          description: "Kindly choose other room type for remaining guests",
+          duration: 3000,
+        });
+        return;
+      }
+      handleInputChange('guests', newQuantity);
+      setSelectedRooms(prev =>
+        prev.map(r =>
+          r.roomTypeId === roomTypeId
+            ? { ...r, quantity: newQuantity }
+            : r
+        )
+      );
+    } else {
+      // For non-dormitory rooms, just update quantity
+      if (newQuantity > maxQty) return;
+      setSelectedRooms(prev =>
+        prev.map(r =>
+          r.roomTypeId === roomTypeId
+            ? { ...r, quantity: newQuantity }
+            : r
+        )
+      );
+    }
   };
 
   const getTotalAmount = () => {
