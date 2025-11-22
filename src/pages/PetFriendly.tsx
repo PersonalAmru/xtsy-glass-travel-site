@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { PawPrint, Heart, Shield, Plane, Home, Users, Phone, Globe, MessageCircle } from "lucide-react";
+import petFriendlyHero from "@/assets/pet-friendly-hero.jpg";
 
 const PetFriendly = () => {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
@@ -44,23 +45,33 @@ const PetFriendly = () => {
       
       <main className="flex-1 pt-20 pb-12">
         {/* Hero Section */}
-        <section className="responsive-container py-16 md:py-24">
-          <div className="text-center space-y-6 max-w-4xl mx-auto">
-            <Badge className="bg-primary/10 text-primary border-primary/20 text-lg px-6 py-2">
+        <section className="relative h-[70vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+          {/* Background Image */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${petFriendlyHero})` }}
+          />
+          
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/60" />
+          
+          {/* Content */}
+          <div className="relative z-10 responsive-container text-center space-y-6 max-w-4xl mx-auto px-4">
+            <Badge className="bg-white/20 backdrop-blur-sm text-white border-white/30 text-lg px-6 py-2 shadow-lg">
               <PawPrint className="w-5 h-5 mr-2 inline" />
               India's 1st Pet Friendly Travellers Hostel
             </Badge>
-            <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">
-              Where Pet Comfort <span className="text-primary">Matters</span>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight drop-shadow-2xl">
+              Where Pet Comfort <span className="text-primary drop-shadow-lg">Matters</span>
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto drop-shadow-lg">
               Welcome to XTSY Prime - India's pioneering pet-friendly travellers hostel in Shillong, Meghalaya. 
               Travel with your furry companions and experience hospitality that cares for both you and your pets.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Button 
                 size="lg" 
-                className="text-lg px-8"
+                className="text-lg px-8 shadow-xl"
                 onClick={() => setIsBookingModalOpen(true)}
               >
                 <MessageCircle className="w-5 h-5 mr-2" />
@@ -69,7 +80,7 @@ const PetFriendly = () => {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="text-lg px-8 bg-white text-gray-900 hover:bg-gray-50"
+                className="text-lg px-8 bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white/20 shadow-xl"
                 onClick={() => window.open('tel:+918837317070', '_self')}
               >
                 <Phone className="w-5 h-5 mr-2" />
