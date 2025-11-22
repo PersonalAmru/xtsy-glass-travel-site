@@ -553,31 +553,29 @@ Can't wait to experience XTSY hospitality! Please confirm availability. 🎉✨`
                             </p>
                           )}
                         </div>
-                          <div className="flex items-center gap-2">
-                          {!room.roomTypeName.toLowerCase().includes('dormitory') && (
-                            <div className="flex items-center gap-1">
-                              <Button
-                                type="button"
-                                variant="outline"
-                                size="sm"
-                                onClick={() => handleUpdateQuantity(room.roomTypeId, room.quantity - 1)}
-                                className="h-7 w-7 p-0"
-                              >
-                                -
-                              </Button>
-                              <span className="w-8 text-center text-sm font-medium">{room.quantity}</span>
-                              <Button
-                                type="button"
-                                variant="outline"
-                                size="sm"
-                                onClick={() => handleUpdateQuantity(room.roomTypeId, room.quantity + 1)}
-                                disabled={room.quantity >= getMaxQuantity(room.roomTypeName)}
-                                className="h-7 w-7 p-0"
-                              >
-                                +
-                              </Button>
-                            </div>
-                          )}
+                        <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-1">
+                            <Button
+                              type="button"
+                              variant="outline"
+                              size="sm"
+                              onClick={() => handleUpdateQuantity(room.roomTypeId, room.quantity - 1)}
+                              className="h-7 w-7 p-0"
+                            >
+                              -
+                            </Button>
+                            <span className="w-8 text-center text-sm font-medium">{room.quantity}</span>
+                            <Button
+                              type="button"
+                              variant="outline"
+                              size="sm"
+                              onClick={() => handleUpdateQuantity(room.roomTypeId, room.quantity + 1)}
+                              disabled={room.quantity >= getMaxQuantity(room.roomTypeName)}
+                              className="h-7 w-7 p-0"
+                            >
+                              +
+                            </Button>
+                          </div>
                           <Button
                             type="button"
                             variant="ghost"
