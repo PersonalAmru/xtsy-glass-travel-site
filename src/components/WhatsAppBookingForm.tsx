@@ -137,6 +137,28 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
 
   const handleInputChange = (field: string, value: any) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+    
+    // Auto-sync dormitory quantities when guest count changes
+    if (field === 'guests' && typeof value === 'number') {
+      setSelectedRooms(prevRooms => {
+        return prevRooms.map(room => {
+          const isDormitory = room.roomTypeName.toLowerCase().includes('dormitory');
+          if (isDormitory) {
+            const maxQty = getMaxQuantity(room.roomTypeName);
+            if (value > maxQty) {
+              toast({
+                title: "Capacity Exceeded",
+                description: `${room.roomTypeName.split(' - ')[1]} can accommodate max ${maxQty} guests. Kindly choose other room type for remaining guests.`,
+                duration: 3000,
+              });
+              return { ...room, quantity: maxQty };
+            }
+            return { ...room, quantity: value };
+          }
+          return room;
+        });
+      });
+    }
   };
 
   const handleRoomToggle = (roomTypeId: string) => {
