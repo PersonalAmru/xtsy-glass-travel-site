@@ -161,6 +161,23 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
     }
   };
 
+  // Calculate remaining guests that need accommodation
+  const getRemainingGuests = () => {
+    const totalGuests = formData.guests;
+    const accommodated = selectedRooms.reduce((sum, room) => {
+      const maxCapacity = getMaxQuantity(room.roomTypeName);
+      return sum + Math.min(room.quantity, maxCapacity);
+    }, 0);
+    return Math.max(0, totalGuests - accommodated);
+  };
+
+  const canAccommodateRemaining = (roomTypeName: string) => {
+    const remaining = getRemainingGuests();
+    if (remaining === 0) return false;
+    const maxCapacity = getMaxQuantity(roomTypeName);
+    return remaining <= maxCapacity;
+  };
+
   const handleRoomToggle = (roomTypeId: string) => {
     const roomType = roomTypes.find(rt => rt.id === roomTypeId);
     if (!roomType) return;
@@ -535,34 +552,46 @@ Can't wait to experience XTSY hospitality! Please confirm availability. 🎉✨`
                                 return a.name.localeCompare(b.name);
                               })
                               .map(roomType => (
-                                <div
-                                  key={roomType.id}
-                                  className="flex items-start space-x-3 p-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-primary transition-colors"
-                                >
+                                 <div
+                                   key={roomType.id}
+                                   className={`flex items-start space-x-3 p-3 rounded-lg border transition-colors ${
+                                     selectedRoomIds.has(roomType.id)
+                                       ? 'border-primary bg-primary/5'
+                                       : canAccommodateRemaining(roomType.name)
+                                       ? 'border-accent bg-accent/10 hover:border-accent shadow-sm'
+                                       : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-primary'
+                                   }`}
+                                 >
                                   <Checkbox
                                     id={roomType.id}
                                     checked={selectedRoomIds.has(roomType.id)}
                                     onCheckedChange={() => handleRoomToggle(roomType.id)}
                                     className="mt-1"
                                   />
-                                  <div className="flex-1">
-                                     <Label
-                                      htmlFor={roomType.id}
-                                      className="font-medium cursor-pointer leading-tight"
-                                    >
-                                      {roomType.name}
-                                    </Label>
-                                    <div className="flex items-center gap-2 mt-1">
-                                      <p className="text-xs text-muted-foreground line-through">
-                                        ₹{roomType.base_price.toLocaleString('en-IN')}
-                                      </p>
-                                      <p className="text-xs font-semibold text-green-600">
-                                        ₹{Math.round(roomType.base_price * 0.9).toLocaleString('en-IN')}/night
-                                      </p>
-                                      <span className="text-[10px] bg-blue-500 text-white px-1.5 py-0.5 rounded">10% OFF</span>
-                                      <p className="text-xs text-muted-foreground">• {roomType.capacity} guests</p>
-                                    </div>
-                                  </div>
+                                   <div className="flex-1">
+                                      <Label
+                                       htmlFor={roomType.id}
+                                       className="font-medium cursor-pointer leading-tight"
+                                     >
+                                       {roomType.name}
+                                     </Label>
+                                     <div className="flex items-center gap-2 mt-1">
+                                       <p className="text-xs text-muted-foreground line-through">
+                                         ₹{roomType.base_price.toLocaleString('en-IN')}
+                                       </p>
+                                       <p className="text-xs font-semibold text-green-600">
+                                         ₹{Math.round(roomType.base_price * 0.9).toLocaleString('en-IN')}/night
+                                       </p>
+                                       <span className="text-[10px] bg-blue-500 text-white px-1.5 py-0.5 rounded">10% OFF</span>
+                                       <p className="text-xs text-muted-foreground">• {roomType.capacity} guests</p>
+                                     </div>
+                                     {canAccommodateRemaining(roomType.name) && !selectedRoomIds.has(roomType.id) && (
+                                       <p className="text-xs text-accent font-medium mt-1 flex items-center gap-1">
+                                         <span className="inline-block w-2 h-2 bg-accent rounded-full animate-pulse"></span>
+                                         Can accommodate {getRemainingGuests()} remaining guest{getRemainingGuests() > 1 ? 's' : ''}
+                                       </p>
+                                     )}
+                                   </div>
                                 </div>
                               ))}
                           </div>
