@@ -158,6 +158,17 @@ const Header = () => {
                               </Link>
                             </NavigationMenuLink>
                           </li>
+                          <li>
+                            <NavigationMenuLink asChild>
+                              <Link
+                                to="/xtsy-vs-zostel"
+                                className="block px-4 py-3 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200"
+                                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                              >
+                                XTSY vs Zostel
+                              </Link>
+                            </NavigationMenuLink>
+                          </li>
                         </ul>
                       </NavigationMenuContent>
                     </NavigationMenuItem>
@@ -246,6 +257,16 @@ const Header = () => {
                     }}
                   >
                     Pet Friendly
+                  </Link>
+                  <Link 
+                    to="/xtsy-vs-zostel"
+                    className="px-6 py-3 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200 font-medium touch-target text-left block"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                  >
+                    XTSY vs Zostel
                   </Link>
                 </div>
                 
