@@ -20,7 +20,7 @@ import meghalayaBiodiversityAuthenticImg from "@/assets/meghalaya-biodiversity-a
 import wildernessSurvivalImg from "@/assets/wilderness-survival-authentic.jpg";
 
 import arunachalTribalImg from "@/assets/arunachal-tribal-premium.jpg";
-import wariChoraHiddenGemImg from "@/assets/wari-chora-hidden-gem.jpg";
+import wariChoraAuthenticImg from "@/assets/wari-chora-authentic.jpg";
 import doubleDeckerRootBridgeImg from "@/assets/double-decker-root-bridge-cherrapunji.jpg";
 import himachalYogaRetreatImg from "@/assets/himachal-yoga-retreat.jpg";
 import kremChympeCaveImg from "@/assets/krem-chympe-cave-expedition.jpg";
@@ -155,8 +155,8 @@ const Travel = () => {
         duration: "5 Days",
         difficulty: "Challenging",
         price: "₹48,500",
-        image: wariChoraHiddenGemImg,
-        images: [wariChoraHiddenGemImg, wariChoraHiddenGemImg, wariChoraHiddenGemImg],
+        image: wariChoraAuthenticImg,
+        images: [wariChoraAuthenticImg, wariChoraAuthenticImg, wariChoraAuthenticImg],
         rating: 4.9,
         category: "adventure",
         location: "Meghalaya",
