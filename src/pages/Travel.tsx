@@ -20,6 +20,7 @@ import meghalayaBiodiversityAuthenticImg from "@/assets/meghalaya-biodiversity-a
 import wildernessSurvivalImg from "@/assets/wilderness-survival-authentic.jpg";
 
 import arunachalTribalImg from "@/assets/arunachal-tribal-premium.jpg";
+import wariChoraHiddenGemImg from "@/assets/wari-chora-hidden-gem.jpg";
 import doubleDeckerRootBridgeImg from "@/assets/double-decker-root-bridge-cherrapunji.jpg";
 import himachalYogaRetreatImg from "@/assets/himachal-yoga-retreat.jpg";
 import kremChympeCaveImg from "@/assets/krem-chympe-cave-expedition.jpg";
@@ -149,17 +150,17 @@ const Travel = () => {
       },
       {
         id: 204,
-        title: "XTSY Exclusive: Traditional Ethnobotany & Healing Arts",
-        description: "Learn ancient indigenous plant medicine and sustainable harvesting from tribal healers in winter abundance season",
-        duration: "6 Days",
-        difficulty: "Moderate",
-        price: "₹36,500",
-        image: arunachalTribalImg,
-        images: [arunachalTribalImg, arunachalTribalImg, arunachalTribalImg],
-        rating: 4.8,
+        title: "XTSY Exclusive: Wari Chora - Hidden Gem of Meghalaya",
+        description: "Discover the untouched beauty of Wari Chora village, a pristine paradise nestled in Meghalaya's mountains with breathtaking waterfalls, traditional Khasi culture, and stunning valley views",
+        duration: "4 Days",
+        difficulty: "Easy to Moderate",
+        price: "₹22,500",
+        image: wariChoraHiddenGemImg,
+        images: [wariChoraHiddenGemImg, wariChoraHiddenGemImg, wariChoraHiddenGemImg],
+        rating: 4.9,
         category: "cultural",
-        location: "Northeast India",
-        highlights: ["Medicinal Plant Walks", "Indigenous Healer Sessions", "Herbal Remedy Preparation", "Sacred Grove Ceremonies", "Traditional Healing Rituals", "Documentation Workshops", "Forest Therapy"],
+        location: "Meghalaya",
+        highlights: ["Scenic Wari Chora Waterfall", "Traditional Khasi Village Experience", "Panoramic Valley Views", "Local Homestay", "Terraced Agriculture Tours", "Sacred Forest Trails", "Authentic Tribal Cuisine"],
         bestSeason: "Oct-Mar",
         exclusive: true
       },
