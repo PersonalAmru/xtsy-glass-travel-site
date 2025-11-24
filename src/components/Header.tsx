@@ -238,35 +238,35 @@ const Header = () => {
                 </Link>
                 <div className="space-y-1">
                   <div className="px-4 py-3 text-center text-primary text-base font-bold bg-white/5 border-y border-white/10">XTSY Prime</div>
-                  <Link
+                  <Link 
                     to={XTSY270_DATA.path} 
-                    className="px-6 py-3 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200 font-medium touch-target text-left block"
+                    className="px-6 py-4 text-white bg-gradient-to-r from-primary/20 to-transparent hover:from-primary/30 hover:text-primary border-l-4 border-primary rounded-md transition-all duration-200 font-semibold text-base touch-target text-left block shadow-sm"
                     onClick={() => {
                       setIsMenuOpen(false);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}
                   >
-                    XTSY 270°
+                    ✨ XTSY 270°
                   </Link>
                   <Link 
                     to="/pet-friendly"
-                    className="px-6 py-3 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200 font-medium touch-target text-left block"
+                    className="px-6 py-4 text-white bg-gradient-to-r from-primary/20 to-transparent hover:from-primary/30 hover:text-primary border-l-4 border-primary rounded-md transition-all duration-200 font-semibold text-base touch-target text-left block shadow-sm"
                     onClick={() => {
                       setIsMenuOpen(false);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}
                   >
-                    Pet Friendly
+                    🐾 Pet Friendly
                   </Link>
                   <Link 
                     to="/xtsy-vs-zostel"
-                    className="px-6 py-3 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200 font-medium touch-target text-left block"
+                    className="px-6 py-4 text-white bg-gradient-to-r from-primary/20 to-transparent hover:from-primary/30 hover:text-primary border-l-4 border-primary rounded-md transition-all duration-200 font-semibold text-base touch-target text-left block shadow-sm"
                     onClick={() => {
                       setIsMenuOpen(false);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}
                   >
-                    XTSY vs Zostel
+                    ⚡ XTSY vs Zostel
                   </Link>
                 </div>
                 
