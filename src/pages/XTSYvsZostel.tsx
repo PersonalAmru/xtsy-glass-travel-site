@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import heroImage from "@/assets/xtsy-vs-zostel-hero.jpg";
+import Header from "@/components/Header";
+import heroImage from "@/assets/xtsy-vs-zostel-hero-new.jpg";
 import { useEffect } from "react";
 
 const XTSYvsZostel = () => {
@@ -164,295 +165,296 @@ const XTSYvsZostel = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
-        {/* Hero Section */}
-        <section className="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
-          <div className="absolute inset-0">
-            <img
-              src={heroImage}
-              alt="XTSY vs Zostel Comparison"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-background" />
+    <div className="min-h-screen bg-gradient-to-b from-orange-50 via-white to-orange-50">
+      <Header />
+      
+      {/* Hero Section */}
+      <section className="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src={heroImage}
+            alt="XTSY vs Zostel - Solo Travelers and Groups"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-orange-900/50 via-orange-800/30 to-orange-50" />
+        </div>
+        
+        <div className="relative z-10 container mx-auto px-4 text-center">
+          <Badge className="mb-4 bg-primary text-white border-0 shadow-lg">
+            India's Most Versatile Hospitality Brand
+          </Badge>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white drop-shadow-2xl">
+            XTSY vs Zostel:<br />Choose Your Journey
+          </h1>
+          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto font-light text-white drop-shadow-lg">
+            Zostel stay is a vibe — we agree.<br />
+            <span className="text-orange-300 font-bold text-2xl md:text-3xl">But your whole journey is a vibe with XTSY.</span>
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" onClick={handleWhatsAppBooking} className="bg-primary hover:bg-primary/90 text-white shadow-xl">
+              <MessageCircle className="mr-2 h-5 w-5" />
+              Book with XTSY
+            </Button>
+            <Button size="lg" variant="outline" onClick={() => document.getElementById('comparison')?.scrollIntoView({ behavior: 'smooth' })} className="bg-white hover:bg-white/90 border-white text-gray-900 shadow-xl">
+              Compare Benefits
+            </Button>
           </div>
-          
-          <div className="relative z-10 container mx-auto px-4 text-center text-white">
-            <Badge className="mb-4 bg-primary text-primary-foreground">
-              India's Most Versatile Hospitality Brand
-            </Badge>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              XTSY vs Zostel:<br />Choose Your Journey
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto font-light">
-              Zostel stay is a vibe — we agree.<br />
-              <span className="text-primary font-semibold">But your whole journey is a vibe with XTSY.</span>
+        </div>
+      </section>
+
+      {/* Who XTSY Serves vs Zostel's Limitations */}
+      <section className="py-20 bg-white" id="comparison">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Who We Serve</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              XTSY welcomes everyone. Here's how we compare with Zostel across different traveler types.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" onClick={handleWhatsAppBooking} className="bg-primary hover:bg-primary/90">
-                <MessageCircle className="mr-2 h-5 w-5" />
-                Book with XTSY
-              </Button>
-              <Button size="lg" variant="outline" onClick={() => document.getElementById('comparison')?.scrollIntoView({ behavior: 'smooth' })} className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white/20">
-                Compare Benefits
-              </Button>
-            </div>
           </div>
-        </section>
 
-        {/* Who XTSY Serves vs Zostel's Limitations */}
-        <section className="py-20 bg-muted/30" id="comparison">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">Who We Serve</h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                XTSY welcomes everyone. Here's how we compare with Zostel across different traveler types.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {audienceComparison.map((item, index) => {
-                const Icon = item.icon;
-                return (
-                  <Card 
-                    key={index} 
-                    className={`transition-all hover:shadow-lg ${
-                      item.highlight ? 'border-primary border-2 shadow-primary/20 shadow-lg' : ''
-                    }`}
-                  >
-                    <CardHeader>
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className="p-2 rounded-lg bg-primary/10">
-                          <Icon className="h-6 w-6 text-primary" />
-                        </div>
-                        {item.xtsyWins && <CheckCircle2 className="h-5 w-5 text-green-600" />}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {audienceComparison.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <Card 
+                  key={index} 
+                  className={`transition-all hover:shadow-lg bg-gradient-to-br from-orange-50 to-white border-orange-200 hover:border-primary ${
+                    item.highlight ? 'border-primary border-2 shadow-primary/20 shadow-lg' : ''
+                  }`}
+                >
+                  <CardHeader>
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="p-2 rounded-lg bg-primary/20">
+                        <Icon className="h-6 w-6 text-primary" />
                       </div>
-                      <CardTitle className="text-xl">{item.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <div>
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="font-semibold text-primary">XTSY:</span>
-                        </div>
-                        <p className="text-sm text-muted-foreground">{item.xtsy}</p>
+                      {item.xtsyWins && <CheckCircle2 className="h-5 w-5 text-green-600" />}
+                    </div>
+                    <CardTitle className="text-xl text-gray-900">{item.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div>
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="font-semibold text-primary">XTSY:</span>
                       </div>
-                      <div>
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="font-semibold">Zostel:</span>
-                        </div>
-                        <p className="text-sm text-muted-foreground">{item.zostel}</p>
+                      <p className="text-sm text-gray-700">{item.xtsy}</p>
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="font-semibold text-gray-800">Zostel:</span>
                       </div>
-                      <div className="pt-2 border-t">
-                        <p className={`text-sm font-medium ${item.xtsyWins ? 'text-green-600' : 'text-muted-foreground'}`}>
-                          {item.verdict}
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* XTSY's Unique Advantages */}
-        <section className="py-20">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">XTSY's Unique Advantages</h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                What sets XTSY apart from all competitors
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {uniqueAdvantages.map((advantage, index) => {
-                const Icon = advantage.icon;
-                return (
-                  <Card key={index} className="transition-all hover:shadow-lg hover:border-primary/50">
-                    <CardHeader>
-                      <div className="p-3 rounded-lg bg-primary/10 w-fit mb-3">
-                        <Icon className="h-8 w-8 text-primary" />
-                      </div>
-                      <CardTitle className="text-xl">{advantage.title}</CardTitle>
-                      <CardDescription className="text-base">{advantage.description}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-sm text-muted-foreground">{advantage.detail}</p>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* Comprehensive Feature Comparison Table */}
-        <section className="py-20 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">Feature-by-Feature Comparison</h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                See exactly how XTSY and Zostel stack up across key features
-              </p>
-            </div>
-
-            <div className="overflow-x-auto">
-              <table className="w-full bg-card rounded-lg overflow-hidden shadow-lg">
-                <thead>
-                  <tr className="bg-primary/10">
-                    <th className="px-6 py-4 text-left font-semibold">Feature</th>
-                    <th className="px-6 py-4 text-center font-semibold text-primary">XTSY</th>
-                    <th className="px-6 py-4 text-center font-semibold">Zostel</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {comparisonFeatures.map((item, index) => (
-                    <tr 
-                      key={index} 
-                      className={`border-b border-border ${
-                        item.highlight ? 'bg-primary/5' : ''
-                      } hover:bg-muted/50 transition-colors`}
-                    >
-                      <td className="px-6 py-4 font-medium">{item.feature}</td>
-                      <td className="px-6 py-4 text-center">
-                        {typeof item.xtsy === 'boolean' ? (
-                          <div className="flex flex-col items-center gap-1">
-                            {item.xtsy ? (
-                              <CheckCircle2 className="h-6 w-6 text-green-600" />
-                            ) : (
-                              <X className="h-6 w-6 text-red-500" />
-                            )}
-                            {item.xtsyNote && (
-                              <span className="text-xs text-muted-foreground">{item.xtsyNote}</span>
-                            )}
-                          </div>
-                        ) : (
-                          <span className="text-sm">{item.xtsy}</span>
-                        )}
-                      </td>
-                      <td className="px-6 py-4 text-center">
-                        {typeof item.zostel === 'boolean' ? (
-                          <div className="flex flex-col items-center gap-1">
-                            {item.zostel ? (
-                              <CheckCircle2 className="h-6 w-6 text-green-600" />
-                            ) : (
-                              <X className="h-6 w-6 text-muted-foreground" />
-                            )}
-                            {item.zostelNote && (
-                              <span className="text-xs text-muted-foreground">{item.zostelNote}</span>
-                            )}
-                          </div>
-                        ) : (
-                          <span className="text-sm">{item.zostel}</span>
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </section>
-
-        {/* "Your Whole Journey is a Vibe" Section */}
-        <section className="py-20 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-primary/10" />
-          <div className="container mx-auto px-4 relative z-10">
-            <Card className="max-w-4xl mx-auto border-primary/20 shadow-2xl">
-              <CardContent className="p-12 text-center">
-                <div className="space-y-6">
-                  <p className="text-2xl md:text-3xl text-muted-foreground italic">
-                    "Zostel stay is a vibe — we agree."
-                  </p>
-                  <div className="h-1 w-32 mx-auto bg-gradient-to-r from-transparent via-primary to-transparent" />
-                  <p className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                    But your whole journey is a vibe with XTSY
-                  </p>
-                  <p className="text-lg text-muted-foreground max-w-2xl mx-auto pt-4">
-                    From solo adventures to family celebrations, from IIT reunions to corporate retreats — 
-                    XTSY makes every journey unforgettable
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        {/* Statistics & Social Proof */}
-        <section className="py-20 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">XTSY by the Numbers</h2>
-              <p className="text-xl text-muted-foreground">
-                Real achievements, real impact
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-              {statistics.map((stat, index) => (
-                <Card key={index} className="text-center hover:shadow-lg transition-all">
-                  <CardContent className="p-6">
-                    <p className="text-4xl md:text-5xl font-bold text-primary mb-2">{stat.number}</p>
-                    <p className="text-sm text-muted-foreground">{stat.label}</p>
+                      <p className="text-sm text-gray-600">{item.zostel}</p>
+                    </div>
+                    <div className="pt-2 border-t border-gray-200">
+                      <p className={`text-sm font-medium ${item.xtsyWins ? 'text-green-600' : 'text-gray-600'}`}>
+                        {item.verdict}
+                      </p>
+                    </div>
                   </CardContent>
                 </Card>
-              ))}
-            </div>
+              );
+            })}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* FAQ Section */}
-        <section className="py-20">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">Frequently Asked Questions</h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Everything you need to know about choosing XTSY
-              </p>
-            </div>
-
-            <div className="max-w-4xl mx-auto">
-              <Accordion type="single" collapsible className="space-y-4">
-                {faqs.map((faq, index) => (
-                  <AccordionItem key={index} value={`item-${index}`} className="bg-card rounded-lg px-6 border">
-                    <AccordionTrigger className="text-left hover:text-primary">
-                      <span className="font-semibold">{faq.question}</span>
-                    </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">
-                      {faq.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
-          </div>
-        </section>
-
-        {/* Call-to-Action Section */}
-        <section className="py-20 bg-gradient-to-br from-primary/10 via-background to-primary/5">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Ready to Experience the XTSY Difference?
-            </h2>
-            <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-              Join thousands of satisfied guests who chose XTSY for their Northeast India journey
+      {/* XTSY's Unique Advantages */}
+      <section className="py-20 bg-gradient-to-b from-orange-50 to-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">XTSY's Unique Advantages</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              What sets XTSY apart from all competitors
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" onClick={handleWhatsAppBooking} className="bg-primary hover:bg-primary/90">
-                <MessageCircle className="mr-2 h-5 w-5" />
-                Book Your XTSY Experience
-              </Button>
-              <Button size="lg" variant="outline" onClick={handleCall}>
-                <Phone className="mr-2 h-5 w-5" />
-                Call +91 88373 17070
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <a href="/xtsy-270">Explore XTSY 270°</a>
-              </Button>
-            </div>
           </div>
-        </section>
-      </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {uniqueAdvantages.map((advantage, index) => {
+              const Icon = advantage.icon;
+              return (
+                <Card key={index} className="transition-all hover:shadow-lg hover:border-primary bg-gradient-to-br from-white to-orange-50 border-orange-200">
+                  <CardHeader>
+                    <div className="p-3 rounded-lg bg-primary/20 w-fit mb-3">
+                      <Icon className="h-8 w-8 text-primary" />
+                    </div>
+                    <CardTitle className="text-xl text-gray-900">{advantage.title}</CardTitle>
+                    <CardDescription className="text-base text-gray-600">{advantage.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-gray-600">{advantage.detail}</p>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Comprehensive Feature Comparison Table */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Feature-by-Feature Comparison</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              See exactly how XTSY and Zostel stack up across key features
+            </p>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full bg-white rounded-lg overflow-hidden shadow-xl border border-orange-200">
+              <thead>
+                <tr className="bg-gradient-to-r from-orange-100 to-orange-50">
+                  <th className="px-6 py-4 text-left font-semibold text-gray-900">Feature</th>
+                  <th className="px-6 py-4 text-center font-semibold text-primary">XTSY</th>
+                  <th className="px-6 py-4 text-center font-semibold text-gray-900">Zostel</th>
+                </tr>
+              </thead>
+              <tbody>
+                {comparisonFeatures.map((item, index) => (
+                  <tr 
+                    key={index} 
+                    className={`border-b border-gray-200 ${
+                      item.highlight ? 'bg-primary/5' : ''
+                    } hover:bg-orange-50 transition-colors`}
+                  >
+                    <td className="px-6 py-4 font-medium text-gray-900">{item.feature}</td>
+                    <td className="px-6 py-4 text-center">
+                      {typeof item.xtsy === 'boolean' ? (
+                        <div className="flex flex-col items-center gap-1">
+                          {item.xtsy ? (
+                            <CheckCircle2 className="h-6 w-6 text-green-600" />
+                          ) : (
+                            <X className="h-6 w-6 text-red-500" />
+                          )}
+                          {item.xtsyNote && (
+                            <span className="text-xs text-gray-600">{item.xtsyNote}</span>
+                          )}
+                        </div>
+                      ) : (
+                        <span className="text-sm text-gray-900">{item.xtsy}</span>
+                      )}
+                    </td>
+                    <td className="px-6 py-4 text-center">
+                      {typeof item.zostel === 'boolean' ? (
+                        <div className="flex flex-col items-center gap-1">
+                          {item.zostel ? (
+                            <CheckCircle2 className="h-6 w-6 text-green-600" />
+                          ) : (
+                            <X className="h-6 w-6 text-gray-400" />
+                          )}
+                          {item.zostelNote && (
+                            <span className="text-xs text-gray-500">{item.zostelNote}</span>
+                          )}
+                        </div>
+                      ) : (
+                        <span className="text-sm text-gray-600">{item.zostel}</span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* "Your Whole Journey is a Vibe" Section */}
+      <section className="py-20 relative overflow-hidden bg-gradient-to-br from-orange-100 via-orange-50 to-white">
+        <div className="container mx-auto px-4 relative z-10">
+          <Card className="max-w-4xl mx-auto border-primary shadow-2xl bg-gradient-to-br from-primary to-orange-600">
+            <CardContent className="p-12 text-center">
+              <div className="space-y-6">
+                <p className="text-2xl md:text-3xl text-white italic drop-shadow-md">
+                  "Zostel stay is a vibe — we agree."
+                </p>
+                <div className="h-1 w-32 mx-auto bg-gradient-to-r from-transparent via-white to-transparent" />
+                <p className="text-3xl md:text-5xl font-bold text-white drop-shadow-lg">
+                  But your whole journey is a vibe with XTSY
+                </p>
+                <p className="text-lg text-white/90 max-w-2xl mx-auto pt-4 drop-shadow">
+                  From solo adventures to family celebrations, from IIT reunions to corporate retreats — 
+                  XTSY makes every journey unforgettable
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Statistics & Social Proof */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">XTSY by the Numbers</h2>
+            <p className="text-xl text-gray-600">
+              Real achievements, real impact
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+            {statistics.map((stat, index) => (
+              <Card key={index} className="text-center hover:shadow-lg transition-all bg-gradient-to-br from-orange-100 to-white border-orange-200 hover:border-primary">
+                <CardContent className="p-6">
+                  <p className="text-4xl md:text-5xl font-bold text-primary mb-2 drop-shadow">{stat.number}</p>
+                  <p className="text-sm text-gray-700 font-medium">{stat.label}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-gradient-to-b from-orange-50 to-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Frequently Asked Questions</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Everything you need to know about choosing XTSY
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <Accordion type="single" collapsible className="space-y-4">
+              {faqs.map((faq, index) => (
+                <AccordionItem key={index} value={`item-${index}`} className="bg-white rounded-lg px-6 border border-orange-200 hover:border-primary shadow-sm">
+                  <AccordionTrigger className="text-left hover:text-primary transition-colors">
+                    <span className="font-semibold text-gray-900">{faq.question}</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-gray-600">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </div>
+      </section>
+
+      {/* Call-to-Action Section */}
+      <section className="py-20 bg-gradient-to-br from-primary via-orange-600 to-primary">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white drop-shadow-lg">
+            Ready to Experience the XTSY Difference?
+          </h2>
+          <p className="text-xl text-white/95 mb-8 max-w-3xl mx-auto drop-shadow">
+            Join thousands of satisfied guests who chose XTSY for their Northeast India journey
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" onClick={handleWhatsAppBooking} className="bg-white hover:bg-white/90 text-primary shadow-xl font-bold">
+              <MessageCircle className="mr-2 h-5 w-5" />
+              Book Your XTSY Experience
+            </Button>
+            <Button size="lg" variant="outline" onClick={handleCall} className="bg-white/20 hover:bg-white/30 border-white text-white shadow-xl backdrop-blur-sm">
+              <Phone className="mr-2 h-5 w-5" />
+              Call +91 88373 17070
+            </Button>
+            <Button size="lg" variant="outline" asChild className="bg-white/20 hover:bg-white/30 border-white text-white shadow-xl backdrop-blur-sm">
+              <a href="/xtsy-270">Explore XTSY 270°</a>
+            </Button>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 
