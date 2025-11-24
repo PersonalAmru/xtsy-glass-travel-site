@@ -237,8 +237,8 @@ const Header = () => {
                   About
                 </Link>
                 <div className="space-y-1">
-                  <div className="px-4 py-2 text-white/60 text-sm font-medium">XTSY Prime</div>
-                  <Link 
+                  <div className="px-4 py-3 text-center text-primary text-base font-bold bg-white/5 border-y border-white/10">XTSY Prime</div>
+                  <Link
                     to={XTSY270_DATA.path} 
                     className="px-6 py-3 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200 font-medium touch-target text-left block"
                     onClick={() => {
