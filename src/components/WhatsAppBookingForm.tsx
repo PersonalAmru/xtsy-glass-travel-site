@@ -11,6 +11,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import { saveWhatsAppBooking } from "@/services/formBookingService";
 import FoodAddonsSection from "@/components/FoodAddonsSection";
+import { useApp } from "@/contexts/AppContext";
 
 interface WhatsAppBookingFormProps {
   isOpen: boolean;
@@ -33,6 +34,7 @@ interface SelectedRoom {
 }
 
 const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
+  const { currency, formatPrice } = useApp();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -197,7 +199,7 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
           roomTypeId: roomType.id,
           roomTypeName: `${roomType.category} - ${roomType.name}`,
           quantity: isDormitory ? formData.guests : 1,
-          price: discountedPrice
+          price: discountedPrice // Store in INR for internal calculations
         };
         setSelectedRooms(prevRooms => {
           const updatedRooms = [...prevRooms, newRoom];
@@ -340,7 +342,7 @@ Hi XTSY Team! Ready to book my stay in beautiful Meghalaya! 🏔️
 ${roomsText}
 ${addOnsText.length > 0 ? `\n🎯 *Add-on Services:*\n${addOnsText.join('\n')}` : ''}
 ${formData.specialRequests ? `\n📝 *Special Requests:*\n   ${formData.specialRequests}` : ''}
-${totalAmount > 0 ? `\n💰 *Estimated Total: ₹${totalAmount.toLocaleString('en-IN')}*` : ''}
+${totalAmount > 0 ? `\n💰 *Estimated Total: ${formatPrice(totalAmount)}${currency.code !== 'INR' ? ` (${currency.code})` : ''}*` : ''}
 
 Can't wait to experience XTSY hospitality! Please confirm availability. 🎉✨`;
 
@@ -575,16 +577,16 @@ Can't wait to experience XTSY hospitality! Please confirm availability. 🎉✨`
                                      >
                                        {roomType.name}
                                      </Label>
-                                     <div className="flex items-center gap-2 mt-1">
-                                       <p className="text-xs text-muted-foreground line-through">
-                                         ₹{roomType.base_price.toLocaleString('en-IN')}
-                                       </p>
-                                       <p className="text-xs font-semibold text-green-600">
-                                         ₹{Math.round(roomType.base_price * 0.9).toLocaleString('en-IN')}/night
-                                       </p>
-                                       <span className="text-[10px] bg-blue-500 text-white px-1.5 py-0.5 rounded">10% OFF</span>
-                                       <p className="text-xs text-muted-foreground">• {roomType.capacity} guests</p>
-                                     </div>
+                                      <div className="flex items-center gap-2 mt-1">
+                                        <p className="text-xs text-muted-foreground line-through">
+                                          {formatPrice(roomType.base_price)}
+                                        </p>
+                                        <p className="text-xs font-semibold text-green-600">
+                                          {formatPrice(Math.round(roomType.base_price * 0.9))}/night
+                                        </p>
+                                        <span className="text-[10px] bg-blue-500 text-white px-1.5 py-0.5 rounded">10% OFF</span>
+                                        <p className="text-xs text-muted-foreground">• {roomType.capacity} guests</p>
+                                      </div>
                                      {canAccommodateRemaining(roomType.name) && !selectedRoomIds.has(roomType.id) && (
                                        <p className="text-xs text-accent font-medium mt-1 flex items-center gap-1">
                                          <span className="inline-block w-2 h-2 bg-accent rounded-full animate-pulse"></span>
@@ -619,11 +621,11 @@ Can't wait to experience XTSY hospitality! Please confirm availability. 🎉✨`
                           <p className="font-medium text-sm">{room.roomTypeName}</p>
                           {room.roomTypeName.toLowerCase().includes('dormitory') ? (
                             <p className="text-xs text-muted-foreground">
-                              ₹{room.price}/night/per person × {formData.guests} guest(s) × {nights || 0} nights = ₹{room.price * formData.guests * (nights || 0)}
+                              {formatPrice(room.price)}/night/per person × {formData.guests} guest(s) × {nights || 0} nights = {formatPrice(room.price * formData.guests * (nights || 0))}
                             </p>
                           ) : (
                             <p className="text-xs text-muted-foreground">
-                              ₹{room.price}/night × {room.quantity} room(s) × {nights || 0} nights = ₹{room.price * room.quantity * (nights || 0)}
+                              {formatPrice(room.price)}/night × {room.quantity} room(s) × {nights || 0} nights = {formatPrice(room.price * room.quantity * (nights || 0))}
                             </p>
                           )}
                         </div>
@@ -667,7 +669,7 @@ Can't wait to experience XTSY hospitality! Please confirm availability. 🎉✨`
                     {nights > 0 && (
                       <div className="mt-3 p-3 bg-primary/10 rounded-lg border border-primary/20">
                         <p className="text-primary font-bold text-lg text-right">
-                          Total Estimated Amount: ₹{getTotalAmount()}
+                          Total Estimated Amount: {formatPrice(getTotalAmount())}
                         </p>
                       </div>
                     )}
