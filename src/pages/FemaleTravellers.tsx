@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import heroImage from '@/assets/female-travellers-hero.jpg';
-import safeDormImage from '@/assets/female-dorm-safe-space.jpg';
+import safeDormImage from '@/assets/female-safe-amenities.jpg';
 import communityImage from '@/assets/female-community-bonding.jpg';
 
 const FemaleTravellers = () => {
