@@ -15,6 +15,7 @@ import { LazyTravel } from "./pages/lazy/LazyTravel";
 import { LazyXTSY270 } from "./pages/lazy/LazyXTSY270";
 const LazyPetFriendly = lazy(() => import("./pages/PetFriendly"));
 import { LazyXTSYvsZostel } from "./pages/lazy/LazyXTSYvsZostel";
+import { LazyFemaleTravellers } from "./pages/lazy/LazyFemaleTravellers";
 import BookingFlow from "./pages/BookingFlow";
 import BookingConfirmationPage from "./pages/BookingConfirmationPage";
 import Events from "./pages/Events";
@@ -96,6 +97,11 @@ function App() {
           <Route path="/xtsy-vs-zostel" element={
             <Suspense fallback={<LoadingScreen />}>
               <LazyXTSYvsZostel />
+            </Suspense>
+          } />
+          <Route path="/female-travellers" element={
+            <Suspense fallback={<LoadingScreen />}>
+              <LazyFemaleTravellers />
             </Suspense>
           } />
             <Route path="/booking" element={
