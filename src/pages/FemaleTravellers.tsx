@@ -68,16 +68,16 @@ const FemaleTravellers = () => {
       text: "When my friends and I planned our North East India trip, we were hesitant. But XTSY Travellers Hostel changed everything! We instantly felt safe and welcomed—it's honestly one of the safest places we've traveled to. The hostel itself is awesome—clean, cozy, and full of good vibes. The bonfire and BBQ nights on the terrace were a blast, with incredible views and fun conversations. The host was amazing, organizing trips to stunning spots like Dawki, Cherrapunji, and even hidden gems we'd never have found on our own."
     },
     {
-      name: "Amritha",
-      location: "Booking.com Verified Guest - 4-Bed Female Dormitory",
-      rating: 5,
-      text: "XTSY made me ecstatic! Even though I booked the property just because it was cheap without much expectations, the property and staffs really surprised me by providing a very warm experience. The owner, my host Eurica and all other staffs are really friendly and goes above and beyond to make you feel at home. The terrace area with bonfire is also another highlight and I had such an enjoyable experience with the whole XTSY fam there! Will definitely be back, try and stop me!!"
-    },
-    {
       name: "Ritika",
       location: "Booking.com Verified Guest - Female Dormitory",
       rating: 5,
       text: "The hostel has a very welcoming atmosphere with friendly staff and a helpful property manager. The food is excellent, cleanliness is always maintained, and Wi-Fi connectivity is smooth. As a student, I never faced any issues, and having Swiggy and Zomato working perfectly was a big plus. The location is also close to beautiful scenic spots, which makes staying here even better."
+    },
+    {
+      name: "Amritha",
+      location: "Booking.com Verified Guest - 4-Bed Female Dormitory",
+      rating: 5,
+      text: "XTSY made me ecstatic! Even though I booked the property just because it was cheap without much expectations, the property and staffs really surprised me by providing a very warm experience. The owner, my host Eurica and all other staffs are really friendly and goes above and beyond to make you feel at home. The terrace area with bonfire is also another highlight and I had such an enjoyable experience with the whole XTSY fam there! Will definitely be back, try and stop me!!"
     }
   ];
 
