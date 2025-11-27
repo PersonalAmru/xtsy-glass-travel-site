@@ -63,7 +63,7 @@ const FemaleTravellers = () => {
   const testimonials = [
     {
       name: "Olivia",
-      location: "Booking.com Verified Guest",
+      location: "Booking.com Verified Guest - Female Dormitory",
       rating: 5,
       text: "When my friends and I planned our North East India trip, we were hesitant. But XTSY Travellers Hostel changed everything! We instantly felt safe and welcomed—it's honestly one of the safest places we've traveled to. The hostel itself is awesome—clean, cozy, and full of good vibes. The bonfire and BBQ nights on the terrace were a blast, with incredible views and fun conversations. The host was amazing, organizing trips to stunning spots like Dawki, Cherrapunji, and even hidden gems we'd never have found on our own."
     },
