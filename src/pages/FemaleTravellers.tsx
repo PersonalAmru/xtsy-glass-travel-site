@@ -88,7 +88,7 @@ const FemaleTravellers = () => {
     },
     {
       question: "What safety measures are in place for female travelers?",
-      answer: "We have 24/7 security personnel, CCTV surveillance in common areas, secure key card access to female dormitories, well-lit premises, and female staff members available round the clock."
+      answer: "We have 24/7 security personnel, CCTV surveillance in common areas, secure access to female dormitories, well-lit premises, and female staff members available round the clock."
     },
     {
       question: "Can I travel solo to XTSY as a female traveler?",
