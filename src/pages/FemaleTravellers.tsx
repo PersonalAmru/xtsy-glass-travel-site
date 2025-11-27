@@ -100,7 +100,7 @@ const FemaleTravellers = () => {
     },
     {
       question: "How do you ensure privacy in shared spaces?",
-      answer: "Female dormitories have secure locks, individual curtains for each bed, personal lockers, and are located in a separate wing of the hostel for added privacy."
+      answer: "Female dormitories have secure locks, individual curtains for each bed, personal lockers, beautiful mountain views"
     },
     {
       question: "Is it safe to explore Shillong as a female traveler?",
