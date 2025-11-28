@@ -93,8 +93,7 @@ const Footer = () => {
                 <div className="text-gray-300 text-xs sm:text-sm lg:text-base leading-relaxed text-center">
                   <div className="font-medium text-white mb-1">XTSY Travellers Hostel</div>
                   <div className="text-xs sm:text-sm">Diengiong road, New Shillong</div>
-                  <div className="text-xs sm:text-sm">Township, Meghalaya - 793018 
-[Landmark: 800 Mtrs from New Shillong Centre Point</div>
+                  <div className="text-xs sm:text-sm">Township, Meghalaya - 793018  [Landmark: 800 Mtrs from New Shillong Centre Point]</div>
                 </div>
               </div>
               
