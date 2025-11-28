@@ -28,6 +28,9 @@ verify_jwt = false
 [functions.security-monitoring]
 verify_jwt = true
 
+[functions.secure-blocking]
+verify_jwt = true
+
 # GDPR functions (now require authentication)
 [functions.gdpr-data-export]
 verify_jwt = true
