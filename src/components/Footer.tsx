@@ -114,7 +114,7 @@ const Footer = () => {
               </div>
               
               <div className="pt-2 sm:pt-3 lg:pt-4 flex justify-center">
-                <Button onClick={() => window.open('https://maps.app.goo.gl/Apj4xBxDWv8hBbSm6', '_blank')} className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white text-xs sm:text-sm lg:text-base px-4 sm:px-6 lg:px-8 py-2 sm:py-2.5 lg:py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105 shadow-lg min-h-[44px] touch-manipulation">
+                <Button onClick={() => window.open('https://maps.app.goo.gl/6WaBkJmkb1NjEB2i9', '_blank')} className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white text-xs sm:text-sm lg:text-base px-4 sm:px-6 lg:px-8 py-2 sm:py-2.5 lg:py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105 shadow-lg min-h-[44px] touch-manipulation">
                   Get Directions
                 </Button>
               </div>
