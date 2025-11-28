@@ -180,6 +180,17 @@ const Header = () => {
                               </Link>
                             </NavigationMenuLink>
                           </li>
+                          <li>
+                            <NavigationMenuLink asChild>
+                              <Link
+                                to="/work-from-home"
+                                className="block px-4 py-3 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200"
+                                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                              >
+                                Work From Home
+                              </Link>
+                            </NavigationMenuLink>
+                          </li>
                         </ul>
                       </NavigationMenuContent>
                     </NavigationMenuItem>
@@ -288,6 +299,16 @@ const Header = () => {
                     }}
                   >
                     👩 Female Travellers
+                  </Link>
+                  <Link 
+                    to="/work-from-home"
+                    className="px-6 py-4 text-white bg-gradient-to-r from-primary/20 to-transparent hover:from-primary/30 hover:text-primary border-l-4 border-primary rounded-md transition-all duration-200 font-semibold text-base touch-target text-left block shadow-sm"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                  >
+                    💼 Work From Home
                   </Link>
                 </div>
                 
