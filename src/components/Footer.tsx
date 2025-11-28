@@ -92,8 +92,8 @@ const Footer = () => {
               <div className="flex items-start space-x-2 sm:space-x-3 justify-center">
                 <div className="text-gray-300 text-xs sm:text-sm lg:text-base leading-relaxed text-center">
                   <div className="font-medium text-white mb-1">XTSY Travellers Hostel</div>
-                  <div className="text-xs sm:text-sm">Diengiong, Mawdiangdiang road</div>
-                  <div className="text-xs sm:text-sm">New Shillong Township, Meghalaya - 793018</div>
+                  <div className="text-xs sm:text-sm">Diengiong road, New Shillong</div>
+                  <div className="text-xs sm:text-sm">Township, Meghalaya - 793018</div>
                 </div>
               </div>
               
