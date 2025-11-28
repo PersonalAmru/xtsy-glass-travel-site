@@ -237,7 +237,7 @@ const HeroSection = () => {
                   className="w-full h-9 sm:h-12 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold py-2 sm:py-3 px-3 sm:px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-sm hover-lift"
                 >
                   <Search className="mr-1 sm:mr-2 h-3 w-3 sm:h-5 sm:w-5" />
-                  Book Your Stay
+                  Check Availability
                 </Button>
               </div>
             </div>
