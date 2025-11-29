@@ -735,7 +735,8 @@ const Travel = () => {
 
 
                                 </h3>
-                                        <p className="text-sm sm:text-base md:text-lg text-white/95 mb-3 sm:mb-4 leading-relaxed drop-shadow-lg max-w-3xl">Experience Northeast India's most spectacular like never before</p>
+                                        <p className="text-sm sm:text-base md:text-lg text-white/95 mb-3 sm:mb-4 leading-relaxed drop-shadow-lg max-w-3xl">
+                                </p>
                                         
                                         {/* Quick Info Grid */}
                                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 md:gap-4 mb-3 sm:mb-4">
