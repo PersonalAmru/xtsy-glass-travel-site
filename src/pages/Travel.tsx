@@ -783,7 +783,7 @@ Nagaland</h3>
                                               <span className="text-lg sm:text-xl">💰</span>
                                               <div>
                                                 <div className="text-white/80 text-xs font-medium">Price</div>
-                                                <div className="text-orange-300 font-bold text-xs sm:text-sm">₹58,500</div>
+                                                <div className="text-orange-300 font-bold text-xs sm:text-sm">₹58,500*</div>
                                               </div>
                                             </div>
                                           </div>
