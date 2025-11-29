@@ -69,6 +69,7 @@ import arunachalCulturalFestivalImg from "@/assets/arunachal-cultural-festival.j
 import tripuraBambooHeritageImg from "@/assets/tripura-bamboo-heritage.jpg";
 import tawangMonasteryMountainsImg from "@/assets/tawang-monastery-mountains.jpg";
 import doubleDeckerBridgeNewImg from "@/assets/double-decker-bridge-new.jpg";
+import hornbillFestivalHeroImg from "@/assets/hornbill-festival-nagaland-hero.jpg";
 
 // All image assets removed - Supabase ready
 // Image arrays for future Supabase URL assignments
@@ -755,6 +756,140 @@ const Travel = () => {
                               {info.desc}
                             </p>
                           </div>
+
+                          {/* Featured Hornbill Festival Landscape Card - Only for XTSY Exclusive Tours */}
+                          {state === "XTSY Exclusive Tours" && (
+                            <div className="mb-6 sm:mb-8 md:mb-10 animate-fade-in">
+                              <Card className="group overflow-hidden border-2 border-primary/30 hover:border-primary/60 transition-all duration-500 hover:shadow-2xl bg-gradient-to-br from-orange-50 via-red-50 to-amber-50">
+                                <CardContent className="p-0">
+                                  <div className="relative h-64 sm:h-72 md:h-80 lg:h-96 overflow-hidden">
+                                    {/* Hero Image */}
+                                    <img 
+                                      src={hornbillFestivalHeroImg}
+                                      alt="Hornbill Festival Nagaland - Premium Cultural Experience"
+                                      className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
+                                      loading="eager"
+                                      fetchPriority="high"
+                                    />
+                                    
+                                    {/* Gradient Overlay */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                                    
+                                    {/* Premium Badge */}
+                                    <div className="absolute top-4 left-4 sm:top-6 sm:left-6 flex gap-2">
+                                      <span className="bg-gradient-to-r from-red-600 to-orange-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20">
+                                        🎭 PREMIUM EXPERIENCE
+                                      </span>
+                                      <span className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20">
+                                        ⭐ FEATURED TOUR
+                                      </span>
+                                    </div>
+
+                                    {/* Content Overlay */}
+                                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8">
+                                      <div className="max-w-4xl">
+                                        <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 sm:mb-3 drop-shadow-2xl">
+                                          Hornbill Festival Nagaland
+                                        </h3>
+                                        <p className="text-sm sm:text-base md:text-lg text-white/95 mb-3 sm:mb-4 leading-relaxed drop-shadow-lg max-w-3xl">
+                                          Experience Northeast India's most spectacular cultural celebration - the "Festival of Festivals". Witness ancient Naga warrior traditions, traditional dances, indigenous crafts, and fierce competitions set against the stunning Naga Hills backdrop.
+                                        </p>
+                                        
+                                        {/* Quick Info Grid */}
+                                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 md:gap-4 mb-3 sm:mb-4">
+                                          <div className="bg-white/10 backdrop-blur-md rounded-lg p-2 sm:p-3 border border-white/20">
+                                            <div className="flex items-center gap-1.5 sm:gap-2">
+                                              <span className="text-lg sm:text-xl">📅</span>
+                                              <div>
+                                                <div className="text-white/80 text-xs font-medium">Duration</div>
+                                                <div className="text-white font-bold text-xs sm:text-sm">7 Days</div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div className="bg-white/10 backdrop-blur-md rounded-lg p-2 sm:p-3 border border-white/20">
+                                            <div className="flex items-center gap-1.5 sm:gap-2">
+                                              <span className="text-lg sm:text-xl">⭐</span>
+                                              <div>
+                                                <div className="text-white/80 text-xs font-medium">Difficulty</div>
+                                                <div className="text-white font-bold text-xs sm:text-sm">Easy</div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div className="bg-white/10 backdrop-blur-md rounded-lg p-2 sm:p-3 border border-white/20">
+                                            <div className="flex items-center gap-1.5 sm:gap-2">
+                                              <span className="text-lg sm:text-xl">🎯</span>
+                                              <div>
+                                                <div className="text-white/80 text-xs font-medium">Category</div>
+                                                <div className="text-white font-bold text-xs sm:text-sm">Cultural</div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div className="bg-white/10 backdrop-blur-md rounded-lg p-2 sm:p-3 border border-white/20">
+                                            <div className="flex items-center gap-1.5 sm:gap-2">
+                                              <span className="text-lg sm:text-xl">💰</span>
+                                              <div>
+                                                <div className="text-white/80 text-xs font-medium">Price</div>
+                                                <div className="text-orange-300 font-bold text-xs sm:text-sm">₹58,500</div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        {/* CTA Button */}
+                                        <div className="flex gap-2 sm:gap-3">
+                                          <Button 
+                                            className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white font-bold px-4 sm:px-6 py-2 sm:py-3 rounded-lg shadow-2xl transform hover:scale-105 transition-all duration-300 text-xs sm:text-sm"
+                                            onClick={() => handlePackageClick({
+                                              id: 999,
+                                              title: "Hornbill Festival Nagaland",
+                                              description: "Experience Northeast India's most spectacular cultural celebration - the 'Festival of Festivals'. Witness ancient Naga warrior traditions, vibrant tribal dances, indigenous handicrafts, folk songs, and fierce traditional competitions set against the stunning backdrop of the Naga Hills during this week-long cultural extravaganza.",
+                                              duration: "7 Days",
+                                              difficulty: "Easy",
+                                              price: "₹58,500",
+                                              image: hornbillFestivalHeroImg,
+                                              images: [hornbillFestivalHeroImg, hornbillFestivalHeroImg, hornbillFestivalHeroImg],
+                                              rating: 5.0,
+                                              category: "cultural",
+                                              location: "Nagaland",
+                                              highlights: [
+                                                "Naga Warrior Traditional Ceremonies",
+                                                "Tribal Dance Performances",
+                                                "Indigenous Handicraft Exhibitions",
+                                                "Traditional Food Festival",
+                                                "Naga Wrestling Championships",
+                                                "Rock Concert & Night Festival",
+                                                "WWII Museum & Kohima War Cemetery",
+                                                "Premium Accommodation Near Festival Grounds",
+                                                "Expert Cultural Guides",
+                                                "All Festival Entry Passes Included"
+                                              ],
+                                              bestSeason: "Dec 1-10",
+                                              exclusive: true
+                                            })}
+                                          >
+                                            🎉 Book Festival Experience
+                                          </Button>
+                                          <a
+                                            href="https://wa.me/918837317070?text=Hi%2C%20I%27m%20interested%20in%20the%20Hornbill%20Festival%20Nagaland%20tour%20package"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                          >
+                                            <Button 
+                                              variant="outline"
+                                              className="bg-white/90 hover:bg-white text-gray-900 font-bold px-4 sm:px-6 py-2 sm:py-3 rounded-lg shadow-xl border-2 border-white/50 transform hover:scale-105 transition-all duration-300 text-xs sm:text-sm"
+                                            >
+                                              💬 WhatsApp Enquiry
+                                            </Button>
+                                          </a>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </CardContent>
+                              </Card>
+                            </div>
+                          )}
+
                           {/* Comprehensive responsive layout with animations and lazy loading */}
                           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-10 mb-6 md:mb-10 lg:mb-14 animate-fade-in">
                             {filteredStatePackages.map((itinerary) => (
