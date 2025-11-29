@@ -187,21 +187,21 @@ const WorkFromHome = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 bg-background">
+      <section className="py-16 bg-gradient-to-b from-background via-accent/10 to-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Why Remote Workers Choose XTSY</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold mb-4 text-foreground">Why Remote Workers Choose XTSY</h2>
+            <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
               Everything you need for productive remote work in the mountains
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+              <Card key={index} className="hover:shadow-2xl transition-all hover:scale-105 animate-fade-in bg-card border-2 border-primary/20" style={{ animationDelay: `${index * 0.1}s` }}>
                 <CardContent className="p-6">
                   <feature.icon className={`h-12 w-12 mb-4 ${feature.color}`} />
-                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-muted-foreground">{feature.description}</p>
+                  <h3 className="text-xl font-semibold mb-2 text-foreground">{feature.title}</h3>
+                  <p className="text-foreground/70">{feature.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -210,11 +210,11 @@ const WorkFromHome = () => {
       </section>
 
       {/* Packages Section */}
-      <section id="packages" className="py-16 bg-muted/30">
+      <section id="packages" className="py-16 bg-accent/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Work From Home Packages</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold mb-4 text-foreground">Work From Home Packages</h2>
+            <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
               Flexible packages designed for remote workers and digital nomads
             </p>
           </div>
@@ -222,13 +222,13 @@ const WorkFromHome = () => {
             {packages.map((pkg) => (
               <Card 
                 key={pkg.duration}
-                className={`relative hover:shadow-2xl transition-all cursor-pointer ${
-                  selectedDuration === pkg.duration ? 'ring-2 ring-primary scale-105' : ''
+                className={`relative hover:shadow-2xl transition-all cursor-pointer bg-card border-2 ${
+                  selectedDuration === pkg.duration ? 'ring-4 ring-primary scale-105 border-primary' : 'border-primary/30 hover:border-primary/60'
                 }`}
                 onClick={() => setSelectedDuration(pkg.duration as any)}
               >
                 {pkg.duration === 'month' && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-semibold">
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                     Most Popular
                   </div>
                 )}
@@ -263,11 +263,11 @@ const WorkFromHome = () => {
       </section>
 
       {/* Amenities Section */}
-      <section className="py-16 bg-background">
+      <section className="py-16 bg-gradient-to-b from-background to-accent/10">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Complete Work From Home Amenities</h2>
-            <p className="text-xl text-muted-foreground">
+            <h2 className="text-4xl font-bold mb-4 text-foreground">Complete Work From Home Amenities</h2>
+            <p className="text-xl text-foreground/80">
               Everything included for your remote work comfort
             </p>
           </div>
@@ -275,11 +275,11 @@ const WorkFromHome = () => {
             {amenities.map((amenity, index) => (
               <div 
                 key={index} 
-                className="flex items-center gap-3 p-4 bg-muted/50 rounded-lg hover:bg-muted transition-colors animate-fade-in"
+                className="flex items-center gap-3 p-4 bg-card border border-primary/20 rounded-lg hover:bg-accent/20 hover:border-primary/40 transition-all hover:scale-105 animate-fade-in"
                 style={{ animationDelay: `${index * 0.05}s` }}
               >
-                <div className="h-2 w-2 rounded-full bg-primary flex-shrink-0" />
-                <span>{amenity}</span>
+                <div className="h-3 w-3 rounded-full bg-primary flex-shrink-0 shadow-lg shadow-primary/50" />
+                <span className="text-foreground">{amenity}</span>
               </div>
             ))}
           </div>
@@ -287,17 +287,17 @@ const WorkFromHome = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-16 bg-muted/30">
+      <section className="py-16 bg-accent/20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Remote Workers Love XTSY</h2>
-            <p className="text-xl text-muted-foreground">
+            <h2 className="text-4xl font-bold mb-4 text-foreground">Remote Workers Love XTSY</h2>
+            <p className="text-xl text-foreground/80">
               Hear from digital nomads who made Shillong their remote office
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+              <Card key={index} className="hover:shadow-2xl transition-all hover:scale-105 animate-fade-in bg-card border-2 border-primary/20" style={{ animationDelay: `${index * 0.1}s` }}>
                 <CardContent className="p-6">
                   <div className="flex mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
@@ -317,12 +317,12 @@ const WorkFromHome = () => {
       </section>
 
       {/* Location & Contact Section */}
-      <section className="py-16 bg-background">
+      <section className="py-16 bg-gradient-to-b from-accent/10 to-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <MapPin className="h-12 w-12 mx-auto mb-4 text-primary" />
-            <h2 className="text-3xl font-bold mb-4">Located in Shillong, Meghalaya</h2>
-            <p className="text-lg text-muted-foreground mb-8">
+            <MapPin className="h-12 w-12 mx-auto mb-4 text-primary drop-shadow-lg" />
+            <h2 className="text-3xl font-bold mb-4 text-foreground">Located in Shillong, Meghalaya</h2>
+            <p className="text-lg text-foreground/80 mb-8">
               The "Scotland of the East" - Perfect climate year-round, vibrant culture, 
               and stunning landscapes for work-life balance.
             </p>
@@ -347,11 +347,11 @@ const WorkFromHome = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 bg-muted/30">
+      <section className="py-16 bg-accent/20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Frequently Asked Questions</h2>
-            <p className="text-xl text-muted-foreground">
+            <h2 className="text-4xl font-bold mb-4 text-foreground">Frequently Asked Questions</h2>
+            <p className="text-xl text-foreground/80">
               Everything you need to know about working remotely from XTSY
             </p>
           </div>
