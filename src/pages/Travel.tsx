@@ -730,12 +730,12 @@ const Travel = () => {
                                     {/* Content Overlay */}
                                     <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8">
                                       <div className="max-w-4xl">
-                                        <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 sm:mb-3 drop-shadow-2xl">Hornbill Festival Nagaland
+                                        <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 sm:mb-3 drop-shadow-2xl lg:text-4xl">Hornbill Festival Nagaland
 
 
 
                                 </h3>
-                                        <p className="text-sm sm:text-base md:text-lg text-white/95 mb-3 sm:mb-4 leading-relaxed drop-shadow-lg max-w-3xl">Experience Northeast India's most spectacular cu</p>
+                                        <p className="text-sm sm:text-base md:text-lg text-white/95 mb-3 sm:mb-4 leading-relaxed drop-shadow-lg max-w-3xl">Experience Northeast India's most spectacular like never before</p>
                                         
                                         {/* Quick Info Grid */}
                                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 md:gap-4 mb-3 sm:mb-4">
