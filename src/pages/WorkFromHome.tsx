@@ -191,7 +191,7 @@ const WorkFromHome = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4 text-foreground">Why Remote Workers Choose XTSY</h2>
-            <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
+            <p className="text-xl text-foreground max-w-2xl mx-auto">
               Everything you need for productive remote work in the mountains
             </p>
           </div>
@@ -201,7 +201,7 @@ const WorkFromHome = () => {
                 <CardContent className="p-6">
                   <feature.icon className={`h-12 w-12 mb-4 ${feature.color}`} />
                   <h3 className="text-xl font-semibold mb-2 text-foreground">{feature.title}</h3>
-                  <p className="text-foreground/70">{feature.description}</p>
+                  <p className="text-foreground">{feature.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -214,7 +214,7 @@ const WorkFromHome = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4 text-foreground">Work From Home Packages</h2>
-            <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
+            <p className="text-xl text-foreground max-w-2xl mx-auto">
               Flexible packages designed for remote workers and digital nomads
             </p>
           </div>
@@ -267,7 +267,7 @@ const WorkFromHome = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4 text-foreground">Complete Work From Home Amenities</h2>
-            <p className="text-xl text-foreground/80">
+            <p className="text-xl text-foreground">
               Everything included for your remote work comfort
             </p>
           </div>
@@ -291,7 +291,7 @@ const WorkFromHome = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4 text-foreground">Remote Workers Love XTSY</h2>
-            <p className="text-xl text-foreground/80">
+            <p className="text-xl text-foreground">
               Hear from digital nomads who made Shillong their remote office
             </p>
           </div>
@@ -304,10 +304,10 @@ const WorkFromHome = () => {
                       <span key={i} className="text-yellow-500">★</span>
                     ))}
                   </div>
-                  <p className="text-muted-foreground mb-4 italic">"{testimonial.content}"</p>
+                  <p className="text-foreground mb-4 italic">"{testimonial.content}"</p>
                   <div className="border-t pt-4">
                     <div className="font-semibold">{testimonial.name}</div>
-                    <div className="text-sm text-muted-foreground">{testimonial.role}</div>
+                    <div className="text-sm text-foreground">{testimonial.role}</div>
                   </div>
                 </CardContent>
               </Card>
@@ -322,7 +322,7 @@ const WorkFromHome = () => {
           <div className="max-w-4xl mx-auto text-center">
             <MapPin className="h-12 w-12 mx-auto mb-4 text-primary drop-shadow-lg" />
             <h2 className="text-3xl font-bold mb-4 text-foreground">Located in Shillong, Meghalaya</h2>
-            <p className="text-lg text-foreground/80 mb-8">
+            <p className="text-lg text-foreground mb-8">
               The "Scotland of the East" - Perfect climate year-round, vibrant culture, 
               and stunning landscapes for work-life balance.
             </p>
@@ -351,7 +351,7 @@ const WorkFromHome = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4 text-foreground">Frequently Asked Questions</h2>
-            <p className="text-xl text-foreground/80">
+            <p className="text-xl text-foreground">
               Everything you need to know about working remotely from XTSY
             </p>
           </div>
@@ -361,7 +361,7 @@ const WorkFromHome = () => {
                 <AccordionTrigger className="text-left text-lg font-semibold">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
+                <AccordionContent className="text-foreground">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
@@ -374,7 +374,7 @@ const WorkFromHome = () => {
       <section className="py-16 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-4">Ready to Work From Paradise?</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
+          <p className="text-xl mb-8 max-w-2xl mx-auto">
             Join our community of remote workers and experience the perfect blend of productivity and adventure
           </p>
           <Button 
