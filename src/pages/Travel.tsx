@@ -730,7 +730,7 @@ const Travel = () => {
                                     {/* Content Overlay */}
                                     <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8">
                                       <div className="max-w-4xl">
-                                        <h3 className="sm:text-3xl font-bold text-white mb-2 sm:mb-3 drop-shadow-2xl lg:text-4xl text-xs text-center md:text-2xl">
+                                        <h3 className="sm:text-3xl font-bold text-white mb-2 sm:mb-3 drop-shadow-2xl lg:text-4xl text-xs md:text-2xl text-left">
 
 
 
