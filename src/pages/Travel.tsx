@@ -710,7 +710,7 @@ const Travel = () => {
                           {state === "XTSY Exclusive Tours" && <div className="mb-6 sm:mb-8 md:mb-10 animate-fade-in">
                               <Card className="group overflow-hidden border-2 border-primary/30 hover:border-primary/60 transition-all duration-500 hover:shadow-2xl bg-gradient-to-br from-orange-50 via-red-50 to-amber-50">
                                 <CardContent className="p-0">
-                                  <div className="relative h-64 sm:h-72 md:h-80 lg:h-96 overflow-hidden">
+                                  <div className="relative h-48 sm:h-56 md:h-72 lg:h-80 xl:h-96 overflow-hidden">
                                     {/* Hero Image */}
                                     <img src={hornbillFestivalHeroImg} alt="Hornbill Festival Nagaland - Premium Cultural Experience" className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" loading="eager" fetchPriority="high" />
                                     
@@ -728,70 +728,58 @@ const Travel = () => {
                                     </div>
 
                                     {/* Content Overlay */}
-                                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8">
-                                      <div className="max-w-4xl">
-                                        <h3 className="sm:text-3xl font-bold text-white mb-2 sm:mb-3 drop-shadow-2xl lg:text-4xl text-xs md:text-2xl text-left">
-
-
-
-
-
-
-
-
-
-
-
-
-
-Hornbill Festival 
-Nagaland</h3>
-                                        <p className="text-sm sm:text-base md:text-lg text-white/95 mb-3 sm:mb-4 leading-relaxed drop-shadow-lg max-w-3xl">
-                                </p>
+                                    <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 md:p-6 lg:p-8">
+                                      <div className="max-w-6xl">
+                                        <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-2 sm:mb-3 md:mb-4 drop-shadow-2xl leading-tight">
+                                          Hornbill Festival Nagaland
+                                        </h3>
+                                        <p className="text-xs sm:text-sm md:text-base lg:text-lg text-white/95 mb-3 sm:mb-4 md:mb-5 leading-relaxed drop-shadow-lg max-w-4xl">
+                                          Experience Northeast India's most spectacular cultural celebration - the 'Festival of Festivals' showcasing vibrant Naga traditions.
+                                        </p>
                                         
                                         {/* Quick Info Grid */}
-                                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 md:gap-4 mb-3 sm:mb-4">
-                                          <div className="bg-white/10 backdrop-blur-md rounded-lg p-2 sm:p-3 border border-white/20">
+                                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-2.5 md:gap-3 lg:gap-4 mb-3 sm:mb-4 md:mb-5">
+                                          <div className="bg-white/10 backdrop-blur-md rounded-lg p-2 sm:p-2.5 md:p-3 border border-white/20 hover:bg-white/20 transition-all duration-300">
                                             <div className="flex items-center gap-1.5 sm:gap-2">
-                                              <span className="text-lg sm:text-xl">📅</span>
-                                              <div>
-                                                <div className="text-white/80 text-xs font-medium">Duration</div>
-                                                <div className="text-white font-bold text-xs sm:text-sm">7 Days</div>
+                                              <span className="text-base sm:text-lg md:text-xl flex-shrink-0">📅</span>
+                                              <div className="min-w-0">
+                                                <div className="text-white/80 text-[10px] sm:text-xs font-medium">Duration</div>
+                                                <div className="text-white font-bold text-xs sm:text-sm md:text-base truncate">7 Days</div>
                                               </div>
                                             </div>
                                           </div>
-                                          <div className="bg-white/10 backdrop-blur-md rounded-lg p-2 sm:p-3 border border-white/20">
+                                          <div className="bg-white/10 backdrop-blur-md rounded-lg p-2 sm:p-2.5 md:p-3 border border-white/20 hover:bg-white/20 transition-all duration-300">
                                             <div className="flex items-center gap-1.5 sm:gap-2">
-                                              <span className="text-lg sm:text-xl">⭐</span>
-                                              <div>
-                                                <div className="text-white/80 text-xs font-medium">Difficulty</div>
-                                                <div className="text-white font-bold text-xs sm:text-sm">Easy</div>
+                                              <span className="text-base sm:text-lg md:text-xl flex-shrink-0">⭐</span>
+                                              <div className="min-w-0">
+                                                <div className="text-white/80 text-[10px] sm:text-xs font-medium">Difficulty</div>
+                                                <div className="text-white font-bold text-xs sm:text-sm md:text-base truncate">Easy</div>
                                               </div>
                                             </div>
                                           </div>
-                                          <div className="bg-white/10 backdrop-blur-md rounded-lg p-2 sm:p-3 border border-white/20">
+                                          <div className="bg-white/10 backdrop-blur-md rounded-lg p-2 sm:p-2.5 md:p-3 border border-white/20 hover:bg-white/20 transition-all duration-300">
                                             <div className="flex items-center gap-1.5 sm:gap-2">
-                                              <span className="text-lg sm:text-xl">🎯</span>
-                                              <div>
-                                                <div className="text-white/80 text-xs font-medium">Category</div>
-                                                <div className="text-white font-bold text-xs sm:text-sm">Cultural</div>
+                                              <span className="text-base sm:text-lg md:text-xl flex-shrink-0">🎯</span>
+                                              <div className="min-w-0">
+                                                <div className="text-white/80 text-[10px] sm:text-xs font-medium">Category</div>
+                                                <div className="text-white font-bold text-xs sm:text-sm md:text-base truncate">Cultural</div>
                                               </div>
                                             </div>
                                           </div>
-                                          <div className="bg-white/10 backdrop-blur-md rounded-lg p-2 sm:p-3 border border-white/20">
+                                          <div className="bg-white/10 backdrop-blur-md rounded-lg p-2 sm:p-2.5 md:p-3 border border-white/20 hover:bg-white/20 transition-all duration-300">
                                             <div className="flex items-center gap-1.5 sm:gap-2">
-                                              <span className="text-lg sm:text-xl">💰</span>
-                                              <div>
-                                                <div className="text-white/80 text-xs font-medium">Price</div>
-                                                <div className="text-orange-300 font-bold text-xs sm:text-sm">₹58,500/-</div>
+                                              <span className="text-base sm:text-lg md:text-xl flex-shrink-0">💰</span>
+                                              <div className="min-w-0">
+                                                <div className="text-white/80 text-[10px] sm:text-xs font-medium">Price</div>
+                                                <div className="text-orange-300 font-bold text-xs sm:text-sm md:text-base truncate">₹58,500/-</div>
                                               </div>
                                             </div>
                                           </div>
                                         </div>
 
-                                        {/* CTA Button */}
-                                        <div className="flex gap-2 sm:gap-3">
-                                          <Button className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white font-bold px-4 sm:px-6 py-2 sm:py-3 rounded-lg shadow-2xl transform hover:scale-105 transition-all duration-300 text-xs sm:text-sm" onClick={() => handlePackageClick({
+                                        {/* CTA Buttons */}
+                                        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+                                          <Button className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white font-bold px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg shadow-2xl transform hover:scale-105 transition-all duration-300 text-xs sm:text-sm md:text-base flex-1 sm:flex-initial" onClick={() => handlePackageClick({
                                     id: 999,
                                     title: "Hornbill Festival Nagaland",
                                     description: "Experience Northeast India's most spectacular cultural celebration - the 'Festival of Festivals'. Witness ancient Naga warrior traditions, vibrant tribal dances, indigenous handicrafts, folk songs, and fierce traditional competitions set against the stunning backdrop of the Naga Hills during this week-long cultural extravaganza.",
