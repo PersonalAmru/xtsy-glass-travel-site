@@ -710,7 +710,7 @@ const Travel = () => {
                           {state === "XTSY Exclusive Tours" && <div className="mb-6 sm:mb-8 md:mb-10 animate-fade-in">
                               <Card className="group overflow-hidden border-2 border-primary/30 hover:border-primary/60 transition-all duration-500 hover:shadow-2xl bg-gradient-to-br from-orange-50 via-red-50 to-amber-50">
                                 <CardContent className="p-0">
-                                  <div className="relative h-48 sm:h-56 md:h-72 lg:h-80 xl:h-96 overflow-hidden">
+                                  <div className="relative h-[420px] sm:h-[480px] md:h-[520px] lg:h-[560px] xl:h-[600px] overflow-hidden">
                                     {/* Hero Image */}
                                     <img src={hornbillFestivalHeroImg} alt="Hornbill Festival Nagaland - Premium Cultural Experience" className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" loading="eager" fetchPriority="high" />
                                     
@@ -718,68 +718,68 @@ const Travel = () => {
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                                     
                                     {/* Premium Badge */}
-                                    <div className="absolute top-4 left-4 sm:top-6 sm:left-6 flex gap-2">
-                                      <span className="bg-gradient-to-r from-red-600 to-orange-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20">
-                                        🎭 PREMIUM EXPERIENCE
+                                    <div className="absolute top-3 left-3 sm:top-4 sm:left-4 md:top-6 md:left-6 flex flex-col sm:flex-row gap-1.5 sm:gap-2">
+                                      <span className="bg-gradient-to-r from-red-600 to-orange-600 text-white px-2.5 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full text-[10px] sm:text-xs md:text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20 whitespace-nowrap">
+                                        🎭 PREMIUM
                                       </span>
-                                      <span className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20">
-                                        ⭐ FEATURED TOUR
+                                      <span className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-2.5 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full text-[10px] sm:text-xs md:text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20 whitespace-nowrap">
+                                        ⭐ FEATURED
                                       </span>
                                     </div>
 
                                     {/* Content Overlay */}
-                                    <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 md:p-6 lg:p-8">
-                                      <div className="max-w-6xl">
-                                        <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-2 sm:mb-3 md:mb-4 drop-shadow-2xl leading-tight">
+                                    <div className="absolute bottom-0 left-0 right-0 p-2.5 sm:p-4 md:p-5 lg:p-8">
+                                      <div className="max-w-6xl space-y-2 sm:space-y-2.5 md:space-y-3 lg:space-y-4">
+                                        <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white drop-shadow-2xl leading-tight">
                                           Hornbill Festival Nagaland
                                         </h3>
-                                        <p className="text-xs sm:text-sm md:text-base lg:text-lg text-white/95 mb-3 sm:mb-4 md:mb-5 leading-relaxed drop-shadow-lg max-w-4xl">
-                                          Experience Northeast India's most spectacular cultural celebration - the 'Festival of Festivals' showcasing vibrant Naga traditions.
+                                        <p className="text-[11px] sm:text-xs md:text-sm lg:text-base text-white/95 leading-snug sm:leading-relaxed drop-shadow-lg max-w-4xl hidden sm:block">
+                                          Experience Northeast India's most spectacular cultural celebration - the 'Festival of Festivals'.
                                         </p>
                                         
                                         {/* Quick Info Grid */}
-                                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-2.5 md:gap-3 lg:gap-4 mb-3 sm:mb-4 md:mb-5">
-                                          <div className="bg-white/10 backdrop-blur-md rounded-lg p-2 sm:p-2.5 md:p-3 border border-white/20 hover:bg-white/20 transition-all duration-300">
-                                            <div className="flex items-center gap-1.5 sm:gap-2">
-                                              <span className="text-base sm:text-lg md:text-xl flex-shrink-0">📅</span>
+                                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-1.5 sm:gap-2 md:gap-2.5 lg:gap-3">
+                                          <div className="bg-white/10 backdrop-blur-md rounded-md sm:rounded-lg p-1.5 sm:p-2 md:p-2.5 border border-white/20 hover:bg-white/20 transition-all duration-300">
+                                            <div className="flex items-center gap-1 sm:gap-1.5">
+                                              <span className="text-sm sm:text-base md:text-lg flex-shrink-0">📅</span>
                                               <div className="min-w-0">
-                                                <div className="text-white/80 text-[10px] sm:text-xs font-medium">Duration</div>
-                                                <div className="text-white font-bold text-xs sm:text-sm md:text-base truncate">7 Days</div>
+                                                <div className="text-white/80 text-[9px] sm:text-[10px] md:text-xs font-medium leading-tight">Duration</div>
+                                                <div className="text-white font-bold text-[11px] sm:text-xs md:text-sm truncate">7 Days</div>
                                               </div>
                                             </div>
                                           </div>
-                                          <div className="bg-white/10 backdrop-blur-md rounded-lg p-2 sm:p-2.5 md:p-3 border border-white/20 hover:bg-white/20 transition-all duration-300">
-                                            <div className="flex items-center gap-1.5 sm:gap-2">
-                                              <span className="text-base sm:text-lg md:text-xl flex-shrink-0">⭐</span>
+                                          <div className="bg-white/10 backdrop-blur-md rounded-md sm:rounded-lg p-1.5 sm:p-2 md:p-2.5 border border-white/20 hover:bg-white/20 transition-all duration-300">
+                                            <div className="flex items-center gap-1 sm:gap-1.5">
+                                              <span className="text-sm sm:text-base md:text-lg flex-shrink-0">⭐</span>
                                               <div className="min-w-0">
-                                                <div className="text-white/80 text-[10px] sm:text-xs font-medium">Difficulty</div>
-                                                <div className="text-white font-bold text-xs sm:text-sm md:text-base truncate">Easy</div>
+                                                <div className="text-white/80 text-[9px] sm:text-[10px] md:text-xs font-medium leading-tight">Difficulty</div>
+                                                <div className="text-white font-bold text-[11px] sm:text-xs md:text-sm truncate">Easy</div>
                                               </div>
                                             </div>
                                           </div>
-                                          <div className="bg-white/10 backdrop-blur-md rounded-lg p-2 sm:p-2.5 md:p-3 border border-white/20 hover:bg-white/20 transition-all duration-300">
-                                            <div className="flex items-center gap-1.5 sm:gap-2">
-                                              <span className="text-base sm:text-lg md:text-xl flex-shrink-0">🎯</span>
+                                          <div className="bg-white/10 backdrop-blur-md rounded-md sm:rounded-lg p-1.5 sm:p-2 md:p-2.5 border border-white/20 hover:bg-white/20 transition-all duration-300">
+                                            <div className="flex items-center gap-1 sm:gap-1.5">
+                                              <span className="text-sm sm:text-base md:text-lg flex-shrink-0">🎯</span>
                                               <div className="min-w-0">
-                                                <div className="text-white/80 text-[10px] sm:text-xs font-medium">Category</div>
-                                                <div className="text-white font-bold text-xs sm:text-sm md:text-base truncate">Cultural</div>
+                                                <div className="text-white/80 text-[9px] sm:text-[10px] md:text-xs font-medium leading-tight">Category</div>
+                                                <div className="text-white font-bold text-[11px] sm:text-xs md:text-sm truncate">Cultural</div>
                                               </div>
                                             </div>
                                           </div>
-                                          <div className="bg-white/10 backdrop-blur-md rounded-lg p-2 sm:p-2.5 md:p-3 border border-white/20 hover:bg-white/20 transition-all duration-300">
-                                            <div className="flex items-center gap-1.5 sm:gap-2">
-                                              <span className="text-base sm:text-lg md:text-xl flex-shrink-0">💰</span>
+                                          <div className="bg-white/10 backdrop-blur-md rounded-md sm:rounded-lg p-1.5 sm:p-2 md:p-2.5 border border-white/20 hover:bg-white/20 transition-all duration-300">
+                                            <div className="flex items-center gap-1 sm:gap-1.5">
+                                              <span className="text-sm sm:text-base md:text-lg flex-shrink-0">💰</span>
                                               <div className="min-w-0">
-                                                <div className="text-white/80 text-[10px] sm:text-xs font-medium">Price</div>
-                                                <div className="text-orange-300 font-bold text-xs sm:text-sm md:text-base truncate">₹58,500/-</div>
+                                                <div className="text-white/80 text-[9px] sm:text-[10px] md:text-xs font-medium leading-tight">Price</div>
+                                                <div className="text-orange-300 font-bold text-[11px] sm:text-xs md:text-sm truncate">₹58,500/-</div>
                                               </div>
                                             </div>
                                           </div>
                                         </div>
 
                                         {/* CTA Buttons */}
-                                        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
-                                          <Button className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white font-bold px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg shadow-2xl transform hover:scale-105 transition-all duration-300 text-xs sm:text-sm md:text-base flex-1 sm:flex-initial" onClick={() => handlePackageClick({
+                                        <div className="flex flex-col sm:flex-row gap-1.5 sm:gap-2 md:gap-3">
+                                          <Button className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white font-bold px-3 sm:px-4 md:px-5 lg:px-6 py-1.5 sm:py-2 md:py-2.5 rounded-md sm:rounded-lg shadow-2xl transform hover:scale-105 transition-all duration-300 text-[11px] sm:text-xs md:text-sm lg:text-base flex-1 sm:flex-initial" onClick={() => handlePackageClick({
                                     id: 999,
                                     title: "Hornbill Festival Nagaland",
                                     description: "Experience Northeast India's most spectacular cultural celebration - the 'Festival of Festivals'. Witness ancient Naga warrior traditions, vibrant tribal dances, indigenous handicrafts, folk songs, and fierce traditional competitions set against the stunning backdrop of the Naga Hills during this week-long cultural extravaganza.",
