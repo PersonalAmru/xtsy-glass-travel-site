@@ -102,10 +102,7 @@ const internationalTravelImage = "";
 const asiaImage = "";
 const merchandiseImage = "";
 const Travel = () => {
-  const {
-    formatPrice,
-    currency
-  } = useApp();
+  const { formatPrice, currency } = useApp();
   const location = useLocation();
   const [activeTab, setActiveTab] = useState<'domestic' | 'international'>('domestic');
   const [selectedPackage, setSelectedPackage] = useState<any>(null);
@@ -1007,7 +1004,7 @@ const Travel = () => {
                                 <div className="mt-4 pt-4 border-t border-amber-200">
                                   <div className="flex items-center justify-between text-xs text-gray-600">
                                     <span className="flex items-center gap-1">
-                                      <span>Bookings Open</span> Next Departure: <strong className="text-gray-900">March 2025</strong>
+                                      <span>📅</span> Next Departure: <strong className="text-gray-900">March 2025</strong>
                                     </span>
                                     <span className="flex items-center gap-1">
                                       <span>👥</span> Limited to <strong className="text-amber-600">12 Riders</strong>
