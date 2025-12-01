@@ -283,15 +283,15 @@ const WorkFromHome = () => {
       </section>
 
       {/* Testimonials Section - Real verified reviews */}
-      <section className="py-20 bg-gradient-to-b from-accent/5 to-background">
+      <section className="py-20 bg-gradient-to-b from-primary/20 via-primary/10 to-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-bold mb-6 text-foreground" style={{
+            <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg" style={{
             letterSpacing: '-0.02em'
           }}>
               Remote Workers Love XTSY
             </h2>
-            <p className="text-xl md:text-2xl text-muted-foreground font-light">
+            <p className="text-xl md:text-2xl text-white/90 font-light">
               Hear from digital nomads who made Shillong their remote office
             </p>
           </div>
@@ -313,13 +313,13 @@ const WorkFromHome = () => {
                   </div>
                   
                   {/* Review content */}
-                  <p className="text-foreground mb-6 leading-relaxed">"{testimonial.content}"</p>
+                  <p className="text-white/90 mb-6 leading-relaxed">"{testimonial.content}"</p>
                   
                   {/* Author info */}
                   <div className="border-t border-primary/10 pt-4 flex items-center justify-between">
                     <div>
-                      <div className="font-semibold text-foreground text-lg">{testimonial.name}</div>
-                      <div className="text-sm text-muted-foreground">{testimonial.role}</div>
+                      <div className="font-semibold text-white text-lg">{testimonial.name}</div>
+                      <div className="text-sm text-white/70">{testimonial.role}</div>
                     </div>
                     <div className="text-xs text-primary font-medium px-2 py-1 rounded bg-primary/5">
                       {testimonial.source}
