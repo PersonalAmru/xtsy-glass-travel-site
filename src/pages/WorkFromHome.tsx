@@ -5,7 +5,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useApp } from "@/contexts/AppContext";
+
 const WorkFromHome = () => {
+  const { formatPrice, currency } = useApp();
   const [selectedDuration, setSelectedDuration] = useState<'week' | 'month' | 'quarter'>('month');
   const features = [{
     icon: Wifi,
@@ -38,23 +41,40 @@ const WorkFromHome = () => {
     description: "Work on your schedule with extended hours access",
     color: "text-indigo-500"
   }];
+  // Base prices in INR
+  const basePrices = {
+    week: 7499,
+    month: 22999,
+    quarter: 59999
+  };
+
+  // Calculate prices with currency conversion
+  const getPackagePrice = (basePrice: number) => {
+    return formatPrice(basePrice);
+  };
+
+  const getPerDayPrice = (basePrice: number, days: number) => {
+    const pricePerDay = Math.round(basePrice / days);
+    return `${formatPrice(pricePerDay)}/day`;
+  };
+
   const packages = [{
     duration: "week",
     label: "Weekly Package",
-    price: "₹7,499",
-    perDay: "₹1,071/day",
+    price: getPackagePrice(basePrices.week),
+    perDay: getPerDayPrice(basePrices.week, 7),
     benefits: ["7 nights accommodation", "Unlimited WiFi", "Co-working access", "Breakfast included"]
   }, {
     duration: "month",
     label: "Monthly Package",
-    price: "₹22,999",
-    perDay: "₹767/day",
+    price: getPackagePrice(basePrices.month),
+    perDay: getPerDayPrice(basePrices.month, 30),
     benefits: ["30 nights accommodation", "Unlimited WiFi", "Private workspace", "All meals included", "Laundry service"]
   }, {
     duration: "quarter",
     label: "Quarterly Package",
-    price: "₹59,999",
-    perDay: "₹667/day",
+    price: getPackagePrice(basePrices.quarter),
+    perDay: getPerDayPrice(basePrices.quarter, 90),
     benefits: ["90 nights accommodation", "Unlimited WiFi", "Dedicated desk", "All meals included", "Priority support", "Storage space"]
   }];
   const amenities = ["High-speed fiber internet (100+ Mbps)", "Dedicated co-working spaces", "Private meeting rooms", "24/7 power backup", "Ergonomic workstations", "Printing & scanning facilities", "Mountain view workspaces", "Coffee & tea all day", "Weekly networking events", "Laundry service", "Daily housekeeping", "Secure storage lockers"];

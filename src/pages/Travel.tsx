@@ -14,6 +14,7 @@ import { TourPricingService } from "@/utils/tourPricingService";
 import UnifiedImage from "@/components/UnifiedImage"; // Updated to UnifiedImage
 import incredibleIndiaLogo from "@/assets/incredible-india-logo.png";
 import reHimalayanNepalExpedition from "@/assets/re-himalayan-expedition-cover.jpg";
+import { useApp } from "@/contexts/AppContext";
 
 // Import images for tour packages
 import meghalayaBiodiversityAuthenticImg from "@/assets/meghalaya-biodiversity-authentic.jpg";
@@ -101,12 +102,18 @@ const internationalTravelImage = "";
 const asiaImage = "";
 const merchandiseImage = "";
 const Travel = () => {
+  const { formatPrice, currency } = useApp();
   const location = useLocation();
   const [activeTab, setActiveTab] = useState<'domestic' | 'international'>('domestic');
   const [selectedPackage, setSelectedPackage] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [locationFilter, setLocationFilter] = useState("all");
+
+  // Base prices in INR for international tours
+  const THAILAND_BASE_PRICE = 78000;
+  const VIETNAM_BASE_PRICE = 88000;
+  const HORNBILL_BASE_PRICE = 58500;
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const tab = urlParams.get('tab');
@@ -771,7 +778,7 @@ const Travel = () => {
                                               <span className="text-sm sm:text-base md:text-lg flex-shrink-0">💰</span>
                                               <div className="min-w-0">
                                                 <div className="text-white/80 text-[9px] sm:text-[10px] md:text-xs font-medium leading-tight">Price</div>
-                                                <div className="text-orange-300 font-bold text-[11px] sm:text-xs md:text-sm truncate">₹58,500/- <span className="text-white/70 text-[9px] sm:text-[10px]">pp</span></div>
+                                                <div className="text-orange-300 font-bold text-[11px] sm:text-xs md:text-sm truncate">{formatPrice(HORNBILL_BASE_PRICE)}/- <span className="text-white/70 text-[9px] sm:text-[10px]">pp</span></div>
                                               </div>
                                             </div>
                                           </div>
@@ -785,7 +792,7 @@ const Travel = () => {
                                     description: "Experience Northeast India's most spectacular cultural celebration - the 'Festival of Festivals'. Witness ancient Naga warrior traditions, vibrant tribal dances, indigenous handicrafts, folk songs, and fierce traditional competitions set against the stunning backdrop of the Naga Hills during this week-long cultural extravaganza.",
                                     duration: "7 Days",
                                     difficulty: "Easy",
-                                    price: "₹58,500",
+                                    price: formatPrice(HORNBILL_BASE_PRICE),
                                     image: hornbillFestivalHeroImg,
                                     images: [hornbillFestivalHeroImg, hornbillFestivalHeroImg, hornbillFestivalHeroImg],
                                     rating: 5.0,
@@ -1074,7 +1081,7 @@ const Travel = () => {
                                     <span className="text-xl">💰</span>
                                     <div>
                                       <div className="font-semibold text-gray-900">Starting From</div>
-                                      <div className="text-pink-600 font-bold">₹78,000 <span className="text-xs text-gray-600 font-normal">per person</span></div>
+                                      <div className="text-pink-600 font-bold">{formatPrice(THAILAND_BASE_PRICE)} <span className="text-xs text-gray-600 font-normal">per person</span></div>
                                     </div>
                                   </div>
                                 </div>
@@ -1238,7 +1245,7 @@ const Travel = () => {
                                     <span className="text-xl">💰</span>
                                     <div>
                                       <div className="font-semibold text-gray-900">Starting From</div>
-                                      <div className="text-emerald-600 font-bold">₹88,000 <span className="text-xs text-gray-600 font-normal">per person</span></div>
+                                      <div className="text-emerald-600 font-bold">{formatPrice(VIETNAM_BASE_PRICE)} <span className="text-xs text-gray-600 font-normal">per person</span></div>
                                     </div>
                                   </div>
                                 </div>
