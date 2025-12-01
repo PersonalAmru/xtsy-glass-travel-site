@@ -172,12 +172,6 @@ const WorkFromHome = () => {
                   <div className="text-xs md:text-sm text-white/80 font-light">Power Backup</div>
                 </div>
                 <div className="animate-fade-in" style={{
-                animationDelay: "0.55s"
-              }}>
-                  <div className="text-2xl md:text-3xl font-bold mb-1">50+ Nomads</div>
-                  <div className="text-xs md:text-sm text-white/80 font-light">Hosted</div>
-                </div>
-                <div className="animate-fade-in" style={{
                 animationDelay: "0.6s"
               }}>
                   <div className="text-2xl md:text-3xl font-bold mb-1">4.9★</div>
