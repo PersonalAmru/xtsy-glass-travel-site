@@ -158,7 +158,7 @@ const WorkFromHome = () => {
         <div className="absolute bottom-8 left-0 right-0 z-20">
           <div className="container mx-auto px-4">
             <div className="backdrop-blur-xl bg-white/10 rounded-2xl p-4 border border-white/20 shadow-2xl max-w-4xl mx-auto">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-white">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-center text-white justify-items-center">
                 <div className="animate-fade-in" style={{
                 animationDelay: "0.45s"
               }}>
