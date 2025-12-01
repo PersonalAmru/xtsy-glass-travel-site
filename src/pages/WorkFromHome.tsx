@@ -140,8 +140,7 @@ const WorkFromHome = () => {
           <div className="max-w-5xl mx-auto">
             <h1 className="text-6xl md:text-8xl font-bold mb-6 animate-fade-in text-white drop-shadow-2xl" style={{
             letterSpacing: '-0.02em'
-          }}>Work From the 
-Meghalaya</h1>
+          }}>Work From Meghalaya</h1>
             <p className="text-2xl md:text-4xl mb-6 max-w-3xl mx-auto animate-fade-in text-white/95 font-light" style={{
             animationDelay: "0.15s",
             letterSpacing: '-0.01em'
