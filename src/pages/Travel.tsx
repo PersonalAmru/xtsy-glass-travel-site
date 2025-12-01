@@ -771,7 +771,7 @@ const Travel = () => {
                                               <span className="text-sm sm:text-base md:text-lg flex-shrink-0">💰</span>
                                               <div className="min-w-0">
                                                 <div className="text-white/80 text-[9px] sm:text-[10px] md:text-xs font-medium leading-tight">Price</div>
-                                                <div className="text-orange-300 font-bold text-[11px] sm:text-xs md:text-sm truncate">₹58,500/-</div>
+                                                <div className="text-orange-300 font-bold text-[11px] sm:text-xs md:text-sm truncate">₹58,500/- <span className="text-white/70 text-[9px] sm:text-[10px]">pp</span></div>
                                               </div>
                                             </div>
                                           </div>
@@ -906,7 +906,7 @@ const Travel = () => {
                                     <span className="text-xl">💰</span>
                                     <div>
                                       <div className="font-semibold text-gray-900">Starting From</div>
-                                      <div className="text-amber-600 font-bold">₹1,85,000</div>
+                                      <div className="text-amber-600 font-bold">₹1,85,000 <span className="text-xs text-gray-600 font-normal">per person</span></div>
                                     </div>
                                   </div>
                                 </div>
@@ -1074,7 +1074,7 @@ const Travel = () => {
                                     <span className="text-xl">💰</span>
                                     <div>
                                       <div className="font-semibold text-gray-900">Starting From</div>
-                                      <div className="text-pink-600 font-bold">₹78,000</div>
+                                      <div className="text-pink-600 font-bold">₹78,000 <span className="text-xs text-gray-600 font-normal">per person</span></div>
                                     </div>
                                   </div>
                                 </div>
@@ -1238,7 +1238,7 @@ const Travel = () => {
                                     <span className="text-xl">💰</span>
                                     <div>
                                       <div className="font-semibold text-gray-900">Starting From</div>
-                                      <div className="text-emerald-600 font-bold">₹88,000</div>
+                                      <div className="text-emerald-600 font-bold">₹88,000 <span className="text-xs text-gray-600 font-normal">per person</span></div>
                                     </div>
                                   </div>
                                 </div>
