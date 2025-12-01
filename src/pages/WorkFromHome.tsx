@@ -283,7 +283,7 @@ const WorkFromHome = () => {
       </section>
 
       {/* Testimonials Section - Real verified reviews */}
-      <section className="py-20 bg-gradient-to-b from-primary/20 via-primary/10 to-background">
+      <section className="py-20 bg-gradient-to-b from-gray-800/40 via-gray-900/30 to-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg" style={{
