@@ -1074,7 +1074,7 @@ const Travel = () => {
                                     <span className="text-xl">💰</span>
                                     <div>
                                       <div className="font-semibold text-gray-900">Starting From</div>
-                                      <div className="text-pink-600 font-bold">₹45,000</div>
+                                      <div className="text-pink-600 font-bold">₹78,000</div>
                                     </div>
                                   </div>
                                 </div>
@@ -1238,7 +1238,7 @@ const Travel = () => {
                                     <span className="text-xl">💰</span>
                                     <div>
                                       <div className="font-semibold text-gray-900">Starting From</div>
-                                      <div className="text-emerald-600 font-bold">₹52,000</div>
+                                      <div className="text-emerald-600 font-bold">₹88,000</div>
                                     </div>
                                   </div>
                                 </div>
