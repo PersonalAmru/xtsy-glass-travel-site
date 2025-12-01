@@ -353,7 +353,7 @@ const WorkFromHome = () => {
                   <Phone className="mr-2 h-5 w-5" />
                   Contact Us
                 </Button>
-                <Button size="lg" variant="outline" className="rounded-full px-8 py-6 text-lg font-medium border-2 transition-all duration-300" onClick={() => window.open('https://www.google.com/maps/place/XTSY+Travellers+Hostel', '_blank')}>
+                <Button size="lg" variant="outline" className="rounded-full px-8 py-6 text-lg font-medium border-2" onClick={() => window.open('https://www.google.com/maps/place/XTSY+Travellers+Hostel', '_blank')}>
                   View Location
                 </Button>
               </div>
