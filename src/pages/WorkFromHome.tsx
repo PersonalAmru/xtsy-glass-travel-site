@@ -192,7 +192,7 @@ const WorkFromHome = () => {
                 <div className="animate-fade-in" style={{
                 animationDelay: "0.6s"
               }}>
-                  <div className="text-2xl md:text-3xl font-bold mb-1">4.9★</div>
+                  <div className="text-2xl md:text-3xl font-bold mb-1">4.9</div>
                   <div className="text-xs md:text-sm text-white/80 font-light">Google Rating</div>
                 </div>
               </div>
