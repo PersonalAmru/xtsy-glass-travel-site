@@ -6,9 +6,11 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useApp } from "@/contexts/AppContext";
-
 const WorkFromHome = () => {
-  const { formatPrice, currency } = useApp();
+  const {
+    formatPrice,
+    currency
+  } = useApp();
   const [selectedDuration, setSelectedDuration] = useState<'week' | 'month' | 'quarter'>('month');
   const features = [{
     icon: Wifi,
@@ -52,12 +54,10 @@ const WorkFromHome = () => {
   const getPackagePrice = (basePrice: number) => {
     return formatPrice(basePrice);
   };
-
   const getPerDayPrice = (basePrice: number, days: number) => {
     const pricePerDay = Math.round(basePrice / days);
     return `${formatPrice(pricePerDay)}/day`;
   };
-
   const packages = [{
     duration: "week",
     label: "Weekly Package",
@@ -140,9 +140,8 @@ const WorkFromHome = () => {
           <div className="max-w-5xl mx-auto">
             <h1 className="text-6xl md:text-8xl font-bold mb-6 animate-fade-in text-white drop-shadow-2xl" style={{
             letterSpacing: '-0.02em'
-          }}>
-              Work From the Himalayas
-            </h1>
+          }}>Work From the 
+Meghalaya</h1>
             <p className="text-2xl md:text-4xl mb-6 max-w-3xl mx-auto animate-fade-in text-white/95 font-light" style={{
             animationDelay: "0.15s",
             letterSpacing: '-0.01em'
