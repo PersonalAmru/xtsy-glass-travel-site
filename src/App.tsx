@@ -17,6 +17,7 @@ const LazyPetFriendly = lazy(() => import("./pages/PetFriendly"));
 import { LazyXTSYvsZostel } from "./pages/lazy/LazyXTSYvsZostel";
 import { LazyFemaleTravellers } from "./pages/lazy/LazyFemaleTravellers";
 import { LazyWorkFromHome } from "./pages/lazy/LazyWorkFromHome";
+const AdminLogin = lazy(() => import("./pages/AdminLogin"));
 import BookingFlow from "./pages/BookingFlow";
 import NotFound from "./pages/NotFound";
 import { preloadCriticalResources, optimizeFontLoading, registerServiceWorker } from "./utils/bundleOptimization";
@@ -106,6 +107,11 @@ function App() {
             <Route path="/work-from-home" element={
               <Suspense fallback={<LoadingScreen />}>
                 <LazyWorkFromHome />
+              </Suspense>
+            } />
+            <Route path="/admin-login" element={
+              <Suspense fallback={<LoadingScreen />}>
+                <AdminLogin />
               </Suspense>
             } />
             <Route path="/booking" element={
