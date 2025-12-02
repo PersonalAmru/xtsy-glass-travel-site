@@ -126,20 +126,65 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
 
   // Load saved currency preference and fetch exchange rates (non-blocking)
   useEffect(() => {
-    const savedCurrency = localStorage.getItem('selectedCurrency');
-    
-    if (savedCurrency) {
-      try {
-        const parsedCurrency = JSON.parse(savedCurrency);
-        const matchedCurrency = availableCurrencies.find(c => c.code === parsedCurrency.code) || defaultCurrency;
-        setCurrencyState(matchedCurrency);
-      } catch (error) {
-        console.warn('Failed to parse saved currency:', error);
+    const initializeCurrency = async () => {
+      const savedCurrency = localStorage.getItem('selectedCurrency');
+      const hasManualSelection = localStorage.getItem('hasManualCurrencySelection');
+      
+      if (savedCurrency && hasManualSelection === 'true') {
+        // User has manually selected a currency, respect their choice
+        try {
+          const parsedCurrency = JSON.parse(savedCurrency);
+          const matchedCurrency = availableCurrencies.find(c => c.code === parsedCurrency.code) || defaultCurrency;
+          setCurrencyState(matchedCurrency);
+        } catch (error) {
+          console.warn('Failed to parse saved currency:', error);
+        }
+      } else if (!savedCurrency) {
+        // First visit - auto-detect location and set currency
+        try {
+          const { detectUserLocation } = await import('@/utils/locationDetection');
+          const locationData = await detectUserLocation();
+          
+          // Log anonymized location data (GDPR compliant - only country code)
+          try {
+            await supabase.from('user_location_preferences').insert({
+              country_code: locationData.country,
+              detected_currency: locationData.currency,
+              detected_at: new Date().toISOString()
+            });
+            console.log('Location auto-detected:', locationData.country, '→', locationData.currency);
+          } catch (dbError) {
+            console.warn('Failed to log location preference:', dbError);
+            // Continue even if logging fails
+          }
+          
+          // Set currency based on detected location
+          const detectedCurrency = availableCurrencies.find(c => c.code === locationData.currency);
+          if (detectedCurrency) {
+            setCurrencyState(detectedCurrency);
+            localStorage.setItem('selectedCurrency', JSON.stringify(detectedCurrency));
+            console.log('Currency auto-set to:', locationData.currency);
+          }
+        } catch (error) {
+          console.warn('Auto-detection failed, using default currency:', error);
+          // Fallback to default currency (INR)
+        }
+      } else if (savedCurrency && hasManualSelection !== 'true') {
+        // Currency was set but not manually - load it
+        try {
+          const parsedCurrency = JSON.parse(savedCurrency);
+          const matchedCurrency = availableCurrencies.find(c => c.code === parsedCurrency.code) || defaultCurrency;
+          setCurrencyState(matchedCurrency);
+        } catch (error) {
+          console.warn('Failed to parse saved currency:', error);
+        }
       }
-    }
+      
+      // Mark as initialized
+      setIsInitialized(true);
+    };
     
-    // Mark as initialized immediately (don't block on exchange rates)
-    setIsInitialized(true);
+    initializeCurrency();
     
     // Fetch exchange rates in background (non-blocking)
     fetchExchangeRates();
@@ -162,7 +207,9 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     const updatedCurrency = { ...newCurrency, rate: exchangeRates[newCurrency.code] || newCurrency.rate };
     setCurrencyState(updatedCurrency);
     localStorage.setItem('selectedCurrency', JSON.stringify(updatedCurrency));
-    console.log('Currency updated:', updatedCurrency);
+    // Mark that user has manually selected a currency
+    localStorage.setItem('hasManualCurrencySelection', 'true');
+    console.log('Currency manually updated:', updatedCurrency);
   };
 
   return (
