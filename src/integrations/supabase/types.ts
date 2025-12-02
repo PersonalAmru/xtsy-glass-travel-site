@@ -595,6 +595,30 @@ export type Database = {
         }
         Relationships: []
       }
+      user_location_preferences: {
+        Row: {
+          country_code: string
+          created_at: string
+          detected_at: string
+          detected_currency: string
+          id: string
+        }
+        Insert: {
+          country_code: string
+          created_at?: string
+          detected_at?: string
+          detected_currency: string
+          id?: string
+        }
+        Update: {
+          country_code?: string
+          created_at?: string
+          detected_at?: string
+          detected_currency?: string
+          id?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string
