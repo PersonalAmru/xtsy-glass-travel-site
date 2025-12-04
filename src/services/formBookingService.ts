@@ -1,4 +1,5 @@
 import { supabase } from "@/integrations/supabase/client";
+import { validateWhatsAppBooking } from "@/utils/whatsappBookingValidation";
 
 interface WhatsAppBookingData {
   name: string;
@@ -42,51 +43,83 @@ interface TourBookingData {
   basePrice: number;
 }
 
-// Save WhatsApp booking form data
+// Save WhatsApp booking using secure RPC function
 export async function saveWhatsAppBooking(data: WhatsAppBookingData) {
   try {
-    // Generate a unique booking ID
-    const bookingId = `WA-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-    
-    console.log('Attempting to save booking:', { bookingId, data });
-    
-    const { data: booking, error } = await supabase
-      .from('bookings')
-      .insert({
-        booking_id: bookingId,
-        guest_name: data.name || 'Guest',
-        email: data.email || 'not-provided@example.com',
-        whatsapp_number: data.phone || '0000000000',
-        city: data.city || null,
-        pincode: data.pincode || null,
-        check_in: data.checkIn || new Date().toISOString().split('T')[0],
-        check_out: data.checkOut || new Date(Date.now() + 86400000).toISOString().split('T')[0],
-        guests: data.guests || 1,
-        special_requests: data.specialRequests || null,
-        room_type: data.selectedRooms.length > 0 
-          ? data.selectedRooms.map(r => r.roomTypeName).join(', ')
-          : 'Not specified',
-        room_type_id: data.selectedRooms.length > 0 
-          ? data.selectedRooms[0].roomTypeId 
-          : null,
-        quantity: data.selectedRooms.reduce((sum, room) => sum + room.quantity, 0) || 1,
-        total_amount: data.totalAmount || 0,
-        subtotal: data.totalAmount || 0,
-        taxes: 0,
-        booking_status: 'inquiry',
-        payment_status: 'pending',
-        source: 'whatsapp_form'
-      })
-      .select()
-      .single();
+    // Validate input data
+    const validation = validateWhatsAppBooking({
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      city: data.city,
+      pincode: data.pincode,
+      checkIn: data.checkIn,
+      checkOut: data.checkOut,
+      guests: data.guests,
+      specialRequests: data.specialRequests,
+    });
+
+    if (!validation.success) {
+      const errorMessages = Object.values(validation.errors || {}).join(', ');
+      return { success: false, error: `Validation failed: ${errorMessages}` };
+    }
+
+    // Calculate taxes (12% GST)
+    const subtotal = data.totalAmount || 0;
+    const taxes = Math.round(subtotal * 0.12);
+    const totalWithTax = subtotal + taxes;
+
+    // Use secure RPC function for booking creation (includes rate limiting & fraud detection)
+    const { data: result, error } = await supabase.rpc('create_booking_secure', {
+      p_guest_name: data.name || 'Guest',
+      p_email: data.email || 'not-provided@example.com',
+      p_whatsapp_number: data.phone || '0000000000',
+      p_city: data.city || null,
+      p_pincode: data.pincode || null,
+      p_check_in: data.checkIn || new Date().toISOString().split('T')[0],
+      p_check_out: data.checkOut || new Date(Date.now() + 86400000).toISOString().split('T')[0],
+      p_guests: data.guests || 1,
+      p_special_requests: data.specialRequests 
+        ? `[WhatsApp Inquiry] ${data.specialRequests}` 
+        : '[WhatsApp Inquiry]',
+      p_room_type: data.selectedRooms.length > 0 
+        ? data.selectedRooms.map(r => r.roomTypeName).join(', ')
+        : 'Not specified',
+      p_room_type_id: data.selectedRooms.length > 0 
+        ? data.selectedRooms[0].roomTypeId 
+        : 'inquiry',
+      p_quantity: data.selectedRooms.reduce((sum, room) => sum + room.quantity, 0) || 1,
+      p_subtotal: subtotal,
+      p_taxes: taxes,
+      p_total_amount: totalWithTax,
+    });
 
     if (error) {
-      console.error('Supabase insert error:', error);
+      console.error('Secure booking creation error:', error);
+      
+      // Handle rate limiting errors
+      if (error.message?.includes('rate limit') || error.message?.includes('too many')) {
+        return { 
+          success: false, 
+          error: 'Too many booking attempts. Please try again in a few minutes.' 
+        };
+      }
+      
       throw error;
     }
+
+    // Parse the result
+    const bookingResult = typeof result === 'string' ? JSON.parse(result) : result;
     
-    console.log('Booking saved successfully:', booking);
-    return { success: true, bookingId: booking?.id };
+    if (!bookingResult?.success) {
+      return { 
+        success: false, 
+        error: bookingResult?.error || 'Failed to create booking' 
+      };
+    }
+    
+    console.log('Booking saved successfully via secure RPC:', bookingResult.booking_id);
+    return { success: true, bookingId: bookingResult.booking_id };
   } catch (error: any) {
     console.error('Error saving WhatsApp booking:', error);
     return { success: false, error: error.message || 'Unknown error occurred' };

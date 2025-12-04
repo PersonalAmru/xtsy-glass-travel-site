@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -6,12 +6,13 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { Checkbox } from "@/components/ui/checkbox";
-import { MessageCircle, Calendar, Users, Phone, Trash2, Home } from "lucide-react";
+import { MessageCircle, Calendar, Users, Phone, Trash2, Home, AlertCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import { saveWhatsAppBooking } from "@/services/formBookingService";
 import FoodAddonsSection from "@/components/FoodAddonsSection";
 import { useApp } from "@/contexts/AppContext";
+import { validateField, validateWhatsAppBooking } from "@/utils/whatsappBookingValidation";
 
 interface WhatsAppBookingFormProps {
   isOpen: boolean;
@@ -31,6 +32,18 @@ interface SelectedRoom {
   roomTypeName: string;
   quantity: number;
   price: number;
+}
+
+interface FormErrors {
+  name?: string;
+  email?: string;
+  phone?: string;
+  city?: string;
+  pincode?: string;
+  checkIn?: string;
+  checkOut?: string;
+  guests?: string;
+  specialRequests?: string;
 }
 
 const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
@@ -65,7 +78,14 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
   const [selectedRooms, setSelectedRooms] = useState<SelectedRoom[]>([]);
   const [loadingRooms, setLoadingRooms] = useState(false);
   const [roomsError, setRoomsError] = useState<string>("");
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Field validation on blur
+  const handleBlur = useCallback((field: keyof FormErrors, value: any) => {
+    const error = validateField(field, value, formData);
+    setErrors(prev => ({ ...prev, [field]: error || undefined }));
+  }, [formData]);
   useEffect(() => {
     if (formData.checkIn && formData.checkOut) {
       const checkIn = new Date(formData.checkIn);
@@ -294,26 +314,61 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
   };
 
   const handleBookNow = async () => {
-    // Save to database first
+    // Validate all required fields
+    const validation = validateWhatsAppBooking({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      city: formData.city,
+      pincode: formData.pincode,
+      checkIn: formData.checkIn,
+      checkOut: formData.checkOut,
+      guests: formData.guests,
+      specialRequests: formData.specialRequests,
+    });
+
+    if (!validation.success) {
+      setErrors(validation.errors || {});
+      toast({
+        title: "Please fix the errors",
+        description: "Some required fields are missing or invalid.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    // Save to database using secure RPC
     const totalAmount = getTotalAmount();
     const saveResult = await saveWhatsAppBooking({
-      name: formData.name || 'Guest',
-      email: formData.email || 'not-provided@example.com',
-      phone: formData.phone || '0000000000',
-      city: formData.city || '',
-      pincode: formData.pincode || '',
-      checkIn: formData.checkIn || new Date().toISOString().split('T')[0],
-      checkOut: formData.checkOut || new Date(Date.now() + 86400000).toISOString().split('T')[0],
-      guests: formData.guests || 1,
-      specialRequests: formData.specialRequests || '',
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      city: formData.city,
+      pincode: formData.pincode,
+      checkIn: formData.checkIn,
+      checkOut: formData.checkOut,
+      guests: formData.guests,
+      specialRequests: formData.specialRequests,
       selectedRooms,
       nights: nights || 1,
       totalAmount: totalAmount || 0
     });
 
-    // Build beautiful WhatsApp welcome message for XTSY
+    if (!saveResult.success) {
+      setIsSubmitting(false);
+      toast({
+        title: "Booking Error",
+        description: saveResult.error || "Failed to save booking. Please try again.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Build warm, branded WhatsApp message for XTSY Travellers Hostel
     const roomsText = selectedRooms.length > 0 
-      ? selectedRooms.map(room => `   • ${room.roomTypeName} × ${room.quantity} room(s)`).join('\n')
+      ? selectedRooms.map(room => `   • ${room.roomTypeName} × ${room.quantity}`).join('\n')
       : '   • To be decided';
 
     const addOnsText = [];
@@ -322,40 +377,41 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
     if (formData.transportation) addOnsText.push(`   • Transportation Service`);
     if (formData.itinerary) addOnsText.push(`   • Custom Itinerary Planning`);
 
-    const message = `🏨 *XTSY - Premium Room Booking*
+    const message = `🏠 *XTSY Travellers Hostel - Booking Inquiry*
 
-Hi XTSY Team! Ready to book my stay in beautiful Meghalaya! 🏔️
+Namaste Team XTSY! 🙏
 
-👤 *Guest Information:*
-   Name: ${formData.name || 'Not provided'}
-   📧 Email: ${formData.email || 'Not provided'}
-   📱 Phone: ${formData.phone || 'Not provided'}
-   📍 Location: ${formData.city ? `${formData.city}${formData.pincode ? `, ${formData.pincode}` : ''}` : 'Not provided'}
+I'd love to stay at XTSY Travellers Hostel, Shillong.
 
-📅 *Booking Details:*
-   Check-in: ${formData.checkIn || 'To be decided'}
-   Check-out: ${formData.checkOut || 'To be decided'}
-   ${nights > 0 ? `🌙 Nights: ${nights}` : ''}
-   👥 Guests: ${formData.guests || 'Not specified'}
+👤 *Guest Details:*
+   Name: ${formData.name}
+   Email: ${formData.email}
+   Phone: ${formData.phone}
+   ${formData.city ? `From: ${formData.city}${formData.pincode ? ` - ${formData.pincode}` : ''}` : ''}
 
-🏠 *Selected Rooms:*
+📅 *Stay Details:*
+   Check-in: ${formData.checkIn}
+   Check-out: ${formData.checkOut}
+   ${nights > 0 ? `Duration: ${nights} night${nights > 1 ? 's' : ''}` : ''}
+   Guests: ${formData.guests}
+
+🛏️ *Room Selection:*
 ${roomsText}
-${addOnsText.length > 0 ? `\n🎯 *Add-on Services:*\n${addOnsText.join('\n')}` : ''}
-${formData.specialRequests ? `\n📝 *Special Requests:*\n   ${formData.specialRequests}` : ''}
-${totalAmount > 0 ? `\n💰 *Estimated Total: ${formatPrice(totalAmount)}${currency.code !== 'INR' ? ` (${currency.code})` : ''}*` : ''}
+${addOnsText.length > 0 ? `\n🍽️ *Services:*\n${addOnsText.join('\n')}` : ''}
+${formData.specialRequests ? `\n📝 *Requests:*\n   ${formData.specialRequests}` : ''}
+${totalAmount > 0 ? `\n💰 *Estimated: ${formatPrice(totalAmount)}${currency.code !== 'INR' ? ` (${currency.code})` : ''}*` : ''}
 
-Can't wait to experience XTSY hospitality! Please confirm availability. 🎉✨`;
+Looking forward to hearing from you. Thank you! 🌟`;
 
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://api.whatsapp.com/send/?phone=918837317070&text=${encodedMessage}&type=phone_number&app_absent=0`, '_blank');
     
-    if (saveResult.success) {
-      toast({
-        title: "Booking Saved",
-        description: "Your booking inquiry has been saved successfully!",
-      });
-    }
+    toast({
+      title: "Inquiry Submitted",
+      description: "Your booking inquiry has been saved. Continue on WhatsApp to confirm.",
+    });
     
+    setIsSubmitting(false);
     onClose();
   };
 
@@ -380,37 +436,64 @@ Can't wait to experience XTSY hospitality! Please confirm availability. 🎉✨`
               {/* Personal Information */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="name">Full Name</Label>
+                  <Label htmlFor="name" className="flex items-center gap-1">
+                    Full Name <span className="text-destructive">*</span>
+                  </Label>
                   <Input
                     id="name"
                     value={formData.name}
                     onChange={(e) => handleInputChange('name', e.target.value)}
+                    onBlur={(e) => handleBlur('name', e.target.value)}
                     placeholder="Your Name"
+                    className={errors.name ? 'border-destructive focus-visible:ring-destructive' : ''}
                   />
+                  {errors.name && (
+                    <p className="text-xs text-destructive mt-1 flex items-center gap-1">
+                      <AlertCircle className="h-3 w-3" /> {errors.name}
+                    </p>
+                  )}
                 </div>
                 <div>
-                  <Label htmlFor="phone">Phone Number</Label>
+                  <Label htmlFor="phone" className="flex items-center gap-1">
+                    Phone Number <span className="text-destructive">*</span>
+                  </Label>
                   <div className="flex items-center gap-2">
                     <Phone className="h-4 w-4 text-muted-foreground" />
                     <Input
                       id="phone"
                       value={formData.phone}
                       onChange={(e) => handleInputChange('phone', e.target.value)}
-                      placeholder="+91 XXXXXXXXXX"
+                      onBlur={(e) => handleBlur('phone', e.target.value)}
+                      placeholder="+91 9876543210"
+                      className={errors.phone ? 'border-destructive focus-visible:ring-destructive' : ''}
                     />
                   </div>
+                  {errors.phone && (
+                    <p className="text-xs text-destructive mt-1 flex items-center gap-1">
+                      <AlertCircle className="h-3 w-3" /> {errors.phone}
+                    </p>
+                  )}
                 </div>
               </div>
 
               <div>
-                <Label htmlFor="email">Email Address</Label>
+                <Label htmlFor="email" className="flex items-center gap-1">
+                  Email Address <span className="text-destructive">*</span>
+                </Label>
                 <Input
                   id="email"
                   type="email"
                   value={formData.email}
                   onChange={(e) => handleInputChange('email', e.target.value)}
+                  onBlur={(e) => handleBlur('email', e.target.value)}
                   placeholder="your@email.com"
+                  className={errors.email ? 'border-destructive focus-visible:ring-destructive' : ''}
                 />
+                {errors.email && (
+                  <p className="text-xs text-destructive mt-1 flex items-center gap-1">
+                    <AlertCircle className="h-3 w-3" /> {errors.email}
+                  </p>
+                )}
               </div>
 
               {/* City and Pincode */}
@@ -421,8 +504,15 @@ Can't wait to experience XTSY hospitality! Please confirm availability. 🎉✨`
                     id="city"
                     value={formData.city}
                     onChange={(e) => handleInputChange('city', e.target.value)}
+                    onBlur={(e) => handleBlur('city', e.target.value)}
                     placeholder="Your City"
+                    className={errors.city ? 'border-destructive focus-visible:ring-destructive' : ''}
                   />
+                  {errors.city && (
+                    <p className="text-xs text-destructive mt-1 flex items-center gap-1">
+                      <AlertCircle className="h-3 w-3" /> {errors.city}
+                    </p>
+                  )}
                 </div>
                 <div>
                   <Label htmlFor="pincode">Pincode</Label>
@@ -430,31 +520,58 @@ Can't wait to experience XTSY hospitality! Please confirm availability. 🎉✨`
                     id="pincode"
                     value={formData.pincode}
                     onChange={(e) => handleInputChange('pincode', e.target.value)}
+                    onBlur={(e) => handleBlur('pincode', e.target.value)}
                     placeholder="123456"
                     maxLength={6}
+                    className={errors.pincode ? 'border-destructive focus-visible:ring-destructive' : ''}
                   />
+                  {errors.pincode && (
+                    <p className="text-xs text-destructive mt-1 flex items-center gap-1">
+                      <AlertCircle className="h-3 w-3" /> {errors.pincode}
+                    </p>
+                  )}
                 </div>
               </div>
 
               {/* Booking Details */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="checkIn">Check-in Date</Label>
+                  <Label htmlFor="checkIn" className="flex items-center gap-1">
+                    Check-in Date <span className="text-destructive">*</span>
+                  </Label>
                   <Input
                     id="checkIn"
                     type="date"
                     value={formData.checkIn}
                     onChange={(e) => handleInputChange('checkIn', e.target.value)}
+                    onBlur={(e) => handleBlur('checkIn', e.target.value)}
+                    min={new Date().toISOString().split('T')[0]}
+                    className={errors.checkIn ? 'border-destructive focus-visible:ring-destructive' : ''}
                   />
+                  {errors.checkIn && (
+                    <p className="text-xs text-destructive mt-1 flex items-center gap-1">
+                      <AlertCircle className="h-3 w-3" /> {errors.checkIn}
+                    </p>
+                  )}
                 </div>
                 <div>
-                  <Label htmlFor="checkOut">Check-out Date</Label>
+                  <Label htmlFor="checkOut" className="flex items-center gap-1">
+                    Check-out Date <span className="text-destructive">*</span>
+                  </Label>
                   <Input
                     id="checkOut"
                     type="date"
                     value={formData.checkOut}
                     onChange={(e) => handleInputChange('checkOut', e.target.value)}
+                    onBlur={(e) => handleBlur('checkOut', e.target.value)}
+                    min={formData.checkIn || new Date().toISOString().split('T')[0]}
+                    className={errors.checkOut ? 'border-destructive focus-visible:ring-destructive' : ''}
                   />
+                  {errors.checkOut && (
+                    <p className="text-xs text-destructive mt-1 flex items-center gap-1">
+                      <AlertCircle className="h-3 w-3" /> {errors.checkOut}
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -702,16 +819,18 @@ Can't wait to experience XTSY hospitality! Please confirm availability. 🎉✨`
                   variant="outline"
                   onClick={onClose}
                   className="flex-1"
+                  disabled={isSubmitting}
                 >
                   Cancel
                 </Button>
                 <Button
                   type="button"
                   onClick={handleBookNow}
-                  className="flex-1 bg-[#25D366] hover:bg-[#20BD5A] text-white"
+                  disabled={isSubmitting}
+                  className="flex-1 bg-[#25D366] hover:bg-[#20BD5A] text-white disabled:opacity-50"
                 >
                   <MessageCircle className="h-4 w-4 mr-2" />
-                  Book Now
+                  {isSubmitting ? 'Submitting...' : 'Book Now'}
                 </Button>
               </div>
             </form>
