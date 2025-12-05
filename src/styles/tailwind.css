@@ -46,6 +46,13 @@
     --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
     --shadow-elegant: 0 4px 20px -4px hsl(220 85% 60% / 0.15);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Travel page specific tokens */
+    --travel-gradient-warm: linear-gradient(135deg, hsl(25 95% 53%), hsl(0 84% 60%));
+    --travel-gradient-cool: linear-gradient(135deg, hsl(220 85% 60%), hsl(262 83% 58%));
+    --travel-gradient-nature: linear-gradient(135deg, hsl(142 76% 36%), hsl(172 66% 50%));
+    --travel-glow-warm: 0 0 40px hsl(25 95% 53% / 0.3);
+    --travel-glow-cool: 0 0 40px hsl(220 85% 60% / 0.3);
   }
 
   .dark {
@@ -245,4 +252,104 @@ img {
 
 .touch-feedback {
   @apply active:scale-95 transition-transform duration-100;
+}
+
+/* Travel page specific styles */
+.travel-hero-bg {
+  background: linear-gradient(135deg, 
+    hsl(25 95% 98%) 0%, 
+    hsl(0 84% 97%) 25%, 
+    hsl(220 85% 97%) 50%, 
+    hsl(142 76% 97%) 75%, 
+    hsl(262 83% 97%) 100%);
+  position: relative;
+}
+
+.travel-hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 20% 20%, hsl(25 95% 53% / 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, hsl(220 85% 60% / 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, hsl(142 76% 36% / 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.travel-tab-active {
+  @apply relative overflow-hidden;
+  background: linear-gradient(135deg, hsl(25 95% 53%), hsl(0 84% 60%));
+  box-shadow: 0 4px 15px -3px hsl(25 95% 53% / 0.4);
+}
+
+.travel-tab-active::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.travel-section-divider {
+  @apply relative;
+}
+
+.travel-section-divider::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, hsl(25 95% 53%), hsl(0 84% 60%));
+  border-radius: 9999px;
+}
+
+.travel-card-hover {
+  @apply transition-all duration-500;
+}
+
+.travel-card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+}
+
+.travel-badge {
+  @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold;
+  background: linear-gradient(135deg, hsl(25 95% 53%), hsl(0 84% 60%));
+  color: white;
+  box-shadow: 0 2px 8px hsl(25 95% 53% / 0.3);
+}
+
+.travel-badge-outline {
+  @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid hsl(25 95% 53%);
+  color: hsl(25 95% 40%);
+}
+
+/* Floating animation for decorative elements */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Pulse glow effect */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px hsl(25 95% 53% / 0.3); }
+  50% { box-shadow: 0 0 40px hsl(25 95% 53% / 0.5); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
 }

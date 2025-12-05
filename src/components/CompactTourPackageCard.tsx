@@ -67,96 +67,107 @@ const CompactTourPackageCard: React.FC<CompactTourPackageCardProps> = ({
 
   return (
     <Card 
-      className="group cursor-pointer hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02] bg-white border border-gray-200 hover:border-orange-300 h-full flex flex-col"
+      className="group cursor-pointer bg-white border-0 shadow-md hover:shadow-2xl transition-all duration-500 rounded-2xl overflow-hidden h-full flex flex-col"
       onClick={() => onPackageClick(tourPackage)}
     >
-      <div className="relative overflow-hidden rounded-t-lg">
+      {/* Image Container */}
+      <div className="relative overflow-hidden">
         <img
           src={imageUrl}
           alt={generateAltText()}
-          className="w-full h-20 sm:h-24 object-cover group-hover:scale-110 transition-transform duration-300"
+          className="w-full h-36 sm:h-44 md:h-48 object-cover group-hover:scale-110 transition-transform duration-700"
           loading="eager"
           fetchPriority="high"
         />
         
-        {/* Compact badges */}
-        <div className="absolute top-1 left-1">
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        
+        {/* Top Badges */}
+        <div className="absolute top-3 left-3 right-3 flex justify-between items-start">
           <Badge 
-            variant={tourPackage.category === 'adventure' ? 'destructive' : 
-                    tourPackage.category === 'cultural' ? 'default' : 'secondary'}
-            className="text-xs px-1 py-0 bg-white/90 text-black"
+            className={`text-xs px-2.5 py-1 font-medium backdrop-blur-sm border-0 ${
+              tourPackage.category === 'adventure' 
+                ? 'bg-red-500/90 text-white' 
+                : tourPackage.category === 'cultural' 
+                  ? 'bg-purple-500/90 text-white' 
+                  : 'bg-emerald-500/90 text-white'
+            }`}
           >
             {tourPackage.category}
           </Badge>
+          
+          {tourPackage.exclusive && (
+            <Badge className="bg-gradient-to-r from-amber-400 to-orange-500 text-white text-xs px-2 py-1 font-semibold shadow-lg">
+              ⭐ Premium
+            </Badge>
+          )}
         </div>
         
-        {tourPackage.exclusive && (
-          <div className="absolute top-1 right-1">
-            <Badge className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black text-xs px-1 py-0">
-              ⭐
-            </Badge>
-          </div>
-        )}
-        
-        {/* Compact rating */}
-        <div className="absolute bottom-1 right-1 flex items-center gap-0.5 bg-black/70 text-white px-1 py-0.5 rounded text-xs">
-          <Star className="h-2 w-2 fill-yellow-400 text-yellow-400" />
+        {/* Rating Badge */}
+        <div className="absolute bottom-3 right-3 flex items-center gap-1 bg-white/95 backdrop-blur-sm text-gray-900 px-2.5 py-1 rounded-full text-sm font-semibold shadow-lg">
+          <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
           <span>{tourPackage.rating}</span>
+        </div>
+        
+        {/* Duration Badge */}
+        <div className="absolute bottom-3 left-3 flex items-center gap-1 bg-white/95 backdrop-blur-sm text-gray-700 px-2.5 py-1 rounded-full text-xs font-medium shadow-lg">
+          <Clock className="h-3 w-3" />
+          <span>{tourPackage.duration}</span>
         </div>
       </div>
 
-      <CardContent className="p-2 flex-grow flex flex-col">
-        {/* Compact title */}
-        <h3 className="font-semibold text-gray-900 mb-1 text-xs leading-tight line-clamp-2">
+      <CardContent className="p-4 flex-grow flex flex-col">
+        {/* Title */}
+        <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base leading-snug line-clamp-2 group-hover:text-orange-600 transition-colors">
           {tourPackage.title}
         </h3>
         
-        {/* Ultra-compact info grid */}
-        <div className="grid grid-cols-2 gap-1 mb-1 text-xs">
-          <div className="flex items-center gap-1 text-gray-500">
-            <Clock className="h-2 w-2" />
-            <span className="truncate">{tourPackage.duration}</span>
-          </div>
-          <div className="flex items-center gap-1 text-gray-500">
-            <MapPin className="h-2 w-2" />
-            <span className="truncate">{tourPackage.location}</span>
-          </div>
+        {/* Location */}
+        <div className="flex items-center gap-1.5 text-gray-500 mb-3 text-xs sm:text-sm">
+          <MapPin className="h-3.5 w-3.5 text-orange-500" />
+          <span>{tourPackage.location}</span>
         </div>
 
-        {/* Compact highlights - show only first 2 */}
-        <div className="mb-1 flex-grow">
-          <div className="space-y-0.5">
-            {tourPackage.highlights.slice(0, 2).map((highlight, index) => (
-              <div key={index} className="flex items-start gap-1">
-                <div className="w-1 h-1 bg-orange-500 rounded-full mt-1.5 flex-shrink-0" />
-                <span className="text-xs text-gray-600 leading-tight line-clamp-1">{highlight}</span>
+        {/* Highlights */}
+        <div className="mb-4 flex-grow">
+          <div className="space-y-1.5">
+            {tourPackage.highlights.slice(0, 3).map((highlight, index) => (
+              <div key={index} className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-gradient-to-r from-orange-400 to-red-500 rounded-full mt-1.5 flex-shrink-0" />
+                <span className="text-xs sm:text-sm text-gray-600 leading-tight line-clamp-1">{highlight}</span>
               </div>
             ))}
-            {tourPackage.highlights.length > 2 && (
-              <span className="text-xs text-gray-400">+{tourPackage.highlights.length - 2} more</span>
+            {tourPackage.highlights.length > 3 && (
+              <span className="text-xs text-orange-500 font-medium">+{tourPackage.highlights.length - 3} more highlights</span>
             )}
           </div>
         </div>
 
-        {/* Compact price and CTA */}
-        <div className="mt-auto">
-          <p className="text-xs text-gray-500 mb-0.5">Package starts from</p>
-          <div className="flex items-center justify-between mb-1">
-            <div className="flex items-center gap-1">
-              <TrendingUp className="h-3 w-3 text-green-600" />
-              <span className="text-sm font-bold text-gray-900">{displayPrice}</span>
+        {/* Price Section */}
+        <div className="mt-auto pt-3 border-t border-gray-100">
+          <div className="flex items-end justify-between mb-3">
+            <div>
+              <p className="text-xs text-gray-400 mb-0.5">Starting from</p>
+              <div className="flex items-baseline gap-1">
+                <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">{displayPrice}</span>
+                <span className="text-xs text-gray-500">/person</span>
+              </div>
             </div>
-            <span className="text-xs text-gray-500">per person</span>
+            <div className="flex items-center gap-1 text-emerald-600 text-xs font-medium">
+              <TrendingUp className="h-3.5 w-3.5" />
+              <span>Best Value</span>
+            </div>
           </div>
           
           <button 
-            className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-medium py-1 px-2 rounded text-xs transition-all duration-200 transform hover:scale-105"
+            className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold py-2.5 px-4 rounded-xl text-sm transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 hover:scale-[1.02]"
             onClick={(e) => {
               e.stopPropagation();
               onPackageClick(tourPackage);
             }}
           >
-            View Details
+            View Details →
           </button>
         </div>
       </CardContent>

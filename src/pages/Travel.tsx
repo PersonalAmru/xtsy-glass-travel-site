@@ -612,39 +612,78 @@ const Travel = () => {
       <Header />
       
       <main className="flex-1">
-        <div className="bg-gradient-to-br from-slate-50 via-orange-50 to-red-50 relative overflow-hidden">
-          {/* Background Effects */}
-          <div className="absolute inset-0 bg-gradient-to-br from-orange-100/30 via-transparent to-red-100/30" />
-          <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-orange-500 via-red-500 to-pink-500" />
-          <div className="absolute -top-24 -right-24 w-48 h-48 bg-orange-200/30 rounded-full blur-3xl" />
-          <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-red-200/30 rounded-full blur-3xl" />
+        <div className="travel-hero-bg relative overflow-hidden min-h-screen">
+          {/* Premium Background Effects */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute top-20 left-10 w-72 h-72 bg-orange-200/20 rounded-full blur-3xl animate-float" />
+            <div className="absolute bottom-40 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
+            <div className="absolute top-1/2 left-1/3 w-[500px] h-[500px] bg-gradient-to-r from-orange-100/20 to-red-100/20 rounded-full blur-3xl" />
+          </div>
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 via-red-500 to-pink-500" />
           
-          {/* Optimized mobile padding with proper lazy loading */}
-          <div className="relative z-10 py-6 sm:py-8 md:py-12 lg:py-16">
-            <div className="container mx-auto px-2 sm:px-4 md:px-6 lg:px-8">
-              {/* Mobile-optimized Header */}
-              <div className="text-center mb-4 sm:mb-6 md:mb-8 lg:mb-10">
-                <div className="inline-flex items-center gap-1 sm:gap-2 p-2 sm:p-3 md:p-4 bg-white/80 backdrop-blur-sm rounded-md shadow-md mb-2 sm:mb-3 md:mb-4">
-                  <span className="text-sm sm:text-base md:text-lg lg:text-xl">🧳</span>
-                  <h1 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold text-gray-900">
-                    XTSY Travel
-                  </h1>
+          {/* Modern Hero Section */}
+          <div className="relative z-10 py-8 sm:py-12 md:py-16 lg:py-20">
+            <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+              {/* Hero Header with Modern Typography */}
+              <div className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-14">
+                {/* Animated Badge */}
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-100 to-red-100 rounded-full mb-4 sm:mb-6 animate-fade-in">
+                  <span className="w-2 h-2 bg-gradient-to-r from-orange-500 to-red-500 rounded-full animate-pulse"></span>
+                  <span className="text-xs sm:text-sm font-medium text-orange-700">Explore 50+ Curated Experiences</span>
                 </div>
-                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 max-w-2xl mx-auto mb-2 sm:mb-3 md:mb-4 bg-white/60 backdrop-blur-sm rounded-lg p-2 sm:p-3 md:p-4 shadow-md mx-2">
-                  Embark on extraordinary journeys with XTSY Travel - your gateway to incredible experiences.
+                
+                {/* Main Title */}
+                <h1 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-gray-900 via-orange-800 to-red-800 bg-clip-text text-transparent animate-fade-in">
+                  XTSY Travel
+                </h1>
+                
+                {/* Subtitle */}
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 max-w-3xl mx-auto mb-6 sm:mb-8 font-light leading-relaxed px-4">
+                  Discover handcrafted journeys across <span className="font-medium text-orange-600">India</span> and <span className="font-medium text-primary">beyond</span>
                 </p>
+                
+                {/* Decorative Line */}
+                <div className="flex items-center justify-center gap-3 mb-6 sm:mb-8">
+                  <div className="w-12 sm:w-20 h-px bg-gradient-to-r from-transparent to-orange-300"></div>
+                  <div className="w-2 h-2 rotate-45 bg-orange-400"></div>
+                  <div className="w-12 sm:w-20 h-px bg-gradient-to-l from-transparent to-orange-300"></div>
+                </div>
               </div>
 
-              {/* Ultra-compact Tab Navigation */}
-              <div className="flex justify-center mb-1 sm:mb-2">
-                <div className="bg-white/80 backdrop-blur-sm rounded-md p-0.5 shadow-md flex w-full max-w-64">
-                  <Button onClick={() => setActiveTab('domestic')} variant={activeTab === 'domestic' ? 'default' : 'ghost'} className={`flex-1 px-1.5 py-0.5 rounded-sm text-xs font-medium transition-all duration-200 h-6 ${activeTab === 'domestic' ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white hover:from-orange-600 hover:to-red-700 shadow-sm' : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100/80'}`}>
-                    <MapPin className="h-2.5 w-2.5 mr-0.5" />
-                    <span className="text-xs">DOM</span>
+              {/* Modern Tab Navigation */}
+              <div className="flex justify-center mb-6 sm:mb-8 md:mb-10">
+                <div className="relative bg-white/90 backdrop-blur-md rounded-2xl p-1.5 shadow-xl border border-gray-100 flex gap-1">
+                  {/* Background Slider */}
+                  <div 
+                    className={`absolute top-1.5 h-[calc(100%-12px)] bg-gradient-to-r from-orange-500 to-red-600 rounded-xl transition-all duration-300 ease-out shadow-lg ${
+                      activeTab === 'domestic' ? 'left-1.5 w-[calc(50%-6px)]' : 'left-[calc(50%+3px)] w-[calc(50%-6px)]'
+                    }`}
+                  />
+                  
+                  <Button 
+                    onClick={() => setActiveTab('domestic')} 
+                    variant="ghost"
+                    className={`relative z-10 flex-1 px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-base font-semibold transition-all duration-300 ${
+                      activeTab === 'domestic' 
+                        ? 'text-white hover:bg-transparent' 
+                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    }`}
+                  >
+                    <MapPin className={`h-4 w-4 sm:h-5 sm:w-5 mr-2 transition-transform ${activeTab === 'domestic' ? 'scale-110' : ''}`} />
+                    <span>Domestic</span>
                   </Button>
-                  <Button onClick={() => setActiveTab('international')} variant={activeTab === 'international' ? 'default' : 'ghost'} className={`flex-1 px-1.5 py-0.5 rounded-sm text-xs font-medium transition-all duration-200 h-6 ${activeTab === 'international' ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white hover:from-orange-600 hover:to-red-700 shadow-sm' : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100/80'}`}>
-                    <Globe className="h-2.5 w-2.5 mr-0.5" />
-                    <span className="text-xs">INT</span>
+                  
+                  <Button 
+                    onClick={() => setActiveTab('international')} 
+                    variant="ghost"
+                    className={`relative z-10 flex-1 px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-base font-semibold transition-all duration-300 ${
+                      activeTab === 'international' 
+                        ? 'text-white hover:bg-transparent' 
+                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    }`}
+                  >
+                    <Globe className={`h-4 w-4 sm:h-5 sm:w-5 mr-2 transition-transform ${activeTab === 'international' ? 'scale-110' : ''}`} />
+                    <span>International</span>
                   </Button>
                 </div>
               </div>
@@ -700,17 +739,27 @@ const Travel = () => {
                     icon: "🗺️",
                     desc: "Incredible Destination"
                   };
-                  return <div key={state} className="mb-6 sm:mb-8 md:mb-12 lg:mb-16">
-                          <div className="text-center mb-2 sm:mb-3 md:mb-4 lg:mb-6">
-                            <div className="inline-flex items-center gap-1 sm:gap-2 p-2 sm:p-3 bg-white/80 backdrop-blur-sm rounded-md shadow-md mb-1 sm:mb-2">
-                              <span className="text-sm sm:text-base md:text-lg lg:text-xl">{info.icon}</span>
-                              <h3 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold text-gray-900">
-                                {state}
-                              </h3>
+                  return <div key={state} className="mb-10 sm:mb-14 md:mb-16 lg:mb-20">
+                          {/* Enhanced Section Header */}
+                          <div className="text-center mb-6 sm:mb-8 md:mb-10 travel-section-divider pt-6">
+                            <div className="inline-flex flex-col items-center gap-3">
+                              <div className="flex items-center gap-3 px-6 py-3 bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-100">
+                                <span className="text-2xl sm:text-3xl md:text-4xl">{info.icon}</span>
+                                <div className="text-left">
+                                  <h3 className="font-playfair text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900">
+                                    {state}
+                                  </h3>
+                                  <p className="text-gray-500 text-xs sm:text-sm md:text-base font-medium">
+                                    {info.desc}
+                                  </p>
+                                </div>
+                              </div>
+                              {state === "XTSY Exclusive Tours" && (
+                                <span className="travel-badge">
+                                  ✨ Premium Collection
+                                </span>
+                              )}
                             </div>
-                            <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-lg">
-                              {info.desc}
-                            </p>
                           </div>
 
                           {/* Featured Hornbill Festival Landscape Card - Only for XTSY Exclusive Tours */}
@@ -817,38 +866,55 @@ const Travel = () => {
                               </Card>
                             </div>}
 
-                          {/* Comprehensive responsive layout with animations and lazy loading */}
-                          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-10 mb-6 md:mb-10 lg:mb-14 animate-fade-in">
-                            {filteredStatePackages.map(itinerary => <LazyWrapper key={itinerary.id} fallback={<div className="animate-pulse bg-gray-100 h-64 rounded-lg"></div>} threshold={0.2}>
-                                <CompactTourPackageCard tourPackage={itinerary} onPackageClick={() => handlePackageClick(itinerary)} />
+                          {/* Enhanced Grid Layout with Better Spacing */}
+                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-8 mb-8 md:mb-12 lg:mb-16 px-2 sm:px-0">
+                            {filteredStatePackages.map(itinerary => <LazyWrapper key={itinerary.id} fallback={<div className="animate-pulse bg-gradient-to-br from-gray-100 to-gray-200 h-72 rounded-2xl"></div>} threshold={0.2}>
+                                <div className="travel-card-hover">
+                                  <CompactTourPackageCard tourPackage={itinerary} onPackageClick={() => handlePackageClick(itinerary)} />
+                                </div>
                               </LazyWrapper>)}
                           </div>
                         </div>;
                 })}
 
-                    {filteredItineraries.length === 0 && <div className="text-center py-3 sm:py-4">
-                        <p className="text-gray-500 text-xs sm:text-sm">No packages found matching your filters.</p>
-                        <Button onClick={clearFilters} className="mt-1 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white text-xs px-2 py-0.5 h-6">
-                          Clear All Filters
-                        </Button>
+                    {filteredItineraries.length === 0 && <div className="text-center py-16 sm:py-20">
+                        <div className="inline-flex flex-col items-center gap-4 p-8 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg">
+                          <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center">
+                            <Package className="w-8 h-8 text-orange-500" />
+                          </div>
+                          <div>
+                            <p className="text-gray-700 font-medium text-lg mb-2">No packages found</p>
+                            <p className="text-gray-500 text-sm mb-4">Try adjusting your filters to see more options</p>
+                          </div>
+                          <Button onClick={clearFilters} className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-medium px-6 py-2.5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                            Clear All Filters
+                          </Button>
+                        </div>
                       </div>}
                   </div>
                 </LazyWrapper>}
 
-              {activeTab === 'international' && <LazyWrapper fallback={<div className="animate-pulse bg-gray-100 h-96 rounded"></div>}>
-                  <div className="max-w-6xl mx-auto">
-                    {/* XTSY International Premium Package */}
-                    <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16">
-                      <div className="text-center mb-4 sm:mb-6 md:mb-8">
-                        <div className="inline-flex items-center gap-1 sm:gap-2 p-2 sm:p-3 bg-gradient-to-r from-amber-500 to-orange-600 backdrop-blur-sm rounded-md shadow-lg mb-1 sm:mb-2">
-                          <span className="text-sm sm:text-base md:text-lg lg:text-xl">🏍️</span>
-                          <h3 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold text-white">
-                            XTSY International Expedition
-                          </h3>
+              {activeTab === 'international' && <LazyWrapper fallback={<div className="animate-pulse bg-gradient-to-br from-gray-100 to-gray-200 h-96 rounded-2xl"></div>}>
+                  <div className="max-w-6xl mx-auto px-4">
+                    {/* XTSY International Premium Section Header */}
+                    <div className="mb-10 sm:mb-12 md:mb-14 lg:mb-16">
+                      <div className="text-center mb-8 sm:mb-10 travel-section-divider pt-6">
+                        <div className="inline-flex flex-col items-center gap-3">
+                          <div className="flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-amber-50 to-orange-50 backdrop-blur-sm rounded-2xl shadow-lg border border-amber-200">
+                            <span className="text-3xl sm:text-4xl">🏍️</span>
+                            <div className="text-left">
+                              <h3 className="font-playfair text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+                                XTSY International
+                              </h3>
+                              <p className="text-gray-500 text-sm sm:text-base font-medium">
+                                Premium Cross-Border Adventures
+                              </p>
+                            </div>
+                          </div>
+                          <span className="travel-badge">
+                            🌏 Explore Beyond Borders
+                          </span>
                         </div>
-                        <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-lg font-semibold">
-                          Premium Cross-Border Adventures
-                        </p>
                       </div>
 
                       {/* RE Himalayan Expedition Package */}
