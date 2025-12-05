@@ -343,8 +343,22 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
   if (!tourPackage) return null;
 
   const handlePayAndConfirm = () => {
-    // Create a welcome message based on the tour package title
-    const welcomeMessage = `Hello XTSY Team! 👋\n\nI'm interested in the "${tourPackage.title}" tour package. Could you please share more details about availability, itinerary, and pricing?\n\nLooking forward to an amazing adventure! ✨`;
+    // Create a warm, branded welcome message for XTSY Travellers Hostel
+    const welcomeMessage = `🏠 *XTSY Travellers Hostel - Tour Inquiry*
+
+Namaste Team XTSY! 🙏
+
+I'd like to know more about the "${tourPackage.title}" tour package.
+
+📍 *Tour Details:*
+   • Duration: ${tourPackage.duration}
+   • Category: ${tourPackage.category}
+   • Best Season: ${tourPackage.bestSeason}
+   • Location: ${tourPackage.location}
+
+Could you please share availability and detailed pricing?
+
+Looking forward to exploring with XTSY! 🌟`;
 
     const whatsappURL = `https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent(welcomeMessage)}&type=phone_number&app_absent=0`;
     window.open(whatsappURL, '_blank');

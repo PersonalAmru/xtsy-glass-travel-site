@@ -1,5 +1,6 @@
 import { supabase } from "@/integrations/supabase/client";
 import { validateWhatsAppBooking } from "@/utils/whatsappBookingValidation";
+import { validateXTSY270Inquiry, validateTourInquiry } from "@/utils/inquiryValidation";
 
 interface WhatsAppBookingData {
   name: string;
@@ -126,85 +127,139 @@ export async function saveWhatsAppBooking(data: WhatsAppBookingData) {
   }
 }
 
-// Save XTSY270 inquiry
+// Save XTSY270 inquiry using secure RPC function
 export async function saveXTSY270Inquiry(data: XTSY270BookingData) {
   try {
-    // Generate a unique booking ID
-    const bookingId = `XTSY270-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    // Validate input data
+    const validation = validateXTSY270Inquiry(data);
     
-    const { data: booking, error } = await supabase
-      .from('bookings')
-      .insert({
-        booking_id: bookingId,
-        guest_name: 'XTSY270 Inquiry',
-        email: data.email,
-        whatsapp_number: data.mobile,
-        city: data.city,
-        state: data.state,
-        pincode: data.pincode,
-        check_in: new Date().toISOString().split('T')[0], // Today's date as placeholder
-        check_out: new Date(Date.now() + 86400000).toISOString().split('T')[0], // Tomorrow as placeholder
-        guests: 2,
-        room_type: 'XTSY 270° Panorama Glass Suite',
-        room_type_id: 'xtsy-270',
-        quantity: 1,
-        total_amount: 0, // To be determined
-        subtotal: 0,
-        taxes: 0,
-        booking_status: 'inquiry',
-        payment_status: 'pending',
-        source: 'xtsy270_inquiry',
-        special_requests: 'XTSY 270° Glass Suite Inquiry'
-      })
-      .select()
-      .single();
+    if (!validation.success) {
+      const errorMessages = Object.values(validation.errors || {}).join(', ');
+      return { success: false, error: `Validation failed: ${errorMessages}` };
+    }
 
-    if (error) throw error;
-    return { success: true, bookingId: booking?.id };
+    // Use secure RPC function (includes rate limiting & fraud detection)
+    const { data: result, error } = await supabase.rpc('create_booking_secure', {
+      p_guest_name: 'XTSY 270° Inquiry',
+      p_email: data.email,
+      p_whatsapp_number: data.mobile,
+      p_city: data.city,
+      p_state: data.state,
+      p_pincode: data.pincode,
+      p_check_in: new Date().toISOString().split('T')[0],
+      p_check_out: new Date(Date.now() + 86400000).toISOString().split('T')[0],
+      p_guests: 2,
+      p_room_type: 'XTSY 270° Panorama Glass Suite',
+      p_room_type_id: 'xtsy-270',
+      p_quantity: 1,
+      p_subtotal: 0,
+      p_taxes: 0,
+      p_total_amount: 0,
+      p_special_requests: '[XTSY 270° Glass Suite Inquiry]',
+    });
+
+    if (error) {
+      console.error('XTSY270 inquiry error:', error);
+      
+      if (error.message?.includes('rate limit') || error.message?.includes('too many')) {
+        return { 
+          success: false, 
+          error: 'Too many requests. Please try again in a few minutes.' 
+        };
+      }
+      
+      throw error;
+    }
+
+    const bookingResult = typeof result === 'string' ? JSON.parse(result) : result;
+    
+    if (!bookingResult?.success) {
+      return { 
+        success: false, 
+        error: bookingResult?.error || 'Failed to save inquiry' 
+      };
+    }
+
+    console.log('XTSY270 inquiry saved via secure RPC:', bookingResult.booking_id);
+    return { success: true, bookingId: bookingResult.booking_id };
   } catch (error: any) {
     console.error('Error saving XTSY270 inquiry:', error);
     return { success: false, error: error.message };
   }
 }
 
-// Save tour package inquiry
+// Save tour package inquiry using secure RPC function
 export async function saveTourInquiry(data: TourBookingData) {
   try {
+    // Validate input data
+    const validation = validateTourInquiry({
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      city: data.city,
+      pincode: data.pincode,
+      guests: data.guests,
+      selectedDate: data.selectedDate,
+      tourName: data.tourName,
+    });
+
+    if (!validation.success) {
+      const errorMessages = Object.values(validation.errors || {}).join(', ');
+      return { success: false, error: `Validation failed: ${errorMessages}` };
+    }
+
     // Calculate estimated end date based on duration
     const startDate = new Date(data.selectedDate);
     const durationDays = parseInt(data.duration.match(/\d+/)?.[0] || '1');
     const endDate = new Date(startDate);
     endDate.setDate(endDate.getDate() + durationDays);
 
-    // Generate a unique booking ID
-    const bookingId = `TOUR-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    // Calculate total amount
+    const totalAmount = data.basePrice * data.guests;
 
-    const { data: booking, error } = await supabase
-      .from('bookings')
-      .insert({
-        booking_id: bookingId,
-        guest_name: data.name,
-        email: data.email,
-        whatsapp_number: data.phone,
-        city: data.city,
-        pincode: data.pincode,
-        check_in: data.selectedDate,
-        check_out: endDate.toISOString().split('T')[0],
-        guests: data.guests,
-        room_type: `Tour: ${data.tourName}`,
-        total_amount: data.basePrice * data.guests,
-        subtotal: data.basePrice * data.guests,
-        taxes: 0,
-        booking_status: 'inquiry',
-        payment_status: 'pending',
-        source: 'tour_inquiry',
-        special_requests: `Tour Package: ${data.tourName} | Category: ${data.category} | Duration: ${data.duration}`
-      })
-      .select()
-      .single();
+    // Use secure RPC function (includes rate limiting & fraud detection)
+    const { data: result, error } = await supabase.rpc('create_booking_secure', {
+      p_guest_name: data.name,
+      p_email: data.email,
+      p_whatsapp_number: data.phone.replace(/^\+91[\-\s]?/, ''),
+      p_city: data.city || null,
+      p_pincode: data.pincode || null,
+      p_check_in: data.selectedDate,
+      p_check_out: endDate.toISOString().split('T')[0],
+      p_guests: data.guests,
+      p_room_type: `Tour: ${data.tourName}`,
+      p_room_type_id: 'tour-inquiry',
+      p_quantity: 1,
+      p_subtotal: totalAmount,
+      p_taxes: 0,
+      p_total_amount: totalAmount,
+      p_special_requests: `[Tour Inquiry] ${data.tourName} | Category: ${data.category} | Duration: ${data.duration}`,
+    });
 
-    if (error) throw error;
-    return { success: true, bookingId: booking?.id };
+    if (error) {
+      console.error('Tour inquiry error:', error);
+      
+      if (error.message?.includes('rate limit') || error.message?.includes('too many')) {
+        return { 
+          success: false, 
+          error: 'Too many requests. Please try again in a few minutes.' 
+        };
+      }
+      
+      throw error;
+    }
+
+    const bookingResult = typeof result === 'string' ? JSON.parse(result) : result;
+    
+    if (!bookingResult?.success) {
+      return { 
+        success: false, 
+        error: bookingResult?.error || 'Failed to save tour inquiry' 
+      };
+    }
+
+    console.log('Tour inquiry saved via secure RPC:', bookingResult.booking_id);
+    return { success: true, bookingId: bookingResult.booking_id };
   } catch (error: any) {
     console.error('Error saving tour inquiry:', error);
     return { success: false, error: error.message };

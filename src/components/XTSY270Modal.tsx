@@ -4,10 +4,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { MapPin, Phone, Mail } from 'lucide-react';
+import { MapPin, Phone, Mail, AlertCircle } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import { openWhatsAppDirectly, generateXTSY270Message, PRIVACY_NOTICE } from '@/utils/privacyCompliantWhatsApp';
 import { saveXTSY270Inquiry } from '@/services/formBookingService';
+import { validateXTSY270Inquiry, validateInquiryField } from '@/utils/inquiryValidation';
 
 interface XTSY270ModalProps {
   isOpen: boolean;
@@ -22,6 +23,7 @@ const XTSY270Modal: React.FC<XTSY270ModalProps> = ({ isOpen, onClose }) => {
     mobile: '',
     email: ''
   });
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const indianStates = [
@@ -32,49 +34,29 @@ const XTSY270Modal: React.FC<XTSY270ModalProps> = ({ isOpen, onClose }) => {
     "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"
   ];
 
+  const handleBlur = (field: string) => {
+    const error = validateInquiryField('xtsy270', field, formData[field as keyof typeof formData]);
+    setErrors(prev => ({
+      ...prev,
+      [field]: error || ''
+    }));
+  };
+
   const validateForm = () => {
-    if (!formData.state || !formData.city || !formData.pincode || !formData.mobile || !formData.email) {
+    const validation = validateXTSY270Inquiry(formData);
+    
+    if (!validation.success) {
+      setErrors(validation.errors || {});
+      const firstError = Object.values(validation.errors || {})[0];
       toast({
-        title: "Missing Information",
-        description: "Please fill in all required fields",
+        title: "Validation Error",
+        description: firstError,
         variant: "destructive"
       });
       return false;
     }
-
-    // Pincode validation (6 digits)
-    const pincodeRegex = /^\d{6}$/;
-    if (!pincodeRegex.test(formData.pincode)) {
-      toast({
-        title: "Invalid Pincode",
-        description: "Please enter a valid 6-digit pincode",
-        variant: "destructive"
-      });
-      return false;
-    }
-
-    // Basic email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      toast({
-        title: "Invalid Email",
-        description: "Please enter a valid email address",
-        variant: "destructive"
-      });
-      return false;
-    }
-
-    // Basic mobile validation (10 digits)
-    const mobileRegex = /^[6-9]\d{9}$/;
-    if (!mobileRegex.test(formData.mobile)) {
-      toast({
-        title: "Invalid Mobile Number",
-        description: "Please enter a valid 10-digit mobile number",
-        variant: "destructive"
-      });
-      return false;
-    }
-
+    
+    setErrors({});
     return true;
   };
 
@@ -97,8 +79,8 @@ const XTSY270Modal: React.FC<XTSY270ModalProps> = ({ isOpen, onClose }) => {
 
       if (!result.success) {
         toast({
-          title: "Error",
-          description: "Failed to save inquiry. Please try again.",
+          title: "Inquiry Failed",
+          description: result.error || "Failed to save inquiry. Please try again.",
           variant: "destructive"
         });
         return;
@@ -117,19 +99,20 @@ const XTSY270Modal: React.FC<XTSY270ModalProps> = ({ isOpen, onClose }) => {
       openWhatsAppDirectly(message);
 
       toast({
-        title: "Inquiry Saved",
-        description: "Your XTSY 270° inquiry has been saved successfully!",
+        title: "Thank You!",
+        description: "Your XTSY 270° inquiry has been saved. Our team will reach out soon!",
       });
 
       // Close modal and reset form
       onClose();
       setFormData({ state: '', city: '', pincode: '', mobile: '', email: '' });
+      setErrors({});
       
     } catch (error) {
       console.error("Form submission failed:", error);
       toast({
         title: "Submission Failed",
-        description: "Please try again or contact us directly",
+        description: "Please try again or contact us directly at +91 88373 17070",
         variant: "destructive"
       });
     } finally {
@@ -181,7 +164,14 @@ const XTSY270Modal: React.FC<XTSY270ModalProps> = ({ isOpen, onClose }) => {
                 placeholder="Your city"
                 value={formData.city}
                 onChange={(e) => setFormData(prev => ({ ...prev, city: e.target.value }))}
+                onBlur={() => handleBlur('city')}
+                className={errors.city ? 'border-destructive' : ''}
               />
+              {errors.city && (
+                <p className="text-xs text-destructive mt-1 flex items-center gap-1">
+                  <AlertCircle className="w-3 h-3" />{errors.city}
+                </p>
+              )}
             </div>
             <div>
               <Label htmlFor="pincode">Pincode</Label>
@@ -191,8 +181,15 @@ const XTSY270Modal: React.FC<XTSY270ModalProps> = ({ isOpen, onClose }) => {
                 placeholder="123456"
                 value={formData.pincode}
                 onChange={(e) => setFormData(prev => ({ ...prev, pincode: e.target.value }))}
+                onBlur={() => handleBlur('pincode')}
                 maxLength={6}
+                className={errors.pincode ? 'border-destructive' : ''}
               />
+              {errors.pincode && (
+                <p className="text-xs text-destructive mt-1 flex items-center gap-1">
+                  <AlertCircle className="w-3 h-3" />{errors.pincode}
+                </p>
+              )}
             </div>
           </div>
 
@@ -207,8 +204,15 @@ const XTSY270Modal: React.FC<XTSY270ModalProps> = ({ isOpen, onClose }) => {
               placeholder="Enter 10-digit mobile number"
               value={formData.mobile}
               onChange={(e) => setFormData(prev => ({ ...prev, mobile: e.target.value }))}
+              onBlur={() => handleBlur('mobile')}
               maxLength={10}
+              className={errors.mobile ? 'border-destructive' : ''}
             />
+            {errors.mobile && (
+              <p className="text-xs text-destructive mt-1 flex items-center gap-1">
+                <AlertCircle className="w-3 h-3" />{errors.mobile}
+              </p>
+            )}
           </div>
 
           <div>
@@ -222,7 +226,14 @@ const XTSY270Modal: React.FC<XTSY270ModalProps> = ({ isOpen, onClose }) => {
               placeholder="Enter your email address"
               value={formData.email}
               onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+              onBlur={() => handleBlur('email')}
+              className={errors.email ? 'border-destructive' : ''}
             />
+            {errors.email && (
+              <p className="text-xs text-destructive mt-1 flex items-center gap-1">
+                <AlertCircle className="w-3 h-3" />{errors.email}
+              </p>
+            )}
           </div>
 
           <div className="flex gap-3 pt-4">
