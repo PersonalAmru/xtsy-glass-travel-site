@@ -1206,7 +1206,8 @@ const Travel = () => {
                                 <div className="mt-4 pt-4 border-t border-pink-200">
                                   <div className="flex items-center justify-between text-xs text-gray-600">
                                     <span className="flex items-center gap-1">
-                                  <span>📅</span> Next Batch: <strong className="text-gray-900">Jan 2025</strong>
+                                  <span>
+                                  </span> Next Batch: <strong className="text-gray-900">Jan 2025</strong>
                                     </span>
                                     <span className="flex items-center gap-1">
                                   <span>👥</span> Group Size: <strong className="text-pink-600">8-15 people</strong>
