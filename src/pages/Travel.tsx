@@ -102,7 +102,10 @@ const internationalTravelImage = "";
 const asiaImage = "";
 const merchandiseImage = "";
 const Travel = () => {
-  const { formatPrice, currency } = useApp();
+  const {
+    formatPrice,
+    currency
+  } = useApp();
   const location = useLocation();
   const [activeTab, setActiveTab] = useState<'domestic' | 'international'>('domestic');
   const [selectedPackage, setSelectedPackage] = useState<any>(null);
@@ -616,7 +619,9 @@ const Travel = () => {
           {/* Premium Background Effects */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             <div className="absolute top-20 left-10 w-72 h-72 bg-orange-200/20 rounded-full blur-3xl animate-float" />
-            <div className="absolute bottom-40 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
+            <div className="absolute bottom-40 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float" style={{
+            animationDelay: '1s'
+          }} />
             <div className="absolute top-1/2 left-1/3 w-[500px] h-[500px] bg-gradient-to-r from-orange-100/20 to-red-100/20 rounded-full blur-3xl" />
           </div>
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 via-red-500 to-pink-500" />
@@ -654,34 +659,14 @@ const Travel = () => {
               <div className="flex justify-center mb-6 sm:mb-8 md:mb-10">
                 <div className="relative bg-white/90 backdrop-blur-md rounded-2xl p-1.5 shadow-xl border border-gray-100 flex gap-1">
                   {/* Background Slider */}
-                  <div 
-                    className={`absolute top-1.5 h-[calc(100%-12px)] bg-gradient-to-r from-orange-500 to-red-600 rounded-xl transition-all duration-300 ease-out shadow-lg ${
-                      activeTab === 'domestic' ? 'left-1.5 w-[calc(50%-6px)]' : 'left-[calc(50%+3px)] w-[calc(50%-6px)]'
-                    }`}
-                  />
+                  <div className={`absolute top-1.5 h-[calc(100%-12px)] bg-gradient-to-r from-orange-500 to-red-600 rounded-xl transition-all duration-300 ease-out shadow-lg ${activeTab === 'domestic' ? 'left-1.5 w-[calc(50%-6px)]' : 'left-[calc(50%+3px)] w-[calc(50%-6px)]'}`} />
                   
-                  <Button 
-                    onClick={() => setActiveTab('domestic')} 
-                    variant="ghost"
-                    className={`relative z-10 flex-1 px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-base font-semibold transition-all duration-300 ${
-                      activeTab === 'domestic' 
-                        ? 'text-white hover:bg-transparent' 
-                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                    }`}
-                  >
+                  <Button onClick={() => setActiveTab('domestic')} variant="ghost" className={`relative z-10 flex-1 px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-base font-semibold transition-all duration-300 ${activeTab === 'domestic' ? 'text-white hover:bg-transparent' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'}`}>
                     <MapPin className={`h-4 w-4 sm:h-5 sm:w-5 mr-2 transition-transform ${activeTab === 'domestic' ? 'scale-110' : ''}`} />
                     <span>Domestic</span>
                   </Button>
                   
-                  <Button 
-                    onClick={() => setActiveTab('international')} 
-                    variant="ghost"
-                    className={`relative z-10 flex-1 px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-base font-semibold transition-all duration-300 ${
-                      activeTab === 'international' 
-                        ? 'text-white hover:bg-transparent' 
-                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                    }`}
-                  >
+                  <Button onClick={() => setActiveTab('international')} variant="ghost" className={`relative z-10 flex-1 px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-base font-semibold transition-all duration-300 ${activeTab === 'international' ? 'text-white hover:bg-transparent' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'}`}>
                     <Globe className={`h-4 w-4 sm:h-5 sm:w-5 mr-2 transition-transform ${activeTab === 'international' ? 'scale-110' : ''}`} />
                     <span>International</span>
                   </Button>
@@ -754,11 +739,9 @@ const Travel = () => {
                                   </p>
                                 </div>
                               </div>
-                              {state === "XTSY Exclusive Tours" && (
-                                <span className="travel-badge">
+                              {state === "XTSY Exclusive Tours" && <span className="travel-badge">
                                   ✨ Premium Collection
-                                </span>
-                              )}
+                                </span>}
                             </div>
                           </div>
 
@@ -1223,10 +1206,10 @@ const Travel = () => {
                                 <div className="mt-4 pt-4 border-t border-pink-200">
                                   <div className="flex items-center justify-between text-xs text-gray-600">
                                     <span className="flex items-center gap-1">
-                                      <span>📅</span> Next Batch: <strong className="text-gray-900">Jan 2025</strong>
+                                  <span>📅</span> Next Batch: <strong className="text-gray-900">Jan 2025</strong>
                                     </span>
                                     <span className="flex items-center gap-1">
-                                      <span>👥</span> Group Size: <strong className="text-pink-600">8-15 people</strong>
+                                  <span>👥</span> Group Size: <strong className="text-pink-600">8-15 people</strong>
                                     </span>
                                   </div>
                                 </div>
