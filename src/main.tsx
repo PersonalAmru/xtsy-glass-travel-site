@@ -15,17 +15,36 @@ import { performGlobalCleanup } from "./utils/performanceCleanup";
 import { cleanupUnifiedImage } from "./components/UnifiedImage";
 import { initializeCriticalImageLoading } from "./utils/criticalImagePreloader";
 
-// CRITICAL: Preload images BEFORE React renders
-initializeCriticalImageLoading().then(() => {
-  console.log('✓ Critical resources ready');
-});
+// CRITICAL: Initialize optimizations immediately (non-blocking)
+requestIdleCallback?.(() => {
+  initializeCriticalImageLoading().then(() => {
+    console.log('✓ Critical resources ready');
+  });
+}) || initializeCriticalImageLoading();
 
-// Initialize all performance optimizations for instant loading
-initializeImageOptimizations();
-initializePerformanceEnhancements();
-initializeAdvancedLazyLoading();
-initializeNetworkOptimizations();
-initializePerformanceOptimizations();
+// Defer non-critical optimizations
+if (document.readyState === 'complete') {
+  initializeOptimizations();
+} else {
+  window.addEventListener('load', initializeOptimizations, { once: true });
+}
+
+function initializeOptimizations() {
+  // Run after first paint for faster initial load
+  requestIdleCallback?.(() => {
+    initializeImageOptimizations();
+    initializePerformanceEnhancements();
+    initializeAdvancedLazyLoading();
+    initializeNetworkOptimizations();
+    initializePerformanceOptimizations();
+  }) || setTimeout(() => {
+    initializeImageOptimizations();
+    initializePerformanceEnhancements();
+    initializeAdvancedLazyLoading();
+    initializeNetworkOptimizations();
+    initializePerformanceOptimizations();
+  }, 0);
+}
 
 // Add cleanup on app exit
 window.addEventListener('beforeunload', () => {

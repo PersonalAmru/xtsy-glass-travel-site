@@ -1,11 +1,13 @@
-// High-performance Service Worker optimized for 5000+ concurrent users with egress optimization
-const CACHE_NAME = 'xtsy-performance-v1.4';
-const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours
+// High-performance Service Worker optimized for slow connections & 5000+ concurrent users
+const CACHE_NAME = 'xtsy-performance-v1.5';
+const CACHE_DURATION = 7 * 24 * 60 * 60 * 1000; // 7 days for slow connections
 
-// Critical resources to cache immediately
+// Critical resources to cache immediately for instant loading
 const CRITICAL_RESOURCES = [
   '/',
-  '/placeholder.svg'
+  '/placeholder.svg',
+  '/lovable-uploads/160f683c-a41c-41fd-8bdb-700d74a7e027.png',
+  '/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png'
 ];
 
 // Resources to cache on runtime - expanded for comprehensive coverage

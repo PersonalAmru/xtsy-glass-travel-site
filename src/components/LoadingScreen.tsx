@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 
 interface LoadingScreenProps {
@@ -7,52 +6,83 @@ interface LoadingScreenProps {
 
 const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
   const [isVisible, setIsVisible] = useState(true);
-  const [logoError, setLogoError] = useState(false);
 
   useEffect(() => {
+    // Ultra-fast loading - minimal delay
     const timer = setTimeout(() => {
       setIsVisible(false);
       onLoadingComplete?.();
-    }, 500); // Reduced to 0.5 seconds for faster loading
+    }, 150);
 
     return () => clearTimeout(timer);
   }, [onLoadingComplete]);
 
   if (!isVisible) return null;
 
+  // Minimal, fast-rendering loading screen with inline styles (no external resources)
   return (
-    <div className="fixed inset-0 bg-gray-900 z-50 flex items-center justify-center">
-      <div className="text-center">
-        {/* XTSY Logo Animation */}
-        <div className="w-20 h-20 mx-auto mb-6 animate-pulse">
-          {!logoError ? (
-            <img 
-              src="https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Color%20logo%20-%20no%20background.png"
-              alt="XTSY Logo" 
-              className="w-full h-full object-contain"
-              onError={() => setLogoError(true)}
-            />
-          ) : (
-            <div className="w-20 h-20 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl flex items-center justify-center">
-              <span className="text-white font-bold text-xl">XTSY</span>
-            </div>
-          )}
+    <div 
+      style={{
+        position: 'fixed',
+        inset: 0,
+        backgroundColor: '#111827',
+        zIndex: 50,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}
+    >
+      <div style={{ textAlign: 'center' }}>
+        {/* Pure CSS logo - no external image fetch */}
+        <div 
+          style={{
+            width: '80px',
+            height: '80px',
+            margin: '0 auto 24px',
+            background: 'linear-gradient(135deg, #f97316, #dc2626)',
+            borderRadius: '16px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            animation: 'pulse 1s ease-in-out infinite'
+          }}
+        >
+          <span style={{ color: 'white', fontWeight: 'bold', fontSize: '24px' }}>XTSY</span>
         </div>
         
-        {/* Loading Text */}
-        <div className="text-white font-medium text-lg mb-2">
-          Loading XTSY Experience...
-        </div>
-        
-        <div className="text-gray-400 text-sm mb-6">
-          Live the Shillong Vibe
-        </div>
-        
-        {/* Progress Bar */}
-        <div className="w-64 h-1 bg-gray-700 rounded-full mx-auto overflow-hidden">
-          <div className="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
+        {/* Inline progress animation */}
+        <div 
+          style={{
+            width: '160px',
+            height: '4px',
+            backgroundColor: '#374151',
+            borderRadius: '9999px',
+            margin: '0 auto',
+            overflow: 'hidden'
+          }}
+        >
+          <div 
+            style={{
+              height: '100%',
+              background: 'linear-gradient(90deg, #a855f7, #ec4899)',
+              borderRadius: '9999px',
+              animation: 'loading 0.8s ease-in-out infinite'
+            }}
+          />
         </div>
       </div>
+      
+      <style>{`
+        @keyframes pulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.8; transform: scale(0.95); }
+        }
+        @keyframes loading {
+          0% { width: 0%; margin-left: 0; }
+          50% { width: 60%; margin-left: 20%; }
+          100% { width: 0%; margin-left: 100%; }
+        }
+      `}</style>
     </div>
   );
 };
