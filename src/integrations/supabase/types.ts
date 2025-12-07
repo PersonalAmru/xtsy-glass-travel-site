@@ -14,6 +14,30 @@ export type Database = {
   }
   public: {
     Tables: {
+      blocked_dates: {
+        Row: {
+          blocked: boolean | null
+          created_at: string | null
+          date: string
+          id: string
+          room_type: string
+        }
+        Insert: {
+          blocked?: boolean | null
+          created_at?: string | null
+          date: string
+          id?: string
+          room_type: string
+        }
+        Update: {
+          blocked?: boolean | null
+          created_at?: string | null
+          date?: string
+          id?: string
+          room_type?: string
+        }
+        Relationships: []
+      }
       booking_rate_limits_backup: {
         Row: {
           blocked_until: string | null
