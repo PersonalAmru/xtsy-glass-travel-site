@@ -28,7 +28,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Initialize performance optimizations
+    // Initialize performance optimizations immediately
     preloadCriticalResources();
     optimizeFontLoading();
     registerServiceWorker();
@@ -41,9 +41,14 @@ function App() {
       pii_redaction_enabled: true
     });
 
+    // Fast loading: Skip artificial delay on fast connections
+    const connection = (navigator as any).connection;
+    const isSlowConnection = connection?.effectiveType === '2g' || connection?.effectiveType === 'slow-2g';
+    const loadTime = isSlowConnection ? 300 : 100; // Minimal delay
+
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1500); // Reduced loading time
+    }, loadTime);
 
     // Cleanup function for app unmount
     return () => {

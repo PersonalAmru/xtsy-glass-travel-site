@@ -40,7 +40,23 @@
     <link rel="preload" as="fetch" href="https://oidnydyyjyjfnyadhyzn.supabase.co" crossorigin>
     
     <!-- Emoji font with display swap for faster render -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    
+    <!-- Critical inline CSS for instant first paint -->
+    <style>
+      /* Critical above-the-fold styles - inline for instant render */
+      *{margin:0;padding:0;box-sizing:border-box}
+      html{font-family:system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+      body{background:#111827;color:#fff;min-height:100vh}
+      #root{min-height:100vh}
+      .dark{color-scheme:dark}
+      /* Instant loading placeholder */
+      .loading-placeholder{position:fixed;inset:0;background:#111827;z-index:50;display:flex;align-items:center;justify-content:center}
+      /* Reduce layout shift */
+      img,video{max-width:100%;height:auto;display:block}
+      /* Fast animations for slow connections */
+      @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+    </style>
     
     <!-- Critical mobile optimization with foldable device support -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">

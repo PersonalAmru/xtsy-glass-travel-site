@@ -7,6 +7,28 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Slow connection optimizations */
+.slow-connection * {
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+  transition-duration: 0.1s !important;
+}
+
+.slow-connection .floating-element,
+.slow-connection .animate-pulse,
+.slow-connection .animate-bounce {
+  animation: none !important;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 @layer base {
   :root {
     /* Light theme */
