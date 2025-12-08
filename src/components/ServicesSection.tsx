@@ -134,21 +134,21 @@ const services: ServiceCard[] = [
   ];
 
   return (
-    <section className="pt-12 md:pt-16 lg:pt-20 pb-12 md:pb-16 lg:pb-20 safe-area-padding bg-gradient-to-br from-purple-900/20 via-pink-900/10 to-orange-900/20 relative overflow-hidden -mt-1">
-      {/* page ambience */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-100/20 via-pink-100/10 to-orange-100/20" />
-      <div className="absolute inset-0 backdrop-blur-3xl" />
-      <div className="absolute -top-20 -right-20 w-64 h-64 bg-purple-400/20 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-pink-400/20 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-orange-300/10 rounded-full blur-3xl" />
+    <section className="pt-12 md:pt-16 lg:pt-20 pb-12 md:pb-16 lg:pb-20 safe-area-padding bg-gradient-to-br from-purple-200/60 via-pink-100/50 to-orange-100/60 relative overflow-hidden -mt-1">
+      {/* page ambience - brighter */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-50/80 via-pink-50/70 to-orange-50/80" />
+      <div className="absolute inset-0 backdrop-blur-3xl bg-white/30" />
+      <div className="absolute -top-20 -right-20 w-64 h-64 bg-purple-300/40 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-pink-300/40 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-orange-200/30 rounded-full blur-3xl" />
 
       <div className="responsive-container relative z-10 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
         <div className="text-center mb-12 sm:mb-16">
-          <div className="glass-card inline-block p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-purple-600 mb-1 font-playfair">
+          <div className="glass-card inline-block p-6 rounded-2xl bg-white/60 backdrop-blur-md border border-white/40 shadow-2xl">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-purple-700 mb-1 font-playfair">
               Amenities &amp; Services
             </h2>
-            <p className="text-lg sm:text-xl text-gray-700 font-medium mt-2">
+            <p className="text-lg sm:text-xl text-gray-800 font-medium mt-2">
               🐱 🐶 🦜 Pet Friendly
             </p>
           </div>
