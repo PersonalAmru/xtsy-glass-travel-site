@@ -626,11 +626,15 @@ const ReviewsSection = () => {
             <ChevronRight className="h-4 w-4" />
           </Button>
 
-          {/* Dots Indicators */}
-          <div className="flex justify-center mt-6 gap-2">
-            {Array.from({
-            length: Math.ceil(filteredReviews.length - 2)
-          }).map((_, index) => <button key={index} className={`w-3 h-3 rounded-full transition-colors ${index === currentIndex ? 'bg-white/70' : 'bg-white/30'}`} onClick={() => setCurrentIndex(index)} />)}
+          {/* View All Button */}
+          <div className="flex justify-center mt-6">
+            <Button 
+              variant="outline" 
+              className="bg-white/10 border-white/30 text-white hover:bg-white/20 backdrop-blur-sm px-6 py-2"
+              onClick={() => setIsAllReviewsOpen(true)}
+            >
+              View All {filteredReviews.length} Reviews
+            </Button>
           </div>
         </div>
 
