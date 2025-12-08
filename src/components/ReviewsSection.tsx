@@ -508,6 +508,278 @@ const ReviewsSection = () => {
     roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
     property: "XTSY Travellers Hostel",
     highlights: "Great view"
+  }, {
+    name: "Rama Krishna",
+    rating: 5,
+    comment: "The hostel is comfy and situated in the calmness of the nature. With clean rooms and friendly staff.",
+    date: "4 weeks ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 4.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Luxury · Great view · Romantic · Quiet · Child-friendly · Great value · High-tech",
+    details: {
+      rooms: "The rooms are clean and cozy with balcony",
+      safety: "The entire hostel has CCTV and a good ratio of female staff as well",
+      walkability: "It's a bit far from the city, that is the only disadvantage",
+      food: "The hostel offers good food and a wide range of snacks in its self service store"
+    }
+  }, {
+    name: "Ssh",
+    rating: 5,
+    comment: "Santosh bhaiyya is really helpful and the hospitality is good.",
+    date: "3 weeks ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel"
+  }, {
+    name: "Guru Manglam Siddhe",
+    rating: 5,
+    comment: "Crazyyy hostel to live in, must visit. PM there is just amazing!",
+    date: "3 weeks ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel"
+  }, {
+    name: "Nishant Duhoon",
+    rating: 5,
+    comment: "Santosh bhai was very helpful",
+    date: "3 weeks ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Luxury · Great view · Quiet · Great value"
+  }, {
+    name: "Ravinder Singh",
+    rating: 5,
+    comment: "It was a great exp...staff is lovely...",
+    date: "3 weeks ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Child-friendly"
+  }, {
+    name: "Nabajit Bora",
+    rating: 5,
+    comment: "Good service, thank you Santosh ji",
+    date: "3 weeks ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel"
+  }, {
+    name: "Surya Prakash",
+    rating: 5,
+    comment: "Amazing service experience by Santosh bhaiya",
+    date: "3 weeks ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Luxury"
+  }, {
+    name: "Vishnu Kumar",
+    rating: 5,
+    comment: "Rooms and beds are very good and service given by Santosh Sir very generous and pleasing",
+    date: "3 weeks ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel"
+  }, {
+    name: "Pratham Jain",
+    rating: 5,
+    comment: "Rooms and bed are very good and clean and service given by Santosh bhaiya is very generous and pleasing",
+    date: "3 weeks ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel"
+  }, {
+    name: "Abhishek Soni",
+    rating: 5,
+    comment: "Best service provided by Santosh Bhaiya👍",
+    date: "3 weeks ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Great view · Quiet · Child-friendly · Great value"
+  }, {
+    name: "Ronak Khandelwal",
+    rating: 5,
+    comment: "Great service by Santosh bhaiya",
+    date: "3 weeks ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Great view · Romantic · Child-friendly"
+  }, {
+    name: "Dennis Mathew",
+    rating: 5,
+    comment: "Best vibe best food best people. santosh da is great",
+    date: "3 weeks ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel"
+  }, {
+    name: "Leisure Nyan",
+    rating: 5,
+    comment: "Had a great time, kind and hospitable staff and an amazing location. Great place for backpackers, met a bunch of interesting people. Shout out to brother Deepak dude is a vibe to be around, you don't find him he finds you 😉. Definately returning",
+    date: "3 weeks ago",
+    source: "Google",
+    roomType: "Rooms 4.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Great view · Quiet · Great value",
+    details: {
+      safety: "You do share rooms with strangers but if u take the time to get to know people u find there's nothing to worry.",
+      walkability: "Bit out in the woods"
+    }
+  }, {
+    name: "Zan",
+    rating: 5,
+    comment: "One of the best hostel in Shillong! Santosh and the entire staffs was very helpful.",
+    date: "3 weeks ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel"
+  }, {
+    name: "Mayank Kumar",
+    rating: 5,
+    comment: "Had a great experience and great hospitality by Santosh bhaiya",
+    date: "3 weeks ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel"
+  }, {
+    name: "Rewa S",
+    rating: 5,
+    comment: "Travellers looking for a place of co-existence, away from city hustle, but warm enough to keep you surrounded with a diverse crowd of expert travellers, remote working people, new comers or first-time travellers, you basically get a very welcoming environment here. It's a must experience hostel. Food: simple, wholesome. Vibe: 100% great. Cleanliness: Very regular and maintained. Cost effectiveness: Great. Scope to connect with like minded people: 100%. Most importantly, the man behind the scenes, you'd see running around for room allocations, taking canteen orders, arranging bikes, managing the staff team but always keeping a smile on his face- Santosh bhaiya. He is a gem of a person. Made our stay worth remembering. Thanks to the entire XTSY team ❤️ My travel dates: Nov 11-17, 2025",
+    date: "2 weeks ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Great view · Quiet · Great value",
+    details: {
+      rooms: "Dorms are great, both 'only female' and common dorms are available. Rooms are great too",
+      activities: "Places to eat nearby- Naga kitchen, Las cafe",
+      safety: "Absolutely safe for all genders",
+      walkability: "You would need a vehicle"
+    }
+  }, {
+    name: "Patorgumin Tours & Travels",
+    rating: 5,
+    comment: "First of all thank you so much Mr Amru and XTSY Hostel shillong for welcoming and accommodating right from the moment my guest checked-in. I heard about the rooms and all the services and everything👍🏻thanks again Mr Amru i duly recommend your Hotel to anyone👍🏻👍🏻🙏🏻🙏🏻",
+    date: "2 weeks ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel"
+  }, {
+    name: "Kham Home Stay",
+    rating: 5,
+    comment: "Best place to stay when visiting Shillong! If you prefer to stay a little away from the main town and enjoy a peaceful environment, this property is perfect. Santosh Daju, who looks after the hostel, is extremely friendly and helpful—especially for travelers and trekkers. His wife, Didi, manages the kitchen and cooks delicious meals that truly make you feel at home. Me & my wife also went morning walk every morning felt like country road 🏃‍♂️🌲under the full of pine trees. Really appreciate their warmth and hospitality. Anyone planning a trip to Shillong should definitely experience staying at this property!",
+    date: "2 weeks ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel"
+  }, {
+    name: "Harshit Poddar",
+    rating: 5,
+    comment: "I had a great stay here, and a huge shoutout to Santosh for making the experience even better! He was extremely helpful throughout and even arranged a bonfire on special request, which made the evenings super memorable. He's friendly, supportive, and really knows how to make guests feel at home. The hostel vibe was amazing, the place was clean, and the food was amazing as well. It's also a great spot to meet new people, thanks to the social atmosphere they've created. The only thing that could be improved is the WiFi connectivity, which was a bit patchy at times. But overall, a wonderful stay — and Santosh definitely deserves credit for it!",
+    date: "2 weeks ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Great view · Great value"
+  }, {
+    name: "Parichit Doshi",
+    rating: 5,
+    comment: "Amazing experience staying at XTSY traveller's hostel.. Amazing host.. Santosh was amazing.. Great people.. Met a lot new people who became a part of my life now.. absolutely beautiful place.. worth every single penny.. definitely coming here again",
+    date: "a week ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Great view · Quiet · Great value"
+  }, {
+    name: "Vansh Sharma",
+    rating: 5,
+    comment: "Hospitality was sooo good and the main credit goes to my brother santosh bhai taking care of each and everything.",
+    date: "a week ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Luxury · Great view · Great value"
+  }, {
+    name: "Vaishnavi Dhengre",
+    rating: 5,
+    comment: "The most comfortable place i found in shillong🫶 Staff is sweet and welcoming especially Property Manager Santosh Sir is very helping.",
+    date: "a week ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Great value"
+  }, {
+    name: "Rudra Pratap Singh",
+    rating: 5,
+    comment: "Beautiful stay with lot of entertainment activities to keep you engaged entire evening. Classy food with the right price. The staff is well behaved and ready to help anyway they can. The caretaker satosh was really helpful. Overall a great stay must visit on your trip to shillong for a great eve.",
+    date: "a week ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel"
+  }, {
+    name: "Ammy",
+    rating: 5,
+    comment: "Amazing amazing experience. Very beautiful Location and obviously needs some extra miles to reach here but was totally worth it. Amazing setup including the dorms and common area and lovely staff who are so accommodating. Special thanks to Santosh ji for helping with all small things and our untimely requirements",
+    date: "a week ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel"
+  }, {
+    name: "Keang Nicollo",
+    rating: 5,
+    comment: "It was good",
+    date: "6 days ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel"
+  }, {
+    name: "Amrit Sarkar",
+    rating: 5,
+    comment: "The hotel is located in a peaceful area. The manager & staffs are very polite. Rooms are average but other amenities like TT room, recreation room and terrace facilities were excellent in a city like shillong.",
+    date: "5 days ago",
+    source: "Google",
+    roomType: "Rooms 4.0 | Service 4.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Great value"
+  }, {
+    name: "Nangkeng Darang",
+    rating: 5,
+    comment: "I recently stayed at this traveller hostel, and it was an excellent experience from start to finish. The rooms were clean, comfortable, and well-maintained, creating a cozy atmosphere perfect for backpackers and long-term travellers. The owner of the Hostel Mr. Amru hospitality were incredibly friendly and always ready to help with anything—from local tips to arranging transport. A special mention goes to the Head cook cum Manager Mr. Santosh Dorjee ji, who truly made the stay memorable. Every meal was fresh, flavorful, and prepared with genuine care. Whether it was a hearty breakfast to start the day or a warm dinner after exploring, the food felt homemade and comforting. The cook's welcoming attitude and passion for serving guests added a personal touch that made everyone feel at home. Overall, this hostel offers great hospitality, delicious food, and a relaxing environment. Highly recommended for anyone looking for a warm and budget-friendly place to stay.",
+    date: "5 days ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Quiet"
+  }, {
+    name: "Tonmoy Deka",
+    rating: 5,
+    comment: "It was a really good experience. It was a sudden plan and we were searching for an affordable homestay, and we found XTSY Traveller hostel here all the staff are friendly and respectful we really enjoyed here less money full enjoyment! We had a good experience! Special thanks to santos bhaiya for helping us and making sure that we are enjoying and guiding us. Make sure when you come to shillong to stay here you will definitely not regret it!",
+    date: "3 days ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Quiet"
+  }, {
+    name: "Pragyandeep Raj",
+    rating: 5,
+    comment: "It was a very nice experience, wonderfull service, theres a person santosh he was really kind and helped us in many ways, shared his experience and told us about the surroundings and view points to visit, will sure be here next time. Thanks.",
+    date: "3 days ago",
+    source: "Google",
+    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
+    property: "XTSY Travellers Hostel"
+  }, {
+    name: "Bhavesh Bulchandani",
+    rating: 5,
+    comment: "Great service provided by Mr. Santosh. Rooms were small and cozy but does the job for the day and each room has an attached washroom which makes it convenient. Location is in New Shillong which is still developing, and the road around the property isn't completely ready. However this would be a great spot in a few months post renovation of the premises along with certain developments in the area. The property also has a great play area with a smart tv and table tennis table. Great place to sit around at the top floor too. The staff is friendly and the food prepared is great",
+    date: "2 days ago",
+    source: "Google",
+    roomType: "Rooms 3.0 | Service 5.0 | Location 4.0",
+    property: "XTSY Travellers Hostel",
+    highlights: "Great value"
   }];
 
   // Sort reviews by comment length (longest first)
