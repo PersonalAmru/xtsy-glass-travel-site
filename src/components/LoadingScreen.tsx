@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import xtsyLogo from "@/assets/xtsy-brand-logo.png";
 
 interface LoadingScreenProps {
   onLoadingComplete?: () => void;
@@ -6,6 +7,7 @@ interface LoadingScreenProps {
 
 const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
   const [isVisible, setIsVisible] = useState(true);
+  const [logoLoaded, setLogoLoaded] = useState(false);
 
   useEffect(() => {
     // Ultra-fast loading - minimal delay
@@ -19,7 +21,7 @@ const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
 
   if (!isVisible) return null;
 
-  // Minimal, fast-rendering loading screen with inline styles (no external resources)
+  // Minimal, fast-rendering loading screen with XTSY branding
   return (
     <div 
       style={{
@@ -33,21 +35,44 @@ const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
       }}
     >
       <div style={{ textAlign: 'center' }}>
-        {/* Pure CSS logo - no external image fetch */}
+        {/* XTSY Logo with fallback */}
         <div 
           style={{
-            width: '80px',
-            height: '80px',
+            width: '120px',
+            height: '120px',
             margin: '0 auto 24px',
-            background: 'linear-gradient(135deg, #f97316, #dc2626)',
-            borderRadius: '16px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             animation: 'pulse 1s ease-in-out infinite'
           }}
         >
-          <span style={{ color: 'white', fontWeight: 'bold', fontSize: '24px' }}>XTSY</span>
+          {!logoLoaded && (
+            <div 
+              style={{
+                width: '80px',
+                height: '80px',
+                background: 'linear-gradient(135deg, #f97316, #dc2626)',
+                borderRadius: '16px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <span style={{ color: 'white', fontWeight: 'bold', fontSize: '24px' }}>XTSY</span>
+            </div>
+          )}
+          <img 
+            src={xtsyLogo}
+            alt="XTSY"
+            style={{ 
+              maxWidth: '100%', 
+              maxHeight: '100%',
+              display: logoLoaded ? 'block' : 'none'
+            }}
+            onLoad={() => setLogoLoaded(true)}
+            onError={() => setLogoLoaded(false)}
+          />
         </div>
         
         {/* Inline progress animation */}
@@ -64,7 +89,7 @@ const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
           <div 
             style={{
               height: '100%',
-              background: 'linear-gradient(90deg, #a855f7, #ec4899)',
+              background: 'linear-gradient(90deg, #f97316, #dc2626)',
               borderRadius: '9999px',
               animation: 'loading 0.8s ease-in-out infinite'
             }}
@@ -75,7 +100,7 @@ const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
       <style>{`
         @keyframes pulse {
           0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.8; transform: scale(0.95); }
+          50% { opacity: 0.85; transform: scale(0.98); }
         }
         @keyframes loading {
           0% { width: 0%; margin-left: 0; }
