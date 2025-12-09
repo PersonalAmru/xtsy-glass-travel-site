@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import xtsyLogo from "@/assets/xtsy-brand-logo.png";
+import xtsyFavicon from "@/assets/xtsy-favicon.png";
 
 interface LoadingScreenProps {
   onLoadingComplete?: () => void;
@@ -35,11 +35,11 @@ const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
       }}
     >
       <div style={{ textAlign: 'center' }}>
-        {/* XTSY Logo with fallback */}
+        {/* XTSY Favicon Logo */}
         <div 
           style={{
-            width: '120px',
-            height: '120px',
+            width: '100px',
+            height: '100px',
             margin: '0 auto 24px',
             display: 'flex',
             alignItems: 'center',
@@ -47,12 +47,24 @@ const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
             animation: 'pulse 1s ease-in-out infinite'
           }}
         >
+          <img 
+            src={xtsyFavicon}
+            alt="XTSY"
+            style={{ 
+              width: '100%', 
+              height: '100%',
+              objectFit: 'contain',
+              display: logoLoaded ? 'block' : 'none'
+            }}
+            onLoad={() => setLogoLoaded(true)}
+            onError={() => setLogoLoaded(false)}
+          />
           {!logoLoaded && (
             <div 
               style={{
                 width: '80px',
                 height: '80px',
-                background: 'linear-gradient(135deg, #f97316, #dc2626)',
+                background: 'linear-gradient(135deg, #a31545, #dc2626)',
                 borderRadius: '16px',
                 display: 'flex',
                 alignItems: 'center',
@@ -62,17 +74,6 @@ const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
               <span style={{ color: 'white', fontWeight: 'bold', fontSize: '24px' }}>XTSY</span>
             </div>
           )}
-          <img 
-            src={xtsyLogo}
-            alt="XTSY"
-            style={{ 
-              maxWidth: '100%', 
-              maxHeight: '100%',
-              display: logoLoaded ? 'block' : 'none'
-            }}
-            onLoad={() => setLogoLoaded(true)}
-            onError={() => setLogoLoaded(false)}
-          />
         </div>
         
         {/* Inline progress animation */}
