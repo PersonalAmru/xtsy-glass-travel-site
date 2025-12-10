@@ -16,10 +16,19 @@ import { performGlobalCleanup } from "./utils/performanceCleanup";
 import { cleanupUnifiedImage } from "./components/UnifiedImage";
 import { initializeCriticalImageLoading } from "./utils/criticalImagePreloader";
 
+// Polyfill for Safari which doesn't support requestIdleCallback
+const scheduleIdleTask = (callback: () => void) => {
+  if (typeof requestIdleCallback !== 'undefined') {
+    requestIdleCallback(callback);
+  } else {
+    setTimeout(callback, 1);
+  }
+};
+
 // CRITICAL: Initialize optimizations immediately (non-blocking)
-requestIdleCallback?.(() => {
+scheduleIdleTask(() => {
   initializeCriticalImageLoading();
-}) || initializeCriticalImageLoading();
+});
 
 // Defer non-critical optimizations
 if (document.readyState === 'complete') {
@@ -30,19 +39,13 @@ if (document.readyState === 'complete') {
 
 function initializeOptimizations() {
   // Run after first paint for faster initial load
-  requestIdleCallback?.(() => {
+  scheduleIdleTask(() => {
     initializeImageOptimizations();
     initializePerformanceEnhancements();
     initializeAdvancedLazyLoading();
     initializeNetworkOptimizations();
     initializePerformanceOptimizations();
-  }) || setTimeout(() => {
-    initializeImageOptimizations();
-    initializePerformanceEnhancements();
-    initializeAdvancedLazyLoading();
-    initializeNetworkOptimizations();
-    initializePerformanceOptimizations();
-  }, 0);
+  });
 }
 
 // Add cleanup on app exit
