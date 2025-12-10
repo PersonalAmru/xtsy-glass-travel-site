@@ -1,33 +1,34 @@
 /**
  * Critical Image Preloader - Ensures instant loading of above-the-fold images
- * This runs before React renders to eliminate any loading delay
+ * Uses production-compatible paths (not /src/ paths which don't work in builds)
  */
 
 // Critical images that MUST load instantly (above the fold)
+// These paths work in both dev and production
 const CRITICAL_IMAGES = [
-  '/src/assets/xtsy-brand-logo.png',
+  '/xtsy-favicon.png',
   '/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png',
   '/lovable-uploads/160f683c-a41c-41fd-8bdb-700d74a7e027.png'
 ];
 
 // High-priority images that should load very quickly
 const HIGH_PRIORITY_IMAGES = [
-  '/src/assets/incredible-india-logo.png',
-  '/src/assets/xtsy-logo.png',
-  '/src/assets/xtsy-color-logo.png'
+  '/lovable-uploads/0ef988f7-b7f3-4d1f-80e3-fc2a04acd9cb.png'
 ];
 
 /**
  * Preload critical images immediately with highest priority
  */
 export const preloadCriticalImages = () => {
+  // Skip if running on server or document not ready
+  if (typeof document === 'undefined') return;
+
   CRITICAL_IMAGES.forEach(src => {
     const link = document.createElement('link');
     link.rel = 'preload';
     link.as = 'image';
     link.href = src;
     link.fetchPriority = 'high';
-    // @ts-ignore - fetchpriority is supported in modern browsers
     link.setAttribute('fetchpriority', 'high');
     document.head.appendChild(link);
   });
@@ -38,7 +39,6 @@ export const preloadCriticalImages = () => {
     link.rel = 'preload';
     link.as = 'image';
     link.href = src;
-    link.fetchPriority = 'high';
     document.head.appendChild(link);
   });
 };
@@ -49,12 +49,12 @@ export const preloadCriticalImages = () => {
  */
 export const forceLoadCriticalImages = (): Promise<void[]> => {
   const loadPromises = CRITICAL_IMAGES.map(src => {
-    return new Promise<void>((resolve, reject) => {
+    return new Promise<void>((resolve) => {
       const img = new Image();
       img.onload = () => resolve();
       img.onerror = () => {
-        console.warn(`Failed to preload critical image: ${src}`);
-        resolve(); // Don't block on errors
+        // Don't log warnings for missing images - they're optional
+        resolve();
       };
       // Force immediate loading
       img.decoding = 'sync';
@@ -68,39 +68,33 @@ export const forceLoadCriticalImages = (): Promise<void[]> => {
 };
 
 /**
- * Initialize aggressive image caching
+ * Initialize aggressive image caching (simplified - no invalid meta tags)
  */
 export const enableAggressiveImageCaching = () => {
-  // Add cache control hints
-  const meta = document.createElement('meta');
-  meta.httpEquiv = 'Cache-Control';
-  meta.content = 'max-age=31536000, immutable';
-  document.head.appendChild(meta);
+  // Skip if running on server
+  if (typeof document === 'undefined') return;
   
-  // Enable HTTP/2 Server Push hint
-  const pushMeta = document.createElement('meta');
-  pushMeta.httpEquiv = 'Link';
-  pushMeta.content = CRITICAL_IMAGES.map(src => 
-    `<${src}>; rel=preload; as=image; fetchpriority=high`
-  ).join(', ');
-  document.head.appendChild(pushMeta);
+  // Note: Cache-Control should be set via server headers, not meta tags
+  // This function is kept for compatibility but does nothing harmful
 };
 
 /**
  * Initialize all critical image optimizations
  */
 export const initializeCriticalImageLoading = async () => {
+  // Skip if running on server
+  if (typeof document === 'undefined') return;
+
   // Step 1: Add preload links immediately
   preloadCriticalImages();
   
-  // Step 2: Enable aggressive caching
+  // Step 2: Enable aggressive caching (no-op now)
   enableAggressiveImageCaching();
   
-  // Step 3: Force load critical images before render
+  // Step 3: Force load critical images before render (non-blocking)
   try {
     await forceLoadCriticalImages();
-    console.log('✓ Critical images preloaded');
-  } catch (error) {
-    console.warn('Some critical images failed to preload:', error);
+  } catch {
+    // Silently continue - image preloading is an optimization, not critical
   }
 };
