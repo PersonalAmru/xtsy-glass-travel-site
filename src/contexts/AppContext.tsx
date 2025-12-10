@@ -146,17 +146,12 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
           const locationData = await detectUserLocation();
           
           // Log anonymized location data (GDPR compliant - only country code)
-          try {
-            await supabase.from('user_location_preferences').insert({
-              country_code: locationData.country,
-              detected_currency: locationData.currency,
-              detected_at: new Date().toISOString()
-            });
-            console.log('Location auto-detected:', locationData.country, '→', locationData.currency);
-          } catch (dbError) {
-            console.warn('Failed to log location preference:', dbError);
-            // Continue even if logging fails
-          }
+          // This is completely non-blocking and failures are silently ignored
+          void supabase.from('user_location_preferences').insert({
+            country_code: locationData.country,
+            detected_currency: locationData.currency,
+            detected_at: new Date().toISOString()
+          });
           
           // Set currency based on detected location
           const detectedCurrency = availableCurrencies.find(c => c.code === locationData.currency);
