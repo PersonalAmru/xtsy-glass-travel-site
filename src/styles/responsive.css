@@ -22,13 +22,6 @@
   }
 }
 
-/* GPU acceleration for smooth scrolling */
-.mobile-scroll-optimize {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
-}
-
 /* ========================================
    Mobile Dialog/Modal Optimizations
    ======================================== */
@@ -37,7 +30,7 @@
 @media (max-width: 767px) {
   [data-radix-dialog-content] {
     max-height: 85vh !important;
-    max-height: 85dvh !important; /* Dynamic viewport height */
+    max-height: 85dvh !important;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
     overscroll-behavior: contain;
@@ -46,27 +39,183 @@
   
   /* Reduce dialog animations on mobile for better performance */
   [data-radix-dialog-content] {
-    animation-duration: 150ms !important;
+    animation-duration: 100ms !important;
   }
   
   [data-radix-dialog-overlay] {
-    animation-duration: 100ms !important;
+    animation-duration: 80ms !important;
   }
 }
 
 /* ========================================
-   Emoji Text Support
+   CRITICAL: Disable Heavy Effects on Mobile
    ======================================== */
 
-.emoji-text {
-  font-family:
-    'TwitterColorEmoji-SVGinOT',
-    'Noto Color Emoji',
-    'Segoe UI Emoji',
-    'Apple Color Emoji',
-    'Segoe UI Symbol',
-    sans-serif;
-  font-style: normal;
+@media (max-width: 767px) {
+  /* Disable ALL backdrop-blur on mobile - GPU intensive */
+  .backdrop-blur-sm,
+  .backdrop-blur,
+  .backdrop-blur-md,
+  .backdrop-blur-lg,
+  .backdrop-blur-xl,
+  .backdrop-blur-2xl,
+  .backdrop-blur-3xl,
+  [class*="backdrop-blur"] {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  
+  /* Disable ALL pulse animations on mobile */
+  .animate-pulse,
+  [class*="animate-pulse"] {
+    animation: none !important;
+  }
+  
+  /* Disable floating animations on mobile */
+  .floating-element,
+  .animate-float,
+  [class*="floating"] {
+    animation: none !important;
+    transform: none !important;
+  }
+  
+  /* Disable bounce animations */
+  .animate-bounce,
+  [class*="animate-bounce"] {
+    animation: none !important;
+  }
+  
+  /* Reduce blur effects - very GPU intensive */
+  .blur-xl,
+  .blur-2xl,
+  .blur-3xl {
+    filter: blur(8px) !important;
+  }
+  
+  /* Disable scale transforms on hover - use opacity instead */
+  .hover\:scale-105:hover,
+  .hover\:scale-110:hover,
+  .group-hover\:scale-105,
+  .group-hover\:scale-110 {
+    transform: none !important;
+  }
+  
+  /* Simplify shadows on mobile */
+  .shadow-2xl,
+  .shadow-xl {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  }
+  
+  /* Disable hover-lift effect on mobile */
+  .hover-lift:hover {
+    transform: none !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  }
+}
+
+/* ========================================
+   GPU Layer Management - Prevent Layer Explosion
+   ======================================== */
+
+@media (max-width: 767px) {
+  /* Remove unnecessary will-change and transform layers */
+  .will-change-transform,
+  .will-change-opacity {
+    will-change: auto !important;
+  }
+  
+  /* Add containment for better compositing */
+  section,
+  .section-container,
+  [class*="Section"] {
+    contain: layout style;
+  }
+  
+  /* Prevent transform layer creation unless necessary */
+  .transform,
+  [class*="translate"],
+  [class*="rotate"],
+  [class*="skew"] {
+    transform: none !important;
+  }
+}
+
+/* ========================================
+   Content Visibility for Performance
+   ======================================== */
+
+/* Lazy render off-screen content - critical for mobile */
+.content-visibility-auto,
+.lazy-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 400px;
+}
+
+@media (max-width: 767px) {
+  /* More aggressive content visibility on mobile */
+  section:not(:first-child) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 300px;
+  }
+}
+
+/* ========================================
+   Touch Target Optimizations
+   ======================================== */
+
+.touch-target {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Prevent button visual glitches during rapid clicks */
+button,
+[role="button"],
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Touch feedback using CSS (not JS state) */
+@media (hover: none) and (pointer: coarse) {
+  button:active,
+  [role="button"]:active,
+  a:active {
+    opacity: 0.7;
+    transition: opacity 0.1s ease;
+  }
+}
+
+/* ========================================
+   Safe Area & Notch Handling
+   ======================================== */
+
+.safe-area-padding {
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Fixed headers respect safe areas */
+@media (max-width: 767px) {
+  .sticky,
+  .fixed {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  /* Bottom navigation respects gesture bar */
+  .fixed.bottom-0 {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
 }
 
 /* ========================================
@@ -105,21 +254,9 @@
     padding-right: 1rem !important;
   }
   
-  /* Mobile touch targets */
-  .mobile-touch-target {
-    min-height: 44px;
-    min-width: 44px;
-  }
-  
   /* Mobile text scaling */
   .mobile-text-scale {
     font-size: 0.9rem;
-  }
-  
-  /* Mobile image loading optimizations */
-  .mobile-image-lazy {
-    loading: lazy;
-    decoding: async;
   }
   
   /* Mobile form improvements */
@@ -131,56 +268,65 @@
   .mobile-nav-spacing {
     padding: 0.75rem 1rem;
   }
-  
-  /* Disable expensive backdrop blur on mobile for performance */
-  .mobile-no-blur {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-  }
 }
 
 /* ========================================
-   Mobile Performance Optimizations
+   Emoji Text Support
    ======================================== */
 
-@media (max-width: 767px) {
-  /* Reduce animation complexity on mobile */
-  .mobile-reduce-animations * {
-    animation-duration: 0.15s !important;
-    transition-duration: 0.15s !important;
-  }
-  
-  /* Disable heavy animations like pulse on mobile */
-  .mobile-disable-pulse .animate-pulse {
-    animation: none !important;
-  }
-  
-  /* Optimize background effects for mobile performance */
-  .mobile-bg-optimize {
-    background-attachment: scroll !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-  }
-  
-  /* Reduce blur effects which are GPU-intensive */
-  .blur-3xl {
-    filter: blur(32px) !important; /* Reduced from 64px */
-  }
-  
-  /* Simplify gradients on mobile */
-  .mobile-simple-bg {
-    background: linear-gradient(to bottom, hsl(var(--background)), hsl(var(--muted))) !important;
-  }
+.emoji-text {
+  font-family:
+    'TwitterColorEmoji-SVGinOT',
+    'Noto Color Emoji',
+    'Segoe UI Emoji',
+    'Apple Color Emoji',
+    'Segoe UI Symbol',
+    sans-serif;
+  font-style: normal;
 }
 
 /* ========================================
-   Content Visibility for Performance
+   Scroll Performance Classes
    ======================================== */
 
-/* Lazy render off-screen content */
-.content-visibility-auto {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 500px;
+.smooth-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent janky scrolling on iOS */
+.ios-scroll-fix {
+  -webkit-overflow-scrolling: touch;
+  overflow-y: scroll;
+}
+
+/* ========================================
+   Body-level Mobile Classes (set via JS)
+   ======================================== */
+
+body.is-mobile * {
+  /* Faster transitions on mobile */
+  transition-duration: 0.15s !important;
+}
+
+body.is-mobile .animate-pulse,
+body.is-mobile .animate-bounce,
+body.is-mobile .floating-element {
+  animation: none !important;
+}
+
+body.is-slow-connection * {
+  /* Disable all animations on slow connections */
+  animation: none !important;
+  transition: none !important;
+}
+
+body.reduce-motion *,
+body.reduce-motion *::before,
+body.reduce-motion *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
 }
 
 /* ========================================
@@ -203,46 +349,4 @@
     padding-top: 0.5rem !important;
     padding-bottom: 0.5rem !important;
   }
-}
-
-/* ========================================
-   Touch Target Optimizations
-   ======================================== */
-
-.touch-target {
-  -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
-  user-select: none;
-  backface-visibility: hidden;
-  transform: translateZ(0);
-  will-change: opacity, transform;
-}
-
-/* Prevent button visual glitches during rapid clicks */
-button {
-  -webkit-tap-highlight-color: transparent;
-  backface-visibility: hidden;
-  transform: translateZ(0);
-}
-
-/* Ensure proper z-index stacking for interactive elements */
-[data-toggle-container] button {
-  isolation: isolate;
-  backface-visibility: hidden;
-}
-
-/* ========================================
-   Scroll Performance Classes
-   ======================================== */
-
-.smooth-scroll {
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Prevent janky scrolling on iOS */
-.ios-scroll-fix {
-  -webkit-overflow-scrolling: touch;
-  overflow-y: scroll;
-  transform: translate3d(0, 0, 0);
 }

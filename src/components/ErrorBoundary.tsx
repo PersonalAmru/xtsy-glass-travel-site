@@ -31,20 +31,33 @@ class ErrorBoundary extends Component<Props, State> {
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('ErrorBoundary caught an error:', error.message);
     
+    // Detect network/offline errors
+    const isNetworkError = !navigator.onLine || 
+      error.message.includes('Failed to fetch') ||
+      error.message.includes('NetworkError') ||
+      error.message.includes('Load failed'); // Safari-specific
+    
     // Auto-retry for chunk loading failures (common on mobile)
+    const isChunkError = 
+      error.message.includes('Loading chunk') || 
+      error.message.includes('dynamically imported module') ||
+      error.message.includes('Failed to fetch dynamically') ||
+      error.message.includes('Importing a module script failed') || // Safari
+      error.message.includes('error loading dynamically imported module'); // Firefox
+    
     if (
       this.state.retryCount < ErrorBoundary.MAX_RETRIES &&
-      (error.message.includes('Loading chunk') || 
-       error.message.includes('Failed to fetch') ||
-       error.message.includes('dynamically imported module'))
+      (isChunkError || isNetworkError)
     ) {
+      // Exponential backoff: 500ms, 1500ms
+      const delay = 500 * Math.pow(2, this.state.retryCount);
       this.retryTimeout = setTimeout(() => {
         this.setState(prev => ({ 
           hasError: false, 
           error: null, 
           retryCount: prev.retryCount + 1 
         }));
-      }, 500);
+      }, delay);
     }
   }
 
@@ -111,10 +124,13 @@ class ErrorBoundary extends Component<Props, State> {
             </div>
             
             <h1 style={{ fontSize: '20px', fontWeight: 'bold', color: '#f9fafb', marginBottom: '8px' }}>
-              Page couldn't load
+              {!navigator.onLine ? 'You\'re offline' : 'Page couldn\'t load'}
             </h1>
             <p style={{ color: '#9ca3af', fontSize: '14px', marginBottom: '24px', lineHeight: '1.5' }}>
-              This might be a network issue. Please try again.
+              {!navigator.onLine 
+                ? 'Please check your internet connection and try again.'
+                : 'This might be a network issue. Please try again.'
+              }
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
