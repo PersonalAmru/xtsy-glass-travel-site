@@ -28,24 +28,32 @@ const HeroSection = () => {
   // Languages
   const languages = ["Hello", "नमस्ते", "হ্যালো", "Hola", "Bonjour", "Hallo", "Ciao", "こんにちは", "안녕하세요", "Olá", "Привет", "مرحبا"];
 
+  // Disable floating animations on mobile for performance
   useEffect(() => {
+    // Skip animations on mobile
+    if (isMobile) return;
+    
     const elements = document.querySelectorAll('.floating-element');
     const interval = setInterval(() => {
+      if (document.hidden) return; // Pause when tab is hidden
       elements.forEach((element) => {
         const randomX = Math.random() * 20 - 10;
         const randomY = Math.random() * 20 - 10;
         (element as HTMLElement).style.transform = `translate(${randomX}px, ${randomY}px)`;
       });
-    }, 3000);
+    }, 4000); // Increased from 3s to 4s
     return () => clearInterval(interval);
-  }, []);
+  }, [isMobile]);
 
+  // Language rotation - slower on mobile, pauses when hidden
   useEffect(() => {
+    const delay = isMobile ? 8000 : 5000; // Slower on mobile
     const languageInterval = setInterval(() => {
+      if (document.hidden) return; // Pause when tab is hidden
       setCurrentLanguageIndex(prev => (prev + 1) % languages.length);
-    }, 5000); // Reduced frequency: 5s instead of 2s
+    }, delay);
     return () => clearInterval(languageInterval);
-  }, [languages.length]);
+  }, [languages.length, isMobile]);
 
   useEffect(() => {
     // Fetch reviews / average rating (cached)
@@ -144,12 +152,14 @@ const HeroSection = () => {
   return (
     <>
       <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
-        {/* Background Accents */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="floating-element absolute top-1/4 left-1/4 w-20 sm:w-32 md:w-48 lg:w-64 h-20 sm:h-32 md:h-48 lg:h-64 bg-orange-500/10 rounded-full blur-xl animate-pulse"></div>
-          <div className="floating-element absolute top-3/4 right-1/4 w-16 sm:w-24 md:w-32 lg:w-48 h-16 sm:h-24 md:h-32 lg:h-48 bg-red-500/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-          <div className="floating-element absolute bottom-1/4 left-1/3 w-12 sm:w-16 md:w-24 lg:w-32 h-12 sm:h-16 md:h-24 lg:h-32 bg-yellow-500/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-        </div>
+        {/* Background Accents - disabled on mobile for performance */}
+        {!isMobile && (
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="floating-element absolute top-1/4 left-1/4 w-32 md:w-48 lg:w-64 h-32 md:h-48 lg:h-64 bg-orange-500/10 rounded-full blur-xl"></div>
+            <div className="floating-element absolute top-3/4 right-1/4 w-24 md:w-32 lg:w-48 h-24 md:h-32 lg:h-48 bg-red-500/10 rounded-full blur-xl"></div>
+            <div className="floating-element absolute bottom-1/4 left-1/3 w-16 md:w-24 lg:w-32 h-16 md:h-24 lg:h-32 bg-yellow-500/10 rounded-full blur-xl"></div>
+          </div>
+        )}
 
         {/* Main Content */}
         <div className="responsive-container relative z-10 text-center text-white w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
@@ -178,7 +188,9 @@ const HeroSection = () => {
           </div>
 
           {/* Search Form */}
-          <div className="bg-white/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-6 md:p-7 lg:p-8 border border-white/20 shadow-2xl animate-fade-in w-full max-w-4xl mx-auto text-center" style={{ animationDelay: '0.9s' }}>
+          <div className={`rounded-xl sm:rounded-2xl p-3 sm:p-6 md:p-7 lg:p-8 border border-white/20 shadow-xl w-full max-w-4xl mx-auto text-center ${
+            isMobile ? 'bg-black/80' : 'bg-white/10 backdrop-blur-md'
+          }`}>
             <h2 className="text-base sm:text-xl md:text-2xl font-semibold mb-3 sm:mb-6 md:mb-7 lg:mb-8 text-center">Find Your Perfect Stay</h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 md:gap-5 lg:gap-6 mb-3 sm:mb-6 md:mb-7 lg:mb-8">

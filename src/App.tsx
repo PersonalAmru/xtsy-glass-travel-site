@@ -14,12 +14,18 @@ import { preloadCriticalResources, optimizeFontLoading, registerServiceWorker } 
 import { performGlobalCleanup } from "./utils/performanceCleanup";
 import { cleanupUnifiedImage } from "./components/UnifiedImage";
 
-// Lazy loaded pages with retry logic for mobile
+// Lazy loaded pages with retry logic for mobile (exponential backoff)
 const createLazyComponent = (importFn: () => Promise<any>) => {
   return lazy(() => 
-    importFn().catch(() => {
-      // Retry once on failure (helps with mobile network issues)
-      return new Promise(resolve => setTimeout(resolve, 100)).then(importFn);
+    importFn().catch((err) => {
+      console.warn('Chunk load failed, retrying...', err.message);
+      // First retry after 300ms
+      return new Promise(resolve => setTimeout(resolve, 300))
+        .then(importFn)
+        .catch(() => {
+          // Second retry after 800ms if first fails
+          return new Promise(resolve => setTimeout(resolve, 800)).then(importFn);
+        });
     })
   );
 };

@@ -11,29 +11,34 @@ import LazyWrapper from "@/components/LazyWrapper";
 import SEOContent from "@/components/SEOContent";
 import FAQSection from "@/components/FAQSection";
 
+// Minimal mobile-friendly fallback
+const SectionFallback = ({ height = 'h-64' }: { height?: string }) => (
+  <div className={`${height} bg-muted/30 rounded-lg mx-4`} />
+);
+
 const Index = () => {
   return (
     <div className="min-h-screen">
       <SEOContent page="home" />
       <Header />
-      <main>
+      <main style={{ contain: 'layout style' }}>
         <HeroSection />
-        <LazyWrapper fallback={<div className="h-96 bg-gray-100 animate-pulse rounded-lg mx-4"></div>}>
+        <LazyWrapper fallback={<SectionFallback height="h-96" />}>
           <RoomsSection />
         </LazyWrapper>
-        <LazyWrapper fallback={<div className="h-64 bg-gray-100 animate-pulse rounded-lg mx-4"></div>}>
+        <LazyWrapper fallback={<SectionFallback />}>
           <ServicesSection />
         </LazyWrapper>
-        <LazyWrapper fallback={<div className="h-64 bg-gray-100 animate-pulse rounded-lg mx-4"></div>}>
+        <LazyWrapper fallback={<SectionFallback />}>
           <ReviewsSection />
         </LazyWrapper>
-        <LazyWrapper fallback={<div className="h-48 bg-gray-100 animate-pulse rounded-lg mx-4"></div>}>
+        <LazyWrapper fallback={<SectionFallback height="h-48" />}>
           <GroupBookingSection />
         </LazyWrapper>
-        <LazyWrapper fallback={<div className="h-48 bg-gray-100 animate-pulse rounded-lg mx-4"></div>}>
+        <LazyWrapper fallback={<SectionFallback height="h-48" />}>
           <AdventureCallToAction />
         </LazyWrapper>
-        <LazyWrapper fallback={<div className="h-64 bg-gray-100 animate-pulse rounded-lg mx-4"></div>}>
+        <LazyWrapper fallback={<SectionFallback />}>
           <FAQSection />
         </LazyWrapper>
       </main>

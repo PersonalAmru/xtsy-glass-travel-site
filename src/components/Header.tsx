@@ -83,7 +83,9 @@ const Header = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-50 safe-top safe-left safe-right bg-black/80 backdrop-blur-md border-b border-white/10">
+      <header className={`sticky top-0 z-50 safe-top safe-left safe-right border-b border-white/10 ${
+        isMobile ? 'bg-black/95' : 'bg-black/80 backdrop-blur-md'
+      }`}>
         <div className="responsive-container mobile-compact">
           <div className={`flex justify-between items-center ${isMobile ? 'h-14' : 'h-16'}`}>
             {/* Logo - responsive sizing based on screen size */}
@@ -116,7 +118,7 @@ const Header = () => {
               <nav className="flex items-center space-x-2 ml-auto">
                 <Link 
                   to="/" 
-                  className="px-3 py-2 text-white hover:text-primary hover:bg-white/10 hover:scale-105 rounded-md transition-all duration-200 font-medium touch-target shadow-sm hover:shadow-md"
+                  className="px-3 py-2 text-white hover:text-primary hover:bg-white/10 rounded-md transition-colors duration-200 font-medium touch-target"
                   onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                 >
                   Home
