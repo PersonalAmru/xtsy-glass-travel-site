@@ -8,28 +8,57 @@ interface Props {
 interface State {
   hasError: boolean;
   error: Error | null;
+  retryCount: number;
 }
 
 /**
- * Error Boundary component that catches JavaScript errors anywhere in the child
- * component tree and displays a fallback UI instead of a blank screen.
+ * Error Boundary component optimized for mobile - catches JavaScript errors
+ * and provides auto-retry functionality for transient network issues.
  */
 class ErrorBoundary extends Component<Props, State> {
+  private retryTimeout: ReturnType<typeof setTimeout> | null = null;
+  private static MAX_RETRIES = 2;
+
   constructor(props: Props) {
     super(props);
-    this.state = { hasError: false, error: null };
+    this.state = { hasError: false, error: null, retryCount: 0 };
   }
 
-  static getDerivedStateFromError(error: Error): State {
+  static getDerivedStateFromError(error: Error): Partial<State> {
     return { hasError: true, error };
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('ErrorBoundary caught an error:', error, errorInfo);
+    console.error('ErrorBoundary caught an error:', error.message);
+    
+    // Auto-retry for chunk loading failures (common on mobile)
+    if (
+      this.state.retryCount < ErrorBoundary.MAX_RETRIES &&
+      (error.message.includes('Loading chunk') || 
+       error.message.includes('Failed to fetch') ||
+       error.message.includes('dynamically imported module'))
+    ) {
+      this.retryTimeout = setTimeout(() => {
+        this.setState(prev => ({ 
+          hasError: false, 
+          error: null, 
+          retryCount: prev.retryCount + 1 
+        }));
+      }, 500);
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.retryTimeout) {
+      clearTimeout(this.retryTimeout);
+    }
   }
 
   handleRetry = () => {
-    this.setState({ hasError: false, error: null });
+    this.setState({ hasError: false, error: null, retryCount: 0 });
+  };
+
+  handleReload = () => {
     window.location.reload();
   };
 
@@ -39,12 +68,35 @@ class ErrorBoundary extends Component<Props, State> {
         return this.props.fallback;
       }
 
+      // Mobile-optimized error UI with inline styles (no CSS load required)
       return (
-        <div className="min-h-screen bg-background flex items-center justify-center p-4">
-          <div className="max-w-md w-full text-center space-y-6">
-            <div className="w-16 h-16 mx-auto bg-destructive/10 rounded-full flex items-center justify-center">
+        <div 
+          style={{
+            minHeight: '100vh',
+            backgroundColor: '#111827',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '16px',
+            touchAction: 'manipulation'
+          }}
+        >
+          <div style={{ maxWidth: '320px', width: '100%', textAlign: 'center' }}>
+            {/* Error icon */}
+            <div 
+              style={{
+                width: '64px',
+                height: '64px',
+                margin: '0 auto 24px',
+                backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
               <svg
-                className="w-8 h-8 text-destructive"
+                style={{ width: '32px', height: '32px', color: '#ef4444' }}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -58,43 +110,54 @@ class ErrorBoundary extends Component<Props, State> {
               </svg>
             </div>
             
-            <div>
-              <h1 className="text-2xl font-bold text-foreground mb-2">
-                Something went wrong
-              </h1>
-              <p className="text-muted-foreground">
-                We're sorry, but something unexpected happened. Please try refreshing the page.
-              </p>
-            </div>
+            <h1 style={{ fontSize: '20px', fontWeight: 'bold', color: '#f9fafb', marginBottom: '8px' }}>
+              Page couldn't load
+            </h1>
+            <p style={{ color: '#9ca3af', fontSize: '14px', marginBottom: '24px', lineHeight: '1.5' }}>
+              This might be a network issue. Please try again.
+            </p>
 
-            <div className="space-y-3">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <button
                 onClick={this.handleRetry}
-                className="w-full px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
+                style={{
+                  width: '100%',
+                  padding: '14px 24px',
+                  backgroundColor: '#f97316',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  fontWeight: '600',
+                  fontSize: '16px',
+                  cursor: 'pointer',
+                  touchAction: 'manipulation',
+                  WebkitTapHighlightColor: 'transparent'
+                }}
               >
-                Refresh Page
+                Try Again
               </button>
               
               <a
                 href="/"
-                className="block w-full px-6 py-3 bg-secondary text-secondary-foreground rounded-lg font-medium hover:bg-secondary/80 transition-colors"
+                style={{
+                  display: 'block',
+                  width: '100%',
+                  padding: '14px 24px',
+                  backgroundColor: '#1f2937',
+                  color: '#f9fafb',
+                  border: 'none',
+                  borderRadius: '8px',
+                  fontWeight: '600',
+                  fontSize: '16px',
+                  textDecoration: 'none',
+                  textAlign: 'center',
+                  touchAction: 'manipulation',
+                  WebkitTapHighlightColor: 'transparent'
+                }}
               >
-                Go to Homepage
+                Go Home
               </a>
             </div>
-
-            {process.env.NODE_ENV === 'development' && this.state.error && (
-              <details className="mt-6 text-left p-4 bg-muted rounded-lg">
-                <summary className="cursor-pointer text-sm font-medium text-muted-foreground">
-                  Error Details (Development Only)
-                </summary>
-                <pre className="mt-2 text-xs text-destructive overflow-auto max-h-40">
-                  {this.state.error.message}
-                  {'\n\n'}
-                  {this.state.error.stack}
-                </pre>
-              </details>
-            )}
           </div>
         </div>
       );
