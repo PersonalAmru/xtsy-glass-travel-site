@@ -1,14 +1,41 @@
-import { useState, useEffect } from "react";
-import { Star, ChevronLeft, ChevronRight, X, ExternalLink } from "lucide-react";
+import { useState, useEffect, useCallback, useMemo } from "react";
+import { Star, ChevronLeft, ChevronRight, X, ExternalLink, Loader2 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+
+// Number of reviews to show initially in the modal
+const REVIEWS_PER_PAGE = 12;
+
+// Check if user is on mobile
+const isMobileDevice = () => {
+  if (typeof window === 'undefined') return false;
+  return window.innerWidth < 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+};
 
 const ReviewsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedReview, setSelectedReview] = useState<any>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isAllReviewsOpen, setIsAllReviewsOpen] = useState(false);
+  const [visibleReviewsCount, setVisibleReviewsCount] = useState(REVIEWS_PER_PAGE);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile on mount
+  useEffect(() => {
+    setIsMobile(isMobileDevice());
+    const handleResize = () => setIsMobile(isMobileDevice());
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Reset visible reviews when modal opens
+  useEffect(() => {
+    if (isAllReviewsOpen) {
+      setVisibleReviewsCount(REVIEWS_PER_PAGE);
+    }
+  }, [isAllReviewsOpen]);
 
   // Real OTA platform reviews
   const allReviews = [{
@@ -806,13 +833,31 @@ const ReviewsSection = () => {
     return () => clearInterval(interval);
   }, []);
 
-  return <section id="reviews" className="pt-16 pb-20 px-4 relative bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 overflow-hidden -mt-1">
-      {/* Enhanced Background Effects - Updated to black and shining */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black animate-pulse" />
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-30 animate-pulse" />
-      <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-white/30 via-gray-300/50 to-white/30 animate-pulse" />
-      <div className="absolute -top-32 -right-32 w-80 h-80 bg-white/10 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-white/10 rounded-full blur-3xl animate-pulse" />
+  // Load more reviews handler
+  const handleLoadMore = useCallback(() => {
+    setIsLoadingMore(true);
+    // Simulate brief loading for smooth UX
+    setTimeout(() => {
+      setVisibleReviewsCount(prev => prev + REVIEWS_PER_PAGE);
+      setIsLoadingMore(false);
+    }, 150);
+  }, []);
+
+  return <section id="reviews" className={`pt-16 pb-20 px-4 relative bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 overflow-hidden -mt-1 ${isMobile ? 'mobile-disable-pulse' : ''}`}>
+      {/* Enhanced Background Effects - Disabled on mobile for performance */}
+      {!isMobile && (
+        <>
+          <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black animate-pulse" />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-30 animate-pulse" />
+          <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-white/30 via-gray-300/50 to-white/30 animate-pulse" />
+          <div className="absolute -top-32 -right-32 w-80 h-80 bg-white/10 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-white/10 rounded-full blur-3xl animate-pulse" />
+        </>
+      )}
+      {/* Mobile: Simple static gradient background */}
+      {isMobile && (
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black" />
+      )}
       
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-16">
@@ -837,7 +882,11 @@ const ReviewsSection = () => {
                   <div className="grid grid-cols-1 md:grid-cols-4 gap-4 px-4">
                      {filteredReviews.slice(slideIndex, slideIndex + 4).map((review, index) => <Card 
                         key={index} 
-                        className="backdrop-blur-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-2xl transform-gpu cursor-pointer h-[260px] flex flex-col hover:border-white/20"
+                        className={`bg-white/5 border border-white/10 cursor-pointer h-[260px] flex flex-col ${
+                          isMobile 
+                            ? 'active:bg-white/10' 
+                            : 'backdrop-blur-xl hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-2xl transform-gpu hover:border-white/20'
+                        }`}
                         onClick={() => handleReviewClick(review)}
                       >
                         <CardHeader className="flex-shrink-0 pb-2">
@@ -977,141 +1026,158 @@ const ReviewsSection = () => {
 
       </div>
 
-      {/* All Reviews Modal */}
+      {/* All Reviews Modal - Optimized with lazy loading for mobile */}
       <Dialog open={isAllReviewsOpen} onOpenChange={setIsAllReviewsOpen}>
-        <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle className="flex items-center justify-between text-2xl font-bold">
-              <span>All Guest Reviews</span>
-              <Button 
-                variant="ghost" 
-                size="icon"
-                onClick={() => setIsAllReviewsOpen(false)}
-                className="hover:bg-gray-100 rounded-full"
-              >
-                <X className="h-5 w-5" />
-              </Button>
+        <DialogContent 
+          className="max-w-6xl w-[95vw] sm:w-full"
+          style={{
+            WebkitOverflowScrolling: 'touch',
+            overscrollBehavior: 'contain',
+          }}
+        >
+          <DialogHeader className="sticky top-0 bg-background z-10 pb-2 border-b">
+            <DialogTitle className="flex items-center justify-between text-lg sm:text-2xl font-bold pr-8">
+              <span>All Guest Reviews ({allReviews.length})</span>
             </DialogTitle>
           </DialogHeader>
           
-          <div className="space-y-8 mt-4">
-            {/* Group reviews by platform */}
-            {["Booking.com", "Google", "MakeMyTrip", "Expedia"].map(platform => {
-              const platformReviews = allReviews.filter(r => r.source === platform);
-              if (platformReviews.length === 0) return null;
-              
-              return (
-                <div key={platform} className="space-y-4">
-                  <h3 className="text-xl font-bold text-gray-800 flex items-center gap-2 border-b-2 border-orange-400 pb-2">
-                    <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                    {platform} Reviews
-                    <span className="text-sm font-normal text-gray-500">({platformReviews.length} reviews)</span>
-                  </h3>
-                  
-                  {/* Group by property within platform */}
-                  {["XTSY Luxury", "XTSY Travellers Hostel", "XTSY Economy"].map(property => {
-                    const propertyReviews = platformReviews.filter(r => r.property === property);
-                    if (propertyReviews.length === 0) return null;
-                    
-                    return (
-                      <div key={property} className="ml-4 space-y-3">
-                        <h4 className="text-lg font-semibold text-gray-700 flex items-center gap-2">
-                          <span className={`inline-block ${
-                            property === "XTSY Economy" 
-                              ? "bg-gradient-to-r from-blue-500 to-blue-600" 
-                              : property === "XTSY Luxury"
-                              ? "bg-gradient-to-r from-purple-500 to-purple-600"
-                              : "bg-gradient-to-r from-orange-500 to-orange-600"
-                          } text-white text-xs font-semibold px-3 py-1 rounded-full shadow-sm`}>
-                            {property}
-                          </span>
-                          <span className="text-sm text-gray-500">({propertyReviews.length})</span>
-                        </h4>
-                        
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                          {propertyReviews.map((review, idx) => (
-                            <Card 
-                              key={idx}
-                              className="hover:shadow-lg transition-all duration-300 hover:scale-[1.02] border-l-4"
-                              style={{
-                                borderLeftColor: property === "XTSY Economy" ? "#3b82f6" : property === "XTSY Luxury" ? "#a855f7" : "#f97316"
-                              }}
-                            >
-                              <CardHeader className="pb-3">
-                                <div className="flex items-center justify-between mb-2">
-                                  <CardTitle className="text-base font-semibold">
-                                    {review.name}
-                                  </CardTitle>
-                                  <div className="flex items-center gap-1">
-                                    <span className="text-yellow-600 font-bold text-sm">
-                                      {platform === "Google" || platform === "MakeMyTrip" ? `${review.rating}/5` : `${review.rating}/10`}
-                                    </span>
-                                    <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
-                                  </div>
-                                </div>
-                                <CardDescription className="text-xs">
-                                  <div className="flex items-center gap-1">
-                                    <span>{review.date}</span>
-                                  </div>
-                                  {review.roomType && (
-                                    <div className="text-xs text-gray-500 mt-1">{review.roomType}</div>
-                                  )}
-                                </CardDescription>
-                              </CardHeader>
-                              <CardContent className="pt-0">
-                                <p className="text-sm text-gray-700 leading-relaxed">
-                                  {review.comment}
-                                </p>
-                              </CardContent>
-                            </Card>
-                          ))}
-                        </div>
+          <div 
+            className="overflow-y-auto smooth-scroll pr-1" 
+            style={{ 
+              maxHeight: 'min(calc(85vh - 80px), calc(85dvh - 80px))',
+              WebkitOverflowScrolling: 'touch',
+            }}
+          >
+            <div className="space-y-6 mt-2">
+              {/* Simplified flat list for better mobile performance */}
+              {allReviews.slice(0, visibleReviewsCount).map((review, idx) => (
+                <Card 
+                  key={idx}
+                  className={`border-l-4 transition-shadow duration-200 ${isMobile ? '' : 'hover:shadow-lg hover:scale-[1.01]'}`}
+                  style={{
+                    borderLeftColor: review.property === "XTSY Economy" ? "#3b82f6" : review.property === "XTSY Luxury" ? "#a855f7" : "#f97316"
+                  }}
+                >
+                  <CardHeader className="pb-2 sm:pb-3">
+                    <div className="flex items-center justify-between mb-1 sm:mb-2">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <CardTitle className="text-sm sm:text-base font-semibold">
+                          {review.name}
+                        </CardTitle>
+                        <span className={`inline-block ${
+                          review.property === "XTSY Economy" 
+                            ? "bg-gradient-to-r from-blue-500 to-blue-600" 
+                            : review.property === "XTSY Luxury"
+                            ? "bg-gradient-to-r from-purple-500 to-purple-600"
+                            : "bg-gradient-to-r from-orange-500 to-orange-600"
+                        } text-white text-[10px] sm:text-xs font-semibold px-2 py-0.5 rounded-full`}>
+                          {review.property}
+                        </span>
                       </div>
-                    );
-                  })}
+                      <div className="flex items-center gap-1 flex-shrink-0">
+                        <span className="text-yellow-600 font-bold text-xs sm:text-sm">
+                          {review.source === "Google" || review.source === "MakeMyTrip" ? `${review.rating}/5` : `${review.rating}/10`}
+                        </span>
+                        <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                      </div>
+                    </div>
+                    <CardDescription className="text-[10px] sm:text-xs">
+                      <div className="flex items-center gap-1 flex-wrap">
+                        <span>{review.date}</span>
+                        <span>•</span>
+                        <span className="text-blue-600">{review.source}</span>
+                      </div>
+                      {review.roomType && (
+                        <div className="text-gray-500 mt-0.5 sm:mt-1 truncate">{review.roomType}</div>
+                      )}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
+                      {review.comment}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
+              
+              {/* Load More Button */}
+              {visibleReviewsCount < allReviews.length && (
+                <div className="flex justify-center pt-4 pb-2">
+                  <Button
+                    onClick={handleLoadMore}
+                    disabled={isLoadingMore}
+                    className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2"
+                  >
+                    {isLoadingMore ? (
+                      <>
+                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                        Loading...
+                      </>
+                    ) : (
+                      `Load More (${allReviews.length - visibleReviewsCount} remaining)`
+                    )}
+                  </Button>
                 </div>
-              );
-            })}
+              )}
+              
+              {visibleReviewsCount >= allReviews.length && (
+                <p className="text-center text-gray-500 text-sm py-4">
+                  All {allReviews.length} reviews loaded
+                </p>
+              )}
+            </div>
           </div>
         </DialogContent>
       </Dialog>
 
-      {/* Review Detail Modal */}
+      {/* Review Detail Modal - Mobile optimized */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+        <DialogContent 
+          className="max-w-2xl w-[95vw] sm:w-full"
+          style={{
+            WebkitOverflowScrolling: 'touch',
+            overscrollBehavior: 'contain',
+          }}
+        >
           <DialogHeader>
-            <DialogTitle className="flex items-center justify-between">
-              <div className="flex flex-col gap-2">
-                <span className="text-xl font-semibold">{selectedReview?.name}</span>
+            <DialogTitle className="flex items-center justify-between pr-8">
+              <div className="flex flex-col gap-1 sm:gap-2">
+                <span className="text-base sm:text-xl font-semibold">{selectedReview?.name}</span>
                 <span className={`inline-block ${
                   selectedReview?.property === "XTSY Economy" 
                     ? "bg-gradient-to-r from-blue-500 to-blue-600" 
                     : "bg-gradient-to-r from-orange-500 to-orange-600"
-                } text-white text-xs font-semibold px-3 py-1 rounded-full shadow-sm w-fit`}>
+                } text-white text-[10px] sm:text-xs font-semibold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-sm w-fit`}>
                   {selectedReview?.property}
                 </span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-yellow-600 font-bold">
+              <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+                <span className="text-yellow-600 font-bold text-sm sm:text-base">
                   {selectedReview?.source === "Google" || selectedReview?.source === "MakeMyTrip" ? `${selectedReview?.rating}/5` : `${selectedReview?.rating}/10`}
                 </span>
-                <Star className="h-5 w-5 fill-yellow-500 text-yellow-500" />
+                <Star className="h-4 w-4 sm:h-5 sm:w-5 fill-yellow-500 text-yellow-500" />
               </div>
             </DialogTitle>
           </DialogHeader>
-          <div className="space-y-4">
-            <div className="text-sm text-gray-600">
-              <div className="flex items-center gap-2 mb-2">
+          <div 
+            className="space-y-3 sm:space-y-4 overflow-y-auto"
+            style={{
+              maxHeight: 'min(60vh, 60dvh)',
+              WebkitOverflowScrolling: 'touch',
+            }}
+          >
+            <div className="text-xs sm:text-sm text-gray-600">
+              <div className="flex items-center gap-2 mb-1 sm:mb-2 flex-wrap">
                 <span>{selectedReview?.date}</span>
                 <span>•</span>
                 <span className="text-blue-600 font-medium">{selectedReview?.source}</span>
               </div>
               {selectedReview?.roomType && (
-                <div className="text-gray-500">{selectedReview?.roomType}</div>
+                <div className="text-gray-500 text-[10px] sm:text-xs">{selectedReview?.roomType}</div>
               )}
             </div>
             <div className="prose max-w-none">
-              <p className="text-gray-800 leading-relaxed whitespace-pre-wrap">
+              <p className="text-sm sm:text-base text-gray-800 leading-relaxed whitespace-pre-wrap">
                 {selectedReview?.comment}
               </p>
             </div>

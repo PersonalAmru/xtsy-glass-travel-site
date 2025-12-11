@@ -1,6 +1,63 @@
 /* Enhanced Responsive Styles for XTSY - Tablet & Mobile Optimizations */
 
-/* Emoji Text Support */
+/* ========================================
+   CRITICAL: Mobile Scroll Performance
+   ======================================== */
+
+/* iOS momentum scrolling - CRITICAL for smooth scroll */
+.mobile-scroll-container,
+[data-radix-dialog-content],
+[data-radix-scroll-area-viewport],
+.overflow-y-auto,
+.overflow-auto {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Prevent scroll chaining issues on mobile */
+@supports (overscroll-behavior: contain) {
+  .mobile-scroll-container,
+  [data-radix-dialog-content] {
+    overscroll-behavior: contain;
+  }
+}
+
+/* GPU acceleration for smooth scrolling */
+.mobile-scroll-optimize {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* ========================================
+   Mobile Dialog/Modal Optimizations
+   ======================================== */
+
+/* Fix dialog scrolling on mobile */
+@media (max-width: 767px) {
+  [data-radix-dialog-content] {
+    max-height: 85vh !important;
+    max-height: 85dvh !important; /* Dynamic viewport height */
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+  }
+  
+  /* Reduce dialog animations on mobile for better performance */
+  [data-radix-dialog-content] {
+    animation-duration: 150ms !important;
+  }
+  
+  [data-radix-dialog-overlay] {
+    animation-duration: 100ms !important;
+  }
+}
+
+/* ========================================
+   Emoji Text Support
+   ======================================== */
+
 .emoji-text {
   font-family:
     'TwitterColorEmoji-SVGinOT',
@@ -12,7 +69,10 @@
   font-style: normal;
 }
 
-/* Tablet View Padding Fixes (768px - 1024px) */
+/* ========================================
+   Tablet View Padding Fixes (768px - 1024px)
+   ======================================== */
+
 @media (min-width: 768px) and (max-width: 1024px) {
   .responsive-container {
     padding-left: 2rem !important;
@@ -35,7 +95,10 @@
   }
 }
 
-/* Mobile Optimizations (320px - 767px) */
+/* ========================================
+   Mobile Optimizations (320px - 767px)
+   ======================================== */
+
 @media (max-width: 767px) {
   .responsive-container {
     padding-left: 1rem !important;
@@ -68,24 +131,62 @@
   .mobile-nav-spacing {
     padding: 0.75rem 1rem;
   }
+  
+  /* Disable expensive backdrop blur on mobile for performance */
+  .mobile-no-blur {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
 }
 
-/* Performance optimizations for mobile */
+/* ========================================
+   Mobile Performance Optimizations
+   ======================================== */
+
 @media (max-width: 767px) {
   /* Reduce animation complexity on mobile */
   .mobile-reduce-animations * {
-    animation-duration: 0.2s !important;
-    transition-duration: 0.2s !important;
+    animation-duration: 0.15s !important;
+    transition-duration: 0.15s !important;
+  }
+  
+  /* Disable heavy animations like pulse on mobile */
+  .mobile-disable-pulse .animate-pulse {
+    animation: none !important;
   }
   
   /* Optimize background effects for mobile performance */
   .mobile-bg-optimize {
     background-attachment: scroll !important;
     backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  
+  /* Reduce blur effects which are GPU-intensive */
+  .blur-3xl {
+    filter: blur(32px) !important; /* Reduced from 64px */
+  }
+  
+  /* Simplify gradients on mobile */
+  .mobile-simple-bg {
+    background: linear-gradient(to bottom, hsl(var(--background)), hsl(var(--muted))) !important;
   }
 }
 
-/* High DPI displays */
+/* ========================================
+   Content Visibility for Performance
+   ======================================== */
+
+/* Lazy render off-screen content */
+.content-visibility-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+/* ========================================
+   High DPI Displays
+   ======================================== */
+
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .high-dpi-optimize {
     image-rendering: -webkit-optimize-contrast;
@@ -93,7 +194,10 @@
   }
 }
 
-/* Landscape mobile orientation */
+/* ========================================
+   Landscape Mobile Orientation
+   ======================================== */
+
 @media (max-width: 767px) and (orientation: landscape) {
   .landscape-mobile {
     padding-top: 0.5rem !important;
@@ -101,7 +205,10 @@
   }
 }
 
-/* Carousel button optimizations - prevent visual glitches */
+/* ========================================
+   Touch Target Optimizations
+   ======================================== */
+
 .touch-target {
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
@@ -122,4 +229,20 @@ button {
 [data-toggle-container] button {
   isolation: isolate;
   backface-visibility: hidden;
+}
+
+/* ========================================
+   Scroll Performance Classes
+   ======================================== */
+
+.smooth-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent janky scrolling on iOS */
+.ios-scroll-fix {
+  -webkit-overflow-scrolling: touch;
+  overflow-y: scroll;
+  transform: translate3d(0, 0, 0);
 }
