@@ -30,11 +30,9 @@ const AdminLogin = () => {
     setLoading(true);
 
     try {
+      // For existing admin user, send OTP (allow sign in for pre-created users)
       const { error } = await supabase.auth.signInWithOtp({
         email: email.trim(),
-        options: {
-          shouldCreateUser: false, // Don't create new users
-        },
       });
 
       if (error) throw error;
@@ -90,9 +88,6 @@ const AdminLogin = () => {
     try {
       const { error } = await supabase.auth.signInWithOtp({
         email: email.trim(),
-        options: {
-          shouldCreateUser: false,
-        },
       });
 
       if (error) throw error;
