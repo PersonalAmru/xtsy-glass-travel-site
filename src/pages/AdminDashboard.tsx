@@ -187,6 +187,15 @@ const AdminDashboard: React.FC = () => {
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
   const [daysBack, setDaysBack] = useState(30);
   const { loading, error, overview, realtime, geoHeatmap, funnel, traffic, behavior, trends, refresh } = useAdminAnalytics(daysBack);
+  const { 
+    overview: intelligenceOverview, 
+    segments, 
+    forecasts, 
+    revenueHistory, 
+    highIntentTravellers, 
+    loading: intelligenceLoading, 
+    refresh: refreshIntelligence 
+  } = useTravellerIntelligence();
 
   // Check admin access
   useEffect(() => {
@@ -249,8 +258,8 @@ const AdminDashboard: React.FC = () => {
                   <SelectItem value="90">Last 90 days</SelectItem>
                 </SelectContent>
               </Select>
-              <Button variant="outline" size="sm" onClick={refresh} disabled={loading}>
-                <RefreshCw className={`w-4 h-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
+              <Button variant="outline" size="sm" onClick={() => { refresh(); refreshIntelligence(); }} disabled={loading || intelligenceLoading}>
+                <RefreshCw className={`w-4 h-4 mr-2 ${loading || intelligenceLoading ? 'animate-spin' : ''}`} />
                 Refresh
               </Button>
               <Button variant="ghost" size="sm" onClick={() => navigate('/')}>
@@ -320,8 +329,24 @@ const AdminDashboard: React.FC = () => {
         </div>
 
         {/* Main Dashboard Tabs */}
-        <Tabs defaultValue="geo" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-5 lg:w-auto lg:inline-grid">
+        <Tabs defaultValue="realtime" className="space-y-6">
+          <TabsList className="flex flex-wrap gap-1 h-auto p-1">
+            <TabsTrigger value="realtime" className="flex items-center gap-2">
+              <Zap className="w-4 h-4" />
+              <span className="hidden sm:inline">Real-time</span>
+            </TabsTrigger>
+            <TabsTrigger value="segments" className="flex items-center gap-2">
+              <Users className="w-4 h-4" />
+              <span className="hidden sm:inline">Segments</span>
+            </TabsTrigger>
+            <TabsTrigger value="revenue" className="flex items-center gap-2">
+              <IndianRupee className="w-4 h-4" />
+              <span className="hidden sm:inline">Revenue</span>
+            </TabsTrigger>
+            <TabsTrigger value="forecasts" className="flex items-center gap-2">
+              <Calendar className="w-4 h-4" />
+              <span className="hidden sm:inline">Forecasts</span>
+            </TabsTrigger>
             <TabsTrigger value="geo" className="flex items-center gap-2">
               <Globe className="w-4 h-4" />
               <span className="hidden sm:inline">Geography</span>
@@ -343,6 +368,90 @@ const AdminDashboard: React.FC = () => {
               <span className="hidden sm:inline">Trends</span>
             </TabsTrigger>
           </TabsList>
+
+          {/* Real-time Traveller Activity */}
+          <TabsContent value="realtime">
+            <RealtimeTravellerActivity 
+              activeVisitors={intelligenceOverview?.realtime?.active_visitors || realtime?.active_visitors || 0}
+              highIntentTravellers={highIntentTravellers || []}
+            />
+          </TabsContent>
+
+          {/* Traveller Segments */}
+          <TabsContent value="segments">
+            {intelligenceLoading ? (
+              <Card>
+                <CardContent className="p-6">
+                  <div className="space-y-4">
+                    {Array.from({ length: 4 }).map((_, i) => (
+                      <Skeleton key={i} className="h-24 w-full" />
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ) : (
+              <TravellerSegmentsPanel 
+                segments={(segments?.segments || []).map(s => ({
+                  ...s,
+                  traveller_count: s.traveller_count || 0,
+                  avg_lifetime_value: s.avg_lifetime_value || 0,
+                  avg_booking_value: s.avg_booking_value || 0,
+                  conversion_rate: s.conversion_rate || 0,
+                  total_revenue: s.total_revenue || 0,
+                }))}
+                distribution={segments?.distribution || {}}
+                spendDistribution={segments?.spend_distribution || { high_value: 0, medium: 0, budget: 0 }}
+              />
+            )}
+          </TabsContent>
+
+          {/* Revenue Intelligence */}
+          <TabsContent value="revenue">
+            {intelligenceLoading ? (
+              <Card>
+                <CardContent className="p-6">
+                  <div className="space-y-4">
+                    {Array.from({ length: 3 }).map((_, i) => (
+                      <Skeleton key={i} className="h-32 w-full" />
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ) : (
+              <RevenueIntelligencePanel 
+                revenueHistory={(revenueHistory?.revenue_history || []).map(r => ({
+                  snapshot_date: r.snapshot_date,
+                  total_revenue: r.total_revenue || 0,
+                  booking_count: r.booking_count || 0,
+                  avg_booking_value: r.avg_booking_value || 0,
+                  conversion_rate: r.conversion_rate || 0,
+                  next_7d_forecast: r.next_7d_forecast || 0,
+                  segment_breakdown: r.segment_breakdown || {},
+                }))}
+                currentForecast7d={intelligenceOverview?.forecasts?.next_7d || 0}
+                currentForecast30d={intelligenceOverview?.forecasts?.next_30d || 0}
+              />
+            )}
+          </TabsContent>
+
+          {/* Demand Forecasts */}
+          <TabsContent value="forecasts">
+            {intelligenceLoading ? (
+              <Card>
+                <CardContent className="p-6">
+                  <div className="space-y-4">
+                    {Array.from({ length: 3 }).map((_, i) => (
+                      <Skeleton key={i} className="h-32 w-full" />
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ) : (
+              <DemandForecastPanel 
+                forecasts={forecasts?.forecasts || {}}
+              />
+            )}
+          </TabsContent>
 
           {/* Geographic Heatmap */}
           <TabsContent value="geo">
