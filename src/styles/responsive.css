@@ -132,11 +132,24 @@
   }
   
   /* Prevent transform layer creation unless necessary */
-  .transform,
-  [class*="translate"],
-  [class*="rotate"],
-  [class*="skew"] {
+  /* IMPORTANT: Exclude dialog elements to preserve centering transforms */
+  .transform:not([data-radix-dialog-content]):not([data-radix-dialog-overlay]),
+  [class*="translate"]:not([data-radix-dialog-content]):not([data-radix-dialog-overlay]),
+  [class*="rotate"]:not([data-radix-dialog-content]),
+  [class*="skew"]:not([data-radix-dialog-content]) {
     transform: none !important;
+  }
+  
+  /* Ensure dialog centering transforms are ALWAYS preserved */
+  [data-radix-dialog-content] {
+    transform: translate(-50%, -50%) !important;
+    left: 50% !important;
+    top: 50% !important;
+    position: fixed !important;
+    width: calc(100vw - 2rem) !important;
+    max-width: 28rem !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
   }
 }
 

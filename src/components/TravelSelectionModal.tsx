@@ -1,8 +1,9 @@
 import React from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { MapPin, Globe } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 interface TravelSelectionModalProps {
   isOpen: boolean;
@@ -19,22 +20,35 @@ const TravelSelectionModal = ({ isOpen, onClose }: TravelSelectionModalProps) =>
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="w-[90vw] max-w-md mx-auto p-4 sm:p-6">
-        <DialogHeader>
-          <DialogTitle className="text-center text-lg sm:text-xl font-bold">
+      <DialogContent 
+        className="!w-[calc(100vw-2rem)] !max-w-md p-4 sm:p-6 overflow-hidden box-border"
+        style={{
+          // Explicit inline styles to override any CSS conflicts
+          width: 'calc(100vw - 2rem)',
+          maxWidth: '28rem',
+          boxSizing: 'border-box',
+        }}
+      >
+        <DialogHeader className="pb-2">
+          <DialogTitle className="text-center text-lg sm:text-xl font-bold text-foreground">
             Choose Your Travel Destination
           </DialogTitle>
+          <VisuallyHidden>
+            <DialogDescription>
+              Select between domestic travel within India or international travel to Asia and Europe
+            </DialogDescription>
+          </VisuallyHidden>
         </DialogHeader>
         
-        <div className="grid gap-3 sm:gap-4 py-3 sm:py-4">
+        <div className="flex flex-col gap-3 sm:gap-4 py-2 sm:py-4 w-full">
           <Button
             onClick={() => handleSelection('domestic')}
-            className="h-auto min-h-[70px] sm:min-h-[80px] flex flex-col gap-1 sm:gap-2 py-3 sm:py-4 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white w-full"
+            className="h-auto min-h-[72px] sm:min-h-[80px] flex flex-col gap-1.5 sm:gap-2 py-4 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white w-full touch-manipulation"
             size="lg"
           >
             <div className="flex items-center gap-2 sm:gap-3">
-              <span className="text-xl sm:text-2xl">🇮🇳</span>
-              <MapPin className="h-4 w-4 sm:h-5 sm:w-5" />
+              <span className="text-xl sm:text-2xl emoji-text">🇮🇳</span>
+              <MapPin className="h-5 w-5 sm:h-5 sm:w-5 flex-shrink-0" />
             </div>
             <div className="text-center">
               <div className="font-semibold text-sm sm:text-base">Domestic Travel</div>
@@ -44,16 +58,16 @@ const TravelSelectionModal = ({ isOpen, onClose }: TravelSelectionModalProps) =>
 
           <Button
             onClick={() => handleSelection('international')}
-            className="h-auto min-h-[70px] sm:min-h-[80px] flex flex-col gap-1 sm:gap-2 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white w-full"
+            className="h-auto min-h-[72px] sm:min-h-[80px] flex flex-col gap-1.5 sm:gap-2 py-4 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white w-full touch-manipulation"
             size="lg"
           >
             <div className="flex items-center gap-2 sm:gap-3">
-              <span className="text-xl sm:text-2xl">🌏</span>
-              <Globe className="h-4 w-4 sm:h-5 sm:w-5" />
+              <span className="text-xl sm:text-2xl emoji-text">🌏</span>
+              <Globe className="h-5 w-5 sm:h-5 sm:w-5 flex-shrink-0" />
             </div>
             <div className="text-center">
               <div className="font-semibold text-sm sm:text-base">XTSY Asia & Europe</div>
-              <div className="text-[10px] sm:text-xs bg-red-500 text-white px-2 py-0.5 sm:py-1 rounded-full mt-1">
+              <div className="text-[10px] sm:text-xs bg-red-500 text-white px-2 py-0.5 sm:py-1 rounded-full mt-1 inline-block">
                 Launching Soon
               </div>
             </div>

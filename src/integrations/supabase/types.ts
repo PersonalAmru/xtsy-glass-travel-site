@@ -344,6 +344,57 @@ export type Database = {
         }
         Relationships: []
       }
+      mobile_ui_logs: {
+        Row: {
+          component_name: string
+          created_at: string
+          device_pixel_ratio: number | null
+          device_type: string | null
+          error_message: string | null
+          error_type: string
+          extra_data: Json | null
+          id: string
+          page_url: string | null
+          screen_height: number | null
+          screen_width: number | null
+          user_agent: string | null
+          viewport_height: number | null
+          viewport_width: number | null
+        }
+        Insert: {
+          component_name: string
+          created_at?: string
+          device_pixel_ratio?: number | null
+          device_type?: string | null
+          error_message?: string | null
+          error_type: string
+          extra_data?: Json | null
+          id?: string
+          page_url?: string | null
+          screen_height?: number | null
+          screen_width?: number | null
+          user_agent?: string | null
+          viewport_height?: number | null
+          viewport_width?: number | null
+        }
+        Update: {
+          component_name?: string
+          created_at?: string
+          device_pixel_ratio?: number | null
+          device_type?: string | null
+          error_message?: string | null
+          error_type?: string
+          extra_data?: Json | null
+          id?: string
+          page_url?: string | null
+          screen_height?: number | null
+          screen_width?: number | null
+          user_agent?: string | null
+          viewport_height?: number | null
+          viewport_width?: number | null
+        }
+        Relationships: []
+      }
       newsletter_subscribers: {
         Row: {
           created_at: string
