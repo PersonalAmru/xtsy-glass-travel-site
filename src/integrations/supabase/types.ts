@@ -14,6 +14,411 @@ export type Database = {
   }
   public: {
     Tables: {
+      analytics_conversions: {
+        Row: {
+          conversion_value: number | null
+          created_at: string | null
+          currency: string | null
+          funnel_name: string
+          funnel_step: string
+          id: string
+          is_completed: boolean | null
+          metadata: Json | null
+          package_type: string | null
+          room_type: string | null
+          session_id: string
+          step_order: number | null
+          visitor_id: string
+        }
+        Insert: {
+          conversion_value?: number | null
+          created_at?: string | null
+          currency?: string | null
+          funnel_name: string
+          funnel_step: string
+          id?: string
+          is_completed?: boolean | null
+          metadata?: Json | null
+          package_type?: string | null
+          room_type?: string | null
+          session_id: string
+          step_order?: number | null
+          visitor_id: string
+        }
+        Update: {
+          conversion_value?: number | null
+          created_at?: string | null
+          currency?: string | null
+          funnel_name?: string
+          funnel_step?: string
+          id?: string
+          is_completed?: boolean | null
+          metadata?: Json | null
+          package_type?: string | null
+          room_type?: string | null
+          session_id?: string
+          step_order?: number | null
+          visitor_id?: string
+        }
+        Relationships: []
+      }
+      analytics_daily_metrics: {
+        Row: {
+          avg_session_duration: number | null
+          bounce_rate: number | null
+          country_breakdown: Json | null
+          created_at: string | null
+          date: string
+          device_breakdown: Json | null
+          id: string
+          new_visitors: number | null
+          pages_per_session: number | null
+          returning_visitors: number | null
+          top_pages: Json | null
+          top_referrers: Json | null
+          total_conversions: number | null
+          total_events: number | null
+          total_pageviews: number | null
+          total_revenue: number | null
+          total_sessions: number | null
+          total_visitors: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          avg_session_duration?: number | null
+          bounce_rate?: number | null
+          country_breakdown?: Json | null
+          created_at?: string | null
+          date: string
+          device_breakdown?: Json | null
+          id?: string
+          new_visitors?: number | null
+          pages_per_session?: number | null
+          returning_visitors?: number | null
+          top_pages?: Json | null
+          top_referrers?: Json | null
+          total_conversions?: number | null
+          total_events?: number | null
+          total_pageviews?: number | null
+          total_revenue?: number | null
+          total_sessions?: number | null
+          total_visitors?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          avg_session_duration?: number | null
+          bounce_rate?: number | null
+          country_breakdown?: Json | null
+          created_at?: string | null
+          date?: string
+          device_breakdown?: Json | null
+          id?: string
+          new_visitors?: number | null
+          pages_per_session?: number | null
+          returning_visitors?: number | null
+          top_pages?: Json | null
+          top_referrers?: Json | null
+          total_conversions?: number | null
+          total_events?: number | null
+          total_pageviews?: number | null
+          total_revenue?: number | null
+          total_sessions?: number | null
+          total_visitors?: number | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      analytics_events: {
+        Row: {
+          created_at: string | null
+          element_class: string | null
+          element_id: string | null
+          element_text: string | null
+          event_action: string
+          event_category: string
+          event_label: string | null
+          event_value: number | null
+          id: string
+          metadata: Json | null
+          page_path: string | null
+          session_id: string
+          visitor_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          element_class?: string | null
+          element_id?: string | null
+          element_text?: string | null
+          event_action: string
+          event_category: string
+          event_label?: string | null
+          event_value?: number | null
+          id?: string
+          metadata?: Json | null
+          page_path?: string | null
+          session_id: string
+          visitor_id: string
+        }
+        Update: {
+          created_at?: string | null
+          element_class?: string | null
+          element_id?: string | null
+          element_text?: string | null
+          event_action?: string
+          event_category?: string
+          event_label?: string | null
+          event_value?: number | null
+          id?: string
+          metadata?: Json | null
+          page_path?: string | null
+          session_id?: string
+          visitor_id?: string
+        }
+        Relationships: []
+      }
+      analytics_geo_heatmap: {
+        Row: {
+          avg_session_duration: number | null
+          booking_count: number | null
+          bounce_rate: number | null
+          city: string | null
+          country_code: string
+          country_name: string | null
+          created_at: string | null
+          date: string | null
+          id: string
+          latitude: number | null
+          longitude: number | null
+          pageview_count: number | null
+          region: string | null
+          revenue_total: number | null
+          session_count: number | null
+          updated_at: string | null
+          visitor_count: number | null
+        }
+        Insert: {
+          avg_session_duration?: number | null
+          booking_count?: number | null
+          bounce_rate?: number | null
+          city?: string | null
+          country_code: string
+          country_name?: string | null
+          created_at?: string | null
+          date?: string | null
+          id?: string
+          latitude?: number | null
+          longitude?: number | null
+          pageview_count?: number | null
+          region?: string | null
+          revenue_total?: number | null
+          session_count?: number | null
+          updated_at?: string | null
+          visitor_count?: number | null
+        }
+        Update: {
+          avg_session_duration?: number | null
+          booking_count?: number | null
+          bounce_rate?: number | null
+          city?: string | null
+          country_code?: string
+          country_name?: string | null
+          created_at?: string | null
+          date?: string | null
+          id?: string
+          latitude?: number | null
+          longitude?: number | null
+          pageview_count?: number | null
+          region?: string | null
+          revenue_total?: number | null
+          session_count?: number | null
+          updated_at?: string | null
+          visitor_count?: number | null
+        }
+        Relationships: []
+      }
+      analytics_pageviews: {
+        Row: {
+          created_at: string | null
+          id: string
+          is_entrance: boolean | null
+          is_exit: boolean | null
+          page_hash: string | null
+          page_path: string
+          page_title: string | null
+          referrer_path: string | null
+          scroll_depth_percent: number | null
+          session_id: string
+          time_on_page_seconds: number | null
+          visitor_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          is_entrance?: boolean | null
+          is_exit?: boolean | null
+          page_hash?: string | null
+          page_path: string
+          page_title?: string | null
+          referrer_path?: string | null
+          scroll_depth_percent?: number | null
+          session_id: string
+          time_on_page_seconds?: number | null
+          visitor_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          is_entrance?: boolean | null
+          is_exit?: boolean | null
+          page_hash?: string | null
+          page_path?: string
+          page_title?: string | null
+          referrer_path?: string | null
+          scroll_depth_percent?: number | null
+          session_id?: string
+          time_on_page_seconds?: number | null
+          visitor_id?: string
+        }
+        Relationships: []
+      }
+      analytics_realtime: {
+        Row: {
+          country_code: string | null
+          created_at: string | null
+          device_type: string | null
+          id: string
+          last_seen_at: string | null
+          page_path: string | null
+          session_id: string
+          visitor_id: string
+        }
+        Insert: {
+          country_code?: string | null
+          created_at?: string | null
+          device_type?: string | null
+          id?: string
+          last_seen_at?: string | null
+          page_path?: string | null
+          session_id: string
+          visitor_id: string
+        }
+        Update: {
+          country_code?: string | null
+          created_at?: string | null
+          device_type?: string | null
+          id?: string
+          last_seen_at?: string | null
+          page_path?: string | null
+          session_id?: string
+          visitor_id?: string
+        }
+        Relationships: []
+      }
+      analytics_sessions: {
+        Row: {
+          browser: string | null
+          city: string | null
+          country_code: string | null
+          created_at: string | null
+          device_type: string | null
+          ended_at: string | null
+          events_count: number | null
+          exit_page: string | null
+          id: string
+          is_bounce: boolean | null
+          is_new_visitor: boolean | null
+          landing_page: string | null
+          last_activity_at: string | null
+          latitude: number | null
+          longitude: number | null
+          os: string | null
+          page_views: number | null
+          referrer_medium: string | null
+          referrer_source: string | null
+          referrer_url: string | null
+          region: string | null
+          screen_height: number | null
+          screen_width: number | null
+          session_duration_seconds: number | null
+          session_id: string
+          started_at: string | null
+          utm_campaign: string | null
+          utm_content: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          utm_term: string | null
+          visitor_id: string
+        }
+        Insert: {
+          browser?: string | null
+          city?: string | null
+          country_code?: string | null
+          created_at?: string | null
+          device_type?: string | null
+          ended_at?: string | null
+          events_count?: number | null
+          exit_page?: string | null
+          id?: string
+          is_bounce?: boolean | null
+          is_new_visitor?: boolean | null
+          landing_page?: string | null
+          last_activity_at?: string | null
+          latitude?: number | null
+          longitude?: number | null
+          os?: string | null
+          page_views?: number | null
+          referrer_medium?: string | null
+          referrer_source?: string | null
+          referrer_url?: string | null
+          region?: string | null
+          screen_height?: number | null
+          screen_width?: number | null
+          session_duration_seconds?: number | null
+          session_id: string
+          started_at?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
+          visitor_id: string
+        }
+        Update: {
+          browser?: string | null
+          city?: string | null
+          country_code?: string | null
+          created_at?: string | null
+          device_type?: string | null
+          ended_at?: string | null
+          events_count?: number | null
+          exit_page?: string | null
+          id?: string
+          is_bounce?: boolean | null
+          is_new_visitor?: boolean | null
+          landing_page?: string | null
+          last_activity_at?: string | null
+          latitude?: number | null
+          longitude?: number | null
+          os?: string | null
+          page_views?: number | null
+          referrer_medium?: string | null
+          referrer_source?: string | null
+          referrer_url?: string | null
+          region?: string | null
+          screen_height?: number | null
+          screen_width?: number | null
+          session_duration_seconds?: number | null
+          session_id?: string
+          started_at?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
+          visitor_id?: string
+        }
+        Relationships: []
+      }
       audit_logs: {
         Row: {
           action: string
@@ -916,6 +1321,10 @@ export type Database = {
           whatsapp_number: string
         }[]
       }
+      aggregate_daily_analytics: {
+        Args: { target_date?: string }
+        Returns: boolean
+      }
       check_newsletter_rate_limit: {
         Args: { p_email: string; p_ip_address?: string }
         Returns: boolean
@@ -931,6 +1340,7 @@ export type Database = {
       cleanup_expired_cache: { Args: never; Returns: number }
       cleanup_expired_rate_limits: { Args: never; Returns: undefined }
       cleanup_rate_limits: { Args: never; Returns: undefined }
+      cleanup_stale_realtime_visitors: { Args: never; Returns: number }
       create_booking_secure: {
         Args: {
           p_address?: string
@@ -957,6 +1367,7 @@ export type Database = {
       delete_my_data: { Args: never; Returns: boolean }
       export_my_data: { Args: never; Returns: Json }
       generate_booking_id: { Args: never; Returns: string }
+      get_analytics_overview: { Args: { days_back?: number }; Returns: Json }
       get_app_secret: { Args: { secret_name: string }; Returns: string }
       get_app_secret_secure: { Args: { secret_name: string }; Returns: string }
       get_bookings_masked_secure: {
