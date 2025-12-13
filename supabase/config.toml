@@ -28,15 +28,17 @@ verify_jwt = false
 [functions.mobile-ui-debug]
 verify_jwt = false
 
+# Analytics tracking (public, anonymous)
+[functions.track-analytics]
+verify_jwt = false
+
+# Protected functions (require authentication)
 [functions.security-monitoring]
 verify_jwt = true
 
 [functions.secure-blocking]
 verify_jwt = true
 
-# GDPR functions (now require authentication)
-[functions.gdpr-data-export]
-verify_jwt = true
-
-[functions.gdpr-data-deletion]
+# Analytics dashboard (admin only, verified in function)
+[functions.analytics-dashboard]
 verify_jwt = true

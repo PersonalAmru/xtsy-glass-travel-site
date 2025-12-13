@@ -38,7 +38,9 @@ const LazyPetFriendly = createLazyComponent(() => import("./pages/PetFriendly"))
 const LazyXTSYvsZostel = createLazyComponent(() => import("./pages/XTSYvsZostel"));
 const LazyFemaleTravellers = createLazyComponent(() => import("./pages/FemaleTravellers"));
 const LazyWorkFromHome = createLazyComponent(() => import("./pages/WorkFromHome"));
+const LazyPrivacyPolicy = createLazyComponent(() => import("./pages/PrivacyPolicy"));
 const AdminLogin = createLazyComponent(() => import("./pages/AdminLogin"));
+const AdminDashboard = createLazyComponent(() => import("./pages/AdminDashboard"));
 const BookingFlow = createLazyComponent(() => import("./pages/BookingFlow"));
 
 // Memoized route wrapper with error boundary for mobile stability
@@ -110,7 +112,9 @@ function App() {
             <Route path="/xtsy-vs-zostel" element={<LazyRoute><LazyXTSYvsZostel /></LazyRoute>} />
             <Route path="/female-travellers" element={<LazyRoute><LazyFemaleTravellers /></LazyRoute>} />
             <Route path="/work-from-home" element={<LazyRoute><LazyWorkFromHome /></LazyRoute>} />
+            <Route path="/privacy-policy" element={<LazyRoute><LazyPrivacyPolicy /></LazyRoute>} />
             <Route path="/admin-login" element={<LazyRoute><AdminLogin /></LazyRoute>} />
+            <Route path="/admin/dashboard" element={<LazyRoute><AdminDashboard /></LazyRoute>} />
             <Route path="/booking" element={<LazyRoute><BookingFlow /></LazyRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
