@@ -458,7 +458,21 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent data-testid="cart-modal" className="w-full h-full max-w-none max-h-none md:max-w-3xl lg:max-w-4xl md:max-h-[90vh] md:h-auto bg-white border-0 p-0 overflow-hidden">
+      <DialogContent 
+        data-testid="cart-modal" 
+        className="w-full h-full max-w-none max-h-none md:max-w-3xl lg:max-w-4xl md:max-h-[90vh] md:h-auto bg-white border-0 p-0 overflow-hidden"
+        style={{
+          position: 'fixed',
+          left: '50%',
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: 'min(calc(100vw - 16px), 56rem)',
+          maxWidth: '56rem',
+          maxHeight: 'min(calc(100vh - 32px), 90vh)',
+          boxSizing: 'border-box',
+          margin: 0,
+        }}
+      >
         <div className="flex flex-col h-full">
           {/* Mobile Header */}
           <div className="md:hidden flex items-center justify-between p-3 border-b bg-white sticky top-0 z-50">

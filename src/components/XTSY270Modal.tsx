@@ -122,7 +122,20 @@ const XTSY270Modal: React.FC<XTSY270ModalProps> = ({ isOpen, onClose }) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent 
+        data-testid="xtsy270-modal"
+        className="sm:max-w-md"
+        style={{
+          position: 'fixed',
+          left: '50%',
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: 'min(calc(100vw - 32px), 28rem)',
+          maxWidth: '28rem',
+          boxSizing: 'border-box',
+          margin: 0,
+        }}
+      >
         <DialogHeader>
           <DialogTitle className="text-center text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Reserve XTSY 270° Glass Suite

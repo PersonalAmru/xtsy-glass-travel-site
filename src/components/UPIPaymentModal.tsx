@@ -104,7 +104,20 @@ Thank you!`;
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-md mx-auto">
+      <DialogContent 
+        data-testid="upi-payment-modal"
+        className="max-w-md mx-auto"
+        style={{
+          position: 'fixed',
+          left: '50%',
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: 'min(calc(100vw - 32px), 28rem)',
+          maxWidth: '28rem',
+          boxSizing: 'border-box',
+          margin: 0,
+        }}
+      >
         <DialogHeader>
           <DialogTitle className="text-center text-xl font-bold text-gray-900">
             Complete Your Payment

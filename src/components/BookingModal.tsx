@@ -354,7 +354,21 @@ const BookingModal = ({ isOpen, onClose, room }: BookingModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent data-testid="booking-modal" className="w-full h-full max-w-none max-h-none md:max-w-4xl lg:max-w-6xl md:max-h-[95vh] md:h-auto bg-white border-0 p-0 overflow-hidden">
+      <DialogContent 
+        data-testid="booking-modal" 
+        className="w-full h-full max-w-none max-h-none md:max-w-4xl lg:max-w-6xl md:max-h-[95vh] md:h-auto bg-white border-0 p-0 overflow-hidden"
+        style={{
+          position: 'fixed',
+          left: '50%',
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: 'min(calc(100vw - 16px), 72rem)',
+          maxWidth: '72rem',
+          maxHeight: 'min(calc(100vh - 32px), 95vh)',
+          boxSizing: 'border-box',
+          margin: 0,
+        }}
+      >
         <div className="flex flex-col h-full max-h-[100vh] md:max-h-[95vh]">
           {/* Header */}
           <div className="flex-shrink-0 p-4 md:p-6 border-b bg-gradient-to-r from-orange-50 to-red-50">

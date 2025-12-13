@@ -136,7 +136,20 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-white border border-gray-300 shadow-2xl max-w-md">
+      <DialogContent 
+        data-testid="service-modal"
+        className="bg-white border border-gray-300 shadow-2xl max-w-md"
+        style={{
+          position: 'fixed',
+          left: '50%',
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: 'min(calc(100vw - 32px), 28rem)',
+          maxWidth: '28rem',
+          boxSizing: 'border-box',
+          margin: 0,
+        }}
+      >
         <DialogHeader>
           <div className="flex items-center justify-between mb-4">
             <div className="text-purple-600 flex-shrink-0 bg-purple-100 p-3 rounded-lg">
