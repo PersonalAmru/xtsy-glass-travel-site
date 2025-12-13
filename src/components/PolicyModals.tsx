@@ -340,7 +340,21 @@ const PolicyModal = ({ isOpen, onClose, type }: PolicyModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent 
+        data-testid="policy-modal"
+        className="max-w-2xl max-h-[90vh] overflow-y-auto"
+        style={{
+          position: 'fixed',
+          left: '50%',
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: 'min(calc(100vw - 32px), 42rem)',
+          maxWidth: '42rem',
+          maxHeight: 'min(calc(100vh - 32px), 90vh)',
+          boxSizing: 'border-box',
+          margin: 0,
+        }}
+      >
         <DialogHeader>
           <DialogTitle className="text-center text-2xl font-bold text-gray-800">
             {getTitle()}

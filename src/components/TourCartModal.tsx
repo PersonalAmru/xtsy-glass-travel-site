@@ -193,7 +193,21 @@ const TourCartModal: React.FC<TourCartModalProps> = ({ isOpen, onClose, sessionI
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+      <DialogContent 
+        data-testid="tour-cart-modal"
+        className="max-w-4xl max-h-[90vh] overflow-y-auto"
+        style={{
+          position: 'fixed',
+          left: '50%',
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: 'min(calc(100vw - 16px), 56rem)',
+          maxWidth: '56rem',
+          maxHeight: 'min(calc(100vh - 32px), 90vh)',
+          boxSizing: 'border-box',
+          margin: 0,
+        }}
+      >
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <ShoppingCart className="h-5 w-5" />
