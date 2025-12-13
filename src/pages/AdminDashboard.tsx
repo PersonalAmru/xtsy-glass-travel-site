@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { useAdminAnalytics } from '@/hooks/useAdminAnalytics';
+import { useTravellerIntelligence } from '@/hooks/useTravellerIntelligence';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
@@ -10,12 +11,16 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { 
   Users, Eye, MousePointer, Clock, TrendingUp, Globe, 
   BarChart3, Activity, RefreshCw, ArrowUpRight, ArrowDownRight,
-  Monitor, Smartphone, Tablet, MapPin, DollarSign
+  Monitor, Smartphone, Tablet, MapPin, DollarSign, Brain, Zap, Calendar, IndianRupee
 } from 'lucide-react';
 import { 
   LineChart, Line, AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell,
   XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer 
 } from 'recharts';
+import { TravellerSegmentsPanel } from '@/components/admin/TravellerSegmentsPanel';
+import { DemandForecastPanel } from '@/components/admin/DemandForecastPanel';
+import { RevenueIntelligencePanel } from '@/components/admin/RevenueIntelligencePanel';
+import { RealtimeTravellerActivity } from '@/components/admin/RealtimeTravellerActivity';
 
 const COLORS = ['hsl(var(--primary))', 'hsl(var(--secondary))', 'hsl(var(--accent))', '#10b981', '#f59e0b', '#ef4444'];
 

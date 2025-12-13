@@ -611,6 +611,57 @@ export type Database = {
         }
         Relationships: []
       }
+      demand_forecasts: {
+        Row: {
+          actual_demand: number | null
+          actual_revenue: number | null
+          confidence_score: number | null
+          created_at: string | null
+          demand_factors: Json | null
+          demand_level: string | null
+          forecast_accuracy: number | null
+          forecast_date: string
+          id: string
+          predicted_demand: number | null
+          predicted_revenue: number | null
+          room_type_id: string | null
+          room_type_name: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          actual_demand?: number | null
+          actual_revenue?: number | null
+          confidence_score?: number | null
+          created_at?: string | null
+          demand_factors?: Json | null
+          demand_level?: string | null
+          forecast_accuracy?: number | null
+          forecast_date: string
+          id?: string
+          predicted_demand?: number | null
+          predicted_revenue?: number | null
+          room_type_id?: string | null
+          room_type_name?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          actual_demand?: number | null
+          actual_revenue?: number | null
+          confidence_score?: number | null
+          created_at?: string | null
+          demand_factors?: Json | null
+          demand_level?: string | null
+          forecast_accuracy?: number | null
+          forecast_date?: string
+          id?: string
+          predicted_demand?: number | null
+          predicted_revenue?: number | null
+          room_type_id?: string | null
+          room_type_name?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       destinations: {
         Row: {
           created_at: string
@@ -893,6 +944,75 @@ export type Database = {
         }
         Relationships: []
       }
+      revenue_intelligence: {
+        Row: {
+          avg_booking_value: number | null
+          booking_count: number | null
+          booking_trend: number | null
+          conversion_rate: number | null
+          created_at: string | null
+          id: string
+          new_visitors: number | null
+          next_30d_forecast: number | null
+          next_7d_forecast: number | null
+          returning_visitors: number | null
+          revenue_by_country: Json | null
+          revenue_by_source: Json | null
+          revenue_per_visitor: number | null
+          revenue_trend: number | null
+          room_type_breakdown: Json | null
+          segment_breakdown: Json | null
+          snapshot_date: string
+          total_revenue: number | null
+          total_visitors: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          avg_booking_value?: number | null
+          booking_count?: number | null
+          booking_trend?: number | null
+          conversion_rate?: number | null
+          created_at?: string | null
+          id?: string
+          new_visitors?: number | null
+          next_30d_forecast?: number | null
+          next_7d_forecast?: number | null
+          returning_visitors?: number | null
+          revenue_by_country?: Json | null
+          revenue_by_source?: Json | null
+          revenue_per_visitor?: number | null
+          revenue_trend?: number | null
+          room_type_breakdown?: Json | null
+          segment_breakdown?: Json | null
+          snapshot_date: string
+          total_revenue?: number | null
+          total_visitors?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          avg_booking_value?: number | null
+          booking_count?: number | null
+          booking_trend?: number | null
+          conversion_rate?: number | null
+          created_at?: string | null
+          id?: string
+          new_visitors?: number | null
+          next_30d_forecast?: number | null
+          next_7d_forecast?: number | null
+          returning_visitors?: number | null
+          revenue_by_country?: Json | null
+          revenue_by_source?: Json | null
+          revenue_per_visitor?: number | null
+          revenue_trend?: number | null
+          room_type_breakdown?: Json | null
+          segment_breakdown?: Json | null
+          snapshot_date?: string
+          total_revenue?: number | null
+          total_visitors?: number | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       reviews: {
         Row: {
           booking_id: string | null
@@ -1111,6 +1231,216 @@ export type Database = {
         }
         Relationships: []
       }
+      traveller_events: {
+        Row: {
+          city: string | null
+          country_code: string | null
+          created_at: string | null
+          device_type: string | null
+          event_action: string | null
+          event_category: string | null
+          event_label: string | null
+          event_type: string
+          event_value: number | null
+          id: string
+          page_path: string | null
+          properties: Json | null
+          referrer: string | null
+          session_id: string | null
+          visitor_id: string
+        }
+        Insert: {
+          city?: string | null
+          country_code?: string | null
+          created_at?: string | null
+          device_type?: string | null
+          event_action?: string | null
+          event_category?: string | null
+          event_label?: string | null
+          event_type: string
+          event_value?: number | null
+          id?: string
+          page_path?: string | null
+          properties?: Json | null
+          referrer?: string | null
+          session_id?: string | null
+          visitor_id: string
+        }
+        Update: {
+          city?: string | null
+          country_code?: string | null
+          created_at?: string | null
+          device_type?: string | null
+          event_action?: string | null
+          event_category?: string | null
+          event_label?: string | null
+          event_type?: string
+          event_value?: number | null
+          id?: string
+          page_path?: string | null
+          properties?: Json | null
+          referrer?: string | null
+          session_id?: string | null
+          visitor_id?: string
+        }
+        Relationships: []
+      }
+      traveller_profiles: {
+        Row: {
+          avg_booking_value: number | null
+          avg_session_duration: number | null
+          booking_intent_score: number | null
+          created_at: string | null
+          first_booking_at: string | null
+          first_seen_at: string | null
+          first_touch_campaign: string | null
+          first_touch_medium: string | null
+          first_touch_source: string | null
+          id: string
+          is_group_organizer: boolean | null
+          is_repeat_traveller: boolean | null
+          is_solo_traveller: boolean | null
+          last_booking_at: string | null
+          last_page_viewed: string | null
+          last_seen_at: string | null
+          last_touch_medium: string | null
+          last_touch_source: string | null
+          lifetime_value: number | null
+          preferred_booking_lead_days: number | null
+          preferred_room_category: string | null
+          preferred_season: string | null
+          profile_hash: string | null
+          spend_tier: string | null
+          total_bookings: number | null
+          total_nights: number | null
+          total_pageviews: number | null
+          total_sessions: number | null
+          tour_interest_score: number | null
+          traveller_segment: string | null
+          updated_at: string | null
+          visitor_id: string
+        }
+        Insert: {
+          avg_booking_value?: number | null
+          avg_session_duration?: number | null
+          booking_intent_score?: number | null
+          created_at?: string | null
+          first_booking_at?: string | null
+          first_seen_at?: string | null
+          first_touch_campaign?: string | null
+          first_touch_medium?: string | null
+          first_touch_source?: string | null
+          id?: string
+          is_group_organizer?: boolean | null
+          is_repeat_traveller?: boolean | null
+          is_solo_traveller?: boolean | null
+          last_booking_at?: string | null
+          last_page_viewed?: string | null
+          last_seen_at?: string | null
+          last_touch_medium?: string | null
+          last_touch_source?: string | null
+          lifetime_value?: number | null
+          preferred_booking_lead_days?: number | null
+          preferred_room_category?: string | null
+          preferred_season?: string | null
+          profile_hash?: string | null
+          spend_tier?: string | null
+          total_bookings?: number | null
+          total_nights?: number | null
+          total_pageviews?: number | null
+          total_sessions?: number | null
+          tour_interest_score?: number | null
+          traveller_segment?: string | null
+          updated_at?: string | null
+          visitor_id: string
+        }
+        Update: {
+          avg_booking_value?: number | null
+          avg_session_duration?: number | null
+          booking_intent_score?: number | null
+          created_at?: string | null
+          first_booking_at?: string | null
+          first_seen_at?: string | null
+          first_touch_campaign?: string | null
+          first_touch_medium?: string | null
+          first_touch_source?: string | null
+          id?: string
+          is_group_organizer?: boolean | null
+          is_repeat_traveller?: boolean | null
+          is_solo_traveller?: boolean | null
+          last_booking_at?: string | null
+          last_page_viewed?: string | null
+          last_seen_at?: string | null
+          last_touch_medium?: string | null
+          last_touch_source?: string | null
+          lifetime_value?: number | null
+          preferred_booking_lead_days?: number | null
+          preferred_room_category?: string | null
+          preferred_season?: string | null
+          profile_hash?: string | null
+          spend_tier?: string | null
+          total_bookings?: number | null
+          total_nights?: number | null
+          total_pageviews?: number | null
+          total_sessions?: number | null
+          tour_interest_score?: number | null
+          traveller_segment?: string | null
+          updated_at?: string | null
+          visitor_id?: string
+        }
+        Relationships: []
+      }
+      traveller_segments: {
+        Row: {
+          avg_booking_value: number | null
+          avg_lifetime_value: number | null
+          conversion_rate: number | null
+          created_at: string | null
+          id: string
+          is_active: boolean | null
+          segment_color: string | null
+          segment_criteria: Json | null
+          segment_description: string | null
+          segment_key: string
+          segment_name: string
+          total_revenue: number | null
+          traveller_count: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          avg_booking_value?: number | null
+          avg_lifetime_value?: number | null
+          conversion_rate?: number | null
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          segment_color?: string | null
+          segment_criteria?: Json | null
+          segment_description?: string | null
+          segment_key: string
+          segment_name: string
+          total_revenue?: number | null
+          traveller_count?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          avg_booking_value?: number | null
+          avg_lifetime_value?: number | null
+          conversion_rate?: number | null
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          segment_color?: string | null
+          segment_criteria?: Json | null
+          segment_description?: string | null
+          segment_key?: string
+          segment_name?: string
+          total_revenue?: number | null
+          traveller_count?: number | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       user_location_preferences: {
         Row: {
           country_code: string
@@ -1325,6 +1655,7 @@ export type Database = {
         Args: { target_date?: string }
         Returns: boolean
       }
+      calculate_spend_tier: { Args: { p_visitor_id: string }; Returns: string }
       check_newsletter_rate_limit: {
         Args: { p_email: string; p_ip_address?: string }
         Returns: boolean
@@ -1336,6 +1667,10 @@ export type Database = {
           risk_score: number
           suspicious_indicators: string[]
         }[]
+      }
+      classify_traveller_segment: {
+        Args: { p_visitor_id: string }
+        Returns: string
       }
       cleanup_expired_cache: { Args: never; Returns: number }
       cleanup_expired_rate_limits: { Args: never; Returns: undefined }

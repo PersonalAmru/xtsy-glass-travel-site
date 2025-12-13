@@ -42,3 +42,10 @@ verify_jwt = true
 # Analytics dashboard (admin only, verified in function)
 [functions.analytics-dashboard]
 verify_jwt = true
+
+# Traveller Intelligence System
+[functions.traveller-intelligence]
+verify_jwt = true
+
+[functions.realtime-intelligence]
+verify_jwt = true
