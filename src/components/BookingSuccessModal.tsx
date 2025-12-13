@@ -12,7 +12,7 @@ interface BookingSuccessModalProps {
 const BookingSuccessModal = ({ isOpen, onClose, bookingId, guestName }: BookingSuccessModalProps) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="w-full max-w-md mx-auto">
+      <DialogContent data-testid="booking-success-modal" className="w-full max-w-md mx-auto">
         <div className="text-center space-y-6 py-4">
           {/* Success Icon */}
           <div className="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">

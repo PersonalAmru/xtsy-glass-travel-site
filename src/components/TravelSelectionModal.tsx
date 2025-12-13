@@ -21,6 +21,7 @@ const TravelSelectionModal = ({ isOpen, onClose }: TravelSelectionModalProps) =>
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent 
+        data-testid="travel-selection-modal"
         className="p-4 sm:p-6 overflow-hidden"
         style={{
           position: 'fixed',
