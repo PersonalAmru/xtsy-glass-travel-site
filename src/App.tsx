@@ -13,6 +13,7 @@ import NotFound from "./pages/NotFound";
 import { preloadCriticalResources, optimizeFontLoading, registerServiceWorker } from "./utils/bundleOptimization";
 import { performGlobalCleanup } from "./utils/performanceCleanup";
 import { cleanupUnifiedImage } from "./components/UnifiedImage";
+import { EnhancedAnalyticsProvider } from "./hooks/useEnhancedAnalytics";
 
 // Lazy loaded pages with retry logic for mobile (exponential backoff)
 const createLazyComponent = (importFn: () => Promise<any>) => {

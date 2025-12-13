@@ -1935,6 +1935,10 @@ export type Database = {
           value: number
         }[]
       }
+      increment_traveller_stats: {
+        Args: { p_is_new_session?: boolean; p_visitor_id: string }
+        Returns: undefined
+      }
       ip_anonymize: { Args: { ip_text: string }; Returns: string }
       is_admin: { Args: never; Returns: boolean }
       is_admin_or_staff: { Args: never; Returns: boolean }
