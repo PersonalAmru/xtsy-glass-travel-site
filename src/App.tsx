@@ -100,26 +100,28 @@ function App() {
     }}>
       <div className="dark">
         <PerformanceMonitor />
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/about" element={<LazyRoute><LazyAbout /></LazyRoute>} />
-            <Route path="/gallery" element={<LazyRoute><LazyGallery /></LazyRoute>} />
-            <Route path="/travel" element={<LazyRoute><LazyTravel /></LazyRoute>} />
-            <Route path="/xtsy-270" element={<LazyRoute><LazyXTSY270 /></LazyRoute>} />
-            <Route path="/pet-friendly" element={<LazyRoute><LazyPetFriendly /></LazyRoute>} />
-            <Route path="/xtsy-vs-zostel" element={<LazyRoute><LazyXTSYvsZostel /></LazyRoute>} />
-            <Route path="/female-travellers" element={<LazyRoute><LazyFemaleTravellers /></LazyRoute>} />
-            <Route path="/work-from-home" element={<LazyRoute><LazyWorkFromHome /></LazyRoute>} />
-            <Route path="/privacy-policy" element={<LazyRoute><LazyPrivacyPolicy /></LazyRoute>} />
-            <Route path="/admin-login" element={<LazyRoute><AdminLogin /></LazyRoute>} />
-            <Route path="/admin/dashboard" element={<LazyRoute><AdminDashboard /></LazyRoute>} />
-            <Route path="/booking" element={<LazyRoute><BookingFlow /></LazyRoute>} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </TooltipProvider>
+        <EnhancedAnalyticsProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/about" element={<LazyRoute><LazyAbout /></LazyRoute>} />
+              <Route path="/gallery" element={<LazyRoute><LazyGallery /></LazyRoute>} />
+              <Route path="/travel" element={<LazyRoute><LazyTravel /></LazyRoute>} />
+              <Route path="/xtsy-270" element={<LazyRoute><LazyXTSY270 /></LazyRoute>} />
+              <Route path="/pet-friendly" element={<LazyRoute><LazyPetFriendly /></LazyRoute>} />
+              <Route path="/xtsy-vs-zostel" element={<LazyRoute><LazyXTSYvsZostel /></LazyRoute>} />
+              <Route path="/female-travellers" element={<LazyRoute><LazyFemaleTravellers /></LazyRoute>} />
+              <Route path="/work-from-home" element={<LazyRoute><LazyWorkFromHome /></LazyRoute>} />
+              <Route path="/privacy-policy" element={<LazyRoute><LazyPrivacyPolicy /></LazyRoute>} />
+              <Route path="/admin-login" element={<LazyRoute><AdminLogin /></LazyRoute>} />
+              <Route path="/admin/dashboard" element={<LazyRoute><AdminDashboard /></LazyRoute>} />
+              <Route path="/booking" element={<LazyRoute><BookingFlow /></LazyRoute>} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </TooltipProvider>
+        </EnhancedAnalyticsProvider>
       </div>
     </SecurityHeadersProvider>
   );
