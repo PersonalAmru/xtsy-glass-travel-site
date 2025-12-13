@@ -1,14 +1,14 @@
-
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 import { Resend } from 'https://esm.sh/resend@2.0.0'
 import { newsletterSchema, escapeHtml, sanitizeArray } from '../_shared/newsletterValidation.ts'
-import { corsHeaders } from '../_shared/cors.ts'
+import { getCorsHeaders } from '../_shared/cors.ts'
 import { createOptimizedClient } from '../_shared/supabaseClient.ts'
 import { getCacheHeaders } from '../_shared/cacheHeaders.ts'
 import { PerformanceMonitor } from '../_shared/performanceMonitor.ts'
 
 serve(async (req) => {
   const monitor = new PerformanceMonitor('newsletter-signup');
+  const corsHeaders = getCorsHeaders(req);
   
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
