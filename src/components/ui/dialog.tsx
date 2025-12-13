@@ -36,32 +36,30 @@ const DialogContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        // Base positioning - CRITICAL: these must not be overridden
-        "fixed left-[50%] top-[50%] z-50 grid",
-        // Transform for centering - preserved via CSS specificity
-        "translate-x-[-50%] translate-y-[-50%]",
-        // Sizing - mobile-first with safe width
-        "w-[calc(100vw-2rem)] max-w-lg",
+        // Base positioning
+        "fixed z-50 grid",
+        // Sizing - mobile-first
+        "w-[calc(100vw-32px)] max-w-lg",
         // Layout and spacing
         "gap-4 border bg-background p-4 sm:p-6 shadow-lg",
         // Animations
         "duration-150 data-[state=open]:animate-in data-[state=closed]:animate-out",
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
         "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
-        "data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%]",
-        "data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]",
         // Borders and sizing constraints
         "rounded-lg max-h-[85vh] max-h-[85dvh] overflow-hidden",
-        // Box model
-        "box-border",
         className
       )}
       style={{
-        // Explicit inline styles for mobile browser compatibility
+        // CRITICAL: Force centering - these must come LAST to override everything
+        position: 'fixed',
+        left: '50%',
+        top: '50%',
+        transform: 'translate(-50%, -50%)',
+        margin: 0,
+        // Mobile compatibility
         WebkitOverflowScrolling: 'touch',
         overscrollBehavior: 'contain',
-        // Ensure transform is NEVER removed on mobile
-        transform: 'translate(-50%, -50%)',
         // Safe area support
         paddingLeft: 'max(1rem, env(safe-area-inset-left))',
         paddingRight: 'max(1rem, env(safe-area-inset-right))',
