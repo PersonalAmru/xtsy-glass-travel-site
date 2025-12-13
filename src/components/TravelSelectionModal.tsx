@@ -21,12 +21,16 @@ const TravelSelectionModal = ({ isOpen, onClose }: TravelSelectionModalProps) =>
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent 
-        className="!w-[calc(100vw-2rem)] !max-w-md p-4 sm:p-6 overflow-hidden box-border"
+        className="p-4 sm:p-6 overflow-hidden"
         style={{
-          // Explicit inline styles to override any CSS conflicts
-          width: 'calc(100vw - 2rem)',
+          position: 'fixed',
+          left: '50%',
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: 'min(calc(100vw - 32px), 28rem)',
           maxWidth: '28rem',
           boxSizing: 'border-box',
+          margin: 0,
         }}
       >
         <DialogHeader className="pb-2">
