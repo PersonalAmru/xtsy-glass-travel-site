@@ -247,7 +247,7 @@ Deno.serve(async (req) => {
           });
 
           if (geoData?.country_code) {
-            await supabase.from('analytics_geo_heatmap').upsert({
+            const { error: geoError } = await supabase.from('analytics_geo_heatmap').upsert({
               country_code: geoData.country_code,
               country_name: geoData.country_name,
               region: geoData.region,
@@ -259,7 +259,11 @@ Deno.serve(async (req) => {
               date: new Date().toISOString().split('T')[0],
             }, {
               onConflict: 'country_code,date',
-            }).catch(() => {});
+            });
+
+            if (geoError) {
+              console.warn('[Analytics Geo Heatmap Upsert Error]', geoError.message);
+            }
           }
         } else {
           await supabase.from('analytics_sessions')
@@ -426,11 +430,19 @@ Deno.serve(async (req) => {
           onConflict: 'session_id',
         });
 
-        await supabase.rpc('cleanup_stale_realtime_visitors').catch(() => {
-          supabase.from('analytics_realtime')
+        const { error: cleanupError } = await supabase.rpc('cleanup_stale_realtime_visitors');
+        if (cleanupError) {
+          console.warn('[cleanup_stale_realtime_visitors RPC not available]', cleanupError.message);
+
+          const { error: fallbackError } = await supabase
+            .from('analytics_realtime')
             .delete()
             .lt('last_seen_at', new Date(Date.now() - 5 * 60 * 1000).toISOString());
-        });
+
+          if (fallbackError) {
+            console.warn('[Analytics Realtime Fallback Cleanup Error]', fallbackError.message);
+          }
+        }
 
         break;
       }
