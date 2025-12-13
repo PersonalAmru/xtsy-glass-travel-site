@@ -167,9 +167,10 @@ Deno.serve(async (req) => {
     };
 
     // Insert event into traveller_events
-    await supabase.from('traveller_events').insert(eventData).catch(err => {
-      console.error('[Traveller Events Insert Error]', err);
-    });
+    const { error: eventError } = await supabase.from('traveller_events').insert(eventData);
+    if (eventError) {
+      console.error('[Traveller Events Insert Error]', eventError.message);
+    }
 
     // Upsert traveller profile
     const profileUpdate: Record<string, any> = {
@@ -191,25 +192,22 @@ Deno.serve(async (req) => {
     profileUpdate.last_touch_medium = data.medium || data.utm_medium || null;
 
     // Upsert profile
-    await supabase.from('traveller_profiles').upsert(profileUpdate, {
+    const { error: profileError } = await supabase.from('traveller_profiles').upsert(profileUpdate, {
       onConflict: 'visitor_id',
-    }).catch(err => {
-      console.error('[Traveller Profile Upsert Error]', err);
     });
+    if (profileError) {
+      console.error('[Traveller Profile Upsert Error]', profileError.message);
+    }
 
     // Increment session/pageview counts
     if (endpoint === 'pageview') {
-      await supabase.rpc('increment_traveller_stats', {
+      const { error: rpcError } = await supabase.rpc('increment_traveller_stats', {
         p_visitor_id: visitorId,
         p_is_new_session: data.is_entrance || false
-      }).catch(() => {
-        // Fallback direct update
-        supabase.from('traveller_profiles')
-          .update({ 
-            total_pageviews: supabase.rpc('coalesce_add', { val: 1 }),
-          })
-          .eq('visitor_id', visitorId);
       });
+      if (rpcError) {
+        console.warn('[increment_traveller_stats RPC not available]', rpcError.message);
+      }
     }
 
     // ============ EXISTING ANALYTICS LOGIC ============
