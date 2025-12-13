@@ -118,6 +118,16 @@ const AdminLogin = () => {
               >
                 {loading ? "Signing in..." : "Sign In"}
               </Button>
+
+              <p className="text-center text-sm text-muted-foreground">
+                Forgot password?{" "}
+                <a 
+                  href="mailto:xtsy.social@gmail.com?subject=Admin%20Password%20Reset%20Request" 
+                  className="text-primary hover:text-primary/80 transition-colors"
+                >
+                  Contact admin for assistance
+                </a>
+              </p>
             </form>
 
             <div className="mt-6 text-center">
