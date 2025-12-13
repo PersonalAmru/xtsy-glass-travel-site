@@ -1,16 +1,12 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
-
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-};
+import { getCorsHeaders } from '../_shared/cors.ts';
 
 // Rate limiting - simple in-memory (resets on cold start)
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
 const RATE_LIMIT = 100;
 const RATE_WINDOW = 60000;
 
-function checkRateLimit(visitorId: string): boolean {
+function checkRateLimitLocal(visitorId: string): boolean {
   const now = Date.now();
   const record = rateLimitMap.get(visitorId);
 
@@ -79,6 +75,8 @@ function calculateIntentScore(events: { event_type: string; event_category?: str
 }
 
 Deno.serve(async (req) => {
+  const corsHeaders = getCorsHeaders(req);
+  
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
@@ -111,7 +109,7 @@ Deno.serve(async (req) => {
     }
 
     const visitorId = data.visitorId || data.visitor_id || 'unknown';
-    if (!checkRateLimit(visitorId)) {
+    if (!checkRateLimitLocal(visitorId)) {
       return new Response(JSON.stringify({ error: 'Rate limited' }), {
         status: 429,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },

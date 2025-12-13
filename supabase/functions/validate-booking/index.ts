@@ -1,6 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { z } from 'https://deno.land/x/zod@v3.22.4/mod.ts';
-import { corsHeaders } from '../_shared/cors.ts'
+import { getCorsHeaders } from '../_shared/cors.ts'
 import { createOptimizedClient } from '../_shared/supabaseClient.ts'
 import { checkRateLimit, getClientIp, getRateLimitHeaders } from '../_shared/rateLimiter.ts'
 import { getCacheHeaders } from '../_shared/cacheHeaders.ts'
@@ -30,6 +30,7 @@ const bookingValidationSchema = z.object({
 
 serve(async (req) => {
   const monitor = new PerformanceMonitor('validate-booking');
+  const corsHeaders = getCorsHeaders(req);
   
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
