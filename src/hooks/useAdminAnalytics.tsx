@@ -125,14 +125,6 @@ export const useAdminAnalytics = (daysBack: number = 30) => {
   const [trends, setTrends] = useState<TrendsData | null>(null);
 
   const fetchEndpoint = useCallback(async (endpoint: string) => {
-    const { data, error } = await supabase.functions.invoke('analytics-dashboard', {
-      body: null,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    // Since we can't pass query params easily, let's make a direct fetch
     const session = await supabase.auth.getSession();
     const token = session.data.session?.access_token;
 
