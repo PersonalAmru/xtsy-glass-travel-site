@@ -19,45 +19,41 @@ const TravelSelectionModal = ({ isOpen, onClose }: TravelSelectionModalProps) =>
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="w-[90vw] max-w-md mx-auto p-4 sm:p-6">
         <DialogHeader>
-          <DialogTitle className="text-center text-xl font-bold">
+          <DialogTitle className="text-center text-lg sm:text-xl font-bold">
             Choose Your Travel Destination
           </DialogTitle>
         </DialogHeader>
         
-        <div className="grid gap-4 py-4">
+        <div className="grid gap-3 sm:gap-4 py-3 sm:py-4">
           <Button
             onClick={() => handleSelection('domestic')}
-            className="h-20 flex flex-col gap-2 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white"
+            className="h-auto min-h-[70px] sm:min-h-[80px] flex flex-col gap-1 sm:gap-2 py-3 sm:py-4 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white w-full"
             size="lg"
           >
-            <div className="flex items-center gap-3">
-              <div className="text-2xl">🇮🇳</div>
-              <div>
-                <MapPin className="h-5 w-5" />
-              </div>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <span className="text-xl sm:text-2xl">🇮🇳</span>
+              <MapPin className="h-4 w-4 sm:h-5 sm:w-5" />
             </div>
             <div className="text-center">
-              <div className="font-semibold">Domestic Travel</div>
-              <div className="text-sm opacity-90">Explore India</div>
+              <div className="font-semibold text-sm sm:text-base">Domestic Travel</div>
+              <div className="text-xs sm:text-sm opacity-90">Explore India</div>
             </div>
           </Button>
 
           <Button
             onClick={() => handleSelection('international')}
-            className="h-20 flex flex-col gap-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white"
+            className="h-auto min-h-[70px] sm:min-h-[80px] flex flex-col gap-1 sm:gap-2 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white w-full"
             size="lg"
           >
-            <div className="flex items-center gap-3">
-              <div className="text-2xl">🌏</div>
-              <div>
-                <Globe className="h-5 w-5" />
-              </div>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <span className="text-xl sm:text-2xl">🌏</span>
+              <Globe className="h-4 w-4 sm:h-5 sm:w-5" />
             </div>
             <div className="text-center">
-              <div className="font-semibold">XTSY Asia & Europe</div>
-              <div className="text-xs bg-red-500 text-white px-2 py-1 rounded-full">
+              <div className="font-semibold text-sm sm:text-base">XTSY Asia & Europe</div>
+              <div className="text-[10px] sm:text-xs bg-red-500 text-white px-2 py-0.5 sm:py-1 rounded-full mt-1">
                 Launching Soon
               </div>
             </div>
