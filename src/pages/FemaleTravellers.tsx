@@ -95,28 +95,36 @@ const FemaleTravellers = () => {
 
   const faqs = [
     {
-      question: "Are there women-only dormitories available?",
-      answer: "Yes! We have dedicated female-only dormitories with 4-bed and 6-bed options. These spaces are exclusively for female guests and come with secure access control."
+      question: "Do you have women-only dorms?",
+      answer: "Yes! 4-bed and 6-bed female-only dorms with secure access control. Your space, your privacy, your peace of mind.",
+      quote: "When my friends and I planned our North East India trip, we were hesitant. But XTSY changed everything!",
+      quoteName: "Olivia"
     },
     {
-      question: "What safety measures are in place for female travelers?",
-      answer: "We have 24/7 security personnel, CCTV surveillance in common areas, secure access to female dormitories, well-lit premises, and female staff members available round the clock."
+      question: "What safety measures do you have?",
+      answer: "24/7 security, CCTV in common areas, secure female dorm access, well-lit premises, and female staff on call round the clock. We take safety seriously—not just as a policy, but as a priority.",
     },
     {
-      question: "Can I travel solo to XTSY as a female traveler?",
-      answer: "Absolutely! XTSY is one of the safest hostels for solo female travelers in Northeast India. We have a strong community of female solo travelers, and our staff ensures everyone feels secure and welcomed."
+      question: "Is it safe for solo female travelers?",
+      answer: "100%. We've hosted countless solo female travelers who keep coming back. Northeast India is one of India's safest regions, and our staff ensures everyone feels secure and welcomed. No sketchy vibes, ever.",
+      quote: "XTSY made us feel safe and welcomed—it's honestly one of the safest places we've traveled to.",
+      quoteName: "Olivia"
     },
     {
-      question: "Are there any special facilities for women?",
-      answer: "Yes, we provide female hygiene products, hair dryers, full-length mirrors, private bathroom facilities, a wellness space for yoga and meditation, and a comfortable common area exclusively for female guests."
+      question: "What facilities are designed for women?",
+      answer: "Hygiene products, hair dryers, full-length mirrors, private bathrooms, wellness space for yoga/meditation, and a comfortable common area just for female guests. We thought of everything.",
+      quote: "The hostel has a very welcoming atmosphere with friendly staff... As a student, I never faced any issues.",
+      quoteName: "Ritika"
     },
     {
-      question: "How do you ensure privacy in shared spaces?",
-      answer: "Female dormitories have secure locks, individual curtains for each bed, personal lockers, beautiful mountain views"
+      question: "How private are shared spaces?",
+      answer: "Female dorms have secure locks, individual bed curtains, personal lockers, and mountain views. Your own bubble within a community.",
     },
     {
-      question: "Is it safe to explore Shillong as a female traveler?",
-      answer: "Shillong is one of the safest cities in India for female travelers. Our staff provides local travel tips, recommended routes, and can arrange trusted transport services. We also organize group tours for guests who prefer to explore together."
+      question: "Is Shillong safe to explore solo?",
+      answer: "Shillong is one of India's safest cities for women. Our staff shares local tips, safe routes, and trusted transport options. We also organize group tours if you'd rather explore with others.",
+      quote: "XTSY made me ecstatic! The staff really surprised me by providing a very warm experience.",
+      quoteName: "Amritha"
     }
   ];
 

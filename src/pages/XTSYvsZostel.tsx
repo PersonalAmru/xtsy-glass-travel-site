@@ -135,32 +135,40 @@ const XTSYvsZostel = () => {
 
   const faqs = [
     {
-      question: "How is XTSY different from Zostel?",
-      answer: "XTSY offers unmatched versatility - from budget dormitories to India's first 270° Glass Suite. We support everyone: solo travelers, luxury couples, large groups (6+), families with elders, educational tours, and corporate retreats. With government partnerships, award nominations, and cross-border tour capabilities, XTSY is a complete hospitality ecosystem, not just a hostel chain.",
+      question: "How is XTSY actually different from Zostel?",
+      answer: "Zostel = great for solo travelers. XTSY = great for everyone. Budget dorms to India's first 270° Glass Suite. Solo trips, couples, large groups (6+), families with elders, college tours, corporate retreats. Plus we have government partnerships and NEITA 2025 nomination. We're a complete ecosystem, not just a hostel.",
+      quote: "Just one word for XTSY: THE BEST. It's one of the best stays I have been to lately.",
+      quoteName: "Rahul"
     },
     {
-      question: "Can XTSY accommodate large groups of 10-20+ people?",
-      answer: "Absolutely! Unlike competitors who discourage groups larger than 6, XTSY actively encourages and specializes in large groups. We've successfully hosted 32+ IIT & IIM tours, 40+ school tours, and 8+ corporate tours with groups ranging from 10 to 50+ people. Our 50+ guest capacity ensures your entire group stays together.",
+      question: "Can you handle 10-20+ people groups?",
+      answer: "That's our specialty. While others discourage groups over 6, we've hosted 32+ IIT/IIM tours, 40+ school trips, 8+ corporate retreats—groups of 10 to 50+. Our 50+ capacity means your whole squad stays together.",
+      quote: "Very nice place for group stay!",
+      quoteName: "Sahil"
     },
     {
-      question: "Is XTSY suitable for family trips with elderly parents?",
-      answer: "Yes! XTSY is designed for multi-generational travel. We support families of all ages with appropriate facilities, accessibility considerations, and dedicated assistance. Whether it's grandparents, parents, or kids, everyone finds comfort at XTSY - something traditional hostels aren't equipped to handle.",
+      question: "Good for family trips with elders?",
+      answer: "Yes! Multi-generational travel is our thing. Grandparents to kids—everyone's comfortable. Accessibility considerations, dedicated assistance, proper facilities. Traditional hostels can't do this.",
     },
     {
-      question: "Does XTSY organize educational tours?",
-      answer: "XTSY is Northeast India's leader in educational tours with a proven track record: 32+ IIT & IIM group tours and 40+ school tours successfully organized. We understand the unique requirements of educational institutions - from safety protocols to group coordination to learning experiences.",
+      question: "Do you organize educational tours?",
+      answer: "We're the Northeast leaders. 32+ IIT/IIM group tours, 40+ school trips. We understand what institutions need—safety protocols, group coordination, learning experiences. We've done this a lot.",
     },
     {
-      question: "What makes XTSY award-nominated?",
-      answer: "XTSY has been nominated for 'Best Budget Accommodation' by NEITA (Northeast India Tourism Awards) 2025. This recognition comes from our commitment to excellence, diverse guest support, government collaborations, and consistently high ratings. It validates our position as Northeast India's premier hospitality brand.",
+      question: "Why are you award-nominated?",
+      answer: "NEITA 2025 'Best Budget Accommodation' nomination. Recognition for excellence, diverse guest support, government collabs, consistently high ratings. Not just talk—actual validation.",
+      quote: "Very good hospitality and excellent tour package management.",
+      quoteName: "Dhruba"
     },
     {
-      question: "Can XTSY arrange international tours?",
-      answer: "Yes! XTSY has cross-border tour capabilities through our dedicated travel partners. We've successfully organized international tours and can help plan your journey beyond Indian borders. This is part of our commitment to making 'your whole journey a vibe,' not just your stay.",
+      question: "Can you arrange international tours?",
+      answer: "Yes! Cross-border capabilities through our travel partners. Thailand, Vietnam, beyond. Your whole journey is a vibe with us—not just the stay.",
     },
     {
-      question: "Is XTSY just a hostel or something more?",
-      answer: "XTSY is a complete hospitality ecosystem powered by XTSY One LLP. We offer everything from budget dormitory beds (₹675/night) to India's first 270° Glass Suite (luxury experience). Beyond accommodation, we organize tours across 7 Northeast states, facilitate government tourism initiatives, and create memorable journeys for everyone from solo backpackers to corporate teams.",
+      question: "Is XTSY just a hostel?",
+      answer: "Way more. Budget dorm beds (₹675/night) to 270° Glass Suite luxury. Tours across 7 Northeast states. Government tourism partnerships. Memorable journeys for solo backpackers to corporate teams. Powered by XTSY One LLP.",
+      quote: "The vibe of the hostel is youthful and welcoming. Whether you're solo or in a group, there's always someone to connect with.",
+      quoteName: "Mariza"
     },
   ];
 
