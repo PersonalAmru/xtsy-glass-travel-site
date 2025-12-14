@@ -1,8 +1,10 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { Star, ChevronLeft, ChevronRight, X, ExternalLink, Loader2 } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Star, ChevronLeft, ChevronRight, X, Loader2, BadgeCheck, Quote, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import PremiumReviewCard from "./reviews/PremiumReviewCard";
+import PlatformRatingCard from "./reviews/PlatformRatingCard";
+import { cn } from "@/lib/utils";
 
 // Number of reviews to show initially in the modal
 const REVIEWS_PER_PAGE = 12;
@@ -379,13 +381,7 @@ const ReviewsSection = () => {
     source: "Google",
     roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
     property: "XTSY Travellers Hostel",
-    highlights: "Luxury · Great view · Romantic · Quiet · Great value · High-tech",
-    details: {
-      rooms: "Cozy soft curtains with hygiene bedspreads",
-      activities: "Very good location for walking jogging falls lake and ponds",
-      safety: "Good",
-      food: "Available both Veg and Non-Veg with snacks"
-    }
+    highlights: "Luxury · Great view · Romantic · Quiet · Great value · High-tech"
   }, {
     name: "Vishwas Aditya Chauhan",
     rating: 5,
@@ -394,11 +390,7 @@ const ReviewsSection = () => {
     source: "Google",
     roomType: "Rooms 5.0 | Service 5.0 | Location 4.0",
     property: "XTSY Travellers Hostel",
-    highlights: "Luxury · Great value",
-    details: {
-      walkability: "It is great",
-      food: "The food is very good as compared to other stays and rooms"
-    }
+    highlights: "Luxury · Great value"
   }, {
     name: "Gokarna Shrestha",
     rating: 5,
@@ -469,13 +461,7 @@ const ReviewsSection = () => {
     source: "Google",
     roomType: "Rooms 5.0 | Service 5.0 | Location 4.0",
     property: "XTSY Travellers Hostel",
-    highlights: "Luxury · Great view · Romantic · Quiet · Child-friendly · Great value · High-tech",
-    details: {
-      rooms: "Near and clean",
-      safety: "Safe",
-      walkability: "Walking space",
-      food: "Good taste at a reasonable price"
-    }
+    highlights: "Luxury · Great view · Romantic · Quiet · Child-friendly · Great value · High-tech"
   }, {
     name: "Emmanuel Swamy",
     rating: 5,
@@ -493,14 +479,7 @@ const ReviewsSection = () => {
     source: "Google",
     roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
     property: "XTSY Travellers Hostel",
-    highlights: "Luxury · Great view · Quiet · Great value · High-tech",
-    details: {
-      rooms: "Rooms are neat and clean",
-      activities: "Skating, New Legislative Assembly of Shillong, Elephant falls, Laitlum Canyon",
-      safety: "Safe is never compromised 24/7 CCTV",
-      walkability: "Walkable from New Legislative Assembly of Meghalaya",
-      food: "Food, snacks, drinks like beverages are arranged easily for you by friendly management"
-    }
+    highlights: "Luxury · Great view · Quiet · Great value · High-tech"
   }, {
     name: "Malathi Gunda",
     rating: 5,
@@ -509,11 +488,7 @@ const ReviewsSection = () => {
     source: "Google",
     roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
     property: "XTSY Travellers Hostel",
-    highlights: "Great view · Quiet · Great value",
-    details: {
-      rooms: "Neat and clean",
-      safety: "Suitable for everyone and no issues with safety. We were all women group and had great stay"
-    }
+    highlights: "Great view · Quiet · Great value"
   }, {
     name: "Rahul Dev Lenka",
     rating: 5,
@@ -522,10 +497,7 @@ const ReviewsSection = () => {
     source: "Google",
     roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
     property: "XTSY Travellers Hostel",
-    highlights: "Great view · Romantic · Great value · High-tech",
-    details: {
-      rooms: "10/10"
-    }
+    highlights: "Great view · Romantic · Great value · High-tech"
   }, {
     name: "Umapathi Prithiv",
     rating: 5,
@@ -543,135 +515,7 @@ const ReviewsSection = () => {
     source: "Google",
     roomType: "Rooms 5.0 | Service 5.0 | Location 4.0",
     property: "XTSY Travellers Hostel",
-    highlights: "Luxury · Great view · Romantic · Quiet · Child-friendly · Great value · High-tech",
-    details: {
-      rooms: "The rooms are clean and cozy with balcony",
-      safety: "The entire hostel has CCTV and a good ratio of female staff as well",
-      walkability: "It's a bit far from the city, that is the only disadvantage",
-      food: "The hostel offers good food and a wide range of snacks in its self service store"
-    }
-  }, {
-    name: "Ssh",
-    rating: 5,
-    comment: "Santosh bhaiyya is really helpful and the hospitality is good.",
-    date: "3 weeks ago",
-    source: "Google",
-    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
-    property: "XTSY Travellers Hostel"
-  }, {
-    name: "Guru Manglam Siddhe",
-    rating: 5,
-    comment: "Crazyyy hostel to live in, must visit. PM there is just amazing!",
-    date: "3 weeks ago",
-    source: "Google",
-    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
-    property: "XTSY Travellers Hostel"
-  }, {
-    name: "Nishant Duhoon",
-    rating: 5,
-    comment: "Santosh bhai was very helpful",
-    date: "3 weeks ago",
-    source: "Google",
-    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
-    property: "XTSY Travellers Hostel",
-    highlights: "Luxury · Great view · Quiet · Great value"
-  }, {
-    name: "Ravinder Singh",
-    rating: 5,
-    comment: "It was a great exp...staff is lovely...",
-    date: "3 weeks ago",
-    source: "Google",
-    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
-    property: "XTSY Travellers Hostel",
-    highlights: "Child-friendly"
-  }, {
-    name: "Nabajit Bora",
-    rating: 5,
-    comment: "Good service, thank you Santosh ji",
-    date: "3 weeks ago",
-    source: "Google",
-    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
-    property: "XTSY Travellers Hostel"
-  }, {
-    name: "Surya Prakash",
-    rating: 5,
-    comment: "Amazing service experience by Santosh bhaiya",
-    date: "3 weeks ago",
-    source: "Google",
-    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
-    property: "XTSY Travellers Hostel",
-    highlights: "Luxury"
-  }, {
-    name: "Vishnu Kumar",
-    rating: 5,
-    comment: "Rooms and beds are very good and service given by Santosh Sir very generous and pleasing",
-    date: "3 weeks ago",
-    source: "Google",
-    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
-    property: "XTSY Travellers Hostel"
-  }, {
-    name: "Pratham Jain",
-    rating: 5,
-    comment: "Rooms and bed are very good and clean and service given by Santosh bhaiya is very generous and pleasing",
-    date: "3 weeks ago",
-    source: "Google",
-    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
-    property: "XTSY Travellers Hostel"
-  }, {
-    name: "Abhishek Soni",
-    rating: 5,
-    comment: "Best service provided by Santosh Bhaiya👍",
-    date: "3 weeks ago",
-    source: "Google",
-    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
-    property: "XTSY Travellers Hostel",
-    highlights: "Great view · Quiet · Child-friendly · Great value"
-  }, {
-    name: "Ronak Khandelwal",
-    rating: 5,
-    comment: "Great service by Santosh bhaiya",
-    date: "3 weeks ago",
-    source: "Google",
-    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
-    property: "XTSY Travellers Hostel",
-    highlights: "Great view · Romantic · Child-friendly"
-  }, {
-    name: "Dennis Mathew",
-    rating: 5,
-    comment: "Best vibe best food best people. santosh da is great",
-    date: "3 weeks ago",
-    source: "Google",
-    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
-    property: "XTSY Travellers Hostel"
-  }, {
-    name: "Leisure Nyan",
-    rating: 5,
-    comment: "Had a great time, kind and hospitable staff and an amazing location. Great place for backpackers, met a bunch of interesting people. Shout out to brother Deepak dude is a vibe to be around, you don't find him he finds you 😉. Definately returning",
-    date: "3 weeks ago",
-    source: "Google",
-    roomType: "Rooms 4.0 | Service 5.0 | Location 5.0",
-    property: "XTSY Travellers Hostel",
-    highlights: "Great view · Quiet · Great value",
-    details: {
-      safety: "You do share rooms with strangers but if u take the time to get to know people u find there's nothing to worry.",
-      walkability: "Bit out in the woods"
-    }
-  }, {
-    name: "Zan",
-    rating: 5,
-    comment: "One of the best hostel in Shillong! Santosh and the entire staffs was very helpful.",
-    date: "3 weeks ago",
-    source: "Google",
-    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
-    property: "XTSY Travellers Hostel"
-  }, {
-    name: "Mayank Kumar",
-    rating: 5,
-    comment: "Had a great experience and great hospitality by Santosh bhaiya",
-    date: "3 weeks ago",
-    source: "Google",
-    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
-    property: "XTSY Travellers Hostel"
+    highlights: "Luxury · Great view · Romantic · Quiet · Child-friendly · Great value · High-tech"
   }, {
     name: "Rewa S",
     rating: 5,
@@ -680,38 +524,7 @@ const ReviewsSection = () => {
     source: "Google",
     roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
     property: "XTSY Travellers Hostel",
-    highlights: "Great view · Quiet · Great value",
-    details: {
-      rooms: "Dorms are great, both 'only female' and common dorms are available. Rooms are great too",
-      activities: "Places to eat nearby- Naga kitchen, Las cafe",
-      safety: "Absolutely safe for all genders",
-      walkability: "You would need a vehicle"
-    }
-  }, {
-    name: "Patorgumin Tours & Travels",
-    rating: 5,
-    comment: "First of all thank you so much Mr Amru and XTSY Hostel shillong for welcoming and accommodating right from the moment my guest checked-in. I heard about the rooms and all the services and everything👍🏻thanks again Mr Amru i duly recommend your Hotel to anyone👍🏻👍🏻🙏🏻🙏🏻",
-    date: "2 weeks ago",
-    source: "Google",
-    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
-    property: "XTSY Travellers Hostel"
-  }, {
-    name: "Kham Home Stay",
-    rating: 5,
-    comment: "Best place to stay when visiting Shillong! If you prefer to stay a little away from the main town and enjoy a peaceful environment, this property is perfect. Santosh Daju, who looks after the hostel, is extremely friendly and helpful—especially for travelers and trekkers. His wife, Didi, manages the kitchen and cooks delicious meals that truly make you feel at home. Me & my wife also went morning walk every morning felt like country road 🏃‍♂️🌲under the full of pine trees. Really appreciate their warmth and hospitality. Anyone planning a trip to Shillong should definitely experience staying at this property!",
-    date: "2 weeks ago",
-    source: "Google",
-    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
-    property: "XTSY Travellers Hostel"
-  }, {
-    name: "Harshit Poddar",
-    rating: 5,
-    comment: "I had a great stay here, and a huge shoutout to Santosh for making the experience even better! He was extremely helpful throughout and even arranged a bonfire on special request, which made the evenings super memorable. He's friendly, supportive, and really knows how to make guests feel at home. The hostel vibe was amazing, the place was clean, and the food was amazing as well. It's also a great spot to meet new people, thanks to the social atmosphere they've created. The only thing that could be improved is the WiFi connectivity, which was a bit patchy at times. But overall, a wonderful stay — and Santosh definitely deserves credit for it!",
-    date: "2 weeks ago",
-    source: "Google",
-    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
-    property: "XTSY Travellers Hostel",
-    highlights: "Great view · Great value"
+    highlights: "Great view · Quiet · Great value"
   }, {
     name: "Parichit Doshi",
     rating: 5,
@@ -721,469 +534,415 @@ const ReviewsSection = () => {
     roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
     property: "XTSY Travellers Hostel",
     highlights: "Great view · Quiet · Great value"
-  }, {
-    name: "Vansh Sharma",
-    rating: 5,
-    comment: "Hospitality was sooo good and the main credit goes to my brother santosh bhai taking care of each and everything.",
-    date: "a week ago",
-    source: "Google",
-    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
-    property: "XTSY Travellers Hostel",
-    highlights: "Luxury · Great view · Great value"
-  }, {
-    name: "Vaishnavi Dhengre",
-    rating: 5,
-    comment: "The most comfortable place i found in shillong🫶 Staff is sweet and welcoming especially Property Manager Santosh Sir is very helping.",
-    date: "a week ago",
-    source: "Google",
-    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
-    property: "XTSY Travellers Hostel",
-    highlights: "Great value"
-  }, {
-    name: "Rudra Pratap Singh",
-    rating: 5,
-    comment: "Beautiful stay with lot of entertainment activities to keep you engaged entire evening. Classy food with the right price. The staff is well behaved and ready to help anyway they can. The caretaker satosh was really helpful. Overall a great stay must visit on your trip to shillong for a great eve.",
-    date: "a week ago",
-    source: "Google",
-    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
-    property: "XTSY Travellers Hostel"
-  }, {
-    name: "Ammy",
-    rating: 5,
-    comment: "Amazing amazing experience. Very beautiful Location and obviously needs some extra miles to reach here but was totally worth it. Amazing setup including the dorms and common area and lovely staff who are so accommodating. Special thanks to Santosh ji for helping with all small things and our untimely requirements",
-    date: "a week ago",
-    source: "Google",
-    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
-    property: "XTSY Travellers Hostel"
-  }, {
-    name: "Keang Nicollo",
-    rating: 5,
-    comment: "It was good",
-    date: "6 days ago",
-    source: "Google",
-    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
-    property: "XTSY Travellers Hostel"
-  }, {
-    name: "Amrit Sarkar",
-    rating: 5,
-    comment: "The hotel is located in a peaceful area. The manager & staffs are very polite. Rooms are average but other amenities like TT room, recreation room and terrace facilities were excellent in a city like shillong.",
-    date: "5 days ago",
-    source: "Google",
-    roomType: "Rooms 4.0 | Service 4.0 | Location 5.0",
-    property: "XTSY Travellers Hostel",
-    highlights: "Great value"
-  }, {
-    name: "Nangkeng Darang",
-    rating: 5,
-    comment: "I recently stayed at this traveller hostel, and it was an excellent experience from start to finish. The rooms were clean, comfortable, and well-maintained, creating a cozy atmosphere perfect for backpackers and long-term travellers. The owner of the Hostel Mr. Amru hospitality were incredibly friendly and always ready to help with anything—from local tips to arranging transport. A special mention goes to the Head cook cum Manager Mr. Santosh Dorjee ji, who truly made the stay memorable. Every meal was fresh, flavorful, and prepared with genuine care. Whether it was a hearty breakfast to start the day or a warm dinner after exploring, the food felt homemade and comforting. The cook's welcoming attitude and passion for serving guests added a personal touch that made everyone feel at home. Overall, this hostel offers great hospitality, delicious food, and a relaxing environment. Highly recommended for anyone looking for a warm and budget-friendly place to stay.",
-    date: "5 days ago",
-    source: "Google",
-    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
-    property: "XTSY Travellers Hostel",
-    highlights: "Quiet"
-  }, {
-    name: "Tonmoy Deka",
-    rating: 5,
-    comment: "It was a really good experience. It was a sudden plan and we were searching for an affordable homestay, and we found XTSY Traveller hostel here all the staff are friendly and respectful we really enjoyed here less money full enjoyment! We had a good experience! Special thanks to santos bhaiya for helping us and making sure that we are enjoying and guiding us. Make sure when you come to shillong to stay here you will definitely not regret it!",
-    date: "3 days ago",
-    source: "Google",
-    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
-    property: "XTSY Travellers Hostel",
-    highlights: "Quiet"
-  }, {
-    name: "Pragyandeep Raj",
-    rating: 5,
-    comment: "It was a very nice experience, wonderfull service, theres a person santosh he was really kind and helped us in many ways, shared his experience and told us about the surroundings and view points to visit, will sure be here next time. Thanks.",
-    date: "3 days ago",
-    source: "Google",
-    roomType: "Rooms 5.0 | Service 5.0 | Location 5.0",
-    property: "XTSY Travellers Hostel"
-  }, {
-    name: "Bhavesh Bulchandani",
-    rating: 5,
-    comment: "Great service provided by Mr. Santosh. Rooms were small and cozy but does the job for the day and each room has an attached washroom which makes it convenient. Location is in New Shillong which is still developing, and the road around the property isn't completely ready. However this would be a great spot in a few months post renovation of the premises along with certain developments in the area. The property also has a great play area with a smart tv and table tennis table. Great place to sit around at the top floor too. The staff is friendly and the food prepared is great",
-    date: "2 days ago",
-    source: "Google",
-    roomType: "Rooms 3.0 | Service 5.0 | Location 4.0",
-    property: "XTSY Travellers Hostel",
-    highlights: "Great value"
   }];
 
   // Sort reviews by comment length (longest first)
-  const filteredReviews = [...allReviews].sort((a, b) => b.comment.length - a.comment.length);
+  const filteredReviews = useMemo(() => 
+    [...allReviews].sort((a, b) => b.comment.length - a.comment.length), 
+    []
+  );
 
-  const nextReview = () => {
-    setCurrentIndex(prev => (prev + 1) % Math.ceil(filteredReviews.length - 2));
-  };
-  const prevReview = () => {
-    setCurrentIndex(prev => (prev - 1 + Math.ceil(filteredReviews.length - 2)) % Math.ceil(filteredReviews.length - 2));
-  };
+  const nextReview = useCallback(() => {
+    setCurrentIndex(prev => (prev + 1) % Math.max(1, Math.ceil(filteredReviews.length / 4) - 1));
+  }, [filteredReviews.length]);
 
-  const truncateText = (text: string, maxLength: number = 120) => {
-    if (text.length <= maxLength) return text;
-    return text.substring(0, maxLength) + "...";
-  };
+  const prevReview = useCallback(() => {
+    setCurrentIndex(prev => (prev - 1 + Math.ceil(filteredReviews.length / 4)) % Math.ceil(filteredReviews.length / 4));
+  }, [filteredReviews.length]);
 
   const handleReviewClick = (review: any) => {
     setSelectedReview(review);
     setIsDialogOpen(true);
   };
+
   useEffect(() => {
     const interval = setInterval(nextReview, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [nextReview]);
 
   // Load more reviews handler
   const handleLoadMore = useCallback(() => {
     setIsLoadingMore(true);
-    // Simulate brief loading for smooth UX
     setTimeout(() => {
       setVisibleReviewsCount(prev => prev + REVIEWS_PER_PAGE);
       setIsLoadingMore(false);
     }, 150);
   }, []);
 
-  return <section id="reviews" className={`pt-16 pb-20 px-4 relative bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 overflow-hidden -mt-1 ${isMobile ? 'mobile-disable-pulse' : ''}`}>
-      {/* Enhanced Background Effects - Disabled on mobile for performance */}
+  // Get avatar gradient for selected review
+  const getAvatarGradient = (name: string) => {
+    const gradients = [
+      "from-violet-500 via-purple-500 to-fuchsia-500",
+      "from-cyan-500 via-teal-500 to-emerald-500",
+      "from-orange-500 via-amber-500 to-yellow-500",
+      "from-rose-500 via-pink-500 to-fuchsia-500",
+      "from-blue-500 via-indigo-500 to-purple-500",
+    ];
+    const index = name.charCodeAt(0) % gradients.length;
+    return gradients[index];
+  };
+
+  return (
+    <section 
+      id="reviews" 
+      className={cn(
+        "relative py-20 px-4 overflow-hidden -mt-1",
+        isMobile ? 'mobile-disable-pulse' : ''
+      )}
+    >
+      {/* Premium Dark Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950" />
+      
+      {/* Animated gradient orbs - Disabled on mobile */}
       {!isMobile && (
         <>
-          <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black animate-pulse" />
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-30 animate-pulse" />
-          <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-white/30 via-gray-300/50 to-white/30 animate-pulse" />
-          <div className="absolute -top-32 -right-32 w-80 h-80 bg-white/10 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-white/10 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-gradient-to-br from-violet-600/20 to-fuchsia-600/20 rounded-full blur-[120px] animate-pulse" />
+          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-gradient-to-br from-cyan-600/15 to-teal-600/15 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: "1s" }} />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br from-indigo-600/10 to-purple-600/10 rounded-full blur-[150px]" />
         </>
       )}
-      {/* Mobile: Simple static gradient background */}
-      {isMobile && (
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black" />
-      )}
       
-      <div className="container mx-auto max-w-6xl relative z-10">
+      {/* Subtle grid pattern */}
+      <div 
+        className="absolute inset-0 opacity-[0.02]"
+        style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+          backgroundSize: '50px 50px'
+        }}
+      />
+
+      <div className="container mx-auto max-w-7xl relative z-10">
+        {/* Premium Header */}
         <div className="text-center mb-16">
-          <div className="glass-card inline-block px-8 py-6 rounded-3xl bg-white/20 backdrop-blur-md border border-white/30 shadow-xl max-w-4xl">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 font-playfair text-center">
-              Guest Reviews
-            </h2>
-            <p className="text-sm sm:text-base md:text-lg text-gray-300 text-center leading-relaxed max-w-2xl mx-auto mb-3">See what our amazing guests have to say about their unforgettable stay at XTSY!</p>
-            <div className="w-20 sm:w-28 h-0.5 bg-gradient-to-r from-white/50 to-gray-300/50 mx-auto mt-4 rounded-full" />
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-violet-500/10 to-fuchsia-500/10 border border-violet-500/20 mb-6">
+            <Sparkles className="w-4 h-4 text-violet-400" />
+            <span className="text-sm font-medium bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+              Verified Guest Experiences
+            </span>
           </div>
+          
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 font-playfair">
+            Guest{" "}
+            <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-pink-400 bg-clip-text text-transparent">
+              Reviews
+            </span>
+          </h2>
+          
+          <p className="text-base sm:text-lg text-white/60 max-w-2xl mx-auto leading-relaxed">
+            Discover what our amazing guests have to say about their unforgettable experiences at XTSY
+          </p>
+          
+          <div className="w-24 h-1 bg-gradient-to-r from-violet-500 to-fuchsia-500 mx-auto mt-6 rounded-full" />
         </div>
 
-        {/* Floating Carousel */}
-        <div className="relative mb-12">
-          <div className="overflow-hidden">
-            <div className="flex transition-transform duration-500 ease-in-out" style={{
-            transform: `translateX(-${currentIndex * 100}%)`
-          }}>
-              {Array.from({
-              length: Math.ceil(filteredReviews.length - 2)
-            }).map((_, slideIndex) => <div key={slideIndex} className="w-full flex-shrink-0">
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4 px-4">
-                     {filteredReviews.slice(slideIndex, slideIndex + 4).map((review, index) => <Card 
-                        key={index} 
-                        className={`bg-white/5 border border-white/10 cursor-pointer h-[260px] flex flex-col ${
-                          isMobile 
-                            ? 'active:bg-white/10' 
-                            : 'backdrop-blur-xl hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-2xl transform-gpu hover:border-white/20'
-                        }`}
+        {/* Premium Carousel */}
+        <div className="relative mb-16">
+          <div className="overflow-hidden rounded-2xl">
+            <div 
+              className="flex transition-transform duration-700 ease-out" 
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            >
+              {Array.from({ length: Math.ceil(filteredReviews.length / 4) }).map((_, slideIndex) => (
+                <div key={slideIndex} className="w-full flex-shrink-0">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-2">
+                    {filteredReviews.slice(slideIndex * 4, slideIndex * 4 + 4).map((review, index) => (
+                      <PremiumReviewCard
+                        key={`${slideIndex}-${index}`}
+                        review={review}
                         onClick={() => handleReviewClick(review)}
-                      >
-                        <CardHeader className="flex-shrink-0 pb-2">
-                          <div className="flex items-center justify-between mb-2">
-                            <CardTitle className="text-base font-semibold text-white font-['Poppins'] truncate">
-                              {review.name}
-                            </CardTitle>
-                            <div className="flex items-center gap-1">
-                              <span className="text-yellow-400 font-bold text-sm">
-                                {review.source === "Google" || review.source === "MakeMyTrip" ? `${review.rating}/5` : `${review.rating}/10`}
-                              </span>
-                              <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
-                            </div>
-                          </div>
-                          
-                          {/* Property Tag */}
-                          <div className="mb-2">
-                            <span className={`inline-block ${
-                              review.property === "XTSY Economy" 
-                                ? "bg-gradient-to-r from-blue-500 to-blue-600" 
-                                : "bg-gradient-to-r from-orange-500 to-orange-600"
-                            } text-white text-xs font-semibold px-2 py-1 rounded-full shadow-sm`}>
-                              {review.property}
-                            </span>
-                          </div>
-
-                          <CardDescription className="text-gray-400 text-xs font-['Inter']">
-                            <div className="flex items-center gap-1 mb-1">
-                              <span>{review.date}</span>
-                              <span>•</span>
-                              <span className="text-teal-400">{review.source}</span>
-                            </div>
-                            {review.roomType && (
-                              <div className="text-xs text-gray-500 truncate">{review.roomType}</div>
-                            )}
-                          </CardDescription>
-                        </CardHeader>
-                        <CardContent className="flex-grow flex flex-col justify-between p-3">
-                          <p className="text-gray-300 font-['Inter'] text-xs leading-relaxed flex-grow">
-                            {truncateText(review.comment, 80)}
-                          </p>
-                          {review.comment.length > 80 && (
-                            <p className="text-teal-400 text-xs mt-1 font-medium">Click to read more...</p>
-                          )}
-                        </CardContent>
-                      </Card>)}
+                        variant="carousel"
+                        isMobile={isMobile}
+                        index={index}
+                      />
+                    ))}
                   </div>
-                </div>)}
+                </div>
+              ))}
             </div>
           </div>
 
           {/* Navigation Buttons */}
-          <Button variant="outline" size="icon" className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/10 border-white/20 text-white hover:bg-white/20 backdrop-blur-sm" onClick={prevReview}>
-            <ChevronLeft className="h-4 w-4" />
+          <Button 
+            variant="outline" 
+            size="icon" 
+            className={cn(
+              "absolute left-2 top-1/2 -translate-y-1/2 z-10",
+              "bg-white/5 border-white/10 text-white backdrop-blur-xl",
+              "hover:bg-white/10 hover:border-white/20 hover:scale-110",
+              "transition-all duration-300 rounded-full w-10 h-10"
+            )}
+            onClick={prevReview}
+          >
+            <ChevronLeft className="h-5 w-5" />
           </Button>
           
-          <Button variant="outline" size="icon" className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/10 border-white/20 text-white hover:bg-white/20 backdrop-blur-sm" onClick={nextReview}>
-            <ChevronRight className="h-4 w-4" />
+          <Button 
+            variant="outline" 
+            size="icon" 
+            className={cn(
+              "absolute right-2 top-1/2 -translate-y-1/2 z-10",
+              "bg-white/5 border-white/10 text-white backdrop-blur-xl",
+              "hover:bg-white/10 hover:border-white/20 hover:scale-110",
+              "transition-all duration-300 rounded-full w-10 h-10"
+            )}
+            onClick={nextReview}
+          >
+            <ChevronRight className="h-5 w-5" />
           </Button>
 
+          {/* Carousel Dots */}
+          <div className="flex justify-center gap-2 mt-6">
+            {Array.from({ length: Math.ceil(filteredReviews.length / 4) }).slice(0, 8).map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentIndex(i)}
+                className={cn(
+                  "w-2 h-2 rounded-full transition-all duration-300",
+                  currentIndex === i 
+                    ? "w-8 bg-gradient-to-r from-violet-500 to-fuchsia-500" 
+                    : "bg-white/20 hover:bg-white/40"
+                )}
+              />
+            ))}
+          </div>
+
           {/* View All Button */}
-          <div className="flex justify-center mt-6">
+          <div className="flex justify-center mt-8">
             <Button 
-              variant="outline" 
-              className="bg-white/10 border-white/30 text-white hover:bg-white/20 backdrop-blur-sm px-6 py-2"
               onClick={() => setIsAllReviewsOpen(true)}
+              className={cn(
+                "px-8 py-3 rounded-full font-medium",
+                "bg-gradient-to-r from-violet-600 to-fuchsia-600",
+                "hover:from-violet-500 hover:to-fuchsia-500",
+                "text-white shadow-lg shadow-violet-500/25",
+                "hover:shadow-xl hover:shadow-violet-500/30",
+                "transition-all duration-300 hover:scale-105"
+              )}
             >
+              <Sparkles className="w-4 h-4 mr-2" />
               View All {filteredReviews.length} Reviews
             </Button>
           </div>
         </div>
 
-        {/* Enhanced Five-Star Rating Display */}
-        <div className="mt-8 text-center">
-          <h3 className="text-lg sm:text-xl font-semibold text-white mb-6">Our Ratings Across Platforms</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
-            <div className="glass-card bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 hover:bg-white/15 hover:scale-105 hover:shadow-2xl hover:border-white/40 transition-all duration-300 cursor-pointer">
-              <div className="text-center">
-                <div className="text-xl font-bold text-white mb-1">Google</div>
-                <div className="text-3xl font-bold text-orange-400 mb-2">4.9</div>
-                <div className="flex justify-center mb-2 gap-0.5">
-                  {[...Array(4)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                  ))}
-                  <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" style={{ clipPath: 'inset(0 10% 0 0)' }} />
-                </div>
-              </div>
-            </div>
-            
-            <div className="glass-card bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 hover:bg-white/15 hover:scale-105 hover:shadow-2xl hover:border-white/40 transition-all duration-300 cursor-pointer">
-              <div className="text-center">
-                <div className="text-xl font-bold text-white mb-1">Booking.com</div>
-                <div className="text-3xl font-bold text-orange-400 mb-2">9.8</div>
-                <div className="flex justify-center mb-2 gap-0.5">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
-              </div>
-            </div>
-            
-            <div className="glass-card bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 hover:bg-white/15 hover:scale-105 hover:shadow-2xl hover:border-white/40 transition-all duration-300 cursor-pointer">
-              <div className="text-center">
-                <div className="text-xl font-bold text-white mb-1">Expedia</div>
-                <div className="text-3xl font-bold text-orange-400 mb-2">9.8</div>
-                <div className="flex justify-center mb-2 gap-0.5">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
-              </div>
-            </div>
-            
-            <div className="glass-card bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 hover:bg-white/15 hover:scale-105 hover:shadow-2xl hover:border-white/40 transition-all duration-300 cursor-pointer">
-              <div className="text-center">
-                <div className="text-xl font-bold text-white mb-1">MakeMyTrip</div>
-                <div className="text-3xl font-bold text-orange-400 mb-2">4.4</div>
-                <div className="flex justify-center mb-2 gap-0.5">
-                  {[...Array(4)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                  ))}
-                  <Star className="h-4 w-4 fill-yellow-400/40 text-yellow-400/40" />
-                </div>
-              </div>
-            </div>
+        {/* Platform Ratings */}
+        <div className="mt-16">
+          <h3 className="text-xl sm:text-2xl font-semibold text-white text-center mb-8">
+            Trusted Across{" "}
+            <span className="bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+              All Platforms
+            </span>
+          </h3>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+            <PlatformRatingCard platform="Google" rating={4.9} maxRating={5} isMobile={isMobile} />
+            <PlatformRatingCard platform="Booking.com" rating={9.8} maxRating={10} isMobile={isMobile} />
+            <PlatformRatingCard platform="Expedia" rating={9.8} maxRating={10} isMobile={isMobile} />
+            <PlatformRatingCard platform="MakeMyTrip" rating={4.4} maxRating={5} isMobile={isMobile} />
           </div>
         </div>
 
         {/* Integration Notice */}
-        <div className="text-center mt-8">
-          <div className="glass-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 max-w-md mx-auto">
-            <p className="text-white/80 text-sm">
-              <span className="text-orange-400 font-semibold">✨ Enhanced Integration:</span> Reviews automatically synced from all major booking platforms
-            </p>
+        <div className="text-center mt-12">
+          <div className={cn(
+            "inline-flex items-center gap-2 px-6 py-3 rounded-full",
+            "bg-white/[0.03] backdrop-blur-xl border border-white/10"
+          )}>
+            <BadgeCheck className="w-5 h-5 text-emerald-400" />
+            <span className="text-white/60 text-sm">
+              Reviews automatically synced from all major booking platforms
+            </span>
           </div>
         </div>
-
       </div>
 
-      {/* All Reviews Modal - Optimized with lazy loading for mobile */}
+      {/* All Reviews Modal */}
       <Dialog open={isAllReviewsOpen} onOpenChange={setIsAllReviewsOpen}>
         <DialogContent 
-          className="max-w-6xl w-[95vw] sm:w-full"
+          className={cn(
+            "max-w-6xl w-[95vw] sm:w-full max-h-[90vh]",
+            "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900",
+            "border-white/10"
+          )}
           style={{
             WebkitOverflowScrolling: 'touch',
             overscrollBehavior: 'contain',
           }}
         >
-          <DialogHeader className="sticky top-0 bg-background z-10 pb-2 border-b">
-            <DialogTitle className="flex items-center justify-between text-lg sm:text-2xl font-bold pr-8">
-              <span>All Guest Reviews ({allReviews.length})</span>
+          <DialogHeader className="sticky top-0 bg-slate-900/95 backdrop-blur-xl z-10 pb-4 border-b border-white/10">
+            <DialogTitle className="flex items-center gap-3 text-xl sm:text-2xl font-bold text-white">
+              <Sparkles className="w-6 h-6 text-violet-400" />
+              All Guest Reviews ({allReviews.length})
             </DialogTitle>
           </DialogHeader>
           
           <div 
-            className="overflow-y-auto smooth-scroll pr-1" 
+            className="overflow-y-auto smooth-scroll pr-2 pt-4" 
             style={{ 
-              maxHeight: 'min(calc(85vh - 80px), calc(85dvh - 80px))',
+              maxHeight: 'calc(90vh - 100px)',
               WebkitOverflowScrolling: 'touch',
             }}
           >
-            <div className="space-y-6 mt-2">
-              {/* Simplified flat list for better mobile performance */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {allReviews.slice(0, visibleReviewsCount).map((review, idx) => (
-                <Card 
+                <PremiumReviewCard
                   key={idx}
-                  className={`border-l-4 transition-shadow duration-200 ${isMobile ? '' : 'hover:shadow-lg hover:scale-[1.01]'}`}
-                  style={{
-                    borderLeftColor: review.property === "XTSY Economy" ? "#3b82f6" : review.property === "XTSY Luxury" ? "#a855f7" : "#f97316"
-                  }}
-                >
-                  <CardHeader className="pb-2 sm:pb-3">
-                    <div className="flex items-center justify-between mb-1 sm:mb-2">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <CardTitle className="text-sm sm:text-base font-semibold">
-                          {review.name}
-                        </CardTitle>
-                        <span className={`inline-block ${
-                          review.property === "XTSY Economy" 
-                            ? "bg-gradient-to-r from-blue-500 to-blue-600" 
-                            : review.property === "XTSY Luxury"
-                            ? "bg-gradient-to-r from-purple-500 to-purple-600"
-                            : "bg-gradient-to-r from-orange-500 to-orange-600"
-                        } text-white text-[10px] sm:text-xs font-semibold px-2 py-0.5 rounded-full`}>
-                          {review.property}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-1 flex-shrink-0">
-                        <span className="text-yellow-600 font-bold text-xs sm:text-sm">
-                          {review.source === "Google" || review.source === "MakeMyTrip" ? `${review.rating}/5` : `${review.rating}/10`}
-                        </span>
-                        <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
-                      </div>
-                    </div>
-                    <CardDescription className="text-[10px] sm:text-xs">
-                      <div className="flex items-center gap-1 flex-wrap">
-                        <span>{review.date}</span>
-                        <span>•</span>
-                        <span className="text-blue-600">{review.source}</span>
-                      </div>
-                      {review.roomType && (
-                        <div className="text-gray-500 mt-0.5 sm:mt-1 truncate">{review.roomType}</div>
-                      )}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="pt-0">
-                    <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
-                      {review.comment}
-                    </p>
-                  </CardContent>
-                </Card>
+                  review={review}
+                  onClick={() => handleReviewClick(review)}
+                  variant="grid"
+                  isMobile={isMobile}
+                  index={idx % 4}
+                />
               ))}
-              
-              {/* Load More Button */}
-              {visibleReviewsCount < allReviews.length && (
-                <div className="flex justify-center pt-4 pb-2">
-                  <Button
-                    onClick={handleLoadMore}
-                    disabled={isLoadingMore}
-                    className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2"
-                  >
-                    {isLoadingMore ? (
-                      <>
-                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                        Loading...
-                      </>
-                    ) : (
-                      `Load More (${allReviews.length - visibleReviewsCount} remaining)`
-                    )}
-                  </Button>
-                </div>
-              )}
-              
-              {visibleReviewsCount >= allReviews.length && (
-                <p className="text-center text-gray-500 text-sm py-4">
-                  All {allReviews.length} reviews loaded
-                </p>
-              )}
             </div>
+            
+            {/* Load More Button */}
+            {visibleReviewsCount < allReviews.length && (
+              <div className="flex justify-center pt-8 pb-4">
+                <Button
+                  onClick={handleLoadMore}
+                  disabled={isLoadingMore}
+                  className={cn(
+                    "px-8 py-3 rounded-full font-medium",
+                    "bg-gradient-to-r from-violet-600 to-fuchsia-600",
+                    "hover:from-violet-500 hover:to-fuchsia-500",
+                    "text-white"
+                  )}
+                >
+                  {isLoadingMore ? (
+                    <>
+                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                      Loading...
+                    </>
+                  ) : (
+                    `Load More (${allReviews.length - visibleReviewsCount} remaining)`
+                  )}
+                </Button>
+              </div>
+            )}
+            
+            {visibleReviewsCount >= allReviews.length && (
+              <p className="text-center text-white/40 text-sm py-6">
+                All {allReviews.length} reviews loaded
+              </p>
+            )}
           </div>
         </DialogContent>
       </Dialog>
 
-      {/* Review Detail Modal - Mobile optimized */}
+      {/* Review Detail Modal */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent 
-          className="max-w-2xl w-[95vw] sm:w-full"
+          className={cn(
+            "max-w-2xl w-[95vw] sm:w-full",
+            "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900",
+            "border-white/10"
+          )}
           style={{
             WebkitOverflowScrolling: 'touch',
             overscrollBehavior: 'contain',
           }}
         >
-          <DialogHeader>
-            <DialogTitle className="flex items-center justify-between pr-8">
-              <div className="flex flex-col gap-1 sm:gap-2">
-                <span className="text-base sm:text-xl font-semibold">{selectedReview?.name}</span>
-                <span className={`inline-block ${
-                  selectedReview?.property === "XTSY Economy" 
-                    ? "bg-gradient-to-r from-blue-500 to-blue-600" 
-                    : "bg-gradient-to-r from-orange-500 to-orange-600"
-                } text-white text-[10px] sm:text-xs font-semibold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-sm w-fit`}>
-                  {selectedReview?.property}
-                </span>
+          {selectedReview && (
+            <>
+              <DialogHeader className="pb-4 border-b border-white/10">
+                <div className="flex items-start gap-4">
+                  {/* Gradient Avatar */}
+                  <div 
+                    className={cn(
+                      "relative flex-shrink-0 rounded-full p-[2px]",
+                      `bg-gradient-to-br ${getAvatarGradient(selectedReview.name)}`,
+                      "shadow-lg"
+                    )}
+                  >
+                    <div className="flex items-center justify-center w-14 h-14 rounded-full bg-slate-900/90 text-lg font-bold text-white">
+                      {selectedReview.name
+                        .split(" ")
+                        .map((n: string) => n[0])
+                        .join("")
+                        .toUpperCase()
+                        .slice(0, 2)}
+                    </div>
+                    <div className="absolute -bottom-1 -right-1 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full p-0.5 shadow-lg">
+                      <BadgeCheck className="w-4 h-4 text-white" />
+                    </div>
+                  </div>
+
+                  <div className="flex-1">
+                    <DialogTitle className="text-lg sm:text-xl font-semibold text-white mb-2">
+                      {selectedReview.name}
+                    </DialogTitle>
+                    
+                    <div className="flex items-center gap-2 flex-wrap mb-2">
+                      {/* Rating */}
+                      <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-gradient-to-r from-yellow-500/20 to-amber-500/20 border border-yellow-500/30">
+                        <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                        <span className="text-yellow-400 text-xs font-bold">
+                          {selectedReview.source === "Google" || selectedReview.source === "MakeMyTrip" 
+                            ? `${selectedReview.rating}/5` 
+                            : `${selectedReview.rating}/10`}
+                        </span>
+                      </div>
+                      
+                      {/* Property badge */}
+                      <span className={cn(
+                        "text-[10px] px-2 py-0.5 rounded-full font-medium text-white",
+                        selectedReview.property === "XTSY Economy" 
+                          ? "bg-gradient-to-r from-blue-500 to-blue-600"
+                          : "bg-gradient-to-r from-orange-500 to-amber-500"
+                      )}>
+                        {selectedReview.property}
+                      </span>
+                      
+                      {/* Source badge */}
+                      <span className="text-[10px] px-2 py-0.5 rounded-full font-medium text-white bg-gradient-to-r from-violet-500 to-fuchsia-500">
+                        {selectedReview.source}
+                      </span>
+                    </div>
+                    
+                    <p className="text-xs text-white/40">
+                      {selectedReview.date} {selectedReview.roomType && `• ${selectedReview.roomType}`}
+                    </p>
+                  </div>
+                </div>
+              </DialogHeader>
+              
+              <div 
+                className="overflow-y-auto pt-4"
+                style={{
+                  maxHeight: 'min(60vh, 60dvh)',
+                  WebkitOverflowScrolling: 'touch',
+                }}
+              >
+                <div className="relative">
+                  <Quote className="absolute -top-2 -left-2 w-8 h-8 text-violet-500/20" />
+                  <p className="text-sm sm:text-base text-white/80 leading-relaxed pl-6 whitespace-pre-wrap">
+                    {selectedReview.comment}
+                  </p>
+                </div>
+                
+                {selectedReview.highlights && (
+                  <div className="mt-6 pt-4 border-t border-white/10">
+                    <p className="text-xs text-white/40 mb-2">Highlights</p>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedReview.highlights.split(" · ").map((highlight: string, i: number) => (
+                        <span 
+                          key={i}
+                          className="text-xs px-3 py-1 rounded-full bg-white/5 text-white/60 border border-white/10"
+                        >
+                          {highlight}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
-              <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
-                <span className="text-yellow-600 font-bold text-sm sm:text-base">
-                  {selectedReview?.source === "Google" || selectedReview?.source === "MakeMyTrip" ? `${selectedReview?.rating}/5` : `${selectedReview?.rating}/10`}
-                </span>
-                <Star className="h-4 w-4 sm:h-5 sm:w-5 fill-yellow-500 text-yellow-500" />
-              </div>
-            </DialogTitle>
-          </DialogHeader>
-          <div 
-            className="space-y-3 sm:space-y-4 overflow-y-auto"
-            style={{
-              maxHeight: 'min(60vh, 60dvh)',
-              WebkitOverflowScrolling: 'touch',
-            }}
-          >
-            <div className="text-xs sm:text-sm text-gray-600">
-              <div className="flex items-center gap-2 mb-1 sm:mb-2 flex-wrap">
-                <span>{selectedReview?.date}</span>
-                <span>•</span>
-                <span className="text-blue-600 font-medium">{selectedReview?.source}</span>
-              </div>
-              {selectedReview?.roomType && (
-                <div className="text-gray-500 text-[10px] sm:text-xs">{selectedReview?.roomType}</div>
-              )}
-            </div>
-            <div className="prose max-w-none">
-              <p className="text-sm sm:text-base text-gray-800 leading-relaxed whitespace-pre-wrap">
-                {selectedReview?.comment}
-              </p>
-            </div>
-          </div>
+            </>
+          )}
         </DialogContent>
       </Dialog>
-    </section>;
+    </section>
+  );
 };
+
 export default ReviewsSection;
