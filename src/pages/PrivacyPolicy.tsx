@@ -110,7 +110,8 @@ export const PrivacyPolicy: React.FC = () => {
             <p>For any privacy-related questions or to exercise your rights:</p>
             <div className="bg-muted p-4 rounded-lg">
               <p><strong>Email:</strong>Phone: +91 88373 17070</p>
-              <p><strong>Phone:</strong> +91 88373 17070</p>
+              <p><strong>Phone:</strong>
+            </p>
               <p><strong>Address:</strong> Shillong, Meghalaya, India</p>
             </div>
           </section>
