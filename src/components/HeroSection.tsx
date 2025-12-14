@@ -175,14 +175,17 @@ const HeroSection = () => {
               </div>
 
               <div className="flex items-center justify-center">
+                {/* LCP ELEMENT - Highest priority for fastest paint */}
                 <img
                   src="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png"
                   alt="XTSY Brand Symbol"
                   className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-32 lg:h-32 object-contain"
                   loading="eager"
-                  decoding="async"
+                  decoding="sync"
+                  fetchPriority="high"
                   width={128}
                   height={128}
+                  style={{ contentVisibility: 'auto' }}
                 />
               </div>
             </div>
