@@ -99,25 +99,31 @@ const WorkFromHome = () => {
   }];
   const testimonials = [{
     name: "Ritika",
-    role: "Student • Booking.com Verified",
+    role: "Student",
     content: "The hostel has a very welcoming atmosphere with friendly staff and a helpful property manager. The food is excellent, cleanliness is always maintained, and Wi-Fi connectivity is smooth. As a student, I never faced any issues.",
     rating: 10,
-    highlight: "Wi-Fi connectivity is smooth",
-    source: "Booking.com"
+    highlight: "Smooth Wi-Fi",
+    source: "Booking.com",
+    avatar: "R",
+    verified: true
   }, {
     name: "KaDusH Music",
-    role: "Business Traveler • Google Verified",
+    role: "Business Traveler",
     content: "Perfect for solo business travel! Rooms 5.0, Service 5.0, Location 5.0. Great value and high-tech amenities. Everything a remote worker needs.",
     rating: 5,
-    highlight: "Business | Solo",
-    source: "Google"
+    highlight: "Solo Business",
+    source: "Google",
+    avatar: "K",
+    verified: true
   }, {
     name: "Deepak D",
-    role: "Digital Nomad • Google Verified",
+    role: "Digital Nomad",
     content: "This hostel is a hidden gem for backpackers. The common area felt like a big living room where it was easy to meet other travelers. This isn't just a place to sleep—it's a place to connect.",
     rating: 5,
-    highlight: "High-tech",
-    source: "Google"
+    highlight: "Community",
+    source: "Google",
+    avatar: "D",
+    verified: true
   }];
   useEffect(() => {
     document.title = "Work From Home in Shillong | Remote Work at XTSY Prime | Digital Nomad Hostel";
@@ -301,51 +307,86 @@ return <>
         </div>
       </section>
 
-{/* Testimonials Section - Real verified reviews */}
-      <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-gray-800/40 via-gray-900/30 to-background">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="text-center mb-10 sm:mb-12 md:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-white drop-shadow-lg" style={{
-            letterSpacing: '-0.02em'
+{/* Testimonials Section - Premium Glassmorphism Design */}
+      <section className="py-16 sm:py-20 md:py-24 relative overflow-hidden">
+        {/* Premium Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(120,119,198,0.15),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(255,153,102,0.1),transparent_50%)]" />
+        
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+          <div className="text-center mb-12 sm:mb-16">
+            <span className="inline-block px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium bg-white/10 text-white/80 border border-white/10 backdrop-blur-sm mb-4">
+              Verified Reviews
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-white" style={{
+            letterSpacing: '-0.03em'
           }}>
               Remote Workers Love XTSY
             </h2>
-            <p className="text-lg sm:text-xl md:text-2xl text-white/90 font-light px-4">
+            <p className="text-lg sm:text-xl text-white/60 font-light max-w-2xl mx-auto">
               Hear from digital nomads who made Shillong their remote office
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto">
-            {testimonials.map((testimonial, index) => <Card key={index} className="group hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] animate-fade-in bg-card/50 backdrop-blur-sm border border-primary/10 hover:border-primary/30 rounded-2xl md:rounded-3xl overflow-hidden" style={{
-            animationDelay: `${index * 0.1}s`
-          }}>
-                <CardContent className="p-5 sm:p-6 md:p-8">
-                  {/* Rating stars */}
-                  <div className="flex gap-0.5 sm:gap-1 mb-3 sm:mb-4">
-                    {[...Array(Math.min(testimonial.rating, 5))].map((_, i) => <span key={i} className="text-yellow-500 text-base sm:text-lg md:text-xl">★</span>)}
-                  </div>
-                  
-                  {/* Highlight badge */}
-                  <div className="mb-3 sm:mb-4">
-                    <span className="inline-block px-2 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
-                      {testimonial.highlight}
-                    </span>
-                  </div>
-                  
-                  {/* Review content */}
-                  <p className="text-sm sm:text-base text-white/90 mb-4 sm:mb-6 leading-relaxed">"{testimonial.content}"</p>
-                  
-                  {/* Author info */}
-                  <div className="border-t border-primary/10 pt-3 sm:pt-4 flex items-center justify-between gap-2">
-                    <div className="min-w-0 flex-1">
-                      <div className="font-semibold text-white text-base sm:text-lg truncate">{testimonial.name}</div>
-                      <div className="text-xs sm:text-sm text-white/70 truncate">{testimonial.role}</div>
+          
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8 max-w-6xl mx-auto">
+            {testimonials.map((testimonial, index) => (
+              <div 
+                key={index} 
+                className="group relative animate-fade-in"
+                style={{ animationDelay: `${index * 0.15}s` }}
+              >
+                {/* Glow effect */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/30 via-purple-500/20 to-orange-500/30 rounded-3xl blur-xl opacity-0 group-hover:opacity-60 transition-all duration-500" />
+                
+                <Card className="relative h-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl sm:rounded-3xl overflow-hidden hover:bg-white/10 hover:border-white/20 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/10">
+                  <CardContent className="p-6 sm:p-7 md:p-8 flex flex-col h-full">
+                    {/* Header with avatar and source */}
+                    <div className="flex items-center justify-between mb-5">
+                      <div className="flex items-center gap-3">
+                        <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-primary via-purple-500 to-orange-500 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-primary/30">
+                          {testimonial.avatar}
+                        </div>
+                        <div>
+                          <div className="font-semibold text-white text-base sm:text-lg">{testimonial.name}</div>
+                          <div className="text-xs sm:text-sm text-white/50">{testimonial.role}</div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10">
+                        {testimonial.verified && (
+                          <svg className="w-3.5 h-3.5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                          </svg>
+                        )}
+                        <span className="text-[10px] sm:text-xs text-white/60 font-medium">{testimonial.source}</span>
+                      </div>
                     </div>
-                    <div className="text-[10px] sm:text-xs text-primary font-medium px-2 py-1 rounded bg-primary/5 flex-shrink-0">
-                      {testimonial.source}
+                    
+                    {/* Rating stars */}
+                    <div className="flex gap-1 mb-4">
+                      {[...Array(Math.min(testimonial.rating, 5))].map((_, i) => (
+                        <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 drop-shadow-[0_0_3px_rgba(250,204,21,0.5)]" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
                     </div>
-                  </div>
-                </CardContent>
-              </Card>)}
+                    
+                    {/* Review content */}
+                    <p className="text-sm sm:text-base text-white/80 leading-relaxed flex-1 mb-5">
+                      "{testimonial.content}"
+                    </p>
+                    
+                    {/* Highlight tag */}
+                    <div className="pt-4 border-t border-white/5">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-gradient-to-r from-primary/20 to-purple-500/20 text-primary border border-primary/20">
+                        <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                        {testimonial.highlight}
+                      </span>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
           </div>
         </div>
       </section>

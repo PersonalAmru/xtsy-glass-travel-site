@@ -63,21 +63,33 @@ const FemaleTravellers = () => {
   const testimonials = [
     {
       name: "Olivia",
-      location: "Booking.com Verified Guest - Female Dormitory",
+      location: "Female Dormitory",
       rating: 5,
-      text: "When my friends and I planned our North East India trip, we were hesitant. But XTSY Travellers Hostel changed everything! We instantly felt safe and welcomed—it's honestly one of the safest places we've traveled to. The hostel itself is awesome—clean, cozy, and full of good vibes. The bonfire and BBQ nights on the terrace were a blast, with incredible views and fun conversations. The host was amazing, organizing trips to stunning spots like Dawki, Cherrapunji, and even hidden gems we'd never have found on our own."
+      text: "When my friends and I planned our North East India trip, we were hesitant. But XTSY Travellers Hostel changed everything! We instantly felt safe and welcomed—it's honestly one of the safest places we've traveled to. The hostel itself is awesome—clean, cozy, and full of good vibes.",
+      highlight: "Safety First",
+      avatar: "O",
+      source: "Booking.com",
+      verified: true
     },
     {
       name: "Ritika",
-      location: "Booking.com Verified Guest - Female Dormitory",
+      location: "Female Dormitory",
       rating: 5,
-      text: "The hostel has a very welcoming atmosphere with friendly staff and a helpful property manager. The food is excellent, cleanliness is always maintained, and Wi-Fi connectivity is smooth. As a student, I never faced any issues, and having Swiggy and Zomato working perfectly was a big plus. The location is also close to beautiful scenic spots, which makes staying here even better."
+      text: "The hostel has a very welcoming atmosphere with friendly staff and a helpful property manager. The food is excellent, cleanliness is always maintained, and Wi-Fi connectivity is smooth. As a student, I never faced any issues.",
+      highlight: "Solo Student",
+      avatar: "R",
+      source: "Booking.com",
+      verified: true
     },
     {
       name: "Amritha",
-      location: "Booking.com Verified Guest - 4-Bed Female Dormitory",
+      location: "4-Bed Female Dormitory",
       rating: 5,
-      text: "XTSY made me ecstatic! Even though I booked the property just because it was cheap without much expectations, the property and staffs really surprised me by providing a very warm experience. The owner, my host Eurica and all other staffs are really friendly and goes above and beyond to make you feel at home. The terrace area with bonfire is also another highlight and I had such an enjoyable experience with the whole XTSY fam there! Will definitely be back, try and stop me!!"
+      text: "XTSY made me ecstatic! The property and staffs really surprised me by providing a very warm experience. The owner, my host Eurica and all other staffs are really friendly and goes above and beyond to make you feel at home.",
+      highlight: "Warm Welcome",
+      avatar: "A",
+      source: "Booking.com",
+      verified: true
     }
   ];
 
@@ -281,34 +293,83 @@ const FemaleTravellers = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-purple-50 to-pink-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-pink-100 text-pink-700 border-pink-200">
+      {/* Testimonials Section - Premium Glassmorphism Design */}
+      <section className="py-20 px-4 relative overflow-hidden">
+        {/* Premium Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-pink-950 via-purple-900 to-pink-950" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(236,72,153,0.2),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(168,85,247,0.15),transparent_50%)]" />
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-12 sm:mb-16">
+            <span className="inline-block px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium bg-white/10 text-white/80 border border-white/10 backdrop-blur-sm mb-4">
               Real Stories
-            </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4" style={{ letterSpacing: '-0.03em' }}>
               What Female Travelers Say
             </h2>
+            <p className="text-lg text-white/60 font-light max-w-2xl mx-auto">
+              Trusted by hundreds of solo female travelers across India
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="border-pink-100 bg-white/90 backdrop-blur-sm hover:shadow-xl transition-all duration-300">
-                <CardHeader>
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
-                  <CardTitle className="text-gray-900">{testimonial.name}</CardTitle>
-                  <CardDescription className="text-pink-600">{testimonial.location}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-700 italic">"{testimonial.text}"</p>
-                </CardContent>
-              </Card>
+              <div 
+                key={index} 
+                className="group relative animate-fade-in"
+                style={{ animationDelay: `${index * 0.15}s` }}
+              >
+                {/* Glow effect */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-500/30 via-purple-500/20 to-pink-500/30 rounded-3xl blur-xl opacity-0 group-hover:opacity-60 transition-all duration-500" />
+                
+                <Card className="relative h-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl sm:rounded-3xl overflow-hidden hover:bg-white/10 hover:border-white/20 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-pink-500/10">
+                  <CardContent className="p-6 sm:p-7 md:p-8 flex flex-col h-full">
+                    {/* Header with avatar and source */}
+                    <div className="flex items-center justify-between mb-5">
+                      <div className="flex items-center gap-3">
+                        <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-pink-500 via-purple-500 to-pink-400 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-pink-500/30">
+                          {testimonial.avatar}
+                        </div>
+                        <div>
+                          <div className="font-semibold text-white text-base sm:text-lg">{testimonial.name}</div>
+                          <div className="text-xs sm:text-sm text-white/50">{testimonial.location}</div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10">
+                        {testimonial.verified && (
+                          <svg className="w-3.5 h-3.5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                          </svg>
+                        )}
+                        <span className="text-[10px] sm:text-xs text-white/60 font-medium">{testimonial.source}</span>
+                      </div>
+                    </div>
+                    
+                    {/* Rating stars */}
+                    <div className="flex gap-1 mb-4">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 drop-shadow-[0_0_3px_rgba(250,204,21,0.5)]" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </div>
+                    
+                    {/* Review content */}
+                    <p className="text-sm sm:text-base text-white/80 leading-relaxed flex-1 mb-5">
+                      "{testimonial.text}"
+                    </p>
+                    
+                    {/* Highlight tag */}
+                    <div className="pt-4 border-t border-white/5">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-gradient-to-r from-pink-500/20 to-purple-500/20 text-pink-300 border border-pink-500/20">
+                        <span className="w-1.5 h-1.5 rounded-full bg-pink-400 animate-pulse" />
+                        {testimonial.highlight}
+                      </span>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
             ))}
           </div>
         </div>
