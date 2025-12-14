@@ -75,7 +75,7 @@ const WorkFromHome = () => {
     label: "Quarterly Package",
     price: getPackagePrice(basePrices.quarter),
     perDay: getPerDayPrice(basePrices.quarter, 90),
-    benefits: ["90 nights accommodation", "Unlimited WiFi", "Dedicated desk", "Breakfast included", "Priority support", "Storage space"]
+    benefits: ["90 nights accommodation", "Unlimited WiFi", "Common workspace", "Breakfast included", "Priority support", "Storage space"]
   }];
   const amenities = ["High-speed fiber internet (100+ Mbps)", "Dedicated co-working spaces", "Private meeting rooms", "24/7 power backup", "Ergonomic workstations", "Printing & scanning facilities", "Mountain view workspaces", "Coffee & tea all day", "Weekly networking events", "Laundry service", "Daily housekeeping", "Secure storage lockers"];
   const faqs = [{
