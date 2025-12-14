@@ -108,10 +108,9 @@ export const PrivacyPolicy: React.FC = () => {
           <section>
             <h2 className="text-2xl font-semibold mb-4">8. Contact Information</h2>
             <p>For any privacy-related questions or to exercise your rights:</p>
-            <div className="bg-muted p-4 rounded-lg">
-              <p><strong>Email:</strong>Phone: +91 88373 17070</p>
-              <p><strong>Phone:</strong>
-            </p>
+            <div className="bg-muted p-4 rounded-lg space-y-2">
+              <p><strong>Email:</strong> <a href="mailto:admin@xtsy.one" className="text-primary hover:underline">admin@xtsy.one</a></p>
+              <p><strong>Phone:</strong> +91 88373 17070</p>
               <p><strong>Address:</strong> Shillong, Meghalaya, India</p>
             </div>
           </section>
