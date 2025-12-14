@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Suspense } from "react";
+import { XTSYModalLoader } from "@/components/LoadingScreen";
 import { useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -674,7 +675,7 @@ const Travel = () => {
               </div>
 
               {/* Content */}
-              {activeTab === 'domestic' && <LazyWrapper fallback={<div className="animate-pulse bg-gray-100 h-64 rounded"></div>}>
+              {activeTab === 'domestic' && <LazyWrapper fallback={<div className="bg-muted/30 h-64 rounded-lg" />}>
                   <div>
                     {/* Enhanced State-wise Packages with lazy loading */}
                     {Object.entries(stateWiseTourPackages).map(([state, packages]) => {
@@ -851,7 +852,7 @@ const Travel = () => {
 
                           {/* Enhanced Grid Layout with Better Spacing */}
                           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-8 mb-8 md:mb-12 lg:mb-16 px-2 sm:px-0">
-                            {filteredStatePackages.map(itinerary => <LazyWrapper key={itinerary.id} fallback={<div className="animate-pulse bg-gradient-to-br from-gray-100 to-gray-200 h-72 rounded-2xl"></div>} threshold={0.2}>
+                            {filteredStatePackages.map(itinerary => <LazyWrapper key={itinerary.id} fallback={<div className="bg-muted/30 h-72 rounded-2xl" />} threshold={0.2}>
                                 <div className="travel-card-hover">
                                   <CompactTourPackageCard tourPackage={itinerary} onPackageClick={() => handlePackageClick(itinerary)} />
                                 </div>
@@ -877,7 +878,7 @@ const Travel = () => {
                   </div>
                 </LazyWrapper>}
 
-              {activeTab === 'international' && <LazyWrapper fallback={<div className="animate-pulse bg-gradient-to-br from-gray-100 to-gray-200 h-96 rounded-2xl"></div>}>
+              {activeTab === 'international' && <LazyWrapper fallback={<div className="bg-muted/30 h-96 rounded-2xl" />}>
                   <div className="max-w-6xl mx-auto px-4">
                     {/* XTSY International Premium Section Header */}
                     <div className="mb-10 sm:mb-12 md:mb-14 lg:mb-16">
@@ -1432,7 +1433,7 @@ const Travel = () => {
                       country: "Philippines",
                       flag: "🇵🇭",
                       highlight: "Beaches"
-                    }].map(item => <LazyWrapper key={item.country} fallback={<div className="animate-pulse bg-gray-100 h-32 rounded"></div>} threshold={0.3}>
+                    }].map(item => <LazyWrapper key={item.country} fallback={<div className="bg-muted/30 h-32 rounded" />} threshold={0.3}>
                               <Card className="group hover:shadow-md transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200 h-32 sm:h-36 md:h-40">
                                 <CardContent className="flex flex-col items-center justify-center p-2 sm:p-3 text-center h-full">
                                    <div className="flex items-center justify-center mb-3 flex-shrink-0">
@@ -1490,7 +1491,7 @@ const Travel = () => {
                       country: "Austria",
                       flag: "🇦🇹",
                       highlight: "Music"
-                    }].map(item => <LazyWrapper key={item.country} fallback={<div className="animate-pulse bg-gray-100 h-32 rounded"></div>} threshold={0.3}>
+                    }].map(item => <LazyWrapper key={item.country} fallback={<div className="bg-muted/30 h-32 rounded" />} threshold={0.3}>
                               <Card className="group hover:shadow-md transition-all duration-300 bg-white/90 backdrop-blur-sm border border-gray-200 h-32 sm:h-36 md:h-40">
                                 <CardContent className="flex flex-col items-center justify-center p-2 sm:p-3 text-center h-full">
                                    <div className="flex items-center justify-center mb-3 flex-shrink-0">
@@ -1673,7 +1674,7 @@ const Travel = () => {
 
       <Footer />
 
-      {isModalOpen && <Suspense fallback={<div className="fixed inset-0 bg-black/50 flex items-center justify-center"><div className="bg-white p-4 rounded">Loading...</div></div>}>
+      {isModalOpen && <Suspense fallback={<XTSYModalLoader />}>
           <LazyTourPackageModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} tourPackage={selectedPackage} />
         </Suspense>}
     </div>;

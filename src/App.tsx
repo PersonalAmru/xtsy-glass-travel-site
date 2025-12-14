@@ -16,17 +16,17 @@ import { cleanupUnifiedImage } from "./components/UnifiedImage";
 import { EnhancedAnalyticsProvider } from "./hooks/useEnhancedAnalytics";
 import { HappyGuestsProvider } from "./contexts/HappyGuestsContext";
 
-// Lazy loaded pages with retry logic for mobile (exponential backoff)
+// Lazy loaded pages with fast retry logic for mobile
 const createLazyComponent = (importFn: () => Promise<any>) => {
   return lazy(() => 
     importFn().catch((err) => {
       console.warn('Chunk load failed, retrying...', err.message);
-      // First retry after 300ms
-      return new Promise(resolve => setTimeout(resolve, 300))
+      // Fast retry after 150ms
+      return new Promise(resolve => setTimeout(resolve, 150))
         .then(importFn)
         .catch(() => {
-          // Second retry after 800ms if first fails
-          return new Promise(resolve => setTimeout(resolve, 800)).then(importFn);
+          // Second retry after 400ms if first fails
+          return new Promise(resolve => setTimeout(resolve, 400)).then(importFn);
         });
     })
   );
@@ -76,10 +76,10 @@ function App() {
       pii_redaction_enabled: true
     });
 
-    // Fast loading: Skip artificial delay on fast connections
+    // Ultra-fast loading - minimize artificial delay
     const connection = (navigator as any).connection;
     const isSlowConnection = connection?.effectiveType === '2g' || connection?.effectiveType === 'slow-2g';
-    const loadTime = isSlowConnection ? 150 : 30; // Ultra-fast for modern connections
+    const loadTime = isSlowConnection ? 100 : 10; // Near-instant for fast connections
 
     const timer = setTimeout(() => {
       setIsLoading(false);

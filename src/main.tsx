@@ -12,6 +12,7 @@ import { initializeImageOptimizations } from "./utils/imageOptimization";
 import { initializePerformanceEnhancements } from "./utils/performanceEnhancer";
 import { initializeAdvancedLazyLoading } from "./utils/lazyLoadingOptimizer";
 import { initializeNetworkOptimizations } from "./utils/networkOptimizer";
+import { prefetchRouteChunks } from "./utils/bundleOptimization";
 import { performGlobalCleanup } from "./utils/performanceCleanup";
 import { cleanupUnifiedImage } from "./components/UnifiedImage";
 import { initializeCriticalImageLoading, preloadLCPImage } from "./utils/criticalImagePreloader";
@@ -49,6 +50,8 @@ function initializeOptimizations() {
     initializeAdvancedLazyLoading();
     initializeNetworkOptimizations();
     initializePerformanceOptimizations();
+    // Prefetch common route chunks for faster navigation
+    prefetchRouteChunks();
   });
 }
 

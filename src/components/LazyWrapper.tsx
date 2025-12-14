@@ -1,16 +1,18 @@
 import React, { Suspense, memo } from 'react';
 import { useComponentOptimization } from '@/hooks/useOptimizedPerformance';
+import { XTSYInlineLoader } from '@/components/LoadingScreen';
 
 interface LazyWrapperProps {
   children: React.ReactNode;
   fallback?: React.ReactNode;
   threshold?: number;
+  showBrandedLoader?: boolean;
 }
 
-// Minimal static fallback for mobile - no animations
-const MobileFallback = () => (
+// Minimal static fallback for sections - no animations for mobile performance
+const SectionFallback = () => (
   <div 
-    className="bg-muted/50 rounded" 
+    className="bg-muted/30 rounded-lg" 
     style={{ 
       minHeight: '200px',
       contain: 'layout style',
@@ -21,15 +23,15 @@ const MobileFallback = () => (
 const LazyWrapper: React.FC<LazyWrapperProps> = memo(({ 
   children, 
   fallback,
-  threshold = 0.1 
+  threshold = 0.1,
+  showBrandedLoader = false
 }) => {
   const { elementRef, shouldRender } = useComponentOptimization();
   
-  // Check if mobile for simpler fallback
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  const actualFallback = fallback || (isMobile ? <MobileFallback /> : (
-    <div className="bg-muted/30 h-32 rounded" />
-  ));
+  // Use branded XTSY loader or minimal fallback
+  const actualFallback = fallback || (
+    showBrandedLoader ? <XTSYInlineLoader size="sm" /> : <SectionFallback />
+  );
 
   return (
     <div 
