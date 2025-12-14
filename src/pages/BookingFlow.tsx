@@ -551,15 +551,6 @@ export default function BookingFlow() {
               </div>
             </Button>
 
-            {/* Book via Google Form */}
-            <Button variant="outline" className="w-full h-auto py-6 px-6 text-left hover:bg-accent hover:border-primary transition-all" onClick={() => {
-            window.open('https://forms.gle/SvpUBHTZ7jM2S5z98', '_blank');
-          }}>
-              <div className="flex flex-col items-start gap-1 w-full">
-                <span className="font-semibold text-lg">Book Directly via Google Form</span>
-                <span className="text-sm text-muted-foreground">Fill out our booking form online</span>
-              </div>
-            </Button>
           </div>
         </DialogContent>
       </Dialog>
