@@ -6,7 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 import PerformantImage from "./PerformantImage";
 import { useMediaQuery } from "@/hooks/use-mobile";
-import { useHappyGuests } from "@/hooks/useHappyGuests";
+import { useHappyGuestsContext } from "@/contexts/HappyGuestsContext";
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -17,8 +17,8 @@ const HeroSection = () => {
   const [averageRating, setAverageRating] = useState(4.9);
   const [tourCount, setTourCount] = useState<number>(22);
 
-  // Supabase-backed counter
-  const { happyGuestsCount, incrementHappyGuests, isLoading: happyGuestsLoading } = useHappyGuests();
+  // Supabase-backed counter (deduplicated via context)
+  const { happyGuestsCount, incrementHappyGuests, isLoading: happyGuestsLoading } = useHappyGuestsContext();
 
   // Responsive helpers
   const isMobile = useMediaQuery('(max-width: 767px)');
