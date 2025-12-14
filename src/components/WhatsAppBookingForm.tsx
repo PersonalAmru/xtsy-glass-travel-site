@@ -6,13 +6,16 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { Checkbox } from "@/components/ui/checkbox";
-import { MessageCircle, Calendar, Users, Phone, Trash2, Home, AlertCircle } from "lucide-react";
+import { MessageCircle, Calendar, Users, Phone, Trash2, Home, AlertCircle, MapPin, Info, ChevronDown, ChevronUp, Sparkles } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import { saveWhatsAppBooking } from "@/services/formBookingService";
 import FoodAddonsSection from "@/components/FoodAddonsSection";
 import { useApp } from "@/contexts/AppContext";
 import { validateField, validateWhatsAppBooking } from "@/utils/whatsappBookingValidation";
+import { useLocationConsent } from "@/hooks/useLocationConsent";
+import { useFormEngagement } from "@/hooks/useFormEngagement";
+import { useEnhancedAnalytics } from "@/hooks/useEnhancedAnalytics";
 
 interface WhatsAppBookingFormProps {
   isOpen: boolean;
@@ -48,6 +51,10 @@ interface FormErrors {
 
 const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
   const { currency, formatPrice } = useApp();
+  const { locationData, isLoading: locationLoading, requestLocation, hasConsented } = useLocationConsent();
+  const { trackFieldFocus, trackFieldBlur, trackFormComplete, resetEngagement } = useFormEngagement('whatsapp_booking');
+  const { updateProfile } = useEnhancedAnalytics();
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -72,6 +79,15 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
     petAge: ""
   });
 
+  // Travel behavior questions (optional personalization)
+  const [travelPreferences, setTravelPreferences] = useState({
+    tripPurpose: "",
+    travelingWith: "",
+    heardFrom: "",
+    travelStyle: "",
+  });
+  const [showTravelPrefs, setShowTravelPrefs] = useState(false);
+
   const [nights, setNights] = useState(0);
   const [roomTypes, setRoomTypes] = useState<RoomType[]>([]);
   const [selectedRoomIds, setSelectedRoomIds] = useState<Set<string>>(new Set());
@@ -80,6 +96,13 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
   const [roomsError, setRoomsError] = useState<string>("");
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Reset engagement tracking when form opens
+  useEffect(() => {
+    if (isOpen) {
+      resetEngagement();
+    }
+  }, [isOpen, resetEngagement]);
 
   // Field validation on blur
   const handleBlur = useCallback((field: keyof FormErrors, value: any) => {
@@ -405,6 +428,20 @@ Looking forward to hearing from you. Thank you! 🌟`;
 
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://api.whatsapp.com/send/?phone=918837317070&text=${encodedMessage}&type=phone_number&app_absent=0`, '_blank');
+    
+    // Track form completion for analytics
+    trackFormComplete();
+    
+    // Update traveller profile with travel intelligence
+    updateProfile({
+      is_solo_traveller: travelPreferences.travelingWith === 'solo',
+      is_group_organizer: travelPreferences.travelingWith === 'team',
+      travel_style: travelPreferences.travelStyle,
+      trip_purpose: travelPreferences.tripPurpose,
+      location_granted: hasConsented,
+      location_city: locationData?.city,
+      location_country: locationData?.country,
+    });
     
     toast({
       title: "Inquiry Submitted",
@@ -800,6 +837,130 @@ Looking forward to hearing from you. Thank you! 🌟`;
                 onInputChange={handleInputChange}
               />
 
+              {/* Travel Preferences - Optional Personalization */}
+              <div className="border border-border/50 rounded-lg overflow-hidden">
+                <button
+                  type="button"
+                  onClick={() => setShowTravelPrefs(!showTravelPrefs)}
+                  className="w-full flex items-center justify-between p-4 bg-muted/30 hover:bg-muted/50 transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                    <Sparkles className="h-4 w-4 text-primary" />
+                    <span className="font-medium text-sm">Help us personalize your experience</span>
+                    <span className="text-xs text-muted-foreground">(Optional)</span>
+                  </div>
+                  {showTravelPrefs ? (
+                    <ChevronUp className="h-4 w-4 text-muted-foreground" />
+                  ) : (
+                    <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                  )}
+                </button>
+                
+                {showTravelPrefs && (
+                  <div className="p-4 space-y-4 border-t border-border/50">
+                    {/* Location Consent */}
+                    <div className="flex items-center justify-between p-3 bg-muted/20 rounded-lg">
+                      <div className="flex items-center gap-2">
+                        <MapPin className="h-4 w-4 text-primary" />
+                        <span className="text-sm">Share location for local offers</span>
+                      </div>
+                      {hasConsented ? (
+                        <span className="text-xs text-primary flex items-center gap-1">
+                          ✓ {locationData?.city || 'Location shared'}
+                        </span>
+                      ) : (
+                        <Button
+                          type="button"
+                          variant="outline"
+                          size="sm"
+                          onClick={requestLocation}
+                          disabled={locationLoading}
+                          className="text-xs h-7"
+                        >
+                          {locationLoading ? 'Detecting...' : 'Enable'}
+                        </Button>
+                      )}
+                    </div>
+
+                    {/* Trip Purpose */}
+                    <div>
+                      <Label className="text-sm text-muted-foreground">What brings you to Shillong?</Label>
+                      <div className="flex flex-wrap gap-2 mt-2">
+                        {['Adventure', 'Work', 'Vacation', 'Event', 'Other'].map((purpose) => (
+                          <Button
+                            key={purpose}
+                            type="button"
+                            variant={travelPreferences.tripPurpose === purpose.toLowerCase() ? 'default' : 'outline'}
+                            size="sm"
+                            onClick={() => setTravelPreferences(prev => ({ ...prev, tripPurpose: purpose.toLowerCase() }))}
+                            className="text-xs h-7"
+                          >
+                            {purpose}
+                          </Button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Traveling With */}
+                    <div>
+                      <Label className="text-sm text-muted-foreground">Who are you traveling with?</Label>
+                      <div className="flex flex-wrap gap-2 mt-2">
+                        {['Solo', 'Couple', 'Family', 'Friends', 'Team'].map((group) => (
+                          <Button
+                            key={group}
+                            type="button"
+                            variant={travelPreferences.travelingWith === group.toLowerCase() ? 'default' : 'outline'}
+                            size="sm"
+                            onClick={() => setTravelPreferences(prev => ({ ...prev, travelingWith: group.toLowerCase() }))}
+                            className="text-xs h-7"
+                          >
+                            {group}
+                          </Button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Travel Style */}
+                    <div>
+                      <Label className="text-sm text-muted-foreground">What's your travel style?</Label>
+                      <div className="flex flex-wrap gap-2 mt-2">
+                        {['Budget', 'Mid-range', 'Luxury'].map((style) => (
+                          <Button
+                            key={style}
+                            type="button"
+                            variant={travelPreferences.travelStyle === style.toLowerCase() ? 'default' : 'outline'}
+                            size="sm"
+                            onClick={() => setTravelPreferences(prev => ({ ...prev, travelStyle: style.toLowerCase() }))}
+                            className="text-xs h-7"
+                          >
+                            {style}
+                          </Button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* How did you hear */}
+                    <div>
+                      <Label className="text-sm text-muted-foreground">How did you hear about us?</Label>
+                      <div className="flex flex-wrap gap-2 mt-2">
+                        {['Google', 'Instagram', 'YouTube', 'Friend', 'Booking.com'].map((source) => (
+                          <Button
+                            key={source}
+                            type="button"
+                            variant={travelPreferences.heardFrom === source.toLowerCase() ? 'default' : 'outline'}
+                            size="sm"
+                            onClick={() => setTravelPreferences(prev => ({ ...prev, heardFrom: source.toLowerCase() }))}
+                            className="text-xs h-7"
+                          >
+                            {source}
+                          </Button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
               {/* Special Requests */}
               <div>
                 <Label htmlFor="specialRequests">Special Requests (Optional)</Label>
@@ -807,9 +968,23 @@ Looking forward to hearing from you. Thank you! 🌟`;
                   id="specialRequests"
                   value={formData.specialRequests}
                   onChange={(e) => handleInputChange('specialRequests', e.target.value)}
+                  onFocus={() => trackFieldFocus('specialRequests')}
+                  onBlur={(e) => trackFieldBlur('specialRequests', !!e.target.value)}
                   placeholder="Any special requirements or requests..."
                   rows={4}
                 />
+              </div>
+
+              {/* Privacy Notice */}
+              <div className="flex items-start gap-2 p-3 bg-muted/30 rounded-lg text-xs text-muted-foreground">
+                <Info className="h-4 w-4 mt-0.5 flex-shrink-0 text-muted-foreground/70" />
+                <p>
+                  We use your information to personalize your booking experience and improve our services. 
+                  Your data is stored securely and never shared with third parties.{' '}
+                  <a href="/privacy-policy" className="text-primary underline hover:text-primary/80">
+                    Privacy Policy
+                  </a>
+                </p>
               </div>
 
               {/* Action Buttons */}
