@@ -14,7 +14,11 @@ import { initializeAdvancedLazyLoading } from "./utils/lazyLoadingOptimizer";
 import { initializeNetworkOptimizations } from "./utils/networkOptimizer";
 import { performGlobalCleanup } from "./utils/performanceCleanup";
 import { cleanupUnifiedImage } from "./components/UnifiedImage";
-import { initializeCriticalImageLoading } from "./utils/criticalImagePreloader";
+import { initializeCriticalImageLoading, preloadLCPImage } from "./utils/criticalImagePreloader";
+
+// LCP OPTIMIZATION: Preload LCP image IMMEDIATELY before anything else
+// This runs synchronously at module load time for fastest possible LCP
+preloadLCPImage();
 
 // Polyfill for Safari which doesn't support requestIdleCallback
 const scheduleIdleTask = (callback: () => void) => {
@@ -25,7 +29,7 @@ const scheduleIdleTask = (callback: () => void) => {
   }
 };
 
-// CRITICAL: Initialize optimizations immediately (non-blocking)
+// Initialize remaining critical images in idle time
 scheduleIdleTask(() => {
   initializeCriticalImageLoading();
 });

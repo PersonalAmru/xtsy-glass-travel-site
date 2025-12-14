@@ -3,37 +3,57 @@
  * Uses production-compatible paths (not /src/ paths which don't work in builds)
  */
 
-// Critical images that MUST load instantly (above the fold)
-// These paths work in both dev and production
+// LCP CRITICAL: Hero brand symbol - this is the Largest Contentful Paint element
+const LCP_IMAGE = '/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png';
+
+// Secondary critical images (logo, etc.)
 const CRITICAL_IMAGES = [
-  '/xtsy-favicon.png',
-  '/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png',
   '/lovable-uploads/160f683c-a41c-41fd-8bdb-700d74a7e027.png'
 ];
 
-// High-priority images that should load very quickly
+// High-priority images that should load quickly but after LCP
 const HIGH_PRIORITY_IMAGES = [
   '/lovable-uploads/0ef988f7-b7f3-4d1f-80e3-fc2a04acd9cb.png'
 ];
 
 /**
- * Preload critical images immediately with highest priority
+ * Preload LCP image FIRST with highest priority
+ */
+export const preloadLCPImage = () => {
+  if (typeof document === 'undefined') return;
+  
+  // Check if already preloaded via HTML
+  const existing = document.querySelector(`link[href="${LCP_IMAGE}"]`);
+  if (existing) return;
+  
+  const link = document.createElement('link');
+  link.rel = 'preload';
+  link.as = 'image';
+  link.href = LCP_IMAGE;
+  link.setAttribute('fetchpriority', 'high');
+  // Insert at the beginning of head for maximum priority
+  document.head.insertBefore(link, document.head.firstChild);
+};
+
+/**
+ * Preload secondary critical images
  */
 export const preloadCriticalImages = () => {
-  // Skip if running on server or document not ready
   if (typeof document === 'undefined') return;
 
+  // LCP image first
+  preloadLCPImage();
+
+  // Then other critical images
   CRITICAL_IMAGES.forEach(src => {
     const link = document.createElement('link');
     link.rel = 'preload';
     link.as = 'image';
     link.href = src;
-    link.fetchPriority = 'high';
-    link.setAttribute('fetchpriority', 'high');
     document.head.appendChild(link);
   });
   
-  // Preload high-priority images with slightly lower priority
+  // High-priority images last
   HIGH_PRIORITY_IMAGES.forEach(src => {
     const link = document.createElement('link');
     link.rel = 'preload';
@@ -44,27 +64,38 @@ export const preloadCriticalImages = () => {
 };
 
 /**
- * Force immediate image loading using Image() objects
- * This ensures images are in browser cache before React renders
+ * Force immediate LCP image loading - resolves when LCP image is ready
+ */
+export const forceLoadLCPImage = (): Promise<void> => {
+  return new Promise<void>((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve();
+    img.onerror = () => resolve(); // Don't block on error
+    img.decoding = 'sync';
+    img.fetchPriority = 'high';
+    img.src = LCP_IMAGE;
+  });
+};
+
+/**
+ * Force load all critical images (LCP first, then others)
  */
 export const forceLoadCriticalImages = (): Promise<void[]> => {
-  const loadPromises = CRITICAL_IMAGES.map(src => {
+  // LCP image with highest priority
+  const lcpPromise = forceLoadLCPImage();
+  
+  // Other critical images
+  const otherPromises = CRITICAL_IMAGES.map(src => {
     return new Promise<void>((resolve) => {
       const img = new Image();
       img.onload = () => resolve();
-      img.onerror = () => {
-        // Don't log warnings for missing images - they're optional
-        resolve();
-      };
-      // Force immediate loading
-      img.decoding = 'sync';
-      img.loading = 'eager';
-      img.fetchPriority = 'high';
+      img.onerror = () => resolve();
+      img.decoding = 'async';
       img.src = src;
     });
   });
   
-  return Promise.all(loadPromises);
+  return Promise.all([lcpPromise, ...otherPromises]);
 };
 
 /**
@@ -79,22 +110,25 @@ export const enableAggressiveImageCaching = () => {
 };
 
 /**
- * Initialize all critical image optimizations
+ * Initialize LCP-optimized image loading
+ * Priority: LCP image -> Critical images -> High-priority images
  */
 export const initializeCriticalImageLoading = async () => {
-  // Skip if running on server
   if (typeof document === 'undefined') return;
 
-  // Step 1: Add preload links immediately
+  // Step 1: Preload LCP image immediately (highest priority)
+  preloadLCPImage();
+  
+  // Step 2: Force load LCP image synchronously for fastest paint
+  try {
+    await forceLoadLCPImage();
+  } catch {
+    // Continue even if LCP image fails
+  }
+  
+  // Step 3: Preload other critical images (non-blocking)
   preloadCriticalImages();
   
-  // Step 2: Enable aggressive caching (no-op now)
+  // Step 4: Enable caching (no-op)
   enableAggressiveImageCaching();
-  
-  // Step 3: Force load critical images before render (non-blocking)
-  try {
-    await forceLoadCriticalImages();
-  } catch {
-    // Silently continue - image preloading is an optimization, not critical
-  }
 };
