@@ -109,7 +109,7 @@ export const PrivacyPolicy: React.FC = () => {
             <h2 className="text-2xl font-semibold mb-4">8. Contact Information</h2>
             <p>For any privacy-related questions or to exercise your rights:</p>
             <div className="bg-muted p-4 rounded-lg">
-              <p><strong>Email:</strong> hello@xtsy.in</p>
+              <p><strong>Email:</strong> admin@xtsy.one</p>
               <p><strong>Phone:</strong> +91 88373 17070</p>
               <p><strong>Address:</strong> Shillong, Meghalaya, India</p>
             </div>
