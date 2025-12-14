@@ -45,6 +45,11 @@
   [data-radix-dialog-overlay] {
     animation-duration: 80ms !important;
   }
+  
+  /* Disable all transitions on first paint for faster LCP */
+  .initial-load * {
+    transition: none !important;
+  }
 }
 
 /* ========================================
@@ -345,9 +350,64 @@ body.reduce-motion *::after {
 }
 
 /* ========================================
-   High DPI Displays
+   Device-Specific Optimizations
    ======================================== */
 
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+  /* Fix for iOS input zoom */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+  
+  /* iOS momentum scroll containers */
+  .scroll-container {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Prevent iOS rubber-banding on modals */
+  [data-radix-dialog-content] {
+    overscroll-behavior: none;
+  }
+}
+
+/* Android Chrome specific fixes */
+@supports not (-webkit-touch-callout: none) {
+  @media (hover: none) and (pointer: coarse) {
+    /* Fix Android text selection on long press */
+    button, a, [role="button"] {
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    
+    /* Optimize for Android low-end devices */
+    .will-change-transform {
+      will-change: auto !important;
+    }
+  }
+}
+
+/* Tablet landscape optimizations (iPad, Android tablets) */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .hero-section {
+    min-height: 75vh !important;
+  }
+  
+  .responsive-container {
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+  }
+}
+
+/* Large tablets (iPad Pro, Surface) */
+@media (min-width: 1024px) and (max-width: 1366px) {
+  .responsive-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+}
+
+/* High DPI Displays */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .high-dpi-optimize {
     image-rendering: -webkit-optimize-contrast;
@@ -363,5 +423,58 @@ body.reduce-motion *::after {
   .landscape-mobile {
     padding-top: 0.5rem !important;
     padding-bottom: 0.5rem !important;
+  }
+  
+  /* Reduce hero height in landscape */
+  #home {
+    min-height: 100vh !important;
+    padding-top: 4rem !important;
+  }
+}
+
+/* ========================================
+   Foldable Device Support
+   ======================================== */
+
+@media (horizontal-viewport-segments: 2) {
+  .responsive-container {
+    padding-left: env(viewport-segment-left 0 0) !important;
+    padding-right: calc(100vw - env(viewport-segment-right 0 0)) !important;
+  }
+}
+
+/* ========================================
+   Performance: Reduce Paint on Scroll
+   ======================================== */
+
+.scroll-container,
+[data-radix-scroll-area-viewport] {
+  contain: strict;
+  content-visibility: auto;
+}
+
+/* Optimize fixed/sticky elements */
+.sticky, .fixed {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* ========================================
+   Print Styles (for booking confirmations)
+   ======================================== */
+
+@media print {
+  .no-print,
+  header,
+  footer,
+  nav,
+  .mobile-nav,
+  button:not(.print-btn) {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
   }
 }

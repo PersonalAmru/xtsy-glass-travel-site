@@ -9,6 +9,12 @@ const ALLOWED_ORIGINS = [
   'http://127.0.0.1:8080',
 ];
 
+// Allowed domain suffixes for dynamic origin matching
+const ALLOWED_DOMAIN_SUFFIXES = [
+  '.lovable.app',
+  '.lovableproject.com',
+];
+
 /**
  * Get CORS headers with validated origin
  * Returns appropriate headers based on request origin
@@ -16,10 +22,9 @@ const ALLOWED_ORIGINS = [
 export function getCorsHeaders(req: Request): Record<string, string> {
   const origin = req.headers.get('origin') || '';
   
-  // Check if origin is in allowed list
-  const isAllowedOrigin = ALLOWED_ORIGINS.some(allowed => 
-    origin === allowed || origin.endsWith('.lovable.app')
-  );
+  // Check if origin is in allowed list or matches allowed domain suffixes
+  const isAllowedOrigin = ALLOWED_ORIGINS.includes(origin) || 
+    ALLOWED_DOMAIN_SUFFIXES.some(suffix => origin.endsWith(suffix));
   
   const corsOrigin = isAllowedOrigin ? origin : ALLOWED_ORIGINS[0];
   

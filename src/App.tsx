@@ -59,6 +59,9 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Add initial-load class to disable transitions during first paint
+    document.body.classList.add('initial-load');
+    
     // Initialize performance optimizations immediately
     preloadCriticalResources();
     optimizeFontLoading();
@@ -75,10 +78,14 @@ function App() {
     // Fast loading: Skip artificial delay on fast connections
     const connection = (navigator as any).connection;
     const isSlowConnection = connection?.effectiveType === '2g' || connection?.effectiveType === 'slow-2g';
-    const loadTime = isSlowConnection ? 200 : 50; // Reduced for faster mobile loading
+    const loadTime = isSlowConnection ? 150 : 30; // Ultra-fast for modern connections
 
     const timer = setTimeout(() => {
       setIsLoading(false);
+      // Remove initial-load class after first paint
+      requestAnimationFrame(() => {
+        document.body.classList.remove('initial-load');
+      });
     }, loadTime);
 
     // Cleanup function for app unmount
