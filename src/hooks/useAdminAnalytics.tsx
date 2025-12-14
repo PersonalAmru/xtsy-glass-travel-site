@@ -9,10 +9,7 @@ interface OverviewData {
   new_visitor_rate: string;
   avg_session_duration: number;
   total_conversions: number;
-  total_revenue: number;
   today_visitors: number;
-  today_revenue: number;
-  conversion_rate: string;
 }
 
 interface RealtimeData {
@@ -105,7 +102,6 @@ interface TrendsData {
     total_pageviews: number;
     bounce_rate: number;
     avg_session_duration: number;
-    total_revenue: number;
   }>;
   hourly: Array<{
     hour: number;

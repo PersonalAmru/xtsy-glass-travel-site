@@ -11,7 +11,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { 
   Users, Eye, MousePointer, Clock, TrendingUp, Globe, 
   BarChart3, Activity, RefreshCw, ArrowUpRight, ArrowDownRight,
-  Monitor, Smartphone, Tablet, MapPin, DollarSign, Brain, Zap, Calendar, IndianRupee
+  Monitor, Smartphone, Tablet, MapPin, Zap, Calendar
 } from 'lucide-react';
 import { 
   LineChart, Line, AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell,
@@ -19,7 +19,6 @@ import {
 } from 'recharts';
 import { TravellerSegmentsPanel } from '@/components/admin/TravellerSegmentsPanel';
 import { DemandForecastPanel } from '@/components/admin/DemandForecastPanel';
-import { RevenueIntelligencePanel } from '@/components/admin/RevenueIntelligencePanel';
 import { RealtimeTravellerActivity } from '@/components/admin/RealtimeTravellerActivity';
 
 const COLORS = ['hsl(var(--primary))', 'hsl(var(--secondary))', 'hsl(var(--accent))', '#10b981', '#f59e0b', '#ef4444'];
@@ -191,7 +190,6 @@ const AdminDashboard: React.FC = () => {
     overview: intelligenceOverview, 
     segments, 
     forecasts, 
-    revenueHistory, 
     highIntentTravellers, 
     loading: intelligenceLoading, 
     refresh: refreshIntelligence 
@@ -319,10 +317,10 @@ const AdminDashboard: React.FC = () => {
                 subtitle={`${overview?.bounce_rate || 0}% bounce rate`}
               />
               <MetricCard
-                title="Revenue"
-                value={`₹${(overview?.total_revenue || 0).toLocaleString()}`}
-                icon={<DollarSign className="w-5 h-5 text-green-500" />}
-                subtitle={`${overview?.conversion_rate || 0}% conversion`}
+                title="Total Sessions"
+                value={(overview?.total_sessions || 0).toLocaleString()}
+                icon={<Activity className="w-5 h-5 text-primary" />}
+                subtitle={`${overview?.new_visitor_rate || 0}% new visitors`}
               />
             </>
           )}
@@ -338,10 +336,6 @@ const AdminDashboard: React.FC = () => {
             <TabsTrigger value="segments" className="flex items-center gap-2">
               <Users className="w-4 h-4" />
               <span className="hidden sm:inline">Segments</span>
-            </TabsTrigger>
-            <TabsTrigger value="revenue" className="flex items-center gap-2">
-              <IndianRupee className="w-4 h-4" />
-              <span className="hidden sm:inline">Revenue</span>
             </TabsTrigger>
             <TabsTrigger value="forecasts" className="flex items-center gap-2">
               <Calendar className="w-4 h-4" />
@@ -401,35 +395,6 @@ const AdminDashboard: React.FC = () => {
                 }))}
                 distribution={segments?.distribution || {}}
                 spendDistribution={segments?.spend_distribution || { high_value: 0, medium: 0, budget: 0 }}
-              />
-            )}
-          </TabsContent>
-
-          {/* Revenue Intelligence */}
-          <TabsContent value="revenue">
-            {intelligenceLoading ? (
-              <Card>
-                <CardContent className="p-6">
-                  <div className="space-y-4">
-                    {Array.from({ length: 3 }).map((_, i) => (
-                      <Skeleton key={i} className="h-32 w-full" />
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ) : (
-              <RevenueIntelligencePanel 
-                revenueHistory={(revenueHistory?.revenue_history || []).map(r => ({
-                  snapshot_date: r.snapshot_date,
-                  total_revenue: r.total_revenue || 0,
-                  booking_count: r.booking_count || 0,
-                  avg_booking_value: r.avg_booking_value || 0,
-                  conversion_rate: r.conversion_rate || 0,
-                  next_7d_forecast: r.next_7d_forecast || 0,
-                  segment_breakdown: r.segment_breakdown || {},
-                }))}
-                currentForecast7d={intelligenceOverview?.forecasts?.next_7d || 0}
-                currentForecast30d={intelligenceOverview?.forecasts?.next_30d || 0}
               />
             )}
           </TabsContent>
