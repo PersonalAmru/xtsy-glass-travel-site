@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -1020,23 +1021,44 @@ Looking forward to hearing from you. Thank you! 🌟`;
         </Card>
       </DialogContent>
 
-      {/* Privacy Policy Modal - Outside Dialog for proper viewport positioning */}
-      {showPrivacyModal && (
+      {/* Privacy Policy Modal - Rendered via Portal for proper viewport positioning */}
+      {showPrivacyModal && createPortal(
         <div 
-          className="fixed inset-0 z-[200] flex items-center justify-center bg-black/50 p-4" 
+          className="fixed inset-0 flex items-center justify-center bg-black/60 p-4" 
           onClick={() => setShowPrivacyModal(false)}
-          style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
+          style={{ 
+            position: 'fixed', 
+            top: 0, 
+            left: 0, 
+            right: 0, 
+            bottom: 0, 
+            zIndex: 99999,
+            touchAction: 'auto'
+          }}
         >
           <div 
-            className="bg-background rounded-lg max-w-2xl max-h-[80vh] overflow-y-auto w-full shadow-xl"
+            className="bg-background rounded-lg max-w-2xl w-full shadow-2xl border"
             onClick={(e) => e.stopPropagation()}
+            style={{ 
+              maxHeight: '80vh', 
+              overflowY: 'auto',
+              WebkitOverflowScrolling: 'touch',
+              overscrollBehavior: 'contain'
+            }}
           >
-            <div className="sticky top-0 bg-background border-b p-4 flex items-center justify-between">
+            <div 
+              className="sticky top-0 bg-background border-b p-4 flex items-center justify-between z-10"
+            >
               <h3 className="text-lg font-semibold">Privacy Policy</h3>
               <button 
                 type="button"
-                onClick={() => setShowPrivacyModal(false)}
-                className="p-1 hover:bg-muted rounded"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setShowPrivacyModal(false);
+                }}
+                className="p-2 hover:bg-muted rounded-full transition-colors"
+                aria-label="Close privacy policy"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -1064,7 +1086,8 @@ Looking forward to hearing from you. Thank you! 🌟`;
               </section>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </Dialog>
   );
