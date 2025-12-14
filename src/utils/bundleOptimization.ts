@@ -1,5 +1,6 @@
 // Bundle optimization utilities
-// Enhanced bundle optimization utilities for 0.25s target loading
+// Enhanced bundle optimization utilities for fast page transitions
+
 export const preloadCriticalResources = () => {
   // Critical above-the-fold images
   const criticalImages = [
@@ -48,6 +49,29 @@ export const optimizeFontLoading = () => {
   link2.href = 'https://fonts.gstatic.com';
   link2.crossOrigin = '';
   document.head.appendChild(link2);
+};
+
+// Prefetch route chunks for faster page transitions
+export const prefetchRouteChunks = () => {
+  // Use requestIdleCallback for non-blocking prefetch
+  const idleCallback = window.requestIdleCallback || ((cb) => setTimeout(cb, 100));
+  
+  idleCallback(() => {
+    // Prefetch common routes as modulepreload for faster execution
+    const routeChunks = [
+      () => import('../pages/Travel'),
+      () => import('../pages/Gallery'),
+      () => import('../pages/XTSY270'),
+      () => import('../pages/About'),
+    ];
+    
+    // Stagger prefetch to avoid network congestion
+    routeChunks.forEach((chunk, index) => {
+      setTimeout(() => {
+        chunk().catch(() => {}); // Silently fail - this is just prefetch
+      }, index * 200);
+    });
+  });
 };
 
 // Service Worker for caching
