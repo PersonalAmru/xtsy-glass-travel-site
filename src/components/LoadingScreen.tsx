@@ -22,11 +22,11 @@ const LoadingScreen = memo(({ onLoadingComplete, minimal = false }: LoadingScree
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    // Ultra-fast timeout for mobile - prevent "can't load page" errors
+    // Ultra-fast timeout - prevent blocking first paint
     const timer = setTimeout(() => {
       setIsVisible(false);
       onLoadingComplete?.();
-    }, minimal ? 50 : 100);
+    }, minimal ? 20 : 50);
 
     return () => clearTimeout(timer);
   }, [onLoadingComplete, minimal]);

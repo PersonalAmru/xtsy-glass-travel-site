@@ -31,9 +31,9 @@
     <link rel="dns-prefetch" href="//wa.me">
     
     <!-- Preload critical images for instant LCP (production-compatible paths) -->
-    <link rel="preload" as="image" href="/xtsy-favicon.png" fetchpriority="high" type="image/png">
-    <link rel="preload" as="image" href="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png" fetchpriority="high" type="image/png">
-    <link rel="preload" as="image" href="/lovable-uploads/160f683c-a41c-41fd-8bdb-700d74a7e027.png" fetchpriority="high" type="image/png">
+    <link rel="preload" as="image" href="/xtsy-favicon.png" type="image/png">
+    <link rel="preload" as="image" href="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png" type="image/png">
+    <link rel="preload" as="image" href="/lovable-uploads/160f683c-a41c-41fd-8bdb-700d74a7e027.png" type="image/png">
     
     <!-- Image compression and format hints -->
     <meta http-equiv="Accept-CH" content="DPR, Width, Viewport-Width">
@@ -57,6 +57,10 @@
       img,video{max-width:100%;height:auto;display:block}
       /* Fast animations for slow connections */
       @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+      /* Disable transitions during initial load for faster LCP */
+      body.initial-load *{transition:none!important;animation-duration:0.001ms!important}
+      /* iOS input zoom fix */
+      @supports (-webkit-touch-callout: none){input,select,textarea{font-size:16px!important}}
     </style>
     
     <!-- Critical mobile optimization with foldable device support -->

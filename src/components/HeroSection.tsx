@@ -180,8 +180,9 @@ const HeroSection = () => {
                   alt="XTSY Brand Symbol"
                   className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-32 lg:h-32 object-contain"
                   loading="eager"
-                  fetchPriority="high"
-                  decoding="sync"
+                  decoding="async"
+                  width={128}
+                  height={128}
                 />
               </div>
             </div>
