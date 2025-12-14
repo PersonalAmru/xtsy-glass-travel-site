@@ -7,8 +7,7 @@ import Footer from '@/components/Footer';
  * India-focused privacy policy with data protection information
  */
 export const PrivacyPolicy: React.FC = () => {
-  return (
-    <div className="min-h-screen flex flex-col">
+  return <div className="min-h-screen flex flex-col">
       <Header />
       
       <main className="flex-1 container mx-auto px-4 py-8 max-w-4xl">
@@ -78,7 +77,7 @@ export const PrivacyPolicy: React.FC = () => {
               <li><strong>Right to Restrict Processing:</strong> Limit how we process your data</li>
             </ul>
             <p className="mt-4">
-              To exercise these rights, contact us at <a href="mailto:hello@xtsy.in" className="text-primary hover:underline">hello@xtsy.in</a>
+              To exercise these rights, contact us at <a href="mailto:hello@xtsy.in" className="text-primary hover:underline">admin@xtsy.one</a>
             </p>
           </section>
 
@@ -128,8 +127,6 @@ export const PrivacyPolicy: React.FC = () => {
       </main>
       
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default PrivacyPolicy;
