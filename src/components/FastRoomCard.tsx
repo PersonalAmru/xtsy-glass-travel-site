@@ -8,7 +8,7 @@ import { useMediaQuery } from '@/hooks/use-mobile';
 import { useApp } from '@/contexts/AppContext';
 import ImageLightbox from './ImageLightbox';
 import MobileImageCarousel from './MobileImageCarousel';
-import { generateStandardizedFeatures } from '@/utils/roomFeatures';
+import { generateStandardizedFeatures, getDormitoryType } from '@/utils/roomFeatures';
 import { useRoomAvailabilityStatus } from '@/hooks/useRoomAvailabilityStatus';
 
 interface FastRoomCardProps {
@@ -100,6 +100,23 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
   
   // Check if this is a luxury room
   const isLuxury = room.propertyType === "luxury";
+  
+  // Determine dormitory type for visual styling
+  const dormType = getDormitoryType(room.name);
+  
+  // Get card accent classes based on dormitory type
+  const getCardAccentClasses = () => {
+    if (dormType === 'female') return 'ring-1 ring-pink-500/30';
+    if (dormType === 'mixed') return 'ring-1 ring-sky-500/30';
+    return '';
+  };
+
+  // Get badge classes for gender tags
+  const getGenderBadgeClasses = (feature: string) => {
+    if (feature === 'Female') return 'bg-pink-900/80 border-pink-500 text-pink-200';
+    if (feature === 'Mixed') return 'bg-sky-900/80 border-sky-500 text-sky-200';
+    return 'border-gray-600 text-gray-200 bg-gray-800';
+  };
   
   // Check if room is blocked/sold out (combine admin status with inventory blocking)
   const isSoldOut = room.isBlocked || adminSoldOut;
@@ -270,7 +287,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
               : `cursor-pointer hover:shadow-lg bg-black text-white border-gray-700 ${
                   isSelected 
                     ? 'ring-2 ring-primary shadow-lg bg-gray-900' 
-                    : 'hover:shadow-md hover:bg-gray-900'
+                    : `hover:shadow-md hover:bg-gray-900 ${getCardAccentClasses()}`
                 }`
           } ${isMobile ? 'mx-2' : ''} ${
             isXTSY270 ? 'h-auto landscape-card' : ''
@@ -401,8 +418,10 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                       <Badge 
                         key={index} 
                         variant="outline" 
-                        className={`text-xs px-2 py-0.5 border-gray-600 text-gray-200 bg-gray-800 ${
-                          isXTSY270 ? 'text-xs px-2 py-0.5 bg-gradient-to-r from-orange-800 to-red-900 text-orange-200 border-orange-600' : ''
+                        className={`text-xs px-2 py-0.5 ${
+                          isXTSY270 
+                            ? 'bg-gradient-to-r from-orange-800 to-red-900 text-orange-200 border-orange-600' 
+                            : getGenderBadgeClasses(feature)
                         }`}
                       >
                         {feature}

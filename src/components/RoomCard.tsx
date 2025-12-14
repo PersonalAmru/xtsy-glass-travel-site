@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import MobileImageCarousel from "./MobileImageCarousel";
 import ImageLightbox from "./ImageLightbox";
-import { generateStandardizedFeatures } from "@/utils/roomFeatures";
+import { generateStandardizedFeatures, getDormitoryType } from "@/utils/roomFeatures";
 
 interface RoomCardProps {
   room: {
@@ -151,9 +151,26 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
     );
   }
 
+  // Determine dormitory type for visual styling
+  const dormType = getDormitoryType(room.name);
+  
+  // Get card accent classes based on dormitory type
+  const getCardAccentClasses = () => {
+    if (dormType === 'female') return 'ring-1 ring-pink-500/30';
+    if (dormType === 'mixed') return 'ring-1 ring-sky-500/30';
+    return '';
+  };
+
+  // Get badge classes for gender tags
+  const getGenderBadgeClasses = (feature: string) => {
+    if (feature === 'Female') return 'bg-pink-900/80 border-pink-500 text-pink-200';
+    if (feature === 'Mixed') return 'bg-sky-900/80 border-sky-500 text-sky-200';
+    return 'border-gray-600 text-gray-200 bg-gray-800';
+  };
+
   return (
     <>
-      <Card className="group bg-black text-white hover:shadow-lg transition-all duration-300 border-gray-700 overflow-hidden h-auto flex flex-col mobile-carousel">
+      <Card className={`group bg-black text-white hover:shadow-lg transition-all duration-300 border-gray-700 overflow-hidden h-auto flex flex-col mobile-carousel ${getCardAccentClasses()}`}>
         <MobileImageCarousel
           images={images}
           alt={room.name}
@@ -183,7 +200,11 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
                 const standardizedFeatures = generateStandardizedFeatures(propertyType, room.name, roomType);
                 
                 return standardizedFeatures.map((feature, index) => (
-                  <Badge key={index} variant="outline" className="text-xs border-gray-600 text-gray-200 bg-gray-800">
+                  <Badge 
+                    key={index} 
+                    variant="outline" 
+                    className={`text-xs ${getGenderBadgeClasses(feature)}`}
+                  >
                     {feature}
                   </Badge>
                 ));

@@ -1,6 +1,27 @@
 // Shared utility for generating standardized room feature tags
 // Used across RoomsSection.tsx, BookingFlow.tsx, and RoomCard.tsx
 
+// Utility to determine dormitory type for visual styling
+export const getDormitoryType = (roomName: string): 'female' | 'mixed' | 'private' | null => {
+  const lowerName = roomName.toLowerCase();
+  
+  // Check for private room types first
+  if (lowerName.includes('king double') || lowerName.includes('king triple') || lowerName.includes('panorama') || lowerName.includes('ensuite')) {
+    return 'private';
+  }
+  
+  // Check for dormitory types
+  if (lowerName.includes('female')) {
+    return 'female';
+  }
+  
+  if (lowerName.includes('mixed') || lowerName.includes('dorm')) {
+    return 'mixed';
+  }
+  
+  return null;
+};
+
 export const generateStandardizedFeatures = (propertyType: string, roomName: string, roomType: 'dorm' | 'private') => {
   if (propertyType === 'economy') {
     // XTSY Economy: conditional Female/Mixed tag based on room name
