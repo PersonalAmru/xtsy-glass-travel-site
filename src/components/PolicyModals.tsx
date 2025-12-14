@@ -15,83 +15,116 @@ const PolicyModal = ({ isOpen, onClose, type }: PolicyModalProps) => {
     <div className="space-y-6">
       <div className="text-center">
         <Clock className="h-12 w-12 text-orange-500 mx-auto mb-3" />
-        <h3 className="text-xl font-bold text-gray-800 mb-2">Cancellation Policy</h3>
-        <p className="text-gray-600">Flexible cancellation terms for your peace of mind</p>
+        <h3 className="text-xl font-bold text-gray-800 mb-2">Cancellation & Modification Policy</h3>
+        <p className="text-gray-600">XTSY Travellers Hostel & XTSY Luxury</p>
       </div>
 
-      <Card>
+      <Card className="bg-red-50 border-red-200">
         <CardContent className="p-4">
-          <h4 className="font-semibold text-green-600 mb-3 flex items-center">
-            <CheckCircle className="h-4 w-4 mr-2" />
-            Free Cancellation (7+ Days Before)
+          <h4 className="font-semibold text-red-600 mb-3 flex items-center">
+            <CreditCard className="h-4 w-4 mr-2" />
+            1. Advance Payment Policy
           </h4>
-          <p className="text-sm text-gray-700 mb-3">
-            Cancel your booking 7 days or more before check-in for a full refund. No questions asked!
-          </p>
-          <ul className="text-xs text-gray-600 space-y-1">
-            <li>• 100% refund guaranteed</li>
-            <li>• Processing within 5-7 business days</li>
-            <li>• No cancellation fees</li>
+          <ul className="text-sm text-gray-700 space-y-2">
+            <li>• All advance payments are <strong>strictly non-refundable</strong></li>
+            <li>• Advance payment secures your room and blocks inventory exclusively for you</li>
           </ul>
         </CardContent>
       </Card>
 
-      <Card>
-        <CardContent className="p-4">
-          <h4 className="font-semibold text-yellow-600 mb-3 flex items-center">
-            <AlertTriangle className="h-4 w-4 mr-2" />
-            Partial Refund (Less than 7 Days)
-          </h4>
-          <p className="text-sm text-gray-700 mb-3">
-            Cancellations made less than 7 days before check-in receive 50% refund.
-          </p>
-          <ul className="text-xs text-gray-600 space-y-1">
-            <li>• 50% of total booking amount refunded</li>
-            <li>• Processing fees may apply</li>
-            <li>• Refund processed within 7-10 business days</li>
-          </ul>
-        </CardContent>
-      </Card>
-
-      <Card>
+      <Card className="bg-red-50 border-red-200">
         <CardContent className="p-4">
           <h4 className="font-semibold text-red-600 mb-3 flex items-center">
             <XCircle className="h-4 w-4 mr-2" />
-            No Refund (Less than 24 Hours)
+            2. Cancellation Policy (Guest-Initiated)
+          </h4>
+          <ul className="text-sm text-gray-700 space-y-2">
+            <li>• <strong>Cancellations are not accepted</strong> once an advance payment is made</li>
+            <li>• No refunds will be issued under any circumstances for cancellations or no-shows</li>
+          </ul>
+        </CardContent>
+      </Card>
+
+      <Card className="bg-green-50 border-green-200">
+        <CardContent className="p-4">
+          <h4 className="font-semibold text-green-600 mb-3 flex items-center">
+            <Calendar className="h-4 w-4 mr-2" />
+            3. Booking Modification Policy (Guest-Initiated)
           </h4>
           <p className="text-sm text-gray-700 mb-3">
-            Cancellations made less than 24 hours before check-in are not eligible for refunds.
+            Bookings can be <strong>modified instead of cancelled</strong>, subject to availability:
           </p>
-          <ul className="text-xs text-gray-600 space-y-1">
-            <li>• No refund available</li>
-            <li>• Booking amount is non-refundable</li>
-            <li>• Consider rescheduling instead</li>
+          <ul className="text-sm text-gray-700 space-y-2">
+            <li>• Date modification allowed within <strong>90 days</strong> from original check-in date</li>
+            <li>• Only <strong>one-time modification</strong> permitted per booking</li>
+            <li>• Room type upgrades/downgrades subject to availability and fare difference</li>
           </ul>
         </CardContent>
       </Card>
 
-      <Card className="bg-orange-50">
+      <Card>
         <CardContent className="p-4">
-          <h4 className="font-semibold text-orange-600 mb-3 flex items-center">
-            <Calendar className="h-4 w-4 mr-2" />
-            Seasonal Surcharges
+          <h4 className="font-semibold text-blue-600 mb-3 flex items-center">
+            <Shield className="h-4 w-4 mr-2" />
+            4. Property-Initiated Changes (XTSY)
           </h4>
           <p className="text-sm text-gray-700 mb-2">
-            Additional charges may apply based on booking season:
+            In rare cases where XTSY is unable to honor a confirmed booking due to unavoidable reasons, guests will be offered:
           </p>
-          <ul className="text-xs text-gray-600 space-y-1">
-            <li>• Peak season (Oct-Feb): 10% surcharge on cancellation fees</li>
-            <li>• Festival periods: 15% surcharge on cancellation fees</li>
-            <li>• Summer season (Mar-Sep): Standard rates apply</li>
+          <ul className="text-sm text-gray-700 space-y-2">
+            <li>• Free date modification, OR</li>
+            <li>• Alternate room or equivalent property, OR</li>
+            <li>• <strong>Full refund</strong> (only if accommodation cannot be provided)</li>
+          </ul>
+          <p className="text-xs text-gray-600 mt-2 italic">Guest preference will be prioritized.</p>
+        </CardContent>
+      </Card>
+
+      <Card className="bg-orange-50 border-orange-200">
+        <CardContent className="p-4">
+          <h4 className="font-semibold text-orange-600 mb-3 flex items-center">
+            <AlertTriangle className="h-4 w-4 mr-2" />
+            5. Group & Promotional Bookings
+          </h4>
+          <ul className="text-sm text-gray-700 space-y-2">
+            <li>• Group bookings and special promotional offers are <strong>non-refundable</strong> and <strong>non-cancellable</strong></li>
+            <li>• Modification rules remain the same unless specified otherwise</li>
           </ul>
         </CardContent>
       </Card>
 
-      <div className="bg-blue-50 p-4 rounded-lg">
-        <p className="text-sm text-blue-800">
-          <strong>Need to modify your booking?</strong> Contact our support team at +91 88373 17070 or booking@xtsy.one 
-          for assistance with date changes or room modifications.
-        </p>
+      <Card>
+        <CardContent className="p-4">
+          <h4 className="font-semibold text-purple-600 mb-3 flex items-center">
+            <FileText className="h-4 w-4 mr-2" />
+            6. How to Request a Modification
+          </h4>
+          <p className="text-sm text-gray-700 mb-3">To modify your booking, contact us with:</p>
+          <ul className="text-sm text-gray-700 space-y-1">
+            <li>• <strong>WhatsApp:</strong> +91 88373 17070</li>
+            <li>• <strong>Email:</strong> xtsy.social@gmail.com</li>
+          </ul>
+          <p className="text-sm text-gray-700 mt-3">Please include:</p>
+          <ul className="text-xs text-gray-600 space-y-1 mt-1">
+            <li>• Booking name</li>
+            <li>• Booking date</li>
+            <li>• Room type</li>
+            <li>• Registered contact number</li>
+          </ul>
+        </CardContent>
+      </Card>
+
+      <div className="bg-gray-100 p-4 rounded-lg">
+        <h4 className="font-semibold text-gray-800 mb-2 flex items-center">
+          <AlertTriangle className="h-4 w-4 mr-2 text-gray-600" />
+          7. Important Notes
+        </h4>
+        <ul className="text-sm text-gray-700 space-y-2">
+          <li>• Booking is confirmed only after advance payment is received</li>
+          <li>• Failure to check-in on confirmed date will be treated as a <strong>no-show</strong></li>
+          <li>• No refund or credit will be issued for no-shows</li>
+          <li>• XTSY reserves the right to amend this policy without prior notice</li>
+        </ul>
       </div>
     </div>
   );
@@ -368,7 +401,7 @@ const PolicyModal = ({ isOpen, onClose, type }: PolicyModalProps) => {
         <Separator className="my-4" />
         
         <div className="text-center text-xs text-gray-500">
-          <p>Last updated: January 2024 | XTSY Travellers Hostel</p>
+          <p>Last updated: December 2024 | XTSY Travellers Hostel & XTSY Luxury</p>
           <p className="mt-1">
             For questions about these policies, contact us at{" "}
             <span className="text-orange-600 font-medium">booking@xtsy.one</span> or{" "}
