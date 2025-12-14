@@ -43,9 +43,9 @@ const PetFriendly = () => {
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background to-background/95">
       <Header />
       
-      <main className="flex-1 pt-20 pb-12">
+      <main className="flex-1 pb-12">
         {/* Hero Section */}
-        <section className="relative h-[70vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+        <section className="relative h-[70vh] min-h-[600px] flex items-center justify-center overflow-hidden -mt-16">
           {/* Background Image */}
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
