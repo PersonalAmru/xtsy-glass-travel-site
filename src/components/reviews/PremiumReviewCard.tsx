@@ -89,8 +89,8 @@ const PremiumReviewCard = ({
         "group relative cursor-pointer rounded-2xl transition-all duration-500",
         // Glassmorphism base
         "bg-white/[0.03] backdrop-blur-xl border border-white/10",
-        // Glow effect on hover
-        !isMobile && "hover:bg-white/[0.08] hover:border-white/20 hover:shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)]",
+        // Subtle glow effect on hover
+        !isMobile && "hover:bg-white/[0.06] hover:border-white/15 hover:shadow-lg hover:shadow-violet-500/10",
         !isMobile && "hover:scale-[1.02] hover:-translate-y-1",
         // Animation delay based on index
         "animate-fade-in",
@@ -104,15 +104,15 @@ const PremiumReviewCard = ({
         animationFillMode: "both"
       }}
     >
-      {/* Gradient glow behind card */}
+      {/* Subtle glow behind card */}
       <div 
         className={cn(
-          "absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-500",
-          !isMobile && "group-hover:opacity-100",
-          `bg-gradient-to-br ${getAvatarGradient(review.name)}`
+          "absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-500 pointer-events-none",
+          !isMobile && "group-hover:opacity-30"
         )} 
         style={{ 
-          filter: "blur(20px)",
+          background: "linear-gradient(135deg, rgba(139,92,246,0.3) 0%, rgba(217,70,239,0.2) 100%)",
+          filter: "blur(12px)",
           zIndex: -1 
         }} 
       />
@@ -133,8 +133,8 @@ const PremiumReviewCard = ({
           className={cn(
             "relative flex-shrink-0 rounded-full p-[2px]",
             `bg-gradient-to-br ${getAvatarGradient(review.name)}`,
-            "shadow-lg",
-            !isMobile && "group-hover:shadow-[0_0_20px_-5px_rgba(168,85,247,0.5)]"
+            "shadow-md",
+            !isMobile && "group-hover:shadow-lg group-hover:shadow-violet-500/20"
           )}
         >
           <div className={cn(
