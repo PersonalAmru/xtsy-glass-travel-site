@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { Checkbox } from "@/components/ui/checkbox";
-import { MessageCircle, Calendar, Users, Phone, Trash2, Home, AlertCircle, MapPin, Info, ChevronDown, ChevronUp, Sparkles } from "lucide-react";
+import { MessageCircle, Calendar, Users, Phone, Trash2, Home, AlertCircle, MapPin, Info, ChevronDown, ChevronUp, Sparkles, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import { saveWhatsAppBooking } from "@/services/formBookingService";
@@ -96,6 +96,7 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
   const [roomsError, setRoomsError] = useState<string>("");
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPrivacyModal, setShowPrivacyModal] = useState(false);
 
   // Reset engagement tracking when form opens
   useEffect(() => {
@@ -981,11 +982,55 @@ Looking forward to hearing from you. Thank you! 🌟`;
                 <p>
                   We use your information to personalize your booking experience and improve our services. 
                   Your data is stored securely and never shared with third parties.{' '}
-                  <a href="/privacy-policy" className="text-primary underline hover:text-primary/80">
+                  <button 
+                    type="button"
+                    onClick={() => setShowPrivacyModal(true)} 
+                    className="text-primary underline hover:text-primary/80"
+                  >
                     Privacy Policy
-                  </a>
+                  </button>
                 </p>
               </div>
+
+              {/* Privacy Policy Modal */}
+              {showPrivacyModal && (
+                <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 p-4" onClick={() => setShowPrivacyModal(false)}>
+                  <div className="bg-background rounded-lg max-w-2xl max-h-[80vh] overflow-y-auto w-full" onClick={(e) => e.stopPropagation()}>
+                    <div className="sticky top-0 bg-background border-b p-4 flex items-center justify-between">
+                      <h3 className="text-lg font-semibold">Privacy Policy</h3>
+                      <button 
+                        type="button"
+                        onClick={() => setShowPrivacyModal(false)}
+                        className="p-1 hover:bg-muted rounded"
+                      >
+                        <X className="h-5 w-5" />
+                      </button>
+                    </div>
+                    <div className="p-4 space-y-4 text-sm text-muted-foreground">
+                      <section>
+                        <h4 className="font-semibold text-foreground mb-2">Information We Collect</h4>
+                        <p>We collect personal information you provide when making a booking, including your name, email, phone number, and travel preferences. We also collect anonymous usage data to improve our services.</p>
+                      </section>
+                      <section>
+                        <h4 className="font-semibold text-foreground mb-2">How We Use Your Information</h4>
+                        <p>Your information is used to process bookings, personalize your experience, send booking confirmations, and improve our services. We may use location data (with your consent) to provide local recommendations.</p>
+                      </section>
+                      <section>
+                        <h4 className="font-semibold text-foreground mb-2">Data Security</h4>
+                        <p>We implement industry-standard security measures to protect your personal information. Your data is encrypted and stored securely on our servers.</p>
+                      </section>
+                      <section>
+                        <h4 className="font-semibold text-foreground mb-2">Your Rights</h4>
+                        <p>You have the right to access, correct, or delete your personal data. Contact us at admin@xtsy.one for any privacy-related requests.</p>
+                      </section>
+                      <section>
+                        <h4 className="font-semibold text-foreground mb-2">Contact</h4>
+                        <p>Email: admin@xtsy.one | Phone: +91 88373 17070</p>
+                      </section>
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {/* Action Buttons */}
               <div className="flex gap-3 pt-4">
