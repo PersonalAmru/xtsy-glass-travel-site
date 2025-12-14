@@ -120,9 +120,6 @@ Deno.serve(async (req) => {
           ? Math.round(sessions.reduce((sum, s) => sum + (s.session_duration_seconds || 0), 0) / sessions.length)
           : 0;
 
-        const totalRevenue = conversions?.reduce((sum, c) => sum + (c.conversion_value || 0), 0) || 0;
-        const todayRevenue = todayConversions?.reduce((sum, c) => sum + (c.conversion_value || 0), 0) || 0;
-
         return new Response(JSON.stringify({
           total_visitors: totalVisitors,
           total_sessions: totalSessions,
@@ -131,12 +128,7 @@ Deno.serve(async (req) => {
           new_visitor_rate: totalSessions ? ((newVisitors / totalSessions) * 100).toFixed(1) : 0,
           avg_session_duration: avgDuration,
           total_conversions: conversions?.length || 0,
-          total_revenue: totalRevenue,
           today_visitors: todaySessions?.length || 0,
-          today_revenue: todayRevenue,
-          conversion_rate: totalSessions 
-            ? ((conversions?.length || 0) / totalSessions * 100).toFixed(2) 
-            : 0,
         }), {
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         });
