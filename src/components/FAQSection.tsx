@@ -45,7 +45,7 @@ const FAQSection = () => {
     },
     {
       question: "What's your cancellation policy?",
-      answer: "Straight up: all advance payments are non-refundable, and we don't accept cancellations once you've paid. BUT—you can modify your booking once within 90 days. Date change? Room upgrade/downgrade? We got you (subject to availability and fare difference). Just WhatsApp us or email xtsy.social@gmail.com.",
+      answer: "Straight up: all advance payments are non-refundable, and we don't accept cancellations once you've paid. BUT—you can modify your booking once within 90 days. Date change? Room upgrade/downgrade? We got you (subject to availability and fare difference). Just WhatsApp us or email booking@xtsy.one.",
     },
     {
       question: "Is it safe for solo and female travelers?",
