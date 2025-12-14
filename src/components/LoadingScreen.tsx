@@ -31,39 +31,39 @@ const loadingStyles = `
 // Memoized XTSY branded loader - consistent across all uses
 const XTSYLoader = memo(({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) => {
   const sizes = {
-    sm: { box: 40, text: 12, bar: 60 },
-    md: { box: 64, text: 16, bar: 100 },
-    lg: { box: 80, text: 20, bar: 120 }
+    sm: { box: 40, bar: 60 },
+    md: { box: 64, bar: 100 },
+    lg: { box: 80, bar: 120 }
   };
   
   const s = sizes[size];
   
   return (
     <div style={{ textAlign: 'center' }}>
-      {/* XTSY Brand Icon */}
+      {/* XTSY Brand Icon using favicon */}
       <div 
         style={{
           width: s.box,
           height: s.box,
           margin: '0 auto 16px',
-          background: 'linear-gradient(135deg, #a31545 0%, #dc2626 100%)',
           borderRadius: size === 'sm' ? '10px' : '16px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           animation: 'xtsy-pulse-glow 1.5s ease-in-out infinite',
-          boxShadow: '0 4px 20px rgba(163, 21, 69, 0.3)'
+          boxShadow: '0 4px 20px rgba(163, 21, 69, 0.3)',
+          overflow: 'hidden'
         }}
       >
-        <span style={{ 
-          color: 'white', 
-          fontWeight: 'bold', 
-          fontSize: s.text, 
-          letterSpacing: '1px',
-          textShadow: '0 1px 2px rgba(0,0,0,0.2)'
-        }}>
-          XTSY
-        </span>
+        <img 
+          src="/xtsy-favicon.png" 
+          alt="XTSY" 
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'contain'
+          }}
+        />
       </div>
       
       {/* Progress bar */}
