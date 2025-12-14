@@ -77,7 +77,7 @@ export const PrivacyPolicy: React.FC = () => {
               <li><strong>Right to Restrict Processing:</strong> Limit how we process your data</li>
             </ul>
             <p className="mt-4">
-              To exercise these rights, contact us at <a href="mailto:hello@xtsy.in" className="text-primary hover:underline">hello@xtsy.in</a>
+              To exercise these rights, contact us at <a href="mailto:hello@xtsy.in" className="text-primary hover:underline">admin@xtsy.one</a>
             </p>
           </section>
 
