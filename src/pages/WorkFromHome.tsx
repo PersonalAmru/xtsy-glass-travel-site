@@ -79,23 +79,31 @@ const WorkFromHome = () => {
   }];
   const amenities = ["High-speed fiber internet (100+ Mbps)", "Dedicated co-working spaces", "Private meeting rooms", "24/7 power backup", "Ergonomic workstations", "Printing & scanning facilities", "Mountain view workspaces", "Coffee & tea all day", "Weekly networking events", "Laundry service", "Daily housekeeping", "Secure storage lockers"];
   const faqs = [{
-    question: "What internet speeds can I expect in Shillong?",
-    answer: "We provide Airtel fiber with 100+ Mbps speeds. Shillong has stable connectivity, and we have JioFiber backup + UPS for uninterrupted work during occasional power cuts."
+    question: "What internet speeds do you actually get?",
+    answer: "100+ Mbps Airtel fiber, JioFiber backup, UPS for power cuts. No cap, no throttling. Your Zoom calls won't buffer here.",
+    quote: "Wi-Fi connectivity is smooth. As a student, I never faced any issues.",
+    quoteName: "Ritika"
   }, {
-    question: "How's the weather for remote work?",
-    answer: "Shillong enjoys pleasant weather year-round (15-25°C). Monsoons (June-Sept) bring heavy rainfall but our covered workspaces and reliable power backup ensure productivity."
+    question: "How's the weather for working?",
+    answer: "15-25°C year-round—basically perfect hoodie weather. Monsoons (June-Sept) bring heavy rain but our covered workspaces and power backup keep you productive.",
   }, {
-    question: "What about food delivery options?",
-    answer: "Swiggy and Zomato work perfectly in Shillong! We also provide homemade meals at our in-house café with local Meghalayan delicacies."
+    question: "Food delivery works there?",
+    answer: "Swiggy and Zomato both work perfectly. Plus our in-house café serves homemade meals with local Meghalayan flavors. Best of both worlds.",
   }, {
-    question: "Is Shillong safe for solo remote workers?",
-    answer: "Absolutely! Meghalaya is one of India's safest states. Many solo travelers, especially women, choose XTSY for extended stays. Our community is welcoming and secure."
+    question: "Safe for solo remote workers?",
+    answer: "Meghalaya is one of India's safest states. Lots of solo travelers, especially women, choose XTSY for extended stays. Welcoming community, secure premises.",
+    quote: "XTSY made us feel safe and welcomed—it's honestly one of the safest places we've traveled to.",
+    quoteName: "Olivia"
   }, {
-    question: "Can I take weekend trips while working remotely?",
-    answer: "Yes! We help plan weekend trips to Cherrapunji (wettest place on Earth), Dawki (crystal clear river), Mawlynnong (Asia's cleanest village), and other stunning locations. Your luggage stays safe with us."
+    question: "Can I explore on weekends?",
+    answer: "That's the whole point! Cherrapunji, Dawki's crystal river, Mawlynnong village—we help plan weekend trips. Your stuff stays safe with us.",
+    quote: "I met people from all over the world and shared stories that I'll carry with me for years.",
+    quoteName: "Mariza"
   }, {
-    question: "What's the co-working atmosphere like?",
-    answer: "Quiet zones available 24/7, collaborative spaces for team calls, and a community of like-minded digital nomads. Join our weekly networking events and weekend treks!"
+    question: "What's the work atmosphere like?",
+    answer: "24/7 quiet zones, collaborative spaces for calls, community of digital nomads. Weekly networking events, weekend treks with fellow travelers. Work hard, adventure harder.",
+    quote: "This isn't just a place to sleep—it's a place to connect.",
+    quoteName: "Deepak"
   }];
   const testimonials = [{
     name: "Ritika",

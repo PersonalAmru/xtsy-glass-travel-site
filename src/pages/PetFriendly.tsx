@@ -258,68 +258,68 @@ const PetFriendly = () => {
                 Pet Travel FAQs
               </h2>
               <p className="text-lg text-muted-foreground">
-                Everything you need to know about traveling with your pets to XTSY Prime
+                Real questions from pet parents, real answers
               </p>
             </div>
 
             <Accordion type="single" collapsible className="w-full space-y-4">
               <AccordionItem value="item-1" className="border border-border rounded-lg px-6">
                 <AccordionTrigger className="text-left font-semibold text-foreground hover:text-primary">
-                  What types of pets are welcome at XTSY Prime?
+                  What pets can I bring?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground">
-                  We welcome dogs, cats, and birds of all sizes and breeds. As India's 1st Pet Friendly Travellers Hostel, we understand that pets are family. However, we recommend contacting Team XTSY in advance to ensure we can accommodate your specific pet's needs and to prepare the room accordingly.
+                  Dogs, cats, birds—all sizes, all breeds. Your fur baby is family, we get it. Just give us a heads up before you arrive so we can prep the room perfectly for them. Some exotic pets need prior discussion.
                 </AccordionContent>
               </AccordionItem>
 
               <AccordionItem value="item-2" className="border border-border rounded-lg px-6">
                 <AccordionTrigger className="text-left font-semibold text-foreground hover:text-primary">
-                  Are there any additional charges for bringing pets?
+                  Any extra fees for pets?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground">
-                  Yes, there is a nominal pet fee to cover additional cleaning and pet amenities. The exact fee depends on the size and type of pet, as well as the duration of your stay. Contact us via WhatsApp or call +91 88373 17070 for detailed pricing information.
+                  There's a small pet fee to cover extra cleaning and amenities—totally depends on your pet's size and stay length. WhatsApp us at +91 88373 17070 for exact pricing. No hidden charges, we promise.
                 </AccordionContent>
               </AccordionItem>
 
               <AccordionItem value="item-3" className="border border-border rounded-lg px-6">
                 <AccordionTrigger className="text-left font-semibold text-foreground hover:text-primary">
-                  What documents are required for my pet to stay?
+                  What documents do I need?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground">
-                  We require up-to-date vaccination records, including rabies vaccination certificate. For domestic travel within India, a fitness certificate from a registered veterinarian is recommended. For international pet travel, additional documentation including pet passports, import permits, and health certificates may be required. Team XTSY can assist you with all documentation requirements.
+                  Up-to-date vaccination records (rabies is a must). Traveling domestically? A vet fitness certificate helps. International? We'll help with pet passports, import permits, and health certificates. Team XTSY handles the paperwork stress.
                 </AccordionContent>
               </AccordionItem>
 
               <AccordionItem value="item-4" className="border border-border rounded-lg px-6">
                 <AccordionTrigger className="text-left font-semibold text-foreground hover:text-primary">
-                  Do you help with domestic and international pet travel arrangements?
+                  Can you help with pet travel arrangements?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground">
-                  Absolutely! XTSY Travel provides comprehensive pet travel support for both domestic and international journeys. We assist with airline bookings, pet carrier arrangements, health certificates, quarantine procedures, and all necessary documentation. Our team coordinates with veterinarians and authorities to ensure smooth travel for your furry companions.
+                  That's literally what we do. Domestic and international—airline bookings, pet carriers, health certificates, quarantine procedures. We coordinate with vets and authorities so your pet travels stress-free.
                 </AccordionContent>
               </AccordionItem>
 
               <AccordionItem value="item-5" className="border border-border rounded-lg px-6">
                 <AccordionTrigger className="text-left font-semibold text-foreground hover:text-primary">
-                  What pet amenities are provided in the rooms?
+                  What pet amenities do you have?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground">
-                  Our pet-friendly rooms include comfortable pet beds, food and water bowls, waste disposal facilities, and designated areas for your pets to relax. We also have outdoor spaces for exercise and walking. Additional amenities like pet toys and grooming supplies can be arranged upon request.
+                  Pet beds, food/water bowls, waste disposal, outdoor exercise areas. Need pet toys or grooming supplies? Just ask. We want your pet to feel as comfortable as you do.
                 </AccordionContent>
               </AccordionItem>
 
               <AccordionItem value="item-6" className="border border-border rounded-lg px-6">
                 <AccordionTrigger className="text-left font-semibold text-foreground hover:text-primary">
-                  Can I leave my pet alone in the room?
+                  Can I leave my pet alone briefly?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground">
-                  We understand that you may need to leave your pet briefly, but we recommend not leaving pets unattended for extended periods. If you need to go out, pet sitting services can be arranged through Team XTSY. We also have 24/7 support available in case your pet needs any assistance during your absence.
+                  For short periods, sure. But we don't recommend leaving them too long. Need to explore? We offer pet sitting services. Our team is available 24/7 if your pet needs anything while you're out.
                 </AccordionContent>
               </AccordionItem>
 
               <AccordionItem value="item-7" className="border border-border rounded-lg px-6">
                 <AccordionTrigger className="text-left font-semibold text-foreground hover:text-primary">
-                  Are there veterinary services nearby?
+                  Any vets nearby?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground">
                   Yes, we have partnerships with local veterinary clinics in Shillong and around Northeast India and can arrange emergency veterinary services if needed. Team XTSY maintains a list of trusted veterinarians and pet care professionals in the area. We also provide contact details and directions to the nearest animal hospitals.

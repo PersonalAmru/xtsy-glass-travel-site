@@ -1,73 +1,95 @@
-
 import React from 'react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { MessageCircle, Sparkles, Quote } from 'lucide-react';
 
 const FAQSection = () => {
   const faqData = [
     {
-      question: "What is the XTSY 270° Glass Suite?",
-      answer: "India's first 270° panoramic glass house offering breathtaking mountain views from floor-to-ceiling glass walls. Features luxury ensuite bathroom, queen bed, premium breakfast, high-speed WiFi, and Netflix. Perfect for couples and special occasions. Weekend rate: ₹9,999/night, Weekday rate: ₹7,999/night."
+      question: "What's the XTSY 270° Glass Suite all about?",
+      answer: "Picture this: floor-to-ceiling glass walls, 270° mountain views, and you waking up to sunrises over the Himalayas. It's India's first panoramic glass house—perfect for couples, proposals, or just that main-character moment. Weekend: ₹9,999/night, Weekday: ₹7,999/night. Trust us, the reels will go crazy.",
+      hasQuote: true,
+      quote: "Absolutely beautiful view from their glass house. It was an unforgettable experience!",
+      quoteName: "Aayush"
     },
     {
-      question: "What accommodation options do you offer?",
-      answer: "We have 4 tiers: XTSY Luxury (270° Glass Suite - ₹7,999-9,999/night), XTSY Hostel (Private rooms ₹3,500/night, 6-bed dorm ₹700/bed), XTSY Economy (6-bed female dorm ₹325/bed, 8-bed mixed dorm ₹399/bed). All properties located in Shillong, Meghalaya with 24/7 security."
+      question: "What kind of stays do you have?",
+      answer: "We've got options for every budget. Luxury: 270° Glass Suite (₹7,999-9,999). Hostel vibes: Private rooms (₹3,500) or 6-bed dorms (₹700/bed). Economy: Female dorm (₹325/bed) or mixed dorm (₹399/bed). All in Shillong with 24/7 security—no sketchy vibes here.",
+      hasQuote: true,
+      quote: "The hostel has a very welcoming atmosphere... cleanliness is always maintained.",
+      quoteName: "Ritika"
     },
     {
-      question: "How do I book accommodation and tours?",
-      answer: "Book easily via: 1) Our website booking system 2) WhatsApp at +91 88373 17070 3) Email booking@xtsy.one 4) Google Form. We offer instant confirmation for available dates. Glass Suite requires 2-3 weeks advance booking during peak season."
+      question: "How do I book?",
+      answer: "Super easy—WhatsApp us at +91 88373 17070 (fastest response), book on our website, or email booking@xtsy.one. We confirm instantly for available dates. Pro tip: Glass Suite needs 2-3 weeks advance during peak season because it books out fast.",
     },
     {
-      question: "Do you offer customized tour packages?",
-      answer: "Yes! We create personalized itineraries across 12+ states in Northeast India with 30+ tour package options. Our services include transportation, experienced local guides, accommodation, and authentic cultural experiences. Contact us to design your perfect adventure."
+      question: "Do you do tour packages?",
+      answer: "Oh, we go hard on tours. 30+ packages across 12 states in Northeast India. From living root bridges to Hornbill Festival—we create custom itineraries with local guides who actually know the hidden spots. Not your basic touristy stuff.",
+      hasQuote: true,
+      quote: "Very good hospitality and excellent tour package management.",
+      quoteName: "Dhruba"
     },
     {
-      question: "What destinations do you cover in Northeast India?",
-      answer: "We specialize in Meghalaya (Living Root Bridges, Cherrapunji, Dawki, Mawlynnong, Shillong) and cover 12 states including Arunachal Pradesh, Assam, Nagaland, Sikkim, Manipur, and more. From monsoon treks to high-altitude expeditions, we curate authentic Northeast experiences."
+      question: "What places do you cover in Northeast?",
+      answer: "Meghalaya is our home turf (Living Root Bridges, Cherrapunji, Dawki, Mawlynnong). But we also cover Arunachal, Assam, Nagaland, Sikkim, Manipur, and more. Monsoon treks? High-altitude expeditions? We've got you.",
     },
     {
-      question: "What's included in your tour packages?",
-      answer: "Our comprehensive packages include: comfortable transportation, experienced local guides fluent in regional languages, handpicked accommodations, detailed itineraries, safety equipment for adventure activities, and 24/7 support. Meals and entry tickets specified per package."
+      question: "What's included in tours?",
+      answer: "Everything that matters: comfy transport, local guides who speak the language, handpicked stays, detailed itineraries, safety gear for adventures, and 24/7 support. Meals and entry tickets depend on the package—we keep it transparent.",
     },
     {
-      question: "What are your check-in/check-out times and policies?",
-      answer: "Check-in: 2:00 PM | Check-out: 11:00 AM. Early check-in subject to availability (additional charges may apply). Late check-in free until 11:00 PM, ₹500 fee after. 24/7 reception available. Self check-in available for verified bookings."
+      question: "Check-in/check-out times?",
+      answer: "Check-in: 2 PM | Check-out: 11 AM. Need early check-in? Subject to availability (might cost extra). Late check-in is free until 11 PM, ₹500 after. We're here 24/7 so you can show up whenever.",
     },
     {
-      question: "What is your cancellation and refund policy?",
-      answer: "Free cancellation 7+ days before check-in with full refund. 50% refund for cancellations 3-7 days before. No refund for cancellations less than 48 hours. Glass Suite bookings require 30% advance payment. Tour packages have separate cancellation terms based on itinerary complexity."
+      question: "What's your cancellation policy?",
+      answer: "Real talk: Cancel 7+ days before = full refund. 3-7 days = 50% back. Less than 48 hours = no refund (sorry, we already prepped for you). Glass Suite needs 30% advance. Tour packages have their own terms based on complexity.",
     },
     {
-      question: "Is Northeast India safe for solo and female travelers?",
-      answer: "Absolutely! We provide 24/7 security, CCTV monitoring throughout properties, female-only dormitories, verified local guides, and emergency support. Northeast India is one of India's safest regions with welcoming communities. Our experienced team ensures every traveler feels secure."
+      question: "Is it safe for solo and female travelers?",
+      answer: "100%. We have 24/7 security, CCTV everywhere, female-only dorms, verified local guides, and emergency support. Northeast India is one of the safest regions—the locals are genuinely welcoming. Our female guests keep coming back.",
+      hasQuote: true,
+      quote: "XTSY made us feel safe and welcomed—it's honestly one of the safest places we've traveled to.",
+      quoteName: "Olivia"
     },
     {
-      question: "When is the best time to visit Northeast India?",
-      answer: "October to May: Best weather for sightseeing and trekking. June to September: Monsoon season - spectacular for waterfall experiences (Cherrapunji, Nohkalikai Falls). November to February: Winter wonderland, clear Himalayan views. We operate year-round with season-specific experiences."
+      question: "Best time to visit Northeast?",
+      answer: "Oct-May: Best weather, clear skies, perfect for exploring. Jun-Sept: Monsoon = insane waterfalls (Cherrapunji hits different). Nov-Feb: Winter wonderland vibes with clear Himalayan views. We operate year-round—each season has its own magic.",
     },
     {
-      question: "Do you arrange group bookings and events?",
-      answer: "Yes! We specialize in group bookings for corporate retreats, college trips, family reunions, and adventure groups. Discounted rates for 8+ people. Special packages available including bonfire nights, BBQ experiences, and team-building activities. Contact us for customized group proposals."
+      question: "Do you do group bookings?",
+      answer: "We literally specialize in groups. Corporate retreats, college trips, family reunions, adventure squads—we've hosted 32+ IIT/IIM tours and 40+ school trips. 8+ people get discounted rates. Bonfire nights, BBQs, team activities? Say less.",
+      hasQuote: true,
+      quote: "Very nice place for group stay!",
+      quoteName: "Sahil"
     },
     {
-      question: "What makes XTSY different from other travel companies?",
-      answer: "We're Northeast India specialists with authentic local expertise, not a generic tour operator. Our unique offerings: India's first 270° Glass Suite, 4-tier accommodation options, 12+ states coverage, sustainable eco-tourism practices, tech-integrated booking, and genuine cultural immersion experiences with local communities."
+      question: "Why XTSY over other hostels?",
+      answer: "We're not just a hostel—we're Northeast specialists. India's first 270° Glass Suite, 4-tier accommodation, 12 states coverage, eco-tourism practices, and genuine cultural immersion. Plus, we're nominated for 'Best Budget Accommodation' by NEITA 2025. That's the difference.",
+      hasQuote: true,
+      quote: "Just one word for XTSY: THE BEST. It's one of the best stays I have been to lately.",
+      quoteName: "Rahul"
     },
     {
-      question: "Do you provide airport pickup and transportation?",
-      answer: "Yes! We arrange airport transfers from Guwahati Airport (130km from Shillong) and Shillong Airport. All tour packages include comfortable transportation in well-maintained vehicles with experienced drivers. Separate transportation services also available on request."
+      question: "Airport pickup available?",
+      answer: "Yes! We arrange transfers from Guwahati Airport (130km) and Shillong Airport. All tour packages include transportation with experienced drivers who know mountain roads. Separate pickup services also available on request.",
     },
     {
-      question: "What payment methods do you accept?",
-      answer: "We accept multiple payment options: UPI, Credit/Debit Cards, Net Banking, and Cash on arrival (subject to availability). International guests can pay via PayPal or wire transfer. Glass Suite and tour packages require advance payment. Flexible payment plans available for group bookings."
+      question: "What payment methods work?",
+      answer: "UPI, cards, net banking, cash (subject to availability). International guests? PayPal or wire transfer works. Glass Suite and tours need advance payment. Groups can do flexible payment plans—just ask.",
     },
     {
-      question: "Do you cater to digital nomads and remote workers?",
-      answer: "Absolutely! All properties feature high-speed WiFi (50+ Mbps), co-working spaces, 24/7 power backup, study lights, charging points, and quiet workspaces. Perfect for workations with inspiring mountain views. Monthly stay discounts available. Strong network coverage across Shillong."
+      question: "Good for remote work?",
+      answer: "Perfect for digital nomads. 100+ Mbps WiFi, co-working spaces, 24/7 power backup, study lights, charging points everywhere. Mountain views while you work? Yes. Monthly stay discounts? Also yes. Strong network coverage across Shillong.",
+      hasQuote: true,
+      quote: "Wi-Fi connectivity is smooth. As a student, I never faced any issues.",
+      quoteName: "Ritika"
     },
     {
-      question: "What amenities are included at each property tier?",
-      answer: "Economy: Bed, Balcony, WiFi only (no other amenities). Hostel: Charging points, study lights, common areas, terrace access, bonfire nights. Luxury: ALL services included - room service, premium breakfast, exclusive facilities, complimentary upgrades, concierge service, and VIP experiences."
+      question: "What amenities come with each tier?",
+      answer: "Economy: Bed + Balcony + WiFi (basics only). Hostel: Charging points, study lights, common areas, terrace, bonfire nights. Luxury: Full service—room service, premium breakfast, concierge, complimentary upgrades, VIP treatment.",
     }
   ];
 
@@ -75,24 +97,41 @@ const FAQSection = () => {
     <section className="pt-12 pb-16 px-4 bg-background -mt-1" id="faq">
       <div className="container mx-auto max-w-4xl">
         <div className="text-center mb-12">
+          <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
+            <Sparkles className="w-3 h-3 mr-1" />
+            Got Questions?
+          </Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-            Frequently Asked Questions
+            Real Answers, No BS
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Quick answers to help you plan your perfect Northeast India adventure.
+            Everything you need to know before your Northeast adventure
           </p>
         </div>
 
         <Card className="glass-card border-border/50 shadow-xl">
-          <CardContent className="p-6">
-            <Accordion type="single" collapsible className="w-full">
+          <CardContent className="p-4 md:p-6">
+            <Accordion type="single" collapsible className="w-full space-y-2">
               {faqData.map((faq, index) => (
-                <AccordionItem key={index} value={`faq-${index}`} className="border-border/30">
-                  <AccordionTrigger className="text-left text-base font-semibold hover:text-primary transition-colors py-4">
+                <AccordionItem 
+                  key={index} 
+                  value={`faq-${index}`} 
+                  className="border border-border/30 rounded-lg px-4 data-[state=open]:bg-accent/30 transition-colors"
+                >
+                  <AccordionTrigger className="text-left text-base font-semibold hover:text-primary transition-colors py-4 hover:no-underline">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground leading-relaxed pt-2 pb-4">
-                    {faq.answer}
+                  <AccordionContent className="text-muted-foreground leading-relaxed pt-2 pb-4 space-y-3">
+                    <p>{faq.answer}</p>
+                    {faq.hasQuote && faq.quote && (
+                      <div className="flex items-start gap-2 mt-3 p-3 bg-primary/5 rounded-lg border border-primary/10">
+                        <Quote className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                        <div>
+                          <p className="text-sm italic text-foreground/80">"{faq.quote}"</p>
+                          <p className="text-xs text-muted-foreground mt-1">— {faq.quoteName}, Verified Guest</p>
+                        </div>
+                      </div>
+                    )}
                   </AccordionContent>
                 </AccordionItem>
               ))}
@@ -102,20 +141,23 @@ const FAQSection = () => {
 
         <div className="text-center mt-8">
           <p className="text-sm text-muted-foreground mb-4">
-            Still have questions? We're here to help!
+            Still curious? Hit us up—we reply fast
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a 
-              href="tel:+918837317070" 
-              className="bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
+              href="https://wa.me/918837317070" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
             >
-              Call +91 88373 17070
+              <MessageCircle className="w-4 h-4" />
+              WhatsApp Us
             </a>
             <a 
-              href="mailto:booking@xtsy.one" 
+              href="tel:+918837317070" 
               className="bg-background text-foreground border border-border px-6 py-3 rounded-lg font-semibold hover:bg-accent transition-colors"
             >
-              Email booking@xtsy.one
+              Call +91 88373 17070
             </a>
           </div>
         </div>
