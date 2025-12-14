@@ -184,28 +184,7 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
 
   const handleInputChange = (field: string, value: any) => {
     setFormData(prev => ({ ...prev, [field]: value }));
-    
-    // Auto-sync dormitory quantities when guest count changes
-    if (field === 'guests' && typeof value === 'number') {
-      setSelectedRooms(prevRooms => {
-        return prevRooms.map(room => {
-          const isDormitory = room.roomTypeName.toLowerCase().includes('dormitory');
-          if (isDormitory) {
-            const maxQty = getMaxQuantity(room.roomTypeName);
-            if (value > maxQty) {
-              toast({
-                title: "Capacity Exceeded",
-                description: `${room.roomTypeName.split(' - ')[1]} can accommodate max ${maxQty} guests. Kindly choose other room type for remaining guests.`,
-                duration: 3000,
-              });
-              return { ...room, quantity: maxQty };
-            }
-            return { ...room, quantity: value };
-          }
-          return room;
-        });
-      });
-    }
+    // No auto-sync for dormitory - users manually select how many beds they want
   };
 
   // Calculate remaining guests that need accommodation
@@ -223,6 +202,22 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
     if (remaining === 0) return false;
     const maxCapacity = getMaxQuantity(roomTypeName);
     return remaining <= maxCapacity;
+  };
+
+  // Helper to determine if a room type is a private room (not dormitory)
+  const isPrivateRoom = (roomTypeName: string): boolean => {
+    const lowerName = roomTypeName.toLowerCase();
+    return lowerName.includes('room') || lowerName.includes('ensuite');
+  };
+
+  // Get capacity per unit for a room type
+  const getCapacityPerUnit = (roomTypeName: string): number => {
+    const lowerName = roomTypeName.toLowerCase();
+    if (lowerName.includes('king double')) return 2;
+    if (lowerName.includes('king triple')) return 3;
+    if (lowerName.includes('panorama glass ensuite')) return 2;
+    // Dormitory beds = 1 guest per bed
+    return 1;
   };
 
   const handleRoomToggle = (roomTypeId: string) => {
@@ -243,27 +238,12 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
         const newRoom: SelectedRoom = {
           roomTypeId: roomType.id,
           roomTypeName: `${roomType.category} - ${roomType.name}`,
-          quantity: isDormitory ? formData.guests : 1,
+          // Dormitory: start with 1 bed, Private rooms: start with 1 room
+          quantity: 1,
           price: discountedPrice // Store in INR for internal calculations
         };
         setSelectedRooms(prevRooms => {
           const updatedRooms = [...prevRooms, newRoom];
-          
-          // Check total capacity vs guests
-          const totalCapacity = updatedRooms.reduce((sum, room) => {
-            const capacity = getMaxQuantity(room.roomTypeName);
-            return sum + (capacity * room.quantity);
-          }, 0);
-          
-          if (totalCapacity < formData.guests) {
-            const remaining = formData.guests - totalCapacity;
-            toast({
-              title: "Additional Rooms Needed",
-              description: `This selection accommodates ${totalCapacity} guest(s). Please select ${remaining} more bed(s)/room(s) to accommodate all ${formData.guests} guests.`,
-              variant: "default",
-            });
-          }
-          
           return updatedRooms;
         });
       }
@@ -295,45 +275,38 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
     const room = selectedRooms.find(r => r.roomTypeId === roomTypeId);
     if (!room) return;
     const maxQty = getMaxQuantity(room.roomTypeName);
-    const isDormitory = room.roomTypeName.toLowerCase().includes('dormitory');
     
-    // For dormitory rooms, update the guest count
-    if (isDormitory) {
-      if (newQuantity > maxQty) {
-        toast({
-          title: "Capacity Exceeded",
-          description: "Kindly choose other room type for remaining guests",
-          duration: 3000,
-        });
-        return;
-      }
-      handleInputChange('guests', newQuantity);
-      setSelectedRooms(prev =>
-        prev.map(r =>
-          r.roomTypeId === roomTypeId
-            ? { ...r, quantity: newQuantity }
-            : r
-        )
-      );
-    } else {
-      // For non-dormitory rooms, just update quantity
-      if (newQuantity > maxQty) return;
-      setSelectedRooms(prev =>
-        prev.map(r =>
-          r.roomTypeId === roomTypeId
-            ? { ...r, quantity: newQuantity }
-            : r
-        )
-      );
+    // Check max quantity for both dormitory and private rooms
+    if (newQuantity > maxQty) {
+      toast({
+        title: "Maximum Reached",
+        description: `Maximum ${maxQty} ${room.roomTypeName.toLowerCase().includes('dormitory') ? 'beds' : 'rooms'} available for this type`,
+        duration: 3000,
+      });
+      return;
     }
+    
+    setSelectedRooms(prev =>
+      prev.map(r =>
+        r.roomTypeId === roomTypeId
+          ? { ...r, quantity: newQuantity }
+          : r
+      )
+    );
+  };
+
+  // Calculate total accommodation capacity
+  const getTotalAccommodatedGuests = () => {
+    return selectedRooms.reduce((sum, room) => {
+      const capacityPerUnit = getCapacityPerUnit(room.roomTypeName);
+      return sum + (room.quantity * capacityPerUnit);
+    }, 0);
   };
 
   const getTotalAmount = () => {
     return selectedRooms.reduce((total, room) => {
-      const isDormitory = room.roomTypeName.toLowerCase().includes('dormitory');
-      const roomTotal = isDormitory 
-        ? room.price * formData.guests * nights
-        : room.price * room.quantity * nights;
+      // All room types: price × quantity × nights
+      const roomTotal = room.price * room.quantity * nights;
       return total + roomTotal;
     }, 0);
   };
@@ -767,59 +740,80 @@ Looking forward to hearing from you. Thank you! 🌟`;
                 {/* Selected Rooms Display */}
                 {selectedRooms.length > 0 && (
                   <div className="space-y-2 mt-4">
-                    <Label className="text-sm font-medium text-muted-foreground">Selected Rooms:</Label>
-                    {selectedRooms.map((room) => (
-                      <div
-                        key={room.roomTypeId}
-                        className="flex items-center justify-between p-3 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700"
-                      >
-                        <div className="flex-1">
-                          <p className="font-medium text-sm">{room.roomTypeName}</p>
-                          {room.roomTypeName.toLowerCase().includes('dormitory') ? (
+                    <div className="flex items-center justify-between">
+                      <Label className="text-sm font-medium text-muted-foreground">Selected Rooms:</Label>
+                      <span className="text-xs text-muted-foreground">
+                        Accommodates: {getTotalAccommodatedGuests()} / {formData.guests} guests
+                      </span>
+                    </div>
+                    {selectedRooms.map((room) => {
+                      const isDormitory = room.roomTypeName.toLowerCase().includes('dormitory');
+                      const unitLabel = isDormitory ? 'bed(s)' : 'room(s)';
+                      const priceLabel = isDormitory ? '/night/bed' : '/night';
+                      const capacityPerUnit = getCapacityPerUnit(room.roomTypeName);
+                      
+                      return (
+                        <div
+                          key={room.roomTypeId}
+                          className="flex items-center justify-between p-3 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700"
+                        >
+                          <div className="flex-1">
+                            <p className="font-medium text-sm">{room.roomTypeName}</p>
                             <p className="text-xs text-muted-foreground">
-                              {formatPrice(room.price)}/night/per person × {formData.guests} guest(s) × {nights || 0} nights = {formatPrice(room.price * formData.guests * (nights || 0))}
+                              {formatPrice(room.price)}{priceLabel} × {room.quantity} {unitLabel} × {nights || 0} nights = {formatPrice(room.price * room.quantity * (nights || 0))}
                             </p>
-                          ) : (
-                            <p className="text-xs text-muted-foreground">
-                              {formatPrice(room.price)}/night × {room.quantity} room(s) × {nights || 0} nights = {formatPrice(room.price * room.quantity * (nights || 0))}
+                            <p className="text-xs text-primary/70">
+                              {isDormitory 
+                                ? `${room.quantity} bed(s) = ${room.quantity} guest(s)`
+                                : `${room.quantity} room(s) × ${capacityPerUnit} guests/room = ${room.quantity * capacityPerUnit} guest(s)`
+                              }
                             </p>
-                          )}
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1">
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1">
+                              <Button
+                                type="button"
+                                variant="outline"
+                                size="sm"
+                                onClick={() => handleUpdateQuantity(room.roomTypeId, room.quantity - 1)}
+                                className="h-7 w-7 p-0"
+                              >
+                                -
+                              </Button>
+                              <span className="w-8 text-center text-sm font-medium">{room.quantity}</span>
+                              <Button
+                                type="button"
+                                variant="outline"
+                                size="sm"
+                                onClick={() => handleUpdateQuantity(room.roomTypeId, room.quantity + 1)}
+                                disabled={room.quantity >= getMaxQuantity(room.roomTypeName)}
+                                className="h-7 w-7 p-0"
+                              >
+                                +
+                              </Button>
+                            </div>
                             <Button
                               type="button"
-                              variant="outline"
+                              variant="ghost"
                               size="sm"
-                              onClick={() => handleUpdateQuantity(room.roomTypeId, room.quantity - 1)}
-                              className="h-7 w-7 p-0"
+                              onClick={() => handleRemoveRoom(room.roomTypeId)}
+                              className="h-8 w-8 p-0 text-destructive hover:text-destructive hover:bg-destructive/10"
                             >
-                              -
-                            </Button>
-                            <span className="w-8 text-center text-sm font-medium">{room.quantity}</span>
-                            <Button
-                              type="button"
-                              variant="outline"
-                              size="sm"
-                              onClick={() => handleUpdateQuantity(room.roomTypeId, room.quantity + 1)}
-                              disabled={room.quantity >= getMaxQuantity(room.roomTypeName)}
-                              className="h-7 w-7 p-0"
-                            >
-                              +
+                              <Trash2 className="h-4 w-4" />
                             </Button>
                           </div>
-                          <Button
-                            type="button"
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleRemoveRoom(room.roomTypeId)}
-                            className="h-8 w-8 p-0 text-destructive hover:text-destructive hover:bg-destructive/10"
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
                         </div>
+                      );
+                    })}
+                    
+                    {/* Capacity warning if not enough rooms selected */}
+                    {getTotalAccommodatedGuests() < formData.guests && (
+                      <div className="p-2 bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 rounded-lg">
+                        <p className="text-xs text-amber-700 dark:text-amber-400">
+                          ⚠️ Please add {formData.guests - getTotalAccommodatedGuests()} more bed(s)/room(s) to accommodate all {formData.guests} guests
+                        </p>
                       </div>
-                    ))}
+                    )}
                     
                     {/* Total Amount */}
                     {nights > 0 && (
