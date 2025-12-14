@@ -182,7 +182,8 @@ const HeroSection = () => {
                   className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-32 lg:h-32 object-contain"
                   loading="eager"
                   decoding="sync"
-                  fetchPriority="high"
+                  // @ts-expect-error - React 18.3 uses fetchPriority but DOM expects fetchpriority
+                  fetchpriority="high"
                   width={128}
                   height={128}
                   style={{ contentVisibility: 'auto' }}

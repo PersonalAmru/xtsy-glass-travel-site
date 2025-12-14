@@ -72,7 +72,8 @@ export const forceLoadLCPImage = (): Promise<void> => {
     img.onload = () => resolve();
     img.onerror = () => resolve(); // Don't block on error
     img.decoding = 'sync';
-    img.fetchPriority = 'high';
+    // Use setAttribute for fetchpriority to avoid TS errors
+    img.setAttribute('fetchpriority', 'high');
     img.src = LCP_IMAGE;
   });
 };

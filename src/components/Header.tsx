@@ -91,14 +91,15 @@ const Header = () => {
             {/* Logo - responsive sizing based on screen size */}
             <Link to="/" className="flex items-center space-x-2 touch-target ml-4 sm:ml-6">
               {!logoError ? (
-                <img 
+              <img 
                   src={xtsyLogo}
                   alt="XTSY Travellers Hostel"
                   className={`w-auto hover:opacity-80 transition-opacity cursor-pointer ${
                     isMobile ? 'h-10' : isTablet ? 'h-11' : 'h-12'
                   }`}
                   loading="eager"
-                  fetchPriority="high"
+                  // @ts-expect-error - React 18.3 uses fetchPriority but DOM expects fetchpriority
+                  fetchpriority="high"
                   decoding="sync"
                   onLoad={handleLogoLoad}
                   onError={handleLogoError}

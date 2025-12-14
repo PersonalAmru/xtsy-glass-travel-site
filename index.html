@@ -2,44 +2,19 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Google Analytics & Google Ads -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      
-      gtag('config', 'G-SJY2WX6L4B');
-      gtag('config', 'AW-17456979648');
-    </script>
-    
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/uploads/1765259352370-with_padding.png">
-    <link rel="apple-touch-icon" href="/xtsy-favicon.png" />
     
     <!-- Critical Performance: Preconnect to essential domains FIRST -->
     <link rel="preconnect" href="https://oidnydyyjyjfnyadhyzn.supabase.co" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- LCP CRITICAL: Preload hero brand symbol with highest priority -->
+    <!-- LCP CRITICAL: Preload hero brand symbol with highest priority - BEFORE any scripts -->
     <link rel="preload" as="image" href="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png" fetchpriority="high" type="image/png">
     
-    <!-- Secondary preloads -->
-    <link rel="preload" as="image" href="/lovable-uploads/160f683c-a41c-41fd-8bdb-700d74a7e027.png" type="image/png">
-    
-    <!-- DNS Prefetch for non-critical domains -->
-    <link rel="dns-prefetch" href="//api.exchangerate-api.com">
-    <link rel="dns-prefetch" href="//checkout.razorpay.com">
-    <link rel="dns-prefetch" href="//wa.me">
-    
-    <!-- Image compression and format hints -->
-    <meta http-equiv="Accept-CH" content="DPR, Width, Viewport-Width">
-    <meta http-equiv="Content-Encoding" content="gzip, deflate, br">
-    <link rel="preload" as="fetch" href="https://oidnydyyjyjfnyadhyzn.supabase.co" crossorigin>
-    
-    <!-- Emoji font with display swap for faster render -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <!-- Critical fonts preload for faster text rendering -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap"></noscript>
     
     <!-- Critical inline CSS for instant first paint -->
     <style>
@@ -63,6 +38,22 @@
     
     <!-- Critical mobile optimization with foldable device support -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/uploads/1765259352370-with_padding.png">
+    <link rel="apple-touch-icon" href="/xtsy-favicon.png" />
+    
+    <!-- Secondary preloads (after LCP) -->
+    <link rel="preload" as="image" href="/lovable-uploads/160f683c-a41c-41fd-8bdb-700d74a7e027.png" type="image/png">
+    
+    <!-- DNS Prefetch for non-critical domains -->
+    <link rel="dns-prefetch" href="//api.exchangerate-api.com">
+    <link rel="dns-prefetch" href="//checkout.razorpay.com">
+    <link rel="dns-prefetch" href="//wa.me">
+    <link rel="dns-prefetch" href="//www.googletagmanager.com">
+    
+    <!-- Image compression and format hints -->
+    <meta http-equiv="Accept-CH" content="DPR, Width, Viewport-Width">
     
     <title>XTSY Travellers Hostel - Best Hostel in India | Biggest Hostel in Shillong, Meghalaya &amp; North East India</title>
     <meta name="description" content="XTSY Travellers Hostel - India's best hostel experience in Shillong, Meghalaya. The biggest hostel in North East India offering luxury accommodations, budget stays, and unforgettable travel experiences. Book the best hostel in India for your Meghalaya adventure.">
@@ -416,19 +407,21 @@
     <!-- Foldable device support -->
     <meta name="screen-spanning" content="single-fold-vertical | single-fold-horizontal | none">
     
-    <!-- Optimized font loading -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Josefin+Sans:wght@300;400;500;600;700&family=Cardo:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Non-critical fonts (loaded async) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Josefin+Sans:wght@300;400;500;600;700&family=Cardo:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Josefin+Sans:wght@300;400;500;600;700&family=Cardo:wght@400;700&display=swap"></noscript>
     
-    <!-- Payment gateway preload -->
-    <link rel="preload" href="https://checkout.razorpay.com/v1/checkout.js" as="script">
-    <script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
+    <!-- Emoji font (low priority) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    
+    <!-- Payment gateway - defer loading -->
+    <link rel="dns-prefetch" href="//checkout.razorpay.com">
+    
     <meta property="og:title" content="XTSY Travellers Hostel - Best Hostel in India | Biggest Hostel in Shillong, Meghalaya &amp; North East India">
-  <meta name="twitter:title" content="XTSY Travellers Hostel - Best Hostel in India | Biggest Hostel in Shillong, Meghalaya &amp; North East India">
-  <meta property="og:description" content="XTSY Travellers Hostel - India&#39;s best hostel experience in Shillong, Meghalaya. The biggest hostel in North East India offering luxury accommodations, budget stays, and unforgettable travel experiences. Book the best hostel in India for your Meghalaya adventure.">
-  <meta name="twitter:description" content="XTSY Travellers Hostel - India&#39;s best hostel experience in Shillong, Meghalaya. The biggest hostel in North East India offering luxury accommodations, budget stays, and unforgettable travel experiences. Book the best hostel in India for your Meghalaya adventure.">
-</head>
+    <meta name="twitter:title" content="XTSY Travellers Hostel - Best Hostel in India | Biggest Hostel in Shillong, Meghalaya &amp; North East India">
+    <meta property="og:description" content="XTSY Travellers Hostel - India&#39;s best hostel experience in Shillong, Meghalaya. The biggest hostel in North East India offering luxury accommodations, budget stays, and unforgettable travel experiences. Book the best hostel in India for your Meghalaya adventure.">
+    <meta name="twitter:description" content="XTSY Travellers Hostel - India&#39;s best hostel experience in Shillong, Meghalaya. The biggest hostel in North East India offering luxury accommodations, budget stays, and unforgettable travel experiences. Book the best hostel in India for your Meghalaya adventure.">
+  </head>
   <body>
     <!-- LCP OPTIMIZATION: Inline preload for absolute fastest LCP -->
     <script>
@@ -436,29 +429,62 @@
       (function(){
         var lcp = new Image();
         lcp.src = '/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png';
-        lcp.fetchPriority = 'high';
+        lcp.setAttribute('fetchpriority', 'high');
         lcp.decoding = 'sync';
       })();
     </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <!-- Twemoji Script for Flag Emoji Support -->
-    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous" onload="initTwemoji()"></script>
+    
+    <!-- Non-critical scripts loaded after main content -->
+    <!-- Google Analytics & Google Ads - deferred to not block LCP -->
     <script>
-      function initTwemoji() {
-        if (typeof twemoji !== 'undefined') {
-          twemoji.parse(document.body, {
-            folder: 'svg',
-            ext: '.svg'
-          });
-        }
-      }
-      
-      document.addEventListener("DOMContentLoaded", function () {
-        // Check if twemoji is already loaded
-        if (typeof twemoji !== 'undefined') {
-          initTwemoji();
-        }
+      // Defer GA loading until after LCP
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          var ga = document.createElement('script');
+          ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B';
+          ga.async = true;
+          document.head.appendChild(ga);
+          
+          ga.onload = function() {
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
+            gtag('js', new Date());
+            gtag('config', 'G-SJY2WX6L4B');
+            gtag('config', 'AW-17456979648');
+          };
+        }, 100);
+      });
+    </script>
+    
+    <!-- Razorpay - only load when needed -->
+    <script>
+      window.loadRazorpay = function(callback) {
+        if (window.Razorpay) { callback(); return; }
+        var s = document.createElement('script');
+        s.src = 'https://checkout.razorpay.com/v1/checkout.js';
+        s.onload = callback;
+        document.head.appendChild(s);
+      };
+    </script>
+    
+    <!-- Twemoji - loaded after interaction -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Defer twemoji loading
+        setTimeout(function() {
+          var t = document.createElement('script');
+          t.src = 'https://twemoji.maxcdn.com/v/latest/twemoji.min.js';
+          t.crossOrigin = 'anonymous';
+          t.onload = function() {
+            if (typeof twemoji !== 'undefined') {
+              twemoji.parse(document.body, { folder: 'svg', ext: '.svg' });
+            }
+          };
+          document.head.appendChild(t);
+        }, 2000);
       });
     </script>
   </body>
