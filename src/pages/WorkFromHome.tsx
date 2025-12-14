@@ -45,9 +45,9 @@ const WorkFromHome = () => {
   }];
   // Base prices in INR
   const basePrices = {
-    week: 7499,
+    week: 5400,
     month: 22999,
-    quarter: 59999
+    quarter: 64999
   };
 
   // Calculate prices with currency conversion
@@ -69,13 +69,13 @@ const WorkFromHome = () => {
     label: "Monthly Package",
     price: getPackagePrice(basePrices.month),
     perDay: getPerDayPrice(basePrices.month, 30),
-    benefits: ["30 nights accommodation", "Unlimited WiFi", "Private workspace", "All meals included", "Laundry service"]
+    benefits: ["30 nights accommodation", "Unlimited WiFi", "Private workspace", "Breakfast included", "Laundry service"]
   }, {
     duration: "quarter",
     label: "Quarterly Package",
     price: getPackagePrice(basePrices.quarter),
     perDay: getPerDayPrice(basePrices.quarter, 90),
-    benefits: ["90 nights accommodation", "Unlimited WiFi", "Dedicated desk", "All meals included", "Priority support", "Storage space"]
+    benefits: ["90 nights accommodation", "Unlimited WiFi", "Dedicated desk", "Breakfast included", "Priority support", "Storage space"]
   }];
   const amenities = ["High-speed fiber internet (100+ Mbps)", "Dedicated co-working spaces", "Private meeting rooms", "24/7 power backup", "Ergonomic workstations", "Printing & scanning facilities", "Mountain view workspaces", "Coffee & tea all day", "Weekly networking events", "Laundry service", "Daily housekeeping", "Secure storage lockers"];
   const faqs = [{
