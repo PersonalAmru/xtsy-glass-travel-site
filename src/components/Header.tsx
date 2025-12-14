@@ -35,9 +35,15 @@ const Header = () => {
   const isDesktop = useMediaQuery('(min-width: 1024px)');
   const isTouchDevice = useMediaQuery('(hover: none) and (pointer: coarse)');
 
-  useEffect(() => {
-    setLogoLoaded(true);
-  }, []);
+  // Prefetch XTSY Prime pages on hover for faster navigation
+  const prefetchXTSYPrimePages = () => {
+    // Prefetch all XTSY Prime page chunks
+    import("@/pages/XTSY270");
+    import("@/pages/PetFriendly");
+    import("@/pages/XTSYvsZostel");
+    import("@/pages/FemaleTravellers");
+    import("@/pages/WorkFromHome");
+  };
 
   useEffect(() => {
     let sessionId = localStorage.getItem("current_guest_session");
@@ -134,7 +140,10 @@ const Header = () => {
                 <NavigationMenu>
                   <NavigationMenuList>
                     <NavigationMenuItem>
-                      <NavigationMenuTrigger className="px-3 py-2 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200 font-medium bg-transparent">
+                      <NavigationMenuTrigger 
+                        className="px-3 py-2 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200 font-medium bg-transparent"
+                        onMouseEnter={prefetchXTSYPrimePages}
+                      >
                         XTSY Prime
                       </NavigationMenuTrigger>
                       <NavigationMenuContent className="bg-black/95 backdrop-blur-md border border-white/20">
@@ -270,7 +279,7 @@ const Header = () => {
                   About
                 </Link>
 {/* XTSY Prime Dropdown */}
-                <details className="group">
+                <details className="group" onToggle={prefetchXTSYPrimePages}>
                   <summary className="px-4 py-3 text-center text-primary text-base font-bold bg-white/5 border-y border-white/10 cursor-pointer list-none flex items-center justify-center gap-2">
                     XTSY Prime
                     <svg 

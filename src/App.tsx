@@ -16,45 +16,79 @@ import { cleanupUnifiedImage } from "./components/UnifiedImage";
 import { EnhancedAnalyticsProvider } from "./hooks/useEnhancedAnalytics";
 import { HappyGuestsProvider } from "./contexts/HappyGuestsContext";
 
-// Lazy loaded pages with fast retry logic for mobile
+// Optimized lazy loading with faster retry and better chunk handling
 const createLazyComponent = (importFn: () => Promise<any>) => {
   return lazy(() => 
     importFn().catch((err) => {
       console.warn('Chunk load failed, retrying...', err.message);
-      // Fast retry after 150ms
-      return new Promise(resolve => setTimeout(resolve, 150))
+      // Faster retry - 100ms then 250ms
+      return new Promise(resolve => setTimeout(resolve, 100))
         .then(importFn)
         .catch(() => {
-          // Second retry after 400ms if first fails
-          return new Promise(resolve => setTimeout(resolve, 400)).then(importFn);
+          return new Promise(resolve => setTimeout(resolve, 250)).then(importFn);
         });
     })
   );
 };
 
-const LazyAbout = createLazyComponent(() => import("./pages/About"));
-const LazyGallery = createLazyComponent(() => import("./pages/Gallery"));
-const LazyTravel = createLazyComponent(() => import("./pages/Travel"));
+// XTSY Prime pages - frequently accessed, preload on hover
 const LazyXTSY270 = createLazyComponent(() => import("./pages/XTSY270"));
 const LazyPetFriendly = createLazyComponent(() => import("./pages/PetFriendly"));
 const LazyXTSYvsZostel = createLazyComponent(() => import("./pages/XTSYvsZostel"));
 const LazyFemaleTravellers = createLazyComponent(() => import("./pages/FemaleTravellers"));
 const LazyWorkFromHome = createLazyComponent(() => import("./pages/WorkFromHome"));
+
+// Other lazy pages
+const LazyAbout = createLazyComponent(() => import("./pages/About"));
+const LazyGallery = createLazyComponent(() => import("./pages/Gallery"));
+const LazyTravel = createLazyComponent(() => import("./pages/Travel"));
 const LazyPrivacyPolicy = createLazyComponent(() => import("./pages/PrivacyPolicy"));
 const AdminLogin = createLazyComponent(() => import("./pages/AdminLogin"));
 const AdminDashboard = createLazyComponent(() => import("./pages/AdminDashboard"));
 const BookingFlow = createLazyComponent(() => import("./pages/BookingFlow"));
 
-// Memoized route wrapper with error boundary for mobile stability
+// Fast route wrapper with minimal loading state
 const LazyRoute = memo(({ children }: { children: ReactNode }) => (
   <ErrorBoundary>
-    <Suspense fallback={<LoadingScreen minimal />}>
+    <Suspense fallback={<XTSYRouteLoader />}>
       {children}
     </Suspense>
   </ErrorBoundary>
 ));
 
 LazyRoute.displayName = 'LazyRoute';
+
+// Minimal inline route loader - no external CSS, instant render
+const XTSYRouteLoader = memo(() => (
+  <div style={{
+    position: 'fixed',
+    inset: 0,
+    background: '#111827',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 9999
+  }}>
+    <div style={{ textAlign: 'center' }}>
+      <div style={{
+        width: 48,
+        height: 48,
+        margin: '0 auto 12px',
+        background: 'linear-gradient(135deg, #a31545 0%, #dc2626 100%)',
+        borderRadius: 12,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        animation: 'pulse 1.5s ease-in-out infinite'
+      }}>
+        <span style={{ color: 'white', fontWeight: 'bold', fontSize: 12 }}>XTSY</span>
+      </div>
+      <style>{`@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }`}</style>
+    </div>
+  </div>
+));
+
+XTSYRouteLoader.displayName = 'XTSYRouteLoader';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
