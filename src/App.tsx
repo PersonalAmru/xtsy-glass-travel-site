@@ -14,6 +14,7 @@ import { preloadCriticalResources, optimizeFontLoading, registerServiceWorker } 
 import { performGlobalCleanup } from "./utils/performanceCleanup";
 import { cleanupUnifiedImage } from "./components/UnifiedImage";
 import { EnhancedAnalyticsProvider } from "./hooks/useEnhancedAnalytics";
+import { HappyGuestsProvider } from "./contexts/HappyGuestsContext";
 
 // Lazy loaded pages with retry logic for mobile (exponential backoff)
 const createLazyComponent = (importFn: () => Promise<any>) => {
@@ -107,8 +108,9 @@ function App() {
     }}>
       <div className="dark">
         <PerformanceMonitor />
-        <EnhancedAnalyticsProvider>
-          <TooltipProvider>
+        <HappyGuestsProvider>
+          <EnhancedAnalyticsProvider>
+            <TooltipProvider>
             <Toaster />
             <Sonner />
             <Routes>
@@ -127,8 +129,9 @@ function App() {
               <Route path="/booking" element={<LazyRoute><BookingFlow /></LazyRoute>} />
               <Route path="*" element={<NotFound />} />
             </Routes>
-          </TooltipProvider>
-        </EnhancedAnalyticsProvider>
+            </TooltipProvider>
+          </EnhancedAnalyticsProvider>
+        </HappyGuestsProvider>
       </div>
     </SecurityHeadersProvider>
   );
