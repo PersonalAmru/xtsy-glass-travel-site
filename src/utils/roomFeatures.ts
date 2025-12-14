@@ -4,7 +4,7 @@
 export const generateStandardizedFeatures = (propertyType: string, roomName: string, roomType: 'dorm' | 'private') => {
   if (propertyType === 'economy') {
     // XTSY Economy: exactly 3 tags, no Female tag ever
-    return ["Mixed", "Only Bed", "Wi-Fi", "Mountain Views", "Attached washroom"].slice(0, 5);
+    return ["Mixed", "Only Bed", "Wi-Fi", "Hot water", "Mountain Views", "Attached washroom"].slice(0, 6);
   } else if (propertyType === 'hostel') {
     // XTSY Travellers Hostel: max 7 tags with conditional Female/Mixed
     let features = [];
@@ -13,15 +13,15 @@ export const generateStandardizedFeatures = (propertyType: string, roomName: str
     if (roomType === 'private') {
       if (roomName.includes('Double')) {
         // King Double Room: specific feature set
-        features = ["King Bed", "Attached washroom", "Wi-Fi", "Mountain Views", "Lover's Seat"];
+        features = ["King Bed", "Attached washroom", "Hot water", "Wi-Fi", "Mountain Views", "Lover's Seat"];
       } else if (roomName.includes('Triple')) {
         // King Triple Room: specific feature set with "King Bed + single bed"
-        features = ["King Bed + single bed", "Attached washroom", "Wi-Fi", "Mountain Views", "Lover's Seat"];
+        features = ["King Bed + single bed", "Attached washroom", "Hot water", "Wi-Fi", "Mountain Views", "Lover's Seat"];
       }
       return features;
     } else {
       // For dorm rooms, use standard hostel features
-      const baseFeatures = ["Attached washroom", "Wi-Fi", "Locker", "Reading lights", "Charging point", "Mountain Views"];
+      const baseFeatures = ["Attached washroom", "Hot water", "Wi-Fi", "Locker", "Reading lights", "Charging point", "Mountain Views"];
       
       // Add Female or Mixed tag conditionally (never both)
       if (roomName.toLowerCase().includes('female')) {
