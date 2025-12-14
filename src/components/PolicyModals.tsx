@@ -102,7 +102,7 @@ const PolicyModal = ({ isOpen, onClose, type }: PolicyModalProps) => {
           <p className="text-sm text-gray-700 mb-3">To modify your booking, contact us with:</p>
           <ul className="text-sm text-gray-700 space-y-1">
             <li>• <strong>WhatsApp:</strong> +91 88373 17070</li>
-            <li>• <strong>Email:</strong> xtsy.social@gmail.com</li>
+            <li>• <strong>Email:</strong> booking@xtsy.one</li>
           </ul>
           <p className="text-sm text-gray-700 mt-3">Please include:</p>
           <ul className="text-xs text-gray-600 space-y-1 mt-1">
