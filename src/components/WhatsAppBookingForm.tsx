@@ -1021,92 +1021,90 @@ Looking forward to hearing from you. Thank you! 🌟`;
         </Card>
       </DialogContent>
 
-      {/* Privacy Policy Modal - Rendered via Portal for proper viewport positioning */}
-      {showPrivacyModal && createPortal(
-        <div 
-          className="fixed inset-0 flex items-center justify-center bg-black/60 p-4" 
-          onClick={() => setShowPrivacyModal(false)}
-          style={{ 
-            position: 'fixed', 
-            top: 0, 
-            left: 0, 
-            right: 0, 
-            bottom: 0, 
-            zIndex: 99999,
-            touchAction: 'auto'
+      {/* Privacy Policy Modal - Separate Dialog for proper viewport positioning */}
+      <Dialog
+        open={showPrivacyModal}
+        onOpenChange={(open) => {
+          if (!open) setShowPrivacyModal(false);
+        }}
+      >
+        <DialogContent
+          className="p-0 overflow-hidden"
+          style={{
+            position: 'fixed',
+            left: '50%',
+            top: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: 'min(calc(100vw - 32px), 32rem)',
+            maxWidth: '32rem',
+            boxSizing: 'border-box',
+            margin: 0,
           }}
         >
-          <div 
-            className="bg-background rounded-lg max-w-2xl w-full shadow-2xl border"
-            onClick={(e) => e.stopPropagation()}
-            style={{ 
-              maxHeight: '80vh', 
-              overflowY: 'auto',
-              WebkitOverflowScrolling: 'touch',
-              overscrollBehavior: 'contain'
-            }}
-          >
-            <div 
-              className="sticky top-0 bg-background border-b p-4 flex items-center justify-between z-10"
-            >
+          <div className="flex flex-col max-h-[80vh]">
+            <div className="sticky top-0 bg-background border-b p-4 flex items-center justify-between z-10">
               <div className="flex items-center gap-2">
-                <button 
+                <button
                   type="button"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setShowPrivacyModal(false);
-                  }}
+                  onClick={() => setShowPrivacyModal(false)}
                   className="p-2 hover:bg-muted rounded-full transition-colors md:hidden"
                   aria-label="Go back"
                 >
-                  <ArrowLeft className="h-5 w-5" />
+                  <ArrowLeft className="h-5 w-5 text-foreground" />
                 </button>
-                <h3 className="text-lg font-semibold">Privacy Policy</h3>
+                <h3 className="text-lg font-semibold text-foreground">Privacy Policy</h3>
               </div>
-              <button 
+              <button
                 type="button"
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  setShowPrivacyModal(false);
-                }}
+                onClick={() => setShowPrivacyModal(false)}
                 className="p-2 hover:bg-muted rounded-full transition-colors bg-muted/50"
                 aria-label="Close privacy policy"
               >
-                <X className="h-5 w-5" />
+                <X className="h-5 w-5 text-foreground" />
               </button>
             </div>
-            <div className="p-4 space-y-4 text-sm text-muted-foreground">
+
+            <div className="p-4 space-y-4 text-sm text-muted-foreground overflow-y-auto">
               <section>
                 <h4 className="font-semibold text-foreground mb-2">Information We Collect</h4>
-                <p>We collect personal information you provide when making a booking, including your name, email, phone number, and travel preferences. We also collect anonymous usage data to improve our services.</p>
+                <p>
+                  We collect personal information you provide when making a booking, including your name,
+                  email, phone number, and travel preferences. We also collect anonymous usage data to
+                  improve our services.
+                </p>
               </section>
               <section>
                 <h4 className="font-semibold text-foreground mb-2">How We Use Your Information</h4>
-                <p>Your information is used to process bookings, personalize your experience, send booking confirmations, and improve our services. We may use location data (with your consent) to provide local recommendations.</p>
+                <p>
+                  Your information is used to process bookings, personalize your experience, send booking
+                  confirmations, and improve our services. We may use location data (with your consent) to
+                  provide local recommendations.
+                </p>
               </section>
               <section>
                 <h4 className="font-semibold text-foreground mb-2">Data Security</h4>
-                <p>We implement industry-standard security measures to protect your personal information. Your data is encrypted and stored securely on our servers.</p>
+                <p>
+                  We implement industry-standard security measures to protect your personal information.
+                  Your data is encrypted and stored securely on our servers.
+                </p>
               </section>
               <section>
                 <h4 className="font-semibold text-foreground mb-2">Your Rights</h4>
-                <p>You have the right to access, correct, or delete your personal data. Contact us at admin@xtsy.one for any privacy-related requests.</p>
+                <p>
+                  You have the right to access, correct, or delete your personal data. Contact us at
+                  admin@xtsy.one for any privacy-related requests.
+                </p>
               </section>
               <section>
                 <h4 className="font-semibold text-foreground mb-2">Contact</h4>
                 <p>Email: admin@xtsy.one | Phone: +91 88373 17070</p>
               </section>
             </div>
+
             <div className="sticky bottom-0 bg-background border-t p-4">
-              <Button 
+              <Button
                 type="button"
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  setShowPrivacyModal(false);
-                }}
+                onClick={() => setShowPrivacyModal(false)}
                 className="w-full"
                 variant="outline"
               >
@@ -1114,9 +1112,8 @@ Looking forward to hearing from you. Thank you! 🌟`;
               </Button>
             </div>
           </div>
-        </div>,
-        document.body
-      )}
+        </DialogContent>
+      </Dialog>
     </Dialog>
   );
 };
