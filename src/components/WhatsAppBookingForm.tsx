@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { Checkbox } from "@/components/ui/checkbox";
-import { MessageCircle, Calendar, Users, Phone, Trash2, Home, AlertCircle, MapPin, Info, ChevronDown, ChevronUp, Sparkles, X } from "lucide-react";
+import { MessageCircle, Calendar, Users, Phone, Trash2, Home, AlertCircle, MapPin, Info, ChevronDown, ChevronUp, Sparkles, X, ArrowLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import { saveWhatsAppBooking } from "@/services/formBookingService";
@@ -1049,7 +1049,21 @@ Looking forward to hearing from you. Thank you! 🌟`;
             <div 
               className="sticky top-0 bg-background border-b p-4 flex items-center justify-between z-10"
             >
-              <h3 className="text-lg font-semibold">Privacy Policy</h3>
+              <div className="flex items-center gap-2">
+                <button 
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setShowPrivacyModal(false);
+                  }}
+                  className="p-2 hover:bg-muted rounded-full transition-colors md:hidden"
+                  aria-label="Go back"
+                >
+                  <ArrowLeft className="h-5 w-5" />
+                </button>
+                <h3 className="text-lg font-semibold">Privacy Policy</h3>
+              </div>
               <button 
                 type="button"
                 onClick={(e) => {
@@ -1057,7 +1071,7 @@ Looking forward to hearing from you. Thank you! 🌟`;
                   e.stopPropagation();
                   setShowPrivacyModal(false);
                 }}
-                className="p-2 hover:bg-muted rounded-full transition-colors"
+                className="p-2 hover:bg-muted rounded-full transition-colors bg-muted/50"
                 aria-label="Close privacy policy"
               >
                 <X className="h-5 w-5" />
@@ -1084,6 +1098,20 @@ Looking forward to hearing from you. Thank you! 🌟`;
                 <h4 className="font-semibold text-foreground mb-2">Contact</h4>
                 <p>Email: admin@xtsy.one | Phone: +91 88373 17070</p>
               </section>
+            </div>
+            <div className="sticky bottom-0 bg-background border-t p-4">
+              <Button 
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setShowPrivacyModal(false);
+                }}
+                className="w-full"
+                variant="outline"
+              >
+                Close
+              </Button>
             </div>
           </div>
         </div>,
