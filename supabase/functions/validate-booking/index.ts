@@ -8,8 +8,8 @@ import { PerformanceMonitor } from '../_shared/performanceMonitor.ts'
 
 // Room selection schema with strict validation to prevent injection
 const roomSelectionSchema = z.object({
-  id: z.string().regex(/^[a-zA-Z0-9_-]+$/, 'Room ID contains invalid characters').min(1).max(100),
-  name: z.string().regex(/^[a-zA-Z0-9\s_-]+$/, 'Room name contains invalid characters').min(1).max(100),
+  id: z.string().regex(/^[a-zA-Z0-9_-]+$/).min(1).max(100),
+  name: z.string().regex(/^[a-zA-Z0-9\s_-]+$/).min(1).max(100),
   price: z.number().int().positive(),
   type: z.enum(['dorm', 'private']),
   selection: z.object({
@@ -46,7 +46,7 @@ serve(async (req) => {
     if (!rateLimitResult.allowed) {
       monitor.complete(429);
       return new Response(
-        JSON.stringify({ error: 'Rate limit exceeded. Please try again later.' }),
+        JSON.stringify({ error: 'Please wait a moment before trying again.' }),
         { 
           status: 429,
           headers: { 
@@ -64,11 +64,11 @@ serve(async (req) => {
     // Validate request structure
     const validationResult = bookingValidationSchema.safeParse(requestBody);
     if (!validationResult.success) {
+      // Generic error - don't expose validation schema details
       return new Response(
         JSON.stringify({ 
           success: false, 
-          error: 'Invalid booking data',
-          details: validationResult.error.issues 
+          error: 'Invalid booking data. Please refresh and try again.'
         }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
@@ -84,14 +84,14 @@ serve(async (req) => {
 
     if (checkInDate < today) {
       return new Response(
-        JSON.stringify({ success: false, error: 'Check-in date cannot be in the past' }),
+        JSON.stringify({ success: false, error: 'Please select a future check-in date.' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
     if (checkOutDate <= checkInDate) {
       return new Response(
-        JSON.stringify({ success: false, error: 'Check-out must be after check-in' }),
+        JSON.stringify({ success: false, error: 'Check-out must be after check-in.' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
@@ -112,7 +112,7 @@ serve(async (req) => {
         return new Response(
           JSON.stringify({ 
             success: false, 
-            error: `Invalid room type: ${room.name}` 
+            error: 'Selected room is unavailable. Please refresh and try again.' 
           }),
           { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
         );
@@ -124,14 +124,12 @@ serve(async (req) => {
 
       // SECURITY CHECK: Verify client-submitted price matches server price
       if (room.price !== actualPrice) {
-        console.warn(`Price mismatch detected for ${room.name}: client=${room.price}, server=${actualPrice}`);
+        // Server-side logging only
+        console.warn('[Booking Validation] Price verification failed - code: PV001');
         return new Response(
           JSON.stringify({ 
             success: false, 
-            error: 'Price mismatch detected. Please refresh and try again.',
-            room: room.name,
-            expected_price: actualPrice,
-            received_price: room.price
+            error: 'Pricing has been updated. Please refresh and try again.'
           }),
           { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
         );
@@ -150,14 +148,8 @@ serve(async (req) => {
     const gstAmount = Math.round(serverCalculatedTotal * 0.12);
     const totalWithGst = serverCalculatedTotal + gstAmount;
 
-    console.log('Booking validation successful:', {
-      check_in: checkIn,
-      check_out: checkOut,
-      subtotal: serverCalculatedTotal,
-      gst: gstAmount,
-      total: totalWithGst,
-      rooms: priceValidationResults
-    });
+    // Server-side logging only - no sensitive details
+    console.log('[Booking Validation] Completed successfully');
 
     monitor.complete(200);
     
@@ -180,8 +172,9 @@ serve(async (req) => {
     );
 
   } catch (error) {
-    console.error('Booking validation error:', error);
-    monitor.complete(500, { error: error.message });
+    // Server-side error logging only
+    console.error('[Booking Validation] Error - code: BV001');
+    monitor.complete(500, { error: 'Processing error' });
     
     return new Response(
       JSON.stringify({ 
