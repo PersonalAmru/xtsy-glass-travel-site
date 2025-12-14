@@ -93,7 +93,7 @@ Deno.serve(async (req) => {
     try {
       body = await req.json();
     } catch {
-      return new Response(JSON.stringify({ error: 'Invalid JSON' }), {
+      return new Response(JSON.stringify({ error: 'Invalid request format' }), {
         status: 400,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
@@ -102,7 +102,7 @@ Deno.serve(async (req) => {
     const { endpoint, data } = body;
 
     if (!endpoint || !data) {
-      return new Response(JSON.stringify({ error: 'Missing endpoint or data' }), {
+      return new Response(JSON.stringify({ error: 'Missing required fields' }), {
         status: 400,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
@@ -110,7 +110,7 @@ Deno.serve(async (req) => {
 
     const visitorId = data.visitorId || data.visitor_id || 'unknown';
     if (!checkRateLimitLocal(visitorId)) {
-      return new Response(JSON.stringify({ error: 'Rate limited' }), {
+      return new Response(JSON.stringify({ error: 'Too many requests' }), {
         status: 429,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
@@ -122,10 +122,8 @@ Deno.serve(async (req) => {
       geoData = await getGeoFromIP(clientIP);
     }
 
-    console.log(`[Analytics] ${endpoint} from ${visitorId}`, { 
-      page: data.page_path,
-      geo: geoData?.country_code,
-    });
+    // Server-side logging only - no internal details exposed
+    console.log(`[Analytics] Event received: ${endpoint}`);
 
     // ============ TRAVELLER INTELLIGENCE INTEGRATION ============
     // Insert into traveller_events for all event types
@@ -167,7 +165,8 @@ Deno.serve(async (req) => {
     // Insert event into traveller_events
     const { error: eventError } = await supabase.from('traveller_events').insert(eventData);
     if (eventError) {
-      console.error('[Traveller Events Insert Error]', eventError.message);
+      // Server-side only - generic code for debugging
+      console.error('[Analytics] Event insert failed - code: TE001');
     }
 
     // Upsert traveller profile
@@ -194,7 +193,8 @@ Deno.serve(async (req) => {
       onConflict: 'visitor_id',
     });
     if (profileError) {
-      console.error('[Traveller Profile Upsert Error]', profileError.message);
+      // Server-side only - generic code for debugging
+      console.error('[Analytics] Profile upsert failed - code: TP001');
     }
 
     // Increment session/pageview counts
@@ -204,7 +204,8 @@ Deno.serve(async (req) => {
         p_is_new_session: data.is_entrance || false
       });
       if (rpcError) {
-        console.warn('[increment_traveller_stats RPC not available]', rpcError.message);
+        // Server-side only - generic code for debugging
+        console.warn('[Analytics] Stats increment unavailable - code: TS001');
       }
     }
 
@@ -260,7 +261,7 @@ Deno.serve(async (req) => {
             });
 
             if (geoError) {
-              console.warn('[Analytics Geo Heatmap Upsert Error]', geoError.message);
+              console.warn('[Analytics] Geo heatmap update failed - code: GH001');
             }
           }
         } else {
@@ -430,7 +431,8 @@ Deno.serve(async (req) => {
 
         const { error: cleanupError } = await supabase.rpc('cleanup_stale_realtime_visitors');
         if (cleanupError) {
-          console.warn('[cleanup_stale_realtime_visitors RPC not available]', cleanupError.message);
+          // Fallback cleanup - no internal details exposed
+          console.warn('[Analytics] Realtime cleanup fallback triggered - code: RC001');
 
           const { error: fallbackError } = await supabase
             .from('analytics_realtime')
@@ -438,14 +440,14 @@ Deno.serve(async (req) => {
             .lt('last_seen_at', new Date(Date.now() - 5 * 60 * 1000).toISOString());
 
           if (fallbackError) {
-            console.warn('[Analytics Realtime Fallback Cleanup Error]', fallbackError.message);
+            console.warn('[Analytics] Fallback cleanup failed - code: RC002');
           }
         }
 
         break;
       }
 
-      // NEW: Error tracking endpoint
+      // Error tracking endpoint
       case 'error': {
         await supabase.from('traveller_events').insert({
           visitor_id: visitorId,
@@ -465,7 +467,7 @@ Deno.serve(async (req) => {
         break;
       }
 
-      // NEW: Exit survey endpoint
+      // Exit survey endpoint
       case 'exit_survey': {
         await supabase.from('traveller_events').insert({
           visitor_id: visitorId,
@@ -483,7 +485,7 @@ Deno.serve(async (req) => {
         break;
       }
 
-      // NEW: Profile update endpoint (progressive profiling)
+      // Profile update endpoint (progressive profiling)
       case 'profile_update': {
         const profileData: Record<string, any> = {
           updated_at: new Date().toISOString(),
@@ -499,33 +501,8 @@ Deno.serve(async (req) => {
           .update(profileData)
           .eq('visitor_id', visitorId);
           
-        // Store additional profile data as event (not in profile table for privacy)
-        if (data.name || data.email || data.age || data.has_pet !== undefined) {
-          await supabase.from('traveller_events').insert({
-            visitor_id: visitorId,
-            session_id: data.sessionId,
-            event_type: 'profile_enrichment',
-            event_category: 'progressive_profiling',
-            properties: {
-              // Hash email for linking without storing raw PII
-              profile_hash: data.email ? await crypto.subtle.digest('SHA-256', 
-                new TextEncoder().encode(data.email.toLowerCase().trim())
-              ).then(buf => Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('')) : null,
-              has_pet: data.has_pet,
-              travel_style: data.travel_style,
-              preferred_activities: data.preferred_activities,
-            }
-          });
-        }
-        
         break;
       }
-
-      default:
-        return new Response(JSON.stringify({ error: 'Unknown endpoint' }), {
-          status: 400,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        });
     }
 
     return new Response(JSON.stringify({ success: true }), {
@@ -533,8 +510,9 @@ Deno.serve(async (req) => {
     });
 
   } catch (error) {
-    console.error('[Analytics Error]', error);
-    return new Response(JSON.stringify({ error: 'Internal error' }), {
+    // Server-side logging only - no internal details exposed
+    console.error('[Analytics] Processing error - code: ERR001');
+    return new Response(JSON.stringify({ error: 'Unable to process request' }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });

@@ -9,8 +9,6 @@ import { Shield, Mail, Lock } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const ADMIN_EMAIL = "xtsy.social@gmail.com";
-
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,9 +18,9 @@ const AdminLogin = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Check if email matches admin email
-    if (email.toLowerCase().trim() !== ADMIN_EMAIL.toLowerCase()) {
-      toast.error("Access denied. Only authorized admin can login.");
+    // Basic validation only - no email checking client-side
+    if (!email.trim() || !password) {
+      toast.error("Please enter both email and password.");
       return;
     }
 
@@ -34,27 +32,37 @@ const AdminLogin = () => {
         password: password,
       });
 
-      if (authError) throw authError;
+      if (authError) {
+        // Generic error message - don't reveal if email exists
+        toast.error("Invalid credentials. Please try again.");
+        return;
+      }
 
       if (authData.user) {
-        // Check if user has admin role
+        // Server-side role verification - the only place admin check happens
         const { data: isAdmin, error: roleError } = await supabase.rpc('has_role', {
           _user_id: authData.user.id,
           _role: 'admin'
         });
 
-        if (roleError) throw roleError;
+        if (roleError) {
+          await supabase.auth.signOut();
+          toast.error("Unable to verify access. Please try again.");
+          return;
+        }
 
         if (isAdmin) {
-          toast.success("Welcome, Admin!");
+          toast.success("Welcome!");
           navigate("/admin/dashboard");
         } else {
           await supabase.auth.signOut();
-          toast.error("Access denied. Admin privileges required.");
+          // Generic message - don't reveal admin requirement
+          toast.error("Access denied.");
         }
       }
     } catch (error: any) {
-      toast.error(error.message || "Login failed");
+      // Generic error - don't expose internal details
+      toast.error("Login failed. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -78,13 +86,13 @@ const AdminLogin = () => {
 
             <form onSubmit={handleLogin} className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-foreground">Admin Email</Label>
+                <Label htmlFor="email" className="text-foreground">Email</Label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                   <Input
                     id="email"
                     type="email"
-                    placeholder="Enter admin email"
+                    placeholder="Enter email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -118,16 +126,6 @@ const AdminLogin = () => {
               >
                 {loading ? "Signing in..." : "Sign In"}
               </Button>
-
-              <p className="text-center text-sm text-muted-foreground">
-                Forgot password?{" "}
-                <a 
-                  href="mailto:xtsy.social@gmail.com?subject=Admin%20Password%20Reset%20Request" 
-                  className="text-primary hover:text-primary/80 transition-colors"
-                >
-                  Contact admin for assistance
-                </a>
-              </p>
             </form>
 
             <div className="mt-6 text-center">

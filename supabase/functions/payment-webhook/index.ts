@@ -17,7 +17,7 @@ serve(async (req) => {
     try {
       body = JSON.parse(rawBody || '{}');
     } catch (e) {
-      return new Response(JSON.stringify({ error: 'Invalid JSON' }), { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+      return new Response(JSON.stringify({ error: 'Invalid request format' }), { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
     }
 
     // Verify Razorpay webhook signature when provided
@@ -25,7 +25,9 @@ serve(async (req) => {
     const webhookSecret = Deno.env.get('RAZORPAY_WEBHOOK_SECRET') ?? '';
     if (body?.event && razorpaySignature) {
       if (!webhookSecret) {
-        return new Response(JSON.stringify({ error: 'Webhook secret not configured' }), { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+        // Log error server-side only - don't expose config state to client
+        console.error('[Payment Webhook] Critical: Webhook secret not configured');
+        return new Response(JSON.stringify({ error: 'Webhook processing failed. Please contact support.' }), { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
       }
       const encoder = new TextEncoder();
       const key = await crypto.subtle.importKey(
@@ -38,7 +40,7 @@ serve(async (req) => {
       const signatureBytes = await crypto.subtle.sign('HMAC', key, encoder.encode(rawBody));
       const computed = Array.from(new Uint8Array(signatureBytes)).map(b => b.toString(16).padStart(2, '0')).join('');
       if (computed !== razorpaySignature) {
-        return new Response(JSON.stringify({ error: 'Invalid signature' }), { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+        return new Response(JSON.stringify({ error: 'Authentication failed' }), { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
       }
     }
 
@@ -47,7 +49,8 @@ serve(async (req) => {
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
     );
 
-    console.log('Webhook received:', body);
+    // Server-side logging only - no sensitive details in response
+    console.log('[Payment Webhook] Received event:', body.event || body.type || 'unknown');
 
     // Handle different webhook types
     if (body.event === 'payment.captured') {
@@ -80,10 +83,11 @@ serve(async (req) => {
       );
 
       const result = await response.json();
-      console.log('Payment verification result:', result);
+      // Server-side logging only
+      console.log('[Payment Webhook] Payment verification completed:', result.success ? 'success' : 'failed');
 
       return new Response(
-        JSON.stringify({ success: true, message: 'Webhook processed' }),
+        JSON.stringify({ success: true, message: 'Processed' }),
         { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
@@ -113,21 +117,23 @@ serve(async (req) => {
       );
 
       const result = await response.json();
-      console.log('SMS/Email payment verification result:', result);
+      // Server-side logging only
+      console.log('[Payment Webhook] Alternative payment verification completed:', result.success ? 'success' : 'failed');
 
       return new Response(
-        JSON.stringify({ success: true, message: 'Payment verified' }),
+        JSON.stringify({ success: true, message: 'Processed' }),
         { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
     return new Response(
-      JSON.stringify({ message: 'Webhook received but not processed' }),
+      JSON.stringify({ success: true, message: 'Acknowledged' }),
       { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );
 
   } catch (error) {
-    console.error('Webhook error:', error);
+    // Server-side error logging only
+    console.error('[Payment Webhook] Processing error:', error);
     return new Response(
       JSON.stringify({ 
         error: 'Webhook processing failed. Please contact support if this persists.',
