@@ -69,7 +69,7 @@ const WorkFromHome = () => {
     label: "Monthly Package",
     price: getPackagePrice(basePrices.month),
     perDay: getPerDayPrice(basePrices.month, 30),
-    benefits: ["30 nights accommodation", "Unlimited WiFi", "Private workspace", "Breakfast included", "Laundry service"]
+    benefits: ["30 nights accommodation", "Unlimited WiFi", "Common workspace", "Breakfast included", "Laundry service"]
   }, {
     duration: "quarter",
     label: "Quarterly Package",
