@@ -98,7 +98,7 @@ const FAQ = () => {
         },
         {
           question: "What's your cancellation policy?",
-          answer: "Rooms: Cancel 48+ hours before for full refund. Tours: 72 hours for local tours, 7 days for multi-state packages. We keep it fair and transparent.",
+          answer: "All advance payments are non-refundable—no cancellations once paid. BUT you can modify your booking once within 90 days (date changes, room upgrades/downgrades subject to availability). Group and promo bookings are non-cancellable. No refunds for no-shows. We keep it transparent.",
         },
         {
           question: "Airport pickup available?",
