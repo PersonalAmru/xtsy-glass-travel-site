@@ -2,8 +2,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Minus, Plus } from "lucide-react";
-
+import { Minus, Plus, PawPrint } from "lucide-react";
 interface FoodAddonsSectionProps {
   formData: {
     guests: number;
@@ -165,16 +164,24 @@ const FoodAddonsSection = ({ formData, onInputChange }: FoodAddonsSectionProps) 
 
       {/* Pet Details */}
       <div className="space-y-2">
-        <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border">
-          <div>
-            <h4 className="font-semibold">Pet Details</h4>
-            <p className="text-sm text-muted-foreground">Details about your pet (type, breed, size, age)</p>
+        <div className="flex items-center justify-between p-4 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/20 rounded-lg border border-amber-200/50 dark:border-amber-800/30">
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-full bg-amber-100 dark:bg-amber-900/30">
+              <PawPrint className="h-5 w-5 text-amber-600 dark:text-amber-400" />
+            </div>
+            <div>
+              <h4 className="font-semibold flex items-center gap-2">
+                Pet Details
+                <span className="text-xs bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 px-2 py-0.5 rounded-full">🐾 Pet Friendly</span>
+              </h4>
+              <p className="text-sm text-muted-foreground">Traveling with your furry friend? Tell us about them!</p>
+            </div>
           </div>
           <input
             type="checkbox"
             checked={formData.petDetails}
             onChange={(e) => onInputChange('petDetails', e.target.checked)}
-            className="w-5 h-5 text-primary"
+            className="w-5 h-5 text-amber-600 accent-amber-600"
           />
         </div>
         
