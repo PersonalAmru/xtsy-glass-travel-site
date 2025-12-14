@@ -154,21 +154,21 @@ const PremiumReviewCard = ({
 
         {/* Name and meta */}
         <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 flex-wrap mb-1">
-            <h4 className={cn(
-              "font-semibold text-white truncate",
-              variant === "featured" ? "text-lg" : "text-sm"
-            )}>
-              {review.name}
-            </h4>
-            {/* Rating badge */}
-            <div className={cn(
-              "flex items-center gap-1 px-2 py-0.5 rounded-full",
-              "bg-gradient-to-r from-yellow-500/20 to-amber-500/20 border border-yellow-500/30"
-            )}>
-              <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-              <span className="text-yellow-400 text-xs font-bold">{ratingDisplay}</span>
-            </div>
+          {/* Guest name */}
+          <h4 className={cn(
+            "font-semibold text-white truncate mb-1.5",
+            variant === "featured" ? "text-lg" : "text-sm"
+          )}>
+            {review.name}
+          </h4>
+          
+          {/* Rating badge - below name */}
+          <div className={cn(
+            "inline-flex items-center gap-1 px-2 py-0.5 rounded-full mb-1.5",
+            "bg-gradient-to-r from-yellow-500/20 to-amber-500/20 border border-yellow-500/30"
+          )}>
+            <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+            <span className="text-yellow-400 text-xs font-bold">{ratingDisplay}</span>
           </div>
 
           {/* Property badge */}

@@ -536,9 +536,22 @@ const ReviewsSection = () => {
     highlights: "Great view · Quiet · Great value"
   }];
 
-  // Sort reviews by comment length (longest first)
+  // Sort reviews by comment length (longest first) for carousel
   const filteredReviews = useMemo(() => 
     [...allReviews].sort((a, b) => b.comment.length - a.comment.length), 
+    []
+  );
+
+  // Sort reviews by rating (highest first) for "View All" modal
+  const topRatedReviews = useMemo(() => 
+    [...allReviews].sort((a, b) => {
+      // Normalize ratings to 0-10 scale for comparison
+      const ratingA = a.source === "Google" || a.source === "MakeMyTrip" ? a.rating * 2 : a.rating;
+      const ratingB = b.source === "Google" || b.source === "MakeMyTrip" ? b.rating * 2 : b.rating;
+      // Sort by rating first, then by comment length
+      if (ratingB !== ratingA) return ratingB - ratingA;
+      return b.comment.length - a.comment.length;
+    }), 
     []
   );
 
@@ -784,7 +797,7 @@ const ReviewsSection = () => {
             }}
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {allReviews.slice(0, visibleReviewsCount).map((review, idx) => (
+              {topRatedReviews.slice(0, visibleReviewsCount).map((review, idx) => (
                 <PremiumReviewCard
                   key={idx}
                   review={review}
