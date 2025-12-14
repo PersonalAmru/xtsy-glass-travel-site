@@ -497,10 +497,62 @@ Deno.serve(async (req) => {
         if (data.preferred_season) profileData.preferred_season = data.preferred_season;
         if (data.tour_interest_score) profileData.tour_interest_score = data.tour_interest_score;
         
+        // Travel intelligence fields from booking form
+        if (data.travel_style) profileData.preferred_room_category = data.travel_style === 'luxury' ? 'luxury' : data.travel_style === 'budget' ? 'dormitory' : 'private';
+        if (data.trip_purpose) profileData.preferred_season = data.trip_purpose; // Reusing field for trip type
+        
         await supabase.from('traveller_profiles')
           .update(profileData)
           .eq('visitor_id', visitorId);
           
+        break;
+      }
+
+      // Form engagement tracking endpoint
+      case 'form_engagement': {
+        await supabase.from('traveller_events').insert({
+          visitor_id: visitorId,
+          session_id: data.sessionId,
+          event_type: 'form_engagement',
+          event_category: 'booking_form',
+          event_action: data.event_action || data.action,
+          event_label: data.event_label || data.field_name,
+          event_value: data.event_value || data.time_spent,
+          page_path: data.page_path,
+          properties: {
+            form_name: data.form_name,
+            scroll_depth: data.scroll_depth,
+            total_time: data.total_form_time,
+            fields_completed: data.fields_completed,
+            location_granted: data.location_granted,
+            location_city: data.location_city,
+            location_country: data.location_country,
+            trip_purpose: data.trip_purpose,
+            travel_style: data.travel_style,
+            traveling_with: data.traveling_with,
+            heard_from: data.heard_from,
+          }
+        });
+        
+        // Update booking intent score on form engagement
+        if (data.event_action === 'form_start' || data.event_action === 'field_focus') {
+          const { data: profile } = await supabase
+            .from('traveller_profiles')
+            .select('booking_intent_score')
+            .eq('visitor_id', visitorId)
+            .single();
+          
+          let newScore = (profile?.booking_intent_score || 0) + 5;
+          if (data.event_action === 'form_start') newScore += 15;
+          
+          await supabase.from('traveller_profiles')
+            .update({ 
+              booking_intent_score: Math.min(newScore, 100),
+              updated_at: new Date().toISOString()
+            })
+            .eq('visitor_id', visitorId);
+        }
+        
         break;
       }
     }

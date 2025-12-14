@@ -340,6 +340,10 @@ export const useEnhancedAnalytics = () => {
     preferred_activities?: string[];
     is_solo_traveller?: boolean;
     is_group_organizer?: boolean;
+    trip_purpose?: string;
+    location_granted?: boolean;
+    location_city?: string;
+    location_country?: string;
   }) => {
     if (!context) return;
 
