@@ -329,7 +329,7 @@ export default function BookingFlow() {
     });
   }, []);
   const handleNext = () => {
-    setShowPropertyDialog(true);
+    setShowWhatsAppForm(true);
   };
   const handlePrevious = () => {
     navigate(-1);
