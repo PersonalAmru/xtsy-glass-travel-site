@@ -74,16 +74,25 @@ const XTSYRouteLoader = memo(() => (
         width: 48,
         height: 48,
         margin: '0 auto 12px',
-        background: 'linear-gradient(135deg, #a31545 0%, #dc2626 100%)',
         borderRadius: 12,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        animation: 'pulse 1.5s ease-in-out infinite'
+        animation: 'pulse 1.5s ease-in-out infinite',
+        boxShadow: '0 4px 20px rgba(163, 21, 69, 0.3)',
+        overflow: 'hidden'
       }}>
-        <span style={{ color: 'white', fontWeight: 'bold', fontSize: 12 }}>XTSY</span>
+        <img 
+          src="/xtsy-favicon.png" 
+          alt="XTSY" 
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'contain'
+          }}
+        />
       </div>
-      <style>{`@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }`}</style>
+      <style>{`@keyframes pulse { 0%, 100% { opacity: 1; box-shadow: 0 0 20px rgba(163, 21, 69, 0.4); } 50% { opacity: 0.85; box-shadow: 0 0 30px rgba(163, 21, 69, 0.6); } }`}</style>
     </div>
   </div>
 ));
