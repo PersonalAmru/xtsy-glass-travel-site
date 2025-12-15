@@ -1,51 +1,50 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { useAdminAnalytics } from '@/hooks/useAdminAnalytics';
-import { useTravellerIntelligence } from '@/hooks/useTravellerIntelligence';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Badge } from '@/components/ui/badge';
 import { 
   Users, Eye, MousePointer, Clock, TrendingUp, Globe, 
-  BarChart3, Activity, RefreshCw, ArrowUpRight, ArrowDownRight,
-  Monitor, Smartphone, Tablet, MapPin, Zap, Calendar
+  Activity, RefreshCw, ArrowUpRight, ArrowDownRight,
+  Monitor, Smartphone, Tablet, MapPin, Zap, Search, Target,
+  BarChart3, PieChart as PieChartIcon
 } from 'lucide-react';
 import { 
-  LineChart, Line, AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell,
-  XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer 
+  AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell,
+  XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend
 } from 'recharts';
-import { TravellerSegmentsPanel } from '@/components/admin/TravellerSegmentsPanel';
-import { DemandForecastPanel } from '@/components/admin/DemandForecastPanel';
-import { RealtimeTravellerActivity } from '@/components/admin/RealtimeTravellerActivity';
+import WorldMapHeatmap from '@/components/admin/WorldMapHeatmap';
 
-const COLORS = ['hsl(var(--primary))', 'hsl(var(--secondary))', 'hsl(var(--accent))', '#10b981', '#f59e0b', '#ef4444'];
+const COLORS = ['hsl(var(--primary))', 'hsl(var(--secondary))', '#10b981', '#f59e0b', '#8b5cf6', '#ef4444'];
 
-// Metric Card Component
+// Smart Metric Card with trend analysis
 const MetricCard: React.FC<{
   title: string;
   value: string | number;
   icon: React.ReactNode;
   trend?: { value: number; isUp: boolean };
   subtitle?: string;
-}> = ({ title, value, icon, trend, subtitle }) => (
-  <Card className="bg-card/50 backdrop-blur-sm border-border/50">
-    <CardContent className="p-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-sm font-medium text-muted-foreground">{title}</p>
-          <h3 className="text-2xl font-bold mt-1">{value}</h3>
-          {subtitle && <p className="text-xs text-muted-foreground mt-1">{subtitle}</p>}
+  highlight?: boolean;
+}> = ({ title, value, icon, trend, subtitle, highlight }) => (
+  <Card className={`bg-card/50 backdrop-blur-sm border-border/50 transition-all hover:shadow-lg ${highlight ? 'ring-2 ring-primary/30' : ''}`}>
+    <CardContent className="p-4 md:p-6">
+      <div className="flex items-start justify-between gap-2">
+        <div className="flex-1 min-w-0">
+          <p className="text-xs md:text-sm font-medium text-muted-foreground truncate">{title}</p>
+          <h3 className="text-xl md:text-2xl font-bold mt-1 truncate">{value}</h3>
+          {subtitle && <p className="text-xs text-muted-foreground mt-1 truncate">{subtitle}</p>}
           {trend && (
             <div className={`flex items-center text-xs mt-2 ${trend.isUp ? 'text-green-500' : 'text-red-500'}`}>
-              {trend.isUp ? <ArrowUpRight className="w-3 h-3 mr-1" /> : <ArrowDownRight className="w-3 h-3 mr-1" />}
-              {trend.value}%
+              {trend.isUp ? <ArrowUpRight className="w-3 h-3 mr-1 flex-shrink-0" /> : <ArrowDownRight className="w-3 h-3 mr-1 flex-shrink-0" />}
+              <span>{trend.value}%</span>
             </div>
           )}
         </div>
-        <div className="p-3 bg-primary/10 rounded-full">
+        <div className="p-2 md:p-3 bg-primary/10 rounded-full flex-shrink-0">
           {icon}
         </div>
       </div>
@@ -53,74 +52,29 @@ const MetricCard: React.FC<{
   </Card>
 );
 
-// World Map Placeholder (simple country list heatmap)
-const GeoHeatMap: React.FC<{ data: any }> = ({ data }) => {
-  if (!data?.countries?.length) {
-    return (
-      <div className="flex items-center justify-center h-64 text-muted-foreground">
-        No geographic data available yet
-      </div>
-    );
-  }
-
-  const maxVisitors = Math.max(...data.countries.map((c: any) => c.visitors));
-
+// Intelligent Insight Card
+const InsightCard: React.FC<{
+  title: string;
+  description: string;
+  action?: string;
+  type: 'opportunity' | 'warning' | 'success';
+}> = ({ title, description, action, type }) => {
+  const colors = {
+    opportunity: 'bg-blue-500/10 border-blue-500/30 text-blue-600',
+    warning: 'bg-amber-500/10 border-amber-500/30 text-amber-600',
+    success: 'bg-green-500/10 border-green-500/30 text-green-600',
+  };
+  
   return (
-    <div className="space-y-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {data.countries.slice(0, 10).map((country: any, index: number) => {
-          const intensity = country.visitors / maxVisitors;
-          return (
-            <div 
-              key={country.country_code}
-              className="flex items-center justify-between p-3 rounded-lg bg-muted/50"
-              style={{ 
-                borderLeft: `4px solid hsl(var(--primary) / ${0.3 + intensity * 0.7})`,
-              }}
-            >
-              <div className="flex items-center gap-3">
-                <span className="text-lg font-semibold text-muted-foreground">#{index + 1}</span>
-                <div>
-                  <p className="font-medium">{country.country_name || country.country_code}</p>
-                  <p className="text-xs text-muted-foreground">
-                    {country.cities?.length || 0} cities tracked
-                  </p>
-                </div>
-              </div>
-              <div className="text-right">
-                <p className="font-semibold">{country.visitors.toLocaleString()}</p>
-                <p className="text-xs text-muted-foreground">visitors</p>
-                {country.bookings > 0 && (
-                  <p className="text-xs text-green-500">₹{country.revenue?.toLocaleString()}</p>
-                )}
-              </div>
-            </div>
-          );
-        })}
+    <div className={`p-3 md:p-4 rounded-lg border ${colors[type]}`}>
+      <div className="flex items-start gap-3">
+        <Target className="w-5 h-5 flex-shrink-0 mt-0.5" />
+        <div className="min-w-0">
+          <p className="font-medium text-sm">{title}</p>
+          <p className="text-xs mt-1 opacity-80">{description}</p>
+          {action && <p className="text-xs mt-2 font-medium">→ {action}</p>}
+        </div>
       </div>
-
-      {/* Sales Opportunity Indicators */}
-      <Card className="mt-4 bg-gradient-to-r from-primary/10 to-accent/10 border-primary/20">
-        <CardHeader className="pb-2">
-          <CardTitle className="text-sm flex items-center gap-2">
-            <TrendingUp className="w-4 h-4 text-primary" />
-            Sales Opportunities
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-2 text-sm">
-            {data.countries
-              .filter((c: any) => c.visitors > 10 && c.bookings === 0)
-              .slice(0, 3)
-              .map((c: any) => (
-                <div key={c.country_code} className="flex justify-between items-center">
-                  <span>{c.country_name || c.country_code}</span>
-                  <span className="text-amber-500">{c.visitors} visitors, 0 bookings</span>
-                </div>
-              ))}
-          </div>
-        </CardContent>
-      </Card>
     </div>
   );
 };
@@ -129,52 +83,45 @@ const GeoHeatMap: React.FC<{ data: any }> = ({ data }) => {
 const ConversionFunnel: React.FC<{ data: any }> = ({ data }) => {
   if (!data?.funnels?.length) {
     return (
-      <div className="flex items-center justify-center h-64 text-muted-foreground">
-        No conversion data available yet
+      <div className="flex items-center justify-center h-48 text-muted-foreground text-sm">
+        No conversion data yet
       </div>
     );
   }
 
   const bookingFunnel = data.funnels.find((f: any) => f.funnel === 'booking');
-
-  if (!bookingFunnel) {
-    return (
-      <div className="flex items-center justify-center h-64 text-muted-foreground">
-        Booking funnel not configured
-      </div>
-    );
-  }
+  if (!bookingFunnel) return null;
 
   const maxCount = Math.max(...bookingFunnel.steps.map((s: any) => s.count));
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       {bookingFunnel.steps.map((step: any, index: number) => {
         const width = maxCount > 0 ? (step.count / maxCount) * 100 : 0;
         return (
           <div key={step.step} className="space-y-1">
-            <div className="flex justify-between text-sm">
-              <span className="font-medium">{step.step.replace(/_/g, ' ').toUpperCase()}</span>
+            <div className="flex justify-between text-xs md:text-sm">
+              <span className="font-medium truncate">{step.step.replace(/_/g, ' ').toUpperCase()}</span>
               <span className="text-muted-foreground">{step.count.toLocaleString()}</span>
             </div>
-            <div className="h-8 bg-muted rounded-lg overflow-hidden relative">
+            <div className="h-6 md:h-8 bg-muted rounded-lg overflow-hidden relative">
               <div 
                 className="h-full bg-gradient-to-r from-primary to-primary/70 transition-all duration-500"
                 style={{ width: `${width}%` }}
               />
               {index > 0 && parseFloat(step.dropoff) > 0 && (
-                <span className="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-red-500">
-                  -{step.dropoff}% dropoff
+                <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[10px] md:text-xs text-red-500">
+                  -{step.dropoff}%
                 </span>
               )}
             </div>
           </div>
         );
       })}
-      <div className="mt-4 p-4 bg-green-500/10 rounded-lg border border-green-500/20">
+      <div className="mt-4 p-3 md:p-4 bg-green-500/10 rounded-lg border border-green-500/20">
         <div className="flex justify-between items-center">
-          <span className="font-medium text-green-600">Conversion Rate</span>
-          <span className="text-2xl font-bold text-green-600">{bookingFunnel.conversion_rate}%</span>
+          <span className="font-medium text-green-600 text-sm">Overall Conversion</span>
+          <span className="text-xl md:text-2xl font-bold text-green-600">{bookingFunnel.conversion_rate}%</span>
         </div>
       </div>
     </div>
@@ -186,14 +133,6 @@ const AdminDashboard: React.FC = () => {
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
   const [daysBack, setDaysBack] = useState(30);
   const { loading, error, overview, realtime, geoHeatmap, funnel, traffic, behavior, trends, refresh } = useAdminAnalytics(daysBack);
-  const { 
-    overview: intelligenceOverview, 
-    segments, 
-    forecasts, 
-    highIntentTravellers, 
-    loading: intelligenceLoading, 
-    refresh: refreshIntelligence 
-  } = useTravellerIntelligence();
 
   // Check admin access
   useEffect(() => {
@@ -220,13 +159,44 @@ const AdminDashboard: React.FC = () => {
     checkAdmin();
   }, [navigate]);
 
-  if (isAdmin === null) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-      </div>
-    );
-  }
+  // Generate intelligent insights
+  const insights = useMemo(() => {
+    const result: Array<{ title: string; description: string; action?: string; type: 'opportunity' | 'warning' | 'success' }> = [];
+    
+    if (geoHeatmap?.countries) {
+      const highTrafficNoConversion = geoHeatmap.countries
+        .filter((c: any) => c.visitors > 10 && (c.bookings || 0) === 0)
+        .slice(0, 2);
+      
+      highTrafficNoConversion.forEach((c: any) => {
+        result.push({
+          title: `Untapped market: ${c.country_name || c.country_code}`,
+          description: `${c.visitors} visitors, 0 bookings - potential conversion opportunity`,
+          action: 'Consider targeted marketing for this region',
+          type: 'opportunity',
+        });
+      });
+    }
+    
+    if (overview?.bounce_rate && parseFloat(overview.bounce_rate) > 60) {
+      result.push({
+        title: 'High bounce rate detected',
+        description: `${overview.bounce_rate}% of visitors leave without interaction`,
+        action: 'Improve landing page engagement',
+        type: 'warning',
+      });
+    }
+    
+    if (realtime?.active_visitors && realtime.active_visitors > 5) {
+      result.push({
+        title: 'High live traffic!',
+        description: `${realtime.active_visitors} visitors browsing now`,
+        type: 'success',
+      });
+    }
+    
+    return result;
+  }, [geoHeatmap, overview, realtime]);
 
   const formatDuration = (seconds: number) => {
     if (seconds < 60) return `${seconds}s`;
@@ -235,63 +205,72 @@ const AdminDashboard: React.FC = () => {
     return `${mins}m ${secs}s`;
   };
 
+  if (isAdmin === null) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-bold">Analytics Dashboard</h1>
-              <p className="text-sm text-muted-foreground">XTSY Business Intelligence</p>
+        <div className="container mx-auto px-3 md:px-4 py-3 md:py-4">
+          <div className="flex items-center justify-between gap-2 flex-wrap">
+            <div className="min-w-0">
+              <h1 className="text-lg md:text-2xl font-bold truncate">Analytics Intelligence</h1>
+              <p className="text-xs md:text-sm text-muted-foreground">XTSY Business Insights</p>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 md:gap-4 flex-shrink-0">
               <Select value={daysBack.toString()} onValueChange={(v) => setDaysBack(parseInt(v))}>
-                <SelectTrigger className="w-[140px]">
+                <SelectTrigger className="w-[100px] md:w-[140px] text-xs md:text-sm h-8 md:h-10">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="7">Last 7 days</SelectItem>
-                  <SelectItem value="30">Last 30 days</SelectItem>
-                  <SelectItem value="90">Last 90 days</SelectItem>
+                  <SelectItem value="7">7 days</SelectItem>
+                  <SelectItem value="30">30 days</SelectItem>
+                  <SelectItem value="90">90 days</SelectItem>
                 </SelectContent>
               </Select>
-              <Button variant="outline" size="sm" onClick={() => { refresh(); refreshIntelligence(); }} disabled={loading || intelligenceLoading}>
-                <RefreshCw className={`w-4 h-4 mr-2 ${loading || intelligenceLoading ? 'animate-spin' : ''}`} />
-                Refresh
+              <Button variant="outline" size="sm" onClick={refresh} disabled={loading} className="h-8 md:h-10">
+                <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+                <span className="hidden md:inline ml-2">Refresh</span>
               </Button>
-              <Button variant="ghost" size="sm" onClick={() => navigate('/')}>
-                ← Back to Site
+              <Button variant="ghost" size="sm" onClick={() => navigate('/')} className="h-8 md:h-10">
+                <span className="hidden md:inline">← Back</span>
+                <span className="md:hidden">←</span>
               </Button>
             </div>
           </div>
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-6">
+      <main className="container mx-auto px-3 md:px-4 py-4 md:py-6 space-y-4 md:space-y-6">
         {error && (
-          <Card className="mb-6 border-red-500/50 bg-red-500/10">
-            <CardContent className="p-4 text-red-500">{error}</CardContent>
+          <Card className="border-red-500/50 bg-red-500/10">
+            <CardContent className="p-3 md:p-4 text-red-500 text-sm">{error}</CardContent>
           </Card>
         )}
 
-        {/* Real-time Indicator */}
-        <Card className="mb-6 bg-gradient-to-r from-green-500/10 to-emerald-500/10 border-green-500/20">
-          <CardContent className="p-4 flex items-center justify-between">
+        {/* Live Indicator */}
+        <Card className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border-green-500/20">
+          <CardContent className="p-3 md:p-4 flex items-center justify-between flex-wrap gap-2">
             <div className="flex items-center gap-3">
               <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="font-medium">Live Now</span>
+              <span className="font-medium text-sm md:text-base">Live Now</span>
             </div>
-            <div className="text-2xl font-bold">{realtime?.active_visitors || 0} active visitors</div>
+            <div className="text-xl md:text-2xl font-bold">{realtime?.active_visitors || 0} active visitors</div>
           </CardContent>
         </Card>
 
-        {/* Overview Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        {/* Key Metrics */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
           {loading ? (
             Array.from({ length: 4 }).map((_, i) => (
               <Card key={i}>
-                <CardContent className="p-6">
+                <CardContent className="p-4 md:p-6">
                   <Skeleton className="h-4 w-24 mb-2" />
                   <Skeleton className="h-8 w-16" />
                 </CardContent>
@@ -302,365 +281,201 @@ const AdminDashboard: React.FC = () => {
               <MetricCard
                 title="Total Visitors"
                 value={overview?.total_visitors?.toLocaleString() || 0}
-                icon={<Users className="w-5 h-5 text-primary" />}
+                icon={<Users className="w-4 h-4 md:w-5 md:h-5 text-primary" />}
                 subtitle={`${overview?.new_visitor_rate || 0}% new`}
+                highlight
               />
               <MetricCard
                 title="Page Views"
                 value={overview?.total_pageviews?.toLocaleString() || 0}
-                icon={<Eye className="w-5 h-5 text-primary" />}
+                icon={<Eye className="w-4 h-4 md:w-5 md:h-5 text-primary" />}
               />
               <MetricCard
-                title="Avg. Session Duration"
+                title="Avg. Session"
                 value={formatDuration(overview?.avg_session_duration || 0)}
-                icon={<Clock className="w-5 h-5 text-primary" />}
-                subtitle={`${overview?.bounce_rate || 0}% bounce rate`}
+                icon={<Clock className="w-4 h-4 md:w-5 md:h-5 text-primary" />}
+                subtitle={`${overview?.bounce_rate || 0}% bounce`}
               />
               <MetricCard
-                title="Total Sessions"
+                title="Sessions"
                 value={(overview?.total_sessions || 0).toLocaleString()}
-                icon={<Activity className="w-5 h-5 text-primary" />}
-                subtitle={`${overview?.new_visitor_rate || 0}% new visitors`}
+                icon={<Activity className="w-4 h-4 md:w-5 md:h-5 text-primary" />}
               />
             </>
           )}
         </div>
 
-        {/* Main Dashboard Tabs */}
-        <Tabs defaultValue="realtime" className="space-y-6">
-          <TabsList className="flex flex-wrap gap-1 h-auto p-1">
-            <TabsTrigger value="realtime" className="flex items-center gap-2">
-              <Zap className="w-4 h-4" />
-              <span className="hidden sm:inline">Real-time</span>
-            </TabsTrigger>
-            <TabsTrigger value="segments" className="flex items-center gap-2">
-              <Users className="w-4 h-4" />
-              <span className="hidden sm:inline">Segments</span>
-            </TabsTrigger>
-            <TabsTrigger value="forecasts" className="flex items-center gap-2">
-              <Calendar className="w-4 h-4" />
-              <span className="hidden sm:inline">Forecasts</span>
-            </TabsTrigger>
-            <TabsTrigger value="geo" className="flex items-center gap-2">
-              <Globe className="w-4 h-4" />
-              <span className="hidden sm:inline">Geography</span>
-            </TabsTrigger>
-            <TabsTrigger value="funnel" className="flex items-center gap-2">
-              <TrendingUp className="w-4 h-4" />
-              <span className="hidden sm:inline">Funnel</span>
-            </TabsTrigger>
-            <TabsTrigger value="behavior" className="flex items-center gap-2">
-              <MousePointer className="w-4 h-4" />
-              <span className="hidden sm:inline">Behavior</span>
-            </TabsTrigger>
-            <TabsTrigger value="traffic" className="flex items-center gap-2">
-              <BarChart3 className="w-4 h-4" />
-              <span className="hidden sm:inline">Traffic</span>
-            </TabsTrigger>
-            <TabsTrigger value="trends" className="flex items-center gap-2">
-              <Activity className="w-4 h-4" />
-              <span className="hidden sm:inline">Trends</span>
-            </TabsTrigger>
-          </TabsList>
+        {/* Intelligent Insights */}
+        {insights.length > 0 && (
+          <div>
+            <h3 className="text-sm md:text-base font-semibold mb-3 flex items-center gap-2">
+              <Zap className="w-4 h-4 text-primary" />
+              Smart Insights
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+              {insights.slice(0, 3).map((insight, i) => (
+                <InsightCard key={i} {...insight} />
+              ))}
+            </div>
+          </div>
+        )}
 
-          {/* Real-time Traveller Activity */}
-          <TabsContent value="realtime">
-            <RealtimeTravellerActivity 
-              activeVisitors={intelligenceOverview?.realtime?.active_visitors || realtime?.active_visitors || 0}
-              highIntentTravellers={highIntentTravellers || []}
-            />
-          </TabsContent>
+        {/* World Map - Full Width */}
+        <WorldMapHeatmap data={geoHeatmap} />
 
-          {/* Traveller Segments */}
-          <TabsContent value="segments">
-            {intelligenceLoading ? (
-              <Card>
-                <CardContent className="p-6">
-                  <div className="space-y-4">
-                    {Array.from({ length: 4 }).map((_, i) => (
-                      <Skeleton key={i} className="h-24 w-full" />
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ) : (
-              <TravellerSegmentsPanel 
-                segments={(segments?.segments || []).map(s => ({
-                  ...s,
-                  traveller_count: s.traveller_count || 0,
-                  avg_lifetime_value: s.avg_lifetime_value || 0,
-                  avg_booking_value: s.avg_booking_value || 0,
-                  conversion_rate: s.conversion_rate || 0,
-                  total_revenue: s.total_revenue || 0,
-                }))}
-                distribution={segments?.distribution || {}}
-                spendDistribution={segments?.spend_distribution || { high_value: 0, medium: 0, budget: 0 }}
-              />
-            )}
-          </TabsContent>
-
-          {/* Demand Forecasts */}
-          <TabsContent value="forecasts">
-            {intelligenceLoading ? (
-              <Card>
-                <CardContent className="p-6">
-                  <div className="space-y-4">
-                    {Array.from({ length: 3 }).map((_, i) => (
-                      <Skeleton key={i} className="h-32 w-full" />
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ) : (
-              <DemandForecastPanel 
-                forecasts={forecasts?.forecasts || {}}
-              />
-            )}
-          </TabsContent>
-
-          {/* Geographic Heatmap */}
-          <TabsContent value="geo">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <MapPin className="w-5 h-5" />
-                  Geographic Distribution & Sales Opportunities
-                </CardTitle>
-                <CardDescription>
-                  Visitor locations with booking conversion analysis
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                {loading ? (
-                  <div className="space-y-4">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Skeleton key={i} className="h-16 w-full" />
-                    ))}
-                  </div>
-                ) : (
-                  <GeoHeatMap data={geoHeatmap} />
-                )}
-              </CardContent>
-            </Card>
-          </TabsContent>
-
+        {/* Two Column Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
           {/* Conversion Funnel */}
-          <TabsContent value="funnel">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <TrendingUp className="w-5 h-5" />
-                  Booking Conversion Funnel
-                </CardTitle>
-                <CardDescription>
-                  Track visitor journey from landing to booking completion
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                {loading ? (
-                  <div className="space-y-4">
-                    {Array.from({ length: 4 }).map((_, i) => (
-                      <Skeleton key={i} className="h-12 w-full" />
-                    ))}
-                  </div>
-                ) : (
-                  <ConversionFunnel data={funnel} />
-                )}
-              </CardContent>
-            </Card>
-          </TabsContent>
+          <Card className="bg-card/50 backdrop-blur-sm">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm md:text-base flex items-center gap-2">
+                <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-primary" />
+                Conversion Funnel
+              </CardTitle>
+              <CardDescription className="text-xs md:text-sm">Visitor journey to booking</CardDescription>
+            </CardHeader>
+            <CardContent>
+              {loading ? (
+                <div className="space-y-4">
+                  {Array.from({ length: 4 }).map((_, i) => (
+                    <Skeleton key={i} className="h-10 w-full" />
+                  ))}
+                </div>
+              ) : (
+                <ConversionFunnel data={funnel} />
+              )}
+            </CardContent>
+          </Card>
 
-          {/* Behavior Analytics */}
-          <TabsContent value="behavior">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Top Pages */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Top Pages</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  {loading ? (
-                    <Skeleton className="h-64 w-full" />
-                  ) : (
-                    <div className="space-y-3">
-                      {behavior?.top_pages?.slice(0, 8).map((page, i) => (
-                        <div key={page.path} className="flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            <span className="text-xs text-muted-foreground w-6">{i + 1}</span>
-                            <span className="text-sm truncate max-w-[200px]">{page.path}</span>
-                          </div>
-                          <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                            <span>{page.views} views</span>
-                            <span>{formatDuration(page.avg_time)}</span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-
-              {/* Device Breakdown */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Device Breakdown</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  {loading ? (
-                    <Skeleton className="h-64 w-full" />
-                  ) : (
-                    <div className="space-y-4">
-                      {Object.entries(behavior?.devices || {}).map(([device, count]) => {
-                        const total = Object.values(behavior?.devices || {}).reduce((a, b) => a + b, 0);
-                        const percentage = total > 0 ? ((count as number) / total * 100).toFixed(1) : 0;
-                        const Icon = device === 'mobile' ? Smartphone : device === 'tablet' ? Tablet : Monitor;
-                        return (
-                          <div key={device} className="flex items-center gap-4">
-                            <Icon className="w-5 h-5 text-muted-foreground" />
-                            <div className="flex-1">
-                              <div className="flex justify-between mb-1">
-                                <span className="capitalize">{device}</span>
-                                <span className="text-muted-foreground">{percentage}%</span>
-                              </div>
-                              <div className="h-2 bg-muted rounded-full overflow-hidden">
-                                <div 
-                                  className="h-full bg-primary transition-all"
-                                  style={{ width: `${percentage}%` }}
-                                />
-                              </div>
+          {/* Device & Traffic */}
+          <Card className="bg-card/50 backdrop-blur-sm">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm md:text-base flex items-center gap-2">
+                <PieChartIcon className="w-4 h-4 md:w-5 md:h-5 text-primary" />
+                Traffic Breakdown
+              </CardTitle>
+              <CardDescription className="text-xs md:text-sm">Device & source distribution</CardDescription>
+            </CardHeader>
+            <CardContent>
+              {loading ? (
+                <Skeleton className="h-48 w-full" />
+              ) : (
+                <div className="space-y-4">
+                  {/* Device Stats */}
+                  <div className="space-y-2">
+                    <p className="text-xs font-medium text-muted-foreground">Devices</p>
+                    {Object.entries(behavior?.devices || {}).map(([device, count]) => {
+                      const total = Object.values(behavior?.devices || {}).reduce((a, b) => a + b, 0);
+                      const percentage = total > 0 ? ((count as number) / total * 100).toFixed(0) : 0;
+                      const Icon = device === 'mobile' ? Smartphone : device === 'tablet' ? Tablet : Monitor;
+                      return (
+                        <div key={device} className="flex items-center gap-3">
+                          <Icon className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+                          <div className="flex-1 min-w-0">
+                            <div className="flex justify-between mb-1 text-xs">
+                              <span className="capitalize truncate">{device}</span>
+                              <span className="text-muted-foreground">{percentage}%</span>
+                            </div>
+                            <div className="h-1.5 bg-muted rounded-full overflow-hidden">
+                              <div 
+                                className="h-full bg-primary transition-all"
+                                style={{ width: `${percentage}%` }}
+                              />
                             </div>
                           </div>
-                        );
-                      })}
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            </div>
-          </TabsContent>
-
-          {/* Traffic Sources */}
-          <TabsContent value="traffic">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Traffic Sources</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  {loading ? (
-                    <Skeleton className="h-64 w-full" />
-                  ) : traffic?.sources?.length ? (
-                    <ResponsiveContainer width="100%" height={300}>
-                      <PieChart>
-                        <Pie
-                          data={traffic.sources.slice(0, 6)}
-                          dataKey="sessions"
-                          nameKey="source"
-                          cx="50%"
-                          cy="50%"
-                          outerRadius={100}
-                          label={({ source, percent }) => `${source} (${(percent * 100).toFixed(0)}%)`}
-                        >
-                          {traffic.sources.slice(0, 6).map((_, index) => (
-                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                          ))}
-                        </Pie>
-                        <Tooltip />
-                      </PieChart>
-                    </ResponsiveContainer>
-                  ) : (
-                    <div className="flex items-center justify-center h-64 text-muted-foreground">
-                      No traffic data available
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle>Campaign Performance</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  {loading ? (
-                    <Skeleton className="h-64 w-full" />
-                  ) : traffic?.campaigns?.length ? (
-                    <div className="space-y-3">
-                      {traffic.campaigns.slice(0, 10).map((campaign) => (
-                        <div key={campaign.name} className="flex justify-between items-center">
-                          <span className="text-sm truncate max-w-[200px]">{campaign.name}</span>
-                          <span className="font-medium">{campaign.count}</span>
                         </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="flex items-center justify-center h-64 text-muted-foreground">
-                      No campaigns tracked yet
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            </div>
-          </TabsContent>
+                      );
+                    })}
+                  </div>
 
-          {/* Trends */}
-          <TabsContent value="trends">
-            <div className="space-y-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Daily Visitors & Sessions</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  {loading ? (
-                    <Skeleton className="h-64 w-full" />
-                  ) : trends?.daily?.length ? (
-                    <ResponsiveContainer width="100%" height={300}>
-                      <AreaChart data={trends.daily}>
-                        <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-                        <XAxis 
-                          dataKey="date" 
-                          tickFormatter={(date) => new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-                          className="text-xs"
-                        />
-                        <YAxis className="text-xs" />
-                        <Tooltip 
-                          labelFormatter={(date) => new Date(date).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
-                        />
-                        <Legend />
-                        <Area type="monotone" dataKey="total_visitors" name="Visitors" stroke="hsl(var(--primary))" fill="hsl(var(--primary) / 0.2)" />
-                        <Area type="monotone" dataKey="total_sessions" name="Sessions" stroke="hsl(var(--secondary))" fill="hsl(var(--secondary) / 0.2)" />
-                      </AreaChart>
-                    </ResponsiveContainer>
-                  ) : (
-                    <div className="flex items-center justify-center h-64 text-muted-foreground">
-                      Collecting trend data...
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
+                  {/* Traffic Sources */}
+                  <div className="space-y-2 pt-2 border-t border-border/50">
+                    <p className="text-xs font-medium text-muted-foreground">Top Sources</p>
+                    {traffic?.sources?.slice(0, 4).map((source, i) => (
+                      <div key={source.source} className="flex items-center justify-between text-xs">
+                        <div className="flex items-center gap-2">
+                          <Badge variant="outline" className="text-[10px] px-1.5">{i + 1}</Badge>
+                          <span className="truncate max-w-[100px]">{source.source || 'direct'}</span>
+                        </div>
+                        <span className="font-medium">{source.sessions}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </div>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle>Today's Hourly Activity</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  {loading ? (
-                    <Skeleton className="h-48 w-full" />
-                  ) : (
-                    <ResponsiveContainer width="100%" height={200}>
-                      <BarChart data={trends?.hourly || []}>
-                        <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-                        <XAxis dataKey="hour" tickFormatter={(h) => `${h}:00`} className="text-xs" />
-                        <YAxis className="text-xs" />
-                        <Tooltip labelFormatter={(h) => `${h}:00 - ${h}:59`} />
-                        <Bar dataKey="sessions" name="Sessions" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
-                      </BarChart>
-                    </ResponsiveContainer>
-                  )}
-                </CardContent>
-              </Card>
-            </div>
-          </TabsContent>
-        </Tabs>
+        {/* Trends */}
+        <Card className="bg-card/50 backdrop-blur-sm">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm md:text-base flex items-center gap-2">
+              <BarChart3 className="w-4 h-4 md:w-5 md:h-5 text-primary" />
+              Traffic Trends
+            </CardTitle>
+            <CardDescription className="text-xs md:text-sm">Daily visitors & sessions</CardDescription>
+          </CardHeader>
+          <CardContent>
+            {loading ? (
+              <Skeleton className="h-48 md:h-64 w-full" />
+            ) : trends?.daily?.length ? (
+              <ResponsiveContainer width="100%" height={250}>
+                <AreaChart data={trends.daily}>
+                  <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                  <XAxis 
+                    dataKey="date" 
+                    tickFormatter={(date) => new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                    className="text-[10px] md:text-xs"
+                    tick={{ fontSize: 10 }}
+                  />
+                  <YAxis className="text-[10px] md:text-xs" tick={{ fontSize: 10 }} />
+                  <Tooltip 
+                    labelFormatter={(date) => new Date(date).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}
+                    contentStyle={{ fontSize: 12 }}
+                  />
+                  <Legend wrapperStyle={{ fontSize: 12 }} />
+                  <Area type="monotone" dataKey="total_visitors" name="Visitors" stroke="hsl(var(--primary))" fill="hsl(var(--primary) / 0.2)" />
+                  <Area type="monotone" dataKey="total_sessions" name="Sessions" stroke="hsl(var(--secondary))" fill="hsl(var(--secondary) / 0.2)" />
+                </AreaChart>
+              </ResponsiveContainer>
+            ) : (
+              <div className="flex items-center justify-center h-48 text-muted-foreground text-sm">
+                Collecting trend data...
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        {/* Top Pages */}
+        <Card className="bg-card/50 backdrop-blur-sm">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm md:text-base flex items-center gap-2">
+              <Search className="w-4 h-4 md:w-5 md:h-5 text-primary" />
+              Top Pages
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            {loading ? (
+              <Skeleton className="h-32 w-full" />
+            ) : (
+              <div className="space-y-2">
+                {behavior?.top_pages?.slice(0, 6).map((page, i) => (
+                  <div key={page.path} className="flex items-center justify-between text-xs md:text-sm p-2 rounded-lg hover:bg-muted/50 transition-colors">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <Badge variant="outline" className="text-[10px] px-1.5 flex-shrink-0">{i + 1}</Badge>
+                      <span className="truncate">{page.path}</span>
+                    </div>
+                    <div className="flex items-center gap-4 text-muted-foreground flex-shrink-0">
+                      <span>{page.views} views</span>
+                      <span className="hidden md:inline">{formatDuration(page.avg_time)}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </CardContent>
+        </Card>
       </main>
     </div>
   );

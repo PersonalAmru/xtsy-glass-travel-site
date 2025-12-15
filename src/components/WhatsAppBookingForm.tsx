@@ -80,14 +80,24 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
     petAge: ""
   });
 
-  // Travel behavior questions (optional personalization)
+  // Travel behavior questions (mandatory)
   const [travelPreferences, setTravelPreferences] = useState({
     tripPurpose: "",
     travelingWith: "",
     heardFrom: "",
     travelStyle: "",
+    visitorState: "", // Only state shown to user
   });
-  const [showTravelPrefs, setShowTravelPrefs] = useState(false);
+  
+  // Full location data for analytics (not shown to user)
+  const [fullLocationData, setFullLocationData] = useState<{
+    city?: string;
+    state?: string;
+    country?: string;
+    pincode?: string;
+    latitude?: number;
+    longitude?: number;
+  } | null>(null);
 
   const [nights, setNights] = useState(0);
   const [roomTypes, setRoomTypes] = useState<RoomType[]>([]);
@@ -833,128 +843,168 @@ Looking forward to hearing from you. Thank you! 🌟`;
                 onInputChange={handleInputChange}
               />
 
-              {/* Travel Preferences - Optional Personalization */}
-              <div className="border border-border/50 rounded-lg overflow-hidden">
-                <button
-                  type="button"
-                  onClick={() => setShowTravelPrefs(!showTravelPrefs)}
-                  className="w-full flex items-center justify-between p-4 bg-muted/30 hover:bg-muted/50 transition-colors"
-                >
-                  <div className="flex items-center gap-2">
-                    <Sparkles className="h-4 w-4 text-primary" />
-                    <span className="font-medium text-sm">Help us personalize your experience</span>
-                    <span className="text-xs text-muted-foreground">(Optional)</span>
-                  </div>
-                  {showTravelPrefs ? (
-                    <ChevronUp className="h-4 w-4 text-muted-foreground" />
-                  ) : (
-                    <ChevronDown className="h-4 w-4 text-muted-foreground" />
-                  )}
-                </button>
+              {/* Travel Preferences - Mandatory Section */}
+              <div className="border border-border/50 rounded-lg overflow-hidden bg-gradient-to-br from-primary/5 to-accent/5">
+                <div className="flex items-center gap-2 p-4 border-b border-border/50">
+                  <Sparkles className="h-4 w-4 text-primary" />
+                  <span className="font-medium text-sm">Tell us about yourself</span>
+                  <span className="text-xs text-primary ml-auto">Required</span>
+                </div>
                 
-                {showTravelPrefs && (
-                  <div className="p-4 space-y-4 border-t border-border/50">
-                    {/* Location Consent */}
-                    <div className="flex items-center justify-between p-3 bg-muted/20 rounded-lg">
-                      <div className="flex items-center gap-2">
-                        <MapPin className="h-4 w-4 text-primary" />
-                        <span className="text-sm">Share location for local offers</span>
-                      </div>
-                      {hasConsented ? (
-                        <span className="text-xs text-primary flex items-center gap-1">
-                          ✓ {locationData?.city || 'Location shared'}
-                        </span>
+                <div className="p-4 space-y-4">
+                  {/* Where are you from - Location Capture */}
+                  <div>
+                    <Label className="text-sm text-muted-foreground flex items-center gap-2">
+                      <MapPin className="h-3 w-3" />
+                      Where are you from?
+                    </Label>
+                    <div 
+                      onClick={async () => {
+                        if (!hasConsented && !locationLoading) {
+                          const result = await requestLocation();
+                          if (result?.granted) {
+                            // Store full location for analytics
+                            setFullLocationData({
+                              city: result.city,
+                              state: result.region,
+                              country: result.country,
+                              latitude: result.latitude,
+                              longitude: result.longitude,
+                            });
+                            // Only show state to user
+                            setTravelPreferences(prev => ({ 
+                              ...prev, 
+                              visitorState: result.region || result.city || 'Location detected'
+                            }));
+                            
+                            // Track location to analytics backend
+                            try {
+                              await supabase.functions.invoke('track-analytics', {
+                                body: {
+                                  endpoint: 'visitor_location',
+                                  data: {
+                                    visitorId: localStorage.getItem('xtsy_visitor_id') || 'unknown',
+                                    city: result.city,
+                                    region: result.region,
+                                    country: result.country,
+                                    countryCode: result.countryCode,
+                                    latitude: result.latitude,
+                                    longitude: result.longitude,
+                                    source: 'booking_form',
+                                  }
+                                }
+                              });
+                            } catch (e) {
+                              console.log('Location tracking error:', e);
+                            }
+                          }
+                        }
+                      }}
+                      className={`mt-2 p-3 rounded-lg border cursor-pointer transition-all ${
+                        hasConsented 
+                          ? 'bg-primary/10 border-primary/30' 
+                          : 'bg-muted/30 border-border hover:border-primary/50 hover:bg-muted/50'
+                      }`}
+                    >
+                      {locationLoading ? (
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+                          Detecting your location...
+                        </div>
+                      ) : hasConsented ? (
+                        <div className="flex items-center gap-2 text-sm">
+                          <MapPin className="h-4 w-4 text-primary" />
+                          <span className="text-foreground font-medium">
+                            {travelPreferences.visitorState || locationData?.region || 'Location detected'}
+                          </span>
+                          <span className="text-xs text-primary ml-auto">✓</span>
+                        </div>
                       ) : (
-                        <Button
-                          type="button"
-                          variant="outline"
-                          size="sm"
-                          onClick={requestLocation}
-                          disabled={locationLoading}
-                          className="text-xs h-7"
-                        >
-                          {locationLoading ? 'Detecting...' : 'Enable'}
-                        </Button>
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <MapPin className="h-4 w-4" />
+                          <span>Tap to share your location</span>
+                          <span className="text-xs text-primary ml-auto">→</span>
+                        </div>
                       )}
                     </div>
+                  </div>
 
-                    {/* Trip Purpose */}
-                    <div>
-                      <Label className="text-sm text-muted-foreground">What brings you to Shillong?</Label>
-                      <div className="flex flex-wrap gap-2 mt-2">
-                        {['Adventure', 'Work', 'Vacation', 'Event', 'Other'].map((purpose) => (
-                          <Button
-                            key={purpose}
-                            type="button"
-                            variant={travelPreferences.tripPurpose === purpose.toLowerCase() ? 'default' : 'outline'}
-                            size="sm"
-                            onClick={() => setTravelPreferences(prev => ({ ...prev, tripPurpose: purpose.toLowerCase() }))}
-                            className="text-xs h-7"
-                          >
-                            {purpose}
-                          </Button>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Traveling With */}
-                    <div>
-                      <Label className="text-sm text-muted-foreground">Who are you traveling with?</Label>
-                      <div className="flex flex-wrap gap-2 mt-2">
-                        {['Solo', 'Couple', 'Family', 'Friends', 'Team'].map((group) => (
-                          <Button
-                            key={group}
-                            type="button"
-                            variant={travelPreferences.travelingWith === group.toLowerCase() ? 'default' : 'outline'}
-                            size="sm"
-                            onClick={() => setTravelPreferences(prev => ({ ...prev, travelingWith: group.toLowerCase() }))}
-                            className="text-xs h-7"
-                          >
-                            {group}
-                          </Button>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Travel Style */}
-                    <div>
-                      <Label className="text-sm text-muted-foreground">What's your travel style?</Label>
-                      <div className="flex flex-wrap gap-2 mt-2">
-                        {['Budget', 'Mid-range', 'Luxury'].map((style) => (
-                          <Button
-                            key={style}
-                            type="button"
-                            variant={travelPreferences.travelStyle === style.toLowerCase() ? 'default' : 'outline'}
-                            size="sm"
-                            onClick={() => setTravelPreferences(prev => ({ ...prev, travelStyle: style.toLowerCase() }))}
-                            className="text-xs h-7"
-                          >
-                            {style}
-                          </Button>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* How did you hear */}
-                    <div>
-                      <Label className="text-sm text-muted-foreground">How did you hear about us?</Label>
-                      <div className="flex flex-wrap gap-2 mt-2">
-                        {['Google', 'Instagram', 'YouTube', 'Friend', 'Booking.com'].map((source) => (
-                          <Button
-                            key={source}
-                            type="button"
-                            variant={travelPreferences.heardFrom === source.toLowerCase() ? 'default' : 'outline'}
-                            size="sm"
-                            onClick={() => setTravelPreferences(prev => ({ ...prev, heardFrom: source.toLowerCase() }))}
-                            className="text-xs h-7"
-                          >
-                            {source}
-                          </Button>
-                        ))}
-                      </div>
+                  {/* Trip Purpose */}
+                  <div>
+                    <Label className="text-sm text-muted-foreground">What brings you to Shillong?</Label>
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      {['Adventure', 'Work', 'Vacation', 'Event', 'Other'].map((purpose) => (
+                        <Button
+                          key={purpose}
+                          type="button"
+                          variant={travelPreferences.tripPurpose === purpose.toLowerCase() ? 'default' : 'outline'}
+                          size="sm"
+                          onClick={() => setTravelPreferences(prev => ({ ...prev, tripPurpose: purpose.toLowerCase() }))}
+                          className="text-xs h-7"
+                        >
+                          {purpose}
+                        </Button>
+                      ))}
                     </div>
                   </div>
-                )}
+
+                  {/* Traveling With */}
+                  <div>
+                    <Label className="text-sm text-muted-foreground">Who are you traveling with?</Label>
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      {['Solo', 'Couple', 'Family', 'Friends', 'Team'].map((group) => (
+                        <Button
+                          key={group}
+                          type="button"
+                          variant={travelPreferences.travelingWith === group.toLowerCase() ? 'default' : 'outline'}
+                          size="sm"
+                          onClick={() => setTravelPreferences(prev => ({ ...prev, travelingWith: group.toLowerCase() }))}
+                          className="text-xs h-7"
+                        >
+                          {group}
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Travel Style */}
+                  <div>
+                    <Label className="text-sm text-muted-foreground">What's your travel style?</Label>
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      {['Budget', 'Mid-range', 'Luxury'].map((style) => (
+                        <Button
+                          key={style}
+                          type="button"
+                          variant={travelPreferences.travelStyle === style.toLowerCase() ? 'default' : 'outline'}
+                          size="sm"
+                          onClick={() => setTravelPreferences(prev => ({ ...prev, travelStyle: style.toLowerCase() }))}
+                          className="text-xs h-7"
+                        >
+                          {style}
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* How did you hear */}
+                  <div>
+                    <Label className="text-sm text-muted-foreground">How did you hear about us?</Label>
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      {['Google', 'Instagram', 'YouTube', 'Friend', 'Booking.com'].map((source) => (
+                        <Button
+                          key={source}
+                          type="button"
+                          variant={travelPreferences.heardFrom === source.toLowerCase() ? 'default' : 'outline'}
+                          size="sm"
+                          onClick={() => setTravelPreferences(prev => ({ ...prev, heardFrom: source.toLowerCase() }))}
+                          className="text-xs h-7"
+                        >
+                          {source}
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* Special Requests */}
