@@ -7,7 +7,8 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { Checkbox } from "@/components/ui/checkbox";
-import { MessageCircle, Calendar, Users, Phone, Trash2, Home, AlertCircle, MapPin, Info, ChevronDown, ChevronUp, Sparkles, X, ArrowLeft } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { MessageCircle, Calendar, Users, Phone, Trash2, Home, AlertCircle, MapPin, Info, ChevronDown, ChevronUp, Sparkles, X, ArrowLeft, Gift } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import { saveWhatsAppBooking } from "@/services/formBookingService";
@@ -17,6 +18,22 @@ import { validateField, validateWhatsAppBooking } from "@/utils/whatsappBookingV
 import { useLocationConsent } from "@/hooks/useLocationConsent";
 import { useFormEngagement } from "@/hooks/useFormEngagement";
 import { useEnhancedAnalytics } from "@/hooks/useEnhancedAnalytics";
+
+// All Indian states and union territories
+const INDIAN_STATES = [
+  "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
+  "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand",
+  "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur",
+  "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab",
+  "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura",
+  "Uttar Pradesh", "Uttarakhand", "West Bengal",
+  // Union Territories
+  "Andaman and Nicobar Islands", "Chandigarh", "Dadra and Nagar Haveli and Daman and Diu",
+  "Delhi", "Jammu and Kashmir", "Ladakh", "Lakshadweep", "Puducherry"
+];
+
+// States eligible for 5% welcome discount (major metro cities)
+const DISCOUNT_ELIGIBLE_STATES = ["Karnataka", "Maharashtra", "Delhi", "Tamil Nadu"];
 
 interface WhatsAppBookingFormProps {
   isOpen: boolean;
@@ -321,6 +338,18 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
     }, 0);
   };
 
+  // Check if eligible for 5% welcome discount
+  const isEligibleForWelcomeDiscount = DISCOUNT_ELIGIBLE_STATES.includes(travelPreferences.visitorState);
+  
+  const getWelcomeDiscount = () => {
+    if (!isEligibleForWelcomeDiscount) return 0;
+    return Math.round(getTotalAmount() * 0.05);
+  };
+
+  const getFinalAmount = () => {
+    return getTotalAmount() - getWelcomeDiscount();
+  };
+
   const handleBookNow = async () => {
     // Validate all required fields
     const validation = validateWhatsAppBooking({
@@ -348,7 +377,10 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
     setIsSubmitting(true);
     
     // Save to database using secure RPC
-    const totalAmount = getTotalAmount();
+    const subtotalAmount = getTotalAmount();
+    const discountAmount = getWelcomeDiscount();
+    const finalAmount = getFinalAmount();
+    
     const saveResult = await saveWhatsAppBooking({
       name: formData.name,
       email: formData.email,
@@ -361,7 +393,7 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
       specialRequests: formData.specialRequests,
       selectedRooms,
       nights: nights || 1,
-      totalAmount: totalAmount || 0
+      totalAmount: finalAmount || 0
     });
 
     if (!saveResult.success) {
@@ -385,6 +417,13 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
     if (formData.transportation) addOnsText.push(`   • Transportation Service`);
     if (formData.itinerary) addOnsText.push(`   • Custom Itinerary Planning`);
 
+    // Build pricing text with discount if applicable
+    const pricingText = finalAmount > 0 
+      ? isEligibleForWelcomeDiscount 
+        ? `\n💰 *Pricing:*\n   Subtotal: ${formatPrice(subtotalAmount)}\n   XTSY Welcome Discount (5%): -${formatPrice(discountAmount)}\n   *Final Amount: ${formatPrice(finalAmount)}*${currency.code !== 'INR' ? ` (${currency.code})` : ''}`
+        : `\n💰 *Estimated: ${formatPrice(finalAmount)}${currency.code !== 'INR' ? ` (${currency.code})` : ''}*`
+      : '';
+
     const message = `🏠 *XTSY Travellers Hostel - Booking Inquiry*
 
 Namaste Team XTSY! 🙏
@@ -395,7 +434,7 @@ I'd love to stay at XTSY Travellers Hostel, Shillong.
    Name: ${formData.name}
    Email: ${formData.email}
    Phone: ${formData.phone}
-   ${formData.city ? `From: ${formData.city}${formData.pincode ? ` - ${formData.pincode}` : ''}` : ''}
+   ${travelPreferences.visitorState ? `From: ${travelPreferences.visitorState}` : formData.city ? `From: ${formData.city}${formData.pincode ? ` - ${formData.pincode}` : ''}` : ''}
 
 📅 *Stay Details:*
    Check-in: ${formData.checkIn}
@@ -407,7 +446,7 @@ I'd love to stay at XTSY Travellers Hostel, Shillong.
 ${roomsText}
 ${addOnsText.length > 0 ? `\n🍽️ *Services:*\n${addOnsText.join('\n')}` : ''}
 ${formData.specialRequests ? `\n📝 *Requests:*\n   ${formData.specialRequests}` : ''}
-${totalAmount > 0 ? `\n💰 *Estimated: ${formatPrice(totalAmount)}${currency.code !== 'INR' ? ` (${currency.code})` : ''}*` : ''}
+${pricingText}
 
 Looking forward to hearing from you. Thank you! 🌟`;
 
@@ -827,10 +866,33 @@ Looking forward to hearing from you. Thank you! 🌟`;
                     
                     {/* Total Amount */}
                     {nights > 0 && (
-                      <div className="mt-3 p-3 bg-primary/10 rounded-lg border border-primary/20">
-                        <p className="text-primary font-bold text-lg text-right">
-                          Total Estimated Amount: {formatPrice(getTotalAmount())}
-                        </p>
+                      <div className="mt-3 p-3 bg-primary/10 rounded-lg border border-primary/20 space-y-2">
+                        <div className="flex justify-between items-center text-sm">
+                          <span className="text-muted-foreground">Subtotal:</span>
+                          <span className="text-foreground">{formatPrice(getTotalAmount())}</span>
+                        </div>
+                        
+                        {isEligibleForWelcomeDiscount && (
+                          <div className="flex justify-between items-center text-sm">
+                            <span className="text-green-600 flex items-center gap-1">
+                              <Gift className="h-3 w-3" />
+                              XTSY Welcome Discount (5%):
+                            </span>
+                            <span className="text-green-600">-{formatPrice(getWelcomeDiscount())}</span>
+                          </div>
+                        )}
+                        
+                        <div className="border-t border-primary/20 pt-2">
+                          <p className="text-primary font-bold text-lg text-right">
+                            Total: {formatPrice(getFinalAmount())}
+                          </p>
+                        </div>
+                        
+                        {!travelPreferences.visitorState && (
+                          <p className="text-xs text-amber-600 text-center">
+                            💡 Select your state below to check for exclusive discounts!
+                          </p>
+                        )}
                       </div>
                     )}
                   </div>
@@ -852,81 +914,74 @@ Looking forward to hearing from you. Thank you! 🌟`;
                 </div>
                 
                 <div className="p-4 space-y-4">
-                  {/* Where are you from - Location Capture */}
+                  {/* Where are you from - State Dropdown */}
                   <div>
                     <Label className="text-sm text-muted-foreground flex items-center gap-2">
                       <MapPin className="h-3 w-3" />
                       Where are you from?
                     </Label>
-                    <div 
-                      onClick={async () => {
-                        if (!hasConsented && !locationLoading) {
-                          const result = await requestLocation();
-                          if (result?.granted) {
-                            // Store full location for analytics
-                            setFullLocationData({
-                              city: result.city,
-                              state: result.region,
-                              country: result.country,
-                              latitude: result.latitude,
-                              longitude: result.longitude,
-                            });
-                            // Only show state to user
-                            setTravelPreferences(prev => ({ 
-                              ...prev, 
-                              visitorState: result.region || result.city || 'Location detected'
-                            }));
-                            
-                            // Track location to analytics backend
-                            try {
-                              await supabase.functions.invoke('track-analytics', {
-                                body: {
-                                  endpoint: 'visitor_location',
-                                  data: {
-                                    visitorId: localStorage.getItem('xtsy_visitor_id') || 'unknown',
-                                    city: result.city,
-                                    region: result.region,
-                                    country: result.country,
-                                    countryCode: result.countryCode,
-                                    latitude: result.latitude,
-                                    longitude: result.longitude,
-                                    source: 'booking_form',
-                                  }
-                                }
-                              });
-                            } catch (e) {
-                              console.log('Location tracking error:', e);
+                    <Select
+                      value={travelPreferences.visitorState}
+                      onValueChange={async (value) => {
+                        setTravelPreferences(prev => ({ ...prev, visitorState: value }));
+                        
+                        // Track state selection to analytics
+                        try {
+                          await supabase.functions.invoke('track-analytics', {
+                            body: {
+                              endpoint: 'visitor_location',
+                              data: {
+                                visitorId: localStorage.getItem('xtsy_visitor_id') || 'unknown',
+                                region: value,
+                                country: 'India',
+                                countryCode: 'IN',
+                                source: 'booking_form_dropdown',
+                              }
                             }
-                          }
+                          });
+                        } catch (e) {
+                          console.log('Location tracking error:', e);
+                        }
+                        
+                        // Show toast if eligible for discount
+                        if (DISCOUNT_ELIGIBLE_STATES.includes(value)) {
+                          toast({
+                            title: "🎉 XTSY Welcome Discount Unlocked!",
+                            description: `Welcome from ${value}! You get an extra 5% off on your booking.`,
+                            duration: 4000,
+                          });
                         }
                       }}
-                      className={`mt-2 p-3 rounded-lg border cursor-pointer transition-all ${
-                        hasConsented 
-                          ? 'bg-primary/10 border-primary/30' 
-                          : 'bg-muted/30 border-border hover:border-primary/50 hover:bg-muted/50'
-                      }`}
                     >
-                      {locationLoading ? (
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-                          Detecting your location...
-                        </div>
-                      ) : hasConsented ? (
-                        <div className="flex items-center gap-2 text-sm">
-                          <MapPin className="h-4 w-4 text-primary" />
-                          <span className="text-foreground font-medium">
-                            {travelPreferences.visitorState || locationData?.region || 'Location detected'}
-                          </span>
-                          <span className="text-xs text-primary ml-auto">✓</span>
-                        </div>
-                      ) : (
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <MapPin className="h-4 w-4" />
-                          <span>Tap to share your location</span>
-                          <span className="text-xs text-primary ml-auto">→</span>
-                        </div>
-                      )}
-                    </div>
+                      <SelectTrigger className="mt-2 bg-background">
+                        <SelectValue placeholder="Select your state" />
+                      </SelectTrigger>
+                      <SelectContent className="max-h-60 bg-background z-50">
+                        {INDIAN_STATES.map((state) => (
+                          <SelectItem key={state} value={state}>
+                            <div className="flex items-center gap-2">
+                              <span>{state}</span>
+                              {DISCOUNT_ELIGIBLE_STATES.includes(state) && (
+                                <span className="text-[10px] bg-green-500 text-white px-1.5 py-0.5 rounded ml-1">
+                                  5% OFF
+                                </span>
+                              )}
+                            </div>
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    
+                    {/* Show discount badge after selection */}
+                    {isEligibleForWelcomeDiscount && (
+                      <div className="mt-2 p-2 bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 rounded-lg">
+                        <p className="text-xs text-green-700 dark:text-green-400 flex items-center gap-1">
+                          <Gift className="h-3 w-3" />
+                          <span className="font-medium">XTSY Welcome Discount Applied!</span>
+                          <span className="ml-auto">Extra 5% off</span>
+                        </p>
+                      </div>
+                    )}
                   </div>
 
                   {/* Trip Purpose */}
