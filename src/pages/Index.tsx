@@ -1,4 +1,4 @@
-import { useState, useEffect, Suspense } from "react";
+import { useState, useCallback } from "react";
 import HeroSection from "@/components/HeroSection";
 import RoomsSection from "@/components/RoomsSection";
 import ServicesSection from "@/components/ServicesSection";
@@ -10,6 +10,8 @@ import Footer from "@/components/Footer";
 import LazyWrapper from "@/components/LazyWrapper";
 import SEOContent from "@/components/SEOContent";
 import FAQSection from "@/components/FAQSection";
+import { ExitSurveyModal, useExitIntent, ExitSurveyData } from "@/components/ExitSurveyModal";
+import { useEnhancedAnalytics } from "@/hooks/useEnhancedAnalytics";
 
 // Minimal mobile-friendly fallback
 const SectionFallback = ({ height = 'h-64' }: { height?: string }) => (
@@ -17,6 +19,49 @@ const SectionFallback = ({ height = 'h-64' }: { height?: string }) => (
 );
 
 const Index = () => {
+  const [showExitSurvey, setShowExitSurvey] = useState(false);
+  const { submitExitSurvey } = useEnhancedAnalytics();
+
+  // Check if user has already seen exit survey this session
+  const hasSeenSurvey = sessionStorage.getItem('exit_survey_shown');
+  // Check if user has interacted (scrolled, clicked)
+  const [hasInteracted, setHasInteracted] = useState(false);
+
+  // Track user interactions to only show exit survey to non-engaged users
+  useState(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) setHasInteracted(true);
+    };
+    const handleClick = () => setHasInteracted(true);
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    document.addEventListener('click', handleClick);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('click', handleClick);
+    };
+  });
+
+  const handleExitIntent = useCallback(() => {
+    // Only show if: not seen before, user hasn't engaged much, been on page >5 seconds
+    if (!hasSeenSurvey && !hasInteracted) {
+      sessionStorage.setItem('exit_survey_shown', 'true');
+      setShowExitSurvey(true);
+    }
+  }, [hasSeenSurvey, hasInteracted]);
+
+  useExitIntent(handleExitIntent);
+
+  const handleSurveySubmit = (data: ExitSurveyData) => {
+    submitExitSurvey(data);
+    setShowExitSurvey(false);
+  };
+
+  const handleSurveyDismiss = () => {
+    setShowExitSurvey(false);
+  };
+
   return (
     <div className="min-h-screen">
       <SEOContent page="home" />
@@ -43,6 +88,14 @@ const Index = () => {
         </LazyWrapper>
       </main>
       <Footer />
+
+      {/* Exit Intent Survey for non-engaged visitors */}
+      {showExitSurvey && (
+        <ExitSurveyModal
+          onSubmit={handleSurveySubmit}
+          onDismiss={handleSurveyDismiss}
+        />
+      )}
     </div>
   );
 };
