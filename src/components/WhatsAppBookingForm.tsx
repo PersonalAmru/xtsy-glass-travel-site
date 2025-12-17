@@ -959,14 +959,7 @@ Looking forward to hearing from you. Thank you! 🌟`;
                       <SelectContent className="max-h-60 bg-background z-50">
                         {INDIAN_STATES.map((state) => (
                           <SelectItem key={state} value={state}>
-                            <div className="flex items-center gap-2">
-                              <span>{state}</span>
-                              {DISCOUNT_ELIGIBLE_STATES.includes(state) && (
-                                <span className="text-[10px] bg-green-500 text-white px-1.5 py-0.5 rounded ml-1">
-                                  5% OFF
-                                </span>
-                              )}
-                            </div>
+                            {state}
                           </SelectItem>
                         ))}
                       </SelectContent>
