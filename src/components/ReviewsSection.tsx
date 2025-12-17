@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { Star, ChevronLeft, ChevronRight, X, Loader2, BadgeCheck, Quote, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import PremiumReviewCard from "./reviews/PremiumReviewCard";
 import PlatformRatingCard from "./reviews/PlatformRatingCard";
 import { cn } from "@/lib/utils";
@@ -787,6 +788,9 @@ const ReviewsSection = () => {
               <Sparkles className="w-6 h-6 text-violet-400" />
               All Guest Reviews ({allReviews.length})
             </DialogTitle>
+            <VisuallyHidden>
+              <DialogDescription>Browse all verified guest reviews</DialogDescription>
+            </VisuallyHidden>
           </DialogHeader>
           
           <div 
@@ -859,6 +863,9 @@ const ReviewsSection = () => {
           {selectedReview && (
             <>
               <DialogHeader className="pb-4 border-b border-white/10">
+                <VisuallyHidden>
+                  <DialogDescription>View detailed review from {selectedReview.name}</DialogDescription>
+                </VisuallyHidden>
                 <div className="flex items-start gap-4">
                   {/* Gradient Avatar */}
                   <div 

@@ -5,7 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { MessageCircle, Calendar, Users, Phone, Trash2, Home, AlertCircle, MapPin, Info, ChevronDown, ChevronUp, Sparkles, X, ArrowLeft, Gift } from "lucide-react";
@@ -470,6 +471,10 @@ Looking forward to hearing from you. Thank you! 🌟`;
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
+          <VisuallyHidden>
+            <DialogTitle>WhatsApp Booking Form</DialogTitle>
+            <DialogDescription>Fill in your details to book through WhatsApp</DialogDescription>
+          </VisuallyHidden>
         </DialogHeader>
         <Card className="bg-card/95 backdrop-blur-sm border-border shadow-2xl border">
           <CardHeader className="text-center pb-6">

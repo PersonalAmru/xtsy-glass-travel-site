@@ -1,7 +1,8 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -70,6 +71,9 @@ const AdventureCallToAction = () => {
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="text-center text-xl font-bold">Choose Your Adventure</DialogTitle>
+            <VisuallyHidden>
+              <DialogDescription>Select domestic or international travel</DialogDescription>
+            </VisuallyHidden>
           </DialogHeader>
           <div className="flex flex-col gap-4 p-4">
             <Button onClick={() => handleTravelChoice('domestic')} className="h-16 text-lg font-semibold bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white">

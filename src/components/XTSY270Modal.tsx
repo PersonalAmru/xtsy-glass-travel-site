@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { VisuallyHidden } from '@/components/ui/visually-hidden';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -140,6 +141,9 @@ const XTSY270Modal: React.FC<XTSY270ModalProps> = ({ isOpen, onClose }) => {
           <DialogTitle className="text-center text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Reserve XTSY 270° Glass Suite
           </DialogTitle>
+          <VisuallyHidden>
+            <DialogDescription>Submit your inquiry to reserve India's only 270° panorama glass suite</DialogDescription>
+          </VisuallyHidden>
           <p className="text-center text-sm text-muted-foreground">
             Only 1 exclusive suite available per night in India
           </p>

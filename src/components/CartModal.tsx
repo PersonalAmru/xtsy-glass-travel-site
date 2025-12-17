@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ShoppingCart, Trash2, Tag, X, ArrowLeft, Clock, Bookmark } from "lucide-react";
@@ -420,6 +421,9 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
             <DialogTitle className="text-center text-xl font-bold text-gray-900">
               Wait! Last-Minute Deal!
             </DialogTitle>
+            <VisuallyHidden>
+              <DialogDescription>Get 15% off your booking</DialogDescription>
+            </VisuallyHidden>
           </DialogHeader>
           <div className="text-center p-6">
             <div className="text-6xl mb-4">⚡</div>
@@ -496,6 +500,9 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
               <ShoppingCart className="h-6 w-6 text-orange-500" />
               Your Cart
             </DialogTitle>
+            <VisuallyHidden>
+              <DialogDescription>Review and complete your booking</DialogDescription>
+            </VisuallyHidden>
           </DialogHeader>
 
           {!bookingData || bookingData.items.length === 0 ? (

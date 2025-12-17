@@ -28,10 +28,11 @@ const HeroSection = () => {
   // Languages
   const languages = ["Hello", "नमस्ते", "হ্যালো", "Hola", "Bonjour", "Hallo", "Ciao", "こんにちは", "안녕하세요", "Olá", "Привет", "مرحبا"];
 
-  // Disable floating animations on mobile for performance
+  // Disable floating animations on mobile for performance and respect reduced motion
   useEffect(() => {
-    // Skip animations on mobile
-    if (isMobile) return;
+    // Skip animations on mobile or if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (isMobile || prefersReducedMotion) return;
     
     const elements = document.querySelectorAll('.floating-element');
     const interval = setInterval(() => {
@@ -45,8 +46,12 @@ const HeroSection = () => {
     return () => clearInterval(interval);
   }, [isMobile]);
 
-  // Language rotation - slower on mobile, pauses when hidden
+  // Language rotation - slower on mobile, pauses when hidden, respects reduced motion
   useEffect(() => {
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return; // Skip animation entirely if user prefers reduced motion
+    
     const delay = isMobile ? 8000 : 5000; // Slower on mobile
     const languageInterval = setInterval(() => {
       if (document.hidden) return; // Pause when tab is hidden

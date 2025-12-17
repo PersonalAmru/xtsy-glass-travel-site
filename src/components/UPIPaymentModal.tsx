@@ -1,6 +1,7 @@
 
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ExternalLink, Copy, CheckCircle } from "lucide-react";
@@ -122,6 +123,9 @@ Thank you!`;
           <DialogTitle className="text-center text-xl font-bold text-gray-900">
             Complete Your Payment
           </DialogTitle>
+          <VisuallyHidden>
+            <DialogDescription>Pay via UPI and confirm your booking</DialogDescription>
+          </VisuallyHidden>
         </DialogHeader>
 
         <div className="space-y-6">
