@@ -99,36 +99,28 @@ const GroupBookingForm = ({ isOpen, onClose }: GroupBookingFormProps) => {
 
   const handleSubmit = async () => {
     try {
-      // Generate unique booking ID
-      const bookingId = `GROUP-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-      
-      // Save to Supabase - capture whatever data is available
-      const { error } = await supabase
-        .from('bookings')
-        .insert({
-          booking_id: bookingId,
-          room_type: "Group Booking",
-          room_type_id: "group-booking",
-          guest_name: formData.groupName || 'Guest',
-          email: formData.email || 'not-provided@xtsy.com',
-          whatsapp_number: formData.phone || '0000000000',
-          city: formData.city || null,
-          pincode: formData.pincode || null,
-          check_in: formData.checkIn || new Date().toISOString().split('T')[0],
-          check_out: formData.checkOut || new Date(Date.now() + 86400000).toISOString().split('T')[0],
-          guests: formData.guests || 20,
-          special_requests: formData.specialRequests || null,
-          booking_status: 'pending',
-          payment_status: 'pending',
-          subtotal: totalPrice,
-          taxes: gst,
-          total_amount: finalTotal,
-          source: 'group_booking_form'
-        });
+      // Use secure RPC function with server-side validation
+      const { data, error } = await supabase.rpc('create_booking_secure', {
+        p_guest_name: formData.groupName || 'Guest',
+        p_email: formData.email || 'inquiry@xtsy.one',
+        p_whatsapp_number: formData.phone || '+910000000000',
+        p_city: formData.city || null,
+        p_pincode: formData.pincode || null,
+        p_check_in: formData.checkIn || new Date().toISOString().split('T')[0],
+        p_check_out: formData.checkOut || new Date(Date.now() + 86400000).toISOString().split('T')[0],
+        p_guests: formData.guests || 20,
+        p_room_type: 'Group Booking',
+        p_room_type_id: 'group-booking',
+        p_quantity: 1,
+        p_subtotal: totalPrice,
+        p_taxes: gst,
+        p_total_amount: finalTotal,
+        p_special_requests: formData.specialRequests || null
+      });
 
       // Log error but don't block WhatsApp redirect
       if (error) {
-        console.error('Error saving booking:', error);
+        console.error('Error saving booking:', error.message);
       }
       
       // Build beautiful WhatsApp message with all details
