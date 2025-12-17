@@ -311,9 +311,14 @@ Deno.serve(async (req) => {
       { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 200 }
     );
   } catch (error) {
-    console.error('[realtime-intelligence] Error:', error);
+    // Log detailed error server-side only
+    console.error('[realtime-intelligence] Error:', error.message, error.stack);
+    
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ 
+        error: 'Unable to fetch analytics data. Please try again or contact support.',
+        code: 'RI_ERR_001'
+      }),
       { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 500 }
     );
   }
