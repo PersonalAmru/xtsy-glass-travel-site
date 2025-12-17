@@ -41,14 +41,30 @@ interface SelectedRoom {
   };
 }
 const generateFeatures = generateStandardizedFeatures;
+// Helper function to determine if current day is a weekend (Fri, Sat, Sun)
+const isWeekendDay = (): boolean => {
+  const day = new Date().getDay();
+  return day === 5 || day === 6 || day === 0; // Friday = 5, Saturday = 6, Sunday = 0
+};
+
+// Get XTSY 270 price based on current day
+const getXtsy270Price = (): { price: number; originalPrice: number } => {
+  const isWeekend = isWeekendDay();
+  const basePrice = isWeekend ? 11500 : 8500;
+  return {
+    price: Math.round(basePrice * 0.9), // 10% winter discount
+    originalPrice: basePrice
+  };
+};
+
 const ALL_ROOMS_DATA: {
   [key: string]: Room;
 } = {
   'xtsy-270': {
     id: 'xtsy-270',
     name: '270° Panorama Glass Ensuite',
-    price: Math.round(7999 * 0.9), // 10% winter discount
-    originalPrice: 7999,
+    price: getXtsy270Price().price,
+    originalPrice: getXtsy270Price().originalPrice,
     image: XTSY270_DATA.image,
     description: XTSY270_DATA.description,
     amenities: XTSY270_DATA.features,
