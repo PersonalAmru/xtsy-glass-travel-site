@@ -145,7 +145,7 @@ const ALL_ROOMS_DATA: {
   '6-bed-mixed-economy-dorm': {
     id: '6-bed-mixed-economy-dorm',
     name: 'Bed in 6-Bed Female Dormitory',
-    price: 325,
+    price: 0, // No price - OTA only
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
     description: 'Budget-friendly female dormitory with essential amenities',
     amenities: generateFeatures('economy', 'Bed in 6-Bed Female Dormitory', 'dorm'),
@@ -158,7 +158,7 @@ const ALL_ROOMS_DATA: {
   '8-bed-mixed-economy-dorm': {
     id: '8-bed-mixed-economy-dorm',
     name: 'Bed in 8-Bed Mixed Dormitory',
-    price: 399,
+    price: 0, // No price - OTA only
     image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg',
     description: 'Most economical option for backpackers and budget travelers',
     amenities: generateFeatures('economy', 'Bed in 8-Bed Mixed Dormitory', 'dorm'),

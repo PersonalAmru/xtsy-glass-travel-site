@@ -354,6 +354,19 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                           <div className="text-gray-400 text-xs">per night</div>
                         </div>
                       </div>
+                    ) : room.propertyType === 'economy' ? (
+                      <div className="text-right">
+                        <div className={`font-semibold text-blue-400 ${
+                          isMobile ? 'text-xs' : 'text-sm'
+                        } leading-tight`}>
+                          Available on
+                        </div>
+                        <div className={`font-bold text-blue-400 ${
+                          isMobile ? 'text-sm' : 'text-base'
+                        } leading-tight`}>
+                          Booking.com
+                        </div>
+                      </div>
                     ) : (
                       <>
                         {room.originalPrice && room.originalPrice !== room.price ? (
