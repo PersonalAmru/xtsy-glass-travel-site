@@ -5,7 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from "@/components/ui/select";
-import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import { Building2, Calendar, Users, IndianRupee, Minus, Plus } from "lucide-react";
 import { useApp } from "@/contexts/AppContext";
 import { supabase } from "@/integrations/supabase/client";
@@ -218,6 +219,10 @@ ${formData.specialRequests ? `📝 *Special Requests:*\n${formData.specialReques
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
+          <VisuallyHidden>
+            <DialogTitle>{customTitle}</DialogTitle>
+            <DialogDescription>{customDescription}</DialogDescription>
+          </VisuallyHidden>
         </DialogHeader>
         <Card className="bg-card/95 backdrop-blur-sm border-border shadow-2xl border">
           <CardHeader className="text-center pb-6">

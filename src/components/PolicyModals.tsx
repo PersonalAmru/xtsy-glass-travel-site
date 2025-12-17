@@ -1,5 +1,6 @@
 import React from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Clock, Shield, FileText, AlertTriangle, CheckCircle, XCircle, Calendar, CreditCard } from "lucide-react";
@@ -392,6 +393,9 @@ const PolicyModal = ({ isOpen, onClose, type }: PolicyModalProps) => {
           <DialogTitle className="text-center text-2xl font-bold text-gray-800">
             {getTitle()}
           </DialogTitle>
+          <VisuallyHidden>
+            <DialogDescription>View policy details for {getTitle()}</DialogDescription>
+          </VisuallyHidden>
         </DialogHeader>
         
         <div className="mt-4">

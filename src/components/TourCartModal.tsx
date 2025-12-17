@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -181,6 +182,9 @@ const TourCartModal: React.FC<TourCartModalProps> = ({ isOpen, onClose, sessionI
               <ShoppingCart className="h-5 w-5" />
               Your Cart
             </DialogTitle>
+            <VisuallyHidden>
+              <DialogDescription>View and manage items in your cart</DialogDescription>
+            </VisuallyHidden>
           </DialogHeader>
           <div className="text-center py-8">
             <ShoppingCart className="h-12 w-12 text-gray-400 mx-auto mb-4" />
@@ -213,6 +217,9 @@ const TourCartModal: React.FC<TourCartModalProps> = ({ isOpen, onClose, sessionI
             <ShoppingCart className="h-5 w-5" />
             Your Cart ({cartItems.length + savedItems.length} items)
           </DialogTitle>
+          <VisuallyHidden>
+            <DialogDescription>Manage your tour package selections</DialogDescription>
+          </VisuallyHidden>
         </DialogHeader>
 
         {cartItems.length === 0 && savedItems.length === 0 ? (
