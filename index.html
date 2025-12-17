@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -8,43 +7,45 @@
     <link rel="preconnect" href="https://oidnydyyjyjfnyadhyzn.supabase.co" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
     
-    <!-- LCP CRITICAL: Preload hero brand symbol with highest priority - BEFORE any scripts -->
+    <!-- Google AdSense - MUST remain async in head for compliance -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    
+    <!-- LCP CRITICAL: Preload hero brand symbol with highest priority -->
     <link rel="preload" as="image" href="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png" fetchpriority="high" type="image/png">
     
-    <!-- Critical fonts preload for faster text rendering -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap"></noscript>
+    <!-- Single critical font - reduced weight variants for faster load -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap"></noscript>
     
     <!-- Critical inline CSS for instant first paint -->
     <style>
       /* Critical above-the-fold styles - inline for instant render */
       *{margin:0;padding:0;box-sizing:border-box}
-      html{font-family:system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
-      body{background:#111827;color:#fff;min-height:100vh}
-      #root{min-height:100vh}
+      html{font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeSpeed}
+      body{background:#111827;color:#fff;min-height:100vh;overflow-x:hidden}
+      #root{min-height:100vh;contain:layout style}
       .dark{color-scheme:dark}
-      /* Instant loading placeholder */
-      .loading-placeholder{position:fixed;inset:0;background:#111827;z-index:50;display:flex;align-items:center;justify-content:center}
+      /* Layout containment for faster paint */
+      main,section,article{contain:content}
       /* Reduce layout shift */
-      img,video{max-width:100%;height:auto;display:block}
-      /* Fast animations for slow connections */
-      @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
-      /* Disable transitions during initial load for faster LCP */
-      body.initial-load *{transition:none!important;animation-duration:0.001ms!important}
-      /* iOS input zoom fix */
-      @supports (-webkit-touch-callout: none){input,select,textarea{font-size:16px!important}}
+      img,video{max-width:100%;height:auto;display:block;content-visibility:auto}
+      /* Performance for animations */
+      @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+      body.initial-load *{transition:none!important;animation-duration:.001ms!important}
+      /* iOS optimizations */
+      @supports (-webkit-touch-callout:none){input,select,textarea{font-size:16px!important}}
+      /* Hide content flash */
+      .loading-placeholder{position:fixed;inset:0;background:#111827;z-index:50;display:flex;align-items:center;justify-content:center}
     </style>
     
-    <!-- Critical mobile optimization with foldable device support -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <!-- Critical mobile viewport -->
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,viewport-fit=cover">
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/uploads/1765259352370-with_padding.png">
-    <link rel="apple-touch-icon" href="/xtsy-favicon.png" />
-    
-    <!-- Secondary preloads (after LCP) -->
-    <link rel="preload" as="image" href="/lovable-uploads/160f683c-a41c-41fd-8bdb-700d74a7e027.png" type="image/png">
+    <!-- Favicon - use inline data URI for fastest load -->
+    <link rel="icon" type="image/png" href="https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/uploads/1765259352370-with_padding.png">
+    <link rel="apple-touch-icon" href="/xtsy-favicon.png">
     
     <!-- DNS Prefetch for non-critical domains -->
     <link rel="dns-prefetch" href="//api.exchangerate-api.com">
@@ -52,8 +53,8 @@
     <link rel="dns-prefetch" href="//wa.me">
     <link rel="dns-prefetch" href="//www.googletagmanager.com">
     
-    <!-- Image compression and format hints -->
-    <meta http-equiv="Accept-CH" content="DPR, Width, Viewport-Width">
+    <!-- HTTP Client Hints for image optimization -->
+    <meta http-equiv="Accept-CH" content="DPR,Width,Viewport-Width">
     
     <title>XTSY Travellers Hostel - Best Hostel in India | Biggest Hostel in Shillong, Meghalaya &amp; North East India</title>
     <meta name="description" content="XTSY Travellers Hostel - India's best hostel experience in Shillong, Meghalaya. The biggest hostel in North East India offering luxury accommodations, budget stays, and unforgettable travel experiences. Book the best hostel in India for your Meghalaya adventure.">
@@ -407,15 +408,9 @@
     <!-- Foldable device support -->
     <meta name="screen-spanning" content="single-fold-vertical | single-fold-horizontal | none">
     
-    <!-- Non-critical fonts (loaded async) -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Josefin+Sans:wght@300;400;500;600;700&family=Cardo:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Josefin+Sans:wght@300;400;500;600;700&family=Cardo:wght@400;700&display=swap"></noscript>
-    
-    <!-- Emoji font (low priority) -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    
-    <!-- Payment gateway - defer loading -->
-    <link rel="dns-prefetch" href="//checkout.razorpay.com">
+    <!-- Non-critical fonts - defer with print media trick -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Josefin+Sans:wght@400;600&display=swap"></noscript>
     
     <meta property="og:title" content="XTSY Travellers Hostel - Best Hostel in India | Biggest Hostel in Shillong, Meghalaya &amp; North East India">
     <meta name="twitter:title" content="XTSY Travellers Hostel - Best Hostel in India | Biggest Hostel in Shillong, Meghalaya &amp; North East India">
@@ -423,69 +418,37 @@
     <meta name="twitter:description" content="XTSY Travellers Hostel - India&#39;s best hostel experience in Shillong, Meghalaya. The biggest hostel in North East India offering luxury accommodations, budget stays, and unforgettable travel experiences. Book the best hostel in India for your Meghalaya adventure.">
   </head>
   <body>
-    <!-- LCP OPTIMIZATION: Inline preload for absolute fastest LCP -->
+    <!-- Minimal LCP optimization - sync preload -->
     <script>
-      // Preload LCP image immediately before React loads
-      (function(){
-        var lcp = new Image();
-        lcp.src = '/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png';
-        lcp.setAttribute('fetchpriority', 'high');
-        lcp.decoding = 'sync';
-      })();
+      (function(){var l=new Image();l.src='/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png';l.fetchPriority='high';l.decoding='sync'})();
     </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     
-    <!-- Non-critical scripts loaded after main content -->
-    <!-- Google Analytics & Google Ads - deferred to not block LCP -->
+    <!-- Deferred analytics - loads after page interactive -->
     <script>
-      // Defer GA loading until after LCP
-      window.addEventListener('load', function() {
-        setTimeout(function() {
-          var ga = document.createElement('script');
-          ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B';
-          ga.async = true;
-          document.head.appendChild(ga);
-          
-          ga.onload = function() {
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            window.gtag = gtag;
-            gtag('js', new Date());
-            gtag('config', 'G-SJY2WX6L4B');
-            gtag('config', 'AW-17456979648');
-          };
-        }, 100);
+      window.addEventListener('load',function(){
+        requestIdleCallback?requestIdleCallback(loadAnalytics):setTimeout(loadAnalytics,150);
       });
+      function loadAnalytics(){
+        var g=document.createElement('script');
+        g.src='https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B';
+        g.async=true;
+        g.onload=function(){
+          window.dataLayer=window.dataLayer||[];
+          function gtag(){dataLayer.push(arguments)}
+          window.gtag=gtag;
+          gtag('js',new Date());
+          gtag('config','G-SJY2WX6L4B');
+          gtag('config','AW-17456979648');
+        };
+        document.head.appendChild(g);
+      }
     </script>
     
-    <!-- Razorpay - only load when needed -->
+    <!-- Razorpay - on-demand loading only -->
     <script>
-      window.loadRazorpay = function(callback) {
-        if (window.Razorpay) { callback(); return; }
-        var s = document.createElement('script');
-        s.src = 'https://checkout.razorpay.com/v1/checkout.js';
-        s.onload = callback;
-        document.head.appendChild(s);
-      };
-    </script>
-    
-    <!-- Twemoji - loaded after interaction -->
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // Defer twemoji loading
-        setTimeout(function() {
-          var t = document.createElement('script');
-          t.src = 'https://twemoji.maxcdn.com/v/latest/twemoji.min.js';
-          t.crossOrigin = 'anonymous';
-          t.onload = function() {
-            if (typeof twemoji !== 'undefined') {
-              twemoji.parse(document.body, { folder: 'svg', ext: '.svg' });
-            }
-          };
-          document.head.appendChild(t);
-        }, 2000);
-      });
+      window.loadRazorpay=function(c){if(window.Razorpay){c();return}var s=document.createElement('script');s.src='https://checkout.razorpay.com/v1/checkout.js';s.onload=c;document.head.appendChild(s)};
     </script>
   </body>
 </html>
