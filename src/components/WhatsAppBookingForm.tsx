@@ -376,35 +376,9 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
 
     setIsSubmitting(true);
     
-    // Save to database using secure RPC
     const subtotalAmount = getTotalAmount();
     const discountAmount = getWelcomeDiscount();
     const finalAmount = getFinalAmount();
-    
-    const saveResult = await saveWhatsAppBooking({
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone,
-      city: formData.city,
-      pincode: formData.pincode,
-      checkIn: formData.checkIn,
-      checkOut: formData.checkOut,
-      guests: formData.guests,
-      specialRequests: formData.specialRequests,
-      selectedRooms,
-      nights: nights || 1,
-      totalAmount: finalAmount || 0
-    });
-
-    if (!saveResult.success) {
-      setIsSubmitting(false);
-      toast({
-        title: "Booking Error",
-        description: saveResult.error || "Failed to save booking. Please try again.",
-        variant: "destructive",
-      });
-      return;
-    }
 
     // Build warm, branded WhatsApp message for XTSY Travellers Hostel
     const roomsText = selectedRooms.length > 0 
@@ -451,7 +425,23 @@ ${pricingText}
 Looking forward to hearing from you. Thank you! 🌟`;
 
     const encodedMessage = encodeURIComponent(message);
-    window.open(`https://api.whatsapp.com/send/?phone=918837317070&text=${encodedMessage}&type=phone_number&app_absent=0`, '_blank');
+    window.open(`https://wa.me/918837317070?text=${encodedMessage}`, '_blank');
+    
+    // Save to database in background (non-blocking)
+    saveWhatsAppBooking({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      city: formData.city,
+      pincode: formData.pincode,
+      checkIn: formData.checkIn,
+      checkOut: formData.checkOut,
+      guests: formData.guests,
+      specialRequests: formData.specialRequests,
+      selectedRooms,
+      nights: nights || 1,
+      totalAmount: finalAmount || 0
+    }).catch(err => console.error('Background booking save failed:', err));
     
     // Track form completion for analytics
     trackFormComplete();
@@ -468,8 +458,8 @@ Looking forward to hearing from you. Thank you! 🌟`;
     });
     
     toast({
-      title: "Inquiry Submitted",
-      description: "Your booking inquiry has been saved. Continue on WhatsApp to confirm.",
+      title: "Opening WhatsApp",
+      description: "Continue your booking on WhatsApp.",
     });
     
     setIsSubmitting(false);
