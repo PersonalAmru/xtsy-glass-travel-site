@@ -156,7 +156,7 @@ const RoomsSection = () => {
     {
       id: "6-bed-mixed-economy-dorm",
       name: "Bed in 6-Bed Female Dormitory",
-      price: 325,
+      price: 0, // No price - OTA only
       description: "Budget-friendly female dormitory with essential amenities",
       features: generateFeatures('economy', 'Bed in 6-Bed Female Dormitory', 'dorm'),
       maxGuests: 6,
@@ -174,7 +174,7 @@ const RoomsSection = () => {
     {
       id: "8-bed-mixed-economy-dorm",
       name: "Bed in 8-Bed Mixed Dormitory", 
-      price: 300,
+      price: 0, // No price - OTA only
       description: "Most economical option for backpackers and budget travelers",
       features: generateFeatures('economy', 'Bed in 8-Bed Mixed Dormitory', 'dorm'),
       maxGuests: 8,

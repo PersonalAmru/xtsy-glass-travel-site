@@ -219,7 +219,9 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
                 <span className="text-sm text-gray-300 font-josefin">{room.maxGuests} guests</span>
               </div>
               <div className="text-right">
-                {room.originalPrice && room.originalPrice !== displayPrice ? (
+                {propertyType === "economy" ? (
+                  <span className="text-sm font-semibold text-blue-400 font-josefin">Available on Booking.com</span>
+                ) : room.originalPrice && room.originalPrice !== displayPrice ? (
                   <div className="flex flex-col items-end">
                     <span className="text-sm text-gray-400 line-through font-josefin">{formatPrice(room.originalPrice)}</span>
                     <span className="text-lg font-bold text-orange-400 font-playfair">{formatPrice(displayPrice)}/night</span>
@@ -229,13 +231,22 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
                 )}
               </div>
             </div>
-            <Button 
-              onClick={handleRoomSelection}
-              className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 font-josefin mobile-button"
-            >
-              {(room.id === "king-double-room" || room.id === "king-triple-room") ? "Select Room" : 
-               buttonText.split(' - ')[0]}
-            </Button>
+            {propertyType === "economy" ? (
+              <Button 
+                onClick={() => window.open('https://www.booking.com/hotel/in/xtsy-travellers-hostel.en-gb.html', '_blank')}
+                className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 font-josefin mobile-button"
+              >
+                Book on Booking.com
+              </Button>
+            ) : (
+              <Button 
+                onClick={handleRoomSelection}
+                className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 font-josefin mobile-button"
+              >
+                {(room.id === "king-double-room" || room.id === "king-triple-room") ? "Select Room" : 
+                 buttonText.split(' - ')[0]}
+              </Button>
+            )}
           </div>
         </CardContent>
       </Card>
