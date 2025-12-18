@@ -13,40 +13,38 @@ type ServiceCard = {
   highlights: EmojiItem[];
 };
 
-// ---- Apple-style glassmorphism backgrounds -------------------
+// Simplified glassmorphism with GPU optimization and mobile fallbacks
 function cardBg(tone: ServiceCard["tone"]) {
-  const baseGlass = "relative overflow-hidden backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl ";
+  // Base glass classes with GPU optimization
+  const baseClasses = "relative overflow-hidden glass-card-enhanced glass-transition ";
   
+  // Tone-specific gradient overlays (simplified - single overlay instead of before/after)
+  const toneOverlays: Record<ServiceCard["tone"], string> = {
+    luxury: "ring-1 ring-purple-500/20",
+    hostel: "ring-1 ring-blue-500/20",
+    economy: "ring-1 ring-gray-500/20"
+  };
+  
+  return baseClasses + toneOverlays[tone];
+}
+
+// Get gradient overlay for card (rendered as single div instead of pseudo-elements)
+function getGradientOverlay(tone: ServiceCard["tone"]) {
   switch (tone) {
     case "luxury":
-      return (
-        baseGlass +
-        "before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/20 before:via-white/5 before:to-transparent before:pointer-events-none " +
-        "after:absolute after:inset-0 after:bg-gradient-to-t after:from-purple-500/10 after:via-transparent after:to-pink-500/10 after:pointer-events-none " +
-        "hover:bg-white/15 hover:border-white/30 hover:shadow-3xl transition-all duration-500"
-      );
+      return "bg-gradient-to-br from-purple-500/10 via-transparent to-pink-500/10";
     case "hostel":
-      return (
-        baseGlass +
-        "before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/15 before:via-white/5 before:to-transparent before:pointer-events-none " +
-        "after:absolute after:inset-0 after:bg-gradient-to-t after:from-blue-500/8 after:via-transparent after:to-indigo-500/8 after:pointer-events-none " +
-        "hover:bg-white/15 hover:border-white/30 hover:shadow-3xl transition-all duration-500"
-      );
+      return "bg-gradient-to-br from-blue-500/8 via-transparent to-indigo-500/8";
     case "economy":
     default:
-      return (
-        baseGlass +
-        "before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/12 before:via-white/4 before:to-transparent before:pointer-events-none " +
-        "after:absolute after:inset-0 after:bg-gradient-to-t after:from-gray-500/6 after:via-transparent after:to-slate-500/6 after:pointer-events-none " +
-        "hover:bg-white/15 hover:border-white/30 hover:shadow-3xl transition-all duration-500"
-      );
+      return "bg-gradient-to-br from-gray-500/6 via-transparent to-slate-500/6";
   }
 }
 
 const Line: React.FC<EmojiItem> = ({ e, t }) => (
   <li className="flex items-start gap-2">
     <span className="leading-none select-none text-lg sm:text-xl">{e}</span>
-    <span className="text-gray-900">{t}</span>
+    <span className="text-foreground">{t}</span>
   </li>
 );
 
@@ -135,20 +133,21 @@ const services: ServiceCard[] = [
 
   return (
     <section className="pt-12 md:pt-16 lg:pt-20 pb-12 md:pb-16 lg:pb-20 safe-area-padding bg-gradient-to-br from-purple-200/60 via-pink-100/50 to-orange-100/60 relative overflow-hidden -mt-1">
-      {/* page ambience - brighter */}
+      {/* Page ambience - GPU optimized, disabled on mobile */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-50/80 via-pink-50/70 to-orange-50/80" />
-      <div className="absolute inset-0 backdrop-blur-3xl bg-white/30" />
-      <div className="absolute -top-20 -right-20 w-64 h-64 bg-purple-300/40 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-pink-300/40 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-orange-200/30 rounded-full blur-3xl" />
+      <div className="absolute inset-0 bg-white/30 hidden md:block" style={{ backdropFilter: 'blur(64px)', WebkitBackdropFilter: 'blur(64px)' }} />
+      {/* Decorative orbs - hidden on mobile for performance */}
+      <div className="absolute -top-20 -right-20 w-64 h-64 bg-purple-300/40 rounded-full blur-3xl hidden md:block" />
+      <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-pink-300/40 rounded-full blur-3xl hidden md:block" />
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-orange-200/30 rounded-full blur-3xl hidden lg:block" />
 
       <div className="responsive-container relative z-10 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
         <div className="text-center mb-12 sm:mb-16">
-          <div className="glass-card inline-block p-6 rounded-2xl bg-white/60 backdrop-blur-md border border-white/40 shadow-2xl">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-purple-700 mb-1 font-playfair">
+          <div className="glass-card-enhanced inline-block p-6 rounded-2xl shadow-2xl">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-1 font-playfair">
               Amenities &amp; Services
             </h2>
-            <p className="text-lg sm:text-xl text-gray-800 font-medium mt-2">
+            <p className="text-lg sm:text-xl text-foreground font-medium mt-2">
               🐱 🐶 🦜 Pet Friendly
             </p>
           </div>
@@ -160,24 +159,26 @@ const services: ServiceCard[] = [
             <Card
               key={s.title}
               className={
-                "glass-card border hover:shadow-2xl hover:brightness-[1.03] transition-all duration-500 flex flex-col group " +
-                cardBg(s.tone)
+                "flex flex-col group " + cardBg(s.tone)
               }
             >
+              {/* Simplified gradient overlay - single div instead of pseudo-elements */}
+              <div className={`absolute inset-0 ${getGradientOverlay(s.tone)} pointer-events-none rounded-lg`} />
+              
               <CardHeader className="p-5 pb-3 relative z-10">
                 <div className="flex items-center justify-between mb-2">
-                  <div className="text-gray-900">
+                  <div className="text-foreground">
                     {s.icon}
                   </div>
                   <Badge
                     variant="outline"
-                    className="text-xs border-gray-400/60 text-gray-900 bg-white/40 backdrop-blur-sm px-2 py-1 font-medium"
+                    className="text-xs border-border text-foreground bg-background/40 px-2 py-1 font-medium"
                   >
                     {s.badge}
                   </Badge>
                 </div>
 
-                <CardTitle className="font-bold text-gray-900 text-base sm:text-lg">
+                <CardTitle className="font-bold text-foreground text-base sm:text-lg">
                   {s.title}
                 </CardTitle>
               </CardHeader>
