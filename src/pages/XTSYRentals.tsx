@@ -1,0 +1,473 @@
+import React, { useState, useEffect } from "react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { useApp } from "@/contexts/AppContext";
+import { Car, Bike, Shield, Clock, Phone, MapPin, Fuel, Users, Settings } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+// Vehicle data with Unsplash images
+const cars = [
+  {
+    name: "Tata Punch",
+    price: 2000,
+    image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&q=80",
+    fuel: "Petrol",
+    transmission: "Manual",
+    seats: 5,
+    category: "Compact SUV"
+  },
+  {
+    name: "Tata Indica",
+    price: 2000,
+    image: "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=800&q=80",
+    fuel: "Diesel",
+    transmission: "Manual",
+    seats: 5,
+    category: "Hatchback"
+  },
+  {
+    name: "Mahindra Thar",
+    price: 3800,
+    image: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=800&q=80",
+    fuel: "Diesel",
+    transmission: "Manual/Auto",
+    seats: 4,
+    category: "Off-Road SUV"
+  },
+  {
+    name: "Mahindra Scorpio",
+    price: 4000,
+    image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&q=80",
+    fuel: "Diesel",
+    transmission: "Manual",
+    seats: 7,
+    category: "Full-Size SUV"
+  },
+  {
+    name: "Mahindra XUV 700",
+    price: 4500,
+    image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&q=80",
+    fuel: "Diesel/Petrol",
+    transmission: "Auto",
+    seats: 7,
+    category: "Premium SUV",
+    badge: "Top End 2025"
+  },
+  {
+    name: "Hyundai i10 Nios",
+    price: 1800,
+    image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&q=80",
+    fuel: "Petrol",
+    transmission: "Manual",
+    seats: 5,
+    category: "City Hatchback"
+  },
+  {
+    name: "Hyundai i20",
+    price: 2000,
+    image: "https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?w=800&q=80",
+    fuel: "Petrol",
+    transmission: "Manual/Auto",
+    seats: 5,
+    category: "Premium Hatchback"
+  },
+  {
+    name: "Kia Seltos",
+    price: 2800,
+    image: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=800&q=80",
+    fuel: "Petrol/Diesel",
+    transmission: "Auto",
+    seats: 5,
+    category: "Crossover SUV"
+  },
+  {
+    name: "Kia Sonet",
+    price: 2500,
+    image: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&q=80",
+    fuel: "Petrol/Diesel",
+    transmission: "Manual/Auto",
+    seats: 5,
+    category: "Compact Crossover"
+  }
+];
+
+const bikes = [
+  {
+    name: "RE Meteor 350",
+    price: 1300,
+    image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=800&q=80",
+    engine: "350cc",
+    type: "Cruiser",
+    mileage: "42 km/l"
+  },
+  {
+    name: "RE Himalayan 411",
+    price: 1300,
+    image: "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=800&q=80",
+    engine: "411cc",
+    type: "Adventure",
+    mileage: "35 km/l"
+  },
+  {
+    name: "RE Himalayan 450",
+    price: 1800,
+    image: "https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=800&q=80",
+    engine: "450cc",
+    type: "Adventure",
+    mileage: "30 km/l",
+    badge: "New 2024"
+  },
+  {
+    name: "RE Hunter 350",
+    price: 1600,
+    image: "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=800&q=80",
+    engine: "350cc",
+    type: "Roadster",
+    mileage: "40 km/l"
+  }
+];
+
+const features = [
+  {
+    icon: Shield,
+    title: "Fully Insured",
+    description: "Comprehensive insurance coverage on all vehicles"
+  },
+  {
+    icon: Clock,
+    title: "24/7 Support",
+    description: "Round-the-clock roadside assistance"
+  },
+  {
+    icon: MapPin,
+    title: "Free Delivery",
+    description: "Vehicle delivery at your doorstep in Shillong"
+  },
+  {
+    icon: Users,
+    title: "Driver Available",
+    description: "Experienced local drivers on request"
+  }
+];
+
+const faqs = [
+  {
+    question: "What documents are required for renting?",
+    answer: "Valid driving license, government ID proof (Aadhaar/Passport), and a security deposit. For bikes, a motorcycle endorsement on your license is required."
+  },
+  {
+    question: "What is the fuel policy?",
+    answer: "Vehicles are provided with a full tank. Please return with a full tank or we'll charge ₹150/litre above market price."
+  },
+  {
+    question: "Is a driver available?",
+    answer: "Yes! We provide experienced local drivers at ₹800-1200/day extra depending on the vehicle. They know all the scenic routes and hidden spots."
+  },
+  {
+    question: "What about inter-state travel?",
+    answer: "Inter-state travel is allowed with prior approval. Additional permits may be required for certain states like Arunachal Pradesh (ILP)."
+  },
+  {
+    question: "What is the cancellation policy?",
+    answer: "Free cancellation up to 24 hours before pickup. 50% charge for cancellations within 24 hours. No refund for no-shows."
+  },
+  {
+    question: "Is there a minimum rental period?",
+    answer: "Minimum rental is 1 day (24 hours). Weekly and monthly discounts available - contact us for special rates."
+  }
+];
+
+const XTSYRentals = () => {
+  const { formatPrice } = useApp();
+  const [activeTab, setActiveTab] = useState("cars");
+
+  useEffect(() => {
+    document.title = "XTSY Rentals - Car & Bike Rentals in Shillong | Explore Northeast India";
+  }, []);
+
+  const handleWhatsAppBooking = (vehicleName: string, price: number) => {
+    const message = encodeURIComponent(
+      `Hi! I'd like to rent:\n\n🚗 Vehicle: ${vehicleName}\n💰 Rate: ₹${price}/day\n📅 Dates: [Please specify]\n📍 Pickup: Shillong\n\nPlease confirm availability.`
+    );
+    window.open(`https://wa.me/918837317070?text=${message}`, '_blank');
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+      <Header />
+
+      {/* Hero Section */}
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1920&q=80"
+            alt="Northeast India roads"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-900/70 to-slate-950" />
+        </div>
+        
+        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 border border-primary/30 text-primary mb-6">
+            <Car className="w-4 h-4" />
+            <span className="text-sm font-medium">XTSY Prime</span>
+          </div>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
+            XTSY <span className="text-primary">Rentals</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-white/80 mb-8">
+            Explore Northeast India on Your Terms
+          </p>
+          <p className="text-lg text-white/60 max-w-2xl mx-auto">
+            Premium cars & bikes for the roads less traveled. From city drives to mountain adventures.
+          </p>
+        </div>
+      </section>
+
+      {/* Features Strip */}
+      <section className="py-8 bg-slate-900/50 border-y border-white/10">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {features.map((feature, index) => (
+              <div key={index} className="flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-primary/20">
+                  <feature.icon className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-white font-semibold text-sm">{feature.title}</h3>
+                  <p className="text-white/60 text-xs">{feature.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Vehicle Listings */}
+      <section className="py-16 px-4">
+        <div className="max-w-7xl mx-auto">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <div className="flex justify-center mb-12">
+              <TabsList className="bg-slate-800/50 border border-white/10 p-1">
+                <TabsTrigger 
+                  value="cars" 
+                  className="flex items-center gap-2 px-6 py-3 data-[state=active]:bg-primary data-[state=active]:text-white"
+                >
+                  <Car className="w-4 h-4" />
+                  Cars ({cars.length})
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="bikes"
+                  className="flex items-center gap-2 px-6 py-3 data-[state=active]:bg-primary data-[state=active]:text-white"
+                >
+                  <Bike className="w-4 h-4" />
+                  Bikes ({bikes.length})
+                </TabsTrigger>
+              </TabsList>
+            </div>
+
+            {/* Cars Grid */}
+            <TabsContent value="cars">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {cars.map((car, index) => (
+                  <div 
+                    key={index}
+                    className="group bg-slate-800/30 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-primary/50 transition-all duration-300"
+                  >
+                    <div className="relative h-48 overflow-hidden">
+                      <img
+                        src={car.image}
+                        alt={car.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute top-3 left-3">
+                        <span className="px-3 py-1 rounded-full bg-slate-900/80 text-white/80 text-xs">
+                          {car.category}
+                        </span>
+                      </div>
+                      {car.badge && (
+                        <div className="absolute top-3 right-3">
+                          <span className="px-3 py-1 rounded-full bg-primary text-white text-xs font-semibold">
+                            {car.badge}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                    
+                    <div className="p-5">
+                      <h3 className="text-xl font-bold text-white mb-3">{car.name}</h3>
+                      
+                      <div className="grid grid-cols-3 gap-2 mb-4">
+                        <div className="flex items-center gap-1 text-white/60 text-sm">
+                          <Fuel className="w-4 h-4" />
+                          <span>{car.fuel}</span>
+                        </div>
+                        <div className="flex items-center gap-1 text-white/60 text-sm">
+                          <Settings className="w-4 h-4" />
+                          <span>{car.transmission}</span>
+                        </div>
+                        <div className="flex items-center gap-1 text-white/60 text-sm">
+                          <Users className="w-4 h-4" />
+                          <span>{car.seats} Seats</span>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <span className="text-2xl font-bold text-primary">
+                            {formatPrice(car.price)}
+                          </span>
+                          <span className="text-white/60 text-sm">/day</span>
+                        </div>
+                        <button
+                          onClick={() => handleWhatsAppBooking(car.name, car.price)}
+                          className="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-500 text-white rounded-lg transition-colors"
+                        >
+                          <Phone className="w-4 h-4" />
+                          Book
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </TabsContent>
+
+            {/* Bikes Grid */}
+            <TabsContent value="bikes">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                {bikes.map((bike, index) => (
+                  <div 
+                    key={index}
+                    className="group bg-slate-800/30 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-primary/50 transition-all duration-300"
+                  >
+                    <div className="relative h-56 overflow-hidden">
+                      <img
+                        src={bike.image}
+                        alt={bike.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute top-3 left-3">
+                        <span className="px-3 py-1 rounded-full bg-slate-900/80 text-white/80 text-xs">
+                          {bike.type}
+                        </span>
+                      </div>
+                      {bike.badge && (
+                        <div className="absolute top-3 right-3">
+                          <span className="px-3 py-1 rounded-full bg-primary text-white text-xs font-semibold">
+                            {bike.badge}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                    
+                    <div className="p-5">
+                      <h3 className="text-xl font-bold text-white mb-3">{bike.name}</h3>
+                      
+                      <div className="grid grid-cols-3 gap-2 mb-4">
+                        <div className="flex items-center gap-1 text-white/60 text-sm">
+                          <Settings className="w-4 h-4" />
+                          <span>{bike.engine}</span>
+                        </div>
+                        <div className="flex items-center gap-1 text-white/60 text-sm">
+                          <Bike className="w-4 h-4" />
+                          <span>{bike.type}</span>
+                        </div>
+                        <div className="flex items-center gap-1 text-white/60 text-sm">
+                          <Fuel className="w-4 h-4" />
+                          <span>{bike.mileage}</span>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <span className="text-2xl font-bold text-primary">
+                            {formatPrice(bike.price)}
+                          </span>
+                          <span className="text-white/60 text-sm">/day</span>
+                        </div>
+                        <button
+                          onClick={() => handleWhatsAppBooking(bike.name, bike.price)}
+                          className="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-500 text-white rounded-lg transition-colors"
+                        >
+                          <Phone className="w-4 h-4" />
+                          Book
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </TabsContent>
+          </Tabs>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 px-4 bg-slate-900/30">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">
+            Frequently Asked Questions
+          </h2>
+          
+          <Accordion type="single" collapsible className="space-y-4">
+            {faqs.map((faq, index) => (
+              <AccordionItem 
+                key={index} 
+                value={`item-${index}`}
+                className="bg-slate-800/30 border border-white/10 rounded-xl px-6 overflow-hidden"
+              >
+                <AccordionTrigger className="text-white hover:text-primary py-5 text-left">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-white/70 pb-5">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            Ready to Explore?
+          </h2>
+          <p className="text-white/70 mb-8 text-lg">
+            Book your ride today and discover the beauty of Northeast India at your own pace.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="https://wa.me/918837317070?text=Hi!%20I'm%20interested%20in%20renting%20a%20vehicle%20from%20XTSY%20Rentals."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-green-600 hover:bg-green-500 text-white rounded-xl font-semibold transition-colors"
+            >
+              <Phone className="w-5 h-5" />
+              WhatsApp: +91 88373 17070
+            </a>
+            <a
+              href="tel:+918837317070"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white border border-white/20 rounded-xl font-semibold transition-colors"
+            >
+              <Phone className="w-5 h-5" />
+              Call Now
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default XTSYRentals;
