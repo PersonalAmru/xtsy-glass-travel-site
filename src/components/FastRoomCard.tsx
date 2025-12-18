@@ -355,7 +355,10 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                         </div>
                       </div>
                     ) : room.propertyType === 'economy' ? (
-                      <div className="text-right">
+                      <button 
+                        onClick={() => window.open('https://www.booking.com/hotel/in/xtsy-economy-dorms.en-gb.html', '_blank')}
+                        className="text-right hover:opacity-80 transition-opacity cursor-pointer"
+                      >
                         <div className={`font-semibold text-blue-400 ${
                           isMobile ? 'text-xs' : 'text-sm'
                         } leading-tight`}>
@@ -363,10 +366,10 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                         </div>
                         <div className={`font-bold text-blue-400 ${
                           isMobile ? 'text-sm' : 'text-base'
-                        } leading-tight`}>
+                        } leading-tight underline`}>
                           Booking.com
                         </div>
-                      </div>
+                      </button>
                     ) : (
                       <>
                         {room.originalPrice && room.originalPrice !== room.price ? (
