@@ -144,7 +144,7 @@ const services: ServiceCard[] = [
       <div className="responsive-container relative z-10 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
         <div className="text-center mb-12 sm:mb-16">
           <div className="glass-card-enhanced inline-block p-6 rounded-2xl shadow-2xl">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-1 font-playfair">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-purple-600 dark:text-purple-400 mb-1 font-playfair">
               Amenities &amp; Services
             </h2>
             <p className="text-lg sm:text-xl text-foreground font-medium mt-2">
