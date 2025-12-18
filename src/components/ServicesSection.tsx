@@ -13,16 +13,16 @@ type ServiceCard = {
   highlights: EmojiItem[];
 };
 
-// Simplified glassmorphism with GPU optimization and mobile fallbacks
+// Simplified glassmorphism with GPU optimization - dark theme
 function cardBg(tone: ServiceCard["tone"]) {
-  // Base glass classes with GPU optimization
-  const baseClasses = "relative overflow-hidden glass-card-enhanced glass-transition ";
+  // Base dark glass classes with GPU optimization
+  const baseClasses = "relative overflow-hidden bg-white/5 backdrop-blur-sm border border-white/10 shadow-xl hover:bg-white/10 hover:border-white/20 transition-all duration-300 ";
   
-  // Tone-specific gradient overlays (simplified - single overlay instead of before/after)
+  // Tone-specific accent rings
   const toneOverlays: Record<ServiceCard["tone"], string> = {
-    luxury: "ring-1 ring-purple-500/20",
-    hostel: "ring-1 ring-blue-500/20",
-    economy: "ring-1 ring-gray-500/20"
+    luxury: "ring-1 ring-purple-400/30",
+    hostel: "ring-1 ring-blue-400/30",
+    economy: "ring-1 ring-gray-400/30"
   };
   
   return baseClasses + toneOverlays[tone];
@@ -44,7 +44,7 @@ function getGradientOverlay(tone: ServiceCard["tone"]) {
 const Line: React.FC<EmojiItem> = ({ e, t }) => (
   <li className="flex items-start gap-2">
     <span className="leading-none select-none text-lg sm:text-xl">{e}</span>
-    <span className="text-foreground">{t}</span>
+    <span className="text-white/90">{t}</span>
   </li>
 );
 
@@ -132,22 +132,21 @@ const services: ServiceCard[] = [
   ];
 
   return (
-    <section className="pt-12 md:pt-16 lg:pt-20 pb-12 md:pb-16 lg:pb-20 safe-area-padding bg-gradient-to-br from-purple-200/60 via-pink-100/50 to-orange-100/60 relative overflow-hidden -mt-1">
-      {/* Page ambience - GPU optimized, disabled on mobile */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-50/80 via-pink-50/70 to-orange-50/80" />
-      <div className="absolute inset-0 bg-white/30 hidden md:block" style={{ backdropFilter: 'blur(64px)', WebkitBackdropFilter: 'blur(64px)' }} />
+    <section className="pt-12 md:pt-16 lg:pt-20 pb-12 md:pb-16 lg:pb-20 safe-area-padding bg-gradient-to-br from-slate-900 via-purple-900/90 to-slate-900 relative overflow-hidden -mt-1">
+      {/* Dark ambient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-purple-900/80 to-slate-900/95" />
       {/* Decorative orbs - hidden on mobile for performance */}
-      <div className="absolute -top-20 -right-20 w-64 h-64 bg-purple-300/40 rounded-full blur-3xl hidden md:block" />
-      <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-pink-300/40 rounded-full blur-3xl hidden md:block" />
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-orange-200/30 rounded-full blur-3xl hidden lg:block" />
+      <div className="absolute -top-20 -right-20 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl hidden md:block" />
+      <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-pink-500/20 rounded-full blur-3xl hidden md:block" />
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-500/15 rounded-full blur-3xl hidden lg:block" />
 
       <div className="responsive-container relative z-10 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
         <div className="text-center mb-12 sm:mb-16">
-          <div className="glass-card-enhanced inline-block p-6 rounded-2xl shadow-2xl">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-purple-600 dark:text-purple-400 mb-1 font-playfair">
+          <div className="inline-block p-6 rounded-2xl shadow-2xl bg-white/10 backdrop-blur-sm border border-white/20">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-1 font-playfair drop-shadow-lg">
               Amenities &amp; Services
             </h2>
-            <p className="text-lg sm:text-xl text-foreground font-medium mt-2">
+            <p className="text-lg sm:text-xl text-white/90 font-medium mt-2">
               🐱 🐶 🦜 Pet Friendly
             </p>
           </div>
@@ -167,18 +166,18 @@ const services: ServiceCard[] = [
               
               <CardHeader className="p-5 pb-3 relative z-10">
                 <div className="flex items-center justify-between mb-2">
-                  <div className="text-foreground">
+                  <div className="text-white">
                     {s.icon}
                   </div>
                   <Badge
                     variant="outline"
-                    className="text-xs border-border text-foreground bg-background/40 px-2 py-1 font-medium"
+                    className="text-xs border-white/30 text-white bg-white/10 px-2 py-1 font-medium"
                   >
                     {s.badge}
                   </Badge>
                 </div>
 
-                <CardTitle className="font-bold text-foreground text-base sm:text-lg">
+                <CardTitle className="font-bold text-white text-base sm:text-lg">
                   {s.title}
                 </CardTitle>
               </CardHeader>
