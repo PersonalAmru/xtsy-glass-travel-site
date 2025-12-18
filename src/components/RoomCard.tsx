@@ -233,7 +233,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
             </div>
             {propertyType === "economy" ? (
               <Button 
-                onClick={() => window.open('https://www.booking.com/hotel/in/xtsy-travellers-hostel.en-gb.html', '_blank')}
+                onClick={() => window.open('https://www.booking.com/hotel/in/xtsy-economy-dorms.en-gb.html', '_blank')}
                 className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 font-josefin mobile-button"
               >
                 Book on Booking.com
