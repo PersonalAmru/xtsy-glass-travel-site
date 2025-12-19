@@ -14,7 +14,13 @@ const LOVABLE_PATTERNS = {
  * Check if current session is a Lovable admin/preview session
  */
 export const isLovableSession = (): boolean => {
-  // Check URL parameters
+  // Check sessionStorage first (fastest check)
+  const storedFlag = sessionStorage.getItem('xtsy_is_lovable_session');
+  if (storedFlag === 'true') {
+    return true;
+  }
+
+  // Check URL parameters - explicit Lovable admin markers
   const params = new URLSearchParams(window.location.search);
   for (const param of LOVABLE_PATTERNS.urlParams) {
     if (params.has(param)) {
@@ -22,7 +28,7 @@ export const isLovableSession = (): boolean => {
     }
   }
 
-  // Check referrer for Lovable domains
+  // Check referrer for Lovable domains - only if directly referred
   if (document.referrer) {
     try {
       const referrerUrl = new URL(document.referrer);
@@ -36,38 +42,9 @@ export const isLovableSession = (): boolean => {
     }
   }
 
-  // Check current hostname for preview domains
-  const hostname = window.location.hostname;
-  for (const domain of LOVABLE_PATTERNS.previewDomains) {
-    if (hostname.includes(domain)) {
-      return true;
-    }
-  }
-
-  // Check if running in Lovable preview iframe
-  if (window.self !== window.top) {
-    try {
-      // If we can't access parent, we might be in a sandboxed iframe
-      const parentHostname = window.parent.location.hostname;
-      for (const domain of LOVABLE_PATTERNS.domains) {
-        if (parentHostname.includes(domain)) {
-          return true;
-        }
-      }
-    } catch {
-      // Cross-origin restriction - likely in Lovable iframe
-      // Check if we're on a Lovable-like hostname pattern
-      if (hostname.includes('lovable') || hostname.includes('gptengineer')) {
-        return true;
-      }
-    }
-  }
-
-  // Check sessionStorage for lovable session marker
-  const storedFlag = sessionStorage.getItem('xtsy_is_lovable_session');
-  if (storedFlag === 'true') {
-    return true;
-  }
+  // REMOVED: Aggressive iframe detection that was blocking real traffic
+  // The iframe check was too broad and blocked legitimate production traffic
+  // when viewed in Lovable preview. Only explicit markers should block.
 
   return false;
 };
