@@ -62,21 +62,31 @@ Deno.serve(async (req) => {
           .select('*')
           .gte('last_seen_at', new Date(Date.now() - 5 * 60 * 1000).toISOString());
 
-        const activeByPage = realtime?.reduce((acc: Record<string, number>, r) => {
+        // Filter out Lovable admin traffic from realtime
+        const realUserRealtime = realtime?.filter(r => {
+          const isLovableTraffic = 
+            (r.page_path && (
+              r.page_path.includes('__lovable_token') ||
+              r.page_path.includes('forceHideBadge')
+            ));
+          return !isLovableTraffic;
+        }) || [];
+
+        const activeByPage = realUserRealtime.reduce((acc: Record<string, number>, r) => {
           acc[r.page_path || '/'] = (acc[r.page_path || '/'] || 0) + 1;
           return acc;
-        }, {}) || {};
+        }, {});
 
-        const activeByCountry = realtime?.reduce((acc: Record<string, number>, r) => {
+        const activeByCountry = realUserRealtime.reduce((acc: Record<string, number>, r) => {
           acc[r.country_code || 'Unknown'] = (acc[r.country_code || 'Unknown'] || 0) + 1;
           return acc;
-        }, {}) || {};
+        }, {});
 
         return new Response(JSON.stringify({
-          active_visitors: realtime?.length || 0,
+          active_visitors: realUserRealtime.length,
           by_page: activeByPage,
           by_country: activeByCountry,
-          visitors: realtime?.slice(0, 50) || [],
+          visitors: realUserRealtime.slice(0, 50),
         }), {
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         });
@@ -85,11 +95,27 @@ Deno.serve(async (req) => {
       case 'overview': {
         const startDate = new Date(Date.now() - daysBack * 24 * 60 * 60 * 1000).toISOString();
 
-        // Get session metrics
+        // Get session metrics - EXCLUDE Lovable admin traffic
         const { data: sessions } = await supabase
           .from('analytics_sessions')
-          .select('visitor_id, is_bounce, is_new_visitor, session_duration_seconds, page_views')
+          .select('visitor_id, is_bounce, is_new_visitor, session_duration_seconds, page_views, landing_page, referrer_source')
           .gte('started_at', startDate);
+
+        // Filter out Lovable admin sessions
+        const realUserSessions = sessions?.filter(s => {
+          const isLovableTraffic = 
+            (s.landing_page && (
+              s.landing_page.includes('__lovable_token') || 
+              s.landing_page.includes('forceHideBadge') ||
+              s.landing_page.includes('__lovable')
+            )) ||
+            (s.referrer_source && (
+              s.referrer_source.includes('lovable.dev') ||
+              s.referrer_source.includes('lovable.app') ||
+              s.referrer_source.includes('gptengineer')
+            ));
+          return !isLovableTraffic;
+        }) || [];
 
         // Get conversions
         const { data: conversions } = await supabase
@@ -102,8 +128,22 @@ Deno.serve(async (req) => {
         const today = new Date().toISOString().split('T')[0];
         const { data: todaySessions } = await supabase
           .from('analytics_sessions')
-          .select('id')
+          .select('id, landing_page, referrer_source')
           .gte('started_at', today);
+
+        // Filter today's sessions too
+        const realTodaySessions = todaySessions?.filter(s => {
+          const isLovableTraffic = 
+            (s.landing_page && (
+              s.landing_page.includes('__lovable_token') || 
+              s.landing_page.includes('forceHideBadge')
+            )) ||
+            (s.referrer_source && (
+              s.referrer_source.includes('lovable.dev') ||
+              s.referrer_source.includes('lovable.app')
+            ));
+          return !isLovableTraffic;
+        }) || [];
 
         const { data: todayConversions } = await supabase
           .from('analytics_conversions')
@@ -111,13 +151,13 @@ Deno.serve(async (req) => {
           .gte('created_at', today)
           .eq('is_completed', true);
 
-        const totalVisitors = new Set(sessions?.map(s => s.visitor_id) || []).size;
-        const totalSessions = sessions?.length || 0;
-        const totalPageviews = sessions?.reduce((sum, s) => sum + (s.page_views || 0), 0) || 0;
-        const bounces = sessions?.filter(s => s.is_bounce).length || 0;
-        const newVisitors = sessions?.filter(s => s.is_new_visitor).length || 0;
-        const avgDuration = sessions?.length 
-          ? Math.round(sessions.reduce((sum, s) => sum + (s.session_duration_seconds || 0), 0) / sessions.length)
+        const totalVisitors = new Set(realUserSessions.map(s => s.visitor_id)).size;
+        const totalSessions = realUserSessions.length;
+        const totalPageviews = realUserSessions.reduce((sum, s) => sum + (s.page_views || 0), 0);
+        const bounces = realUserSessions.filter(s => s.is_bounce).length;
+        const newVisitors = realUserSessions.filter(s => s.is_new_visitor).length;
+        const avgDuration = realUserSessions.length 
+          ? Math.round(realUserSessions.reduce((sum, s) => sum + (s.session_duration_seconds || 0), 0) / realUserSessions.length)
           : 0;
 
         return new Response(JSON.stringify({
@@ -128,7 +168,7 @@ Deno.serve(async (req) => {
           new_visitor_rate: totalSessions ? ((newVisitors / totalSessions) * 100).toFixed(1) : 0,
           avg_session_duration: avgDuration,
           total_conversions: conversions?.length || 0,
-          today_visitors: todaySessions?.length || 0,
+          today_visitors: realTodaySessions.length,
         }), {
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         });
@@ -241,13 +281,34 @@ Deno.serve(async (req) => {
 
         const { data: sessions } = await supabase
           .from('analytics_sessions')
-          .select('referrer_source, referrer_medium, utm_source, utm_medium, utm_campaign, visitor_id')
+          .select('referrer_source, referrer_medium, utm_source, utm_medium, utm_campaign, visitor_id, landing_page')
           .gte('started_at', startDate);
 
-        // Group by source/medium
-        const sources = sessions?.reduce((acc: Record<string, any>, s) => {
+        // Filter out Lovable admin traffic
+        const realUserSessions = sessions?.filter(s => {
+          const isLovableTraffic = 
+            (s.landing_page && (
+              s.landing_page.includes('__lovable_token') || 
+              s.landing_page.includes('forceHideBadge')
+            )) ||
+            (s.referrer_source && (
+              s.referrer_source.includes('lovable.dev') ||
+              s.referrer_source.includes('lovable.app') ||
+              s.referrer_source.includes('gptengineer')
+            ));
+          return !isLovableTraffic;
+        }) || [];
+
+        // Group by source/medium (excluding lovable sources)
+        const sources = realUserSessions.reduce((acc: Record<string, any>, s) => {
           const source = s.utm_source || s.referrer_source || 'direct';
           const medium = s.utm_medium || s.referrer_medium || 'none';
+          
+          // Skip lovable sources entirely
+          if (source.includes('lovable') || source.includes('gptengineer')) {
+            return acc;
+          }
+          
           const key = `${source}/${medium}`;
 
           if (!acc[key]) {
@@ -256,7 +317,7 @@ Deno.serve(async (req) => {
           acc[key].visitors.add(s.visitor_id);
           acc[key].sessions++;
           return acc;
-        }, {}) || {};
+        }, {});
 
         const result = Object.values(sources)
           .map((s: any) => ({
@@ -268,12 +329,12 @@ Deno.serve(async (req) => {
           .sort((a, b) => b.sessions - a.sessions);
 
         // Campaign breakdown
-        const campaigns = sessions?.reduce((acc: Record<string, number>, s) => {
+        const campaigns = realUserSessions.reduce((acc: Record<string, number>, s) => {
           if (s.utm_campaign) {
             acc[s.utm_campaign] = (acc[s.utm_campaign] || 0) + 1;
           }
           return acc;
-        }, {}) || {};
+        }, {});
 
         return new Response(JSON.stringify({
           sources: result.slice(0, 20),

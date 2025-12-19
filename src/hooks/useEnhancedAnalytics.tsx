@@ -1,6 +1,23 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
+import { 
+  isLovableSession, 
+  initLovableSessionDetection, 
+  cleanAnalyticsUrl 
+} from '@/utils/analyticsFilters';
+
+// Check if this is a Lovable admin session - skip all tracking if so
+let isAdminSession: boolean | null = null;
+const checkAdminSession = (): boolean => {
+  if (isAdminSession === null) {
+    isAdminSession = initLovableSessionDetection();
+    if (isAdminSession) {
+      console.debug('[EnhancedAnalytics] Lovable admin session detected - tracking disabled');
+    }
+  }
+  return isAdminSession;
+};
 
 // Generate persistent visitor ID
 const generateVisitorId = (): string => {
@@ -93,8 +110,13 @@ const getReferrerInfo = () => {
   }
 };
 
-// Send analytics to edge function
+// Send analytics to edge function - skip for Lovable admin sessions
 const sendAnalytics = async (endpoint: string, data: Record<string, unknown>) => {
+  // Skip tracking for Lovable admin sessions
+  if (checkAdminSession()) {
+    return;
+  }
+
   try {
     await supabase.functions.invoke('track-analytics', {
       body: { endpoint, data },
@@ -132,9 +154,11 @@ export const useEnhancedAnalytics = () => {
 
   // Track pageview on route change
   useEffect(() => {
-    if (!context) return;
+    // Skip tracking for Lovable admin sessions
+    if (!context || checkAdminSession()) return;
     
-    const currentPath = location.pathname + location.search;
+    // Clean the URL to remove internal tracking parameters
+    const currentPath = cleanAnalyticsUrl(location.pathname + location.search);
     
     // Send pageview-end for previous page
     if (lastPath.current && lastPath.current !== currentPath) {
