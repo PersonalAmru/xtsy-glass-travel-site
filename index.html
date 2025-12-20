@@ -87,9 +87,32 @@
         
         // Only initialize GA/Ads tracking if NOT Lovable admin
         if (!isLovable) {
+          // Set default consent (update if you have a cookie consent banner)
+          gtag('consent', 'default', {
+            'analytics_storage': 'granted',
+            'ad_storage': 'granted',
+            'ad_user_data': 'granted',
+            'ad_personalization': 'granted'
+          });
+          
           gtag('js', new Date());
-          gtag('config', 'G-SJY2WX6L4B');
-          gtag('config', 'AW-17456979648');
+          
+          // GA4 Configuration with enhanced settings for better tracking
+          gtag('config', 'G-SJY2WX6L4B', {
+            'send_page_view': true,
+            'cookie_flags': 'SameSite=None;Secure',
+            'cookie_domain': 'auto',
+            'cookie_expires': 63072000, // 2 years in seconds
+            'allow_google_signals': true,
+            'allow_ad_personalization_signals': true
+          });
+          
+          // Google Ads Configuration for lead quality
+          gtag('config', 'AW-17456979648', {
+            'send_page_view': true,
+            'cookie_flags': 'SameSite=None;Secure',
+            'allow_enhanced_conversions': true
+          });
         }
       })();
     </script>
