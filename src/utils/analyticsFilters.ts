@@ -10,11 +10,24 @@ const LOVABLE_PATTERNS = {
   previewDomains: ['preview.lovable.app', 'sandbox.lovable.app'],
 };
 
+// Extend Window interface for TypeScript
+declare global {
+  interface Window {
+    __isLovableAdmin?: boolean;
+  }
+}
+
 /**
  * Check if current session is a Lovable admin/preview session
+ * Uses the global flag set by gtag.js in index.html for consistency
  */
 export const isLovableSession = (): boolean => {
-  // Check sessionStorage first (fastest check)
+  // Check global flag first (set by gtag.js in head) - single source of truth
+  if (typeof window !== 'undefined' && window.__isLovableAdmin === true) {
+    return true;
+  }
+
+  // Check sessionStorage (fastest fallback check)
   const storedFlag = sessionStorage.getItem('xtsy_is_lovable_session');
   if (storedFlag === 'true') {
     return true;
@@ -41,10 +54,6 @@ export const isLovableSession = (): boolean => {
       // Invalid referrer URL, ignore
     }
   }
-
-  // REMOVED: Aggressive iframe detection that was blocking real traffic
-  // The iframe check was too broad and blocked legitimate production traffic
-  // when viewed in Lovable preview. Only explicit markers should block.
 
   return false;
 };

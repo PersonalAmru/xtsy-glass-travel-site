@@ -47,7 +47,52 @@
     <link rel="dns-prefetch" href="//api.exchangerate-api.com">
     <link rel="dns-prefetch" href="//checkout.razorpay.com">
     <link rel="dns-prefetch" href="//wa.me">
-    <link rel="dns-prefetch" href="//www.googletagmanager.com">
+    
+    <!-- Google Analytics & Ads - MUST be in head for reliable tracking -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      
+      // Lovable admin detection - don't track admin/preview traffic in GA/Ads
+      (function() {
+        var params = new URLSearchParams(window.location.search);
+        var isLovable = params.has('__lovable_token') || 
+                        params.has('forceHideBadge') || 
+                        params.has('__lovable');
+        
+        // Check sessionStorage for previously detected Lovable session
+        if (sessionStorage.getItem('xtsy_is_lovable_session') === 'true') {
+          isLovable = true;
+        }
+        
+        // Check referrer for Lovable domains
+        if (!isLovable && document.referrer) {
+          try {
+            var ref = new URL(document.referrer);
+            if (ref.hostname.indexOf('lovable.dev') !== -1 || 
+                ref.hostname.indexOf('lovable.app') !== -1 ||
+                ref.hostname.indexOf('gptengineer.app') !== -1) {
+              isLovable = true;
+            }
+          } catch(e) {}
+        }
+        
+        // Store flag for other scripts to use
+        window.__isLovableAdmin = isLovable;
+        if (isLovable) {
+          sessionStorage.setItem('xtsy_is_lovable_session', 'true');
+        }
+        
+        // Only initialize GA/Ads tracking if NOT Lovable admin
+        if (!isLovable) {
+          gtag('js', new Date());
+          gtag('config', 'G-SJY2WX6L4B');
+          gtag('config', 'AW-17456979648');
+        }
+      })();
+    </script>
     
     <!-- HTTP Client Hints for image optimization -->
     <meta http-equiv="Accept-CH" content="DPR,Width,Viewport-Width">
@@ -421,26 +466,6 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     
-    <!-- Deferred analytics - loads after page interactive -->
-    <script>
-      window.addEventListener('load',function(){
-        requestIdleCallback?requestIdleCallback(loadAnalytics):setTimeout(loadAnalytics,150);
-      });
-      function loadAnalytics(){
-        var g=document.createElement('script');
-        g.src='https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B';
-        g.async=true;
-        g.onload=function(){
-          window.dataLayer=window.dataLayer||[];
-          function gtag(){dataLayer.push(arguments)}
-          window.gtag=gtag;
-          gtag('js',new Date());
-          gtag('config','G-SJY2WX6L4B');
-          gtag('config','AW-17456979648');
-        };
-        document.head.appendChild(g);
-      }
-    </script>
     
     <!-- Razorpay - on-demand loading only -->
     <script>
