@@ -11,12 +11,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-// Vehicle data with Unsplash images
+// Vehicle data with Supabase images
 const cars = [
   {
     name: "Tata Punch",
     price: 2000,
-    image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&q=80",
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Rentals/Tata%20punch.jpg",
     fuel: "Petrol",
     transmission: "Manual",
     seats: 5,
@@ -25,7 +25,7 @@ const cars = [
   {
     name: "Tata Indica",
     price: 2000,
-    image: "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=800&q=80",
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Rentals/Tata%20Indica.jpg",
     fuel: "Diesel",
     transmission: "Manual",
     seats: 5,
@@ -34,7 +34,7 @@ const cars = [
   {
     name: "Mahindra Thar",
     price: 3800,
-    image: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=800&q=80",
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Rentals/Thar.jpg",
     fuel: "Diesel",
     transmission: "Manual/Auto",
     seats: 4,
@@ -43,7 +43,7 @@ const cars = [
   {
     name: "Mahindra Scorpio",
     price: 4000,
-    image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&q=80",
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Rentals/Scorpio.jpg",
     fuel: "Diesel",
     transmission: "Manual",
     seats: 7,
@@ -52,7 +52,7 @@ const cars = [
   {
     name: "Mahindra XUV 700",
     price: 4500,
-    image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&q=80",
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Rentals/XUV%20700%20EBONY.jpg",
     fuel: "Diesel/Petrol",
     transmission: "Auto",
     seats: 7,
@@ -62,7 +62,7 @@ const cars = [
   {
     name: "Hyundai i10 Nios",
     price: 1800,
-    image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&q=80",
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Rentals/i10%20nios.jpg",
     fuel: "Petrol",
     transmission: "Manual",
     seats: 5,
@@ -71,7 +71,7 @@ const cars = [
   {
     name: "Hyundai i20",
     price: 2000,
-    image: "https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?w=800&q=80",
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Rentals/I20.jpg",
     fuel: "Petrol",
     transmission: "Manual/Auto",
     seats: 5,
@@ -80,7 +80,7 @@ const cars = [
   {
     name: "Kia Seltos",
     price: 2800,
-    image: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=800&q=80",
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Rentals/KIA%20SELTOS.jpg",
     fuel: "Petrol/Diesel",
     transmission: "Auto",
     seats: 5,
@@ -89,7 +89,7 @@ const cars = [
   {
     name: "Kia Sonet",
     price: 2500,
-    image: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&q=80",
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Rentals/Sonet.jpg",
     fuel: "Petrol/Diesel",
     transmission: "Manual/Auto",
     seats: 5,
@@ -101,7 +101,7 @@ const bikes = [
   {
     name: "RE Meteor 350",
     price: 1300,
-    image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=800&q=80",
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Rentals/ROYAL%20ENFIELD%20METEOR.jpg",
     engine: "350cc",
     type: "Cruiser",
     mileage: "42 km/l"
@@ -109,7 +109,7 @@ const bikes = [
   {
     name: "RE Himalayan 411",
     price: 1300,
-    image: "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=800&q=80",
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Rentals/411.jpg",
     engine: "411cc",
     type: "Adventure",
     mileage: "35 km/l"
@@ -117,7 +117,7 @@ const bikes = [
   {
     name: "RE Himalayan 450",
     price: 1800,
-    image: "https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=800&q=80",
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Rentals/Royal%20Enfield%20Himalayan%20450.jpg",
     engine: "450cc",
     type: "Adventure",
     mileage: "30 km/l",
@@ -126,11 +126,17 @@ const bikes = [
   {
     name: "RE Hunter 350",
     price: 1600,
-    image: "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=800&q=80",
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Rentals/Hunter.jpg",
     engine: "350cc",
     type: "Roadster",
     mileage: "40 km/l"
   }
+];
+
+// All rental images for hero shuffle
+const heroImages = [
+  ...cars.map(c => c.image),
+  ...bikes.map(b => b.image)
 ];
 
 const features = [
@@ -186,9 +192,18 @@ const faqs = [
 const XTSYRentals = () => {
   const { formatPrice } = useApp();
   const [activeTab, setActiveTab] = useState("cars");
+  const [heroIndex, setHeroIndex] = useState(0);
 
   useEffect(() => {
     document.title = "XTSY Rentals - Car & Bike Rentals in Shillong | Explore Northeast India";
+  }, []);
+
+  // Auto-shuffle hero images every 4 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHeroIndex((prev) => (prev + 1) % heroImages.length);
+    }, 4000);
+    return () => clearInterval(interval);
   }, []);
 
   const handleWhatsAppBooking = (vehicleName: string, price: number) => {
@@ -202,14 +217,19 @@ const XTSYRentals = () => {
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
       <Header />
 
-      {/* Hero Section */}
+      {/* Hero Section with Auto-Shuffling Images */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1920&q=80"
-            alt="Northeast India roads"
-            className="w-full h-full object-cover"
-          />
+          {heroImages.map((img, idx) => (
+            <img
+              key={idx}
+              src={img}
+              alt={`XTSY Rentals vehicle ${idx + 1}`}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                idx === heroIndex ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+          ))}
           <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-900/70 to-slate-950" />
         </div>
         
