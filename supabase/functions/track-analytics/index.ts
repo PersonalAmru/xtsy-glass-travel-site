@@ -1,6 +1,71 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 import { getCorsHeaders } from '../_shared/cors.ts';
 
+// ============= TRAFFIC FILTERING =============
+// Lovable/Admin URL patterns to block at INSERT time
+const LOVABLE_URL_PARAMS = ['__lovable_token', 'forceHideBadge', '__lovable', '__lovable_session'];
+const LOVABLE_DOMAINS = ['lovable.dev', 'lovable.app', 'gptengineer.app', 'preview.lovable.app', 'sandbox.lovable.app'];
+
+// Bot/crawler User-Agent patterns
+const BOT_USER_AGENT_PATTERNS = [
+  /bot/i, /crawler/i, /spider/i, /scraper/i,
+  /headless/i, /phantom/i, /selenium/i, /puppeteer/i, /playwright/i,
+  /googlebot/i, /bingbot/i, /slurp/i, /duckduckbot/i, /baiduspider/i,
+  /yandexbot/i, /facebookexternalhit/i, /twitterbot/i, /linkedinbot/i,
+  /whatsapp/i, /telegrambot/i, /discordbot/i,
+  /applebot/i, /semrush/i, /ahrefsbot/i, /mj12bot/i,
+  /dotbot/i, /petalbot/i, /bytespider/i,
+  /curl/i, /wget/i, /httpie/i, /postman/i, /insomnia/i,
+  /python-requests/i, /axios/i, /node-fetch/i, /go-http-client/i,
+  /java\//i, /okhttp/i, /apache-httpclient/i,
+  /lovable/i, // Block any Lovable-related user agents
+];
+
+/**
+ * Check if traffic should be blocked (Lovable admin, bots, crawlers)
+ * Returns { blocked: true, reason: string } or { blocked: false }
+ */
+function shouldBlockTraffic(data: {
+  page_path?: string;
+  landing_page?: string;
+  referrer_url?: string;
+  referrer?: string;
+  source?: string;
+  user_agent?: string;
+  url?: string;
+}): { blocked: boolean; reason?: string } {
+  // 1. Check URL parameters for Lovable markers
+  const urlsToCheck = [data.page_path, data.landing_page, data.url].filter(Boolean);
+  for (const url of urlsToCheck) {
+    for (const param of LOVABLE_URL_PARAMS) {
+      if (url?.includes(param)) {
+        return { blocked: true, reason: `lovable_url_param:${param}` };
+      }
+    }
+  }
+
+  // 2. Check referrer for Lovable domains
+  const referrersToCheck = [data.referrer_url, data.referrer, data.source].filter(Boolean);
+  for (const referrer of referrersToCheck) {
+    for (const domain of LOVABLE_DOMAINS) {
+      if (referrer?.includes(domain)) {
+        return { blocked: true, reason: `lovable_referrer:${domain}` };
+      }
+    }
+  }
+
+  // 3. Check User-Agent for bots/crawlers
+  if (data.user_agent) {
+    for (const pattern of BOT_USER_AGENT_PATTERNS) {
+      if (pattern.test(data.user_agent)) {
+        return { blocked: true, reason: `bot_user_agent:${pattern.source}` };
+      }
+    }
+  }
+
+  return { blocked: false };
+}
+
 // Rate limiting - simple in-memory (resets on cold start)
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
 const RATE_LIMIT = 100;
@@ -109,6 +174,29 @@ Deno.serve(async (req) => {
     }
 
     const visitorId = data.visitorId || data.visitor_id || 'unknown';
+    const userAgent = req.headers.get('user-agent') || data.user_agent || '';
+
+    // ============= SERVER-SIDE TRAFFIC FILTERING =============
+    // Block Lovable admin/preview traffic and bots at INSERT time
+    const trafficCheck = shouldBlockTraffic({
+      page_path: data.page_path,
+      landing_page: data.landing_page,
+      referrer_url: data.referrer_url,
+      referrer: data.referrer,
+      source: data.source,
+      user_agent: userAgent,
+      url: data.url,
+    });
+
+    if (trafficCheck.blocked) {
+      console.log(`[Analytics] Blocked traffic: ${trafficCheck.reason} - visitorId: ${visitorId.substring(0, 8)}...`);
+      // Return success but don't insert - silent drop for bots/admin traffic
+      return new Response(JSON.stringify({ success: true, filtered: true }), {
+        status: 200,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
     if (!checkRateLimitLocal(visitorId)) {
       return new Response(JSON.stringify({ error: 'Too many requests' }), {
         status: 429,
