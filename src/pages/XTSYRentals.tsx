@@ -298,56 +298,70 @@ const XTSYRentals = () => {
                 {cars.map((car, index) => (
                   <div 
                     key={index}
-                    className="group bg-slate-800/30 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-primary/50 transition-all duration-300"
+                    className="group bg-gradient-to-b from-slate-800/50 to-slate-900/80 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-500 ring-1 ring-white/5"
                   >
-                    <div className="relative h-48 overflow-hidden">
+                    {/* Instagram-grade image container - 16:9 aspect ratio for full car body */}
+                    <div className="relative aspect-[16/9] bg-gradient-to-br from-slate-800 via-slate-900 to-slate-950 overflow-hidden">
                       <img
                         src={car.image}
                         alt={car.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                        style={{ objectPosition: '50% 60%' }}
                       />
+                      {/* Instagram-style gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-slate-900/30 via-transparent to-slate-900/30" />
+                      
+                      {/* Shimmer effect on hover */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
+                      
+                      {/* Category badge */}
                       <div className="absolute top-3 left-3">
-                        <span className="px-3 py-1 rounded-full bg-slate-900/80 text-white/80 text-xs">
+                        <span className="px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-sm text-white/90 text-xs font-medium border border-white/10">
                           {car.category}
                         </span>
                       </div>
                       {car.badge && (
                         <div className="absolute top-3 right-3">
-                          <span className="px-3 py-1 rounded-full bg-primary text-white text-xs font-semibold">
+                          <span className="px-3 py-1.5 rounded-full bg-primary text-white text-xs font-bold shadow-lg shadow-primary/30">
                             {car.badge}
                           </span>
                         </div>
                       )}
+                      
+                      {/* Vehicle name overlay at bottom */}
+                      <div className="absolute bottom-0 left-0 right-0 p-4">
+                        <h3 className="text-xl font-bold text-white drop-shadow-lg">{car.name}</h3>
+                      </div>
                     </div>
                     
-                    <div className="p-5">
-                      <h3 className="text-xl font-bold text-white mb-3">{car.name}</h3>
-                      
+                    {/* Card content with glass effect */}
+                    <div className="p-5 bg-gradient-to-b from-slate-800/50 to-slate-900/80">
                       <div className="grid grid-cols-3 gap-2 mb-4">
-                        <div className="flex items-center gap-1 text-white/60 text-sm">
-                          <Fuel className="w-4 h-4" />
+                        <div className="flex items-center gap-1.5 text-white/70 text-sm bg-white/5 rounded-lg px-2 py-1.5">
+                          <Fuel className="w-3.5 h-3.5 text-primary" />
                           <span>{car.fuel}</span>
                         </div>
-                        <div className="flex items-center gap-1 text-white/60 text-sm">
-                          <Settings className="w-4 h-4" />
+                        <div className="flex items-center gap-1.5 text-white/70 text-sm bg-white/5 rounded-lg px-2 py-1.5">
+                          <Settings className="w-3.5 h-3.5 text-primary" />
                           <span>{car.transmission}</span>
                         </div>
-                        <div className="flex items-center gap-1 text-white/60 text-sm">
-                          <Users className="w-4 h-4" />
+                        <div className="flex items-center gap-1.5 text-white/70 text-sm bg-white/5 rounded-lg px-2 py-1.5">
+                          <Users className="w-3.5 h-3.5 text-primary" />
                           <span>{car.seats} Seats</span>
                         </div>
                       </div>
                       
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-center justify-between pt-3 border-t border-white/10">
                         <div>
                           <span className="text-2xl font-bold text-primary">
                             {formatPrice(car.price)}
                           </span>
-                          <span className="text-white/60 text-sm">/day</span>
+                          <span className="text-white/50 text-sm">/day</span>
                         </div>
                         <button
                           onClick={() => handleWhatsAppBooking(car.name, car.price)}
-                          className="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-500 text-white rounded-lg transition-colors"
+                          className="flex items-center gap-2 px-5 py-2.5 bg-green-600 hover:bg-green-500 text-white rounded-xl transition-all duration-300 shadow-lg shadow-green-600/30 hover:shadow-green-500/40 hover:scale-105"
                         >
                           <Phone className="w-4 h-4" />
                           Book
@@ -365,56 +379,70 @@ const XTSYRentals = () => {
                 {bikes.map((bike, index) => (
                   <div 
                     key={index}
-                    className="group bg-slate-800/30 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-primary/50 transition-all duration-300"
+                    className="group bg-gradient-to-b from-slate-800/50 to-slate-900/80 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-500 ring-1 ring-white/5"
                   >
-                    <div className="relative h-56 overflow-hidden">
+                    {/* Instagram-grade image container - 4:3 aspect ratio for bike profile */}
+                    <div className="relative aspect-[4/3] bg-gradient-to-br from-slate-800 via-slate-900 to-slate-950 overflow-hidden">
                       <img
                         src={bike.image}
                         alt={bike.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                        style={{ objectPosition: '50% 55%' }}
                       />
+                      {/* Instagram-style gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-slate-900/30 via-transparent to-slate-900/30" />
+                      
+                      {/* Shimmer effect on hover */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
+                      
+                      {/* Type badge */}
                       <div className="absolute top-3 left-3">
-                        <span className="px-3 py-1 rounded-full bg-slate-900/80 text-white/80 text-xs">
+                        <span className="px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-sm text-white/90 text-xs font-medium border border-white/10">
                           {bike.type}
                         </span>
                       </div>
                       {bike.badge && (
                         <div className="absolute top-3 right-3">
-                          <span className="px-3 py-1 rounded-full bg-primary text-white text-xs font-semibold">
+                          <span className="px-3 py-1.5 rounded-full bg-primary text-white text-xs font-bold shadow-lg shadow-primary/30">
                             {bike.badge}
                           </span>
                         </div>
                       )}
+                      
+                      {/* Bike name overlay at bottom */}
+                      <div className="absolute bottom-0 left-0 right-0 p-4">
+                        <h3 className="text-xl font-bold text-white drop-shadow-lg">{bike.name}</h3>
+                      </div>
                     </div>
                     
-                    <div className="p-5">
-                      <h3 className="text-xl font-bold text-white mb-3">{bike.name}</h3>
-                      
+                    {/* Card content with glass effect */}
+                    <div className="p-5 bg-gradient-to-b from-slate-800/50 to-slate-900/80">
                       <div className="grid grid-cols-3 gap-2 mb-4">
-                        <div className="flex items-center gap-1 text-white/60 text-sm">
-                          <Settings className="w-4 h-4" />
+                        <div className="flex items-center gap-1.5 text-white/70 text-sm bg-white/5 rounded-lg px-2 py-1.5">
+                          <Settings className="w-3.5 h-3.5 text-primary" />
                           <span>{bike.engine}</span>
                         </div>
-                        <div className="flex items-center gap-1 text-white/60 text-sm">
-                          <Bike className="w-4 h-4" />
+                        <div className="flex items-center gap-1.5 text-white/70 text-sm bg-white/5 rounded-lg px-2 py-1.5">
+                          <Bike className="w-3.5 h-3.5 text-primary" />
                           <span>{bike.type}</span>
                         </div>
-                        <div className="flex items-center gap-1 text-white/60 text-sm">
-                          <Fuel className="w-4 h-4" />
+                        <div className="flex items-center gap-1.5 text-white/70 text-sm bg-white/5 rounded-lg px-2 py-1.5">
+                          <Fuel className="w-3.5 h-3.5 text-primary" />
                           <span>{bike.mileage}</span>
                         </div>
                       </div>
                       
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-center justify-between pt-3 border-t border-white/10">
                         <div>
                           <span className="text-2xl font-bold text-primary">
                             {formatPrice(bike.price)}
                           </span>
-                          <span className="text-white/60 text-sm">/day</span>
+                          <span className="text-white/50 text-sm">/day</span>
                         </div>
                         <button
                           onClick={() => handleWhatsAppBooking(bike.name, bike.price)}
-                          className="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-500 text-white rounded-lg transition-colors"
+                          className="flex items-center gap-2 px-5 py-2.5 bg-green-600 hover:bg-green-500 text-white rounded-xl transition-all duration-300 shadow-lg shadow-green-600/30 hover:shadow-green-500/40 hover:scale-105"
                         >
                           <Phone className="w-4 h-4" />
                           Book
