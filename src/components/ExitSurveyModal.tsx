@@ -46,23 +46,39 @@ export const ExitSurveyModal: React.FC<ExitSurveyModalProps> = ({ onSubmit, onDi
 
   return (
     <Dialog open={true} onOpenChange={() => onDismiss()}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
-            <MessageCircle className="h-5 w-5 text-primary" />
+      <DialogContent 
+        className="sm:max-w-md border-2 border-primary/30 bg-card shadow-2xl shadow-primary/20"
+        style={{ zIndex: 100 }}
+      >
+        {/* Accent gradient bar at top */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-t-lg" />
+        
+        <DialogHeader className="pt-2">
+          <DialogTitle className="flex items-center gap-2 text-xl font-bold text-foreground">
+            <div className="p-2 rounded-full bg-primary/20">
+              <MessageCircle className="h-5 w-5 text-primary" />
+            </div>
             Before you go...
           </DialogTitle>
-          <DialogDescription>
+          <DialogDescription className="text-muted-foreground text-base">
             Help us improve! Why are you leaving today?
           </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-4 py-4">
-          <RadioGroup value={exitReason} onValueChange={setExitReason}>
+          <RadioGroup value={exitReason} onValueChange={setExitReason} className="space-y-2">
             {EXIT_REASONS.map((reason) => (
-              <div key={reason.value} className="flex items-center space-x-2">
-                <RadioGroupItem value={reason.value} id={reason.value} />
-                <Label htmlFor={reason.value} className="cursor-pointer">
+              <div 
+                key={reason.value} 
+                className={`flex items-center space-x-3 p-3 rounded-lg border transition-all cursor-pointer hover:bg-accent/50 ${
+                  exitReason === reason.value 
+                    ? 'border-primary bg-primary/10 shadow-sm' 
+                    : 'border-border/50 bg-background/50'
+                }`}
+                onClick={() => setExitReason(reason.value)}
+              >
+                <RadioGroupItem value={reason.value} id={reason.value} className="border-primary" />
+                <Label htmlFor={reason.value} className="cursor-pointer text-foreground font-medium flex-1">
                   {reason.label}
                 </Label>
               </div>
@@ -74,20 +90,21 @@ export const ExitSurveyModal: React.FC<ExitSurveyModalProps> = ({ onSubmit, onDi
               placeholder="Please tell us more..."
               value={feedback}
               onChange={(e) => setFeedback(e.target.value)}
-              className="mt-2"
+              className="mt-2 border-primary/30 focus:border-primary bg-background"
               rows={3}
             />
           )}
 
-          <div className="pt-2">
-            <Label className="text-sm text-muted-foreground mb-2 block">
+          <div className="pt-3 p-4 rounded-lg bg-accent/30 border border-border/50">
+            <Label className="text-sm text-foreground font-medium mb-3 block">
               Would you consider visiting XTSY in the future?
             </Label>
-            <div className="flex gap-2">
+            <div className="flex gap-3">
               <Button
                 variant={wouldReturn === true ? 'default' : 'outline'}
                 size="sm"
                 onClick={() => setWouldReturn(true)}
+                className={wouldReturn === true ? 'bg-primary hover:bg-primary/90' : 'border-primary/50 hover:bg-primary/10'}
               >
                 Yes, definitely!
               </Button>
@@ -95,6 +112,7 @@ export const ExitSurveyModal: React.FC<ExitSurveyModalProps> = ({ onSubmit, onDi
                 variant={wouldReturn === false ? 'default' : 'outline'}
                 size="sm"
                 onClick={() => setWouldReturn(false)}
+                className={wouldReturn === false ? 'bg-destructive hover:bg-destructive/90' : 'border-border hover:bg-accent'}
               >
                 Maybe not
               </Button>
@@ -102,11 +120,15 @@ export const ExitSurveyModal: React.FC<ExitSurveyModalProps> = ({ onSubmit, onDi
           </div>
         </div>
 
-        <div className="flex justify-between">
-          <Button variant="ghost" onClick={onDismiss}>
+        <div className="flex justify-between pt-2 border-t border-border/50">
+          <Button variant="ghost" onClick={onDismiss} className="text-muted-foreground hover:text-foreground">
             Skip
           </Button>
-          <Button onClick={handleSubmit} disabled={!exitReason}>
+          <Button 
+            onClick={handleSubmit} 
+            disabled={!exitReason}
+            className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 shadow-lg shadow-primary/30"
+          >
             Submit & Leave
           </Button>
         </div>
