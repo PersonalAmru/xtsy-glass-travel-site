@@ -1,577 +1,1060 @@
-import React, { useState, useEffect } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+/**
+ * BookingFlow - iOS-Style Guest Booking Interface
+ * Apple Human Interface Guidelines compliant
+ * Mobile-first, gesture-based, dark mode ready
+ * 
+ * Flow: Dates → Rooms → Summary → Guest Details → Confirmation
+ */
+
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { format, differenceInDays, parseISO, addDays, isBefore, isAfter, startOfToday } from 'date-fns';
+import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, Users, Bed, Check, MapPin, Phone, Mail, User, ArrowLeft, Home, Sparkles, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft } from 'lucide-react';
-import WhatsAppBookingForm from '@/components/WhatsAppBookingForm';
-import { BookingSummary } from '@/components/BookingSummary';
-import FastRoomCard from '@/components/FastRoomCard';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { useScreenSize } from '@/hooks/use-mobile';
+import { Card } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Calendar } from '@/components/ui/calendar';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
-import { differenceInDays, parseISO } from 'date-fns';
-import Header from '@/components/Header';
-import { XTSY270_DATA } from '@/data/rooms/xtsy270';
+import { supabase } from '@/integrations/supabase/client';
 import { useApp } from '@/contexts/AppContext';
-import { generateStandardizedFeatures } from '@/utils/roomFeatures';
-import { useRoomAvailability, checkDateRangeAvailability } from '@/hooks/useRoomAvailability';
 import { createBooking } from '@/services/bookingService';
-interface Room {
+import UnifiedImage from '@/components/UnifiedImage';
+
+// Step definitions
+type BookingStep = 'dates' | 'rooms' | 'summary' | 'details' | 'confirmation';
+
+const STEPS: { id: BookingStep; title: string; subtitle: string }[] = [
+  { id: 'dates', title: 'Select Dates', subtitle: 'When are you visiting?' },
+  { id: 'rooms', title: 'Choose Room', subtitle: 'Find your perfect stay' },
+  { id: 'summary', title: 'Review', subtitle: 'Your booking summary' },
+  { id: 'details', title: 'Guest Info', subtitle: 'Complete your booking' },
+  { id: 'confirmation', title: 'Confirmed', subtitle: 'You\'re all set!' },
+];
+
+// Room type interface
+interface RoomType {
   id: string;
   name: string;
-  price: number;
-  originalPrice?: number;
-  image: string;
-  description: string;
+  category: string;
+  kind: string;
+  base_price: number;
+  weekday_price: number | null;
+  weekend_price: number | null;
+  capacity: number;
+  total_units: number;
   amenities: string[];
-  type: 'dorm' | 'private';
-  maxGuests: number;
-  propertyType: string;
-  maxRooms?: number;
-  images?: string[];
-  isBlocked?: boolean;
+  images: string[];
+  is_active: boolean;
 }
+
 interface SelectedRoom {
-  id: string;
-  name: string;
-  price: number;
-  type: 'dorm' | 'private';
-  selection: {
-    guests: number;
-    rooms: number;
-  };
+  roomTypeId: string;
+  roomTypeName: string;
+  quantity: number;
+  pricePerNight: number;
+  capacity: number;
 }
-const generateFeatures = generateStandardizedFeatures;
-// Helper function to determine if current day is a weekend (Fri, Sat, Sun)
-const isWeekendDay = (): boolean => {
-  const day = new Date().getDay();
-  return day === 5 || day === 6 || day === 0; // Friday = 5, Saturday = 6, Sunday = 0
+
+interface GuestDetails {
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  city: string;
+  state: string;
+  pincode: string;
+  specialRequests: string;
+}
+
+// iOS-style page transition variants
+const pageVariants = {
+  initial: (direction: number) => ({
+    x: direction > 0 ? '100%' : '-100%',
+    opacity: 0,
+  }),
+  in: {
+    x: 0,
+    opacity: 1,
+  },
+  out: (direction: number) => ({
+    x: direction < 0 ? '100%' : '-100%',
+    opacity: 0,
+  }),
 };
 
-// Get XTSY 270 price based on current day
-const getXtsy270Price = (): { price: number; originalPrice: number } => {
-  const isWeekend = isWeekendDay();
-  const basePrice = isWeekend ? 11500 : 8500;
-  return {
-    price: Math.round(basePrice * 0.9), // 10% winter discount
-    originalPrice: basePrice
+const pageTransition = {
+  type: 'spring' as const,
+  stiffness: 300,
+  damping: 30,
+};
+
+// iOS-style step indicator
+const StepIndicator = ({ currentStep, steps }: { currentStep: BookingStep; steps: typeof STEPS }) => {
+  const currentIndex = steps.findIndex(s => s.id === currentStep);
+  
+  return (
+    <div className="flex items-center justify-center gap-2 py-4">
+      {steps.slice(0, 4).map((step, index) => (
+        <div
+          key={step.id}
+          className={cn(
+            "w-2 h-2 rounded-full transition-all duration-300",
+            index === currentIndex
+              ? "w-6 bg-primary"
+              : index < currentIndex
+              ? "bg-primary/60"
+              : "bg-muted-foreground/30"
+          )}
+        />
+      ))}
+    </div>
+  );
+};
+
+// iOS-style header
+const BookingHeader = ({ 
+  step, 
+  onBack, 
+  canGoBack 
+}: { 
+  step: typeof STEPS[0]; 
+  onBack: () => void; 
+  canGoBack: boolean;
+}) => (
+  <div className="sticky top-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50 safe-area-top">
+    <div className="flex items-center justify-between px-4 h-14">
+      <div className="w-16">
+        {canGoBack && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={onBack}
+            className="text-primary hover:bg-transparent -ml-2"
+          >
+            <ChevronLeft className="w-5 h-5 mr-1" />
+            Back
+          </Button>
+        )}
+      </div>
+      <div className="text-center">
+        <h1 className="text-lg font-semibold">{step.title}</h1>
+      </div>
+      <div className="w-16" />
+    </div>
+  </div>
+);
+
+// Date Selection Step with iOS Calendar
+const DateSelectionStep = ({
+  checkIn,
+  checkOut,
+  onCheckInChange,
+  onCheckOutChange,
+  onNext,
+}: {
+  checkIn: Date | undefined;
+  checkOut: Date | undefined;
+  onCheckInChange: (date: Date | undefined) => void;
+  onCheckOutChange: (date: Date | undefined) => void;
+  onNext: () => void;
+}) => {
+  const today = startOfToday();
+  const [selectingCheckOut, setSelectingCheckOut] = useState(false);
+  
+  const nights = useMemo(() => {
+    if (checkIn && checkOut) {
+      return differenceInDays(checkOut, checkIn);
+    }
+    return 0;
+  }, [checkIn, checkOut]);
+
+  const handleDateSelect = (date: Date | undefined) => {
+    if (!date) return;
+    
+    if (!selectingCheckOut) {
+      onCheckInChange(date);
+      onCheckOutChange(undefined);
+      setSelectingCheckOut(true);
+    } else {
+      if (checkIn && isAfter(date, checkIn)) {
+        onCheckOutChange(date);
+        setSelectingCheckOut(false);
+      } else {
+        onCheckInChange(date);
+        setSelectingCheckOut(true);
+      }
+    }
   };
+
+  const isValidSelection = checkIn && checkOut && nights >= 1;
+
+  return (
+    <div className="flex flex-col min-h-[calc(100vh-8rem)] px-4 pb-24">
+      {/* Date Display Cards */}
+      <div className="grid grid-cols-2 gap-3 mb-6">
+        <Card 
+          className={cn(
+            "p-4 cursor-pointer transition-all",
+            !selectingCheckOut && "ring-2 ring-primary"
+          )}
+          onClick={() => setSelectingCheckOut(false)}
+        >
+          <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Check-in</p>
+          <p className="text-lg font-semibold">
+            {checkIn ? format(checkIn, 'MMM d, yyyy') : 'Select date'}
+          </p>
+          <p className="text-sm text-muted-foreground">After 12:00 PM</p>
+        </Card>
+        <Card 
+          className={cn(
+            "p-4 cursor-pointer transition-all",
+            selectingCheckOut && checkIn && "ring-2 ring-primary"
+          )}
+          onClick={() => checkIn && setSelectingCheckOut(true)}
+        >
+          <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Check-out</p>
+          <p className="text-lg font-semibold">
+            {checkOut ? format(checkOut, 'MMM d, yyyy') : 'Select date'}
+          </p>
+          <p className="text-sm text-muted-foreground">Before 10:00 AM</p>
+        </Card>
+      </div>
+
+      {/* Nights Indicator */}
+      {nights > 0 && (
+        <div className="text-center mb-4">
+          <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-primary font-medium">
+            <Bed className="w-4 h-4" />
+            {nights} night{nights > 1 ? 's' : ''}
+          </span>
+        </div>
+      )}
+
+      {/* iOS-style Calendar */}
+      <Card className="p-4 flex-1">
+        <Calendar
+          mode="single"
+          selected={selectingCheckOut ? checkOut : checkIn}
+          onSelect={handleDateSelect}
+          disabled={(date) => isBefore(date, today)}
+          modifiers={{
+            range: checkIn && checkOut ? { from: checkIn, to: checkOut } : undefined,
+            rangeStart: checkIn,
+            rangeEnd: checkOut,
+          }}
+          modifiersStyles={{
+            range: { backgroundColor: 'hsl(var(--primary) / 0.1)' },
+            rangeStart: { backgroundColor: 'hsl(var(--primary))', color: 'white' },
+            rangeEnd: { backgroundColor: 'hsl(var(--primary))', color: 'white' },
+          }}
+          className="w-full pointer-events-auto"
+        />
+      </Card>
+
+      {/* Continue Button - Fixed at bottom */}
+      <div className="fixed bottom-0 left-0 right-0 p-4 bg-background/80 backdrop-blur-xl border-t border-border/50 safe-area-bottom">
+        <Button
+          onClick={onNext}
+          disabled={!isValidSelection}
+          className="w-full h-12 text-base font-semibold rounded-xl"
+          size="lg"
+        >
+          Continue to Room Selection
+        </Button>
+      </div>
+    </div>
+  );
 };
 
-const ALL_ROOMS_DATA: {
-  [key: string]: Room;
-} = {
-  'xtsy-270': {
-    id: 'xtsy-270',
-    name: '270° Panorama Glass Ensuite',
-    price: getXtsy270Price().price,
-    originalPrice: getXtsy270Price().originalPrice,
-    image: XTSY270_DATA.image,
-    description: XTSY270_DATA.description,
-    amenities: XTSY270_DATA.features,
-    type: 'private',
-    maxGuests: 2,
-    propertyType: 'luxury',
-    maxRooms: 1,
-    images: XTSY270_DATA.images || [XTSY270_DATA.image]
-  },
-  '4-bed-female-only-dorm': {
-    id: '4-bed-female-only-dorm',
-    name: 'Bed in 4-Bed Female Dormitory',
-    price: 765, // 10% winter discount (850 * 0.9)
-    originalPrice: 850,
-    image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg',
-    description: 'Female-only dormitory with modern amenities and comfortable beds',
-    amenities: generateFeatures('hostel', 'Bed in 4-Bed Female Dormitory', 'dorm'),
-    type: 'dorm',
-    maxGuests: 1,
-    propertyType: 'hostel',
-    maxRooms: 4,
-    images: ['https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/2.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/3.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/4.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/5.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/6.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/7.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/IMG_5161.png']
-  },
-  '4-bed-mixed-female-dorm': {
-    id: '4-bed-mixed-female-dorm',
-    name: 'Bed in 4-Bed Mixed Dormitory',
-    price: 720, // 10% winter discount (800 * 0.9)
-    originalPrice: 800,
-    image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/3.jpg',
-    description: 'Mixed dormitory with shared facilities and social atmosphere',
-    amenities: generateFeatures('hostel', 'Bed in 4-Bed Mixed Dormitory', 'dorm'),
-    type: 'dorm',
-    maxGuests: 1,
-    propertyType: 'hostel',
-    maxRooms: 4,
-    images: ['https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/3.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/4.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/5.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/IMG_5161.png']
-  },
-  '6-bed-mixed-female-dorm': {
-    id: '6-bed-mixed-female-dorm',
-    name: 'Bed in 6-Bed Female Only Dormitory',
-    price: 675, // 10% winter discount (750 * 0.9)
-    originalPrice: 750,
-    image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
-    description: 'Spacious mixed or female dormitory with modern amenities',
-    amenities: generateFeatures('hostel', 'Bed in 6-Bed Female Only Dormitory', 'dorm'),
-    type: 'dorm',
-    maxGuests: 1,
-    propertyType: 'hostel',
-    maxRooms: 6,
-    images: ['https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/3.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/4.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/5.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/6.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/IMG_5160.png']
-  },
-  '6-bed-mixed-dorm': {
-    id: '6-bed-mixed-dorm',
-    name: 'Bed in 6-Bed Mixed Dormitory',
-    price: 630, // 10% winter discount (700 * 0.9)
-    originalPrice: 700,
-    image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
-    description: 'Spacious mixed dormitory with modern amenities',
-    amenities: generateFeatures('hostel', 'Bed in 6-Bed Mixed Dormitory', 'dorm'),
-    type: 'dorm',
-    maxGuests: 1,
-    propertyType: 'hostel',
-    maxRooms: 6,
-    images: ['https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/3.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/4.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/5.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/6.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/IMG_5160.png']
-  },
-  'king-double-room': {
-    id: 'king-double-room',
-    name: 'King Double Room',
-    price: 2520, // 10% winter discount (2800 * 0.9)
-    originalPrice: 2800,
-    image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg',
-    description: 'Spacious private room with king bed for two guests',
-    amenities: generateFeatures('hostel', 'King Double Room', 'private'),
-    type: 'private',
-    maxGuests: 2,
-    propertyType: 'hostel',
-    maxRooms: 2,
-    images: ['https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/2.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/3.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/IMG_4077.jpg']
-  },
-  'king-triple-room': {
-    id: 'king-triple-room',
-    name: 'King Triple Room',
-    price: 3150, // 10% winter discount (3500 * 0.9)
-    originalPrice: 3500,
-    image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/1.jpg',
-    description: 'Luxurious private room accommodating up to three guests',
-    amenities: generateFeatures('hostel', 'King Triple Room', 'private'),
-    type: 'private',
-    maxGuests: 3,
-    propertyType: 'hostel',
-    maxRooms: 1,
-    images: ['https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/1.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/2.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/3.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/5.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/IMG_4077.jpg']
-  },
-  '6-bed-mixed-economy-dorm': {
-    id: '6-bed-mixed-economy-dorm',
-    name: 'Bed in 6-Bed Female Dormitory',
-    price: 0, // No price - OTA only
-    image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
-    description: 'Budget-friendly female dormitory with essential amenities',
-    amenities: generateFeatures('economy', 'Bed in 6-Bed Female Dormitory', 'dorm'),
-    type: 'dorm',
-    maxGuests: 1,
-    propertyType: 'economy',
-    maxRooms: 6,
-    images: ['https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/3.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/4.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/5.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/6.JPG', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/IMG_5160.png']
-  },
-  '8-bed-mixed-economy-dorm': {
-    id: '8-bed-mixed-economy-dorm',
-    name: 'Bed in 8-Bed Mixed Dormitory',
-    price: 0, // No price - OTA only
-    image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg',
-    description: 'Most economical option for backpackers and budget travelers',
-    amenities: generateFeatures('economy', 'Bed in 8-Bed Mixed Dormitory', 'dorm'),
-    type: 'dorm',
-    maxGuests: 1,
-    propertyType: 'economy',
-    maxRooms: 8,
-    images: ['https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/4.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/5.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/6.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/8.jpg', 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/9.jpg']
-  }
+// Room Selection Step
+const RoomSelectionStep = ({
+  rooms,
+  selectedRoom,
+  quantity,
+  checkIn,
+  checkOut,
+  onRoomSelect,
+  onQuantityChange,
+  onNext,
+  formatPrice,
+}: {
+  rooms: RoomType[];
+  selectedRoom: RoomType | null;
+  quantity: number;
+  checkIn: Date;
+  checkOut: Date;
+  onRoomSelect: (room: RoomType) => void;
+  onQuantityChange: (qty: number) => void;
+  onNext: () => void;
+  formatPrice: (amount: number) => string;
+}) => {
+  const nights = differenceInDays(checkOut, checkIn);
+
+  const getRoomPrice = (room: RoomType) => {
+    // Check if any dates fall on weekend (Fri, Sat, Sun)
+    const isWeekend = checkIn.getDay() >= 5 || checkIn.getDay() === 0;
+    if (isWeekend && room.weekend_price) {
+      return room.weekend_price;
+    }
+    return room.weekday_price || room.base_price;
+  };
+
+  const groupedRooms = useMemo(() => {
+    const groups: Record<string, RoomType[]> = {};
+    rooms.forEach(room => {
+      if (!groups[room.category]) {
+        groups[room.category] = [];
+      }
+      groups[room.category].push(room);
+    });
+    return groups;
+  }, [rooms]);
+
+  return (
+    <div className="flex flex-col min-h-[calc(100vh-8rem)] pb-32">
+      {/* Date Summary */}
+      <div className="px-4 py-3 bg-muted/50 flex items-center justify-between">
+        <div className="flex items-center gap-2 text-sm">
+          <CalendarIcon className="w-4 h-4 text-muted-foreground" />
+          <span>{format(checkIn, 'MMM d')} - {format(checkOut, 'MMM d')}</span>
+          <span className="text-muted-foreground">({nights} night{nights > 1 ? 's' : ''})</span>
+        </div>
+      </div>
+
+      {/* Room Categories */}
+      <div className="px-4 py-4 space-y-6">
+        {Object.entries(groupedRooms).map(([category, categoryRooms]) => (
+          <div key={category}>
+            <h3 className="text-lg font-semibold mb-3 capitalize">{category}</h3>
+            <div className="space-y-3">
+              {categoryRooms.map(room => {
+                const price = getRoomPrice(room);
+                const isSelected = selectedRoom?.id === room.id;
+                const isDorm = room.kind === 'dorm';
+                
+                return (
+                  <Card
+                    key={room.id}
+                    className={cn(
+                      "overflow-hidden transition-all cursor-pointer",
+                      isSelected && "ring-2 ring-primary"
+                    )}
+                    onClick={() => onRoomSelect(room)}
+                  >
+                    <div className="flex">
+                      {/* Room Image */}
+                      <div className="w-28 h-28 flex-shrink-0 bg-muted">
+                        {room.images?.[0] && (
+                          <UnifiedImage
+                            src={room.images[0]}
+                            alt={room.name}
+                            className="w-full h-full object-cover"
+                          />
+                        )}
+                      </div>
+                      
+                      {/* Room Info */}
+                      <div className="flex-1 p-3 flex flex-col justify-between">
+                        <div>
+                          <h4 className="font-medium text-sm line-clamp-2">{room.name}</h4>
+                          <div className="flex items-center gap-2 mt-1 text-xs text-muted-foreground">
+                            <Users className="w-3 h-3" />
+                            <span>{isDorm ? '1 guest per bed' : `Up to ${room.capacity} guests`}</span>
+                          </div>
+                        </div>
+                        <div className="flex items-end justify-between">
+                          <div>
+                            <span className="text-lg font-bold">{formatPrice(price)}</span>
+                            <span className="text-xs text-muted-foreground">
+                              /{isDorm ? 'bed' : 'room'}/night
+                            </span>
+                          </div>
+                          {isSelected && (
+                            <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center">
+                              <Check className="w-4 h-4 text-primary-foreground" />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Quantity Selector (when selected) */}
+                    {isSelected && (
+                      <div className="px-3 py-3 bg-muted/50 border-t flex items-center justify-between">
+                        <span className="text-sm font-medium">
+                          {isDorm ? 'Number of beds' : 'Number of rooms'}
+                        </span>
+                        <div className="flex items-center gap-3">
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="h-8 w-8 rounded-full"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              onQuantityChange(Math.max(1, quantity - 1));
+                            }}
+                          >
+                            <span className="text-lg">−</span>
+                          </Button>
+                          <span className="w-8 text-center font-semibold">{quantity}</span>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="h-8 w-8 rounded-full"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              onQuantityChange(Math.min(room.total_units, quantity + 1));
+                            }}
+                          >
+                            <span className="text-lg">+</span>
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+                  </Card>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Continue Button */}
+      <div className="fixed bottom-0 left-0 right-0 p-4 bg-background/80 backdrop-blur-xl border-t border-border/50 safe-area-bottom">
+        <div className="flex items-center justify-between mb-3">
+          <div>
+            <p className="text-sm text-muted-foreground">Total for {nights} night{nights > 1 ? 's' : ''}</p>
+            <p className="text-xl font-bold">
+              {selectedRoom ? formatPrice(getRoomPrice(selectedRoom) * quantity * nights) : '—'}
+            </p>
+          </div>
+        </div>
+        <Button
+          onClick={onNext}
+          disabled={!selectedRoom}
+          className="w-full h-12 text-base font-semibold rounded-xl"
+          size="lg"
+        >
+          Review Booking
+        </Button>
+      </div>
+    </div>
+  );
 };
+
+// Summary Step
+const SummaryStep = ({
+  checkIn,
+  checkOut,
+  selectedRoom,
+  quantity,
+  nights,
+  formatPrice,
+  onNext,
+}: {
+  checkIn: Date;
+  checkOut: Date;
+  selectedRoom: RoomType;
+  quantity: number;
+  nights: number;
+  formatPrice: (amount: number) => string;
+  onNext: () => void;
+}) => {
+  const pricePerNight = selectedRoom.weekday_price || selectedRoom.base_price;
+  const subtotal = pricePerNight * quantity * nights;
+  const gstRate = selectedRoom.kind === 'dorm' ? 0 : 0.12;
+  const gst = Math.round(subtotal * gstRate);
+  const total = subtotal + gst;
+
+  return (
+    <div className="flex flex-col min-h-[calc(100vh-8rem)] px-4 pb-32">
+      {/* Property Card */}
+      <Card className="p-4 mb-4">
+        <div className="flex gap-3">
+          <div className="w-20 h-20 rounded-lg overflow-hidden bg-muted flex-shrink-0">
+            {selectedRoom.images?.[0] && (
+              <UnifiedImage
+                src={selectedRoom.images[0]}
+                alt={selectedRoom.name}
+                className="w-full h-full object-cover"
+              />
+            )}
+          </div>
+          <div className="flex-1">
+            <h3 className="font-semibold">{selectedRoom.name}</h3>
+            <p className="text-sm text-muted-foreground">{selectedRoom.category}</p>
+            <div className="flex items-center gap-1 mt-1 text-sm text-muted-foreground">
+              <MapPin className="w-3 h-3" />
+              <span>XTSY Travellers Hostel, Shillong</span>
+            </div>
+          </div>
+        </div>
+      </Card>
+
+      {/* Date & Guests */}
+      <Card className="p-4 mb-4">
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <p className="text-xs text-muted-foreground uppercase tracking-wide">Check-in</p>
+            <p className="font-semibold">{format(checkIn, 'EEE, MMM d')}</p>
+            <p className="text-sm text-muted-foreground">After 12:00 PM</p>
+          </div>
+          <div>
+            <p className="text-xs text-muted-foreground uppercase tracking-wide">Check-out</p>
+            <p className="font-semibold">{format(checkOut, 'EEE, MMM d')}</p>
+            <p className="text-sm text-muted-foreground">Before 10:00 AM</p>
+          </div>
+        </div>
+        <div className="mt-4 pt-4 border-t">
+          <div className="flex justify-between">
+            <span className="text-muted-foreground">{selectedRoom.kind === 'dorm' ? 'Beds' : 'Rooms'}</span>
+            <span className="font-medium">{quantity}</span>
+          </div>
+          <div className="flex justify-between mt-1">
+            <span className="text-muted-foreground">Nights</span>
+            <span className="font-medium">{nights}</span>
+          </div>
+        </div>
+      </Card>
+
+      {/* Price Breakdown */}
+      <Card className="p-4 mb-4">
+        <h4 className="font-semibold mb-3">Price Breakdown</h4>
+        <div className="space-y-2 text-sm">
+          <div className="flex justify-between">
+            <span className="text-muted-foreground">
+              {formatPrice(pricePerNight)} × {quantity} × {nights} night{nights > 1 ? 's' : ''}
+            </span>
+            <span>{formatPrice(subtotal)}</span>
+          </div>
+          {gst > 0 && (
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">GST ({gstRate * 100}%)</span>
+              <span>{formatPrice(gst)}</span>
+            </div>
+          )}
+          <div className="flex justify-between pt-2 border-t font-semibold text-base">
+            <span>Total</span>
+            <span>{formatPrice(total)}</span>
+          </div>
+        </div>
+      </Card>
+
+      {/* Pay at Hotel Badge */}
+      <div className="flex items-center gap-3 p-4 bg-green-500/10 rounded-xl mb-4">
+        <Shield className="w-5 h-5 text-green-600" />
+        <div>
+          <p className="font-medium text-green-700 dark:text-green-400">Pay at Hotel</p>
+          <p className="text-sm text-muted-foreground">No advance payment required</p>
+        </div>
+      </div>
+
+      {/* Continue Button */}
+      <div className="fixed bottom-0 left-0 right-0 p-4 bg-background/80 backdrop-blur-xl border-t border-border/50 safe-area-bottom">
+        <Button
+          onClick={onNext}
+          className="w-full h-12 text-base font-semibold rounded-xl"
+          size="lg"
+        >
+          Continue to Guest Details
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+// Guest Details Step
+const GuestDetailsStep = ({
+  guestDetails,
+  onChange,
+  onSubmit,
+  isSubmitting,
+}: {
+  guestDetails: GuestDetails;
+  onChange: (field: keyof GuestDetails, value: string) => void;
+  onSubmit: () => void;
+  isSubmitting: boolean;
+}) => {
+  const [errors, setErrors] = useState<Partial<GuestDetails>>({});
+
+  const validate = () => {
+    const newErrors: Partial<GuestDetails> = {};
+    if (!guestDetails.name.trim()) newErrors.name = 'Name is required';
+    if (!guestDetails.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(guestDetails.email)) {
+      newErrors.email = 'Valid email is required';
+    }
+    if (!guestDetails.phone.trim() || !/^[6-9]\d{9}$/.test(guestDetails.phone.replace(/\D/g, ''))) {
+      newErrors.phone = 'Valid 10-digit phone number required';
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = () => {
+    if (validate()) {
+      onSubmit();
+    }
+  };
+
+  return (
+    <div className="flex flex-col min-h-[calc(100vh-8rem)] px-4 pb-32">
+      <div className="space-y-4 py-4">
+        {/* Name */}
+        <div>
+          <Label htmlFor="name" className="text-sm font-medium">
+            Full Name <span className="text-destructive">*</span>
+          </Label>
+          <div className="relative mt-1.5">
+            <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Input
+              id="name"
+              value={guestDetails.name}
+              onChange={(e) => onChange('name', e.target.value)}
+              placeholder="Enter your full name"
+              className={cn("pl-10 h-12", errors.name && "border-destructive")}
+            />
+          </div>
+          {errors.name && <p className="text-xs text-destructive mt-1">{errors.name}</p>}
+        </div>
+
+        {/* Email */}
+        <div>
+          <Label htmlFor="email" className="text-sm font-medium">
+            Email Address <span className="text-destructive">*</span>
+          </Label>
+          <div className="relative mt-1.5">
+            <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Input
+              id="email"
+              type="email"
+              value={guestDetails.email}
+              onChange={(e) => onChange('email', e.target.value)}
+              placeholder="your@email.com"
+              className={cn("pl-10 h-12", errors.email && "border-destructive")}
+            />
+          </div>
+          {errors.email && <p className="text-xs text-destructive mt-1">{errors.email}</p>}
+        </div>
+
+        {/* Phone */}
+        <div>
+          <Label htmlFor="phone" className="text-sm font-medium">
+            WhatsApp Number <span className="text-destructive">*</span>
+          </Label>
+          <div className="relative mt-1.5">
+            <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Input
+              id="phone"
+              type="tel"
+              value={guestDetails.phone}
+              onChange={(e) => onChange('phone', e.target.value)}
+              placeholder="9876543210"
+              className={cn("pl-10 h-12", errors.phone && "border-destructive")}
+            />
+          </div>
+          {errors.phone && <p className="text-xs text-destructive mt-1">{errors.phone}</p>}
+        </div>
+
+        {/* Address (Optional) */}
+        <div>
+          <Label htmlFor="address" className="text-sm font-medium">
+            Address <span className="text-muted-foreground">(Optional)</span>
+          </Label>
+          <div className="relative mt-1.5">
+            <Home className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" />
+            <Textarea
+              id="address"
+              value={guestDetails.address}
+              onChange={(e) => onChange('address', e.target.value)}
+              placeholder="Street address"
+              className="pl-10 min-h-[60px]"
+            />
+          </div>
+        </div>
+
+        {/* City & State */}
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <Label htmlFor="city" className="text-sm font-medium">City</Label>
+            <Input
+              id="city"
+              value={guestDetails.city}
+              onChange={(e) => onChange('city', e.target.value)}
+              placeholder="City"
+              className="h-12 mt-1.5"
+            />
+          </div>
+          <div>
+            <Label htmlFor="state" className="text-sm font-medium">State</Label>
+            <Input
+              id="state"
+              value={guestDetails.state}
+              onChange={(e) => onChange('state', e.target.value)}
+              placeholder="State"
+              className="h-12 mt-1.5"
+            />
+          </div>
+        </div>
+
+        {/* Special Requests */}
+        <div>
+          <Label htmlFor="requests" className="text-sm font-medium">
+            Special Requests <span className="text-muted-foreground">(Optional)</span>
+          </Label>
+          <Textarea
+            id="requests"
+            value={guestDetails.specialRequests}
+            onChange={(e) => onChange('specialRequests', e.target.value)}
+            placeholder="Any special requirements or requests..."
+            className="min-h-[80px] mt-1.5"
+          />
+        </div>
+      </div>
+
+      {/* Submit Button */}
+      <div className="fixed bottom-0 left-0 right-0 p-4 bg-background/80 backdrop-blur-xl border-t border-border/50 safe-area-bottom">
+        <Button
+          onClick={handleSubmit}
+          disabled={isSubmitting}
+          className="w-full h-12 text-base font-semibold rounded-xl"
+          size="lg"
+        >
+          {isSubmitting ? 'Confirming...' : 'Confirm Booking'}
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+// Confirmation Step
+const ConfirmationStep = ({
+  bookingId,
+  guestName,
+  checkIn,
+  checkOut,
+  roomName,
+  onGoHome,
+}: {
+  bookingId: string;
+  guestName: string;
+  checkIn: Date;
+  checkOut: Date;
+  roomName: string;
+  onGoHome: () => void;
+}) => (
+  <div className="flex flex-col items-center justify-center min-h-[calc(100vh-8rem)] px-6 text-center">
+    <motion.div
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+      className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mb-6"
+    >
+      <Check className="w-10 h-10 text-white" />
+    </motion.div>
+
+    <motion.h2
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.2 }}
+      className="text-2xl font-bold mb-2"
+    >
+      Booking Confirmed!
+    </motion.h2>
+
+    <motion.p
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.3 }}
+      className="text-muted-foreground mb-6"
+    >
+      Thank you, {guestName.split(' ')[0]}! Your stay is confirmed.
+    </motion.p>
+
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.4 }}
+    >
+      <Card className="p-4 text-left w-full max-w-sm mb-6">
+        <div className="space-y-3">
+          <div className="flex justify-between">
+            <span className="text-muted-foreground">Booking ID</span>
+            <span className="font-mono font-medium">{bookingId}</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="text-muted-foreground">Room</span>
+            <span className="font-medium text-right max-w-[180px] truncate">{roomName}</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="text-muted-foreground">Check-in</span>
+            <span className="font-medium">{format(checkIn, 'MMM d, yyyy')}</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="text-muted-foreground">Check-out</span>
+            <span className="font-medium">{format(checkOut, 'MMM d, yyyy')}</span>
+          </div>
+        </div>
+      </Card>
+    </motion.div>
+
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.5 }}
+      className="flex items-center gap-2 text-sm text-muted-foreground mb-8"
+    >
+      <Sparkles className="w-4 h-4" />
+      <span>Confirmation sent to your email</span>
+    </motion.div>
+
+    <Button
+      onClick={onGoHome}
+      className="w-full max-w-sm h-12 text-base font-semibold rounded-xl"
+      size="lg"
+    >
+      Back to Home
+    </Button>
+  </div>
+);
+
+// Main BookingFlow Component
 export default function BookingFlow() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const {
-    formatPrice
-  } = useApp();
-  const [selectedRooms, setSelectedRooms] = useState<SelectedRoom[]>([]);
-  const [showPropertyDialog, setShowPropertyDialog] = useState(false);
-  const [showWhatsAppForm, setShowWhatsAppForm] = useState(false);
-  const [roomsWithAvailability, setRoomsWithAvailability] = useState<Room[]>(Object.values(ALL_ROOMS_DATA));
+  const { formatPrice } = useApp();
 
-  // Form state - kept for potential future use with secure booking flow
+  // State
+  const [currentStep, setCurrentStep] = useState<BookingStep>('dates');
+  const [direction, setDirection] = useState(1);
+  const [checkIn, setCheckIn] = useState<Date | undefined>();
+  const [checkOut, setCheckOut] = useState<Date | undefined>();
+  const [rooms, setRooms] = useState<RoomType[]>([]);
+  const [selectedRoom, setSelectedRoom] = useState<RoomType | null>(null);
+  const [quantity, setQuantity] = useState(1);
+  const [guestDetails, setGuestDetails] = useState<GuestDetails>({
+    name: '',
+    email: '',
+    phone: '',
+    address: '',
+    city: '',
+    state: '',
+    pincode: '',
+    specialRequests: '',
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const screenSize = useScreenSize();
-  const isMobileView = screenSize === 'mobile';
-  const isTabletView = screenSize === 'tablet';
-  const preSelectedRoom = searchParams.get('room');
-  const preSelectedProperty = searchParams.get('property');
-  const urlCheckIn = searchParams.get('checkIn') || new Date().toISOString().split('T')[0];
-  const urlCheckOut = searchParams.get('checkOut') || new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().split('T')[0];
-  const urlGuests = parseInt(searchParams.get('guests') || '4');
-  const [bookingDates, setBookingDates] = useState({
-    checkIn: urlCheckIn,
-    checkOut: urlCheckOut,
-    guests: urlGuests
-  });
-  const nights = React.useMemo(() => {
-    try {
-      return differenceInDays(parseISO(bookingDates.checkOut), parseISO(bookingDates.checkIn));
-    } catch {
-      return 1;
-    }
-  }, [bookingDates.checkIn, bookingDates.checkOut]);
-  const roomsArray: Room[] = Object.values(ALL_ROOMS_DATA);
-  const getAvailabilityName = (room: Room): string => {
-    switch (room.id) {
-      case '8-bed-mixed-economy-dorm':
-        return 'Bed in 8 bed mixed economy dorm';
-      default:
-        return room.name;
-    }
-  };
-  const roomAvailabilityQueries = roomsArray.map(room => {
-    const availabilityName = getAvailabilityName(room);
-    return useRoomAvailability(availabilityName, true);
-  });
-  useEffect(() => {
-    const updatedRooms = roomsArray.map((room, index) => {
-      const availabilityQuery = roomAvailabilityQueries[index];
-      const {
-        availability
-      } = availabilityQuery || {
-        availability: {}
-      };
-      const checkInDate = new Date(bookingDates.checkIn);
-      const checkOutDate = new Date(bookingDates.checkOut);
-      const isAvailable = checkDateRangeAvailability(checkInDate, checkOutDate, availability);
-      return {
-        ...room,
-        isBlocked: !isAvailable
-      };
-    });
-    setRoomsWithAvailability(updatedRooms);
-  }, [bookingDates.checkIn, bookingDates.checkOut]);
-  useEffect(() => {
-    if (preSelectedRoom && preSelectedProperty) {
-      try {
-        const room = ALL_ROOMS_DATA[preSelectedRoom as keyof typeof ALL_ROOMS_DATA];
-        if (room && room.propertyType === preSelectedProperty) {
-          setSelectedRooms([{
-            id: room.id,
-            name: room.name,
-            price: room.price,
-            type: room.type,
-            selection: {
-              guests: room.type === 'dorm' ? 1 : room.maxGuests,
-              rooms: 0
-            }
-          }]);
-        }
-      } catch (error) {
-        console.error('Error pre-selecting room:', error);
-      }
-    }
-  }, [preSelectedRoom, preSelectedProperty]);
-  const handleRoomSelect = React.useCallback((roomId: string) => {
-    setSelectedRooms(prev => {
-      const room = ALL_ROOMS_DATA[roomId as keyof typeof ALL_ROOMS_DATA];
-      const isSelected = prev.find(r => r.id === roomId);
-      if (isSelected) return prev.filter(r => r.id !== roomId);
-      const newRoom = {
-        id: room.id,
-        name: room.name,
-        price: room.price,
-        type: room.type,
-        selection: {
-          guests: room.type === 'dorm' ? 1 : room.maxGuests,
-          rooms: 0
-        }
-      };
-      return [...prev, newRoom];
-    });
-  }, []);
-  const handleGuestChange = React.useCallback((roomId: string, guests: number) => {
-    setSelectedRooms(prev => {
-      const existing = prev.find(room => room.id === roomId);
-      if (existing) {
-        return prev.map(room => room.id === roomId ? {
-          ...room,
-          selection: {
-            ...room.selection,
-            guests
-          }
-        } : room);
-      }
-      const roomData = ALL_ROOMS_DATA[roomId as keyof typeof ALL_ROOMS_DATA];
-      if (!roomData) return prev;
-      return [...prev, {
-        id: roomData.id,
-        name: roomData.name,
-        price: roomData.price,
-        type: roomData.type,
-        selection: {
-          guests,
-          rooms: 0
-        }
-      }];
-    });
-  }, []);
-  const handleRoomChange = React.useCallback((roomId: string, rooms: number) => {
-    setSelectedRooms(prev => {
-      const existing = prev.find(room => room.id === roomId);
-      if (existing) {
-        return prev.map(room => room.id === roomId ? {
-          ...room,
-          selection: {
-            ...room.selection,
-            rooms
-          }
-        } : room);
-      }
-      if (rooms > 0) {
-        const roomData = ALL_ROOMS_DATA[roomId as keyof typeof ALL_ROOMS_DATA];
-        if (roomData) {
-          return [...prev, {
-            id: roomData.id,
-            name: roomData.name,
-            price: roomData.price,
-            type: roomData.type,
-            selection: {
-              guests: roomData.type === 'dorm' ? 1 : roomData.maxGuests,
-              rooms
-            }
-          }];
-        }
-      }
-      return prev;
-    });
-  }, []);
-  const handleNext = () => {
-    setShowWhatsAppForm(true);
-  };
-  const handlePrevious = () => {
-    navigate(-1);
-  };
-  const roomsByProperty = {
-    luxury: roomsWithAvailability.filter(room => room.propertyType === 'luxury'),
-    hostel: roomsWithAvailability.filter(room => room.propertyType === 'hostel'),
-    economy: roomsWithAvailability.filter(room => room.propertyType === 'economy')
-  };
-  const getRoomSelection = React.useCallback((roomId: string) => {
-    const selected = selectedRooms.find(r => r.id === roomId);
-    return selected?.selection || {
-      guests: 1,
-      rooms: 0
-    };
-  }, [selectedRooms]);
-  const isRoomSelected = React.useCallback((roomId: string) => !!selectedRooms.find(r => r.id === roomId), [selectedRooms]);
-  const calculateTotalAmount = () => {
-    return selectedRooms.reduce((total, room) => {
-      const roomData = ALL_ROOMS_DATA[room.id];
-      const roomCount = room.selection.rooms;
-      return total + roomData.price * roomCount * nights;
-    }, 0);
-  };
+  const [bookingId, setBookingId] = useState('');
+  const [loadingRooms, setLoadingRooms] = useState(false);
 
-  // Secure booking submission using createBooking from bookingService
-  // This function uses the secure RPC with rate limiting and fraud detection
-  const handleSecureBookingSubmit = async (guestDetails: {
-    guestName: string;
-    email: string;
-    whatsappNumber: string;
-    address?: string;
-    city?: string;
-    state?: string;
-    pincode?: string;
-    specialRequests?: string;
-    emergencyContact?: string;
-  }) => {
-    if (selectedRooms.length === 0) {
-      toast.error('Please select at least one room');
-      return { success: false };
+  // Load rooms from database
+  useEffect(() => {
+    const fetchRooms = async () => {
+      setLoadingRooms(true);
+      try {
+        const { data, error } = await supabase
+          .from('room_types')
+          .select('*')
+          .eq('is_active', true)
+          .order('base_price', { ascending: true });
+
+        if (error) throw error;
+        setRooms(data || []);
+      } catch (err) {
+        console.error('Error fetching rooms:', err);
+        toast.error('Failed to load rooms');
+      } finally {
+        setLoadingRooms(false);
+      }
+    };
+
+    fetchRooms();
+  }, []);
+
+  // Parse URL params for pre-selection
+  useEffect(() => {
+    const roomId = searchParams.get('room');
+    const checkInParam = searchParams.get('checkIn');
+    const checkOutParam = searchParams.get('checkOut');
+
+    if (checkInParam) setCheckIn(parseISO(checkInParam));
+    if (checkOutParam) setCheckOut(parseISO(checkOutParam));
+    if (roomId && rooms.length > 0) {
+      const room = rooms.find(r => r.id === roomId);
+      if (room) setSelectedRoom(room);
     }
+  }, [searchParams, rooms]);
+
+  // Navigation helpers
+  const stepIndex = STEPS.findIndex(s => s.id === currentStep);
+  const canGoBack = stepIndex > 0 && currentStep !== 'confirmation';
+
+  const goToStep = useCallback((step: BookingStep) => {
+    const newIndex = STEPS.findIndex(s => s.id === step);
+    setDirection(newIndex > stepIndex ? 1 : -1);
+    setCurrentStep(step);
+  }, [stepIndex]);
+
+  const goBack = useCallback(() => {
+    if (canGoBack) {
+      goToStep(STEPS[stepIndex - 1].id);
+    } else {
+      navigate('/');
+    }
+  }, [canGoBack, stepIndex, goToStep, navigate]);
+
+  const nights = useMemo(() => {
+    if (checkIn && checkOut) {
+      return differenceInDays(checkOut, checkIn);
+    }
+    return 0;
+  }, [checkIn, checkOut]);
+
+  // Handle booking submission
+  const handleSubmitBooking = async () => {
+    if (!selectedRoom || !checkIn || !checkOut) return;
 
     setIsSubmitting(true);
     try {
-      const totalAmount = calculateTotalAmount();
-      const totalGuests = selectedRooms.reduce((sum, room) => 
-        sum + (room.type === 'dorm' ? room.selection.guests : room.selection.rooms * ALL_ROOMS_DATA[room.id].maxGuests), 0
-      );
-
-      // Format rooms for the booking service
-      const formattedRooms = selectedRooms.map(room => ({
-        id: room.id,
-        name: room.name,
-        price: room.price,
-        type: room.type,
-        selection: room.selection
-      }));
+      const pricePerNight = selectedRoom.weekday_price || selectedRoom.base_price;
+      const subtotal = pricePerNight * quantity * nights;
+      const gstRate = selectedRoom.kind === 'dorm' ? 0 : 0.12;
+      const total = Math.round(subtotal * (1 + gstRate));
 
       const result = await createBooking({
         bookingData: {
-          checkIn: bookingDates.checkIn,
-          checkOut: bookingDates.checkOut,
-          guests: totalGuests,
-          nights: nights,
-          selectedRooms: formattedRooms,
-          totalAmount: Math.round(totalAmount * 1.12) // Include 12% GST
+          checkIn: format(checkIn, 'yyyy-MM-dd'),
+          checkOut: format(checkOut, 'yyyy-MM-dd'),
+          guests: quantity * selectedRoom.capacity,
+          nights,
+          selectedRooms: [{
+            id: selectedRoom.id,
+            name: selectedRoom.name,
+            price: pricePerNight,
+            type: selectedRoom.kind as 'dorm' | 'private',
+            selection: {
+              guests: selectedRoom.kind === 'dorm' ? quantity : selectedRoom.capacity,
+              rooms: quantity,
+            },
+          }],
+          totalAmount: total,
         },
         guestDetails: {
-          guestName: guestDetails.guestName,
+          guestName: guestDetails.name,
           email: guestDetails.email,
-          whatsappNumber: guestDetails.whatsappNumber,
+          whatsappNumber: guestDetails.phone,
           address: guestDetails.address,
           city: guestDetails.city,
           state: guestDetails.state,
           pincode: guestDetails.pincode,
           specialRequests: guestDetails.specialRequests,
-          emergencyContact: guestDetails.emergencyContact
-        }
+        },
       });
 
-      if (result.success) {
-        toast.success('Booking request submitted successfully!');
-        setSelectedRooms([]);
-        return { success: true, bookingId: result.bookingId };
+      if (result.success && result.bookingId) {
+        setBookingId(result.bookingId);
+        goToStep('confirmation');
+        toast.success('Booking confirmed!');
       } else {
-        toast.error(result.error || 'Failed to submit booking. Please try again.');
-        return { success: false, error: result.error };
+        toast.error(result.error || 'Booking failed. Please try again.');
       }
     } catch (error) {
-      console.error('Error submitting booking:', error);
-      toast.error('Failed to submit booking. Please try again.');
-      return { success: false };
+      console.error('Booking error:', error);
+      toast.error('An error occurred. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
   };
-  return <div className="min-h-screen bg-gradient-to-br from-orange-50 via-red-50 to-pink-50">
-      <Header />
 
-      {/* Back button + title */}
-      <div className={`absolute top-20 left-4 z-10 ${isMobileView ? 'top-16 left-2' : isTabletView ? 'top-18 left-4' : 'top-20 left-6'}`}>
-        <div className="flex items-center gap-3">
-          <Button variant="ghost" onClick={handlePrevious} className={`text-gray-600 hover:text-gray-900 hover:bg-transparent focus:ring-0 focus:outline-none ${isMobileView ? 'p-2' : ''}`}>
-            <ArrowLeft className="h-4 w-4" />
-          </Button>
-          <h1 className={`font-bold text-gray-900 ${isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'}`}>
-            Choose Your Stay
-          </h1>
-        </div>
-      </div>
+  return (
+    <div className="min-h-screen bg-background">
+      {/* Header */}
+      <BookingHeader
+        step={STEPS[stepIndex]}
+        onBack={goBack}
+        canGoBack={canGoBack}
+      />
 
-      <div className={`container mx-auto py-8 ${isMobileView ? 'px-2 py-4 pt-20' : isTabletView ? 'px-4 pt-24' : 'px-6 pt-28'}`}>
-        {/* Booking summary */}
-        <div className="flex justify-center mb-8">
-          <div className={`${isMobileView ? 'w-full max-w-sm' : isTabletView ? 'w-full max-w-md' : 'w-full max-w-lg'}`}>
-            <BookingSummary checkIn={bookingDates.checkIn} checkOut={bookingDates.checkOut} guests={bookingDates.guests} nights={nights} />
-          </div>
-        </div>
+      {/* Step Indicator */}
+      {currentStep !== 'confirmation' && (
+        <StepIndicator currentStep={currentStep} steps={STEPS} />
+      )}
 
-        {/* Room Listings by Property Type */}
-        <div className="w-full space-y-8">
-          {/* Luxury */}
-          {roomsByProperty.luxury.length > 0 && <div className="space-y-4">
-              <div className="backdrop-blur-md bg-white/20 border border-white/20 rounded-2xl shadow-lg mx-auto p-6 max-w-2xl">
-                <h3 className={`font-bold text-center font-playfair bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent ${isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'}`}>
-                  XTSY Luxury
-                </h3>
-                <p className={`text-center text-gray-600 mt-2 ${isMobileView ? 'text-sm' : 'text-base'}`}>
-                  Luxury ensuite with panoramic views. Ultra Luxury views is a 200% Guarantee
-                </p>
-                <div className="w-16 h-0.5 bg-gradient-to-r from-orange-500 to-red-600 mx-auto mt-3 rounded-full" />
-              </div>
-              <div className={`grid gap-6 ${isMobileView ? 'grid-cols-1' : isTabletView ? 'grid-cols-2' : 'grid-cols-3'}`}>
-                {roomsByProperty.luxury.map(room => {
-              const isSelected = isRoomSelected(room.id);
-              const selection = getRoomSelection(room.id);
-              return <FastRoomCard key={room.id} room={room} isSelected={isSelected} selection={selection} onRoomSelect={handleRoomSelect} onGuestChange={handleGuestChange} onRoomChange={handleRoomChange} nights={nights} />;
-            })}
-              </div>
-            </div>}
+      {/* Step Content */}
+      <AnimatePresence mode="wait" custom={direction}>
+        <motion.div
+          key={currentStep}
+          custom={direction}
+          variants={pageVariants}
+          initial="initial"
+          animate="in"
+          exit="out"
+          transition={pageTransition}
+        >
+          {currentStep === 'dates' && (
+            <DateSelectionStep
+              checkIn={checkIn}
+              checkOut={checkOut}
+              onCheckInChange={setCheckIn}
+              onCheckOutChange={setCheckOut}
+              onNext={() => goToStep('rooms')}
+            />
+          )}
 
-          {/* Hostel */}
-          {roomsByProperty.hostel.length > 0 && <div className="space-y-4">
-              <div className="backdrop-blur-md bg-white/20 border border-white/20 rounded-2xl shadow-lg mx-auto p-6 max-w-2xl">
-                <h3 className={`font-bold text-center font-playfair bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent ${isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'}`}>
-                  XTSY Travellers Hostel
-                </h3>
-                <p className={`text-center text-gray-600 mt-2 ${isMobileView ? 'text-sm' : 'text-base'}`}>
-                  Comfortable stays with modern amenities. This isn't just a stay. It's a vibe
-                </p>
-                <div className="w-16 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mt-3 rounded-full" />
-              </div>
-              <div className={`grid gap-6 ${isMobileView ? 'grid-cols-1' : isTabletView ? 'grid-cols-2' : 'grid-cols-3'}`}>
-                {roomsByProperty.hostel.map(room => {
-              const isSelected = isRoomSelected(room.id);
-              const selection = getRoomSelection(room.id);
-              return <FastRoomCard key={room.id} room={room} isSelected={isSelected} selection={selection} onRoomSelect={handleRoomSelect} onGuestChange={handleGuestChange} onRoomChange={handleRoomChange} nights={nights} />;
-            })}
-              </div>
-            </div>}
+          {currentStep === 'rooms' && checkIn && checkOut && (
+            <RoomSelectionStep
+              rooms={rooms}
+              selectedRoom={selectedRoom}
+              quantity={quantity}
+              checkIn={checkIn}
+              checkOut={checkOut}
+              onRoomSelect={(room) => {
+                setSelectedRoom(room);
+                setQuantity(1);
+              }}
+              onQuantityChange={setQuantity}
+              onNext={() => goToStep('summary')}
+              formatPrice={formatPrice}
+            />
+          )}
 
-          {/* Economy */}
-          {roomsByProperty.economy.length > 0 && <div className="space-y-4">
-              <div className="backdrop-blur-md bg-white/20 border border-white/20 rounded-2xl shadow-lg mx-auto p-8 max-w-3xl">
-                <h3 className={`font-bold text-center font-playfair bg-gradient-to-r from-green-500 to-teal-600 bg-clip-text text-transparent ${isMobileView ? 'text-xl' : isTabletView ? 'text-2xl' : 'text-3xl'}`}>
-                  XTSY Economy
-                </h3>
-                <p className={`text-center text-gray-600 mt-2 ${isMobileView ? 'text-sm' : 'text-base'}`}>
-                  Your Ultra-Budget Stay Without Compromise Simple, clean, and affordable. Designed for backpackers who need a safe, reliable place to crash with all the essentials
-                </p>
-                <p className={`text-center text-orange-600 font-semibold mt-2 ${isMobileView ? 'text-xs' : 'text-sm'}`}>XTSY Economy is exclusively available only on Booking.com [No Discounts applicable]</p>
-                <div className="w-16 h-0.5 bg-gradient-to-r from-green-500 to-teal-600 mx-auto mt-3 rounded-full" />
-              </div>
-              <div className={`grid gap-6 ${isMobileView ? 'grid-cols-1' : isTabletView ? 'grid-cols-2' : 'grid-cols-3'}`}>
-                {roomsByProperty.economy.map(room => {
-              const isSelected = isRoomSelected(room.id);
-              const selection = getRoomSelection(room.id);
-              return <FastRoomCard key={room.id} room={room} isSelected={isSelected} selection={selection} onRoomSelect={handleRoomSelect} onGuestChange={handleGuestChange} onRoomChange={handleRoomChange} nights={nights} />;
-            })}
-              </div>
-            </div>}
+          {currentStep === 'summary' && selectedRoom && checkIn && checkOut && (
+            <SummaryStep
+              checkIn={checkIn}
+              checkOut={checkOut}
+              selectedRoom={selectedRoom}
+              quantity={quantity}
+              nights={nights}
+              formatPrice={formatPrice}
+              onNext={() => goToStep('details')}
+            />
+          )}
 
+          {currentStep === 'details' && (
+            <GuestDetailsStep
+              guestDetails={guestDetails}
+              onChange={(field, value) => setGuestDetails(prev => ({ ...prev, [field]: value }))}
+              onSubmit={handleSubmitBooking}
+              isSubmitting={isSubmitting}
+            />
+          )}
 
-
-          {/* Spacer for fixed button */}
-          <div className="h-[92px] md:h-[100px]" />
-        </div>
-      </div>
-
-      {/* Fixed Next Button */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 px-4 pb-[calc(env(safe-area-inset-bottom,0px)+12px)] pt-3 bg-transparent pointer-events-none">
-        <div className="mx-auto max-w-5xl flex justify-center">
-          <Button onClick={handleNext} className="pointer-events-auto rounded-xl px-6 md:px-8 py-3 md:py-3.5 text-white font-semibold shadow-md hover:shadow-lg transition bg-gradient-to-r from-orange-500 to-red-600">
-            Next: Complete Your Booking
-          </Button>
-        </div>
-      </div>
-
-      {/* Booking Options Dialog */}
-      <Dialog open={showPropertyDialog} onOpenChange={setShowPropertyDialog}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-center">Choose Booking Method</DialogTitle>
-            <DialogDescription className="text-center">
-              Select how you'd like to complete your booking
-            </DialogDescription>
-          </DialogHeader>
-          
-          <div className="space-y-3 py-4">
-            {/* Book through WhatsApp */}
-            <Button variant="outline" className="w-full h-auto py-6 px-6 text-left hover:bg-accent hover:border-primary transition-all" onClick={() => {
-            setShowPropertyDialog(false);
-            setShowWhatsAppForm(true);
-          }}>
-              <div className="flex flex-col items-start gap-1 w-full">
-                <span className="font-semibold text-lg">Book through WhatsApp</span>
-                <span className="text-sm text-muted-foreground">Chat with us to complete your booking</span>
-              </div>
-            </Button>
-
-          </div>
-        </DialogContent>
-      </Dialog>
-
-      {/* WhatsApp Booking Form */}
-      <WhatsAppBookingForm isOpen={showWhatsAppForm} onClose={() => setShowWhatsAppForm(false)} />
-    </div>;
+          {currentStep === 'confirmation' && checkIn && checkOut && selectedRoom && (
+            <ConfirmationStep
+              bookingId={bookingId}
+              guestName={guestDetails.name}
+              checkIn={checkIn}
+              checkOut={checkOut}
+              roomName={selectedRoom.name}
+              onGoHome={() => navigate('/')}
+            />
+          )}
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
 }
