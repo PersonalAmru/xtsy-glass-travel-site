@@ -47,6 +47,7 @@
     "cmdk": "^1.0.0",
     "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.3.0",
+    "framer-motion": "^12.23.26",
     "input-otp": "^1.2.4",
     "lightningcss": "^1.30.2",
     "lucide-react": "^0.462.0",

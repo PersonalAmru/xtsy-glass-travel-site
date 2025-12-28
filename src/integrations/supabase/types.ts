@@ -461,6 +461,7 @@ export type Database = {
           created_at: string | null
           date: string
           id: string
+          property_id: string | null
           room_type: string
         }
         Insert: {
@@ -468,6 +469,7 @@ export type Database = {
           created_at?: string | null
           date: string
           id?: string
+          property_id?: string | null
           room_type: string
         }
         Update: {
@@ -475,9 +477,18 @@ export type Database = {
           created_at?: string | null
           date?: string
           id?: string
+          property_id?: string | null
           room_type?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "blocked_dates_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       booking_rate_limits_backup: {
         Row: {
@@ -534,8 +545,11 @@ export type Database = {
           guest_name: string
           guests: number
           id: string
+          ota_booking_id: string | null
+          ota_name: string | null
           payment_status: string | null
           pincode: string | null
+          property_id: string | null
           quantity: number | null
           room_type: string
           room_type_id: string | null
@@ -564,8 +578,11 @@ export type Database = {
           guest_name: string
           guests?: number
           id?: string
+          ota_booking_id?: string | null
+          ota_name?: string | null
           payment_status?: string | null
           pincode?: string | null
+          property_id?: string | null
           quantity?: number | null
           room_type: string
           room_type_id?: string | null
@@ -594,8 +611,11 @@ export type Database = {
           guest_name?: string
           guests?: number
           id?: string
+          ota_booking_id?: string | null
+          ota_name?: string | null
           payment_status?: string | null
           pincode?: string | null
+          property_id?: string | null
           quantity?: number | null
           room_type?: string
           room_type_id?: string | null
@@ -609,7 +629,15 @@ export type Database = {
           user_id?: string | null
           whatsapp_number?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "bookings_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       demand_forecasts: {
         Row: {
@@ -721,6 +749,226 @@ export type Database = {
           value?: Json
         }
         Relationships: []
+      }
+      ical_sync_configs: {
+        Row: {
+          created_at: string | null
+          ical_export_token: string | null
+          ical_import_url: string | null
+          id: string
+          is_active: boolean | null
+          last_sync_at: string | null
+          last_sync_error: string | null
+          last_sync_status: string | null
+          ota_name: string
+          property_id: string | null
+          room_type_id: string
+          sync_direction: string | null
+          sync_frequency_minutes: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          ical_export_token?: string | null
+          ical_import_url?: string | null
+          id?: string
+          is_active?: boolean | null
+          last_sync_at?: string | null
+          last_sync_error?: string | null
+          last_sync_status?: string | null
+          ota_name: string
+          property_id?: string | null
+          room_type_id: string
+          sync_direction?: string | null
+          sync_frequency_minutes?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          ical_export_token?: string | null
+          ical_import_url?: string | null
+          id?: string
+          is_active?: boolean | null
+          last_sync_at?: string | null
+          last_sync_error?: string | null
+          last_sync_status?: string | null
+          ota_name?: string
+          property_id?: string | null
+          room_type_id?: string
+          sync_direction?: string | null
+          sync_frequency_minutes?: number | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ical_sync_configs_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ical_sync_events: {
+        Row: {
+          config_id: string | null
+          created_at: string | null
+          details: Json | null
+          error_message: string | null
+          event_status: string
+          event_type: string
+          events_created: number | null
+          events_deleted: number | null
+          events_processed: number | null
+          events_updated: number | null
+          id: string
+        }
+        Insert: {
+          config_id?: string | null
+          created_at?: string | null
+          details?: Json | null
+          error_message?: string | null
+          event_status: string
+          event_type: string
+          events_created?: number | null
+          events_deleted?: number | null
+          events_processed?: number | null
+          events_updated?: number | null
+          id?: string
+        }
+        Update: {
+          config_id?: string | null
+          created_at?: string | null
+          details?: Json | null
+          error_message?: string | null
+          event_status?: string
+          event_type?: string
+          events_created?: number | null
+          events_deleted?: number | null
+          events_processed?: number | null
+          events_updated?: number | null
+          id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ical_sync_events_config_id_fkey"
+            columns: ["config_id"]
+            isOneToOne: false
+            referencedRelation: "ical_sync_configs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      invoices: {
+        Row: {
+          booking_id: string | null
+          cgst_amount: number | null
+          cgst_rate: number | null
+          created_at: string | null
+          currency: string | null
+          due_date: string | null
+          guest_address: string | null
+          guest_email: string | null
+          guest_gst_number: string | null
+          guest_name: string
+          guest_phone: string | null
+          id: string
+          igst_amount: number | null
+          igst_rate: number | null
+          invoice_date: string | null
+          invoice_number: string
+          line_items: Json | null
+          notes: string | null
+          paid_at: string | null
+          payment_terms: string | null
+          pdf_url: string | null
+          property_id: string | null
+          sent_at: string | null
+          sgst_amount: number | null
+          sgst_rate: number | null
+          status: string | null
+          subtotal: number
+          total_amount: number
+          updated_at: string | null
+        }
+        Insert: {
+          booking_id?: string | null
+          cgst_amount?: number | null
+          cgst_rate?: number | null
+          created_at?: string | null
+          currency?: string | null
+          due_date?: string | null
+          guest_address?: string | null
+          guest_email?: string | null
+          guest_gst_number?: string | null
+          guest_name: string
+          guest_phone?: string | null
+          id?: string
+          igst_amount?: number | null
+          igst_rate?: number | null
+          invoice_date?: string | null
+          invoice_number: string
+          line_items?: Json | null
+          notes?: string | null
+          paid_at?: string | null
+          payment_terms?: string | null
+          pdf_url?: string | null
+          property_id?: string | null
+          sent_at?: string | null
+          sgst_amount?: number | null
+          sgst_rate?: number | null
+          status?: string | null
+          subtotal: number
+          total_amount: number
+          updated_at?: string | null
+        }
+        Update: {
+          booking_id?: string | null
+          cgst_amount?: number | null
+          cgst_rate?: number | null
+          created_at?: string | null
+          currency?: string | null
+          due_date?: string | null
+          guest_address?: string | null
+          guest_email?: string | null
+          guest_gst_number?: string | null
+          guest_name?: string
+          guest_phone?: string | null
+          id?: string
+          igst_amount?: number | null
+          igst_rate?: number | null
+          invoice_date?: string | null
+          invoice_number?: string
+          line_items?: Json | null
+          notes?: string | null
+          paid_at?: string | null
+          payment_terms?: string | null
+          pdf_url?: string | null
+          property_id?: string | null
+          sent_at?: string | null
+          sgst_amount?: number | null
+          sgst_rate?: number | null
+          status?: string | null
+          subtotal?: number
+          total_amount?: number
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "invoices_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: false
+            referencedRelation: "bookings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "invoices_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       itineraries: {
         Row: {
@@ -884,6 +1132,86 @@ export type Database = {
         }
         Relationships: []
       }
+      pricing_rules: {
+        Row: {
+          adjustment_type: string
+          adjustment_value: number
+          created_at: string | null
+          created_by: string | null
+          days_of_week: number[] | null
+          end_date: string | null
+          id: string
+          is_active: boolean | null
+          max_days_advance: number | null
+          max_nights: number | null
+          max_occupancy_percent: number | null
+          min_days_advance: number | null
+          min_nights: number | null
+          min_occupancy_percent: number | null
+          priority: number | null
+          property_id: string | null
+          room_type_id: string | null
+          rule_name: string
+          rule_type: string
+          start_date: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          adjustment_type: string
+          adjustment_value: number
+          created_at?: string | null
+          created_by?: string | null
+          days_of_week?: number[] | null
+          end_date?: string | null
+          id?: string
+          is_active?: boolean | null
+          max_days_advance?: number | null
+          max_nights?: number | null
+          max_occupancy_percent?: number | null
+          min_days_advance?: number | null
+          min_nights?: number | null
+          min_occupancy_percent?: number | null
+          priority?: number | null
+          property_id?: string | null
+          room_type_id?: string | null
+          rule_name: string
+          rule_type: string
+          start_date?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          adjustment_type?: string
+          adjustment_value?: number
+          created_at?: string | null
+          created_by?: string | null
+          days_of_week?: number[] | null
+          end_date?: string | null
+          id?: string
+          is_active?: boolean | null
+          max_days_advance?: number | null
+          max_nights?: number | null
+          max_occupancy_percent?: number | null
+          min_days_advance?: number | null
+          min_nights?: number | null
+          min_occupancy_percent?: number | null
+          priority?: number | null
+          property_id?: string | null
+          room_type_id?: string | null
+          rule_name?: string
+          rule_type?: string
+          start_date?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pricing_rules_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -911,6 +1239,66 @@ export type Database = {
           id?: string
           last_login?: string | null
           updated_at?: string
+        }
+        Relationships: []
+      }
+      properties: {
+        Row: {
+          address: string | null
+          city: string | null
+          contact_email: string | null
+          contact_phone: string | null
+          country: string | null
+          created_at: string | null
+          currency: string | null
+          gst_number: string | null
+          id: string
+          is_active: boolean | null
+          logo_url: string | null
+          name: string
+          settings: Json | null
+          slug: string
+          state: string | null
+          timezone: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          address?: string | null
+          city?: string | null
+          contact_email?: string | null
+          contact_phone?: string | null
+          country?: string | null
+          created_at?: string | null
+          currency?: string | null
+          gst_number?: string | null
+          id?: string
+          is_active?: boolean | null
+          logo_url?: string | null
+          name: string
+          settings?: Json | null
+          slug: string
+          state?: string | null
+          timezone?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          address?: string | null
+          city?: string | null
+          contact_email?: string | null
+          contact_phone?: string | null
+          country?: string | null
+          created_at?: string | null
+          currency?: string | null
+          gst_number?: string | null
+          id?: string
+          is_active?: boolean | null
+          logo_url?: string | null
+          name?: string
+          settings?: Json | null
+          slug?: string
+          state?: string | null
+          timezone?: string | null
+          updated_at?: string | null
         }
         Relationships: []
       }
@@ -1120,6 +1508,7 @@ export type Database = {
           is_active: boolean | null
           kind: string
           name: string
+          property_id: string | null
           total_units: number
           updated_at: string | null
           weekday_price: number | null
@@ -1136,6 +1525,7 @@ export type Database = {
           is_active?: boolean | null
           kind: string
           name: string
+          property_id?: string | null
           total_units: number
           updated_at?: string | null
           weekday_price?: number | null
@@ -1152,12 +1542,21 @@ export type Database = {
           is_active?: boolean | null
           kind?: string
           name?: string
+          property_id?: string | null
           total_units?: number
           updated_at?: string | null
           weekday_price?: number | null
           weekend_price?: number | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "room_types_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       secret_access_log: {
         Row: {
@@ -1702,6 +2101,7 @@ export type Database = {
       delete_my_data: { Args: never; Returns: boolean }
       export_my_data: { Args: never; Returns: Json }
       generate_booking_id: { Args: never; Returns: string }
+      generate_invoice_number: { Args: never; Returns: string }
       get_analytics_overview: { Args: { days_back?: number }; Returns: Json }
       get_app_secret: { Args: { secret_name: string }; Returns: string }
       get_app_secret_secure: { Args: { secret_name: string }; Returns: string }
