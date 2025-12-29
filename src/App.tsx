@@ -45,8 +45,14 @@ const LazyGallery = createLazyComponent(() => import("./pages/Gallery"));
 const LazyTravel = createLazyComponent(() => import("./pages/Travel"));
 const LazyPrivacyPolicy = createLazyComponent(() => import("./pages/PrivacyPolicy"));
 const AdminLogin = createLazyComponent(() => import("./pages/AdminLogin"));
-const AdminDashboard = createLazyComponent(() => import("./pages/AdminDashboard"));
 const BookingFlow = createLazyComponent(() => import("./pages/BookingFlow"));
+
+// Admin pages - separate routes
+const AdminOverview = createLazyComponent(() => import("./pages/admin/AdminOverview"));
+const AdminAnalytics = createLazyComponent(() => import("./pages/admin/AdminAnalytics"));
+const AdminInventory = createLazyComponent(() => import("./pages/admin/AdminInventory"));
+const AdminCalendar = createLazyComponent(() => import("./pages/admin/AdminCalendar"));
+const AdminActivity = createLazyComponent(() => import("./pages/admin/AdminActivity"));
 
 // Fast route wrapper with minimal loading state
 const LazyRoute = memo(({ children }: { children: ReactNode }) => (
@@ -170,8 +176,16 @@ function App() {
               <Route path="/xtsy-rentals" element={<LazyRoute><LazyXTSYRentals /></LazyRoute>} />
               <Route path="/privacy-policy" element={<LazyRoute><LazyPrivacyPolicy /></LazyRoute>} />
               <Route path="/admin-login" element={<LazyRoute><AdminLogin /></LazyRoute>} />
-              <Route path="/admin/dashboard" element={<LazyRoute><AdminDashboard /></LazyRoute>} />
               <Route path="/booking" element={<LazyRoute><BookingFlow /></LazyRoute>} />
+              
+              {/* Admin Routes - Separate pages */}
+              <Route path="/admin" element={<LazyRoute><AdminOverview /></LazyRoute>} />
+              <Route path="/admin/dashboard" element={<LazyRoute><AdminOverview /></LazyRoute>} />
+              <Route path="/admin/analytics" element={<LazyRoute><AdminAnalytics /></LazyRoute>} />
+              <Route path="/admin/inventory" element={<LazyRoute><AdminInventory /></LazyRoute>} />
+              <Route path="/admin/calendar" element={<LazyRoute><AdminCalendar /></LazyRoute>} />
+              <Route path="/admin/activity" element={<LazyRoute><AdminActivity /></LazyRoute>} />
+              
               <Route path="*" element={<NotFound />} />
             </Routes>
             </TooltipProvider>
