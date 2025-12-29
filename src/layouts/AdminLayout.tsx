@@ -1,13 +1,12 @@
 /**
- * Admin Layout with Apple-style Sidebar
+ * Admin Layout with Apple-style Header Navigation
  * Provides the main structure for all admin pages
  */
 
 import { ReactNode, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
-import { AdminSidebar } from '@/components/admin/AdminSidebar';
-import { cn } from '@/lib/utils';
+import { AdminHeader } from '@/components/admin/AdminHeader';
 import { Loader2 } from 'lucide-react';
 
 interface AdminLayoutProps {
@@ -18,7 +17,6 @@ export function AdminLayout({ children }: AdminLayoutProps) {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   useEffect(() => {
     const checkAdmin = async () => {
@@ -61,20 +59,6 @@ export function AdminLayout({ children }: AdminLayoutProps) {
     return () => subscription.unsubscribe();
   }, [navigate]);
 
-  // Load sidebar state from localStorage
-  useEffect(() => {
-    const stored = localStorage.getItem('admin-sidebar-collapsed');
-    if (stored) {
-      setSidebarCollapsed(JSON.parse(stored));
-    }
-  }, []);
-
-  const handleSidebarToggle = () => {
-    const newState = !sidebarCollapsed;
-    setSidebarCollapsed(newState);
-    localStorage.setItem('admin-sidebar-collapsed', JSON.stringify(newState));
-  };
-
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -92,14 +76,8 @@ export function AdminLayout({ children }: AdminLayoutProps) {
 
   return (
     <div className="min-h-screen bg-background">
-      <AdminSidebar collapsed={sidebarCollapsed} onToggle={handleSidebarToggle} />
-      
-      <main
-        className={cn(
-          'min-h-screen transition-all duration-300',
-          sidebarCollapsed ? 'ml-16' : 'ml-64'
-        )}
-      >
+      <AdminHeader />
+      <main className="max-w-7xl mx-auto">
         {children}
       </main>
     </div>
