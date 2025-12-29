@@ -3,12 +3,10 @@
  * Uses the Visualization Library for real gradient heatmaps
  */
 
-import React, { memo, useMemo, useState, useCallback } from 'react';
+import React, { memo, useMemo } from 'react';
 import { GoogleMap, useJsApiLoader, HeatmapLayer } from '@react-google-maps/api';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { MapPin, Users, TrendingUp, Settings, Check, AlertCircle } from 'lucide-react';
+import { MapPin, Users, TrendingUp, AlertCircle } from 'lucide-react';
 
 // Dark theme map styles
 const darkMapStyles: google.maps.MapTypeStyle[] = [
@@ -26,6 +24,8 @@ const darkMapStyles: google.maps.MapTypeStyle[] = [
 ];
 
 const libraries: ('visualization')[] = ['visualization'];
+
+const GOOGLE_MAPS_API_KEY = 'AIzaSyAXfU4ljIaOS9NcgQy0hbCAPaXPDTglujk';
 
 interface GoogleMapsHeatmapProps {
   data: {
@@ -50,15 +50,9 @@ interface GoogleMapsHeatmapProps {
   } | null;
 }
 
-const API_KEY_STORAGE_KEY = 'google_maps_api_key';
-
 const GoogleMapsHeatmap: React.FC<GoogleMapsHeatmapProps> = memo(({ data }) => {
-  const [apiKey, setApiKey] = useState(() => localStorage.getItem(API_KEY_STORAGE_KEY) || '');
-  const [tempApiKey, setTempApiKey] = useState('');
-  const [showSettings, setShowSettings] = useState(!apiKey);
-
   const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: apiKey,
+    googleMapsApiKey: GOOGLE_MAPS_API_KEY,
     libraries,
   });
 
@@ -97,68 +91,6 @@ const GoogleMapsHeatmap: React.FC<GoogleMapsHeatmapProps> = memo(({ data }) => {
 
   const totalCountries = data?.countries?.length || 0;
 
-  const handleSaveApiKey = useCallback(() => {
-    if (tempApiKey.trim()) {
-      localStorage.setItem(API_KEY_STORAGE_KEY, tempApiKey.trim());
-      setApiKey(tempApiKey.trim());
-      setShowSettings(false);
-    }
-  }, [tempApiKey]);
-
-  const handleClearApiKey = useCallback(() => {
-    localStorage.removeItem(API_KEY_STORAGE_KEY);
-    setApiKey('');
-    setTempApiKey('');
-    setShowSettings(true);
-  }, []);
-
-  // No API key - show setup UI
-  if (!apiKey || showSettings) {
-    return (
-      <Card className="bg-card/50 backdrop-blur-sm">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <MapPin className="w-5 h-5 text-primary" />
-            Google Maps Heatmap Setup
-          </CardTitle>
-          <CardDescription>
-            Enter your Google Maps API key to enable real-time heatmap visualization
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="p-4 bg-muted/30 rounded-lg space-y-3">
-            <h4 className="font-medium text-sm">How to get your API key:</h4>
-            <ol className="text-xs text-muted-foreground space-y-1 list-decimal list-inside">
-              <li>Go to <a href="https://console.cloud.google.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Google Cloud Console</a></li>
-              <li>Create or select a project</li>
-              <li>Enable "Maps JavaScript API"</li>
-              <li>Go to Credentials → Create Credentials → API Key</li>
-              <li>Optional: Restrict to your domains for security</li>
-            </ol>
-          </div>
-          <div className="flex gap-2">
-            <Input
-              type="password"
-              placeholder="Enter Google Maps API Key"
-              value={tempApiKey}
-              onChange={(e) => setTempApiKey(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleSaveApiKey()}
-            />
-            <Button onClick={handleSaveApiKey} disabled={!tempApiKey.trim()}>
-              <Check className="w-4 h-4 mr-1" />
-              Save
-            </Button>
-          </div>
-          {apiKey && (
-            <Button variant="outline" size="sm" onClick={() => setShowSettings(false)}>
-              Cancel
-            </Button>
-          )}
-        </CardContent>
-      </Card>
-    );
-  }
-
   // Loading state
   if (!isLoaded) {
     return (
@@ -187,14 +119,10 @@ const GoogleMapsHeatmap: React.FC<GoogleMapsHeatmapProps> = memo(({ data }) => {
             <AlertCircle className="w-5 h-5" />
             Map Loading Error
           </CardTitle>
-          <CardDescription>Failed to load Google Maps. Check your API key.</CardDescription>
+          <CardDescription>Failed to load Google Maps.</CardDescription>
         </CardHeader>
-        <CardContent className="space-y-3">
+        <CardContent>
           <p className="text-sm text-muted-foreground">{loadError.message}</p>
-          <Button variant="outline" size="sm" onClick={handleClearApiKey}>
-            <Settings className="w-4 h-4 mr-1" />
-            Update API Key
-          </Button>
         </CardContent>
       </Card>
     );
@@ -220,9 +148,6 @@ const GoogleMapsHeatmap: React.FC<GoogleMapsHeatmapProps> = memo(({ data }) => {
               <div className="text-2xl font-bold text-primary">{totalCountries}</div>
               <div className="text-xs text-muted-foreground">Countries</div>
             </div>
-            <Button variant="ghost" size="icon" onClick={() => setShowSettings(true)}>
-              <Settings className="w-4 h-4" />
-            </Button>
           </div>
         </div>
       </CardHeader>
