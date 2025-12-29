@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useAdminAnalytics } from '@/hooks/useAdminAnalytics';
 import { AdminLayout } from '@/layouts/AdminLayout';
 import { AppleCard, AppleSectionHeader } from '@/components/admin/AppleCard';
-import WorldMapHeatmap from '@/components/admin/WorldMapHeatmap';
+import GoogleMapsHeatmap from '@/components/admin/GoogleMapsHeatmap';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -104,8 +104,8 @@ export default function AdminAnalytics() {
           </AppleCard>
         )}
 
-        {/* World Map */}
-        <WorldMapHeatmap data={geoHeatmap} />
+        {/* Google Maps Heatmap */}
+        <GoogleMapsHeatmap data={geoHeatmap} />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Conversion Funnel */}
