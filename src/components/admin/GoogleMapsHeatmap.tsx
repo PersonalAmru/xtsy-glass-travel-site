@@ -4,17 +4,11 @@
  */
 
 import React, { memo, useMemo, useEffect, useState, useCallback, useRef } from 'react';
-import { useJsApiLoader } from '@react-google-maps/api';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { MapPin, Users, TrendingUp, AlertCircle, RefreshCw, CheckCircle, Info } from 'lucide-react';
+import { MapPin, Users, TrendingUp, AlertCircle, RefreshCw, CheckCircle, Info, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-
-// Google Maps API key
-const GOOGLE_MAPS_API_KEY = 'AIzaSyAXfU4ljIaOS9NcgQy0hbCAPaXPDTglujk';
-
-// IMPORTANT: This array must be stable (outside component) to prevent infinite reloads
-const GOOGLE_MAPS_LIBRARIES: ("visualization")[] = ["visualization"];
+import { supabase } from '@/integrations/supabase/client';
 
 // Dark theme map styles
 const darkMapStyles: google.maps.MapTypeStyle[] = [
@@ -56,7 +50,9 @@ interface GoogleMapsHeatmapProps {
 
 // Error message helper for common Google Maps API errors
 const getErrorHelp = (error: string): { title: string; description: string; steps: string[] } => {
-  if (error.includes('ApiNotActivatedMapError') || error.includes('not activated')) {
+  const lowerError = error.toLowerCase();
+  
+  if (lowerError.includes('apinotactivated') || lowerError.includes('not activated') || lowerError.includes('api project is not authorized')) {
     return {
       title: 'Maps JavaScript API Not Enabled',
       description: 'The Maps JavaScript API needs to be enabled in Google Cloud Console.',
@@ -67,18 +63,18 @@ const getErrorHelp = (error: string): { title: string; description: string; step
       ],
     };
   }
-  if (error.includes('RefererNotAllowedMapError') || error.includes('referrer')) {
+  if (lowerError.includes('referernotallowed') || lowerError.includes('referrer') || lowerError.includes('this referrer is not allowed')) {
     return {
       title: 'Domain Not Authorized',
-      description: 'Your domain is not allowed to use this API key.',
+      description: 'Your current domain is not allowed to use this API key.',
       steps: [
         'Go to Google Cloud Console → APIs & Services → Credentials',
-        'Edit your API key → Application restrictions',
-        'Add these domains: *.lovable.app/*, *.lovableproject.com/*, localhost:*',
+        'Edit your API key → Application restrictions → HTTP referrers',
+        'Add: *.lovable.app/*, *.lovableproject.com/*, localhost:*',
       ],
     };
   }
-  if (error.includes('BillingNotEnabled') || error.includes('billing')) {
+  if (lowerError.includes('billingnotenabled') || lowerError.includes('billing') || lowerError.includes('you must enable billing')) {
     return {
       title: 'Billing Not Enabled',
       description: 'A billing account must be linked to your Google Cloud project.',
@@ -89,7 +85,7 @@ const getErrorHelp = (error: string): { title: string; description: string; step
       ],
     };
   }
-  if (error.includes('InvalidKeyMapError') || error.includes('invalid key')) {
+  if (lowerError.includes('invalidkey') || lowerError.includes('invalid key') || lowerError.includes('api key not valid')) {
     return {
       title: 'Invalid API Key',
       description: 'The API key is invalid or has been revoked.',
@@ -97,6 +93,16 @@ const getErrorHelp = (error: string): { title: string; description: string; step
         'Check that the API key is correct',
         'Generate a new API key if needed',
         'Ensure the key has Maps JavaScript API enabled',
+      ],
+    };
+  }
+  if (lowerError.includes('api key not configured') || lowerError.includes('not found')) {
+    return {
+      title: 'API Key Not Configured',
+      description: 'The Google Maps API key has not been set up in secrets.',
+      steps: [
+        'Add GOOGLE_MAPS_API_KEY to your project secrets',
+        'Refresh the page after adding the key',
       ],
     };
   }
@@ -111,35 +117,141 @@ const getErrorHelp = (error: string): { title: string; description: string; step
   };
 };
 
+// Global script loading state
+let googleMapsScriptPromise: Promise<void> | null = null;
+let googleMapsLoaded = false;
+
+const loadGoogleMapsScript = (apiKey: string): Promise<void> => {
+  // If already loaded, resolve immediately
+  if (googleMapsLoaded && window.google?.maps?.visualization) {
+    return Promise.resolve();
+  }
+  
+  // If loading in progress, return existing promise
+  if (googleMapsScriptPromise) {
+    return googleMapsScriptPromise;
+  }
+  
+  googleMapsScriptPromise = new Promise((resolve, reject) => {
+    // Check if script already exists
+    const existingScript = document.querySelector('script[src*="maps.googleapis.com"]');
+    if (existingScript) {
+      // Wait for it to load
+      const checkLoaded = setInterval(() => {
+        if (window.google?.maps?.visualization) {
+          clearInterval(checkLoaded);
+          googleMapsLoaded = true;
+          resolve();
+        }
+      }, 100);
+      
+      setTimeout(() => {
+        clearInterval(checkLoaded);
+        reject(new Error('Timeout waiting for existing Google Maps script'));
+      }, 10000);
+      return;
+    }
+    
+    // Create callback name
+    const callbackName = `initGoogleMapsHeatmap_${Date.now()}`;
+    
+    // Set up callback
+    (window as any)[callbackName] = () => {
+      console.log('[GoogleMapsHeatmap] Google Maps loaded via callback');
+      googleMapsLoaded = true;
+      delete (window as any)[callbackName];
+      resolve();
+    };
+    
+    // Create and inject script
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=visualization&callback=${callbackName}`;
+    script.async = true;
+    script.defer = true;
+    
+    script.onerror = (event) => {
+      console.error('[GoogleMapsHeatmap] Script load error:', event);
+      googleMapsScriptPromise = null;
+      delete (window as any)[callbackName];
+      reject(new Error('Failed to load Google Maps script. Check API key and domain restrictions.'));
+    };
+    
+    document.head.appendChild(script);
+    console.log('[GoogleMapsHeatmap] Loading Google Maps script...');
+    
+    // Timeout fallback
+    setTimeout(() => {
+      if (!googleMapsLoaded) {
+        googleMapsScriptPromise = null;
+        delete (window as any)[callbackName];
+        reject(new Error('Google Maps script load timeout. The API may be blocked or the key may be invalid.'));
+      }
+    }, 15000);
+  });
+  
+  return googleMapsScriptPromise;
+};
+
 const GoogleMapsHeatmap: React.FC<GoogleMapsHeatmapProps> = memo(({ data }) => {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<google.maps.Map | null>(null);
   const heatmapRef = useRef<google.maps.visualization.HeatmapLayer | null>(null);
+  
+  const [loading, setLoading] = useState(true);
   const [mapReady, setMapReady] = useState(false);
-  const [detailedError, setDetailedError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [apiKeyLoaded, setApiKeyLoaded] = useState(false);
 
-  // Use the hook with stable libraries array
-  const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: GOOGLE_MAPS_API_KEY,
-    libraries: GOOGLE_MAPS_LIBRARIES,
-  });
-
-  // Listen for Google Maps API errors via the global callback
+  // Fetch API key and load Google Maps
   useEffect(() => {
-    const handleGoogleMapsError = (event: ErrorEvent) => {
-      if (event.message && event.message.includes('google')) {
-        console.error('[GoogleMapsHeatmap] Caught error:', event.message);
-        setDetailedError(event.message);
+    let cancelled = false;
+    
+    const init = async () => {
+      try {
+        console.log('[GoogleMapsHeatmap] Fetching API key...');
+        
+        // Fetch API key from edge function
+        const { data: keyData, error: keyError } = await supabase.functions.invoke('get-maps-api-key');
+        
+        if (keyError) {
+          throw new Error(`Failed to fetch API key: ${keyError.message}`);
+        }
+        
+        if (!keyData?.apiKey) {
+          throw new Error('API key not configured. Please add GOOGLE_MAPS_API_KEY to your secrets.');
+        }
+        
+        if (cancelled) return;
+        
+        console.log('[GoogleMapsHeatmap] API key retrieved, loading Google Maps...');
+        setApiKeyLoaded(true);
+        
+        // Load Google Maps script
+        await loadGoogleMapsScript(keyData.apiKey);
+        
+        if (cancelled) return;
+        
+        console.log('[GoogleMapsHeatmap] Google Maps loaded successfully');
+        setLoading(false);
+      } catch (err) {
+        if (cancelled) return;
+        console.error('[GoogleMapsHeatmap] Initialization error:', err);
+        setError(err instanceof Error ? err.message : 'Failed to initialize map');
+        setLoading(false);
       }
     };
-
-    window.addEventListener('error', handleGoogleMapsError);
-    return () => window.removeEventListener('error', handleGoogleMapsError);
+    
+    init();
+    
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
-  // Initialize map once loaded
+  // Initialize map once Google Maps is loaded
   useEffect(() => {
-    if (!isLoaded || !mapContainerRef.current || mapRef.current) return;
+    if (loading || error || !mapContainerRef.current || mapRef.current) return;
+    if (!window.google?.maps) return;
 
     try {
       console.log('[GoogleMapsHeatmap] Initializing map...');
@@ -159,9 +271,9 @@ const GoogleMapsHeatmap: React.FC<GoogleMapsHeatmapProps> = memo(({ data }) => {
       console.log('[GoogleMapsHeatmap] Map initialized successfully');
     } catch (err) {
       console.error('[GoogleMapsHeatmap] Map initialization error:', err);
-      setDetailedError(err instanceof Error ? err.message : 'Failed to initialize map');
+      setError(err instanceof Error ? err.message : 'Failed to initialize map');
     }
-  }, [isLoaded]);
+  }, [loading, error]);
 
   // Build and update heatmap data
   useEffect(() => {
@@ -192,12 +304,11 @@ const GoogleMapsHeatmap: React.FC<GoogleMapsHeatmapProps> = memo(({ data }) => {
           if (city.lat && city.lng && !isNaN(city.lat) && !isNaN(city.lng)) {
             points.push({
               location: new google.maps.LatLng(city.lat, city.lng),
-              weight: Math.max(city.visitors, 1), // Ensure minimum weight
+              weight: Math.max(city.visitors, 1),
             });
           }
         });
       } else if (country.latitude && country.longitude && !isNaN(country.latitude) && !isNaN(country.longitude)) {
-        // Fallback to country-level coordinates
         points.push({
           location: new google.maps.LatLng(country.latitude, country.longitude),
           weight: Math.max(country.visitors, 1),
@@ -241,13 +352,14 @@ const GoogleMapsHeatmap: React.FC<GoogleMapsHeatmapProps> = memo(({ data }) => {
   const totalCountries = data?.countries?.length || 0;
 
   const handleRetry = useCallback(() => {
+    googleMapsScriptPromise = null;
+    googleMapsLoaded = false;
     window.location.reload();
   }, []);
 
   // Error state with detailed help
-  const errorToShow = loadError?.message || detailedError;
-  if (errorToShow) {
-    const errorHelp = getErrorHelp(errorToShow);
+  if (error) {
+    const errorHelp = getErrorHelp(error);
     
     return (
       <Card className="bg-card/50 backdrop-blur-sm border-destructive/30">
@@ -271,23 +383,25 @@ const GoogleMapsHeatmap: React.FC<GoogleMapsHeatmapProps> = memo(({ data }) => {
             </AlertDescription>
           </Alert>
           
-          <div className="flex gap-2">
+          <div className="flex gap-2 flex-wrap">
             <Button variant="outline" onClick={handleRetry} className="flex items-center gap-2">
               <RefreshCw className="w-4 h-4" />
               Retry
             </Button>
             <Button 
               variant="secondary" 
-              onClick={() => window.open('https://console.cloud.google.com/apis/dashboard', '_blank')}
+              onClick={() => window.open('https://console.cloud.google.com/apis/credentials', '_blank')}
+              className="flex items-center gap-2"
             >
-              Open Google Cloud Console
+              <ExternalLink className="w-4 h-4" />
+              Google Cloud Console
             </Button>
           </div>
 
           <details className="text-xs text-muted-foreground">
-            <summary className="cursor-pointer">Technical Details</summary>
-            <pre className="mt-2 p-2 bg-muted rounded text-[10px] overflow-x-auto">
-              {errorToShow}
+            <summary className="cursor-pointer hover:text-foreground">Technical Details</summary>
+            <pre className="mt-2 p-2 bg-muted rounded text-[10px] overflow-x-auto whitespace-pre-wrap">
+              {error}
             </pre>
           </details>
         </CardContent>
@@ -296,20 +410,22 @@ const GoogleMapsHeatmap: React.FC<GoogleMapsHeatmapProps> = memo(({ data }) => {
   }
 
   // Loading state
-  if (!isLoaded) {
+  if (loading) {
     return (
       <Card className="bg-card/50 backdrop-blur-sm">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <MapPin className="w-5 h-5 text-primary animate-pulse" />
-            Loading Google Maps...
+            {apiKeyLoaded ? 'Loading Google Maps...' : 'Fetching API Key...'}
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="h-[400px] bg-muted/30 rounded-lg animate-pulse flex items-center justify-center">
             <div className="flex flex-col items-center gap-2">
               <RefreshCw className="w-8 h-8 text-primary animate-spin" />
-              <span className="text-muted-foreground text-sm">Initializing map...</span>
+              <span className="text-muted-foreground text-sm">
+                {apiKeyLoaded ? 'Initializing visualization library...' : 'Connecting to maps service...'}
+              </span>
             </div>
           </div>
         </CardContent>
