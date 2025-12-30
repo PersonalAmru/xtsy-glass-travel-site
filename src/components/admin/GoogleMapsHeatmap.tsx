@@ -3,10 +3,18 @@
  * Uses the Visualization Library for real gradient heatmaps
  */
 
-import React, { memo, useMemo, useEffect, useState, useCallback } from 'react';
+import React, { memo, useMemo, useEffect, useState, useCallback, useRef } from 'react';
+import { useJsApiLoader } from '@react-google-maps/api';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { MapPin, Users, TrendingUp, AlertCircle, RefreshCw } from 'lucide-react';
+import { MapPin, Users, TrendingUp, AlertCircle, RefreshCw, CheckCircle, Info } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+
+// Google Maps API key
+const GOOGLE_MAPS_API_KEY = 'AIzaSyAXfU4ljIaOS9NcgQy0hbCAPaXPDTglujk';
+
+// IMPORTANT: This array must be stable (outside component) to prevent infinite reloads
+const GOOGLE_MAPS_LIBRARIES: ("visualization")[] = ["visualization"];
 
 // Dark theme map styles
 const darkMapStyles: google.maps.MapTypeStyle[] = [
@@ -22,8 +30,6 @@ const darkMapStyles: google.maps.MapTypeStyle[] = [
   { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#0e0e1a' }] },
   { featureType: 'water', elementType: 'labels.text.fill', stylers: [{ color: '#4a4a5e' }] },
 ];
-
-const GOOGLE_MAPS_API_KEY = 'AIzaSyAXfU4ljIaOS9NcgQy0hbCAPaXPDTglujk';
 
 interface GoogleMapsHeatmapProps {
   data: {
@@ -48,71 +54,96 @@ interface GoogleMapsHeatmapProps {
   } | null;
 }
 
-// Load Google Maps script manually
-const loadGoogleMapsScript = (): Promise<void> => {
-  return new Promise((resolve, reject) => {
-    // Check if already loaded
-    if (window.google?.maps?.visualization) {
-      resolve();
-      return;
-    }
-
-    // Check if script is already being loaded
-    const existingScript = document.querySelector('script[src*="maps.googleapis.com"]');
-    if (existingScript) {
-      existingScript.addEventListener('load', () => resolve());
-      existingScript.addEventListener('error', () => reject(new Error('Failed to load Google Maps')));
-      return;
-    }
-
-    // Create and load script
-    const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=visualization`;
-    script.async = true;
-    script.defer = true;
-    script.onload = () => resolve();
-    script.onerror = () => reject(new Error('Failed to load Google Maps script'));
-    document.head.appendChild(script);
-  });
+// Error message helper for common Google Maps API errors
+const getErrorHelp = (error: string): { title: string; description: string; steps: string[] } => {
+  if (error.includes('ApiNotActivatedMapError') || error.includes('not activated')) {
+    return {
+      title: 'Maps JavaScript API Not Enabled',
+      description: 'The Maps JavaScript API needs to be enabled in Google Cloud Console.',
+      steps: [
+        'Go to Google Cloud Console → APIs & Services → Library',
+        'Search for "Maps JavaScript API"',
+        'Click Enable',
+      ],
+    };
+  }
+  if (error.includes('RefererNotAllowedMapError') || error.includes('referrer')) {
+    return {
+      title: 'Domain Not Authorized',
+      description: 'Your domain is not allowed to use this API key.',
+      steps: [
+        'Go to Google Cloud Console → APIs & Services → Credentials',
+        'Edit your API key → Application restrictions',
+        'Add these domains: *.lovable.app/*, *.lovableproject.com/*, localhost:*',
+      ],
+    };
+  }
+  if (error.includes('BillingNotEnabled') || error.includes('billing')) {
+    return {
+      title: 'Billing Not Enabled',
+      description: 'A billing account must be linked to your Google Cloud project.',
+      steps: [
+        'Go to Google Cloud Console → Billing',
+        'Link a billing account to your project',
+        'Google Maps offers $200 free credit monthly',
+      ],
+    };
+  }
+  if (error.includes('InvalidKeyMapError') || error.includes('invalid key')) {
+    return {
+      title: 'Invalid API Key',
+      description: 'The API key is invalid or has been revoked.',
+      steps: [
+        'Check that the API key is correct',
+        'Generate a new API key if needed',
+        'Ensure the key has Maps JavaScript API enabled',
+      ],
+    };
+  }
+  return {
+    title: 'Map Loading Error',
+    description: error || 'Failed to load Google Maps',
+    steps: [
+      'Check your internet connection',
+      'Verify API key configuration in Google Cloud Console',
+      'Try refreshing the page',
+    ],
+  };
 };
 
 const GoogleMapsHeatmap: React.FC<GoogleMapsHeatmapProps> = memo(({ data }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [loadError, setLoadError] = useState<string | null>(null);
-  const [mapInstance, setMapInstance] = useState<google.maps.Map | null>(null);
-  const [heatmapLayer, setHeatmapLayer] = useState<google.maps.visualization.HeatmapLayer | null>(null);
-  const mapContainerRef = React.useRef<HTMLDivElement>(null);
+  const mapContainerRef = useRef<HTMLDivElement>(null);
+  const mapRef = useRef<google.maps.Map | null>(null);
+  const heatmapRef = useRef<google.maps.visualization.HeatmapLayer | null>(null);
+  const [mapReady, setMapReady] = useState(false);
+  const [detailedError, setDetailedError] = useState<string | null>(null);
 
-  // Load Google Maps
+  // Use the hook with stable libraries array
+  const { isLoaded, loadError } = useJsApiLoader({
+    googleMapsApiKey: GOOGLE_MAPS_API_KEY,
+    libraries: GOOGLE_MAPS_LIBRARIES,
+  });
+
+  // Listen for Google Maps API errors via the global callback
   useEffect(() => {
-    let mounted = true;
-
-    const loadMaps = async () => {
-      try {
-        await loadGoogleMapsScript();
-        if (mounted) {
-          setIsLoaded(true);
-          setLoadError(null);
-        }
-      } catch (err) {
-        if (mounted) {
-          setLoadError(err instanceof Error ? err.message : 'Failed to load Google Maps');
-        }
+    const handleGoogleMapsError = (event: ErrorEvent) => {
+      if (event.message && event.message.includes('google')) {
+        console.error('[GoogleMapsHeatmap] Caught error:', event.message);
+        setDetailedError(event.message);
       }
     };
 
-    loadMaps();
-
-    return () => {
-      mounted = false;
-    };
+    window.addEventListener('error', handleGoogleMapsError);
+    return () => window.removeEventListener('error', handleGoogleMapsError);
   }, []);
 
-  // Initialize map
+  // Initialize map once loaded
   useEffect(() => {
-    if (!isLoaded || !mapContainerRef.current || mapInstance) return;
+    if (!isLoaded || !mapContainerRef.current || mapRef.current) return;
 
     try {
+      console.log('[GoogleMapsHeatmap] Initializing map...');
+      
       const map = new google.maps.Map(mapContainerRef.current, {
         center: { lat: 22, lng: 78 }, // Center on India
         zoom: 3,
@@ -123,66 +154,86 @@ const GoogleMapsHeatmap: React.FC<GoogleMapsHeatmapProps> = memo(({ data }) => {
         backgroundColor: '#1a1a2e',
       });
 
-      setMapInstance(map);
+      mapRef.current = map;
+      setMapReady(true);
+      console.log('[GoogleMapsHeatmap] Map initialized successfully');
     } catch (err) {
-      console.error('Error initializing map:', err);
-      setLoadError('Failed to initialize map');
+      console.error('[GoogleMapsHeatmap] Map initialization error:', err);
+      setDetailedError(err instanceof Error ? err.message : 'Failed to initialize map');
     }
-  }, [isLoaded, mapInstance]);
+  }, [isLoaded]);
 
-  // Update heatmap data
+  // Build and update heatmap data
   useEffect(() => {
-    if (!mapInstance || !data?.countries || !window.google?.maps?.visualization) return;
-
-    // Remove existing heatmap
-    if (heatmapLayer) {
-      heatmapLayer.setMap(null);
+    if (!mapReady || !mapRef.current || !window.google?.maps?.visualization) {
+      return;
     }
 
-    // Build heatmap points
+    console.log('[GoogleMapsHeatmap] Updating heatmap data...', data?.countries?.length || 0, 'countries');
+
+    // Remove existing heatmap layer
+    if (heatmapRef.current) {
+      heatmapRef.current.setMap(null);
+      heatmapRef.current = null;
+    }
+
+    if (!data?.countries?.length) {
+      console.log('[GoogleMapsHeatmap] No data to display');
+      return;
+    }
+
+    // Build heatmap points from data
     const points: google.maps.visualization.WeightedLocation[] = [];
 
     data.countries.forEach((country) => {
-      // Add city-level data if available
+      // Prioritize city-level data for better precision
       if (country.cities?.length) {
         country.cities.forEach((city) => {
-          if (city.lat && city.lng) {
+          if (city.lat && city.lng && !isNaN(city.lat) && !isNaN(city.lng)) {
             points.push({
               location: new google.maps.LatLng(city.lat, city.lng),
-              weight: city.visitors,
+              weight: Math.max(city.visitors, 1), // Ensure minimum weight
             });
           }
         });
-      } else if (country.latitude && country.longitude) {
-        // Fallback to country-level
+      } else if (country.latitude && country.longitude && !isNaN(country.latitude) && !isNaN(country.longitude)) {
+        // Fallback to country-level coordinates
         points.push({
           location: new google.maps.LatLng(country.latitude, country.longitude),
-          weight: country.visitors,
+          weight: Math.max(country.visitors, 1),
         });
       }
     });
 
-    // Create new heatmap layer
-    if (points.length > 0) {
-      const newHeatmap = new google.maps.visualization.HeatmapLayer({
-        data: points,
-        map: mapInstance,
-        radius: 30,
-        opacity: 0.8,
-        dissipating: true,
-        gradient: [
-          'rgba(0, 0, 0, 0)',
-          'rgba(0, 255, 128, 0.4)',
-          'rgba(0, 255, 0, 0.6)',
-          'rgba(255, 255, 0, 0.8)',
-          'rgba(255, 128, 0, 0.9)',
-          'rgba(255, 0, 0, 1)',
-        ],
-      });
-      setHeatmapLayer(newHeatmap);
-    }
-  }, [mapInstance, data]);
+    console.log('[GoogleMapsHeatmap] Created', points.length, 'heatmap points');
 
+    if (points.length === 0) {
+      console.log('[GoogleMapsHeatmap] No valid coordinates found');
+      return;
+    }
+
+    // Create new heatmap layer
+    const heatmap = new google.maps.visualization.HeatmapLayer({
+      data: points,
+      map: mapRef.current,
+      radius: 30,
+      opacity: 0.8,
+      dissipating: true,
+      gradient: [
+        'rgba(0, 0, 0, 0)',
+        'rgba(0, 255, 128, 0.4)',
+        'rgba(0, 255, 0, 0.6)',
+        'rgba(255, 255, 0, 0.8)',
+        'rgba(255, 128, 0, 0.9)',
+        'rgba(255, 0, 0, 1)',
+      ],
+    });
+
+    heatmapRef.current = heatmap;
+    console.log('[GoogleMapsHeatmap] Heatmap layer created successfully');
+  }, [mapReady, data]);
+
+  // Calculate totals
   const totalVisitors = useMemo(() => {
     return data?.countries?.reduce((sum, c) => sum + (c.visitors || 0), 0) || 0;
   }, [data]);
@@ -190,35 +241,55 @@ const GoogleMapsHeatmap: React.FC<GoogleMapsHeatmapProps> = memo(({ data }) => {
   const totalCountries = data?.countries?.length || 0;
 
   const handleRetry = useCallback(() => {
-    setLoadError(null);
-    setIsLoaded(false);
-    // Remove any existing script
-    const existingScript = document.querySelector('script[src*="maps.googleapis.com"]');
-    if (existingScript) {
-      existingScript.remove();
-    }
-    // Reload
-    loadGoogleMapsScript()
-      .then(() => setIsLoaded(true))
-      .catch((err) => setLoadError(err.message));
+    window.location.reload();
   }, []);
 
-  // Error state
-  if (loadError) {
+  // Error state with detailed help
+  const errorToShow = loadError?.message || detailedError;
+  if (errorToShow) {
+    const errorHelp = getErrorHelp(errorToShow);
+    
     return (
-      <Card className="bg-card/50 backdrop-blur-sm border-destructive/50">
+      <Card className="bg-card/50 backdrop-blur-sm border-destructive/30">
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-destructive">
             <AlertCircle className="w-5 h-5" />
-            Map Loading Error
+            {errorHelp.title}
           </CardTitle>
-          <CardDescription>{loadError}</CardDescription>
+          <CardDescription>{errorHelp.description}</CardDescription>
         </CardHeader>
-        <CardContent>
-          <Button variant="outline" onClick={handleRetry} className="flex items-center gap-2">
-            <RefreshCw className="w-4 h-4" />
-            Retry
-          </Button>
+        <CardContent className="space-y-4">
+          <Alert variant="destructive" className="bg-destructive/10">
+            <Info className="h-4 w-4" />
+            <AlertTitle>How to fix:</AlertTitle>
+            <AlertDescription>
+              <ol className="list-decimal list-inside space-y-1 mt-2 text-sm">
+                {errorHelp.steps.map((step, i) => (
+                  <li key={i}>{step}</li>
+                ))}
+              </ol>
+            </AlertDescription>
+          </Alert>
+          
+          <div className="flex gap-2">
+            <Button variant="outline" onClick={handleRetry} className="flex items-center gap-2">
+              <RefreshCw className="w-4 h-4" />
+              Retry
+            </Button>
+            <Button 
+              variant="secondary" 
+              onClick={() => window.open('https://console.cloud.google.com/apis/dashboard', '_blank')}
+            >
+              Open Google Cloud Console
+            </Button>
+          </div>
+
+          <details className="text-xs text-muted-foreground">
+            <summary className="cursor-pointer">Technical Details</summary>
+            <pre className="mt-2 p-2 bg-muted rounded text-[10px] overflow-x-auto">
+              {errorToShow}
+            </pre>
+          </details>
         </CardContent>
       </Card>
     );
@@ -238,7 +309,7 @@ const GoogleMapsHeatmap: React.FC<GoogleMapsHeatmapProps> = memo(({ data }) => {
           <div className="h-[400px] bg-muted/30 rounded-lg animate-pulse flex items-center justify-center">
             <div className="flex flex-col items-center gap-2">
               <RefreshCw className="w-8 h-8 text-primary animate-spin" />
-              <span className="text-muted-foreground">Initializing map...</span>
+              <span className="text-muted-foreground text-sm">Initializing map...</span>
             </div>
           </div>
         </CardContent>
@@ -254,6 +325,9 @@ const GoogleMapsHeatmap: React.FC<GoogleMapsHeatmapProps> = memo(({ data }) => {
             <CardTitle className="flex items-center gap-2">
               <MapPin className="w-5 h-5 text-primary" />
               Real-time Visitor Heatmap
+              {mapReady && (
+                <CheckCircle className="w-4 h-4 text-success" />
+              )}
             </CardTitle>
             <CardDescription>Live visitor density visualization</CardDescription>
           </div>
@@ -277,6 +351,16 @@ const GoogleMapsHeatmap: React.FC<GoogleMapsHeatmapProps> = memo(({ data }) => {
           style={{ backgroundColor: '#1a1a2e' }}
         />
 
+        {/* No Data Warning */}
+        {mapReady && (!data?.countries?.length) && (
+          <div className="p-4 bg-warning/10 border-t border-warning/20">
+            <div className="flex items-center gap-2 text-warning text-sm">
+              <Info className="w-4 h-4" />
+              <span>No geo-location data available yet. Visit your site to generate analytics.</span>
+            </div>
+          </div>
+        )}
+
         {/* Legend */}
         <div className="p-4 border-t border-border/50">
           <div className="flex items-center justify-between flex-wrap gap-4">
@@ -291,38 +375,40 @@ const GoogleMapsHeatmap: React.FC<GoogleMapsHeatmapProps> = memo(({ data }) => {
         </div>
 
         {/* Top Locations List */}
-        <div className="p-4 border-t border-border/50">
-          <h4 className="text-sm font-medium mb-3 flex items-center gap-2">
-            <TrendingUp className="w-4 h-4 text-primary" />
-            Top Visitor Locations
-          </h4>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-            {data?.countries?.slice(0, 9).map((country, index) => (
-              <div
-                key={country.country_code}
-                className="flex items-center justify-between p-2 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors"
-              >
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-bold text-primary w-5">#{index + 1}</span>
-                  <div>
-                    <p className="text-sm font-medium truncate max-w-[120px]">
-                      {country.country_name || country.country_code}
-                    </p>
-                    {country.cities?.[0] && (
-                      <p className="text-xs text-muted-foreground">{country.cities[0].city}</p>
-                    )}
+        {data?.countries && data.countries.length > 0 && (
+          <div className="p-4 border-t border-border/50">
+            <h4 className="text-sm font-medium mb-3 flex items-center gap-2">
+              <TrendingUp className="w-4 h-4 text-primary" />
+              Top Visitor Locations
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+              {data.countries.slice(0, 9).map((country, index) => (
+                <div
+                  key={`${country.country_code}-${index}`}
+                  className="flex items-center justify-between p-2 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold text-primary w-5">#{index + 1}</span>
+                    <div>
+                      <p className="text-sm font-medium truncate max-w-[120px]">
+                        {country.country_name || country.country_code}
+                      </p>
+                      {country.cities?.[0] && (
+                        <p className="text-xs text-muted-foreground">{country.cities[0].city}</p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="flex items-center gap-1 text-sm font-semibold">
+                      <Users className="w-3 h-3 text-muted-foreground" />
+                      {country.visitors}
+                    </div>
                   </div>
                 </div>
-                <div className="text-right">
-                  <div className="flex items-center gap-1 text-sm font-semibold">
-                    <Users className="w-3 h-3 text-muted-foreground" />
-                    {country.visitors}
-                  </div>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </CardContent>
     </Card>
   );
