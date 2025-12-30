@@ -195,49 +195,76 @@ const DateSelectionStep = ({
   const isValidSelection = checkIn && checkOut && nights >= 1;
 
   return (
-    <div className="flex flex-col min-h-[calc(100vh-8rem)] px-4 pb-24">
-      {/* Date Display Cards */}
-      <div className="grid grid-cols-2 gap-3 mb-6">
-        <Card 
-          className={cn(
-            "p-4 cursor-pointer transition-all",
-            !selectingCheckOut && "ring-2 ring-primary"
-          )}
-          onClick={() => setSelectingCheckOut(false)}
-        >
-          <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Check-in</p>
-          <p className="text-lg font-semibold">
-            {checkIn ? format(checkIn, 'MMM d, yyyy') : 'Select date'}
-          </p>
-          <p className="text-sm text-muted-foreground">After 12:00 PM</p>
-        </Card>
-        <Card 
-          className={cn(
-            "p-4 cursor-pointer transition-all",
-            selectingCheckOut && checkIn && "ring-2 ring-primary"
-          )}
-          onClick={() => checkIn && setSelectingCheckOut(true)}
-        >
-          <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Check-out</p>
-          <p className="text-lg font-semibold">
-            {checkOut ? format(checkOut, 'MMM d, yyyy') : 'Select date'}
-          </p>
-          <p className="text-sm text-muted-foreground">Before 10:00 AM</p>
-        </Card>
-      </div>
+    <div className="flex flex-col min-h-[calc(100vh-8rem)] px-4 pb-28">
+      {/* Date Display Cards - iOS style with haptic feedback visual */}
+      <motion.div 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="grid grid-cols-2 gap-3 mb-5"
+      >
+        <motion.div whileTap={{ scale: 0.98 }}>
+          <Card 
+            className={cn(
+              "p-4 cursor-pointer transition-all duration-200 border-2",
+              !selectingCheckOut 
+                ? "border-primary bg-primary/5 shadow-lg shadow-primary/10" 
+                : "border-transparent hover:border-border"
+            )}
+            onClick={() => setSelectingCheckOut(false)}
+          >
+            <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-medium mb-1.5">Check-in</p>
+            <p className={cn(
+              "text-lg font-bold transition-colors",
+              checkIn ? "text-foreground" : "text-muted-foreground"
+            )}>
+              {checkIn ? format(checkIn, 'EEE, MMM d') : 'Select'}
+            </p>
+            <p className="text-xs text-muted-foreground mt-0.5">After 12:00 PM</p>
+          </Card>
+        </motion.div>
+        
+        <motion.div whileTap={{ scale: 0.98 }}>
+          <Card 
+            className={cn(
+              "p-4 cursor-pointer transition-all duration-200 border-2",
+              selectingCheckOut && checkIn 
+                ? "border-primary bg-primary/5 shadow-lg shadow-primary/10" 
+                : "border-transparent hover:border-border",
+              !checkIn && "opacity-50 cursor-not-allowed"
+            )}
+            onClick={() => checkIn && setSelectingCheckOut(true)}
+          >
+            <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-medium mb-1.5">Check-out</p>
+            <p className={cn(
+              "text-lg font-bold transition-colors",
+              checkOut ? "text-foreground" : "text-muted-foreground"
+            )}>
+              {checkOut ? format(checkOut, 'EEE, MMM d') : 'Select'}
+            </p>
+            <p className="text-xs text-muted-foreground mt-0.5">Before 10:00 AM</p>
+          </Card>
+        </motion.div>
+      </motion.div>
 
-      {/* Nights Indicator */}
-      {nights > 0 && (
-        <div className="text-center mb-4">
-          <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-primary font-medium">
-            <Bed className="w-4 h-4" />
-            {nights} night{nights > 1 ? 's' : ''}
-          </span>
-        </div>
-      )}
+      {/* Nights Badge - Animated */}
+      <AnimatePresence mode="wait">
+        {nights > 0 && (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            className="text-center mb-4"
+          >
+            <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-primary/10 to-primary/5 rounded-full text-primary font-semibold text-sm border border-primary/20">
+              <Bed className="w-4 h-4" />
+              {nights} night{nights > 1 ? 's' : ''} stay
+            </span>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      {/* iOS-style Calendar */}
-      <Card className="p-4 flex-1">
+      {/* Premium iOS-style Calendar */}
+      <Card className="p-2 md:p-4 flex-1 shadow-lg border-0 bg-card/80">
         <Calendar
           mode="single"
           selected={selectingCheckOut ? checkOut : checkIn}
@@ -249,24 +276,38 @@ const DateSelectionStep = ({
             rangeEnd: checkOut,
           }}
           modifiersStyles={{
-            range: { backgroundColor: 'hsl(var(--primary) / 0.1)' },
-            rangeStart: { backgroundColor: 'hsl(var(--primary))', color: 'white' },
-            rangeEnd: { backgroundColor: 'hsl(var(--primary))', color: 'white' },
+            range: { backgroundColor: 'hsl(var(--primary) / 0.1)', borderRadius: 0 },
+            rangeStart: { backgroundColor: 'hsl(var(--primary))', color: 'white', borderRadius: '9999px 0 0 9999px' },
+            rangeEnd: { backgroundColor: 'hsl(var(--primary))', color: 'white', borderRadius: '0 9999px 9999px 0' },
           }}
-          className="w-full pointer-events-auto"
+          className="w-full"
         />
       </Card>
 
-      {/* Continue Button - Fixed at bottom */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-background/80 backdrop-blur-xl border-t border-border/50 safe-area-bottom">
-        <Button
-          onClick={onNext}
-          disabled={!isValidSelection}
-          className="w-full h-12 text-base font-semibold rounded-xl"
-          size="lg"
-        >
-          Continue to Room Selection
-        </Button>
+      {/* Continue Button - Fixed Bottom with Glassmorphism */}
+      <div className="fixed bottom-0 left-0 right-0 p-4 bg-background/90 backdrop-blur-xl border-t border-border/30 safe-area-bottom">
+        <motion.div whileTap={{ scale: 0.98 }}>
+          <Button
+            onClick={onNext}
+            disabled={!isValidSelection}
+            className={cn(
+              "w-full h-14 text-base font-bold rounded-2xl transition-all",
+              isValidSelection 
+                ? "bg-gradient-to-r from-primary to-primary/90 shadow-xl shadow-primary/25" 
+                : ""
+            )}
+            size="lg"
+          >
+            {isValidSelection ? (
+              <span className="flex items-center gap-2">
+                Continue
+                <ChevronRight className="w-5 h-5" />
+              </span>
+            ) : (
+              'Select your dates'
+            )}
+          </Button>
+        </motion.div>
       </div>
     </div>
   );
@@ -317,132 +358,197 @@ const RoomSelectionStep = ({
   }, [rooms]);
 
   return (
-    <div className="flex flex-col min-h-[calc(100vh-8rem)] pb-32">
-      {/* Date Summary */}
-      <div className="px-4 py-3 bg-muted/50 flex items-center justify-between">
-        <div className="flex items-center gap-2 text-sm">
-          <CalendarIcon className="w-4 h-4 text-muted-foreground" />
-          <span>{format(checkIn, 'MMM d')} - {format(checkOut, 'MMM d')}</span>
-          <span className="text-muted-foreground">({nights} night{nights > 1 ? 's' : ''})</span>
+    <div className="flex flex-col min-h-[calc(100vh-8rem)] pb-36">
+      {/* Date Summary - Compact Pill */}
+      <motion.div 
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="sticky top-0 z-40 px-4 py-3 bg-background/90 backdrop-blur-xl border-b border-border/30"
+      >
+        <div className="flex items-center justify-center gap-3">
+          <div className="flex items-center gap-2 px-4 py-2 bg-muted/80 rounded-full text-sm font-medium">
+            <CalendarIcon className="w-4 h-4 text-primary" />
+            <span>{format(checkIn, 'MMM d')}</span>
+            <span className="text-muted-foreground">→</span>
+            <span>{format(checkOut, 'MMM d')}</span>
+            <span className="text-xs text-muted-foreground ml-1">({nights}N)</span>
+          </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Room Categories */}
-      <div className="px-4 py-4 space-y-6">
-        {Object.entries(groupedRooms).map(([category, categoryRooms]) => (
-          <div key={category}>
-            <h3 className="text-lg font-semibold mb-3 capitalize">{category}</h3>
-            <div className="space-y-3">
-              {categoryRooms.map(room => {
+      <div className="px-4 py-5 space-y-8">
+        {Object.entries(groupedRooms).map(([category, categoryRooms], categoryIndex) => (
+          <motion.div 
+            key={category}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: categoryIndex * 0.1 }}
+          >
+            <h3 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-4">
+              {category === 'luxury' ? '✨ Premium' : category === 'hostel' ? '🏠 Hostel' : '💰 Value'}
+            </h3>
+            <div className="space-y-4">
+              {categoryRooms.map((room, roomIndex) => {
                 const price = getRoomPrice(room);
                 const isSelected = selectedRoom?.id === room.id;
                 const isDorm = room.kind === 'dorm';
                 
                 return (
-                  <Card
+                  <motion.div
                     key={room.id}
-                    className={cn(
-                      "overflow-hidden transition-all cursor-pointer",
-                      isSelected && "ring-2 ring-primary"
-                    )}
-                    onClick={() => onRoomSelect(room)}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: categoryIndex * 0.1 + roomIndex * 0.05 }}
                   >
-                    <div className="flex">
-                      {/* Room Image */}
-                      <div className="w-28 h-28 flex-shrink-0 bg-muted">
-                        {room.images?.[0] && (
-                          <UnifiedImage
-                            src={room.images[0]}
-                            alt={room.name}
-                            className="w-full h-full object-cover"
-                          />
-                        )}
-                      </div>
-                      
-                      {/* Room Info */}
-                      <div className="flex-1 p-3 flex flex-col justify-between">
-                        <div>
-                          <h4 className="font-medium text-sm line-clamp-2">{room.name}</h4>
-                          <div className="flex items-center gap-2 mt-1 text-xs text-muted-foreground">
-                            <Users className="w-3 h-3" />
-                            <span>{isDorm ? '1 guest per bed' : `Up to ${room.capacity} guests`}</span>
-                          </div>
-                        </div>
-                        <div className="flex items-end justify-between">
-                          <div>
-                            <span className="text-lg font-bold">{formatPrice(price)}</span>
-                            <span className="text-xs text-muted-foreground">
-                              /{isDorm ? 'bed' : 'room'}/night
-                            </span>
-                          </div>
+                    <Card
+                      className={cn(
+                        "overflow-hidden transition-all duration-200 cursor-pointer border-2",
+                        isSelected 
+                          ? "border-primary bg-primary/5 shadow-xl shadow-primary/10" 
+                          : "border-transparent hover:border-border/50 hover:shadow-lg"
+                      )}
+                      onClick={() => onRoomSelect(room)}
+                    >
+                      <div className="flex">
+                        {/* Room Image with Gradient Overlay */}
+                        <div className="w-32 h-32 flex-shrink-0 relative overflow-hidden">
+                          {room.images?.[0] && (
+                            <UnifiedImage
+                              src={room.images[0]}
+                              alt={room.name}
+                              className="w-full h-full object-cover"
+                            />
+                          )}
                           {isSelected && (
-                            <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center">
+                            <motion.div 
+                              initial={{ scale: 0 }}
+                              animate={{ scale: 1 }}
+                              className="absolute top-2 right-2 w-7 h-7 bg-primary rounded-full flex items-center justify-center shadow-lg"
+                            >
                               <Check className="w-4 h-4 text-primary-foreground" />
-                            </div>
+                            </motion.div>
                           )}
                         </div>
-                      </div>
-                    </div>
-
-                    {/* Quantity Selector (when selected) */}
-                    {isSelected && (
-                      <div className="px-3 py-3 bg-muted/50 border-t flex items-center justify-between">
-                        <span className="text-sm font-medium">
-                          {isDorm ? 'Number of beds' : 'Number of rooms'}
-                        </span>
-                        <div className="flex items-center gap-3">
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="h-8 w-8 rounded-full"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              onQuantityChange(Math.max(1, quantity - 1));
-                            }}
-                          >
-                            <span className="text-lg">−</span>
-                          </Button>
-                          <span className="w-8 text-center font-semibold">{quantity}</span>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="h-8 w-8 rounded-full"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              onQuantityChange(Math.min(room.total_units, quantity + 1));
-                            }}
-                          >
-                            <span className="text-lg">+</span>
-                          </Button>
+                        
+                        {/* Room Info */}
+                        <div className="flex-1 p-4 flex flex-col justify-between">
+                          <div>
+                            <h4 className="font-semibold text-sm line-clamp-2 leading-tight">{room.name}</h4>
+                            <div className="flex items-center gap-2 mt-2">
+                              <span className="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 bg-muted rounded-full text-muted-foreground">
+                                <Users className="w-3 h-3" />
+                                {isDorm ? '1 bed' : `${room.capacity} guests`}
+                              </span>
+                              {room.amenities?.slice(0, 2).map((amenity, i) => (
+                                <span key={i} className="text-[11px] px-2 py-0.5 bg-muted/50 rounded-full text-muted-foreground truncate max-w-[60px]">
+                                  {amenity}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                          <div className="flex items-end justify-between mt-2">
+                            <div>
+                              <span className="text-xl font-bold text-primary">{formatPrice(price)}</span>
+                              <span className="text-[11px] text-muted-foreground ml-1">
+                                /{isDorm ? 'bed' : 'room'}
+                              </span>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    )}
-                  </Card>
+
+                      {/* Quantity Selector - Expanded when selected */}
+                      <AnimatePresence>
+                        {isSelected && (
+                          <motion.div 
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="overflow-hidden"
+                          >
+                            <div className="px-4 py-4 bg-gradient-to-r from-primary/5 to-transparent border-t border-primary/20 flex items-center justify-between">
+                              <span className="text-sm font-medium">
+                                {isDorm ? 'Beds needed' : 'Rooms needed'}
+                              </span>
+                              <div className="flex items-center gap-4">
+                                <motion.button
+                                  whileTap={{ scale: 0.9 }}
+                                  className="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-lg font-bold hover:bg-muted/80 transition-colors"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    onQuantityChange(Math.max(1, quantity - 1));
+                                  }}
+                                >
+                                  −
+                                </motion.button>
+                                <span className="w-8 text-center text-xl font-bold">{quantity}</span>
+                                <motion.button
+                                  whileTap={{ scale: 0.9 }}
+                                  className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-lg font-bold hover:bg-primary/90 transition-colors"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    onQuantityChange(Math.min(room.total_units, quantity + 1));
+                                  }}
+                                >
+                                  +
+                                </motion.button>
+                              </div>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </Card>
+                  </motion.div>
                 );
               })}
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 
-      {/* Continue Button */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-background/80 backdrop-blur-xl border-t border-border/50 safe-area-bottom">
+      {/* Premium Continue Button - Fixed Bottom */}
+      <div className="fixed bottom-0 left-0 right-0 p-4 bg-background/95 backdrop-blur-xl border-t border-border/30 safe-area-bottom">
         <div className="flex items-center justify-between mb-3">
           <div>
-            <p className="text-sm text-muted-foreground">Total for {nights} night{nights > 1 ? 's' : ''}</p>
-            <p className="text-xl font-bold">
+            <p className="text-xs text-muted-foreground uppercase tracking-wider">Total • {nights} night{nights > 1 ? 's' : ''}</p>
+            <motion.p 
+              key={selectedRoom?.id + '-' + quantity}
+              initial={{ opacity: 0, y: 5 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-2xl font-bold text-primary"
+            >
               {selectedRoom ? formatPrice(getRoomPrice(selectedRoom) * quantity * nights) : '—'}
-            </p>
+            </motion.p>
           </div>
+          {selectedRoom && (
+            <p className="text-xs text-muted-foreground text-right">
+              {quantity} × {selectedRoom.kind === 'dorm' ? 'bed' : 'room'}
+            </p>
+          )}
         </div>
-        <Button
-          onClick={onNext}
-          disabled={!selectedRoom}
-          className="w-full h-12 text-base font-semibold rounded-xl"
-          size="lg"
-        >
-          Review Booking
-        </Button>
+        <motion.div whileTap={{ scale: 0.98 }}>
+          <Button
+            onClick={onNext}
+            disabled={!selectedRoom}
+            className={cn(
+              "w-full h-14 text-base font-bold rounded-2xl transition-all",
+              selectedRoom 
+                ? "bg-gradient-to-r from-primary to-primary/90 shadow-xl shadow-primary/25" 
+                : ""
+            )}
+            size="lg"
+          >
+            {selectedRoom ? (
+              <span className="flex items-center gap-2">
+                Review & Book
+                <ChevronRight className="w-5 h-5" />
+              </span>
+            ) : (
+              'Select a room'
+            )}
+          </Button>
+        </motion.div>
       </div>
     </div>
   );
