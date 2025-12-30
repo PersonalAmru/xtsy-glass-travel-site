@@ -49,3 +49,7 @@ verify_jwt = true
 
 [functions.realtime-intelligence]
 verify_jwt = true
+
+# Google Maps API Key (public for frontend use)
+[functions.get-maps-api-key]
+verify_jwt = false
