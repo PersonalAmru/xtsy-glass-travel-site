@@ -1,44 +1,66 @@
 /**
- * BookingFlow - iOS-Style Guest Booking Interface
- * Apple Human Interface Guidelines compliant
- * Mobile-first, gesture-based, dark mode ready
- * 
- * Flow: Dates → Rooms → Summary → Guest Details → Confirmation
+ * BookingFlow - Premium World-Class Booking Engine
+ * Dark green theme with sleek, minimal design
+ * Mobile-first, gesture-based, no-compromise UX
  */
 
 import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { format, differenceInDays, parseISO, addDays, isBefore, isAfter, startOfToday } from 'date-fns';
-import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, Users, Bed, Check, MapPin, Phone, Mail, User, ArrowLeft, Home, Sparkles, Shield } from 'lucide-react';
-import { PremiumBookingCalendar } from '@/components/booking/PremiumBookingCalendar';
+import { format, differenceInDays, parseISO, isBefore, startOfToday } from 'date-fns';
+import { 
+  ChevronLeft, 
+  ChevronRight, 
+  Users, 
+  Bed, 
+  Check, 
+  MapPin, 
+  Phone, 
+  Mail, 
+  User, 
+  Home, 
+  Sparkles, 
+  Shield,
+  Minus,
+  Plus,
+  Calendar as CalendarIcon,
+  Star
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Calendar } from '@/components/ui/calendar';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
 import { useApp } from '@/contexts/AppContext';
 import { createBooking } from '@/services/bookingService';
 import UnifiedImage from '@/components/UnifiedImage';
+import { PremiumBookingCalendar } from '@/components/booking/PremiumBookingCalendar';
 
-// Step definitions
+// Premium color tokens
+const THEME = {
+  gradient: 'from-[hsl(160,35%,22%)] to-[hsl(160,40%,18%)]',
+  surface: 'bg-[hsl(160,35%,22%)]',
+  surfaceLight: 'bg-[hsl(160,30%,28%)]',
+  accent: 'bg-[hsl(160,45%,35%)]',
+  text: 'text-white',
+  textMuted: 'text-white/60',
+  textDim: 'text-white/40',
+  border: 'border-white/10',
+  ring: 'ring-white/20',
+};
+
 type BookingStep = 'dates' | 'rooms' | 'summary' | 'details' | 'confirmation';
 
-const STEPS: { id: BookingStep; title: string; subtitle: string }[] = [
-  { id: 'dates', title: 'Select Dates', subtitle: 'When are you visiting?' },
-  { id: 'rooms', title: 'Choose Room', subtitle: 'Find your perfect stay' },
-  { id: 'summary', title: 'Review', subtitle: 'Your booking summary' },
-  { id: 'details', title: 'Guest Info', subtitle: 'Complete your booking' },
-  { id: 'confirmation', title: 'Confirmed', subtitle: 'You\'re all set!' },
+const STEPS: { id: BookingStep; title: string; icon: React.ReactNode }[] = [
+  { id: 'dates', title: 'Dates', icon: <CalendarIcon className="w-4 h-4" /> },
+  { id: 'rooms', title: 'Room', icon: <Bed className="w-4 h-4" /> },
+  { id: 'summary', title: 'Review', icon: <Check className="w-4 h-4" /> },
+  { id: 'details', title: 'Details', icon: <User className="w-4 h-4" /> },
+  { id: 'confirmation', title: 'Done', icon: <Sparkles className="w-4 h-4" /> },
 ];
 
-// Room type interface
 interface RoomType {
   id: string;
   name: string;
@@ -54,14 +76,6 @@ interface RoomType {
   is_active: boolean;
 }
 
-interface SelectedRoom {
-  roomTypeId: string;
-  roomTypeName: string;
-  quantity: number;
-  pricePerNight: number;
-  capacity: number;
-}
-
 interface GuestDetails {
   name: string;
   email: string;
@@ -73,44 +87,27 @@ interface GuestDetails {
   specialRequests: string;
 }
 
-// iOS-style page transition variants
-const pageVariants = {
-  initial: (direction: number) => ({
-    x: direction > 0 ? '100%' : '-100%',
-    opacity: 0,
-  }),
-  in: {
-    x: 0,
-    opacity: 1,
-  },
-  out: (direction: number) => ({
-    x: direction < 0 ? '100%' : '-100%',
-    opacity: 0,
-  }),
-};
-
-const pageTransition = {
-  type: 'spring' as const,
-  stiffness: 300,
-  damping: 30,
-};
-
-// iOS-style step indicator
+// Premium Step Indicator
 const StepIndicator = ({ currentStep, steps }: { currentStep: BookingStep; steps: typeof STEPS }) => {
   const currentIndex = steps.findIndex(s => s.id === currentStep);
   
   return (
-    <div className="flex items-center justify-center gap-2 py-4">
+    <div className="flex items-center justify-center gap-1.5 py-6">
       {steps.slice(0, 4).map((step, index) => (
-        <div
+        <motion.div
           key={step.id}
+          initial={false}
+          animate={{
+            width: index === currentIndex ? 32 : 8,
+            opacity: index <= currentIndex ? 1 : 0.3,
+          }}
           className={cn(
-            "w-2 h-2 rounded-full transition-all duration-300",
-            index === currentIndex
-              ? "w-6 bg-primary"
-              : index < currentIndex
-              ? "bg-primary/60"
-              : "bg-muted-foreground/30"
+            "h-2 rounded-full transition-colors",
+            index === currentIndex 
+              ? "bg-white" 
+              : index < currentIndex 
+              ? "bg-white/60" 
+              : "bg-white/20"
           )}
         />
       ))}
@@ -118,40 +115,55 @@ const StepIndicator = ({ currentStep, steps }: { currentStep: BookingStep; steps
   );
 };
 
-// iOS-style header
+// Premium Header
 const BookingHeader = ({ 
   step, 
   onBack, 
-  canGoBack 
+  canGoBack,
+  currentIndex,
 }: { 
   step: typeof STEPS[0]; 
   onBack: () => void; 
   canGoBack: boolean;
+  currentIndex: number;
 }) => (
-  <div className="sticky top-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50 safe-area-top">
-    <div className="flex items-center justify-between px-4 h-14">
-      <div className="w-16">
+  <div className={cn(
+    "sticky top-0 z-50 backdrop-blur-xl",
+    "bg-gradient-to-b from-[hsl(160,35%,20%)] to-[hsl(160,35%,20%)/0.95]",
+    "border-b border-white/5"
+  )}>
+    <div className="flex items-center justify-between px-4 h-16">
+      <div className="w-20">
         {canGoBack && (
-          <Button
-            variant="ghost"
-            size="sm"
+          <motion.button
+            whileTap={{ scale: 0.95 }}
             onClick={onBack}
-            className="text-primary hover:bg-transparent -ml-2"
+            className="flex items-center gap-1 text-white/80 hover:text-white transition-colors"
           >
-            <ChevronLeft className="w-5 h-5 mr-1" />
-            Back
-          </Button>
+            <ChevronLeft className="w-5 h-5" />
+            <span className="text-sm font-medium">Back</span>
+          </motion.button>
         )}
       </div>
       <div className="text-center">
-        <h1 className="text-lg font-semibold">{step.title}</h1>
+        <motion.div
+          key={step.id}
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex flex-col items-center"
+        >
+          <span className="text-xs text-white/50 uppercase tracking-widest mb-0.5">
+            Step {currentIndex + 1} of 4
+          </span>
+          <h1 className="text-lg font-semibold text-white">{step.title}</h1>
+        </motion.div>
       </div>
-      <div className="w-16" />
+      <div className="w-20" />
     </div>
   </div>
 );
 
-// Date Selection Step with iOS Calendar
+// Date Selection Step
 const DateSelectionStep = ({
   checkIn,
   checkOut,
@@ -175,15 +187,13 @@ const DateSelectionStep = ({
     return 0;
   }, [checkIn, checkOut]);
 
-  const handleDateSelect = (date: Date | undefined) => {
-    if (!date) return;
-    
-    if (!selectingCheckOut) {
+  const handleDateSelect = (date: Date) => {
+    if (!selectingCheckOut || !checkIn) {
       onCheckInChange(date);
       onCheckOutChange(undefined);
       setSelectingCheckOut(true);
     } else {
-      if (checkIn && isAfter(date, checkIn)) {
+      if (date > checkIn) {
         onCheckOutChange(date);
         setSelectingCheckOut(false);
       } else {
@@ -196,75 +206,76 @@ const DateSelectionStep = ({
   const isValidSelection = checkIn && checkOut && nights >= 1;
 
   return (
-    <div className="flex flex-col min-h-[calc(100vh-8rem)] px-4 pb-28">
-      {/* Date Display Cards - iOS style with haptic feedback visual */}
+    <div className="flex flex-col min-h-[calc(100vh-10rem)] px-4 pb-28">
+      {/* Date Display Cards */}
       <motion.div 
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="grid grid-cols-2 gap-3 mb-5"
+        className="grid grid-cols-2 gap-3 mb-6"
       >
-        <motion.div whileTap={{ scale: 0.98 }}>
-          <Card 
-            className={cn(
-              "p-4 cursor-pointer transition-all duration-200 border-2",
-              !selectingCheckOut 
-                ? "border-primary bg-primary/5 shadow-lg shadow-primary/10" 
-                : "border-transparent hover:border-border"
-            )}
-            onClick={() => setSelectingCheckOut(false)}
-          >
-            <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-medium mb-1.5">Check-in</p>
-            <p className={cn(
-              "text-lg font-bold transition-colors",
-              checkIn ? "text-foreground" : "text-muted-foreground"
-            )}>
-              {checkIn ? format(checkIn, 'EEE, MMM d') : 'Select'}
-            </p>
-            <p className="text-xs text-muted-foreground mt-0.5">After 12:00 PM</p>
-          </Card>
-        </motion.div>
+        <motion.button
+          whileTap={{ scale: 0.98 }}
+          onClick={() => setSelectingCheckOut(false)}
+          className={cn(
+            "p-4 rounded-2xl text-left transition-all",
+            "bg-white/5 border-2",
+            !selectingCheckOut 
+              ? "border-white/30 bg-white/10" 
+              : "border-transparent hover:border-white/10"
+          )}
+        >
+          <p className="text-[10px] text-white/50 uppercase tracking-widest font-medium mb-1">Check-in</p>
+          <p className={cn(
+            "text-lg font-bold transition-colors",
+            checkIn ? "text-white" : "text-white/40"
+          )}>
+            {checkIn ? format(checkIn, 'EEE, MMM d') : 'Select'}
+          </p>
+          <p className="text-xs text-white/40 mt-0.5">After 12:00 PM</p>
+        </motion.button>
         
-        <motion.div whileTap={{ scale: 0.98 }}>
-          <Card 
-            className={cn(
-              "p-4 cursor-pointer transition-all duration-200 border-2",
-              selectingCheckOut && checkIn 
-                ? "border-primary bg-primary/5 shadow-lg shadow-primary/10" 
-                : "border-transparent hover:border-border",
-              !checkIn && "opacity-50 cursor-not-allowed"
-            )}
-            onClick={() => checkIn && setSelectingCheckOut(true)}
-          >
-            <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-medium mb-1.5">Check-out</p>
-            <p className={cn(
-              "text-lg font-bold transition-colors",
-              checkOut ? "text-foreground" : "text-muted-foreground"
-            )}>
-              {checkOut ? format(checkOut, 'EEE, MMM d') : 'Select'}
-            </p>
-            <p className="text-xs text-muted-foreground mt-0.5">Before 10:00 AM</p>
-          </Card>
-        </motion.div>
+        <motion.button
+          whileTap={{ scale: 0.98 }}
+          onClick={() => checkIn && setSelectingCheckOut(true)}
+          disabled={!checkIn}
+          className={cn(
+            "p-4 rounded-2xl text-left transition-all",
+            "bg-white/5 border-2",
+            selectingCheckOut && checkIn 
+              ? "border-white/30 bg-white/10" 
+              : "border-transparent hover:border-white/10",
+            !checkIn && "opacity-50 cursor-not-allowed"
+          )}
+        >
+          <p className="text-[10px] text-white/50 uppercase tracking-widest font-medium mb-1">Check-out</p>
+          <p className={cn(
+            "text-lg font-bold transition-colors",
+            checkOut ? "text-white" : "text-white/40"
+          )}>
+            {checkOut ? format(checkOut, 'EEE, MMM d') : 'Select'}
+          </p>
+          <p className="text-xs text-white/40 mt-0.5">Before 10:00 AM</p>
+        </motion.button>
       </motion.div>
 
-      {/* Nights Badge - Animated */}
+      {/* Nights Badge */}
       <AnimatePresence mode="wait">
         {nights > 0 && (
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            className="text-center mb-4"
+            className="text-center mb-5"
           >
-            <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-primary/10 to-primary/5 rounded-full text-primary font-semibold text-sm border border-primary/20">
-              <Bed className="w-4 h-4" />
+            <span className="inline-flex items-center gap-2 px-5 py-2 bg-white/10 rounded-full text-white font-medium text-sm border border-white/10">
+              <Bed className="w-4 h-4 text-white/70" />
               {nights} night{nights > 1 ? 's' : ''} stay
             </span>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Premium World-Class Calendar */}
+      {/* Premium Calendar */}
       <div className="flex-1">
         <PremiumBookingCalendar
           checkIn={checkIn}
@@ -276,30 +287,28 @@ const DateSelectionStep = ({
         />
       </div>
 
-      {/* Continue Button - Fixed Bottom with Glassmorphism */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-background/90 backdrop-blur-xl border-t border-border/30 safe-area-bottom">
-        <motion.div whileTap={{ scale: 0.98 }}>
-          <Button
-            onClick={onNext}
-            disabled={!isValidSelection}
-            className={cn(
-              "w-full h-14 text-base font-bold rounded-2xl transition-all",
-              isValidSelection 
-                ? "bg-gradient-to-r from-primary to-primary/90 shadow-xl shadow-primary/25" 
-                : ""
-            )}
-            size="lg"
-          >
-            {isValidSelection ? (
-              <span className="flex items-center gap-2">
-                Continue
-                <ChevronRight className="w-5 h-5" />
-              </span>
-            ) : (
-              'Select your dates'
-            )}
-          </Button>
-        </motion.div>
+      {/* Continue Button */}
+      <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[hsl(160,35%,15%)] via-[hsl(160,35%,15%)] to-transparent pt-8">
+        <motion.button
+          whileTap={{ scale: 0.98 }}
+          onClick={onNext}
+          disabled={!isValidSelection}
+          className={cn(
+            "w-full h-14 rounded-2xl font-bold text-base transition-all flex items-center justify-center gap-2",
+            isValidSelection 
+              ? "bg-white text-[hsl(160,35%,20%)] shadow-xl shadow-black/20" 
+              : "bg-white/10 text-white/40 cursor-not-allowed"
+          )}
+        >
+          {isValidSelection ? (
+            <>
+              Continue
+              <ChevronRight className="w-5 h-5" />
+            </>
+          ) : (
+            'Select your dates'
+          )}
+        </motion.button>
       </div>
     </div>
   );
@@ -330,7 +339,6 @@ const RoomSelectionStep = ({
   const nights = differenceInDays(checkOut, checkIn);
 
   const getRoomPrice = (room: RoomType) => {
-    // Check if any dates fall on weekend (Fri, Sat, Sun)
     const isWeekend = checkIn.getDay() >= 5 || checkIn.getDay() === 0;
     if (isWeekend && room.weekend_price) {
       return room.weekend_price;
@@ -350,26 +358,26 @@ const RoomSelectionStep = ({
   }, [rooms]);
 
   return (
-    <div className="flex flex-col min-h-[calc(100vh-8rem)] pb-36">
-      {/* Date Summary - Compact Pill */}
+    <div className="flex flex-col min-h-[calc(100vh-10rem)] pb-40">
+      {/* Date Summary Pill */}
       <motion.div 
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="sticky top-0 z-40 px-4 py-3 bg-background/90 backdrop-blur-xl border-b border-border/30"
+        className="sticky top-0 z-40 px-4 py-3 bg-[hsl(160,35%,18%)]/95 backdrop-blur-lg border-b border-white/5"
       >
         <div className="flex items-center justify-center gap-3">
-          <div className="flex items-center gap-2 px-4 py-2 bg-muted/80 rounded-full text-sm font-medium">
-            <CalendarIcon className="w-4 h-4 text-primary" />
+          <div className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-sm font-medium text-white">
+            <CalendarIcon className="w-4 h-4 text-white/60" />
             <span>{format(checkIn, 'MMM d')}</span>
-            <span className="text-muted-foreground">→</span>
+            <span className="text-white/40">→</span>
             <span>{format(checkOut, 'MMM d')}</span>
-            <span className="text-xs text-muted-foreground ml-1">({nights}N)</span>
+            <span className="text-xs text-white/40 ml-1">({nights}N)</span>
           </div>
         </div>
       </motion.div>
 
       {/* Room Categories */}
-      <div className="px-4 py-5 space-y-8">
+      <div className="px-4 py-6 space-y-8">
         {Object.entries(groupedRooms).map(([category, categoryRooms], categoryIndex) => (
           <motion.div 
             key={category}
@@ -377,10 +385,12 @@ const RoomSelectionStep = ({
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: categoryIndex * 0.1 }}
           >
-            <h3 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-4">
-              {category === 'luxury' ? '✨ Premium' : category === 'hostel' ? '🏠 Hostel' : '💰 Value'}
+            <h3 className="text-xs font-bold uppercase tracking-widest text-white/40 mb-4 flex items-center gap-2">
+              {category === 'luxury' && <Star className="w-3.5 h-3.5" />}
+              {category === 'luxury' ? 'Premium' : category === 'hostel' ? 'Hostel' : 'Value'}
             </h3>
-            <div className="space-y-4">
+            
+            <div className="space-y-3">
               {categoryRooms.map((room, roomIndex) => {
                 const price = getRoomPrice(room);
                 const isSelected = selectedRoom?.id === room.id;
@@ -393,18 +403,20 @@ const RoomSelectionStep = ({
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: categoryIndex * 0.1 + roomIndex * 0.05 }}
                   >
-                    <Card
-                      className={cn(
-                        "overflow-hidden transition-all duration-200 cursor-pointer border-2",
-                        isSelected 
-                          ? "border-primary bg-primary/5 shadow-xl shadow-primary/10" 
-                          : "border-transparent hover:border-border/50 hover:shadow-lg"
-                      )}
+                    <motion.button
+                      whileTap={{ scale: 0.98 }}
                       onClick={() => onRoomSelect(room)}
+                      className={cn(
+                        "w-full overflow-hidden rounded-2xl transition-all duration-200 text-left",
+                        "bg-white/5 border-2",
+                        isSelected 
+                          ? "border-white/30 bg-white/10" 
+                          : "border-transparent hover:border-white/10"
+                      )}
                     >
                       <div className="flex">
-                        {/* Room Image with Gradient Overlay */}
-                        <div className="w-32 h-32 flex-shrink-0 relative overflow-hidden">
+                        {/* Room Image */}
+                        <div className="w-28 h-28 flex-shrink-0 relative overflow-hidden">
                           {room.images?.[0] && (
                             <UnifiedImage
                               src={room.images[0]}
@@ -416,9 +428,9 @@ const RoomSelectionStep = ({
                             <motion.div 
                               initial={{ scale: 0 }}
                               animate={{ scale: 1 }}
-                              className="absolute top-2 right-2 w-7 h-7 bg-primary rounded-full flex items-center justify-center shadow-lg"
+                              className="absolute top-2 right-2 w-6 h-6 bg-white rounded-full flex items-center justify-center shadow-lg"
                             >
-                              <Check className="w-4 h-4 text-primary-foreground" />
+                              <Check className="w-3.5 h-3.5 text-[hsl(160,35%,25%)]" />
                             </motion.div>
                           )}
                         </div>
@@ -426,31 +438,26 @@ const RoomSelectionStep = ({
                         {/* Room Info */}
                         <div className="flex-1 p-4 flex flex-col justify-between">
                           <div>
-                            <h4 className="font-semibold text-sm line-clamp-2 leading-tight">{room.name}</h4>
+                            <h4 className="font-semibold text-sm text-white line-clamp-2 leading-tight">{room.name}</h4>
                             <div className="flex items-center gap-2 mt-2">
-                              <span className="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 bg-muted rounded-full text-muted-foreground">
+                              <span className="inline-flex items-center gap-1 text-[10px] px-2 py-0.5 bg-white/10 rounded-full text-white/60">
                                 <Users className="w-3 h-3" />
                                 {isDorm ? '1 bed' : `${room.capacity} guests`}
                               </span>
-                              {room.amenities?.slice(0, 2).map((amenity, i) => (
-                                <span key={i} className="text-[11px] px-2 py-0.5 bg-muted/50 rounded-full text-muted-foreground truncate max-w-[60px]">
-                                  {amenity}
-                                </span>
-                              ))}
                             </div>
                           </div>
                           <div className="flex items-end justify-between mt-2">
                             <div>
-                              <span className="text-xl font-bold text-primary">{formatPrice(price)}</span>
-                              <span className="text-[11px] text-muted-foreground ml-1">
-                                /{isDorm ? 'bed' : 'room'}
+                              <span className="text-xl font-bold text-white">{formatPrice(price)}</span>
+                              <span className="text-[10px] text-white/40 ml-1">
+                                /{isDorm ? 'bed' : 'night'}
                               </span>
                             </div>
                           </div>
                         </div>
                       </div>
 
-                      {/* Quantity Selector - Expanded when selected */}
+                      {/* Quantity Selector */}
                       <AnimatePresence>
                         {isSelected && (
                           <motion.div 
@@ -459,38 +466,41 @@ const RoomSelectionStep = ({
                             exit={{ height: 0, opacity: 0 }}
                             className="overflow-hidden"
                           >
-                            <div className="px-4 py-4 bg-gradient-to-r from-primary/5 to-transparent border-t border-primary/20 flex items-center justify-between">
-                              <span className="text-sm font-medium">
+                            <div 
+                              className="px-4 py-4 bg-white/5 border-t border-white/10 flex items-center justify-between"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <span className="text-sm font-medium text-white/80">
                                 {isDorm ? 'Beds needed' : 'Rooms needed'}
                               </span>
                               <div className="flex items-center gap-4">
                                 <motion.button
                                   whileTap={{ scale: 0.9 }}
-                                  className="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-lg font-bold hover:bg-muted/80 transition-colors"
+                                  className="w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors"
                                   onClick={(e) => {
                                     e.stopPropagation();
                                     onQuantityChange(Math.max(1, quantity - 1));
                                   }}
                                 >
-                                  −
+                                  <Minus className="w-4 h-4" />
                                 </motion.button>
-                                <span className="w-8 text-center text-xl font-bold">{quantity}</span>
+                                <span className="w-8 text-center text-xl font-bold text-white">{quantity}</span>
                                 <motion.button
                                   whileTap={{ scale: 0.9 }}
-                                  className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-lg font-bold hover:bg-primary/90 transition-colors"
+                                  className="w-10 h-10 rounded-full bg-white text-[hsl(160,35%,25%)] flex items-center justify-center hover:bg-white/90 transition-colors"
                                   onClick={(e) => {
                                     e.stopPropagation();
                                     onQuantityChange(Math.min(room.total_units, quantity + 1));
                                   }}
                                 >
-                                  +
+                                  <Plus className="w-4 h-4" />
                                 </motion.button>
                               </div>
                             </div>
                           </motion.div>
                         )}
                       </AnimatePresence>
-                    </Card>
+                    </motion.button>
                   </motion.div>
                 );
               })}
@@ -499,48 +509,45 @@ const RoomSelectionStep = ({
         ))}
       </div>
 
-      {/* Premium Continue Button - Fixed Bottom */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-background/95 backdrop-blur-xl border-t border-border/30 safe-area-bottom">
-        <div className="flex items-center justify-between mb-3">
-          <div>
-            <p className="text-xs text-muted-foreground uppercase tracking-wider">Total • {nights} night{nights > 1 ? 's' : ''}</p>
-            <motion.p 
-              key={selectedRoom?.id + '-' + quantity}
-              initial={{ opacity: 0, y: 5 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-2xl font-bold text-primary"
-            >
-              {selectedRoom ? formatPrice(getRoomPrice(selectedRoom) * quantity * nights) : '—'}
-            </motion.p>
-          </div>
-          {selectedRoom && (
-            <p className="text-xs text-muted-foreground text-right">
+      {/* Continue Button */}
+      <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[hsl(160,35%,15%)] via-[hsl(160,35%,15%)] to-transparent pt-8">
+        {selectedRoom && (
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex items-center justify-between mb-3 px-1"
+          >
+            <div>
+              <p className="text-xs text-white/40 uppercase tracking-wider">Total • {nights} night{nights > 1 ? 's' : ''}</p>
+              <p className="text-2xl font-bold text-white">
+                {formatPrice(getRoomPrice(selectedRoom) * quantity * nights)}
+              </p>
+            </div>
+            <p className="text-xs text-white/40">
               {quantity} × {selectedRoom.kind === 'dorm' ? 'bed' : 'room'}
             </p>
+          </motion.div>
+        )}
+        <motion.button
+          whileTap={{ scale: 0.98 }}
+          onClick={onNext}
+          disabled={!selectedRoom}
+          className={cn(
+            "w-full h-14 rounded-2xl font-bold text-base transition-all flex items-center justify-center gap-2",
+            selectedRoom 
+              ? "bg-white text-[hsl(160,35%,20%)] shadow-xl shadow-black/20" 
+              : "bg-white/10 text-white/40 cursor-not-allowed"
           )}
-        </div>
-        <motion.div whileTap={{ scale: 0.98 }}>
-          <Button
-            onClick={onNext}
-            disabled={!selectedRoom}
-            className={cn(
-              "w-full h-14 text-base font-bold rounded-2xl transition-all",
-              selectedRoom 
-                ? "bg-gradient-to-r from-primary to-primary/90 shadow-xl shadow-primary/25" 
-                : ""
-            )}
-            size="lg"
-          >
-            {selectedRoom ? (
-              <span className="flex items-center gap-2">
-                Review & Book
-                <ChevronRight className="w-5 h-5" />
-              </span>
-            ) : (
-              'Select a room'
-            )}
-          </Button>
-        </motion.div>
+        >
+          {selectedRoom ? (
+            <>
+              Review & Book
+              <ChevronRight className="w-5 h-5" />
+            </>
+          ) : (
+            'Select a room'
+          )}
+        </motion.button>
       </div>
     </div>
   );
@@ -571,11 +578,15 @@ const SummaryStep = ({
   const total = subtotal + gst;
 
   return (
-    <div className="flex flex-col min-h-[calc(100vh-8rem)] px-4 pb-32">
+    <div className="flex flex-col min-h-[calc(100vh-10rem)] px-4 pb-32">
       {/* Property Card */}
-      <Card className="p-4 mb-4">
-        <div className="flex gap-3">
-          <div className="w-20 h-20 rounded-lg overflow-hidden bg-muted flex-shrink-0">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="p-4 rounded-2xl bg-white/5 border border-white/10 mb-4"
+      >
+        <div className="flex gap-4">
+          <div className="w-20 h-20 rounded-xl overflow-hidden bg-white/10 flex-shrink-0">
             {selectedRoom.images?.[0] && (
               <UnifiedImage
                 src={selectedRoom.images[0]}
@@ -585,83 +596,99 @@ const SummaryStep = ({
             )}
           </div>
           <div className="flex-1">
-            <h3 className="font-semibold">{selectedRoom.name}</h3>
-            <p className="text-sm text-muted-foreground">{selectedRoom.category}</p>
-            <div className="flex items-center gap-1 mt-1 text-sm text-muted-foreground">
+            <h3 className="font-semibold text-white">{selectedRoom.name}</h3>
+            <p className="text-sm text-white/50">{selectedRoom.category}</p>
+            <div className="flex items-center gap-1 mt-1 text-sm text-white/40">
               <MapPin className="w-3 h-3" />
-              <span>XTSY Travellers Hostel, Shillong</span>
+              <span>XTSY Travellers Hostel</span>
             </div>
           </div>
         </div>
-      </Card>
+      </motion.div>
 
       {/* Date & Guests */}
-      <Card className="p-4 mb-4">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+        className="p-4 rounded-2xl bg-white/5 border border-white/10 mb-4"
+      >
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <p className="text-xs text-muted-foreground uppercase tracking-wide">Check-in</p>
-            <p className="font-semibold">{format(checkIn, 'EEE, MMM d')}</p>
-            <p className="text-sm text-muted-foreground">After 12:00 PM</p>
+            <p className="text-[10px] text-white/40 uppercase tracking-widest">Check-in</p>
+            <p className="font-semibold text-white">{format(checkIn, 'EEE, MMM d')}</p>
+            <p className="text-sm text-white/40">After 12:00 PM</p>
           </div>
           <div>
-            <p className="text-xs text-muted-foreground uppercase tracking-wide">Check-out</p>
-            <p className="font-semibold">{format(checkOut, 'EEE, MMM d')}</p>
-            <p className="text-sm text-muted-foreground">Before 10:00 AM</p>
+            <p className="text-[10px] text-white/40 uppercase tracking-widest">Check-out</p>
+            <p className="font-semibold text-white">{format(checkOut, 'EEE, MMM d')}</p>
+            <p className="text-sm text-white/40">Before 10:00 AM</p>
           </div>
         </div>
-        <div className="mt-4 pt-4 border-t">
+        <div className="mt-4 pt-4 border-t border-white/10">
           <div className="flex justify-between">
-            <span className="text-muted-foreground">{selectedRoom.kind === 'dorm' ? 'Beds' : 'Rooms'}</span>
-            <span className="font-medium">{quantity}</span>
+            <span className="text-white/50">{selectedRoom.kind === 'dorm' ? 'Beds' : 'Rooms'}</span>
+            <span className="font-medium text-white">{quantity}</span>
           </div>
           <div className="flex justify-between mt-1">
-            <span className="text-muted-foreground">Nights</span>
-            <span className="font-medium">{nights}</span>
+            <span className="text-white/50">Nights</span>
+            <span className="font-medium text-white">{nights}</span>
           </div>
         </div>
-      </Card>
+      </motion.div>
 
       {/* Price Breakdown */}
-      <Card className="p-4 mb-4">
-        <h4 className="font-semibold mb-3">Price Breakdown</h4>
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className="p-4 rounded-2xl bg-white/5 border border-white/10 mb-4"
+      >
+        <h4 className="font-semibold text-white mb-3">Price Breakdown</h4>
         <div className="space-y-2 text-sm">
           <div className="flex justify-between">
-            <span className="text-muted-foreground">
+            <span className="text-white/50">
               {formatPrice(pricePerNight)} × {quantity} × {nights} night{nights > 1 ? 's' : ''}
             </span>
-            <span>{formatPrice(subtotal)}</span>
+            <span className="text-white">{formatPrice(subtotal)}</span>
           </div>
           {gst > 0 && (
             <div className="flex justify-between">
-              <span className="text-muted-foreground">GST ({gstRate * 100}%)</span>
-              <span>{formatPrice(gst)}</span>
+              <span className="text-white/50">GST ({gstRate * 100}%)</span>
+              <span className="text-white">{formatPrice(gst)}</span>
             </div>
           )}
-          <div className="flex justify-between pt-2 border-t font-semibold text-base">
-            <span>Total</span>
-            <span>{formatPrice(total)}</span>
+          <div className="flex justify-between pt-3 border-t border-white/10 font-bold text-lg">
+            <span className="text-white">Total</span>
+            <span className="text-white">{formatPrice(total)}</span>
           </div>
         </div>
-      </Card>
+      </motion.div>
 
       {/* Pay at Hotel Badge */}
-      <div className="flex items-center gap-3 p-4 bg-green-500/10 rounded-xl mb-4">
-        <Shield className="w-5 h-5 text-green-600" />
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="flex items-center gap-3 p-4 bg-emerald-500/10 rounded-2xl border border-emerald-500/20"
+      >
+        <Shield className="w-5 h-5 text-emerald-400" />
         <div>
-          <p className="font-medium text-green-700 dark:text-green-400">Pay at Hotel</p>
-          <p className="text-sm text-muted-foreground">No advance payment required</p>
+          <p className="font-medium text-emerald-400">Pay at Hotel</p>
+          <p className="text-sm text-white/50">No advance payment required</p>
         </div>
-      </div>
+      </motion.div>
 
       {/* Continue Button */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-background/80 backdrop-blur-xl border-t border-border/50 safe-area-bottom">
-        <Button
+      <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[hsl(160,35%,15%)] via-[hsl(160,35%,15%)] to-transparent pt-8">
+        <motion.button
+          whileTap={{ scale: 0.98 }}
           onClick={onNext}
-          className="w-full h-12 text-base font-semibold rounded-xl"
-          size="lg"
+          className="w-full h-14 rounded-2xl font-bold text-base bg-white text-[hsl(160,35%,20%)] shadow-xl shadow-black/20 flex items-center justify-center gap-2"
         >
           Continue to Guest Details
-        </Button>
+          <ChevronRight className="w-5 h-5" />
+        </motion.button>
       </div>
     </div>
   );
@@ -700,78 +727,85 @@ const GuestDetailsStep = ({
     }
   };
 
+  const inputClass = "h-12 pl-11 bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-white/30 focus:ring-white/10 rounded-xl";
+  const labelClass = "text-sm font-medium text-white/80";
+
   return (
-    <div className="flex flex-col min-h-[calc(100vh-8rem)] px-4 pb-32">
-      <div className="space-y-4 py-4">
+    <div className="flex flex-col min-h-[calc(100vh-10rem)] px-4 pb-32">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="space-y-4 py-4"
+      >
         {/* Name */}
         <div>
-          <Label htmlFor="name" className="text-sm font-medium">
-            Full Name <span className="text-destructive">*</span>
+          <Label htmlFor="name" className={labelClass}>
+            Full Name <span className="text-red-400">*</span>
           </Label>
           <div className="relative mt-1.5">
-            <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
             <Input
               id="name"
               value={guestDetails.name}
               onChange={(e) => onChange('name', e.target.value)}
               placeholder="Enter your full name"
-              className={cn("pl-10 h-12", errors.name && "border-destructive")}
+              className={cn(inputClass, errors.name && "border-red-400/50")}
             />
           </div>
-          {errors.name && <p className="text-xs text-destructive mt-1">{errors.name}</p>}
+          {errors.name && <p className="text-xs text-red-400 mt-1">{errors.name}</p>}
         </div>
 
         {/* Email */}
         <div>
-          <Label htmlFor="email" className="text-sm font-medium">
-            Email Address <span className="text-destructive">*</span>
+          <Label htmlFor="email" className={labelClass}>
+            Email Address <span className="text-red-400">*</span>
           </Label>
           <div className="relative mt-1.5">
-            <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
             <Input
               id="email"
               type="email"
               value={guestDetails.email}
               onChange={(e) => onChange('email', e.target.value)}
               placeholder="your@email.com"
-              className={cn("pl-10 h-12", errors.email && "border-destructive")}
+              className={cn(inputClass, errors.email && "border-red-400/50")}
             />
           </div>
-          {errors.email && <p className="text-xs text-destructive mt-1">{errors.email}</p>}
+          {errors.email && <p className="text-xs text-red-400 mt-1">{errors.email}</p>}
         </div>
 
         {/* Phone */}
         <div>
-          <Label htmlFor="phone" className="text-sm font-medium">
-            WhatsApp Number <span className="text-destructive">*</span>
+          <Label htmlFor="phone" className={labelClass}>
+            WhatsApp Number <span className="text-red-400">*</span>
           </Label>
           <div className="relative mt-1.5">
-            <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
             <Input
               id="phone"
               type="tel"
               value={guestDetails.phone}
               onChange={(e) => onChange('phone', e.target.value)}
               placeholder="9876543210"
-              className={cn("pl-10 h-12", errors.phone && "border-destructive")}
+              className={cn(inputClass, errors.phone && "border-red-400/50")}
             />
           </div>
-          {errors.phone && <p className="text-xs text-destructive mt-1">{errors.phone}</p>}
+          {errors.phone && <p className="text-xs text-red-400 mt-1">{errors.phone}</p>}
         </div>
 
-        {/* Address (Optional) */}
+        {/* Address */}
         <div>
-          <Label htmlFor="address" className="text-sm font-medium">
-            Address <span className="text-muted-foreground">(Optional)</span>
+          <Label htmlFor="address" className={labelClass}>
+            Address <span className="text-white/40">(Optional)</span>
           </Label>
           <div className="relative mt-1.5">
-            <Home className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" />
+            <Home className="absolute left-3.5 top-3.5 w-4 h-4 text-white/40" />
             <Textarea
               id="address"
               value={guestDetails.address}
               onChange={(e) => onChange('address', e.target.value)}
               placeholder="Street address"
-              className="pl-10 min-h-[60px]"
+              className="pl-11 min-h-[60px] bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-white/30 focus:ring-white/10 rounded-xl"
             />
           </div>
         </div>
@@ -779,52 +813,71 @@ const GuestDetailsStep = ({
         {/* City & State */}
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <Label htmlFor="city" className="text-sm font-medium">City</Label>
+            <Label htmlFor="city" className={labelClass}>City</Label>
             <Input
               id="city"
               value={guestDetails.city}
               onChange={(e) => onChange('city', e.target.value)}
               placeholder="City"
-              className="h-12 mt-1.5"
+              className="h-12 mt-1.5 bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-white/30 rounded-xl"
             />
           </div>
           <div>
-            <Label htmlFor="state" className="text-sm font-medium">State</Label>
+            <Label htmlFor="state" className={labelClass}>State</Label>
             <Input
               id="state"
               value={guestDetails.state}
               onChange={(e) => onChange('state', e.target.value)}
               placeholder="State"
-              className="h-12 mt-1.5"
+              className="h-12 mt-1.5 bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-white/30 rounded-xl"
             />
           </div>
         </div>
 
         {/* Special Requests */}
         <div>
-          <Label htmlFor="requests" className="text-sm font-medium">
-            Special Requests <span className="text-muted-foreground">(Optional)</span>
+          <Label htmlFor="requests" className={labelClass}>
+            Special Requests <span className="text-white/40">(Optional)</span>
           </Label>
           <Textarea
             id="requests"
             value={guestDetails.specialRequests}
             onChange={(e) => onChange('specialRequests', e.target.value)}
-            placeholder="Any special requirements or requests..."
-            className="min-h-[80px] mt-1.5"
+            placeholder="Any special requirements..."
+            className="min-h-[80px] mt-1.5 bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-white/30 rounded-xl"
           />
         </div>
-      </div>
+      </motion.div>
 
       {/* Submit Button */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-background/80 backdrop-blur-xl border-t border-border/50 safe-area-bottom">
-        <Button
+      <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[hsl(160,35%,15%)] via-[hsl(160,35%,15%)] to-transparent pt-8">
+        <motion.button
+          whileTap={{ scale: 0.98 }}
           onClick={handleSubmit}
           disabled={isSubmitting}
-          className="w-full h-12 text-base font-semibold rounded-xl"
-          size="lg"
+          className={cn(
+            "w-full h-14 rounded-2xl font-bold text-base shadow-xl shadow-black/20 flex items-center justify-center gap-2",
+            isSubmitting 
+              ? "bg-white/50 text-[hsl(160,35%,20%)]/50 cursor-not-allowed"
+              : "bg-white text-[hsl(160,35%,20%)]"
+          )}
         >
-          {isSubmitting ? 'Confirming...' : 'Confirm Booking'}
-        </Button>
+          {isSubmitting ? (
+            <>
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                className="w-5 h-5 border-2 border-[hsl(160,35%,20%)]/30 border-t-[hsl(160,35%,20%)] rounded-full"
+              />
+              Confirming...
+            </>
+          ) : (
+            <>
+              Confirm Booking
+              <Check className="w-5 h-5" />
+            </>
+          )}
+        </motion.button>
       </div>
     </div>
   );
@@ -851,16 +904,16 @@ const ConfirmationStep = ({
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}
       transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-      className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mb-6"
+      className="w-24 h-24 bg-emerald-500 rounded-full flex items-center justify-center mb-8 shadow-xl shadow-emerald-500/30"
     >
-      <Check className="w-10 h-10 text-white" />
+      <Check className="w-12 h-12 text-white" />
     </motion.div>
 
     <motion.h2
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2 }}
-      className="text-2xl font-bold mb-2"
+      className="text-3xl font-bold text-white mb-2"
     >
       Booking Confirmed!
     </motion.h2>
@@ -869,7 +922,7 @@ const ConfirmationStep = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3 }}
-      className="text-muted-foreground mb-6"
+      className="text-white/60 mb-8"
     >
       Thank you, {guestName.split(' ')[0]}! Your stay is confirmed.
     </motion.p>
@@ -878,48 +931,69 @@ const ConfirmationStep = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.4 }}
+      className="p-5 rounded-2xl bg-white/5 border border-white/10 text-left w-full max-w-sm mb-8"
     >
-      <Card className="p-4 text-left w-full max-w-sm mb-6">
-        <div className="space-y-3">
-          <div className="flex justify-between">
-            <span className="text-muted-foreground">Booking ID</span>
-            <span className="font-mono font-medium">{bookingId}</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-muted-foreground">Room</span>
-            <span className="font-medium text-right max-w-[180px] truncate">{roomName}</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-muted-foreground">Check-in</span>
-            <span className="font-medium">{format(checkIn, 'MMM d, yyyy')}</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-muted-foreground">Check-out</span>
-            <span className="font-medium">{format(checkOut, 'MMM d, yyyy')}</span>
-          </div>
+      <div className="space-y-3">
+        <div className="flex justify-between">
+          <span className="text-white/50">Booking ID</span>
+          <span className="font-mono font-medium text-white">{bookingId}</span>
         </div>
-      </Card>
+        <div className="flex justify-between">
+          <span className="text-white/50">Room</span>
+          <span className="font-medium text-white text-right max-w-[180px] truncate">{roomName}</span>
+        </div>
+        <div className="flex justify-between">
+          <span className="text-white/50">Check-in</span>
+          <span className="font-medium text-white">{format(checkIn, 'MMM d, yyyy')}</span>
+        </div>
+        <div className="flex justify-between">
+          <span className="text-white/50">Check-out</span>
+          <span className="font-medium text-white">{format(checkOut, 'MMM d, yyyy')}</span>
+        </div>
+      </div>
     </motion.div>
 
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.5 }}
-      className="flex items-center gap-2 text-sm text-muted-foreground mb-8"
+      className="flex items-center gap-2 text-sm text-white/40 mb-8"
     >
       <Sparkles className="w-4 h-4" />
       <span>Confirmation sent to your email</span>
     </motion.div>
 
-    <Button
+    <motion.button
+      whileTap={{ scale: 0.98 }}
       onClick={onGoHome}
-      className="w-full max-w-sm h-12 text-base font-semibold rounded-xl"
-      size="lg"
+      className="w-full max-w-sm h-14 rounded-2xl font-bold text-base bg-white text-[hsl(160,35%,20%)] shadow-xl shadow-black/20"
     >
       Back to Home
-    </Button>
+    </motion.button>
   </div>
 );
+
+// Page transitions
+const pageVariants = {
+  initial: (direction: number) => ({
+    x: direction > 0 ? '100%' : '-100%',
+    opacity: 0,
+  }),
+  in: {
+    x: 0,
+    opacity: 1,
+  },
+  out: (direction: number) => ({
+    x: direction < 0 ? '100%' : '-100%',
+    opacity: 0,
+  }),
+};
+
+const pageTransition = {
+  type: 'spring' as const,
+  stiffness: 300,
+  damping: 30,
+};
 
 // Main BookingFlow Component
 export default function BookingFlow() {
@@ -947,12 +1021,10 @@ export default function BookingFlow() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [bookingId, setBookingId] = useState('');
-  const [loadingRooms, setLoadingRooms] = useState(false);
 
   // Load rooms from database
   useEffect(() => {
     const fetchRooms = async () => {
-      setLoadingRooms(true);
       try {
         const { data, error } = await supabase
           .from('room_types')
@@ -965,15 +1037,13 @@ export default function BookingFlow() {
       } catch (err) {
         console.error('Error fetching rooms:', err);
         toast.error('Failed to load rooms');
-      } finally {
-        setLoadingRooms(false);
       }
     };
 
     fetchRooms();
   }, []);
 
-  // Parse URL params for pre-selection
+  // Parse URL params
   useEffect(() => {
     const roomId = searchParams.get('room');
     const checkInParam = searchParams.get('checkIn');
@@ -1069,12 +1139,13 @@ export default function BookingFlow() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-b from-[hsl(160,35%,20%)] to-[hsl(160,40%,15%)]">
       {/* Header */}
       <BookingHeader
         step={STEPS[stepIndex]}
         onBack={goBack}
         canGoBack={canGoBack}
+        currentIndex={stepIndex}
       />
 
       {/* Step Indicator */}
