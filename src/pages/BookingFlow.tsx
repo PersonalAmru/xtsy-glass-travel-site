@@ -11,6 +11,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { format, differenceInDays, parseISO, addDays, isBefore, isAfter, startOfToday } from 'date-fns';
 import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, Users, Bed, Check, MapPin, Phone, Mail, User, ArrowLeft, Home, Sparkles, Shield } from 'lucide-react';
+import { PremiumBookingCalendar } from '@/components/booking/PremiumBookingCalendar';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -263,26 +264,17 @@ const DateSelectionStep = ({
         )}
       </AnimatePresence>
 
-      {/* Premium iOS-style Calendar */}
-      <Card className="p-2 md:p-4 flex-1 shadow-lg border-0 bg-card/80">
-        <Calendar
-          mode="single"
-          selected={selectingCheckOut ? checkOut : checkIn}
-          onSelect={handleDateSelect}
-          disabled={(date) => isBefore(date, today)}
-          modifiers={{
-            range: checkIn && checkOut ? { from: checkIn, to: checkOut } : undefined,
-            rangeStart: checkIn,
-            rangeEnd: checkOut,
-          }}
-          modifiersStyles={{
-            range: { backgroundColor: 'hsl(var(--primary) / 0.1)', borderRadius: 0 },
-            rangeStart: { backgroundColor: 'hsl(var(--primary))', color: 'white', borderRadius: '9999px 0 0 9999px' },
-            rangeEnd: { backgroundColor: 'hsl(var(--primary))', color: 'white', borderRadius: '0 9999px 9999px 0' },
-          }}
+      {/* Premium World-Class Calendar */}
+      <div className="flex-1">
+        <PremiumBookingCalendar
+          checkIn={checkIn}
+          checkOut={checkOut}
+          onDateSelect={handleDateSelect}
+          selectingCheckOut={selectingCheckOut}
+          minDate={today}
           className="w-full"
         />
-      </Card>
+      </div>
 
       {/* Continue Button - Fixed Bottom with Glassmorphism */}
       <div className="fixed bottom-0 left-0 right-0 p-4 bg-background/90 backdrop-blur-xl border-t border-border/30 safe-area-bottom">
