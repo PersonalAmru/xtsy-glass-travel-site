@@ -1,14 +1,16 @@
 /**
  * Geo Traffic List Component
  * Shows countries and states/regions where real traffic is coming from
+ * States/Regions shown as drill-down after selecting a country
  * Excludes Lovable admin traffic
  */
 
-import React, { memo, useMemo } from 'react';
+import React, { memo, useMemo, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Globe, MapPin, Users, TrendingUp, Building, ChevronRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Globe, MapPin, Users, Building, ChevronRight, ArrowLeft, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface GeoTrafficListProps {
@@ -45,6 +47,9 @@ const getCountryFlag = (countryCode: string): string => {
 };
 
 const GeoTrafficList: React.FC<GeoTrafficListProps> = memo(({ data }) => {
+  // Selected country for drill-down
+  const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
+
   // Process and sort data
   const processedData = useMemo(() => {
     if (!data?.countries?.length) return { countries: [], totalVisitors: 0, totalCountries: 0 };
@@ -56,39 +61,53 @@ const GeoTrafficList: React.FC<GeoTrafficListProps> = memo(({ data }) => {
 
     const totalVisitors = sortedCountries.reduce((sum, c) => sum + c.visitors, 0);
 
-    // Aggregate states/regions across all countries
-    const statesMap = new Map<string, { state: string; country: string; countryCode: string; visitors: number; bookings: number }>();
-    
-    sortedCountries.forEach(country => {
-      country.cities?.forEach(city => {
-        if (city.region) {
-          const key = `${city.region}-${country.country_code}`;
-          const existing = statesMap.get(key);
-          if (existing) {
-            existing.visitors += city.visitors;
-            existing.bookings += city.bookings || 0;
-          } else {
-            statesMap.set(key, {
-              state: city.region,
-              country: country.country_name,
-              countryCode: country.country_code,
-              visitors: city.visitors,
-              bookings: city.bookings || 0,
-            });
-          }
-        }
-      });
-    });
-
-    const sortedStates = Array.from(statesMap.values()).sort((a, b) => b.visitors - a.visitors);
-
     return {
       countries: sortedCountries,
-      states: sortedStates,
       totalVisitors,
       totalCountries: sortedCountries.length,
     };
   }, [data]);
+
+  // Get states/regions for selected country
+  const selectedCountryData = useMemo(() => {
+    if (!selectedCountry || !processedData.countries.length) return null;
+
+    const country = processedData.countries.find(c => c.country_code === selectedCountry);
+    if (!country) return null;
+
+    // Aggregate states/regions for this country
+    const statesMap = new Map<string, { state: string; visitors: number; bookings: number; cities: string[] }>();
+    
+    country.cities?.forEach(city => {
+      if (city.region) {
+        const key = city.region;
+        const existing = statesMap.get(key);
+        if (existing) {
+          existing.visitors += city.visitors;
+          existing.bookings += city.bookings || 0;
+          if (city.city && !existing.cities.includes(city.city)) {
+            existing.cities.push(city.city);
+          }
+        } else {
+          statesMap.set(key, {
+            state: city.region,
+            visitors: city.visitors,
+            bookings: city.bookings || 0,
+            cities: city.city ? [city.city] : [],
+          });
+        }
+      }
+    });
+
+    const sortedStates = Array.from(statesMap.values()).sort((a, b) => b.visitors - a.visitors);
+    const totalStateVisitors = sortedStates.reduce((sum, s) => sum + s.visitors, 0);
+
+    return {
+      country,
+      states: sortedStates,
+      totalStateVisitors,
+    };
+  }, [selectedCountry, processedData.countries]);
 
   if (!processedData.countries.length) {
     return (
@@ -135,12 +154,19 @@ const GeoTrafficList: React.FC<GeoTrafficListProps> = memo(({ data }) => {
             <div className="px-4 pb-4 space-y-1">
               {processedData.countries.map((country, index) => {
                 const percentage = ((country.visitors / processedData.totalVisitors) * 100).toFixed(1);
+                const isSelected = selectedCountry === country.country_code;
+                const hasRegions = country.cities?.some(c => c.region);
+                
                 return (
                   <div
                     key={country.country_code}
+                    onClick={() => hasRegions && setSelectedCountry(isSelected ? null : country.country_code)}
                     className={cn(
-                      "flex items-center gap-3 p-3 rounded-lg transition-colors",
-                      "hover:bg-muted/50 group"
+                      "flex items-center gap-3 p-3 rounded-lg transition-all",
+                      hasRegions && "cursor-pointer",
+                      isSelected 
+                        ? "bg-primary/20 ring-1 ring-primary/50" 
+                        : "hover:bg-muted/50 group"
                     )}
                   >
                     {/* Rank */}
@@ -169,17 +195,25 @@ const GeoTrafficList: React.FC<GeoTrafficListProps> = memo(({ data }) => {
                       </div>
                     </div>
 
-                    {/* Percentage Bar */}
-                    <div className="w-24 hidden sm:block">
-                      <div className="flex items-center justify-end gap-2 mb-1">
-                        <span className="text-xs font-medium">{percentage}%</span>
+                    {/* Percentage Bar + Drill-down indicator */}
+                    <div className="flex items-center gap-2">
+                      <div className="w-20 hidden sm:block">
+                        <div className="flex items-center justify-end gap-2 mb-1">
+                          <span className="text-xs font-medium">{percentage}%</span>
+                        </div>
+                        <div className="h-1.5 bg-muted rounded-full overflow-hidden">
+                          <div
+                            className="h-full bg-gradient-to-r from-primary to-primary/70 transition-all duration-500"
+                            style={{ width: `${percentage}%` }}
+                          />
+                        </div>
                       </div>
-                      <div className="h-1.5 bg-muted rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-gradient-to-r from-primary to-primary/70 transition-all duration-500"
-                          style={{ width: `${percentage}%` }}
-                        />
-                      </div>
+                      {hasRegions && (
+                        <ChevronRight className={cn(
+                          "w-4 h-4 text-muted-foreground transition-transform",
+                          isSelected && "rotate-90 text-primary"
+                        )} />
+                      )}
                     </div>
                   </div>
                 );
@@ -189,7 +223,7 @@ const GeoTrafficList: React.FC<GeoTrafficListProps> = memo(({ data }) => {
         </CardContent>
       </Card>
 
-      {/* States/Regions List */}
+      {/* States/Regions List - Only shows when country is selected */}
       <Card className="bg-card/50 backdrop-blur-sm">
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
@@ -199,67 +233,106 @@ const GeoTrafficList: React.FC<GeoTrafficListProps> = memo(({ data }) => {
                 Traffic by State/Region
               </CardTitle>
               <CardDescription className="text-xs">
-                {processedData.states?.length || 0} regions identified
+                {selectedCountryData 
+                  ? `${selectedCountryData.states.length} regions in ${selectedCountryData.country.country_name}`
+                  : 'Select a country to view regional breakdown'
+                }
               </CardDescription>
             </div>
+            {selectedCountry && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setSelectedCountry(null)}
+                className="h-8 px-2 text-xs"
+              >
+                <X className="w-3 h-3 mr-1" />
+                Clear
+              </Button>
+            )}
           </div>
         </CardHeader>
         <CardContent className="p-0">
           <ScrollArea className="h-[320px]">
             <div className="px-4 pb-4 space-y-1">
-              {processedData.states?.length ? (
-                processedData.states.map((state, index) => {
-                  const maxVisitors = processedData.states?.[0]?.visitors || 1;
-                  const barWidth = (state.visitors / maxVisitors) * 100;
-                  return (
-                    <div
-                      key={`${state.state}-${state.countryCode}`}
-                      className={cn(
-                        "flex items-center gap-3 p-3 rounded-lg transition-colors",
-                        "hover:bg-muted/50 group"
-                      )}
-                    >
-                      {/* Rank */}
-                      <div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center">
-                        <span className="text-xs font-semibold text-accent-foreground">{index + 1}</span>
-                      </div>
+              {selectedCountryData?.states.length ? (
+                <>
+                  {/* Selected country header */}
+                  <div className="flex items-center gap-2 px-3 py-2 mb-2 bg-primary/10 rounded-lg">
+                    <span className="text-lg">{getCountryFlag(selectedCountryData.country.country_code)}</span>
+                    <div className="flex-1">
+                      <p className="font-medium text-sm">{selectedCountryData.country.country_name}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {selectedCountryData.totalStateVisitors.toLocaleString()} visitors across {selectedCountryData.states.length} regions
+                      </p>
+                    </div>
+                  </div>
 
-                      {/* State Info */}
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2">
-                          <MapPin className="w-4 h-4 text-muted-foreground flex-shrink-0" />
-                          <div className="min-w-0">
-                            <p className="font-medium text-sm truncate">{state.state}</p>
-                            <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                              <span>{getCountryFlag(state.countryCode)}</span>
-                              <span className="truncate">{state.country}</span>
+                  {/* States list */}
+                  {selectedCountryData.states.map((state, index) => {
+                    const maxVisitors = selectedCountryData.states[0]?.visitors || 1;
+                    const barWidth = (state.visitors / maxVisitors) * 100;
+                    return (
+                      <div
+                        key={state.state}
+                        className={cn(
+                          "flex items-center gap-3 p-3 rounded-lg transition-colors",
+                          "hover:bg-muted/50 group"
+                        )}
+                      >
+                        {/* Rank */}
+                        <div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center">
+                          <span className="text-xs font-semibold text-accent-foreground">{index + 1}</span>
+                        </div>
+
+                        {/* State Info */}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2">
+                            <MapPin className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+                            <div className="min-w-0">
+                              <p className="font-medium text-sm truncate">{state.state}</p>
+                              {state.cities.length > 0 && (
+                                <p className="text-xs text-muted-foreground truncate">
+                                  {state.cities.slice(0, 3).join(', ')}
+                                  {state.cities.length > 3 && ` +${state.cities.length - 3} more`}
+                                </p>
+                              )}
                             </div>
                           </div>
                         </div>
-                      </div>
 
-                      {/* Stats */}
-                      <div className="text-right min-w-[80px]">
-                        <div className="flex items-center justify-end gap-1 text-sm font-medium">
-                          <Users className="w-3 h-3 text-muted-foreground" />
-                          {state.visitors.toLocaleString()}
-                        </div>
-                        <div className="h-1 bg-muted rounded-full overflow-hidden mt-1">
-                          <div
-                            className="h-full bg-gradient-to-r from-accent to-accent/70"
-                            style={{ width: `${barWidth}%` }}
-                          />
+                        {/* Stats */}
+                        <div className="text-right min-w-[80px]">
+                          <div className="flex items-center justify-end gap-1 text-sm font-medium">
+                            <Users className="w-3 h-3 text-muted-foreground" />
+                            {state.visitors.toLocaleString()}
+                          </div>
+                          {state.bookings > 0 && (
+                            <Badge variant="outline" className="text-[10px] px-1 py-0 mt-0.5">
+                              {state.bookings} bookings
+                            </Badge>
+                          )}
+                          <div className="h-1 bg-muted rounded-full overflow-hidden mt-1">
+                            <div
+                              className="h-full bg-gradient-to-r from-accent to-accent/70"
+                              style={{ width: `${barWidth}%` }}
+                            />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  );
-                })
+                    );
+                  })}
+                </>
               ) : (
-                <div className="h-48 flex items-center justify-center text-muted-foreground text-sm">
+                <div className="h-[280px] flex items-center justify-center text-muted-foreground text-sm">
                   <div className="text-center">
-                    <MapPin className="w-10 h-10 mx-auto mb-2 opacity-30" />
-                    <p>No state/region data available</p>
-                    <p className="text-xs mt-1">City-level tracking provides regional data</p>
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-muted/30 flex items-center justify-center">
+                      <ArrowLeft className="w-6 h-6 opacity-50" />
+                    </div>
+                    <p className="font-medium">Select a Country</p>
+                    <p className="text-xs mt-1 max-w-[200px] mx-auto">
+                      Click on a country from the list to see state/region breakdown
+                    </p>
                   </div>
                 </div>
               )}

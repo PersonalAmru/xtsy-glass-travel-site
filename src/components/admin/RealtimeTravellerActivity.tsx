@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Activity, Eye, ShoppingCart, MapPin, Clock, Zap, Users } from 'lucide-react';
+import { Activity, Eye, ShoppingCart, MapPin, Clock, Zap, Users, Globe, Bed } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { formatDistanceToNow } from 'date-fns';
 
@@ -15,7 +15,15 @@ interface RealtimeEvent {
   event_label: string;
   page_path: string;
   country_code: string;
+  city: string;
   created_at: string;
+  properties: {
+    source?: string;
+    check_in?: string;
+    check_out?: string;
+    guests?: number;
+    has_dates?: boolean;
+  } | null;
 }
 
 interface HighIntentTraveller {
@@ -32,11 +40,23 @@ interface RealtimeTravellerActivityProps {
   activeVisitors: number;
 }
 
+// Country flag emoji helper
+const getCountryFlag = (countryCode: string): string => {
+  if (!countryCode || countryCode.length !== 2) return '🌍';
+  const codePoints = countryCode
+    .toUpperCase()
+    .split('')
+    .map(char => 127397 + char.charCodeAt(0));
+  return String.fromCodePoint(...codePoints);
+};
+
 const EVENT_ICONS: Record<string, React.ReactNode> = {
   pageview: <Eye className="h-3 w-3" />,
   click: <Activity className="h-3 w-3" />,
   booking: <ShoppingCart className="h-3 w-3" />,
   search: <MapPin className="h-3 w-3" />,
+  event: <Zap className="h-3 w-3" />,
+  conversion: <Bed className="h-3 w-3" />,
 };
 
 const SEGMENT_COLORS: Record<string, string> = {
@@ -205,30 +225,43 @@ export function RealtimeTravellerActivity({ highIntentTravellers, activeVisitors
             <ScrollArea className="h-80">
               {recentEvents.length > 0 ? (
                 <div className="space-y-2">
-                  {recentEvents.map((event) => (
-                    <div 
-                      key={event.id}
-                      className="flex items-center gap-3 p-2 bg-muted/20 rounded-lg text-sm"
-                    >
-                      <div className="p-1.5 bg-primary/10 rounded">
-                        {EVENT_ICONS[event.event_type] || <Activity className="h-3 w-3" />}
+                  {recentEvents.map((event) => {
+                    const isBookingFlow = event.event_action === 'flow_entry' || event.event_category === 'booking';
+                    return (
+                      <div 
+                        key={event.id}
+                        className={`flex items-center gap-3 p-2 rounded-lg text-sm ${
+                          isBookingFlow ? 'bg-amber-500/10 border border-amber-500/30' : 'bg-muted/20'
+                        }`}
+                      >
+                        <div className={`p-1.5 rounded ${isBookingFlow ? 'bg-amber-500/20' : 'bg-primary/10'}`}>
+                          {isBookingFlow ? <Bed className="h-3 w-3 text-amber-500" /> : (EVENT_ICONS[event.event_type] || <Activity className="h-3 w-3" />)}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="truncate">
+                            <span className={`font-medium capitalize ${isBookingFlow ? 'text-amber-500' : ''}`}>
+                              {event.event_action === 'flow_entry' ? 'Booking Flow Entry' : event.event_action}
+                            </span>
+                            {event.event_label && (
+                              <span className="text-muted-foreground"> - {event.event_label}</span>
+                            )}
+                          </p>
+                          <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                            <span className="truncate">{event.page_path}</span>
+                            {event.country_code && (
+                              <span className="flex items-center gap-1 shrink-0">
+                                <span>{getCountryFlag(event.country_code)}</span>
+                                {event.city && <span>{event.city}</span>}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                        <div className="text-xs text-muted-foreground whitespace-nowrap">
+                          {formatDistanceToNow(new Date(event.created_at), { addSuffix: true })}
+                        </div>
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="truncate">
-                          <span className="font-medium capitalize">{event.event_action}</span>
-                          {event.event_label && (
-                            <span className="text-muted-foreground"> - {event.event_label}</span>
-                          )}
-                        </p>
-                        <p className="text-xs text-muted-foreground truncate">
-                          {event.page_path}
-                        </p>
-                      </div>
-                      <div className="text-xs text-muted-foreground whitespace-nowrap">
-                        {formatDistanceToNow(new Date(event.created_at), { addSuffix: true })}
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               ) : (
                 <div className="h-full flex flex-col items-center justify-center text-muted-foreground">
