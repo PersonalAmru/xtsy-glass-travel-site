@@ -121,11 +121,13 @@ const BookingHeader = ({
   onBack, 
   canGoBack,
   currentIndex,
+  onHome,
 }: { 
   step: typeof STEPS[0]; 
   onBack: () => void; 
   canGoBack: boolean;
   currentIndex: number;
+  onHome: () => void;
 }) => (
   <div className={cn(
     "sticky top-0 z-50 backdrop-blur-xl",
@@ -134,7 +136,7 @@ const BookingHeader = ({
   )}>
     <div className="flex items-center justify-between px-4 h-16">
       <div className="w-20">
-        {canGoBack && (
+        {canGoBack ? (
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={onBack}
@@ -142,6 +144,15 @@ const BookingHeader = ({
           >
             <ChevronLeft className="w-5 h-5" />
             <span className="text-sm font-medium">Back</span>
+          </motion.button>
+        ) : (
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            onClick={onHome}
+            className="flex items-center gap-1 text-white/80 hover:text-white transition-colors"
+          >
+            <Home className="w-5 h-5" />
+            <span className="text-sm font-medium">Home</span>
           </motion.button>
         )}
       </div>
@@ -1146,6 +1157,7 @@ export default function BookingFlow() {
         onBack={goBack}
         canGoBack={canGoBack}
         currentIndex={stepIndex}
+        onHome={() => navigate('/')}
       />
 
       {/* Step Indicator */}
