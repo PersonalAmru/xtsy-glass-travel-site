@@ -4,7 +4,7 @@
  * Mobile-first, gesture-based, no-compromise UX
  */
 
-import React, { useState, useCallback, useMemo, useEffect } from 'react';
+import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { format, differenceInDays, parseISO, isBefore, startOfToday } from 'date-fns';
@@ -37,6 +37,7 @@ import { useApp } from '@/contexts/AppContext';
 import { createBooking } from '@/services/bookingService';
 import UnifiedImage from '@/components/UnifiedImage';
 import { PremiumBookingCalendar } from '@/components/booking/PremiumBookingCalendar';
+import { useEnhancedAnalytics } from '@/hooks/useEnhancedAnalytics';
 
 // Premium color tokens
 const THEME = {
@@ -1011,6 +1012,8 @@ export default function BookingFlow() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { formatPrice } = useApp();
+  const { trackEvent, trackConversion, context } = useEnhancedAnalytics();
+  const hasTrackedEntry = useRef(false);
 
   // State
   const [currentStep, setCurrentStep] = useState<BookingStep>('dates');
@@ -1032,6 +1035,31 @@ export default function BookingFlow() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [bookingId, setBookingId] = useState('');
+
+  // Track booking flow entry - captures visitor entering booking with dates from Hero
+  useEffect(() => {
+    if (!context || hasTrackedEntry.current) return;
+    hasTrackedEntry.current = true;
+
+    const checkInParam = searchParams.get('checkIn');
+    const checkOutParam = searchParams.get('checkOut');
+    const guestsParam = searchParams.get('guests');
+
+    // Track as high-intent booking activity
+    trackEvent('booking', 'flow_entry', 'booking_flow', undefined, {
+      source: 'hero_search',
+      check_in: checkInParam || null,
+      check_out: checkOutParam || null,
+      guests: guestsParam ? parseInt(guestsParam) : null,
+      has_dates: !!(checkInParam && checkOutParam),
+    });
+
+    // Also track as conversion funnel step
+    trackConversion('booking', 'flow_entry', 0, {
+      value: 0,
+      isCompleted: false,
+    });
+  }, [context, searchParams, trackEvent, trackConversion]);
 
   // Load rooms from database
   useEffect(() => {
