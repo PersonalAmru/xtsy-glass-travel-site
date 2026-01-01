@@ -130,9 +130,9 @@ const BookingHeader = ({
   onHome: () => void;
 }) => (
   <div className={cn(
-    "sticky top-0 z-50 backdrop-blur-xl",
-    "bg-gradient-to-b from-[hsl(160,35%,20%)] to-[hsl(160,35%,20%)/0.95]",
-    "border-b border-white/5"
+    "sticky top-0 z-50",
+    "bg-[hsl(160,35%,20%)]",
+    "border-b border-white/10"
   )}>
     <div className="flex items-center justify-between px-4 h-16">
       <div className="w-20">
