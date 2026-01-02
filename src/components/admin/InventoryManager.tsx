@@ -5,7 +5,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { ROOM_INVENTORY, RoomType, RoomStatus, STATUS_COLORS, CATEGORY_LABELS, getRoomsByCategory } from '@/data/roomInventory';
+import { RoomType, RoomStatus, CATEGORY_LABELS, getRoomsByCategory } from '@/data/roomInventory';
 import { AppleCard, AppleSectionHeader, AppleStatusBadge } from './AppleCard';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
@@ -14,11 +14,9 @@ import {
   BedDouble, 
   Users, 
   RefreshCw, 
+  CalendarDays,
   ChevronDown,
   ChevronUp,
-  Edit3,
-  Check,
-  X,
 } from 'lucide-react';
 import {
   Select,
@@ -27,6 +25,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { RoomCalendarPanel } from './RoomCalendarPanel';
 
 interface RoomStatusData {
   room_type_id: string;
@@ -39,6 +38,7 @@ export function InventoryManager() {
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState<string | null>(null);
   const [expandedRoom, setExpandedRoom] = useState<string | null>(null);
+  const [calendarRoom, setCalendarRoom] = useState<string | null>(null);
 
   const fetchRoomStatuses = useCallback(async () => {
     try {
@@ -132,6 +132,7 @@ export function InventoryManager() {
     const status = getRoomStatus(room.id);
     const isExpanded = expandedRoom === room.id;
     const isUpdating = updating === room.id;
+    const showCalendar = calendarRoom === room.id;
 
     return (
       <AppleCard
@@ -140,7 +141,7 @@ export function InventoryManager() {
         padding="none"
         className={cn(
           'overflow-hidden transition-all duration-300',
-          isExpanded && 'ring-2 ring-primary/30'
+          (isExpanded || showCalendar) && 'ring-2 ring-primary/30'
         )}
       >
         {/* Room Image */}
@@ -221,26 +222,31 @@ export function InventoryManager() {
             </SelectContent>
           </Select>
 
-          {/* Expand/Collapse */}
-          <button
-            onClick={() => setExpandedRoom(isExpanded ? null : room.id)}
-            className="w-full flex items-center justify-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors py-1"
-          >
-            {isExpanded ? (
-              <>
+          {/* Action Buttons */}
+          <div className="flex gap-2">
+            <Button
+              variant={showCalendar ? "default" : "outline"}
+              size="sm"
+              className="flex-1 h-8 text-xs"
+              onClick={() => setCalendarRoom(showCalendar ? null : room.id)}
+            >
+              <CalendarDays className="w-3 h-3 mr-1" />
+              Calendar
+            </Button>
+            <button
+              onClick={() => setExpandedRoom(isExpanded ? null : room.id)}
+              className="flex items-center justify-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors px-2"
+            >
+              {isExpanded ? (
                 <ChevronUp className="w-3 h-3" />
-                Less
-              </>
-            ) : (
-              <>
+              ) : (
                 <ChevronDown className="w-3 h-3" />
-                More
-              </>
-            )}
-          </button>
+              )}
+            </button>
+          </div>
 
           {/* Expanded Details */}
-          {isExpanded && (
+          {isExpanded && !showCalendar && (
             <div className="pt-3 border-t border-border/50 space-y-2 text-xs">
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Room ID</span>
@@ -265,6 +271,16 @@ export function InventoryManager() {
                 </div>
               )}
             </div>
+          )}
+
+          {/* Calendar Panel */}
+          {showCalendar && (
+            <RoomCalendarPanel
+              roomId={room.id}
+              roomName={room.shortName}
+              basePrice={room.discountedPrice}
+              onClose={() => setCalendarRoom(null)}
+            />
           )}
         </div>
 
