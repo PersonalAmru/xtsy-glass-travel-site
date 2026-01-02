@@ -52,7 +52,6 @@ const BookingFlow = createLazyComponent(() => import("./pages/BookingFlow"));
 const AdminOverview = createLazyComponent(() => import("./pages/admin/AdminOverview"));
 const AdminAnalytics = createLazyComponent(() => import("./pages/admin/AdminAnalytics"));
 const AdminInventory = createLazyComponent(() => import("./pages/admin/AdminInventory"));
-const AdminCalendar = createLazyComponent(() => import("./pages/admin/AdminCalendar"));
 const AdminActivity = createLazyComponent(() => import("./pages/admin/AdminActivity"));
 
 // Fast route wrapper with minimal loading state
@@ -185,7 +184,6 @@ function App() {
               <Route path="/admin/dashboard" element={<LazyRoute><AdminOverview /></LazyRoute>} />
               <Route path="/admin/analytics" element={<LazyRoute><AdminAnalytics /></LazyRoute>} />
               <Route path="/admin/inventory" element={<LazyRoute><AdminInventory /></LazyRoute>} />
-              <Route path="/admin/calendar" element={<LazyRoute><AdminCalendar /></LazyRoute>} />
               <Route path="/admin/activity" element={<LazyRoute><AdminActivity /></LazyRoute>} />
               
               <Route path="*" element={<NotFound />} />

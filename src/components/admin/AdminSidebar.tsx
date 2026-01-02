@@ -8,7 +8,6 @@ import { cn } from '@/lib/utils';
 import {
   LayoutDashboard,
   BarChart3,
-  CalendarDays,
   BedDouble,
   Activity,
   Settings,
@@ -43,12 +42,6 @@ const navItems = [
     label: 'Inventory',
     icon: BedDouble,
     section: 'inventory',
-  },
-  {
-    id: 'calendar',
-    label: 'Calendar',
-    icon: CalendarDays,
-    section: 'calendar',
   },
   {
     id: 'activity',
