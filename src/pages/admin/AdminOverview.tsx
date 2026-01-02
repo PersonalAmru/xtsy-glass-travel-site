@@ -2,48 +2,19 @@
  * Admin Overview Page - Main dashboard metrics
  */
 
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { useAdminAnalytics } from '@/hooks/useAdminAnalytics';
 import { AdminLayout } from '@/layouts/AdminLayout';
-import { AppleCard, AppleMetricCard, AppleLiveIndicator, AppleSectionHeader } from '@/components/admin/AppleCard';
+import { AppleCard, AppleMetricCard, AppleLiveIndicator } from '@/components/admin/AppleCard';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
-import {
-  Users, Eye, Clock, Activity, RefreshCw, Target,
-} from 'lucide-react';
-
-// Insight Card Component
-const InsightCard = ({ title, description, action, type }: {
-  title: string;
-  description: string;
-  action?: string;
-  type: 'opportunity' | 'warning' | 'success';
-}) => {
-  const colors = {
-    opportunity: 'bg-primary/10 border-primary/30 text-primary',
-    warning: 'bg-warning/10 border-warning/30 text-warning',
-    success: 'bg-success/10 border-success/30 text-success',
-  };
-
-  return (
-    <AppleCard className={cn('border', colors[type])} padding="sm">
-      <div className="flex items-start gap-3">
-        <Target className="w-4 h-4 flex-shrink-0 mt-0.5" />
-        <div className="min-w-0">
-          <p className="font-medium text-sm">{title}</p>
-          <p className="text-xs mt-1 opacity-80">{description}</p>
-          {action && <p className="text-xs mt-2 font-medium">→ {action}</p>}
-        </div>
-      </div>
-    </AppleCard>
-  );
-};
+import { Users, Eye, Clock, Activity, RefreshCw } from 'lucide-react';
 
 export default function AdminOverview() {
   const [daysBack, setDaysBack] = useState(30);
-  const { loading, error, overview, realtime, geoHeatmap, refresh } = useAdminAnalytics(daysBack);
+  const { loading, error, overview, realtime, refresh } = useAdminAnalytics(daysBack);
 
   const formatDuration = (seconds: number) => {
     if (!seconds) return '0s';
@@ -52,45 +23,6 @@ export default function AdminOverview() {
     const secs = seconds % 60;
     return `${mins}m ${secs}s`;
   };
-
-  // Generate intelligent insights
-  const insights = useMemo(() => {
-    const result: Array<{ title: string; description: string; action?: string; type: 'opportunity' | 'warning' | 'success' }> = [];
-
-    if (geoHeatmap?.countries) {
-      const highTrafficNoConversion = geoHeatmap.countries
-        .filter((c: any) => c.visitors > 10 && (c.bookings || 0) === 0)
-        .slice(0, 1);
-
-      highTrafficNoConversion.forEach((c: any) => {
-        result.push({
-          title: `Untapped: ${c.country_name || c.country_code}`,
-          description: `${c.visitors} visitors, 0 bookings`,
-          action: 'Consider targeted marketing',
-          type: 'opportunity',
-        });
-      });
-    }
-
-    if (overview?.bounce_rate && parseFloat(overview.bounce_rate) > 60) {
-      result.push({
-        title: 'High bounce rate',
-        description: `${overview.bounce_rate}% leave without interaction`,
-        action: 'Improve landing page',
-        type: 'warning',
-      });
-    }
-
-    if (realtime?.active_visitors && realtime.active_visitors > 5) {
-      result.push({
-        title: 'High live traffic!',
-        description: `${realtime.active_visitors} visitors now`,
-        type: 'success',
-      });
-    }
-
-    return result;
-  }, [geoHeatmap, overview, realtime]);
 
   return (
     <AdminLayout>
@@ -164,18 +96,6 @@ export default function AdminOverview() {
             </>
           )}
         </div>
-
-        {/* Insights */}
-        {insights.length > 0 && (
-          <div>
-            <AppleSectionHeader title="Smart Insights" subtitle="AI-powered recommendations" />
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-              {insights.slice(0, 3).map((insight, i) => (
-                <InsightCard key={i} {...insight} />
-              ))}
-            </div>
-          </div>
-        )}
       </div>
     </AdminLayout>
   );
