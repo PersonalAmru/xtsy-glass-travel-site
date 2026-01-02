@@ -15,6 +15,7 @@ import { performGlobalCleanup } from "./utils/performanceCleanup";
 import { cleanupUnifiedImage } from "./components/UnifiedImage";
 import { EnhancedAnalyticsProvider } from "./hooks/useEnhancedAnalytics";
 import { HappyGuestsProvider } from "./contexts/HappyGuestsContext";
+import { HotjarTracking } from "./components/HotjarTracking";
 
 // Optimized lazy loading with faster retry and better chunk handling
 const createLazyComponent = (importFn: () => Promise<any>) => {
@@ -160,6 +161,7 @@ function App() {
         <PerformanceMonitor />
         <HappyGuestsProvider>
           <EnhancedAnalyticsProvider>
+            <HotjarTracking />
             <TooltipProvider>
             <Toaster />
             <Sonner />
