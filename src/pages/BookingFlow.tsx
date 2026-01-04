@@ -38,6 +38,7 @@ import { createBooking } from '@/services/bookingService';
 import UnifiedImage from '@/components/UnifiedImage';
 import { PremiumBookingCalendar } from '@/components/booking/PremiumBookingCalendar';
 import { useEnhancedAnalytics } from '@/hooks/useEnhancedAnalytics';
+import { ROOM_INVENTORY } from '@/data/roomInventory';
 
 // Premium color tokens
 const THEME = {
@@ -1061,7 +1062,7 @@ export default function BookingFlow() {
     });
   }, [context, searchParams, trackEvent, trackConversion]);
 
-  // Load rooms from database
+  // Load rooms from database and merge with local inventory for images
   useEffect(() => {
     const fetchRooms = async () => {
       try {
@@ -1072,7 +1073,17 @@ export default function BookingFlow() {
           .order('base_price', { ascending: true });
 
         if (error) throw error;
-        setRooms(data || []);
+        
+        // Merge database data with local inventory images
+        const mergedRooms = (data || []).map(dbRoom => {
+          const localRoom = ROOM_INVENTORY[dbRoom.id];
+          return {
+            ...dbRoom,
+            images: dbRoom.images?.length > 0 ? dbRoom.images : localRoom?.images || [],
+          };
+        });
+        
+        setRooms(mergedRooms);
       } catch (err) {
         console.error('Error fetching rooms:', err);
         toast.error('Failed to load rooms');
