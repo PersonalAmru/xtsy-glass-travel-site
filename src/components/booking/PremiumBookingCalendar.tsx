@@ -1,6 +1,7 @@
 /**
  * PremiumBookingCalendar - World-class iOS-style calendar
  * Matches the premium dark green design with colored availability dots
+ * Connected to real-time inventory data from Supabase
  */
 
 import * as React from "react";
@@ -15,13 +16,13 @@ import {
   addMonths, 
   subMonths,
   isBefore,
-  isAfter,
   isWithinInterval,
   startOfToday,
   getDay
 } from "date-fns";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { useAggregateAvailability, getCalendarDots } from "@/hooks/useAggregateAvailability";
 
 interface PremiumBookingCalendarProps {
   checkIn?: Date;
@@ -33,17 +34,6 @@ interface PremiumBookingCalendarProps {
 }
 
 const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-// Simulated availability data - in production, this would come from API
-const getAvailabilityDots = (date: Date): string[] => {
-  const day = date.getDate();
-  // Simulate different availability states with colored dots
-  if (day % 7 === 0) return ["#4ade80", "#60a5fa", "#f472b6"]; // High availability
-  if (day % 5 === 0) return ["#4ade80", "#f472b6"]; // Medium availability
-  if (day % 3 === 0) return ["#60a5fa"]; // Low availability
-  if (day % 4 === 0) return ["#4ade80", "#60a5fa"]; // Some availability
-  return []; // No special indicators
-};
 
 export function PremiumBookingCalendar({
   checkIn,
@@ -57,6 +47,9 @@ export function PremiumBookingCalendar({
     checkIn || new Date()
   );
   const [direction, setDirection] = React.useState(0);
+  
+  // Fetch real-time aggregate availability data
+  const { availability, loading: availabilityLoading } = useAggregateAvailability(true);
 
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(currentMonth);
@@ -98,8 +91,17 @@ export function PremiumBookingCalendar({
   const isRangeStart = (date: Date) => checkIn && isSameDay(date, checkIn);
   const isRangeEnd = (date: Date) => checkOut && isSameDay(date, checkOut);
   const isSelected = (date: Date) => isRangeStart(date) || isRangeEnd(date);
-  const isDisabled = (date: Date) => isBefore(date, minDate);
+  const isDisabled = (date: Date) => {
+    const dateStr = date.toISOString().split('T')[0];
+    const dayData = availability[dateStr];
+    // Disable past dates and fully sold out dates
+    return isBefore(date, minDate) || (dayData?.isFullySoldOut ?? false);
+  };
   const isOutsideMonth = (date: Date) => !isSameMonth(date, currentMonth);
+  const isSoldOut = (date: Date) => {
+    const dateStr = date.toISOString().split('T')[0];
+    return availability[dateStr]?.isFullySoldOut ?? false;
+  };
 
   const handleDateClick = (date: Date) => {
     if (isDisabled(date)) return;
@@ -174,7 +176,8 @@ export function PremiumBookingCalendar({
             const inRange = isInRange(date);
             const rangeStart = isRangeStart(date);
             const rangeEnd = isRangeEnd(date);
-            const dots = !outside && !disabled ? getAvailabilityDots(date) : [];
+            const soldOut = isSoldOut(date);
+            const dots = !outside && !disabled && !soldOut ? getCalendarDots(date, availability) : [];
 
             return (
               <motion.button
@@ -189,7 +192,9 @@ export function PremiumBookingCalendar({
                   "focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50",
                   // Base states
                   outside && "text-white/25",
-                  disabled && !outside && "text-white/30 cursor-not-allowed",
+                  disabled && !outside && !soldOut && "text-white/30 cursor-not-allowed",
+                  // Sold out state
+                  soldOut && !outside && "text-white/40 cursor-not-allowed line-through decoration-red-400/60",
                   !outside && !disabled && !selected && !inRange && "text-white/90 hover:bg-white/10 active:bg-white/15",
                   // Range selection
                   inRange && !selected && "bg-white/10 text-white",
@@ -200,6 +205,13 @@ export function PremiumBookingCalendar({
                 )}
               >
                 <span className="relative z-10">{format(date, "d")}</span>
+                
+                {/* Sold Out Indicator */}
+                {soldOut && !outside && (
+                  <div className="absolute bottom-1.5 flex gap-0.5">
+                    <span className="w-1 h-1 rounded-full bg-red-400/80" />
+                  </div>
+                )}
                 
                 {/* Availability Dots */}
                 {dots.length > 0 && (
@@ -220,7 +232,7 @@ export function PremiumBookingCalendar({
       </AnimatePresence>
 
       {/* Legend */}
-      <div className="mt-5 pt-4 border-t border-white/10 flex items-center justify-center gap-4 text-xs text-white/50">
+      <div className="mt-5 pt-4 border-t border-white/10 flex items-center justify-center flex-wrap gap-3 md:gap-4 text-xs text-white/50">
         <div className="flex items-center gap-1.5">
           <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" />
           <span>Available</span>
@@ -232,6 +244,10 @@ export function PremiumBookingCalendar({
         <div className="flex items-center gap-1.5">
           <span className="w-1.5 h-1.5 rounded-full bg-[#f472b6]" />
           <span>Popular</span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-red-400/80" />
+          <span>Sold Out</span>
         </div>
       </div>
     </div>
