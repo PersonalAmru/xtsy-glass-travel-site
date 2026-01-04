@@ -327,6 +327,23 @@ const DateSelectionStep = ({
   );
 };
 
+// Get tag for room based on propertyType
+const getRoomTag = (room: RoomType) => {
+  const localRoom = ROOM_INVENTORY[room.id];
+  const propertyType = localRoom?.propertyType || '';
+  
+  if (propertyType === 'XTSY Economy') {
+    return { label: 'Hot Seller', color: 'bg-orange-500/90 text-white' };
+  }
+  if (propertyType === 'XTSY Travellers Hostel' && room.kind === 'dorm') {
+    return { label: 'Best Seller', color: 'bg-emerald-500/90 text-white' };
+  }
+  if (propertyType === 'XTSY Luxury') {
+    return { label: 'Luxury', color: 'bg-amber-500/90 text-white' };
+  }
+  return null;
+};
+
 // Room Selection Step
 const RoomSelectionStep = ({
   rooms,
@@ -357,6 +374,20 @@ const RoomSelectionStep = ({
       return room.weekend_price;
     }
     return room.weekday_price || room.base_price;
+  };
+
+  // Get room image from local inventory for instant loading
+  const getRoomImage = (room: RoomType) => {
+    const localRoom = ROOM_INVENTORY[room.id];
+    return localRoom?.image || localRoom?.images?.[0] || room.images?.[0] || '';
+  };
+
+  // Get property type label
+  const getPropertyLabel = (category: string) => {
+    if (category === 'luxury') return 'XTSY Luxury';
+    if (category === 'hostel') return 'XTSY Travellers Hostel';
+    if (category === 'economy') return 'XTSY Economy';
+    return category;
   };
 
   const groupedRooms = useMemo(() => {
@@ -400,7 +431,7 @@ const RoomSelectionStep = ({
           >
             <h3 className="text-xs font-bold uppercase tracking-widest text-white/40 mb-4 flex items-center gap-2">
               {category === 'luxury' && <Star className="w-3.5 h-3.5" />}
-              {category === 'luxury' ? 'Premium' : category === 'hostel' ? 'Hostel' : 'Value'}
+              {getPropertyLabel(category)}
             </h3>
             
             <div className="space-y-3">
@@ -408,6 +439,8 @@ const RoomSelectionStep = ({
                 const price = getRoomPrice(room);
                 const isSelected = selectedRoom?.id === room.id;
                 const isDorm = room.kind === 'dorm';
+                const roomImage = getRoomImage(room);
+                const tag = getRoomTag(room);
                 
                 return (
                   <motion.div
@@ -429,13 +462,23 @@ const RoomSelectionStep = ({
                     >
                       <div className="flex">
                         {/* Room Image */}
-                        <div className="w-28 h-28 flex-shrink-0 relative overflow-hidden">
-                          {room.images?.[0] && (
-                            <UnifiedImage
-                              src={room.images[0]}
+                        <div className="w-28 h-28 flex-shrink-0 relative overflow-hidden bg-white/5">
+                          {roomImage && (
+                            <img
+                              src={roomImage}
                               alt={room.name}
                               className="w-full h-full object-cover"
+                              loading="eager"
                             />
+                          )}
+                          {/* Tag Badge */}
+                          {tag && (
+                            <div className={cn(
+                              "absolute top-2 left-2 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider",
+                              tag.color
+                            )}>
+                              {tag.label}
+                            </div>
                           )}
                           {isSelected && (
                             <motion.div 
