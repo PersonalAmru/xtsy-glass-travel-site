@@ -63,6 +63,11 @@ const AdminPropertiesV2 = createLazyComponent(() => import("./pages/admin/AdminP
 const AdminFranchisesV2 = createLazyComponent(() => import("./pages/admin/AdminFranchisesV2"));
 const AdminBookingsCalendar = createLazyComponent(() => import("./pages/admin/AdminBookingsCalendar"));
 const AdminGuestChats = createLazyComponent(() => import("./pages/admin/AdminGuestChats"));
+const AdminOTAs = createLazyComponent(() => import("./pages/admin/AdminOTAs"));
+const AdminFinance = createLazyComponent(() => import("./pages/admin/AdminFinance"));
+const AdminGST = createLazyComponent(() => import("./pages/admin/AdminGST"));
+const AdminReviews = createLazyComponent(() => import("./pages/admin/AdminReviews"));
+const AdminAuditLogs = createLazyComponent(() => import("./pages/admin/AdminAuditLogs"));
 
 // Franchise pages
 const FranchiseLogin = createLazyComponent(() => import("./pages/franchise/FranchiseLogin"));
@@ -209,6 +214,11 @@ function App() {
                 <Route path="/admin/activity" element={<LazyRoute><AdminActivity /></LazyRoute>} />
                 <Route path="/admin/properties" element={<LazyRoute><AdminPropertiesV2 /></LazyRoute>} />
                 <Route path="/admin/franchises" element={<LazyRoute><AdminFranchisesV2 /></LazyRoute>} />
+                <Route path="/admin/otas" element={<LazyRoute><AdminOTAs /></LazyRoute>} />
+                <Route path="/admin/finance" element={<LazyRoute><AdminFinance /></LazyRoute>} />
+                <Route path="/admin/gst" element={<LazyRoute><AdminGST /></LazyRoute>} />
+                <Route path="/admin/reviews" element={<LazyRoute><AdminReviews /></LazyRoute>} />
+                <Route path="/admin/audit" element={<LazyRoute><AdminAuditLogs /></LazyRoute>} />
                 
                 {/* Franchise Routes */}
                 <Route path="/franchise/login" element={<LazyRoute><FranchiseLogin /></LazyRoute>} />
