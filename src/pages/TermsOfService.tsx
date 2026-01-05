@@ -328,8 +328,7 @@ export const TermsOfService: React.FC = () => {
               <p>For questions about these Terms, contact us:</p>
               <div className="bg-muted p-6 rounded-lg mt-4 space-y-3">
                 <p><strong>Company:</strong> XTSY</p>
-                <p><strong>Email:</strong> <a href="mailto:legal@xtsy.one" className="text-primary hover:underline">legal@xtsy.one</a></p>
-                <p><strong>General Inquiries:</strong> <a href="mailto:admin@xtsy.one" className="text-primary hover:underline">admin@xtsy.one</a></p>
+                <p><strong>Email:</strong> <a href="mailto:admin@xtsy.one" className="text-primary hover:underline">admin@xtsy.one</a></p>
                 <p><strong>Phone:</strong> +91 88373 17070</p>
                 <p><strong>Address:</strong> XTSY, Shillong, Meghalaya, India 793001</p>
               </div>
