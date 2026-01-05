@@ -491,11 +491,25 @@
       (function(){var l=new Image();l.src='/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png';l.fetchPriority='high';l.decoding='sync'})();
     </script>
     
-    <!-- Static policy links for Google crawler visibility (hidden visually, visible in page source) -->
-    <nav aria-label="Legal policies" style="position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden;">
-      <a href="/privacy-policy">Privacy Policy</a>
-      <a href="/terms-of-service">Terms of Service</a>
-    </nav>
+    <!-- Static policy links for Google crawler - visible in page source and accessible -->
+    <noscript>
+      <nav aria-label="Legal policies" style="padding:20px;background:#111;text-align:center;">
+        <a href="/privacy-policy" style="color:#f97316;margin-right:20px;">Privacy Policy</a>
+        <a href="/terms-of-service" style="color:#f97316;">Terms of Service</a>
+      </nav>
+    </noscript>
+    <!-- Crawler-accessible links (visible to bots, positioned at bottom) -->
+    <footer id="static-legal-footer" style="position:fixed;bottom:0;left:0;right:0;padding:8px;background:rgba(0,0,0,0.9);text-align:center;z-index:1;font-size:12px;">
+      <a href="/privacy-policy" style="color:#9ca3af;margin-right:16px;text-decoration:underline;">Privacy Policy</a>
+      <a href="/terms-of-service" style="color:#9ca3af;text-decoration:underline;">Terms of Service</a>
+    </footer>
+    <script>
+      // Hide static footer once React app loads (React renders its own footer)
+      window.addEventListener('DOMContentLoaded', function() {
+        var el = document.getElementById('static-legal-footer');
+        if (el) setTimeout(function() { el.style.display = 'none'; }, 500);
+      });
+    </script>
     
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
