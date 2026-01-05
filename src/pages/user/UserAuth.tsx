@@ -18,12 +18,11 @@ import {
   ArrowRight, 
   Loader2, 
   ArrowLeft,
-  CheckCircle2,
-  User,
-  Sparkles
+  CheckCircle2
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
+import xtsyFavicon from '@/assets/xtsy-favicon.png';
 
 type AuthView = 'signin' | 'signup' | 'forgot' | 'reset-sent' | 'success';
 
@@ -445,8 +444,8 @@ function SignInView({
     >
       {/* Header */}
       <div className="text-center mb-8">
-        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-primary/25">
-          <User className="w-8 h-8 text-primary-foreground" />
+        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-primary/25 overflow-hidden">
+          <img src={xtsyFavicon} alt="XTSY" className="w-10 h-10 object-contain" />
         </div>
         <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
           Welcome back
@@ -614,8 +613,8 @@ function SignUpView({
     >
       {/* Header */}
       <div className="text-center mb-8">
-        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-primary/25">
-          <Sparkles className="w-8 h-8 text-primary-foreground" />
+        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-primary/25 overflow-hidden">
+          <img src={xtsyFavicon} alt="XTSY" className="w-10 h-10 object-contain" />
         </div>
         <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
           Create Account
