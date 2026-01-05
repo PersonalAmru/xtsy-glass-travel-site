@@ -76,13 +76,17 @@ export const useOptimizedPerformance = () => {
 };
 
 // Hook for component-level performance optimization
-export const useComponentOptimization = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [shouldRender, setShouldRender] = useState(false);
+export const useComponentOptimization = (options?: { eager?: boolean }) => {
+  // If eager mode, render immediately without waiting for intersection
+  const [isVisible, setIsVisible] = useState(options?.eager ?? false);
+  const [shouldRender, setShouldRender] = useState(options?.eager ?? false);
   const elementRef = useRef<HTMLElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
+    // If already rendering (eager mode), skip observer
+    if (shouldRender) return;
+    
     if (!elementRef.current) return;
 
     observerRef.current = new IntersectionObserver(
@@ -91,12 +95,14 @@ export const useComponentOptimization = () => {
           setIsVisible(entry.isIntersecting);
           if (entry.isIntersecting) {
             setShouldRender(true);
+            // Disconnect after first render to save resources
+            observerRef.current?.disconnect();
           }
         });
       },
       {
-        threshold: 0.1,
-        rootMargin: '100px' // Start loading 100px before entering viewport
+        threshold: 0.01, // Lower threshold for faster triggering
+        rootMargin: '200px' // Start loading 200px before entering viewport
       }
     );
 
@@ -107,7 +113,7 @@ export const useComponentOptimization = () => {
         observerRef.current.disconnect();
       }
     };
-  }, []);
+  }, [shouldRender]);
 
   return {
     elementRef,

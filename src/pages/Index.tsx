@@ -22,7 +22,7 @@ const Index = () => {
       <Header />
       <main style={{ contain: 'layout style' }}>
         <HeroSection />
-        <LazyWrapper fallback={<SectionFallback height="h-96" />}>
+        <LazyWrapper eager fallback={<SectionFallback height="h-96" />}>
           <RoomsSection />
         </LazyWrapper>
         <LazyWrapper fallback={<SectionFallback />}>
