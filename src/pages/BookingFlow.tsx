@@ -5,7 +5,7 @@
  */
 
 import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { format, differenceInDays, parseISO, isBefore, startOfToday } from 'date-fns';
 import { 
@@ -39,6 +39,7 @@ import UnifiedImage from '@/components/UnifiedImage';
 import { PremiumBookingCalendar } from '@/components/booking/PremiumBookingCalendar';
 import { useEnhancedAnalytics } from '@/hooks/useEnhancedAnalytics';
 import { ROOM_INVENTORY } from '@/data/roomInventory';
+import { useOptionalAuth } from '@/hooks/useRequireAuth';
 
 // Premium color tokens
 const THEME = {
@@ -1054,10 +1055,14 @@ const pageTransition = {
 // Main BookingFlow Component
 export default function BookingFlow() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const { formatPrice } = useApp();
   const { trackEvent, trackConversion, context } = useEnhancedAnalytics();
   const hasTrackedEntry = useRef(false);
+  
+  // User authentication - guest mode allowed for browsing
+  const { user, isAuthenticated, isGuest } = useOptionalAuth();
 
   // State
   const [currentStep, setCurrentStep] = useState<BookingStep>('dates');
@@ -1079,6 +1084,18 @@ export default function BookingFlow() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [bookingId, setBookingId] = useState('');
+
+  // Pre-fill guest details from Firebase user when authenticated
+  useEffect(() => {
+    if (user) {
+      setGuestDetails(prev => ({
+        ...prev,
+        name: prev.name || user.displayName || '',
+        email: prev.email || user.email || '',
+        phone: prev.phone || user.phoneNumber?.replace('+91', '') || '',
+      }));
+    }
+  }, [user]);
 
   // Track booking flow entry - captures visitor entering booking with dates from Hero
   useEffect(() => {
@@ -1155,10 +1172,20 @@ export default function BookingFlow() {
   const canGoBack = stepIndex > 0 && currentStep !== 'confirmation';
 
   const goToStep = useCallback((step: BookingStep) => {
+    // Require authentication for booking (details step onwards)
+    if (step === 'details' && !isAuthenticated) {
+      // Redirect to auth with return path
+      navigate('/auth', { 
+        state: { from: location.pathname + location.search }
+      });
+      toast.info('Please sign in to complete your booking');
+      return;
+    }
+    
     const newIndex = STEPS.findIndex(s => s.id === step);
     setDirection(newIndex > stepIndex ? 1 : -1);
     setCurrentStep(step);
-  }, [stepIndex]);
+  }, [stepIndex, isAuthenticated, navigate, location]);
 
   const goBack = useCallback(() => {
     if (canGoBack) {
