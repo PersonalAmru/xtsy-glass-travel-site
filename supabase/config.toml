@@ -57,3 +57,7 @@ verify_jwt = false
 # Hotjar config (public for frontend use)
 [functions.get-hotjar-config]
 verify_jwt = false
+
+# Invoice generation (public - generates booking and invoice)
+[functions.generate-invoice]
+verify_jwt = false

@@ -24,7 +24,10 @@ import {
   Minus,
   Plus,
   Calendar as CalendarIcon,
-  Star
+  Star,
+  FileText,
+  Download,
+  MessageCircle
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -34,13 +37,13 @@ import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
 import { useApp } from '@/contexts/AppContext';
-import { createBooking } from '@/services/bookingService';
 import UnifiedImage from '@/components/UnifiedImage';
 import { PremiumBookingCalendar } from '@/components/booking/PremiumBookingCalendar';
 import { useEnhancedAnalytics } from '@/hooks/useEnhancedAnalytics';
 import { ROOM_INVENTORY } from '@/data/roomInventory';
 import { useOptionalAuth } from '@/hooks/useRequireAuth';
-
+import { generateInvoice, openInvoiceHTML, downloadInvoiceAsPDF } from '@/services/invoiceService';
+import { BookingChat } from '@/components/chat/BookingChat';
 // Premium color tokens
 const THEME = {
   gradient: 'from-[hsl(160,35%,22%)] to-[hsl(160,40%,18%)]',
@@ -88,6 +91,7 @@ interface GuestDetails {
   state: string;
   pincode: string;
   specialRequests: string;
+  messageToHost: string;
 }
 
 // Premium Step Indicator
@@ -818,6 +822,11 @@ const GuestDetailsStep = ({
     if (!guestDetails.phone.trim() || !/^[6-9]\d{9}$/.test(guestDetails.phone.replace(/\D/g, ''))) {
       newErrors.phone = 'Valid 10-digit phone number required';
     }
+    if (!guestDetails.messageToHost.trim()) {
+      newErrors.messageToHost = 'Please add a message to your host';
+    } else if (guestDetails.messageToHost.trim().length < 10) {
+      newErrors.messageToHost = 'Message is too short (min 10 characters)';
+    }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -935,6 +944,27 @@ const GuestDetailsStep = ({
           </div>
         </div>
 
+        {/* Message to Host - MANDATORY */}
+        <div>
+          <Label htmlFor="messageToHost" className={labelClass}>
+            Message to Host <span className="text-red-400">*</span>
+          </Label>
+          <Textarea
+            id="messageToHost"
+            value={guestDetails.messageToHost}
+            onChange={(e) => onChange('messageToHost', e.target.value)}
+            placeholder="Hi! I'm excited to stay at XTSY. I'll be arriving around..."
+            className={cn(
+              "min-h-[100px] mt-1.5 bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-white/30 rounded-xl",
+              errors.messageToHost && "border-red-400/50"
+            )}
+          />
+          {errors.messageToHost && <p className="text-xs text-red-400 mt-1">{errors.messageToHost}</p>}
+          <p className="text-xs text-white/40 mt-1.5">
+            💬 Share your arrival time, travel plans, or any questions you have
+          </p>
+        </div>
+
         {/* Special Requests */}
         <div>
           <Label htmlFor="requests" className={labelClass}>
@@ -984,95 +1014,149 @@ const GuestDetailsStep = ({
   );
 };
 
-// Confirmation Step
+// Confirmation Step with Invoice & Chat
 const ConfirmationStep = ({
   bookingId,
   guestName,
   checkIn,
   checkOut,
   roomName,
+  invoiceHtml,
   onGoHome,
+  onOpenChat,
+  onDownloadInvoice,
+  onViewInvoice,
 }: {
   bookingId: string;
   guestName: string;
   checkIn: Date;
   checkOut: Date;
   roomName: string;
+  invoiceHtml?: string;
   onGoHome: () => void;
-}) => (
-  <div className="flex flex-col items-center justify-center min-h-[calc(100vh-8rem)] px-6 text-center">
-    <motion.div
-      initial={{ scale: 0 }}
-      animate={{ scale: 1 }}
-      transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-      className="w-24 h-24 bg-emerald-500 rounded-full flex items-center justify-center mb-8 shadow-xl shadow-emerald-500/30"
-    >
-      <Check className="w-12 h-12 text-white" />
-    </motion.div>
+  onOpenChat: () => void;
+  onDownloadInvoice: () => void;
+  onViewInvoice: () => void;
+}) => {
+  const [showActions, setShowActions] = useState(false);
+  
+  return (
+    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-8rem)] px-6 text-center pb-8">
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+        className="w-24 h-24 bg-emerald-500 rounded-full flex items-center justify-center mb-6 shadow-xl shadow-emerald-500/30"
+      >
+        <Check className="w-12 h-12 text-white" />
+      </motion.div>
 
-    <motion.h2
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.2 }}
-      className="text-3xl font-bold text-white mb-2"
-    >
-      Booking Confirmed!
-    </motion.h2>
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className="text-3xl font-bold text-white mb-2"
+      >
+        Booking Confirmed!
+      </motion.h2>
 
-    <motion.p
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.3 }}
-      className="text-white/60 mb-8"
-    >
-      Thank you, {guestName.split(' ')[0]}! Your stay is confirmed.
-    </motion.p>
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="text-white/60 mb-6"
+      >
+        Thank you, {guestName.split(' ')[0]}! Your stay is confirmed.
+      </motion.p>
 
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.4 }}
-      className="p-5 rounded-2xl bg-white/5 border border-white/10 text-left w-full max-w-sm mb-8"
-    >
-      <div className="space-y-3">
-        <div className="flex justify-between">
-          <span className="text-white/50">Booking ID</span>
-          <span className="font-mono font-medium text-white">{bookingId}</span>
+      {/* Booking Details Card */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="p-5 rounded-2xl bg-white/5 border border-white/10 text-left w-full max-w-sm mb-6"
+      >
+        <div className="space-y-3">
+          <div className="flex justify-between">
+            <span className="text-white/50">Booking ID</span>
+            <span className="font-mono font-bold text-emerald-400">{bookingId}</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="text-white/50">Room</span>
+            <span className="font-medium text-white text-right max-w-[180px] truncate">{roomName}</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="text-white/50">Check-in</span>
+            <span className="font-medium text-white">{format(checkIn, 'MMM d, yyyy')}</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="text-white/50">Check-out</span>
+            <span className="font-medium text-white">{format(checkOut, 'MMM d, yyyy')}</span>
+          </div>
         </div>
-        <div className="flex justify-between">
-          <span className="text-white/50">Room</span>
-          <span className="font-medium text-white text-right max-w-[180px] truncate">{roomName}</span>
-        </div>
-        <div className="flex justify-between">
-          <span className="text-white/50">Check-in</span>
-          <span className="font-medium text-white">{format(checkIn, 'MMM d, yyyy')}</span>
-        </div>
-        <div className="flex justify-between">
-          <span className="text-white/50">Check-out</span>
-          <span className="font-medium text-white">{format(checkOut, 'MMM d, yyyy')}</span>
-        </div>
-      </div>
-    </motion.div>
+      </motion.div>
 
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 0.5 }}
-      className="flex items-center gap-2 text-sm text-white/40 mb-8"
-    >
-      <Sparkles className="w-4 h-4" />
-      <span>Confirmation sent to your email</span>
-    </motion.div>
+      {/* Invoice Actions */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+        className="flex gap-3 w-full max-w-sm mb-4"
+      >
+        <motion.button
+          whileTap={{ scale: 0.98 }}
+          onClick={onViewInvoice}
+          className="flex-1 h-12 rounded-xl bg-white/10 hover:bg-white/15 text-white font-medium text-sm flex items-center justify-center gap-2 transition-colors"
+        >
+          <FileText className="w-4 h-4" />
+          View Invoice
+        </motion.button>
+        <motion.button
+          whileTap={{ scale: 0.98 }}
+          onClick={onDownloadInvoice}
+          className="flex-1 h-12 rounded-xl bg-white/10 hover:bg-white/15 text-white font-medium text-sm flex items-center justify-center gap-2 transition-colors"
+        >
+          <Download className="w-4 h-4" />
+          Download PDF
+        </motion.button>
+      </motion.div>
 
-    <motion.button
-      whileTap={{ scale: 0.98 }}
-      onClick={onGoHome}
-      className="w-full max-w-sm h-14 rounded-2xl font-bold text-base bg-white text-[hsl(160,35%,20%)] shadow-xl shadow-black/20"
-    >
-      Back to Home
-    </motion.button>
-  </div>
-);
+      {/* Chat with Host Button */}
+      <motion.button
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.55 }}
+        whileTap={{ scale: 0.98 }}
+        onClick={onOpenChat}
+        className="w-full max-w-sm h-12 rounded-xl bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 font-medium text-sm flex items-center justify-center gap-2 transition-colors mb-4"
+      >
+        <MessageCircle className="w-4 h-4" />
+        Chat with Host
+      </motion.button>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.6 }}
+        className="flex items-center gap-2 text-sm text-white/40 mb-6"
+      >
+        <Sparkles className="w-4 h-4" />
+        <span>Confirmation sent to your email & WhatsApp</span>
+      </motion.div>
+
+      <motion.button
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.65 }}
+        whileTap={{ scale: 0.98 }}
+        onClick={onGoHome}
+        className="w-full max-w-sm h-14 rounded-2xl font-bold text-base bg-white text-[hsl(160,35%,20%)] shadow-xl shadow-black/20"
+      >
+        Back to Home
+      </motion.button>
+    </div>
+  );
+};
 
 // Page transitions
 const pageVariants = {
@@ -1127,9 +1211,12 @@ export default function BookingFlow() {
     state: '',
     pincode: '',
     specialRequests: '',
+    messageToHost: '',
   });
+  const [invoiceHtml, setInvoiceHtml] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [bookingId, setBookingId] = useState('');
+  const [chatOpen, setChatOpen] = useState(false);
 
   // Pre-fill guest details from Firebase user when authenticated
   useEffect(() => {
@@ -1261,49 +1348,53 @@ export default function BookingFlow() {
     return 0;
   }, [checkIn, checkOut]);
 
-  // Handle booking submission
+  // Handle booking submission using the new invoice system
   const handleSubmitBooking = async () => {
     if (!selectedRoom || !checkIn || !checkOut) return;
+
+    // Validate message to host is provided
+    if (!guestDetails.messageToHost.trim()) {
+      toast.error('Please add a message to your host');
+      return;
+    }
 
     setIsSubmitting(true);
     try {
       const pricePerNight = selectedRoom.weekday_price || selectedRoom.base_price;
       const subtotal = pricePerNight * quantity * nights;
       const gstRate = selectedRoom.kind === 'dorm' ? 0 : 0.12;
-      const total = Math.round(subtotal * (1 + gstRate));
+      const gstAmount = Math.round(subtotal * gstRate);
+      const total = subtotal + gstAmount;
 
-      const result = await createBooking({
-        bookingData: {
-          checkIn: format(checkIn, 'yyyy-MM-dd'),
-          checkOut: format(checkOut, 'yyyy-MM-dd'),
-          guests: quantity * selectedRoom.capacity,
-          nights,
-          selectedRooms: [{
-            id: selectedRoom.id,
-            name: selectedRoom.name,
-            price: pricePerNight,
-            type: selectedRoom.kind as 'dorm' | 'private',
-            selection: {
-              guests: selectedRoom.kind === 'dorm' ? quantity : selectedRoom.capacity,
-              rooms: quantity,
-            },
-          }],
-          totalAmount: total,
-        },
-        guestDetails: {
-          guestName: guestDetails.name,
-          email: guestDetails.email,
-          whatsappNumber: guestDetails.phone,
-          address: guestDetails.address,
-          city: guestDetails.city,
-          state: guestDetails.state,
-          pincode: guestDetails.pincode,
-          specialRequests: guestDetails.specialRequests,
-        },
+      // Use the new invoice generation system
+      const result = await generateInvoice({
+        guestName: guestDetails.name,
+        guestEmail: guestDetails.email,
+        guestPhone: guestDetails.phone,
+        guestAddress: guestDetails.address,
+        guestCity: guestDetails.city,
+        guestState: guestDetails.state,
+        guestPincode: guestDetails.pincode,
+        checkIn: format(checkIn, 'yyyy-MM-dd'),
+        checkOut: format(checkOut, 'yyyy-MM-dd'),
+        roomName: selectedRoom.name,
+        roomType: selectedRoom.kind,
+        quantity,
+        nights,
+        ratePerNight: pricePerNight,
+        subtotal,
+        gstRate,
+        gstAmount,
+        totalAmount: total,
+        messageToHost: guestDetails.messageToHost,
+        specialRequests: guestDetails.specialRequests,
       });
 
       if (result.success && result.bookingId) {
         setBookingId(result.bookingId);
+        if (result.html) {
+          setInvoiceHtml(result.html);
+        }
         goToStep('confirmation');
         toast.success('Booking confirmed!');
       } else {
@@ -1395,14 +1486,34 @@ export default function BookingFlow() {
           )}
 
           {currentStep === 'confirmation' && checkIn && checkOut && selectedRoom && (
-            <ConfirmationStep
-              bookingId={bookingId}
-              guestName={guestDetails.name}
-              checkIn={checkIn}
-              checkOut={checkOut}
-              roomName={selectedRoom.name}
-              onGoHome={() => navigate('/')}
-            />
+            <>
+              <ConfirmationStep
+                bookingId={bookingId}
+                guestName={guestDetails.name}
+                checkIn={checkIn}
+                checkOut={checkOut}
+                roomName={selectedRoom.name}
+                invoiceHtml={invoiceHtml}
+                onGoHome={() => navigate('/')}
+                onOpenChat={() => setChatOpen(true)}
+                onDownloadInvoice={() => {
+                  if (invoiceHtml) {
+                    downloadInvoiceAsPDF(invoiceHtml, bookingId);
+                  }
+                }}
+                onViewInvoice={() => {
+                  if (invoiceHtml) {
+                    openInvoiceHTML(invoiceHtml);
+                  }
+                }}
+              />
+              <BookingChat
+                bookingId={bookingId}
+                guestName={guestDetails.name}
+                isOpen={chatOpen}
+                onClose={() => setChatOpen(false)}
+              />
+            </>
           )}
         </motion.div>
       </AnimatePresence>
