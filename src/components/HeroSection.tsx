@@ -269,33 +269,21 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Policy Links & Data Usage - Required for Google OAuth Verification */}
-          <div className="mt-4 sm:mt-6 flex flex-col items-center gap-3">
-            <div className="flex items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm">
-              <Link 
-                to="/privacy-policy" 
-                className="text-gray-300 hover:text-primary underline underline-offset-2 transition-colors duration-200"
-              >
-                Privacy Policy
-              </Link>
-              <span className="text-gray-500">•</span>
-              <Link 
-                to="/terms-of-service" 
-                className="text-gray-300 hover:text-primary underline underline-offset-2 transition-colors duration-200"
-              >
-                Terms of Service
-              </Link>
-            </div>
-            
-            {/* Google Sign-in Data Usage Explanation - Required for OAuth Verification */}
-            <div className="max-w-xl text-center px-4">
-              <p className="text-[10px] sm:text-xs text-gray-400 leading-relaxed">
-                <span className="text-gray-300 font-medium">Why Google Sign-in?</span> We use Google authentication solely to verify your identity and provide a seamless booking experience. 
-                We only access your name and email to create your account. We never access your contacts, files, or any other Google data. 
-                Your information is protected under our{" "}
-                <Link to="/privacy-policy" className="text-primary hover:underline">Privacy Policy</Link>.
-              </p>
-            </div>
+          {/* Policy Links - Required for Google OAuth Verification */}
+          <div className="mt-4 sm:mt-6 flex items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm">
+            <Link 
+              to="/privacy-policy" 
+              className="text-gray-300 hover:text-primary underline underline-offset-2 transition-colors duration-200"
+            >
+              Privacy Policy
+            </Link>
+            <span className="text-gray-500">•</span>
+            <Link 
+              to="/terms-of-service" 
+              className="text-gray-300 hover:text-primary underline underline-offset-2 transition-colors duration-200"
+            >
+              Terms of Service
+            </Link>
           </div>
 
           {/* Stats */}
