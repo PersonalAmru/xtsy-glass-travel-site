@@ -245,6 +245,15 @@ const Header = () => {
                   Travel
                 </button>
                 
+                {/* Privacy Policy - Required for Google OAuth Verification */}
+                <Link 
+                  to="/privacy-policy" 
+                  className="px-3 py-2 text-white/70 hover:text-primary hover:bg-white/10 rounded-md transition-colors duration-200 text-sm touch-target"
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                >
+                  Privacy
+                </Link>
+                
                 {/* Language and Currency Selectors */}
                 <div className="flex items-center gap-3 border-l border-white/20 pl-4">
                   <CurrencySelector 
