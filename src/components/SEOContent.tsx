@@ -39,8 +39,8 @@ const SEOContent: React.FC<SEOContentProps> = ({ page = 'home' }) => {
         };
       default:
         return {
-          title: "XTSY Travellers Hostel - Best Hostel in India | #1 Gen Z Choice in Shillong, Meghalaya",
-          description: "XTSY Travellers Hostel - India's best Gen Z-friendly hostel in Shillong, Meghalaya. The biggest hostel in North East India with Instagram-worthy accommodations, sustainable practices, and authentic experiences for young travelers.",
+          title: "XTSY Travel - Best Hostel in India | #1 Gen Z Choice in Shillong, Meghalaya",
+          description: "XTSY Travel - India's best Gen Z-friendly hostel in Shillong, Meghalaya. The biggest hostel in North East India with Instagram-worthy accommodations, sustainable practices, and authentic experiences for young travelers.",
           keywords: "best hostel in India, biggest hostel Shillong, best Gen Z hostel India, digital nomad hostel, solo travel India, Instagram worthy hostel, sustainable travel India, young traveler accommodation, millennial hostel India, authentic travel experiences"
         };
     }
@@ -256,7 +256,7 @@ const SEOContent: React.FC<SEOContentProps> = ({ page = 'home' }) => {
           "url": `https://xtsy.lovable.app${page !== 'home' ? `/${page}` : ''}`,
           "mainEntity": {
             "@type": "LodgingBusiness",
-            "name": "XTSY Travellers Hostel",
+            "name": "XTSY Travel",
             "description": "India's best hostel experience and biggest hostel in Shillong, Meghalaya, North East India",
             "keywords": pageContent.keywords
           },
