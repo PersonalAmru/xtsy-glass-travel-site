@@ -19,7 +19,7 @@ import { cleanupUnifiedImage } from "./components/UnifiedImage";
 import { initializeCriticalImageLoading, preloadLCPImage } from "./utils/criticalImagePreloader";
 
 // Initialize Sentry only in production
-const SENTRY_DSN = import.meta.env.VITE_SENTRY_DSN || "https://12bae2f7614bf702c6f7c456eef52cea@o4510659453911040.ingest.us.sentry.io/4510659499982848";
+const SENTRY_DSN = import.meta.env.VITE_SENTRY_DSN || "https://de60ec1c757d6d0b6fd991d42d4b8e06@o4510659453911040.ingest.us.sentry.io/4510659499982848";
 
 if (import.meta.env.PROD && SENTRY_DSN) {
   Sentry.init({
