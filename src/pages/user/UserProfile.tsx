@@ -62,21 +62,32 @@ export default function UserProfile() {
 
   // Fetch user bookings
   useEffect(() => {
-    if (user?.id) {
+    if (user?.id || user?.email) {
       fetchBookings();
     }
-  }, [user?.id]);
+  }, [user?.id, user?.email]);
 
   const fetchBookings = async () => {
-    if (!user?.id) return;
+    if (!user?.id && !user?.email) return;
     
     setLoadingBookings(true);
     try {
-      const { data, error } = await supabase
+      // Query by user_id OR email to find all user's bookings
+      let query = supabase
         .from('bookings')
         .select('id, booking_id, room_type, check_in, check_out, total_amount, subtotal, taxes, booking_status, created_at, guests, quantity, special_requests')
-        .eq('user_id', user.id)
         .order('created_at', { ascending: false });
+      
+      // Use OR filter to match either user_id or email
+      if (user?.id && user?.email) {
+        query = query.or(`user_id.eq.${user.id},email.eq.${user.email}`);
+      } else if (user?.id) {
+        query = query.eq('user_id', user.id);
+      } else if (user?.email) {
+        query = query.eq('email', user.email);
+      }
+
+      const { data, error } = await query;
 
       if (error) throw error;
       setBookings(data || []);
