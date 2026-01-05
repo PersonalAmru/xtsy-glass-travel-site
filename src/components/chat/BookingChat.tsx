@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, User, Building2, Check, CheckCheck, X } from 'lucide-react';
+import { Send, User, Building2, Check, CheckCheck, X, Sparkles, Lightbulb } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
@@ -17,15 +17,24 @@ interface Message {
 
 interface BookingChatProps {
   bookingId: string;
-  guestName: string;
+  guestName?: string;
   isOpen: boolean;
   onClose: () => void;
   isAdmin?: boolean;
 }
 
+// AI-powered message suggestions
+const AI_SUGGESTIONS = [
+  "Hi! I'm excited to stay at XTSY. I'll be arriving around 2 PM.",
+  "Could you share parking details and check-in instructions?",
+  "Are there any local cafes or restaurants you'd recommend nearby?",
+  "I'll be traveling with a friend. Looking forward to our stay!",
+  "Can I request an early check-in if available?",
+];
+
 export const BookingChat: React.FC<BookingChatProps> = ({
   bookingId,
-  guestName,
+  guestName = 'Guest',
   isOpen,
   onClose,
   isAdmin = false,
@@ -34,6 +43,7 @@ export const BookingChat: React.FC<BookingChatProps> = ({
   const [newMessage, setNewMessage] = useState('');
   const [isSending, setIsSending] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [showSuggestions, setShowSuggestions] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -57,6 +67,10 @@ export const BookingChat: React.FC<BookingChatProps> = ({
         console.error('Error fetching messages:', error);
       } else {
         setMessages(data as Message[]);
+        // Hide suggestions if there are already messages
+        if (data && data.length > 0) {
+          setShowSuggestions(false);
+        }
       }
       setIsLoading(false);
     };
@@ -77,6 +91,7 @@ export const BookingChat: React.FC<BookingChatProps> = ({
         (payload) => {
           const newMsg = payload.new as Message;
           setMessages((prev) => [...prev, newMsg]);
+          setShowSuggestions(false);
         }
       )
       .subscribe();
@@ -117,23 +132,24 @@ export const BookingChat: React.FC<BookingChatProps> = ({
     }
   }, [messages, isOpen, isAdmin]);
 
-  const sendMessage = async () => {
-    if (!newMessage.trim() || isSending) return;
+  const sendMessage = async (messageText?: string) => {
+    const text = messageText || newMessage.trim();
+    if (!text || isSending) return;
 
     setIsSending(true);
-    const messageText = newMessage.trim();
     setNewMessage('');
+    setShowSuggestions(false);
 
     const { error } = await supabase.from('booking_messages').insert({
       booking_id: bookingId,
       sender_type: isAdmin ? 'admin' : 'guest',
       sender_name: isAdmin ? 'XTSY Host' : guestName,
-      message: messageText,
+      message: text,
     });
 
     if (error) {
       console.error('Error sending message:', error);
-      setNewMessage(messageText);
+      setNewMessage(text);
     }
     
     setIsSending(false);
@@ -145,6 +161,10 @@ export const BookingChat: React.FC<BookingChatProps> = ({
       e.preventDefault();
       sendMessage();
     }
+  };
+
+  const handleSuggestionClick = (suggestion: string) => {
+    sendMessage(suggestion);
   };
 
   if (!isOpen) return null;
@@ -173,7 +193,10 @@ export const BookingChat: React.FC<BookingChatProps> = ({
           {/* Header */}
           <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
             <div>
-              <h3 className="text-white font-semibold text-lg">Booking Chat</h3>
+              <h3 className="text-white font-semibold text-lg flex items-center gap-2">
+                <Sparkles className="w-5 h-5 text-emerald-400" />
+                Chat with Host
+              </h3>
               <p className="text-white/50 text-xs font-mono">{bookingId}</p>
             </div>
             <button
@@ -192,12 +215,12 @@ export const BookingChat: React.FC<BookingChatProps> = ({
               </div>
             ) : messages.length === 0 ? (
               <div className="flex flex-col items-center justify-center h-full text-center px-6">
-                <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-4">
-                  <Send className="w-7 h-7 text-white/40" />
+                <div className="w-16 h-16 rounded-full bg-emerald-500/20 flex items-center justify-center mb-4">
+                  <Send className="w-7 h-7 text-emerald-400" />
                 </div>
-                <p className="text-white/60">No messages yet</p>
-                <p className="text-white/40 text-sm mt-1">
-                  Start the conversation with your host
+                <p className="text-white/80 font-medium mb-1">Start the conversation!</p>
+                <p className="text-white/50 text-sm">
+                  Introduce yourself to your host and share your travel plans
                 </p>
               </div>
             ) : (
@@ -211,6 +234,30 @@ export const BookingChat: React.FC<BookingChatProps> = ({
             )}
             <div ref={messagesEndRef} />
           </div>
+
+          {/* AI Suggestions */}
+          {showSuggestions && !isAdmin && messages.length === 0 && (
+            <div className="px-4 pb-2">
+              <div className="flex items-center gap-2 text-white/50 text-xs mb-2">
+                <Lightbulb className="w-3.5 h-3.5 text-amber-400" />
+                <span>Suggested messages</span>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {AI_SUGGESTIONS.slice(0, 3).map((suggestion, idx) => (
+                  <motion.button
+                    key={idx}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: idx * 0.1 }}
+                    onClick={() => handleSuggestionClick(suggestion)}
+                    className="px-3 py-2 bg-white/10 hover:bg-white/15 rounded-xl text-white/80 text-sm text-left transition-colors border border-white/5"
+                  >
+                    {suggestion.length > 50 ? `${suggestion.slice(0, 50)}...` : suggestion}
+                  </motion.button>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Input */}
           <div className="p-4 border-t border-white/10 bg-black/20">
@@ -232,7 +279,7 @@ export const BookingChat: React.FC<BookingChatProps> = ({
               />
               <motion.button
                 whileTap={{ scale: 0.95 }}
-                onClick={sendMessage}
+                onClick={() => sendMessage()}
                 disabled={!newMessage.trim() || isSending}
                 className={cn(
                   "w-12 h-12 rounded-xl flex items-center justify-center transition-all",

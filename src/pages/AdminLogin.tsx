@@ -39,7 +39,16 @@ const AdminLogin = () => {
       }
 
       if (authData.user) {
-        // Server-side role verification - the only place admin check happens
+        // Check if email is the designated admin email
+        const isAdminEmail = authData.user.email === 'xtsy.social@gmail.com';
+        
+        if (!isAdminEmail) {
+          await supabase.auth.signOut();
+          toast.error("Access denied.");
+          return;
+        }
+
+        // Server-side role verification
         const { data: isAdmin, error: roleError } = await supabase.rpc('has_role', {
           _user_id: authData.user.id,
           _role: 'admin'
@@ -56,7 +65,6 @@ const AdminLogin = () => {
           navigate("/admin/dashboard");
         } else {
           await supabase.auth.signOut();
-          // Generic message - don't reveal admin requirement
           toast.error("Access denied.");
         }
       }

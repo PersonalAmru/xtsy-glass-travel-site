@@ -2295,6 +2295,39 @@ export type Database = {
         }
         Relationships: []
       }
+      user_profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          email: string
+          full_name: string | null
+          id: string
+          phone: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          email: string
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string
@@ -2798,6 +2831,7 @@ export type Database = {
       }
       ip_anonymize: { Args: { ip_text: string }; Returns: string }
       is_admin: { Args: never; Returns: boolean }
+      is_admin_email: { Args: { user_email: string }; Returns: boolean }
       is_admin_or_staff: { Args: never; Returns: boolean }
       is_franchise_for_property: {
         Args: { _property_id: string; _user_id: string }
