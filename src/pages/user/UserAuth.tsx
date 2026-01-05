@@ -1,16 +1,20 @@
 /**
- * User Authentication Page
- * Modern Apple-grade UI with Google Sign-in and Email/Password
+ * User Authentication Page - Supabase Auth
+ * Modern Apple-grade UI with Email/Password, OTP, and Google Sign-in
  * Includes password reset functionality
  */
 
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
-import * as Sentry from '@sentry/react';
 import { useUserAuth } from '@/contexts/UserAuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { 
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+} from '@/components/ui/input-otp';
 import { 
   Mail, 
   Lock, 
@@ -19,13 +23,14 @@ import {
   ArrowRight, 
   Loader2, 
   ArrowLeft,
-  CheckCircle2
+  CheckCircle2,
+  Smartphone
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import xtsyFavicon from '@/assets/xtsy-favicon.png';
 
-type AuthView = 'signin' | 'signup' | 'forgot' | 'reset-sent' | 'success';
+type AuthView = 'signin' | 'signup' | 'forgot' | 'reset-sent' | 'otp-sent' | 'otp-verify' | 'success';
 
 export default function UserAuth() {
   const navigate = useNavigate();
@@ -37,6 +42,8 @@ export default function UserAuth() {
     error, 
     signInEmail, 
     signUpEmail,
+    signInWithOTP,
+    verifyOTP,
     resetPassword,
     signInGoogle,
     clearError 
@@ -48,9 +55,11 @@ export default function UserAuth() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [otpCode, setOtpCode] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [localError, setLocalError] = useState<string | null>(null);
+  const [useOTP, setUseOTP] = useState(false);
   
   // Get redirect path from state or default to home
   const redirectPath = (location.state as any)?.from || '/';
@@ -76,8 +85,25 @@ export default function UserAuth() {
     e.preventDefault();
     setLocalError(null);
     
-    if (!email || !password) {
-      setLocalError('Please fill in all fields.');
+    if (!email) {
+      setLocalError('Please enter your email address.');
+      return;
+    }
+    
+    // OTP flow
+    if (useOTP) {
+      try {
+        await signInWithOTP(email);
+        setView('otp-sent');
+      } catch {
+        // Error handled by context
+      }
+      return;
+    }
+    
+    // Password flow
+    if (!password) {
+      setLocalError('Please enter your password.');
       return;
     }
     
@@ -114,6 +140,22 @@ export default function UserAuth() {
     }
   };
 
+  const handleOTPVerify = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLocalError(null);
+    
+    if (otpCode.length !== 6) {
+      setLocalError('Please enter the 6-digit code.');
+      return;
+    }
+    
+    try {
+      await verifyOTP(email, otpCode);
+    } catch {
+      // Error handled by context
+    }
+  };
+
   const handlePasswordReset = async (e: React.FormEvent) => {
     e.preventDefault();
     setLocalError(null);
@@ -140,8 +182,9 @@ export default function UserAuth() {
   };
 
   const handleBack = () => {
-    if (view === 'forgot' || view === 'signup') {
+    if (view === 'forgot' || view === 'signup' || view === 'otp-sent' || view === 'otp-verify') {
       setView('signin');
+      setUseOTP(false);
     } else if (view === 'reset-sent') {
       setView('signin');
     } else {
@@ -151,11 +194,10 @@ export default function UserAuth() {
 
   const displayError = localError || error;
 
-  // Show loading while initializing - improved loading experience
+  // Show loading while initializing
   if (!isInitialized) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/30 flex flex-col items-center justify-center">
-        {/* Subtle top gradient */}
         <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
         
         <motion.div 
@@ -164,12 +206,10 @@ export default function UserAuth() {
           transition={{ duration: 0.3 }}
           className="flex flex-col items-center gap-6"
         >
-          {/* Branded logo */}
           <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center shadow-lg shadow-primary/20 overflow-hidden">
             <img src={xtsyFavicon} alt="XTSY" className="w-12 h-12 object-contain" />
           </div>
           
-          {/* Loading indicator */}
           <div className="flex flex-col items-center gap-3">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: '0ms' }} />
@@ -185,7 +225,6 @@ export default function UserAuth() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/30 flex flex-col">
-      {/* Subtle top gradient */}
       <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
       
       {/* Header */}
@@ -202,7 +241,7 @@ export default function UserAuth() {
           <Link to="/" className="text-xl font-bold text-primary">
             XTSY
           </Link>
-          <div className="w-10" /> {/* Spacer for centering */}
+          <div className="w-10" />
         </div>
       </header>
 
@@ -217,6 +256,22 @@ export default function UserAuth() {
                 key="reset-sent" 
                 email={email} 
                 onBack={() => setView('signin')} 
+              />
+            ) : view === 'otp-sent' || view === 'otp-verify' ? (
+              <OTPVerifyView
+                key="otp-verify"
+                email={email}
+                otpCode={otpCode}
+                setOtpCode={setOtpCode}
+                onSubmit={handleOTPVerify}
+                isLoading={isLoading}
+                error={displayError}
+                onBack={() => setView('signin')}
+                onResend={async () => {
+                  try {
+                    await signInWithOTP(email);
+                  } catch {}
+                }}
               />
             ) : view === 'forgot' ? (
               <ForgotPasswordView
@@ -256,6 +311,8 @@ export default function UserAuth() {
                 setPassword={setPassword}
                 showPassword={showPassword}
                 setShowPassword={setShowPassword}
+                useOTP={useOTP}
+                setUseOTP={setUseOTP}
                 onSubmit={handleEmailSignIn}
                 onGoogleSignIn={handleGoogleSignIn}
                 isLoading={isLoading}
@@ -267,18 +324,6 @@ export default function UserAuth() {
           </AnimatePresence>
         </div>
       </main>
-
-      {/* Sentry Test Button - Remove after verification */}
-      <div className="relative z-10 px-4 sm:px-6 py-2 text-center">
-        <button
-          onClick={() => {
-            throw new Error('This is your first Sentry error!');
-          }}
-          className="text-xs text-destructive underline hover:no-underline"
-        >
-          Test Sentry Error
-        </button>
-      </div>
 
       {/* Footer */}
       <footer className="relative z-10 px-4 sm:px-6 py-6 text-center">
@@ -347,6 +392,127 @@ function ResetSentView({ email, onBack }: { email: string; onBack: () => void })
         <ArrowLeft className="w-4 h-4" />
         Back to Sign In
       </Button>
+    </motion.div>
+  );
+}
+
+// OTP Verify View
+interface OTPVerifyViewProps {
+  email: string;
+  otpCode: string;
+  setOtpCode: (value: string) => void;
+  onSubmit: (e: React.FormEvent) => void;
+  isLoading: boolean;
+  error: string | null;
+  onBack: () => void;
+  onResend: () => void;
+}
+
+function OTPVerifyView({
+  email,
+  otpCode,
+  setOtpCode,
+  onSubmit,
+  isLoading,
+  error,
+  onBack,
+  onResend
+}: OTPVerifyViewProps) {
+  const [resendCooldown, setResendCooldown] = useState(0);
+  
+  useEffect(() => {
+    if (resendCooldown > 0) {
+      const timer = setTimeout(() => setResendCooldown(resendCooldown - 1), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [resendCooldown]);
+  
+  const handleResend = () => {
+    onResend();
+    setResendCooldown(60);
+  };
+  
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -20 }}
+    >
+      <div className="text-center mb-8">
+        <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
+          <Smartphone className="w-8 h-8 text-primary" />
+        </div>
+        <h1 className="text-2xl font-bold text-foreground mb-2">
+          Enter verification code
+        </h1>
+        <p className="text-muted-foreground">
+          We've sent a 6-digit code to
+        </p>
+        <p className="font-medium text-foreground">{email}</p>
+      </div>
+
+      <form onSubmit={onSubmit} className="space-y-6">
+        <div className="flex justify-center">
+          <InputOTP
+            maxLength={6}
+            value={otpCode}
+            onChange={setOtpCode}
+          >
+            <InputOTPGroup>
+              <InputOTPSlot index={0} />
+              <InputOTPSlot index={1} />
+              <InputOTPSlot index={2} />
+              <InputOTPSlot index={3} />
+              <InputOTPSlot index={4} />
+              <InputOTPSlot index={5} />
+            </InputOTPGroup>
+          </InputOTP>
+        </div>
+
+        {error && <ErrorMessage message={error} />}
+
+        <Button 
+          type="submit" 
+          className="w-full h-12 rounded-xl text-base font-medium gap-2"
+          disabled={isLoading || otpCode.length !== 6}
+        >
+          {isLoading ? (
+            <Loader2 className="w-5 h-5 animate-spin" />
+          ) : (
+            <>
+              Verify Code
+              <ArrowRight className="w-5 h-5" />
+            </>
+          )}
+        </Button>
+
+        <div className="text-center">
+          <button
+            type="button"
+            onClick={handleResend}
+            disabled={resendCooldown > 0}
+            className={cn(
+              "text-sm transition-colors",
+              resendCooldown > 0 
+                ? "text-muted-foreground cursor-not-allowed" 
+                : "text-primary hover:text-primary/80"
+            )}
+          >
+            {resendCooldown > 0 
+              ? `Resend code in ${resendCooldown}s` 
+              : "Didn't receive a code? Resend"}
+          </button>
+        </div>
+
+        <Button 
+          type="button"
+          variant="ghost" 
+          onClick={onBack}
+          className="w-full"
+        >
+          Back to Sign In
+        </Button>
+      </form>
     </motion.div>
   );
 }
@@ -445,6 +611,8 @@ interface SignInViewProps {
   setPassword: (value: string) => void;
   showPassword: boolean;
   setShowPassword: (value: boolean) => void;
+  useOTP: boolean;
+  setUseOTP: (value: boolean) => void;
   onSubmit: (e: React.FormEvent) => void;
   onGoogleSignIn: () => void;
   isLoading: boolean;
@@ -460,6 +628,8 @@ function SignInView({
   setPassword,
   showPassword,
   setShowPassword,
+  useOTP,
+  setUseOTP,
   onSubmit,
   onGoogleSignIn,
   isLoading,
@@ -513,6 +683,35 @@ function SignInView({
         </div>
       </div>
 
+      {/* Auth Method Toggle */}
+      <div className="flex gap-2 mb-6 p-1 bg-muted/50 rounded-xl">
+        <button
+          type="button"
+          onClick={() => setUseOTP(false)}
+          className={cn(
+            "flex-1 py-2.5 px-4 rounded-lg text-sm font-medium transition-all",
+            !useOTP 
+              ? "bg-background shadow-sm text-foreground" 
+              : "text-muted-foreground hover:text-foreground"
+          )}
+        >
+          Password
+        </button>
+        <button
+          type="button"
+          onClick={() => setUseOTP(true)}
+          className={cn(
+            "flex-1 py-2.5 px-4 rounded-lg text-sm font-medium transition-all flex items-center justify-center gap-2",
+            useOTP 
+              ? "bg-background shadow-sm text-foreground" 
+              : "text-muted-foreground hover:text-foreground"
+          )}
+        >
+          <Smartphone className="w-4 h-4" />
+          Email OTP
+        </button>
+      </div>
+
       {/* Email Form */}
       <form onSubmit={onSubmit} className="space-y-4">
         <div className="space-y-2">
@@ -533,39 +732,41 @@ function SignInView({
           </div>
         </div>
 
-        <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <Label htmlFor="password" className="text-sm font-medium">
-              Password
-            </Label>
-            <button
-              type="button"
-              onClick={onForgotPassword}
-              className="text-sm text-primary hover:text-primary/80 transition-colors"
-            >
-              Forgot password?
-            </button>
+        {!useOTP && (
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <Label htmlFor="password" className="text-sm font-medium">
+                Password
+              </Label>
+              <button
+                type="button"
+                onClick={onForgotPassword}
+                className="text-sm text-primary hover:text-primary/80 transition-colors"
+              >
+                Forgot password?
+              </button>
+            </div>
+            <div className="relative">
+              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+              <Input
+                id="password"
+                type={showPassword ? 'text' : 'password'}
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="pl-11 pr-11 h-12 rounded-xl bg-muted/50 border-muted-foreground/20 focus:border-primary focus:ring-primary"
+                autoComplete="current-password"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+              </button>
+            </div>
           </div>
-          <div className="relative">
-            <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-            <Input
-              id="password"
-              type={showPassword ? 'text' : 'password'}
-              placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="pl-11 pr-11 h-12 rounded-xl bg-muted/50 border-muted-foreground/20 focus:border-primary focus:ring-primary"
-              autoComplete="current-password"
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-            </button>
-          </div>
-        </div>
+        )}
 
         {error && <ErrorMessage message={error} />}
 
@@ -578,7 +779,7 @@ function SignInView({
             <Loader2 className="w-5 h-5 animate-spin" />
           ) : (
             <>
-              Sign In
+              {useOTP ? 'Send OTP Code' : 'Sign In'}
               <ArrowRight className="w-5 h-5" />
             </>
           )}

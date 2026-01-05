@@ -1218,7 +1218,7 @@ export default function BookingFlow() {
   const [bookingId, setBookingId] = useState('');
   const [chatOpen, setChatOpen] = useState(false);
 
-  // Pre-fill guest details from Firebase user when authenticated
+  // Pre-fill guest details from Supabase user when authenticated
   useEffect(() => {
     if (user) {
       setGuestDetails(prev => ({
@@ -1397,6 +1397,8 @@ export default function BookingFlow() {
         }
         goToStep('confirmation');
         toast.success('Booking confirmed!');
+        // Auto-open chat after booking confirmation
+        setTimeout(() => setChatOpen(true), 800);
       } else {
         toast.error(result.error || 'Booking failed. Please try again.');
       }
