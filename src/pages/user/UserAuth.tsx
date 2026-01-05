@@ -150,16 +150,34 @@ export default function UserAuth() {
 
   const displayError = localError || error;
 
-  // Show loading while initializing
+  // Show loading while initializing - improved loading experience
   if (!isInitialized) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center">
-            <Loader2 className="w-6 h-6 animate-spin text-primary" />
+      <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/30 flex flex-col items-center justify-center">
+        {/* Subtle top gradient */}
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
+        
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.3 }}
+          className="flex flex-col items-center gap-6"
+        >
+          {/* Branded logo */}
+          <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center shadow-lg shadow-primary/20 overflow-hidden">
+            <img src={xtsyFavicon} alt="XTSY" className="w-12 h-12 object-contain" />
           </div>
-          <p className="text-sm text-muted-foreground">Loading...</p>
-        </div>
+          
+          {/* Loading indicator */}
+          <div className="flex flex-col items-center gap-3">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: '0ms' }} />
+              <div className="w-2 h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: '150ms' }} />
+              <div className="w-2 h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: '300ms' }} />
+            </div>
+            <p className="text-sm text-muted-foreground">Preparing your experience...</p>
+          </div>
+        </motion.div>
       </div>
     );
   }
