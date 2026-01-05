@@ -1,0 +1,545 @@
+/**
+ * Admin Bookings Calendar - Smart calendar with booking status
+ * Shows check-in, stay-over, check-out, no-show status
+ */
+
+import { useState, useEffect, useCallback } from 'react';
+import { UnifiedAdminLayout } from '@/layouts/UnifiedAdminLayout';
+import { supabase } from '@/integrations/supabase/client';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { BookingChat } from '@/components/chat/BookingChat';
+import { toast } from 'sonner';
+import { cn } from '@/lib/utils';
+import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, addMonths, subMonths, isToday, parseISO, differenceInHours } from 'date-fns';
+import {
+  ChevronLeft,
+  ChevronRight,
+  Calendar,
+  User,
+  Clock,
+  LogIn,
+  LogOut,
+  Moon,
+  AlertTriangle,
+  Check,
+  MessageSquare,
+  RefreshCw,
+} from 'lucide-react';
+
+interface Booking {
+  id: string;
+  booking_id: string;
+  guest_name: string;
+  email: string;
+  room_type: string;
+  check_in: string;
+  check_out: string;
+  booking_status: string;
+  approved_at: string | null;
+  no_show_marked_at: string | null;
+  quantity: number;
+  total_amount: number;
+}
+
+type BookingStatus = 'check_in' | 'stay_over' | 'check_out' | 'no_show';
+
+interface DayBooking {
+  booking: Booking;
+  status: BookingStatus;
+}
+
+export default function AdminBookingsCalendar() {
+  const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [bookings, setBookings] = useState<Booking[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
+  const [chatOpen, setChatOpen] = useState(false);
+  const [actionLoading, setActionLoading] = useState(false);
+
+  const fetchBookings = useCallback(async () => {
+    setLoading(true);
+    try {
+      const startDate = startOfMonth(currentMonth);
+      const endDate = endOfMonth(currentMonth);
+      
+      const { data, error } = await supabase.rpc('get_booking_calendar', {
+        p_start_date: format(startDate, 'yyyy-MM-dd'),
+        p_end_date: format(endDate, 'yyyy-MM-dd'),
+      });
+
+      if (error) throw error;
+      setBookings((data as unknown as Booking[]) || []);
+    } catch (error) {
+      console.error('Error fetching bookings:', error);
+      toast.error('Failed to load bookings');
+    } finally {
+      setLoading(false);
+    }
+  }, [currentMonth]);
+
+  useEffect(() => {
+    fetchBookings();
+  }, [fetchBookings]);
+
+  // Subscribe to real-time updates
+  useEffect(() => {
+    const channel = supabase
+      .channel('bookings-calendar')
+      .on('postgres_changes', {
+        event: '*',
+        schema: 'public',
+        table: 'bookings',
+      }, () => {
+        fetchBookings();
+      })
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [fetchBookings]);
+
+  const getBookingStatusForDate = (booking: Booking, date: Date): BookingStatus | null => {
+    const checkIn = parseISO(booking.check_in);
+    const checkOut = parseISO(booking.check_out);
+    
+    if (booking.booking_status === 'no_show') {
+      // If no-show, show no_show status for all dates
+      if (date >= checkIn && date < checkOut) {
+        return 'no_show';
+      }
+      if (isSameDay(date, checkOut)) {
+        return 'no_show';
+      }
+      return null;
+    }
+    
+    if (isSameDay(date, checkIn)) {
+      return 'check_in';
+    }
+    
+    if (isSameDay(date, checkOut)) {
+      return 'check_out';
+    }
+    
+    if (date > checkIn && date < checkOut) {
+      return 'stay_over';
+    }
+    
+    return null;
+  };
+
+  const getBookingsForDate = (date: Date): DayBooking[] => {
+    const dayBookings: DayBooking[] = [];
+    
+    for (const booking of bookings) {
+      const status = getBookingStatusForDate(booking, date);
+      if (status) {
+        dayBookings.push({ booking, status });
+      }
+    }
+    
+    return dayBookings;
+  };
+
+  const getStatusConfig = (status: BookingStatus) => {
+    switch (status) {
+      case 'check_in':
+        return {
+          label: 'Check-in Today',
+          icon: LogIn,
+          color: 'bg-emerald-500/20 text-emerald-600 border-emerald-500/30',
+          dotColor: 'bg-emerald-500',
+        };
+      case 'stay_over':
+        return {
+          label: 'Stay Over',
+          icon: Moon,
+          color: 'bg-blue-500/20 text-blue-600 border-blue-500/30',
+          dotColor: 'bg-blue-500',
+        };
+      case 'check_out':
+        return {
+          label: 'Check-out',
+          icon: LogOut,
+          color: 'bg-amber-500/20 text-amber-600 border-amber-500/30',
+          dotColor: 'bg-amber-500',
+        };
+      case 'no_show':
+        return {
+          label: 'No Show',
+          icon: AlertTriangle,
+          color: 'bg-red-500/20 text-red-600 border-red-500/30',
+          dotColor: 'bg-red-500',
+        };
+    }
+  };
+
+  const handleApproveBooking = async (booking: Booking) => {
+    setActionLoading(true);
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) throw new Error('Not authenticated');
+
+      const { data, error } = await supabase.rpc('approve_booking_and_block_inventory', {
+        p_booking_id: booking.id,
+        p_admin_id: user.id,
+      });
+
+      if (error) throw error;
+      
+      const result = data as { success?: boolean; error?: string } | null;
+      if (result?.success) {
+        toast.success('Booking approved and inventory blocked');
+        fetchBookings();
+      } else {
+        toast.error(result?.error || 'Failed to approve booking');
+      }
+    } catch (error) {
+      console.error('Error approving booking:', error);
+      toast.error('Failed to approve booking');
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  const handleMarkNoShow = async (booking: Booking) => {
+    setActionLoading(true);
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) throw new Error('Not authenticated');
+
+      const { data, error } = await supabase.rpc('mark_booking_no_show', {
+        p_booking_id: booking.id,
+        p_admin_id: user.id,
+      });
+
+      if (error) throw error;
+      
+      const result = data as { success?: boolean; error?: string } | null;
+      if (result?.success) {
+        toast.success('Booking marked as no-show');
+        fetchBookings();
+        setSelectedBooking(null);
+      } else {
+        toast.error(result?.error || 'Failed to mark no-show');
+      }
+    } catch (error) {
+      console.error('Error marking no-show:', error);
+      toast.error('Failed to mark no-show');
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  const canMarkNoShow = (booking: Booking): boolean => {
+    if (booking.booking_status !== 'confirmed') return false;
+    const checkIn = parseISO(booking.check_in);
+    const hoursSince = differenceInHours(new Date(), checkIn);
+    return hoursSince >= 0 && hoursSince <= 48;
+  };
+
+  const days = eachDayOfInterval({
+    start: startOfMonth(currentMonth),
+    end: endOfMonth(currentMonth),
+  });
+
+  const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+  // Calculate empty cells for first week
+  const firstDayOfMonth = startOfMonth(currentMonth).getDay();
+  const emptyCells = Array(firstDayOfMonth).fill(null);
+
+  return (
+    <UnifiedAdminLayout>
+      <div className="p-4 md:p-6 space-y-6">
+        {/* Header */}
+        <header className="flex items-center justify-between gap-4 flex-wrap">
+          <div>
+            <h1 className="text-2xl font-bold tracking-tight flex items-center gap-2">
+              <Calendar className="w-6 h-6 text-primary" />
+              Bookings Calendar
+            </h1>
+            <p className="text-sm text-muted-foreground">Manage bookings, approvals, and guest status</p>
+          </div>
+          <Button variant="outline" size="sm" onClick={fetchBookings} disabled={loading}>
+            <RefreshCw className={cn('w-4 h-4 mr-2', loading && 'animate-spin')} />
+            Refresh
+          </Button>
+        </header>
+
+        {/* Legend */}
+        <div className="flex flex-wrap gap-4">
+          {(['check_in', 'stay_over', 'check_out', 'no_show'] as BookingStatus[]).map((status) => {
+            const config = getStatusConfig(status);
+            return (
+              <div key={status} className="flex items-center gap-2">
+                <div className={cn('w-3 h-3 rounded-full', config.dotColor)} />
+                <span className="text-sm text-muted-foreground">{config.label}</span>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Calendar Navigation */}
+        <div className="flex items-center justify-between">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}
+          >
+            <ChevronLeft className="w-4 h-4 mr-1" />
+            Prev
+          </Button>
+          <h2 className="text-lg font-semibold">
+            {format(currentMonth, 'MMMM yyyy')}
+          </h2>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}
+          >
+            Next
+            <ChevronRight className="w-4 h-4 ml-1" />
+          </Button>
+        </div>
+
+        {/* Calendar Grid */}
+        <Card>
+          <CardContent className="p-0 md:p-4">
+            {/* Week days header */}
+            <div className="grid grid-cols-7 border-b border-border">
+              {weekDays.map((day) => (
+                <div key={day} className="p-2 text-center text-xs font-medium text-muted-foreground">
+                  {day}
+                </div>
+              ))}
+            </div>
+
+            {/* Calendar days */}
+            <div className="grid grid-cols-7">
+              {emptyCells.map((_, index) => (
+                <div key={`empty-${index}`} className="min-h-[80px] md:min-h-[100px] border-b border-r border-border bg-muted/30" />
+              ))}
+              {days.map((day) => {
+                const dayBookings = getBookingsForDate(day);
+                const hasBookings = dayBookings.length > 0;
+
+                return (
+                  <button
+                    key={day.toISOString()}
+                    onClick={() => {
+                      if (hasBookings) {
+                        setSelectedDate(day);
+                      }
+                    }}
+                    className={cn(
+                      'min-h-[80px] md:min-h-[100px] p-1 md:p-2 border-b border-r border-border text-left transition-colors',
+                      'hover:bg-muted/50',
+                      isToday(day) && 'bg-primary/5',
+                      hasBookings && 'cursor-pointer'
+                    )}
+                  >
+                    <div className={cn(
+                      'text-sm font-medium mb-1',
+                      isToday(day) && 'text-primary'
+                    )}>
+                      {format(day, 'd')}
+                    </div>
+                    <div className="space-y-1">
+                      {dayBookings.slice(0, 2).map(({ booking, status }) => {
+                        const config = getStatusConfig(status);
+                        return (
+                          <div
+                            key={`${booking.id}-${status}`}
+                            className={cn(
+                              'text-[10px] md:text-xs px-1 py-0.5 rounded truncate border',
+                              config.color
+                            )}
+                          >
+                            <span className="hidden md:inline">{booking.guest_name}</span>
+                            <span className="md:hidden">{booking.guest_name.charAt(0)}</span>
+                          </div>
+                        );
+                      })}
+                      {dayBookings.length > 2 && (
+                        <div className="text-[10px] text-muted-foreground">
+                          +{dayBookings.length - 2} more
+                        </div>
+                      )}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Pending Approvals */}
+        {bookings.filter(b => b.booking_status === 'pending').length > 0 && (
+          <Card className="border-amber-500/30 bg-amber-500/5">
+            <CardHeader className="pb-3">
+              <CardTitle className="text-lg flex items-center gap-2 text-amber-600">
+                <Clock className="w-5 h-5" />
+                Pending Approvals
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                {bookings.filter(b => b.booking_status === 'pending').map((booking) => (
+                  <div key={booking.id} className="flex items-center justify-between p-3 bg-background rounded-lg border">
+                    <div>
+                      <p className="font-medium">{booking.guest_name}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {format(parseISO(booking.check_in), 'MMM d')} - {format(parseISO(booking.check_out), 'MMM d, yyyy')}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => {
+                          setSelectedBooking(booking);
+                          setChatOpen(true);
+                        }}
+                      >
+                        <MessageSquare className="w-4 h-4" />
+                      </Button>
+                      <Button
+                        size="sm"
+                        onClick={() => handleApproveBooking(booking)}
+                        disabled={actionLoading}
+                      >
+                        <Check className="w-4 h-4 mr-1" />
+                        Approve
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Day Details Modal */}
+        <Dialog open={!!selectedDate} onOpenChange={() => setSelectedDate(null)}>
+          <DialogContent className="max-w-lg">
+            <DialogHeader>
+              <DialogTitle>
+                {selectedDate && format(selectedDate, 'EEEE, MMMM d, yyyy')}
+              </DialogTitle>
+              <DialogDescription>
+                Bookings for this date
+              </DialogDescription>
+            </DialogHeader>
+            <ScrollArea className="max-h-[60vh]">
+              <div className="space-y-4">
+                {selectedDate && getBookingsForDate(selectedDate).map(({ booking, status }) => {
+                  const config = getStatusConfig(status);
+                  const StatusIcon = config.icon;
+
+                  return (
+                    <Card key={`${booking.id}-${status}`} className="overflow-hidden">
+                      <div className={cn('px-4 py-2 flex items-center gap-2', config.color)}>
+                        <StatusIcon className="w-4 h-4" />
+                        <span className="font-medium text-sm">{config.label}</span>
+                      </div>
+                      <CardContent className="p-4 space-y-3">
+                        <div className="flex items-start justify-between">
+                          <div>
+                            <p className="font-semibold flex items-center gap-2">
+                              <User className="w-4 h-4 text-muted-foreground" />
+                              {booking.guest_name}
+                            </p>
+                            <p className="text-sm text-muted-foreground">{booking.email}</p>
+                          </div>
+                          <Badge variant="outline">{booking.booking_id}</Badge>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-2 text-sm">
+                          <div>
+                            <p className="text-muted-foreground">Check-in</p>
+                            <p className="font-medium">{format(parseISO(booking.check_in), 'MMM d, yyyy')}</p>
+                          </div>
+                          <div>
+                            <p className="text-muted-foreground">Check-out</p>
+                            <p className="font-medium">{format(parseISO(booking.check_out), 'MMM d, yyyy')}</p>
+                          </div>
+                          <div>
+                            <p className="text-muted-foreground">Room Type</p>
+                            <p className="font-medium">{booking.room_type}</p>
+                          </div>
+                          <div>
+                            <p className="text-muted-foreground">Amount</p>
+                            <p className="font-medium">₹{booking.total_amount?.toLocaleString()}</p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-2 pt-2 border-t">
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => {
+                              setSelectedBooking(booking);
+                              setChatOpen(true);
+                              setSelectedDate(null);
+                            }}
+                          >
+                            <MessageSquare className="w-4 h-4 mr-1" />
+                            Chat
+                          </Button>
+                          
+                          {booking.booking_status === 'pending' && (
+                            <Button
+                              size="sm"
+                              onClick={() => handleApproveBooking(booking)}
+                              disabled={actionLoading}
+                            >
+                              <Check className="w-4 h-4 mr-1" />
+                              Approve
+                            </Button>
+                          )}
+                          
+                          {canMarkNoShow(booking) && (
+                            <Button
+                              size="sm"
+                              variant="destructive"
+                              onClick={() => handleMarkNoShow(booking)}
+                              disabled={actionLoading}
+                            >
+                              <AlertTriangle className="w-4 h-4 mr-1" />
+                              No-Show
+                            </Button>
+                          )}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
+            </ScrollArea>
+          </DialogContent>
+        </Dialog>
+
+        {/* Chat Modal */}
+        {selectedBooking && (
+          <BookingChat
+            bookingId={selectedBooking.id}
+            guestName={selectedBooking.guest_name}
+            isOpen={chatOpen}
+            onClose={() => {
+              setChatOpen(false);
+              setSelectedBooking(null);
+            }}
+            isAdmin={true}
+          />
+        )}
+      </div>
+    </UnifiedAdminLayout>
+  );
+}

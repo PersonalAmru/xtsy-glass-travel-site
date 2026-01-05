@@ -3,7 +3,7 @@
  */
 
 import { useState, useEffect } from 'react';
-import { AdminLayoutV2 } from '@/layouts/AdminLayoutV2';
+import { UnifiedAdminLayout } from '@/layouts/UnifiedAdminLayout';
 import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -109,7 +109,7 @@ export default function AdminProperties() {
   };
 
   return (
-    <AdminLayoutV2>
+    <UnifiedAdminLayout>
       <div className="p-4 space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
@@ -245,6 +245,6 @@ export default function AdminProperties() {
           </div>
         )}
       </div>
-    </AdminLayoutV2>
+    </UnifiedAdminLayout>
   );
 }

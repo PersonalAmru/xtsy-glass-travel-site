@@ -54,13 +54,15 @@ const BookingFlow = createLazyComponent(() => import("./pages/BookingFlow"));
 const UserAuth = createLazyComponent(() => import("./pages/user/UserAuth"));
 const UserProfile = createLazyComponent(() => import("./pages/user/UserProfile"));
 
-// Admin pages - V2 with hamburger menu
+// Admin pages - Unified layout with hamburger menu
 const AdminOverview = createLazyComponent(() => import("./pages/admin/AdminOverview"));
 const AdminAnalytics = createLazyComponent(() => import("./pages/admin/AdminAnalytics"));
 const AdminInventory = createLazyComponent(() => import("./pages/admin/AdminInventory"));
 const AdminActivity = createLazyComponent(() => import("./pages/admin/AdminActivity"));
 const AdminPropertiesV2 = createLazyComponent(() => import("./pages/admin/AdminPropertiesV2"));
 const AdminFranchisesV2 = createLazyComponent(() => import("./pages/admin/AdminFranchisesV2"));
+const AdminBookingsCalendar = createLazyComponent(() => import("./pages/admin/AdminBookingsCalendar"));
+const AdminGuestChats = createLazyComponent(() => import("./pages/admin/AdminGuestChats"));
 
 // Franchise pages
 const FranchiseLogin = createLazyComponent(() => import("./pages/franchise/FranchiseLogin"));
@@ -197,10 +199,12 @@ function App() {
                 <Route path="/auth" element={<LazyRoute><UserAuth /></LazyRoute>} />
                 <Route path="/profile" element={<LazyRoute><UserProfile /></LazyRoute>} />
                 
-                {/* Admin Routes - Separate pages */}
+                {/* Admin Routes - Unified layout with hamburger menu */}
                 <Route path="/admin" element={<LazyRoute><AdminOverview /></LazyRoute>} />
                 <Route path="/admin/dashboard" element={<LazyRoute><AdminOverview /></LazyRoute>} />
                 <Route path="/admin/analytics" element={<LazyRoute><AdminAnalytics /></LazyRoute>} />
+                <Route path="/admin/bookings" element={<LazyRoute><AdminBookingsCalendar /></LazyRoute>} />
+                <Route path="/admin/chats" element={<LazyRoute><AdminGuestChats /></LazyRoute>} />
                 <Route path="/admin/inventory" element={<LazyRoute><AdminInventory /></LazyRoute>} />
                 <Route path="/admin/activity" element={<LazyRoute><AdminActivity /></LazyRoute>} />
                 <Route path="/admin/properties" element={<LazyRoute><AdminPropertiesV2 /></LazyRoute>} />

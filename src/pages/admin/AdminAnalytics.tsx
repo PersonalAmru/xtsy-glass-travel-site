@@ -4,7 +4,7 @@
 
 import { useState } from 'react';
 import { useAdminAnalytics } from '@/hooks/useAdminAnalytics';
-import { AdminLayout } from '@/layouts/AdminLayout';
+import { UnifiedAdminLayout } from '@/layouts/UnifiedAdminLayout';
 import { AppleCard, AppleSectionHeader } from '@/components/admin/AppleCard';
 import GeoTrafficList from '@/components/admin/GeoTrafficList';
 import { Button } from '@/components/ui/button';
@@ -73,7 +73,7 @@ export default function AdminAnalytics() {
   const { loading, error, geoHeatmap, funnel, traffic, behavior, trends, refresh } = useAdminAnalytics(daysBack);
 
   return (
-    <AdminLayout>
+    <UnifiedAdminLayout>
       <div className="p-6 space-y-8">
         {/* Header */}
         <header className="flex items-center justify-between gap-4 flex-wrap">
@@ -200,6 +200,6 @@ export default function AdminAnalytics() {
           )}
         </AppleCard>
       </div>
-    </AdminLayout>
+    </UnifiedAdminLayout>
   );
 }

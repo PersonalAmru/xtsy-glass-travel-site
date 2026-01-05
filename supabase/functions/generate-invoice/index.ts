@@ -359,11 +359,44 @@ serve(async (req) => {
         .update({ html_content: html })
         .eq('booking_id', dbResult.bookingId);
 
+      // Get the booking's id (UUID) from the booking_id (XTH-INV-XXX)
+      const { data: booking } = await supabase
+        .from('bookings')
+        .select('id')
+        .eq('booking_id', dbResult.bookingId)
+        .single();
+
+      // Insert the initial message to host as a chat message
+      if (booking && data.messageToHost) {
+        await supabase.from('booking_messages').insert({
+          booking_id: booking.id,
+          sender_type: 'guest',
+          sender_name: data.guestName,
+          message: data.messageToHost,
+        });
+
+        // Create admin notification for new booking
+        await supabase.from('admin_notifications').insert({
+          type: 'new_booking',
+          title: 'New Booking Request',
+          message: `${data.guestName} has made a booking for ${data.roomName} (${data.checkIn} - ${data.checkOut})`,
+          booking_id: booking.id,
+          metadata: {
+            guest_name: data.guestName,
+            room_name: data.roomName,
+            check_in: data.checkIn,
+            check_out: data.checkOut,
+            total_amount: data.totalAmount,
+          },
+        });
+      }
+
       console.log('Invoice generated for booking:', dbResult.bookingId);
 
       return new Response(JSON.stringify({
         success: true,
         bookingId: dbResult.bookingId,
+        bookingUUID: booking?.id,
         html,
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
