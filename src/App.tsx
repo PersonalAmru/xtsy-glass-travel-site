@@ -16,6 +16,7 @@ import { cleanupUnifiedImage } from "./components/UnifiedImage";
 import { EnhancedAnalyticsProvider } from "./hooks/useEnhancedAnalytics";
 import { HappyGuestsProvider } from "./contexts/HappyGuestsContext";
 import { HotjarTracking } from "./components/HotjarTracking";
+import { UserAuthProvider } from "./contexts/UserAuthContext";
 
 // Optimized lazy loading with faster retry and better chunk handling
 const createLazyComponent = (importFn: () => Promise<any>) => {
@@ -47,6 +48,9 @@ const LazyTravel = createLazyComponent(() => import("./pages/Travel"));
 const LazyPrivacyPolicy = createLazyComponent(() => import("./pages/PrivacyPolicy"));
 const AdminLogin = createLazyComponent(() => import("./pages/AdminLogin"));
 const BookingFlow = createLazyComponent(() => import("./pages/BookingFlow"));
+
+// User auth page
+const UserAuth = createLazyComponent(() => import("./pages/user/UserAuth"));
 
 // Admin pages - V2 with hamburger menu
 const AdminOverview = createLazyComponent(() => import("./pages/admin/AdminOverview"));
@@ -165,43 +169,48 @@ function App() {
       <div className="dark">
         <PerformanceMonitor />
         <HappyGuestsProvider>
-          <EnhancedAnalyticsProvider>
-            <HotjarTracking />
-            <TooltipProvider>
-            <Toaster />
-            <Sonner />
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/about" element={<LazyRoute><LazyAbout /></LazyRoute>} />
-              <Route path="/gallery" element={<LazyRoute><LazyGallery /></LazyRoute>} />
-              <Route path="/travel" element={<LazyRoute><LazyTravel /></LazyRoute>} />
-              <Route path="/xtsy-270" element={<LazyRoute><LazyXTSY270 /></LazyRoute>} />
-              <Route path="/pet-friendly" element={<LazyRoute><LazyPetFriendly /></LazyRoute>} />
-              <Route path="/xtsy-vs-zostel" element={<LazyRoute><LazyXTSYvsZostel /></LazyRoute>} />
-              <Route path="/female-travellers" element={<LazyRoute><LazyFemaleTravellers /></LazyRoute>} />
-              <Route path="/work-from-home" element={<LazyRoute><LazyWorkFromHome /></LazyRoute>} />
-              <Route path="/xtsy-rentals" element={<LazyRoute><LazyXTSYRentals /></LazyRoute>} />
-              <Route path="/privacy-policy" element={<LazyRoute><LazyPrivacyPolicy /></LazyRoute>} />
-              <Route path="/admin-login" element={<LazyRoute><AdminLogin /></LazyRoute>} />
-              <Route path="/booking" element={<LazyRoute><BookingFlow /></LazyRoute>} />
-              
-              {/* Admin Routes - Separate pages */}
-              <Route path="/admin" element={<LazyRoute><AdminOverview /></LazyRoute>} />
-              <Route path="/admin/dashboard" element={<LazyRoute><AdminOverview /></LazyRoute>} />
-              <Route path="/admin/analytics" element={<LazyRoute><AdminAnalytics /></LazyRoute>} />
-              <Route path="/admin/inventory" element={<LazyRoute><AdminInventory /></LazyRoute>} />
-              <Route path="/admin/activity" element={<LazyRoute><AdminActivity /></LazyRoute>} />
-              <Route path="/admin/properties" element={<LazyRoute><AdminPropertiesV2 /></LazyRoute>} />
-              <Route path="/admin/franchises" element={<LazyRoute><AdminFranchisesV2 /></LazyRoute>} />
-              
-              {/* Franchise Routes */}
-              <Route path="/franchise/login" element={<LazyRoute><FranchiseLogin /></LazyRoute>} />
-              <Route path="/franchise" element={<LazyRoute><FranchiseDashboard /></LazyRoute>} />
-              
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-            </TooltipProvider>
-          </EnhancedAnalyticsProvider>
+          <UserAuthProvider>
+            <EnhancedAnalyticsProvider>
+              <HotjarTracking />
+              <TooltipProvider>
+              <Toaster />
+              <Sonner />
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/about" element={<LazyRoute><LazyAbout /></LazyRoute>} />
+                <Route path="/gallery" element={<LazyRoute><LazyGallery /></LazyRoute>} />
+                <Route path="/travel" element={<LazyRoute><LazyTravel /></LazyRoute>} />
+                <Route path="/xtsy-270" element={<LazyRoute><LazyXTSY270 /></LazyRoute>} />
+                <Route path="/pet-friendly" element={<LazyRoute><LazyPetFriendly /></LazyRoute>} />
+                <Route path="/xtsy-vs-zostel" element={<LazyRoute><LazyXTSYvsZostel /></LazyRoute>} />
+                <Route path="/female-travellers" element={<LazyRoute><LazyFemaleTravellers /></LazyRoute>} />
+                <Route path="/work-from-home" element={<LazyRoute><LazyWorkFromHome /></LazyRoute>} />
+                <Route path="/xtsy-rentals" element={<LazyRoute><LazyXTSYRentals /></LazyRoute>} />
+                <Route path="/privacy-policy" element={<LazyRoute><LazyPrivacyPolicy /></LazyRoute>} />
+                <Route path="/admin-login" element={<LazyRoute><AdminLogin /></LazyRoute>} />
+                <Route path="/booking" element={<LazyRoute><BookingFlow /></LazyRoute>} />
+                
+                {/* User Auth Route */}
+                <Route path="/auth" element={<LazyRoute><UserAuth /></LazyRoute>} />
+                
+                {/* Admin Routes - Separate pages */}
+                <Route path="/admin" element={<LazyRoute><AdminOverview /></LazyRoute>} />
+                <Route path="/admin/dashboard" element={<LazyRoute><AdminOverview /></LazyRoute>} />
+                <Route path="/admin/analytics" element={<LazyRoute><AdminAnalytics /></LazyRoute>} />
+                <Route path="/admin/inventory" element={<LazyRoute><AdminInventory /></LazyRoute>} />
+                <Route path="/admin/activity" element={<LazyRoute><AdminActivity /></LazyRoute>} />
+                <Route path="/admin/properties" element={<LazyRoute><AdminPropertiesV2 /></LazyRoute>} />
+                <Route path="/admin/franchises" element={<LazyRoute><AdminFranchisesV2 /></LazyRoute>} />
+                
+                {/* Franchise Routes */}
+                <Route path="/franchise/login" element={<LazyRoute><FranchiseLogin /></LazyRoute>} />
+                <Route path="/franchise" element={<LazyRoute><FranchiseDashboard /></LazyRoute>} />
+                
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+              </TooltipProvider>
+            </EnhancedAnalyticsProvider>
+          </UserAuthProvider>
         </HappyGuestsProvider>
       </div>
     </SecurityHeadersProvider>
