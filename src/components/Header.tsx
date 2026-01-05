@@ -237,17 +237,17 @@ const Header = () => {
                   Travel
                 </button>
                 
-                {/* Legal - Required for Google OAuth Verification */}
+                {/* Policies - Required for Google OAuth Verification */}
                 <NavigationMenu>
                   <NavigationMenuList>
                     <NavigationMenuItem>
                       <NavigationMenuTrigger 
                         className="px-3 py-2 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200 font-medium bg-transparent"
                       >
-                        Legal
+                        Policies
                       </NavigationMenuTrigger>
                       <NavigationMenuContent className="bg-black/95 backdrop-blur-md border border-white/20">
-                        <ul className="w-48 p-2">
+                        <ul className="w-56 p-2">
                           <li>
                             <NavigationMenuLink asChild>
                               <Link
@@ -267,6 +267,39 @@ const Header = () => {
                                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                               >
                                 Terms of Service
+                              </Link>
+                            </NavigationMenuLink>
+                          </li>
+                          <li>
+                            <NavigationMenuLink asChild>
+                              <Link
+                                to="/cancellation-policy"
+                                className="block px-4 py-3 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200"
+                                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                              >
+                                Cancellation Policy
+                              </Link>
+                            </NavigationMenuLink>
+                          </li>
+                          <li>
+                            <NavigationMenuLink asChild>
+                              <Link
+                                to="/travel-policies"
+                                className="block px-4 py-3 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200"
+                                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                              >
+                                Travel Policies
+                              </Link>
+                            </NavigationMenuLink>
+                          </li>
+                          <li>
+                            <NavigationMenuLink asChild>
+                              <Link
+                                to="/hostel-terms"
+                                className="block px-4 py-3 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200"
+                                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                              >
+                                Hostel Terms & Conditions
                               </Link>
                             </NavigationMenuLink>
                           </li>
