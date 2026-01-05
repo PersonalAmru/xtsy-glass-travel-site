@@ -9,12 +9,9 @@ import { cn } from '@/lib/utils';
 import {
   LayoutDashboard,
   BarChart3,
-  CalendarDays,
   BedDouble,
-  Activity,
   LogOut,
   ChevronLeft,
-  MessageSquare,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
@@ -40,18 +37,6 @@ const navItems = [
     label: 'Inventory',
     icon: BedDouble,
     path: '/admin/inventory',
-  },
-  {
-    id: 'calendar',
-    label: 'Calendar',
-    icon: CalendarDays,
-    path: '/admin/calendar',
-  },
-  {
-    id: 'activity',
-    label: 'Live',
-    icon: Activity,
-    path: '/admin/activity',
   },
 ];
 
