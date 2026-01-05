@@ -63,22 +63,27 @@ export function UnifiedAdminLayout({ children }: UnifiedAdminLayoutProps) {
   useEffect(() => {
     const checkAdmin = async () => {
       try {
+        // Check for admin session marker
+        const isAdminSession = localStorage.getItem('xtsy_admin_session') === 'true';
+        
         const { data: { user } } = await supabase.auth.getUser();
         
         if (!user) {
+          localStorage.removeItem('xtsy_admin_session');
           navigate('/admin-login');
           return;
         }
 
-        // Check if admin email
-        if (user.email !== 'xtsy.social@gmail.com') {
+        // Check if admin email and has admin session marker
+        if (user.email !== 'xtsy.social@gmail.com' || !isAdminSession) {
           const { data: hasRole } = await supabase.rpc('has_role', {
             _user_id: user.id,
             _role: 'admin',
           });
 
-          if (!hasRole) {
-            navigate('/');
+          if (!hasRole || !isAdminSession) {
+            // Not an admin or didn't login via admin portal
+            navigate('/admin-login');
             return;
           }
         }
@@ -86,6 +91,7 @@ export function UnifiedAdminLayout({ children }: UnifiedAdminLayoutProps) {
         setIsAdmin(true);
       } catch (error) {
         console.error('Admin check failed:', error);
+        localStorage.removeItem('xtsy_admin_session');
         navigate('/admin-login');
       } finally {
         setIsLoading(false);
@@ -96,6 +102,7 @@ export function UnifiedAdminLayout({ children }: UnifiedAdminLayoutProps) {
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
       if (event === 'SIGNED_OUT') {
+        localStorage.removeItem('xtsy_admin_session');
         navigate('/admin-login');
       }
     });
@@ -105,9 +112,11 @@ export function UnifiedAdminLayout({ children }: UnifiedAdminLayoutProps) {
 
   const handleLogout = async () => {
     try {
+      // Clear admin session marker
+      localStorage.removeItem('xtsy_admin_session');
       await supabase.auth.signOut();
-      toast.success('Signed out');
-      navigate('/');
+      toast.success('Signed out from Admin Portal');
+      navigate('/admin-login');
     } catch (error) {
       toast.error('Failed to sign out');
     }
