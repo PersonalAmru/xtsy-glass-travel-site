@@ -22,6 +22,7 @@ import {
   verifyPhoneOTP,
   setupRecaptcha,
   onUserAuthStateChanged,
+  signInWithGoogle,
   type ConfirmationResult
 } from '@/lib/firebase';
 import { RecaptchaVerifier } from 'firebase/auth';
@@ -39,6 +40,9 @@ interface UserAuthContextType {
   // Phone auth
   sendOTP: (phoneNumber: string, recaptchaContainerId: string) => Promise<void>;
   verifyOTP: (code: string) => Promise<void>;
+  
+  // Google auth
+  signInGoogle: () => Promise<void>;
   
   // General
   signOut: () => Promise<void>;
@@ -182,6 +186,22 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
     }
   }, [confirmationResult, recaptchaVerifier]);
 
+  // Google sign in
+  const signInGoogle = useCallback(async () => {
+    setIsLoading(true);
+    setError(null);
+    
+    try {
+      await signInWithGoogle();
+    } catch (err: any) {
+      const message = getErrorMessage(err.code);
+      setError(message);
+      throw new Error(message);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
   // Sign out
   const signOut = useCallback(async () => {
     setIsLoading(true);
@@ -206,6 +226,7 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
     signUpEmail,
     sendOTP,
     verifyOTP,
+    signInGoogle,
     signOut,
     clearError,
   };

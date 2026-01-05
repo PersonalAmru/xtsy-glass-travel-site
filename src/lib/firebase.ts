@@ -14,6 +14,8 @@ import {
   sendEmailVerification,
   signOut,
   onAuthStateChanged,
+  signInWithPopup,
+  GoogleAuthProvider,
   User,
   ConfirmationResult
 } from 'firebase/auth';
@@ -154,6 +156,18 @@ export async function createAccountWithEmail(
   // Send verification email
   await sendEmailVerification(result.user);
   
+  return result.user;
+}
+
+/**
+ * Sign in with Google
+ */
+export async function signInWithGoogle(): Promise<User> {
+  const auth = getFirebaseAuth();
+  const provider = new GoogleAuthProvider();
+  provider.addScope('email');
+  provider.addScope('profile');
+  const result = await signInWithPopup(auth, provider);
   return result.user;
 }
 
