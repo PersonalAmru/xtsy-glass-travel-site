@@ -750,6 +750,94 @@ export type Database = {
         }
         Relationships: []
       }
+      franchise_assignments: {
+        Row: {
+          assigned_at: string | null
+          assigned_by: string | null
+          created_at: string | null
+          id: string
+          is_active: boolean | null
+          permissions: Json | null
+          property_id: string
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          assigned_at?: string | null
+          assigned_by?: string | null
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          permissions?: Json | null
+          property_id: string
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          assigned_at?: string | null
+          assigned_by?: string | null
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          permissions?: Json | null
+          property_id?: string
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "franchise_assignments_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      franchise_invites: {
+        Row: {
+          accepted_at: string | null
+          created_at: string | null
+          email: string
+          expires_at: string | null
+          id: string
+          invite_token: string
+          invited_by: string | null
+          is_used: boolean | null
+          property_id: string
+        }
+        Insert: {
+          accepted_at?: string | null
+          created_at?: string | null
+          email: string
+          expires_at?: string | null
+          id?: string
+          invite_token?: string
+          invited_by?: string | null
+          is_used?: boolean | null
+          property_id: string
+        }
+        Update: {
+          accepted_at?: string | null
+          created_at?: string | null
+          email?: string
+          expires_at?: string | null
+          id?: string
+          invite_token?: string
+          invited_by?: string | null
+          is_used?: boolean | null
+          property_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "franchise_invites_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       ical_sync_configs: {
         Row: {
           created_at: string | null
@@ -1302,6 +1390,56 @@ export type Database = {
         }
         Relationships: []
       }
+      property_wallets: {
+        Row: {
+          balance: number | null
+          created_at: string | null
+          currency: string | null
+          id: string
+          pending_amount: number | null
+          property_id: string
+          royalty_rate: number | null
+          tds_rate: number | null
+          total_earnings: number | null
+          total_payouts: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          balance?: number | null
+          created_at?: string | null
+          currency?: string | null
+          id?: string
+          pending_amount?: number | null
+          property_id: string
+          royalty_rate?: number | null
+          tds_rate?: number | null
+          total_earnings?: number | null
+          total_payouts?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          balance?: number | null
+          created_at?: string | null
+          currency?: string | null
+          id?: string
+          pending_amount?: number | null
+          property_id?: string
+          royalty_rate?: number | null
+          tds_rate?: number | null
+          total_earnings?: number | null
+          total_payouts?: number | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "property_wallets_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: true
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       rate_limits: {
         Row: {
           created_at: string | null
@@ -1408,6 +1546,7 @@ export type Database = {
           guest_name: string
           id: string
           photos: string[] | null
+          property_id: string | null
           rating: number
           review_text: string | null
           verified: boolean | null
@@ -1418,6 +1557,7 @@ export type Database = {
           guest_name: string
           id?: string
           photos?: string[] | null
+          property_id?: string | null
           rating: number
           review_text?: string | null
           verified?: boolean | null
@@ -1428,11 +1568,20 @@ export type Database = {
           guest_name?: string
           id?: string
           photos?: string[] | null
+          property_id?: string | null
           rating?: number
           review_text?: string | null
           verified?: boolean | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "reviews_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       room_availability_status: {
         Row: {
@@ -1629,6 +1778,69 @@ export type Database = {
           user_id?: string | null
         }
         Relationships: []
+      }
+      settlements: {
+        Row: {
+          amount: number
+          created_at: string | null
+          id: string
+          net_amount: number
+          notes: string | null
+          payment_reference: string | null
+          property_id: string
+          royalty_deducted: number | null
+          settlement_date: string
+          status: string | null
+          tds_deducted: number | null
+          updated_at: string | null
+          wallet_id: string | null
+        }
+        Insert: {
+          amount: number
+          created_at?: string | null
+          id?: string
+          net_amount: number
+          notes?: string | null
+          payment_reference?: string | null
+          property_id: string
+          royalty_deducted?: number | null
+          settlement_date: string
+          status?: string | null
+          tds_deducted?: number | null
+          updated_at?: string | null
+          wallet_id?: string | null
+        }
+        Update: {
+          amount?: number
+          created_at?: string | null
+          id?: string
+          net_amount?: number
+          notes?: string | null
+          payment_reference?: string | null
+          property_id?: string
+          royalty_deducted?: number | null
+          settlement_date?: string
+          status?: string | null
+          tds_deducted?: number | null
+          updated_at?: string | null
+          wallet_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "settlements_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "settlements_wallet_id_fkey"
+            columns: ["wallet_id"]
+            isOneToOne: false
+            referencedRelation: "property_wallets"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       traveller_events: {
         Row: {
@@ -2314,6 +2526,7 @@ export type Database = {
           whatsapp_number: string
         }[]
       }
+      get_user_properties: { Args: { _user_id: string }; Returns: string[] }
       get_user_role: { Args: never; Returns: string }
       has_role: {
         Args: {
@@ -2342,6 +2555,10 @@ export type Database = {
       ip_anonymize: { Args: { ip_text: string }; Returns: string }
       is_admin: { Args: never; Returns: boolean }
       is_admin_or_staff: { Args: never; Returns: boolean }
+      is_franchise_for_property: {
+        Args: { _property_id: string; _user_id: string }
+        Returns: boolean
+      }
       is_room_available: {
         Args: {
           p_check_in: string
@@ -2398,7 +2615,7 @@ export type Database = {
       }
     }
     Enums: {
-      app_role: "admin" | "staff" | "user" | "guest"
+      app_role: "admin" | "staff" | "user" | "guest" | "franchise"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -2526,7 +2743,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin", "staff", "user", "guest"],
+      app_role: ["admin", "staff", "user", "guest", "franchise"],
     },
   },
 } as const

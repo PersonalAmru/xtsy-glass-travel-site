@@ -48,11 +48,17 @@ const LazyPrivacyPolicy = createLazyComponent(() => import("./pages/PrivacyPolic
 const AdminLogin = createLazyComponent(() => import("./pages/AdminLogin"));
 const BookingFlow = createLazyComponent(() => import("./pages/BookingFlow"));
 
-// Admin pages - separate routes
+// Admin pages - V2 with hamburger menu
 const AdminOverview = createLazyComponent(() => import("./pages/admin/AdminOverview"));
 const AdminAnalytics = createLazyComponent(() => import("./pages/admin/AdminAnalytics"));
 const AdminInventory = createLazyComponent(() => import("./pages/admin/AdminInventory"));
 const AdminActivity = createLazyComponent(() => import("./pages/admin/AdminActivity"));
+const AdminPropertiesV2 = createLazyComponent(() => import("./pages/admin/AdminPropertiesV2"));
+const AdminFranchisesV2 = createLazyComponent(() => import("./pages/admin/AdminFranchisesV2"));
+
+// Franchise pages
+const FranchiseLogin = createLazyComponent(() => import("./pages/franchise/FranchiseLogin"));
+const FranchiseDashboard = createLazyComponent(() => import("./pages/franchise/FranchiseDashboard"));
 
 // Fast route wrapper with minimal loading state
 const LazyRoute = memo(({ children }: { children: ReactNode }) => (
@@ -185,6 +191,12 @@ function App() {
               <Route path="/admin/analytics" element={<LazyRoute><AdminAnalytics /></LazyRoute>} />
               <Route path="/admin/inventory" element={<LazyRoute><AdminInventory /></LazyRoute>} />
               <Route path="/admin/activity" element={<LazyRoute><AdminActivity /></LazyRoute>} />
+              <Route path="/admin/properties" element={<LazyRoute><AdminPropertiesV2 /></LazyRoute>} />
+              <Route path="/admin/franchises" element={<LazyRoute><AdminFranchisesV2 /></LazyRoute>} />
+              
+              {/* Franchise Routes */}
+              <Route path="/franchise/login" element={<LazyRoute><FranchiseLogin /></LazyRoute>} />
+              <Route path="/franchise" element={<LazyRoute><FranchiseDashboard /></LazyRoute>} />
               
               <Route path="*" element={<NotFound />} />
             </Routes>
