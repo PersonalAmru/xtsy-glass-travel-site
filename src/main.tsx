@@ -18,16 +18,70 @@ import { performGlobalCleanup } from "./utils/performanceCleanup";
 import { cleanupUnifiedImage } from "./components/UnifiedImage";
 import { initializeCriticalImageLoading, preloadLCPImage } from "./utils/criticalImagePreloader";
 
-// Initialize Sentry as early as possible
-Sentry.init({
-  dsn: "https://12bae2f7614bf702c6f7c456eef52cea@o4510659453911040.ingest.us.sentry.io/4510659499982848",
-  integrations: [Sentry.browserTracingIntegration()],
-  // Capture 100% of transactions for performance monitoring
-  // Adjust this value in production for cost optimization
-  tracesSampleRate: 1.0,
-  // Control which URLs get distributed tracing headers
-  tracePropagationTargets: ["localhost", /^https:\/\/.*\.lovableproject\.com/, /^https:\/\/.*\.lovable\.app/],
-});
+// Initialize Sentry only in production
+const SENTRY_DSN = import.meta.env.VITE_SENTRY_DSN || "https://12bae2f7614bf702c6f7c456eef52cea@o4510659453911040.ingest.us.sentry.io/4510659499982848";
+
+if (import.meta.env.PROD && SENTRY_DSN) {
+  Sentry.init({
+    dsn: SENTRY_DSN,
+    environment: import.meta.env.MODE,
+    
+    // Integrations
+    integrations: [
+      Sentry.browserTracingIntegration(),
+      Sentry.replayIntegration({
+        maskAllText: true, // Mask all text to prevent PII leakage
+        blockAllMedia: true, // Block media to prevent PII in images
+      }),
+    ],
+    
+    // Performance monitoring
+    tracesSampleRate: 0.1, // 10% of transactions
+    tracePropagationTargets: ["localhost", /^https:\/\/.*\.lovableproject\.com/, /^https:\/\/.*\.lovable\.app/],
+    
+    // Session replay - errors only
+    replaysSessionSampleRate: 0, // Don't record normal sessions
+    replaysOnErrorSampleRate: 1.0, // 100% of sessions with errors
+    
+    // Privacy - do not log PII
+    sendDefaultPii: false,
+    
+    // Custom tags
+    initialScope: {
+      tags: {
+        app: "xtsy",
+        surface: "bookingflow",
+      },
+    },
+    
+    // Ignore common noise errors
+    ignoreErrors: [
+      // ResizeObserver errors
+      "ResizeObserver loop limit exceeded",
+      "ResizeObserver loop completed with undelivered notifications",
+      // Network errors
+      "NetworkError when attempting to fetch resource",
+      "Failed to fetch",
+      "Load failed",
+      "Network request failed",
+      // Browser extension errors
+      /^chrome-extension:\/\//,
+      /^moz-extension:\/\//,
+      // Common browser errors
+      "Non-Error promise rejection captured",
+      "cancelled",
+    ],
+    
+    // Filter out noisy transactions
+    beforeSend(event) {
+      // Don't send events from browser extensions
+      if (event.request?.url?.includes('chrome-extension://')) {
+        return null;
+      }
+      return event;
+    },
+  });
+}
 
 // LCP OPTIMIZATION: Preload LCP image IMMEDIATELY before anything else
 // This runs synchronously at module load time for fastest possible LCP
