@@ -28,6 +28,9 @@ export default function FranchiseLogin() {
     setLoading(true);
 
     try {
+      // Sign out any existing session first to ensure clean franchise login
+      await supabase.auth.signOut();
+      
       const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
         email,
         password,
@@ -52,6 +55,8 @@ export default function FranchiseLogin() {
         }
 
         if (isFranchise) {
+          // Store franchise session marker
+          localStorage.setItem('xtsy_franchise_session', 'true');
           toast.success('Welcome back!');
           navigate('/franchise');
         } else {

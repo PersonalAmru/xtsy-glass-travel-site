@@ -101,6 +101,9 @@ export default function UserProfile() {
   const handleSignOut = async () => {
     setIsSigningOut(true);
     try {
+      // Clear any portal session markers
+      localStorage.removeItem('xtsy_admin_session');
+      localStorage.removeItem('xtsy_franchise_session');
       await signOut();
       navigate('/', { replace: true });
     } catch (error) {

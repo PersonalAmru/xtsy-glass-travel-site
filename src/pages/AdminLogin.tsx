@@ -27,13 +27,15 @@ const AdminLogin = () => {
     setLoading(true);
 
     try {
+      // Sign out any existing session first to ensure clean admin login
+      await supabase.auth.signOut();
+      
       const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
         email: email.trim(),
         password: password,
       });
 
       if (authError) {
-        // Generic error message - don't reveal if email exists
         toast.error("Invalid credentials. Please try again.");
         return;
       }
@@ -61,7 +63,9 @@ const AdminLogin = () => {
         }
 
         if (isAdmin) {
-          toast.success("Welcome!");
+          // Store admin session marker in localStorage
+          localStorage.setItem('xtsy_admin_session', 'true');
+          toast.success("Welcome to Admin Portal!");
           navigate("/admin/dashboard");
         } else {
           await supabase.auth.signOut();
@@ -69,7 +73,6 @@ const AdminLogin = () => {
         }
       }
     } catch (error: any) {
-      // Generic error - don't expose internal details
       toast.error("Login failed. Please try again.");
     } finally {
       setLoading(false);
