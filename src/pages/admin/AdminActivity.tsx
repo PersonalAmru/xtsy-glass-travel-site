@@ -2,13 +2,13 @@
  * Admin Activity Page - Real-time visitor tracking
  */
 
-import { AdminLayout } from '@/layouts/AdminLayout';
-import { AppleCard, AppleSectionHeader } from '@/components/admin/AppleCard';
+import { UnifiedAdminLayout } from '@/layouts/UnifiedAdminLayout';
+import { AppleCard } from '@/components/admin/AppleCard';
 import { Activity } from 'lucide-react';
 
 export default function AdminActivity() {
   return (
-    <AdminLayout>
+    <UnifiedAdminLayout>
       <div className="p-6 space-y-6">
         <header>
           <h1 className="text-2xl font-bold tracking-tight">Live Activity</h1>
@@ -20,6 +20,6 @@ export default function AdminActivity() {
           <p className="text-muted-foreground">Real-time activity feed coming soon</p>
         </AppleCard>
       </div>
-    </AdminLayout>
+    </UnifiedAdminLayout>
   );
 }

@@ -694,6 +694,8 @@ export type Database = {
       bookings: {
         Row: {
           address: string | null
+          approved_at: string | null
+          approved_by: string | null
           booking_id: string
           booking_status: string
           cancelled_at: string | null
@@ -706,7 +708,10 @@ export type Database = {
           emergency_contact: string | null
           guest_name: string
           guests: number
+          host_message: string | null
           id: string
+          no_show_marked_at: string | null
+          no_show_marked_by: string | null
           ota_booking_id: string | null
           ota_name: string | null
           payment_status: string | null
@@ -727,6 +732,8 @@ export type Database = {
         }
         Insert: {
           address?: string | null
+          approved_at?: string | null
+          approved_by?: string | null
           booking_id: string
           booking_status?: string
           cancelled_at?: string | null
@@ -739,7 +746,10 @@ export type Database = {
           emergency_contact?: string | null
           guest_name: string
           guests?: number
+          host_message?: string | null
           id?: string
+          no_show_marked_at?: string | null
+          no_show_marked_by?: string | null
           ota_booking_id?: string | null
           ota_name?: string | null
           payment_status?: string | null
@@ -760,6 +770,8 @@ export type Database = {
         }
         Update: {
           address?: string | null
+          approved_at?: string | null
+          approved_by?: string | null
           booking_id?: string
           booking_status?: string
           cancelled_at?: string | null
@@ -772,7 +784,10 @@ export type Database = {
           emergency_contact?: string | null
           guest_name?: string
           guests?: number
+          host_message?: string | null
           id?: string
+          no_show_marked_at?: string | null
+          no_show_marked_by?: string | null
           ota_booking_id?: string | null
           ota_name?: string | null
           payment_status?: string | null
@@ -2518,6 +2533,10 @@ export type Database = {
         Args: { target_date?: string }
         Returns: boolean
       }
+      approve_booking_and_block_inventory: {
+        Args: { p_admin_id: string; p_booking_id: string }
+        Returns: Json
+      }
       calculate_spend_tier: { Args: { p_visitor_id: string }; Returns: string }
       check_newsletter_rate_limit: {
         Args: { p_email: string; p_ip_address?: string }
@@ -2594,6 +2613,14 @@ export type Database = {
       get_analytics_overview: { Args: { days_back?: number }; Returns: Json }
       get_app_secret: { Args: { secret_name: string }; Returns: string }
       get_app_secret_secure: { Args: { secret_name: string }; Returns: string }
+      get_booking_calendar: {
+        Args: {
+          p_end_date: string
+          p_property_id?: string
+          p_start_date: string
+        }
+        Returns: Json
+      }
       get_bookings_masked_secure: {
         Args: never
         Returns: {
@@ -2865,6 +2892,10 @@ export type Database = {
       log_secure_access: {
         Args: { access_granted?: boolean; function_name: string }
         Returns: undefined
+      }
+      mark_booking_no_show: {
+        Args: { p_admin_id: string; p_booking_id: string }
+        Returns: Json
       }
       norm_email: { Args: { e: string }; Returns: string }
       resolve_security_alert_admin: {

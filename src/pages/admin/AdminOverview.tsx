@@ -4,7 +4,7 @@
 
 import { useState } from 'react';
 import { useAdminAnalytics } from '@/hooks/useAdminAnalytics';
-import { AdminLayout } from '@/layouts/AdminLayout';
+import { UnifiedAdminLayout } from '@/layouts/UnifiedAdminLayout';
 import { AppleCard, AppleMetricCard, AppleLiveIndicator } from '@/components/admin/AppleCard';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -25,7 +25,7 @@ export default function AdminOverview() {
   };
 
   return (
-    <AdminLayout>
+    <UnifiedAdminLayout>
       <div className="p-6 space-y-8">
         {/* Header */}
         <header className="flex items-center justify-between gap-4 flex-wrap">
@@ -97,6 +97,6 @@ export default function AdminOverview() {
           )}
         </div>
       </div>
-    </AdminLayout>
+    </UnifiedAdminLayout>
   );
 }

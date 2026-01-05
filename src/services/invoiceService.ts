@@ -26,6 +26,7 @@ export interface InvoiceData {
 export interface GenerateInvoiceResponse {
   success: boolean;
   bookingId?: string;
+  bookingUUID?: string;
   html?: string;
   error?: string;
 }

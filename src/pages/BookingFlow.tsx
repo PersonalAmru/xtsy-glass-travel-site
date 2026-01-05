@@ -1216,6 +1216,7 @@ export default function BookingFlow() {
   const [invoiceHtml, setInvoiceHtml] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [bookingId, setBookingId] = useState('');
+  const [bookingUUID, setBookingUUID] = useState('');
   const [chatOpen, setChatOpen] = useState(false);
 
   // Pre-fill guest details from Supabase user when authenticated
@@ -1392,11 +1393,14 @@ export default function BookingFlow() {
 
       if (result.success && result.bookingId) {
         setBookingId(result.bookingId);
+        if (result.bookingUUID) {
+          setBookingUUID(result.bookingUUID);
+        }
         if (result.html) {
           setInvoiceHtml(result.html);
         }
         goToStep('confirmation');
-        toast.success('Booking confirmed!');
+        toast.success('Booking request submitted! Awaiting host approval.');
         // Auto-open chat after booking confirmation
         setTimeout(() => setChatOpen(true), 800);
       } else {
@@ -1509,12 +1513,14 @@ export default function BookingFlow() {
                   }
                 }}
               />
-              <BookingChat
-                bookingId={bookingId}
-                guestName={guestDetails.name}
-                isOpen={chatOpen}
-                onClose={() => setChatOpen(false)}
-              />
+              {bookingUUID && (
+                <BookingChat
+                  bookingId={bookingUUID}
+                  guestName={guestDetails.name}
+                  isOpen={chatOpen}
+                  onClose={() => setChatOpen(false)}
+                />
+              )}
             </>
           )}
         </motion.div>
