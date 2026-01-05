@@ -1,7 +1,7 @@
 /**
  * User Authentication Context
  * Provides Firebase auth state and methods for user-facing app
- * Implements hybrid auth: Firebase for users, Supabase for admin/franchise
+ * Supports Google Sign-in and Email/Password with password reset
  */
 
 import { 
@@ -18,14 +18,10 @@ import {
   signInWithEmail,
   createAccountWithEmail,
   signOutUser,
-  sendPhoneOTP,
-  verifyPhoneOTP,
-  setupRecaptcha,
   onUserAuthStateChanged,
   signInWithGoogle,
-  type ConfirmationResult
+  sendPasswordReset
 } from '@/lib/firebase';
-import { RecaptchaVerifier } from 'firebase/auth';
 
 interface UserAuthContextType {
   user: User | null;
@@ -36,10 +32,7 @@ interface UserAuthContextType {
   // Email auth
   signInEmail: (email: string, password: string) => Promise<void>;
   signUpEmail: (email: string, password: string) => Promise<void>;
-  
-  // Phone auth
-  sendOTP: (phoneNumber: string, recaptchaContainerId: string) => Promise<void>;
-  verifyOTP: (code: string) => Promise<void>;
+  resetPassword: (email: string) => Promise<void>;
   
   // Google auth
   signInGoogle: () => Promise<void>;
@@ -68,8 +61,6 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [confirmationResult, setConfirmationResult] = useState<ConfirmationResult | null>(null);
-  const [recaptchaVerifier, setRecaptchaVerifier] = useState<RecaptchaVerifier | null>(null);
 
   // Initialize Firebase and set up auth listener
   useEffect(() => {
@@ -132,52 +123,13 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
     }
   }, []);
 
-  // Phone OTP - send
-  const sendOTP = useCallback(async (phoneNumber: string, recaptchaContainerId: string) => {
+  // Password reset
+  const resetPassword = useCallback(async (email: string) => {
     setIsLoading(true);
     setError(null);
     
     try {
-      // Create new reCAPTCHA verifier
-      const verifier = setupRecaptcha(recaptchaContainerId);
-      setRecaptchaVerifier(verifier);
-      
-      const result = await sendPhoneOTP(phoneNumber, verifier);
-      setConfirmationResult(result);
-    } catch (err: any) {
-      console.error('[Firebase Auth] Phone OTP Error:', err.code, err.message, err);
-      const message = getErrorMessage(err.code);
-      setError(message);
-      // Clean up reCAPTCHA on error
-      if (recaptchaVerifier) {
-        recaptchaVerifier.clear();
-        setRecaptchaVerifier(null);
-      }
-      throw new Error(message);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [recaptchaVerifier]);
-
-  // Phone OTP - verify
-  const verifyOTP = useCallback(async (code: string) => {
-    if (!confirmationResult) {
-      setError('Please request a new OTP code.');
-      throw new Error('No confirmation result available');
-    }
-    
-    setIsLoading(true);
-    setError(null);
-    
-    try {
-      await verifyPhoneOTP(confirmationResult, code);
-      setConfirmationResult(null);
-      
-      // Clean up reCAPTCHA
-      if (recaptchaVerifier) {
-        recaptchaVerifier.clear();
-        setRecaptchaVerifier(null);
-      }
+      await sendPasswordReset(email);
     } catch (err: any) {
       const message = getErrorMessage(err.code);
       setError(message);
@@ -185,7 +137,7 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
     } finally {
       setIsLoading(false);
     }
-  }, [confirmationResult, recaptchaVerifier]);
+  }, []);
 
   // Google sign in
   const signInGoogle = useCallback(async () => {
@@ -213,7 +165,6 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
       await signOutUser();
     } catch (err: any) {
       console.error('Sign out error:', err);
-      // Don't show error for sign out, just clear local state
     } finally {
       setIsLoading(false);
     }
@@ -226,8 +177,7 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
     error,
     signInEmail,
     signUpEmail,
-    sendOTP,
-    verifyOTP,
+    resetPassword,
     signInGoogle,
     signOut,
     clearError,
@@ -250,25 +200,23 @@ function getErrorMessage(code: string): string {
     case 'auth/user-disabled':
       return 'This account has been disabled. Please contact support.';
     case 'auth/user-not-found':
-      return 'No account found with this email. Would you like to create one?';
+      return 'No account found with this email.';
     case 'auth/wrong-password':
       return 'Incorrect password. Please try again.';
+    case 'auth/invalid-credential':
+      return 'Invalid email or password. Please check and try again.';
     case 'auth/email-already-in-use':
-      return 'An account with this email already exists. Try signing in instead.';
+      return 'An account with this email already exists.';
     case 'auth/weak-password':
       return 'Password should be at least 6 characters.';
-    case 'auth/invalid-phone-number':
-      return 'Please enter a valid phone number with country code.';
-    case 'auth/invalid-verification-code':
-      return 'The code you entered is incorrect. Please try again.';
-    case 'auth/code-expired':
-      return 'This code has expired. Please request a new one.';
     case 'auth/too-many-requests':
       return 'Too many attempts. Please wait a few minutes and try again.';
     case 'auth/network-request-failed':
       return 'Connection issue. Please check your internet and try again.';
     case 'auth/popup-closed-by-user':
       return 'Sign-in was cancelled. Please try again.';
+    case 'auth/popup-blocked':
+      return 'Pop-up was blocked. Please allow pop-ups and try again.';
     default:
       return 'Something went wrong. Please try again.';
   }
