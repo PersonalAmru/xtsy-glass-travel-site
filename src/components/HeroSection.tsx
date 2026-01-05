@@ -3,7 +3,7 @@ import { Calendar, Users, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import PerformantImage from "./PerformantImage";
 import { useMediaQuery } from "@/hooks/use-mobile";
 import { useHappyGuestsContext } from "@/contexts/HappyGuestsContext";
@@ -271,19 +271,19 @@ const HeroSection = () => {
 
           {/* Policy Links - Required for Google OAuth Verification */}
           <div className="mt-4 sm:mt-6 flex items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm">
-            <a 
-              href="/privacy-policy" 
+            <Link 
+              to="/privacy-policy" 
               className="text-gray-300 hover:text-primary underline underline-offset-2 transition-colors duration-200"
             >
               Privacy Policy
-            </a>
+            </Link>
             <span className="text-gray-500">•</span>
-            <a 
-              href="/terms-of-service" 
+            <Link 
+              to="/terms-of-service" 
               className="text-gray-300 hover:text-primary underline underline-offset-2 transition-colors duration-200"
             >
               Terms of Service
-            </a>
+            </Link>
           </div>
 
           {/* Stats */}
