@@ -145,6 +145,7 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
       const result = await sendPhoneOTP(phoneNumber, verifier);
       setConfirmationResult(result);
     } catch (err: any) {
+      console.error('[Firebase Auth] Phone OTP Error:', err.code, err.message, err);
       const message = getErrorMessage(err.code);
       setError(message);
       // Clean up reCAPTCHA on error
@@ -194,6 +195,7 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
     try {
       await signInWithGoogle();
     } catch (err: any) {
+      console.error('[Firebase Auth] Google Sign-In Error:', err.code, err.message, err);
       const message = getErrorMessage(err.code);
       setError(message);
       throw new Error(message);
