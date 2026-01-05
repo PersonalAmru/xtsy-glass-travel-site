@@ -589,7 +589,9 @@ const RoomSelectionStep = ({
                                   className="w-10 h-10 rounded-full bg-white text-[hsl(160,35%,25%)] flex items-center justify-center hover:bg-white/90 transition-colors"
                                   onClick={(e) => {
                                     e.stopPropagation();
-                                    onQuantityChange(Math.min(room.total_units, quantity + 1));
+                                    // Cap at capacity for dorms (4 for 4-bed dorms), total_units for private rooms
+                                    const maxQty = isDorm ? room.capacity : room.total_units;
+                                    onQuantityChange(Math.min(maxQty, quantity + 1));
                                   }}
                                 >
                                   <Plus className="w-4 h-4" />
@@ -1166,15 +1168,32 @@ export default function BookingFlow() {
     });
   }, [context, searchParams, trackEvent, trackConversion]);
 
-  // Load rooms from database with retry and fallback to local inventory
+  // Load rooms - instant from local, then sync with database in background
   useEffect(() => {
-    let retryCount = 0;
-    const maxRetries = 3;
+    // Immediately load from local inventory for instant display
+    const localRooms = Object.values(ROOM_INVENTORY)
+      .filter(room => room.isBookable)
+      .map(room => ({
+        id: room.id,
+        name: room.name,
+        category: room.category,
+        kind: room.kind,
+        base_price: room.basePrice,
+        weekday_price: room.weekdayPrice,
+        weekend_price: room.weekendPrice,
+        capacity: room.capacity,
+        total_units: room.totalUnits,
+        amenities: room.features,
+        images: room.images,
+        is_active: true,
+      }))
+      .sort((a, b) => a.base_price - b.base_price);
     
-    const fetchRooms = async (): Promise<void> => {
-      setIsLoadingRooms(true);
-      setRoomLoadError(null);
-      
+    setRooms(localRooms as RoomType[]);
+    setIsLoadingRooms(false);
+    
+    // Background sync with database for latest prices/availability
+    const syncWithDatabase = async () => {
       try {
         const { data, error } = await supabase
           .from('room_types')
@@ -1182,14 +1201,10 @@ export default function BookingFlow() {
           .eq('is_active', true)
           .order('base_price', { ascending: true });
 
-        if (error) throw error;
-        
-        if (!data || data.length === 0) {
-          throw new Error('No rooms returned from database');
-        }
+        if (error || !data || data.length === 0) return;
         
         // Merge database data with local inventory images
-        const mergedRooms = (data || []).map(dbRoom => {
+        const mergedRooms = data.map(dbRoom => {
           const localRoom = ROOM_INVENTORY[dbRoom.id];
           return {
             ...dbRoom,
@@ -1198,45 +1213,13 @@ export default function BookingFlow() {
         });
         
         setRooms(mergedRooms);
-        setIsLoadingRooms(false);
+        setRoomLoadError(null);
       } catch (err) {
-        console.error('Error fetching rooms (attempt ' + (retryCount + 1) + '):', err);
-        
-        // Retry with exponential backoff
-        if (retryCount < maxRetries) {
-          retryCount++;
-          const delay = Math.min(1000 * Math.pow(2, retryCount - 1), 5000);
-          setTimeout(fetchRooms, delay);
-          return;
-        }
-        
-        // Fallback to local inventory after all retries fail
-        console.warn('Using local inventory fallback after database failures');
-        const fallbackRooms = Object.values(ROOM_INVENTORY)
-          .filter(room => room.isBookable)
-          .map(room => ({
-            id: room.id,
-            name: room.name,
-            category: room.category,
-            kind: room.kind,
-            base_price: room.basePrice,
-            weekday_price: room.weekdayPrice,
-            weekend_price: room.weekendPrice,
-            capacity: room.capacity,
-            total_units: room.totalUnits,
-            amenities: room.features,
-            images: room.images,
-            is_active: true,
-          }))
-          .sort((a, b) => a.base_price - b.base_price);
-        
-        setRooms(fallbackRooms as RoomType[]);
-        setRoomLoadError('Using cached data. Some features may be limited.');
-        setIsLoadingRooms(false);
+        console.warn('Background database sync failed, using local data:', err);
       }
     };
 
-    fetchRooms();
+    syncWithDatabase();
   }, []);
 
   // Parse URL params
