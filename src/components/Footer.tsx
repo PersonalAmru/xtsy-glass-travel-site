@@ -123,9 +123,15 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-700 mt-4 sm:mt-6 lg:mt-8 pt-3 sm:pt-4 lg:pt-6">
-          {/* Policy Links */}
+          {/* Legal Links - Required for Google OAuth Verification */}
           <div className="text-center mb-4 sm:mb-6">
             <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs sm:text-sm">
+              <Link to="/privacy-policy" className="text-gray-400 hover:text-orange-400 transition-colors duration-300 py-1">
+                Privacy Policy
+              </Link>
+              <Link to="/terms-of-service" className="text-gray-400 hover:text-orange-400 transition-colors duration-300 py-1">
+                Terms of Service
+              </Link>
               <button onClick={() => setPolicyModal({
               isOpen: true,
               type: 'cancellation'
@@ -147,7 +153,7 @@ const Footer = () => {
             </div>
           </div>
           
-          <p className="text-gray-400 text-xs sm:text-sm lg:text-base text-center">© 2024 XTSY. All rights reserved. Experience the XTSY Vibe.</p>
+          <p className="text-gray-400 text-xs sm:text-sm lg:text-base text-center">© 2024 XTSY Travel. All rights reserved. Experience the XTSY Vibe.</p>
         </div>
       </div>
       
