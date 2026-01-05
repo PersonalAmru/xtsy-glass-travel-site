@@ -230,7 +230,7 @@ export const PrivacyPolicy: React.FC = () => {
                 </li>
               </ul>
               <p className="mt-4">
-                To exercise these rights, contact us at <a href="mailto:privacy@xtsy.one" className="text-primary hover:underline font-medium">privacy@xtsy.one</a>.
+                To exercise these rights, contact us at <a href="mailto:admin@xtsy.one" className="text-primary hover:underline font-medium">admin@xtsy.one</a>.
                 We will respond within 30 days.
               </p>
             </section>
@@ -298,8 +298,7 @@ export const PrivacyPolicy: React.FC = () => {
               <p>For privacy-related questions, concerns, or to exercise your rights, contact us:</p>
               <div className="bg-muted p-6 rounded-lg mt-4 space-y-3">
                 <p><strong>Data Protection Contact:</strong> XTSY Privacy Team</p>
-                <p><strong>Email:</strong> <a href="mailto:privacy@xtsy.one" className="text-primary hover:underline">privacy@xtsy.one</a></p>
-                <p><strong>General Inquiries:</strong> <a href="mailto:admin@xtsy.one" className="text-primary hover:underline">admin@xtsy.one</a></p>
+                <p><strong>Email:</strong> <a href="mailto:admin@xtsy.one" className="text-primary hover:underline">admin@xtsy.one</a></p>
                 <p><strong>Phone:</strong> +91 88373 17070</p>
                 <p><strong>Address:</strong> XTSY, Shillong, Meghalaya, India 793001</p>
               </div>
