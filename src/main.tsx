@@ -21,15 +21,12 @@ import { initializeCriticalImageLoading, preloadLCPImage } from "./utils/critica
 // Initialize Sentry as early as possible
 Sentry.init({
   dsn: "https://12bae2f7614bf702c6f7c456eef52cea@o4510659453911040.ingest.us.sentry.io/4510659499982848",
-  sendDefaultPii: true,
-  environment: import.meta.env.MODE,
-  integrations: [
-    Sentry.browserTracingIntegration(),
-    Sentry.replayIntegration(),
-  ],
-  tracesSampleRate: 0.1, // 10% of transactions for performance monitoring
-  replaysSessionSampleRate: 0.1, // 10% of sessions for replay
-  replaysOnErrorSampleRate: 1.0, // 100% of sessions with errors
+  integrations: [Sentry.browserTracingIntegration()],
+  // Capture 100% of transactions for performance monitoring
+  // Adjust this value in production for cost optimization
+  tracesSampleRate: 1.0,
+  // Control which URLs get distributed tracing headers
+  tracePropagationTargets: ["localhost", /^https:\/\/.*\.lovableproject\.com/, /^https:\/\/.*\.lovable\.app/],
 });
 
 // LCP OPTIMIZATION: Preload LCP image IMMEDIATELY before anything else
