@@ -1367,6 +1367,9 @@ export default function BookingFlow() {
       const gstAmount = Math.round(subtotal * gstRate);
       const total = subtotal + gstAmount;
 
+      // Get current user ID if logged in
+      const { data: { user: currentUser } } = await supabase.auth.getUser();
+
       // Use the new invoice generation system
       const result = await generateInvoice({
         guestName: guestDetails.name,
@@ -1389,6 +1392,7 @@ export default function BookingFlow() {
         totalAmount: total,
         messageToHost: guestDetails.messageToHost,
         specialRequests: guestDetails.specialRequests,
+        userId: currentUser?.id,
       });
 
       if (result.success && result.bookingId) {

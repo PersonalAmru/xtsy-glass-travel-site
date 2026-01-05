@@ -21,6 +21,7 @@ export interface InvoiceData {
   totalAmount: number;
   messageToHost: string;
   specialRequests?: string;
+  userId?: string;
 }
 
 export interface GenerateInvoiceResponse {

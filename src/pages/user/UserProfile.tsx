@@ -39,8 +39,13 @@ interface Booking {
   check_in: string;
   check_out: string;
   total_amount: number;
+  subtotal: number;
+  taxes: number;
   booking_status: string;
   created_at: string;
+  guests: number;
+  quantity: number;
+  special_requests?: string;
 }
 
 type ProfileTab = 'overview' | 'bookings' | 'tours' | 'settings';
@@ -69,7 +74,7 @@ export default function UserProfile() {
     try {
       const { data, error } = await supabase
         .from('bookings')
-        .select('id, booking_id, room_type, check_in, check_out, total_amount, booking_status, created_at')
+        .select('id, booking_id, room_type, check_in, check_out, total_amount, subtotal, taxes, booking_status, created_at, guests, quantity, special_requests')
         .eq('user_id', user.id)
         .order('created_at', { ascending: false });
 
@@ -325,7 +330,7 @@ function OverviewTab({
   );
 }
 
-// Bookings Tab
+// Bookings Tab with expandable detail view
 function BookingsTab({ 
   bookings, 
   loading,
@@ -335,6 +340,8 @@ function BookingsTab({
   loading: boolean;
   onOpenChat: (bookingId: string) => void;
 }) {
+  const [expandedBooking, setExpandedBooking] = useState<Booking | null>(null);
+
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
@@ -363,61 +370,186 @@ function BookingsTab({
     );
   }
 
+  // Expanded booking detail view
+  if (expandedBooking) {
+    const nights = Math.ceil((new Date(expandedBooking.check_out).getTime() - new Date(expandedBooking.check_in).getTime()) / (1000 * 60 * 60 * 24));
+    
+    return (
+      <motion.div
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -20 }}
+        className="space-y-4"
+      >
+        {/* Back button */}
+        <button
+          onClick={() => setExpandedBooking(null)}
+          className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-4"
+        >
+          <ChevronRight className="w-4 h-4 rotate-180" />
+          <span className="text-sm font-medium">Back to Bookings</span>
+        </button>
+
+        {/* Booking Header Card */}
+        <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl p-5 border border-primary/20">
+          <div className="flex items-start justify-between mb-4">
+            <div>
+              <p className="font-mono text-xs text-primary mb-1">{expandedBooking.booking_id}</p>
+              <h3 className="text-xl font-bold text-foreground">{expandedBooking.room_type}</h3>
+            </div>
+            <span className={cn(
+              "px-3 py-1.5 text-xs font-semibold rounded-full",
+              expandedBooking.booking_status === 'confirmed' 
+                ? "bg-green-500/20 text-green-600"
+                : expandedBooking.booking_status === 'pending'
+                ? "bg-amber-500/20 text-amber-600"
+                : expandedBooking.booking_status === 'cancelled'
+                ? "bg-red-500/20 text-red-600"
+                : "bg-muted text-muted-foreground"
+            )}>
+              {expandedBooking.booking_status.charAt(0).toUpperCase() + expandedBooking.booking_status.slice(1)}
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-background/50 rounded-xl p-3">
+              <p className="text-xs text-muted-foreground mb-1">Check-in</p>
+              <p className="font-semibold text-foreground">
+                {format(new Date(expandedBooking.check_in), 'EEE, MMM d')}
+              </p>
+            </div>
+            <div className="bg-background/50 rounded-xl p-3">
+              <p className="text-xs text-muted-foreground mb-1">Check-out</p>
+              <p className="font-semibold text-foreground">
+                {format(new Date(expandedBooking.check_out), 'EEE, MMM d')}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Booking Details */}
+        <div className="bg-card rounded-2xl border border-border/50 overflow-hidden">
+          <div className="p-4 border-b border-border/50">
+            <h4 className="font-semibold text-foreground">Booking Details</h4>
+          </div>
+          <div className="p-4 space-y-3">
+            <div className="flex justify-between items-center">
+              <span className="text-muted-foreground">Duration</span>
+              <span className="font-medium text-foreground">{nights} Night{nights > 1 ? 's' : ''}</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-muted-foreground">Guests</span>
+              <span className="font-medium text-foreground">{expandedBooking.guests || expandedBooking.quantity}</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-muted-foreground">Quantity</span>
+              <span className="font-medium text-foreground">{expandedBooking.quantity}</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-muted-foreground">Booked on</span>
+              <span className="font-medium text-foreground">
+                {format(new Date(expandedBooking.created_at), 'MMM d, yyyy')}
+              </span>
+            </div>
+            {expandedBooking.special_requests && (
+              <div className="pt-2 border-t border-border/50">
+                <p className="text-xs text-muted-foreground mb-1">Special Requests</p>
+                <p className="text-sm text-foreground">{expandedBooking.special_requests}</p>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Pricing Breakdown */}
+        <div className="bg-card rounded-2xl border border-border/50 overflow-hidden">
+          <div className="p-4 border-b border-border/50">
+            <h4 className="font-semibold text-foreground">Pricing</h4>
+          </div>
+          <div className="p-4 space-y-3">
+            <div className="flex justify-between items-center">
+              <span className="text-muted-foreground">Subtotal</span>
+              <span className="font-medium text-foreground">₹{expandedBooking.subtotal?.toLocaleString() || '-'}</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-muted-foreground">Taxes & Fees</span>
+              <span className="font-medium text-foreground">₹{expandedBooking.taxes?.toLocaleString() || '0'}</span>
+            </div>
+            <div className="flex justify-between items-center pt-2 border-t border-border/50">
+              <span className="font-semibold text-foreground">Total</span>
+              <span className="font-bold text-lg text-primary">₹{expandedBooking.total_amount.toLocaleString()}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex flex-col gap-3 pt-2">
+          <Button 
+            className="w-full gap-2"
+            onClick={() => onOpenChat(expandedBooking.id)}
+          >
+            <MessageCircle className="w-4 h-4" />
+            Chat with Host
+          </Button>
+        </div>
+      </motion.div>
+    );
+  }
+
+  // Booking cards list
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      className="space-y-4"
+      className="space-y-3"
     >
-      {bookings.map((booking, index) => (
-        <motion.div
-          key={booking.id}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: index * 0.05 }}
-          className="bg-card rounded-2xl border border-border/50 overflow-hidden"
-        >
-          <div className="p-4">
-            <div className="flex items-start justify-between mb-3">
-              <div>
-                <p className="font-mono text-xs text-primary mb-1">{booking.booking_id}</p>
-                <h4 className="font-semibold text-foreground">{booking.room_type}</h4>
+      {bookings.map((booking, index) => {
+        const nights = Math.ceil((new Date(booking.check_out).getTime() - new Date(booking.check_in).getTime()) / (1000 * 60 * 60 * 24));
+        
+        return (
+          <motion.div
+            key={booking.id}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.05 }}
+            onClick={() => setExpandedBooking(booking)}
+            className="bg-card rounded-2xl border border-border/50 overflow-hidden cursor-pointer hover:border-primary/30 hover:shadow-md transition-all active:scale-[0.98]"
+          >
+            <div className="p-4">
+              <div className="flex items-start justify-between mb-2">
+                <div className="flex-1 min-w-0">
+                  <p className="font-mono text-[10px] text-primary/80 mb-0.5">{booking.booking_id}</p>
+                  <h4 className="font-semibold text-foreground truncate">{booking.room_type}</h4>
+                </div>
+                <span className={cn(
+                  "px-2 py-0.5 text-[10px] font-medium rounded-full ml-2 shrink-0",
+                  booking.booking_status === 'confirmed' 
+                    ? "bg-green-500/10 text-green-600"
+                    : booking.booking_status === 'pending'
+                    ? "bg-amber-500/10 text-amber-600"
+                    : "bg-muted text-muted-foreground"
+                )}>
+                  {booking.booking_status}
+                </span>
               </div>
-              <span className={cn(
-                "px-2 py-1 text-xs font-medium rounded-full",
-                booking.booking_status === 'confirmed' 
-                  ? "bg-green-500/10 text-green-500"
-                  : booking.booking_status === 'pending'
-                  ? "bg-amber-500/10 text-amber-500"
-                  : "bg-muted text-muted-foreground"
-              )}>
-                {booking.booking_status}
-              </span>
-            </div>
-            
-            <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
-              <div className="flex items-center gap-1">
-                <Calendar className="w-4 h-4" />
-                <span>{format(new Date(booking.check_in), 'MMM d')} - {format(new Date(booking.check_out), 'MMM d')}</span>
+              
+              <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3">
+                <div className="flex items-center gap-1">
+                  <Calendar className="w-3 h-3" />
+                  <span>{format(new Date(booking.check_in), 'MMM d')} - {format(new Date(booking.check_out), 'MMM d')}</span>
+                </div>
+                <span className="text-border">•</span>
+                <span>{nights}N</span>
+              </div>
+              
+              <div className="flex items-center justify-between">
+                <p className="font-bold text-foreground">₹{booking.total_amount.toLocaleString()}</p>
+                <ChevronRight className="w-4 h-4 text-muted-foreground" />
               </div>
             </div>
-            
-            <div className="flex items-center justify-between">
-              <p className="font-semibold text-foreground">₹{booking.total_amount.toLocaleString()}</p>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                className="gap-2"
-                onClick={() => onOpenChat(booking.booking_id)}
-              >
-                <MessageCircle className="w-4 h-4" />
-                Chat with Host
-              </Button>
-            </div>
-          </div>
-        </motion.div>
-      ))}
+          </motion.div>
+        );
+      })}
     </motion.div>
   );
 }

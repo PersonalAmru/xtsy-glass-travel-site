@@ -28,6 +28,7 @@ interface InvoiceData {
   totalAmount: number;
   messageToHost: string;
   specialRequests?: string;
+  userId?: string;
 }
 
 function generateInvoiceHTML(data: InvoiceData): string {
@@ -43,13 +44,20 @@ function generateInvoiceHTML(data: InvoiceData): string {
 
   const gstPercent = (data.gstRate * 100).toFixed(0);
 
+  // Base64 encoded XTSY favicon (small inline version)
+  const logoSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
+    <rect width="40" height="40" rx="8" fill="hsl(160, 35%, 22%)"/>
+    <text x="20" y="28" text-anchor="middle" fill="white" font-family="system-ui" font-size="18" font-weight="bold">X</text>
+  </svg>`;
+
   return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Invoice ${data.bookingId} - XTSY Hostels</title>
+  <title>Invoice ${data.bookingId} - XTSY Travellers Hostel</title>
+  <link rel="icon" href="/xtsy-favicon.png" type="image/png">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { 
@@ -57,12 +65,14 @@ function generateInvoiceHTML(data: InvoiceData): string {
       background: #f8fafc; 
       color: #1e293b;
       line-height: 1.6;
+      min-height: 100vh;
     }
     .invoice { 
       max-width: 800px; 
       margin: 0 auto; 
       background: white; 
       box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+      min-height: 100vh;
     }
     .header { 
       background: linear-gradient(135deg, hsl(160, 35%, 22%) 0%, hsl(160, 40%, 18%) 100%);
@@ -70,11 +80,24 @@ function generateInvoiceHTML(data: InvoiceData): string {
       padding: 40px;
     }
     .header-content { display: flex; justify-content: space-between; align-items: flex-start; }
-    .logo { font-size: 32px; font-weight: 800; letter-spacing: -1px; }
-    .logo span { color: rgba(255,255,255,0.6); }
+    .logo-section { display: flex; align-items: center; gap: 12px; }
+    .logo-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .logo-text { }
+    .logo-name { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; }
+    .logo-tagline { font-size: 12px; opacity: 0.8; margin-top: 2px; }
     .invoice-meta { text-align: right; }
-    .invoice-number { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
-    .invoice-date { opacity: 0.8; }
+    .invoice-number { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+    .invoice-date { opacity: 0.8; font-size: 14px; }
     
     .status-badge {
       display: inline-block;
@@ -82,7 +105,7 @@ function generateInvoiceHTML(data: InvoiceData): string {
       color: white;
       padding: 4px 12px;
       border-radius: 20px;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
       text-transform: uppercase;
       margin-top: 8px;
@@ -92,7 +115,7 @@ function generateInvoiceHTML(data: InvoiceData): string {
     
     .section { margin-bottom: 32px; }
     .section-title { 
-      font-size: 12px; 
+      font-size: 11px; 
       font-weight: 600; 
       text-transform: uppercase; 
       letter-spacing: 0.1em;
@@ -126,7 +149,7 @@ function generateInvoiceHTML(data: InvoiceData): string {
       text-align: left; 
       padding: 12px 16px;
       background: #f1f5f9;
-      font-size: 12px;
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       color: #64748b;
@@ -162,7 +185,7 @@ function generateInvoiceHTML(data: InvoiceData): string {
       padding: 16px;
       border-radius: 0 8px 8px 0;
     }
-    .message-box h4 { color: #92400e; margin-bottom: 8px; }
+    .message-box h4 { color: #92400e; margin-bottom: 8px; font-size: 13px; }
     .message-box p { color: #78350f; font-style: italic; }
     
     .footer {
@@ -171,8 +194,9 @@ function generateInvoiceHTML(data: InvoiceData): string {
       text-align: center;
       border-top: 1px solid #e2e8f0;
     }
-    .footer-text { color: #64748b; font-size: 14px; margin-bottom: 8px; }
-    .footer-contact { color: #1e293b; font-weight: 600; }
+    .footer-brand { font-size: 16px; font-weight: 700; color: hsl(160, 35%, 22%); margin-bottom: 8px; }
+    .footer-text { color: #64748b; font-size: 13px; margin-bottom: 4px; }
+    .footer-contact { color: #1e293b; font-weight: 600; font-size: 14px; }
     
     @media print {
       body { background: white; }
@@ -191,14 +215,17 @@ function generateInvoiceHTML(data: InvoiceData): string {
   <div class="invoice">
     <div class="header">
       <div class="header-content">
-        <div>
-          <div class="logo">XTSY<span>hostels</span></div>
-          <p style="opacity: 0.8; margin-top: 8px;">Premium Backpacker Experience</p>
+        <div class="logo-section">
+          <div class="logo-icon">X</div>
+          <div class="logo-text">
+            <div class="logo-name">XTSY Travellers Hostel</div>
+            <div class="logo-tagline">Premium Backpacker Experience</div>
+          </div>
         </div>
         <div class="invoice-meta">
           <div class="invoice-number">${data.bookingId}</div>
           <div class="invoice-date">${formattedDate}</div>
-          <div class="status-badge">Confirmed</div>
+          <div class="status-badge">Booking Confirmed</div>
         </div>
       </div>
     </div>
@@ -291,7 +318,8 @@ function generateInvoiceHTML(data: InvoiceData): string {
     </div>
     
     <div class="footer">
-      <p class="footer-text">Thank you for choosing XTSY Hostels!</p>
+      <p class="footer-brand">XTSY Travellers Hostel</p>
+      <p class="footer-text">Thank you for choosing us for your adventure!</p>
       <p class="footer-contact">Questions? Contact us at hello@xtsyhostels.com</p>
     </div>
   </div>
@@ -318,7 +346,7 @@ serve(async (req) => {
       const data = invoiceData as InvoiceData;
       const html = generateInvoiceHTML(data);
       
-      // Call the database function to create booking with invoice
+      // Call the database function to create booking with invoice (now includes user_id)
       const { data: result, error } = await supabase.rpc('create_booking_with_invoice', {
         p_guest_name: data.guestName,
         p_email: data.guestEmail,
@@ -340,6 +368,7 @@ serve(async (req) => {
         p_state: data.guestState || null,
         p_pincode: data.guestPincode || null,
         p_special_requests: data.specialRequests || null,
+        p_user_id: data.userId || null,
       });
 
       if (error) {
@@ -347,7 +376,7 @@ serve(async (req) => {
         throw new Error(error.message);
       }
 
-      const dbResult = result as { success: boolean; bookingId?: string; error?: string };
+      const dbResult = result as { success: boolean; bookingId?: string; bookingUUID?: string; error?: string };
       
       if (!dbResult.success) {
         throw new Error(dbResult.error || 'Failed to create booking');
@@ -359,17 +388,10 @@ serve(async (req) => {
         .update({ html_content: html })
         .eq('booking_id', dbResult.bookingId);
 
-      // Get the booking's id (UUID) from the booking_id (XTH-INV-XXX)
-      const { data: booking } = await supabase
-        .from('bookings')
-        .select('id')
-        .eq('booking_id', dbResult.bookingId)
-        .single();
-
       // Insert the initial message to host as a chat message
-      if (booking && data.messageToHost) {
+      if (dbResult.bookingUUID && data.messageToHost) {
         await supabase.from('booking_messages').insert({
-          booking_id: booking.id,
+          booking_id: dbResult.bookingUUID,
           sender_type: 'guest',
           sender_name: data.guestName,
           message: data.messageToHost,
@@ -380,7 +402,7 @@ serve(async (req) => {
           type: 'new_booking',
           title: 'New Booking Request',
           message: `${data.guestName} has made a booking for ${data.roomName} (${data.checkIn} - ${data.checkOut})`,
-          booking_id: booking.id,
+          booking_id: dbResult.bookingUUID,
           metadata: {
             guest_name: data.guestName,
             room_name: data.roomName,
@@ -391,12 +413,12 @@ serve(async (req) => {
         });
       }
 
-      console.log('Invoice generated for booking:', dbResult.bookingId);
+      console.log('Invoice generated for booking:', dbResult.bookingId, 'User ID:', data.userId);
 
       return new Response(JSON.stringify({
         success: true,
         bookingId: dbResult.bookingId,
-        bookingUUID: booking?.id,
+        bookingUUID: dbResult.bookingUUID,
         html,
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
