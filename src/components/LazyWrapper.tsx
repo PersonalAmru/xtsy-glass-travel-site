@@ -7,6 +7,7 @@ interface LazyWrapperProps {
   fallback?: React.ReactNode;
   threshold?: number;
   showBrandedLoader?: boolean;
+  eager?: boolean; // Render immediately without waiting for intersection
 }
 
 // Minimal static fallback for sections - no animations for mobile performance
@@ -24,9 +25,10 @@ const LazyWrapper: React.FC<LazyWrapperProps> = memo(({
   children, 
   fallback,
   threshold = 0.1,
-  showBrandedLoader = false
+  showBrandedLoader = false,
+  eager = false
 }) => {
-  const { elementRef, shouldRender } = useComponentOptimization();
+  const { elementRef, shouldRender } = useComponentOptimization({ eager });
   
   // Use branded XTSY loader or minimal fallback
   const actualFallback = fallback || (
