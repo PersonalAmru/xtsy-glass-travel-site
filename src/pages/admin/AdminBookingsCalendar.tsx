@@ -108,25 +108,33 @@ export default function AdminBookingsCalendar() {
     const checkIn = parseISO(booking.check_in);
     const checkOut = parseISO(booking.check_out);
     
+    // Handle no-show status - show no_show for all dates of the booking
     if (booking.booking_status === 'no_show') {
-      // If no-show, show no_show status for all dates
-      if (date >= checkIn && date < checkOut) {
-        return 'no_show';
-      }
-      if (isSameDay(date, checkOut)) {
+      if (isSameDay(date, checkIn) || isSameDay(date, checkOut) || (date > checkIn && date < checkOut)) {
         return 'no_show';
       }
       return null;
     }
     
+    // Handle cancelled - don't show on calendar but include in list
+    if (booking.booking_status === 'cancelled') {
+      if (isSameDay(date, checkIn)) {
+        return 'check_in'; // Will be styled differently based on booking_status
+      }
+      return null;
+    }
+    
+    // Check-in day
     if (isSameDay(date, checkIn)) {
       return 'check_in';
     }
     
+    // Check-out day
     if (isSameDay(date, checkOut)) {
       return 'check_out';
     }
     
+    // Stay over (between check-in and check-out, exclusive)
     if (date > checkIn && date < checkOut) {
       return 'stay_over';
     }
@@ -144,7 +152,15 @@ export default function AdminBookingsCalendar() {
       }
     }
     
-    return dayBookings;
+    // Sort by status priority: check_in first, then stay_over, then check_out, then no_show
+    const statusOrder: Record<BookingStatus, number> = {
+      'check_in': 1,
+      'stay_over': 2,
+      'check_out': 3,
+      'no_show': 4,
+    };
+    
+    return dayBookings.sort((a, b) => statusOrder[a.status] - statusOrder[b.status]);
   };
 
   const getStatusConfig = (status: BookingStatus) => {
@@ -428,59 +444,82 @@ export default function AdminBookingsCalendar() {
 
         {/* Day Details Modal */}
         <Dialog open={!!selectedDate} onOpenChange={() => setSelectedDate(null)}>
-          <DialogContent className="max-w-lg">
+          <DialogContent className="max-w-2xl max-h-[85vh] overflow-hidden flex flex-col">
             <DialogHeader>
-              <DialogTitle>
+              <DialogTitle className="flex items-center gap-2">
+                <Calendar className="w-5 h-5 text-primary" />
                 {selectedDate && format(selectedDate, 'EEEE, MMMM d, yyyy')}
               </DialogTitle>
               <DialogDescription>
-                Bookings for this date
+                All bookings associated with this date
               </DialogDescription>
             </DialogHeader>
-            <ScrollArea className="max-h-[60vh]">
+            <ScrollArea className="flex-1 pr-4">
               <div className="space-y-4">
+                {selectedDate && getBookingsForDate(selectedDate).length === 0 && (
+                  <div className="text-center py-8 text-muted-foreground">
+                    No bookings for this date
+                  </div>
+                )}
                 {selectedDate && getBookingsForDate(selectedDate).map(({ booking, status }) => {
                   const config = getStatusConfig(status);
                   const StatusIcon = config.icon;
+                  
+                  // Get booking status badge config
+                  const bookingStatusBadge = {
+                    pending: { label: 'Pending Approval', variant: 'secondary' as const },
+                    confirmed: { label: 'Confirmed', variant: 'default' as const },
+                    cancelled: { label: 'Cancelled', variant: 'destructive' as const },
+                    no_show: { label: 'No Show', variant: 'destructive' as const },
+                    completed: { label: 'Completed', variant: 'outline' as const },
+                  }[booking.booking_status] || { label: booking.booking_status, variant: 'outline' as const };
 
                   return (
                     <Card key={`${booking.id}-${status}`} className="overflow-hidden">
-                      <div className={cn('px-4 py-2 flex items-center gap-2', config.color)}>
-                        <StatusIcon className="w-4 h-4" />
-                        <span className="font-medium text-sm">{config.label}</span>
+                      {/* Status Header */}
+                      <div className={cn('px-4 py-2 flex items-center justify-between', config.color)}>
+                        <div className="flex items-center gap-2">
+                          <StatusIcon className="w-4 h-4" />
+                          <span className="font-medium text-sm">{config.label}</span>
+                        </div>
+                        <Badge variant={bookingStatusBadge.variant}>{bookingStatusBadge.label}</Badge>
                       </div>
-                      <CardContent className="p-4 space-y-3">
+                      
+                      <CardContent className="p-4 space-y-4">
+                        {/* Guest Info */}
                         <div className="flex items-start justify-between">
                           <div>
-                            <p className="font-semibold flex items-center gap-2">
+                            <p className="font-semibold flex items-center gap-2 text-lg">
                               <User className="w-4 h-4 text-muted-foreground" />
                               {booking.guest_name}
                             </p>
                             <p className="text-sm text-muted-foreground">{booking.email}</p>
                           </div>
-                          <Badge variant="outline">{booking.booking_id}</Badge>
+                          <Badge variant="outline" className="font-mono">{booking.booking_id}</Badge>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-2 text-sm">
+                        {/* Booking Details Grid */}
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm bg-muted/50 rounded-lg p-3">
                           <div>
-                            <p className="text-muted-foreground">Check-in</p>
+                            <p className="text-muted-foreground text-xs">Check-in</p>
                             <p className="font-medium">{format(parseISO(booking.check_in), 'MMM d, yyyy')}</p>
                           </div>
                           <div>
-                            <p className="text-muted-foreground">Check-out</p>
+                            <p className="text-muted-foreground text-xs">Check-out</p>
                             <p className="font-medium">{format(parseISO(booking.check_out), 'MMM d, yyyy')}</p>
                           </div>
                           <div>
-                            <p className="text-muted-foreground">Room Type</p>
-                            <p className="font-medium">{booking.room_type}</p>
+                            <p className="text-muted-foreground text-xs">Room</p>
+                            <p className="font-medium truncate">{booking.room_type}</p>
                           </div>
                           <div>
-                            <p className="text-muted-foreground">Amount</p>
+                            <p className="text-muted-foreground text-xs">Amount</p>
                             <p className="font-medium">₹{booking.total_amount?.toLocaleString()}</p>
                           </div>
                         </div>
 
-                        <div className="flex items-center gap-2 pt-2 border-t">
+                        {/* Actions */}
+                        <div className="flex flex-wrap items-center gap-2 pt-2 border-t">
                           <Button
                             size="sm"
                             variant="outline"
@@ -491,7 +530,7 @@ export default function AdminBookingsCalendar() {
                             }}
                           >
                             <MessageSquare className="w-4 h-4 mr-1" />
-                            Chat
+                            Chat with Guest
                           </Button>
                           
                           {booking.booking_status === 'pending' && (
@@ -499,9 +538,10 @@ export default function AdminBookingsCalendar() {
                               size="sm"
                               onClick={() => handleApproveBooking(booking)}
                               disabled={actionLoading}
+                              className="bg-emerald-600 hover:bg-emerald-700"
                             >
                               <Check className="w-4 h-4 mr-1" />
-                              Approve
+                              Approve Booking
                             </Button>
                           )}
                           
@@ -513,7 +553,7 @@ export default function AdminBookingsCalendar() {
                               disabled={actionLoading}
                             >
                               <AlertTriangle className="w-4 h-4 mr-1" />
-                              No-Show
+                              Mark No-Show
                             </Button>
                           )}
                         </div>

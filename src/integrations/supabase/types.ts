@@ -2604,6 +2604,7 @@ export type Database = {
               p_state?: string
               p_subtotal: number
               p_total_amount: number
+              p_user_id?: string
             }
             Returns: Json
           }
@@ -2640,14 +2641,32 @@ export type Database = {
       get_analytics_overview: { Args: { days_back?: number }; Returns: Json }
       get_app_secret: { Args: { secret_name: string }; Returns: string }
       get_app_secret_secure: { Args: { secret_name: string }; Returns: string }
-      get_booking_calendar: {
-        Args: {
-          p_end_date: string
-          p_property_id?: string
-          p_start_date: string
-        }
-        Returns: Json
-      }
+      get_booking_calendar:
+        | {
+            Args: { p_end_date: string; p_start_date: string }
+            Returns: {
+              approved_at: string
+              booking_id: string
+              booking_status: string
+              check_in: string
+              check_out: string
+              email: string
+              guest_name: string
+              id: string
+              no_show_marked_at: string
+              quantity: number
+              room_type: string
+              total_amount: number
+            }[]
+          }
+        | {
+            Args: {
+              p_end_date: string
+              p_property_id?: string
+              p_start_date: string
+            }
+            Returns: Json
+          }
       get_bookings_masked_secure: {
         Args: never
         Returns: {
