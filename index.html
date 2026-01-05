@@ -491,14 +491,16 @@
       (function(){var l=new Image();l.src='/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png';l.fetchPriority='high';l.decoding='sync'})();
     </script>
     
-    <!-- Static policy links for Google OAuth verification - ALWAYS VISIBLE -->
-    <nav id="static-legal-nav" aria-label="Legal policies" style="background:#0f172a;padding:12px 20px;text-align:center;border-bottom:1px solid #1e293b;">
+    <!-- Static policy links for Google OAuth verification - ALWAYS VISIBLE, FIXED POSITION -->
+    <nav id="static-legal-nav" aria-label="Legal policies" style="position:fixed;top:0;left:0;right:0;z-index:9999;background:#0f172a;padding:10px 20px;text-align:center;border-bottom:1px solid #1e293b;font-family:system-ui,-apple-system,sans-serif;">
       <span style="color:#94a3b8;font-size:12px;margin-right:16px;">Legal:</span>
       <a href="/privacy-policy" style="color:#f97316;font-size:13px;margin-right:20px;text-decoration:underline;">Privacy Policy</a>
       <a href="/terms-of-service" style="color:#f97316;font-size:13px;text-decoration:underline;">Terms of Service</a>
       <span style="color:#94a3b8;font-size:12px;margin-left:16px;">|</span>
       <span style="color:#94a3b8;font-size:12px;margin-left:16px;">Contact: admin@xtsy.one</span>
     </nav>
+    <!-- Add padding to body to prevent content from being hidden under fixed nav -->
+    <style>body{padding-top:42px!important;}</style>
     <noscript>
       <nav aria-label="Legal policies" style="padding:20px;background:#111;text-align:center;">
         <a href="/privacy-policy" style="color:#f97316;margin-right:20px;">Privacy Policy</a>
