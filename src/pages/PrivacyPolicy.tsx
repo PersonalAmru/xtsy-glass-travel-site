@@ -55,16 +55,34 @@ export const PrivacyPolicy: React.FC = () => {
                 <li><strong>Subscribe to Newsletter:</strong> Email address and communication preferences</li>
               </ul>
               
-              <h3 className="text-xl font-medium mb-3 mt-6 text-foreground">2.2 Information from Third-Party Authentication</h3>
-              <p>When you sign in using third-party services (Google, Phone OTP), we may receive:</p>
+              <h3 className="text-xl font-medium mb-3 mt-6 text-foreground">2.2 Google Sign-In Data Access</h3>
+              <div className="bg-primary/10 border border-primary/20 rounded-lg p-5 my-4">
+                <p className="font-semibold text-foreground mb-3">🔐 Why We Use Google Sign-In</p>
+                <p className="text-foreground/80 mb-3">
+                  We use Google authentication solely to verify your identity and provide a seamless booking experience. 
+                  This eliminates the need to remember another password while ensuring secure access to your account.
+                </p>
+                <p className="font-medium text-foreground mb-2">What we access:</p>
+                <ul className="list-disc pl-6 space-y-1 text-foreground/80">
+                  <li><strong>Your name</strong> – to personalize your experience</li>
+                  <li><strong>Your email address</strong> – to create your account and send booking confirmations</li>
+                  <li><strong>Profile picture</strong> (optional) – to display in your account</li>
+                </ul>
+                <p className="font-medium text-foreground mt-4 mb-2">What we NEVER access:</p>
+                <ul className="list-disc pl-6 space-y-1 text-foreground/80">
+                  <li>Your contacts or address book</li>
+                  <li>Your files, documents, or Google Drive</li>
+                  <li>Your calendar or Gmail</li>
+                  <li>Your location history or browsing data</li>
+                  <li>Any other Google account data</li>
+                </ul>
+              </div>
+              
+              <h3 className="text-xl font-medium mb-3 mt-6 text-foreground">2.3 Phone Authentication</h3>
+              <p>When you sign in using Phone OTP, we receive:</p>
               <ul className="list-disc pl-6 space-y-2 mt-3">
-                <li><strong>Google Sign-In:</strong> Your name, email address, profile picture, and Google account ID</li>
-                <li><strong>Phone Authentication:</strong> Your phone number for verification purposes</li>
+                <li><strong>Phone Authentication:</strong> Your phone number for verification purposes only</li>
               </ul>
-              <p className="mt-3">
-                We only access information you authorize. We do not access your contacts, calendar, 
-                or other sensitive Google account data.
-              </p>
               
               <h3 className="text-xl font-medium mb-3 mt-6 text-foreground">2.3 Automatically Collected Information</h3>
               <ul className="list-disc pl-6 space-y-2">
