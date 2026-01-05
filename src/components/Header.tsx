@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X, ShieldCheck } from "lucide-react";
+import { Menu, X, ShieldCheck, User, LogOut } from "lucide-react";
 import { CurrencySelector } from "./CurrencySelector";
 import { useApp } from "@/contexts/AppContext";
 import { Link, useNavigate } from "react-router-dom";
@@ -9,6 +9,7 @@ import { HoverCard, HoverCardTrigger, HoverCardContent } from "./ui/hover-card";
 import { XTSY270_DATA } from "@/data/rooms/xtsy270";
 import xtsyLogo from "@/assets/xtsy-brand-logo.png";
 import { useMediaQuery } from "@/hooks/use-mobile";
+import { useUserAuth } from "@/contexts/UserAuthContext";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -17,6 +18,12 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,6 +35,8 @@ const Header = () => {
   const [logoError, setLogoError] = useState(false);
   const { setCurrency } = useApp();
   const navigate = useNavigate();
+  const { user, signOut, isLoading: authLoading } = useUserAuth();
+  const isAuthenticated = !!user;
   
   // Use the new responsive hooks
   const isMobile = useMediaQuery('(max-width: 767px)');
@@ -242,6 +251,38 @@ const Header = () => {
                     className="text-white" 
                     onCurrencyChange={setCurrency}
                   />
+                  
+                  {/* User Auth Button */}
+                  {isAuthenticated ? (
+                    <DropdownMenu>
+                      <DropdownMenuTrigger className="flex items-center gap-2 text-white hover:text-primary transition-colors duration-200 touch-target">
+                        <User size={20} />
+                        <span className="text-sm font-medium max-w-[100px] truncate">
+                          {user?.displayName || user?.email?.split('@')[0] || user?.phoneNumber?.slice(-4) || 'Account'}
+                        </span>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end" className="bg-black/95 border-white/20">
+                        <DropdownMenuItem 
+                          className="text-white hover:text-primary cursor-pointer"
+                          onClick={() => {
+                            signOut();
+                          }}
+                        >
+                          <LogOut size={16} className="mr-2" />
+                          Sign Out
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  ) : (
+                    <Link
+                      to="/auth"
+                      className="flex items-center gap-2 px-3 py-1.5 text-white bg-primary/20 hover:bg-primary hover:text-white rounded-md transition-all duration-200 font-medium text-sm"
+                    >
+                      <User size={16} />
+                      Sign In
+                    </Link>
+                  )}
+                  
                   <Link
                     to="/admin-login"
                     className="text-white/70 hover:text-primary hover:scale-110 transition-all duration-200 touch-target"
@@ -388,13 +429,40 @@ const Header = () => {
                   Travel
                 </button>
               
-                {/* Currency Selector and Admin Login for Mobile/Tablet */}
+                {/* Currency Selector and Auth for Mobile/Tablet */}
                 <div className="mx-4 mt-4 pt-4 pb-2 border-t border-white/20">
                   <div className="text-sm font-medium text-white/80 mb-3">Select Currency:</div>
                   <CurrencySelector 
                     className="w-full bg-black/50 border border-white/20 rounded-md text-white" 
                     onCurrencyChange={setCurrency}
                   />
+                  
+                  {/* User Auth Button for Mobile */}
+                  {isAuthenticated ? (
+                    <button
+                      onClick={() => {
+                        signOut();
+                        setIsMenuOpen(false);
+                      }}
+                      className="flex items-center gap-2 w-full px-4 py-3 mt-2 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200 font-medium touch-target text-left"
+                    >
+                      <User size={18} />
+                      <span className="flex-1 truncate">
+                        {user?.displayName || user?.email?.split('@')[0] || user?.phoneNumber?.slice(-4) || 'Account'}
+                      </span>
+                      <LogOut size={16} className="text-white/60" />
+                    </button>
+                  ) : (
+                    <Link
+                      to="/auth"
+                      className="flex items-center gap-2 w-full px-4 py-3 mt-2 text-white bg-primary/20 hover:bg-primary rounded-md transition-all duration-200 font-medium touch-target justify-center"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <User size={18} />
+                      Sign In
+                    </Link>
+                  )}
+                  
                   <Link
                     to="/admin-login"
                     className="flex items-center gap-2 px-4 py-3 mt-2 text-white/70 hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200 font-medium touch-target text-left"
