@@ -1,5 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import * as Sentry from "@sentry/react";
 import App from "./App.tsx";
 import "./styles/tailwind.css";
 import "./styles/typography.css";
@@ -16,6 +17,20 @@ import { prefetchRouteChunks } from "./utils/bundleOptimization";
 import { performGlobalCleanup } from "./utils/performanceCleanup";
 import { cleanupUnifiedImage } from "./components/UnifiedImage";
 import { initializeCriticalImageLoading, preloadLCPImage } from "./utils/criticalImagePreloader";
+
+// Initialize Sentry as early as possible
+Sentry.init({
+  dsn: "https://12bae2f7614bf702c6f7c456eef52cea@o4510659453911040.ingest.us.sentry.io/4510659499982848",
+  sendDefaultPii: true,
+  environment: import.meta.env.MODE,
+  integrations: [
+    Sentry.browserTracingIntegration(),
+    Sentry.replayIntegration(),
+  ],
+  tracesSampleRate: 0.1, // 10% of transactions for performance monitoring
+  replaysSessionSampleRate: 0.1, // 10% of sessions for replay
+  replaysOnErrorSampleRate: 1.0, // 100% of sessions with errors
+});
 
 // LCP OPTIMIZATION: Preload LCP image IMMEDIATELY before anything else
 // This runs synchronously at module load time for fastest possible LCP
