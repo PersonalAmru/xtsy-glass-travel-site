@@ -356,6 +356,8 @@ const RoomSelectionStep = ({
   onQuantityChange,
   onNext,
   formatPrice,
+  isLoading = false,
+  error = null,
 }: {
   rooms: RoomType[];
   selectedRoom: RoomType | null;
@@ -366,6 +368,8 @@ const RoomSelectionStep = ({
   onQuantityChange: (qty: number) => void;
   onNext: () => void;
   formatPrice: (amount: number) => string;
+  isLoading?: boolean;
+  error?: string | null;
 }) => {
   const nights = differenceInDays(checkOut, checkIn);
 
@@ -402,6 +406,39 @@ const RoomSelectionStep = ({
     return groups;
   }, [rooms]);
 
+  // Loading skeleton
+  if (isLoading) {
+    return (
+      <div className="flex flex-col min-h-[calc(100vh-10rem)] pb-40">
+        <div className="sticky top-0 z-40 px-4 py-3 bg-[hsl(160,35%,18%)]/95 backdrop-blur-lg border-b border-white/5">
+          <div className="flex items-center justify-center gap-3">
+            <div className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-sm font-medium text-white">
+              <CalendarIcon className="w-4 h-4 text-white/60" />
+              <span>{format(checkIn, 'MMM d')}</span>
+              <span className="text-white/40">→</span>
+              <span>{format(checkOut, 'MMM d')}</span>
+              <span className="text-xs text-white/40 ml-1">({nights}N)</span>
+            </div>
+          </div>
+        </div>
+        <div className="px-4 py-6 space-y-4">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="rounded-2xl bg-white/5 border border-white/10 overflow-hidden animate-pulse">
+              <div className="flex">
+                <div className="w-28 h-28 bg-white/10" />
+                <div className="flex-1 p-4 space-y-3">
+                  <div className="h-4 bg-white/10 rounded w-3/4" />
+                  <div className="h-3 bg-white/10 rounded w-1/2" />
+                  <div className="h-5 bg-white/10 rounded w-1/4 mt-2" />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col min-h-[calc(100vh-10rem)] pb-40">
       {/* Date Summary Pill */}
@@ -419,6 +456,11 @@ const RoomSelectionStep = ({
             <span className="text-xs text-white/40 ml-1">({nights}N)</span>
           </div>
         </div>
+        {error && (
+          <div className="mt-2 text-center">
+            <span className="text-xs text-amber-400/80">{error}</span>
+          </div>
+        )}
       </motion.div>
 
       {/* Room Categories */}
@@ -1070,6 +1112,8 @@ export default function BookingFlow() {
   const [checkIn, setCheckIn] = useState<Date | undefined>();
   const [checkOut, setCheckOut] = useState<Date | undefined>();
   const [rooms, setRooms] = useState<RoomType[]>([]);
+  const [isLoadingRooms, setIsLoadingRooms] = useState(true);
+  const [roomLoadError, setRoomLoadError] = useState<string | null>(null);
   const [selectedRoom, setSelectedRoom] = useState<RoomType | null>(null);
   const [quantity, setQuantity] = useState(1);
   const [guestDetails, setGuestDetails] = useState<GuestDetails>({
@@ -1122,9 +1166,15 @@ export default function BookingFlow() {
     });
   }, [context, searchParams, trackEvent, trackConversion]);
 
-  // Load rooms from database and merge with local inventory for images
+  // Load rooms from database with retry and fallback to local inventory
   useEffect(() => {
-    const fetchRooms = async () => {
+    let retryCount = 0;
+    const maxRetries = 3;
+    
+    const fetchRooms = async (): Promise<void> => {
+      setIsLoadingRooms(true);
+      setRoomLoadError(null);
+      
       try {
         const { data, error } = await supabase
           .from('room_types')
@@ -1133,6 +1183,10 @@ export default function BookingFlow() {
           .order('base_price', { ascending: true });
 
         if (error) throw error;
+        
+        if (!data || data.length === 0) {
+          throw new Error('No rooms returned from database');
+        }
         
         // Merge database data with local inventory images
         const mergedRooms = (data || []).map(dbRoom => {
@@ -1144,9 +1198,41 @@ export default function BookingFlow() {
         });
         
         setRooms(mergedRooms);
+        setIsLoadingRooms(false);
       } catch (err) {
-        console.error('Error fetching rooms:', err);
-        toast.error('Failed to load rooms');
+        console.error('Error fetching rooms (attempt ' + (retryCount + 1) + '):', err);
+        
+        // Retry with exponential backoff
+        if (retryCount < maxRetries) {
+          retryCount++;
+          const delay = Math.min(1000 * Math.pow(2, retryCount - 1), 5000);
+          setTimeout(fetchRooms, delay);
+          return;
+        }
+        
+        // Fallback to local inventory after all retries fail
+        console.warn('Using local inventory fallback after database failures');
+        const fallbackRooms = Object.values(ROOM_INVENTORY)
+          .filter(room => room.isBookable)
+          .map(room => ({
+            id: room.id,
+            name: room.name,
+            category: room.category,
+            kind: room.kind,
+            base_price: room.basePrice,
+            weekday_price: room.weekdayPrice,
+            weekend_price: room.weekendPrice,
+            capacity: room.capacity,
+            total_units: room.totalUnits,
+            amenities: room.features,
+            images: room.images,
+            is_active: true,
+          }))
+          .sort((a, b) => a.base_price - b.base_price);
+        
+        setRooms(fallbackRooms as RoomType[]);
+        setRoomLoadError('Using cached data. Some features may be limited.');
+        setIsLoadingRooms(false);
       }
     };
 
@@ -1309,6 +1395,8 @@ export default function BookingFlow() {
               onQuantityChange={setQuantity}
               onNext={() => goToStep('summary')}
               formatPrice={formatPrice}
+              isLoading={isLoadingRooms}
+              error={roomLoadError}
             />
           )}
 
