@@ -13,6 +13,7 @@ import {
   useCallback
 } from 'react';
 import { User } from 'firebase/auth';
+import * as Sentry from '@sentry/react';
 import {
   initializeFirebase,
   signInWithEmail,
@@ -100,6 +101,11 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
       await signInWithEmail(email, password);
     } catch (err: any) {
       const message = getErrorMessage(err.code);
+      // Report to Sentry with context
+      Sentry.captureException(err, {
+        tags: { auth_action: 'sign_in', error_code: err.code },
+        extra: { user_message: message }
+      });
       setError(message);
       throw new Error(message);
     } finally {
@@ -116,6 +122,11 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
       await createAccountWithEmail(email, password);
     } catch (err: any) {
       const message = getErrorMessage(err.code);
+      // Report to Sentry with context
+      Sentry.captureException(err, {
+        tags: { auth_action: 'sign_up', error_code: err.code },
+        extra: { user_message: message }
+      });
       setError(message);
       throw new Error(message);
     } finally {
@@ -132,6 +143,11 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
       await sendPasswordReset(email);
     } catch (err: any) {
       const message = getErrorMessage(err.code);
+      // Report to Sentry with context
+      Sentry.captureException(err, {
+        tags: { auth_action: 'password_reset', error_code: err.code },
+        extra: { user_message: message }
+      });
       setError(message);
       throw new Error(message);
     } finally {
@@ -147,8 +163,12 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
     try {
       await signInWithGoogle();
     } catch (err: any) {
-      console.error('[Firebase Auth] Google Sign-In Error:', err.code, err.message, err);
       const message = getErrorMessage(err.code);
+      // Report to Sentry with context
+      Sentry.captureException(err, {
+        tags: { auth_action: 'google_sign_in', error_code: err.code },
+        extra: { user_message: message }
+      });
       setError(message);
       throw new Error(message);
     } finally {
