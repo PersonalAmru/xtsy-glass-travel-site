@@ -1241,20 +1241,10 @@ export default function BookingFlow() {
   const canGoBack = stepIndex > 0 && currentStep !== 'confirmation';
 
   const goToStep = useCallback((step: BookingStep) => {
-    // Require authentication for booking (details step onwards)
-    if (step === 'details' && !isAuthenticated) {
-      // Redirect to auth with return path
-      navigate('/auth', { 
-        state: { from: location.pathname + location.search }
-      });
-      toast.info('Please sign in to complete your booking');
-      return;
-    }
-    
     const newIndex = STEPS.findIndex(s => s.id === step);
     setDirection(newIndex > stepIndex ? 1 : -1);
     setCurrentStep(step);
-  }, [stepIndex, isAuthenticated, navigate, location]);
+  }, [stepIndex]);
 
   const goBack = useCallback(() => {
     if (canGoBack) {
