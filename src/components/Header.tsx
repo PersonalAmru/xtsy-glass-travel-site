@@ -249,17 +249,35 @@ const Header = () => {
                   {isAuthenticated ? (
                     <DropdownMenu>
                       <DropdownMenuTrigger className="flex items-center gap-2 text-white hover:text-primary transition-colors duration-200 touch-target">
-                        <User size={20} />
-                        <span className="text-sm font-medium max-w-[100px] truncate">
-                          {user?.displayName || user?.email?.split('@')[0] || user?.phoneNumber?.slice(-4) || 'Account'}
-                        </span>
+                        {user?.photoURL ? (
+                          <img 
+                            src={user.photoURL} 
+                            alt={user.displayName || 'Profile'}
+                            className="w-8 h-8 rounded-full object-cover ring-2 ring-primary/30"
+                          />
+                        ) : (
+                          <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
+                            <User size={16} className="text-primary" />
+                          </div>
+                        )}
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end" className="bg-black/95 border-white/20">
+                      <DropdownMenuContent align="end" className="bg-black/95 border-white/20 min-w-[180px]">
+                        <div className="px-3 py-2 border-b border-white/10">
+                          <p className="text-white font-medium text-sm truncate">
+                            {user?.displayName || user?.email?.split('@')[0] || 'Account'}
+                          </p>
+                          <p className="text-white/60 text-xs truncate">{user?.email}</p>
+                        </div>
                         <DropdownMenuItem 
                           className="text-white hover:text-primary cursor-pointer"
-                          onClick={() => {
-                            signOut();
-                          }}
+                          onClick={() => navigate('/profile')}
+                        >
+                          <User size={16} className="mr-2" />
+                          My Profile
+                        </DropdownMenuItem>
+                        <DropdownMenuItem 
+                          className="text-white hover:text-destructive cursor-pointer"
+                          onClick={() => signOut()}
                         >
                           <LogOut size={16} className="mr-2" />
                           Sign Out
@@ -432,23 +450,49 @@ const Header = () => {
                   
                   {/* User Auth Button for Mobile */}
                   {isAuthenticated ? (
-                    <button
-                      onClick={() => {
-                        signOut();
-                        setIsMenuOpen(false);
-                      }}
-                      className="flex items-center gap-2 w-full px-4 py-3 mt-2 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200 font-medium touch-target text-left"
-                    >
-                      <User size={18} />
-                      <span className="flex-1 truncate">
-                        {user?.displayName || user?.email?.split('@')[0] || user?.phoneNumber?.slice(-4) || 'Account'}
-                      </span>
-                      <LogOut size={16} className="text-white/60" />
-                    </button>
+                    <div className="mt-3 space-y-1">
+                      <div className="flex items-center gap-3 px-4 py-3 bg-white/5 rounded-lg">
+                        {user?.photoURL ? (
+                          <img 
+                            src={user.photoURL} 
+                            alt={user.displayName || 'Profile'}
+                            className="w-10 h-10 rounded-full object-cover ring-2 ring-primary/30"
+                          />
+                        ) : (
+                          <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                            <User size={20} className="text-primary" />
+                          </div>
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <p className="text-white font-medium truncate">
+                            {user?.displayName || user?.email?.split('@')[0] || 'Account'}
+                          </p>
+                          <p className="text-white/60 text-xs truncate">{user?.email}</p>
+                        </div>
+                      </div>
+                      <Link
+                        to="/profile"
+                        className="flex items-center gap-2 w-full px-4 py-3 text-white hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200 font-medium touch-target text-left"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        <User size={18} />
+                        My Profile
+                      </Link>
+                      <button
+                        onClick={() => {
+                          signOut();
+                          setIsMenuOpen(false);
+                        }}
+                        className="flex items-center gap-2 w-full px-4 py-3 text-white hover:text-destructive hover:bg-destructive/10 rounded-md transition-all duration-200 font-medium touch-target text-left"
+                      >
+                        <LogOut size={18} />
+                        Sign Out
+                      </button>
+                    </div>
                   ) : (
                     <Link
                       to="/auth"
-                      className="flex items-center gap-2 w-full px-4 py-3 mt-2 text-white bg-primary/20 hover:bg-primary rounded-md transition-all duration-200 font-medium touch-target justify-center"
+                      className="flex items-center gap-2 w-full px-4 py-3 mt-3 text-white bg-primary/20 hover:bg-primary rounded-md transition-all duration-200 font-medium touch-target justify-center"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       <User size={18} />

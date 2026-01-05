@@ -7,17 +7,15 @@ import { initializeApp, FirebaseApp, getApps } from 'firebase/app';
 import { 
   getAuth, 
   Auth,
-  RecaptchaVerifier,
-  signInWithPhoneNumber,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   sendEmailVerification,
+  sendPasswordResetEmail,
   signOut,
   onAuthStateChanged,
   signInWithPopup,
   GoogleAuthProvider,
-  User,
-  ConfirmationResult
+  User
 } from 'firebase/auth';
 import { supabase } from '@/integrations/supabase/client';
 
@@ -92,43 +90,11 @@ export function getFirebaseAuth(): Auth {
 }
 
 /**
- * Setup reCAPTCHA for phone authentication
+ * Send password reset email
  */
-export function setupRecaptcha(containerId: string): RecaptchaVerifier {
+export async function sendPasswordReset(email: string): Promise<void> {
   const auth = getFirebaseAuth();
-  return new RecaptchaVerifier(auth, containerId, {
-    size: 'invisible',
-    callback: () => {
-      // reCAPTCHA solved
-    },
-  });
-}
-
-/**
- * Send OTP to phone number
- */
-export async function sendPhoneOTP(
-  phoneNumber: string, 
-  recaptchaVerifier: RecaptchaVerifier
-): Promise<ConfirmationResult> {
-  const auth = getFirebaseAuth();
-  // Ensure phone number has country code
-  const formattedPhone = phoneNumber.startsWith('+') 
-    ? phoneNumber 
-    : `+91${phoneNumber}`; // Default to India
-  
-  return signInWithPhoneNumber(auth, formattedPhone, recaptchaVerifier);
-}
-
-/**
- * Verify OTP code
- */
-export async function verifyPhoneOTP(
-  confirmationResult: ConfirmationResult, 
-  code: string
-): Promise<User> {
-  const result = await confirmationResult.confirm(code);
-  return result.user;
+  await sendPasswordResetEmail(auth, email);
 }
 
 /**
@@ -190,4 +156,4 @@ export function onUserAuthStateChanged(
 }
 
 // Export types
-export type { User, ConfirmationResult };
+export type { User };

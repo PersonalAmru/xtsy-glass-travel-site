@@ -50,8 +50,9 @@ const LazyTermsOfService = createLazyComponent(() => import("./pages/TermsOfServ
 const AdminLogin = createLazyComponent(() => import("./pages/AdminLogin"));
 const BookingFlow = createLazyComponent(() => import("./pages/BookingFlow"));
 
-// User auth page
+// User auth pages
 const UserAuth = createLazyComponent(() => import("./pages/user/UserAuth"));
+const UserProfile = createLazyComponent(() => import("./pages/user/UserProfile"));
 
 // Admin pages - V2 with hamburger menu
 const AdminOverview = createLazyComponent(() => import("./pages/admin/AdminOverview"));
@@ -192,8 +193,9 @@ function App() {
                 <Route path="/admin-login" element={<LazyRoute><AdminLogin /></LazyRoute>} />
                 <Route path="/booking" element={<LazyRoute><BookingFlow /></LazyRoute>} />
                 
-                {/* User Auth Route */}
+                {/* User Auth Routes */}
                 <Route path="/auth" element={<LazyRoute><UserAuth /></LazyRoute>} />
+                <Route path="/profile" element={<LazyRoute><UserProfile /></LazyRoute>} />
                 
                 {/* Admin Routes - Separate pages */}
                 <Route path="/admin" element={<LazyRoute><AdminOverview /></LazyRoute>} />
