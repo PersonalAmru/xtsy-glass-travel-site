@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      admin_notifications: {
+        Row: {
+          booking_id: string | null
+          created_at: string | null
+          id: string
+          is_read: boolean | null
+          message: string
+          metadata: Json | null
+          read_at: string | null
+          title: string
+          type: string
+        }
+        Insert: {
+          booking_id?: string | null
+          created_at?: string | null
+          id?: string
+          is_read?: boolean | null
+          message: string
+          metadata?: Json | null
+          read_at?: string | null
+          title: string
+          type: string
+        }
+        Update: {
+          booking_id?: string | null
+          created_at?: string | null
+          id?: string
+          is_read?: boolean | null
+          message?: string
+          metadata?: Json | null
+          read_at?: string | null
+          title?: string
+          type?: string
+        }
+        Relationships: []
+      }
       analytics_conversions: {
         Row: {
           conversion_value: number | null
@@ -490,6 +526,132 @@ export type Database = {
           },
         ]
       }
+      booking_invoices: {
+        Row: {
+          booking_id: string
+          check_in: string
+          check_out: string
+          created_at: string | null
+          currency: string | null
+          gst_amount: number
+          gst_rate: number
+          guest_address: string | null
+          guest_city: string | null
+          guest_email: string
+          guest_name: string
+          guest_phone: string
+          guest_pincode: string | null
+          guest_state: string | null
+          html_content: string | null
+          id: string
+          invoice_number: string
+          nights: number
+          pdf_url: string | null
+          quantity: number
+          rate_per_night: number
+          room_name: string
+          room_type: string
+          status: string
+          subtotal: number
+          total_amount: number
+          updated_at: string | null
+        }
+        Insert: {
+          booking_id: string
+          check_in: string
+          check_out: string
+          created_at?: string | null
+          currency?: string | null
+          gst_amount: number
+          gst_rate?: number
+          guest_address?: string | null
+          guest_city?: string | null
+          guest_email: string
+          guest_name: string
+          guest_phone: string
+          guest_pincode?: string | null
+          guest_state?: string | null
+          html_content?: string | null
+          id?: string
+          invoice_number: string
+          nights: number
+          pdf_url?: string | null
+          quantity?: number
+          rate_per_night: number
+          room_name: string
+          room_type: string
+          status?: string
+          subtotal: number
+          total_amount: number
+          updated_at?: string | null
+        }
+        Update: {
+          booking_id?: string
+          check_in?: string
+          check_out?: string
+          created_at?: string | null
+          currency?: string | null
+          gst_amount?: number
+          gst_rate?: number
+          guest_address?: string | null
+          guest_city?: string | null
+          guest_email?: string
+          guest_name?: string
+          guest_phone?: string
+          guest_pincode?: string | null
+          guest_state?: string | null
+          html_content?: string | null
+          id?: string
+          invoice_number?: string
+          nights?: number
+          pdf_url?: string | null
+          quantity?: number
+          rate_per_night?: number
+          room_name?: string
+          room_type?: string
+          status?: string
+          subtotal?: number
+          total_amount?: number
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      booking_messages: {
+        Row: {
+          booking_id: string
+          created_at: string | null
+          id: string
+          is_read: boolean | null
+          message: string
+          read_at: string | null
+          sender_id: string | null
+          sender_name: string
+          sender_type: string
+        }
+        Insert: {
+          booking_id: string
+          created_at?: string | null
+          id?: string
+          is_read?: boolean | null
+          message: string
+          read_at?: string | null
+          sender_id?: string | null
+          sender_name: string
+          sender_type: string
+        }
+        Update: {
+          booking_id?: string
+          created_at?: string | null
+          id?: string
+          is_read?: boolean | null
+          message?: string
+          read_at?: string | null
+          sender_id?: string | null
+          sender_name?: string
+          sender_type?: string
+        }
+        Relationships: []
+      }
       booking_rate_limits_backup: {
         Row: {
           blocked_until: string | null
@@ -946,6 +1108,27 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      invoice_counter: {
+        Row: {
+          counter: number
+          id: string
+          prefix: string
+          updated_at: string | null
+        }
+        Insert: {
+          counter?: number
+          id?: string
+          prefix?: string
+          updated_at?: string | null
+        }
+        Update: {
+          counter?: number
+          id?: string
+          prefix?: string
+          updated_at?: string | null
+        }
+        Relationships: []
       }
       invoices: {
         Row: {
@@ -1439,6 +1622,42 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      push_subscriptions: {
+        Row: {
+          auth: string
+          created_at: string | null
+          endpoint: string
+          id: string
+          is_active: boolean | null
+          p256dh: string
+          updated_at: string | null
+          user_id: string | null
+          user_type: string
+        }
+        Insert: {
+          auth: string
+          created_at?: string | null
+          endpoint: string
+          id?: string
+          is_active?: boolean | null
+          p256dh: string
+          updated_at?: string | null
+          user_id?: string | null
+          user_type?: string
+        }
+        Update: {
+          auth?: string
+          created_at?: string | null
+          endpoint?: string
+          id?: string
+          is_active?: boolean | null
+          p256dh?: string
+          updated_at?: string | null
+          user_id?: string | null
+          user_type?: string
+        }
+        Relationships: []
       }
       rate_limits: {
         Row: {
@@ -2307,6 +2526,31 @@ export type Database = {
           p_taxes: number
           p_total_amount: number
           p_whatsapp_number: string
+        }
+        Returns: Json
+      }
+      create_booking_with_invoice: {
+        Args: {
+          p_address?: string
+          p_check_in: string
+          p_check_out: string
+          p_city?: string
+          p_email: string
+          p_gst_amount: number
+          p_gst_rate: number
+          p_guest_name: string
+          p_message_to_host: string
+          p_nights: number
+          p_phone: string
+          p_pincode?: string
+          p_quantity: number
+          p_rate_per_night: number
+          p_room_name: string
+          p_room_type: string
+          p_special_requests?: string
+          p_state?: string
+          p_subtotal: number
+          p_total_amount: number
         }
         Returns: Json
       }
