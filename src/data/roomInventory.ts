@@ -109,8 +109,9 @@ export const ROOM_INVENTORY: Record<string, RoomType> = {
     propertyType: 'XTSY Travellers Hostel',
   },
 
-  '4-bed-mixed-dorm': {
-    id: '4-bed-mixed-dorm',
+  // Alias for database ID compatibility
+  '4-bed-mixed-female-dorm': {
+    id: '4-bed-mixed-female-dorm',
     name: 'Bed in 4-Bed Mixed Dormitory',
     shortName: '4-Bed Mixed Dorm',
     category: 'hostel',
@@ -135,8 +136,9 @@ export const ROOM_INVENTORY: Record<string, RoomType> = {
     propertyType: 'XTSY Travellers Hostel',
   },
 
-  '6-bed-female-dorm': {
-    id: '6-bed-female-dorm',
+  // Alias for database ID compatibility
+  '6-bed-mixed-female-dorm': {
+    id: '6-bed-mixed-female-dorm',
     name: 'Bed in 6-Bed Female Dormitory',
     shortName: '6-Bed Female Dorm',
     category: 'hostel',
@@ -245,8 +247,9 @@ export const ROOM_INVENTORY: Record<string, RoomType> = {
   },
 
   // === ECONOMY CATEGORY (OTA-only) ===
-  '6-bed-economy-female-dorm': {
-    id: '6-bed-economy-female-dorm',
+  // Alias for database ID compatibility
+  '6-bed-mixed-economy-dorm': {
+    id: '6-bed-mixed-economy-dorm',
     name: 'Bed in 6-Bed Female Dormitory',
     shortName: '6-Bed Economy Female',
     category: 'economy',
