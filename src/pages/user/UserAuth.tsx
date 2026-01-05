@@ -6,6 +6,7 @@
 
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
+import * as Sentry from '@sentry/react';
 import { useUserAuth } from '@/contexts/UserAuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -266,6 +267,18 @@ export default function UserAuth() {
           </AnimatePresence>
         </div>
       </main>
+
+      {/* Sentry Test Button - Remove after verification */}
+      <div className="relative z-10 px-4 sm:px-6 py-2 text-center">
+        <button
+          onClick={() => {
+            throw new Error('This is your first Sentry error!');
+          }}
+          className="text-xs text-destructive underline hover:no-underline"
+        >
+          Test Sentry Error
+        </button>
+      </div>
 
       {/* Footer */}
       <footer className="relative z-10 px-4 sm:px-6 py-6 text-center">
