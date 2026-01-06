@@ -269,22 +269,6 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Policy Links - Required for Google OAuth Verification */}
-          <div className="mt-4 sm:mt-6 flex items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm">
-            <Link 
-              to="/privacy-policy" 
-              className="text-gray-300 hover:text-primary underline underline-offset-2 transition-colors duration-200"
-            >
-              Privacy Policy
-            </Link>
-            <span className="text-gray-500">•</span>
-            <Link 
-              to="/terms-of-service" 
-              className="text-gray-300 hover:text-primary underline underline-offset-2 transition-colors duration-200"
-            >
-              Terms of Service
-            </Link>
-          </div>
 
           {/* Stats */}
           <div className="mt-6 sm:mt-8 md:mt-10 lg:mt-12 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6 animate-fade-in" style={{ animationDelay: '1.2s' }}>
