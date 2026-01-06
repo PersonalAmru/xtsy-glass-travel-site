@@ -1378,8 +1378,6 @@ export default function BookingFlow() {
         }
         goToStep('confirmation');
         toast.success('Booking confirmed! Check your invoice below.');
-        // Auto-open chat after booking confirmation
-        setTimeout(() => setChatOpen(true), 800);
       } else {
         toast.error(result.error || 'Booking failed. Please try again.');
       }
