@@ -629,7 +629,7 @@ serve(async (req) => {
           booking_id: dbResult.bookingUUID,
           sender_type: 'admin',
           sender_name: 'XTSY Host',
-          message: `👋 Hi ${data.guestName.split(' ')[0]}! We've received your booking request for ${data.roomName} on ${checkInFormatted}. Our team will review and confirm your reservation shortly. Feel free to drop us a message if you have any questions!`,
+          message: `👋 Hi ${data.guestName.split(' ')[0]}! We've received your booking request for ${data.roomName} on ${checkInFormatted}. ⏳ Pending confirmation from host. Feel free to drop us a message if you have any questions!`,
         });
       }
 
