@@ -2581,59 +2581,32 @@ export type Database = {
         }
         Returns: Json
       }
-      create_booking_with_invoice:
-        | {
-            Args: {
-              p_address?: string
-              p_check_in: string
-              p_check_out: string
-              p_city?: string
-              p_email: string
-              p_gst_amount: number
-              p_gst_rate: number
-              p_guest_name: string
-              p_message_to_host: string
-              p_nights: number
-              p_phone: string
-              p_pincode?: string
-              p_quantity: number
-              p_rate_per_night: number
-              p_room_name: string
-              p_room_type: string
-              p_special_requests?: string
-              p_state?: string
-              p_subtotal: number
-              p_total_amount: number
-              p_user_id?: string
-            }
-            Returns: Json
-          }
-        | {
-            Args: {
-              p_address?: string
-              p_check_in: string
-              p_check_out: string
-              p_city?: string
-              p_email: string
-              p_gst_amount: number
-              p_gst_rate: number
-              p_guest_name: string
-              p_message_to_host?: string
-              p_nights: number
-              p_phone: string
-              p_pincode?: string
-              p_quantity: number
-              p_rate_per_night: number
-              p_room_name: string
-              p_room_type: string
-              p_special_requests?: string
-              p_state?: string
-              p_subtotal: number
-              p_total_amount: number
-              p_user_id?: string
-            }
-            Returns: Json
-          }
+      create_booking_with_invoice: {
+        Args: {
+          p_address?: string
+          p_check_in: string
+          p_check_out: string
+          p_city?: string
+          p_email: string
+          p_gst_amount: number
+          p_gst_rate: number
+          p_guest_name: string
+          p_message_to_host?: string
+          p_nights: number
+          p_phone: string
+          p_pincode?: string
+          p_quantity: number
+          p_rate_per_night: number
+          p_room_name: string
+          p_room_type: string
+          p_special_requests?: string
+          p_state?: string
+          p_subtotal: number
+          p_total_amount: number
+          p_user_id?: string
+        }
+        Returns: Json
+      }
       delete_my_data: { Args: never; Returns: boolean }
       export_my_data: { Args: never; Returns: Json }
       generate_booking_id: { Args: never; Returns: string }

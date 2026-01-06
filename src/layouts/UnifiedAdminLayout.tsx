@@ -1,6 +1,6 @@
 /**
- * Unified Admin Layout - Single source admin control panel
- * Hamburger menu navigation with all admin functions
+ * Unified Admin Layout - Apple-grade Admin Control Panel
+ * Hamburger menu navigation with premium glassmorphic design
  */
 
 import { ReactNode, useState, useEffect } from 'react';
@@ -12,9 +12,9 @@ import { AdminNotificationBell } from '@/components/admin/AdminNotificationBell'
 import { BookingChat } from '@/components/chat/BookingChat';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Menu,
-  X,
   Home,
   BarChart3,
   Calendar,
@@ -30,6 +30,7 @@ import {
   Loader2,
   ChevronLeft,
   MessageSquare,
+  Sparkles,
 } from 'lucide-react';
 
 interface UnifiedAdminLayoutProps {
@@ -130,13 +131,29 @@ export function UnifiedAdminLayout({ children }: UnifiedAdminLayoutProps) {
     setMenuOpen(false);
   };
 
+  // Get current page title
+  const currentMenuItem = menuItems.find(item => item.path === location.pathname);
+  const pageTitle = currentMenuItem?.label || 'Admin';
+
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
-          <Loader2 className="w-8 h-8 animate-spin text-primary" />
-          <p className="text-sm text-muted-foreground">Verifying access...</p>
-        </div>
+      <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="flex flex-col items-center gap-6"
+        >
+          <div className="relative">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/30 to-primary/10 flex items-center justify-center backdrop-blur-xl border border-white/10">
+              <Sparkles className="w-8 h-8 text-primary animate-pulse" />
+            </div>
+            <div className="absolute -inset-2 bg-primary/20 rounded-3xl blur-xl animate-pulse" />
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <Loader2 className="w-5 h-5 animate-spin text-primary" />
+            <p className="text-sm text-slate-400">Verifying access...</p>
+          </div>
+        </motion.div>
       </div>
     );
   }
@@ -146,75 +163,107 @@ export function UnifiedAdminLayout({ children }: UnifiedAdminLayoutProps) {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+      {/* Subtle grid pattern overlay */}
+      <div className="fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px] pointer-events-none" />
+      
+      {/* Gradient orbs */}
+      <div className="fixed top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[128px] pointer-events-none" />
+      <div className="fixed bottom-0 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-[128px] pointer-events-none" />
+      
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
-        <div className="px-4 py-3 flex items-center justify-between">
+      <header className="sticky top-0 z-50 border-b border-white/5">
+        <div className="backdrop-blur-xl bg-slate-950/80 px-4 py-3 flex items-center justify-between">
           {/* Left: Menu + Back */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1">
             <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="h-9 w-9">
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="h-10 w-10 rounded-xl hover:bg-white/5 text-slate-300 hover:text-white transition-all"
+                >
                   <Menu className="w-5 h-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left" className="w-80 p-0 bg-background border-border">
-                <SheetHeader className="p-4 border-b border-border">
+              <SheetContent 
+                side="left" 
+                className="w-80 p-0 bg-gradient-to-b from-slate-950 to-slate-900 border-white/10"
+              >
+                <SheetHeader className="p-5 border-b border-white/5">
                   <SheetTitle className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
-                      <span className="text-primary font-bold text-sm">X</span>
+                    <div className="relative">
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center shadow-lg shadow-primary/25">
+                        <span className="text-white font-bold text-lg">X</span>
+                      </div>
+                      <div className="absolute -inset-1 bg-primary/30 rounded-xl blur-md -z-10" />
                     </div>
-                    <span className="font-semibold">XTSY Admin</span>
+                    <div>
+                      <span className="font-semibold text-white block">XTSY Admin</span>
+                      <span className="text-xs text-slate-500">Control Panel</span>
+                    </div>
                   </SheetTitle>
                 </SheetHeader>
                 
-                <nav className="flex-1 p-4 space-y-1 max-h-[calc(100vh-140px)] overflow-y-auto">
-                  {menuItems.map((item) => {
+                <nav className="flex-1 p-3 space-y-0.5 max-h-[calc(100vh-180px)] overflow-y-auto">
+                  {menuItems.map((item, index) => {
                     const Icon = item.icon;
                     const isActive = location.pathname === item.path;
                     
                     return (
-                      <button
+                      <motion.button
                         key={item.id}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.03 }}
                         onClick={() => {
                           navigate(item.path);
                           setMenuOpen(false);
                         }}
                         className={cn(
-                          'w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all',
-                          'hover:bg-muted/80 active:scale-[0.98]',
+                          'w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200',
+                          'hover:bg-white/5 active:scale-[0.98]',
                           isActive 
-                            ? 'bg-primary/10 text-primary' 
-                            : 'text-muted-foreground hover:text-foreground'
+                            ? 'bg-primary/10 text-primary border border-primary/20' 
+                            : 'text-slate-400 hover:text-white'
                         )}
                       >
-                        <Icon className="w-5 h-5" />
-                        <span className="font-medium">{item.label}</span>
+                        <div className={cn(
+                          'w-8 h-8 rounded-lg flex items-center justify-center transition-colors',
+                          isActive ? 'bg-primary/20' : 'bg-white/5'
+                        )}>
+                          <Icon className="w-4 h-4" />
+                        </div>
+                        <span className="font-medium text-sm">{item.label}</span>
                         {isActive && (
-                          <div className="ml-auto w-1.5 h-1.5 rounded-full bg-primary" />
+                          <div className="ml-auto w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
                         )}
-                      </button>
+                      </motion.button>
                     );
                   })}
                 </nav>
                 
-                <div className="p-4 border-t border-border space-y-1">
+                <div className="p-3 border-t border-white/5 space-y-0.5">
                   <button
                     onClick={() => {
                       navigate('/');
                       setMenuOpen(false);
                     }}
-                    className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-muted-foreground hover:bg-muted/80 hover:text-foreground transition-all"
+                    className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-white/5 hover:text-white transition-all"
                   >
-                    <ChevronLeft className="w-5 h-5" />
-                    <span className="font-medium">Back to Site</span>
+                    <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
+                      <ChevronLeft className="w-4 h-4" />
+                    </div>
+                    <span className="font-medium text-sm">Back to Site</span>
                   </button>
                   <button
                     onClick={handleLogout}
-                    className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-destructive hover:bg-destructive/10 transition-all"
+                    className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-400 hover:bg-red-500/10 transition-all group"
                   >
-                    <LogOut className="w-5 h-5" />
-                    <span className="font-medium">Logout</span>
+                    <div className="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center group-hover:bg-red-500/20 transition-colors">
+                      <LogOut className="w-4 h-4" />
+                    </div>
+                    <span className="font-medium text-sm">Logout</span>
                   </button>
                 </div>
               </SheetContent>
@@ -224,21 +273,25 @@ export function UnifiedAdminLayout({ children }: UnifiedAdminLayoutProps) {
               variant="ghost"
               size="icon"
               onClick={() => navigate('/')}
-              className="h-9 w-9"
+              className="h-10 w-10 rounded-xl hover:bg-white/5 text-slate-400 hover:text-white transition-all"
             >
               <ChevronLeft className="w-5 h-5" />
             </Button>
           </div>
 
-          {/* Center: Title */}
-          <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
-              <span className="text-primary font-bold text-xs">X</span>
+          {/* Center: Logo & Title */}
+          <div className="flex items-center gap-3">
+            <div className="relative">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center shadow-lg shadow-primary/20">
+                <span className="text-white font-bold text-sm">X</span>
+              </div>
             </div>
-            <span className="font-semibold text-sm">XTSY Admin</span>
+            <div className="hidden sm:block">
+              <span className="font-semibold text-white text-sm">{pageTitle}</span>
+            </div>
           </div>
 
-          {/* Right: Notifications + Actions */}
+          {/* Right: Notifications */}
           <div className="flex items-center gap-2">
             <AdminNotificationBell onNotificationClick={handleNotificationClick} />
           </div>
@@ -246,8 +299,18 @@ export function UnifiedAdminLayout({ children }: UnifiedAdminLayoutProps) {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto">
-        {children}
+      <main className="relative z-10 max-w-7xl mx-auto px-4 py-6">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={location.pathname}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+          >
+            {children}
+          </motion.div>
+        </AnimatePresence>
       </main>
 
       {/* Chat Modal */}
