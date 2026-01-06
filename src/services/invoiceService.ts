@@ -19,7 +19,6 @@ export interface InvoiceData {
   gstRate: number;
   gstAmount: number;
   totalAmount: number;
-  messageToHost: string;
   specialRequests?: string;
   userId?: string;
 }
