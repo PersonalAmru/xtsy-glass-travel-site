@@ -27,7 +27,8 @@ import {
   Star,
   FileText,
   Download,
-  MessageCircle
+  MessageCircle,
+  Clock
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -44,12 +45,12 @@ import { ROOM_INVENTORY } from '@/data/roomInventory';
 import { useOptionalAuth } from '@/hooks/useRequireAuth';
 import { generateInvoice, openInvoiceHTML, downloadInvoiceAsPDF } from '@/services/invoiceService';
 import { BookingChat } from '@/components/chat/BookingChat';
-// Premium color tokens
+// Premium color tokens - Dark slate theme
 const THEME = {
-  gradient: 'from-[hsl(160,35%,22%)] to-[hsl(160,40%,18%)]',
-  surface: 'bg-[hsl(160,35%,22%)]',
-  surfaceLight: 'bg-[hsl(160,30%,28%)]',
-  accent: 'bg-[hsl(160,45%,35%)]',
+  gradient: 'from-[hsl(220,20%,12%)] to-[hsl(220,25%,8%)]',
+  surface: 'bg-[hsl(220,20%,12%)]',
+  surfaceLight: 'bg-[hsl(220,18%,16%)]',
+  accent: 'bg-[hsl(220,25%,20%)]',
   text: 'text-white',
   textMuted: 'text-white/60',
   textDim: 'text-white/40',
@@ -137,7 +138,7 @@ const BookingHeader = ({
 }) => (
   <div className={cn(
     "sticky top-0 z-50",
-    "bg-[hsl(160,35%,20%)]",
+    "bg-[hsl(220,20%,10%)]",
     "border-b border-white/10"
   )}>
     <div className="flex items-center justify-between px-4 h-16">
@@ -1016,19 +1017,19 @@ const ConfirmationStep = ({
   
   return (
     <div className="flex flex-col items-center justify-center min-h-[calc(100vh-8rem)] px-6 text-center pb-8">
-      {/* Success Animation */}
+      {/* Pending Animation */}
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-        className="w-28 h-28 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full flex items-center justify-center mb-8 shadow-2xl shadow-emerald-500/40"
+        className="w-28 h-28 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center mb-8 shadow-2xl shadow-amber-500/40"
       >
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.2, type: 'spring' }}
         >
-          <Check className="w-14 h-14 text-white" strokeWidth={3} />
+          <Clock className="w-14 h-14 text-white" strokeWidth={2.5} />
         </motion.div>
       </motion.div>
 
@@ -1038,17 +1039,27 @@ const ConfirmationStep = ({
         transition={{ delay: 0.2 }}
         className="text-3xl font-bold text-white mb-3 tracking-tight"
       >
-        You're all set!
+        Booking Received!
       </motion.h2>
 
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="text-white/60 mb-8 text-lg"
+        className="text-white/60 mb-2 text-lg"
       >
-        Thank you, {guestName.split(' ')[0]}! Your stay is confirmed.
+        Thank you, {guestName.split(' ')[0]}!
       </motion.p>
+      
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.35 }}
+        className="flex items-center gap-2 text-amber-400 mb-8 text-sm font-medium"
+      >
+        <Shield className="w-4 h-4" />
+        <span>Awaiting host confirmation</span>
+      </motion.div>
 
       {/* Booking Details Card */}
       <motion.div
@@ -1131,7 +1142,7 @@ const ConfirmationStep = ({
         transition={{ delay: 0.65 }}
         whileTap={{ scale: 0.98 }}
         onClick={onGoHome}
-        className="w-full max-w-sm h-14 rounded-2xl font-bold text-base bg-white text-[hsl(160,35%,20%)] shadow-xl shadow-black/20"
+        className="w-full max-w-sm h-14 rounded-2xl font-bold text-base bg-white text-[hsl(220,20%,12%)] shadow-xl shadow-black/20"
       >
         Back to Home
       </motion.button>
@@ -1377,7 +1388,7 @@ export default function BookingFlow() {
           setInvoiceHtml(result.html);
         }
         goToStep('confirmation');
-        toast.success('Booking confirmed! Check your invoice below.');
+        toast.success('Booking submitted! Awaiting host approval.');
       } else {
         toast.error(result.error || 'Booking failed. Please try again.');
       }
@@ -1390,7 +1401,7 @@ export default function BookingFlow() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[hsl(160,35%,20%)] to-[hsl(160,40%,15%)]">
+    <div className="min-h-screen bg-gradient-to-b from-[hsl(220,20%,12%)] to-[hsl(220,25%,6%)]">
       {/* Header */}
       <BookingHeader
         step={STEPS[stepIndex]}
