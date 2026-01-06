@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X, ShieldCheck, User, LogOut } from "lucide-react";
+import { Menu, X, User, LogOut } from "lucide-react";
 import { CurrencySelector } from "./CurrencySelector";
 import { useApp } from "@/contexts/AppContext";
 import { Link, useNavigate } from "react-router-dom";
@@ -294,14 +294,6 @@ const Header = () => {
                     </Link>
                   )}
                   
-                  <Link
-                    to="/admin-login"
-                    className="text-white/70 hover:text-primary hover:scale-110 transition-all duration-200 touch-target"
-                    title="Admin Login"
-                    aria-label="Admin Login"
-                  >
-                    <ShieldCheck size={20} />
-                  </Link>
                 </div>
               </nav>
             )}
@@ -500,14 +492,6 @@ const Header = () => {
                     </Link>
                   )}
                   
-                  <Link
-                    to="/admin-login"
-                    className="flex items-center gap-2 px-4 py-3 mt-2 text-white/70 hover:text-primary hover:bg-white/10 rounded-md transition-all duration-200 font-medium touch-target text-left"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    <ShieldCheck size={18} />
-                    Admin Login
-                  </Link>
                 </div>
               </nav>
             </div>
