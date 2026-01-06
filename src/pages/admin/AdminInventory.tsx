@@ -3,13 +3,13 @@
  */
 
 import { UnifiedAdminLayout } from '@/layouts/UnifiedAdminLayout';
-import { InventoryManager } from '@/components/admin/InventoryManager';
+import { InventoryCalendarView } from '@/components/admin/InventoryCalendarView';
 
 export default function AdminInventory() {
   return (
     <UnifiedAdminLayout>
-      <div className="p-6">
-        <InventoryManager />
+      <div className="p-4 md:p-6">
+        <InventoryCalendarView />
       </div>
     </UnifiedAdminLayout>
   );
