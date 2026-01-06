@@ -491,53 +491,6 @@
       (function(){var l=new Image();l.src='/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png';l.fetchPriority='high';l.decoding='sync'})();
     </script>
     
-    <!-- Static policy links for Google OAuth verification - COMPACT & HIDES ON SCROLL -->
-    <style>
-      #static-legal-nav{position:fixed;top:0;left:0;right:0;z-index:9999;background:#0a0a0a;padding:4px 12px;text-align:center;border-bottom:1px solid #1e293b;font-family:system-ui,-apple-system,sans-serif;font-size:11px;white-space:nowrap;overflow:hidden;transition:transform 0.3s ease,opacity 0.3s ease;}
-      #static-legal-nav.hidden{transform:translateY(-100%);opacity:0;pointer-events:none;}
-      #static-legal-nav a{color:#f97316;text-decoration:underline;margin:0 8px;}
-      #static-legal-nav span{color:#6b7280;}
-      body{padding-top:26px!important;transition:padding-top 0.3s ease;}
-      body.scrolled{padding-top:0!important;}
-      @media(max-width:640px){
-        #static-legal-nav{padding:3px 0;}
-        #legal-content{display:inline-block;animation:marquee 12s linear infinite;padding-left:100%;}
-        @keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-100%);}}
-      }
-    </style>
-    <nav id="static-legal-nav" aria-label="Legal policies">
-      <span id="legal-content">
-        <span>Legal:</span>
-        <a href="/privacy-policy">Privacy Policy</a>
-        <a href="/terms-of-service">Terms of Service</a>
-        <span>|</span>
-        <span>Contact: admin@xtsy.one</span>
-      </span>
-    </nav>
-    <script>
-      (function(){
-        var nav=document.getElementById('static-legal-nav');
-        var lastScroll=0;
-        var threshold=50;
-        window.addEventListener('scroll',function(){
-          var currentScroll=window.scrollY;
-          if(currentScroll>threshold){
-            nav.classList.add('hidden');
-            document.body.classList.add('scrolled');
-          }else{
-            nav.classList.remove('hidden');
-            document.body.classList.remove('scrolled');
-          }
-          lastScroll=currentScroll;
-        },{passive:true});
-      })();
-    </script>
-    <noscript>
-      <nav aria-label="Legal policies" style="padding:8px;background:#111;text-align:center;font-size:11px;">
-        <a href="/privacy-policy" style="color:#f97316;margin-right:12px;">Privacy Policy</a>
-        <a href="/terms-of-service" style="color:#f97316;">Terms of Service</a>
-      </nav>
-    </noscript>
     
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
