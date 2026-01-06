@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, User, Building2, Check, CheckCheck, X, Sparkles, Lightbulb } from 'lucide-react';
+import { Send, User, Building2, Check, CheckCheck, X, Sparkles, Lightbulb, Bell } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
@@ -18,6 +18,7 @@ interface Message {
 interface BookingChatProps {
   bookingId: string;
   guestName?: string;
+  checkInDate?: string;
   isOpen: boolean;
   onClose: () => void;
   isAdmin?: boolean;
@@ -35,6 +36,7 @@ const AI_SUGGESTIONS = [
 export const BookingChat: React.FC<BookingChatProps> = ({
   bookingId,
   guestName = 'Guest',
+  checkInDate,
   isOpen,
   onClose,
   isAdmin = false,
@@ -167,6 +169,11 @@ export const BookingChat: React.FC<BookingChatProps> = ({
     sendMessage(suggestion);
   };
 
+  // Format the header title with guest name and check-in date
+  const headerTitle = checkInDate 
+    ? `${guestName} • ${format(new Date(checkInDate), 'MMM d')}`
+    : guestName;
+
   if (!isOpen) return null;
 
   return (
@@ -190,14 +197,18 @@ export const BookingChat: React.FC<BookingChatProps> = ({
             "shadow-2xl border border-white/10"
           )}
         >
-          {/* Header */}
-          <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
-            <div>
-              <h3 className="text-white font-semibold text-lg flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-emerald-400" />
-                Chat with Host
-              </h3>
-              <p className="text-white/50 text-xs font-mono">{bookingId}</p>
+          {/* Header - Apple-grade design */}
+          <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 bg-black/10">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center">
+                <Bell className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <h3 className="text-white font-semibold text-lg flex items-center gap-2">
+                  XTSY Pings
+                </h3>
+                <p className="text-white/60 text-sm">{headerTitle}</p>
+              </div>
             </div>
             <button
               onClick={onClose}
@@ -259,7 +270,7 @@ export const BookingChat: React.FC<BookingChatProps> = ({
             </div>
           )}
 
-          {/* Input */}
+          {/* Input - Clean Apple-grade */}
           <div className="p-4 border-t border-white/10 bg-black/20">
             <div className="flex items-center gap-3">
               <input

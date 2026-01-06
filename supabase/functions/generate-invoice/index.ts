@@ -26,7 +26,6 @@ interface InvoiceData {
   gstRate: number;
   gstAmount: number;
   totalAmount: number;
-  messageToHost: string;
   specialRequests?: string;
   userId?: string;
 }
@@ -43,12 +42,6 @@ function generateInvoiceHTML(data: InvoiceData): string {
   });
 
   const gstPercent = (data.gstRate * 100).toFixed(0);
-
-  // Base64 encoded XTSY favicon (small inline version)
-  const logoSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
-    <rect width="40" height="40" rx="8" fill="hsl(160, 35%, 22%)"/>
-    <text x="20" y="28" text-anchor="middle" fill="white" font-family="system-ui" font-size="18" font-weight="bold">X</text>
-  </svg>`;
 
   return `
 <!DOCTYPE html>
@@ -179,15 +172,6 @@ function generateInvoiceHTML(data: InvoiceData): string {
     .grand-total .total-label,
     .grand-total .total-value { color: white; font-size: 18px; }
     
-    .message-box {
-      background: #fef3c7;
-      border-left: 4px solid #f59e0b;
-      padding: 16px;
-      border-radius: 0 8px 8px 0;
-    }
-    .message-box h4 { color: #92400e; margin-bottom: 8px; font-size: 13px; }
-    .message-box p { color: #78350f; font-style: italic; }
-    
     .footer {
       background: #f8fafc;
       padding: 32px 40px;
@@ -269,16 +253,6 @@ function generateInvoiceHTML(data: InvoiceData): string {
         </div>
       </div>
       
-      ${data.messageToHost ? `
-      <div class="section">
-        <div class="section-title">Message to Host</div>
-        <div class="message-box">
-          <h4>From ${data.guestName.split(' ')[0]}</h4>
-          <p>"${data.messageToHost}"</p>
-        </div>
-      </div>
-      ` : ''}
-      
       <div class="section">
         <div class="section-title">Pricing Breakdown</div>
         <table class="pricing-table">
@@ -346,7 +320,7 @@ serve(async (req) => {
       const data = invoiceData as InvoiceData;
       const html = generateInvoiceHTML(data);
       
-      // Call the database function to create booking with invoice (now includes user_id)
+      // Call the database function to create booking with invoice
       const { data: result, error } = await supabase.rpc('create_booking_with_invoice', {
         p_guest_name: data.guestName,
         p_email: data.guestEmail,
@@ -362,7 +336,7 @@ serve(async (req) => {
         p_gst_rate: data.gstRate,
         p_gst_amount: data.gstAmount,
         p_total_amount: data.totalAmount,
-        p_message_to_host: data.messageToHost,
+        p_message_to_host: null, // No longer required
         p_address: data.guestAddress || null,
         p_city: data.guestCity || null,
         p_state: data.guestState || null,
@@ -388,28 +362,30 @@ serve(async (req) => {
         .update({ html_content: html })
         .eq('booking_id', dbResult.bookingId);
 
-      // Insert the initial message to host as a chat message
-      if (dbResult.bookingUUID && data.messageToHost) {
-        await supabase.from('booking_messages').insert({
-          booking_id: dbResult.bookingUUID,
-          sender_type: 'guest',
-          sender_name: data.guestName,
-          message: data.messageToHost,
-        });
-
-        // Create admin notification for new booking
+      // Create admin notification for new booking
+      if (dbResult.bookingUUID) {
         await supabase.from('admin_notifications').insert({
           type: 'new_booking',
-          title: 'New Booking Request',
-          message: `${data.guestName} has made a booking for ${data.roomName} (${data.checkIn} - ${data.checkOut})`,
+          title: 'New Booking Confirmed',
+          message: `${data.guestName} booked ${data.roomName} for ${data.checkIn} to ${data.checkOut}. Total: ₹${data.totalAmount.toLocaleString('en-IN')}`,
           booking_id: dbResult.bookingUUID,
           metadata: {
             guest_name: data.guestName,
+            guest_email: data.guestEmail,
             room_name: data.roomName,
             check_in: data.checkIn,
             check_out: data.checkOut,
             total_amount: data.totalAmount,
+            booking_id: dbResult.bookingId,
           },
+        });
+
+        // Send system welcome message in chat (XTSY Pings)
+        await supabase.from('booking_messages').insert({
+          booking_id: dbResult.bookingUUID,
+          sender_type: 'admin',
+          sender_name: 'XTSY Host',
+          message: `🎉 Welcome ${data.guestName.split(' ')[0]}! Your booking for ${data.roomName} is confirmed. Check-in: ${new Date(data.checkIn).toLocaleDateString('en-IN', { weekday: 'short', month: 'short', day: 'numeric' })}. Feel free to message us if you have any questions!`,
         });
       }
 
@@ -459,7 +435,6 @@ serve(async (req) => {
           gstRate: Number(invoice.gst_rate),
           gstAmount: invoice.gst_amount,
           totalAmount: invoice.total_amount,
-          messageToHost: '',
         });
         invoice.html_content = html;
       }
