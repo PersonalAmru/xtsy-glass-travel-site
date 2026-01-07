@@ -26,6 +26,7 @@ import {
   Moon,
   AlertTriangle,
   Check,
+  X,
   MessageSquare,
   RefreshCw,
 } from 'lucide-react';
@@ -219,6 +220,35 @@ export default function AdminBookingsCalendar() {
     } catch (error) {
       console.error('Error approving booking:', error);
       toast.error('Failed to approve booking');
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  const handleDenyBooking = async (booking: Booking) => {
+    setActionLoading(true);
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) throw new Error('Not authenticated');
+
+      const { data, error } = await supabase.rpc('deny_booking_with_message', {
+        p_booking_id: booking.id,
+        p_admin_id: user.id,
+        p_reason: 'The requested dates are not available.',
+      });
+
+      if (error) throw error;
+      
+      const result = data as { success?: boolean; error?: string } | null;
+      if (result?.success) {
+        toast.success('Booking denied and guest notified');
+        fetchBookings();
+      } else {
+        toast.error(result?.error || 'Failed to deny booking');
+      }
+    } catch (error) {
+      console.error('Error denying booking:', error);
+      toast.error('Failed to deny booking');
     } finally {
       setActionLoading(false);
     }
@@ -428,6 +458,15 @@ export default function AdminBookingsCalendar() {
                       </Button>
                       <Button
                         size="sm"
+                        variant="destructive"
+                        onClick={() => handleDenyBooking(booking)}
+                        disabled={actionLoading}
+                      >
+                        <X className="w-4 h-4 mr-1" />
+                        Deny
+                      </Button>
+                      <Button
+                        size="sm"
                         onClick={() => handleApproveBooking(booking)}
                         disabled={actionLoading}
                       >
@@ -534,15 +573,26 @@ export default function AdminBookingsCalendar() {
                           </Button>
                           
                           {booking.booking_status === 'pending' && (
-                            <Button
-                              size="sm"
-                              onClick={() => handleApproveBooking(booking)}
-                              disabled={actionLoading}
-                              className="bg-emerald-600 hover:bg-emerald-700"
-                            >
-                              <Check className="w-4 h-4 mr-1" />
-                              Approve Booking
-                            </Button>
+                            <>
+                              <Button
+                                size="sm"
+                                variant="destructive"
+                                onClick={() => handleDenyBooking(booking)}
+                                disabled={actionLoading}
+                              >
+                                <X className="w-4 h-4 mr-1" />
+                                Deny
+                              </Button>
+                              <Button
+                                size="sm"
+                                onClick={() => handleApproveBooking(booking)}
+                                disabled={actionLoading}
+                                className="bg-emerald-600 hover:bg-emerald-700"
+                              >
+                                <Check className="w-4 h-4 mr-1" />
+                                Approve
+                              </Button>
+                            </>
                           )}
                           
                           {canMarkNoShow(booking) && (

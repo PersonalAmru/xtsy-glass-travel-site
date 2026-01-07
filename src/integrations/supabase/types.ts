@@ -2608,6 +2608,10 @@ export type Database = {
         Returns: Json
       }
       delete_my_data: { Args: never; Returns: boolean }
+      deny_booking_with_message: {
+        Args: { p_admin_id: string; p_booking_id: string; p_reason?: string }
+        Returns: Json
+      }
       export_my_data: { Args: never; Returns: Json }
       generate_booking_id: { Args: never; Returns: string }
       generate_invoice_number: { Args: never; Returns: string }
