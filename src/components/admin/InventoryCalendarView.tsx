@@ -5,7 +5,7 @@
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { ROOM_INVENTORY, RoomType, CATEGORY_LABELS } from '@/data/roomInventory';
+import { ROOM_TYPES, getBookableRoomTypes, type RoomTypeConfig, PROPERTY_LABELS } from '@/config/roomTypes';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
@@ -67,7 +67,7 @@ export function InventoryCalendarView() {
   const [inventory, setInventory] = useState<InventoryEntry[]>([]);
   const [bookings, setBookings] = useState<BookingEntry[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedRoom, setSelectedRoom] = useState<RoomType | null>(null);
+  const [selectedRoom, setSelectedRoom] = useState<RoomTypeConfig | null>(null);
   const [selectedDates, setSelectedDates] = useState<Set<string>>(new Set());
   const [updating, setUpdating] = useState(false);
   
@@ -76,7 +76,8 @@ export function InventoryCalendarView() {
   const [roomsToSell, setRoomsToSell] = useState(6);
   const [showDateDetails, setShowDateDetails] = useState(false);
 
-  const rooms = useMemo(() => Object.values(ROOM_INVENTORY).filter(r => r.isBookable), []);
+  // Use the single source of truth for room types
+  const rooms = useMemo(() => getBookableRoomTypes(), []);
 
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -163,7 +164,7 @@ export function InventoryCalendarView() {
 
   const getInventoryForDate = useCallback((roomId: string, dateStr: string) => {
     const inv = inventory.find(i => i.room_type_id === roomId && i.date === dateStr);
-    const room = ROOM_INVENTORY[roomId];
+    const room = ROOM_TYPES[roomId];
     return {
       available: inv?.available_count ?? room?.totalUnits ?? 0,
       total: room?.totalUnits ?? 0,
@@ -263,7 +264,7 @@ export function InventoryCalendarView() {
     }));
   }, [selectedDates, selectedRoom, getInventoryForDate]);
 
-  const renderOverviewCalendar = (room: RoomType) => {
+  const renderOverviewCalendar = (room: RoomTypeConfig) => {
     return (
       <div 
         key={room.id}
@@ -312,7 +313,7 @@ export function InventoryCalendarView() {
             <ChevronLeft className="w-5 h-5" />
           </Button>
           <div className="text-center">
-            <p className="text-xs text-muted-foreground">XTSY Travellers Hostel</p>
+            <p className="text-xs text-muted-foreground">{selectedRoom.propertyType}</p>
             <h2 className="text-lg font-semibold">{selectedRoom.name}</h2>
           </div>
           <div className="w-10" />

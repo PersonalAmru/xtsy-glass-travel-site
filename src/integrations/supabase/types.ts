@@ -2908,6 +2908,7 @@ export type Database = {
         Returns: Json
       }
       norm_email: { Args: { e: string }; Returns: string }
+      resolve_room_type_id: { Args: { p_room_type: string }; Returns: string }
       resolve_security_alert_admin: {
         Args: { p_alert_id: string; p_resolution_notes?: string }
         Returns: boolean
