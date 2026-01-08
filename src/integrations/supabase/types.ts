@@ -1856,18 +1856,21 @@ export type Database = {
           date: string
           last_updated: string | null
           room_type_id: string
+          total_count: number | null
         }
         Insert: {
           available_count?: number
           date: string
           last_updated?: string | null
           room_type_id: string
+          total_count?: number | null
         }
         Update: {
           available_count?: number
           date?: string
           last_updated?: string | null
           room_type_id?: string
+          total_count?: number | null
         }
         Relationships: [
           {
