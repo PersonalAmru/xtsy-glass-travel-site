@@ -12,6 +12,7 @@ import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { BookingChat } from '@/components/chat/BookingChat';
+import { DenyBookingDialog } from '@/components/admin/DenyBookingDialog';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, addMonths, subMonths, isToday, parseISO, differenceInHours } from 'date-fns';
@@ -61,6 +62,10 @@ export default function AdminBookingsCalendar() {
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
   const [chatOpen, setChatOpen] = useState(false);
   const [actionLoading, setActionLoading] = useState(false);
+  
+  // Deny dialog state
+  const [denyDialogOpen, setDenyDialogOpen] = useState(false);
+  const [bookingToDeny, setBookingToDeny] = useState<Booking | null>(null);
 
   const fetchBookings = useCallback(async () => {
     setLoading(true);
@@ -225,16 +230,23 @@ export default function AdminBookingsCalendar() {
     }
   };
 
-  const handleDenyBooking = async (booking: Booking) => {
+  const openDenyDialog = (booking: Booking) => {
+    setBookingToDeny(booking);
+    setDenyDialogOpen(true);
+  };
+
+  const handleDenyBooking = async (reason: string) => {
+    if (!bookingToDeny) return;
+    
     setActionLoading(true);
     try {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) throw new Error('Not authenticated');
 
       const { data, error } = await supabase.rpc('deny_booking_with_message', {
-        p_booking_id: booking.id,
+        p_booking_id: bookingToDeny.id,
         p_admin_id: user.id,
-        p_reason: 'The requested dates are not available.',
+        p_reason: reason,
       });
 
       if (error) throw error;
@@ -243,6 +255,8 @@ export default function AdminBookingsCalendar() {
       if (result?.success) {
         toast.success('Booking denied and guest notified');
         fetchBookings();
+        setDenyDialogOpen(false);
+        setBookingToDeny(null);
       } else {
         toast.error(result?.error || 'Failed to deny booking');
       }
@@ -459,7 +473,7 @@ export default function AdminBookingsCalendar() {
                       <Button
                         size="sm"
                         variant="destructive"
-                        onClick={() => handleDenyBooking(booking)}
+                        onClick={() => openDenyDialog(booking)}
                         disabled={actionLoading}
                       >
                         <X className="w-4 h-4 mr-1" />
@@ -577,7 +591,7 @@ export default function AdminBookingsCalendar() {
                               <Button
                                 size="sm"
                                 variant="destructive"
-                                onClick={() => handleDenyBooking(booking)}
+                                onClick={() => openDenyDialog(booking)}
                                 disabled={actionLoading}
                               >
                                 <X className="w-4 h-4 mr-1" />
@@ -627,6 +641,21 @@ export default function AdminBookingsCalendar() {
               setSelectedBooking(null);
             }}
             isAdmin={true}
+          />
+        )}
+
+        {/* Deny Booking Confirmation Dialog */}
+        {bookingToDeny && (
+          <DenyBookingDialog
+            open={denyDialogOpen}
+            onOpenChange={(open) => {
+              setDenyDialogOpen(open);
+              if (!open) setBookingToDeny(null);
+            }}
+            bookingGuestName={bookingToDeny.guest_name}
+            bookingDates={`${format(parseISO(bookingToDeny.check_in), 'MMM d')} - ${format(parseISO(bookingToDeny.check_out), 'MMM d, yyyy')}`}
+            onConfirm={handleDenyBooking}
+            loading={actionLoading}
           />
         )}
       </div>
