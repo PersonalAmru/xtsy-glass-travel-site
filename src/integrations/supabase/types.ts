@@ -458,38 +458,64 @@ export type Database = {
       audit_logs: {
         Row: {
           action: string
+          actor_role: string | null
           created_at: string | null
           id: string
+          is_rollback: boolean | null
+          metadata: Json | null
           new_values: Json | null
           old_values: Json | null
+          property_id: string | null
           record_id: string | null
+          rollback_of: string | null
+          snapshot_type: string | null
           table_name: string
           user_agent: string | null
           user_id: string | null
         }
         Insert: {
           action: string
+          actor_role?: string | null
           created_at?: string | null
           id?: string
+          is_rollback?: boolean | null
+          metadata?: Json | null
           new_values?: Json | null
           old_values?: Json | null
+          property_id?: string | null
           record_id?: string | null
+          rollback_of?: string | null
+          snapshot_type?: string | null
           table_name: string
           user_agent?: string | null
           user_id?: string | null
         }
         Update: {
           action?: string
+          actor_role?: string | null
           created_at?: string | null
           id?: string
+          is_rollback?: boolean | null
+          metadata?: Json | null
           new_values?: Json | null
           old_values?: Json | null
+          property_id?: string | null
           record_id?: string | null
+          rollback_of?: string | null
+          snapshot_type?: string | null
           table_name?: string
           user_agent?: string | null
           user_id?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "audit_logs_rollback_of_fkey"
+            columns: ["rollback_of"]
+            isOneToOne: false
+            referencedRelation: "audit_logs"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       blocked_dates: {
         Row: {
@@ -691,6 +717,45 @@ export type Database = {
         }
         Relationships: []
       }
+      booking_settlement_history: {
+        Row: {
+          actor_id: string | null
+          actor_role: string | null
+          amount: number | null
+          booking_id: string
+          booking_reference: string
+          created_at: string
+          id: string
+          new_status: string
+          notes: string | null
+          previous_status: string | null
+        }
+        Insert: {
+          actor_id?: string | null
+          actor_role?: string | null
+          amount?: number | null
+          booking_id: string
+          booking_reference: string
+          created_at?: string
+          id?: string
+          new_status: string
+          notes?: string | null
+          previous_status?: string | null
+        }
+        Update: {
+          actor_id?: string | null
+          actor_role?: string | null
+          amount?: number | null
+          booking_id?: string
+          booking_reference?: string
+          created_at?: string
+          id?: string
+          new_status?: string
+          notes?: string | null
+          previous_status?: string | null
+        }
+        Relationships: []
+      }
       bookings: {
         Row: {
           address: string | null
@@ -715,11 +780,18 @@ export type Database = {
           ota_booking_id: string | null
           ota_name: string | null
           payment_status: string | null
+          payout_eligible: boolean | null
+          payout_released_at: string | null
           pincode: string | null
           property_id: string | null
           quantity: number | null
+          refund_amount: number | null
           room_type: string
           room_type_id: string | null
+          settled_at: string | null
+          settled_by: string | null
+          settlement_amount: number | null
+          settlement_status: string | null
           source: string | null
           special_requests: string | null
           state: string | null
@@ -753,11 +825,18 @@ export type Database = {
           ota_booking_id?: string | null
           ota_name?: string | null
           payment_status?: string | null
+          payout_eligible?: boolean | null
+          payout_released_at?: string | null
           pincode?: string | null
           property_id?: string | null
           quantity?: number | null
+          refund_amount?: number | null
           room_type: string
           room_type_id?: string | null
+          settled_at?: string | null
+          settled_by?: string | null
+          settlement_amount?: number | null
+          settlement_status?: string | null
           source?: string | null
           special_requests?: string | null
           state?: string | null
@@ -791,11 +870,18 @@ export type Database = {
           ota_booking_id?: string | null
           ota_name?: string | null
           payment_status?: string | null
+          payout_eligible?: boolean | null
+          payout_released_at?: string | null
           pincode?: string | null
           property_id?: string | null
           quantity?: number | null
+          refund_amount?: number | null
           room_type?: string
           room_type_id?: string | null
+          settled_at?: string | null
+          settled_by?: string | null
+          settlement_amount?: number | null
+          settlement_status?: string | null
           source?: string | null
           special_requests?: string | null
           state?: string | null
@@ -815,6 +901,99 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      channel_strategy: {
+        Row: {
+          avg_lead_time_days: number | null
+          blackout_dates: Json | null
+          cancellation_count: number | null
+          cancellation_rate: number | null
+          channel_name: string
+          conversion_rate: number | null
+          created_at: string
+          created_by: string | null
+          health_factors: Json | null
+          health_score: number | null
+          id: string
+          inventory_cap_percent: number | null
+          inventory_cap_units: number | null
+          is_active: boolean | null
+          last_parity_check: string | null
+          last_sync_at: string | null
+          max_rate: number | null
+          min_rate: number | null
+          parity_check_enabled: boolean | null
+          parity_violations: Json | null
+          property_id: string
+          rate_modifier_type: string | null
+          rate_modifier_value: number | null
+          sync_error: string | null
+          sync_status: string | null
+          total_bookings: number | null
+          total_revenue: number | null
+          updated_at: string
+        }
+        Insert: {
+          avg_lead_time_days?: number | null
+          blackout_dates?: Json | null
+          cancellation_count?: number | null
+          cancellation_rate?: number | null
+          channel_name: string
+          conversion_rate?: number | null
+          created_at?: string
+          created_by?: string | null
+          health_factors?: Json | null
+          health_score?: number | null
+          id?: string
+          inventory_cap_percent?: number | null
+          inventory_cap_units?: number | null
+          is_active?: boolean | null
+          last_parity_check?: string | null
+          last_sync_at?: string | null
+          max_rate?: number | null
+          min_rate?: number | null
+          parity_check_enabled?: boolean | null
+          parity_violations?: Json | null
+          property_id: string
+          rate_modifier_type?: string | null
+          rate_modifier_value?: number | null
+          sync_error?: string | null
+          sync_status?: string | null
+          total_bookings?: number | null
+          total_revenue?: number | null
+          updated_at?: string
+        }
+        Update: {
+          avg_lead_time_days?: number | null
+          blackout_dates?: Json | null
+          cancellation_count?: number | null
+          cancellation_rate?: number | null
+          channel_name?: string
+          conversion_rate?: number | null
+          created_at?: string
+          created_by?: string | null
+          health_factors?: Json | null
+          health_score?: number | null
+          id?: string
+          inventory_cap_percent?: number | null
+          inventory_cap_units?: number | null
+          is_active?: boolean | null
+          last_parity_check?: string | null
+          last_sync_at?: string | null
+          max_rate?: number | null
+          min_rate?: number | null
+          parity_check_enabled?: boolean | null
+          parity_violations?: Json | null
+          property_id?: string
+          rate_modifier_type?: string | null
+          rate_modifier_value?: number | null
+          sync_error?: string | null
+          sync_status?: string | null
+          total_bookings?: number | null
+          total_revenue?: number | null
+          updated_at?: string
+        }
+        Relationships: []
       }
       demand_forecasts: {
         Row: {
@@ -864,6 +1043,102 @@ export type Database = {
           room_type_id?: string | null
           room_type_name?: string | null
           updated_at?: string | null
+        }
+        Relationships: []
+      }
+      demand_signals: {
+        Row: {
+          action_notes: string | null
+          action_taken: boolean | null
+          action_taken_at: string | null
+          action_taken_by: string | null
+          action_type: string | null
+          avg_lead_time_days: number | null
+          best_performing_channel: string | null
+          booking_velocity_trend: string | null
+          bookings_last_24h: number | null
+          bookings_last_7d: number | null
+          confidence_level: string | null
+          confidence_score: number | null
+          created_at: string
+          direct_booking_ratio: number | null
+          id: string
+          lead_time_compression: boolean | null
+          occupancy_14d: number | null
+          occupancy_30d: number | null
+          occupancy_7d: number | null
+          occupancy_delta_7d: number | null
+          ota_booking_ratio: number | null
+          property_id: string
+          room_type_id: string | null
+          signal_date: string
+          suggested_action: string | null
+          updated_at: string
+          weekday_occupancy: number | null
+          weekend_occupancy: number | null
+          weekend_rate_premium: number | null
+        }
+        Insert: {
+          action_notes?: string | null
+          action_taken?: boolean | null
+          action_taken_at?: string | null
+          action_taken_by?: string | null
+          action_type?: string | null
+          avg_lead_time_days?: number | null
+          best_performing_channel?: string | null
+          booking_velocity_trend?: string | null
+          bookings_last_24h?: number | null
+          bookings_last_7d?: number | null
+          confidence_level?: string | null
+          confidence_score?: number | null
+          created_at?: string
+          direct_booking_ratio?: number | null
+          id?: string
+          lead_time_compression?: boolean | null
+          occupancy_14d?: number | null
+          occupancy_30d?: number | null
+          occupancy_7d?: number | null
+          occupancy_delta_7d?: number | null
+          ota_booking_ratio?: number | null
+          property_id: string
+          room_type_id?: string | null
+          signal_date: string
+          suggested_action?: string | null
+          updated_at?: string
+          weekday_occupancy?: number | null
+          weekend_occupancy?: number | null
+          weekend_rate_premium?: number | null
+        }
+        Update: {
+          action_notes?: string | null
+          action_taken?: boolean | null
+          action_taken_at?: string | null
+          action_taken_by?: string | null
+          action_type?: string | null
+          avg_lead_time_days?: number | null
+          best_performing_channel?: string | null
+          booking_velocity_trend?: string | null
+          bookings_last_24h?: number | null
+          bookings_last_7d?: number | null
+          confidence_level?: string | null
+          confidence_score?: number | null
+          created_at?: string
+          direct_booking_ratio?: number | null
+          id?: string
+          lead_time_compression?: boolean | null
+          occupancy_14d?: number | null
+          occupancy_30d?: number | null
+          occupancy_7d?: number | null
+          occupancy_delta_7d?: number | null
+          ota_booking_ratio?: number | null
+          property_id?: string
+          room_type_id?: string | null
+          signal_date?: string
+          suggested_action?: string | null
+          updated_at?: string
+          weekday_occupancy?: number | null
+          weekend_occupancy?: number | null
+          weekend_rate_premium?: number | null
         }
         Relationships: []
       }
@@ -1123,6 +1398,60 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      idempotency_keys: {
+        Row: {
+          booking_id: string | null
+          completed_at: string | null
+          created_at: string
+          error_message: string | null
+          expires_at: string
+          id: string
+          idempotency_key: string
+          last_retry_at: string | null
+          operation_type: string
+          payment_id: string | null
+          property_id: string | null
+          request_hash: string | null
+          result: Json | null
+          retry_count: number | null
+          status: string
+        }
+        Insert: {
+          booking_id?: string | null
+          completed_at?: string | null
+          created_at?: string
+          error_message?: string | null
+          expires_at?: string
+          id?: string
+          idempotency_key: string
+          last_retry_at?: string | null
+          operation_type: string
+          payment_id?: string | null
+          property_id?: string | null
+          request_hash?: string | null
+          result?: Json | null
+          retry_count?: number | null
+          status?: string
+        }
+        Update: {
+          booking_id?: string | null
+          completed_at?: string | null
+          created_at?: string
+          error_message?: string | null
+          expires_at?: string
+          id?: string
+          idempotency_key?: string
+          last_retry_at?: string | null
+          operation_type?: string
+          payment_id?: string | null
+          property_id?: string | null
+          request_hash?: string | null
+          result?: Json | null
+          retry_count?: number | null
+          status?: string
+        }
+        Relationships: []
       }
       invoice_counter: {
         Row: {
@@ -1585,6 +1914,123 @@ export type Database = {
           state?: string | null
           timezone?: string | null
           updated_at?: string | null
+        }
+        Relationships: []
+      }
+      property_onboarding: {
+        Row: {
+          base_rates_generated: boolean | null
+          blocking_issues: Json | null
+          checklist: Json | null
+          completed_at: string | null
+          completed_by: string | null
+          created_at: string
+          default_policies_applied: boolean | null
+          first_booking_at: string | null
+          id: string
+          inventory_scaffolded: boolean | null
+          minimum_readiness_met: boolean | null
+          onboarding_status: string | null
+          property_id: string
+          property_type: string
+          readiness_factors: Json | null
+          readiness_score: number | null
+          started_at: string | null
+          template_applied: string | null
+          updated_at: string
+          warnings: Json | null
+        }
+        Insert: {
+          base_rates_generated?: boolean | null
+          blocking_issues?: Json | null
+          checklist?: Json | null
+          completed_at?: string | null
+          completed_by?: string | null
+          created_at?: string
+          default_policies_applied?: boolean | null
+          first_booking_at?: string | null
+          id?: string
+          inventory_scaffolded?: boolean | null
+          minimum_readiness_met?: boolean | null
+          onboarding_status?: string | null
+          property_id: string
+          property_type?: string
+          readiness_factors?: Json | null
+          readiness_score?: number | null
+          started_at?: string | null
+          template_applied?: string | null
+          updated_at?: string
+          warnings?: Json | null
+        }
+        Update: {
+          base_rates_generated?: boolean | null
+          blocking_issues?: Json | null
+          checklist?: Json | null
+          completed_at?: string | null
+          completed_by?: string | null
+          created_at?: string
+          default_policies_applied?: boolean | null
+          first_booking_at?: string | null
+          id?: string
+          inventory_scaffolded?: boolean | null
+          minimum_readiness_met?: boolean | null
+          onboarding_status?: string | null
+          property_id?: string
+          property_type?: string
+          readiness_factors?: Json | null
+          readiness_score?: number | null
+          started_at?: string | null
+          template_applied?: string | null
+          updated_at?: string
+          warnings?: Json | null
+        }
+        Relationships: []
+      }
+      property_templates: {
+        Row: {
+          created_at: string
+          default_base_rates: Json | null
+          default_holiday_markup: number | null
+          default_inventory_days: number | null
+          default_policies: Json | null
+          default_room_types: Json
+          default_weekend_markup: number | null
+          description: string | null
+          id: string
+          is_active: boolean | null
+          property_type: string
+          template_name: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          default_base_rates?: Json | null
+          default_holiday_markup?: number | null
+          default_inventory_days?: number | null
+          default_policies?: Json | null
+          default_room_types?: Json
+          default_weekend_markup?: number | null
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          property_type: string
+          template_name: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          default_base_rates?: Json | null
+          default_holiday_markup?: number | null
+          default_inventory_days?: number | null
+          default_policies?: Json | null
+          default_room_types?: Json
+          default_weekend_markup?: number | null
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          property_type?: string
+          template_name?: string
+          updated_at?: string
         }
         Relationships: []
       }
@@ -2540,7 +2986,19 @@ export type Database = {
         Args: { p_admin_id: string; p_booking_id: string }
         Returns: Json
       }
+      calculate_readiness_score: {
+        Args: { p_property_id: string }
+        Returns: number
+      }
       calculate_spend_tier: { Args: { p_visitor_id: string }; Returns: string }
+      check_idempotency: {
+        Args: {
+          p_key: string
+          p_operation_type: string
+          p_request_hash?: string
+        }
+        Returns: Json
+      }
       check_newsletter_rate_limit: {
         Args: { p_email: string; p_ip_address?: string }
         Returns: boolean
@@ -2915,6 +3373,17 @@ export type Database = {
         Returns: Json
       }
       norm_email: { Args: { e: string }; Returns: string }
+      record_settlement_transition: {
+        Args: {
+          p_actor_id?: string
+          p_amount?: number
+          p_booking_id: string
+          p_booking_reference: string
+          p_new_status: string
+          p_notes?: string
+        }
+        Returns: string
+      }
       resolve_room_type_id: { Args: { p_room_type: string }; Returns: string }
       resolve_security_alert_admin: {
         Args: { p_alert_id: string; p_resolution_notes?: string }
@@ -2943,6 +3412,15 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "staff" | "user" | "guest" | "franchise"
+      booking_settlement_status:
+        | "initiated"
+        | "confirmed"
+        | "stayed"
+        | "cancelled"
+        | "no_show"
+        | "refund_pending"
+        | "refunded"
+        | "settled"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -3071,6 +3549,16 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "staff", "user", "guest", "franchise"],
+      booking_settlement_status: [
+        "initiated",
+        "confirmed",
+        "stayed",
+        "cancelled",
+        "no_show",
+        "refund_pending",
+        "refunded",
+        "settled",
+      ],
     },
   },
 } as const
