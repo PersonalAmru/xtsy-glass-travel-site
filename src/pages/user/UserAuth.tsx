@@ -1,14 +1,21 @@
 /**
  * User Authentication Page - Supabase Auth
- * Email/Password signin only with OTP-based password recovery
+ * Email/Password signin only with OTP-based password recovery (2-min expiry)
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useUserAuth } from '@/contexts/UserAuthContext';
+import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { 
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+  InputOTPSeparator
+} from '@/components/ui/input-otp';
 import { 
   Mail, 
   Lock, 
@@ -18,12 +25,14 @@ import {
   Loader2, 
   ArrowLeft,
   CheckCircle2,
+  Timer,
+  RefreshCw,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import xtsyFavicon from '@/assets/xtsy-favicon.png';
 
-type AuthView = 'signin' | 'signup' | 'forgot' | 'reset-sent' | 'success';
+type AuthView = 'signin' | 'signup' | 'forgot' | 'otp-verify' | 'new-password' | 'reset-success' | 'success';
 
 export default function UserAuth() {
   const navigate = useNavigate();
@@ -35,7 +44,6 @@ export default function UserAuth() {
     error, 
     signInEmail, 
     signUpEmail,
-    resetPassword,
     clearError 
   } = useUserAuth();
 
@@ -49,8 +57,30 @@ export default function UserAuth() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [localError, setLocalError] = useState<string | null>(null);
   
+  // OTP state
+  const [otp, setOtp] = useState('');
+  const [otpLoading, setOtpLoading] = useState(false);
+  const [countdown, setCountdown] = useState(0);
+  const [newPassword, setNewPassword] = useState('');
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  
   // Get redirect path from state or default to home
   const redirectPath = (location.state as any)?.from || '/';
+
+  // Countdown timer for OTP expiry
+  useEffect(() => {
+    if (countdown <= 0) return;
+    const timer = setInterval(() => {
+      setCountdown(prev => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [countdown]);
 
   // Redirect if already authenticated
   useEffect(() => {
@@ -116,27 +146,128 @@ export default function UserAuth() {
     }
   };
 
-  const handlePasswordReset = async (e: React.FormEvent) => {
+  // Request OTP for password reset
+  const handleRequestOTP = async (e: React.FormEvent) => {
     e.preventDefault();
     setLocalError(null);
+    setOtpLoading(true);
     
     if (!email) {
       setLocalError('Please enter your email address.');
+      setOtpLoading(false);
       return;
     }
     
     try {
-      await resetPassword(email);
-      setView('reset-sent');
-    } catch {
-      // Error handled by context
+      const { data, error } = await supabase.functions.invoke('password-reset-otp', {
+        body: { action: 'request', email: email.trim().toLowerCase() }
+      });
+      
+      if (error) throw error;
+      
+      if (data?.success) {
+        setCountdown(120); // 2 minutes
+        setView('otp-verify');
+      } else {
+        setLocalError(data?.error || 'Failed to send OTP');
+      }
+    } catch (err: any) {
+      console.error('OTP request error:', err);
+      setLocalError('Failed to send OTP. Please try again.');
+    } finally {
+      setOtpLoading(false);
     }
+  };
+
+  // Verify OTP and proceed to new password
+  const handleVerifyOTP = async () => {
+    setLocalError(null);
+    setOtpLoading(true);
+    
+    if (otp.length !== 6) {
+      setLocalError('Please enter the complete 6-digit OTP.');
+      setOtpLoading(false);
+      return;
+    }
+    
+    try {
+      const { data, error } = await supabase.functions.invoke('password-reset-otp', {
+        body: { action: 'verify', email: email.trim().toLowerCase(), otp }
+      });
+      
+      if (error) throw error;
+      
+      if (data?.success && data?.verified) {
+        setView('new-password');
+      } else {
+        setLocalError(data?.error || 'Invalid or expired OTP');
+        setOtp('');
+      }
+    } catch (err: any) {
+      console.error('OTP verify error:', err);
+      setLocalError('Verification failed. Please try again.');
+      setOtp('');
+    } finally {
+      setOtpLoading(false);
+    }
+  };
+
+  // Reset password with OTP
+  const handleResetPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLocalError(null);
+    setOtpLoading(true);
+    
+    if (!newPassword) {
+      setLocalError('Please enter a new password.');
+      setOtpLoading(false);
+      return;
+    }
+    
+    if (newPassword.length < 6) {
+      setLocalError('Password must be at least 6 characters.');
+      setOtpLoading(false);
+      return;
+    }
+    
+    try {
+      const { data, error } = await supabase.functions.invoke('password-reset-otp', {
+        body: { 
+          action: 'reset', 
+          email: email.trim().toLowerCase(), 
+          otp, 
+          newPassword 
+        }
+      });
+      
+      if (error) throw error;
+      
+      if (data?.success) {
+        setView('reset-success');
+      } else {
+        setLocalError(data?.error || 'Failed to reset password');
+      }
+    } catch (err: any) {
+      console.error('Password reset error:', err);
+      setLocalError('Failed to reset password. Please try again.');
+    } finally {
+      setOtpLoading(false);
+    }
+  };
+
+  // Resend OTP
+  const handleResendOTP = async () => {
+    if (countdown > 0) return;
+    await handleRequestOTP({ preventDefault: () => {} } as React.FormEvent);
   };
 
   const handleBack = () => {
     if (view === 'forgot' || view === 'signup') {
       setView('signin');
-    } else if (view === 'reset-sent') {
+    } else if (view === 'otp-verify' || view === 'new-password') {
+      setView('forgot');
+      setOtp('');
+    } else if (view === 'reset-success') {
       setView('signin');
     } else {
       navigate(-1);
@@ -202,19 +333,38 @@ export default function UserAuth() {
           <AnimatePresence mode="wait">
             {view === 'success' ? (
               <SuccessView key="success" />
-            ) : view === 'reset-sent' ? (
-              <ResetSentView 
-                key="reset-sent" 
-                email={email} 
-                onBack={() => setView('signin')} 
+            ) : view === 'reset-success' ? (
+              <ResetSuccessView key="reset-success" onContinue={() => setView('signin')} />
+            ) : view === 'new-password' ? (
+              <NewPasswordView
+                key="new-password"
+                newPassword={newPassword}
+                setNewPassword={setNewPassword}
+                showNewPassword={showNewPassword}
+                setShowNewPassword={setShowNewPassword}
+                onSubmit={handleResetPassword}
+                isLoading={otpLoading}
+                error={displayError}
+              />
+            ) : view === 'otp-verify' ? (
+              <OTPVerifyView
+                key="otp-verify"
+                email={email}
+                otp={otp}
+                setOtp={setOtp}
+                countdown={countdown}
+                onVerify={handleVerifyOTP}
+                onResend={handleResendOTP}
+                isLoading={otpLoading}
+                error={displayError}
               />
             ) : view === 'forgot' ? (
               <ForgotPasswordView
                 key="forgot"
                 email={email}
                 setEmail={setEmail}
-                onSubmit={handlePasswordReset}
-                isLoading={isLoading}
+                onSubmit={handleRequestOTP}
+                isLoading={otpLoading}
                 error={displayError}
                 onBack={() => setView('signin')}
               />
@@ -300,29 +450,238 @@ function SuccessView() {
   );
 }
 
-// Reset Sent View
-function ResetSentView({ email, onBack }: { email: string; onBack: () => void }) {
+// Reset Success View
+function ResetSuccessView({ onContinue }: { onContinue: () => void }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
       className="text-center py-12"
     >
-      <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
-        <Mail className="w-8 h-8 text-primary" />
-      </div>
+      <motion.div 
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ type: 'spring', stiffness: 200, damping: 15, delay: 0.1 }}
+        className="w-20 h-20 rounded-full bg-green-500/10 flex items-center justify-center mx-auto mb-6"
+      >
+        <CheckCircle2 className="w-10 h-10 text-green-500" />
+      </motion.div>
       <h2 className="text-2xl font-semibold text-foreground mb-2">
-        Check your email
+        Password Reset!
       </h2>
-      <p className="text-muted-foreground mb-2">
-        We've sent a password reset link to
+      <p className="text-muted-foreground mb-8">
+        Your password has been updated successfully.
       </p>
-      <p className="font-medium text-foreground mb-8">{email}</p>
-      <Button variant="outline" onClick={onBack} className="gap-2">
-        <ArrowLeft className="w-4 h-4" />
-        Back to Sign In
+      <Button onClick={onContinue} className="gap-2">
+        Sign In Now
+        <ArrowRight className="w-4 h-4" />
       </Button>
+    </motion.div>
+  );
+}
+
+// OTP Verify View
+interface OTPVerifyViewProps {
+  email: string;
+  otp: string;
+  setOtp: (value: string) => void;
+  countdown: number;
+  onVerify: () => void;
+  onResend: () => void;
+  isLoading: boolean;
+  error: string | null;
+}
+
+function OTPVerifyView({
+  email,
+  otp,
+  setOtp,
+  countdown,
+  onVerify,
+  onResend,
+  isLoading,
+  error
+}: OTPVerifyViewProps) {
+  const formatTime = (seconds: number) => {
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    return `${m}:${s.toString().padStart(2, '0')}`;
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -20 }}
+    >
+      <div className="text-center mb-8">
+        <motion.div 
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+          className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mx-auto mb-6"
+        >
+          <Timer className="w-10 h-10 text-primary" />
+        </motion.div>
+        <h1 className="text-2xl font-bold text-foreground mb-2">
+          Enter OTP
+        </h1>
+        <p className="text-muted-foreground text-sm">
+          We've sent a 6-digit code to
+        </p>
+        <p className="font-medium text-foreground">{email}</p>
+      </div>
+
+      <div className="space-y-6">
+        {/* OTP Input */}
+        <div className="flex justify-center">
+          <InputOTP
+            maxLength={6}
+            value={otp}
+            onChange={setOtp}
+            disabled={isLoading}
+          >
+            <InputOTPGroup>
+              <InputOTPSlot index={0} className="w-12 h-14 text-xl" />
+              <InputOTPSlot index={1} className="w-12 h-14 text-xl" />
+              <InputOTPSlot index={2} className="w-12 h-14 text-xl" />
+            </InputOTPGroup>
+            <InputOTPSeparator />
+            <InputOTPGroup>
+              <InputOTPSlot index={3} className="w-12 h-14 text-xl" />
+              <InputOTPSlot index={4} className="w-12 h-14 text-xl" />
+              <InputOTPSlot index={5} className="w-12 h-14 text-xl" />
+            </InputOTPGroup>
+          </InputOTP>
+        </div>
+
+        {/* Countdown Timer */}
+        <div className="text-center">
+          {countdown > 0 ? (
+            <div className="flex items-center justify-center gap-2 text-primary">
+              <Timer className="w-4 h-4" />
+              <span className="font-mono text-lg font-semibold">{formatTime(countdown)}</span>
+            </div>
+          ) : (
+            <p className="text-destructive text-sm">OTP expired</p>
+          )}
+        </div>
+
+        {error && <ErrorMessage message={error} />}
+
+        <Button 
+          onClick={onVerify}
+          className="w-full h-12 rounded-xl text-base font-medium gap-2"
+          disabled={isLoading || otp.length !== 6 || countdown <= 0}
+        >
+          {isLoading ? (
+            <Loader2 className="w-5 h-5 animate-spin" />
+          ) : (
+            <>
+              Verify OTP
+              <ArrowRight className="w-5 h-5" />
+            </>
+          )}
+        </Button>
+
+        <Button 
+          type="button"
+          variant="ghost" 
+          onClick={onResend}
+          disabled={countdown > 0 || isLoading}
+          className="w-full gap-2"
+        >
+          <RefreshCw className="w-4 h-4" />
+          Resend OTP
+        </Button>
+      </div>
+    </motion.div>
+  );
+}
+
+// New Password View
+interface NewPasswordViewProps {
+  newPassword: string;
+  setNewPassword: (value: string) => void;
+  showNewPassword: boolean;
+  setShowNewPassword: (value: boolean) => void;
+  onSubmit: (e: React.FormEvent) => void;
+  isLoading: boolean;
+  error: string | null;
+}
+
+function NewPasswordView({
+  newPassword,
+  setNewPassword,
+  showNewPassword,
+  setShowNewPassword,
+  onSubmit,
+  isLoading,
+  error
+}: NewPasswordViewProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -20 }}
+    >
+      <div className="text-center mb-8">
+        <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
+          <Lock className="w-8 h-8 text-primary" />
+        </div>
+        <h1 className="text-2xl font-bold text-foreground mb-2">
+          Set New Password
+        </h1>
+        <p className="text-muted-foreground">
+          Enter your new password below
+        </p>
+      </div>
+
+      <form onSubmit={onSubmit} className="space-y-6">
+        <div className="space-y-2">
+          <Label htmlFor="new-password" className="text-sm font-medium">
+            New Password
+          </Label>
+          <div className="relative">
+            <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+            <Input
+              id="new-password"
+              type={showNewPassword ? 'text' : 'password'}
+              placeholder="At least 6 characters"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              className="pl-11 pr-11 h-12 rounded-xl bg-muted/50 border-muted-foreground/20 focus:border-primary focus:ring-primary"
+              autoComplete="new-password"
+              autoFocus
+            />
+            <button
+              type="button"
+              onClick={() => setShowNewPassword(!showNewPassword)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+            >
+              {showNewPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+            </button>
+          </div>
+        </div>
+
+        {error && <ErrorMessage message={error} />}
+
+        <Button 
+          type="submit" 
+          className="w-full h-12 rounded-xl text-base font-medium gap-2"
+          disabled={isLoading || !newPassword || newPassword.length < 6}
+        >
+          {isLoading ? (
+            <Loader2 className="w-5 h-5 animate-spin" />
+          ) : (
+            <>
+              Reset Password
+              <ArrowRight className="w-5 h-5" />
+            </>
+          )}
+        </Button>
+      </form>
     </motion.div>
   );
 }
@@ -359,7 +718,7 @@ function ForgotPasswordView({
           Reset Password
         </h1>
         <p className="text-muted-foreground">
-          Enter your email and we'll send you a reset link
+          Enter your email to receive a 6-digit OTP
         </p>
       </div>
 
@@ -394,7 +753,7 @@ function ForgotPasswordView({
             <Loader2 className="w-5 h-5 animate-spin" />
           ) : (
             <>
-              Send Reset Link
+              Send OTP
               <ArrowRight className="w-5 h-5" />
             </>
           )}
