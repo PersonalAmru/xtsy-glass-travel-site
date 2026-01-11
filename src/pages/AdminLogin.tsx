@@ -1,9 +1,10 @@
 /**
  * Admin Login Page - Apple-grade minimal design
  * Email/Password only, no public link exposure
+ * SECURITY: Complete session isolation from user auth
  */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -13,12 +14,30 @@ import { toast } from "sonner";
 import { Shield, Mail, Lock, Eye, EyeOff, Loader2, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
+// Admin session isolation keys
+const ADMIN_SESSION_KEY = 'xtsy_admin_session';
+const ADMIN_AUTH_TIMESTAMP = 'xtsy_admin_auth_ts';
+const USER_SESSION_KEY = 'xtsy_user_session';
+
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  // Clear any user session markers on mount to prevent cross-contamination
+  useEffect(() => {
+    // Mark that we're in admin login flow
+    sessionStorage.setItem('xtsy_auth_flow', 'admin');
+    
+    // Clear user session marker if exists
+    localStorage.removeItem(USER_SESSION_KEY);
+    
+    return () => {
+      sessionStorage.removeItem('xtsy_auth_flow');
+    };
+  }, []);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,8 +51,17 @@ const AdminLogin = () => {
     setLoading(true);
 
     try {
-      // Sign out any existing session first to ensure clean admin login
+      // SECURITY: Sign out any existing session first to ensure clean admin login
+      // This prevents any session state from bleeding over
       await supabase.auth.signOut();
+      
+      // Clear all session markers
+      localStorage.removeItem(ADMIN_SESSION_KEY);
+      localStorage.removeItem(USER_SESSION_KEY);
+      localStorage.removeItem('xtsy_franchise_session');
+      
+      // Small delay to ensure complete signout
+      await new Promise(resolve => setTimeout(resolve, 100));
       
       const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
         email: email.trim(),
@@ -68,8 +96,13 @@ const AdminLogin = () => {
         }
 
         if (isAdmin) {
-          // Store admin session marker in localStorage
-          localStorage.setItem('xtsy_admin_session', 'true');
+          // SECURITY: Store admin session markers with timestamp
+          localStorage.setItem(ADMIN_SESSION_KEY, 'true');
+          localStorage.setItem(ADMIN_AUTH_TIMESTAMP, Date.now().toString());
+          
+          // Ensure user session is cleared
+          localStorage.removeItem(USER_SESSION_KEY);
+          
           toast.success("Welcome to Admin Portal!");
           navigate("/admin");
         } else {

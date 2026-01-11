@@ -139,23 +139,39 @@ export const BookingChat: React.FC<BookingChatProps> = ({
     if (!text || isSending) return;
 
     setIsSending(true);
-    setNewMessage('');
+    const originalMessage = newMessage;
+    setNewMessage(''); // Clear immediately for better UX
     setShowSuggestions(false);
 
-    const { error } = await supabase.from('booking_messages').insert({
-      booking_id: bookingId,
-      sender_type: isAdmin ? 'admin' : 'guest',
-      sender_name: isAdmin ? 'XTSY Host' : guestName,
-      message: text,
-    });
+    try {
+      const { data, error } = await supabase.from('booking_messages').insert({
+        booking_id: bookingId,
+        sender_type: isAdmin ? 'admin' : 'guest',
+        sender_name: isAdmin ? 'XTSY Host' : guestName,
+        message: text,
+      }).select().single();
 
-    if (error) {
-      console.error('Error sending message:', error);
-      setNewMessage(text);
+      if (error) {
+        console.error('Error sending message:', error);
+        setNewMessage(originalMessage); // Restore on error
+        return;
+      }
+
+      // Optimistically add message to local state for immediate feedback
+      if (data) {
+        setMessages(prev => {
+          // Check if message already exists (from realtime subscription)
+          if (prev.some(m => m.id === data.id)) return prev;
+          return [...prev, data as Message];
+        });
+      }
+    } catch (err) {
+      console.error('Send message error:', err);
+      setNewMessage(originalMessage);
+    } finally {
+      setIsSending(false);
+      inputRef.current?.focus();
     }
-    
-    setIsSending(false);
-    inputRef.current?.focus();
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -182,7 +198,7 @@ export const BookingChat: React.FC<BookingChatProps> = ({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-end sm:items-center justify-center"
+        className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-end sm:items-end md:items-center lg:items-center justify-center p-0 sm:p-0 md:p-4 lg:p-6"
         onClick={onClose}
       >
         <motion.div
@@ -192,9 +208,17 @@ export const BookingChat: React.FC<BookingChatProps> = ({
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
           onClick={(e) => e.stopPropagation()}
           className={cn(
-            "w-full sm:max-w-lg h-[85vh] sm:h-[600px] sm:rounded-2xl overflow-hidden flex flex-col",
-            "bg-gradient-to-b from-[hsl(160,35%,20%)] to-[hsl(160,40%,15%)]",
-            "shadow-2xl border border-white/10"
+            // Mobile: full width, bottom sheet style
+            "w-full h-[85vh] rounded-t-3xl sm:rounded-t-3xl",
+            // Tablet & Desktop: centered modal with max width
+            "md:max-w-md md:h-[600px] md:rounded-2xl",
+            "lg:max-w-lg lg:h-[650px]",
+            // Common styles
+            "overflow-hidden flex flex-col",
+            "bg-gradient-to-b from-[hsl(160,35%,18%)] to-[hsl(160,40%,12%)]",
+            "shadow-2xl border border-white/10",
+            // Glassmorphic effect
+            "backdrop-blur-xl"
           )}
         >
           {/* Header - Apple-grade design */}
