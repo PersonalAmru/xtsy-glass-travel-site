@@ -68,6 +68,8 @@ const AdminFinance = createLazyComponent(() => import("./pages/admin/AdminFinanc
 const AdminGST = createLazyComponent(() => import("./pages/admin/AdminGST"));
 const AdminReviews = createLazyComponent(() => import("./pages/admin/AdminReviews"));
 const AdminAuditLogs = createLazyComponent(() => import("./pages/admin/AdminAuditLogs"));
+const AdminChannels = createLazyComponent(() => import("./pages/admin/AdminChannels"));
+const AdminDemand = createLazyComponent(() => import("./pages/admin/AdminDemand"));
 
 // Franchise pages
 const FranchiseLogin = createLazyComponent(() => import("./pages/franchise/FranchiseLogin"));
@@ -219,6 +221,8 @@ function App() {
                 <Route path="/admin/gst" element={<LazyRoute><AdminGST /></LazyRoute>} />
                 <Route path="/admin/reviews" element={<LazyRoute><AdminReviews /></LazyRoute>} />
                 <Route path="/admin/audit" element={<LazyRoute><AdminAuditLogs /></LazyRoute>} />
+                <Route path="/admin/channels" element={<LazyRoute><AdminChannels /></LazyRoute>} />
+                <Route path="/admin/demand" element={<LazyRoute><AdminDemand /></LazyRoute>} />
                 
                 {/* Franchise Routes */}
                 <Route path="/franchise/login" element={<LazyRoute><FranchiseLogin /></LazyRoute>} />
