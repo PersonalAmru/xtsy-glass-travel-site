@@ -1,5 +1,6 @@
 // Idempotency Service for Failure-Safe Operations
 import { supabase } from '@/integrations/supabase/client';
+import type { Json } from '@/integrations/supabase/types';
 import { 
   OperationType, 
   IdempotencyCheckResult,
@@ -82,7 +83,7 @@ export async function completeIdempotentOperation(
       .from('idempotency_keys')
       .update({
         status: success ? 'completed' : 'failed',
-        result: (result || null) as unknown,
+        result: (result || null) as Json,
         error_message: errorMessage || null,
         completed_at: new Date().toISOString()
       })
@@ -134,7 +135,7 @@ export async function withIdempotency<T>(
       await completeIdempotentOperation(
         check.idempotency_id,
         true,
-        result as Record<string, unknown>
+        (typeof result === 'object' && result !== null ? result : {}) as Record<string, unknown>
       );
     }
 

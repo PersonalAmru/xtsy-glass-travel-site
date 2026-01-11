@@ -1,6 +1,7 @@
 // Enhanced Audit Log Service - Immutable Audit Trail
 import { supabase } from '@/integrations/supabase/client';
 import { EnhancedAuditLog } from '@/types/commercial';
+import type { Json } from '@/integrations/supabase/types';
 
 type ActorRole = 'admin' | 'franchise' | 'system';
 
@@ -115,13 +116,13 @@ export async function createAuditLog(
       action: entry.action,
       table_name: entry.table_name,
       record_id: entry.record_id || null,
-      old_values: (entry.old_values || null) as unknown,
-      new_values: (entry.new_values || null) as unknown,
+      old_values: (entry.old_values || null) as Json,
+      new_values: (entry.new_values || null) as Json,
       property_id: entry.property_id || null,
       actor_role: entry.actor_role || 'system',
       snapshot_type: 'mutation',
       is_rollback: false,
-      metadata: (entry.metadata || {}) as unknown,
+      metadata: (entry.metadata || {}) as Json,
     }])
     .select('id')
     .single();
@@ -165,14 +166,14 @@ export async function applyRollback(
       action: 'ROLLBACK_REQUESTED',
       table_name: originalLog.table_name,
       record_id: recordId,
-      old_values: (originalLog.new_values || null) as unknown,
-      new_values: (originalLog.old_values || null) as unknown,
+      old_values: (originalLog.new_values || null) as Json,
+      new_values: (originalLog.old_values || null) as Json,
       property_id: originalLog.property_id,
       actor_role: 'admin',
       snapshot_type: 'rollback',
       rollback_of: auditLogId,
       is_rollback: true,
-      metadata: { original_audit_id: auditLogId } as unknown,
+      metadata: { original_audit_id: auditLogId } as Json,
     }]);
 
   return { success: true };

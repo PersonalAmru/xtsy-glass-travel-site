@@ -1,11 +1,15 @@
 // Property Onboarding Service - Accelerate Time to First Booking
 import { supabase } from '@/integrations/supabase/client';
+import type { Json } from '@/integrations/supabase/types';
 import { 
   PropertyOnboarding, 
   PropertyTemplate, 
   PropertyType,
   OnboardingChecklist,
-  OnboardingStatus
+  OnboardingStatus,
+  DefaultRoomType,
+  DefaultRates,
+  DefaultPolicies
 } from '@/types/commercial';
 
 /**
@@ -25,9 +29,9 @@ export async function getPropertyTemplates(): Promise<PropertyTemplate[]> {
 
   return (data || []).map(d => ({
     ...d,
-    default_room_types: (d.default_room_types || []) as DefaultRoomType[],
-    default_base_rates: (d.default_base_rates || {}) as DefaultRates,
-    default_policies: (d.default_policies || {}) as DefaultPolicies,
+    default_room_types: (d.default_room_types || []) as unknown as DefaultRoomType[],
+    default_base_rates: (d.default_base_rates || {}) as unknown as DefaultRates,
+    default_policies: (d.default_policies || {}) as unknown as DefaultPolicies,
   })) as PropertyTemplate[];
 }
 
@@ -53,10 +57,10 @@ export async function getPropertyOnboarding(
   
   return {
     ...data,
-    checklist: (data.checklist || {}) as OnboardingChecklist,
-    readiness_factors: (data.readiness_factors || {}) as Record<string, number>,
-    blocking_issues: (data.blocking_issues || []) as string[],
-    warnings: (data.warnings || []) as string[],
+    checklist: (data.checklist || {}) as unknown as OnboardingChecklist,
+    readiness_factors: (data.readiness_factors || {}) as unknown as Record<string, number>,
+    blocking_issues: (data.blocking_issues || []) as unknown as string[],
+    warnings: (data.warnings || []) as unknown as string[],
   } as PropertyOnboarding;
 }
 
@@ -159,7 +163,7 @@ export async function updateChecklistItem(
   const { error } = await supabase
     .from('property_onboarding')
     .update({
-      checklist: checklist as unknown,
+      checklist: checklist as Json,
       updated_at: new Date().toISOString(),
     })
     .eq('property_id', propertyId);
