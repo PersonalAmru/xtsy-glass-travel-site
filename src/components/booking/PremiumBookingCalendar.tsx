@@ -111,8 +111,8 @@ export function PremiumBookingCalendar({
   return (
     <div className={cn(
       "rounded-2xl overflow-hidden",
-      "bg-gradient-to-br from-[hsl(160,35%,25%)] to-[hsl(160,40%,20%)]",
-      "p-4 md:p-6",
+      "bg-gradient-to-br from-[hsl(220,20%,18%)] to-[hsl(220,25%,14%)]",
+      "p-4 md:p-5",
       className
     )}>
       {/* Month Navigation Header */}
@@ -201,7 +201,7 @@ export function PremiumBookingCalendar({
                   rangeStart && !rangeEnd && "rounded-r-none",
                   rangeEnd && !rangeStart && "rounded-l-none",
                   // Selected state - matching the screenshot's teal/green selection
-                  selected && "bg-[hsl(160,45%,35%)] text-white shadow-lg shadow-black/20"
+                  selected && "bg-[hsl(220,30%,30%)] text-white shadow-lg shadow-black/20"
                 )}
               >
                 <span className="relative z-10">{format(date, "d")}</span>

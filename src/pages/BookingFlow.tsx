@@ -305,8 +305,8 @@ const DateSelectionStep = ({
         />
       </div>
 
-      {/* Continue Button */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[hsl(160,35%,15%)] via-[hsl(160,35%,15%)] to-transparent pt-8">
+      {/* Continue Button - constrained width on desktop */}
+      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md lg:max-w-lg xl:max-w-xl p-4 bg-gradient-to-t from-[hsl(220,20%,12%)] via-[hsl(220,20%,12%)] to-transparent pt-8">
         <motion.button
           whileTap={{ scale: 0.98 }}
           onClick={onNext}
@@ -314,7 +314,7 @@ const DateSelectionStep = ({
           className={cn(
             "w-full h-14 rounded-2xl font-bold text-base transition-all flex items-center justify-center gap-2",
             isValidSelection 
-              ? "bg-white text-[hsl(160,35%,20%)] shadow-xl shadow-black/20" 
+              ? "bg-white text-[hsl(220,20%,15%)] shadow-xl shadow-black/20" 
               : "bg-white/10 text-white/40 cursor-not-allowed"
           )}
         >
@@ -614,8 +614,8 @@ const RoomSelectionStep = ({
         ))}
       </div>
 
-      {/* Continue Button */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[hsl(160,35%,15%)] via-[hsl(160,35%,15%)] to-transparent pt-8">
+      {/* Continue Button - constrained width on desktop */}
+      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md lg:max-w-lg xl:max-w-xl p-4 bg-gradient-to-t from-[hsl(220,20%,12%)] via-[hsl(220,20%,12%)] to-transparent pt-8">
         {selectedRoom && (
           <motion.div 
             initial={{ opacity: 0, y: 10 }}
@@ -640,7 +640,7 @@ const RoomSelectionStep = ({
           className={cn(
             "w-full h-14 rounded-2xl font-bold text-base transition-all flex items-center justify-center gap-2",
             selectedRoom 
-              ? "bg-white text-[hsl(160,35%,20%)] shadow-xl shadow-black/20" 
+              ? "bg-white text-[hsl(220,20%,15%)] shadow-xl shadow-black/20" 
               : "bg-white/10 text-white/40 cursor-not-allowed"
           )}
         >
@@ -784,12 +784,12 @@ const SummaryStep = ({
         </div>
       </motion.div>
 
-      {/* Continue Button */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[hsl(160,35%,15%)] via-[hsl(160,35%,15%)] to-transparent pt-8">
+      {/* Continue Button - constrained width on desktop */}
+      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md lg:max-w-lg xl:max-w-xl p-4 bg-gradient-to-t from-[hsl(220,20%,12%)] via-[hsl(220,20%,12%)] to-transparent pt-8">
         <motion.button
           whileTap={{ scale: 0.98 }}
           onClick={onNext}
-          className="w-full h-14 rounded-2xl font-bold text-base bg-white text-[hsl(160,35%,20%)] shadow-xl shadow-black/20 flex items-center justify-center gap-2"
+          className="w-full h-14 rounded-2xl font-bold text-base bg-white text-[hsl(220,20%,15%)] shadow-xl shadow-black/20 flex items-center justify-center gap-2"
         >
           Continue to Guest Details
           <ChevronRight className="w-5 h-5" />
@@ -955,8 +955,8 @@ const GuestDetailsStep = ({
         </div>
       </motion.div>
 
-      {/* Submit Button */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[hsl(160,35%,15%)] via-[hsl(160,35%,15%)] to-transparent pt-8">
+      {/* Submit Button - constrained width on desktop */}
+      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md lg:max-w-lg xl:max-w-xl p-4 bg-gradient-to-t from-[hsl(220,20%,12%)] via-[hsl(220,20%,12%)] to-transparent pt-8">
         <motion.button
           whileTap={{ scale: 0.98 }}
           onClick={handleSubmit}
@@ -964,8 +964,8 @@ const GuestDetailsStep = ({
           className={cn(
             "w-full h-14 rounded-2xl font-bold text-base shadow-xl shadow-black/20 flex items-center justify-center gap-2",
             isSubmitting 
-              ? "bg-white/50 text-[hsl(160,35%,20%)]/50 cursor-not-allowed"
-              : "bg-white text-[hsl(160,35%,20%)]"
+              ? "bg-white/50 text-[hsl(220,20%,15%)]/50 cursor-not-allowed"
+              : "bg-white text-[hsl(220,20%,15%)]"
           )}
         >
           {isSubmitting ? (
@@ -973,7 +973,7 @@ const GuestDetailsStep = ({
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                className="w-5 h-5 border-2 border-[hsl(160,35%,20%)]/30 border-t-[hsl(160,35%,20%)] rounded-full"
+                className="w-5 h-5 border-2 border-[hsl(220,20%,15%)]/30 border-t-[hsl(220,20%,15%)] rounded-full"
               />
               Confirming...
             </>
@@ -1411,22 +1411,24 @@ export default function BookingFlow() {
         onHome={() => navigate('/')}
       />
 
-      {/* Step Indicator */}
-      {currentStep !== 'confirmation' && (
-        <StepIndicator currentStep={currentStep} steps={STEPS} />
-      )}
+      {/* Centered Container for Booking Engine - constrains width on desktop */}
+      <div className="max-w-md mx-auto lg:max-w-lg xl:max-w-xl">
+        {/* Step Indicator */}
+        {currentStep !== 'confirmation' && (
+          <StepIndicator currentStep={currentStep} steps={STEPS} />
+        )}
 
-      {/* Step Content */}
-      <AnimatePresence mode="wait" custom={direction}>
-        <motion.div
-          key={currentStep}
-          custom={direction}
-          variants={pageVariants}
-          initial="initial"
-          animate="in"
-          exit="out"
-          transition={pageTransition}
-        >
+        {/* Step Content */}
+        <AnimatePresence mode="wait" custom={direction}>
+          <motion.div
+            key={currentStep}
+            custom={direction}
+            variants={pageVariants}
+            initial="initial"
+            animate="in"
+            exit="out"
+            transition={pageTransition}
+          >
           {currentStep === 'dates' && (
             <DateSelectionStep
               checkIn={checkIn}
@@ -1510,8 +1512,9 @@ export default function BookingFlow() {
               )}
             </>
           )}
-        </motion.div>
-      </AnimatePresence>
+          </motion.div>
+        </AnimatePresence>
+      </div>
     </div>
   );
 }
