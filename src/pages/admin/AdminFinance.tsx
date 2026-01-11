@@ -12,19 +12,18 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
-import { format, subDays, startOfMonth, endOfMonth } from 'date-fns';
+import { startOfMonth, endOfMonth } from 'date-fns';
 import {
   DollarSign,
-  TrendingUp,
-  TrendingDown,
-  Wallet,
-  CreditCard,
   ArrowUpRight,
   ArrowDownRight,
   RefreshCw,
   Calendar,
-  Building2,
+  Wallet,
+  CreditCard,
+  BarChart3,
 } from 'lucide-react';
+import { SettlementPipeline } from '@/components/admin/SettlementPipeline';
 
 interface RevenueMetrics {
   totalRevenue: number;
@@ -41,6 +40,7 @@ interface Booking {
   total_amount: number;
   booking_status: string;
   payment_status: string | null;
+  settlement_status: string | null;
   created_at: string;
 }
 
@@ -62,19 +62,17 @@ export default function AdminFinance() {
   const fetchFinanceData = async () => {
     setLoading(true);
     try {
-      // Fetch bookings for revenue calculation
       const monthStart = startOfMonth(new Date());
       const monthEnd = endOfMonth(new Date());
 
       const { data: bookings, error } = await supabase
         .from('bookings')
-        .select('id, booking_id, guest_name, total_amount, booking_status, payment_status, created_at')
+        .select('id, booking_id, guest_name, total_amount, booking_status, payment_status, created_at, settlement_status')
         .order('created_at', { ascending: false })
         .limit(50);
 
       if (error) throw error;
 
-      // Calculate metrics
       const allBookings = bookings || [];
       const confirmedBookings = allBookings.filter(b => 
         b.booking_status === 'confirmed' || b.booking_status === 'completed'
@@ -88,12 +86,17 @@ export default function AdminFinance() {
       });
       const monthlyRevenue = monthlyBookings.reduce((sum, b) => sum + (b.total_amount || 0), 0);
 
+      const settledCount = allBookings.filter(b => b.settlement_status === 'settled').length;
+      const pendingCount = allBookings.filter(b => 
+        ['stayed', 'refund_pending', 'confirmed'].includes(b.settlement_status || '')
+      ).length;
+
       setMetrics({
         totalRevenue,
         monthlyRevenue,
-        pendingSettlements: allBookings.filter(b => b.payment_status === 'pending').length,
-        completedSettlements: allBookings.filter(b => b.payment_status === 'completed').length,
-        revenueGrowth: 12.5, // Placeholder
+        pendingSettlements: pendingCount,
+        completedSettlements: settledCount,
+        revenueGrowth: 12.5,
       });
 
       setRecentBookings(allBookings.slice(0, 10));
@@ -106,41 +109,15 @@ export default function AdminFinance() {
   };
 
   const metricCards = [
-    {
-      title: 'Total Revenue',
-      value: `₹${metrics.totalRevenue.toLocaleString()}`,
-      icon: DollarSign,
-      color: 'text-emerald-500',
-      bgColor: 'bg-emerald-500/10',
-    },
-    {
-      title: 'This Month',
-      value: `₹${metrics.monthlyRevenue.toLocaleString()}`,
-      icon: Calendar,
-      color: 'text-blue-500',
-      bgColor: 'bg-blue-500/10',
-      trend: metrics.revenueGrowth,
-    },
-    {
-      title: 'Pending Payments',
-      value: metrics.pendingSettlements.toString(),
-      icon: Wallet,
-      color: 'text-amber-500',
-      bgColor: 'bg-amber-500/10',
-    },
-    {
-      title: 'Completed',
-      value: metrics.completedSettlements.toString(),
-      icon: CreditCard,
-      color: 'text-purple-500',
-      bgColor: 'bg-purple-500/10',
-    },
+    { title: 'Total Revenue', value: `₹${metrics.totalRevenue.toLocaleString()}`, icon: DollarSign, color: 'text-emerald-500', bgColor: 'bg-emerald-500/10' },
+    { title: 'This Month', value: `₹${metrics.monthlyRevenue.toLocaleString()}`, icon: Calendar, color: 'text-blue-500', bgColor: 'bg-blue-500/10', trend: metrics.revenueGrowth },
+    { title: 'Pending', value: metrics.pendingSettlements.toString(), icon: Wallet, color: 'text-amber-500', bgColor: 'bg-amber-500/10' },
+    { title: 'Settled', value: metrics.completedSettlements.toString(), icon: CreditCard, color: 'text-purple-500', bgColor: 'bg-purple-500/10' },
   ];
 
   return (
     <UnifiedAdminLayout>
       <div className="p-4 md:p-6 space-y-6">
-        {/* Header */}
         <header className="flex items-center justify-between gap-4 flex-wrap">
           <div>
             <h1 className="text-2xl font-bold tracking-tight flex items-center gap-2">
@@ -155,7 +132,6 @@ export default function AdminFinance() {
           </Button>
         </header>
 
-        {/* Metric Cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {metricCards.map((metric, index) => {
             const Icon = metric.icon;
@@ -167,15 +143,8 @@ export default function AdminFinance() {
                       <Icon className={cn('w-5 h-5', metric.color)} />
                     </div>
                     {metric.trend !== undefined && (
-                      <div className={cn(
-                        'flex items-center gap-1 text-xs font-medium',
-                        metric.trend >= 0 ? 'text-emerald-500' : 'text-destructive'
-                      )}>
-                        {metric.trend >= 0 ? (
-                          <ArrowUpRight className="w-3 h-3" />
-                        ) : (
-                          <ArrowDownRight className="w-3 h-3" />
-                        )}
+                      <div className={cn('flex items-center gap-1 text-xs font-medium', metric.trend >= 0 ? 'text-emerald-500' : 'text-destructive')}>
+                        {metric.trend >= 0 ? <ArrowUpRight className="w-3 h-3" /> : <ArrowDownRight className="w-3 h-3" />}
                         {Math.abs(metric.trend)}%
                       </div>
                     )}
@@ -190,29 +159,27 @@ export default function AdminFinance() {
           })}
         </div>
 
-        {/* Tabs */}
-        <Tabs defaultValue="transactions" className="space-y-4">
+        <Tabs defaultValue="pipeline" className="space-y-4">
           <TabsList>
+            <TabsTrigger value="pipeline">Settlement Pipeline</TabsTrigger>
             <TabsTrigger value="transactions">Recent Transactions</TabsTrigger>
-            <TabsTrigger value="settlements">Settlements</TabsTrigger>
           </TabsList>
+
+          <TabsContent value="pipeline">
+            <SettlementPipeline />
+          </TabsContent>
 
           <TabsContent value="transactions">
             <Card>
               <CardHeader>
-                <CardTitle>Recent Bookings</CardTitle>
+                <CardTitle className="flex items-center gap-2"><BarChart3 className="w-5 h-5" />Recent Bookings</CardTitle>
                 <CardDescription>Latest booking transactions</CardDescription>
               </CardHeader>
               <CardContent>
                 {loading ? (
-                  <div className="flex items-center justify-center py-8">
-                    <RefreshCw className="w-6 h-6 animate-spin text-muted-foreground" />
-                  </div>
+                  <div className="flex items-center justify-center py-8"><RefreshCw className="w-6 h-6 animate-spin text-muted-foreground" /></div>
                 ) : recentBookings.length === 0 ? (
-                  <div className="text-center py-8 text-muted-foreground">
-                    <DollarSign className="w-12 h-12 mx-auto mb-3 opacity-50" />
-                    <p>No transactions found</p>
-                  </div>
+                  <div className="text-center py-8 text-muted-foreground"><DollarSign className="w-12 h-12 mx-auto mb-3 opacity-50" /><p>No transactions found</p></div>
                 ) : (
                   <div className="space-y-3">
                     {recentBookings.map((booking) => (
@@ -223,11 +190,7 @@ export default function AdminFinance() {
                         </div>
                         <div className="text-right">
                           <p className="font-semibold">₹{booking.total_amount?.toLocaleString()}</p>
-                          <Badge variant={
-                            booking.booking_status === 'confirmed' ? 'default' :
-                            booking.booking_status === 'pending' ? 'secondary' :
-                            booking.booking_status === 'cancelled' ? 'destructive' : 'outline'
-                          } className="text-xs">
+                          <Badge variant={booking.booking_status === 'confirmed' ? 'default' : booking.booking_status === 'cancelled' ? 'destructive' : 'outline'} className="text-xs">
                             {booking.booking_status}
                           </Badge>
                         </div>
@@ -235,22 +198,6 @@ export default function AdminFinance() {
                     ))}
                   </div>
                 )}
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="settlements">
-            <Card>
-              <CardHeader>
-                <CardTitle>Property Settlements</CardTitle>
-                <CardDescription>Franchise payment settlements</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center py-8 text-muted-foreground">
-                  <Building2 className="w-12 h-12 mx-auto mb-3 opacity-50" />
-                  <p>Settlement tracking coming soon</p>
-                  <p className="text-sm">Connect properties to view settlement history</p>
-                </div>
               </CardContent>
             </Card>
           </TabsContent>
