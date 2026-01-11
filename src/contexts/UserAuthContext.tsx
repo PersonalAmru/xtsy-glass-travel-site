@@ -1,11 +1,17 @@
 /**
  * User Authentication Context - Supabase Auth
  * Handles email/password, OTP, Google sign-in, and password reset
+ * SECURITY: Session isolation from admin/franchise auth
  */
 
 import React, { createContext, useContext, useState, useEffect, useCallback, useMemo, ReactNode } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import type { User, Session } from '@supabase/supabase-js';
+
+// Session isolation keys
+const USER_SESSION_KEY = 'xtsy_user_session';
+const ADMIN_SESSION_KEY = 'xtsy_admin_session';
+const FRANCHISE_SESSION_KEY = 'xtsy_franchise_session';
 
 // User profile type from our custom table
 interface UserProfile {
@@ -82,6 +88,12 @@ function convertToExtendedUser(supabaseUser: User, profile?: UserProfile | null)
   };
 }
 
+// Check if this is an admin/franchise session (should be ignored by user context)
+function isAdminOrFranchiseSession(): boolean {
+  return localStorage.getItem(ADMIN_SESSION_KEY) === 'true' || 
+         localStorage.getItem(FRANCHISE_SESSION_KEY) === 'true';
+}
+
 interface UserAuthProviderProps {
   children: ReactNode;
 }
@@ -112,20 +124,67 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
     }
   }, []);
 
+  // Create user profile if it doesn't exist
+  const createUserProfileIfNeeded = useCallback(async (supabaseUser: User): Promise<UserProfile | null> => {
+    try {
+      // Check if profile exists
+      const { data: existing } = await supabase
+        .from('user_profiles')
+        .select('*')
+        .eq('user_id', supabaseUser.id)
+        .single();
+      
+      if (existing) return existing as UserProfile;
+      
+      // Create new profile
+      const { data: newProfile, error: createError } = await supabase
+        .from('user_profiles')
+        .insert({
+          user_id: supabaseUser.id,
+          email: supabaseUser.email || '',
+          full_name: supabaseUser.user_metadata?.full_name || supabaseUser.user_metadata?.name || null,
+          avatar_url: supabaseUser.user_metadata?.avatar_url || supabaseUser.user_metadata?.picture || null,
+          phone: supabaseUser.phone || null,
+        })
+        .select()
+        .single();
+      
+      if (createError) {
+        console.error('Error creating profile:', createError);
+        return null;
+      }
+      
+      return newProfile as UserProfile;
+    } catch (err) {
+      console.error('Profile creation error:', err);
+      return null;
+    }
+  }, []);
+
   // Initialize auth state
   useEffect(() => {
     // Set up auth state listener FIRST
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, currentSession) => {
+        // SECURITY: Ignore auth state changes if this is an admin/franchise session
+        if (isAdminOrFranchiseSession()) {
+          // Don't update user state for admin sessions
+          return;
+        }
+        
         setSession(currentSession);
         
         if (currentSession?.user) {
+          // Mark as user session
+          localStorage.setItem(USER_SESSION_KEY, 'true');
+          
           // Use setTimeout to avoid Supabase deadlock
           setTimeout(async () => {
-            const profile = await fetchUserProfile(currentSession.user.id);
+            const profile = await createUserProfileIfNeeded(currentSession.user);
             setUser(convertToExtendedUser(currentSession.user, profile));
           }, 0);
         } else {
+          localStorage.removeItem(USER_SESSION_KEY);
           setUser(null);
         }
       }
@@ -133,10 +192,17 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
 
     // THEN check for existing session
     supabase.auth.getSession().then(async ({ data: { session: existingSession } }) => {
+      // SECURITY: Don't restore session if this is an admin/franchise flow
+      if (isAdminOrFranchiseSession()) {
+        setIsInitialized(true);
+        return;
+      }
+      
       setSession(existingSession);
       
       if (existingSession?.user) {
-        const profile = await fetchUserProfile(existingSession.user.id);
+        localStorage.setItem(USER_SESSION_KEY, 'true');
+        const profile = await createUserProfileIfNeeded(existingSession.user);
         setUser(convertToExtendedUser(existingSession.user, profile));
       }
       
@@ -144,7 +210,7 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
     });
 
     return () => subscription.unsubscribe();
-  }, [fetchUserProfile]);
+  }, [fetchUserProfile, createUserProfileIfNeeded]);
 
   // Sign in with email and password
   const signInEmail = useCallback(async (email: string, password: string) => {
@@ -152,6 +218,10 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
     setError(null);
     
     try {
+      // SECURITY: Clear any admin/franchise session markers before user login
+      localStorage.removeItem(ADMIN_SESSION_KEY);
+      localStorage.removeItem(FRANCHISE_SESSION_KEY);
+      
       const { data, error: signInError } = await supabase.auth.signInWithPassword({
         email: email.trim(),
         password,
@@ -162,7 +232,10 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
       }
       
       if (data.user) {
-        const profile = await fetchUserProfile(data.user.id);
+        // Mark as user session
+        localStorage.setItem(USER_SESSION_KEY, 'true');
+        
+        const profile = await createUserProfileIfNeeded(data.user);
         setUser(convertToExtendedUser(data.user, profile));
         setSession(data.session);
       }
@@ -173,7 +246,7 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
     } finally {
       setIsLoading(false);
     }
-  }, [fetchUserProfile]);
+  }, [createUserProfileIfNeeded]);
 
   // Sign up with email and password
   const signUpEmail = useCallback(async (email: string, password: string) => {
@@ -181,6 +254,10 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
     setError(null);
     
     try {
+      // SECURITY: Clear any admin/franchise session markers
+      localStorage.removeItem(ADMIN_SESSION_KEY);
+      localStorage.removeItem(FRANCHISE_SESSION_KEY);
+      
       const redirectUrl = `${window.location.origin}/`;
       
       const { data, error: signUpError } = await supabase.auth.signUp({
@@ -188,6 +265,9 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
         password,
         options: {
           emailRedirectTo: redirectUrl,
+          data: {
+            email: email.trim(),
+          }
         },
       });
       
@@ -195,8 +275,16 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
         throw signUpError;
       }
       
-      if (data.user) {
-        const profile = await fetchUserProfile(data.user.id);
+      // Check if email confirmation is required
+      if (data.user && !data.session) {
+        // User created but email confirmation required
+        setError(null);
+        // We'll let the caller know signup was successful
+        // but user needs to confirm email
+      } else if (data.user && data.session) {
+        // Auto-confirmed (confirm email disabled in Supabase)
+        localStorage.setItem(USER_SESSION_KEY, 'true');
+        const profile = await createUserProfileIfNeeded(data.user);
         setUser(convertToExtendedUser(data.user, profile));
         setSession(data.session);
       }
@@ -207,7 +295,7 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
     } finally {
       setIsLoading(false);
     }
-  }, [fetchUserProfile]);
+  }, [createUserProfileIfNeeded]);
 
   // Sign in with OTP (magic link)
   const signInWithOTP = useCallback(async (email: string) => {
@@ -251,7 +339,8 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
       }
       
       if (data.user) {
-        const profile = await fetchUserProfile(data.user.id);
+        localStorage.setItem(USER_SESSION_KEY, 'true');
+        const profile = await createUserProfileIfNeeded(data.user);
         setUser(convertToExtendedUser(data.user, profile));
         setSession(data.session);
       }
@@ -262,7 +351,7 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
     } finally {
       setIsLoading(false);
     }
-  }, [fetchUserProfile]);
+  }, [createUserProfileIfNeeded]);
 
   // Reset password
   const resetPassword = useCallback(async (email: string) => {
@@ -295,6 +384,10 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
     setError(null);
     
     try {
+      // Clear admin/franchise markers
+      localStorage.removeItem(ADMIN_SESSION_KEY);
+      localStorage.removeItem(FRANCHISE_SESSION_KEY);
+      
       const { error: googleError } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
@@ -325,6 +418,11 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
       if (signOutError) {
         throw signOutError;
       }
+      
+      // Clear all session markers
+      localStorage.removeItem(USER_SESSION_KEY);
+      localStorage.removeItem(ADMIN_SESSION_KEY);
+      localStorage.removeItem(FRANCHISE_SESSION_KEY);
       
       setUser(null);
       setSession(null);
@@ -418,12 +516,13 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
 function getErrorMessage(code: string): string {
   const errorMessages: Record<string, string> = {
     'Invalid login credentials': 'Invalid email or password',
-    'Email not confirmed': 'Please verify your email address',
-    'User already registered': 'An account with this email already exists',
+    'Email not confirmed': 'Please verify your email address first. Check your inbox for the confirmation link.',
+    'User already registered': 'An account with this email already exists. Try signing in instead.',
     'Password should be at least 6 characters': 'Password must be at least 6 characters',
     'Invalid email': 'Please enter a valid email address',
-    'Rate limit exceeded': 'Too many attempts. Please try again later',
-    'Token has expired or is invalid': 'The verification code has expired',
+    'Rate limit exceeded': 'Too many attempts. Please try again in a few minutes.',
+    'Token has expired or is invalid': 'The verification code has expired. Please request a new one.',
+    'Signup requires a valid password': 'Please enter a valid password',
     'auth/invalid-email': 'Please enter a valid email address',
     'auth/user-disabled': 'This account has been disabled',
     'auth/user-not-found': 'No account found with this email',
@@ -435,6 +534,13 @@ function getErrorMessage(code: string): string {
     'auth/popup-closed-by-user': 'Sign-in was cancelled',
     'auth/operation-not-allowed': 'This sign-in method is not enabled',
   };
+  
+  // Check for partial matches
+  for (const [key, message] of Object.entries(errorMessages)) {
+    if (code.toLowerCase().includes(key.toLowerCase())) {
+      return message;
+    }
+  }
   
   return errorMessages[code] || 'Something went wrong. Please try again.';
 }
