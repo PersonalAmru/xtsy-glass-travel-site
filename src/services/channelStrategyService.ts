@@ -1,10 +1,12 @@
 // Channel Strategy Service for OTA Controls
 import { supabase } from '@/integrations/supabase/client';
+import type { Json } from '@/integrations/supabase/types';
 import { 
   ChannelStrategy, 
   ChannelName, 
   ChannelPerformance,
-  HealthFactors 
+  HealthFactors,
+  ParityViolation
 } from '@/types/commercial';
 
 const CHANNEL_DISPLAY_NAMES: Record<ChannelName, string> = {
@@ -35,9 +37,9 @@ export async function getChannelStrategies(
 
   return (data || []).map(d => ({
     ...d,
-    blackout_dates: (d.blackout_dates || []) as string[],
-    health_factors: (d.health_factors || {}) as HealthFactors,
-    parity_violations: (d.parity_violations || []) as ParityViolation[],
+    blackout_dates: (d.blackout_dates || []) as unknown as string[],
+    health_factors: (d.health_factors || {}) as unknown as HealthFactors,
+    parity_violations: (d.parity_violations || []) as unknown as ParityViolation[],
   })) as ChannelStrategy[];
 }
 
@@ -52,9 +54,9 @@ export async function upsertChannelStrategy(
     .from('channel_strategy')
     .upsert({
       ...rest,
-      health_factors: health_factors as Record<string, unknown>,
-      parity_violations: parity_violations as unknown[],
-      blackout_dates: blackout_dates as unknown[],
+      health_factors: (health_factors || null) as unknown as Json,
+      parity_violations: (parity_violations || null) as unknown as Json,
+      blackout_dates: (blackout_dates || null) as unknown as Json,
       updated_at: new Date().toISOString()
     }, {
       onConflict: 'property_id,channel_name'
