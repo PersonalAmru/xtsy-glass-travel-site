@@ -1747,6 +1747,36 @@ export type Database = {
         }
         Relationships: []
       }
+      password_reset_otp: {
+        Row: {
+          created_at: string | null
+          email: string
+          expires_at: string
+          id: string
+          otp_code: string
+          used: boolean | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email: string
+          expires_at?: string
+          id?: string
+          otp_code: string
+          used?: boolean | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string
+          expires_at?: string
+          id?: string
+          otp_code?: string
+          used?: boolean | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       pricing_rules: {
         Row: {
           adjustment_type: string
@@ -3016,6 +3046,7 @@ export type Database = {
         Returns: string
       }
       cleanup_expired_cache: { Args: never; Returns: number }
+      cleanup_expired_otp: { Args: never; Returns: undefined }
       cleanup_expired_rate_limits: { Args: never; Returns: undefined }
       cleanup_rate_limits: { Args: never; Returns: undefined }
       cleanup_stale_realtime_visitors: { Args: never; Returns: number }
@@ -3076,6 +3107,7 @@ export type Database = {
       export_my_data: { Args: never; Returns: Json }
       generate_booking_id: { Args: never; Returns: string }
       generate_invoice_number: { Args: never; Returns: string }
+      generate_password_reset_otp: { Args: { p_email: string }; Returns: Json }
       get_analytics_overview: { Args: { days_back?: number }; Returns: Json }
       get_app_secret: { Args: { secret_name: string }; Returns: string }
       get_app_secret_secure: { Args: { secret_name: string }; Returns: string }
@@ -3408,6 +3440,10 @@ export type Database = {
       verify_booking_owner_only: {
         Args: { booking_email: string }
         Returns: boolean
+      }
+      verify_password_reset_otp: {
+        Args: { p_email: string; p_otp: string }
+        Returns: Json
       }
     }
     Enums: {
