@@ -1,21 +1,37 @@
-import { useState, useEffect } from "react";
-import { Calendar, Users, Search } from "lucide-react";
+/**
+ * HeroSection - Apple-grade scroll-expand hero with glassmorphic calendar
+ * Redesigned with premium animations and modern design
+ */
+
+import { useState, useEffect, useRef, useCallback } from "react";
+import { Calendar, Users, Search, ChevronDown, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate, Link } from "react-router-dom";
-import PerformantImage from "./PerformantImage";
 import { useMediaQuery } from "@/hooks/use-mobile";
 import { useHappyGuestsContext } from "@/contexts/HappyGuestsContext";
+import { useUserAuth } from "@/contexts/UserAuthContext";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 const HeroSection = () => {
   const navigate = useNavigate();
+  const { user } = useUserAuth();
   const [checkIn, setCheckIn] = useState(new Date().toISOString().split('T')[0]);
   const [checkOut, setCheckOut] = useState("");
   const [guests, setGuests] = useState("4");
   const [currentLanguageIndex, setCurrentLanguageIndex] = useState(0);
   const [averageRating, setAverageRating] = useState(4.9);
   const [tourCount, setTourCount] = useState<number>(22);
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+  const heroRef = useRef<HTMLDivElement>(null);
+
+  // Scroll-based transforms
+  const { scrollY } = useScroll();
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const scale = useTransform(scrollY, [0, 300], [1, 0.95]);
+  const y = useTransform(scrollY, [0, 300], [0, 50]);
 
   // Supabase-backed counter (deduplicated via context)
   const { happyGuestsCount, incrementHappyGuests, isLoading: happyGuestsLoading } = useHappyGuestsContext();
@@ -28,40 +44,20 @@ const HeroSection = () => {
   // Languages
   const languages = ["Hello", "नमस्ते", "হ্যালো", "Hola", "Bonjour", "Hallo", "Ciao", "こんにちは", "안녕하세요", "Olá", "Привет", "مرحبا"];
 
-  // Disable floating animations on mobile for performance and respect reduced motion
-  useEffect(() => {
-    // Skip animations on mobile or if user prefers reduced motion
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (isMobile || prefersReducedMotion) return;
-    
-    const elements = document.querySelectorAll('.floating-element');
-    const interval = setInterval(() => {
-      if (document.hidden) return; // Pause when tab is hidden
-      elements.forEach((element) => {
-        const randomX = Math.random() * 20 - 10;
-        const randomY = Math.random() * 20 - 10;
-        (element as HTMLElement).style.transform = `translate(${randomX}px, ${randomY}px)`;
-      });
-    }, 4000); // Increased from 3s to 4s
-    return () => clearInterval(interval);
-  }, [isMobile]);
-
   // Language rotation - slower on mobile, pauses when hidden, respects reduced motion
   useEffect(() => {
-    // Check for reduced motion preference
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) return; // Skip animation entirely if user prefers reduced motion
+    if (prefersReducedMotion) return;
     
-    const delay = isMobile ? 8000 : 5000; // Slower on mobile
+    const delay = isMobile ? 8000 : 5000;
     const languageInterval = setInterval(() => {
-      if (document.hidden) return; // Pause when tab is hidden
+      if (document.hidden) return;
       setCurrentLanguageIndex(prev => (prev + 1) % languages.length);
     }, delay);
     return () => clearInterval(languageInterval);
   }, [languages.length, isMobile]);
 
   useEffect(() => {
-    // Fetch reviews / average rating (cached)
     const fetchAverageRating = async () => {
       try {
         const cachedRating = sessionStorage.getItem('averageRating');
@@ -78,7 +74,6 @@ const HeroSection = () => {
           .limit(100);
 
         if (error) {
-          console.warn('Reviews fetch failed, using fallback rating:', error.message);
           setAverageRating(4.9);
           return;
         }
@@ -94,7 +89,6 @@ const HeroSection = () => {
           setAverageRating(4.9);
         }
       } catch (err) {
-        console.warn('Error calculating average rating, using fallback:', err);
         setAverageRating(4.9);
       }
     };
@@ -103,27 +97,19 @@ const HeroSection = () => {
     return () => clearTimeout(timeoutId);
   }, []);
 
-  useEffect(() => {
-    // Calculate tour count (kept as 22 for now)
-    const calculateTourCount = async () => {
-      try {
-        await import('./TravelItinerariesSection');
-        setTourCount(22);
-      } catch {
-        setTourCount(22);
-      }
-    };
-    calculateTourCount();
-  }, []);
-
-  // Only navigates; increment happens in handleSearch (to avoid double count)
   const handleBookNowClick = async () => {
     const params = new URLSearchParams({ checkIn, checkOut, guests });
     navigate(`/booking?${params.toString()}`);
   };
 
   const handleSearch = () => {
-    // === Tiny anti-spam cooldown: 1.5s ===
+    // Check if user is logged in
+    if (!user) {
+      setShowLoginPrompt(true);
+      return;
+    }
+
+    // Anti-spam cooldown
     const COOLDOWN_MS = 1500;
     const LAST_KEY = 'xtsy_hg_last_inc';
     const now = Date.now();
@@ -132,7 +118,6 @@ const HeroSection = () => {
       try { incrementHappyGuests(); } catch (_) {}
       localStorage.setItem(LAST_KEY, String(now));
     }
-    // === End cooldown ===
 
     // Validate fields
     if (!checkIn || !checkOut || !guests) {
@@ -154,145 +139,317 @@ const HeroSection = () => {
     handleBookNowClick();
   };
 
+  const scrollToContent = () => {
+    const roomsSection = document.querySelector('#rooms-section');
+    if (roomsSection) {
+      roomsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <>
-      <section id="home" className="relative min-h-[85vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900 pt-16 md:pt-0">
-        {/* Background Accents - disabled on mobile for performance */}
-        {!isMobile && (
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="floating-element absolute top-1/4 left-1/4 w-32 md:w-48 lg:w-64 h-32 md:h-48 lg:h-64 bg-orange-500/10 rounded-full blur-xl"></div>
-            <div className="floating-element absolute top-3/4 right-1/4 w-24 md:w-32 lg:w-48 h-24 md:h-32 lg:h-48 bg-red-500/10 rounded-full blur-xl"></div>
-            <div className="floating-element absolute bottom-1/4 left-1/3 w-16 md:w-24 lg:w-32 h-16 md:h-24 lg:h-32 bg-yellow-500/10 rounded-full blur-xl"></div>
-          </div>
-        )}
+      <section 
+        ref={heroRef}
+        id="home" 
+        className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+      >
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Gradient orbs */}
+          <motion.div 
+            className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px]"
+            animate={{ 
+              x: [0, 30, 0], 
+              y: [0, -20, 0],
+              scale: [1, 1.1, 1]
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div 
+            className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-500/15 rounded-full blur-[100px]"
+            animate={{ 
+              x: [0, -20, 0], 
+              y: [0, 30, 0],
+              scale: [1, 1.15, 1]
+            }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div 
+            className="absolute top-1/2 right-1/3 w-64 h-64 bg-emerald-500/10 rounded-full blur-[80px]"
+            animate={{ 
+              x: [0, 40, 0], 
+              y: [0, -30, 0]
+            }}
+            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+          />
+          
+          {/* Grid pattern */}
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
+        </div>
 
         {/* Main Content */}
-        <div className="responsive-container relative z-10 text-center text-white w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
-          {/* Title & symbol */}
-          <div className="mb-4 sm:mb-10 md:mb-12 lg:mb-16 mt-0 sm:mt-6 md:mt-8 lg:mt-12">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-10 md:mb-12 lg:mb-16 bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent animate-fade-in">Live the XTSY Vibe</h1>
+        <motion.div 
+          style={{ opacity, scale, y }}
+          className="relative z-10 text-center text-white w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 pt-20 md:pt-0"
+        >
+          {/* Language Greeting & Symbol */}
+          <motion.div 
+            className="mb-8 sm:mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.div 
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-md border border-white/10 mb-6"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              <Sparkles className="w-4 h-4 text-primary" />
+              <span className="text-sm text-white/70">Premium Stays in Northeast India</span>
+            </motion.div>
 
-            <div className="relative h-20 sm:h-24 md:h-28 lg:h-36 flex flex-col items-center justify-center">
-              <div className="relative h-8 sm:h-10 md:h-14 lg:h-18 flex items-center justify-center mb-4 sm:mb-5 md:mb-6 lg:mb-8">
-                <span key={currentLanguageIndex} className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white animate-fade-in transition-opacity duration-500">
+            <div className="relative h-16 flex items-center justify-center mb-4">
+              <AnimatePresence mode="wait">
+                <motion.span 
+                  key={currentLanguageIndex}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5 }}
+                  className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent"
+                >
                   {languages[currentLanguageIndex]}
-                </span>
-              </div>
+                </motion.span>
+              </AnimatePresence>
+            </div>
 
-              <div className="flex items-center justify-center">
-                {/* LCP ELEMENT - Highest priority for fastest paint */}
+            {/* LCP ELEMENT - Brand Symbol */}
+            <motion.div 
+              className="flex items-center justify-center mb-6"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5, type: "spring" }}
+            >
+              <div className="relative">
                 <img
                   src="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png"
                   alt="XTSY Brand Symbol"
-                  className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-32 lg:h-32 object-contain"
+                  className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 object-contain drop-shadow-2xl"
                   loading="eager"
                   decoding="sync"
-                  // @ts-expect-error - React 18.3 uses fetchPriority but DOM expects fetchpriority
+                  // @ts-expect-error - React 18.3 uses fetchPriority
                   fetchpriority="high"
                   width={128}
                   height={128}
-                  style={{ contentVisibility: 'auto' }}
                 />
+                <div className="absolute -inset-4 bg-primary/20 rounded-full blur-2xl -z-10" />
               </div>
-            </div>
-          </div>
+            </motion.div>
 
-          {/* Search Form */}
-          <div className={`rounded-xl sm:rounded-2xl p-3 sm:p-6 md:p-7 lg:p-8 border border-white/20 shadow-xl w-full max-w-4xl mx-auto text-center ${
-            isMobile ? 'bg-black/80' : 'bg-white/10 backdrop-blur-md'
-          }`}>
-            <h2 className="text-base sm:text-xl md:text-2xl font-semibold mb-3 sm:mb-6 md:mb-7 lg:mb-8 text-center">Find Your Perfect Stay</h2>
+            <motion.h1 
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-orange-400 to-rose-400 bg-clip-text text-transparent mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+            >
+              Live the XTSY Vibe
+            </motion.h1>
+          </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 md:gap-5 lg:gap-6 mb-3 sm:mb-6 md:mb-7 lg:mb-8">
-              <div className="space-y-1 sm:space-y-2 text-center">
-                <label className="block text-xs sm:text-sm font-medium text-gray-200 text-center">Check-in</label>
-                <div className="relative cursor-pointer text-center" onClick={() => document.getElementById('checkin-input')?.focus()}>
+          {/* Glassmorphic Search Card */}
+          <motion.div 
+            className={cn(
+              "max-w-4xl mx-auto rounded-3xl p-6 sm:p-8 border shadow-2xl",
+              "bg-white/5 backdrop-blur-2xl border-white/10",
+              "ring-1 ring-inset ring-white/5"
+            )}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, type: "spring" }}
+          >
+            <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-6 text-white/90">
+              Find Your Perfect Stay
+            </h2>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+              {/* Check-in */}
+              <div className="space-y-2">
+                <label className="block text-xs sm:text-sm font-medium text-white/60">Check-in</label>
+                <div className="relative group">
                   <Input
-                    id="checkin-input"
                     type="date"
                     value={checkIn}
                     onChange={e => setCheckIn(e.target.value)}
-                    className="pl-8 sm:pl-10 h-9 sm:h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-sm cursor-pointer date-input-mobile text-center [&::-webkit-calendar-picker-indicator]:opacity-100 [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:right-2 [&::-webkit-calendar-picker-indicator]:w-4 [&::-webkit-calendar-picker-indicator]:h-4 [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-datetime-edit]:text-center [&::-webkit-datetime-edit-fields-wrapper]:justify-center"
+                    className={cn(
+                      "pl-10 h-12 rounded-xl transition-all",
+                      "bg-white/5 border-white/10 text-white placeholder-white/40",
+                      "focus:bg-white/10 focus:border-primary/50 focus:ring-1 focus:ring-primary/30",
+                      "[&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:opacity-50"
+                    )}
                     min={new Date().toISOString().split('T')[0]}
-                    style={{ WebkitAppearance: 'none', MozAppearance: 'textfield', colorScheme: 'dark', textAlign: 'center', textAlignLast: 'center', direction: 'ltr' }}
+                    style={{ colorScheme: 'dark' }}
                   />
-                  <Calendar className="absolute left-2 sm:left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-300 pointer-events-none" />
+                  <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-white/40 group-focus-within:text-primary transition-colors" />
                 </div>
               </div>
 
-              <div className="space-y-1 sm:space-y-2 text-center">
-                <label className="block text-xs sm:text-sm font-medium text-gray-200 text-center">Check-out</label>
-                <div className="relative cursor-pointer text-center" onClick={() => document.getElementById('checkout-input')?.focus()}>
+              {/* Check-out */}
+              <div className="space-y-2">
+                <label className="block text-xs sm:text-sm font-medium text-white/60">Check-out</label>
+                <div className="relative group">
                   <Input
-                    id="checkout-input"
                     type="date"
                     value={checkOut}
                     onChange={e => setCheckOut(e.target.value)}
-                    className="pl-8 sm:pl-10 h-9 sm:h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-sm cursor-pointer date-input-mobile text-center [&::-webkit-calendar-picker-indicator]:opacity-100 [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:right-2 [&::-webkit-calendar-picker-indicator]:w-4 [&::-webkit-calendar-picker-indicator]:h-4 [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-datetime-edit]:text-center [&::-webkit-datetime-edit-fields-wrapper]:justify-center"
-                    min={checkIn ? new Date(new Date(checkIn).getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0] : new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]}
-                    placeholder="dd-mm-yyyy"
-                    style={{ WebkitAppearance: 'none', MozAppearance: 'textfield', colorScheme: 'dark', textAlign: 'center', textAlignLast: 'center', direction: 'ltr' }}
+                    className={cn(
+                      "pl-10 h-12 rounded-xl transition-all",
+                      "bg-white/5 border-white/10 text-white placeholder-white/40",
+                      "focus:bg-white/10 focus:border-primary/50 focus:ring-1 focus:ring-primary/30",
+                      "[&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:opacity-50"
+                    )}
+                    min={checkIn ? new Date(new Date(checkIn).getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0] : undefined}
+                    style={{ colorScheme: 'dark' }}
                   />
-                  <Calendar className="absolute left-2 sm:left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-300 pointer-events-none" />
+                  <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-white/40 group-focus-within:text-primary transition-colors" />
                 </div>
               </div>
 
-              <div className="space-y-1 sm:space-y-2 text-center">
-                <label className="block text-xs sm:text-sm font-medium text-gray-200 text-center">Total Guests</label>
-                <div className="relative text-center">
+              {/* Guests */}
+              <div className="space-y-2">
+                <label className="block text-xs sm:text-sm font-medium text-white/60">Guests</label>
+                <div className="relative group">
                   <Input
                     type="number"
                     value={guests}
                     onChange={e => setGuests(e.target.value)}
                     min="1"
                     max="20"
-                    className="pl-8 sm:pl-10 h-9 sm:h-12 bg-white/20 border-white/30 text-white placeholder-gray-300 text-sm text-center"
+                    className={cn(
+                      "pl-10 h-12 rounded-xl transition-all",
+                      "bg-white/5 border-white/10 text-white placeholder-white/40",
+                      "focus:bg-white/10 focus:border-primary/50 focus:ring-1 focus:ring-primary/30"
+                    )}
                     placeholder="4"
                   />
-                  <Users className="absolute left-2 sm:left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-300" />
+                  <Users className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-white/40 group-focus-within:text-primary transition-colors" />
                 </div>
               </div>
 
-              <div className="flex items-end col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-1 justify-center text-center">
+              {/* Search Button */}
+              <div className="flex items-end col-span-1 sm:col-span-2 lg:col-span-1">
                 <Button
                   onClick={handleSearch}
-                  className="w-full h-9 sm:h-12 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold py-2 sm:py-3 px-3 sm:px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-sm hover-lift"
+                  className={cn(
+                    "w-full h-12 rounded-xl font-semibold transition-all",
+                    "bg-gradient-to-r from-primary to-orange-500",
+                    "hover:from-primary/90 hover:to-orange-500/90",
+                    "hover:shadow-lg hover:shadow-primary/25",
+                    "active:scale-[0.98]"
+                  )}
                 >
-                  <Search className="mr-1 sm:mr-2 h-3 w-3 sm:h-5 sm:w-5" />
+                  <Search className="mr-2 h-4 w-4" />
                   Check Availability
                 </Button>
               </div>
             </div>
 
-            <div className="text-center text-xs text-gray-300">
-              <p>🏨 3 Property Types Available • 🌟 Premium Amenities • 🎯 Best Rates Guaranteed</p>
+            <div className="flex items-center justify-center gap-4 text-xs text-white/40">
+              <span className="flex items-center gap-1">🏨 3 Property Types</span>
+              <span className="w-1 h-1 rounded-full bg-white/20" />
+              <span className="flex items-center gap-1">🌟 Premium Amenities</span>
+              <span className="w-1 h-1 rounded-full bg-white/20" />
+              <span className="flex items-center gap-1">🎯 Best Rates</span>
             </div>
-          </div>
-
+          </motion.div>
 
           {/* Stats */}
-          <div className="mt-6 sm:mt-8 md:mt-10 lg:mt-12 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6 animate-fade-in" style={{ animationDelay: '1.2s' }}>
-            <div className="text-center fade-in">
-              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
-                {3000 + happyGuestsCount}+
-              </div>
-              <div className="text-xs sm:text-sm text-gray-300 mt-1">Happy Guests!</div>
-            </div>
-            <div className="text-center fade-in" style={{ animationDelay: '0.1s' }}>
-              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-red-400 to-pink-500 bg-clip-text text-transparent">30+</div>
-              <div className="text-xs sm:text-sm text-gray-300 mt-1">Tour Packages across IN</div>
-            </div>
-            <div className="text-center fade-in" style={{ animationDelay: '0.2s' }}>
-              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">{averageRating}</div>
-              <div className="text-xs sm:text-sm text-gray-300 mt-1">Guest Reviews</div>
-            </div>
-            <div className="text-center fade-in" style={{ animationDelay: '0.3s' }}>
-              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">24/7</div>
-              <div className="text-xs sm:text-sm text-gray-300 mt-1">Travel Support</div>
-            </div>
-          </div>
-        </div>
+          <motion.div 
+            className="mt-10 sm:mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.1 }}
+          >
+            {[
+              { value: `${3000 + happyGuestsCount}+`, label: 'Happy Guests', gradient: 'from-primary to-orange-400' },
+              { value: '30+', label: 'Tour Packages', gradient: 'from-rose-400 to-pink-500' },
+              { value: averageRating.toString(), label: 'Guest Reviews', gradient: 'from-amber-400 to-orange-500' },
+              { value: '24/7', label: 'Travel Support', gradient: 'from-emerald-400 to-teal-500' },
+            ].map((stat, index) => (
+              <motion.div 
+                key={stat.label}
+                className="text-center p-4 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/5"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.2 + index * 0.1 }}
+                whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.08)' }}
+              >
+                <div className={cn("text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r bg-clip-text text-transparent", stat.gradient)}>
+                  {stat.value}
+                </div>
+                <div className="text-xs sm:text-sm text-white/50 mt-1">{stat.label}</div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Scroll indicator */}
+          <motion.button
+            onClick={scrollToContent}
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/40 hover:text-white/70 transition-colors"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, y: [0, 8, 0] }}
+            transition={{ delay: 1.5, y: { duration: 2, repeat: Infinity } }}
+          >
+            <ChevronDown className="w-6 h-6" />
+          </motion.button>
+        </motion.div>
       </section>
+
+      {/* Login Prompt Modal */}
+      <AnimatePresence>
+        {showLoginPrompt && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
+            onClick={() => setShowLoginPrompt(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-card rounded-3xl p-6 sm:p-8 max-w-md w-full border border-border/50 shadow-2xl"
+              onClick={e => e.stopPropagation()}
+            >
+              <div className="text-center">
+                <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-primary/10 flex items-center justify-center">
+                  <Users className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-2">Sign in Required</h3>
+                <p className="text-muted-foreground mb-6">
+                  Please sign in or create an account to check availability and make a booking.
+                </p>
+                <div className="flex flex-col gap-3">
+                  <Button 
+                    onClick={() => navigate('/user-auth')}
+                    className="w-full h-12 rounded-xl"
+                  >
+                    Sign In / Create Account
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    onClick={() => setShowLoginPrompt(false)}
+                    className="w-full h-12 rounded-xl"
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };
