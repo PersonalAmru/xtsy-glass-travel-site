@@ -455,6 +455,96 @@ export type Database = {
         }
         Relationships: []
       }
+      analytics_visitors_detailed: {
+        Row: {
+          created_at: string | null
+          device_browser: string | null
+          device_category: string | null
+          device_os: string | null
+          event_action: string | null
+          event_category: string | null
+          event_label: string | null
+          event_value: number | null
+          geo_city: string | null
+          geo_country: string | null
+          geo_region: string | null
+          hit_timestamp: string | null
+          hit_type: string | null
+          id: string
+          is_entrance: boolean | null
+          is_exit: boolean | null
+          page_path: string | null
+          page_title: string | null
+          scroll_depth: number | null
+          session_id: string
+          time_on_page: number | null
+          traffic_campaign: string | null
+          traffic_medium: string | null
+          traffic_source: string | null
+          transaction_id: string | null
+          transaction_revenue: number | null
+          visitor_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          device_browser?: string | null
+          device_category?: string | null
+          device_os?: string | null
+          event_action?: string | null
+          event_category?: string | null
+          event_label?: string | null
+          event_value?: number | null
+          geo_city?: string | null
+          geo_country?: string | null
+          geo_region?: string | null
+          hit_timestamp?: string | null
+          hit_type?: string | null
+          id?: string
+          is_entrance?: boolean | null
+          is_exit?: boolean | null
+          page_path?: string | null
+          page_title?: string | null
+          scroll_depth?: number | null
+          session_id: string
+          time_on_page?: number | null
+          traffic_campaign?: string | null
+          traffic_medium?: string | null
+          traffic_source?: string | null
+          transaction_id?: string | null
+          transaction_revenue?: number | null
+          visitor_id: string
+        }
+        Update: {
+          created_at?: string | null
+          device_browser?: string | null
+          device_category?: string | null
+          device_os?: string | null
+          event_action?: string | null
+          event_category?: string | null
+          event_label?: string | null
+          event_value?: number | null
+          geo_city?: string | null
+          geo_country?: string | null
+          geo_region?: string | null
+          hit_timestamp?: string | null
+          hit_type?: string | null
+          id?: string
+          is_entrance?: boolean | null
+          is_exit?: boolean | null
+          page_path?: string | null
+          page_title?: string | null
+          scroll_depth?: number | null
+          session_id?: string
+          time_on_page?: number | null
+          traffic_campaign?: string | null
+          traffic_medium?: string | null
+          traffic_source?: string | null
+          transaction_id?: string | null
+          transaction_revenue?: number | null
+          visitor_id?: string
+        }
+        Relationships: []
+      }
       audit_logs: {
         Row: {
           action: string
@@ -1181,6 +1271,45 @@ export type Database = {
         }
         Relationships: []
       }
+      dpdp_consents: {
+        Row: {
+          consent_type: string
+          consent_version: string | null
+          created_at: string | null
+          granted: boolean | null
+          granted_at: string | null
+          id: string
+          ip_address: string | null
+          revoked_at: string | null
+          user_agent: string | null
+          visitor_id: string
+        }
+        Insert: {
+          consent_type: string
+          consent_version?: string | null
+          created_at?: string | null
+          granted?: boolean | null
+          granted_at?: string | null
+          id?: string
+          ip_address?: string | null
+          revoked_at?: string | null
+          user_agent?: string | null
+          visitor_id: string
+        }
+        Update: {
+          consent_type?: string
+          consent_version?: string | null
+          created_at?: string | null
+          granted?: boolean | null
+          granted_at?: string | null
+          id?: string
+          ip_address?: string | null
+          revoked_at?: string | null
+          user_agent?: string | null
+          visitor_id?: string
+        }
+        Relationships: []
+      }
       edge_function_cache: {
         Row: {
           created_at: string | null
@@ -1747,6 +1876,68 @@ export type Database = {
         }
         Relationships: []
       }
+      ota_connections: {
+        Row: {
+          api_key: string | null
+          channel_name: string
+          channel_type: string | null
+          commission_rate: number | null
+          created_at: string | null
+          id: string
+          is_connected: boolean | null
+          last_sync_at: string | null
+          property_code: string | null
+          property_id: string | null
+          rate_parity_enabled: boolean | null
+          settings: Json | null
+          sync_error: string | null
+          sync_status: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          api_key?: string | null
+          channel_name: string
+          channel_type?: string | null
+          commission_rate?: number | null
+          created_at?: string | null
+          id?: string
+          is_connected?: boolean | null
+          last_sync_at?: string | null
+          property_code?: string | null
+          property_id?: string | null
+          rate_parity_enabled?: boolean | null
+          settings?: Json | null
+          sync_error?: string | null
+          sync_status?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          api_key?: string | null
+          channel_name?: string
+          channel_type?: string | null
+          commission_rate?: number | null
+          created_at?: string | null
+          id?: string
+          is_connected?: boolean | null
+          last_sync_at?: string | null
+          property_code?: string | null
+          property_id?: string | null
+          rate_parity_enabled?: boolean | null
+          settings?: Json | null
+          sync_error?: string | null
+          sync_status?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ota_connections_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       password_reset_otp: {
         Row: {
           created_at: string | null
@@ -2015,6 +2206,68 @@ export type Database = {
           warnings?: Json | null
         }
         Relationships: []
+      }
+      property_room_types: {
+        Row: {
+          amenities: Json | null
+          base_price: number
+          bed_configuration: string | null
+          category: string | null
+          created_at: string | null
+          id: string
+          images: Json | null
+          is_active: boolean | null
+          max_guests: number | null
+          name: string
+          property_id: string | null
+          short_name: string | null
+          sort_order: number | null
+          total_units: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          amenities?: Json | null
+          base_price: number
+          bed_configuration?: string | null
+          category?: string | null
+          created_at?: string | null
+          id?: string
+          images?: Json | null
+          is_active?: boolean | null
+          max_guests?: number | null
+          name: string
+          property_id?: string | null
+          short_name?: string | null
+          sort_order?: number | null
+          total_units?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          amenities?: Json | null
+          base_price?: number
+          bed_configuration?: string | null
+          category?: string | null
+          created_at?: string | null
+          id?: string
+          images?: Json | null
+          is_active?: boolean | null
+          max_guests?: number | null
+          name?: string
+          property_id?: string | null
+          short_name?: string | null
+          sort_order?: number | null
+          total_units?: number | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "property_room_types_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       property_templates: {
         Row: {
@@ -2611,17 +2864,29 @@ export type Database = {
       }
       traveller_profiles: {
         Row: {
+          attribution_campaign: string | null
+          attribution_medium: string | null
+          attribution_source: string | null
           avg_booking_value: number | null
           avg_session_duration: number | null
           booking_intent_score: number | null
+          consent_analytics: boolean | null
+          consent_marketing: boolean | null
+          consent_personalization: boolean | null
           created_at: string | null
+          device_fingerprint: string | null
           first_booking_at: string | null
           first_seen_at: string | null
           first_touch_campaign: string | null
           first_touch_medium: string | null
           first_touch_source: string | null
+          funnel_stage: string | null
           id: string
+          inactivity_expires_at: string | null
+          is_android: boolean | null
           is_group_organizer: boolean | null
+          is_high_intent: boolean | null
+          is_ios: boolean | null
           is_repeat_traveller: boolean | null
           is_solo_traveller: boolean | null
           last_booking_at: string | null
@@ -2630,6 +2895,7 @@ export type Database = {
           last_touch_medium: string | null
           last_touch_source: string | null
           lifetime_value: number | null
+          predicted_intent: string | null
           preferred_booking_lead_days: number | null
           preferred_room_category: string | null
           preferred_season: string | null
@@ -2645,17 +2911,29 @@ export type Database = {
           visitor_id: string
         }
         Insert: {
+          attribution_campaign?: string | null
+          attribution_medium?: string | null
+          attribution_source?: string | null
           avg_booking_value?: number | null
           avg_session_duration?: number | null
           booking_intent_score?: number | null
+          consent_analytics?: boolean | null
+          consent_marketing?: boolean | null
+          consent_personalization?: boolean | null
           created_at?: string | null
+          device_fingerprint?: string | null
           first_booking_at?: string | null
           first_seen_at?: string | null
           first_touch_campaign?: string | null
           first_touch_medium?: string | null
           first_touch_source?: string | null
+          funnel_stage?: string | null
           id?: string
+          inactivity_expires_at?: string | null
+          is_android?: boolean | null
           is_group_organizer?: boolean | null
+          is_high_intent?: boolean | null
+          is_ios?: boolean | null
           is_repeat_traveller?: boolean | null
           is_solo_traveller?: boolean | null
           last_booking_at?: string | null
@@ -2664,6 +2942,7 @@ export type Database = {
           last_touch_medium?: string | null
           last_touch_source?: string | null
           lifetime_value?: number | null
+          predicted_intent?: string | null
           preferred_booking_lead_days?: number | null
           preferred_room_category?: string | null
           preferred_season?: string | null
@@ -2679,17 +2958,29 @@ export type Database = {
           visitor_id: string
         }
         Update: {
+          attribution_campaign?: string | null
+          attribution_medium?: string | null
+          attribution_source?: string | null
           avg_booking_value?: number | null
           avg_session_duration?: number | null
           booking_intent_score?: number | null
+          consent_analytics?: boolean | null
+          consent_marketing?: boolean | null
+          consent_personalization?: boolean | null
           created_at?: string | null
+          device_fingerprint?: string | null
           first_booking_at?: string | null
           first_seen_at?: string | null
           first_touch_campaign?: string | null
           first_touch_medium?: string | null
           first_touch_source?: string | null
+          funnel_stage?: string | null
           id?: string
+          inactivity_expires_at?: string | null
+          is_android?: boolean | null
           is_group_organizer?: boolean | null
+          is_high_intent?: boolean | null
+          is_ios?: boolean | null
           is_repeat_traveller?: boolean | null
           is_solo_traveller?: boolean | null
           last_booking_at?: string | null
@@ -2698,6 +2989,7 @@ export type Database = {
           last_touch_medium?: string | null
           last_touch_source?: string | null
           lifetime_value?: number | null
+          predicted_intent?: string | null
           preferred_booking_lead_days?: number | null
           preferred_room_category?: string | null
           preferred_season?: string | null
@@ -3016,6 +3308,10 @@ export type Database = {
         Args: { p_admin_id: string; p_booking_id: string }
         Returns: Json
       }
+      calculate_onboarding_readiness: {
+        Args: { checklist: Json }
+        Returns: number
+      }
       calculate_readiness_score: {
         Args: { p_property_id: string }
         Returns: number
@@ -3104,6 +3400,7 @@ export type Database = {
         Args: { p_admin_id: string; p_booking_id: string; p_reason?: string }
         Returns: Json
       }
+      expire_inactive_visitors: { Args: never; Returns: undefined }
       export_my_data: { Args: never; Returns: Json }
       generate_booking_id: { Args: never; Returns: string }
       generate_invoice_number: { Args: never; Returns: string }

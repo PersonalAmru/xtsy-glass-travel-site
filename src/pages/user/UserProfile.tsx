@@ -1,7 +1,6 @@
 /**
- * User Profile Page - Supabase Auth
- * Modern Apple-grade UI for viewing and managing user profile
- * Shows bookings, tour packages, and reviews
+ * User Profile Page - Apple-grade UI with invoice download
+ * Modern premium design with full booking details and invoicing
  */
 
 import { useState, useEffect } from 'react';
@@ -10,27 +9,16 @@ import { useUserAuth } from '@/contexts/UserAuthContext';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { 
-  User,
-  Mail,
-  Calendar,
-  LogOut,
-  ChevronRight,
-  Shield,
-  Bell,
-  HelpCircle,
-  Settings,
-  MapPin,
-  Loader2,
-  ArrowLeft,
-  Bed,
-  Package,
-  Star,
-  MessageCircle
+  User, Mail, Calendar, LogOut, ChevronRight, Shield, Bell,
+  HelpCircle, Settings, MapPin, Loader2, ArrowLeft, Bed, Package,
+  Star, MessageCircle, Download, FileText, Phone, Receipt, Eye
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import { BookingChat } from '@/components/chat/BookingChat';
+import { toast } from 'sonner';
+import { getInvoice, downloadInvoiceAsPDF } from '@/services/invoiceService';
 
 interface Booking {
   id: string;
@@ -46,9 +34,12 @@ interface Booking {
   guests: number;
   quantity: number;
   special_requests?: string;
+  guest_name?: string;
+  email?: string;
+  whatsapp_number?: string;
 }
 
-type ProfileTab = 'overview' | 'bookings' | 'tours' | 'settings';
+type ProfileTab = 'overview' | 'bookings' | 'settings';
 
 export default function UserProfile() {
   const navigate = useNavigate();
@@ -60,7 +51,6 @@ export default function UserProfile() {
   const [chatOpen, setChatOpen] = useState(false);
   const [chatBookingId, setChatBookingId] = useState<string | null>(null);
 
-  // Fetch user bookings
   useEffect(() => {
     if (user?.id || user?.email) {
       fetchBookings();
@@ -72,13 +62,11 @@ export default function UserProfile() {
     
     setLoadingBookings(true);
     try {
-      // Query by user_id OR email to find all user's bookings
       let query = supabase
         .from('bookings')
-        .select('id, booking_id, room_type, check_in, check_out, total_amount, subtotal, taxes, booking_status, created_at, guests, quantity, special_requests')
+        .select('id, booking_id, room_type, check_in, check_out, total_amount, subtotal, taxes, booking_status, created_at, guests, quantity, special_requests, guest_name, email, whatsapp_number')
         .order('created_at', { ascending: false });
       
-      // Use OR filter to match either user_id or email
       if (user?.id && user?.email) {
         query = query.or(`user_id.eq.${user.id},email.eq.${user.email}`);
       } else if (user?.id) {
@@ -88,7 +76,6 @@ export default function UserProfile() {
       }
 
       const { data, error } = await query;
-
       if (error) throw error;
       setBookings(data || []);
     } catch (err) {
@@ -101,7 +88,6 @@ export default function UserProfile() {
   const handleSignOut = async () => {
     setIsSigningOut(true);
     try {
-      // Clear any portal session markers
       localStorage.removeItem('xtsy_admin_session');
       localStorage.removeItem('xtsy_franchise_session');
       await signOut();
@@ -120,21 +106,26 @@ export default function UserProfile() {
 
   if (isLoading || !user) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/20 flex items-center justify-center">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="flex flex-col items-center gap-4"
+        >
+          <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
+            <Loader2 className="w-8 h-8 animate-spin text-primary" />
+          </div>
+          <p className="text-sm text-muted-foreground">Loading your profile...</p>
+        </motion.div>
       </div>
     );
   }
 
-  // Get user info
   const displayName = user.displayName || user.email?.split('@')[0] || 'Traveller';
   const email = user.email || '';
   const photoURL = user.photoURL;
   const createdAt = user.metadata?.creationTime 
-    ? new Date(user.metadata.creationTime).toLocaleDateString('en-US', { 
-        month: 'long', 
-        year: 'numeric' 
-      })
+    ? new Date(user.metadata.creationTime).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
     : null;
   const isGoogleUser = user.providerData?.some(p => p.providerId === 'google');
 
@@ -145,16 +136,11 @@ export default function UserProfile() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/30">
+    <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/20">
       {/* Header */}
       <header className="sticky top-0 z-40 bg-background/80 backdrop-blur-xl border-b border-border/50">
         <div className="px-4 py-3 flex items-center gap-4 max-w-2xl mx-auto">
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            onClick={() => navigate(-1)}
-            className="rounded-full"
-          >
+          <Button variant="ghost" size="icon" onClick={() => navigate(-1)} className="rounded-full">
             <ArrowLeft className="w-5 h-5" />
           </Button>
           <h1 className="text-lg font-semibold text-foreground">Profile</h1>
@@ -163,31 +149,18 @@ export default function UserProfile() {
 
       <main className="px-4 py-6 max-w-2xl mx-auto">
         {/* Profile Card */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-6"
-        >
-          <div className="bg-gradient-to-br from-card to-card/80 rounded-3xl p-6 border border-border/50 shadow-lg">
-            {/* Avatar & Name */}
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-6">
+          <div className="bg-gradient-to-br from-card via-card to-card/80 rounded-3xl p-6 border border-border/50 shadow-xl">
             <div className="flex items-center gap-4 mb-6">
               {photoURL ? (
-                <img 
-                  src={photoURL} 
-                  alt={displayName}
-                  className="w-20 h-20 rounded-full object-cover ring-4 ring-primary/20"
-                />
+                <img src={photoURL} alt={displayName} className="w-20 h-20 rounded-full object-cover ring-4 ring-primary/20" />
               ) : (
                 <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center ring-4 ring-primary/20">
-                  <span className="text-2xl font-bold text-primary-foreground">
-                    {displayName.charAt(0).toUpperCase()}
-                  </span>
+                  <span className="text-2xl font-bold text-primary-foreground">{displayName.charAt(0).toUpperCase()}</span>
                 </div>
               )}
               <div className="flex-1 min-w-0">
-                <h2 className="text-xl font-bold text-foreground truncate">
-                  {displayName}
-                </h2>
+                <h2 className="text-xl font-bold text-foreground truncate">{displayName}</h2>
                 <div className="flex items-center gap-2 text-muted-foreground">
                   {isGoogleUser && (
                     <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24">
@@ -201,21 +174,17 @@ export default function UserProfile() {
                 </div>
               </div>
             </div>
-
-            {/* Stats */}
             <div className="grid grid-cols-3 gap-3">
-              <div className="bg-muted/50 rounded-2xl p-3 text-center">
-                <p className="text-2xl font-bold text-foreground">{bookings.length}</p>
-                <p className="text-xs text-muted-foreground">Bookings</p>
-              </div>
-              <div className="bg-muted/50 rounded-2xl p-3 text-center">
-                <p className="text-2xl font-bold text-foreground">0</p>
-                <p className="text-xs text-muted-foreground">Tours</p>
-              </div>
-              <div className="bg-muted/50 rounded-2xl p-3 text-center">
-                <p className="text-2xl font-bold text-foreground">0</p>
-                <p className="text-xs text-muted-foreground">Reviews</p>
-              </div>
+              {[
+                { value: bookings.length, label: 'Bookings' },
+                { value: 0, label: 'Tours' },
+                { value: 0, label: 'Reviews' },
+              ].map((stat) => (
+                <div key={stat.label} className="bg-muted/50 rounded-2xl p-3 text-center">
+                  <p className="text-2xl font-bold text-foreground">{stat.value}</p>
+                  <p className="text-xs text-muted-foreground">{stat.label}</p>
+                </div>
+              ))}
             </div>
           </div>
         </motion.div>
@@ -236,9 +205,7 @@ export default function UserProfile() {
               <tab.icon className="w-4 h-4" />
               <span className="hidden sm:inline">{tab.label}</span>
               {tab.count !== undefined && tab.count > 0 && (
-                <span className="ml-1 px-1.5 py-0.5 bg-primary/10 text-primary text-xs rounded-full">
-                  {tab.count}
-                </span>
+                <span className="ml-1 px-1.5 py-0.5 bg-primary/10 text-primary text-xs rounded-full">{tab.count}</span>
               )}
             </button>
           ))}
@@ -246,92 +213,31 @@ export default function UserProfile() {
 
         {/* Tab Content */}
         <AnimatePresence mode="wait">
-          {activeTab === 'overview' && (
-            <OverviewTab 
-              key="overview" 
-              createdAt={createdAt} 
-              onNavigate={(tab) => setActiveTab(tab)} 
-            />
-          )}
-          {activeTab === 'bookings' && (
-            <BookingsTab 
-              key="bookings" 
-              bookings={bookings} 
-              loading={loadingBookings}
-              onOpenChat={openChat}
-            />
-          )}
-          {activeTab === 'settings' && (
-            <SettingsTab 
-              key="settings" 
-              onSignOut={handleSignOut}
-              isSigningOut={isSigningOut}
-              onNavigate={navigate}
-            />
-          )}
+          {activeTab === 'overview' && <OverviewTab key="overview" createdAt={createdAt} onNavigate={(tab) => setActiveTab(tab)} />}
+          {activeTab === 'bookings' && <BookingsTab key="bookings" bookings={bookings} loading={loadingBookings} onOpenChat={openChat} />}
+          {activeTab === 'settings' && <SettingsTab key="settings" onSignOut={handleSignOut} isSigningOut={isSigningOut} onNavigate={navigate} />}
         </AnimatePresence>
 
-        {/* Version Info */}
-        <p className="text-center text-xs text-muted-foreground mt-8">
-          XTSY Travellers App v1.0.0
-        </p>
+        <p className="text-center text-xs text-muted-foreground mt-8">XTSY Travellers App v1.1.0</p>
       </main>
 
-      {/* Chat Modal */}
-      {chatBookingId && (
-        <BookingChat
-          bookingId={chatBookingId}
-          isOpen={chatOpen}
-          onClose={() => setChatOpen(false)}
-          isAdmin={false}
-        />
-      )}
+      {chatBookingId && <BookingChat bookingId={chatBookingId} isOpen={chatOpen} onClose={() => setChatOpen(false)} isAdmin={false} />}
     </div>
   );
 }
 
 // Overview Tab
-function OverviewTab({ 
-  createdAt, 
-  onNavigate 
-}: { 
-  createdAt: string | null;
-  onNavigate: (tab: ProfileTab) => void;
-}) {
+function OverviewTab({ createdAt, onNavigate }: { createdAt: string | null; onNavigate: (tab: ProfileTab) => void }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      className="space-y-4"
-    >
-      <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-1 mb-2">
-        Quick Actions
-      </h3>
-      
+    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="space-y-4">
+      <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-1 mb-2">Quick Actions</h3>
       <MenuCard>
-        <MenuItem 
-          icon={<Bed className="w-5 h-5" />}
-          label="My Bookings"
-          sublabel="View and manage your stays"
-          onClick={() => onNavigate('bookings')}
-        />
+        <MenuItem icon={<Bed className="w-5 h-5" />} label="My Bookings" sublabel="View and manage your stays" onClick={() => onNavigate('bookings')} />
         <MenuDivider />
-        <MenuItem 
-          icon={<Package className="w-5 h-5" />}
-          label="Tour Packages"
-          sublabel="Your travel adventures"
-          onClick={() => {}}
-        />
+        <MenuItem icon={<Package className="w-5 h-5" />} label="Tour Packages" sublabel="Your travel adventures" onClick={() => {}} />
         <MenuDivider />
-        <MenuItem 
-          icon={<Star className="w-5 h-5" />}
-          label="My Reviews"
-          sublabel="Share your experiences"
-          onClick={() => {}}
-        />
+        <MenuItem icon={<Star className="w-5 h-5" />} label="My Reviews" sublabel="Share your experiences" onClick={() => {}} />
       </MenuCard>
-
       {createdAt && (
         <div className="mt-6 p-4 bg-muted/30 rounded-2xl">
           <div className="flex items-center gap-2 text-muted-foreground">
@@ -344,17 +250,27 @@ function OverviewTab({
   );
 }
 
-// Bookings Tab with expandable detail view
-function BookingsTab({ 
-  bookings, 
-  loading,
-  onOpenChat
-}: { 
-  bookings: Booking[];
-  loading: boolean;
-  onOpenChat: (bookingId: string) => void;
-}) {
+// Bookings Tab
+function BookingsTab({ bookings, loading, onOpenChat }: { bookings: Booking[]; loading: boolean; onOpenChat: (bookingId: string) => void }) {
   const [expandedBooking, setExpandedBooking] = useState<Booking | null>(null);
+  const [downloadingInvoice, setDownloadingInvoice] = useState(false);
+
+  const handleDownloadInvoice = async (booking: Booking) => {
+    setDownloadingInvoice(true);
+    try {
+      const result = await getInvoice(booking.booking_id);
+      if (result.success && result.invoice?.html_content) {
+        downloadInvoiceAsPDF(result.invoice.html_content, booking.booking_id);
+        toast.success('Invoice downloaded successfully');
+      } else {
+        toast.error('Invoice not available for this booking');
+      }
+    } catch (error) {
+      toast.error('Failed to download invoice');
+    } finally {
+      setDownloadingInvoice(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -366,46 +282,29 @@ function BookingsTab({
 
   if (bookings.length === 0) {
     return (
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -20 }}
-        className="text-center py-12"
-      >
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="text-center py-12">
         <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mx-auto mb-4">
           <Bed className="w-8 h-8 text-muted-foreground" />
         </div>
         <h3 className="text-lg font-semibold text-foreground mb-2">No bookings yet</h3>
         <p className="text-muted-foreground mb-4">Start your adventure by booking a stay!</p>
-        <Button onClick={() => window.location.href = '/book'}>
-          Book Now
-        </Button>
+        <Button onClick={() => window.location.href = '/book'}>Book Now</Button>
       </motion.div>
     );
   }
 
-  // Expanded booking detail view
   if (expandedBooking) {
     const nights = Math.ceil((new Date(expandedBooking.check_out).getTime() - new Date(expandedBooking.check_in).getTime()) / (1000 * 60 * 60 * 24));
     
     return (
-      <motion.div
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: -20 }}
-        className="space-y-4"
-      >
-        {/* Back button */}
-        <button
-          onClick={() => setExpandedBooking(null)}
-          className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-4"
-        >
+      <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-4">
+        <button onClick={() => setExpandedBooking(null)} className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-4">
           <ChevronRight className="w-4 h-4 rotate-180" />
           <span className="text-sm font-medium">Back to Bookings</span>
         </button>
 
-        {/* Booking Header Card */}
-        <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl p-5 border border-primary/20">
+        {/* Booking Header */}
+        <div className="bg-gradient-to-br from-primary/10 via-primary/5 to-transparent rounded-2xl p-5 border border-primary/20">
           <div className="flex items-start justify-between mb-4">
             <div>
               <p className="font-mono text-xs text-primary mb-1">{expandedBooking.booking_id}</p>
@@ -413,40 +312,59 @@ function BookingsTab({
             </div>
             <span className={cn(
               "px-3 py-1.5 text-xs font-semibold rounded-full",
-              expandedBooking.booking_status === 'confirmed' 
-                ? "bg-green-500/20 text-green-600"
-                : expandedBooking.booking_status === 'pending'
-                ? "bg-amber-500/20 text-amber-600"
-                : expandedBooking.booking_status === 'cancelled'
-                ? "bg-red-500/20 text-red-600"
-                : "bg-muted text-muted-foreground"
+              expandedBooking.booking_status === 'confirmed' ? "bg-green-500/20 text-green-600" :
+              expandedBooking.booking_status === 'pending' ? "bg-amber-500/20 text-amber-600" :
+              expandedBooking.booking_status === 'cancelled' ? "bg-red-500/20 text-red-600" :
+              "bg-muted text-muted-foreground"
             )}>
               {expandedBooking.booking_status.charAt(0).toUpperCase() + expandedBooking.booking_status.slice(1)}
             </span>
           </div>
-
           <div className="grid grid-cols-2 gap-4">
             <div className="bg-background/50 rounded-xl p-3">
               <p className="text-xs text-muted-foreground mb-1">Check-in</p>
-              <p className="font-semibold text-foreground">
-                {format(new Date(expandedBooking.check_in), 'EEE, MMM d')}
-              </p>
+              <p className="font-semibold text-foreground">{format(new Date(expandedBooking.check_in), 'EEE, MMM d')}</p>
             </div>
             <div className="bg-background/50 rounded-xl p-3">
               <p className="text-xs text-muted-foreground mb-1">Check-out</p>
-              <p className="font-semibold text-foreground">
-                {format(new Date(expandedBooking.check_out), 'EEE, MMM d')}
-              </p>
+              <p className="font-semibold text-foreground">{format(new Date(expandedBooking.check_out), 'EEE, MMM d')}</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Guest Details */}
+        <div className="bg-card rounded-2xl border border-border/50 overflow-hidden">
+          <div className="p-4 border-b border-border/50 flex items-center gap-2">
+            <User className="w-4 h-4 text-primary" />
+            <h4 className="font-semibold text-foreground">Guest Details</h4>
+          </div>
+          <div className="p-4 space-y-3">
+            <div className="flex justify-between items-center">
+              <span className="text-muted-foreground flex items-center gap-2"><User className="w-4 h-4" /> Name</span>
+              <span className="font-medium text-foreground">{expandedBooking.guest_name || 'N/A'}</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-muted-foreground flex items-center gap-2"><Mail className="w-4 h-4" /> Email</span>
+              <span className="font-medium text-foreground">{expandedBooking.email || 'N/A'}</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-muted-foreground flex items-center gap-2"><Phone className="w-4 h-4" /> Phone</span>
+              <span className="font-medium text-foreground">{expandedBooking.whatsapp_number || 'N/A'}</span>
             </div>
           </div>
         </div>
 
         {/* Booking Details */}
         <div className="bg-card rounded-2xl border border-border/50 overflow-hidden">
-          <div className="p-4 border-b border-border/50">
+          <div className="p-4 border-b border-border/50 flex items-center gap-2">
+            <Bed className="w-4 h-4 text-primary" />
             <h4 className="font-semibold text-foreground">Booking Details</h4>
           </div>
           <div className="p-4 space-y-3">
+            <div className="flex justify-between items-center">
+              <span className="text-muted-foreground">Room Type</span>
+              <span className="font-medium text-foreground">{expandedBooking.room_type}</span>
+            </div>
             <div className="flex justify-between items-center">
               <span className="text-muted-foreground">Duration</span>
               <span className="font-medium text-foreground">{nights} Night{nights > 1 ? 's' : ''}</span>
@@ -461,9 +379,7 @@ function BookingsTab({
             </div>
             <div className="flex justify-between items-center">
               <span className="text-muted-foreground">Booked on</span>
-              <span className="font-medium text-foreground">
-                {format(new Date(expandedBooking.created_at), 'MMM d, yyyy')}
-              </span>
+              <span className="font-medium text-foreground">{format(new Date(expandedBooking.created_at), 'MMM d, yyyy')}</span>
             </div>
             {expandedBooking.special_requests && (
               <div className="pt-2 border-t border-border/50">
@@ -474,9 +390,10 @@ function BookingsTab({
           </div>
         </div>
 
-        {/* Pricing Breakdown */}
+        {/* Pricing */}
         <div className="bg-card rounded-2xl border border-border/50 overflow-hidden">
-          <div className="p-4 border-b border-border/50">
+          <div className="p-4 border-b border-border/50 flex items-center gap-2">
+            <Receipt className="w-4 h-4 text-primary" />
             <h4 className="font-semibold text-foreground">Pricing</h4>
           </div>
           <div className="p-4 space-y-3">
@@ -495,12 +412,18 @@ function BookingsTab({
           </div>
         </div>
 
-        {/* Action Buttons */}
+        {/* Actions */}
         <div className="flex flex-col gap-3 pt-2">
           <Button 
-            className="w-full gap-2"
-            onClick={() => onOpenChat(expandedBooking.id)}
+            className="w-full gap-2 h-12 rounded-xl"
+            onClick={() => handleDownloadInvoice(expandedBooking)}
+            disabled={downloadingInvoice || expandedBooking.booking_status !== 'confirmed'}
+            variant={expandedBooking.booking_status === 'confirmed' ? 'default' : 'outline'}
           >
+            {downloadingInvoice ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
+            {expandedBooking.booking_status === 'confirmed' ? 'Download Invoice' : 'Invoice Available After Confirmation'}
+          </Button>
+          <Button variant="outline" className="w-full gap-2 h-12 rounded-xl" onClick={() => onOpenChat(expandedBooking.id)}>
             <MessageCircle className="w-4 h-4" />
             Chat with Host
           </Button>
@@ -509,14 +432,8 @@ function BookingsTab({
     );
   }
 
-  // Booking cards list
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      className="space-y-3"
-    >
+    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="space-y-3">
       {bookings.map((booking, index) => {
         const nights = Math.ceil((new Date(booking.check_out).getTime() - new Date(booking.check_in).getTime()) / (1000 * 60 * 60 * 24));
         
@@ -527,7 +444,7 @@ function BookingsTab({
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.05 }}
             onClick={() => setExpandedBooking(booking)}
-            className="bg-card rounded-2xl border border-border/50 overflow-hidden cursor-pointer hover:border-primary/30 hover:shadow-md transition-all active:scale-[0.98]"
+            className="bg-card rounded-2xl border border-border/50 overflow-hidden cursor-pointer hover:border-primary/30 hover:shadow-lg transition-all active:scale-[0.98]"
           >
             <div className="p-4">
               <div className="flex items-start justify-between mb-2">
@@ -537,16 +454,13 @@ function BookingsTab({
                 </div>
                 <span className={cn(
                   "px-2 py-0.5 text-[10px] font-medium rounded-full ml-2 shrink-0",
-                  booking.booking_status === 'confirmed' 
-                    ? "bg-green-500/10 text-green-600"
-                    : booking.booking_status === 'pending'
-                    ? "bg-amber-500/10 text-amber-600"
-                    : "bg-muted text-muted-foreground"
+                  booking.booking_status === 'confirmed' ? "bg-green-500/10 text-green-600" :
+                  booking.booking_status === 'pending' ? "bg-amber-500/10 text-amber-600" :
+                  "bg-muted text-muted-foreground"
                 )}>
                   {booking.booking_status}
                 </span>
               </div>
-              
               <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3">
                 <div className="flex items-center gap-1">
                   <Calendar className="w-3 h-3" />
@@ -555,7 +469,6 @@ function BookingsTab({
                 <span className="text-border">•</span>
                 <span>{nights}N</span>
               </div>
-              
               <div className="flex items-center justify-between">
                 <p className="font-bold text-foreground">₹{booking.total_amount.toLocaleString()}</p>
                 <ChevronRight className="w-4 h-4 text-muted-foreground" />
@@ -569,69 +482,26 @@ function BookingsTab({
 }
 
 // Settings Tab
-function SettingsTab({ 
-  onSignOut,
-  isSigningOut,
-  onNavigate
-}: { 
-  onSignOut: () => void;
-  isSigningOut: boolean;
-  onNavigate: (path: string) => void;
-}) {
+function SettingsTab({ onSignOut, isSigningOut, onNavigate }: { onSignOut: () => void; isSigningOut: boolean; onNavigate: (path: string) => void }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      className="space-y-4"
-    >
-      <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-1 mb-2">
-        Account
-      </h3>
-      
+    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="space-y-4">
+      <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-1 mb-2">Account</h3>
       <MenuCard>
-        <MenuItem 
-          icon={<User className="w-5 h-5" />}
-          label="Personal Information"
-          sublabel="Name, email, phone"
-          onClick={() => {}}
-        />
+        <MenuItem icon={<User className="w-5 h-5" />} label="Personal Information" sublabel="Name, email, phone" onClick={() => {}} />
         <MenuDivider />
-        <MenuItem 
-          icon={<Shield className="w-5 h-5" />}
-          label="Security"
-          sublabel="Password, 2FA"
-          onClick={() => {}}
-        />
+        <MenuItem icon={<Shield className="w-5 h-5" />} label="Security" sublabel="Password, 2FA" onClick={() => {}} />
       </MenuCard>
 
-      <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-1 mb-2 mt-6">
-        Preferences
-      </h3>
-
+      <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-1 mb-2 mt-6">Preferences</h3>
       <MenuCard>
-        <MenuItem 
-          icon={<Bell className="w-5 h-5" />}
-          label="Notifications"
-          sublabel="Email, push, SMS"
-          onClick={() => {}}
-        />
+        <MenuItem icon={<Bell className="w-5 h-5" />} label="Notifications" sublabel="Email, push, SMS" onClick={() => {}} />
       </MenuCard>
 
-      <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-1 mb-2 mt-6">
-        Support
-      </h3>
-
+      <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-1 mb-2 mt-6">Support</h3>
       <MenuCard>
-        <MenuItem 
-          icon={<HelpCircle className="w-5 h-5" />}
-          label="Help & Support"
-          sublabel="FAQs, contact us"
-          onClick={() => onNavigate('/faq')}
-        />
+        <MenuItem icon={<HelpCircle className="w-5 h-5" />} label="Help & Support" sublabel="FAQs, contact us" onClick={() => onNavigate('/faq')} />
       </MenuCard>
 
-      {/* Sign Out Button */}
       <div className="mt-8">
         <Button
           variant="outline"
@@ -639,68 +509,32 @@ function SettingsTab({
           onClick={onSignOut}
           disabled={isSigningOut}
         >
-          {isSigningOut ? (
-            <Loader2 className="w-5 h-5 animate-spin" />
-          ) : (
-            <>
-              <LogOut className="w-5 h-5" />
-              Sign Out
-            </>
-          )}
+          {isSigningOut ? <Loader2 className="w-5 h-5 animate-spin" /> : <><LogOut className="w-5 h-5" />Sign Out</>}
         </Button>
       </div>
     </motion.div>
   );
 }
 
-// Menu Card Component
 function MenuCard({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="bg-card rounded-2xl border border-border/50 overflow-hidden">
-      {children}
-    </div>
-  );
+  return <div className="bg-card rounded-2xl border border-border/50 overflow-hidden">{children}</div>;
 }
 
-// Menu Item Component
-interface MenuItemProps {
-  icon: React.ReactNode;
-  label: string;
-  sublabel?: string;
-  onClick: () => void;
-  destructive?: boolean;
-}
-
-function MenuItem({ icon, label, sublabel, onClick, destructive }: MenuItemProps) {
+function MenuItem({ icon, label, sublabel, onClick, destructive }: { icon: React.ReactNode; label: string; sublabel?: string; onClick: () => void; destructive?: boolean }) {
   return (
-    <button
-      onClick={onClick}
-      className={cn(
-        "w-full flex items-center gap-4 p-4 text-left transition-colors",
-        "hover:bg-muted/50 active:bg-muted",
-        destructive && "text-destructive"
-      )}
-    >
-      <div className={cn(
-        "w-10 h-10 rounded-xl flex items-center justify-center shrink-0",
-        destructive ? "bg-destructive/10" : "bg-primary/10"
-      )}>
-        <span className={destructive ? "text-destructive" : "text-primary"}>
-          {icon}
-        </span>
+    <button onClick={onClick} className={cn("w-full flex items-center gap-4 p-4 text-left transition-colors hover:bg-muted/50 active:bg-muted", destructive && "text-destructive")}>
+      <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center shrink-0", destructive ? "bg-destructive/10" : "bg-primary/10")}>
+        <span className={destructive ? "text-destructive" : "text-primary"}>{icon}</span>
       </div>
       <div className="flex-1 min-w-0">
         <p className="font-medium text-foreground">{label}</p>
-        {sublabel && (
-          <p className="text-sm text-muted-foreground">{sublabel}</p>
-        )}
+        {sublabel && <p className="text-sm text-muted-foreground">{sublabel}</p>}
       </div>
       <ChevronRight className="w-5 h-5 text-muted-foreground shrink-0" />
     </button>
   );
 }
 
-// Menu Divider
 function MenuDivider() {
   return <div className="h-px bg-border/50 mx-4" />;
 }
