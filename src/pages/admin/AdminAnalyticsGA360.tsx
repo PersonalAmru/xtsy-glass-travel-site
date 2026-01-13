@@ -208,7 +208,7 @@ export default function AdminAnalyticsGA360() {
               <MetricCard
                 title="Total Visitors"
                 value={overview?.total_visitors || 0}
-                change={overview?.new_visitor_rate}
+                change={typeof overview?.new_visitor_rate === 'string' ? parseFloat(overview.new_visitor_rate) : overview?.new_visitor_rate}
                 icon={<Users className="w-5 h-5" />}
                 color="emerald"
               />

@@ -42,22 +42,19 @@ interface Property {
   created_at?: string;
 }
 
+// Use 'any' for checklist to handle flexible Supabase Json type
 interface Onboarding {
   id: string;
   property_id: string;
-  status: string;
-  checklist: {
-    basic_info: boolean;
-    room_types: boolean;
-    inventory_setup: boolean;
-    pricing: boolean;
-    photos: boolean;
-    policies: boolean;
-    bank_details: boolean;
-    contract_signed: boolean;
-  };
-  readiness_score: number;
-  notes: string;
+  status?: string;
+  onboarding_status?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  checklist?: any;
+  readiness_score?: number;
+  notes?: string;
+  minimum_readiness_met?: boolean;
+  started_at?: string;
+  completed_at?: string;
 }
 
 const checklistItems = [
@@ -115,10 +112,10 @@ export default function AdminPropertyOnboarding() {
 
       const merged = (propertiesData || []).map(prop => ({
         ...prop,
-        onboarding: onboardingData?.find(o => o.property_id === prop.id)
+        onboarding: onboardingData?.find(o => o.property_id === prop.id) as Onboarding | undefined
       }));
 
-      setProperties(merged);
+      setProperties(merged as (Property & { onboarding?: Onboarding })[]);
     } catch (error) {
       console.error('Error fetching properties:', error);
       toast.error('Failed to load properties');
@@ -477,7 +474,7 @@ export default function AdminPropertyOnboarding() {
                           </p>
                           <p className="text-sm text-slate-500">{item.description}</p>
                         </div>
-                        <Checkbox checked={isCompleted} className="pointer-events-none" />
+                        <Checkbox checked={!!isCompleted} className="pointer-events-none" />
                       </motion.div>
                     );
                   })}
