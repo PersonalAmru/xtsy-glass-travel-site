@@ -1,19 +1,109 @@
 /**
  * Password Reset OTP Edge Function
- * Generates and sends OTP for password reset (2-min expiry)
+ * Sends OTP via Google SMTP (Gmail App Password)
+ * OTP expires in 2 minutes
  */
 
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 import { corsHeaders } from '../_shared/cors.ts';
+import { SMTPClient } from 'https://deno.land/x/denomailer@1.6.0/mod.ts';
 
 const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
 const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+const smtpUser = Deno.env.get('GOOGLE_SMTP_USER')!;
+const smtpPassword = Deno.env.get('GOOGLE_SMTP_APP_PASSWORD')!;
 
 interface RequestBody {
   action: 'request' | 'verify' | 'reset';
   email?: string;
   otp?: string;
   newPassword?: string;
+}
+
+async function sendOTPEmail(toEmail: string, otp: string): Promise<boolean> {
+  try {
+    const client = new SMTPClient({
+      connection: {
+        hostname: 'smtp.gmail.com',
+        port: 465,
+        tls: true,
+        auth: {
+          username: smtpUser,
+          password: smtpPassword,
+        },
+      },
+    });
+
+    const htmlBody = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      </head>
+      <body style="margin: 0; padding: 0; background-color: #0a0a0a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+        <div style="max-width: 480px; margin: 0 auto; padding: 40px 20px;">
+          <!-- Header -->
+          <div style="text-align: center; margin-bottom: 32px;">
+            <h1 style="color: #f97316; font-size: 32px; font-weight: 700; margin: 0; letter-spacing: -0.5px;">XTSY</h1>
+            <p style="color: #a1a1aa; font-size: 14px; margin-top: 8px;">Password Reset Request</p>
+          </div>
+          
+          <!-- Main Card -->
+          <div style="background: linear-gradient(145deg, #18181b 0%, #1f1f23 100%); border-radius: 20px; padding: 40px 32px; border: 1px solid rgba(249, 115, 22, 0.1); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);">
+            <p style="color: #e4e4e7; font-size: 16px; margin: 0 0 28px 0; text-align: center; line-height: 1.6;">
+              Enter this verification code to reset your password:
+            </p>
+            
+            <!-- OTP Box -->
+            <div style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); border-radius: 16px; padding: 24px; margin-bottom: 28px; text-align: center; box-shadow: 0 10px 40px -10px rgba(249, 115, 22, 0.4);">
+              <span style="font-family: 'SF Mono', Monaco, 'Courier New', monospace; font-size: 36px; font-weight: 700; color: white; letter-spacing: 10px; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                ${otp}
+              </span>
+            </div>
+            
+            <!-- Timer Warning -->
+            <div style="background: rgba(249, 115, 22, 0.1); border-radius: 12px; padding: 16px; text-align: center; border: 1px solid rgba(249, 115, 22, 0.2);">
+              <p style="color: #f97316; font-size: 14px; font-weight: 600; margin: 0;">
+                ⏱️ This code expires in 2 minutes
+              </p>
+            </div>
+          </div>
+          
+          <!-- Security Note -->
+          <div style="margin-top: 32px; text-align: center;">
+            <p style="color: #71717a; font-size: 12px; line-height: 1.6; margin: 0;">
+              If you didn't request this password reset, you can safely ignore this email.<br>
+              Your account remains secure.
+            </p>
+          </div>
+          
+          <!-- Footer -->
+          <div style="margin-top: 40px; text-align: center; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.05);">
+            <p style="color: #52525b; font-size: 11px; margin: 0;">
+              © ${new Date().getFullYear()} XTSY. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </body>
+      </html>
+    `;
+
+    await client.send({
+      from: smtpUser,
+      to: toEmail,
+      subject: `${otp} is your XTSY verification code`,
+      content: `Your XTSY password reset code is: ${otp}. This code expires in 2 minutes.`,
+      html: htmlBody,
+    });
+
+    await client.close();
+    console.log(`OTP email sent successfully to ${toEmail}`);
+    return true;
+  } catch (error) {
+    console.error('Failed to send OTP email:', error);
+    return false;
+  }
 }
 
 Deno.serve(async (req) => {
@@ -39,10 +129,12 @@ Deno.serve(async (req) => {
         );
       }
 
+      const normalizedEmail = email.toLowerCase().trim();
+
       // Generate OTP using database function
       const { data: otpResult, error: otpError } = await supabase.rpc(
         'generate_password_reset_otp',
-        { p_email: email.toLowerCase().trim() }
+        { p_email: normalizedEmail }
       );
 
       if (otpError) {
@@ -53,59 +145,14 @@ Deno.serve(async (req) => {
         );
       }
 
-      // If OTP was generated, send email
+      // If OTP was generated, send email via Gmail SMTP
       if (otpResult?.otp) {
-        // In production, integrate with email service (Resend, SendGrid, etc.)
-        // For now, we'll use Supabase's built-in email or log it
-        console.log(`OTP for ${email}: ${otpResult.otp} (expires: ${otpResult.expires_at})`);
+        console.log(`Generated OTP for ${normalizedEmail}, expires: ${otpResult.expires_at}`);
         
-        // Try to send via Supabase's inbuilt (if configured)
-        // or use external email service
-        const emailBody = `
-          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 480px; margin: 0 auto; padding: 40px 20px;">
-            <div style="text-align: center; margin-bottom: 32px;">
-              <h1 style="color: #f97316; font-size: 28px; margin: 0;">XTSY</h1>
-              <p style="color: #6b7280; margin-top: 8px;">Password Reset</p>
-            </div>
-            
-            <div style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); border-radius: 16px; padding: 32px; text-align: center;">
-              <p style="color: #ffffff; font-size: 16px; margin: 0 0 24px 0;">
-                Your verification code is:
-              </p>
-              <div style="background: #f97316; border-radius: 12px; padding: 20px; margin-bottom: 24px;">
-                <span style="font-family: monospace; font-size: 32px; font-weight: bold; color: white; letter-spacing: 8px;">
-                  ${otpResult.otp}
-                </span>
-              </div>
-              <p style="color: #9ca3af; font-size: 14px; margin: 0;">
-                This code expires in <strong style="color: #f97316;">2 minutes</strong>
-              </p>
-            </div>
-            
-            <p style="color: #6b7280; font-size: 12px; text-align: center; margin-top: 32px;">
-              If you didn't request this, please ignore this email.
-            </p>
-          </div>
-        `;
-
-        // Use Supabase's admin API to send email if possible
-        // This requires proper email configuration in Supabase dashboard
-        try {
-          await fetch(`${supabaseUrl}/auth/v1/admin/send-email`, {
-            method: 'POST',
-            headers: {
-              'Authorization': `Bearer ${supabaseServiceKey}`,
-              'Content-Type': 'application/json',
-              'apikey': supabaseServiceKey
-            },
-            body: JSON.stringify({
-              email: email.toLowerCase().trim(),
-              type: 'recovery',
-              data: { otp: otpResult.otp }
-            })
-          });
-        } catch (emailErr) {
-          console.log('Email send via Supabase failed, OTP still valid:', emailErr);
+        const emailSent = await sendOTPEmail(normalizedEmail, otpResult.otp);
+        
+        if (!emailSent) {
+          console.error('Failed to send OTP email, but OTP is still valid in database');
         }
       }
 
