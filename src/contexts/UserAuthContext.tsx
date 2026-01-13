@@ -90,8 +90,13 @@ function convertToExtendedUser(supabaseUser: User, profile?: UserProfile | null)
 
 // Check if this is an admin/franchise session (should be ignored by user context)
 function isAdminOrFranchiseSession(): boolean {
-  return localStorage.getItem(ADMIN_SESSION_KEY) === 'true' || 
-         localStorage.getItem(FRANCHISE_SESSION_KEY) === 'true';
+  // Check multiple markers for comprehensive admin detection
+  const isAdminSession = localStorage.getItem(ADMIN_SESSION_KEY) === 'true';
+  const isFranchiseSession = localStorage.getItem(FRANCHISE_SESSION_KEY) === 'true';
+  const isAdminFlow = sessionStorage.getItem('xtsy_auth_flow') === 'admin';
+  const isAdminFlowPersistent = localStorage.getItem('xtsy_admin_auth_flow') === 'true';
+  
+  return isAdminSession || isFranchiseSession || isAdminFlow || isAdminFlowPersistent;
 }
 
 interface UserAuthProviderProps {
@@ -166,9 +171,22 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
     // Set up auth state listener FIRST
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, currentSession) => {
-        // SECURITY: Ignore auth state changes if this is an admin/franchise session
+        // SECURITY: Ignore ALL auth state changes if this is an admin/franchise session
+        // This is CRITICAL to prevent admin login from affecting user state
         if (isAdminOrFranchiseSession()) {
-          // Don't update user state for admin sessions
+          console.log('[UserAuth] Ignoring auth change - admin/franchise session detected');
+          // Ensure user state is cleared for admin sessions
+          setUser(null);
+          setSession(null);
+          return;
+        }
+        
+        // Also check if the current user is the admin user
+        const adminUserId = localStorage.getItem('xtsy_admin_user_id');
+        if (currentSession?.user && adminUserId && currentSession.user.id === adminUserId) {
+          console.log('[UserAuth] Ignoring auth change - admin user ID detected');
+          setUser(null);
+          setSession(null);
           return;
         }
         
@@ -194,6 +212,19 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
     supabase.auth.getSession().then(async ({ data: { session: existingSession } }) => {
       // SECURITY: Don't restore session if this is an admin/franchise flow
       if (isAdminOrFranchiseSession()) {
+        console.log('[UserAuth] Skipping session restore - admin/franchise flow');
+        setUser(null);
+        setSession(null);
+        setIsInitialized(true);
+        return;
+      }
+      
+      // Check if the session user is the admin user
+      const adminUserId = localStorage.getItem('xtsy_admin_user_id');
+      if (existingSession?.user && adminUserId && existingSession.user.id === adminUserId) {
+        console.log('[UserAuth] Skipping session restore - admin user ID');
+        setUser(null);
+        setSession(null);
         setIsInitialized(true);
         return;
       }
