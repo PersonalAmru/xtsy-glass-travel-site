@@ -198,27 +198,29 @@ export const BookingChat: React.FC<BookingChatProps> = ({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-end sm:items-end md:items-center lg:items-center justify-center p-0 sm:p-0 md:p-4 lg:p-6"
+        className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-end md:items-center justify-center"
         onClick={onClose}
       >
         <motion.div
           initial={{ y: '100%', opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: '100%', opacity: 0 }}
-          transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+          transition={{ type: 'spring', damping: 28, stiffness: 350 }}
           onClick={(e) => e.stopPropagation()}
           className={cn(
-            // Mobile: full width, bottom sheet style
-            "w-full h-[85vh] rounded-t-3xl sm:rounded-t-3xl",
-            // Tablet & Desktop: centered modal with max width
-            "md:max-w-md md:h-[600px] md:rounded-2xl",
-            "lg:max-w-lg lg:h-[650px]",
-            // Common styles
+            // Mobile: full width, bottom sheet style with safe area
+            "w-full max-h-[90vh] h-[85vh] rounded-t-3xl",
+            // Tablet: centered modal with proper sizing
+            "md:w-[420px] md:max-w-[90vw] md:h-auto md:max-h-[85vh] md:min-h-[500px] md:rounded-3xl",
+            // Desktop: slightly larger
+            "lg:w-[480px] lg:max-h-[80vh] lg:min-h-[550px]",
+            // Common styles - Apple-grade glassmorphism
             "overflow-hidden flex flex-col",
-            "bg-gradient-to-b from-[hsl(160,35%,18%)] to-[hsl(160,40%,12%)]",
-            "shadow-2xl border border-white/10",
-            // Glassmorphic effect
-            "backdrop-blur-xl"
+            "bg-gradient-to-b from-[hsl(160,32%,15%)] via-[hsl(160,35%,12%)] to-[hsl(160,38%,8%)]",
+            "shadow-[0_25px_60px_-15px_rgba(0,0,0,0.5),0_10px_25px_-10px_rgba(0,0,0,0.3)]",
+            "border border-white/[0.08]",
+            // Glassmorphic effect with subtle texture
+            "backdrop-blur-2xl backdrop-saturate-150"
           )}
         >
           {/* Header - Apple-grade design */}
@@ -294,8 +296,8 @@ export const BookingChat: React.FC<BookingChatProps> = ({
             </div>
           )}
 
-          {/* Input - Clean Apple-grade */}
-          <div className="p-4 border-t border-white/10 bg-black/20">
+          {/* Input - Clean Apple-grade with proper keyboard handling */}
+          <div className="p-4 border-t border-white/[0.08] bg-black/30 backdrop-blur-xl safe-area-inset-bottom">
             <div className="flex items-center gap-3">
               <input
                 ref={inputRef}
@@ -303,24 +305,35 @@ export const BookingChat: React.FC<BookingChatProps> = ({
                 value={newMessage}
                 onChange={(e) => setNewMessage(e.target.value)}
                 onKeyDown={handleKeyDown}
+                onFocus={(e) => {
+                  // Scroll input into view on mobile
+                  setTimeout(() => {
+                    e.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  }, 300);
+                }}
                 placeholder="Type a message..."
                 className={cn(
-                  "flex-1 h-12 px-4 rounded-xl",
-                  "bg-white/10 text-white placeholder:text-white/40",
-                  "border border-white/10 focus:border-white/30 focus:outline-none",
-                  "transition-colors"
+                  "flex-1 h-12 px-4 rounded-2xl text-base",
+                  "bg-white/[0.08] text-white placeholder:text-white/40",
+                  "border border-white/[0.08] focus:border-emerald-500/50 focus:bg-white/[0.12]",
+                  "focus:outline-none focus:ring-2 focus:ring-emerald-500/20",
+                  "transition-all duration-200"
                 )}
                 disabled={isSending}
+                autoComplete="off"
+                autoCorrect="on"
+                spellCheck="true"
               />
               <motion.button
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.92 }}
                 onClick={() => sendMessage()}
                 disabled={!newMessage.trim() || isSending}
                 className={cn(
-                  "w-12 h-12 rounded-xl flex items-center justify-center transition-all",
+                  "w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-200",
                   newMessage.trim()
-                    ? "bg-emerald-500 text-white"
-                    : "bg-white/10 text-white/40"
+                    ? "bg-gradient-to-br from-emerald-500 to-emerald-600 text-white shadow-lg shadow-emerald-500/30"
+                    : "bg-white/[0.08] text-white/40"
                 )}
               >
                 {isSending ? (

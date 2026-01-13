@@ -2,9 +2,10 @@
  * Admin Login Page - Apple-grade minimal design
  * Email/Password only, no public link exposure
  * SECURITY: Complete session isolation from user auth
+ * CRITICAL: Admin auth is completely separate from user auth
  */
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -14,10 +15,12 @@ import { toast } from "sonner";
 import { Shield, Mail, Lock, Eye, EyeOff, Loader2, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
-// Admin session isolation keys
+// Admin session isolation keys - MUST be different from user session
 const ADMIN_SESSION_KEY = 'xtsy_admin_session';
 const ADMIN_AUTH_TIMESTAMP = 'xtsy_admin_auth_ts';
 const USER_SESSION_KEY = 'xtsy_user_session';
+const ADMIN_FLOW_KEY = 'xtsy_admin_auth_flow';
+const ADMIN_USER_ID = 'xtsy_admin_user_id';
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
@@ -25,16 +28,32 @@ const AdminLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const mountedRef = useRef(true);
 
-  // Clear any user session markers on mount to prevent cross-contamination
+  // SECURITY: Complete session isolation on mount
   useEffect(() => {
-    // Mark that we're in admin login flow
-    sessionStorage.setItem('xtsy_auth_flow', 'admin');
+    mountedRef.current = true;
     
-    // Clear user session marker if exists
+    // Mark admin login flow IMMEDIATELY - this prevents UserAuthContext from picking up the session
+    sessionStorage.setItem('xtsy_auth_flow', 'admin');
+    localStorage.setItem(ADMIN_FLOW_KEY, 'true');
+    
+    // CRITICAL: Clear ALL user session markers to prevent cross-contamination
     localStorage.removeItem(USER_SESSION_KEY);
+    sessionStorage.removeItem('xtsy_user_redirect');
+    
+    // Sign out any existing sessions to ensure clean admin login
+    const cleanupSession = async () => {
+      try {
+        await supabase.auth.signOut({ scope: 'local' });
+      } catch {
+        // Ignore errors during cleanup
+      }
+    };
+    cleanupSession();
     
     return () => {
+      mountedRef.current = false;
       sessionStorage.removeItem('xtsy_auth_flow');
     };
   }, []);
@@ -51,22 +70,34 @@ const AdminLogin = () => {
     setLoading(true);
 
     try {
-      // SECURITY: Sign out any existing session first to ensure clean admin login
-      // This prevents any session state from bleeding over
-      await supabase.auth.signOut();
+      // SECURITY: Ensure we're marked as admin flow BEFORE any auth operations
+      sessionStorage.setItem('xtsy_auth_flow', 'admin');
+      localStorage.setItem(ADMIN_FLOW_KEY, 'true');
       
-      // Clear all session markers
+      // SECURITY: Sign out any existing session first to ensure clean admin login
+      // Use 'global' scope to ensure complete signout
+      await supabase.auth.signOut({ scope: 'global' });
+      
+      // CRITICAL: Clear ALL session markers to prevent cross-contamination
       localStorage.removeItem(ADMIN_SESSION_KEY);
       localStorage.removeItem(USER_SESSION_KEY);
       localStorage.removeItem('xtsy_franchise_session');
+      localStorage.removeItem(ADMIN_USER_ID);
+      sessionStorage.removeItem('xtsy_user_redirect');
       
-      // Small delay to ensure complete signout
-      await new Promise(resolve => setTimeout(resolve, 100));
+      // Small delay to ensure complete signout and session cleanup
+      await new Promise(resolve => setTimeout(resolve, 200));
+      
+      // Re-mark as admin flow after cleanup
+      sessionStorage.setItem('xtsy_auth_flow', 'admin');
+      localStorage.setItem(ADMIN_FLOW_KEY, 'true');
       
       const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
         email: email.trim(),
         password: password,
       });
+
+      if (!mountedRef.current) return;
 
       if (authError) {
         toast.error("Invalid credentials. Please try again.");
@@ -78,7 +109,8 @@ const AdminLogin = () => {
         const isAdminEmail = authData.user.email === 'xtsy.social@gmail.com';
         
         if (!isAdminEmail) {
-          await supabase.auth.signOut();
+          await supabase.auth.signOut({ scope: 'global' });
+          localStorage.removeItem(ADMIN_FLOW_KEY);
           toast.error("Access denied.");
           return;
         }
@@ -90,30 +122,37 @@ const AdminLogin = () => {
         });
 
         if (roleError) {
-          await supabase.auth.signOut();
+          await supabase.auth.signOut({ scope: 'global' });
+          localStorage.removeItem(ADMIN_FLOW_KEY);
           toast.error("Unable to verify access. Please try again.");
           return;
         }
 
         if (isAdmin) {
-          // SECURITY: Store admin session markers with timestamp
+          // SECURITY: Store admin session markers with timestamp and user ID
           localStorage.setItem(ADMIN_SESSION_KEY, 'true');
           localStorage.setItem(ADMIN_AUTH_TIMESTAMP, Date.now().toString());
+          localStorage.setItem(ADMIN_USER_ID, authData.user.id);
           
-          // Ensure user session is cleared
+          // CRITICAL: Ensure user session is cleared and admin flow is maintained
           localStorage.removeItem(USER_SESSION_KEY);
+          localStorage.setItem(ADMIN_FLOW_KEY, 'true');
           
           toast.success("Welcome to Admin Portal!");
           navigate("/admin");
         } else {
-          await supabase.auth.signOut();
+          await supabase.auth.signOut({ scope: 'global' });
+          localStorage.removeItem(ADMIN_FLOW_KEY);
           toast.error("Access denied.");
         }
       }
     } catch (error: any) {
+      localStorage.removeItem(ADMIN_FLOW_KEY);
       toast.error("Login failed. Please try again.");
     } finally {
-      setLoading(false);
+      if (mountedRef.current) {
+        setLoading(false);
+      }
     }
   };
 
