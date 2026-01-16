@@ -27,11 +27,7 @@ const HeroSection = () => {
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
 
-  // Scroll-based transforms
-  const { scrollY } = useScroll();
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
-  const scale = useTransform(scrollY, [0, 300], [1, 0.95]);
-  const y = useTransform(scrollY, [0, 300], [0, 50]);
+  // Removed scroll-based fade transforms - hero stays visible
 
   // Supabase-backed counter (deduplicated via context)
   const { happyGuestsCount, incrementHappyGuests, isLoading: happyGuestsLoading } = useHappyGuestsContext();
@@ -188,8 +184,7 @@ const HeroSection = () => {
         </div>
 
         {/* Main Content */}
-        <motion.div 
-          style={{ opacity, scale, y }}
+        <div 
           className="relative z-10 text-center text-white w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 pt-20 md:pt-0"
         >
           {/* Language Greeting & Symbol */}
@@ -402,7 +397,7 @@ const HeroSection = () => {
           >
             <ChevronDown className="w-6 h-6" />
           </motion.button>
-        </motion.div>
+        </div>
       </section>
 
       {/* Login Prompt Modal */}
