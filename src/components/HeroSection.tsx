@@ -12,8 +12,9 @@ import { useNavigate, Link } from "react-router-dom";
 import { useMediaQuery } from "@/hooks/use-mobile";
 import { useHappyGuestsContext } from "@/contexts/HappyGuestsContext";
 import { useUserAuth } from "@/contexts/UserAuthContext";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import BookingModal from "@/components/BookingModal";
 
 const HeroSection = () => {
   const navigate = useNavigate();

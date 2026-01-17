@@ -1331,6 +1331,105 @@ export type Database = {
         }
         Relationships: []
       }
+      enquiries: {
+        Row: {
+          approved_at: string | null
+          approved_by: string | null
+          check_in: string
+          check_out: string
+          created_at: string
+          email: string
+          enquiry_id: string
+          gst_amount: number
+          gst_rate: number
+          guest_address: string | null
+          guest_city: string | null
+          guest_name: string
+          guest_pincode: string | null
+          guest_state: string | null
+          id: string
+          nights: number
+          phone: string
+          quantity: number
+          rate_per_night: number
+          rejected_at: string | null
+          rejected_by: string | null
+          rejection_reason: string | null
+          room_name: string
+          room_type: string
+          special_requests: string | null
+          status: string
+          subtotal: number
+          total_amount: number
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          approved_at?: string | null
+          approved_by?: string | null
+          check_in: string
+          check_out: string
+          created_at?: string
+          email: string
+          enquiry_id: string
+          gst_amount: number
+          gst_rate?: number
+          guest_address?: string | null
+          guest_city?: string | null
+          guest_name: string
+          guest_pincode?: string | null
+          guest_state?: string | null
+          id?: string
+          nights: number
+          phone: string
+          quantity?: number
+          rate_per_night: number
+          rejected_at?: string | null
+          rejected_by?: string | null
+          rejection_reason?: string | null
+          room_name: string
+          room_type: string
+          special_requests?: string | null
+          status?: string
+          subtotal: number
+          total_amount: number
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          approved_at?: string | null
+          approved_by?: string | null
+          check_in?: string
+          check_out?: string
+          created_at?: string
+          email?: string
+          enquiry_id?: string
+          gst_amount?: number
+          gst_rate?: number
+          guest_address?: string | null
+          guest_city?: string | null
+          guest_name?: string
+          guest_pincode?: string | null
+          guest_state?: string | null
+          id?: string
+          nights?: number
+          phone?: string
+          quantity?: number
+          rate_per_night?: number
+          rejected_at?: string | null
+          rejected_by?: string | null
+          rejection_reason?: string | null
+          room_name?: string
+          room_type?: string
+          special_requests?: string | null
+          status?: string
+          subtotal?: number
+          total_amount?: number
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       franchise_assignments: {
         Row: {
           assigned_at: string | null
@@ -3308,6 +3407,13 @@ export type Database = {
         Args: { p_admin_id: string; p_booking_id: string }
         Returns: Json
       }
+      approve_enquiry: {
+        Args: { p_admin_id: string; p_enquiry_uuid: string }
+        Returns: {
+          booking_id: string
+          invoice_number: string
+        }[]
+      }
       calculate_onboarding_readiness: {
         Args: { checklist: Json }
         Returns: number
@@ -3394,6 +3500,34 @@ export type Database = {
           p_user_id?: string
         }
         Returns: Json
+      }
+      create_enquiry: {
+        Args: {
+          p_address?: string
+          p_check_in: string
+          p_check_out: string
+          p_city?: string
+          p_email: string
+          p_gst_amount: number
+          p_gst_rate: number
+          p_guest_name: string
+          p_nights: number
+          p_phone: string
+          p_pincode?: string
+          p_quantity: number
+          p_rate_per_night: number
+          p_room_name: string
+          p_room_type: string
+          p_special_requests?: string
+          p_state?: string
+          p_subtotal: number
+          p_total_amount: number
+          p_user_id?: string
+        }
+        Returns: {
+          enquiry_id: string
+          enquiry_uuid: string
+        }[]
       }
       delete_my_data: { Args: never; Returns: boolean }
       deny_booking_with_message: {
