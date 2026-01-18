@@ -102,7 +102,8 @@ const LoadingScreen = memo(({ minimal = false, size }: LoadingScreenProps) => {
       style={{
         position: 'fixed',
         inset: 0,
-        backgroundColor: '#111827',
+        // Match hero gradient background for seamless transition
+        background: 'linear-gradient(135deg, #020617 0%, #0f172a 50%, #020617 100%)',
         zIndex: 9999,
         display: 'flex',
         alignItems: 'center',

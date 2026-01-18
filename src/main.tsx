@@ -88,37 +88,51 @@ if (import.meta.env.PROD && SENTRY_DSN) {
 preloadLCPImage();
 
 // Polyfill for Safari which doesn't support requestIdleCallback
-const scheduleIdleTask = (callback: () => void) => {
+const scheduleIdleTask = (callback: () => void, timeout = 2000) => {
   if (typeof requestIdleCallback !== 'undefined') {
-    requestIdleCallback(callback);
+    requestIdleCallback(callback, { timeout });
   } else {
-    setTimeout(callback, 1);
+    setTimeout(callback, 50);
   }
 };
 
-// Initialize remaining critical images in idle time
-scheduleIdleTask(() => {
+// CRITICAL: Delay ALL non-essential initialization until AFTER first paint
+// This reduces main thread blocking and improves LCP significantly
+const initializeNonCritical = () => {
+  // Initialize remaining critical images first (highest priority after LCP)
   initializeCriticalImageLoading();
-});
-
-// Defer non-critical optimizations
-if (document.readyState === 'complete') {
-  initializeOptimizations();
-} else {
-  window.addEventListener('load', initializeOptimizations, { once: true });
-}
-
-function initializeOptimizations() {
-  // Run after first paint for faster initial load
+  
+  // Then schedule remaining optimizations with lower priority
   scheduleIdleTask(() => {
     initializeImageOptimizations();
     initializePerformanceEnhancements();
+  }, 1000);
+  
+  // Even lower priority - lazy loading and network optimizations
+  scheduleIdleTask(() => {
     initializeAdvancedLazyLoading();
     initializeNetworkOptimizations();
     initializePerformanceOptimizations();
-    // Prefetch common route chunks for faster navigation
+  }, 2000);
+  
+  // Lowest priority - route prefetching
+  scheduleIdleTask(() => {
     prefetchRouteChunks();
+  }, 3000);
+};
+
+// Wait for first paint before initializing non-critical code
+if (document.readyState === 'complete') {
+  // Use RAF to ensure we're after first paint
+  requestAnimationFrame(() => {
+    requestAnimationFrame(initializeNonCritical);
   });
+} else {
+  window.addEventListener('load', () => {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(initializeNonCritical);
+    });
+  }, { once: true });
 }
 
 // Add cleanup on app exit
@@ -141,7 +155,10 @@ const queryClient = new QueryClient({
   },
 });
 
-createRoot(document.getElementById("root")!).render(
+// Mark document as hydrated after React mounts
+const root = document.getElementById("root")!;
+
+createRoot(root).render(
   <StrictMode>
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
@@ -154,3 +171,8 @@ createRoot(document.getElementById("root")!).render(
     </ErrorBoundary>
   </StrictMode>,
 );
+
+// Mark as hydrated after first render
+requestAnimationFrame(() => {
+  document.documentElement.classList.add('hydrated');
+});

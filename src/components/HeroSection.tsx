@@ -151,7 +151,7 @@ const HeroSection = () => {
               </span>
             </div>
 
-            {/* LCP ELEMENT - Brand Symbol */}
+            {/* LCP ELEMENT - Brand Symbol - matches skeleton for instant swap */}
             <div className="flex items-center justify-center mb-6">
               <div className="relative">
                 <img
@@ -164,6 +164,8 @@ const HeroSection = () => {
                   fetchpriority="high"
                   width={128}
                   height={128}
+                  // Dimensions match skeleton for zero layout shift
+                  style={{ aspectRatio: '1/1' }}
                 />
                 <div className="absolute -inset-4 bg-primary/20 rounded-full blur-2xl -z-10" />
               </div>

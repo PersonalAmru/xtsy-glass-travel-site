@@ -20,20 +20,25 @@
       /* Critical above-the-fold styles - inline for instant render */
       *{margin:0;padding:0;box-sizing:border-box}
       html{font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeSpeed}
-      body{background:#111827;color:#fff;min-height:100vh;overflow-x:hidden}
+      body{background:#020617;color:#fff;min-height:100vh;overflow-x:hidden}
       #root{min-height:100vh;contain:layout style}
       .dark{color-scheme:dark}
       /* Layout containment for faster paint */
       main,section,article{contain:content}
-      /* Reduce layout shift */
+      /* Reduce layout shift - reserve space for images */
       img,video{max-width:100%;height:auto;display:block;content-visibility:auto}
-      /* Performance for animations */
+      /* Performance for animations - disable during initial load */
       @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
       body.initial-load *{transition:none!important;animation-duration:.001ms!important}
       /* iOS optimizations */
       @supports (-webkit-touch-callout:none){input,select,textarea{font-size:16px!important}}
-      /* Hide content flash */
-      .loading-placeholder{position:fixed;inset:0;background:#111827;z-index:50;display:flex;align-items:center;justify-content:center}
+      /* Hero background gradient - critical for LCP */
+      .hero-bg{background:linear-gradient(135deg,#020617 0%,#0f172a 50%,#020617 100%)}
+      /* Primary color variables for hero */
+      :root{--primary:25 95% 53%;--primary-foreground:0 0% 100%}
+      /* Prevent FOUC */
+      html:not(.hydrated) #root{visibility:hidden}
+      html.hydrated #root{visibility:visible}
     </style>
     
     <!-- Critical mobile viewport -->
@@ -48,8 +53,8 @@
     <link rel="dns-prefetch" href="//checkout.razorpay.com">
     <link rel="dns-prefetch" href="//wa.me">
     
-    <!-- Google Analytics & Ads - MUST be in head for reliable tracking -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B"></script>
+    <!-- Google Analytics & Ads - async/defer for non-blocking load -->
+    <script async defer src="https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -486,15 +491,46 @@
   <meta name="twitter:description" content="XTSY Travellers Hostel - India&#39;s best hostel experience in Shillong, Meghalaya. The biggest hostel in North East India offering luxury accommodations, budget stays, and unforgettable travel experiences. Book the best hostel in India for your Meghalaya adventure.">
 </head>
   <body>
-    <!-- Minimal LCP optimization - sync preload -->
-    <script>
-      (function(){var l=new Image();l.src='/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png';l.fetchPriority='high';l.decoding='sync'})();
-    </script>
+    <!-- LCP CRITICAL: Render hero skeleton IMMEDIATELY before React hydrates -->
+    <style id="lcp-critical-css">
+      #lcp-skeleton{position:fixed;inset:0;z-index:9998;background:linear-gradient(135deg,#020617,#0f172a,#020617);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:1;transition:opacity .3s ease-out}
+      #lcp-skeleton.fade-out{opacity:0;pointer-events:none}
+      #lcp-skeleton img{width:96px;height:96px;object-fit:contain;animation:lcp-pulse 1.5s ease-in-out infinite}
+      #lcp-skeleton h1{margin-top:16px;font-size:28px;font-weight:700;background:linear-gradient(90deg,#f97316,#fb923c,#f87171);-webkit-background-clip:text;background-clip:text;color:transparent}
+      #lcp-skeleton p{margin-top:8px;font-size:14px;color:rgba(255,255,255,0.6)}
+      @keyframes lcp-pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.05);opacity:0.9}}
+      @media(min-width:768px){#lcp-skeleton img{width:128px;height:128px}#lcp-skeleton h1{font-size:40px}}
+    </style>
     
+    <!-- LCP Skeleton - renders BEFORE React, shows LCP image immediately -->
+    <div id="lcp-skeleton" aria-hidden="true">
+      <img 
+        src="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png" 
+        alt="XTSY" 
+        width="128" 
+        height="128"
+        fetchpriority="high"
+        decoding="sync"
+      />
+      <h1>Live the XTSY Vibe</h1>
+      <p>Premium Stays in Northeast India</p>
+    </div>
     
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
     
+    <!-- LCP image is already rendered in skeleton above - mark LCP complete -->
+    <script>
+      // Performance marker for LCP
+      if(window.performance&&performance.mark)performance.mark('lcp-skeleton-rendered');
+      
+      // Fade out skeleton after React hydrates
+      window.__hideLCPSkeleton=function(){
+        var s=document.getElementById('lcp-skeleton');
+        if(s){s.classList.add('fade-out');setTimeout(function(){s.remove();var c=document.getElementById('lcp-critical-css');if(c)c.remove()},300)}
+      };
+    </script>
+    
+    <script type="module" src="/src/main.tsx"></script>
     
     <!-- Razorpay - on-demand loading only -->
     <script>

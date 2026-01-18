@@ -65,10 +65,25 @@ export function HotjarTracking() {
       }
     };
 
-    // Load after a short delay to not block initial render
-    const timer = setTimeout(loadHotjar, 2000);
+    // CRITICAL: Load Hotjar after LCP to not block performance
+    // Use requestIdleCallback if available for even better deferral
+    const loadWithDelay = () => {
+      if (typeof requestIdleCallback !== 'undefined') {
+        requestIdleCallback(loadHotjar, { timeout: 5000 });
+      } else {
+        setTimeout(loadHotjar, 3000);
+      }
+    };
     
-    return () => clearTimeout(timer);
+    // Wait for load event + additional delay
+    if (document.readyState === 'complete') {
+      const timer = setTimeout(loadWithDelay, 1000);
+      return () => clearTimeout(timer);
+    } else {
+      const handleLoad = () => setTimeout(loadWithDelay, 1000);
+      window.addEventListener('load', handleLoad, { once: true });
+      return () => window.removeEventListener('load', handleLoad);
+    }
   }, [initialized]);
 
   return null; // This component doesn't render anything

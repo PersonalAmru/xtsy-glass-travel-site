@@ -31,13 +31,25 @@ const ConsentBanner: React.FC<ConsentBannerProps> = ({ onClose }) => {
   });
   
   useEffect(() => {
-    // Initialize consent system
-    consentManager.initialize();
+    // CRITICAL: Initialize consent in idle time to not block LCP
+    const initConsent = () => {
+      consentManager.initialize();
+      
+      // Check if banner should be shown
+      if (shouldShowConsentBanner()) {
+        // Delay showing banner to not interfere with LCP
+        const timer = setTimeout(() => setIsVisible(true), 2000);
+        return () => clearTimeout(timer);
+      }
+    };
     
-    // Check if banner should be shown
-    if (shouldShowConsentBanner()) {
-      // Small delay for better UX
-      const timer = setTimeout(() => setIsVisible(true), 1000);
+    // Use requestIdleCallback to defer consent initialization
+    if (typeof requestIdleCallback !== 'undefined') {
+      const handle = requestIdleCallback(initConsent, { timeout: 3000 });
+      return () => cancelIdleCallback(handle);
+    } else {
+      // Fallback for Safari - use setTimeout with longer delay
+      const timer = setTimeout(initConsent, 1500);
       return () => clearTimeout(timer);
     }
   }, []);
