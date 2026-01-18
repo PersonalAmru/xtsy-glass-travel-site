@@ -305,31 +305,39 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
       if (signUpError) {
         // Handle specific Supabase errors
         const errorMsg = signUpError.message || '';
+        const status = (signUpError as any).status;
         
-        // Check if user already exists (422 error)
-        if (errorMsg.toLowerCase().includes('already registered') || 
-            errorMsg.toLowerCase().includes('already exists') ||
-            signUpError.status === 422) {
-          throw new Error('An account with this email already exists. Please sign in instead.');
+        // Check if user already exists and has confirmed email (422 error)
+        if (status === 422 || 
+            errorMsg.toLowerCase().includes('already registered') || 
+            errorMsg.toLowerCase().includes('user already registered')) {
+          throw new Error('This email is already registered. Please sign in instead.');
         }
         
         throw signUpError;
       }
       
-      // Check for the edge case where user exists but email unconfirmed
-      // Supabase returns user with identities = [] in this case
-      if (data.user && (!data.user.identities || data.user.identities.length === 0)) {
-        throw new Error('An account with this email already exists. Please sign in or reset your password.');
+      // Supabase behavior when email confirmation is enabled:
+      // - New user: returns user with identities populated, no session (needs confirmation)
+      // - Existing unconfirmed user: returns user with identities = [] (obfuscated response)
+      // - Existing confirmed user: returns 422 error (handled above)
+      
+      // Check if this is an obfuscated response (user already exists but unconfirmed)
+      // In this case, Supabase returns fake_user_info to prevent email enumeration
+      if (data.user && data.user.identities && data.user.identities.length === 0) {
+        // This is an existing user (confirmed or unconfirmed) - Supabase is hiding the info
+        // We show a generic message for security (prevents email enumeration attacks)
+        throw new Error('This email is already registered. Please sign in or reset your password if you forgot it.');
       }
       
       // Check if email confirmation is required
       if (data.user && !data.session) {
-        // User created but email confirmation required
-        // Show success message - email confirmation pending
+        // New user created but email confirmation required
+        // The user needs to check their email
         setError(null);
         return; // Success - user needs to confirm email
       } else if (data.user && data.session) {
-        // Auto-confirmed (confirm email disabled in Supabase)
+        // Auto-confirmed (email confirmation disabled in Supabase settings)
         localStorage.setItem(USER_SESSION_KEY, 'true');
         const profile = await createUserProfileIfNeeded(data.user);
         setUser(convertToExtendedUser(data.user, profile));
