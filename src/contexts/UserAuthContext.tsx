@@ -289,7 +289,7 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
       localStorage.removeItem(ADMIN_SESSION_KEY);
       localStorage.removeItem(FRANCHISE_SESSION_KEY);
       
-      const redirectUrl = `${window.location.origin}/`;
+      const redirectUrl = `${window.location.origin}/auth`;
       
       const { data, error: signUpError } = await supabase.auth.signUp({
         email: email.trim(),
@@ -303,15 +303,31 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
       });
       
       if (signUpError) {
+        // Handle specific Supabase errors
+        const errorMsg = signUpError.message || '';
+        
+        // Check if user already exists (422 error)
+        if (errorMsg.toLowerCase().includes('already registered') || 
+            errorMsg.toLowerCase().includes('already exists') ||
+            signUpError.status === 422) {
+          throw new Error('An account with this email already exists. Please sign in instead.');
+        }
+        
         throw signUpError;
+      }
+      
+      // Check for the edge case where user exists but email unconfirmed
+      // Supabase returns user with identities = [] in this case
+      if (data.user && (!data.user.identities || data.user.identities.length === 0)) {
+        throw new Error('An account with this email already exists. Please sign in or reset your password.');
       }
       
       // Check if email confirmation is required
       if (data.user && !data.session) {
         // User created but email confirmation required
+        // Show success message - email confirmation pending
         setError(null);
-        // We'll let the caller know signup was successful
-        // but user needs to confirm email
+        return; // Success - user needs to confirm email
       } else if (data.user && data.session) {
         // Auto-confirmed (confirm email disabled in Supabase)
         localStorage.setItem(USER_SESSION_KEY, 'true');
@@ -544,34 +560,73 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
 }
 
 // Convert error codes to user-friendly messages
-function getErrorMessage(code: string): string {
+function getErrorMessage(errorInput: string | { message?: string; code?: string; status?: number }): string {
+  // Handle object errors from Supabase
+  const code = typeof errorInput === 'string' 
+    ? errorInput 
+    : errorInput.message || errorInput.code || 'unknown';
+  
   const errorMessages: Record<string, string> = {
-    'Invalid login credentials': 'Invalid email or password',
+    // Supabase Auth errors
+    'Invalid login credentials': 'Invalid email or password. Please check and try again.',
     'Email not confirmed': 'Please verify your email address first. Check your inbox for the confirmation link.',
-    'User already registered': 'An account with this email already exists. Try signing in instead.',
-    'Password should be at least 6 characters': 'Password must be at least 6 characters',
-    'Invalid email': 'Please enter a valid email address',
+    'User already registered': 'An account with this email already exists. Please sign in instead.',
+    'user_already_exists': 'An account with this email already exists. Please sign in instead.',
+    'Password should be at least 6 characters': 'Password must be at least 6 characters.',
+    'Invalid email': 'Please enter a valid email address.',
     'Rate limit exceeded': 'Too many attempts. Please try again in a few minutes.',
     'Token has expired or is invalid': 'The verification code has expired. Please request a new one.',
-    'Signup requires a valid password': 'Please enter a valid password',
-    'auth/invalid-email': 'Please enter a valid email address',
-    'auth/user-disabled': 'This account has been disabled',
-    'auth/user-not-found': 'No account found with this email',
-    'auth/wrong-password': 'Incorrect password',
-    'auth/email-already-in-use': 'An account with this email already exists',
-    'auth/weak-password': 'Password must be at least 6 characters',
-    'auth/too-many-requests': 'Too many attempts. Please try again later',
-    'auth/network-request-failed': 'Network error. Please check your connection',
-    'auth/popup-closed-by-user': 'Sign-in was cancelled',
-    'auth/operation-not-allowed': 'This sign-in method is not enabled',
+    'Signup requires a valid password': 'Please enter a valid password.',
+    'Email rate limit exceeded': 'Too many email requests. Please wait a few minutes before trying again.',
+    'For security purposes': 'For security purposes, please wait a moment before trying again.',
+    'new password should be different': 'Your new password must be different from your current password.',
+    'Unable to validate email address': 'Please enter a valid email address.',
+    'Signups not allowed for this instance': 'Signups are currently disabled. Please contact support.',
+    
+    // Firebase-style errors (for backwards compat)
+    'auth/invalid-email': 'Please enter a valid email address.',
+    'auth/user-disabled': 'This account has been disabled.',
+    'auth/user-not-found': 'No account found with this email.',
+    'auth/wrong-password': 'Incorrect password.',
+    'auth/email-already-in-use': 'An account with this email already exists.',
+    'auth/weak-password': 'Password must be at least 6 characters.',
+    'auth/too-many-requests': 'Too many attempts. Please try again later.',
+    'auth/network-request-failed': 'Network error. Please check your connection.',
+    'auth/popup-closed-by-user': 'Sign-in was cancelled.',
+    'auth/operation-not-allowed': 'This sign-in method is not enabled.',
   };
   
-  // Check for partial matches
+  // Check for exact matches first
+  if (errorMessages[code]) {
+    return errorMessages[code];
+  }
+  
+  // Check for partial matches (case-insensitive)
+  const lowerCode = code.toLowerCase();
   for (const [key, message] of Object.entries(errorMessages)) {
-    if (code.toLowerCase().includes(key.toLowerCase())) {
+    if (lowerCode.includes(key.toLowerCase())) {
       return message;
     }
   }
   
-  return errorMessages[code] || 'Something went wrong. Please try again.';
+  // Handle specific HTTP status patterns
+  if (lowerCode.includes('422') || lowerCode.includes('already registered') || lowerCode.includes('already exists')) {
+    return 'An account with this email already exists. Please sign in instead.';
+  }
+  
+  if (lowerCode.includes('401') || lowerCode.includes('unauthorized')) {
+    return 'Invalid credentials. Please check your email and password.';
+  }
+  
+  if (lowerCode.includes('429') || lowerCode.includes('rate limit')) {
+    return 'Too many attempts. Please wait a few minutes and try again.';
+  }
+  
+  if (lowerCode.includes('network') || lowerCode.includes('fetch') || lowerCode.includes('connection')) {
+    return 'Network error. Please check your internet connection.';
+  }
+  
+  // Default message with the original error for debugging
+  console.error('[Auth Error]', code);
+  return 'Something went wrong. Please try again.';
 }

@@ -32,7 +32,7 @@ import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import xtsyFavicon from '@/assets/xtsy-favicon.png';
 
-type AuthView = 'signin' | 'signup' | 'forgot' | 'otp-verify' | 'new-password' | 'reset-success' | 'success';
+type AuthView = 'signin' | 'signup' | 'signup-success' | 'forgot' | 'otp-verify' | 'new-password' | 'reset-success' | 'success';
 
 export default function UserAuth() {
   const navigate = useNavigate();
@@ -141,8 +141,13 @@ export default function UserAuth() {
     
     try {
       await signUpEmail(email, password);
+      // If we get here without throwing, check if user was created but needs email confirmation
+      // The context will set user if auto-confirmed, otherwise show signup success
+      if (!user) {
+        setView('signup-success');
+      }
     } catch {
-      // Error handled by context
+      // Error handled by context - error will be displayed
     }
   };
 
@@ -264,6 +269,8 @@ export default function UserAuth() {
   const handleBack = () => {
     if (view === 'forgot' || view === 'signup') {
       setView('signin');
+    } else if (view === 'signup-success') {
+      setView('signin');
     } else if (view === 'otp-verify' || view === 'new-password') {
       setView('forgot');
       setOtp('');
@@ -367,6 +374,12 @@ export default function UserAuth() {
                 isLoading={otpLoading}
                 error={displayError}
                 onBack={() => setView('signin')}
+              />
+            ) : view === 'signup-success' ? (
+              <SignUpSuccessView 
+                key="signup-success" 
+                email={email}
+                onContinue={() => setView('signin')} 
               />
             ) : view === 'signup' ? (
               <SignUpView
@@ -475,6 +488,43 @@ function ResetSuccessView({ onContinue }: { onContinue: () => void }) {
       </p>
       <Button onClick={onContinue} className="gap-2">
         Sign In Now
+        <ArrowRight className="w-4 h-4" />
+      </Button>
+    </motion.div>
+  );
+}
+
+// Sign Up Success View (Email Confirmation Pending)
+function SignUpSuccessView({ email, onContinue }: { email: string; onContinue: () => void }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      className="text-center py-12"
+    >
+      <motion.div 
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ type: 'spring', stiffness: 200, damping: 15, delay: 0.1 }}
+        className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6"
+      >
+        <Mail className="w-10 h-10 text-primary" />
+      </motion.div>
+      <h2 className="text-2xl font-semibold text-foreground mb-2">
+        Check Your Email
+      </h2>
+      <p className="text-muted-foreground mb-2">
+        We've sent a confirmation link to:
+      </p>
+      <p className="text-foreground font-medium mb-6">
+        {email}
+      </p>
+      <p className="text-sm text-muted-foreground mb-8">
+        Click the link in the email to activate your account, then come back here to sign in.
+      </p>
+      <Button onClick={onContinue} className="gap-2">
+        Back to Sign In
         <ArrowRight className="w-4 h-4" />
       </Button>
     </motion.div>
