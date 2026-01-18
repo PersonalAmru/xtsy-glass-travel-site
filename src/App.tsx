@@ -80,6 +80,14 @@ const LiveTrafficCommandCenter = createLazyComponent(() => import("./pages/admin
 const FranchiseLogin = createLazyComponent(() => import("./pages/franchise/FranchiseLogin"));
 const FranchiseDashboard = createLazyComponent(() => import("./pages/franchise/FranchiseDashboard"));
 
+// PWA Install pages
+const UserInstall = createLazyComponent(() => import("./pages/install/UserInstall"));
+const AdminInstall = createLazyComponent(() => import("./pages/install/AdminInstall"));
+const FranchiseInstall = createLazyComponent(() => import("./pages/install/FranchiseInstall"));
+
+// Admin Franchise Permissions
+const AdminFranchisePermissions = createLazyComponent(() => import("./pages/admin/AdminFranchisePermissions"));
+
 // Fast route wrapper with minimal loading state
 const LazyRoute = memo(({ children }: { children: ReactNode }) => (
   <ErrorBoundary>
