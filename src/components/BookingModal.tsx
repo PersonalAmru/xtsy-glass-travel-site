@@ -178,7 +178,7 @@ function PremiumRoomCard({
 }) {
   const isDorm = room.type === 'dorm';
   const unitLabel = isDorm ? 'bed' : 'room';
-  const priceLabel = isDorm ? '/bed' : '/room';
+  const priceLabel = isDorm ? 'per bed' : 'per room';
   const isSelected = quantity > 0;
 
   return (
