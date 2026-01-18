@@ -1,6 +1,7 @@
 /**
  * Unified Admin Layout - Apple-grade Admin Control Panel
  * Hamburger menu navigation with premium glassmorphic design
+ * SECURITY: Includes real-time security alert notifications
  */
 
 import { ReactNode, useState, useEffect } from 'react';
@@ -9,6 +10,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { AdminNotificationBell } from '@/components/admin/AdminNotificationBell';
+import { SecurityAlertNotification } from '@/components/admin/SecurityAlertNotification';
 import { BookingChat } from '@/components/chat/BookingChat';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
@@ -314,6 +316,9 @@ export function UnifiedAdminLayout({ children }: UnifiedAdminLayoutProps) {
           </motion.div>
         </AnimatePresence>
       </main>
+
+      {/* Security Alert Notifications - Real-time intrusion alerts */}
+      <SecurityAlertNotification />
 
       {/* Chat Modal */}
       {chatBookingId && (
