@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { X, ChevronLeft, ChevronRight, Users, Calendar, Plus, Minus, Check, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -11,14 +11,17 @@ import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
 import { createEnquiry } from '@/services/enquiryService';
 import { useUserAuth } from '@/contexts/UserAuthContext';
+import { getBookableRoomTypes, RoomTypeConfig } from '@/config/roomTypes';
 
-const ROOMS = [
-  { id: 'dorm-4-mixed', name: '4-Bed Mixed Dormitory', type: 'dorm', price: 599, capacity: 4, image: '/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png' },
-  { id: 'dorm-6-mixed', name: '6-Bed Mixed Dormitory', type: 'dorm', price: 499, capacity: 6, image: '/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png' },
-  { id: 'dorm-4-female', name: '4-Bed Female Dormitory', type: 'dorm', price: 649, capacity: 4, image: '/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png' },
-  { id: 'private-king', name: 'King Double Room', type: 'private', price: 1899, capacity: 2, image: '/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png' },
-  { id: 'private-twin', name: 'Twin Private Room', type: 'private', price: 1699, capacity: 2, image: '/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png' },
-];
+// Transform RoomTypeConfig to booking modal format
+interface BookingRoom {
+  id: string;
+  name: string;
+  type: 'dorm' | 'private';
+  price: number;
+  capacity: number;
+  image: string;
+}
 
 const ADD_ONS = [
   { id: 'breakfast', name: 'Breakfast', price: 199, unit: 'per person/day' },
@@ -37,9 +40,22 @@ interface BookingModalProps {
 
 export default function BookingModal({ isOpen, onClose, initialCheckIn, initialCheckOut, initialGuests = 1 }: BookingModalProps) {
   const { user } = useUserAuth();
+  
+  // Get rooms from centralized config (source of truth)
+  const ROOMS: BookingRoom[] = useMemo(() => {
+    return getBookableRoomTypes().map((room: RoomTypeConfig) => ({
+      id: room.id,
+      name: room.name,
+      type: room.unitType === 'bed' ? 'dorm' : 'private',
+      price: room.basePrice,
+      capacity: room.capacity,
+      image: room.image || '/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png',
+    }));
+  }, []);
+  
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [selectedRoom, setSelectedRoom] = useState<typeof ROOMS[0] | null>(null);
+  const [selectedRoom, setSelectedRoom] = useState<BookingRoom | null>(null);
   const [checkIn, setCheckIn] = useState<Date | undefined>(initialCheckIn);
   const [checkOut, setCheckOut] = useState<Date | undefined>(initialCheckOut);
   const [guests, setGuests] = useState(initialGuests);
