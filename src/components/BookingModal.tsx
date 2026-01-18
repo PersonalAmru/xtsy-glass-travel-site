@@ -40,7 +40,8 @@ interface RoomSelection {
 
 const ADD_ONS = [
   { id: 'food_menu', name: 'Request Breakfast & Dinner Menu', price: 0, unit: 'free', icon: '🍽️', tag: 'TAB Bistro by XTSY', description: 'We\'ll share our menu options with you' },
-  { id: 'transport', name: 'Airport Pickup/Drop Service', price: 0, unit: '₹2,800-3,200', icon: '🚗', description: 'Private car with driver • Price varies by availability & demand' },
+  { id: 'transport', name: 'Airport Pickup/Drop Service', price: 0, unit: 'enquiry', icon: '🚗', tag: 'Check Availability', description: 'Private car with driver (not shared transport)' },
+  { id: 'self_drive', name: 'Self Drive Cars & Bikes', price: 0, unit: 'enquiry', icon: '🏍️', tag: 'Check Availability', description: 'Explore at your own pace with our rental options' },
   { id: 'itinerary', name: 'Curated Itinerary + 24/7 Support', price: 99, unit: 'one-time', icon: '🗺️', description: 'Full-fledged travel support throughout your trip' },
 ];
 
@@ -352,7 +353,13 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
   const [guestName, setGuestName] = useState('');
   const [guestEmail, setGuestEmail] = useState('');
   const [guestPhone, setGuestPhone] = useState('');
+  const [guestWhatsApp, setGuestWhatsApp] = useState('');
+  const [guestDOB, setGuestDOB] = useState('');
+  const [guestCity, setGuestCity] = useState('');
+  const [guestPincode, setGuestPincode] = useState('');
   const [specialRequests, setSpecialRequests] = useState('');
+  const [policyAccepted, setPolicyAccepted] = useState(false);
+  const [promotionalConsent, setPromotionalConsent] = useState(false);
   const [lightboxRoom, setLightboxRoom] = useState<BookingRoom | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
@@ -373,6 +380,12 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
       setGuests(initialGuests);
       setSelectedAddOns({});
       setSpecialRequests('');
+      setGuestWhatsApp('');
+      setGuestDOB('');
+      setGuestCity('');
+      setGuestPincode('');
+      setPolicyAccepted(false);
+      setPromotionalConsent(false);
       setLightboxRoom(null);
     }
   }, [isOpen, initialCheckIn, initialCheckOut, initialGuests]);
@@ -449,7 +462,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
       case 1: return roomSelections.length > 0;
       case 2: return !!checkIn && !!checkOut && nights > 0 && guests === totalBedsSelected;
       case 3: return true;
-      case 4: return guestName.trim() && guestEmail.trim() && guestPhone.trim();
+      case 4: return guestName.trim() && guestEmail.trim() && guestWhatsApp.trim() && guestCity.trim() && guestPincode.trim() && policyAccepted;
       default: return false;
     }
   };
@@ -895,7 +908,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                           <p className="text-xs text-muted-foreground mt-0.5">{addOn.description}</p>
                         )}
                         <p className="text-sm text-muted-foreground mt-1">
-                          {addOn.price > 0 ? `₹${addOn.price} ${addOn.unit}` : addOn.unit === 'free' ? 'Free' : addOn.unit}
+                          {addOn.price > 0 ? `₹${addOn.price} ${addOn.unit}` : addOn.unit === 'free' ? 'Free' : addOn.unit === 'enquiry' ? 'On request' : addOn.unit}
                         </p>
                       </div>
                       <div className={cn(
@@ -926,26 +939,54 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                   <p className="text-sm text-muted-foreground">Almost done! Enter your info</p>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-3">
                   <Input 
                     value={guestName} 
                     onChange={(e) => setGuestName(e.target.value)} 
-                    placeholder="Full Name" 
-                    className="h-14 rounded-2xl text-base" 
+                    placeholder="Full Name *" 
+                    className="h-12 rounded-2xl text-base" 
                   />
                   <Input 
                     type="email" 
                     value={guestEmail} 
                     onChange={(e) => setGuestEmail(e.target.value)} 
-                    placeholder="Email" 
-                    className="h-14 rounded-2xl text-base" 
+                    placeholder="Email *" 
+                    className="h-12 rounded-2xl text-base" 
                   />
+                  <Input 
+                    type="date"
+                    value={guestDOB} 
+                    onChange={(e) => setGuestDOB(e.target.value)} 
+                    placeholder="Date of Birth"
+                    className="h-12 rounded-2xl text-base" 
+                  />
+                  <Input 
+                    type="tel" 
+                    value={guestWhatsApp} 
+                    onChange={(e) => setGuestWhatsApp(e.target.value)} 
+                    placeholder="WhatsApp Number *" 
+                    className="h-12 rounded-2xl text-base" 
+                  />
+                  <div className="grid grid-cols-2 gap-3">
+                    <Input 
+                      value={guestCity} 
+                      onChange={(e) => setGuestCity(e.target.value)} 
+                      placeholder="Current City *" 
+                      className="h-12 rounded-2xl text-base" 
+                    />
+                    <Input 
+                      value={guestPincode} 
+                      onChange={(e) => setGuestPincode(e.target.value)} 
+                      placeholder="Pincode *" 
+                      className="h-12 rounded-2xl text-base" 
+                    />
+                  </div>
                   <Input 
                     type="tel" 
                     value={guestPhone} 
                     onChange={(e) => setGuestPhone(e.target.value)} 
-                    placeholder="Phone Number" 
-                    className="h-14 rounded-2xl text-base" 
+                    placeholder="Alternate Phone (optional)" 
+                    className="h-12 rounded-2xl text-base" 
                   />
                   <Textarea 
                     value={specialRequests} 
@@ -954,6 +995,51 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                     rows={2}
                     className="rounded-2xl text-base resize-none"
                   />
+                </div>
+
+                {/* Consent Section */}
+                <div className="space-y-3 p-4 rounded-2xl bg-muted/30 border border-border">
+                  <h4 className="text-sm font-semibold text-foreground flex items-center gap-2">
+                    <Shield className="w-4 h-4 text-primary" />
+                    Data & Privacy Consent
+                  </h4>
+                  
+                  {/* Mandatory cookies notice */}
+                  <p className="text-xs text-muted-foreground">
+                    Essential cookies are enabled by default for security and functionality.
+                  </p>
+                  
+                  {/* Policy acceptance - mandatory */}
+                  <label className="flex items-start gap-3 cursor-pointer group">
+                    <div 
+                      onClick={() => setPolicyAccepted(!policyAccepted)}
+                      className={cn(
+                        'w-5 h-5 mt-0.5 rounded border-2 flex items-center justify-center transition-all flex-shrink-0',
+                        policyAccepted ? 'bg-primary border-primary' : 'border-muted-foreground/40 group-hover:border-primary/60'
+                      )}
+                    >
+                      {policyAccepted && <Check className="w-3 h-3 text-primary-foreground" />}
+                    </div>
+                    <span className="text-sm text-foreground">
+                      I accept the <a href="/terms" target="_blank" className="text-primary underline">Terms & Conditions</a> and <a href="/privacy" target="_blank" className="text-primary underline">Privacy Policy</a>. I consent to data collection for improving personalized experiences as per applicable laws. <span className="text-destructive">*</span>
+                    </span>
+                  </label>
+                  
+                  {/* Promotional consent - optional */}
+                  <label className="flex items-start gap-3 cursor-pointer group">
+                    <div 
+                      onClick={() => setPromotionalConsent(!promotionalConsent)}
+                      className={cn(
+                        'w-5 h-5 mt-0.5 rounded border-2 flex items-center justify-center transition-all flex-shrink-0',
+                        promotionalConsent ? 'bg-primary border-primary' : 'border-muted-foreground/40 group-hover:border-primary/60'
+                      )}
+                    >
+                      {promotionalConsent && <Check className="w-3 h-3 text-primary-foreground" />}
+                    </div>
+                    <span className="text-sm text-muted-foreground">
+                      I'd like to receive promotional updates, offers, and travel tips (optional, can skip)
+                    </span>
+                  </label>
                 </div>
 
                 {/* Summary */}
