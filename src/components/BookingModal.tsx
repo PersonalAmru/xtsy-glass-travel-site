@@ -532,7 +532,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 100, scale: 0.95 }}
         transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-        className="relative w-full max-w-lg max-h-[95vh] sm:max-h-[90vh] overflow-hidden rounded-t-3xl sm:rounded-3xl bg-background shadow-2xl"
+        className="relative w-full max-w-lg max-h-[95vh] sm:max-h-[85vh] flex flex-col rounded-t-3xl sm:rounded-3xl bg-background shadow-2xl"
         style={{ zIndex: 2 }}
       >
         {/* Header with step indicator */}
@@ -604,7 +604,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
         </div>
         
         {/* Content */}
-        <div className="px-6 pb-4 overflow-y-auto" style={{ maxHeight: 'calc(95vh - 220px)' }}>
+        <div className="flex-1 px-6 pb-4 overflow-y-auto min-h-0">
           <AnimatePresence mode="wait">
             {/* Step 1: Room Selection */}
             {step === 1 && (
@@ -985,7 +985,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
         </div>
         
         {/* Footer */}
-        <div className="px-6 py-4 border-t border-border bg-background/80 backdrop-blur-sm">
+        <div className="flex-shrink-0 px-6 py-4 border-t border-border bg-background/80 backdrop-blur-sm">
           <div className="flex items-center gap-3">
             <Button 
               variant="ghost" 
