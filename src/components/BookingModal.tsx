@@ -36,7 +36,7 @@ interface BookingModalProps {
 }
 
 export default function BookingModal({ isOpen, onClose, initialCheckIn, initialCheckOut, initialGuests = 1 }: BookingModalProps) {
-  const { user, userProfile } = useUserAuth();
+  const { user } = useUserAuth();
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState<typeof ROOMS[0] | null>(null);
@@ -51,12 +51,12 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
   const [specialRequests, setSpecialRequests] = useState('');
 
   useEffect(() => {
-    if (userProfile) {
-      setGuestName(userProfile.full_name || '');
-      setGuestEmail(userProfile.email || '');
-      setGuestPhone(userProfile.phone || '');
+    if (user?.profile) {
+      setGuestName(user.profile.full_name || '');
+      setGuestEmail(user.profile.email || '');
+      setGuestPhone(user.profile.phone || '');
     }
-  }, [userProfile]);
+  }, [user?.profile]);
 
   useEffect(() => {
     if (!isOpen) {
