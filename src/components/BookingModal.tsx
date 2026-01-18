@@ -39,10 +39,9 @@ interface RoomSelection {
 }
 
 const ADD_ONS = [
-  { id: 'breakfast', name: 'Breakfast', price: 199, unit: 'per person/day', icon: '🍳' },
-  { id: 'dinner', name: 'Dinner', price: 299, unit: 'per person/day', icon: '🍽️' },
-  { id: 'transport', name: 'Airport Pickup', price: 799, unit: 'one-time', icon: '🚗' },
-  { id: 'itinerary', name: 'Curated Itinerary', price: 499, unit: 'one-time', icon: '🗺️' },
+  { id: 'food_menu', name: 'Request Breakfast & Dinner Menu', price: 0, unit: 'free', icon: '🍽️', tag: 'TAB Bistro by XTSY', description: 'We\'ll share our menu options with you' },
+  { id: 'transport', name: 'Airport Pickup/Drop Service', price: 799, unit: 'one-way', icon: '🚗', description: 'Private car with driver (not shared transport)' },
+  { id: 'itinerary', name: 'Curated Itinerary + 24/7 Support', price: 99, unit: 'one-time', icon: '🗺️', description: 'Full-fledged travel support throughout your trip' },
 ];
 
 interface BookingModalProps {
@@ -884,11 +883,23 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                     >
                       <span className="text-2xl">{addOn.icon}</span>
                       <div className="flex-1">
-                        <h4 className="font-medium text-foreground">{addOn.name}</h4>
-                        <p className="text-sm text-muted-foreground">₹{addOn.price} {addOn.unit}</p>
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <h4 className="font-medium text-foreground">{addOn.name}</h4>
+                          {addOn.tag && (
+                            <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-primary/10 text-primary">
+                              {addOn.tag}
+                            </span>
+                          )}
+                        </div>
+                        {addOn.description && (
+                          <p className="text-xs text-muted-foreground mt-0.5">{addOn.description}</p>
+                        )}
+                        <p className="text-sm text-muted-foreground mt-1">
+                          {addOn.price > 0 ? `₹${addOn.price} ${addOn.unit}` : 'Free'}
+                        </p>
                       </div>
                       <div className={cn(
-                        'w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all',
+                        'w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all flex-shrink-0',
                         selectedAddOns[addOn.id] ? 'bg-primary border-primary' : 'border-muted-foreground/40'
                       )}>
                         {selectedAddOns[addOn.id] && <Check className="w-4 h-4 text-primary-foreground" />}
