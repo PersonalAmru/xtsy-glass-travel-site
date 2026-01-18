@@ -34,6 +34,7 @@ import {
   MessageSquare,
   Sparkles,
   MessageCircle,
+  Activity,
 } from 'lucide-react';
 
 interface UnifiedAdminLayoutProps {
@@ -42,6 +43,7 @@ interface UnifiedAdminLayoutProps {
 
 const menuItems = [
   { id: 'overview', label: 'Overview', icon: Home, path: '/admin' },
+  { id: 'traffic', label: 'Live Traffic', icon: Activity, path: '/admin/traffic' },
   { id: 'analytics', label: 'Analytics', icon: BarChart3, path: '/admin/analytics' },
   { id: 'bookings', label: 'Bookings Calendar', icon: Calendar, path: '/admin/bookings' },
   { id: 'chats', label: 'Guest Chats', icon: MessageSquare, path: '/admin/chats' },
