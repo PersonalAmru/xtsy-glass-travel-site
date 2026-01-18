@@ -95,7 +95,8 @@ const XTSYRouteLoader = memo(() => (
   <div style={{
     position: 'fixed',
     inset: 0,
-    background: '#111827',
+    // Match hero gradient background for seamless transition
+    background: 'linear-gradient(135deg, #020617 0%, #0f172a 50%, #020617 100%)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -161,6 +162,10 @@ function App() {
       // Remove initial-load class after first paint
       requestAnimationFrame(() => {
         document.body.classList.remove('initial-load');
+        // Hide LCP skeleton after React has hydrated
+        if (typeof (window as any).__hideLCPSkeleton === 'function') {
+          (window as any).__hideLCPSkeleton();
+        }
       });
     }, loadTime);
 
