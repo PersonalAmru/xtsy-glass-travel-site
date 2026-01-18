@@ -738,7 +738,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                   <div className="flex items-center justify-between">
                     <div>
                       <h4 className="font-medium text-foreground">Total Guests</h4>
-                      <p className="text-sm text-muted-foreground">Capacity: {totalBedsSelected}</p>
+                      <p className="text-sm text-muted-foreground">How many people are staying?</p>
                     </div>
                     <div className="flex items-center gap-3">
                       <button 
@@ -756,6 +756,80 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                       </button>
                     </div>
                   </div>
+                </div>
+
+                {/* Selected Rooms Summary */}
+                <div className="p-4 rounded-2xl bg-muted/30 border border-border space-y-3">
+                  <div className="flex items-center justify-between">
+                    <h4 className="font-medium text-foreground flex items-center gap-2">
+                      <Bed className="w-4 h-4 text-primary" />
+                      Your Selection
+                    </h4>
+                    <span className={cn(
+                      'text-xs font-medium px-2 py-1 rounded-full',
+                      guests <= totalBedsSelected 
+                        ? 'bg-green-500/10 text-green-600' 
+                        : 'bg-amber-500/10 text-amber-600'
+                    )}>
+                      {totalBedsSelected} bed{totalBedsSelected !== 1 ? 's' : ''} / {guests} guest{guests !== 1 ? 's' : ''}
+                    </span>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    {roomSelections.map(sel => {
+                      const room = ROOMS.find(r => r.id === sel.roomId);
+                      if (!room) return null;
+                      const isDorm = room.type === 'dorm';
+                      const unitLabel = isDorm ? 'bed' : 'room';
+                      const lineTotal = room.price * sel.quantity * nights;
+                      
+                      return (
+                        <div key={sel.roomId} className="flex items-center justify-between text-sm">
+                          <div className="flex items-center gap-2">
+                            {isDorm ? (
+                              <Bed className="w-3.5 h-3.5 text-muted-foreground" />
+                            ) : (
+                              <Home className="w-3.5 h-3.5 text-muted-foreground" />
+                            )}
+                            <span className="text-foreground">
+                              {sel.quantity} × {room.name.replace('Bed in ', '').replace(' Dormitory', '')}
+                            </span>
+                          </div>
+                          <span className="text-muted-foreground">
+                            {nights > 0 ? `₹${lineTotal.toLocaleString()}` : `₹${room.price}/night`}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Validation message */}
+                  {guests > totalBedsSelected && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="flex items-start gap-2 p-3 rounded-xl bg-amber-500/10 border border-amber-500/20"
+                    >
+                      <span className="text-amber-500 text-sm">⚠️</span>
+                      <p className="text-xs text-amber-600">
+                        You have {guests} guest{guests !== 1 ? 's' : ''} but only {totalBedsSelected} bed{totalBedsSelected !== 1 ? 's' : ''} selected. 
+                        Please add {guests - totalBedsSelected} more bed{guests - totalBedsSelected !== 1 ? 's' : ''} or reduce guests.
+                      </p>
+                    </motion.div>
+                  )}
+                  
+                  {guests <= totalBedsSelected && totalBedsSelected > 0 && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="flex items-center gap-2 p-3 rounded-xl bg-green-500/10 border border-green-500/20"
+                    >
+                      <Check className="w-4 h-4 text-green-500" />
+                      <p className="text-xs text-green-600">
+                        Perfect! {totalBedsSelected} bed{totalBedsSelected !== 1 ? 's' : ''} for {guests} guest{guests !== 1 ? 's' : ''}.
+                      </p>
+                    </motion.div>
+                  )}
                 </div>
               </motion.div>
             )}
