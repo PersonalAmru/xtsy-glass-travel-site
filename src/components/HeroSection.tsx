@@ -137,9 +137,9 @@ const HeroSection = () => {
         </div>
 
         {/* Main Content - no transforms */}
-        <div className="relative z-10 text-center text-white w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 pt-20 md:pt-0">
+        <div className="relative z-10 text-center text-white w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 pt-4 md:pt-0">
           {/* Language Greeting & Symbol */}
-          <div className="mb-8 sm:mb-12 animate-fade-in">
+          <div className="mb-6 sm:mb-10 animate-fade-in">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-md border border-white/10 mb-6">
               <Sparkles className="w-4 h-4 text-primary" />
               <span className="text-sm text-white/70">Premium Stays in Northeast India</span>
