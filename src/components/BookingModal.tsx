@@ -86,67 +86,70 @@ function PremiumLightbox({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 flex items-center justify-center bg-black/95 backdrop-blur-xl"
+      className="fixed inset-0 flex items-center justify-center bg-black backdrop-blur-xl"
       style={{ zIndex: 999999 }}
       onClick={onClose}
     >
       {/* Header */}
-      <div className="absolute top-0 left-0 right-0 flex items-center justify-between p-4 sm:p-6 z-10">
+      <div className="absolute top-0 left-0 right-0 flex items-center justify-between p-4 sm:p-6 z-10 bg-gradient-to-b from-black/80 to-transparent">
         <div className="text-white">
           <h3 className="text-base sm:text-lg font-semibold">{roomName}</h3>
           <p className="text-sm text-white/60">{currentIndex + 1} of {images.length}</p>
         </div>
         <button 
           onClick={onClose}
-          className="p-3 rounded-2xl bg-white/10 hover:bg-white/20 backdrop-blur-md transition-all"
+          className="p-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md transition-all"
         >
-          <X className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+          <X className="w-5 h-5 text-white" />
         </button>
       </div>
 
-      {/* Main image container - proper aspect ratio */}
+      {/* Instagram-style 4:5 portrait image container */}
       <div 
-        className="relative w-full h-full flex items-center justify-center px-4 sm:px-16 py-20 sm:py-24"
+        className="relative w-full h-full flex items-center justify-center"
         onClick={(e) => e.stopPropagation()}
       >
-        <motion.img 
-          key={currentIndex}
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          src={images[currentIndex]} 
-          alt={`${roomName} - Image ${currentIndex + 1}`}
-          className="max-w-full max-h-full w-auto h-auto object-contain rounded-xl sm:rounded-2xl shadow-2xl"
-          style={{ maxHeight: 'calc(100vh - 160px)' }}
-        />
+        {/* Fixed 4:5 aspect ratio container */}
+        <div className="relative w-full max-w-[min(85vw,400px)] aspect-[4/5] mx-auto">
+          <motion.img 
+            key={currentIndex}
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.2 }}
+            src={images[currentIndex]} 
+            alt={`${roomName} - Image ${currentIndex + 1}`}
+            className="absolute inset-0 w-full h-full object-cover rounded-lg"
+          />
+        </div>
 
-        {/* Navigation arrows - positioned outside image */}
+        {/* Navigation arrows */}
         {currentIndex > 0 && (
           <button 
             onClick={(e) => { e.stopPropagation(); setCurrentIndex(prev => prev - 1); }}
-            className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-3 sm:p-4 rounded-2xl bg-black/40 hover:bg-black/60 backdrop-blur-md transition-all"
+            className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md transition-all"
           >
-            <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+            <ChevronLeft className="w-6 h-6 text-white" />
           </button>
         )}
         {currentIndex < images.length - 1 && (
           <button 
             onClick={(e) => { e.stopPropagation(); setCurrentIndex(prev => prev + 1); }}
-            className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-3 sm:p-4 rounded-2xl bg-black/40 hover:bg-black/60 backdrop-blur-md transition-all"
+            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md transition-all"
           >
-            <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+            <ChevronRight className="w-6 h-6 text-white" />
           </button>
         )}
       </div>
 
       {/* Dot indicators */}
-      <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex gap-2 px-4">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
         {images.map((_, idx) => (
           <button
             key={idx}
             onClick={(e) => { e.stopPropagation(); setCurrentIndex(idx); }}
             className={cn(
-              'h-2 rounded-full transition-all',
-              currentIndex === idx ? 'w-6 bg-white' : 'w-2 bg-white/40 hover:bg-white/60'
+              'h-1.5 rounded-full transition-all',
+              currentIndex === idx ? 'w-5 bg-white' : 'w-1.5 bg-white/40 hover:bg-white/60'
             )}
           />
         ))}
