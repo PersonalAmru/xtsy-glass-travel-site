@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, Users, Calendar, Plus, Minus, Check, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -122,221 +121,218 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-      {/* Backdrop */}
+      {/* Glassmorphism Backdrop */}
       <div 
-        className="absolute inset-0 bg-black/70 backdrop-blur-md" 
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm" 
         onClick={onClose} 
       />
       
-      {/* Modal Content */}
-      <div className="relative z-10 w-full max-w-2xl max-h-[90vh] overflow-hidden rounded-3xl bg-card border border-border shadow-2xl">
+      {/* Modal Content - Simple solid background */}
+      <div className="relative z-10 w-full max-w-2xl max-h-[90vh] overflow-hidden rounded-2xl bg-background border border-border shadow-2xl">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-border">
+        <div className="flex items-center justify-between p-5 border-b border-border bg-muted/50">
           <div>
             <h2 className="text-xl font-semibold text-foreground">Book Your Stay</h2>
             <p className="text-sm text-muted-foreground">Step {step} of 4</p>
           </div>
-          <button onClick={onClose} className="p-2 rounded-full bg-muted hover:bg-muted/80 transition-colors">
-            <X className="w-5 h-5 text-foreground" />
+          <button onClick={onClose} className="p-2 rounded-full hover:bg-muted transition-colors">
+            <X className="w-5 h-5 text-muted-foreground" />
           </button>
         </div>
         
         {/* Progress Bar */}
         <div className="h-1 bg-muted">
-          <motion.div 
-            className="h-full bg-primary" 
-            animate={{ width: `${(step / 4) * 100}%` }} 
-            transition={{ duration: 0.3 }}
+          <div 
+            className="h-full bg-primary transition-all duration-300" 
+            style={{ width: `${(step / 4) * 100}%` }}
           />
         </div>
         
         {/* Content */}
-        <div className="p-6 overflow-y-auto max-h-[60vh]">
-          <AnimatePresence mode="wait">
-            {step === 1 && (
-              <motion.div key="step1" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-4">
-                <h3 className="text-lg font-medium text-foreground mb-4">Select Your Room</h3>
-                <div className="grid gap-3">
-                  {ROOMS.map((room) => (
-                    <button 
-                      key={room.id} 
-                      onClick={() => setSelectedRoom(room)} 
-                      className={cn(
-                        'flex items-center gap-4 p-4 rounded-2xl border transition-all text-left',
-                        selectedRoom?.id === room.id 
-                          ? 'bg-primary/10 border-primary' 
-                          : 'bg-muted/50 border-border hover:bg-muted'
-                      )}
-                    >
-                      <div className="w-16 h-16 rounded-xl bg-muted overflow-hidden flex-shrink-0">
-                        <img src={room.image} alt={room.name} className="w-full h-full object-cover" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between">
-                          <h4 className="font-medium text-foreground truncate">{room.name}</h4>
-                          {selectedRoom?.id === room.id && <Check className="w-5 h-5 text-primary" />}
-                        </div>
-                        <div className="flex items-center gap-2 mt-1 text-sm text-muted-foreground">
-                          <Users className="w-4 h-4" />
-                          <span>{room.capacity} guests</span>
-                          <span>•</span>
-                          <span className="text-primary font-medium">₹{room.price}/night</span>
-                        </div>
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-            
-            {step === 2 && (
-              <motion.div key="step2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-6">
-                <h3 className="text-lg font-medium text-foreground mb-4">Choose Dates & Guests</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-sm text-muted-foreground mb-2 block">Check-in</label>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <Button variant="outline" className="w-full justify-start">
-                          <Calendar className="w-4 h-4 mr-2" />
-                          {checkIn ? format(checkIn, 'MMM d, yyyy') : 'Select date'}
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0" align="start">
-                        <CalendarComponent mode="single" selected={checkIn} onSelect={setCheckIn} disabled={(date) => date < new Date()} />
-                      </PopoverContent>
-                    </Popover>
-                  </div>
-                  <div>
-                    <label className="text-sm text-muted-foreground mb-2 block">Check-out</label>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <Button variant="outline" className="w-full justify-start">
-                          <Calendar className="w-4 h-4 mr-2" />
-                          {checkOut ? format(checkOut, 'MMM d, yyyy') : 'Select date'}
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0" align="start">
-                        <CalendarComponent mode="single" selected={checkOut} onSelect={setCheckOut} disabled={(date) => date <= (checkIn || new Date())} />
-                      </PopoverContent>
-                    </Popover>
-                  </div>
-                </div>
-                {nights > 0 && <p className="text-sm text-muted-foreground">{nights} night{nights > 1 ? 's' : ''}</p>}
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-sm text-muted-foreground mb-2 block">Guests</label>
-                    <div className="flex items-center gap-3 bg-muted rounded-xl p-3 border border-border">
-                      <button onClick={() => setGuests(Math.max(1, guests - 1))} className="p-1 rounded-full bg-background hover:bg-muted">
-                        <Minus className="w-4 h-4 text-foreground" />
-                      </button>
-                      <span className="flex-1 text-center text-foreground font-medium">{guests}</span>
-                      <button onClick={() => setGuests(guests + 1)} className="p-1 rounded-full bg-background hover:bg-muted">
-                        <Plus className="w-4 h-4 text-foreground" />
-                      </button>
-                    </div>
-                  </div>
-                  <div>
-                    <label className="text-sm text-muted-foreground mb-2 block">{selectedRoom?.type === 'dorm' ? 'Beds' : 'Rooms'}</label>
-                    <div className="flex items-center gap-3 bg-muted rounded-xl p-3 border border-border">
-                      <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="p-1 rounded-full bg-background hover:bg-muted">
-                        <Minus className="w-4 h-4 text-foreground" />
-                      </button>
-                      <span className="flex-1 text-center text-foreground font-medium">{quantity}</span>
-                      <button onClick={() => setQuantity(quantity + 1)} className="p-1 rounded-full bg-background hover:bg-muted">
-                        <Plus className="w-4 h-4 text-foreground" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            )}
-            
-            {step === 3 && (
-              <motion.div key="step3" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-4">
-                <h3 className="text-lg font-medium text-foreground mb-4">Add-on Services</h3>
-                <div className="grid gap-3">
-                  {ADD_ONS.map((addOn) => (
-                    <button 
-                      key={addOn.id} 
-                      onClick={() => setSelectedAddOns(prev => ({ ...prev, [addOn.id]: !prev[addOn.id] }))} 
-                      className={cn(
-                        'flex items-center justify-between p-4 rounded-2xl border transition-all text-left',
-                        selectedAddOns[addOn.id] 
-                          ? 'bg-primary/10 border-primary' 
-                          : 'bg-muted/50 border-border hover:bg-muted'
-                      )}
-                    >
-                      <div>
-                        <h4 className="font-medium text-foreground">{addOn.name}</h4>
-                        <p className="text-sm text-muted-foreground">₹{addOn.price} {addOn.unit}</p>
-                      </div>
-                      <div className={cn(
-                        'w-6 h-6 rounded-full border-2 flex items-center justify-center',
-                        selectedAddOns[addOn.id] ? 'bg-primary border-primary' : 'border-muted-foreground'
-                      )}>
-                        {selectedAddOns[addOn.id] && <Check className="w-4 h-4 text-primary-foreground" />}
-                      </div>
-                    </button>
-                  ))}
-                </div>
-                <p className="text-sm text-muted-foreground text-center">Add-ons are optional.</p>
-              </motion.div>
-            )}
-            
-            {step === 4 && (
-              <motion.div key="step4" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-4">
-                <h3 className="text-lg font-medium text-foreground mb-4">Guest Details</h3>
-                <div className="space-y-4">
-                  <div>
-                    <label className="text-sm text-muted-foreground mb-2 block">Full Name *</label>
-                    <Input value={guestName} onChange={(e) => setGuestName(e.target.value)} placeholder="Enter your full name" />
-                  </div>
-                  <div>
-                    <label className="text-sm text-muted-foreground mb-2 block">Email *</label>
-                    <Input type="email" value={guestEmail} onChange={(e) => setGuestEmail(e.target.value)} placeholder="Enter your email" />
-                  </div>
-                  <div>
-                    <label className="text-sm text-muted-foreground mb-2 block">Phone *</label>
-                    <Input type="tel" value={guestPhone} onChange={(e) => setGuestPhone(e.target.value)} placeholder="Enter your phone number" />
-                  </div>
-                  <div>
-                    <label className="text-sm text-muted-foreground mb-2 block">Special Requests</label>
-                    <Textarea value={specialRequests} onChange={(e) => setSpecialRequests(e.target.value)} placeholder="Any special requests? (optional)" rows={3} />
-                  </div>
-                </div>
-                
-                {/* Price Summary */}
-                <div className="mt-6 p-4 rounded-2xl bg-muted border border-border">
-                  <h4 className="font-medium text-foreground mb-3">Price Summary</h4>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex justify-between text-muted-foreground">
-                      <span>{selectedRoom?.name} × {quantity} × {nights} nights</span>
-                      <span>₹{roomTotal.toLocaleString()}</span>
-                    </div>
-                    {addOnTotal > 0 && (
-                      <div className="flex justify-between text-muted-foreground">
-                        <span>Add-ons</span>
-                        <span>₹{addOnTotal.toLocaleString()}</span>
-                      </div>
+        <div className="p-5 overflow-y-auto max-h-[55vh]">
+          {step === 1 && (
+            <div className="space-y-4">
+              <h3 className="text-lg font-medium text-foreground">Select Your Room</h3>
+              <div className="grid gap-3">
+                {ROOMS.map((room) => (
+                  <button 
+                    key={room.id} 
+                    onClick={() => setSelectedRoom(room)} 
+                    className={cn(
+                      'flex items-center gap-4 p-4 rounded-xl border transition-all text-left',
+                      selectedRoom?.id === room.id 
+                        ? 'bg-primary/10 border-primary' 
+                        : 'bg-muted/30 border-border hover:bg-muted/50'
                     )}
-                    <div className="flex justify-between text-muted-foreground">
-                      <span>GST ({gstRate}%)</span>
-                      <span>₹{gstAmount.toLocaleString()}</span>
+                  >
+                    <div className="w-14 h-14 rounded-lg bg-muted overflow-hidden flex-shrink-0">
+                      <img src={room.image} alt={room.name} className="w-full h-full object-cover" />
                     </div>
-                    <div className="flex justify-between text-foreground font-semibold pt-2 border-t border-border">
-                      <span>Total</span>
-                      <span>₹{totalAmount.toLocaleString()}</span>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between">
+                        <h4 className="font-medium text-foreground truncate">{room.name}</h4>
+                        {selectedRoom?.id === room.id && <Check className="w-5 h-5 text-primary flex-shrink-0" />}
+                      </div>
+                      <div className="flex items-center gap-2 mt-1 text-sm text-muted-foreground">
+                        <Users className="w-4 h-4" />
+                        <span>{room.capacity} guests</span>
+                        <span>•</span>
+                        <span className="text-primary font-medium">₹{room.price}/night</span>
+                      </div>
                     </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+          
+          {step === 2 && (
+            <div className="space-y-5">
+              <h3 className="text-lg font-medium text-foreground">Choose Dates & Guests</h3>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm text-muted-foreground mb-2 block">Check-in</label>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button variant="outline" className="w-full justify-start">
+                        <Calendar className="w-4 h-4 mr-2" />
+                        {checkIn ? format(checkIn, 'MMM d, yyyy') : 'Select date'}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <CalendarComponent mode="single" selected={checkIn} onSelect={setCheckIn} disabled={(date) => date < new Date()} />
+                    </PopoverContent>
+                  </Popover>
+                </div>
+                <div>
+                  <label className="text-sm text-muted-foreground mb-2 block">Check-out</label>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button variant="outline" className="w-full justify-start">
+                        <Calendar className="w-4 h-4 mr-2" />
+                        {checkOut ? format(checkOut, 'MMM d, yyyy') : 'Select date'}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <CalendarComponent mode="single" selected={checkOut} onSelect={setCheckOut} disabled={(date) => date <= (checkIn || new Date())} />
+                    </PopoverContent>
+                  </Popover>
+                </div>
+              </div>
+              {nights > 0 && <p className="text-sm text-muted-foreground">{nights} night{nights > 1 ? 's' : ''}</p>}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm text-muted-foreground mb-2 block">Guests</label>
+                  <div className="flex items-center gap-3 bg-muted/50 rounded-lg p-3 border border-border">
+                    <button onClick={() => setGuests(Math.max(1, guests - 1))} className="p-1 rounded-full hover:bg-muted">
+                      <Minus className="w-4 h-4 text-foreground" />
+                    </button>
+                    <span className="flex-1 text-center text-foreground font-medium">{guests}</span>
+                    <button onClick={() => setGuests(guests + 1)} className="p-1 rounded-full hover:bg-muted">
+                      <Plus className="w-4 h-4 text-foreground" />
+                    </button>
                   </div>
                 </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                <div>
+                  <label className="text-sm text-muted-foreground mb-2 block">{selectedRoom?.type === 'dorm' ? 'Beds' : 'Rooms'}</label>
+                  <div className="flex items-center gap-3 bg-muted/50 rounded-lg p-3 border border-border">
+                    <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="p-1 rounded-full hover:bg-muted">
+                      <Minus className="w-4 h-4 text-foreground" />
+                    </button>
+                    <span className="flex-1 text-center text-foreground font-medium">{quantity}</span>
+                    <button onClick={() => setQuantity(quantity + 1)} className="p-1 rounded-full hover:bg-muted">
+                      <Plus className="w-4 h-4 text-foreground" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+          
+          {step === 3 && (
+            <div className="space-y-4">
+              <h3 className="text-lg font-medium text-foreground">Add-on Services</h3>
+              <div className="grid gap-3">
+                {ADD_ONS.map((addOn) => (
+                  <button 
+                    key={addOn.id} 
+                    onClick={() => setSelectedAddOns(prev => ({ ...prev, [addOn.id]: !prev[addOn.id] }))} 
+                    className={cn(
+                      'flex items-center justify-between p-4 rounded-xl border transition-all text-left',
+                      selectedAddOns[addOn.id] 
+                        ? 'bg-primary/10 border-primary' 
+                        : 'bg-muted/30 border-border hover:bg-muted/50'
+                    )}
+                  >
+                    <div>
+                      <h4 className="font-medium text-foreground">{addOn.name}</h4>
+                      <p className="text-sm text-muted-foreground">₹{addOn.price} {addOn.unit}</p>
+                    </div>
+                    <div className={cn(
+                      'w-6 h-6 rounded-full border-2 flex items-center justify-center',
+                      selectedAddOns[addOn.id] ? 'bg-primary border-primary' : 'border-muted-foreground'
+                    )}>
+                      {selectedAddOns[addOn.id] && <Check className="w-4 h-4 text-primary-foreground" />}
+                    </div>
+                  </button>
+                ))}
+              </div>
+              <p className="text-sm text-muted-foreground text-center">Add-ons are optional.</p>
+            </div>
+          )}
+          
+          {step === 4 && (
+            <div className="space-y-4">
+              <h3 className="text-lg font-medium text-foreground">Guest Details</h3>
+              <div className="space-y-4">
+                <div>
+                  <label className="text-sm text-muted-foreground mb-2 block">Full Name *</label>
+                  <Input value={guestName} onChange={(e) => setGuestName(e.target.value)} placeholder="Enter your full name" />
+                </div>
+                <div>
+                  <label className="text-sm text-muted-foreground mb-2 block">Email *</label>
+                  <Input type="email" value={guestEmail} onChange={(e) => setGuestEmail(e.target.value)} placeholder="Enter your email" />
+                </div>
+                <div>
+                  <label className="text-sm text-muted-foreground mb-2 block">Phone *</label>
+                  <Input type="tel" value={guestPhone} onChange={(e) => setGuestPhone(e.target.value)} placeholder="Enter your phone number" />
+                </div>
+                <div>
+                  <label className="text-sm text-muted-foreground mb-2 block">Special Requests</label>
+                  <Textarea value={specialRequests} onChange={(e) => setSpecialRequests(e.target.value)} placeholder="Any special requests? (optional)" rows={3} />
+                </div>
+              </div>
+              
+              {/* Price Summary */}
+              <div className="mt-4 p-4 rounded-xl bg-muted/50 border border-border">
+                <h4 className="font-medium text-foreground mb-3">Price Summary</h4>
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between text-muted-foreground">
+                    <span>{selectedRoom?.name} × {quantity} × {nights} nights</span>
+                    <span>₹{roomTotal.toLocaleString()}</span>
+                  </div>
+                  {addOnTotal > 0 && (
+                    <div className="flex justify-between text-muted-foreground">
+                      <span>Add-ons</span>
+                      <span>₹{addOnTotal.toLocaleString()}</span>
+                    </div>
+                  )}
+                  <div className="flex justify-between text-muted-foreground">
+                    <span>GST ({gstRate}%)</span>
+                    <span>₹{gstAmount.toLocaleString()}</span>
+                  </div>
+                  <div className="flex justify-between text-foreground font-semibold pt-2 border-t border-border">
+                    <span>Total</span>
+                    <span>₹{totalAmount.toLocaleString()}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
         
         {/* Footer */}
-        <div className="flex items-center justify-between p-6 border-t border-border bg-muted/30">
+        <div className="flex items-center justify-between p-5 border-t border-border bg-muted/30">
           <Button 
             variant="ghost" 
             onClick={() => step > 1 ? setStep(step - 1) : onClose} 
@@ -352,14 +348,8 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
             </Button>
           ) : (
             <Button onClick={handleSubmit} disabled={!canProceed() || isSubmitting}>
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  Submitting...
-                </>
-              ) : (
-                'Submit Enquiry'
-              )}
+              {isSubmitting ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
+              {isSubmitting ? 'Submitting...' : 'Submit Enquiry'}
             </Button>
           )}
         </div>
