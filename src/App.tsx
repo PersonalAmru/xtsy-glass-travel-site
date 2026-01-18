@@ -15,7 +15,7 @@ import { performGlobalCleanup } from "./utils/performanceCleanup";
 import { cleanupUnifiedImage } from "./components/UnifiedImage";
 import { EnhancedAnalyticsProvider } from "./hooks/useEnhancedAnalytics";
 import { HappyGuestsProvider } from "./contexts/HappyGuestsContext";
-import { HotjarTracking } from "./components/HotjarTracking";
+
 import { UserAuthProvider } from "./contexts/UserAuthContext";
 import ConsentBanner from "./components/consent/ConsentBanner";
 import { TrafficAnalyticsProvider } from "./hooks/useTrafficAnalytics";
@@ -192,7 +192,7 @@ function App() {
           <UserAuthProvider>
             <TrafficAnalyticsProvider>
               <EnhancedAnalyticsProvider>
-                <HotjarTracking />
+                
                 <ConsentBanner />
                 <TooltipProvider>
                 <Toaster />
