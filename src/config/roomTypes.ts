@@ -18,6 +18,8 @@ export interface RoomTypeConfig {
   totalUnits: number;            // Total inventory available
   propertyType: string;          // XTSY Luxury, XTSY Travellers Hostel, XTSY Economy
   isBookable: boolean;           // false for OTA-only rooms
+  basePrice: number;             // Base price per night in INR
+  image?: string;                // Optional room image URL
 }
 
 /**
@@ -46,6 +48,8 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     totalUnits: 1,
     propertyType: 'XTSY Luxury',
     isBookable: true,
+    basePrice: 4999,
+    image: '/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png',
   },
 
   // === HOSTEL CATEGORY ===
@@ -59,6 +63,8 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     totalUnits: 4,
     propertyType: 'XTSY Travellers Hostel',
     isBookable: true,
+    basePrice: 649,
+    image: '/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png',
   },
 
   '4-bed-mixed-female-dorm': {
@@ -71,6 +77,8 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     totalUnits: 4,
     propertyType: 'XTSY Travellers Hostel',
     isBookable: true,
+    basePrice: 599,
+    image: '/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png',
   },
 
   '6-bed-mixed-female-dorm': {
@@ -83,6 +91,8 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     totalUnits: 6,
     propertyType: 'XTSY Travellers Hostel',
     isBookable: true,
+    basePrice: 549,
+    image: '/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png',
   },
 
   '6-bed-mixed-dorm': {
@@ -95,6 +105,8 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     totalUnits: 6,
     propertyType: 'XTSY Travellers Hostel',
     isBookable: true,
+    basePrice: 499,
+    image: '/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png',
   },
 
   'king-double-room': {
@@ -107,6 +119,8 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     totalUnits: 2,
     propertyType: 'XTSY Travellers Hostel',
     isBookable: true,
+    basePrice: 1899,
+    image: '/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png',
   },
 
   'king-triple-room': {
@@ -119,19 +133,23 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     totalUnits: 1,
     propertyType: 'XTSY Travellers Hostel',
     isBookable: true,
+    basePrice: 2299,
+    image: '/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png',
   },
 
   // === ECONOMY CATEGORY (OTA-only) ===
   '6-bed-mixed-economy-dorm': {
     id: '6-bed-mixed-economy-dorm',
-    name: 'Bed in 6-Bed Female Dormitory',
-    shortName: '6-Bed Economy Female',
+    name: 'Bed in 6-Bed Economy Dormitory',
+    shortName: '6-Bed Economy',
     category: 'economy',
     unitType: 'bed',
     capacity: 6,
     totalUnits: 6,
     propertyType: 'XTSY Economy',
     isBookable: false,
+    basePrice: 399,
+    image: '/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png',
   },
 
   '8-bed-mixed-economy-dorm': {
@@ -144,6 +162,8 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     totalUnits: 8,
     propertyType: 'XTSY Economy',
     isBookable: false,
+    basePrice: 349,
+    image: '/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png',
   },
 };
 
