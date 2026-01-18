@@ -440,7 +440,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
   const canProceed = () => {
     switch (step) {
       case 1: return roomSelections.length > 0;
-      case 2: return !!checkIn && !!checkOut && nights > 0;
+      case 2: return !!checkIn && !!checkOut && nights > 0 && guests === totalBedsSelected;
       case 3: return true;
       case 4: return guestName.trim() && guestEmail.trim() && guestPhone.trim();
       default: return false;
@@ -808,17 +808,31 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                     <motion.div
                       initial={{ opacity: 0, y: -5 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="flex items-start gap-2 p-3 rounded-xl bg-amber-500/10 border border-amber-500/20"
+                      className="flex items-start gap-2 p-3 rounded-xl bg-destructive/10 border border-destructive/30"
                     >
-                      <span className="text-amber-500 text-sm">⚠️</span>
-                      <p className="text-xs text-amber-600">
+                      <span className="text-sm">🚫</span>
+                      <p className="text-xs text-destructive">
                         You have {guests} guest{guests !== 1 ? 's' : ''} but only {totalBedsSelected} bed{totalBedsSelected !== 1 ? 's' : ''} selected. 
-                        Please add {guests - totalBedsSelected} more bed{guests - totalBedsSelected !== 1 ? 's' : ''} or reduce guests.
+                        Add {guests - totalBedsSelected} more bed{guests - totalBedsSelected !== 1 ? 's' : ''} or reduce guests to continue.
                       </p>
                     </motion.div>
                   )}
                   
-                  {guests <= totalBedsSelected && totalBedsSelected > 0 && (
+                  {guests < totalBedsSelected && totalBedsSelected > 0 && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="flex items-start gap-2 p-3 rounded-xl bg-amber-500/10 border border-amber-500/30"
+                    >
+                      <span className="text-sm">⚠️</span>
+                      <p className="text-xs text-amber-600">
+                        You selected {totalBedsSelected} bed{totalBedsSelected !== 1 ? 's' : ''} but only {guests} guest{guests !== 1 ? 's' : ''}. 
+                        Add {totalBedsSelected - guests} more guest{totalBedsSelected - guests !== 1 ? 's' : ''} or remove beds to continue.
+                      </p>
+                    </motion.div>
+                  )}
+                  
+                  {guests === totalBedsSelected && totalBedsSelected > 0 && (
                     <motion.div
                       initial={{ opacity: 0, y: -5 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -826,7 +840,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                     >
                       <Check className="w-4 h-4 text-green-500" />
                       <p className="text-xs text-green-600">
-                        Perfect! {totalBedsSelected} bed{totalBedsSelected !== 1 ? 's' : ''} for {guests} guest{guests !== 1 ? 's' : ''}.
+                        Perfect match! {totalBedsSelected} bed{totalBedsSelected !== 1 ? 's' : ''} for {guests} guest{guests !== 1 ? 's' : ''}.
                       </p>
                     </motion.div>
                   )}
