@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { MapPin, Users, TrendingUp, AlertCircle, RefreshCw, CheckCircle, Info, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { supabase } from '@/integrations/supabase/client';
+
 
 // Dark theme map styles
 const darkMapStyles: google.maps.MapTypeStyle[] = [
@@ -202,32 +202,30 @@ const GoogleMapsHeatmap: React.FC<GoogleMapsHeatmapProps> = memo(({ data }) => {
   const [error, setError] = useState<string | null>(null);
   const [apiKeyLoaded, setApiKeyLoaded] = useState(false);
 
-  // Fetch API key and load Google Maps
+  // Load Google Maps using environment variable
+  // Security: Google Maps JS API keys are designed to be public with HTTP referrer restrictions
+  // Configure allowed domains in Google Cloud Console (e.g., *.lovable.app, your-domain.com)
   useEffect(() => {
     let cancelled = false;
     
     const init = async () => {
       try {
-        console.log('[GoogleMapsHeatmap] Fetching API key...');
+        console.log('[GoogleMapsHeatmap] Loading Google Maps...');
         
-        // Fetch API key from edge function
-        const { data: keyData, error: keyError } = await supabase.functions.invoke('get-maps-api-key');
+        // Use environment variable for API key
+        // This key should be restricted by HTTP referrer in Google Cloud Console
+        const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
         
-        if (keyError) {
-          throw new Error(`Failed to fetch API key: ${keyError.message}`);
-        }
-        
-        if (!keyData?.apiKey) {
-          throw new Error('API key not configured. Please add GOOGLE_MAPS_API_KEY to your secrets.');
+        if (!apiKey) {
+          throw new Error('Google Maps API key not configured. Please add VITE_GOOGLE_MAPS_API_KEY to your environment variables and configure HTTP referrer restrictions in Google Cloud Console.');
         }
         
         if (cancelled) return;
         
-        console.log('[GoogleMapsHeatmap] API key retrieved, loading Google Maps...');
         setApiKeyLoaded(true);
         
         // Load Google Maps script
-        await loadGoogleMapsScript(keyData.apiKey);
+        await loadGoogleMapsScript(apiKey);
         
         if (cancelled) return;
         
