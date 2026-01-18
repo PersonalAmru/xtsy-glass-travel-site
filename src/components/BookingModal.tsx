@@ -387,7 +387,6 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
   const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
   const [guestDOB, setGuestDOB] = useState('');
   const [guestCity, setGuestCity] = useState('');
-  const [guestPincode, setGuestPincode] = useState('');
   const [specialRequests, setSpecialRequests] = useState('');
   const [policyAccepted, setPolicyAccepted] = useState(false);
   const [promotionalConsent, setPromotionalConsent] = useState(false);
@@ -416,7 +415,6 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
       setIsCountryDropdownOpen(false);
       setGuestDOB('');
       setGuestCity('');
-      setGuestPincode('');
       setPolicyAccepted(false);
       setPromotionalConsent(false);
       setLightboxRoom(null);
@@ -542,7 +540,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
       case 1: return roomSelections.length > 0;
       case 2: return !!checkIn && !!checkOut && nights > 0 && guests === totalBedsSelected;
       case 3: return true;
-      case 4: return guestName.trim() && guestEmail.trim() && guestWhatsApp.trim() && guestCity.trim() && guestPincode.trim() && policyAccepted;
+      case 4: return guestName.trim() && guestEmail.trim() && guestWhatsApp.trim() && guestCity.trim() && policyAccepted;
       default: return false;
     }
   };
@@ -1064,20 +1062,19 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                   </Popover>
                   {/* WhatsApp with Country Code Selector */}
                   <div className="flex gap-2">
-                    {/* Country Code Dropdown */}
+                    {/* Simplified Country Code Dropdown with Flag Emoji */}
                     <div className="relative" data-country-dropdown>
                       <button
                         type="button"
                         onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
-                        className="h-12 px-3 rounded-2xl border border-border bg-background text-foreground flex items-center gap-1 hover:bg-muted transition-colors min-w-[90px]"
+                        className="h-12 px-3 rounded-2xl border border-border bg-background text-foreground flex items-center gap-1.5 hover:bg-muted transition-colors"
                       >
-                        <span className="text-base">{COUNTRY_CODES.find(c => c.code === countryCode)?.flag}</span>
-                        <span className="text-sm font-medium">{countryCode}</span>
+                        <span className="text-xl">{COUNTRY_CODES.find(c => c.code === countryCode)?.flag}</span>
                         <ChevronDown className={cn("w-3.5 h-3.5 text-muted-foreground transition-transform", isCountryDropdownOpen && "rotate-180")} />
                       </button>
                       
                       {isCountryDropdownOpen && (
-                        <div className="absolute top-full left-0 mt-1 w-56 max-h-60 overflow-y-auto bg-background border border-border rounded-xl shadow-xl z-[100001]">
+                        <div className="absolute top-full left-0 mt-1 w-48 max-h-60 overflow-y-auto bg-background border border-border rounded-xl shadow-xl z-[100001]">
                           {COUNTRY_CODES.map((country) => (
                             <button
                               key={country.code}
@@ -1087,13 +1084,12 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                                 setIsCountryDropdownOpen(false);
                               }}
                               className={cn(
-                                "w-full px-3 py-2.5 flex items-center gap-3 text-left hover:bg-muted transition-colors text-foreground",
+                                "w-full px-3 py-2 flex items-center gap-2 text-left hover:bg-muted transition-colors text-foreground",
                                 countryCode === country.code && "bg-primary/10"
                               )}
                             >
                               <span className="text-lg">{country.flag}</span>
-                              <span className="text-sm font-medium">{country.code}</span>
-                              <span className="text-xs text-muted-foreground">{country.country}</span>
+                              <span className="text-sm">{country.code}</span>
                               {countryCode === country.code && <Check className="w-4 h-4 ml-auto text-primary" />}
                             </button>
                           ))}
@@ -1110,25 +1106,10 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                       className="h-12 rounded-2xl text-base text-foreground bg-background border-border flex-1" 
                     />
                   </div>
-                  <div className="grid grid-cols-2 gap-3">
-                    <Input 
-                      value={guestCity} 
-                      onChange={(e) => setGuestCity(e.target.value)} 
-                      placeholder="Current City *" 
-                      className="h-12 rounded-2xl text-base text-foreground bg-background border-border" 
-                    />
-                    <Input 
-                      value={guestPincode} 
-                      onChange={(e) => setGuestPincode(e.target.value)} 
-                      placeholder="Pincode *" 
-                      className="h-12 rounded-2xl text-base text-foreground bg-background border-border" 
-                    />
-                  </div>
                   <Input 
-                    type="tel" 
-                    value={guestPhone} 
-                    onChange={(e) => setGuestPhone(e.target.value)} 
-                    placeholder="Alternate Phone (optional)" 
+                    value={guestCity} 
+                    onChange={(e) => setGuestCity(e.target.value)} 
+                    placeholder="Current City *" 
                     className="h-12 rounded-2xl text-base text-foreground bg-background border-border" 
                   />
                   <Textarea 
@@ -1138,6 +1119,24 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                     rows={2}
                     className="rounded-2xl text-base resize-none text-foreground bg-background border-border"
                   />
+                  
+                  {/* Promotional Code Section with Winter Discount */}
+                  <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Sparkles className="w-4 h-4 text-emerald-500" />
+                      <span className="font-semibold text-foreground text-sm">Promotional Offer Applied</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs px-2 py-1 rounded-full bg-emerald-500/20 text-emerald-600 font-medium">WINTER10</span>
+                        <span className="text-sm text-muted-foreground">10% Winter Discount</span>
+                      </div>
+                      <Check className="w-5 h-5 text-emerald-500" />
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-2">
+                      Applied to all bookings. Valid for the winter season.
+                    </p>
+                  </div>
                 </div>
 
                 {/* Consent Section */}
