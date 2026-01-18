@@ -25,25 +25,8 @@ const HeroSection = () => {
   const [currentLanguageIndex, setCurrentLanguageIndex] = useState(0);
   const [averageRating, setAverageRating] = useState(4.9);
   const [tourCount, setTourCount] = useState<number>(22);
-  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
-
-  // Auto-open booking modal if user just logged in with booking intent
-  useEffect(() => {
-    if (user) {
-      const pendingBooking = sessionStorage.getItem('pendingBookingIntent');
-      if (pendingBooking) {
-        sessionStorage.removeItem('pendingBookingIntent');
-        const intent = JSON.parse(pendingBooking);
-        if (intent.checkIn) setCheckIn(intent.checkIn);
-        if (intent.checkOut) setCheckOut(intent.checkOut);
-        if (intent.guests) setGuests(intent.guests);
-        // Small delay to ensure state is set
-        setTimeout(() => setBookingModalOpen(true), 100);
-      }
-    }
-  }, [user]);
 
   // Removed scroll-based fade transforms - hero stays visible
 
@@ -112,16 +95,6 @@ const HeroSection = () => {
   }, []);
 
   const handleSearch = () => {
-    // Check if user is logged in
-    if (!user) {
-      // Store booking intent to resume after login
-      sessionStorage.setItem('pendingBookingIntent', JSON.stringify({
-        checkIn, checkOut, guests
-      }));
-      setShowLoginPrompt(true);
-      return;
-    }
-
     // Anti-spam cooldown
     const COOLDOWN_MS = 1500;
     const LAST_KEY = 'xtsy_hg_last_inc';
@@ -149,7 +122,7 @@ const HeroSection = () => {
       return;
     }
 
-    // Open booking modal instead of navigating
+    // Open booking modal directly - no login required
     setBookingModalOpen(true);
   };
 
@@ -417,52 +390,6 @@ const HeroSection = () => {
           </motion.button>
         </div>
       </section>
-
-      {/* Login Prompt Modal */}
-      <AnimatePresence>
-        {showLoginPrompt && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
-            onClick={() => setShowLoginPrompt(false)}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-card rounded-3xl p-6 sm:p-8 max-w-md w-full border border-border/50 shadow-2xl"
-              onClick={e => e.stopPropagation()}
-            >
-              <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-primary/10 flex items-center justify-center">
-                  <Users className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Sign in Required</h3>
-                <p className="text-muted-foreground mb-6">
-                  Please sign in or create an account to check availability and make a booking.
-                </p>
-                <div className="flex flex-col gap-3">
-                  <Button 
-                    onClick={() => navigate('/user-auth')}
-                    className="w-full h-12 rounded-xl"
-                  >
-                    Sign In / Create Account
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    onClick={() => setShowLoginPrompt(false)}
-                    className="w-full h-12 rounded-xl"
-                  >
-                    Cancel
-                  </Button>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Booking Modal */}
       <BookingModal
