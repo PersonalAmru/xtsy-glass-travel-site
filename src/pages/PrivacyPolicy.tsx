@@ -325,10 +325,7 @@ export const PrivacyPolicy: React.FC = () => {
               <h2 className="text-2xl font-semibold mb-4 text-foreground">14. Contact Us</h2>
               <p>For privacy-related questions, concerns, or to exercise your rights, contact us:</p>
               <div className="bg-muted p-6 rounded-lg mt-4 space-y-3">
-                <p><strong>Data Protection Contact:</strong> XTSY Privacy Team</p>
                 <p><strong>Email:</strong> <a href="mailto:admin@xtsy.one" className="text-primary hover:underline">admin@xtsy.one</a></p>
-                <p><strong>Phone:</strong> +91 88373 17070</p>
-                <p><strong>Address:</strong> XTSY, Shillong, Meghalaya, India 793001</p>
               </div>
             </section>
 
