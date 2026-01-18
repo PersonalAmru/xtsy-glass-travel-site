@@ -23,6 +23,28 @@ export interface EnquiryData {
   userId?: string;
 }
 
+export interface Enquiry {
+  id: string;
+  enquiry_id: string;
+  guest_name: string;
+  email: string;
+  phone: string;
+  check_in: string;
+  check_out: string;
+  room_type: string;
+  room_name: string;
+  quantity: number;
+  nights: number;
+  rate_per_night: number;
+  subtotal: number;
+  gst_rate: number;
+  gst_amount: number;
+  total_amount: number;
+  status: string;
+  created_at: string;
+  special_requests?: string;
+}
+
 export interface CreateEnquiryResponse {
   success: boolean;
   enquiryId?: string;

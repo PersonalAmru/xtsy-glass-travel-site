@@ -1,6 +1,7 @@
 /**
  * Admin Bookings Calendar - Smart calendar with booking status
  * Shows check-in, stay-over, check-out, no-show status
+ * Manages enquiries (XTH-ENQ) and triggers invoice (XTH-INV) on approval
  */
 
 import { useState, useEffect, useCallback } from 'react';
@@ -13,6 +14,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { BookingChat } from '@/components/chat/BookingChat';
 import { DenyBookingDialog } from '@/components/admin/DenyBookingDialog';
+import { getEnquiries, approveEnquiry, rejectEnquiry, Enquiry } from '@/services/enquiryService';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, addMonths, subMonths, isToday, parseISO, differenceInHours } from 'date-fns';
@@ -30,6 +32,8 @@ import {
   X,
   MessageSquare,
   RefreshCw,
+  FileText,
+  Send,
 } from 'lucide-react';
 
 interface Booking {
@@ -57,7 +61,9 @@ interface DayBooking {
 export default function AdminBookingsCalendar() {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [bookings, setBookings] = useState<Booking[]>([]);
+  const [enquiries, setEnquiries] = useState<Enquiry[]>([]);
   const [loading, setLoading] = useState(true);
+  const [enquiriesLoading, setEnquiriesLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
   const [chatOpen, setChatOpen] = useState(false);
@@ -66,6 +72,10 @@ export default function AdminBookingsCalendar() {
   // Deny dialog state
   const [denyDialogOpen, setDenyDialogOpen] = useState(false);
   const [bookingToDeny, setBookingToDeny] = useState<Booking | null>(null);
+  
+  // Enquiry reject dialog state
+  const [rejectEnquiryDialogOpen, setRejectEnquiryDialogOpen] = useState(false);
+  const [enquiryToReject, setEnquiryToReject] = useState<Enquiry | null>(null);
 
   const fetchBookings = useCallback(async () => {
     setLoading(true);
