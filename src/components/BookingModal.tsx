@@ -895,7 +895,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                           <p className="text-xs text-muted-foreground mt-0.5">{addOn.description}</p>
                         )}
                         <p className="text-sm text-muted-foreground mt-1">
-                          {addOn.price > 0 ? `₹${addOn.price} ${addOn.unit}` : 'Free'}
+                          {addOn.price > 0 ? `₹${addOn.price} ${addOn.unit}` : addOn.unit === 'free' ? 'Free' : addOn.unit}
                         </p>
                       </div>
                       <div className={cn(
