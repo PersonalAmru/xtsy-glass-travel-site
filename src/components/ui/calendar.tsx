@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ChevronUp, ChevronDown } from "lucide-react";
 import { DayPicker } from "react-day-picker";
 
 import { cn } from "@/lib/utils";
@@ -15,36 +15,40 @@ function Calendar({
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
-      className={cn("p-4 pointer-events-auto bg-background rounded-xl", className)}
+      className={cn("p-4 pointer-events-auto bg-background rounded-xl border border-border shadow-lg", className)}
       classNames={{
         months: "flex flex-col sm:flex-row gap-4",
         month: "space-y-4",
-        caption: "flex justify-center pt-1 relative items-center h-10",
+        month_caption: "flex justify-center pt-1 relative items-center h-10",
         caption_label: "text-base font-semibold text-foreground tracking-tight",
         nav: "flex items-center gap-1",
-        nav_button: cn(
+        button_previous: cn(
           "inline-flex items-center justify-center rounded-full h-8 w-8",
           "text-muted-foreground hover:text-foreground",
           "hover:bg-muted transition-colors",
-          "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+          "absolute left-1"
         ),
-        nav_button_previous: "absolute left-1",
-        nav_button_next: "absolute right-1",
-        table: "w-full border-collapse",
-        head_row: "flex mb-1",
-        head_cell: cn(
+        button_next: cn(
+          "inline-flex items-center justify-center rounded-full h-8 w-8",
+          "text-muted-foreground hover:text-foreground",
+          "hover:bg-muted transition-colors",
+          "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+          "absolute right-1"
+        ),
+        month_grid: "w-full border-collapse",
+        weekdays: "flex mb-1",
+        weekday: cn(
           "text-muted-foreground font-medium text-xs uppercase tracking-wider",
           "w-10 h-8 flex items-center justify-center"
         ),
-        row: "flex w-full",
-        cell: cn(
+        week: "flex w-full",
+        day: cn(
           "relative p-0.5 text-center text-sm focus-within:relative focus-within:z-20",
           "[&:has([aria-selected])]:bg-primary/10 [&:has([aria-selected])]:rounded-lg",
-          "[&:has([aria-selected].day-range-end)]:rounded-r-lg",
-          "[&:has([aria-selected].day-outside)]:bg-primary/5",
           "first:[&:has([aria-selected])]:rounded-l-lg last:[&:has([aria-selected])]:rounded-r-lg"
         ),
-        day: cn(
+        day_button: cn(
           "inline-flex items-center justify-center rounded-lg",
           "w-10 h-10 p-0 font-normal text-sm",
           "text-foreground hover:bg-muted hover:text-foreground",
@@ -52,30 +56,43 @@ function Calendar({
           "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1",
           "aria-selected:opacity-100"
         ),
-        day_range_end: "day-range-end",
-        day_selected: cn(
+        range_end: "day-range-end",
+        selected: cn(
           "bg-primary text-primary-foreground font-semibold",
           "hover:bg-primary hover:text-primary-foreground",
           "focus:bg-primary focus:text-primary-foreground",
           "shadow-sm"
         ),
-        day_today: cn(
+        today: cn(
           "bg-accent/50 text-accent-foreground font-semibold",
           "ring-1 ring-accent"
         ),
-        day_outside: cn(
+        outside: cn(
           "day-outside text-muted-foreground/40",
           "aria-selected:bg-primary/30 aria-selected:text-primary-foreground/70"
         ),
-        day_disabled: "text-muted-foreground/30 cursor-not-allowed hover:bg-transparent",
-        day_range_middle: "aria-selected:bg-accent aria-selected:text-accent-foreground",
-        day_hidden: "invisible",
+        disabled: "text-muted-foreground/30 cursor-not-allowed hover:bg-transparent",
+        range_middle: "aria-selected:bg-accent aria-selected:text-accent-foreground",
+        hidden: "invisible",
+        // Dropdown styles for Apple-grade experience
+        dropdowns: "flex gap-2 justify-center",
+        dropdown: cn(
+          "relative inline-flex items-center gap-1 px-3 py-1.5 rounded-lg",
+          "bg-muted/50 hover:bg-muted text-foreground font-medium text-sm",
+          "border border-border cursor-pointer transition-colors"
+        ),
+        dropdown_root: "relative",
+        caption_dropdowns: "flex gap-2 justify-center items-center",
+        years_dropdown: "appearance-none bg-transparent cursor-pointer pr-6",
+        months_dropdown: "appearance-none bg-transparent cursor-pointer pr-6",
         ...classNames,
       }}
       components={{
-        Chevron: ({ orientation, ...props }) => {
-          const Icon = orientation === 'left' ? ChevronLeft : ChevronRight;
-          return <Icon className="h-5 w-5" {...props} />;
+        Chevron: ({ orientation, ...chevronProps }) => {
+          if (orientation === 'left') return <ChevronLeft className="h-5 w-5" {...chevronProps} />;
+          if (orientation === 'right') return <ChevronRight className="h-5 w-5" {...chevronProps} />;
+          if (orientation === 'up') return <ChevronUp className="h-4 w-4" {...chevronProps} />;
+          return <ChevronDown className="h-4 w-4" {...chevronProps} />;
         },
       }}
       {...props}
