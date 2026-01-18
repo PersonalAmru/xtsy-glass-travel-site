@@ -19,7 +19,8 @@ export interface RoomTypeConfig {
   propertyType: string;          // XTSY Luxury, XTSY Travellers Hostel, XTSY Economy
   isBookable: boolean;           // false for OTA-only rooms
   basePrice: number;             // Base price per night in INR
-  image?: string;                // Optional room image URL
+  image?: string;                // Primary room image URL
+  images?: string[];             // Gallery images for room
 }
 
 /**
@@ -36,6 +37,73 @@ export interface RoomTypeConfig {
  * - 6-bed-mixed-economy-dorm
  * - 8-bed-mixed-economy-dorm
  */
+// Room images from Supabase storage (source of truth)
+export const ROOM_IMAGES: Record<string, string[]> = {
+  'xtsy-270': [
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140811.png',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140029.png'
+  ],
+  '4-bed-female-only-dorm': [
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/2.jpg',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/3.jpg',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/4.JPG',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/5.JPG',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/6.JPG',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/7.JPG',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/IMG_5161.png'
+  ],
+  '4-bed-mixed-female-dorm': [
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/3.jpg',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/4.JPG',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/5.jpg',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/IMG_5161.png'
+  ],
+  '6-bed-mixed-female-dorm': [
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/3.jpg',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/4.jpg',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/5.JPG',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/6.JPG',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/IMG_5160.png'
+  ],
+  '6-bed-mixed-dorm': [
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/3.jpg',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/4.jpg',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/5.JPG',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/6.JPG',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/IMG_5160.png'
+  ],
+  'king-double-room': [
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/2.jpg',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/3.JPG',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/IMG_4077.jpg'
+  ],
+  'king-triple-room': [
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/1.jpg',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/2.jpg',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/3.jpg',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/5.jpg',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/IMG_4077.jpg'
+  ],
+  '6-bed-mixed-economy-dorm': [
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/3.jpg',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/4.jpg',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/5.JPG'
+  ],
+  '8-bed-mixed-economy-dorm': [
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/4.jpg',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/5.jpg',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/6.jpg',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/8.jpg',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/9.jpg'
+  ],
+};
+
 export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
   // === LUXURY CATEGORY ===
   'xtsy-270': {
@@ -48,8 +116,9 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     totalUnits: 1,
     propertyType: 'XTSY Luxury',
     isBookable: true,
-    basePrice: 4999,
-    image: '/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png',
+    basePrice: 8500, // Weekday price (weekend: 11500)
+    image: ROOM_IMAGES['xtsy-270'][0],
+    images: ROOM_IMAGES['xtsy-270'],
   },
 
   // === HOSTEL CATEGORY ===
@@ -63,8 +132,9 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     totalUnits: 4,
     propertyType: 'XTSY Travellers Hostel',
     isBookable: true,
-    basePrice: 649,
-    image: '/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png',
+    basePrice: 850, // Original price (discounted: 765)
+    image: ROOM_IMAGES['4-bed-female-only-dorm'][0],
+    images: ROOM_IMAGES['4-bed-female-only-dorm'],
   },
 
   '4-bed-mixed-female-dorm': {
@@ -77,8 +147,9 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     totalUnits: 4,
     propertyType: 'XTSY Travellers Hostel',
     isBookable: true,
-    basePrice: 599,
-    image: '/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png',
+    basePrice: 800, // Original price (discounted: 720)
+    image: ROOM_IMAGES['4-bed-mixed-female-dorm'][0],
+    images: ROOM_IMAGES['4-bed-mixed-female-dorm'],
   },
 
   '6-bed-mixed-female-dorm': {
@@ -91,8 +162,9 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     totalUnits: 6,
     propertyType: 'XTSY Travellers Hostel',
     isBookable: true,
-    basePrice: 549,
-    image: '/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png',
+    basePrice: 750, // Original price (discounted: 675)
+    image: ROOM_IMAGES['6-bed-mixed-female-dorm'][0],
+    images: ROOM_IMAGES['6-bed-mixed-female-dorm'],
   },
 
   '6-bed-mixed-dorm': {
@@ -105,8 +177,9 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     totalUnits: 6,
     propertyType: 'XTSY Travellers Hostel',
     isBookable: true,
-    basePrice: 499,
-    image: '/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png',
+    basePrice: 700, // Original price (discounted: 630)
+    image: ROOM_IMAGES['6-bed-mixed-dorm'][0],
+    images: ROOM_IMAGES['6-bed-mixed-dorm'],
   },
 
   'king-double-room': {
@@ -119,8 +192,9 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     totalUnits: 2,
     propertyType: 'XTSY Travellers Hostel',
     isBookable: true,
-    basePrice: 1899,
-    image: '/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png',
+    basePrice: 2800, // Original price (discounted: 2520)
+    image: ROOM_IMAGES['king-double-room'][0],
+    images: ROOM_IMAGES['king-double-room'],
   },
 
   'king-triple-room': {
@@ -133,8 +207,9 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     totalUnits: 1,
     propertyType: 'XTSY Travellers Hostel',
     isBookable: true,
-    basePrice: 2299,
-    image: '/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png',
+    basePrice: 3500, // Original price (discounted: 3150)
+    image: ROOM_IMAGES['king-triple-room'][0],
+    images: ROOM_IMAGES['king-triple-room'],
   },
 
   // === ECONOMY CATEGORY (OTA-only) ===
@@ -149,7 +224,8 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     propertyType: 'XTSY Economy',
     isBookable: false,
     basePrice: 399,
-    image: '/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png',
+    image: ROOM_IMAGES['6-bed-mixed-economy-dorm'][0],
+    images: ROOM_IMAGES['6-bed-mixed-economy-dorm'],
   },
 
   '8-bed-mixed-economy-dorm': {
@@ -163,7 +239,8 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     propertyType: 'XTSY Economy',
     isBookable: false,
     basePrice: 349,
-    image: '/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png',
+    image: ROOM_IMAGES['8-bed-mixed-economy-dorm'][0],
+    images: ROOM_IMAGES['8-bed-mixed-economy-dorm'],
   },
 };
 
