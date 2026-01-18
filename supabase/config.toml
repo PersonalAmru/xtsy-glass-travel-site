@@ -61,3 +61,7 @@ verify_jwt = false
 # Invoice generation (public - generates booking and invoice)
 [functions.generate-invoice]
 verify_jwt = false
+
+# WhatsApp Business API messaging
+[functions.send-whatsapp]
+verify_jwt = false
