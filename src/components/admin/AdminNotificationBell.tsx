@@ -43,18 +43,38 @@ export const AdminNotificationBell: React.FC<AdminNotificationBellProps> = ({
 
   // Fetch notifications
   useEffect(() => {
+    let isMounted = true;
+    
     const fetchNotifications = async () => {
-      const { data, error } = await supabase
-        .from('admin_notifications')
-        .select('*')
-        .order('created_at', { ascending: false })
-        .limit(20);
+      try {
+        const { data, error } = await supabase
+          .from('admin_notifications')
+          .select('*')
+          .order('created_at', { ascending: false })
+          .limit(20);
 
-      if (error) {
-        console.error('Error fetching notifications:', error);
-      } else {
-        setNotifications(data as Notification[]);
-        setUnreadCount(data.filter((n) => !n.is_read).length);
+        if (error) {
+          console.error('Error fetching notifications:', error);
+          return;
+        }
+        
+        if (isMounted && data) {
+          // Safely transform data with default values
+          const safeNotifications = data.map((n) => ({
+            id: n.id || '',
+            type: (n.type as Notification['type']) || 'booking_update',
+            title: n.title || 'Notification',
+            message: n.message || '',
+            booking_id: n.booking_id,
+            metadata: (n.metadata as Record<string, any>) || {},
+            is_read: n.is_read ?? false,
+            created_at: n.created_at || new Date().toISOString(),
+          }));
+          setNotifications(safeNotifications);
+          setUnreadCount(safeNotifications.filter((n) => !n.is_read).length);
+        }
+      } catch (err) {
+        console.error('Failed to fetch notifications:', err);
       }
     };
 
@@ -71,23 +91,41 @@ export const AdminNotificationBell: React.FC<AdminNotificationBellProps> = ({
           table: 'admin_notifications',
         },
         (payload) => {
-          const newNotif = payload.new as Notification;
-          setNotifications((prev) => [newNotif, ...prev].slice(0, 20));
-          setUnreadCount((prev) => prev + 1);
-          
-          // Browser notification
-          if ('Notification' in window && Notification.permission === 'granted') {
-            new Notification(newNotif.title, {
-              body: newNotif.message,
-              icon: '/xtsy-favicon.png',
-              tag: newNotif.id,
-            });
+          try {
+            const n = payload.new;
+            const newNotif: Notification = {
+              id: n.id || '',
+              type: (n.type as Notification['type']) || 'booking_update',
+              title: n.title || 'Notification',
+              message: n.message || '',
+              booking_id: n.booking_id,
+              metadata: (n.metadata as Record<string, any>) || {},
+              is_read: n.is_read ?? false,
+              created_at: n.created_at || new Date().toISOString(),
+            };
+            
+            if (isMounted) {
+              setNotifications((prev) => [newNotif, ...prev].slice(0, 20));
+              setUnreadCount((prev) => prev + 1);
+              
+              // Browser notification
+              if ('Notification' in window && Notification.permission === 'granted') {
+                new Notification(newNotif.title, {
+                  body: newNotif.message,
+                  icon: '/xtsy-favicon.png',
+                  tag: newNotif.id,
+                });
+              }
+            }
+          } catch (err) {
+            console.error('Failed to process new notification:', err);
           }
         }
       )
       .subscribe();
 
     return () => {
+      isMounted = false;
       supabase.removeChannel(channel);
     };
   }, []);
@@ -203,15 +241,29 @@ export const AdminNotificationBell: React.FC<AdminNotificationBellProps> = ({
                   </div>
                 ) : (
                   notifications.map((notification) => {
-                    const Icon = notificationIcons[notification.type];
-                    const colorClass = notificationColors[notification.type];
+                    const Icon = notificationIcons[notification.type] || Bell;
+                    const colorClass = notificationColors[notification.type] || 'bg-slate-500';
+                    
+                    // Safe date parsing
+                    let timeAgo = 'Just now';
+                    try {
+                      const createdDate = new Date(notification.created_at);
+                      if (!isNaN(createdDate.getTime())) {
+                        timeAgo = formatDistanceToNow(createdDate, { addSuffix: true });
+                      }
+                    } catch {
+                      // Use default "Just now"
+                    }
                     
                     return (
                       <motion.div
                         key={notification.id}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        onClick={() => handleNotificationClick(notification)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleNotificationClick(notification);
+                        }}
                         className={cn(
                           "flex gap-3 p-4 border-b border-white/5 cursor-pointer transition-colors",
                           notification.is_read
@@ -238,7 +290,7 @@ export const AdminNotificationBell: React.FC<AdminNotificationBellProps> = ({
                             {notification.message}
                           </p>
                           <p className="text-xs text-white/30 mt-1">
-                            {formatDistanceToNow(new Date(notification.created_at), { addSuffix: true })}
+                            {timeAgo}
                           </p>
                         </div>
                       </motion.div>
