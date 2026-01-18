@@ -160,21 +160,26 @@ export const AdminNotificationBell: React.FC<AdminNotificationBellProps> = ({
       <AnimatePresence>
         {isOpen && (
           <>
+            {/* Backdrop - higher z-index to ensure it's above other elements */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-40"
+              className="fixed inset-0 bg-black/20"
+              style={{ zIndex: 9998 }}
               onClick={() => setIsOpen(false)}
             />
+            {/* Dropdown panel - solid background, very high z-index */}
             <motion.div
               initial={{ opacity: 0, y: 10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 10, scale: 0.95 }}
-              className={cn(
-                "absolute right-0 top-12 z-50 w-80 max-h-[70vh] overflow-hidden",
-                "bg-[hsl(160,35%,18%)] rounded-xl shadow-2xl border border-white/10"
-              )}
+              className="absolute right-0 top-12 w-80 max-h-[70vh] overflow-hidden rounded-xl shadow-2xl border border-slate-700"
+              style={{ 
+                zIndex: 9999, 
+                backgroundColor: 'hsl(160, 35%, 12%)',
+                isolation: 'isolate'
+              }}
             >
               {/* Header */}
               <div className="flex items-center justify-between px-4 py-3 border-b border-white/10">
