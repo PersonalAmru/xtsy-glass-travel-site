@@ -16,6 +16,7 @@ import { createEnquiry } from '@/services/enquiryService';
 import { useUserAuth } from '@/contexts/UserAuthContext';
 import { getBookableRoomTypes, RoomTypeConfig, ROOM_TYPES, ROOM_IMAGES } from '@/config/roomTypes';
 import { motion, AnimatePresence } from 'framer-motion';
+import EnquirySuccessModal from './EnquirySuccessModal';
 
 // Winter discount configuration
 const WINTER_DISCOUNT = 0.10; // 10% off
@@ -392,6 +393,14 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
   const [promotionalConsent, setPromotionalConsent] = useState(false);
   const [lightboxRoom, setLightboxRoom] = useState<BookingRoom | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [successData, setSuccessData] = useState<{
+    guestName: string;
+    checkIn: string;
+    checkOut: string;
+    guests: number;
+    roomCount: number;
+  } | null>(null);
 
   useEffect(() => {
     if (user?.profile) {
@@ -402,7 +411,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
   }, [user?.profile]);
 
   useEffect(() => {
-    if (!isOpen) {
+    if (!isOpen && !showSuccessModal) {
       setStep(1);
       setRoomSelections([]);
       setCheckIn(initialCheckIn);
@@ -418,8 +427,10 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
       setPolicyAccepted(false);
       setPromotionalConsent(false);
       setLightboxRoom(null);
+      setShowSuccessModal(false);
+      setSuccessData(null);
     }
-  }, [isOpen, initialCheckIn, initialCheckOut, initialGuests]);
+  }, [isOpen, showSuccessModal, initialCheckIn, initialCheckOut, initialGuests]);
 
   useEffect(() => {
     if (isOpen) {
@@ -582,10 +593,15 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
 
       const allSuccess = results.every(r => r.success);
       if (allSuccess) {
-        toast.success('Booking enquiry submitted!', { 
-          description: `${roomSelections.length} room(s) for ${guests} guests submitted for review.` 
+        // Store success data and show success modal instead of closing
+        setSuccessData({
+          guestName,
+          checkIn: format(checkIn, 'yyyy-MM-dd'),
+          checkOut: format(checkOut, 'yyyy-MM-dd'),
+          guests,
+          roomCount: roomSelections.reduce((sum, sel) => sum + sel.quantity, 0),
         });
-        onClose();
+        setShowSuccessModal(true);
       } else {
         const errors = results.filter(r => !r.success).map(r => r.error).join(', ');
         toast.error('Some bookings failed', { description: errors });
@@ -595,6 +611,12 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
     } finally { 
       setIsSubmitting(false); 
     }
+  };
+
+  const handleSuccessModalClose = () => {
+    setShowSuccessModal(false);
+    setSuccessData(null);
+    onClose();
   };
 
   const openLightbox = (room: BookingRoom, index: number) => {
@@ -1277,6 +1299,20 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
           />
         )}
       </AnimatePresence>
+
+      {/* Enquiry Success Modal */}
+      {successData && (
+        <EnquirySuccessModal
+          isOpen={showSuccessModal}
+          onClose={handleSuccessModalClose}
+          guestName={successData.guestName}
+          checkIn={successData.checkIn}
+          checkOut={successData.checkOut}
+          guests={successData.guests}
+          roomCount={successData.roomCount}
+          isAuthenticated={!!user}
+        />
+      )}
     </div>
   );
 
