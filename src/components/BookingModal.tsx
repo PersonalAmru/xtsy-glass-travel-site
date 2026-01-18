@@ -453,8 +453,41 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
   }, 0);
   
   const subtotal = roomTotal + addOnTotal;
-  const gstRate = 12;
-  const gstAmount = Math.round(subtotal * (gstRate / 100));
+  
+  // GST Calculation: 18% for rooms >= ₹7500/night (XTSY 270), 5% for rooms < ₹7500
+  // Add-ons always at 18% GST
+  const gstBreakdown = useMemo(() => {
+    let gst5Total = 0;  // Rooms under ₹7500/night
+    let gst18Total = 0; // Rooms ₹7500+ and add-ons
+    
+    // Calculate GST for each room based on per-night rate
+    roomSelections.forEach(sel => {
+      const room = ROOMS.find(r => r.id === sel.roomId);
+      if (!room) return;
+      const roomLineTotal = room.price * sel.quantity * nights;
+      if (room.price >= 7500) {
+        gst18Total += roomLineTotal;
+      } else {
+        gst5Total += roomLineTotal;
+      }
+    });
+    
+    // Add-ons always at 18% GST
+    gst18Total += addOnTotal;
+    
+    const gst5Amount = Math.round(gst5Total * 0.05);
+    const gst18Amount = Math.round(gst18Total * 0.18);
+    
+    return {
+      gst5Base: gst5Total,
+      gst18Base: gst18Total,
+      gst5Amount,
+      gst18Amount,
+      totalGst: gst5Amount + gst18Amount
+    };
+  }, [roomSelections, ROOMS, nights, addOnTotal]);
+  
+  const gstAmount = gstBreakdown.totalGst;
   const totalAmount = subtotal + gstAmount;
 
   const canProceed = () => {
@@ -477,7 +510,9 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
         if (!room) return { success: false, error: 'Room not found' };
 
         const roomSubtotal = room.price * sel.quantity * nights;
-        const roomGst = Math.round(roomSubtotal * (gstRate / 100));
+        // Correct GST rate based on per-night price
+        const roomGstRate = room.price >= 7500 ? 18 : 5;
+        const roomGst = Math.round(roomSubtotal * (roomGstRate / 100));
         const roomTotal = roomSubtotal + roomGst;
 
         return createEnquiry({
@@ -492,7 +527,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
           nights,
           ratePerNight: room.price,
           subtotal: roomSubtotal,
-          gstRate,
+          gstRate: room.price >= 7500 ? 18 : 5,
           gstAmount: roomGst,
           totalAmount: roomTotal,
           specialRequests: specialRequests || undefined,
@@ -953,13 +988,33 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                     placeholder="Email *" 
                     className="h-12 rounded-2xl text-base" 
                   />
-                  <Input 
-                    type="date"
-                    value={guestDOB} 
-                    onChange={(e) => setGuestDOB(e.target.value)} 
-                    placeholder="Date of Birth"
-                    className="h-12 rounded-2xl text-base" 
-                  />
+                  {/* Date of Birth with Apple-grade calendar */}
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="outline"
+                        className={cn(
+                          "h-12 w-full rounded-2xl text-base justify-start font-normal",
+                          !guestDOB && "text-muted-foreground"
+                        )}
+                      >
+                        <Calendar className="mr-2 h-4 w-4" />
+                        {guestDOB ? format(new Date(guestDOB), "dd-MM-yyyy") : "Date of Birth (DD-MM-YYYY)"}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start" sideOffset={4}>
+                      <CalendarComponent
+                        mode="single"
+                        selected={guestDOB ? new Date(guestDOB) : undefined}
+                        onSelect={(date) => setGuestDOB(date ? format(date, 'yyyy-MM-dd') : '')}
+                        disabled={(date) => date > new Date() || date < new Date("1940-01-01")}
+                        captionLayout="dropdown"
+                        fromYear={1940}
+                        toYear={new Date().getFullYear()}
+                        className="rounded-xl pointer-events-auto"
+                      />
+                    </PopoverContent>
+                  </Popover>
                   <Input 
                     type="tel" 
                     value={guestWhatsApp} 
@@ -1066,10 +1121,19 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                         <span>₹{addOnTotal.toLocaleString()}</span>
                       </div>
                     )}
-                    <div className="flex justify-between text-muted-foreground">
-                      <span>GST ({gstRate}%)</span>
-                      <span>₹{gstAmount.toLocaleString()}</span>
-                    </div>
+                    {/* GST Breakdown */}
+                    {gstBreakdown.gst5Amount > 0 && (
+                      <div className="flex justify-between text-muted-foreground">
+                        <span>GST (5% on ≤₹7.5K rooms)</span>
+                        <span>₹{gstBreakdown.gst5Amount.toLocaleString()}</span>
+                      </div>
+                    )}
+                    {gstBreakdown.gst18Amount > 0 && (
+                      <div className="flex justify-between text-muted-foreground">
+                        <span>GST (18% on premium + add-ons)</span>
+                        <span>₹{gstBreakdown.gst18Amount.toLocaleString()}</span>
+                      </div>
+                    )}
                     <div className="flex justify-between text-foreground font-bold pt-2 border-t border-border">
                       <span>Total</span>
                       <span className="text-primary">₹{totalAmount.toLocaleString()}</span>

@@ -210,7 +210,9 @@ function App() {
                 <Route path="/work-from-home" element={<LazyRoute><LazyWorkFromHome /></LazyRoute>} />
                 <Route path="/xtsy-rentals" element={<LazyRoute><LazyXTSYRentals /></LazyRoute>} />
                 <Route path="/privacy-policy" element={<LazyRoute><LazyPrivacyPolicy /></LazyRoute>} />
+                <Route path="/privacy" element={<LazyRoute><LazyPrivacyPolicy /></LazyRoute>} />
                 <Route path="/terms-of-service" element={<LazyRoute><LazyTermsOfService /></LazyRoute>} />
+                <Route path="/terms" element={<LazyRoute><LazyTermsOfService /></LazyRoute>} />
                 <Route path="/pricing-cancellation-policy" element={<LazyRoute><LazyPricingCancellationPolicy /></LazyRoute>} />
                 <Route path="/admin-login" element={<LazyRoute><AdminLogin /></LazyRoute>} />
                 <Route path="/booking" element={<LazyRoute><BookingFlow /></LazyRoute>} />
