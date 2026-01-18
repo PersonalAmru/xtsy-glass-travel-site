@@ -42,7 +42,7 @@ const ADD_ONS = [
   { id: 'food_menu', name: 'Request Breakfast & Dinner Menu', price: 0, unit: 'free', icon: '🍽️', tag: 'TAB Bistro by XTSY', description: 'We\'ll share our menu options with you' },
   { id: 'transport', name: 'Airport Pickup/Drop Service', price: 0, unit: 'enquiry', icon: '🚗', tag: 'Check Availability', description: 'Private car with driver (not shared transport)' },
   { id: 'self_drive', name: 'Self Drive Cars & Bikes', price: 0, unit: 'enquiry', icon: '🏍️', tag: 'Check Availability', description: 'Explore at your own pace with our rental options' },
-  { id: 'itinerary', name: 'Curated Itinerary + 24/7 Support', price: 99, unit: 'one-time', icon: '🗺️', description: 'Full-fledged travel support throughout your trip' },
+  { id: 'itinerary', name: 'Curated Itinerary + 24/7 Support', price: 0, unit: 'free', icon: '🗺️', tag: 'Service charges applicable', description: 'Full-fledged travel support throughout your trip' },
 ];
 
 interface BookingModalProps {
