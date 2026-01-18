@@ -29,6 +29,22 @@ const HeroSection = () => {
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
 
+  // Auto-open booking modal if user just logged in with booking intent
+  useEffect(() => {
+    if (user) {
+      const pendingBooking = sessionStorage.getItem('pendingBookingIntent');
+      if (pendingBooking) {
+        sessionStorage.removeItem('pendingBookingIntent');
+        const intent = JSON.parse(pendingBooking);
+        if (intent.checkIn) setCheckIn(intent.checkIn);
+        if (intent.checkOut) setCheckOut(intent.checkOut);
+        if (intent.guests) setGuests(intent.guests);
+        // Small delay to ensure state is set
+        setTimeout(() => setBookingModalOpen(true), 100);
+      }
+    }
+  }, [user]);
+
   // Removed scroll-based fade transforms - hero stays visible
 
   // Supabase-backed counter (deduplicated via context)
@@ -98,6 +114,10 @@ const HeroSection = () => {
   const handleSearch = () => {
     // Check if user is logged in
     if (!user) {
+      // Store booking intent to resume after login
+      sessionStorage.setItem('pendingBookingIntent', JSON.stringify({
+        checkIn, checkOut, guests
+      }));
       setShowLoginPrompt(true);
       return;
     }
