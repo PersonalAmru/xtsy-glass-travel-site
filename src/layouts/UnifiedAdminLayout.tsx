@@ -31,6 +31,7 @@ import {
   ChevronLeft,
   MessageSquare,
   Sparkles,
+  MessageCircle,
 } from 'lucide-react';
 
 interface UnifiedAdminLayoutProps {
@@ -49,6 +50,7 @@ const menuItems = [
   { id: 'finance', label: 'Finance & Settlements', icon: DollarSign, path: '/admin/finance' },
   { id: 'gst', label: 'GST & Compliance', icon: FileText, path: '/admin/gst' },
   { id: 'reviews', label: 'Reviews', icon: Star, path: '/admin/reviews' },
+  { id: 'whatsapp', label: 'WhatsApp Templates', icon: MessageCircle, path: '/admin/whatsapp' },
   { id: 'audit', label: 'Audit Logs', icon: ClipboardList, path: '/admin/audit' },
 ];
 

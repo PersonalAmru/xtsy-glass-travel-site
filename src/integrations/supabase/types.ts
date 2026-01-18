@@ -3267,6 +3267,45 @@ export type Database = {
         }
         Relationships: []
       }
+      whatsapp_templates: {
+        Row: {
+          created_at: string
+          cta_button_text: string | null
+          cta_button_url: string | null
+          id: string
+          is_active: boolean | null
+          message_body: string
+          template_key: string
+          template_name: string
+          updated_at: string
+          variables_hint: string | null
+        }
+        Insert: {
+          created_at?: string
+          cta_button_text?: string | null
+          cta_button_url?: string | null
+          id?: string
+          is_active?: boolean | null
+          message_body: string
+          template_key: string
+          template_name: string
+          updated_at?: string
+          variables_hint?: string | null
+        }
+        Update: {
+          created_at?: string
+          cta_button_text?: string | null
+          cta_button_url?: string | null
+          id?: string
+          is_active?: boolean | null
+          message_body?: string
+          template_key?: string
+          template_name?: string
+          updated_at?: string
+          variables_hint?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       newsletter_stats: {
