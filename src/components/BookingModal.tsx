@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { 
   X, ChevronLeft, ChevronRight, Users, Calendar, Plus, Minus, Check, Loader2, 
-  Bed, Home, ZoomIn, Sparkles, Shield, MapPin, Star, Camera
+  Bed, Home, ZoomIn, Sparkles, Shield, MapPin, Star, Camera, ChevronDown
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -43,6 +43,35 @@ const ADD_ONS = [
   { id: 'transport', name: 'Airport Pickup/Drop Service', price: 0, unit: 'enquiry', icon: '🚗', tag: 'Check Availability', description: 'Private car with driver (not shared transport)' },
   { id: 'self_drive', name: 'Self Drive Cars & Bikes', price: 0, unit: 'enquiry', icon: '🏍️', tag: 'Check Availability', description: 'Explore at your own pace with our rental options' },
   { id: 'itinerary', name: 'Curated Itinerary + 24/7 Support', price: 0, unit: 'free', icon: '🗺️', tag: 'Service charges applicable', description: 'Full-fledged travel support throughout your trip' },
+];
+
+// Country codes for international compliance
+const COUNTRY_CODES = [
+  { code: '+91', country: 'India', flag: '🇮🇳' },
+  { code: '+1', country: 'USA/Canada', flag: '🇺🇸' },
+  { code: '+44', country: 'UK', flag: '🇬🇧' },
+  { code: '+61', country: 'Australia', flag: '🇦🇺' },
+  { code: '+49', country: 'Germany', flag: '🇩🇪' },
+  { code: '+33', country: 'France', flag: '🇫🇷' },
+  { code: '+971', country: 'UAE', flag: '🇦🇪' },
+  { code: '+65', country: 'Singapore', flag: '🇸🇬' },
+  { code: '+81', country: 'Japan', flag: '🇯🇵' },
+  { code: '+82', country: 'South Korea', flag: '🇰🇷' },
+  { code: '+86', country: 'China', flag: '🇨🇳' },
+  { code: '+977', country: 'Nepal', flag: '🇳🇵' },
+  { code: '+880', country: 'Bangladesh', flag: '🇧🇩' },
+  { code: '+94', country: 'Sri Lanka', flag: '🇱🇰' },
+  { code: '+60', country: 'Malaysia', flag: '🇲🇾' },
+  { code: '+66', country: 'Thailand', flag: '🇹🇭' },
+  { code: '+31', country: 'Netherlands', flag: '🇳🇱' },
+  { code: '+39', country: 'Italy', flag: '🇮🇹' },
+  { code: '+34', country: 'Spain', flag: '🇪🇸' },
+  { code: '+7', country: 'Russia', flag: '🇷🇺' },
+  { code: '+55', country: 'Brazil', flag: '🇧🇷' },
+  { code: '+27', country: 'South Africa', flag: '🇿🇦' },
+  { code: '+64', country: 'New Zealand', flag: '🇳🇿' },
+  { code: '+353', country: 'Ireland', flag: '🇮🇪' },
+  { code: '+41', country: 'Switzerland', flag: '🇨🇭' },
 ];
 
 interface BookingModalProps {
@@ -354,6 +383,8 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
   const [guestEmail, setGuestEmail] = useState('');
   const [guestPhone, setGuestPhone] = useState('');
   const [guestWhatsApp, setGuestWhatsApp] = useState('');
+  const [countryCode, setCountryCode] = useState('+91');
+  const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
   const [guestDOB, setGuestDOB] = useState('');
   const [guestCity, setGuestCity] = useState('');
   const [guestPincode, setGuestPincode] = useState('');
@@ -381,6 +412,8 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
       setSelectedAddOns({});
       setSpecialRequests('');
       setGuestWhatsApp('');
+      setCountryCode('+91');
+      setIsCountryDropdownOpen(false);
       setGuestDOB('');
       setGuestCity('');
       setGuestPincode('');
@@ -398,6 +431,20 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
     }
     return () => { document.body.style.overflow = ''; };
   }, [isOpen]);
+
+  // Close country dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (isCountryDropdownOpen) {
+        const target = e.target as HTMLElement;
+        if (!target.closest('[data-country-dropdown]')) {
+          setIsCountryDropdownOpen(false);
+        }
+      }
+    };
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [isCountryDropdownOpen]);
 
   const getRoomQuantity = useCallback((roomId: string) => {
     return roomSelections.find(s => s.roomId === roomId)?.quantity || 0;
@@ -1015,13 +1062,54 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                       />
                     </PopoverContent>
                   </Popover>
-                  <Input 
-                    type="tel" 
-                    value={guestWhatsApp} 
-                    onChange={(e) => setGuestWhatsApp(e.target.value)} 
-                    placeholder="WhatsApp Number *" 
-                    className="h-12 rounded-2xl text-base text-foreground bg-background border-border" 
-                  />
+                  {/* WhatsApp with Country Code Selector */}
+                  <div className="flex gap-2">
+                    {/* Country Code Dropdown */}
+                    <div className="relative" data-country-dropdown>
+                      <button
+                        type="button"
+                        onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
+                        className="h-12 px-3 rounded-2xl border border-border bg-background text-foreground flex items-center gap-1 hover:bg-muted transition-colors min-w-[90px]"
+                      >
+                        <span className="text-base">{COUNTRY_CODES.find(c => c.code === countryCode)?.flag}</span>
+                        <span className="text-sm font-medium">{countryCode}</span>
+                        <ChevronDown className={cn("w-3.5 h-3.5 text-muted-foreground transition-transform", isCountryDropdownOpen && "rotate-180")} />
+                      </button>
+                      
+                      {isCountryDropdownOpen && (
+                        <div className="absolute top-full left-0 mt-1 w-56 max-h-60 overflow-y-auto bg-background border border-border rounded-xl shadow-xl z-[100001]">
+                          {COUNTRY_CODES.map((country) => (
+                            <button
+                              key={country.code}
+                              type="button"
+                              onClick={() => {
+                                setCountryCode(country.code);
+                                setIsCountryDropdownOpen(false);
+                              }}
+                              className={cn(
+                                "w-full px-3 py-2.5 flex items-center gap-3 text-left hover:bg-muted transition-colors text-foreground",
+                                countryCode === country.code && "bg-primary/10"
+                              )}
+                            >
+                              <span className="text-lg">{country.flag}</span>
+                              <span className="text-sm font-medium">{country.code}</span>
+                              <span className="text-xs text-muted-foreground">{country.country}</span>
+                              {countryCode === country.code && <Check className="w-4 h-4 ml-auto text-primary" />}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    
+                    {/* WhatsApp Number Input */}
+                    <Input 
+                      type="tel" 
+                      value={guestWhatsApp} 
+                      onChange={(e) => setGuestWhatsApp(e.target.value.replace(/\D/g, ''))} 
+                      placeholder="WhatsApp Number *" 
+                      className="h-12 rounded-2xl text-base text-foreground bg-background border-border flex-1" 
+                    />
+                  </div>
                   <div className="grid grid-cols-2 gap-3">
                     <Input 
                       value={guestCity} 
