@@ -1033,6 +1033,42 @@ export type Database = {
           },
         ]
       }
+      bot_detection_logs: {
+        Row: {
+          action_taken: string | null
+          created_at: string | null
+          detection_score: number | null
+          detection_signals: Json | null
+          detection_type: string
+          id: string
+          is_confirmed_bot: boolean | null
+          session_id: string | null
+          visitor_id: string | null
+        }
+        Insert: {
+          action_taken?: string | null
+          created_at?: string | null
+          detection_score?: number | null
+          detection_signals?: Json | null
+          detection_type: string
+          id?: string
+          is_confirmed_bot?: boolean | null
+          session_id?: string | null
+          visitor_id?: string | null
+        }
+        Update: {
+          action_taken?: string | null
+          created_at?: string | null
+          detection_score?: number | null
+          detection_signals?: Json | null
+          detection_type?: string
+          id?: string
+          is_confirmed_bot?: boolean | null
+          session_id?: string | null
+          visitor_id?: string | null
+        }
+        Relationships: []
+      }
       channel_strategy: {
         Row: {
           avg_lead_time_days: number | null
@@ -1123,6 +1159,66 @@ export type Database = {
           total_bookings?: number | null
           total_revenue?: number | null
           updated_at?: string
+        }
+        Relationships: []
+      }
+      consent_records: {
+        Row: {
+          ad_personalization: boolean | null
+          ad_storage: boolean | null
+          ad_user_data: boolean | null
+          analytics_storage: boolean | null
+          consent_method: string | null
+          consent_version: string | null
+          created_at: string | null
+          functionality_storage: boolean | null
+          granted_at: string | null
+          id: string
+          ip_hash: string | null
+          revoked_at: string | null
+          security_storage: boolean | null
+          session_id: string | null
+          updated_at: string | null
+          user_agent: string | null
+          visitor_id: string
+        }
+        Insert: {
+          ad_personalization?: boolean | null
+          ad_storage?: boolean | null
+          ad_user_data?: boolean | null
+          analytics_storage?: boolean | null
+          consent_method?: string | null
+          consent_version?: string | null
+          created_at?: string | null
+          functionality_storage?: boolean | null
+          granted_at?: string | null
+          id?: string
+          ip_hash?: string | null
+          revoked_at?: string | null
+          security_storage?: boolean | null
+          session_id?: string | null
+          updated_at?: string | null
+          user_agent?: string | null
+          visitor_id: string
+        }
+        Update: {
+          ad_personalization?: boolean | null
+          ad_storage?: boolean | null
+          ad_user_data?: boolean | null
+          analytics_storage?: boolean | null
+          consent_method?: string | null
+          consent_version?: string | null
+          created_at?: string | null
+          functionality_storage?: boolean | null
+          granted_at?: string | null
+          id?: string
+          ip_hash?: string | null
+          revoked_at?: string | null
+          security_storage?: boolean | null
+          session_id?: string | null
+          updated_at?: string | null
+          user_agent?: string | null
+          visitor_id?: string
         }
         Relationships: []
       }
@@ -2999,6 +3095,395 @@ export type Database = {
           },
         ]
       }
+      traffic_interaction_events: {
+        Row: {
+          created_at: string | null
+          element_class: string | null
+          element_id: string | null
+          element_text: string | null
+          event_category: string | null
+          event_name: string
+          event_timestamp: string | null
+          event_type: string
+          id: string
+          is_validated: boolean | null
+          metadata: Json | null
+          page_url: string | null
+          session_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          element_class?: string | null
+          element_id?: string | null
+          element_text?: string | null
+          event_category?: string | null
+          event_name: string
+          event_timestamp?: string | null
+          event_type: string
+          id?: string
+          is_validated?: boolean | null
+          metadata?: Json | null
+          page_url?: string | null
+          session_id: string
+        }
+        Update: {
+          created_at?: string | null
+          element_class?: string | null
+          element_id?: string | null
+          element_text?: string | null
+          event_category?: string | null
+          event_name?: string
+          event_timestamp?: string | null
+          event_type?: string
+          id?: string
+          is_validated?: boolean | null
+          metadata?: Json | null
+          page_url?: string | null
+          session_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "traffic_interaction_events_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "traffic_sessions"
+            referencedColumns: ["session_id"]
+          },
+        ]
+      }
+      traffic_lead_events: {
+        Row: {
+          contact_hash: string | null
+          contact_type: string | null
+          created_at: string | null
+          first_touch_source: string | null
+          id: string
+          last_touch_source: string | null
+          lead_source: string | null
+          lead_stage: string
+          lead_value: number | null
+          session_id: string
+          visitor_id: string | null
+        }
+        Insert: {
+          contact_hash?: string | null
+          contact_type?: string | null
+          created_at?: string | null
+          first_touch_source?: string | null
+          id?: string
+          last_touch_source?: string | null
+          lead_source?: string | null
+          lead_stage: string
+          lead_value?: number | null
+          session_id: string
+          visitor_id?: string | null
+        }
+        Update: {
+          contact_hash?: string | null
+          contact_type?: string | null
+          created_at?: string | null
+          first_touch_source?: string | null
+          id?: string
+          last_touch_source?: string | null
+          lead_source?: string | null
+          lead_stage?: string
+          lead_value?: number | null
+          session_id?: string
+          visitor_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "traffic_lead_events_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "traffic_sessions"
+            referencedColumns: ["session_id"]
+          },
+        ]
+      }
+      traffic_page_events: {
+        Row: {
+          created_at: string | null
+          entry_timestamp: string | null
+          exit_timestamp: string | null
+          id: string
+          interaction_count: number | null
+          is_entrance: boolean | null
+          is_exit: boolean | null
+          page_path: string | null
+          page_title: string | null
+          page_url: string
+          referrer: string | null
+          scroll_depth: number | null
+          session_id: string
+          time_spent_seconds: number | null
+        }
+        Insert: {
+          created_at?: string | null
+          entry_timestamp?: string | null
+          exit_timestamp?: string | null
+          id?: string
+          interaction_count?: number | null
+          is_entrance?: boolean | null
+          is_exit?: boolean | null
+          page_path?: string | null
+          page_title?: string | null
+          page_url: string
+          referrer?: string | null
+          scroll_depth?: number | null
+          session_id: string
+          time_spent_seconds?: number | null
+        }
+        Update: {
+          created_at?: string | null
+          entry_timestamp?: string | null
+          exit_timestamp?: string | null
+          id?: string
+          interaction_count?: number | null
+          is_entrance?: boolean | null
+          is_exit?: boolean | null
+          page_path?: string | null
+          page_title?: string | null
+          page_url?: string
+          referrer?: string | null
+          scroll_depth?: number | null
+          session_id?: string
+          time_spent_seconds?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "traffic_page_events_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "traffic_sessions"
+            referencedColumns: ["session_id"]
+          },
+        ]
+      }
+      traffic_sessions: {
+        Row: {
+          bot_likelihood_score: number | null
+          browser: string | null
+          city: string | null
+          click_quality_score: number | null
+          consent_granted_at: string | null
+          consent_state: Json | null
+          country: string | null
+          country_code: string | null
+          created_at: string | null
+          device_type: string | null
+          duration_seconds: number | null
+          ended_at: string | null
+          exit_page: string | null
+          id: string
+          intent_category: string | null
+          ip_hash: string | null
+          is_bot: boolean | null
+          is_bounce: boolean | null
+          is_validated: boolean | null
+          landing_page: string | null
+          last_activity_at: string | null
+          latitude: number | null
+          longitude: number | null
+          max_scroll_depth: number | null
+          operating_system: string | null
+          page_views: number | null
+          referrer_medium: string | null
+          referrer_source: string | null
+          referrer_url: string | null
+          screen_height: number | null
+          screen_width: number | null
+          sent_to_ga4: boolean | null
+          sent_to_ga4_at: string | null
+          session_id: string
+          state: string | null
+          timezone: string | null
+          total_interactions: number | null
+          traffic_quality: string | null
+          unified_intent_score: number | null
+          user_device_tier: string | null
+          utm_campaign: string | null
+          utm_content: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          utm_term: string | null
+          visitor_id: string
+        }
+        Insert: {
+          bot_likelihood_score?: number | null
+          browser?: string | null
+          city?: string | null
+          click_quality_score?: number | null
+          consent_granted_at?: string | null
+          consent_state?: Json | null
+          country?: string | null
+          country_code?: string | null
+          created_at?: string | null
+          device_type?: string | null
+          duration_seconds?: number | null
+          ended_at?: string | null
+          exit_page?: string | null
+          id?: string
+          intent_category?: string | null
+          ip_hash?: string | null
+          is_bot?: boolean | null
+          is_bounce?: boolean | null
+          is_validated?: boolean | null
+          landing_page?: string | null
+          last_activity_at?: string | null
+          latitude?: number | null
+          longitude?: number | null
+          max_scroll_depth?: number | null
+          operating_system?: string | null
+          page_views?: number | null
+          referrer_medium?: string | null
+          referrer_source?: string | null
+          referrer_url?: string | null
+          screen_height?: number | null
+          screen_width?: number | null
+          sent_to_ga4?: boolean | null
+          sent_to_ga4_at?: string | null
+          session_id: string
+          state?: string | null
+          timezone?: string | null
+          total_interactions?: number | null
+          traffic_quality?: string | null
+          unified_intent_score?: number | null
+          user_device_tier?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
+          visitor_id: string
+        }
+        Update: {
+          bot_likelihood_score?: number | null
+          browser?: string | null
+          city?: string | null
+          click_quality_score?: number | null
+          consent_granted_at?: string | null
+          consent_state?: Json | null
+          country?: string | null
+          country_code?: string | null
+          created_at?: string | null
+          device_type?: string | null
+          duration_seconds?: number | null
+          ended_at?: string | null
+          exit_page?: string | null
+          id?: string
+          intent_category?: string | null
+          ip_hash?: string | null
+          is_bot?: boolean | null
+          is_bounce?: boolean | null
+          is_validated?: boolean | null
+          landing_page?: string | null
+          last_activity_at?: string | null
+          latitude?: number | null
+          longitude?: number | null
+          max_scroll_depth?: number | null
+          operating_system?: string | null
+          page_views?: number | null
+          referrer_medium?: string | null
+          referrer_source?: string | null
+          referrer_url?: string | null
+          screen_height?: number | null
+          screen_width?: number | null
+          sent_to_ga4?: boolean | null
+          sent_to_ga4_at?: string | null
+          session_id?: string
+          state?: string | null
+          timezone?: string | null
+          total_interactions?: number | null
+          traffic_quality?: string | null
+          unified_intent_score?: number | null
+          user_device_tier?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
+          visitor_id?: string
+        }
+        Relationships: []
+      }
+      traffic_validated_events: {
+        Row: {
+          adjusted_conversion_value: number | null
+          click_quality_score: number | null
+          conversion_value: number | null
+          created_at: string | null
+          currency: string | null
+          event_category: string | null
+          event_name: string
+          id: string
+          intent_category: string | null
+          sent_to_ads: boolean | null
+          sent_to_ads_at: string | null
+          sent_to_ga4: boolean | null
+          sent_to_ga4_at: string | null
+          session_id: string
+          unified_intent_score: number | null
+          user_device_tier: string | null
+          validation_passed: boolean
+          validation_reason: string | null
+          validation_rules_met: Json | null
+          value_multiplier: number | null
+        }
+        Insert: {
+          adjusted_conversion_value?: number | null
+          click_quality_score?: number | null
+          conversion_value?: number | null
+          created_at?: string | null
+          currency?: string | null
+          event_category?: string | null
+          event_name: string
+          id?: string
+          intent_category?: string | null
+          sent_to_ads?: boolean | null
+          sent_to_ads_at?: string | null
+          sent_to_ga4?: boolean | null
+          sent_to_ga4_at?: string | null
+          session_id: string
+          unified_intent_score?: number | null
+          user_device_tier?: string | null
+          validation_passed?: boolean
+          validation_reason?: string | null
+          validation_rules_met?: Json | null
+          value_multiplier?: number | null
+        }
+        Update: {
+          adjusted_conversion_value?: number | null
+          click_quality_score?: number | null
+          conversion_value?: number | null
+          created_at?: string | null
+          currency?: string | null
+          event_category?: string | null
+          event_name?: string
+          id?: string
+          intent_category?: string | null
+          sent_to_ads?: boolean | null
+          sent_to_ads_at?: string | null
+          sent_to_ga4?: boolean | null
+          sent_to_ga4_at?: string | null
+          session_id?: string
+          unified_intent_score?: number | null
+          user_device_tier?: string | null
+          validation_passed?: boolean
+          validation_reason?: string | null
+          validation_rules_met?: Json | null
+          value_multiplier?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "traffic_validated_events_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "traffic_sessions"
+            referencedColumns: ["session_id"]
+          },
+        ]
+      }
       traveller_events: {
         Row: {
           city: string | null
@@ -3554,6 +4039,15 @@ export type Database = {
         Returns: number
       }
       calculate_spend_tier: { Args: { p_visitor_id: string }; Returns: string }
+      categorize_intent: { Args: { score: number }; Returns: string }
+      categorize_traffic_quality: {
+        Args: {
+          bot_likelihood: number
+          intent_score: number
+          is_bounce: boolean
+        }
+        Returns: string
+      }
       check_idempotency: {
         Args: {
           p_key: string
@@ -3583,6 +4077,17 @@ export type Database = {
       cleanup_expired_rate_limits: { Args: never; Returns: undefined }
       cleanup_rate_limits: { Args: never; Returns: undefined }
       cleanup_stale_realtime_visitors: { Args: never; Returns: number }
+      compute_intent_score: {
+        Args: {
+          p_bot_likelihood: number
+          p_device_tier: string
+          p_duration_seconds: number
+          p_interaction_count: number
+          p_page_views: number
+          p_scroll_depth: number
+        }
+        Returns: number
+      }
       create_booking_secure: {
         Args: {
           p_address?: string
