@@ -22,11 +22,12 @@ interface ConsentBannerProps {
 const ConsentBanner: React.FC<ConsentBannerProps> = ({ onClose }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
+  // Default all consent options to enabled - user can explicitly turn off
   const [preferences, setPreferences] = useState<ConsentPreferences>({
     necessary: true,
-    analytics: false,
-    marketing: false,
-    personalization: false,
+    analytics: true,
+    marketing: true,
+    personalization: true,
   });
   
   useEffect(() => {
