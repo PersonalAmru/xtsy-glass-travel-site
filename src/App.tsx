@@ -17,6 +17,8 @@ import { EnhancedAnalyticsProvider } from "./hooks/useEnhancedAnalytics";
 import { HappyGuestsProvider } from "./contexts/HappyGuestsContext";
 import { HotjarTracking } from "./components/HotjarTracking";
 import { UserAuthProvider } from "./contexts/UserAuthContext";
+import ConsentBanner from "./components/consent/ConsentBanner";
+import { TrafficAnalyticsProvider } from "./hooks/useTrafficAnalytics";
 
 // Optimized lazy loading with faster retry and better chunk handling
 const createLazyComponent = (importFn: () => Promise<any>) => {
@@ -71,6 +73,8 @@ const AdminAuditLogs = createLazyComponent(() => import("./pages/admin/AdminAudi
 const AdminChannels = createLazyComponent(() => import("./pages/admin/AdminChannels"));
 const AdminDemand = createLazyComponent(() => import("./pages/admin/AdminDemand"));
 const AdminWhatsAppTemplates = createLazyComponent(() => import("./pages/admin/AdminWhatsAppTemplates"));
+const LiveTrafficCommandCenter = createLazyComponent(() => import("./pages/admin/LiveTrafficCommandCenter"));
+
 // Franchise pages
 const FranchiseLogin = createLazyComponent(() => import("./pages/franchise/FranchiseLogin"));
 const FranchiseDashboard = createLazyComponent(() => import("./pages/franchise/FranchiseDashboard"));
@@ -181,10 +185,12 @@ function App() {
         <PerformanceMonitor />
         <HappyGuestsProvider>
           <UserAuthProvider>
-            <EnhancedAnalyticsProvider>
-              <HotjarTracking />
-              <TooltipProvider>
-              <Toaster />
+            <TrafficAnalyticsProvider>
+              <EnhancedAnalyticsProvider>
+                <HotjarTracking />
+                <ConsentBanner />
+                <TooltipProvider>
+                <Toaster />
               <Sonner />
               <Routes>
                 <Route path="/" element={<Index />} />
@@ -224,6 +230,7 @@ function App() {
                 <Route path="/admin/channels" element={<LazyRoute><AdminChannels /></LazyRoute>} />
                 <Route path="/admin/demand" element={<LazyRoute><AdminDemand /></LazyRoute>} />
                 <Route path="/admin/whatsapp" element={<LazyRoute><AdminWhatsAppTemplates /></LazyRoute>} />
+                <Route path="/admin/traffic" element={<LazyRoute><LiveTrafficCommandCenter /></LazyRoute>} />
                 {/* Franchise Routes */}
                 <Route path="/franchise/login" element={<LazyRoute><FranchiseLogin /></LazyRoute>} />
                 <Route path="/franchise" element={<LazyRoute><FranchiseDashboard /></LazyRoute>} />
@@ -231,7 +238,8 @@ function App() {
                 <Route path="*" element={<NotFound />} />
               </Routes>
               </TooltipProvider>
-            </EnhancedAnalyticsProvider>
+              </EnhancedAnalyticsProvider>
+            </TrafficAnalyticsProvider>
           </UserAuthProvider>
         </HappyGuestsProvider>
       </div>

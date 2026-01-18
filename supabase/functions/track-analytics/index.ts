@@ -643,6 +643,29 @@ Deno.serve(async (req) => {
         
         break;
       }
+
+      // Session end for traffic_sessions table
+      case 'session-end': {
+        const sessionUpdate = {
+          ended_at: data.ended_at || new Date().toISOString(),
+          duration_seconds: data.duration_seconds || 0,
+          exit_page: data.exit_page,
+          max_scroll_depth: data.max_scroll_depth || 0,
+          total_interactions: data.total_interactions || 0,
+          unified_intent_score: data.unified_intent_score || 0,
+          intent_category: data.intent_category || 'low',
+          click_quality_score: data.click_quality_score || 50,
+          traffic_quality: data.traffic_quality || 'medium',
+          last_activity_at: new Date().toISOString(),
+        };
+
+        await supabase
+          .from('traffic_sessions')
+          .update(sessionUpdate)
+          .eq('session_id', data.session_id);
+
+        break;
+      }
     }
 
     return new Response(JSON.stringify({ success: true }), {
