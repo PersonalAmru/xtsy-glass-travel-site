@@ -95,6 +95,8 @@ const HeroSection = () => {
   }, []);
 
   const handleSearch = () => {
+    console.log('[HeroSection] handleSearch triggered');
+    
     // Anti-spam cooldown
     const COOLDOWN_MS = 1500;
     const LAST_KEY = 'xtsy_hg_last_inc';
@@ -107,15 +109,18 @@ const HeroSection = () => {
 
     // Validate fields
     if (!checkIn || !checkOut || !guests) {
+      console.log('[HeroSection] Validation failed: missing fields', { checkIn, checkOut, guests });
       alert("Please fill in all search fields");
       return;
     }
     if (checkIn === checkOut) {
+      console.log('[HeroSection] Validation failed: same dates');
       alert("Check-out date cannot be the same as check-in date. Please select a different date.");
       return;
     }
     const guestCount = parseInt(guests);
     if (guestCount > 20) {
+      console.log('[HeroSection] Too many guests:', guestCount);
       alert("For more than 20 guests, please use B2B Corporate Booking or Group Booking options available below.");
       const el = document.querySelector('#group-booking-section');
       if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -123,6 +128,7 @@ const HeroSection = () => {
     }
 
     // Open booking modal directly - no login required
+    console.log('[HeroSection] Opening booking modal');
     setBookingModalOpen(true);
   };
 
