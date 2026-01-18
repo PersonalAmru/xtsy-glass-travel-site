@@ -50,6 +50,47 @@ export type Database = {
         }
         Relationships: []
       }
+      admin_security_alerts: {
+        Row: {
+          alert_message: string
+          alert_title: string
+          created_at: string
+          id: string
+          intrusion_log_id: string | null
+          is_read: boolean | null
+          read_at: string | null
+          severity: string
+        }
+        Insert: {
+          alert_message: string
+          alert_title: string
+          created_at?: string
+          id?: string
+          intrusion_log_id?: string | null
+          is_read?: boolean | null
+          read_at?: string | null
+          severity?: string
+        }
+        Update: {
+          alert_message?: string
+          alert_title?: string
+          created_at?: string
+          id?: string
+          intrusion_log_id?: string | null
+          is_read?: boolean | null
+          read_at?: string | null
+          severity?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "admin_security_alerts_intrusion_log_id_fkey"
+            columns: ["intrusion_log_id"]
+            isOneToOne: false
+            referencedRelation: "security_intrusion_logs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       analytics_conversions: {
         Row: {
           conversion_value: number | null
@@ -2841,6 +2882,57 @@ export type Database = {
           resolved_by?: string | null
           severity?: string
           user_id?: string | null
+        }
+        Relationships: []
+      }
+      security_intrusion_logs: {
+        Row: {
+          acknowledged_at: string | null
+          acknowledged_by: string | null
+          attempt_details: Json | null
+          created_at: string
+          device_fingerprint: string | null
+          device_info: Json | null
+          email: string | null
+          event_type: string
+          geo_location: Json | null
+          id: string
+          ip_address: string | null
+          is_acknowledged: boolean | null
+          severity: string
+          user_agent: string | null
+        }
+        Insert: {
+          acknowledged_at?: string | null
+          acknowledged_by?: string | null
+          attempt_details?: Json | null
+          created_at?: string
+          device_fingerprint?: string | null
+          device_info?: Json | null
+          email?: string | null
+          event_type: string
+          geo_location?: Json | null
+          id?: string
+          ip_address?: string | null
+          is_acknowledged?: boolean | null
+          severity?: string
+          user_agent?: string | null
+        }
+        Update: {
+          acknowledged_at?: string | null
+          acknowledged_by?: string | null
+          attempt_details?: Json | null
+          created_at?: string
+          device_fingerprint?: string | null
+          device_info?: Json | null
+          email?: string | null
+          event_type?: string
+          geo_location?: Json | null
+          id?: string
+          ip_address?: string | null
+          is_acknowledged?: boolean | null
+          severity?: string
+          user_agent?: string | null
         }
         Relationships: []
       }

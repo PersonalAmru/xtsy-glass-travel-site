@@ -3,6 +3,7 @@
  * Email/Password only, no public link exposure
  * SECURITY: Complete session isolation from user auth
  * CRITICAL: Admin auth is completely separate from user auth
+ * SECURITY LOGGING: All login attempts are logged with device fingerprint and geo-location
  */
 
 import { useState, useEffect, useRef } from "react";
@@ -14,6 +15,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Shield, Mail, Lock, Eye, EyeOff, Loader2, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { logAdminLoginAttempt, logUnauthorizedAccess } from "@/services/securityLoggingService";
 
 // Admin session isolation keys - MUST be different from user session
 const ADMIN_SESSION_KEY = 'xtsy_admin_session';
@@ -21,6 +23,9 @@ const ADMIN_AUTH_TIMESTAMP = 'xtsy_admin_auth_ts';
 const USER_SESSION_KEY = 'xtsy_user_session';
 const ADMIN_FLOW_KEY = 'xtsy_admin_auth_flow';
 const ADMIN_USER_ID = 'xtsy_admin_user_id';
+
+// Track failed attempts for brute force detection
+const FAILED_ATTEMPTS_KEY = 'xtsy_admin_failed_attempts';
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
@@ -33,6 +38,8 @@ const AdminLogin = () => {
   // SECURITY: Complete session isolation on mount
   useEffect(() => {
     mountedRef.current = true;
+    
+    console.log('[AdminLogin] Page loaded - monitoring for security events');
     
     // Mark admin login flow IMMEDIATELY - this prevents UserAuthContext from picking up the session
     sessionStorage.setItem('xtsy_auth_flow', 'admin');
@@ -61,6 +68,8 @@ const AdminLogin = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    console.log('[AdminLogin] Login attempt initiated for:', email);
+    
     // Basic validation only - no email checking client-side
     if (!email.trim() || !password) {
       toast.error("Please enter both email and password.");
@@ -75,7 +84,6 @@ const AdminLogin = () => {
       localStorage.setItem(ADMIN_FLOW_KEY, 'true');
       
       // SECURITY: Sign out any existing session first to ensure clean admin login
-      // Use 'global' scope to ensure complete signout
       await supabase.auth.signOut({ scope: 'global' });
       
       // CRITICAL: Clear ALL session markers to prevent cross-contamination
@@ -85,12 +93,14 @@ const AdminLogin = () => {
       localStorage.removeItem(ADMIN_USER_ID);
       sessionStorage.removeItem('xtsy_user_redirect');
       
-      // Small delay to ensure complete signout and session cleanup
+      // Small delay to ensure complete signout
       await new Promise(resolve => setTimeout(resolve, 200));
       
       // Re-mark as admin flow after cleanup
       sessionStorage.setItem('xtsy_auth_flow', 'admin');
       localStorage.setItem(ADMIN_FLOW_KEY, 'true');
+      
+      console.log('[AdminLogin] Attempting Supabase auth for:', email);
       
       const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
         email: email.trim(),
@@ -100,15 +110,27 @@ const AdminLogin = () => {
       if (!mountedRef.current) return;
 
       if (authError) {
+        console.log('[AdminLogin] Auth error:', authError.message);
+        
+        // SECURITY LOG: Failed login attempt
+        await logAdminLoginAttempt(email.trim(), false, `Auth error: ${authError.message}`);
+        
         toast.error("Invalid credentials. Please try again.");
         return;
       }
 
       if (authData.user) {
+        console.log('[AdminLogin] User authenticated, checking admin access for:', authData.user.email);
+        
         // Check if email is the designated admin email
         const isAdminEmail = authData.user.email === 'xtsy.social@gmail.com';
         
         if (!isAdminEmail) {
+          console.log('[AdminLogin] 🚨 UNAUTHORIZED ACCESS ATTEMPT - Non-admin email:', authData.user.email);
+          
+          // CRITICAL SECURITY LOG: Unauthorized access attempt
+          await logUnauthorizedAccess(email.trim(), 'admin_console');
+          
           await supabase.auth.signOut({ scope: 'global' });
           localStorage.removeItem(ADMIN_FLOW_KEY);
           toast.error("Access denied.");
@@ -116,12 +138,18 @@ const AdminLogin = () => {
         }
 
         // Server-side role verification
+        console.log('[AdminLogin] Verifying admin role for user:', authData.user.id);
+        
         const { data: isAdmin, error: roleError } = await supabase.rpc('has_role', {
           _user_id: authData.user.id,
           _role: 'admin'
         });
 
         if (roleError) {
+          console.log('[AdminLogin] Role check error:', roleError);
+          
+          await logAdminLoginAttempt(email.trim(), false, `Role verification failed: ${roleError.message}`);
+          
           await supabase.auth.signOut({ scope: 'global' });
           localStorage.removeItem(ADMIN_FLOW_KEY);
           toast.error("Unable to verify access. Please try again.");
@@ -129,6 +157,11 @@ const AdminLogin = () => {
         }
 
         if (isAdmin) {
+          console.log('[AdminLogin] ✅ Admin access granted for:', authData.user.email);
+          
+          // SECURITY LOG: Successful admin login
+          await logAdminLoginAttempt(email.trim(), true, 'Successful admin login');
+          
           // SECURITY: Store admin session markers with timestamp and user ID
           localStorage.setItem(ADMIN_SESSION_KEY, 'true');
           localStorage.setItem(ADMIN_AUTH_TIMESTAMP, Date.now().toString());
@@ -138,15 +171,26 @@ const AdminLogin = () => {
           localStorage.removeItem(USER_SESSION_KEY);
           localStorage.setItem(ADMIN_FLOW_KEY, 'true');
           
+          // Clear failed attempts on successful login
+          localStorage.removeItem(FAILED_ATTEMPTS_KEY);
+          
           toast.success("Welcome to Admin Portal!");
           navigate("/admin");
         } else {
+          console.log('[AdminLogin] 🚨 UNAUTHORIZED - User has admin email but no admin role');
+          
+          await logUnauthorizedAccess(email.trim(), 'admin_console_no_role');
+          
           await supabase.auth.signOut({ scope: 'global' });
           localStorage.removeItem(ADMIN_FLOW_KEY);
           toast.error("Access denied.");
         }
       }
     } catch (error: any) {
+      console.log('[AdminLogin] Login exception:', error);
+      
+      await logAdminLoginAttempt(email.trim(), false, `Exception: ${error.message}`);
+      
       localStorage.removeItem(ADMIN_FLOW_KEY);
       toast.error("Login failed. Please try again.");
     } finally {
