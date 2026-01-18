@@ -26,6 +26,7 @@ const HeroSection = () => {
   const [averageRating, setAverageRating] = useState(4.9);
   const [tourCount, setTourCount] = useState<number>(22);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+  const [bookingModalOpen, setBookingModalOpen] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
 
   // Removed scroll-based fade transforms - hero stays visible
@@ -94,11 +95,6 @@ const HeroSection = () => {
     return () => clearTimeout(timeoutId);
   }, []);
 
-  const handleBookNowClick = async () => {
-    const params = new URLSearchParams({ checkIn, checkOut, guests });
-    navigate(`/booking?${params.toString()}`);
-  };
-
   const handleSearch = () => {
     // Check if user is logged in
     if (!user) {
@@ -133,7 +129,8 @@ const HeroSection = () => {
       return;
     }
 
-    handleBookNowClick();
+    // Open booking modal instead of navigating
+    setBookingModalOpen(true);
   };
 
   const scrollToContent = () => {
@@ -446,6 +443,15 @@ const HeroSection = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Booking Modal */}
+      <BookingModal
+        isOpen={bookingModalOpen}
+        onClose={() => setBookingModalOpen(false)}
+        initialCheckIn={checkIn ? new Date(checkIn) : undefined}
+        initialCheckOut={checkOut ? new Date(checkOut) : undefined}
+        initialGuests={parseInt(guests) || 1}
+      />
     </>
   );
 };
