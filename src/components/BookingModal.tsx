@@ -979,14 +979,14 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                     value={guestName} 
                     onChange={(e) => setGuestName(e.target.value)} 
                     placeholder="Full Name *" 
-                    className="h-12 rounded-2xl text-base" 
+                    className="h-12 rounded-2xl text-base text-foreground bg-background border-border" 
                   />
                   <Input 
                     type="email" 
                     value={guestEmail} 
                     onChange={(e) => setGuestEmail(e.target.value)} 
                     placeholder="Email *" 
-                    className="h-12 rounded-2xl text-base" 
+                    className="h-12 rounded-2xl text-base text-foreground bg-background border-border" 
                   />
                   {/* Date of Birth with Apple-grade calendar */}
                   <Popover>
@@ -1002,7 +1002,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                         {guestDOB ? format(new Date(guestDOB), "dd-MM-yyyy") : "Date of Birth (DD-MM-YYYY)"}
                       </Button>
                     </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start" sideOffset={4}>
+                    <PopoverContent className="w-auto p-0 z-[100000] bg-background border border-border shadow-xl" align="start" sideOffset={4}>
                       <CalendarComponent
                         mode="single"
                         selected={guestDOB ? new Date(guestDOB) : undefined}
@@ -1020,20 +1020,20 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                     value={guestWhatsApp} 
                     onChange={(e) => setGuestWhatsApp(e.target.value)} 
                     placeholder="WhatsApp Number *" 
-                    className="h-12 rounded-2xl text-base" 
+                    className="h-12 rounded-2xl text-base text-foreground bg-background border-border" 
                   />
                   <div className="grid grid-cols-2 gap-3">
                     <Input 
                       value={guestCity} 
                       onChange={(e) => setGuestCity(e.target.value)} 
                       placeholder="Current City *" 
-                      className="h-12 rounded-2xl text-base" 
+                      className="h-12 rounded-2xl text-base text-foreground bg-background border-border" 
                     />
                     <Input 
                       value={guestPincode} 
                       onChange={(e) => setGuestPincode(e.target.value)} 
                       placeholder="Pincode *" 
-                      className="h-12 rounded-2xl text-base" 
+                      className="h-12 rounded-2xl text-base text-foreground bg-background border-border" 
                     />
                   </div>
                   <Input 
@@ -1041,14 +1041,14 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                     value={guestPhone} 
                     onChange={(e) => setGuestPhone(e.target.value)} 
                     placeholder="Alternate Phone (optional)" 
-                    className="h-12 rounded-2xl text-base" 
+                    className="h-12 rounded-2xl text-base text-foreground bg-background border-border" 
                   />
                   <Textarea 
                     value={specialRequests} 
                     onChange={(e) => setSpecialRequests(e.target.value)} 
                     placeholder="Special requests (optional)" 
                     rows={2}
-                    className="rounded-2xl text-base resize-none"
+                    className="rounded-2xl text-base resize-none text-foreground bg-background border-border"
                   />
                 </div>
 
@@ -1124,7 +1124,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                     {/* GST Breakdown */}
                     {gstBreakdown.gst5Amount > 0 && (
                       <div className="flex justify-between text-muted-foreground">
-                        <span>GST (5% on ≤₹7.5K rooms)</span>
+                        <span>GST (5% on Hostel Accommodation)</span>
                         <span>₹{gstBreakdown.gst5Amount.toLocaleString()}</span>
                       </div>
                     )}
