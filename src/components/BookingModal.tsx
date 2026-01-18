@@ -11,41 +11,7 @@ import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
 import { createEnquiry } from '@/services/enquiryService';
 import { useUserAuth } from '@/contexts/UserAuthContext';
-import { getBookableRoomTypes, RoomTypeConfig, ROOM_TYPES } from '@/config/roomTypes';
-
-// Room images for gallery (per room type)
-const ROOM_IMAGES: Record<string, string[]> = {
-  'xtsy-270': [
-    '/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png',
-    '/lovable-uploads/70b7c61f-c52c-479b-9663-3957d72f31b0.png',
-    '/lovable-uploads/6a7b3dad-87a3-49d9-98fa-919ff7b09dd0.png',
-    '/lovable-uploads/737fc57d-44c2-4784-a8ce-4ad5bcc174ff.png',
-  ],
-  '4-bed-female-only-dorm': [
-    '/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png',
-    '/lovable-uploads/9190ba64-4f45-45e8-b15d-981db2e861b3.png',
-  ],
-  '4-bed-mixed-female-dorm': [
-    '/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png',
-    '/lovable-uploads/9190ba64-4f45-45e8-b15d-981db2e861b3.png',
-  ],
-  '6-bed-mixed-female-dorm': [
-    '/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png',
-    '/lovable-uploads/f60939c8-8351-4f63-80df-a4c6e37e539a.png',
-  ],
-  '6-bed-mixed-dorm': [
-    '/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png',
-    '/lovable-uploads/f60939c8-8351-4f63-80df-a4c6e37e539a.png',
-  ],
-  'king-double-room': [
-    '/lovable-uploads/0ef988f7-b7f3-4d1f-80e3-fc2a04acd9cb.png',
-    '/lovable-uploads/160f683c-a41c-41fd-8bdb-700d74a7e027.png',
-  ],
-  'king-triple-room': [
-    '/lovable-uploads/0ef988f7-b7f3-4d1f-80e3-fc2a04acd9cb.png',
-    '/lovable-uploads/160f683c-a41c-41fd-8bdb-700d74a7e027.png',
-  ],
-};
+import { getBookableRoomTypes, RoomTypeConfig, ROOM_TYPES, ROOM_IMAGES } from '@/config/roomTypes';
 
 // Booking room with selection state
 interface BookingRoom {
@@ -242,16 +208,20 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
   
   // Get rooms from centralized config (source of truth)
   const ROOMS: BookingRoom[] = useMemo(() => {
-    return getBookableRoomTypes().map((room: RoomTypeConfig) => ({
-      id: room.id,
-      name: room.name,
-      type: room.unitType === 'bed' ? 'dorm' : 'private',
-      price: room.basePrice,
-      capacity: room.capacity,
-      totalUnits: room.totalUnits,
-      image: room.image || '/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png',
-      images: ROOM_IMAGES[room.id] || [room.image || '/lovable-uploads/784b2108-6432-4589-b79b-0433fa26bc3b.png'],
-    }));
+    return getBookableRoomTypes().map((room: RoomTypeConfig) => {
+      const images = room.images || ROOM_IMAGES[room.id] || [];
+      const primaryImage = images[0] || room.image || 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg';
+      return {
+        id: room.id,
+        name: room.name,
+        type: room.unitType === 'bed' ? 'dorm' : 'private',
+        price: room.basePrice,
+        capacity: room.capacity,
+        totalUnits: room.totalUnits,
+        image: primaryImage,
+        images: images.length > 0 ? images : [primaryImage],
+      };
+    });
   }, []);
   
   const [step, setStep] = useState(1);
