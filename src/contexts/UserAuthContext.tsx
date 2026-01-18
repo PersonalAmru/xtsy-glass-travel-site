@@ -601,6 +601,7 @@ function getErrorMessage(errorInput: string | { message?: string; code?: string;
     'User already registered': 'An account with this email already exists. Please sign in instead.',
     'user_already_exists': 'An account with this email already exists. Please sign in instead.',
     'Password should be at least 6 characters': 'Password must be at least 6 characters.',
+    'Password should contain at least one character of each': 'Password must contain at least one lowercase letter, one uppercase letter, and one number.',
     'Invalid email': 'Please enter a valid email address.',
     'Rate limit exceeded': 'Too many attempts. Please try again in a few minutes.',
     'Token has expired or is invalid': 'The verification code has expired. Please request a new one.',
