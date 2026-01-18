@@ -291,21 +291,29 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
       
       const redirectUrl = `${window.location.origin}/auth`;
       
+      console.log('[UserAuth] Attempting signup for:', email.trim());
+      
       const { data, error: signUpError } = await supabase.auth.signUp({
         email: email.trim(),
         password,
         options: {
           emailRedirectTo: redirectUrl,
-          data: {
-            email: email.trim(),
-          }
         },
+      });
+      
+      console.log('[UserAuth] Signup response:', { 
+        hasUser: !!data.user, 
+        hasSession: !!data.session,
+        identitiesCount: data.user?.identities?.length,
+        error: signUpError?.message
       });
       
       if (signUpError) {
         // Handle specific Supabase errors
         const errorMsg = signUpError.message || '';
         const status = (signUpError as any).status;
+        
+        console.log('[UserAuth] Signup error:', { status, errorMsg });
         
         // Check if user already exists and has confirmed email (422 error)
         if (status === 422 || 
@@ -317,31 +325,43 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
         throw signUpError;
       }
       
-      // Supabase behavior when email confirmation is enabled:
-      // - New user: returns user with identities populated, no session (needs confirmation)
-      // - Existing unconfirmed user: returns user with identities = [] (obfuscated response)
+      // With email confirmation DISABLED in Supabase:
+      // - New user: returns user with session immediately (auto-confirmed)
+      // - Existing user: returns 422 error (handled above)
+      
+      // With email confirmation ENABLED:
+      // - New user: returns user with identities populated, no session
+      // - Existing unconfirmed user: returns user with identities = [] (obfuscated)
       // - Existing confirmed user: returns 422 error (handled above)
       
-      // Check if this is an obfuscated response (user already exists but unconfirmed)
-      // In this case, Supabase returns fake_user_info to prevent email enumeration
-      if (data.user && data.user.identities && data.user.identities.length === 0) {
-        // This is an existing user (confirmed or unconfirmed) - Supabase is hiding the info
-        // We show a generic message for security (prevents email enumeration attacks)
-        throw new Error('This email is already registered. Please sign in or reset your password if you forgot it.');
+      // CRITICAL FIX: Only check for empty identities if email confirmation is ENABLED
+      // When email confirmation is DISABLED, we get a session directly
+      if (!data.session && data.user && data.user.identities && data.user.identities.length === 0) {
+        // This is an obfuscated response - user already exists (email confirmation is ON)
+        throw new Error('An account with this email already exists. Please sign in instead.');
       }
       
-      // Check if email confirmation is required
-      if (data.user && !data.session) {
-        // New user created but email confirmation required
-        // The user needs to check their email
-        setError(null);
-        return; // Success - user needs to confirm email
-      } else if (data.user && data.session) {
-        // Auto-confirmed (email confirmation disabled in Supabase settings)
+      // Success case 1: Auto-confirmed (email confirmation disabled)
+      if (data.user && data.session) {
+        console.log('[UserAuth] User auto-confirmed, creating profile...');
         localStorage.setItem(USER_SESSION_KEY, 'true');
         const profile = await createUserProfileIfNeeded(data.user);
         setUser(convertToExtendedUser(data.user, profile));
         setSession(data.session);
+        return;
+      }
+      
+      // Success case 2: Needs email confirmation
+      if (data.user && !data.session) {
+        console.log('[UserAuth] User created, needs email confirmation');
+        // User created but needs to confirm email
+        setError(null);
+        return;
+      }
+      
+      // Edge case: No user returned (shouldn't happen)
+      if (!data.user) {
+        throw new Error('Failed to create account. Please try again.');
       }
     } catch (err: any) {
       const message = getErrorMessage(err.message || err.code || 'auth/unknown');
