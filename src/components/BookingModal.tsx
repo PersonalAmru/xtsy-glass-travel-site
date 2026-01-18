@@ -994,8 +994,8 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                       <Button
                         variant="outline"
                         className={cn(
-                          "h-12 w-full rounded-2xl text-base justify-start font-normal",
-                          !guestDOB && "text-muted-foreground"
+                          "h-12 w-full rounded-2xl text-base justify-start font-normal bg-background border-border",
+                          guestDOB ? "text-foreground" : "text-muted-foreground"
                         )}
                       >
                         <Calendar className="mr-2 h-4 w-4" />
