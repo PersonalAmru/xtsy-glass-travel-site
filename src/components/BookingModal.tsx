@@ -17,11 +17,16 @@ import { useUserAuth } from '@/contexts/UserAuthContext';
 import { getBookableRoomTypes, RoomTypeConfig, ROOM_TYPES, ROOM_IMAGES } from '@/config/roomTypes';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// Winter discount configuration
+const WINTER_DISCOUNT = 0.10; // 10% off
+const applyDiscount = (price: number): number => Math.round(price * (1 - WINTER_DISCOUNT));
+
 interface BookingRoom {
   id: string;
   name: string;
   type: 'dorm' | 'private';
-  price: number;
+  price: number;           // Discounted price
+  originalPrice: number;   // Original price before discount
   capacity: number;
   totalUnits: number;
   image: string;
@@ -237,12 +242,14 @@ function PremiumRoomCard({
       {/* Card Footer */}
       <div className="p-4 bg-background">
         <div className="flex items-center justify-between">
-          {/* Price */}
+          {/* Price with discount */}
           <div>
-            <div className="flex items-baseline gap-1">
+            <div className="flex items-baseline gap-2">
               <span className="text-2xl font-bold text-foreground">₹{room.price.toLocaleString()}</span>
-              <span className="text-sm text-muted-foreground">{priceLabel}/night</span>
+              <span className="text-sm text-muted-foreground line-through">₹{room.originalPrice.toLocaleString()}</span>
+              <span className="text-xs font-medium text-green-500 bg-green-500/10 px-1.5 py-0.5 rounded">10% OFF</span>
             </div>
+            <span className="text-xs text-muted-foreground">{priceLabel}/night • Winter Special</span>
             {isSelected && (
               <motion.p 
                 initial={{ opacity: 0, y: -5 }}
@@ -326,7 +333,8 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
         id: room.id,
         name: room.name,
         type: room.unitType === 'bed' ? 'dorm' : 'private',
-        price: room.basePrice,
+        price: applyDiscount(room.basePrice),        // 10% winter discount applied
+        originalPrice: room.basePrice,                // Original price for display
         capacity: room.capacity,
         totalUnits: room.totalUnits,
         image: primaryImage,
