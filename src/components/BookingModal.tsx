@@ -400,6 +400,8 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
     checkOut: string;
     guests: number;
     roomCount: number;
+    roomType: string;
+    totalAmount: number;
   } | null>(null);
 
   useEffect(() => {
@@ -594,12 +596,15 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
       const allSuccess = results.every(r => r.success);
       if (allSuccess) {
         // Store success data and show success modal instead of closing
+        const primaryRoom = ROOMS.find(r => r.id === roomSelections[0]?.roomId);
         setSuccessData({
           guestName,
           checkIn: format(checkIn, 'yyyy-MM-dd'),
           checkOut: format(checkOut, 'yyyy-MM-dd'),
           guests,
           roomCount: roomSelections.reduce((sum, sel) => sum + sel.quantity, 0),
+          roomType: primaryRoom?.name || 'Premium Stay',
+          totalAmount,
         });
         setShowSuccessModal(true);
       } else {
@@ -1310,6 +1315,8 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
           checkOut={successData.checkOut}
           guests={successData.guests}
           roomCount={successData.roomCount}
+          roomType={successData.roomType}
+          totalAmount={successData.totalAmount}
           isAuthenticated={!!user}
         />
       )}

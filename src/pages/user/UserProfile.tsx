@@ -37,6 +37,26 @@ interface Booking {
   guest_name?: string;
   email?: string;
   whatsapp_number?: string;
+  source?: 'booking' | 'enquiry';
+}
+
+interface Enquiry {
+  id: string;
+  enquiry_id: string;
+  room_type: string;
+  room_name: string;
+  check_in: string;
+  check_out: string;
+  total_amount: number;
+  subtotal: number;
+  gst_amount: number;
+  status: string;
+  created_at: string;
+  quantity: number;
+  special_requests?: string;
+  guest_name?: string;
+  email?: string;
+  phone?: string;
 }
 
 type ProfileTab = 'overview' | 'bookings' | 'settings';
@@ -53,33 +73,82 @@ export default function UserProfile() {
 
   useEffect(() => {
     if (user?.id || user?.email) {
-      fetchBookings();
+      fetchBookingsAndEnquiries();
     }
   }, [user?.id, user?.email]);
 
-  const fetchBookings = async () => {
+  const fetchBookingsAndEnquiries = async () => {
     if (!user?.id && !user?.email) return;
     
     setLoadingBookings(true);
     try {
-      let query = supabase
+      // Fetch bookings
+      let bookingsQuery = supabase
         .from('bookings')
         .select('id, booking_id, room_type, check_in, check_out, total_amount, subtotal, taxes, booking_status, created_at, guests, quantity, special_requests, guest_name, email, whatsapp_number')
         .order('created_at', { ascending: false });
       
       if (user?.id && user?.email) {
-        query = query.or(`user_id.eq.${user.id},email.eq.${user.email}`);
+        bookingsQuery = bookingsQuery.or(`user_id.eq.${user.id},email.eq.${user.email}`);
       } else if (user?.id) {
-        query = query.eq('user_id', user.id);
+        bookingsQuery = bookingsQuery.eq('user_id', user.id);
       } else if (user?.email) {
-        query = query.eq('email', user.email);
+        bookingsQuery = bookingsQuery.eq('email', user.email);
       }
 
-      const { data, error } = await query;
-      if (error) throw error;
-      setBookings(data || []);
+      // Fetch enquiries
+      let enquiriesQuery = supabase
+        .from('enquiries')
+        .select('id, enquiry_id, room_type, room_name, check_in, check_out, total_amount, subtotal, gst_amount, status, created_at, quantity, special_requests, guest_name, email, phone')
+        .order('created_at', { ascending: false });
+      
+      if (user?.id && user?.email) {
+        enquiriesQuery = enquiriesQuery.or(`user_id.eq.${user.id},email.eq.${user.email}`);
+      } else if (user?.id) {
+        enquiriesQuery = enquiriesQuery.eq('user_id', user.id);
+      } else if (user?.email) {
+        enquiriesQuery = enquiriesQuery.eq('email', user.email);
+      }
+
+      const [bookingsResult, enquiriesResult] = await Promise.all([
+        bookingsQuery,
+        enquiriesQuery
+      ]);
+
+      // Combine bookings and enquiries
+      const bookingsData: Booking[] = (bookingsResult.data || []).map(b => ({
+        ...b,
+        source: 'booking' as const
+      }));
+
+      const enquiriesAsBookings: Booking[] = (enquiriesResult.data || []).map(e => ({
+        id: e.id,
+        booking_id: e.enquiry_id,
+        room_type: e.room_name || e.room_type,
+        check_in: e.check_in,
+        check_out: e.check_out,
+        total_amount: e.total_amount,
+        subtotal: e.subtotal,
+        taxes: e.gst_amount,
+        booking_status: e.status,
+        created_at: e.created_at,
+        guests: e.quantity,
+        quantity: e.quantity,
+        special_requests: e.special_requests,
+        guest_name: e.guest_name,
+        email: e.email,
+        whatsapp_number: e.phone,
+        source: 'enquiry' as const
+      }));
+
+      // Combine and sort by date
+      const combined = [...bookingsData, ...enquiriesAsBookings].sort(
+        (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+      );
+
+      setBookings(combined);
     } catch (err) {
-      console.error('Error fetching bookings:', err);
+      console.error('Error fetching bookings and enquiries:', err);
     } finally {
       setLoadingBookings(false);
     }
@@ -288,7 +357,7 @@ function BookingsTab({ bookings, loading, onOpenChat }: { bookings: Booking[]; l
         </div>
         <h3 className="text-lg font-semibold text-foreground mb-2">No bookings yet</h3>
         <p className="text-muted-foreground mb-4">Start your adventure by booking a stay!</p>
-        <Button onClick={() => window.location.href = '/book'}>Book Now</Button>
+        <Button onClick={() => window.location.href = '/'}>Book Now</Button>
       </motion.div>
     );
   }
