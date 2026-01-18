@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { X, ChevronLeft, ChevronRight, Users, Calendar, Plus, Minus, Check, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -49,6 +50,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
   const [guestPhone, setGuestPhone] = useState('');
   const [specialRequests, setSpecialRequests] = useState('');
 
+  // Prefill from user profile
   useEffect(() => {
     if (user?.profile) {
       setGuestName(user.profile.full_name || '');
@@ -57,6 +59,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
     }
   }, [user?.profile]);
 
+  // Reset on close
   useEffect(() => {
     if (!isOpen) {
       setStep(1);
@@ -69,6 +72,18 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
       setSpecialRequests('');
     }
   }, [isOpen, initialCheckIn, initialCheckOut, initialGuests]);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
 
   const nights = checkIn && checkOut ? Math.max(1, differenceInDays(checkOut, checkIn)) : 0;
   const roomTotal = selectedRoom ? selectedRoom.price * quantity * nights : 0;
@@ -117,29 +132,36 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
     finally { setIsSubmitting(false); }
   };
 
-  console.log('[BookingModal] Render called, isOpen:', isOpen);
-  
   if (!isOpen) return null;
 
-  console.log('[BookingModal] Rendering modal content');
-
-  return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-      {/* Glassmorphism Backdrop */}
-      <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm" 
-        onClick={onClose} 
+  const modalContent = (
+    <div 
+      className="fixed inset-0 flex items-center justify-center p-4"
+      style={{ zIndex: 99999, isolation: 'isolate' }}
+    >
+      {/* Dark Backdrop */}
+      <div 
+        className="absolute inset-0 bg-black/80" 
+        onClick={onClose}
+        style={{ zIndex: 1 }}
       />
       
-      {/* Modal Content - Simple solid background */}
-      <div className="relative z-10 w-full max-w-2xl max-h-[90vh] overflow-hidden rounded-2xl bg-background border border-border shadow-2xl">
+      {/* Modal Content */}
+      <div 
+        className="relative w-full max-w-2xl max-h-[90vh] overflow-hidden rounded-2xl bg-background border border-border shadow-2xl"
+        style={{ zIndex: 2 }}
+      >
         {/* Header */}
         <div className="flex items-center justify-between p-5 border-b border-border bg-muted/50">
           <div>
             <h2 className="text-xl font-semibold text-foreground">Book Your Stay</h2>
             <p className="text-sm text-muted-foreground">Step {step} of 4</p>
           </div>
-          <button onClick={onClose} className="p-2 rounded-full hover:bg-muted transition-colors">
+          <button 
+            onClick={onClose} 
+            className="p-2 rounded-full hover:bg-muted transition-colors"
+            aria-label="Close modal"
+          >
             <X className="w-5 h-5 text-muted-foreground" />
           </button>
         </div>
@@ -360,4 +382,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
       </div>
     </div>
   );
+
+  // Use portal to render modal at document.body level, outside HeroSection's transform context
+  return createPortal(modalContent, document.body);
 }
