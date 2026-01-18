@@ -102,7 +102,6 @@ const PolicyModal = ({ isOpen, onClose, type }: PolicyModalProps) => {
           </h4>
           <p className="text-sm text-gray-700 mb-3">To modify your booking, contact us with:</p>
           <ul className="text-sm text-gray-700 space-y-1">
-            <li>• <strong>WhatsApp:</strong> +91 88373 17070</li>
             <li>• <strong>Email:</strong> booking@xtsy.one</li>
           </ul>
           <p className="text-sm text-gray-700 mt-3">Please include:</p>
@@ -211,7 +210,7 @@ const PolicyModal = ({ isOpen, onClose, type }: PolicyModalProps) => {
       <div className="bg-green-50 p-4 rounded-lg">
         <p className="text-sm text-green-800">
           <strong>Questions about our policies?</strong> Our friendly staff is available 24/7 to assist you. 
-          Contact us at reception or call +91 88373 17070 for any clarifications.
+          Contact us at <span className="font-medium">admin@xtsy.one</span> for any clarifications.
         </p>
       </div>
     </div>
@@ -405,11 +404,10 @@ const PolicyModal = ({ isOpen, onClose, type }: PolicyModalProps) => {
         <Separator className="my-4" />
         
         <div className="text-center text-xs text-gray-500">
-          <p>Last updated: December 2024 | XTSY Travellers Hostel & XTSY Luxury</p>
+          <p>Last updated: December 2024</p>
           <p className="mt-1">
             For questions about these policies, contact us at{" "}
-            <span className="text-orange-600 font-medium">booking@xtsy.one</span> or{" "}
-            <span className="text-orange-600 font-medium">+91 88373 17070</span>
+            <span className="text-orange-600 font-medium">booking@xtsy.one</span>
           </p>
         </div>
       </DialogContent>

@@ -309,7 +309,6 @@ export const PricingCancellationPolicy: React.FC = () => {
               
               <p className="mb-4">To modify your booking, contact us with your booking reference:</p>
               <div className="bg-muted p-6 rounded-lg space-y-3">
-                <p><strong>WhatsApp:</strong> +91 88373 17070 (Preferred - Fastest response)</p>
                 <p><strong>Email:</strong> <a href="mailto:booking@xtsy.one" className="text-primary hover:underline">booking@xtsy.one</a></p>
                 <p><strong>Response Time:</strong> Within 24 hours (typically 2-4 hours)</p>
               </div>
@@ -340,10 +339,7 @@ export const PricingCancellationPolicy: React.FC = () => {
               <h2 className="text-2xl font-semibold mb-4 text-foreground">11. Contact Us</h2>
               <p>For pricing queries or policy clarifications:</p>
               <div className="bg-muted p-6 rounded-lg mt-4 space-y-3">
-                <p><strong>Company:</strong> XTSY Travels & Accommodation</p>
                 <p><strong>Email:</strong> <a href="mailto:admin@xtsy.one" className="text-primary hover:underline">admin@xtsy.one</a></p>
-                <p><strong>WhatsApp:</strong> +91 88373 17070</p>
-                <p><strong>Address:</strong> XTSY Travellers Hostel, Shillong, Meghalaya, India 793001</p>
               </div>
             </section>
             
