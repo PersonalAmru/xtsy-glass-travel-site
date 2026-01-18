@@ -49,6 +49,7 @@ const LazyGallery = createLazyComponent(() => import("./pages/Gallery"));
 const LazyTravel = createLazyComponent(() => import("./pages/Travel"));
 const LazyPrivacyPolicy = createLazyComponent(() => import("./pages/PrivacyPolicy"));
 const LazyTermsOfService = createLazyComponent(() => import("./pages/TermsOfService"));
+const LazyPricingCancellationPolicy = createLazyComponent(() => import("./pages/PricingCancellationPolicy"));
 const AdminLogin = createLazyComponent(() => import("./pages/AdminLogin"));
 const BookingFlow = createLazyComponent(() => import("./pages/BookingFlow"));
 
@@ -210,6 +211,7 @@ function App() {
                 <Route path="/xtsy-rentals" element={<LazyRoute><LazyXTSYRentals /></LazyRoute>} />
                 <Route path="/privacy-policy" element={<LazyRoute><LazyPrivacyPolicy /></LazyRoute>} />
                 <Route path="/terms-of-service" element={<LazyRoute><LazyTermsOfService /></LazyRoute>} />
+                <Route path="/pricing-cancellation-policy" element={<LazyRoute><LazyPricingCancellationPolicy /></LazyRoute>} />
                 <Route path="/admin-login" element={<LazyRoute><AdminLogin /></LazyRoute>} />
                 <Route path="/booking" element={<LazyRoute><BookingFlow /></LazyRoute>} />
                 

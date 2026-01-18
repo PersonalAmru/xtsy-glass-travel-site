@@ -105,20 +105,23 @@ export const TermsOfService: React.FC = () => {
                 <li>Check-in time is 2:00 PM and check-out time is 11:00 AM unless otherwise specified</li>
               </ul>
               
-              <h3 className="text-xl font-medium mb-3 mt-4 text-foreground">4.2 Pricing</h3>
+              <h3 className="text-xl font-medium mb-3 mt-4 text-foreground">4.2 Pricing & GST</h3>
               <ul className="list-disc pl-6 space-y-2">
                 <li>All prices are displayed in Indian Rupees (INR) unless otherwise stated</li>
-                <li>Prices include applicable taxes unless separately itemized</li>
+                <li>Prices are subject to applicable GST as per current Indian tax laws</li>
+                <li><strong>Accommodation up to ₹7,500/night:</strong> 5% GST (CGST 2.5% + SGST 2.5%)</li>
+                <li><strong>Accommodation above ₹7,500/night:</strong> 18% GST (CGST 9% + SGST 9%)</li>
+                <li><strong>Tourism, Travel & Restaurant Services:</strong> 18% GST (CGST 9% + SGST 9%)</li>
                 <li>We reserve the right to modify pricing at any time; confirmed bookings are not affected</li>
-                <li>Promotional rates may have specific terms and conditions</li>
               </ul>
               
               <h3 className="text-xl font-medium mb-3 mt-4 text-foreground">4.3 Payment</h3>
               <ul className="list-disc pl-6 space-y-2">
                 <li>Payment is processed through secure third-party payment providers</li>
                 <li>We accept major credit/debit cards, UPI, and net banking</li>
-                <li>Full payment is required at the time of booking unless otherwise specified</li>
-                <li>You authorize us to charge your payment method for the total booking amount</li>
+                <li>Advance payment is required at the time of booking</li>
+                <li>All advance payments are strictly non-refundable</li>
+                <li>You authorize us to charge your payment method for the booking amount</li>
               </ul>
             </section>
 
@@ -126,51 +129,46 @@ export const TermsOfService: React.FC = () => {
             <section>
               <h2 className="text-2xl font-semibold mb-4 text-foreground">5. Cancellation and Refund Policy</h2>
               
-              <h3 className="text-xl font-medium mb-3 text-foreground">5.1 Guest Cancellations</h3>
-              <div className="overflow-x-auto mt-4">
-                <table className="min-w-full border border-border rounded-lg">
-                  <thead className="bg-muted">
-                    <tr>
-                      <th className="px-4 py-3 text-left text-foreground font-medium">Cancellation Timing</th>
-                      <th className="px-4 py-3 text-left text-foreground font-medium">Refund</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-border">
-                    <tr>
-                      <td className="px-4 py-3">More than 7 days before check-in</td>
-                      <td className="px-4 py-3">Full refund (minus processing fees)</td>
-                    </tr>
-                    <tr>
-                      <td className="px-4 py-3">3-7 days before check-in</td>
-                      <td className="px-4 py-3">50% refund</td>
-                    </tr>
-                    <tr>
-                      <td className="px-4 py-3">Less than 3 days before check-in</td>
-                      <td className="px-4 py-3">No refund</td>
-                    </tr>
-                    <tr>
-                      <td className="px-4 py-3">No-show</td>
-                      <td className="px-4 py-3">No refund</td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4 mb-4">
+                <p className="font-semibold text-red-600 dark:text-red-400">
+                  ⚠️ STRICT NO-REFUND POLICY: All advance payments are non-refundable. 
+                  Cancellations are not accepted once payment is made.
+                </p>
               </div>
               
-              <h3 className="text-xl font-medium mb-3 mt-6 text-foreground">5.2 Our Cancellations</h3>
-              <p>
-                In the rare event we must cancel your booking due to unforeseen circumstances 
-                (natural disasters, property damage, safety concerns), we will:
-              </p>
-              <ul className="list-disc pl-6 space-y-2 mt-3">
-                <li>Notify you as soon as possible</li>
-                <li>Provide a full refund or alternative accommodation of equal or greater value</li>
-                <li>We are not liable for additional expenses such as travel costs</li>
+              <h3 className="text-xl font-medium mb-3 text-foreground">5.1 Guest Cancellations</h3>
+              <ul className="list-disc pl-6 space-y-2">
+                <li>Cancellations are <strong>not accepted</strong> once an advance payment is made</li>
+                <li>No refunds will be issued under any circumstances for guest-initiated cancellations</li>
+                <li>No-shows are treated as cancellations with no refund</li>
+                <li>This applies to all room types, packages, and promotional bookings</li>
               </ul>
               
-              <h3 className="text-xl font-medium mb-3 mt-4 text-foreground">5.3 Modifications</h3>
+              <h3 className="text-xl font-medium mb-3 mt-6 text-foreground">5.2 Booking Modifications</h3>
+              <p>Instead of cancellation, you may request a modification:</p>
+              <ul className="list-disc pl-6 space-y-2 mt-3">
+                <li>Date modification allowed within 90 days from original check-in</li>
+                <li>Only one modification permitted per booking</li>
+                <li>Request must be made at least 48 hours before original check-in</li>
+                <li>Subject to availability and any rate difference</li>
+              </ul>
+              
+              <h3 className="text-xl font-medium mb-3 mt-6 text-foreground">5.3 Property-Initiated Cancellations</h3>
               <p>
-                Booking modifications (date changes, room upgrades) are subject to availability and 
-                may incur additional charges. Contact us at least 48 hours before check-in for modifications.
+                In rare cases where XTSY must cancel a confirmed booking (maintenance, safety, 
+                overbooking errors), we will offer:
+              </p>
+              <ul className="list-disc pl-6 space-y-2 mt-3">
+                <li>Free date modification, OR</li>
+                <li>Alternate equivalent accommodation, OR</li>
+                <li>Full refund (only if accommodation cannot be provided)</li>
+              </ul>
+              
+              <p className="mt-4">
+                For detailed pricing, GST information, and complete cancellation terms, please see our{' '}
+                <a href="/pricing-cancellation-policy" className="text-primary hover:underline font-medium">
+                  Pricing & Cancellation Policies
+                </a> page.
               </p>
             </section>
 

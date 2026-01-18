@@ -30,14 +30,24 @@ export const PrivacyPolicy: React.FC = () => {
             <section>
               <h2 className="text-2xl font-semibold mb-4 text-foreground">1. Introduction</h2>
               <p>
-                Welcome to XTSY ("Company", "we", "our", or "us"). We are committed to protecting your 
-                personal information and your right to privacy. This Privacy Policy explains how we collect, 
-                use, disclose, and safeguard your information when you visit our website 
-                <strong> xtsy.one</strong> and use our accommodation and travel services.
+                Welcome to XTSY ("Company", "we", "our", or "us"). XTSY is a hospitality and tourism 
+                company operating traveller hostels, luxury accommodations, and curated travel experiences 
+                in Northeast India. We are committed to protecting your personal information and your 
+                right to privacy.
+              </p>
+              <p className="mt-4">
+                This Privacy Policy explains how we collect, use, disclose, and safeguard your information 
+                when you visit our website <strong>xtsy.one</strong>, use our mobile applications, make 
+                bookings, or engage with our accommodation and travel services.
               </p>
               <p className="mt-4">
                 By accessing or using our services, you agree to this Privacy Policy. If you do not agree 
                 with the terms of this policy, please do not access the site or use our services.
+              </p>
+              <p className="mt-4">
+                This policy is compliant with the <strong>Digital Personal Data Protection Act, 2023 (DPDP Act)</strong> 
+                of India, <strong>General Data Protection Regulation (GDPR)</strong> for EU visitors, 
+                and <strong>Google API Services User Data Policy</strong>.
               </p>
             </section>
 
