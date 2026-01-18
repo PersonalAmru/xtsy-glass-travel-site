@@ -522,11 +522,14 @@ const LiveTrafficCommandCenter: React.FC = () => {
     : 0;
   
   return (
-    <UnifiedAdminLayout
-      title="Live Traffic Command Center"
-      subtitle="Real-time traffic intelligence • Admin is SOURCE OF TRUTH"
-    >
+    <UnifiedAdminLayout>
       <div className="space-y-6">
+        {/* Page Header */}
+        <div className="mb-6">
+          <h1 className="text-2xl font-bold text-foreground">Live Traffic Command Center</h1>
+          <p className="text-sm text-muted-foreground">Real-time traffic intelligence • Admin is SOURCE OF TRUTH</p>
+        </div>
+        
         {/* Top Bar - Live Stats */}
         <div className="flex items-center gap-4 p-4 rounded-2xl bg-gradient-to-r from-primary/5 via-transparent to-transparent border border-border">
           <div className="flex items-center gap-3">
