@@ -753,14 +753,14 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                         onClick={() => setGuests(Math.max(1, guests - 1))} 
                         className="w-10 h-10 rounded-xl bg-background border border-border flex items-center justify-center hover:bg-muted transition-colors"
                       >
-                        <Minus className="w-4 h-4" />
+                        <Minus className="w-4 h-4 text-foreground" />
                       </button>
                       <span className="w-8 text-center text-xl font-bold text-foreground">{guests}</span>
                       <button 
                         onClick={() => setGuests(guests + 1)} 
                         className="w-10 h-10 rounded-xl bg-background border border-border flex items-center justify-center hover:bg-muted transition-colors"
                       >
-                        <Plus className="w-4 h-4" />
+                        <Plus className="w-4 h-4 text-foreground" />
                       </button>
                     </div>
                   </div>
