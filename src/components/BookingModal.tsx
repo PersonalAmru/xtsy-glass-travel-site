@@ -552,7 +552,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
           {/* Title */}
           <div className="pr-10">
             <h2 className="text-xl font-bold text-foreground">Book Your Stay</h2>
-            <p className="text-sm text-muted-foreground mt-0.5">XTSY • Shillong, Meghalaya</p>
+            <p className="text-sm text-muted-foreground mt-0.5">XTSY Travellers Hostel Shillong, Meghalaya</p>
           </div>
 
           {/* Step indicators */}
