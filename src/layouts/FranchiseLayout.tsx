@@ -6,7 +6,7 @@
 import { ReactNode, useState, useEffect } from 'react';
 import { useNavigate, useLocation, NavLink } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
-import { Home, Calendar, BarChart3, MessageSquare, MoreHorizontal, Loader2 } from 'lucide-react';
+import { Home, Calendar, BarChart3, MessageSquare, MoreHorizontal, Loader2, Download } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface FranchiseLayoutProps {
@@ -107,6 +107,13 @@ export function FranchiseLayout({ children }: FranchiseLayoutProps) {
             <p className="text-xs text-muted-foreground">Franchise Dashboard</p>
           </div>
           <div className="flex items-center gap-2">
+            <button
+              onClick={() => navigate('/franchise/install')}
+              className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs font-medium bg-blue-500/10 text-blue-500 hover:bg-blue-500/20 transition-colors"
+            >
+              <Download className="w-3 h-3" />
+              Install
+            </button>
             <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-500">
               Live
             </span>

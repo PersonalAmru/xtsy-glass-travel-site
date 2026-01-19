@@ -35,6 +35,8 @@ import {
   Sparkles,
   MessageCircle,
   Activity,
+  Download,
+  Shield,
 } from 'lucide-react';
 
 interface UnifiedAdminLayoutProps {
@@ -49,6 +51,7 @@ const menuItems = [
   { id: 'chats', label: 'Guest Chats', icon: MessageSquare, path: '/admin/chats' },
   { id: 'properties', label: 'Properties', icon: Building2, path: '/admin/properties' },
   { id: 'franchises', label: 'Franchise Owners', icon: Users, path: '/admin/franchises' },
+  { id: 'franchise-permissions', label: 'Franchise Permissions', icon: Shield, path: '/admin/franchise-permissions' },
   { id: 'inventory', label: 'Inventory & Yield', icon: Package, path: '/admin/inventory' },
   { id: 'otas', label: 'OTA Connections', icon: Link2, path: '/admin/otas' },
   { id: 'finance', label: 'Finance & Settlements', icon: DollarSign, path: '/admin/finance' },
@@ -250,6 +253,18 @@ export function UnifiedAdminLayout({ children }: UnifiedAdminLayoutProps) {
                 </nav>
                 
                 <div className="p-3 border-t border-white/5 space-y-0.5">
+                  <button
+                    onClick={() => {
+                      navigate('/admin/install');
+                      setMenuOpen(false);
+                    }}
+                    className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-blue-400 hover:bg-blue-500/10 transition-all group"
+                  >
+                    <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
+                      <Download className="w-4 h-4" />
+                    </div>
+                    <span className="font-medium text-sm">Install App</span>
+                  </button>
                   <button
                     onClick={() => {
                       navigate('/');
