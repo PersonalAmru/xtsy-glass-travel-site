@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X, User, LogOut } from "lucide-react";
+import { Menu, X, User, LogOut, Download } from "lucide-react";
 import { CurrencySelector } from "./CurrencySelector";
 import { useApp } from "@/contexts/AppContext";
 import { Link, useNavigate } from "react-router-dom";
@@ -276,6 +276,13 @@ const Header = () => {
                           My Profile
                         </DropdownMenuItem>
                         <DropdownMenuItem 
+                          className="text-blue-400 hover:text-blue-300 cursor-pointer"
+                          onClick={() => navigate('/install')}
+                        >
+                          <Download size={16} className="mr-2" />
+                          Install App
+                        </DropdownMenuItem>
+                        <DropdownMenuItem 
                           className="text-white hover:text-destructive cursor-pointer"
                           onClick={() => signOut()}
                         >
@@ -470,6 +477,14 @@ const Header = () => {
                         <User size={18} />
                         My Profile
                       </Link>
+                      <Link
+                        to="/install"
+                        className="flex items-center gap-2 w-full px-4 py-3 text-blue-400 hover:text-blue-300 hover:bg-blue-500/10 rounded-md transition-all duration-200 font-medium touch-target text-left"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        <Download size={18} />
+                        Install App
+                      </Link>
                       <button
                         onClick={() => {
                           signOut();
@@ -482,14 +497,24 @@ const Header = () => {
                       </button>
                     </div>
                   ) : (
-                    <Link
-                      to="/auth"
-                      className="flex items-center gap-2 w-full px-4 py-3 mt-3 text-white bg-primary/20 hover:bg-primary rounded-md transition-all duration-200 font-medium touch-target justify-center"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      <User size={18} />
-                      Sign In
-                    </Link>
+                    <div className="space-y-2 mt-3">
+                      <Link
+                        to="/auth"
+                        className="flex items-center gap-2 w-full px-4 py-3 text-white bg-primary/20 hover:bg-primary rounded-md transition-all duration-200 font-medium touch-target justify-center"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        <User size={18} />
+                        Sign In
+                      </Link>
+                      <Link
+                        to="/install"
+                        className="flex items-center gap-2 w-full px-4 py-3 text-blue-400 bg-blue-500/10 hover:bg-blue-500/20 rounded-md transition-all duration-200 font-medium touch-target justify-center"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        <Download size={18} />
+                        Install App
+                      </Link>
+                    </div>
                   )}
                   
                 </div>

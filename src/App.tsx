@@ -252,6 +252,14 @@ function App() {
                 <Route path="/franchise/login" element={<LazyRoute><FranchiseLogin /></LazyRoute>} />
                 <Route path="/franchise" element={<LazyRoute><FranchiseDashboard /></LazyRoute>} />
                 
+                {/* PWA Install Routes */}
+                <Route path="/install" element={<LazyRoute><UserInstall /></LazyRoute>} />
+                <Route path="/admin/install" element={<LazyRoute><AdminInstall /></LazyRoute>} />
+                <Route path="/franchise/install" element={<LazyRoute><FranchiseInstall /></LazyRoute>} />
+                
+                {/* Admin Franchise Permissions */}
+                <Route path="/admin/franchise-permissions" element={<LazyRoute><AdminFranchisePermissions /></LazyRoute>} />
+                
                 <Route path="*" element={<NotFound />} />
               </Routes>
               </TooltipProvider>
