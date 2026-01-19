@@ -3095,6 +3095,45 @@ export type Database = {
           },
         ]
       }
+      traffic_defense_logs: {
+        Row: {
+          check_details: Json | null
+          check_name: string
+          check_passed: boolean
+          check_score: number | null
+          created_at: string
+          id: string
+          layer_name: string
+          layer_number: number
+          session_id: string
+          visitor_id: string
+        }
+        Insert: {
+          check_details?: Json | null
+          check_name: string
+          check_passed: boolean
+          check_score?: number | null
+          created_at?: string
+          id?: string
+          layer_name: string
+          layer_number: number
+          session_id: string
+          visitor_id: string
+        }
+        Update: {
+          check_details?: Json | null
+          check_name?: string
+          check_passed?: boolean
+          check_score?: number | null
+          created_at?: string
+          id?: string
+          layer_name?: string
+          layer_number?: number
+          session_id?: string
+          visitor_id?: string
+        }
+        Relationships: []
+      }
       traffic_interaction_events: {
         Row: {
           created_at: string | null
@@ -3262,32 +3301,53 @@ export type Database = {
       }
       traffic_sessions: {
         Row: {
+          active_scroll_seconds: number | null
           bot_likelihood_score: number | null
           browser: string | null
+          browser_version: string | null
+          call_clicked: boolean | null
+          call_validated: boolean | null
           city: string | null
           click_quality_score: number | null
+          color_depth: number | null
+          connection_type: string | null
           consent_granted_at: string | null
           consent_state: Json | null
           country: string | null
           country_code: string | null
           created_at: string | null
+          defense_layer_1_passed: boolean | null
+          defense_layer_2_passed: boolean | null
+          defense_layer_3_passed: boolean | null
+          defense_score: number | null
+          device_memory: number | null
+          device_model: string | null
           device_type: string | null
+          device_vendor: string | null
           duration_seconds: number | null
           ended_at: string | null
           exit_page: string | null
+          hardware_concurrency: number | null
           id: string
           intent_category: string | null
           ip_hash: string | null
           is_bot: boolean | null
           is_bounce: boolean | null
+          is_return_visitor: boolean | null
           is_validated: boolean | null
           landing_page: string | null
+          language: string | null
+          languages: Json | null
           last_activity_at: string | null
           latitude: number | null
           longitude: number | null
           max_scroll_depth: number | null
+          meets_15s_threshold: boolean | null
           operating_system: string | null
+          os_version: string | null
           page_views: number | null
+          pixel_ratio: number | null
+          platform: string | null
           referrer_medium: string | null
           referrer_source: string | null
           referrer_url: string | null
@@ -3295,10 +3355,13 @@ export type Database = {
           screen_width: number | null
           sent_to_ga4: boolean | null
           sent_to_ga4_at: string | null
+          session_classification: string | null
           session_id: string
           state: string | null
           timezone: string | null
+          timezone_offset: number | null
           total_interactions: number | null
+          touch_points: number | null
           traffic_quality: string | null
           unified_intent_score: number | null
           user_device_tier: string | null
@@ -3307,35 +3370,59 @@ export type Database = {
           utm_medium: string | null
           utm_source: string | null
           utm_term: string | null
+          visit_count: number | null
           visitor_id: string
+          whatsapp_clicked: boolean | null
+          whatsapp_validated: boolean | null
         }
         Insert: {
+          active_scroll_seconds?: number | null
           bot_likelihood_score?: number | null
           browser?: string | null
+          browser_version?: string | null
+          call_clicked?: boolean | null
+          call_validated?: boolean | null
           city?: string | null
           click_quality_score?: number | null
+          color_depth?: number | null
+          connection_type?: string | null
           consent_granted_at?: string | null
           consent_state?: Json | null
           country?: string | null
           country_code?: string | null
           created_at?: string | null
+          defense_layer_1_passed?: boolean | null
+          defense_layer_2_passed?: boolean | null
+          defense_layer_3_passed?: boolean | null
+          defense_score?: number | null
+          device_memory?: number | null
+          device_model?: string | null
           device_type?: string | null
+          device_vendor?: string | null
           duration_seconds?: number | null
           ended_at?: string | null
           exit_page?: string | null
+          hardware_concurrency?: number | null
           id?: string
           intent_category?: string | null
           ip_hash?: string | null
           is_bot?: boolean | null
           is_bounce?: boolean | null
+          is_return_visitor?: boolean | null
           is_validated?: boolean | null
           landing_page?: string | null
+          language?: string | null
+          languages?: Json | null
           last_activity_at?: string | null
           latitude?: number | null
           longitude?: number | null
           max_scroll_depth?: number | null
+          meets_15s_threshold?: boolean | null
           operating_system?: string | null
+          os_version?: string | null
           page_views?: number | null
+          pixel_ratio?: number | null
+          platform?: string | null
           referrer_medium?: string | null
           referrer_source?: string | null
           referrer_url?: string | null
@@ -3343,10 +3430,13 @@ export type Database = {
           screen_width?: number | null
           sent_to_ga4?: boolean | null
           sent_to_ga4_at?: string | null
+          session_classification?: string | null
           session_id: string
           state?: string | null
           timezone?: string | null
+          timezone_offset?: number | null
           total_interactions?: number | null
+          touch_points?: number | null
           traffic_quality?: string | null
           unified_intent_score?: number | null
           user_device_tier?: string | null
@@ -3355,35 +3445,59 @@ export type Database = {
           utm_medium?: string | null
           utm_source?: string | null
           utm_term?: string | null
+          visit_count?: number | null
           visitor_id: string
+          whatsapp_clicked?: boolean | null
+          whatsapp_validated?: boolean | null
         }
         Update: {
+          active_scroll_seconds?: number | null
           bot_likelihood_score?: number | null
           browser?: string | null
+          browser_version?: string | null
+          call_clicked?: boolean | null
+          call_validated?: boolean | null
           city?: string | null
           click_quality_score?: number | null
+          color_depth?: number | null
+          connection_type?: string | null
           consent_granted_at?: string | null
           consent_state?: Json | null
           country?: string | null
           country_code?: string | null
           created_at?: string | null
+          defense_layer_1_passed?: boolean | null
+          defense_layer_2_passed?: boolean | null
+          defense_layer_3_passed?: boolean | null
+          defense_score?: number | null
+          device_memory?: number | null
+          device_model?: string | null
           device_type?: string | null
+          device_vendor?: string | null
           duration_seconds?: number | null
           ended_at?: string | null
           exit_page?: string | null
+          hardware_concurrency?: number | null
           id?: string
           intent_category?: string | null
           ip_hash?: string | null
           is_bot?: boolean | null
           is_bounce?: boolean | null
+          is_return_visitor?: boolean | null
           is_validated?: boolean | null
           landing_page?: string | null
+          language?: string | null
+          languages?: Json | null
           last_activity_at?: string | null
           latitude?: number | null
           longitude?: number | null
           max_scroll_depth?: number | null
+          meets_15s_threshold?: boolean | null
           operating_system?: string | null
+          os_version?: string | null
           page_views?: number | null
+          pixel_ratio?: number | null
+          platform?: string | null
           referrer_medium?: string | null
           referrer_source?: string | null
           referrer_url?: string | null
@@ -3391,10 +3505,13 @@ export type Database = {
           screen_width?: number | null
           sent_to_ga4?: boolean | null
           sent_to_ga4_at?: string | null
+          session_classification?: string | null
           session_id?: string
           state?: string | null
           timezone?: string | null
+          timezone_offset?: number | null
           total_interactions?: number | null
+          touch_points?: number | null
           traffic_quality?: string | null
           unified_intent_score?: number | null
           user_device_tier?: string | null
@@ -3403,7 +3520,10 @@ export type Database = {
           utm_medium?: string | null
           utm_source?: string | null
           utm_term?: string | null
+          visit_count?: number | null
           visitor_id?: string
+          whatsapp_clicked?: boolean | null
+          whatsapp_validated?: boolean | null
         }
         Relationships: []
       }
@@ -3483,6 +3603,81 @@ export type Database = {
             referencedColumns: ["session_id"]
           },
         ]
+      }
+      traffic_visitor_history: {
+        Row: {
+          avg_intent_score: number | null
+          avg_session_duration: number | null
+          city: string | null
+          conversion_count: number | null
+          converted: boolean | null
+          country_code: string | null
+          created_at: string
+          cumulative_defense_score: number | null
+          first_seen_at: string
+          highest_intent_score: number | null
+          id: string
+          is_hot_lead: boolean | null
+          is_known_bot: boolean | null
+          is_known_junk: boolean | null
+          last_seen_at: string
+          preferred_device: string | null
+          preferred_os: string | null
+          total_conversion_value: number | null
+          total_page_views: number | null
+          total_sessions: number | null
+          updated_at: string
+          visitor_id: string
+        }
+        Insert: {
+          avg_intent_score?: number | null
+          avg_session_duration?: number | null
+          city?: string | null
+          conversion_count?: number | null
+          converted?: boolean | null
+          country_code?: string | null
+          created_at?: string
+          cumulative_defense_score?: number | null
+          first_seen_at?: string
+          highest_intent_score?: number | null
+          id?: string
+          is_hot_lead?: boolean | null
+          is_known_bot?: boolean | null
+          is_known_junk?: boolean | null
+          last_seen_at?: string
+          preferred_device?: string | null
+          preferred_os?: string | null
+          total_conversion_value?: number | null
+          total_page_views?: number | null
+          total_sessions?: number | null
+          updated_at?: string
+          visitor_id: string
+        }
+        Update: {
+          avg_intent_score?: number | null
+          avg_session_duration?: number | null
+          city?: string | null
+          conversion_count?: number | null
+          converted?: boolean | null
+          country_code?: string | null
+          created_at?: string
+          cumulative_defense_score?: number | null
+          first_seen_at?: string
+          highest_intent_score?: number | null
+          id?: string
+          is_hot_lead?: boolean | null
+          is_known_bot?: boolean | null
+          is_known_junk?: boolean | null
+          last_seen_at?: string
+          preferred_device?: string | null
+          preferred_os?: string | null
+          total_conversion_value?: number | null
+          total_page_views?: number | null
+          total_sessions?: number | null
+          updated_at?: string
+          visitor_id?: string
+        }
+        Relationships: []
       }
       traveller_events: {
         Row: {
@@ -4067,6 +4262,15 @@ export type Database = {
           risk_score: number
           suspicious_indicators: string[]
         }[]
+      }
+      classify_traffic_session: {
+        Args: {
+          p_active_scroll_seconds: number
+          p_bot_likelihood: number
+          p_defense_score: number
+          p_intent_score: number
+        }
+        Returns: string
       }
       classify_traveller_segment: {
         Args: { p_visitor_id: string }
