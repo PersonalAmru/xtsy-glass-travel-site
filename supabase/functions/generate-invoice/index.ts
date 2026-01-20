@@ -31,7 +31,7 @@ interface InvoiceData {
 }
 
 // XTSY Brand Logo URL
-const XTSY_LOGO_URL = 'https://xtsy.lovable.app/lovable-uploads/160f683c-a41c-41fd-8bdb-700d74a7e027.png';
+const XTSY_LOGO_URL = 'https://xtsy.one/lovable-uploads/160f683c-a41c-41fd-8bdb-700d74a7e027.png';
 
 function generateInvoiceHTML(data: InvoiceData): string {
   const now = new Date();

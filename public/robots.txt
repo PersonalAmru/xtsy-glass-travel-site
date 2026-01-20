@@ -1,8 +1,21 @@
+# XTSY Travel - robots.txt
+# Canonical domain: https://xtsy.one
+
 User-agent: Googlebot
 Allow: /
+Disallow: /admin
+Disallow: /admin-login
+Disallow: /franchise
+Disallow: /franchise-login
+Disallow: /index.html
 
 User-agent: Bingbot
 Allow: /
+Disallow: /admin
+Disallow: /admin-login
+Disallow: /franchise
+Disallow: /franchise-login
+Disallow: /index.html
 
 User-agent: Twitterbot
 Allow: /
@@ -12,3 +25,15 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /admin-login
+Disallow: /franchise
+Disallow: /franchise-login
+Disallow: /index.html
+
+# Non-existent pages to ignore
+Disallow: /cafe
+Disallow: /blog
+
+# Sitemap location
+Sitemap: https://xtsy.one/sitemap.xml
