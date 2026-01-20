@@ -1,6 +1,7 @@
 import HeroSection from "@/components/HeroSection";
-import RoomsSection from "@/components/RoomsSection";
-import ServicesSection from "@/components/ServicesSection";
+import FeaturedPackagesSection from "@/components/FeaturedPackagesSection";
+import WhyXTSYSection from "@/components/WhyXTSYSection";
+import RecommendedStaysSection from "@/components/RecommendedStaysSection";
 import ReviewsSection from "@/components/ReviewsSection";
 import GroupBookingSection from "@/components/GroupBookingSection";
 import AdventureCallToAction from "@/components/AdventureCallToAction";
@@ -22,11 +23,17 @@ const Index = () => {
       <Header />
       <main style={{ contain: 'layout style' }}>
         <HeroSection />
+        {/* Featured Tour Packages - Above the fold after hero */}
         <LazyWrapper eager fallback={<SectionFallback height="h-96" />}>
-          <RoomsSection />
+          <FeaturedPackagesSection />
         </LazyWrapper>
+        {/* Why XTSY - Value propositions */}
         <LazyWrapper fallback={<SectionFallback />}>
-          <ServicesSection />
+          <WhyXTSYSection />
+        </LazyWrapper>
+        {/* Recommended Stays - Rooms as secondary */}
+        <LazyWrapper fallback={<SectionFallback height="h-80" />}>
+          <RecommendedStaysSection />
         </LazyWrapper>
         <LazyWrapper fallback={<SectionFallback />}>
           <ReviewsSection />
