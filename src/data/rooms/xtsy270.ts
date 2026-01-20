@@ -2,7 +2,7 @@ import { Wifi, Coffee, Bath, Bed, Mountain, Star, Award, Eye, Sun, Moon, Users, 
 
 export const XTSY270_DATA = {
   path: '/xtsy-270',
-  canonicalUrl: 'https://xtsy.lovable.app/xtsy-270',
+  canonicalUrl: 'https://xtsy.one/xtsy-270',
   name: 'XTSY 270° Panorama Glass Ensuite',
   shortName: 'XTSY 270°',
   seoTitle: 'XTSY 270° Panorama Glass Ensuite | India\'s First Luxury Glass House Shillong',

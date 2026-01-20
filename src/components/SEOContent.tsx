@@ -253,7 +253,7 @@ const SEOContent: React.FC<SEOContentProps> = ({ page = 'home' }) => {
           "@type": "WebPage",
           "name": pageContent.title,
           "description": pageContent.description,
-          "url": `https://xtsy.lovable.app${page !== 'home' ? `/${page}` : ''}`,
+          "url": `https://xtsy.one${page !== 'home' ? `/${page}` : '/'}`,
           "mainEntity": {
             "@type": "LodgingBusiness",
             "name": "XTSY Travel",
@@ -267,13 +267,13 @@ const SEOContent: React.FC<SEOContentProps> = ({ page = 'home' }) => {
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Home",
-                "item": "https://xtsy.lovable.app"
+                "item": "https://xtsy.one/"
               },
               ...(page !== 'home' ? [{
                 "@type": "ListItem",
                 "position": 2,
                 "name": page.charAt(0).toUpperCase() + page.slice(1),
-                "item": `https://xtsy.lovable.app/${page}`
+                "item": `https://xtsy.one/${page}`
               }] : [])
             ]
           }
