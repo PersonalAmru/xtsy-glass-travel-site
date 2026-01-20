@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://oidnydyyjyjfnyadhyzn.supabase.co" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
     
     <!-- LCP CRITICAL: Preload hero brand symbol with highest priority -->
     <link rel="preload" as="image" href="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png" fetchpriority="high" type="image/png">
@@ -52,15 +53,16 @@
     <link rel="dns-prefetch" href="//api.exchangerate-api.com">
     <link rel="dns-prefetch" href="//checkout.razorpay.com">
     <link rel="dns-prefetch" href="//wa.me">
+    <link rel="dns-prefetch" href="//www.google-analytics.com">
+    <link rel="dns-prefetch" href="//region1.google-analytics.com">
     
-    <!-- Google Analytics & Ads - async/defer for non-blocking load -->
-    <script async defer src="https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B"></script>
+    <!-- GTM SINGLE AUTHORITY - GTM-5FXJ9QBK is the sole analytics routing system -->
+    <!-- NO direct gtag.js, GA4, Google Ads, or GT-* tags allowed -->
     <script>
+      // Initialize dataLayer FIRST (before GTM loads)
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      window.gtag = gtag;
       
-      // Lovable admin detection - don't track admin/preview traffic in GA/Ads
+      // Lovable admin detection - set flag for frontend to use
       (function() {
         var params = new URLSearchParams(window.location.search);
         var isLovable = params.has('__lovable_token') || 
@@ -90,37 +92,39 @@
           sessionStorage.setItem('xtsy_is_lovable_session', 'true');
         }
         
-        // Only initialize GA/Ads tracking if NOT Lovable admin
+        // Push initial context to dataLayer (GTM will handle routing)
+        dataLayer.push({
+          'event': 'xtsy_init',
+          'is_admin_session': isLovable,
+          'page_path': window.location.pathname,
+          'page_url': window.location.href,
+          'page_title': document.title,
+          'timestamp': new Date().toISOString(),
+          'user_agent': navigator.userAgent,
+          'screen_resolution': screen.width + 'x' + screen.height,
+          'viewport_size': window.innerWidth + 'x' + window.innerHeight
+        });
+        
+        // Set default consent state in dataLayer (GTM will handle Consent Mode)
         if (!isLovable) {
-          // Set default consent (update if you have a cookie consent banner)
-          gtag('consent', 'default', {
+          dataLayer.push({
+            'event': 'consent_default',
             'analytics_storage': 'granted',
             'ad_storage': 'granted',
             'ad_user_data': 'granted',
             'ad_personalization': 'granted'
           });
-          
-          gtag('js', new Date());
-          
-          // GA4 Configuration with enhanced settings for better tracking
-          gtag('config', 'G-SJY2WX6L4B', {
-            'send_page_view': true,
-            'cookie_flags': 'SameSite=None;Secure',
-            'cookie_domain': 'auto',
-            'cookie_expires': 63072000, // 2 years in seconds
-            'allow_google_signals': true,
-            'allow_ad_personalization_signals': true
-          });
-          
-          // Google Ads Configuration for lead quality
-          gtag('config', 'AW-17456979648', {
-            'send_page_view': true,
-            'cookie_flags': 'SameSite=None;Secure',
-            'allow_enhanced_conversions': true
-          });
         }
       })();
     </script>
+    
+    <!-- Google Tag Manager - SOLE ANALYTICS AUTHORITY -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5FXJ9QBK');</script>
+    <!-- End Google Tag Manager -->
     
     <!-- HTTP Client Hints for image optimization -->
     <meta http-equiv="Accept-CH" content="DPR,Width,Viewport-Width">
@@ -583,6 +587,11 @@
   <meta name="twitter:description" content="XTSY Travellers Hostel - India&#39;s best hostel experience in Shillong, Meghalaya. The biggest hostel in North East India offering luxury accommodations, budget stays, and unforgettable travel experiences. Book the best hostel in India for your Meghalaya adventure.">
 </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FXJ9QBK"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
     <!-- LCP CRITICAL: Render hero skeleton IMMEDIATELY before React hydrates -->
     <style id="lcp-critical-css">
       #lcp-skeleton{position:fixed;inset:0;z-index:9998;background:linear-gradient(135deg,#020617,#0f172a,#020617);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:1;transition:opacity .3s ease-out}
