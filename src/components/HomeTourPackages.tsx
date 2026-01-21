@@ -6,7 +6,7 @@ import { ArrowRight, Globe, MapPin, Compass } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { LazyTourPackageModal } from "@/components/lazy/LazyTourPackageModal";
 import { useApp } from "@/contexts/AppContext";
-import { pushDataLayerEvent } from "@/utils/dataLayerService";
+import { pushToDataLayer } from "@/utils/dataLayerService";
 
 // Import all tour package images from Travel.tsx
 import meghalayaBiodiversityAuthenticImg from "@/assets/meghalaya-biodiversity-authentic.jpg";
@@ -277,16 +277,14 @@ const HomeTourPackages: React.FC<HomeTourPackagesProps> = ({ className }) => {
     const pkg = currentPackages.find(p => p.id === item.id);
     if (pkg) {
       // Push analytics event
-      pushDataLayerEvent({
+      pushToDataLayer({
         event: "package_viewed",
         component: "HomeTourPackages",
         funnel_stage: "discovery",
-        metadata: {
-          package_id: pkg.id,
-          package_name: pkg.title,
-          category: pkg.category,
-          price: pkg.price,
-        }
+        package_id: String(pkg.id),
+        package_name: pkg.title,
+        package_category: pkg.category,
+        package_price: pkg.price,
       });
 
       setSelectedPackage({

@@ -244,10 +244,7 @@ export function FocusRail({
                 }}
                 whileHover={isCenter ? { scale: 1.03 } : {}}
                 whileTap={isCenter ? { scale: 0.97 } : {}}
-                transition={(val) => {
-                  if (val === "scale") return TAP_SPRING;
-                  return BASE_SPRING;
-                }}
+                transition={BASE_SPRING}
                 style={{
                   transformStyle: "preserve-3d",
                 }}

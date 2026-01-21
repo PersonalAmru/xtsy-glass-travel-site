@@ -5,7 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { X, Sparkles, Mountain, PawPrint, Trophy, Heart, Laptop, Car, ArrowRight, CheckCircle2 } from "lucide-react";
-import { pushDataLayerEvent } from "@/utils/dataLayerService";
+import { pushToDataLayer } from "@/utils/dataLayerService";
 
 // XTSY Prime images (from existing pages)
 import xtsy270Image from "@/assets/double-decker-bridge-new.jpg"; // Placeholder - will use actual 270 image
@@ -169,15 +169,13 @@ const XTSYPrimeSection: React.FC<XTSYPrimeSectionProps> = ({ className }) => {
     const offering = xtsyPrimeOfferings.find(o => o.id === item.id);
     if (offering) {
       // Push analytics event
-      pushDataLayerEvent({
+      pushToDataLayer({
         event: "xtsy_prime_viewed",
         component: "XTSYPrimeSection",
         funnel_stage: "discovery",
-        metadata: {
-          offering_id: offering.id,
-          offering_name: offering.title,
-          category: offering.category,
-        }
+        offering_id: offering.id,
+        offering_name: offering.title,
+        offering_category: offering.category,
       });
 
       setSelectedOffering(offering);
