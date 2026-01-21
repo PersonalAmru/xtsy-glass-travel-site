@@ -1,28 +1,39 @@
 /**
- * HeroSection - Clean, lightweight hero without framer-motion transforms
+ * HeroSection - Clean, lightweight hero with location dropdown and guest stepper
  */
 
 import { useState, useEffect, useRef } from "react";
-import { Calendar, Users, Search, ChevronDown, Sparkles } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Calendar, Search, ChevronDown, Sparkles, MapPin, Minus, Plus, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
 import { useMediaQuery } from "@/hooks/use-mobile";
 import { useHappyGuestsContext } from "@/contexts/HappyGuestsContext";
 import { cn } from "@/lib/utils";
-import BookingModal from "@/components/BookingModal";
+import { getLocationOptions } from "@/data/properties";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const HeroSection = () => {
+  const navigate = useNavigate();
   const [checkIn, setCheckIn] = useState(new Date().toISOString().split('T')[0]);
   const [checkOut, setCheckOut] = useState("");
-  const [guests, setGuests] = useState("4");
+  const [guests, setGuests] = useState(4);
+  const [location, setLocation] = useState("shillong");
   const [currentLanguageIndex, setCurrentLanguageIndex] = useState(0);
   const [averageRating, setAverageRating] = useState(4.9);
-  const [bookingModalOpen, setBookingModalOpen] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
 
   const { happyGuestsCount, incrementHappyGuests } = useHappyGuestsContext();
   const isMobile = useMediaQuery('(max-width: 767px)');
+  
+  const locationOptions = getLocationOptions();
 
   const languages = ["Hello", "नमस्ते", "হ্যালো", "Hola", "Bonjour", "Hallo", "Ciao", "こんにちは", "안녕하세요", "Olá", "Привет", "مرحبا"];
 
@@ -87,7 +98,7 @@ const HeroSection = () => {
     }
 
     // Validate fields
-    if (!checkIn || !checkOut || !guests) {
+    if (!checkIn || !checkOut || !location) {
       alert("Please fill in all search fields");
       return;
     }
@@ -95,16 +106,21 @@ const HeroSection = () => {
       alert("Check-out date cannot be the same as check-in date.");
       return;
     }
-    const guestCount = parseInt(guests);
-    if (guestCount > 20) {
+    if (guests > 20) {
       alert("For more than 20 guests, please use B2B Corporate Booking or Group Booking options available below.");
       const el = document.querySelector('#group-booking-section');
       if (el) el.scrollIntoView({ behavior: 'smooth' });
       return;
     }
 
-    console.log('[HeroSection] Opening booking modal');
-    setBookingModalOpen(true);
+    // Navigate to property selection page
+    const params = new URLSearchParams({
+      location,
+      checkIn,
+      checkOut,
+      guests: guests.toString(),
+    });
+    navigate(`/properties?${params.toString()}`);
   };
 
   const scrollToContent = () => {
@@ -112,6 +128,14 @@ const HeroSection = () => {
     if (roomsSection) {
       roomsSection.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleGuestIncrement = () => {
+    if (guests < 20) setGuests(guests + 1);
+  };
+
+  const handleGuestDecrement = () => {
+    if (guests > 1) setGuests(guests - 1);
   };
 
   const stats = [
@@ -122,199 +146,238 @@ const HeroSection = () => {
   ];
 
   return (
-    <>
-      <section 
-        ref={heroRef}
-        id="home" 
-        className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
-      >
-        {/* Static Background Elements - no transforms */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px]" />
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-500/15 rounded-full blur-[100px]" />
-          <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-emerald-500/10 rounded-full blur-[80px]" />
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
-        </div>
+    <section 
+      ref={heroRef}
+      id="home" 
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+    >
+      {/* Static Background Elements - no transforms */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-500/15 rounded-full blur-[100px]" />
+        <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-emerald-500/10 rounded-full blur-[80px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
+      </div>
 
-        {/* Main Content - no transforms */}
-        <div className="relative z-10 text-center text-white w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 pt-4 md:pt-0">
-          {/* Language Greeting & Symbol */}
-          <div className="mb-6 sm:mb-10 animate-fade-in">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-md border border-white/10 mb-6">
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-sm text-white/70">Premium Stays in Northeast India</span>
-            </div>
-
-            <div className="relative h-16 flex items-center justify-center mb-4">
-              <span className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent transition-opacity duration-500">
-                {languages[currentLanguageIndex]}
-              </span>
-            </div>
-
-            {/* LCP ELEMENT - Brand Symbol - matches skeleton for instant swap */}
-            <div className="flex items-center justify-center mb-6">
-              <div className="relative">
-                <img
-                  src="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png"
-                  alt="XTSY Brand Symbol"
-                  className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 object-contain drop-shadow-2xl"
-                  loading="eager"
-                  decoding="sync"
-                  // @ts-expect-error - React 18.3 uses fetchPriority
-                  fetchpriority="high"
-                  width={128}
-                  height={128}
-                  // Dimensions match skeleton for zero layout shift
-                  style={{ aspectRatio: '1/1' }}
-                />
-                <div className="absolute -inset-4 bg-primary/20 rounded-full blur-2xl -z-10" />
-              </div>
-            </div>
-
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-orange-400 to-rose-400 bg-clip-text text-transparent mb-4">
-              Live the XTSY Vibe
-            </h1>
+      {/* Main Content - no transforms */}
+      <div className="relative z-10 text-center text-white w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 pt-4 md:pt-0">
+        {/* Language Greeting & Symbol */}
+        <div className="mb-6 sm:mb-10 animate-fade-in">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-md border border-white/10 mb-6">
+            <Sparkles className="w-4 h-4 text-primary" />
+            <span className="text-sm text-white/70">Premium Stays in Northeast India</span>
           </div>
 
-          {/* Search Card - no transforms */}
-          <div className={cn(
-            "max-w-4xl mx-auto rounded-3xl p-6 sm:p-8 border shadow-2xl animate-fade-in",
-            "bg-white/5 backdrop-blur-2xl border-white/10",
-            "ring-1 ring-inset ring-white/5"
-          )}
-          style={{ animationDelay: '0.2s' }}
-          >
-            <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-6 text-white/90">
-              Find Your Perfect Stay
-            </h2>
+          <div className="relative h-16 flex items-center justify-center mb-4">
+            <span className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent transition-opacity duration-500">
+              {languages[currentLanguageIndex]}
+            </span>
+          </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-              {/* Check-in */}
-              <div className="space-y-2">
-                <label className="block text-xs sm:text-sm font-medium text-white/60">Check-in</label>
-                <div className="relative group">
-                  <Input
-                    type="date"
-                    value={checkIn}
-                    onChange={e => setCheckIn(e.target.value)}
-                    className={cn(
-                      "pl-10 h-12 rounded-xl transition-all",
-                      "bg-white/5 border-white/10 text-white placeholder-white/40",
-                      "focus:bg-white/10 focus:border-primary/50 focus:ring-1 focus:ring-primary/30",
-                      "[&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:opacity-50"
-                    )}
-                    min={new Date().toISOString().split('T')[0]}
-                    style={{ colorScheme: 'dark' }}
-                  />
-                  <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/40 group-focus-within:text-primary transition-colors" />
-                </div>
-              </div>
+          {/* LCP ELEMENT - Brand Symbol - matches skeleton for instant swap */}
+          <div className="flex items-center justify-center mb-6">
+            <div className="relative">
+              <img
+                src="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png"
+                alt="XTSY Brand Symbol"
+                className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 object-contain drop-shadow-2xl"
+                loading="eager"
+                decoding="sync"
+                // @ts-expect-error - React 18.3 uses fetchPriority
+                fetchpriority="high"
+                width={128}
+                height={128}
+                // Dimensions match skeleton for zero layout shift
+                style={{ aspectRatio: '1/1' }}
+              />
+              <div className="absolute -inset-4 bg-primary/20 rounded-full blur-2xl -z-10" />
+            </div>
+          </div>
 
-              {/* Check-out */}
-              <div className="space-y-2">
-                <label className="block text-xs sm:text-sm font-medium text-white/60">Check-out</label>
-                <div className="relative group">
-                  <Input
-                    type="date"
-                    value={checkOut}
-                    onChange={e => setCheckOut(e.target.value)}
-                    className={cn(
-                      "pl-10 h-12 rounded-xl transition-all",
-                      "bg-white/5 border-white/10 text-white placeholder-white/40",
-                      "focus:bg-white/10 focus:border-primary/50 focus:ring-1 focus:ring-primary/30",
-                      "[&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:opacity-50"
-                    )}
-                    min={checkIn ? new Date(new Date(checkIn).getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0] : undefined}
-                    style={{ colorScheme: 'dark' }}
-                  />
-                  <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/40 group-focus-within:text-primary transition-colors" />
-                </div>
-              </div>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-orange-400 to-rose-400 bg-clip-text text-transparent mb-4">
+            Live the XTSY Vibe
+          </h1>
+        </div>
 
-              {/* Guests */}
-              <div className="space-y-2">
-                <label className="block text-xs sm:text-sm font-medium text-white/60">Guests</label>
-                <div className="relative group">
-                  <Input
-                    type="number"
-                    value={guests}
-                    onChange={e => setGuests(e.target.value)}
-                    min="1"
-                    max="20"
-                    className={cn(
-                      "pl-10 h-12 rounded-xl transition-all",
-                      "bg-white/5 border-white/10 text-white placeholder-white/40",
-                      "focus:bg-white/10 focus:border-primary/50 focus:ring-1 focus:ring-primary/30"
-                    )}
-                    placeholder="4"
-                  />
-                  <Users className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/40 group-focus-within:text-primary transition-colors" />
-                </div>
-              </div>
+        {/* Search Card - Fixed size container */}
+        <div className={cn(
+          "max-w-md mx-auto rounded-3xl p-6 border shadow-2xl animate-fade-in",
+          "bg-white/5 backdrop-blur-2xl border-white/10",
+          "ring-1 ring-inset ring-white/5"
+        )}
+        style={{ animationDelay: '0.2s' }}
+        >
+          <h2 className="text-lg sm:text-xl font-semibold mb-6 text-white/90">
+            Find Your Perfect Stay
+          </h2>
 
-              {/* Search Button */}
-              <div className="flex items-end col-span-1 sm:col-span-2 lg:col-span-1">
-                <Button
-                  onClick={handleSearch}
+          <div className="space-y-4 mb-6">
+            {/* Location Dropdown */}
+            <div className="space-y-2">
+              <label className="block text-xs sm:text-sm font-medium text-white/60">Location</label>
+              <Select value={location} onValueChange={setLocation}>
+                <SelectTrigger className={cn(
+                  "w-full h-12 rounded-xl",
+                  "bg-white/5 border-white/10 text-white",
+                  "focus:ring-1 focus:ring-primary/30"
+                )}>
+                  <div className="flex items-center gap-2">
+                    <MapPin className="w-4 h-4 text-white/40" />
+                    <SelectValue placeholder="Select location" />
+                  </div>
+                </SelectTrigger>
+                <SelectContent className="bg-slate-900 border-white/10">
+                  {locationOptions.map((opt) => (
+                    <SelectItem 
+                      key={opt.value} 
+                      value={opt.value}
+                      className="text-white hover:bg-white/10 focus:bg-white/10"
+                    >
+                      <div className="flex flex-col">
+                        <span>{opt.label}</span>
+                        <span className="text-xs text-white/50">{opt.sublabel}</span>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Check-in */}
+            <div className="space-y-2">
+              <label className="block text-xs sm:text-sm font-medium text-white/60">Check-in</label>
+              <div className="relative group">
+                <Input
+                  type="date"
+                  value={checkIn}
+                  onChange={e => setCheckIn(e.target.value)}
                   className={cn(
-                    "w-full h-12 rounded-xl font-semibold transition-all",
-                    "bg-gradient-to-r from-primary to-orange-500",
-                    "hover:from-primary/90 hover:to-orange-500/90",
-                    "hover:shadow-lg hover:shadow-primary/25",
-                    "active:scale-[0.98]"
+                    "pl-10 h-12 rounded-xl transition-all",
+                    "bg-white/5 border-white/10 text-white placeholder-white/40",
+                    "focus:bg-white/10 focus:border-primary/50 focus:ring-1 focus:ring-primary/30",
+                    "[&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:opacity-50"
                   )}
-                >
-                  <Search className="mr-2 h-4 w-4" />
-                  Check Availability
-                </Button>
+                  min={new Date().toISOString().split('T')[0]}
+                  style={{ colorScheme: 'dark' }}
+                />
+                <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/40 group-focus-within:text-primary transition-colors" />
               </div>
             </div>
 
-            <div className="flex items-center justify-center gap-4 text-xs text-white/40">
-              <span className="flex items-center gap-1">🏨 3 Property Types</span>
-              <span className="w-1 h-1 rounded-full bg-white/20" />
-              <span className="flex items-center gap-1">🌟 Premium Amenities</span>
-              <span className="w-1 h-1 rounded-full bg-white/20" />
-              <span className="flex items-center gap-1">🎯 Best Rates</span>
+            {/* Check-out */}
+            <div className="space-y-2">
+              <label className="block text-xs sm:text-sm font-medium text-white/60">Check-out</label>
+              <div className="relative group">
+                <Input
+                  type="date"
+                  value={checkOut}
+                  onChange={e => setCheckOut(e.target.value)}
+                  className={cn(
+                    "pl-10 h-12 rounded-xl transition-all",
+                    "bg-white/5 border-white/10 text-white placeholder-white/40",
+                    "focus:bg-white/10 focus:border-primary/50 focus:ring-1 focus:ring-primary/30",
+                    "[&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:opacity-50"
+                  )}
+                  min={checkIn ? new Date(new Date(checkIn).getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0] : undefined}
+                  style={{ colorScheme: 'dark' }}
+                />
+                <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/40 group-focus-within:text-primary transition-colors" />
+              </div>
             </div>
-          </div>
 
-          {/* Stats - no transforms */}
-          <div className="mt-10 sm:mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-3xl mx-auto">
-            {stats.map((stat, index) => (
-              <div 
-                key={stat.label}
-                className="text-center p-4 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/5 hover:bg-white/10 transition-colors animate-fade-in"
-                style={{ animationDelay: `${0.3 + index * 0.1}s` }}
-              >
-                <div className={cn("text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r bg-clip-text text-transparent", stat.gradient)}>
-                  {stat.value}
+            {/* Guests - Modern +/- Stepper */}
+            <div className="space-y-2">
+              <label className="block text-xs sm:text-sm font-medium text-white/60">Guests</label>
+              <div className={cn(
+                "flex items-center justify-between",
+                "bg-white/5 border border-white/10 rounded-xl h-12 px-3"
+              )}>
+                <Users className="w-4 h-4 text-white/40" />
+                <div className="flex items-center gap-4">
+                  <button
+                    onClick={handleGuestDecrement}
+                    disabled={guests <= 1}
+                    className={cn(
+                      "w-9 h-9 rounded-full flex items-center justify-center transition-all",
+                      guests > 1
+                        ? "bg-white/10 hover:bg-white/20 text-white active:scale-95"
+                        : "bg-white/5 text-white/20 cursor-not-allowed"
+                    )}
+                    aria-label="Decrease guests"
+                  >
+                    <Minus className="w-4 h-4" />
+                  </button>
+                  <span className="text-lg font-bold text-white tabular-nums min-w-[2rem] text-center">
+                    {guests}
+                  </span>
+                  <button
+                    onClick={handleGuestIncrement}
+                    disabled={guests >= 20}
+                    className={cn(
+                      "w-9 h-9 rounded-full flex items-center justify-center transition-all",
+                      guests < 20
+                        ? "bg-white/10 hover:bg-white/20 text-white active:scale-95"
+                        : "bg-white/5 text-white/20 cursor-not-allowed"
+                    )}
+                    aria-label="Increase guests"
+                  >
+                    <Plus className="w-4 h-4" />
+                  </button>
                 </div>
-                <div className="text-xs sm:text-sm text-white/50 mt-1">{stat.label}</div>
               </div>
-            ))}
+            </div>
+
+            {/* Search Button */}
+            <Button
+              onClick={handleSearch}
+              className={cn(
+                "w-full h-12 rounded-xl font-semibold transition-all",
+                "bg-gradient-to-r from-primary to-orange-500",
+                "hover:from-primary/90 hover:to-orange-500/90",
+                "hover:shadow-lg hover:shadow-primary/25",
+                "active:scale-[0.98]"
+              )}
+            >
+              <Search className="mr-2 h-4 w-4" />
+              Check Availability
+            </Button>
           </div>
 
-          {/* Scroll indicator */}
-          <button
-            onClick={scrollToContent}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/40 hover:text-white/70 transition-colors animate-bounce"
-            aria-label="Scroll to content"
-          >
-            <ChevronDown className="w-6 h-6" />
-          </button>
+          <div className="flex items-center justify-center gap-4 text-xs text-white/40">
+            <span className="flex items-center gap-1">🏨 2 Properties</span>
+            <span className="w-1 h-1 rounded-full bg-white/20" />
+            <span className="flex items-center gap-1">🌟 Premium Amenities</span>
+            <span className="w-1 h-1 rounded-full bg-white/20" />
+            <span className="flex items-center gap-1">🎯 Best Rates</span>
+          </div>
         </div>
-      </section>
 
-      {/* Booking Modal - rendered via portal */}
-      <BookingModal
-        isOpen={bookingModalOpen}
-        onClose={() => setBookingModalOpen(false)}
-        initialCheckIn={checkIn ? new Date(checkIn) : undefined}
-        initialCheckOut={checkOut ? new Date(checkOut) : undefined}
-        initialGuests={parseInt(guests) || 1}
-      />
-    </>
+        {/* Stats - no transforms */}
+        <div className="mt-10 sm:mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-3xl mx-auto">
+          {stats.map((stat, index) => (
+            <div 
+              key={stat.label}
+              className="text-center p-4 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/5 hover:bg-white/10 transition-colors animate-fade-in"
+              style={{ animationDelay: `${0.3 + index * 0.1}s` }}
+            >
+              <div className={cn("text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r bg-clip-text text-transparent", stat.gradient)}>
+                {stat.value}
+              </div>
+              <div className="text-xs sm:text-sm text-white/50 mt-1">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Scroll indicator */}
+        <button
+          onClick={scrollToContent}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/40 hover:text-white/70 transition-colors animate-bounce"
+          aria-label="Scroll to content"
+        >
+          <ChevronDown className="w-6 h-6" />
+        </button>
+      </div>
+    </section>
   );
 };
 

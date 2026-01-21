@@ -163,6 +163,22 @@
 
   body {
     @apply font-sans antialiased;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  body::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbars globally on all scrollable elements */
+  *::-webkit-scrollbar {
+    display: none;
+  }
+  
+  * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
   /* Flag emoji support for cross-platform rendering */
