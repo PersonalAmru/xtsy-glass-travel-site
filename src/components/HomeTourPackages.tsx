@@ -38,7 +38,7 @@ import tamilNaduMeenakshiTempleImg from "@/assets/tamil-nadu-meenakshi-temple.jp
 import tamilNaduKanchipuramTempleImg from "@/assets/tamil-nadu-kanchipuram-temple.jpg";
 import ootyKodaikanalImg from "@/assets/ooty-kodaikanal.jpg";
 import shillongCherryBlossomImg from "@/assets/shillong-cherry-blossom.jpg";
-import hornbillFestivalHeroImg from "@/assets/hornbill-festival-nagaland-hero.jpg";
+// Removed: hornbillFestivalHeroImg import (Hornbill Festival card removed)
 
 // Domestic tour packages (same as Travel.tsx)
 const domesticPackages = [
@@ -201,19 +201,6 @@ const internationalPackages = [
     category: "cultural",
     location: "Vietnam",
     highlights: ["Ha Long Bay Cruise", "Hoi An Old Town", "Cu Chi Tunnels"],
-  },
-  {
-    id: 103,
-    title: "Nagaland Hornbill Festival",
-    description: "Experience the Festival of Festivals celebrating Naga tribal heritage",
-    duration: "7 Days",
-    difficulty: "Moderate",
-    price: "₹58,500",
-    image: hornbillFestivalHeroImg,
-    rating: 4.9,
-    category: "cultural",
-    location: "Nagaland",
-    highlights: ["Hornbill Festival", "Traditional Warriors", "Tribal Cuisine"],
   },
   {
     id: 104,

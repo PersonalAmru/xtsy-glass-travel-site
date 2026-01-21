@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { 
   X, ChevronLeft, ChevronRight, Users, Calendar, Plus, Minus, Check, Loader2, 
-  Bed, Home, ZoomIn, Sparkles, Shield, MapPin, Star, Camera, ChevronDown
+  Bed, Home, ZoomIn, Sparkles, Shield, MapPin, Star, Camera, ChevronDown, Globe
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -17,6 +17,8 @@ import { useUserAuth } from '@/contexts/UserAuthContext';
 import { getBookableRoomTypes, RoomTypeConfig, ROOM_TYPES, ROOM_IMAGES } from '@/config/roomTypes';
 import { motion, AnimatePresence } from 'framer-motion';
 import EnquirySuccessModal from './EnquirySuccessModal';
+import { CurrencySelector } from './CurrencySelector';
+import { useApp } from '@/contexts/AppContext';
 
 // Winter discount configuration
 const WINTER_DISCOUNT = 0.10; // 10% off
@@ -354,6 +356,7 @@ const STEPS = [
 
 export default function BookingModal({ isOpen, onClose, initialCheckIn, initialCheckOut, initialGuests = 2 }: BookingModalProps) {
   const { user } = useUserAuth();
+  const { formatPrice, setCurrency } = useApp();
   
   const ROOMS: BookingRoom[] = useMemo(() => {
     return getBookableRoomTypes().map((room: RoomTypeConfig) => {
@@ -739,11 +742,18 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                     <h3 className="text-lg font-semibold text-foreground">Choose Your Room</h3>
                     <p className="text-sm text-muted-foreground">Select beds or private rooms</p>
                   </div>
-                  {roomSelections.length > 0 && (
-                    <div className="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium">
-                      {totalBedsSelected} guest{totalBedsSelected !== 1 ? 's' : ''}
-                    </div>
-                  )}
+                  <div className="flex items-center gap-2">
+                    {/* Currency Selector */}
+                    <CurrencySelector 
+                      className="text-foreground" 
+                      onCurrencyChange={setCurrency}
+                    />
+                    {roomSelections.length > 0 && (
+                      <div className="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium">
+                        {totalBedsSelected} guest{totalBedsSelected !== 1 ? 's' : ''}
+                      </div>
+                    )}
+                  </div>
                 </div>
 
                 <div className="space-y-4">
@@ -1041,9 +1051,16 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                 exit={{ opacity: 0, x: -20 }}
                 className="space-y-4 py-2"
               >
-                <div>
-                  <h3 className="text-lg font-semibold text-foreground">Your Details</h3>
-                  <p className="text-sm text-muted-foreground">Almost done! Enter your info</p>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground">Your Details</h3>
+                    <p className="text-sm text-muted-foreground">Almost done! Enter your info</p>
+                  </div>
+                  {/* Currency Selector */}
+                  <CurrencySelector 
+                    className="text-foreground" 
+                    onCurrencyChange={setCurrency}
+                  />
                 </div>
 
                 <div className="space-y-3">

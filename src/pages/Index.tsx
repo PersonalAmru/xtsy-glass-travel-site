@@ -1,7 +1,7 @@
 import HeroSection from "@/components/HeroSection";
-import FeaturedPackagesSection from "@/components/FeaturedPackagesSection";
-import WhyXTSYSection from "@/components/WhyXTSYSection";
-import RecommendedStaysSection from "@/components/RecommendedStaysSection";
+import HomeTourPackages from "@/components/HomeTourPackages";
+import AboutXTSYSection from "@/components/AboutXTSYSection";
+import XTSYPrimeSection from "@/components/XTSYPrimeSection";
 import ReviewsSection from "@/components/ReviewsSection";
 import GroupBookingSection from "@/components/GroupBookingSection";
 import AdventureCallToAction from "@/components/AdventureCallToAction";
@@ -23,27 +23,35 @@ const Index = () => {
       <Header />
       <main style={{ contain: 'layout style' }}>
         <HeroSection />
-        {/* Featured Tour Packages - Above the fold after hero */}
+        
+        {/* Tour Packages - FocusRail cards from Travel.tsx */}
         <LazyWrapper eager fallback={<SectionFallback height="h-96" />}>
-          <FeaturedPackagesSection />
+          <HomeTourPackages />
         </LazyWrapper>
-        {/* Why XTSY - Value propositions */}
+        
+        {/* About XTSY - Replaces "Where to Stay" */}
         <LazyWrapper fallback={<SectionFallback />}>
-          <WhyXTSYSection />
+          <AboutXTSYSection />
         </LazyWrapper>
-        {/* Recommended Stays - Rooms as secondary */}
+        
+        {/* XTSY Prime - Premium offerings with popup modals */}
         <LazyWrapper fallback={<SectionFallback height="h-80" />}>
-          <RecommendedStaysSection />
+          <XTSYPrimeSection />
         </LazyWrapper>
+        
+        {/* Guest Reviews */}
         <LazyWrapper fallback={<SectionFallback />}>
           <ReviewsSection />
         </LazyWrapper>
+        
         <LazyWrapper fallback={<SectionFallback height="h-48" />}>
           <GroupBookingSection />
         </LazyWrapper>
+        
         <LazyWrapper fallback={<SectionFallback height="h-48" />}>
           <AdventureCallToAction />
         </LazyWrapper>
+        
         <LazyWrapper fallback={<SectionFallback />}>
           <FAQSection />
         </LazyWrapper>
