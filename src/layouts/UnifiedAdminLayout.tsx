@@ -43,22 +43,13 @@ interface UnifiedAdminLayoutProps {
   children: ReactNode;
 }
 
+// Streamlined admin menu - 5 core pages only
 const menuItems = [
-  { id: 'overview', label: 'Overview', icon: Home, path: '/admin' },
+  { id: 'overview', label: 'Dashboard', icon: Home, path: '/admin' },
   { id: 'traffic', label: 'Live Traffic', icon: Activity, path: '/admin/traffic' },
-  { id: 'analytics', label: 'Analytics', icon: BarChart3, path: '/admin/analytics' },
   { id: 'bookings', label: 'Bookings Calendar', icon: Calendar, path: '/admin/bookings' },
-  { id: 'chats', label: 'Guest Chats', icon: MessageSquare, path: '/admin/chats' },
-  { id: 'properties', label: 'Properties', icon: Building2, path: '/admin/properties' },
-  { id: 'franchises', label: 'Franchise Owners', icon: Users, path: '/admin/franchises' },
-  { id: 'franchise-permissions', label: 'Franchise Permissions', icon: Shield, path: '/admin/franchise-permissions' },
-  { id: 'inventory', label: 'Inventory & Yield', icon: Package, path: '/admin/inventory' },
-  { id: 'otas', label: 'OTA Connections', icon: Link2, path: '/admin/otas' },
-  { id: 'finance', label: 'Finance & Settlements', icon: DollarSign, path: '/admin/finance' },
-  { id: 'gst', label: 'GST & Compliance', icon: FileText, path: '/admin/gst' },
-  { id: 'reviews', label: 'Reviews', icon: Star, path: '/admin/reviews' },
-  { id: 'whatsapp', label: 'WhatsApp Templates', icon: MessageCircle, path: '/admin/whatsapp' },
-  { id: 'audit', label: 'Audit Logs', icon: ClipboardList, path: '/admin/audit' },
+  { id: 'inventory', label: 'Inventory', icon: Package, path: '/admin/inventory' },
+  { id: 'analytics', label: 'Analytics', icon: BarChart3, path: '/admin/analytics' },
 ];
 
 export function UnifiedAdminLayout({ children }: UnifiedAdminLayoutProps) {

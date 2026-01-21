@@ -52,6 +52,8 @@ const LazyTermsOfService = createLazyComponent(() => import("./pages/TermsOfServ
 const LazyPricingCancellationPolicy = createLazyComponent(() => import("./pages/PricingCancellationPolicy"));
 const AdminLogin = createLazyComponent(() => import("./pages/AdminLogin"));
 const BookingFlow = createLazyComponent(() => import("./pages/BookingFlow"));
+const PropertySelection = createLazyComponent(() => import("./pages/PropertySelection"));
+const PropertyBookingFlow = createLazyComponent(() => import("./pages/PropertyBookingFlow"));
 
 // User auth pages
 const UserAuth = createLazyComponent(() => import("./pages/user/UserAuth"));
@@ -224,6 +226,8 @@ function App() {
                 <Route path="/pricing-cancellation-policy" element={<LazyRoute><LazyPricingCancellationPolicy /></LazyRoute>} />
                 <Route path="/admin-login" element={<LazyRoute><AdminLogin /></LazyRoute>} />
                 <Route path="/booking" element={<LazyRoute><BookingFlow /></LazyRoute>} />
+                <Route path="/properties" element={<LazyRoute><PropertySelection /></LazyRoute>} />
+                <Route path="/:locationSlug/:propertySlug/book" element={<LazyRoute><PropertyBookingFlow /></LazyRoute>} />
                 
                 {/* User Auth Routes */}
                 <Route path="/auth" element={<LazyRoute><UserAuth /></LazyRoute>} />
