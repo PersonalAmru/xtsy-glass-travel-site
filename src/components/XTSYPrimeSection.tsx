@@ -13,14 +13,14 @@ import petFriendlyHero from "@/assets/pet-friendly-hero.jpg";
 import xtsyVsZostelHero from "@/assets/xtsy-vs-zostel-hero-new.jpg";
 import femaleTravellersHero from "@/assets/female-travellers-hero.jpg";
 
-// XTSY Prime offerings data
+// XTSY Prime offerings data - using imported images or verified Supabase URLs
 const xtsyPrimeOfferings = [
   {
     id: "xtsy-270",
     title: "XTSY 270° Panorama Glass Suite",
     shortTitle: "XTSY 270°",
     description: "India's first panoramic glass house with 270° mountain views. Wake up to sunrises over the Himalayas in this architectural masterpiece.",
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20270/xtsy270-hero.jpg",
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140811.png",
     icon: Mountain,
     price: "₹7,999",
     priceNote: "weekday / ₹9,999 weekend",

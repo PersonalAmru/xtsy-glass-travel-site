@@ -163,7 +163,7 @@ export function FocusRail({
   return (
     <div
       className={cn(
-        "relative w-full h-[500px] md:h-[600px] flex items-center justify-center overflow-hidden select-none outline-none",
+        "relative w-full h-[580px] md:h-[680px] flex items-center justify-center overflow-hidden select-none outline-none",
         className
       )}
       style={{ perspective: "1200px" }}
@@ -353,41 +353,29 @@ export function FocusRail({
           })}
         </motion.div>
 
-        {/* Info & Controls */}
-        <div className="relative z-20 w-full max-w-4xl mx-auto px-4 md:px-6 mt-6">
-          <div className="flex items-center justify-between">
+        {/* Info & Controls - positioned below cards with proper spacing */}
+        <div className="relative z-20 w-full max-w-4xl mx-auto px-4 md:px-6 mt-12 md:mt-8">
+          <div className="flex items-center justify-center">
             {/* Navigation Controls */}
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={handlePrev}
-                  className="p-2.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white rounded-full transition-colors border border-white/10"
-                  aria-label="Previous"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-                <span className="text-white/60 text-sm font-medium min-w-[3rem] text-center">
-                  {activeIndex + 1} / {count}
-                </span>
-                <button
-                  onClick={handleNext}
-                  className="p-2.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white rounded-full transition-colors border border-white/10"
-                  aria-label="Next"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
-
-            {activeItem.href && (
-              <Link
-                to={activeItem.href}
-                className="flex items-center gap-2 px-5 py-2.5 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full text-sm font-semibold transition-all hover:scale-105"
+            <div className="flex items-center gap-3">
+              <button
+                onClick={handlePrev}
+                className="p-3 bg-muted/80 hover:bg-muted backdrop-blur-sm text-foreground rounded-full transition-colors border border-border"
+                aria-label="Previous"
               >
-                View All
-                <ArrowUpRight className="w-4 h-4" />
-              </Link>
-            )}
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <span className="text-muted-foreground text-sm font-medium min-w-[3.5rem] text-center">
+                {activeIndex + 1} / {count}
+              </span>
+              <button
+                onClick={handleNext}
+                className="p-3 bg-muted/80 hover:bg-muted backdrop-blur-sm text-foreground rounded-full transition-colors border border-border"
+                aria-label="Next"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
