@@ -1247,11 +1247,57 @@ export default function BookingFlow() {
     });
   }, [context, searchParams, trackEvent, trackConversion]);
 
-  // Load rooms - instant from local, then sync with database in background
+  // Navigation helpers
+  const stepIndex = STEPS.findIndex(s => s.id === currentStep);
+  const canGoBack = stepIndex > 0 && currentStep !== 'confirmation';
+
+  const goToStep = useCallback((step: BookingStep) => {
+    const newIndex = STEPS.findIndex(s => s.id === step);
+    setDirection(newIndex > stepIndex ? 1 : -1);
+    setCurrentStep(step);
+  }, [stepIndex]);
+
+  const goBack = useCallback(() => {
+    if (canGoBack) {
+      goToStep(STEPS[stepIndex - 1].id);
+    } else {
+      navigate('/');
+    }
+  }, [canGoBack, stepIndex, goToStep, navigate]);
+
+  // Load rooms - filter by property context and sync with database
   useEffect(() => {
+    // Get property context from sessionStorage
+    let allowedRoomIds: string[] | null = null;
+    let skipDatesFromSession = false;
+    
+    try {
+      const propertyContext = sessionStorage.getItem('xtsy_booking_property');
+      if (propertyContext) {
+        const ctx = JSON.parse(propertyContext);
+        allowedRoomIds = ctx.roomTypeIds || null;
+        skipDatesFromSession = ctx.skipDates || false;
+        
+        // If we have dates from session and should skip, set them
+        if (skipDatesFromSession && ctx.checkIn && ctx.checkOut) {
+          setCheckIn(parseISO(ctx.checkIn));
+          setCheckOut(parseISO(ctx.checkOut));
+          // Auto-advance to rooms step
+          setTimeout(() => goToStep('rooms'), 100);
+        }
+      }
+    } catch {
+      // Ignore parsing errors
+    }
+
     // Immediately load from local inventory for instant display
     const localRooms = Object.values(ROOM_INVENTORY)
-      .filter(room => room.isBookable)
+      .filter(room => {
+        if (!room.isBookable) return false;
+        // CRITICAL: Property-room isolation - only show rooms for selected property
+        if (allowedRoomIds && !allowedRoomIds.includes(room.id)) return false;
+        return true;
+      })
       .map(room => ({
         id: room.id,
         name: room.name,
@@ -1282,14 +1328,16 @@ export default function BookingFlow() {
 
         if (error || !data || data.length === 0) return;
         
-        // Merge database data with local inventory images
-        const mergedRooms = data.map(dbRoom => {
-          const localRoom = ROOM_INVENTORY[dbRoom.id];
-          return {
-            ...dbRoom,
-            images: dbRoom.images?.length > 0 ? dbRoom.images : localRoom?.images || [],
-          };
-        });
+        // Filter by property and merge with local inventory images
+        const mergedRooms = data
+          .filter(dbRoom => !allowedRoomIds || allowedRoomIds.includes(dbRoom.id))
+          .map(dbRoom => {
+            const localRoom = ROOM_INVENTORY[dbRoom.id];
+            return {
+              ...dbRoom,
+              images: dbRoom.images?.length > 0 ? dbRoom.images : localRoom?.images || [],
+            };
+          });
         
         setRooms(mergedRooms);
         setRoomLoadError(null);
@@ -1299,39 +1347,7 @@ export default function BookingFlow() {
     };
 
     syncWithDatabase();
-  }, []);
-
-  // Parse URL params
-  useEffect(() => {
-    const roomId = searchParams.get('room');
-    const checkInParam = searchParams.get('checkIn');
-    const checkOutParam = searchParams.get('checkOut');
-
-    if (checkInParam) setCheckIn(parseISO(checkInParam));
-    if (checkOutParam) setCheckOut(parseISO(checkOutParam));
-    if (roomId && rooms.length > 0) {
-      const room = rooms.find(r => r.id === roomId);
-      if (room) setSelectedRoom(room);
-    }
-  }, [searchParams, rooms]);
-
-  // Navigation helpers
-  const stepIndex = STEPS.findIndex(s => s.id === currentStep);
-  const canGoBack = stepIndex > 0 && currentStep !== 'confirmation';
-
-  const goToStep = useCallback((step: BookingStep) => {
-    const newIndex = STEPS.findIndex(s => s.id === step);
-    setDirection(newIndex > stepIndex ? 1 : -1);
-    setCurrentStep(step);
-  }, [stepIndex]);
-
-  const goBack = useCallback(() => {
-    if (canGoBack) {
-      goToStep(STEPS[stepIndex - 1].id);
-    } else {
-      navigate('/');
-    }
-  }, [canGoBack, stepIndex, goToStep, navigate]);
+  }, [goToStep]);
 
   const nights = useMemo(() => {
     if (checkIn && checkOut) {
