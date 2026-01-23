@@ -17,23 +17,16 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
 const DAYS_OF_WEEK = [
-  { key: "sun", label: "Sun" },
-  { key: "mon", label: "Mon" },
-  { key: "tue", label: "Tue" },
-  { key: "wed", label: "Wed" },
-  { key: "thu", label: "Thu" },
-  { key: "fri", label: "Fri" },
-  { key: "sat", label: "Sat" },
+  { key: "sun", label: "S" },
+  { key: "mon", label: "M" },
+  { key: "tue", label: "T" },
+  { key: "wed", label: "W" },
+  { key: "thu", label: "T" },
+  { key: "fri", label: "F" },
+  { key: "sat", label: "S" },
 ];
 
 export type AvailabilityStatus = 'available' | 'limited' | 'soldOut' | 'blocked' | 'unknown';
-
-interface DayAvailability {
-  date: Date;
-  status: AvailabilityStatus;
-  available?: number;
-  total?: number;
-}
 
 interface MiniCalendarProps {
   selectedDate?: Date;
@@ -85,46 +78,42 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
   const isPast = (date: Date) => isBefore(date, today);
 
   return (
-    <div className={cn("rounded-xl bg-white/5 border border-white/10 p-4", className)}>
-      {/* Header with navigation */}
-      <div className="flex items-center justify-between mb-4">
-        <Button
-          variant="ghost"
-          size="icon"
-          className="h-8 w-8 text-white/70 hover:text-white hover:bg-white/10"
+    <div className={cn("rounded-lg bg-white/5 border border-white/10 p-2", className)}>
+      {/* Compact Header */}
+      <div className="flex items-center justify-between mb-2">
+        <button
+          className="p-1 text-white/50 hover:text-white hover:bg-white/10 rounded transition-colors"
           onClick={() => setCurrentWeek(subWeeks(currentWeek, 1))}
         >
-          <ChevronLeft className="h-4 w-4" />
-        </Button>
+          <ChevronLeft className="h-3.5 w-3.5" />
+        </button>
         
-        <span className="text-sm font-medium text-white">
-          {format(currentWeek, "MMMM yyyy")}
+        <span className="text-xs font-medium text-white/70">
+          {format(currentWeek, "MMM yyyy")}
         </span>
         
-        <Button
-          variant="ghost"
-          size="icon"
-          className="h-8 w-8 text-white/70 hover:text-white hover:bg-white/10"
+        <button
+          className="p-1 text-white/50 hover:text-white hover:bg-white/10 rounded transition-colors"
           onClick={() => setCurrentWeek(addWeeks(currentWeek, 1))}
         >
-          <ChevronRight className="h-4 w-4" />
-        </Button>
+          <ChevronRight className="h-3.5 w-3.5" />
+        </button>
       </div>
 
-      {/* Days of week headers */}
-      <div className="grid grid-cols-7 gap-1 mb-2">
+      {/* Days of week headers - compact */}
+      <div className="grid grid-cols-7 gap-0.5 mb-1">
         {DAYS_OF_WEEK.map((day) => (
           <div
             key={day.key}
-            className="text-center text-xs font-medium text-white/50 py-1"
+            className="text-center text-[10px] font-medium text-white/40 py-0.5"
           >
             {day.label}
           </div>
         ))}
       </div>
 
-      {/* Calendar days */}
-      <div className="grid grid-cols-7 gap-1">
+      {/* Calendar days - compact */}
+      <div className="grid grid-cols-7 gap-0.5">
         {weekDays.map((day) => {
           const isSelected = selectedDate && isSameDay(day, selectedDate);
           const isToday = isSameDay(day, today);
@@ -139,19 +128,19 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
               onClick={() => !isDisabled && onDateSelect?.(day)}
               disabled={isDisabled}
               className={cn(
-                "relative aspect-square rounded-lg flex flex-col items-center justify-center",
-                "transition-all duration-200 text-sm font-medium",
-                past && "opacity-40 cursor-not-allowed",
+                "relative w-8 h-8 rounded flex flex-col items-center justify-center",
+                "transition-all duration-150 text-xs font-medium",
+                past && "opacity-30 cursor-not-allowed",
                 !past && !isDisabled && "hover:bg-white/10 cursor-pointer",
-                isDisabled && !past && "cursor-not-allowed opacity-60",
-                isSelected && "ring-2 ring-primary ring-offset-2 ring-offset-slate-900",
-                isToday && !isSelected && "ring-1 ring-white/30"
+                isDisabled && !past && "cursor-not-allowed opacity-50",
+                isSelected && "bg-primary/20 ring-1 ring-primary",
+                isToday && !isSelected && "ring-1 ring-white/20"
               )}
             >
               <span className={cn(
-                "text-white",
-                past && "text-white/40",
-                isSelected && "font-bold"
+                "text-white/80",
+                past && "text-white/30",
+                isSelected && "text-primary font-semibold"
               )}>
                 {format(day, "d")}
               </span>
@@ -159,7 +148,7 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
               {/* Availability indicator dot */}
               {!past && (
                 <span className={cn(
-                  "absolute bottom-1 w-1.5 h-1.5 rounded-full",
+                  "absolute bottom-0.5 w-1 h-1 rounded-full",
                   statusColor
                 )} />
               )}
@@ -168,18 +157,18 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
         })}
       </div>
 
-      {/* Legend */}
-      <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-center gap-4 text-xs text-white/50">
-        <div className="flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-full bg-emerald-500" />
+      {/* Compact Legend */}
+      <div className="mt-2 pt-1.5 border-t border-white/5 flex items-center justify-center gap-3 text-[10px] text-white/40">
+        <div className="flex items-center gap-1">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
           <span>Available</span>
         </div>
-        <div className="flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-full bg-amber-500" />
+        <div className="flex items-center gap-1">
+          <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
           <span>Limited</span>
         </div>
-        <div className="flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-full bg-red-500" />
+        <div className="flex items-center gap-1">
+          <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
           <span>Sold Out</span>
         </div>
       </div>
