@@ -1,6 +1,6 @@
 /**
  * PropertyDetail - Full property detail page
- * Shows hero, description, gallery, room types, and floating Book Now
+ * Shows hero, description, gallery, room types with expandable calendars, and floating Book Now
  */
 
 import { useEffect, useState, useMemo } from 'react';
@@ -10,7 +10,7 @@ import {
   ChevronLeft, 
   MapPin, 
   Star, 
-  Users, 
+  Users,
   Bed,
   Check,
   Sparkles,
@@ -21,11 +21,12 @@ import {
   Wind
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { getPropertyById, Property } from '@/data/properties';
+import { getPropertyById } from '@/data/properties';
 import { ROOM_INVENTORY, RoomType } from '@/data/roomInventory';
 import UnifiedImage from '@/components/UnifiedImage';
 import { PropertyGallery } from '@/components/property/PropertyGallery';
 import { FloatingBookNow } from '@/components/property/FloatingBookNow';
+import { ExpandableRoomCard } from '@/components/property/ExpandableRoomCard';
 
 // Map amenity names to icons
 const amenityIcons: Record<string, React.ReactNode> = {
@@ -233,7 +234,7 @@ const PropertyDetail = () => {
           <PropertyGallery images={allImages} propertyName={property.name} />
         </motion.div>
 
-        {/* Room Types Preview */}
+        {/* Room Types with Expandable Calendars */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -244,33 +245,26 @@ const PropertyDetail = () => {
             <Bed className="w-5 h-5 text-primary" />
             Room Types
           </h2>
+          <p className="text-sm text-white/50 mb-4">
+            Tap on a room to view availability calendar
+          </p>
           <div className="space-y-3">
             {roomTypes.map((room) => (
-              <div 
+              <ExpandableRoomCard 
                 key={room.id}
-                className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10"
-              >
-                <div className="w-16 h-16 rounded-lg overflow-hidden bg-white/10 flex-shrink-0">
-                  <UnifiedImage
-                    src={room.image}
-                    alt={room.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-white truncate">{room.name}</h3>
-                  <div className="flex items-center gap-2 mt-1">
-                    <span className="inline-flex items-center gap-1 text-xs px-2 py-0.5 bg-white/10 rounded-full text-white/60">
-                      <Users className="w-3 h-3" />
-                      {room.kind === 'dorm' ? '1 bed' : `${room.capacity} guests`}
-                    </span>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <p className="text-lg font-bold text-white">₹{room.discountedPrice.toLocaleString()}</p>
-                  <p className="text-xs text-white/40">/{room.kind === 'dorm' ? 'bed' : 'night'}</p>
-                </div>
-              </div>
+                room={room}
+                onDateSelect={(date) => {
+                  // Store selected date in session for booking flow
+                  const storedParams = sessionStorage.getItem('xtsy_search_params');
+                  const params = storedParams ? JSON.parse(storedParams) : {};
+                  params.checkIn = date.toISOString().split('T')[0];
+                  // Auto set checkout to next day if not set
+                  const checkOut = new Date(date);
+                  checkOut.setDate(checkOut.getDate() + 1);
+                  params.checkOut = checkOut.toISOString().split('T')[0];
+                  sessionStorage.setItem('xtsy_search_params', JSON.stringify(params));
+                }}
+              />
             ))}
           </div>
         </motion.div>
