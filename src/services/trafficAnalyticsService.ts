@@ -939,12 +939,18 @@ class TrafficAnalyticsService {
   }
   
   /**
-   * Send validated event to GA4
+   * Send validated event to dataLayer (GTM routes to GA4)
+   * NO direct gtag calls - GTM is the sole routing authority
    */
   private sendToGA4(eventName: string, params: Record<string, unknown>): void {
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', eventName, params);
-      console.log('[Analytics] Sent to GA4:', eventName, params);
+    if (typeof window !== 'undefined') {
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: eventName,
+        timestamp: new Date().toISOString(),
+        ...params,
+      });
+      console.log('[Analytics→DataLayer] Event pushed:', eventName, params);
     }
   }
   

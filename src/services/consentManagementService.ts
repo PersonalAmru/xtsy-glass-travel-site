@@ -87,30 +87,37 @@ class ConsentManagementService {
   }
   
   /**
-   * Set Google Consent Mode v2 defaults (all denied)
+   * Set Google Consent Mode v2 defaults via dataLayer (GTM handles gtag routing)
+   * NO direct gtag calls - GTM is the sole routing authority
    */
   private setGoogleConsentDefaults(): void {
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('consent', 'default', {
-        'analytics_storage': 'denied',
-        'ad_storage': 'denied',
-        'ad_user_data': 'denied',
-        'ad_personalization': 'denied',
-        'functionality_storage': 'granted', // Required for site function
-        'security_storage': 'granted', // Required for security
-        'wait_for_update': 500, // Wait 500ms for consent update
+    if (typeof window !== 'undefined') {
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: 'consent_default',
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        functionality_storage: 'granted',
+        security_storage: 'granted',
+        wait_for_update: 500,
       });
       
-      console.log('[Consent] Defaults set: all denied');
+      console.log('[Consent→DataLayer] Defaults pushed: all denied');
     }
   }
   
   /**
-   * Update Google Consent Mode based on user preferences
+   * Update Google Consent Mode via dataLayer (GTM handles gtag routing)
+   * NO direct gtag calls - GTM is the sole routing authority
    */
   private updateGoogleConsent(): void {
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      const config: ConsentConfig = {
+    if (typeof window !== 'undefined') {
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      
+      const config = {
+        event: 'consent_update',
         analytics_storage: this.preferences.analytics ? 'granted' : 'denied',
         ad_storage: this.preferences.marketing ? 'granted' : 'denied',
         ad_user_data: this.preferences.marketing ? 'granted' : 'denied',
@@ -119,8 +126,8 @@ class ConsentManagementService {
         security_storage: 'granted',
       };
       
-      (window as any).gtag('consent', 'update', config);
-      console.log('[Consent] Updated:', config);
+      (window as any).dataLayer.push(config);
+      console.log('[Consent→DataLayer] Updated:', config);
     }
   }
   
