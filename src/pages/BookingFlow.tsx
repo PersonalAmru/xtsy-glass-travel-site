@@ -1396,6 +1396,36 @@ export default function BookingFlow() {
       });
 
       if (result.success && result.bookingId) {
+
+  // ✅ GA4 / GTM – Booking Confirmed (BUILD SAFE)
+  if (typeof window !== 'undefined' && Array.isArray((window as any).dataLayer)) {
+    (window as any).dataLayer.push({
+      event: 'booking_confirmed',
+      booking_id: result.bookingId,
+      booking_uuid: result.bookingUUID || null,
+      value: total,
+      currency: 'INR',
+      room_type: selectedRoom.kind,
+      room_name: selectedRoom.name,
+      nights,
+      quantity,
+    });
+  }
+
+  setBookingId(result.bookingId);
+
+  if (result.bookingUUID) {
+    setBookingUUID(result.bookingUUID);
+  }
+
+  if (result.html) {
+    setInvoiceHtml(result.html);
+  }
+
+  goToStep('confirmation');
+  toast.success('Booking submitted! Awaiting host approval.');
+}
+
         setBookingId(result.bookingId);
         if (result.bookingUUID) {
           setBookingUUID(result.bookingUUID);
