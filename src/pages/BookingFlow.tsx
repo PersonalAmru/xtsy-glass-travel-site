@@ -1357,81 +1357,180 @@ export default function BookingFlow() {
   }, [checkIn, checkOut]);
 
   // Handle booking submission using the new invoice system
-const handleSubmitBooking = async () => {
-  if (!selectedRoom || !checkIn || !checkOut) return;
+  const handleSubmitBooking = async () => {
+    if (!selectedRoom || !checkIn || !checkOut) return;
 
-  setIsSubmitting(true);
-  try {
-    const pricePerNight = selectedRoom.weekday_price || selectedRoom.base_price;
-    const subtotal = pricePerNight * quantity * nights;
-    const gstRate = selectedRoom.kind === 'dorm' ? 0 : 0.12;
-    const gstAmount = Math.round(subtotal * gstRate);
-    const total = subtotal + gstAmount;
+    setIsSubmitting(true);
+    try {
+      const pricePerNight = selectedRoom.weekday_price || selectedRoom.base_price;
+      const subtotal = pricePerNight * quantity * nights;
+      const gstRate = selectedRoom.kind === 'dorm' ? 0 : 0.12;
+      const gstAmount = Math.round(subtotal * gstRate);
+      const total = subtotal + gstAmount;
 
-    // Get current user ID if logged in
-    const { data: { user: currentUser } } = await supabase.auth.getUser();
+      // Get current user ID if logged in
+      const { data: { user: currentUser } } = await supabase.auth.getUser();
 
-    // Use the new invoice generation system
-    const result = await generateInvoice({
-      guestName: guestDetails.name,
-      guestEmail: guestDetails.email,
-      guestPhone: guestDetails.phone,
-      guestAddress: guestDetails.address,
-      guestCity: guestDetails.city,
-      guestState: guestDetails.state,
-      guestPincode: guestDetails.pincode,
-      checkIn: format(checkIn, 'yyyy-MM-dd'),
-      checkOut: format(checkOut, 'yyyy-MM-dd'),
-      roomName: selectedRoom.name,
-      roomType: selectedRoom.kind,
-      quantity,
-      nights,
-      ratePerNight: pricePerNight,
-      subtotal,
-      gstRate,
-      gstAmount,
-      totalAmount: total,
-      specialRequests: guestDetails.specialRequests,
-      userId: currentUser?.id,
-    });
+      // Use the new invoice generation system
+      const result = await generateInvoice({
+        guestName: guestDetails.name,
+        guestEmail: guestDetails.email,
+        guestPhone: guestDetails.phone,
+        guestAddress: guestDetails.address,
+        guestCity: guestDetails.city,
+        guestState: guestDetails.state,
+        guestPincode: guestDetails.pincode,
+        checkIn: format(checkIn, 'yyyy-MM-dd'),
+        checkOut: format(checkOut, 'yyyy-MM-dd'),
+        roomName: selectedRoom.name,
+        roomType: selectedRoom.kind,
+        quantity,
+        nights,
+        ratePerNight: pricePerNight,
+        subtotal,
+        gstRate,
+        gstAmount,
+        totalAmount: total,
+        specialRequests: guestDetails.specialRequests,
+        userId: currentUser?.id,
+      });
 
-    if (result.success && result.bookingId) {
-
-      // ✅ ADDED: GA4 / GTM EVENT (THIS IS THE FIX)
-      if (typeof window !== 'undefined') {
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: 'booking_confirmed',
-          booking_id: result.bookingId,
-          booking_uuid: result.bookingUUID || null,
-          value: total,
-          currency: 'INR',
-          room_type: selectedRoom.kind,
-          room_name: selectedRoom.name,
-          nights,
-          quantity,
-        });
+      if (result.success && result.bookingId) {
+        setBookingId(result.bookingId);
+        if (result.bookingUUID) {
+          setBookingUUID(result.bookingUUID);
+        }
+        if (result.html) {
+          setInvoiceHtml(result.html);
+        }
+        goToStep('confirmation');
+        toast.success('Booking submitted! Awaiting host approval.');
+      } else {
+        toast.error(result.error || 'Booking failed. Please try again.');
       }
-
-      setBookingId(result.bookingId);
-
-      if (result.bookingUUID) {
-        setBookingUUID(result.bookingUUID);
-      }
-
-      if (result.html) {
-        setInvoiceHtml(result.html);
-      }
-
-      goToStep('confirmation');
-      toast.success('Booking submitted! Awaiting host approval.');
-    } else {
-      toast.error(result.error || 'Booking failed. Please try again.');
+    } catch (error) {
+      console.error('Booking error:', error);
+      toast.error('An error occurred. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
-  } catch (error) {
-    console.error('Booking error:', error);
-    toast.error('An error occurred. Please try again.');
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-[hsl(220,20%,12%)] to-[hsl(220,25%,6%)]">
+      {/* Header */}
+      <BookingHeader
+        step={STEPS[stepIndex]}
+        onBack={goBack}
+        canGoBack={canGoBack}
+        currentIndex={stepIndex}
+        onHome={() => navigate('/')}
+      />
+
+      {/* Centered Container for Booking Engine - constrains width on desktop */}
+      <div className="max-w-md mx-auto lg:max-w-lg xl:max-w-xl">
+        {/* Step Indicator */}
+        {currentStep !== 'confirmation' && (
+          <StepIndicator currentStep={currentStep} steps={STEPS} />
+        )}
+
+        {/* Step Content */}
+        <AnimatePresence mode="wait" custom={direction}>
+          <motion.div
+            key={currentStep}
+            custom={direction}
+            variants={pageVariants}
+            initial="initial"
+            animate="in"
+            exit="out"
+            transition={pageTransition}
+          >
+          {currentStep === 'dates' && (
+            <DateSelectionStep
+              checkIn={checkIn}
+              checkOut={checkOut}
+              onCheckInChange={setCheckIn}
+              onCheckOutChange={setCheckOut}
+              onNext={() => goToStep('rooms')}
+            />
+          )}
+
+          {currentStep === 'rooms' && checkIn && checkOut && (
+            <RoomSelectionStep
+              rooms={rooms}
+              selectedRoom={selectedRoom}
+              quantity={quantity}
+              checkIn={checkIn}
+              checkOut={checkOut}
+              onRoomSelect={(room) => {
+                setSelectedRoom(room);
+                setQuantity(1);
+              }}
+              onQuantityChange={setQuantity}
+              onNext={() => goToStep('summary')}
+              formatPrice={formatPrice}
+              isLoading={isLoadingRooms}
+              error={roomLoadError}
+            />
+          )}
+
+          {currentStep === 'summary' && selectedRoom && checkIn && checkOut && (
+            <SummaryStep
+              checkIn={checkIn}
+              checkOut={checkOut}
+              selectedRoom={selectedRoom}
+              quantity={quantity}
+              nights={nights}
+              formatPrice={formatPrice}
+              onNext={() => goToStep('details')}
+            />
+          )}
+
+          {currentStep === 'details' && (
+            <GuestDetailsStep
+              guestDetails={guestDetails}
+              onChange={(field, value) => setGuestDetails(prev => ({ ...prev, [field]: value }))}
+              onSubmit={handleSubmitBooking}
+              isSubmitting={isSubmitting}
+            />
+          )}
+
+          {currentStep === 'confirmation' && checkIn && checkOut && selectedRoom && (
+            <>
+              <ConfirmationStep
+                bookingId={bookingId}
+                guestName={guestDetails.name}
+                checkIn={checkIn}
+                checkOut={checkOut}
+                roomName={selectedRoom.name}
+                invoiceHtml={invoiceHtml}
+                onGoHome={() => navigate('/')}
+                onOpenChat={() => setChatOpen(true)}
+                onDownloadInvoice={() => {
+                  if (invoiceHtml) {
+                    downloadInvoiceAsPDF(invoiceHtml, bookingId);
+                  }
+                }}
+                onViewInvoice={() => {
+                  if (invoiceHtml) {
+                    openInvoiceHTML(invoiceHtml);
+                  }
+                }}
+              />
+              {bookingUUID && (
+                <BookingChat
+                  bookingId={bookingUUID}
+                  guestName={guestDetails.name}
+                  checkInDate={format(checkIn, 'yyyy-MM-dd')}
+                  isOpen={chatOpen}
+                  onClose={() => setChatOpen(false)}
+                />
+              )}
+            </>
+          )}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+}
