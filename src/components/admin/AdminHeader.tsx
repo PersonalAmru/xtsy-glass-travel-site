@@ -3,7 +3,7 @@
  * Horizontal nav bar replacing sidebar
  */
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useLocation, useNavigate, NavLink } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import {
@@ -22,7 +22,6 @@ import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { AdminNotificationBell } from './AdminNotificationBell';
 import { BookingChat } from '@/components/chat/BookingChat';
-import { Badge } from '@/components/ui/badge';
 
 const navItems = [
   {
@@ -62,30 +61,6 @@ export function AdminHeader() {
   const location = useLocation();
   const [chatBookingId, setChatBookingId] = useState<string | null>(null);
   const [chatOpen, setChatOpen] = useState(false);
-  const [debugMode, setDebugMode] = useState(() => {
-    return typeof window !== 'undefined' && localStorage.getItem('xtsy_debug_mode') === 'true';
-  });
-
-  // Listen for debug mode changes
-  useEffect(() => {
-    const handleDebugToggle = () => {
-      setDebugMode(localStorage.getItem('xtsy_debug_mode') === 'true');
-    };
-    window.addEventListener('xtsy-debug-toggle', handleDebugToggle);
-    window.addEventListener('storage', handleDebugToggle);
-    return () => {
-      window.removeEventListener('xtsy-debug-toggle', handleDebugToggle);
-      window.removeEventListener('storage', handleDebugToggle);
-    };
-  }, []);
-
-  const toggleDebugMode = () => {
-    const newValue = !debugMode;
-    localStorage.setItem('xtsy_debug_mode', newValue.toString());
-    setDebugMode(newValue);
-    window.dispatchEvent(new CustomEvent('xtsy-debug-toggle'));
-    toast.success(newValue ? 'Debug mode enabled' : 'Debug mode disabled');
-  };
 
   const handleLogout = async () => {
     try {
@@ -160,22 +135,18 @@ export function AdminHeader() {
 
           {/* Actions */}
           <div className="flex items-center gap-2">
-            {/* Debug Mode Toggle */}
+            {/* DataLayer Debug Link */}
             <Button
-              variant={debugMode ? 'default' : 'ghost'}
+              variant={location.pathname === '/admin/datalayer' ? 'default' : 'ghost'}
               size="sm"
-              onClick={toggleDebugMode}
+              onClick={() => navigate('/admin/datalayer')}
               className={cn(
                 'gap-1.5',
-                debugMode && 'bg-primary/20 text-primary hover:bg-primary/30'
+                location.pathname === '/admin/datalayer' && 'bg-primary/20 text-primary hover:bg-primary/30'
               )}
             >
               <Bug className="w-4 h-4" />
-              {debugMode && (
-                <Badge variant="outline" className="text-[10px] px-1 py-0">
-                  ON
-                </Badge>
-              )}
+              <span className="hidden sm:inline">Debug</span>
             </Button>
             <AdminNotificationBell onNotificationClick={handleNotificationClick} />
             <Button
