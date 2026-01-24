@@ -565,9 +565,9 @@ const InfoCard: React.FC<{
       onClick={copyable ? handleCopy : undefined}
     >
       <Icon className="w-4 h-4 text-muted-foreground shrink-0" />
-      <div className="min-w-0">
+      <div className="min-w-0 flex-1">
         <p className="text-xs text-muted-foreground">{label}</p>
-        <p className="text-sm font-medium truncate">{value}</p>
+        <p className="text-sm font-medium text-foreground truncate">{value}</p>
       </div>
     </div>
   );
