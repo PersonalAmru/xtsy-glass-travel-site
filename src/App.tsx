@@ -17,7 +17,7 @@ import { EnhancedAnalyticsProvider } from "./hooks/useEnhancedAnalytics";
 import { HappyGuestsProvider } from "./contexts/HappyGuestsContext";
 
 import { UserAuthProvider } from "./contexts/UserAuthContext";
-import ConsentBanner from "./components/consent/ConsentBanner";
+import ConsentModal from "./components/consent/ConsentModal";
 import { TrafficAnalyticsProvider } from "./hooks/useTrafficAnalytics";
 
 // Optimized lazy loading with faster retry and better chunk handling
@@ -206,7 +206,7 @@ function App() {
             <TrafficAnalyticsProvider>
               <EnhancedAnalyticsProvider>
                 
-                <ConsentBanner />
+                <ConsentModal />
                 <TooltipProvider>
                 <Toaster />
               <Sonner />

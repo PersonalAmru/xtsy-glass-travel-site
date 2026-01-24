@@ -121,18 +121,23 @@
         });
         
         // Check if user already consented (localStorage)
+        // CRITICAL: Analytics is ALWAYS granted once user has made ANY choice
         try {
           var storedConsent = localStorage.getItem('xtsy_consent_v2');
           if (storedConsent) {
             var prefs = JSON.parse(storedConsent);
+            // Analytics is MANDATORY - always granted after consent
             dataLayer.push({
               'event': 'consent_update',
-              'analytics_storage': prefs.analytics ? 'granted' : 'denied',
+              'analytics_storage': 'granted', // ALWAYS granted (mandatory)
               'ad_storage': prefs.marketing ? 'granted' : 'denied',
               'ad_user_data': prefs.marketing ? 'granted' : 'denied',
-              'ad_personalization': prefs.personalization ? 'granted' : 'denied'
+              'ad_personalization': prefs.personalization ? 'granted' : 'denied',
+              'functionality_storage': 'granted',
+              'security_storage': 'granted'
             });
-            console.log('[Consent] Restored from localStorage:', prefs);
+            console.log('%c[CONSENT] Restored from localStorage - analytics_storage: GRANTED', 
+              'background: #4CAF50; color: white; font-weight: bold; padding: 2px 8px; border-radius: 4px;');
           }
         } catch(e) {}
       })();
