@@ -27,6 +27,7 @@ import { getPropertyById } from '@/data/properties';
 import { ROOM_INVENTORY, RoomType } from '@/data/roomInventory';
 import UnifiedImage from '@/components/UnifiedImage';
 import { PropertyGallery } from '@/components/property/PropertyGallery';
+import { ImageAutoSlider } from '@/components/ui/image-auto-slider';
 import { RoomSelectionCard } from '@/components/property/RoomSelectionCard';
 import { format, differenceInDays, parseISO, addDays } from 'date-fns';
 
@@ -198,15 +199,14 @@ const PropertyDetail = () => {
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-500/10 rounded-full blur-[100px]" />
       </div>
 
-      {/* Hero Section */}
-      <div className="relative h-[50vh] md:h-[60vh]">
-        <UnifiedImage
-          src={property.heroImage}
-          alt={property.name}
-          className="w-full h-full object-cover"
-          priority
+      {/* Hero Section - Auto-Scrolling Image Slider */}
+      <div className="relative h-[45vh] md:h-[55vh]">
+        <ImageAutoSlider
+          images={allImages.length > 0 ? allImages : [property.heroImage]}
+          height="h-full"
+          speed={25}
+          showOverlay={true}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent" />
 
         {/* Header */}
         <header className="absolute top-0 left-0 right-0 z-20">
@@ -214,13 +214,13 @@ const PropertyDetail = () => {
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={handleBack}
-              className="flex items-center gap-1 text-white/90 hover:text-white transition-colors bg-black/20 backdrop-blur-sm px-3 py-2 rounded-full"
+              className="flex items-center gap-1 text-white/90 hover:text-white transition-colors bg-black/30 backdrop-blur-sm px-3 py-2 rounded-full"
             >
               <ChevronLeft className="w-5 h-5" />
               <span className="text-sm font-medium">Back</span>
             </motion.button>
 
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/20 backdrop-blur-sm">
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/30 backdrop-blur-sm">
               <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
               <span className="text-sm font-semibold text-white">{property.rating}</span>
               <span className="text-sm text-white/60">({property.reviewCount})</span>
@@ -228,8 +228,8 @@ const PropertyDetail = () => {
           </div>
         </header>
 
-        {/* Hero Content */}
-        <div className="absolute bottom-0 left-0 right-0 p-6 max-w-4xl mx-auto">
+        {/* Hero Content Overlay */}
+        <div className="absolute bottom-0 left-0 right-0 p-6 max-w-4xl mx-auto z-10">
           <span className={cn(
             "inline-block px-3 py-1 rounded-full text-xs font-semibold mb-3",
             property.category === 'luxury' 
@@ -334,7 +334,7 @@ const PropertyDetail = () => {
           </div>
         </motion.div>
 
-        {/* Gallery */}
+        {/* Gallery - Compact Lightbox Grid */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -342,6 +342,7 @@ const PropertyDetail = () => {
           className="mb-8"
         >
           <h2 className="text-xl font-bold text-white mb-4">Gallery</h2>
+          <p className="text-sm text-white/50 mb-3">Tap any image to view in fullscreen</p>
           <PropertyGallery images={allImages} propertyName={property.name} />
         </motion.div>
 

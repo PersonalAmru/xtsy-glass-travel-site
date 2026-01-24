@@ -37,10 +37,11 @@ export const PropertyCardCompact = ({ property, onViewDetails }: PropertyCardCom
       <div className={cn(
         "rounded-2xl overflow-hidden border transition-all duration-300",
         "bg-white/5 border-white/10 hover:border-white/20",
-        "hover:bg-white/[0.07] hover:shadow-xl hover:shadow-primary/5"
+        "hover:bg-white/[0.07] hover:shadow-xl hover:shadow-primary/5",
+        "min-w-[280px] md:min-w-[320px] lg:min-w-[360px]"
       )}>
         {/* Image Section */}
-        <div className="relative aspect-[4/3]">
+        <div className="relative aspect-[4/3] md:aspect-[16/10]">
           <UnifiedImage
             src={property.heroImage}
             alt={property.name}
