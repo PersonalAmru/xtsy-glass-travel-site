@@ -6,6 +6,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { UnifiedAdminLayout } from '@/layouts/UnifiedAdminLayout';
 import { useAdminAnalytics } from '@/hooks/useAdminAnalytics';
+import { useConsentAnalytics } from '@/hooks/useConsentAnalytics';
 import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -14,16 +15,18 @@ import { Progress } from '@/components/ui/progress';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Skeleton } from '@/components/ui/skeleton';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import {
   Users, Eye, Clock, Activity, RefreshCw, TrendingUp, TrendingDown,
-  Globe, Smartphone, Monitor, Tablet, ArrowUpRight, ArrowDownRight,
-  Target, MousePointer, Filter, ChevronRight, Sparkles, Zap,
-  Apple, Chrome
+  Smartphone, Monitor, Tablet, ArrowUpRight, ArrowDownRight,
+  Sparkles, Zap, Apple, Tag
 } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar } from 'recharts';
-import { format, subDays, parseISO } from 'date-fns';
+import { format } from 'date-fns';
+import { ConversionFunnelChart } from '@/components/admin/analytics/ConversionFunnelChart';
+import { TagTimelineChart } from '@/components/admin/analytics/TagTimelineChart';
+import { ConsentAnalyticsChart } from '@/components/admin/analytics/ConsentAnalyticsChart';
 
 interface RealtimeVisitor {
   visitor_id: string;
@@ -50,7 +53,8 @@ const COLORS = ['#22c55e', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899'
 
 export default function AdminAnalyticsGA360() {
   const [daysBack, setDaysBack] = useState(30);
-  const { loading, error, overview, realtime, geoHeatmap, funnel, traffic, behavior, trends, refresh } = useAdminAnalytics(daysBack);
+  const { loading, error, overview, funnel, traffic, behavior, trends, refresh } = useAdminAnalytics(daysBack);
+  const { consentData, tagData, funnelData, loading: consentLoading } = useConsentAnalytics(daysBack);
   const [realtimeVisitors, setRealtimeVisitors] = useState<RealtimeVisitor[]>([]);
   const [highIntentUsers, setHighIntentUsers] = useState<any[]>([]);
 
@@ -243,6 +247,10 @@ export default function AdminAnalyticsGA360() {
             <TabsTrigger value="realtime">Real-time</TabsTrigger>
             <TabsTrigger value="audience">Audience</TabsTrigger>
             <TabsTrigger value="conversions">Conversions</TabsTrigger>
+            <TabsTrigger value="gtm" className="flex items-center gap-1">
+              <Tag className="w-3 h-3" />
+              GTM & Consent
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="overview" className="space-y-6">
@@ -427,37 +435,19 @@ export default function AdminAnalyticsGA360() {
           </TabsContent>
 
           <TabsContent value="conversions" className="space-y-4">
-            <Card className="bg-slate-900/50 border-slate-700/50">
-              <CardHeader>
-                <CardTitle className="text-white">Conversion Funnel</CardTitle>
-                <CardDescription>Booking conversion analysis</CardDescription>
-              </CardHeader>
-              <CardContent>
-              {funnel && Array.isArray(funnel) && funnel.length > 0 ? (
-                  <div className="space-y-4">
-                    {funnel.map((step: any, index: number) => (
-                      <div key={step.funnel_step || index}>
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-sm text-white">{step.funnel_step}</span>
-                          <div className="flex items-center gap-2">
-                            <span className="text-sm font-semibold text-white">{step.count || 0}</span>
-                            {index > 0 && step.dropoff_rate > 0 && (
-                              <span className="text-xs text-red-400">-{step.dropoff_rate}%</span>
-                            )}
-                          </div>
-                        </div>
-                        <Progress
-                          value={index === 0 ? 100 : ((step.count || 0) / (funnel[0]?.count || 1)) * 100}
-                          className="h-3"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="text-center py-8 text-slate-500">No funnel data available</div>
-                )}
-              </CardContent>
-            </Card>
+            {funnelData && (
+              <ConversionFunnelChart data={funnelData} loading={consentLoading} />
+            )}
+          </TabsContent>
+
+          {/* GTM & Consent Tab */}
+          <TabsContent value="gtm" className="space-y-6">
+            {tagData && (
+              <TagTimelineChart data={tagData} loading={consentLoading} />
+            )}
+            {consentData && (
+              <ConsentAnalyticsChart data={consentData} loading={consentLoading} />
+            )}
           </TabsContent>
         </Tabs>
       </div>
