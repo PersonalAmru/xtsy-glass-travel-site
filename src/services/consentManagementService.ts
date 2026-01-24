@@ -127,7 +127,13 @@ class ConsentManagementService {
       };
       
       (window as any).dataLayer.push(config);
-      console.log('[Consent→DataLayer] Updated:', config);
+      
+      // HIGH VISIBILITY DEBUG for GTM Preview
+      console.log('%c[CONSENT→GTM] consent_update PUSHED', 
+        'background: #4CAF50; color: white; font-weight: bold; padding: 4px 12px; border-radius: 4px;');
+      console.log('[CONSENT→GTM] Payload:', config);
+      console.log('[CONSENT→GTM] analytics_storage:', config.analytics_storage);
+      console.log('[CONSENT→GTM] ad_storage:', config.ad_storage);
     }
   }
   
