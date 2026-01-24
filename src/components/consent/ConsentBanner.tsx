@@ -31,27 +31,20 @@ const ConsentBanner: React.FC<ConsentBannerProps> = ({ onClose }) => {
   });
   
   useEffect(() => {
-    // CRITICAL: Initialize consent in idle time to not block LCP
+    // Initialize consent quickly - show banner within 1 second
     const initConsent = () => {
       consentManager.initialize();
       
-      // Check if banner should be shown
+      // Check if banner should be shown - show FAST (1 second)
       if (shouldShowConsentBanner()) {
-        // Delay showing banner to not interfere with LCP
-        const timer = setTimeout(() => setIsVisible(true), 2000);
+        const timer = setTimeout(() => setIsVisible(true), 1000);
         return () => clearTimeout(timer);
       }
     };
     
-    // Use requestIdleCallback to defer consent initialization
-    if (typeof requestIdleCallback !== 'undefined') {
-      const handle = requestIdleCallback(initConsent, { timeout: 3000 });
-      return () => cancelIdleCallback(handle);
-    } else {
-      // Fallback for Safari - use setTimeout with longer delay
-      const timer = setTimeout(initConsent, 1500);
-      return () => clearTimeout(timer);
-    }
+    // Quick initialization - don't wait for idle
+    const timer = setTimeout(initConsent, 500);
+    return () => clearTimeout(timer);
   }, []);
   
   const handleAcceptAll = async () => {
@@ -87,27 +80,57 @@ const ConsentBanner: React.FC<ConsentBannerProps> = ({ onClose }) => {
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 100, opacity: 0 }}
         transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-        className="fixed bottom-0 left-0 right-0 z-[9999] p-4 md:p-6"
+        className="fixed bottom-0 left-0 right-0 z-[9999] p-3 md:p-4"
       >
-        <div className="mx-auto max-w-4xl">
-          <div className="bg-background/95 backdrop-blur-xl border border-border rounded-2xl shadow-2xl overflow-hidden">
-            {/* Header */}
-            <div className="p-4 md:p-6 border-b border-border/50">
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <Cookie className="w-6 h-6 text-primary" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
-                    <h3 className="text-lg font-semibold text-foreground">Privacy & Cookies</h3>
-                    <span className="px-2 py-0.5 text-xs font-medium bg-green-500/10 text-green-500 rounded-full flex items-center gap-1">
-                      <Shield className="w-3 h-3" />
-                      GDPR & DPDP Compliant
-                    </span>
+        <div className="mx-auto max-w-3xl">
+          <div className="bg-background/98 backdrop-blur-xl border border-border rounded-xl shadow-2xl overflow-hidden">
+            {/* Compact Header + Actions in one row on mobile */}
+            <div className="p-3 md:p-4">
+              <div className="flex flex-col gap-3">
+                {/* Title row */}
+                <div className="flex items-center gap-3">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <Cookie className="w-5 h-5 text-primary" />
                   </div>
-                  <p className="text-sm text-muted-foreground">
-                    We use cookies to enhance your experience. You're in control - choose what you're comfortable with.
-                  </p>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <h3 className="text-base font-semibold text-foreground">Privacy & Cookies</h3>
+                      <span className="px-1.5 py-0.5 text-[10px] font-medium bg-green-500/10 text-green-500 rounded-full flex items-center gap-0.5">
+                        <Shield className="w-2.5 h-2.5" />
+                        Compliant
+                      </span>
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-0.5 hidden sm:block">
+                      We use cookies to enhance your experience.
+                    </p>
+                  </div>
+                </div>
+                
+                {/* ACTION BUTTONS - Always visible, prominent */}
+                <div className="flex items-center gap-2 flex-wrap">
+                  <Button
+                    onClick={handleAcceptAll}
+                    size="sm"
+                    className="flex-1 sm:flex-none px-4 py-2 text-sm font-medium bg-primary hover:bg-primary/90"
+                  >
+                    Accept All
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleRejectAll}
+                    className="flex-1 sm:flex-none px-4 py-2 text-sm"
+                  >
+                    Reject All
+                  </Button>
+                  <button
+                    onClick={() => setShowDetails(!showDetails)}
+                    className="flex items-center gap-1 px-2 py-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    <Settings className="w-3.5 h-3.5" />
+                    <span className="hidden sm:inline">{showDetails ? 'Hide' : 'Customize'}</span>
+                    {showDetails ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                  </button>
                 </div>
               </div>
             </div>
@@ -186,76 +209,33 @@ const ConsentBanner: React.FC<ConsentBannerProps> = ({ onClose }) => {
               )}
             </AnimatePresence>
             
-            {/* Actions */}
-            <div className="p-4 md:p-6">
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                {/* Toggle Details */}
-                <button
-                  onClick={() => setShowDetails(!showDetails)}
-                  className="flex items-center justify-center gap-2 px-4 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            {/* Save Preferences button - only when details expanded */}
+            {showDetails && (
+              <div className="p-3 md:p-4 border-t border-border/50">
+                <Button
+                  onClick={handleSavePreferences}
+                  className="w-full sm:w-auto px-6 py-2 text-sm bg-primary hover:bg-primary/90"
                 >
-                  <Settings className="w-4 h-4" />
-                  <span>{showDetails ? 'Hide' : 'Customize'}</span>
-                  {showDetails ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                </button>
-                
-                <div className="flex-1" />
-                
-                {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
-                  <Button
-                    variant="outline"
-                    onClick={handleRejectAll}
-                    className="px-4 py-2 text-sm"
-                  >
-                    Reject All
-                  </Button>
-                  
-                  {showDetails ? (
-                    <Button
-                      onClick={handleSavePreferences}
-                      className="px-4 py-2 text-sm bg-primary hover:bg-primary/90"
-                    >
-                      Save Preferences
-                    </Button>
-                  ) : (
-                    <>
-                      <Button
-                        variant="secondary"
-                        onClick={handleAcceptAnalyticsOnly}
-                        className="px-4 py-2 text-sm"
-                      >
-                        Analytics Only
-                      </Button>
-                      <Button
-                        onClick={handleAcceptAll}
-                        className="px-4 py-2 text-sm bg-primary hover:bg-primary/90"
-                      >
-                        Accept All
-                      </Button>
-                    </>
-                  )}
-                </div>
+                  Save Preferences
+                </Button>
               </div>
-              
-              {/* Links */}
-              <div className="flex items-center justify-center gap-4 mt-4 pt-4 border-t border-border/50">
-                <a
-                  href="/privacy-policy"
-                  className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1 transition-colors"
-                >
-                  Privacy Policy
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-                <span className="text-muted-foreground/30">|</span>
-                <a
-                  href="/terms-of-service"
-                  className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1 transition-colors"
-                >
-                  Cookie Policy
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-              </div>
+            )}
+            
+            {/* Compact Links */}
+            <div className="flex items-center justify-center gap-3 px-3 pb-2 pt-1">
+              <a
+                href="/privacy-policy"
+                className="text-[10px] text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Privacy
+              </a>
+              <span className="text-muted-foreground/30">·</span>
+              <a
+                href="/terms-of-service"
+                className="text-[10px] text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Cookies
+              </a>
             </div>
           </div>
         </div>
