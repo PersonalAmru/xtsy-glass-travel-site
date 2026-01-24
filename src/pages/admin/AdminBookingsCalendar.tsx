@@ -655,19 +655,21 @@ export default function AdminBookingsCalendar() {
         )}
 
         {/* Deny Booking Confirmation Dialog */}
-        {bookingToDeny && (
-          <DenyBookingDialog
-            open={denyDialogOpen}
-            onOpenChange={(open) => {
-              setDenyDialogOpen(open);
-              if (!open) setBookingToDeny(null);
-            }}
-            bookingGuestName={bookingToDeny.guest_name}
-            bookingDates={`${format(parseISO(bookingToDeny.check_in), 'MMM d')} - ${format(parseISO(bookingToDeny.check_out), 'MMM d, yyyy')}`}
-            onConfirm={handleDenyBooking}
-            loading={actionLoading}
-          />
-        )}
+        <DenyBookingDialog
+          open={denyDialogOpen}
+          onOpenChange={(open) => {
+            if (!open && !actionLoading) {
+              setDenyDialogOpen(false);
+              setBookingToDeny(null);
+            } else if (open) {
+              setDenyDialogOpen(true);
+            }
+          }}
+          bookingGuestName={bookingToDeny?.guest_name || ''}
+          bookingDates={bookingToDeny ? `${format(parseISO(bookingToDeny.check_in), 'MMM d')} - ${format(parseISO(bookingToDeny.check_out), 'MMM d, yyyy')}` : ''}
+          onConfirm={handleDenyBooking}
+          loading={actionLoading}
+        />
       </div>
     </UnifiedAdminLayout>
   );
