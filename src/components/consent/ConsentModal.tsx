@@ -146,31 +146,51 @@ export function ConsentModal() {
   if (!isVisible || !isReady) return null;
 
   return (
-    <div
-      className="fixed inset-0 flex items-center justify-center p-4"
-      style={{ 
-        zIndex: 2147483647, // Maximum z-index
-        backgroundColor: 'rgba(0, 0, 0, 0.85)',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
-      }}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="consent-title"
-    >
+    <>
+      {/* Global style for animation */}
+      <style>{`
+        @keyframes consentFadeIn {
+          from { opacity: 0; transform: scale(0.95) translateY(10px); }
+          to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .consent-modal-backdrop {
+          position: fixed !important;
+          top: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          bottom: 0 !important;
+          width: 100vw !important;
+          height: 100vh !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          padding: 16px !important;
+          z-index: 2147483647 !important;
+          background-color: rgba(0, 0, 0, 0.7) !important;
+          backdrop-filter: blur(8px) !important;
+          -webkit-backdrop-filter: blur(8px) !important;
+        }
+        .consent-modal-content {
+          width: 100% !important;
+          max-width: 420px !important;
+          background: linear-gradient(180deg, #2a2a4a 0%, #1e1e38 100%) !important;
+          border-radius: 16px !important;
+          border: 1px solid rgba(255, 255, 255, 0.15) !important;
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255,255,255,0.1) !important;
+          overflow: hidden !important;
+          max-height: 90vh !important;
+          overflow-y: auto !important;
+          animation: consentFadeIn 0.3s ease-out forwards !important;
+        }
+      `}</style>
+      
       <div
-        className="w-full max-w-md rounded-2xl shadow-2xl border border-white/10 overflow-hidden max-h-[90vh] overflow-y-auto"
-        style={{
-          backgroundColor: '#1a1a2e', // Solid fallback color
-          animation: 'fadeInScale 0.3s ease-out forwards',
-        }}
+        className="consent-modal-backdrop"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="consent-title"
       >
-        <style>{`
-          @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.95) translateY(10px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-          }
-        `}</style>
+        <div className="consent-modal-content">
 
         {/* Header */}
         <div className="p-5 pb-4 border-b border-white/10" style={{ backgroundColor: '#1f1f3a' }}>
@@ -301,6 +321,7 @@ export function ConsentModal() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
