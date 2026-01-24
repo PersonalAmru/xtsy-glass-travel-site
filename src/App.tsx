@@ -19,6 +19,7 @@ import { HappyGuestsProvider } from "./contexts/HappyGuestsContext";
 import { UserAuthProvider } from "./contexts/UserAuthContext";
 import ConsentModal from "./components/consent/ConsentModal";
 import { TrafficAnalyticsProvider } from "./hooks/useTrafficAnalytics";
+import AnalyticsDebugPanel from "./components/debug/AnalyticsDebugPanel";
 
 // Optimized lazy loading with faster retry and better chunk handling
 const createLazyComponent = (importFn: () => Promise<any>) => {
@@ -207,6 +208,7 @@ function App() {
               <EnhancedAnalyticsProvider>
                 
                 <ConsentModal />
+                <AnalyticsDebugPanel />
                 <TooltipProvider>
                 <Toaster />
               <Sonner />

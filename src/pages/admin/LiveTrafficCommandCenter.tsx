@@ -71,6 +71,11 @@ interface LiveSession {
   created_at: string;
   last_activity_at: string;
   is_bounce: boolean;
+  // Consent data
+  consent_analytics?: boolean;
+  consent_marketing?: boolean;
+  consent_method?: string;
+  consent_granted_at?: string;
 }
 
 interface TrafficStats {
@@ -82,6 +87,10 @@ interface TrafficStats {
   hotLeads: number;
   botDetected: number;
   conversionRate: number;
+  // Consent stats
+  fullConsentSessions: number;
+  analyticsOnlySessions: number;
+  minimalConsentSessions: number;
 }
 
 interface GeoData {
@@ -135,7 +144,17 @@ const getTierBadge = (tier: string) => {
   switch (tier) {
     case 'premium': return { label: 'iOS', color: 'bg-gradient-to-r from-purple-500 to-pink-500 text-white' };
     case 'standard': return { label: 'Android', color: 'bg-gradient-to-r from-green-500 to-emerald-500 text-white' };
-    default: return { label: 'Desktop', color: 'bg-slate-500/20 text-slate-600' };
+    default: return { label: 'Desktop', color: 'bg-muted text-muted-foreground' };
+  }
+};
+
+const getConsentBadge = (analytics?: boolean, marketing?: boolean) => {
+  if (analytics && marketing) {
+    return { label: 'Full', color: 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20' };
+  } else if (analytics) {
+    return { label: 'Analytics', color: 'bg-blue-500/10 text-blue-500 border-blue-500/20' };
+  } else {
+    return { label: 'Minimal', color: 'bg-muted text-muted-foreground border-border' };
   }
 };
 
@@ -183,6 +202,7 @@ const MetricCard: React.FC<{
 const SessionRow: React.FC<{ session: LiveSession; onSelect: (s: LiveSession) => void }> = ({ session, onSelect }) => {
   const DeviceIcon = getDeviceIcon(session.device_type);
   const tierBadge = getTierBadge(session.user_device_tier);
+  const consentBadge = getConsentBadge(session.consent_analytics, session.consent_marketing);
   const isActive = session.last_activity_at && 
     (Date.now() - new Date(session.last_activity_at).getTime()) < 5 * 60 * 1000;
   
@@ -196,18 +216,23 @@ const SessionRow: React.FC<{ session: LiveSession; onSelect: (s: LiveSession) =>
       {/* Status Indicator */}
       <div className="relative">
         <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
-          session.traffic_quality === 'junk' ? 'bg-red-500/10' : 'bg-muted'
+          session.traffic_quality === 'junk' ? 'bg-destructive/10' : 'bg-muted'
         }`}>
           <DeviceIcon className={`w-5 h-5 ${getQualityColor(session.traffic_quality)}`} />
         </div>
         {isActive && (
-          <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-background animate-pulse" />
+          <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-background animate-pulse" />
         )}
       </div>
       
       {/* Device Tier */}
       <span className={`px-2 py-0.5 text-[10px] font-semibold rounded-full ${tierBadge.color}`}>
         {tierBadge.label}
+      </span>
+      
+      {/* Consent Status */}
+      <span className={`px-2 py-0.5 text-[10px] font-medium rounded-full border ${consentBadge.color}`}>
+        {consentBadge.label}
       </span>
       
       {/* Location */}
@@ -235,6 +260,22 @@ const SessionRow: React.FC<{ session: LiveSession; onSelect: (s: LiveSession) =>
       <span className={`px-2.5 py-1 text-xs font-semibold rounded-full ${getIntentColor(session.intent_category)}`}>
         {session.intent_category?.toUpperCase() || 'LOW'}
       </span>
+      
+      {/* Google Ads Eligibility */}
+      {session.consent_marketing && (
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>
+              <span className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center text-[10px] font-bold text-primary">
+                G
+              </span>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Google Ads eligible</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      )}
       
       {/* Bot Warning */}
       {session.bot_likelihood_score > 50 && (
@@ -414,6 +455,9 @@ const LiveTrafficCommandCenter: React.FC = () => {
     hotLeads: 0,
     botDetected: 0,
     conversionRate: 0,
+    fullConsentSessions: 0,
+    analyticsOnlySessions: 0,
+    minimalConsentSessions: 0,
   });
   const [geoData, setGeoData] = useState<GeoData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -421,7 +465,7 @@ const LiveTrafficCommandCenter: React.FC = () => {
   
   const fetchData = useCallback(async () => {
     try {
-      // Fetch recent sessions (last 24 hours)
+      // Fetch recent sessions with consent data (last 24 hours)
       const { data: sessionsData, error: sessionsError } = await supabase
         .from('traffic_sessions')
         .select('*')
@@ -434,7 +478,37 @@ const LiveTrafficCommandCenter: React.FC = () => {
         return;
       }
       
-      const typedSessions = (sessionsData || []) as unknown as LiveSession[];
+      // Fetch consent records for these sessions
+      const visitorIds = (sessionsData || []).map(s => s.visitor_id).filter(Boolean);
+      let consentMap: Record<string, { analytics: boolean; marketing: boolean; method: string; granted_at: string }> = {};
+      
+      if (visitorIds.length > 0) {
+        const { data: consentData } = await supabase
+          .from('consent_records')
+          .select('visitor_id, analytics_storage, ad_storage, consent_method, granted_at')
+          .in('visitor_id', visitorIds);
+        
+        if (consentData) {
+          consentData.forEach(c => {
+            consentMap[c.visitor_id] = {
+              analytics: c.analytics_storage,
+              marketing: c.ad_storage,
+              method: c.consent_method,
+              granted_at: c.granted_at,
+            };
+          });
+        }
+      }
+      
+      // Merge consent data with sessions
+      const typedSessions = (sessionsData || []).map(s => ({
+        ...s,
+        consent_analytics: consentMap[s.visitor_id]?.analytics,
+        consent_marketing: consentMap[s.visitor_id]?.marketing,
+        consent_method: consentMap[s.visitor_id]?.method,
+        consent_granted_at: consentMap[s.visitor_id]?.granted_at,
+      })) as unknown as LiveSession[];
+      
       setSessions(typedSessions);
       
       // Calculate stats
@@ -452,6 +526,11 @@ const LiveTrafficCommandCenter: React.FC = () => {
         ? Math.round(typedSessions.reduce((sum, s) => sum + (s.unified_intent_score || 0), 0) / typedSessions.length)
         : 0;
       
+      // Consent stats
+      const fullConsentCount = typedSessions.filter(s => s.consent_analytics && s.consent_marketing).length;
+      const analyticsOnlyCount = typedSessions.filter(s => s.consent_analytics && !s.consent_marketing).length;
+      const minimalCount = typedSessions.filter(s => !s.consent_analytics).length;
+      
       setStats({
         totalSessions: typedSessions.length,
         activeSessions,
@@ -461,6 +540,9 @@ const LiveTrafficCommandCenter: React.FC = () => {
         hotLeads: hotCount,
         botDetected: botCount,
         conversionRate: typedSessions.length > 0 ? Math.round((hotCount / typedSessions.length) * 100) : 0,
+        fullConsentSessions: fullConsentCount,
+        analyticsOnlySessions: analyticsOnlyCount,
+        minimalConsentSessions: minimalCount,
       });
       
       // Calculate geo data
