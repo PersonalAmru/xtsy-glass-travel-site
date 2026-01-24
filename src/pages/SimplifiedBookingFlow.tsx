@@ -894,7 +894,28 @@ export default function SimplifiedBookingFlow() {
           setInvoiceHtml(result.html);
         }
 
-        // Push booking_confirmed event to dataLayer for GTM
+        // CRITICAL: Push booking_confirmed event to dataLayer for GTM
+        // This exact event name is required for GA4 and Google Ads conversion tracking
+        // The event MUST fire exactly as: { event: "booking_confirmed" }
+        
+        // First, ensure dataLayer exists and push the minimal required event
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({
+          event: 'booking_confirmed',
+          transaction_id: result.bookingId,
+          value: total,
+          currency: 'INR',
+          room_type: primaryRoom.room.name,
+          payment_method: 'pay_at_hotel',
+        });
+        
+        console.log('[GTM] booking_confirmed event fired:', {
+          event: 'booking_confirmed',
+          transaction_id: result.bookingId,
+          value: total,
+        });
+        
+        // Also track through the standard service for additional metadata
         trackBookingComplete(
           result.bookingId,
           primaryRoom.room.name,
