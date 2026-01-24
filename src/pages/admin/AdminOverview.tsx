@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
 import { Users, Eye, Clock, Activity, RefreshCw } from 'lucide-react';
+import { GTMStatusWidget } from '@/components/admin/GTMStatusWidget';
 
 export default function AdminOverview() {
   const [daysBack, setDaysBack] = useState(30);
@@ -96,6 +97,9 @@ export default function AdminOverview() {
             </>
           )}
         </div>
+
+        {/* GTM Status Widget */}
+        <GTMStatusWidget className="mt-6" />
       </div>
     </UnifiedAdminLayout>
   );

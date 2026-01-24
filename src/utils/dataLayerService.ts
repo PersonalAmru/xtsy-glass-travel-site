@@ -87,6 +87,27 @@ const isAdminSession = (): boolean => {
 };
 
 /**
+ * Get current consent preferences from localStorage
+ */
+const getConsentPreferences = (): { analytics: boolean; marketing: boolean } => {
+  if (typeof window === 'undefined') return { analytics: false, marketing: false };
+  
+  try {
+    const consent = localStorage.getItem('xtsy_consent_v2');
+    if (consent) {
+      const parsed = JSON.parse(consent);
+      return {
+        analytics: parsed.analytics ?? false,
+        marketing: parsed.marketing ?? false,
+      };
+    }
+  } catch {
+    // Ignore parse errors
+  }
+  return { analytics: false, marketing: false };
+};
+
+/**
  * Push event to dataLayer
  * GTM will handle all external routing (GA4, Google Ads, etc.)
  */
@@ -116,6 +137,47 @@ export const pushToDataLayer = (event: Partial<DataLayerEvent>): void => {
   
   (window as any).dataLayer.push(fullEvent);
   console.log('[DataLayer] Event pushed:', fullEvent.event, fullEvent);
+  
+  // Emit debug event for the debug panel
+  window.dispatchEvent(new CustomEvent('datalayer-push', { detail: fullEvent }));
+};
+
+/**
+ * Push event with consent check
+ * Blocks events that require consent that hasn't been granted
+ */
+export const pushToDataLayerWithConsent = (
+  event: Partial<DataLayerEvent>,
+  requiresConsent: 'analytics' | 'marketing' | 'none' = 'analytics'
+): boolean => {
+  const consent = getConsentPreferences();
+  
+  if (requiresConsent === 'marketing' && !consent.marketing) {
+    console.log('[DataLayer] Blocked (no marketing consent):', event.event);
+    return false;
+  }
+  
+  if (requiresConsent === 'analytics' && !consent.analytics) {
+    console.log('[DataLayer] Blocked (no analytics consent):', event.event);
+    return false;
+  }
+  
+  pushToDataLayer(event);
+  return true;
+};
+
+/**
+ * Check if marketing consent is granted (for ads tracking)
+ */
+export const hasMarketingConsent = (): boolean => {
+  return getConsentPreferences().marketing;
+};
+
+/**
+ * Check if analytics consent is granted
+ */
+export const hasAnalyticsConsent = (): boolean => {
+  return getConsentPreferences().analytics;
 };
 
 // =============================================
