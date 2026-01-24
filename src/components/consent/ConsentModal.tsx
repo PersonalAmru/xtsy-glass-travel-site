@@ -29,6 +29,7 @@ const CONSENT_VERSION = '2.0';
 
 export function ConsentModal() {
   const [isVisible, setIsVisible] = useState(false);
+  const [isReady, setIsReady] = useState(false);
   const [showCustomize, setShowCustomize] = useState(false);
   const [preferences, setPreferences] = useState<ConsentPreferences>({
     necessary: true,
@@ -43,24 +44,43 @@ export function ConsentModal() {
     const checkConsent = () => {
       try {
         const stored = localStorage.getItem(CONSENT_KEY);
+        console.log('[ConsentModal] Checking stored consent:', stored);
+        
         if (stored) {
           const parsed = JSON.parse(stored);
+          // Check for valid consent with BOTH version and timestamp
+          // Version must match current version
           if (parsed.version === CONSENT_VERSION && parsed.timestamp) {
+            console.log('[ConsentModal] Valid consent found (v' + parsed.version + '), not showing modal');
+            // Ensure body scroll is enabled (in case of stuck state)
+            document.body.style.overflow = '';
             return; // Valid consent exists
+          } else {
+            console.log('[ConsentModal] Consent version mismatch or missing timestamp, clearing');
+            localStorage.removeItem(CONSENT_KEY);
           }
         }
         // No valid consent - show modal
+        console.log('[ConsentModal] No valid consent, showing modal');
         setIsVisible(true);
+        setIsReady(true);
         document.body.style.overflow = 'hidden';
       } catch (e) {
+        console.log('[ConsentModal] Error parsing consent, clearing and showing modal:', e);
+        localStorage.removeItem(CONSENT_KEY);
         setIsVisible(true);
+        setIsReady(true);
         document.body.style.overflow = 'hidden';
       }
     };
 
-    // Show modal within 500ms
-    const timer = setTimeout(checkConsent, 500);
-    return () => clearTimeout(timer);
+    // Show modal within 300ms
+    const timer = setTimeout(checkConsent, 300);
+    return () => {
+      clearTimeout(timer);
+      // Ensure body scroll is re-enabled on unmount
+      document.body.style.overflow = '';
+    };
   }, []);
 
   const pushToDataLayer = useCallback((prefs: ConsentPreferences) => {
@@ -123,24 +143,25 @@ export function ConsentModal() {
     saveConsent(preferences);
   };
 
-  if (!isVisible) return null;
+  if (!isVisible || !isReady) return null;
 
   return (
     <div
       className="fixed inset-0 flex items-center justify-center p-4"
       style={{ 
-        zIndex: 99999,
-        backgroundColor: 'rgba(0, 0, 0, 0.7)',
-        backdropFilter: 'blur(8px)',
-        WebkitBackdropFilter: 'blur(8px)',
+        zIndex: 2147483647, // Maximum z-index
+        backgroundColor: 'rgba(0, 0, 0, 0.85)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
       }}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="consent-title"
     >
       <div
-        className={cn(
-          "w-full max-w-md bg-card rounded-2xl shadow-2xl border border-border overflow-hidden",
-          "max-h-[90vh] overflow-y-auto"
-        )}
+        className="w-full max-w-md rounded-2xl shadow-2xl border border-white/10 overflow-hidden max-h-[90vh] overflow-y-auto"
         style={{
+          backgroundColor: '#1a1a2e', // Solid fallback color
           animation: 'fadeInScale 0.3s ease-out forwards',
         }}
       >
@@ -152,17 +173,17 @@ export function ConsentModal() {
         `}</style>
 
         {/* Header */}
-        <div className="p-5 pb-4 border-b border-border/50 bg-gradient-to-b from-muted/30 to-transparent">
+        <div className="p-5 pb-4 border-b border-white/10" style={{ backgroundColor: '#1f1f3a' }}>
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-              <Shield className="w-6 h-6 text-primary" />
+            <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: 'rgba(236, 72, 153, 0.2)' }}>
+              <Shield className="w-6 h-6" style={{ color: '#ec4899' }} />
             </div>
             <div>
-              <h2 className="text-xl font-semibold text-foreground">Privacy & Cookies</h2>
-              <p className="text-sm text-muted-foreground">We value your privacy</p>
+              <h2 id="consent-title" className="text-xl font-semibold" style={{ color: '#ffffff' }}>Privacy & Cookies</h2>
+              <p className="text-sm" style={{ color: '#9ca3af' }}>We value your privacy</p>
             </div>
           </div>
-          <p className="text-sm text-muted-foreground leading-relaxed">
+          <p className="text-sm leading-relaxed" style={{ color: '#d1d5db' }}>
             We use cookies to enhance your experience and analyze site traffic. 
             Analytics cookies are required for site functionality.
           </p>

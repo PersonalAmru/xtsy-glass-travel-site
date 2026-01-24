@@ -68,19 +68,32 @@ class ConsentManagementService {
   initialize(): void {
     if (this.isInitialized) return;
     
-    // Set default consent state (all denied except necessary)
-    this.setGoogleConsentDefaults();
-    
-    // Check if user has previously consented
+    // Check if user has previously consented FIRST before pushing defaults
     const stored = localStorage.getItem('xtsy_consent_v2');
+    let hasValidConsent = false;
+    
     if (stored) {
       try {
         const parsed = JSON.parse(stored);
-        this.preferences = parsed;
-        this.updateGoogleConsent();
+        // Check for valid consent (has version and timestamp)
+        if (parsed.version && parsed.timestamp) {
+          this.preferences = parsed;
+          hasValidConsent = true;
+          // Only push update, NOT defaults (index.html already handled defaults)
+          this.updateGoogleConsent();
+          console.log('[Consent] Valid stored consent found, restored. NOT pushing defaults.');
+        }
       } catch {
-        // Invalid stored consent, use defaults
+        // Invalid stored consent, will fall through to defaults
+        console.log('[Consent] Invalid stored consent, clearing.');
+        localStorage.removeItem('xtsy_consent_v2');
       }
+    }
+    
+    // Only push defaults if NO valid consent exists
+    // CRITICAL: Don't overwrite the granted state from index.html restoration
+    if (!hasValidConsent) {
+      this.setGoogleConsentDefaults();
     }
     
     this.isInitialized = true;
