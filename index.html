@@ -106,16 +106,35 @@
           'viewport_size': window.innerWidth + 'x' + window.innerHeight
         });
         
-        // Set default consent state in dataLayer (GTM will handle Consent Mode)
-        if (!isLovable) {
-          dataLayer.push({
-            'event': 'consent_default',
-            'analytics_storage': 'granted',
-            'ad_storage': 'granted',
-            'ad_user_data': 'granted',
-            'ad_personalization': 'granted'
-          });
-        }
+        // GDPR/DPDP COMPLIANT: Default consent MUST be DENIED
+        // User must explicitly grant consent via banner
+        // This is pushed BEFORE GTM loads so Consent Mode v2 receives defaults
+        dataLayer.push({
+          'event': 'consent_default',
+          'analytics_storage': 'denied',
+          'ad_storage': 'denied',
+          'ad_user_data': 'denied',
+          'ad_personalization': 'denied',
+          'functionality_storage': 'granted',
+          'security_storage': 'granted',
+          'wait_for_update': 2000  // Wait up to 2s for user consent choice
+        });
+        
+        // Check if user already consented (localStorage)
+        try {
+          var storedConsent = localStorage.getItem('xtsy_consent_v2');
+          if (storedConsent) {
+            var prefs = JSON.parse(storedConsent);
+            dataLayer.push({
+              'event': 'consent_update',
+              'analytics_storage': prefs.analytics ? 'granted' : 'denied',
+              'ad_storage': prefs.marketing ? 'granted' : 'denied',
+              'ad_user_data': prefs.marketing ? 'granted' : 'denied',
+              'ad_personalization': prefs.personalization ? 'granted' : 'denied'
+            });
+            console.log('[Consent] Restored from localStorage:', prefs);
+          }
+        } catch(e) {}
       })();
     </script>
     
