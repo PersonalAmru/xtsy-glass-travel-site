@@ -12,7 +12,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { BookingChat } from '@/components/chat/BookingChat';
+import { BookingDetailModal } from '@/components/admin/BookingDetailModal';
 import { DenyBookingDialog } from '@/components/admin/DenyBookingDialog';
 import { getEnquiries, approveEnquiry, rejectEnquiry, Enquiry } from '@/services/enquiryService';
 import { toast } from 'sonner';
@@ -65,8 +65,8 @@ export default function AdminBookingsCalendar() {
   const [loading, setLoading] = useState(true);
   const [enquiriesLoading, setEnquiriesLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
-  const [chatOpen, setChatOpen] = useState(false);
+  const [selectedBookingId, setSelectedBookingId] = useState<string | null>(null);
+  const [detailModalOpen, setDetailModalOpen] = useState(false);
   const [actionLoading, setActionLoading] = useState(false);
   
   // Deny dialog state
@@ -295,7 +295,8 @@ export default function AdminBookingsCalendar() {
       if (result?.success) {
         toast.success('Booking marked as no-show');
         fetchBookings();
-        setSelectedBooking(null);
+        setDetailModalOpen(false);
+        setSelectedBookingId(null);
       } else {
         toast.error(result?.error || 'Failed to mark no-show');
       }
@@ -304,6 +305,29 @@ export default function AdminBookingsCalendar() {
       toast.error('Failed to mark no-show');
     } finally {
       setActionLoading(false);
+    }
+  };
+
+  const handleMarkNoShowById = async (bookingId: string) => {
+    const booking = bookings.find(b => b.id === bookingId);
+    if (booking) {
+      await handleMarkNoShow(booking);
+    }
+  };
+
+  const handleApproveById = async (bookingId: string) => {
+    const booking = bookings.find(b => b.id === bookingId);
+    if (booking) {
+      await handleApproveBooking(booking);
+      setDetailModalOpen(false);
+      setSelectedBookingId(null);
+    }
+  };
+
+  const handleDenyById = (bookingId: string) => {
+    const booking = bookings.find(b => b.id === bookingId);
+    if (booking) {
+      openDenyDialog(booking);
     }
   };
 
@@ -462,24 +486,21 @@ export default function AdminBookingsCalendar() {
             <CardContent>
               <div className="space-y-3">
                 {bookings.filter(b => b.booking_status === 'pending').map((booking) => (
-                  <div key={booking.id} className="flex items-center justify-between p-3 bg-background rounded-lg border">
+                  <div 
+                    key={booking.id} 
+                    className="flex items-center justify-between p-3 bg-background rounded-lg border cursor-pointer hover:bg-muted/50 transition-colors"
+                    onClick={() => {
+                      setSelectedBookingId(booking.id);
+                      setDetailModalOpen(true);
+                    }}
+                  >
                     <div>
                       <p className="font-medium">{booking.guest_name}</p>
                       <p className="text-sm text-muted-foreground">
                         {format(parseISO(booking.check_in), 'MMM d')} - {format(parseISO(booking.check_out), 'MMM d, yyyy')}
                       </p>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => {
-                          setSelectedBooking(booking);
-                          setChatOpen(true);
-                        }}
-                      >
-                        <MessageSquare className="w-4 h-4" />
-                      </Button>
+                    <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
                       <Button
                         size="sm"
                         variant="destructive"
@@ -587,13 +608,13 @@ export default function AdminBookingsCalendar() {
                             size="sm"
                             variant="outline"
                             onClick={() => {
-                              setSelectedBooking(booking);
-                              setChatOpen(true);
+                              setSelectedBookingId(booking.id);
+                              setDetailModalOpen(true);
                               setSelectedDate(null);
                             }}
                           >
                             <MessageSquare className="w-4 h-4 mr-1" />
-                            Chat with Guest
+                            View Details & Chat
                           </Button>
                           
                           {booking.booking_status === 'pending' && (
@@ -640,19 +661,20 @@ export default function AdminBookingsCalendar() {
           </DialogContent>
         </Dialog>
 
-        {/* Chat Modal */}
-        {selectedBooking && (
-          <BookingChat
-            bookingId={selectedBooking.id}
-            guestName={selectedBooking.guest_name}
-            isOpen={chatOpen}
-            onClose={() => {
-              setChatOpen(false);
-              setSelectedBooking(null);
-            }}
-            isAdmin={true}
-          />
-        )}
+        {/* Booking Detail Modal with Chat */}
+        <BookingDetailModal
+          bookingId={selectedBookingId}
+          isOpen={detailModalOpen}
+          onClose={() => {
+            setDetailModalOpen(false);
+            setSelectedBookingId(null);
+            fetchBookings(); // Refresh for updated unread counts
+          }}
+          onApprove={handleApproveById}
+          onDeny={handleDenyById}
+          onMarkNoShow={handleMarkNoShowById}
+          actionLoading={actionLoading}
+        />
 
         {/* Deny Booking Confirmation Dialog */}
         <DenyBookingDialog
