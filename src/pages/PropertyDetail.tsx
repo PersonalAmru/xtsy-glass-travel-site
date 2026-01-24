@@ -1,11 +1,11 @@
 /**
  * PropertyDetail - Full property detail page
- * Shows hero, description, gallery, room types with expandable calendars, and floating Book Now
+ * Shows hero, description, gallery, room types with quantity selectors, and floating Book Now
  */
 
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ChevronLeft, 
   MapPin, 
@@ -18,15 +18,17 @@ import {
   Coffee,
   Wifi,
   Tv,
-  Wind
+  Wind,
+  Calendar,
+  ChevronRight
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { getPropertyById } from '@/data/properties';
 import { ROOM_INVENTORY, RoomType } from '@/data/roomInventory';
 import UnifiedImage from '@/components/UnifiedImage';
 import { PropertyGallery } from '@/components/property/PropertyGallery';
-import { FloatingBookNow } from '@/components/property/FloatingBookNow';
-import { ExpandableRoomCard } from '@/components/property/ExpandableRoomCard';
+import { RoomSelectionCard } from '@/components/property/RoomSelectionCard';
+import { format, differenceInDays, parseISO, addDays } from 'date-fns';
 
 // Map amenity names to icons
 const amenityIcons: Record<string, React.ReactNode> = {
@@ -40,6 +42,11 @@ const PropertyDetail = () => {
   const { propertyId } = useParams<{ propertyId: string }>();
   const navigate = useNavigate();
   const [showFloatingBtn, setShowFloatingBtn] = useState(false);
+  
+  // Room selection state
+  const [roomQuantities, setRoomQuantities] = useState<Record<string, number>>({});
+  const [checkIn, setCheckIn] = useState<Date | null>(null);
+  const [checkOut, setCheckOut] = useState<Date | null>(null);
 
   const property = useMemo(() => propertyId ? getPropertyById(propertyId) : null, [propertyId]);
 
@@ -63,6 +70,20 @@ const PropertyDetail = () => {
     return images.slice(0, 9);
   }, [property, roomTypes]);
 
+  // Load dates from session storage
+  useEffect(() => {
+    try {
+      const storedParams = sessionStorage.getItem('xtsy_search_params');
+      if (storedParams) {
+        const params = JSON.parse(storedParams);
+        if (params.checkIn) setCheckIn(parseISO(params.checkIn));
+        if (params.checkOut) setCheckOut(parseISO(params.checkOut));
+      }
+    } catch {
+      // Ignore parsing errors
+    }
+  }, []);
+
   // Show floating button after scrolling
   useEffect(() => {
     const handleScroll = () => {
@@ -76,24 +97,89 @@ const PropertyDetail = () => {
     navigate(-1);
   };
 
-  const handleBookNow = () => {
+  // Handle room quantity change
+  const handleQuantityChange = useCallback((roomId: string, quantity: number) => {
+    setRoomQuantities(prev => {
+      if (quantity === 0) {
+        const { [roomId]: _, ...rest } = prev;
+        return rest;
+      }
+      return { ...prev, [roomId]: quantity };
+    });
+  }, []);
+
+  // Calculate totals
+  const { selectedRoomsCount, nights, subtotal, gstAmount, total } = useMemo(() => {
+    const count = Object.values(roomQuantities).reduce((sum, q) => sum + q, 0);
+    const n = checkIn && checkOut ? differenceInDays(checkOut, checkIn) : 1;
+    
+    let sub = 0;
+    let gst = 0;
+    
+    Object.entries(roomQuantities).forEach(([roomId, quantity]) => {
+      const room = ROOM_INVENTORY[roomId];
+      if (room && quantity > 0) {
+        const roomTotal = room.discountedPrice * quantity * n;
+        sub += roomTotal;
+        // 5% GST for hostel rooms, 0% for dorms
+        const rate = room.kind === 'dorm' ? 0 : 0.05;
+        gst += Math.round(roomTotal * rate);
+      }
+    });
+    
+    return { 
+      selectedRoomsCount: count, 
+      nights: n, 
+      subtotal: sub, 
+      gstAmount: gst, 
+      total: sub + gst 
+    };
+  }, [roomQuantities, checkIn, checkOut]);
+
+  const hasDateSelection = checkIn && checkOut;
+  const hasRoomSelection = selectedRoomsCount > 0;
+
+  // Handle Book Now click
+  const handleBookNow = useCallback(() => {
     if (!property) return;
 
-    // Get existing search params from session
-    const storedParams = sessionStorage.getItem('xtsy_search_params');
-    let searchParams = '';
+    // Ensure we have dates
+    let finalCheckIn = checkIn;
+    let finalCheckOut = checkOut;
     
-    if (storedParams) {
-      const params = JSON.parse(storedParams);
-      searchParams = new URLSearchParams({
-        ...(params.checkIn && { checkIn: params.checkIn }),
-        ...(params.checkOut && { checkOut: params.checkOut }),
-        guests: params.guests?.toString() || '2',
-        skipDates: params.checkIn && params.checkOut ? 'true' : 'false',
-      }).toString();
+    if (!finalCheckIn || !finalCheckOut) {
+      // Set default dates (today + 1 day)
+      finalCheckIn = addDays(new Date(), 1);
+      finalCheckOut = addDays(new Date(), 2);
     }
 
-    navigate(`/shillong/${property.slug}/book?${searchParams}`);
+    // Build selected rooms array
+    const selectedRooms = Object.entries(roomQuantities)
+      .filter(([_, quantity]) => quantity > 0)
+      .map(([roomId, quantity]) => ({
+        roomId,
+        quantity,
+      }));
+
+    // Store booking data in session
+    const bookingData = {
+      checkIn: format(finalCheckIn, 'yyyy-MM-dd'),
+      checkOut: format(finalCheckOut, 'yyyy-MM-dd'),
+      propertyName: property.name,
+      propertyId: property.slug,
+      selectedRooms,
+    };
+    
+    sessionStorage.setItem('xtsy_simplified_booking', JSON.stringify(bookingData));
+
+    // Navigate to simplified booking flow
+    navigate('/book');
+  }, [property, checkIn, checkOut, roomQuantities, navigate]);
+
+  // Format date for display
+  const formatDateDisplay = (date: Date | null) => {
+    if (!date) return 'Select';
+    return format(date, 'MMM d');
   };
 
   if (!property) {
@@ -184,6 +270,31 @@ const PropertyDetail = () => {
           </div>
         </motion.div>
 
+        {/* Date Selection Banner */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.05 }}
+          className="p-4 rounded-2xl bg-primary/10 border border-primary/20 mb-8"
+        >
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <Calendar className="w-5 h-5 text-primary" />
+              <div>
+                <p className="text-sm font-medium text-white">
+                  {hasDateSelection 
+                    ? `${formatDateDisplay(checkIn)} → ${formatDateDisplay(checkOut)} (${nights} night${nights > 1 ? 's' : ''})`
+                    : 'Select your dates for accurate pricing'
+                  }
+                </p>
+                {!hasDateSelection && (
+                  <p className="text-xs text-white/50 mt-0.5">Prices shown are per night</p>
+                )}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Description */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -234,7 +345,7 @@ const PropertyDetail = () => {
           <PropertyGallery images={allImages} propertyName={property.name} />
         </motion.div>
 
-        {/* Room Types with Expandable Calendars */}
+        {/* Room Types with Quantity Selectors */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -246,24 +357,15 @@ const PropertyDetail = () => {
             Room Types
           </h2>
           <p className="text-sm text-white/50 mb-4">
-            Tap on a room to view availability calendar
+            Select rooms and quantity using +/- buttons
           </p>
           <div className="space-y-3">
             {roomTypes.map((room) => (
-              <ExpandableRoomCard 
+              <RoomSelectionCard 
                 key={room.id}
                 room={room}
-                onDateSelect={(date) => {
-                  // Store selected date in session for booking flow
-                  const storedParams = sessionStorage.getItem('xtsy_search_params');
-                  const params = storedParams ? JSON.parse(storedParams) : {};
-                  params.checkIn = date.toISOString().split('T')[0];
-                  // Auto set checkout to next day if not set
-                  const checkOut = new Date(date);
-                  checkOut.setDate(checkOut.getDate() + 1);
-                  params.checkOut = checkOut.toISOString().split('T')[0];
-                  sessionStorage.setItem('xtsy_search_params', JSON.stringify(params));
-                }}
+                quantity={roomQuantities[room.id] || 0}
+                onQuantityChange={handleQuantityChange}
               />
             ))}
           </div>
@@ -274,7 +376,7 @@ const PropertyDetail = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="mb-24"
+          className="mb-32"
         >
           <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
             <div className="flex items-start gap-3">
@@ -282,42 +384,73 @@ const PropertyDetail = () => {
               <div>
                 <p className="font-medium text-emerald-400">Pay at Hotel</p>
                 <p className="text-sm text-white/60 mt-1">
-                  No advance payment required. GST of 12% applicable on private rooms. 
+                  No advance payment required. GST of 5% applicable on private rooms. 
                   Dormitory beds are exempt from GST.
                 </p>
               </div>
             </div>
           </div>
         </motion.div>
+      </main>
 
-        {/* Bottom Book Now Button (always visible) */}
-        <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-slate-950 via-slate-950 to-transparent z-40">
-          <div className="max-w-4xl mx-auto">
+      {/* Floating Book Now Footer - Always visible */}
+      <AnimatePresence>
+        <motion.div 
+          initial={{ y: 100 }}
+          animate={{ y: 0 }}
+          className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-t from-slate-950 via-slate-950/95 to-transparent"
+        >
+          <div className="max-w-4xl mx-auto p-4">
+            {/* Selection Summary */}
+            {hasRoomSelection && (
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex items-center justify-between mb-3 px-1"
+              >
+                <div>
+                  <p className="text-xs text-white/40 uppercase tracking-wider">
+                    {selectedRoomsCount} room{selectedRoomsCount > 1 ? 's' : ''} • {nights} night{nights > 1 ? 's' : ''}
+                  </p>
+                  <p className="text-2xl font-bold text-white">
+                    ₹{total.toLocaleString()}
+                  </p>
+                </div>
+                {gstAmount > 0 && (
+                  <p className="text-xs text-white/40">
+                    incl. GST ₹{gstAmount.toLocaleString()}
+                  </p>
+                )}
+              </motion.div>
+            )}
+
+            {/* Book Now Button */}
             <motion.button
               whileTap={{ scale: 0.98 }}
               onClick={handleBookNow}
+              disabled={!hasRoomSelection}
               className={cn(
-                "w-full h-14 rounded-2xl font-bold text-base flex items-center justify-center gap-3",
-                "bg-gradient-to-r from-primary to-orange-500",
-                "hover:from-primary/90 hover:to-orange-500/90",
-                "text-white shadow-xl shadow-primary/25"
+                "w-full h-14 rounded-2xl font-bold text-base flex items-center justify-center gap-3 transition-all",
+                hasRoomSelection
+                  ? "bg-gradient-to-r from-primary to-orange-500 hover:from-primary/90 hover:to-orange-500/90 text-white shadow-xl shadow-primary/25"
+                  : "bg-white/10 text-white/40 cursor-not-allowed"
               )}
             >
-              <span>Book Now</span>
-              <span className="text-sm font-normal opacity-70">from ₹{property.priceRange.min.toLocaleString()}/night</span>
+              {hasRoomSelection ? (
+                <>
+                  <span>Book Now</span>
+                  <span className="text-sm font-normal opacity-80">• ₹{total.toLocaleString()}</span>
+                  <ChevronRight className="w-5 h-5" />
+                </>
+              ) : (
+                <>
+                  <span>Select rooms to continue</span>
+                </>
+              )}
             </motion.button>
           </div>
-        </div>
-      </main>
-
-      {/* Floating Book Now (for desktop) */}
-      <div className="hidden md:block">
-        <FloatingBookNow 
-          visible={showFloatingBtn} 
-          onClick={handleBookNow}
-          priceFrom={property.priceRange.min}
-        />
-      </div>
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 };
