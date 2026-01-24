@@ -121,10 +121,10 @@ export const useAdminAnalytics = (daysBack: number = 30) => {
   const [trends, setTrends] = useState<TrendsData | null>(null);
 
   const fetchEndpoint = useCallback(async (endpoint: string) => {
-    const session = await supabase.auth.getSession();
-    const token = session.data.session?.access_token;
-
-    if (!token) {
+    const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+    
+    if (sessionError || !session?.access_token) {
+      console.warn('[AdminAnalytics] No valid session, skipping fetch');
       throw new Error('Not authenticated');
     }
 
@@ -132,13 +132,18 @@ export const useAdminAnalytics = (daysBack: number = 30) => {
       `https://oidnydyyjyjfnyadhyzn.supabase.co/functions/v1/analytics-dashboard/${endpoint}?days=${daysBack}`,
       {
         headers: {
-          'Authorization': `Bearer ${token}`,
+          'Authorization': `Bearer ${session.access_token}`,
           'Content-Type': 'application/json',
         },
       }
     );
 
     if (!response.ok) {
+      if (response.status === 401) {
+        // Session expired - sign out to clear stale tokens
+        await supabase.auth.signOut();
+        throw new Error('Session expired. Please log in again.');
+      }
       const errorData = await response.json();
       throw new Error(errorData.error || 'Failed to fetch analytics');
     }
