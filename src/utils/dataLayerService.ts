@@ -4,6 +4,10 @@
  * SOLE ANALYTICS CONTRACT: All user interactions push to window.dataLayer
  * Google Tag Manager (GTM-5FXJ9QBK) is the ONLY external routing authority.
  * 
+ * GTM CONFIGURATION IDs (configure these in GTM, NOT in code):
+ * - GA4 Measurement ID: G-SJY2WX6L4B
+ * - Google Ads Conversion ID: AW-17352497815
+ * 
  * NO direct calls to:
  * - gtag.js
  * - Google Analytics (G-*)
