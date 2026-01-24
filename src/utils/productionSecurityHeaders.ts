@@ -19,14 +19,22 @@ export function generateProductionSecurityHeaders(config: SecurityHeadersConfig 
   } = config;
 
   const headers: Record<string, string> = {
-    // Content Security Policy - Strict for EU compliance
+    // Content Security Policy - GTM/GA4/Google Ads Compatible
+    // Allows Google Tag Manager as sole analytics authority
     'Content-Security-Policy': [
       "default-src 'self'",
-      "img-src 'self' data: https: blob:",
-      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-      "font-src 'self' https://fonts.gstatic.com",
-      "script-src 'self'",
-      `connect-src 'self' ${supabaseUrl} wss://*.supabase.co`,
+      // Images: Allow Google tracking pixels + general https
+      "img-src 'self' data: https: blob: https://www.google-analytics.com https://www.googletagmanager.com https://www.google.com https://www.google.co.in https://googleads.g.doubleclick.net https://www.gstatic.com https://ssl.gstatic.com",
+      // Styles: Allow Google Fonts
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.googletagmanager.com",
+      // Fonts: Google Fonts
+      "font-src 'self' https://fonts.gstatic.com data:",
+      // Scripts: GTM, GA4, Google Ads (inline needed for GTM to inject tags)
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://www.googlesyndication.com https://googleads.g.doubleclick.net https://www.gstatic.com https://ssl.gstatic.com https://www.google.com",
+      // Connect: API endpoints for analytics + Supabase
+      `connect-src 'self' ${supabaseUrl} wss://*.supabase.co https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com https://pagead2.googlesyndication.com`,
+      // Frames: Allow GTM preview/debug mode
+      "frame-src 'self' https://www.googletagmanager.com https://td.doubleclick.net",
       "frame-ancestors 'none'",
       "base-uri 'self'",
       "form-action 'self'",
