@@ -1,5 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { supabase } from '@/integrations/supabase/client';
+import { toast } from 'sonner';
 
 interface OverviewData {
   total_visitors: number;
@@ -119,11 +120,49 @@ export const useAdminAnalytics = (daysBack: number = 30) => {
   const [traffic, setTraffic] = useState<TrafficData | null>(null);
   const [behavior, setBehavior] = useState<BehaviorData | null>(null);
   const [trends, setTrends] = useState<TrendsData | null>(null);
+  const refreshIntervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Proactive session refresh - refresh token 5 minutes before expiry
+  const ensureFreshSession = useCallback(async () => {
+    try {
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+      
+      if (sessionError || !session) {
+        console.warn('[AdminAnalytics] No session found');
+        return null;
+      }
+
+      // Check if token expires in less than 5 minutes (300 seconds)
+      const expiresAt = session.expires_at;
+      const now = Math.floor(Date.now() / 1000);
+      const timeUntilExpiry = expiresAt ? expiresAt - now : 0;
+
+      if (timeUntilExpiry < 300) {
+        console.log('[AdminAnalytics] Token expiring soon, refreshing...');
+        const { data: refreshData, error: refreshError } = await supabase.auth.refreshSession();
+        
+        if (refreshError) {
+          console.error('[AdminAnalytics] Failed to refresh session:', refreshError);
+          toast.error('Session refresh failed. Please log in again.');
+          await supabase.auth.signOut();
+          return null;
+        }
+        
+        console.log('[AdminAnalytics] Session refreshed successfully');
+        return refreshData.session;
+      }
+
+      return session;
+    } catch (err) {
+      console.error('[AdminAnalytics] Session check error:', err);
+      return null;
+    }
+  }, []);
 
   const fetchEndpoint = useCallback(async (endpoint: string) => {
-    const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+    const session = await ensureFreshSession();
     
-    if (sessionError || !session?.access_token) {
+    if (!session?.access_token) {
       console.warn('[AdminAnalytics] No valid session, skipping fetch');
       throw new Error('Not authenticated');
     }
@@ -140,16 +179,53 @@ export const useAdminAnalytics = (daysBack: number = 30) => {
 
     if (!response.ok) {
       if (response.status === 401) {
-        // Session expired - sign out to clear stale tokens
-        await supabase.auth.signOut();
-        throw new Error('Session expired. Please log in again.');
+        // Session expired - attempt refresh once
+        console.log('[AdminAnalytics] Got 401, attempting session refresh...');
+        const refreshedSession = await supabase.auth.refreshSession();
+        
+        if (refreshedSession.error || !refreshedSession.data.session) {
+          toast.error('Session expired. Please log in again.');
+          await supabase.auth.signOut();
+          throw new Error('Session expired. Please log in again.');
+        }
+
+        // Retry with new token
+        const retryResponse = await fetch(
+          `https://oidnydyyjyjfnyadhyzn.supabase.co/functions/v1/analytics-dashboard/${endpoint}?days=${daysBack}`,
+          {
+            headers: {
+              'Authorization': `Bearer ${refreshedSession.data.session.access_token}`,
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+
+        if (!retryResponse.ok) {
+          const errorData = await retryResponse.json();
+          throw new Error(errorData.error || 'Failed to fetch analytics');
+        }
+
+        return retryResponse.json();
       }
       const errorData = await response.json();
       throw new Error(errorData.error || 'Failed to fetch analytics');
     }
 
     return response.json();
-  }, [daysBack]);
+  }, [daysBack, ensureFreshSession]);
+
+  // Set up periodic session refresh every 10 minutes
+  useEffect(() => {
+    refreshIntervalRef.current = setInterval(() => {
+      ensureFreshSession();
+    }, 10 * 60 * 1000); // 10 minutes
+
+    return () => {
+      if (refreshIntervalRef.current) {
+        clearInterval(refreshIntervalRef.current);
+      }
+    };
+  }, [ensureFreshSession]);
 
   const fetchAllData = useCallback(async () => {
     setLoading(true);

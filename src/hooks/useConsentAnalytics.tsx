@@ -2,9 +2,10 @@
  * useConsentAnalytics - Fetches consent and GTM conversion analytics
  */
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { format, subDays, startOfDay, endOfDay } from 'date-fns';
+import { toast } from 'sonner';
 
 interface ConsentTrend {
   date: string;
@@ -80,8 +81,42 @@ export const useConsentAnalytics = (daysBack: number = 30) => {
   const [consentData, setConsentData] = useState<ConsentAnalyticsData | null>(null);
   const [tagData, setTagData] = useState<TagTimelineData | null>(null);
   const [funnelData, setFunnelData] = useState<FunnelData | null>(null);
+  const refreshIntervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Proactive session refresh for long dashboard sessions
+  const ensureFreshSession = useCallback(async () => {
+    try {
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+      
+      if (sessionError || !session) {
+        return false;
+      }
+
+      const expiresAt = session.expires_at;
+      const now = Math.floor(Date.now() / 1000);
+      const timeUntilExpiry = expiresAt ? expiresAt - now : 0;
+
+      if (timeUntilExpiry < 300) {
+        console.log('[ConsentAnalytics] Token expiring soon, refreshing...');
+        const { error: refreshError } = await supabase.auth.refreshSession();
+        
+        if (refreshError) {
+          console.error('[ConsentAnalytics] Failed to refresh session:', refreshError);
+          toast.error('Session refresh failed. Please log in again.');
+          return false;
+        }
+      }
+
+      return true;
+    } catch (err) {
+      console.error('[ConsentAnalytics] Session check error:', err);
+      return false;
+    }
+  }, []);
 
   const fetchConsentAnalytics = useCallback(async () => {
+    // Ensure session is fresh before fetching
+    await ensureFreshSession();
     const startDate = startOfDay(subDays(new Date(), daysBack)).toISOString();
     const endDate = endOfDay(new Date()).toISOString();
 
@@ -331,6 +366,19 @@ export const useConsentAnalytics = (daysBack: number = 30) => {
   useEffect(() => {
     refresh();
   }, [refresh]);
+
+  // Set up periodic session refresh every 10 minutes
+  useEffect(() => {
+    refreshIntervalRef.current = setInterval(() => {
+      ensureFreshSession();
+    }, 10 * 60 * 1000);
+
+    return () => {
+      if (refreshIntervalRef.current) {
+        clearInterval(refreshIntervalRef.current);
+      }
+    };
+  }, [ensureFreshSession]);
 
   return {
     loading,
