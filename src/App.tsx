@@ -19,7 +19,6 @@ import { HappyGuestsProvider } from "./contexts/HappyGuestsContext";
 import { UserAuthProvider } from "./contexts/UserAuthContext";
 import ConsentModal from "./components/consent/ConsentModal";
 import { TrafficAnalyticsProvider } from "./hooks/useTrafficAnalytics";
-import AnalyticsDebugPanel from "./components/debug/AnalyticsDebugPanel";
 
 // Optimized lazy loading with faster retry and better chunk handling
 const createLazyComponent = (importFn: () => Promise<any>) => {
@@ -80,8 +79,8 @@ const AdminChannels = createLazyComponent(() => import("./pages/admin/AdminChann
 const AdminDemand = createLazyComponent(() => import("./pages/admin/AdminDemand"));
 const AdminWhatsAppTemplates = createLazyComponent(() => import("./pages/admin/AdminWhatsAppTemplates"));
 const LiveTrafficCommandCenter = createLazyComponent(() => import("./pages/admin/LiveTrafficCommandCenter"));
+const AdminDataLayerDebug = createLazyComponent(() => import("./pages/admin/AdminDataLayerDebug"));
 
-// Franchise pages
 const FranchiseLogin = createLazyComponent(() => import("./pages/franchise/FranchiseLogin"));
 const FranchiseDashboard = createLazyComponent(() => import("./pages/franchise/FranchiseDashboard"));
 
@@ -208,7 +207,6 @@ function App() {
               <EnhancedAnalyticsProvider>
                 
                 <ConsentModal />
-                <AnalyticsDebugPanel />
                 <TooltipProvider>
                 <Toaster />
               <Sonner />
@@ -258,6 +256,7 @@ function App() {
                 <Route path="/admin/demand" element={<LazyRoute><AdminDemand /></LazyRoute>} />
                 <Route path="/admin/whatsapp" element={<LazyRoute><AdminWhatsAppTemplates /></LazyRoute>} />
                 <Route path="/admin/traffic" element={<LazyRoute><LiveTrafficCommandCenter /></LazyRoute>} />
+                <Route path="/admin/datalayer" element={<LazyRoute><AdminDataLayerDebug /></LazyRoute>} />
                 {/* Franchise Routes */}
                 <Route path="/franchise/login" element={<LazyRoute><FranchiseLogin /></LazyRoute>} />
                 <Route path="/franchise" element={<LazyRoute><FranchiseDashboard /></LazyRoute>} />
