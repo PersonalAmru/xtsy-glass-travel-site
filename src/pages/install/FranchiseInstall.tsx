@@ -8,6 +8,7 @@ import { Download, Building2, CheckCircle2, Calendar, DollarSign, ClipboardList,
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { useNavigate } from 'react-router-dom';
+import { pushToDataLayer } from '@/utils/dataLayerService';
 
 interface BeforeInstallPromptEvent extends Event {
   prompt(): Promise<void>;
@@ -74,6 +75,15 @@ export default function FranchiseInstall() {
       const { outcome } = await deferredPrompt.userChoice;
       if (outcome === 'accepted') {
         setIsInstalled(true);
+        pushToDataLayer({
+          event: 'app_download',
+          download_type: 'pwa_install',
+          platform: navigator.userAgent.includes('Android') ? 'android' : 
+                    navigator.userAgent.includes('iPhone') ? 'ios' : 'desktop',
+          app_type: 'franchise',
+          funnel_stage: 'intent',
+          component: 'FranchiseInstall',
+        });
       }
     } catch (error) {
       console.error('Install failed:', error);
