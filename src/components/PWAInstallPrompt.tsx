@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { X, Download } from 'lucide-react';
+import { pushToDataLayer } from '@/utils/dataLayerService';
 
 interface BeforeInstallPromptEvent extends Event {
   prompt(): Promise<void>;
@@ -37,6 +38,15 @@ const PWAInstallPrompt = () => {
     
     if (outcome === 'accepted') {
       console.log('User accepted the install prompt');
+      pushToDataLayer({
+        event: 'app_download',
+        download_type: 'pwa_install',
+        platform: navigator.userAgent.includes('Android') ? 'android' : 
+                  navigator.userAgent.includes('iPhone') ? 'ios' : 'desktop',
+        app_type: 'user',
+        funnel_stage: 'intent',
+        component: 'PWAInstallPrompt',
+      });
     }
     
     setDeferredPrompt(null);
