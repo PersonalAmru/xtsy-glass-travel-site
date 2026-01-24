@@ -900,10 +900,8 @@ export default function SimplifiedBookingFlow() {
         // The event MUST fire exactly as: { event: "booking_confirmed" }
         // =====================================================
         
-        // Ensure dataLayer exists
-        if (typeof (window as any).dataLayer === 'undefined') {
-          (window as any).dataLayer = [];
-        }
+        // Ensure dataLayer exists BEFORE any push
+        const dataLayer = (window as any).dataLayer = (window as any).dataLayer || [];
         
         // Build the exact event object required by GTM
         const gtmEvent = {
@@ -926,13 +924,14 @@ export default function SimplifiedBookingFlow() {
           },
         };
         
-        // Push to dataLayer - this MUST appear in GTM Preview as "booking_confirmed"
-        (window as any).dataLayer.push(gtmEvent);
+        // IMMEDIATE push - no conditions, no delays before push
+        dataLayer.push(gtmEvent);
         
-        // Log for debugging in GTM Preview Console tab
-        console.log('%c[GTM DEBUG] booking_confirmed PUSHED TO DATALAYER', 'background: #00ff00; color: #000; font-weight: bold; padding: 4px 8px;');
-        console.log('[GTM DEBUG] Event payload:', JSON.stringify(gtmEvent, null, 2));
-        console.log('[GTM DEBUG] Current dataLayer:', (window as any).dataLayer);
+        // High-visibility console log for GTM Preview debugging
+        console.log('%c[GTM] booking_confirmed FIRED', 'background: #00ff00; color: #000; font-weight: bold; padding: 8px 16px; font-size: 14px;');
+        console.log('[GTM] Event payload:', gtmEvent);
+        console.log('[GTM] dataLayer length:', dataLayer.length);
+        console.log('[GTM] Full dataLayer:', JSON.stringify(dataLayer, null, 2));
         
         // Also use the tracking service for redundancy
         trackBookingComplete(
@@ -948,6 +947,9 @@ export default function SimplifiedBookingFlow() {
           isCompleted: true,
         });
 
+        // Small delay to ensure GTM processes the event before UI transition
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
         goToStep('confirmation');
         toast.success('Booking submitted! Awaiting host approval.');
       } else {
