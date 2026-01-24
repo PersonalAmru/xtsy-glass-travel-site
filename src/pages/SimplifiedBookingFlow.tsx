@@ -894,28 +894,47 @@ export default function SimplifiedBookingFlow() {
           setInvoiceHtml(result.html);
         }
 
+        // =====================================================
         // CRITICAL: Push booking_confirmed event to dataLayer for GTM
         // This exact event name is required for GA4 and Google Ads conversion tracking
         // The event MUST fire exactly as: { event: "booking_confirmed" }
+        // =====================================================
         
-        // First, ensure dataLayer exists and push the minimal required event
-        (window as any).dataLayer = (window as any).dataLayer || [];
-        (window as any).dataLayer.push({
+        // Ensure dataLayer exists
+        if (typeof (window as any).dataLayer === 'undefined') {
+          (window as any).dataLayer = [];
+        }
+        
+        // Build the exact event object required by GTM
+        const gtmEvent = {
           event: 'booking_confirmed',
           transaction_id: result.bookingId,
           value: total,
           currency: 'INR',
           room_type: primaryRoom.room.name,
           payment_method: 'pay_at_hotel',
-        });
+          ecommerce: {
+            transaction_id: result.bookingId,
+            value: total,
+            currency: 'INR',
+            items: selectedRooms.map(r => ({
+              item_name: r.room.name,
+              item_category: r.room.kind,
+              price: r.room.discountedPrice,
+              quantity: r.quantity,
+            })),
+          },
+        };
         
-        console.log('[GTM] booking_confirmed event fired:', {
-          event: 'booking_confirmed',
-          transaction_id: result.bookingId,
-          value: total,
-        });
+        // Push to dataLayer - this MUST appear in GTM Preview as "booking_confirmed"
+        (window as any).dataLayer.push(gtmEvent);
         
-        // Also track through the standard service for additional metadata
+        // Log for debugging in GTM Preview Console tab
+        console.log('%c[GTM DEBUG] booking_confirmed PUSHED TO DATALAYER', 'background: #00ff00; color: #000; font-weight: bold; padding: 4px 8px;');
+        console.log('[GTM DEBUG] Event payload:', JSON.stringify(gtmEvent, null, 2));
+        console.log('[GTM DEBUG] Current dataLayer:', (window as any).dataLayer);
+        
+        // Also use the tracking service for redundancy
         trackBookingComplete(
           result.bookingId,
           primaryRoom.room.name,
