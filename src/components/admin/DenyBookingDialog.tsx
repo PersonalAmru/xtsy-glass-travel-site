@@ -5,19 +5,18 @@
 
 import { useState } from 'react';
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from '@/components/ui/alert-dialog';
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Textarea } from '@/components/ui/textarea';
-import { X, AlertTriangle } from 'lucide-react';
+import { X, AlertTriangle, Loader2 } from 'lucide-react';
 
 interface DenyBookingDialogProps {
   open: boolean;
@@ -52,13 +51,14 @@ export function DenyBookingDialog({
       ? customReason.trim() || 'Your booking request has been declined.'
       : DENIAL_REASONS.find(r => r.id === selectedReason)?.message || 'Your booking request has been declined.';
     
+    // Call onConfirm - dialog will be closed by parent after async operation completes
     onConfirm(reason);
-    // Reset state after confirm
-    setSelectedReason('unavailable');
-    setCustomReason('');
   };
 
   const handleOpenChange = (isOpen: boolean) => {
+    // Only allow closing if not loading
+    if (loading) return;
+    
     if (!isOpen) {
       // Reset state when closing
       setSelectedReason('unavailable');
@@ -67,15 +67,17 @@ export function DenyBookingDialog({
     onOpenChange(isOpen);
   };
 
+  const isConfirmDisabled = loading || (selectedReason === 'custom' && !customReason.trim());
+
   return (
-    <AlertDialog open={open} onOpenChange={handleOpenChange}>
-      <AlertDialogContent className="max-w-md">
-        <AlertDialogHeader>
-          <AlertDialogTitle className="flex items-center gap-2 text-destructive">
+    <Dialog open={open} onOpenChange={handleOpenChange}>
+      <DialogContent className="max-w-md">
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-2 text-destructive">
             <AlertTriangle className="w-5 h-5" />
             Deny Booking Request
-          </AlertDialogTitle>
-          <AlertDialogDescription asChild>
+          </DialogTitle>
+          <DialogDescription asChild>
             <div className="space-y-3">
               <p>
                 Are you sure you want to deny this booking? The guest will be notified with your selected reason.
@@ -85,8 +87,8 @@ export function DenyBookingDialog({
                 <p className="text-muted-foreground">{bookingDates}</p>
               </div>
             </div>
-          </AlertDialogDescription>
-        </AlertDialogHeader>
+          </DialogDescription>
+        </DialogHeader>
 
         <div className="py-4 space-y-4">
           <Label className="text-sm font-medium">Select denial reason:</Label>
@@ -94,6 +96,7 @@ export function DenyBookingDialog({
             value={selectedReason}
             onValueChange={setSelectedReason}
             className="space-y-2"
+            disabled={loading}
           >
             {DENIAL_REASONS.map((reason) => (
               <div key={reason.id} className="flex items-center space-x-2">
@@ -114,22 +117,38 @@ export function DenyBookingDialog({
               value={customReason}
               onChange={(e) => setCustomReason(e.target.value)}
               className="min-h-[80px]"
+              disabled={loading}
             />
           )}
         </div>
 
-        <AlertDialogFooter>
-          <AlertDialogCancel disabled={loading}>Cancel</AlertDialogCancel>
-          <AlertDialogAction
-            onClick={handleConfirm}
-            disabled={loading || (selectedReason === 'custom' && !customReason.trim())}
-            className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+        <DialogFooter className="gap-2 sm:gap-0">
+          <Button 
+            variant="outline" 
+            onClick={() => handleOpenChange(false)}
+            disabled={loading}
           >
-            <X className="w-4 h-4 mr-1" />
-            {loading ? 'Denying...' : 'Deny Booking'}
-          </AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+            Cancel
+          </Button>
+          <Button
+            variant="destructive"
+            onClick={handleConfirm}
+            disabled={isConfirmDisabled}
+          >
+            {loading ? (
+              <>
+                <Loader2 className="w-4 h-4 mr-1 animate-spin" />
+                Denying...
+              </>
+            ) : (
+              <>
+                <X className="w-4 h-4 mr-1" />
+                Deny Booking
+              </>
+            )}
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }
