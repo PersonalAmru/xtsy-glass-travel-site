@@ -97,17 +97,16 @@ export const PropertyCardCompact = ({ property, onViewDetails }: PropertyCardCom
             ))}
           </div>
 
-          {/* Price & CTA */}
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex-shrink-0">
-              <p className="text-[10px] text-white/40 uppercase">From</p>
-              <p className="text-base sm:text-lg font-bold text-white leading-tight">
+          {/* Price & CTA - Stacked vertically */}
+          <div className="flex flex-col gap-2">
+            <div className="flex items-baseline gap-1">
+              <p className="text-base sm:text-lg font-bold text-white">
                 ₹{property.priceRange.min.toLocaleString()}
               </p>
               <p className="text-[10px] text-white/40">/night</p>
             </div>
             <span className={cn(
-              "px-3 py-1.5 rounded-full text-xs font-semibold transition-colors whitespace-nowrap flex-shrink-0",
+              "w-full text-center px-3 py-2 rounded-full text-xs font-semibold transition-colors",
               "bg-primary/20 text-primary group-hover:bg-primary group-hover:text-white"
             )}>
               View Details
