@@ -124,6 +124,13 @@ export default function AdminBookingsCalendar() {
     const checkIn = parseISO(booking.check_in);
     const checkOut = parseISO(booking.check_out);
     
+    // CRITICAL: Only show APPROVED bookings on the calendar grid
+    // Pending bookings should only appear in the "Pending Approvals" section
+    // This ensures the calendar reflects actual confirmed inventory blocks
+    if (booking.booking_status === 'pending') {
+      return null; // Don't display pending bookings on calendar dates
+    }
+    
     // Handle no-show status - show no_show for all dates of the booking
     if (booking.booking_status === 'no_show') {
       if (isSameDay(date, checkIn) || isSameDay(date, checkOut) || (date > checkIn && date < checkOut)) {
@@ -132,14 +139,12 @@ export default function AdminBookingsCalendar() {
       return null;
     }
     
-    // Handle cancelled - don't show on calendar but include in list
+    // Handle cancelled - don't show on calendar
     if (booking.booking_status === 'cancelled') {
-      if (isSameDay(date, checkIn)) {
-        return 'check_in'; // Will be styled differently based on booking_status
-      }
-      return null;
+      return null; // Cancelled bookings don't block inventory
     }
     
+    // Only confirmed/completed bookings appear on calendar
     // Check-in day
     if (isSameDay(date, checkIn)) {
       return 'check_in';
