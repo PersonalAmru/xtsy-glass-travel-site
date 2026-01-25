@@ -408,7 +408,7 @@ const HeroSection = () => {
             exit={{ opacity: 0, height: 0 }}
             className="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 py-12 px-4"
           >
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-6xl mx-auto">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -422,14 +422,15 @@ const HeroSection = () => {
                 </p>
               </motion.div>
 
-              {/* Property Cards Grid - 2x2 on mobile, 3-4 on desktop */}
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {/* Property Cards Grid - Stack on mobile, 2 cols on tablet/desktop */}
+              <div className="flex flex-col gap-6 sm:grid sm:grid-cols-2 lg:gap-8">
                 {availableProperties.map((property, index) => (
                   <motion.div
                     key={property.id}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
+                    className="w-full"
                   >
                     <PropertyCardCompact
                       property={property}

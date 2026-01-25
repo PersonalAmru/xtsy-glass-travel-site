@@ -32,26 +32,27 @@ export const PropertyCardCompact = ({ property, onViewDetails }: PropertyCardCom
     <motion.button
       whileTap={{ scale: 0.98 }}
       onClick={() => onViewDetails(property)}
-      className="w-full text-left group"
+      className="w-full h-full text-left group"
     >
       <div className={cn(
-        "rounded-2xl overflow-hidden border transition-all duration-300",
-        "bg-white/5 border-white/10 hover:border-white/20",
-        "hover:bg-white/[0.07] hover:shadow-xl hover:shadow-primary/5",
-        "min-w-[280px] md:min-w-[320px] lg:min-w-[360px]"
+        "h-full flex flex-col rounded-2xl overflow-hidden border transition-all duration-300",
+        "bg-white/5 border-white/10",
+        "hover:border-white/20 hover:bg-white/[0.07]",
+        "hover:shadow-xl hover:shadow-primary/5",
+        "hover:-translate-y-0.5"
       )}>
-        {/* Image Section */}
-        <div className="relative aspect-[4/3] md:aspect-[16/10]">
+        {/* Image Section - Fixed aspect ratio */}
+        <div className="relative aspect-[16/10] flex-shrink-0">
           <UnifiedImage
             src={property.heroImage}
             alt={property.name}
             className="w-full h-full object-cover"
           />
           
-          {/* Category Badge */}
-          <div className="absolute top-2 left-2">
+          {/* Category Badge - Inside image flow */}
+          <div className="absolute top-3 left-3">
             <span className={cn(
-              "px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider backdrop-blur-sm",
+              "px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider backdrop-blur-sm",
               property.category === 'luxury' 
                 ? "bg-amber-500/90 text-white" 
                 : "bg-emerald-500/90 text-white"
@@ -60,54 +61,58 @@ export const PropertyCardCompact = ({ property, onViewDetails }: PropertyCardCom
             </span>
           </div>
 
-          {/* Rating Badge */}
-          <div className="absolute top-2 right-2">
-            <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/60 backdrop-blur-sm">
+          {/* Rating Badge - Inside image flow */}
+          <div className="absolute top-3 right-3">
+            <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-black/60 backdrop-blur-sm">
               <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
               <span className="text-xs font-semibold text-white">{property.rating}</span>
             </div>
           </div>
 
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-          {/* Bottom Content Overlay */}
-          <div className="absolute bottom-0 left-0 right-0 p-3">
-            <h3 className="text-sm font-bold text-white truncate mb-1">
+          {/* Bottom Content Overlay - Property name */}
+          <div className="absolute bottom-0 left-0 right-0 p-4">
+            <h3 className="text-base sm:text-lg font-bold text-white mb-1 line-clamp-1">
               {property.name}
             </h3>
-            <div className="flex items-center gap-1 text-xs text-white/70">
-              <MapPin className="w-3 h-3" />
-              <span>Shillong</span>
+            <div className="flex items-center gap-1.5 text-xs text-white/80">
+              <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
+              <span>Shillong, Meghalaya</span>
             </div>
           </div>
         </div>
 
-        {/* Content Section */}
-        <div className="p-3">
+        {/* Content Section - Flex grow to fill remaining space */}
+        <div className="flex flex-col flex-grow p-4">
           {/* Tags */}
-          <div className="flex flex-wrap gap-1 mb-3">
-            {tags.slice(0, 2).map((tag, i) => (
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {tags.slice(0, 3).map((tag, i) => (
               <span 
                 key={i}
-                className="px-1.5 py-0.5 rounded bg-white/5 text-[10px] text-white/60"
+                className="px-2 py-1 rounded-md bg-white/5 text-[11px] text-white/60"
               >
                 {tag}
               </span>
             ))}
           </div>
 
-          {/* Price & CTA - Stacked vertically */}
-          <div className="flex flex-col gap-2">
+          {/* Spacer to push price/CTA to bottom */}
+          <div className="flex-grow" />
+
+          {/* Price & CTA - Stacked vertically at bottom */}
+          <div className="flex flex-col gap-3">
             <div className="flex items-baseline gap-1">
-              <p className="text-base sm:text-lg font-bold text-white">
+              <span className="text-xl sm:text-2xl font-bold text-white">
                 ₹{property.priceRange.min.toLocaleString()}
-              </p>
-              <p className="text-[10px] text-white/40">/night</p>
+              </span>
+              <span className="text-xs text-white/50">/night</span>
             </div>
             <span className={cn(
-              "w-full text-center px-3 py-2 rounded-full text-xs font-semibold transition-colors",
-              "bg-primary/20 text-primary group-hover:bg-primary group-hover:text-white"
+              "w-full text-center py-3 rounded-xl text-sm font-semibold transition-all duration-200",
+              "bg-primary/20 text-primary",
+              "group-hover:bg-primary group-hover:text-white"
             )}>
               View Details
             </span>
