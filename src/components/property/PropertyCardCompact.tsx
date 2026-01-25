@@ -41,12 +41,12 @@ export const PropertyCardCompact = ({ property, onViewDetails }: PropertyCardCom
         "hover:shadow-xl hover:shadow-primary/5",
         "hover:-translate-y-0.5"
       )}>
-        {/* Image Section - Fixed aspect ratio */}
-        <div className="relative aspect-[16/10] flex-shrink-0">
+        {/* Image Section - Strict fixed aspect ratio, no vertical stretch */}
+        <div className="relative w-full flex-shrink-0 overflow-hidden" style={{ aspectRatio: '16/10' }}>
           <UnifiedImage
             src={property.heroImage}
             alt={property.name}
-            className="w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover"
           />
           
           {/* Category Badge - Inside image flow */}
