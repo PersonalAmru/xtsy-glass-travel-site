@@ -1,0 +1,265 @@
+/**
+ * iOS/Mac Stability Optimizations
+ * CRITICAL: Safari-specific fixes and macOS stability protocols
+ */
+
+/* ========================================
+   iOS Safari - Touch & Scroll Stability
+   ======================================== */
+
+/* Prevent iOS double-tap zoom on buttons/links */
+button,
+a,
+[role="button"],
+input[type="button"],
+input[type="submit"] {
+  touch-action: manipulation;
+}
+
+/* iOS momentum scrolling with overscroll prevention */
+@supports (-webkit-touch-callout: none) {
+  html, body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
+    overscroll-behavior-y: none;
+  }
+  
+  /* Prevent iOS rubber-band scrolling on fixed elements */
+  .fixed,
+  .sticky,
+  [data-radix-dialog-content],
+  [data-radix-dialog-overlay] {
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* iOS input zoom prevention - enforced at 16px min */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="password"],
+  input[type="number"],
+  input[type="date"],
+  input[type="search"],
+  select,
+  textarea {
+    font-size: max(16px, 1rem) !important;
+  }
+  
+  /* iOS date picker styling fixes */
+  input[type="date"]::-webkit-date-and-time-value {
+    text-align: left;
+    padding: 0;
+  }
+  
+  /* iOS safe area respect for fixed/sticky elements */
+  .ios-safe-area-top {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  
+  .ios-safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  
+  /* Prevent iOS text selection highlight on interactive elements */
+  button,
+  a,
+  [role="button"] {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  /* iOS smooth transition for tap states */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* ========================================
+   macOS Safari Optimizations
+   ======================================== */
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) 
+  and (min-resolution: .001dpcm) { 
+  /* macOS Safari-specific smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* macOS Safari scrollbar hiding */
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    background: transparent;
+  }
+  
+  /* macOS trackpad momentum */
+  .scroll-container,
+  .overflow-auto,
+  .overflow-y-auto,
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+}
+
+/* ========================================
+   Apple Platform GPU Optimizations
+   ======================================== */
+
+/* GPU layer promotion for smooth animations on Apple Silicon */
+@supports (-webkit-backdrop-filter: blur(1px)) {
+  .glass-card,
+  .glass-header,
+  .glass-card-enhanced,
+  [data-radix-dialog-content] {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+  }
+  
+  /* Reduce composite layer count on mobile Safari */
+  @media (max-width: 767px) {
+    .will-change-transform {
+      will-change: auto;
+    }
+  }
+}
+
+/* ========================================
+   iOS Focus State Improvements
+   ======================================== */
+
+/* iOS-friendly focus styles */
+@supports (-webkit-touch-callout: none) {
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  [role="button"]:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+  
+  /* Remove default Safari focus ring */
+  button:focus:not(:focus-visible),
+  a:focus:not(:focus-visible),
+  input:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+/* ========================================
+   iOS Form Element Fixes
+   ======================================== */
+
+@supports (-webkit-touch-callout: none) {
+  /* Fix iOS select dropdown arrow */
+  select {
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 40px;
+  }
+  
+  /* iOS button styling consistency */
+  button,
+  input[type="button"],
+  input[type="submit"] {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  
+  /* iOS input border-radius fix */
+  input,
+  textarea {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: var(--radius);
+  }
+}
+
+/* ========================================
+   Prevent Layout Shift on iOS
+   ======================================== */
+
+/* Stable height for iOS address bar changes */
+@supports (-webkit-touch-callout: none) {
+  .min-h-screen {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    min-height: 100dvh;
+  }
+  
+  .h-screen {
+    height: 100vh;
+    height: -webkit-fill-available;
+    height: 100dvh;
+  }
+  
+  /* Prevent content reflow during keyboard open */
+  .ios-keyboard-fix {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* ========================================
+   Apple First-Paint Optimization
+   ======================================== */
+
+/* Disable animations on first paint for faster LCP */
+@media (max-width: 767px) {
+  html:not(.hydrated) * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ========================================
+   iOS Dark Mode Compatibility
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  @supports (-webkit-touch-callout: none) {
+    /* iOS dark mode input styling */
+    input,
+    select,
+    textarea {
+      color-scheme: dark;
+    }
+    
+    /* iOS dark mode system UI integration */
+    ::selection {
+      background: hsl(var(--primary) / 0.3);
+    }
+  }
+}
+
+/* ========================================
+   iOS Navigation Glitch Prevention
+   ======================================== */
+
+/* Prevent visual flicker during page transitions */
+@supports (-webkit-touch-callout: none) {
+  .page-transition {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    will-change: opacity;
+  }
+  
+  /* Instant repaint for route changes */
+  #root {
+    contain: layout style;
+  }
+}
