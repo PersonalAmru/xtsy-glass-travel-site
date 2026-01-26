@@ -26,6 +26,8 @@ interface ConsentPreferences {
 
 const CONSENT_KEY = 'xtsy_consent_v2';
 const CONSENT_VERSION = '2.0';
+// Consent valid for 365 days (in milliseconds) - returning users within this window skip the modal
+const CONSENT_VALIDITY_MS = 365 * 24 * 60 * 60 * 1000;
 
 export function ConsentModal() {
   const [isVisible, setIsVisible] = useState(false);
@@ -49,16 +51,27 @@ export function ConsentModal() {
         if (stored) {
           const parsed = JSON.parse(stored);
           // Check for valid consent with BOTH version and timestamp
-          // Version must match current version
+          // Version must match current version AND consent must be within validity period (365 days)
           if (parsed.version === CONSENT_VERSION && parsed.timestamp) {
-            console.log('[ConsentModal] Valid consent found (v' + parsed.version + '), not showing modal');
-            // Ensure body scroll is enabled (in case of stuck state)
-            document.body.style.overflow = '';
-            return; // Valid consent exists
+            const consentAge = Date.now() - new Date(parsed.timestamp).getTime();
+            
+            // If consent is still valid (within 365 days), skip modal - RETURNING USER
+            if (consentAge < CONSENT_VALIDITY_MS) {
+              console.log('[ConsentModal] Valid consent found (v' + parsed.version + '), returning user - not showing modal');
+              console.log('[ConsentModal] Consent age: ' + Math.round(consentAge / (24 * 60 * 60 * 1000)) + ' days');
+              // Ensure body scroll is enabled (in case of stuck state)
+              document.body.style.overflow = '';
+              
+              // Mark as returning user for analytics
+              sessionStorage.setItem('xtsy_returning_user', 'true');
+              return; // Valid consent exists
+            } else {
+              console.log('[ConsentModal] Consent expired after 365 days, showing modal for re-consent');
+            }
           } else {
             console.log('[ConsentModal] Consent version mismatch or missing timestamp, clearing');
-            localStorage.removeItem(CONSENT_KEY);
           }
+          localStorage.removeItem(CONSENT_KEY);
         }
         // No valid consent - show modal
         console.log('[ConsentModal] No valid consent, showing modal');

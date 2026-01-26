@@ -386,7 +386,7 @@ Looking forward to exploring with XTSY! 🌟`;
         }}
       >
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold mb-2">
+          <DialogTitle className="text-2xl font-bold mb-2 text-foreground">
             {tourPackage?.title || "Tour Package"}
           </DialogTitle>
           <DialogDescription className="sr-only">

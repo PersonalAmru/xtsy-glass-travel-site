@@ -294,7 +294,7 @@ const XTSYPrimeSection: React.FC<XTSYPrimeSectionProps> = ({ className }) => {
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Button
                     size="lg"
-                    className="flex-1 bg-primary hover:bg-primary/90"
+                    className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground"
                     onClick={() => handleWhatsAppBooking(selectedOffering)}
                   >
                     Book via WhatsApp
@@ -303,10 +303,14 @@ const XTSYPrimeSection: React.FC<XTSYPrimeSectionProps> = ({ className }) => {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="flex-1"
+                    className="flex-1 border-border text-foreground bg-background hover:bg-muted"
                     onClick={() => {
+                      // Close modal first, then navigate after a short delay to prevent flash
                       setIsModalOpen(false);
-                      window.location.href = selectedOffering.path;
+                      // Use requestAnimationFrame to ensure modal closes before navigation
+                      requestAnimationFrame(() => {
+                        window.location.href = selectedOffering.path;
+                      });
                     }}
                   >
                     View Full Details
