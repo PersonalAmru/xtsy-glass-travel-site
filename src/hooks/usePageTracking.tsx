@@ -1,16 +1,24 @@
 /**
  * usePageTracking - Centralized GTM Page Navigation & Button Action Tracking
  * 
- * Implements comprehensive page-wise GTM triggers for:
+ * Routes ALL events through the GTM Event Router (Backend GA4 Brain)
+ * Admin dashboard captures events BEFORE they reach GA4/GTM.
+ * 
+ * Implements:
  * 1. Page navigation tracking (virtual page views for SPA)
  * 2. Button action tracking (all CTAs and interactive elements)
  * 3. Session-based navigation flow
- * 4. Admin traffic filtering
+ * 4. Admin traffic filtering (handled by GTM Router)
  */
 
 import { useEffect, useCallback, useRef } from 'react';
 import { useLocation, useNavigationType } from 'react-router-dom';
-import { pushToDataLayer } from '@/utils/dataLayerService';
+import { 
+  routePageEvent, 
+  routeButtonEvent, 
+  routeEngagementEvent,
+  routeGTMEvent 
+} from '@/utils/gtmEventRouter';
 import { isLovableSession } from '@/utils/analyticsFilters';
 
 // Page category mapping for better analytics segmentation
@@ -44,33 +52,26 @@ const getPageCategory = (path: string): string => {
   return 'other';
 };
 
-// Track page view event
+// Track page view event via GTM Router
 const trackPageNavigation = (
   path: string, 
   prevPath: string | null, 
   navigationType: string
 ) => {
-  // Skip admin sessions
-  if (isLovableSession()) {
-    console.log('[PageTracking] Skipped (admin session)');
-    return;
-  }
-
   const pageCategory = getPageCategory(path);
   const isReturningUser = sessionStorage.getItem('xtsy_returning_user') === 'true';
   
-  pushToDataLayer({
-    event: 'page_navigation',
+  // Route through GTM Router - it handles admin filtering
+  routePageEvent('page_navigation', {
     page_path: path,
     page_category: pageCategory,
-    previous_page: prevPath,
-    navigation_type: navigationType, // 'PUSH', 'POP', 'REPLACE'
+    previous_page: prevPath || undefined,
+    navigation_type: navigationType,
     is_returning_user: isReturningUser,
-    session_page_count: incrementPageCount(),
-    timestamp: new Date().toISOString(),
   });
   
-  console.log(`[PageTracking] page_navigation: ${path} (${pageCategory})`);
+  // Update session page count
+  incrementPageCount();
 };
 
 // Session page count for funnel tracking
@@ -81,24 +82,16 @@ const incrementPageCount = (): number => {
   return next;
 };
 
-// Button tracking helper
+// Button tracking helper - routes through GTM Router
 export const trackButtonClick = (
   buttonName: string,
   buttonLocation: string,
   metadata?: Record<string, unknown>
 ) => {
-  if (isLovableSession()) return;
-
-  pushToDataLayer({
-    event: 'button_click',
-    button_name: buttonName,
-    button_location: buttonLocation,
-    page_path: window.location.pathname,
+  routeButtonEvent(buttonName, buttonLocation, {
     page_category: getPageCategory(window.location.pathname),
     ...metadata,
   });
-  
-  console.log(`[PageTracking] button_click: ${buttonName} in ${buttonLocation}`);
 };
 
 // Section view tracking (for scroll-based visibility)
@@ -106,10 +99,7 @@ export const trackSectionView = (
   sectionId: string,
   sectionName: string
 ) => {
-  if (isLovableSession()) return;
-
-  pushToDataLayer({
-    event: 'section_view',
+  routeEngagementEvent('section_view', {
     section_id: sectionId,
     section_name: sectionName,
     page_path: window.location.pathname,
@@ -122,10 +112,7 @@ export const trackModalInteraction = (
   action: 'open' | 'close' | 'submit',
   metadata?: Record<string, unknown>
 ) => {
-  if (isLovableSession()) return;
-
-  pushToDataLayer({
-    event: 'modal_interaction',
+  routeEngagementEvent('modal_interaction', {
     modal_name: modalName,
     modal_action: action,
     page_path: window.location.pathname,
@@ -139,14 +126,14 @@ export const trackNavigationAction = (
   destination: string,
   origin: string
 ) => {
-  if (isLovableSession()) return;
-
-  pushToDataLayer({
-    event: 'navigation_action',
-    action_type: actionType,
-    destination,
-    origin,
-    page_path: window.location.pathname,
+  routeGTMEvent({
+    eventName: 'back_navigation',
+    params: {
+      action_type: actionType,
+      destination,
+      origin,
+      page_path: window.location.pathname,
+    },
   });
 };
 
@@ -165,15 +152,12 @@ export const usePageTracking = () => {
       isFirstRender.current = false;
       prevPathRef.current = location.pathname;
       
-      // Track initial page load
-      if (!isLovableSession()) {
-        pushToDataLayer({
-          event: 'page_load',
-          page_path: location.pathname,
-          page_category: getPageCategory(location.pathname),
-          is_returning_user: sessionStorage.getItem('xtsy_returning_user') === 'true',
-        });
-      }
+      // Track initial page load via GTM Router
+      routePageEvent('page_load', {
+        page_path: location.pathname,
+        page_category: getPageCategory(location.pathname),
+        is_returning_user: sessionStorage.getItem('xtsy_returning_user') === 'true',
+      });
       return;
     }
 

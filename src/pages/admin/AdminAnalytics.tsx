@@ -1,5 +1,5 @@
 /**
- * Admin Analytics Page - Traffic and conversion data
+ * Admin Analytics Page - Traffic, conversion data & GTM Event Monitor
  */
 
 import { useState } from 'react';
@@ -7,13 +7,15 @@ import { useAdminAnalytics } from '@/hooks/useAdminAnalytics';
 import { UnifiedAdminLayout } from '@/layouts/UnifiedAdminLayout';
 import { AppleCard, AppleSectionHeader } from '@/components/admin/AppleCard';
 import GeoTrafficList from '@/components/admin/GeoTrafficList';
+import GTMEventMonitor from '@/components/admin/GTMEventMonitor';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { cn } from '@/lib/utils';
 import {
-  RefreshCw, Monitor, Smartphone, Tablet,
+  RefreshCw, Monitor, Smartphone, Tablet, BarChart3, Zap,
 } from 'lucide-react';
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
@@ -70,6 +72,7 @@ const ConversionFunnel = ({ data }: { data: any }) => {
 
 export default function AdminAnalytics() {
   const [daysBack, setDaysBack] = useState(30);
+  const [activeView, setActiveView] = useState<'traffic' | 'gtm'>('traffic');
   const { loading, error, geoHeatmap, funnel, traffic, behavior, trends, refresh } = useAdminAnalytics(daysBack);
 
   return (
@@ -79,24 +82,53 @@ export default function AdminAnalytics() {
         <header className="flex items-center justify-between gap-4 flex-wrap">
           <div>
             <h1 className="text-2xl font-bold tracking-tight">Analytics</h1>
-            <p className="text-sm text-muted-foreground">Traffic and conversion data</p>
+            <p className="text-sm text-muted-foreground">Traffic, conversions & GTM triggers</p>
           </div>
           <div className="flex items-center gap-3">
-            <Select value={daysBack.toString()} onValueChange={(v) => setDaysBack(parseInt(v))}>
-              <SelectTrigger className="w-[120px]">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="7">7 days</SelectItem>
-                <SelectItem value="30">30 days</SelectItem>
-                <SelectItem value="90">90 days</SelectItem>
-              </SelectContent>
-            </Select>
-            <Button variant="outline" size="sm" onClick={refresh} disabled={loading}>
-              <RefreshCw className={cn('w-4 h-4', loading && 'animate-spin')} />
-            </Button>
+            <Tabs value={activeView} onValueChange={(v) => setActiveView(v as 'traffic' | 'gtm')}>
+              <TabsList>
+                <TabsTrigger value="traffic" className="flex items-center gap-2">
+                  <BarChart3 className="h-4 w-4" />
+                  Traffic
+                </TabsTrigger>
+                <TabsTrigger value="gtm" className="flex items-center gap-2">
+                  <Zap className="h-4 w-4" />
+                  GTM Brain
+                </TabsTrigger>
+              </TabsList>
+            </Tabs>
+            {activeView === 'traffic' && (
+              <>
+                <Select value={daysBack.toString()} onValueChange={(v) => setDaysBack(parseInt(v))}>
+                  <SelectTrigger className="w-[120px]">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="7">7 days</SelectItem>
+                    <SelectItem value="30">30 days</SelectItem>
+                    <SelectItem value="90">90 days</SelectItem>
+                  </SelectContent>
+                </Select>
+                <Button variant="outline" size="sm" onClick={refresh} disabled={loading}>
+                  <RefreshCw className={cn('w-4 h-4', loading && 'animate-spin')} />
+                </Button>
+              </>
+            )}
           </div>
         </header>
+
+        {error && (
+          <AppleCard className="border-destructive/50 bg-destructive/10">
+            <p className="text-destructive text-sm">{error}</p>
+          </AppleCard>
+        )}
+
+        {/* GTM Event Monitor View */}
+        {activeView === 'gtm' && <GTMEventMonitor />}
+
+        {/* Traffic Analytics View */}
+        {activeView === 'traffic' && (
+          <>
 
         {error && (
           <AppleCard className="border-destructive/50 bg-destructive/10">
@@ -199,6 +231,8 @@ export default function AdminAnalytics() {
             </div>
           )}
         </AppleCard>
+        </>
+        )}
       </div>
     </UnifiedAdminLayout>
   );
