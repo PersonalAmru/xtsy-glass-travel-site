@@ -51,27 +51,25 @@ export const optimizeFontLoading = () => {
   document.head.appendChild(link2);
 };
 
-// Prefetch route chunks for faster page transitions
+// Prefetch route chunks for faster page transitions - delayed to not impact LCP
 export const prefetchRouteChunks = () => {
-  // Use requestIdleCallback for non-blocking prefetch
-  const idleCallback = window.requestIdleCallback || ((cb) => setTimeout(cb, 100));
+  // Only prefetch after page is fully interactive
+  const idleCallback = window.requestIdleCallback || ((cb) => setTimeout(cb, 500));
   
   idleCallback(() => {
-    // Prefetch common routes as modulepreload for faster execution
+    // Limit prefetch to most common routes only - reduces network load
     const routeChunks = [
       () => import('../pages/Travel'),
-      () => import('../pages/Gallery'),
       () => import('../pages/XTSY270'),
-      () => import('../pages/About'),
     ];
     
-    // Stagger prefetch to avoid network congestion
+    // Stagger prefetch with longer delays to avoid network congestion
     routeChunks.forEach((chunk, index) => {
       setTimeout(() => {
         chunk().catch(() => {}); // Silently fail - this is just prefetch
-      }, index * 200);
+      }, index * 500); // Increased delay between chunks
     });
-  });
+  }, { timeout: 5000 }); // Only run when truly idle, with 5s timeout
 };
 
 // Service Worker for caching

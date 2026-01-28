@@ -96,29 +96,31 @@ const scheduleIdleTask = (callback: () => void, timeout = 2000) => {
   }
 };
 
-// CRITICAL: Delay ALL non-essential initialization until AFTER first paint
-// This reduces main thread blocking and improves LCP significantly
+// CRITICAL: Delay ALL non-essential initialization until AFTER LCP
+// Priority: LCP image → React render → User interaction → Background tasks
 const initializeNonCritical = () => {
-  // Initialize remaining critical images first (highest priority after LCP)
-  initializeCriticalImageLoading();
+  // Phase 1: After LCP (2s delay) - critical images only
+  scheduleIdleTask(() => {
+    initializeCriticalImageLoading();
+  }, 2000);
   
-  // Then schedule remaining optimizations with lower priority
+  // Phase 2: After interaction ready (4s delay) - image & perf enhancements
   scheduleIdleTask(() => {
     initializeImageOptimizations();
     initializePerformanceEnhancements();
-  }, 1000);
+  }, 4000);
   
-  // Even lower priority - lazy loading and network optimizations
+  // Phase 3: Low priority (6s delay) - lazy loading and network
   scheduleIdleTask(() => {
     initializeAdvancedLazyLoading();
     initializeNetworkOptimizations();
     initializePerformanceOptimizations();
-  }, 2000);
+  }, 6000);
   
-  // Lowest priority - route prefetching
+  // Phase 4: Lowest priority (8s delay) - route prefetching
   scheduleIdleTask(() => {
     prefetchRouteChunks();
-  }, 3000);
+  }, 8000);
 };
 
 // Wait for first paint before initializing non-critical code

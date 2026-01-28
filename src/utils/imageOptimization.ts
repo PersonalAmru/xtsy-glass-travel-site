@@ -88,16 +88,18 @@ export const preloadViewportImages = () => {
   return () => imageObserver.disconnect();
 };
 
-// Initialize image optimizations
+// Initialize image optimizations - runs AFTER LCP to avoid contention
 export const initializeImageOptimizations = () => {
-  // Preload critical images
-  preloadCriticalImages();
+  // Skip critical images - already handled by criticalImagePreloader
+  // preloadCriticalImages(); // Disabled - causes duplicate preloads
   
-  // Start performance monitoring in development
+  // Performance monitoring only in dev and deferred
   if (import.meta.env.DEV) {
-    monitorImagePerformance();
+    setTimeout(monitorImagePerformance, 3000);
   }
   
-  // Setup viewport image preloading
-  preloadViewportImages();
+  // Defer viewport image preloading
+  requestAnimationFrame(() => {
+    preloadViewportImages();
+  });
 };

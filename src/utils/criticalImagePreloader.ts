@@ -1,28 +1,32 @@
 /**
  * Critical Image Preloader - Ensures instant loading of above-the-fold images
  * Uses production-compatible paths (not /src/ paths which don't work in builds)
+ * 
+ * LCP TARGET: < 3.0s - Optimized for fastest paint
  */
 
 // LCP CRITICAL: Hero brand symbol - this is the Largest Contentful Paint element
 const LCP_IMAGE = '/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png';
 
-// Secondary critical images (logo, etc.)
+// Secondary critical images (logo, etc.) - limited to essential only
 const CRITICAL_IMAGES = [
   '/lovable-uploads/160f683c-a41c-41fd-8bdb-700d74a7e027.png'
 ];
 
-// High-priority images that should load quickly but after LCP
-const HIGH_PRIORITY_IMAGES = [
-  '/lovable-uploads/0ef988f7-b7f3-4d1f-80e3-fc2a04acd9cb.png'
-];
+// Deferred to after LCP
+const HIGH_PRIORITY_IMAGES: string[] = [];
+
+// Track if LCP is already loaded to prevent duplicate work
+let lcpPreloaded = false;
 
 /**
- * Preload LCP image FIRST with highest priority
+ * Preload LCP image FIRST with highest priority - runs synchronously
  */
 export const preloadLCPImage = () => {
-  if (typeof document === 'undefined') return;
+  if (typeof document === 'undefined' || lcpPreloaded) return;
+  lcpPreloaded = true;
   
-  // Check if already preloaded via HTML
+  // Check if already preloaded via HTML <link> tag
   const existing = document.querySelector(`link[href="${LCP_IMAGE}"]`);
   if (existing) return;
   
@@ -31,7 +35,8 @@ export const preloadLCPImage = () => {
   link.as = 'image';
   link.href = LCP_IMAGE;
   link.setAttribute('fetchpriority', 'high');
-  // Insert at the beginning of head for maximum priority
+  link.setAttribute('type', 'image/png');
+  // Insert at the very beginning of head for maximum priority
   document.head.insertBefore(link, document.head.firstChild);
 };
 
