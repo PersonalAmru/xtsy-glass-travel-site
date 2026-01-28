@@ -48,21 +48,11 @@ export const registerOptimizedServiceWorker = async () => {
   }
 };
 
-// Optimize bundle loading with module preloading
+// Optimize bundle loading with module preloading - disabled to reduce network contention
+// Module preloading can compete with LCP image loading
 export const preloadCriticalModules = () => {
-  const criticalModules = [
-    '/src/pages/Index.tsx',
-    '/src/components/Header.tsx',
-    '/src/components/Footer.tsx',
-    '/src/components/BookingSummary.tsx'
-  ];
-
-  criticalModules.forEach(module => {
-    const link = document.createElement('link');
-    link.rel = 'modulepreload';
-    link.href = module;
-    document.head.appendChild(link);
-  });
+  // Intentionally empty - modules are loaded on-demand for better LCP
+  // The router handles code splitting efficiently
 };
 
 // Network-aware loading

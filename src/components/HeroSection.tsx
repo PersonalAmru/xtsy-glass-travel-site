@@ -185,23 +185,22 @@ const HeroSection = () => {
               </span>
             </div>
 
-            {/* LCP ELEMENT - Brand Symbol - matches skeleton for instant swap */}
+            {/* LCP ELEMENT - Brand Symbol - optimized for sub-3s LCP */}
             <div className="flex items-center justify-center mb-6">
-              <div className="relative">
+              <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32">
                 <img
                   src="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png"
                   alt="XTSY Brand Symbol"
-                  className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 object-contain drop-shadow-2xl"
+                  className="w-full h-full object-contain"
                   loading="eager"
                   decoding="sync"
                   // @ts-expect-error - React 18.3 uses fetchPriority
                   fetchpriority="high"
                   width={128}
                   height={128}
-                  // Dimensions match skeleton for zero layout shift
-                  style={{ aspectRatio: '1/1' }}
                 />
-                <div className="absolute -inset-4 bg-primary/20 rounded-full blur-2xl -z-10" />
+                {/* Glow effect rendered after image */}
+                <div className="absolute -inset-4 bg-primary/20 rounded-full blur-2xl -z-10" aria-hidden="true" />
               </div>
             </div>
 
