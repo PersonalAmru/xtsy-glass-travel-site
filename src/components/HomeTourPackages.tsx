@@ -6,7 +6,7 @@ import { ArrowRight, Globe, MapPin, Compass } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { LazyTourPackageModal } from "@/components/lazy/LazyTourPackageModal";
 import { useApp } from "@/contexts/AppContext";
-import { pushToDataLayer } from "@/utils/dataLayerService";
+import { useComponentTracking } from "@/hooks/useComponentTracking";
 
 // Import all tour package images from Travel.tsx
 import meghalayaBiodiversityAuthenticImg from "@/assets/meghalaya-biodiversity-authentic.jpg";
@@ -240,6 +240,9 @@ const HomeTourPackages: React.FC<HomeTourPackagesProps> = ({ className }) => {
   const [activeTab, setActiveTab] = useState<'domestic' | 'international'>('domestic');
   const [selectedPackage, setSelectedPackage] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  // GTM Tracking
+  const { trackButton, trackCTA, trackCardClick, trackModalOpen, trackCarousel, trackSectionView } = useComponentTracking({ section: 'tour_packages' });
 
   const currentPackages = activeTab === 'domestic' ? domesticPackages : internationalPackages;
 
@@ -263,16 +266,15 @@ const HomeTourPackages: React.FC<HomeTourPackagesProps> = ({ className }) => {
   const handlePackageClick = (item: FocusRailItem) => {
     const pkg = currentPackages.find(p => p.id === item.id);
     if (pkg) {
-      // Push analytics event
-      pushToDataLayer({
-        event: "package_viewed",
-        component: "HomeTourPackages",
-        funnel_stage: "discovery",
+      // Track card click
+      trackCardClick(pkg.title, 'tour_package', {
         package_id: String(pkg.id),
-        package_name: pkg.title,
         package_category: pkg.category,
         package_price: pkg.price,
       });
+      
+      // Track modal open
+      trackModalOpen(`package_${pkg.id}`);
 
       setSelectedPackage({
         ...pkg,
@@ -281,6 +283,11 @@ const HomeTourPackages: React.FC<HomeTourPackagesProps> = ({ className }) => {
       });
       setIsModalOpen(true);
     }
+  };
+  
+  const handleTabChange = (tab: 'domestic' | 'international') => {
+    trackButton(`tab_${tab}`, { previous_tab: activeTab });
+    setActiveTab(tab);
   };
 
   return (
@@ -310,7 +317,7 @@ const HomeTourPackages: React.FC<HomeTourPackagesProps> = ({ className }) => {
         <div className="flex justify-center mb-8">
           <div className="inline-flex bg-muted/50 backdrop-blur-sm rounded-full p-1.5 border border-border/50">
             <button
-              onClick={() => setActiveTab('domestic')}
+              onClick={() => handleTabChange('domestic')}
               className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold transition-all ${
                 activeTab === 'domestic'
                   ? 'bg-primary text-primary-foreground shadow-lg'
@@ -321,7 +328,7 @@ const HomeTourPackages: React.FC<HomeTourPackagesProps> = ({ className }) => {
               Domestic
             </button>
             <button
-              onClick={() => setActiveTab('international')}
+              onClick={() => handleTabChange('international')}
               className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold transition-all ${
                 activeTab === 'international'
                   ? 'bg-primary text-primary-foreground shadow-lg'
@@ -346,7 +353,7 @@ const HomeTourPackages: React.FC<HomeTourPackagesProps> = ({ className }) => {
 
       {/* View All Button */}
       <div className="container mx-auto px-4 mt-8 text-center">
-        <Link to={`/travel?tab=${activeTab}`}>
+        <Link to={`/travel?tab=${activeTab}`} onClick={() => trackCTA('view_all_packages', { tab: activeTab, package_count: currentPackages.length })}>
           <Button
             variant="outline"
             size="lg"

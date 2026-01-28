@@ -1,6 +1,7 @@
 /**
  * HeroSection - Clean, lightweight hero with modern booking form
  * Shows inline property cards after "Check Availability" click
+ * Integrated with GTM tracking for conversion optimization
  */
 
 import { useState, useEffect, useRef } from "react";
@@ -14,6 +15,7 @@ import { getLocationOptions, getPropertiesByLocation, Property } from "@/data/pr
 import { PropertyCardCompact } from "@/components/property/PropertyCardCompact";
 import { ModernBookingForm } from "@/components/ui/modern-booking-form";
 import { motion, AnimatePresence } from "framer-motion";
+import { useComponentTracking } from "@/hooks/useComponentTracking";
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -30,6 +32,9 @@ const HeroSection = () => {
 
   const { happyGuestsCount, incrementHappyGuests } = useHappyGuestsContext();
   const isMobile = useMediaQuery('(max-width: 767px)');
+  
+  // GTM Tracking
+  const { trackCTA, trackButton, trackFormSubmit, trackCardClick } = useComponentTracking({ section: 'hero' });
   
   const locationOptions = getLocationOptions();
 
@@ -85,6 +90,12 @@ const HeroSection = () => {
   const handleSearch = () => {
     console.log('[HeroSection] handleSearch triggered');
     
+    // Track CTA click
+    trackCTA('check_availability', {
+      location,
+      guests,
+      has_dates: Boolean(checkIn && checkOut),
+    });
     // Anti-spam cooldown
     const COOLDOWN_MS = 1500;
     const LAST_KEY = 'xtsy_hg_last_inc';
@@ -122,6 +133,13 @@ const HeroSection = () => {
       checkOut: checkOutStr,
       guests,
     }));
+    
+    // Track successful form submit
+    trackFormSubmit('booking_search', {
+      location,
+      nights: Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24)),
+      guests,
+    });
 
     // Get properties for location and show inline
     const properties = getPropertiesByLocation(location);
@@ -135,11 +153,17 @@ const HeroSection = () => {
   };
 
   const handleViewDetails = (property: Property) => {
+    // Track property card click
+    trackCardClick(property.name, 'property', {
+      property_id: property.id,
+      property_location: property.locationId,
+    });
     // Navigate to property detail page
     navigate(`/properties/${property.id}`);
   };
 
   const scrollToContent = () => {
+    trackButton('scroll_to_rooms');
     const roomsSection = document.querySelector('#rooms-section');
     if (roomsSection) {
       roomsSection.scrollIntoView({ behavior: 'smooth' });

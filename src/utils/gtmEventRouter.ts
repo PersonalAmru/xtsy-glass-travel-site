@@ -90,6 +90,27 @@ export const GTM_TRIGGERS: Record<string, GTMEventConfig> = {
     isConversion: false,
     requiresValidation: false,
   },
+  card_click: {
+    eventName: 'card_click',
+    category: 'button_action',
+    priority: 'medium',
+    isConversion: false,
+    requiresValidation: false,
+  },
+  link_click: {
+    eventName: 'link_click',
+    category: 'button_action',
+    priority: 'low',
+    isConversion: false,
+    requiresValidation: false,
+  },
+  carousel_navigate: {
+    eventName: 'carousel_navigate',
+    category: 'button_action',
+    priority: 'low',
+    isConversion: false,
+    requiresValidation: false,
+  },
 
   // === ENGAGEMENT EVENTS ===
   section_view: {
@@ -122,6 +143,13 @@ export const GTM_TRIGGERS: Record<string, GTMEventConfig> = {
   },
   room_viewed: {
     eventName: 'room_viewed',
+    category: 'engagement',
+    priority: 'medium',
+    isConversion: false,
+    requiresValidation: false,
+  },
+  property_viewed: {
+    eventName: 'property_viewed',
     category: 'engagement',
     priority: 'medium',
     isConversion: false,
@@ -168,6 +196,13 @@ export const GTM_TRIGGERS: Record<string, GTMEventConfig> = {
     requiresValidation: true,
     valueMultiplier: 1.0,
   },
+  whatsapp_click: {
+    eventName: 'whatsapp_click',
+    category: 'button_action',
+    priority: 'high',
+    isConversion: false,
+    requiresValidation: false,
+  },
   call_engaged_validated: {
     eventName: 'call_engaged_validated',
     category: 'conversion',
@@ -175,6 +210,13 @@ export const GTM_TRIGGERS: Record<string, GTMEventConfig> = {
     isConversion: true,
     requiresValidation: true,
     valueMultiplier: 1.2,
+  },
+  call_click: {
+    eventName: 'call_click',
+    category: 'button_action',
+    priority: 'high',
+    isConversion: false,
+    requiresValidation: false,
   },
   lead_qualified: {
     eventName: 'lead_qualified',
