@@ -8,6 +8,16 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { MapPin, Calendar, Users, Minus, Plus, ChevronDown, Check } from 'lucide-react';
 import { format, addDays } from 'date-fns';
+
+/**
+ * Parse a date string (YYYY-MM-DD) as local time, not UTC
+ * This prevents timezone offset issues where dates shift by 1 day
+ */
+const parseLocalDate = (dateString: string | null): Date | undefined => {
+  if (!dateString) return undefined;
+  const [year, month, day] = dateString.split('-').map(Number);
+  return new Date(year, month - 1, day);
+};
 import { cn } from '@/lib/utils';
 import { getLocationOptions, Location } from '@/data/properties';
 import { Button } from '@/components/ui/button';
@@ -52,13 +62,13 @@ export const SearchEditBar: React.FC<SearchEditBarProps> = ({
   const navigate = useNavigate();
   const { trackButton, trackFormSubmit } = useComponentTracking({ section: 'search_edit_bar' });
   
-  // Local state for editing
+  // Local state for editing - use parseLocalDate to avoid timezone offset issues
   const [location, setLocation] = useState(initialLocation);
   const [checkInDate, setCheckInDate] = useState<Date | undefined>(
-    initialCheckIn ? new Date(initialCheckIn) : undefined
+    parseLocalDate(initialCheckIn)
   );
   const [checkOutDate, setCheckOutDate] = useState<Date | undefined>(
-    initialCheckOut ? new Date(initialCheckOut) : undefined
+    parseLocalDate(initialCheckOut)
   );
   const [guests, setGuests] = useState(initialGuests);
   
@@ -69,16 +79,17 @@ export const SearchEditBar: React.FC<SearchEditBarProps> = ({
   const [isEditing, setIsEditing] = useState(false);
   
   // Sync state when props change (e.g., new search from hero)
+  // Use parseLocalDate to avoid timezone offset issues
   useEffect(() => {
     setLocation(initialLocation);
   }, [initialLocation]);
 
   useEffect(() => {
-    setCheckInDate(initialCheckIn ? new Date(initialCheckIn) : undefined);
+    setCheckInDate(parseLocalDate(initialCheckIn));
   }, [initialCheckIn]);
 
   useEffect(() => {
-    setCheckOutDate(initialCheckOut ? new Date(initialCheckOut) : undefined);
+    setCheckOutDate(parseLocalDate(initialCheckOut));
   }, [initialCheckOut]);
 
   useEffect(() => {
