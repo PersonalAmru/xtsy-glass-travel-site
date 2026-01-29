@@ -4,9 +4,9 @@
  */
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { Users, Minus, Plus, ChevronDown, Info } from 'lucide-react';
+import { Users, Minus, Plus, Heart, User, UsersRound, Home } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { RoomType } from '@/data/roomInventory';
+import { RoomType, TAG_LABELS, TAG_COLORS, RoomTag } from '@/data/roomInventory';
 import UnifiedImage from '@/components/UnifiedImage';
 
 interface RoomSelectionCardProps {
@@ -15,6 +15,16 @@ interface RoomSelectionCardProps {
   onQuantityChange: (roomId: string, quantity: number) => void;
   maxQuantity?: number;
 }
+
+// Icon mapping for tags
+const TAG_ICONS: Record<RoomTag, React.ReactNode> = {
+  couple_favourite: <Heart className="w-3 h-3" />,
+  solo_traveller: <User className="w-3 h-3" />,
+  preferred_by_group: <UsersRound className="w-3 h-3" />,
+  preferred_by_families: <Home className="w-3 h-3" />,
+  best_value: null,
+  most_popular: null,
+};
 
 export const RoomSelectionCard = ({
   room,
@@ -52,7 +62,7 @@ export const RoomSelectionCard = ({
     >
       <div className="flex items-center gap-4 p-4">
         {/* Room Image */}
-        <div className="w-20 h-20 rounded-lg overflow-hidden bg-white/10 flex-shrink-0">
+        <div className="w-20 h-20 rounded-lg overflow-hidden bg-white/10 flex-shrink-0 relative">
           <UnifiedImage
             src={room.image}
             alt={room.name}
@@ -63,6 +73,26 @@ export const RoomSelectionCard = ({
         {/* Room Info */}
         <div className="flex-1 min-w-0">
           <h3 className="font-semibold text-white truncate text-sm">{room.name}</h3>
+          
+          {/* Tags */}
+          {room.tags && room.tags.length > 0 && (
+            <div className="flex flex-wrap gap-1 mt-1">
+              {room.tags.slice(0, 2).map((tag) => (
+                <span
+                  key={tag}
+                  className={cn(
+                    "inline-flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded-full font-medium",
+                    TAG_COLORS[tag]?.bg || 'bg-white/10',
+                    TAG_COLORS[tag]?.text || 'text-white/70'
+                  )}
+                >
+                  {TAG_ICONS[tag]}
+                  {TAG_LABELS[tag]}
+                </span>
+              ))}
+            </div>
+          )}
+          
           <div className="flex items-center gap-2 mt-1.5">
             <span className="inline-flex items-center gap-1 text-xs px-2 py-0.5 bg-white/10 rounded-full text-white/60">
               <Users className="w-3 h-3" />

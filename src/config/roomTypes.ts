@@ -1,12 +1,21 @@
 /**
  * SINGLE SOURCE OF TRUTH FOR ROOM TYPES
  * 
- * All 9 XTSY room types with unique IDs that match the database.
+ * All XTSY room types with unique IDs that match the database.
  * Used across: booking flow, admin dashboard, inventory management, calendar blocking
  */
 
 export type RoomCategory = 'luxury' | 'hostel' | 'economy';
 export type UnitType = 'bed' | 'room';
+
+// Room tags for marketing and segmentation
+export type RoomTag = 
+  | 'couple_favourite' 
+  | 'solo_traveller' 
+  | 'preferred_by_group' 
+  | 'preferred_by_families'
+  | 'best_value'
+  | 'most_popular';
 
 export interface RoomTypeConfig {
   id: string;                    // Unique database ID - used for all DB operations
@@ -21,6 +30,8 @@ export interface RoomTypeConfig {
   basePrice: number;             // Base price per night in INR
   image?: string;                // Primary room image URL
   images?: string[];             // Gallery images for room
+  displayOrder: number;          // Order for display (lower = first)
+  tags?: RoomTag[];              // Marketing tags
 }
 
 /**
@@ -33,7 +44,7 @@ export interface RoomTypeConfig {
  * - 6-bed-mixed-female-dorm
  * - 6-bed-mixed-dorm
  * - king-double-room
- * - king-triple-room
+ * - 8-bed-mixed-dorm (NEW - XTSY Travellers Hostel)
  * - 6-bed-mixed-economy-dorm
  * - 8-bed-mixed-economy-dorm
  */
@@ -81,12 +92,13 @@ export const ROOM_IMAGES: Record<string, string[]> = {
     'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/3.JPG',
     'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/IMG_4077.jpg'
   ],
-  'king-triple-room': [
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/1.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/2.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/3.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/5.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/IMG_4077.jpg'
+  '8-bed-mixed-dorm': [
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/4.jpg',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/5.jpg',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/6.jpg',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/8.jpg',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/9.jpg'
   ],
   '6-bed-mixed-economy-dorm': [
     'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
@@ -104,6 +116,26 @@ export const ROOM_IMAGES: Record<string, string[]> = {
   ],
 };
 
+// Tag display labels
+export const TAG_LABELS: Record<RoomTag, string> = {
+  couple_favourite: 'Couple Favourite',
+  solo_traveller: 'Solo Traveller',
+  preferred_by_group: 'Preferred by Groups',
+  preferred_by_families: 'Preferred by Families',
+  best_value: 'Best Value',
+  most_popular: 'Most Popular',
+};
+
+// Tag colors for UI
+export const TAG_COLORS: Record<RoomTag, { bg: string; text: string }> = {
+  couple_favourite: { bg: 'bg-rose-500/20', text: 'text-rose-400' },
+  solo_traveller: { bg: 'bg-blue-500/20', text: 'text-blue-400' },
+  preferred_by_group: { bg: 'bg-amber-500/20', text: 'text-amber-400' },
+  preferred_by_families: { bg: 'bg-emerald-500/20', text: 'text-emerald-400' },
+  best_value: { bg: 'bg-purple-500/20', text: 'text-purple-400' },
+  most_popular: { bg: 'bg-orange-500/20', text: 'text-orange-400' },
+};
+
 export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
   // === LUXURY CATEGORY ===
   'xtsy-270': {
@@ -116,72 +148,15 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     totalUnits: 1,
     propertyType: 'XTSY Luxury',
     isBookable: true,
-    basePrice: 8500, // Weekday price (weekend: 11500)
+    basePrice: 8500,
+    displayOrder: 1,
+    tags: ['couple_favourite'],
     image: ROOM_IMAGES['xtsy-270'][0],
     images: ROOM_IMAGES['xtsy-270'],
   },
 
-  // === HOSTEL CATEGORY ===
-  '4-bed-female-only-dorm': {
-    id: '4-bed-female-only-dorm',
-    name: 'Bed in 4-Bed Female Dormitory',
-    shortName: '4-Bed Female Dorm',
-    category: 'hostel',
-    unitType: 'bed',
-    capacity: 4,
-    totalUnits: 4,
-    propertyType: 'XTSY Travellers Hostel',
-    isBookable: true,
-    basePrice: 850, // Original price (discounted: 765)
-    image: ROOM_IMAGES['4-bed-female-only-dorm'][0],
-    images: ROOM_IMAGES['4-bed-female-only-dorm'],
-  },
-
-  '4-bed-mixed-female-dorm': {
-    id: '4-bed-mixed-female-dorm',
-    name: 'Bed in 4-Bed Mixed Dormitory',
-    shortName: '4-Bed Mixed Dorm',
-    category: 'hostel',
-    unitType: 'bed',
-    capacity: 4,
-    totalUnits: 4,
-    propertyType: 'XTSY Travellers Hostel',
-    isBookable: true,
-    basePrice: 800, // Original price (discounted: 720)
-    image: ROOM_IMAGES['4-bed-mixed-female-dorm'][0],
-    images: ROOM_IMAGES['4-bed-mixed-female-dorm'],
-  },
-
-  '6-bed-mixed-female-dorm': {
-    id: '6-bed-mixed-female-dorm',
-    name: 'Bed in 6-Bed Female Dormitory',
-    shortName: '6-Bed Female Dorm',
-    category: 'hostel',
-    unitType: 'bed',
-    capacity: 6,
-    totalUnits: 6,
-    propertyType: 'XTSY Travellers Hostel',
-    isBookable: true,
-    basePrice: 750, // Original price (discounted: 675)
-    image: ROOM_IMAGES['6-bed-mixed-female-dorm'][0],
-    images: ROOM_IMAGES['6-bed-mixed-female-dorm'],
-  },
-
-  '6-bed-mixed-dorm': {
-    id: '6-bed-mixed-dorm',
-    name: 'Bed in 6-Bed Mixed Dormitory',
-    shortName: '6-Bed Mixed Dorm',
-    category: 'hostel',
-    unitType: 'bed',
-    capacity: 6,
-    totalUnits: 6,
-    propertyType: 'XTSY Travellers Hostel',
-    isBookable: true,
-    basePrice: 700, // Original price (discounted: 630)
-    image: ROOM_IMAGES['6-bed-mixed-dorm'][0],
-    images: ROOM_IMAGES['6-bed-mixed-dorm'],
-  },
-
+  // === HOSTEL CATEGORY (XTSY Travellers Hostel) ===
+  // King Double Room - First (Couple Favourite)
   'king-double-room': {
     id: 'king-double-room',
     name: 'King Double Room',
@@ -192,24 +167,101 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     totalUnits: 2,
     propertyType: 'XTSY Travellers Hostel',
     isBookable: true,
-    basePrice: 2800, // Original price (discounted: 2520)
+    basePrice: 1800, // Updated price
+    displayOrder: 10, // First in hostel category
+    tags: ['couple_favourite'],
     image: ROOM_IMAGES['king-double-room'][0],
     images: ROOM_IMAGES['king-double-room'],
   },
 
-  'king-triple-room': {
-    id: 'king-triple-room',
-    name: 'King Triple Room',
-    shortName: 'King Triple',
+  // 4-Bed Female Dorm (Solo Traveller)
+  '4-bed-female-only-dorm': {
+    id: '4-bed-female-only-dorm',
+    name: 'Bed in 4-Bed Female Dormitory',
+    shortName: '4-Bed Female Dorm',
     category: 'hostel',
-    unitType: 'room',
-    capacity: 3,
-    totalUnits: 1,
+    unitType: 'bed',
+    capacity: 4,
+    totalUnits: 4,
     propertyType: 'XTSY Travellers Hostel',
     isBookable: true,
-    basePrice: 3500, // Original price (discounted: 3150)
-    image: ROOM_IMAGES['king-triple-room'][0],
-    images: ROOM_IMAGES['king-triple-room'],
+    basePrice: 550, // Updated price
+    displayOrder: 20,
+    tags: ['solo_traveller'],
+    image: ROOM_IMAGES['4-bed-female-only-dorm'][0],
+    images: ROOM_IMAGES['4-bed-female-only-dorm'],
+  },
+
+  // 4-Bed Mixed Dorm (Solo Traveller)
+  '4-bed-mixed-female-dorm': {
+    id: '4-bed-mixed-female-dorm',
+    name: 'Bed in 4-Bed Mixed Dormitory',
+    shortName: '4-Bed Mixed Dorm',
+    category: 'hostel',
+    unitType: 'bed',
+    capacity: 4,
+    totalUnits: 4,
+    propertyType: 'XTSY Travellers Hostel',
+    isBookable: true,
+    basePrice: 500, // Updated price
+    displayOrder: 30,
+    tags: ['solo_traveller'],
+    image: ROOM_IMAGES['4-bed-mixed-female-dorm'][0],
+    images: ROOM_IMAGES['4-bed-mixed-female-dorm'],
+  },
+
+  // 6-Bed Female Dorm (Preferred by Groups & Families)
+  '6-bed-mixed-female-dorm': {
+    id: '6-bed-mixed-female-dorm',
+    name: 'Bed in 6-Bed Female Dormitory',
+    shortName: '6-Bed Female Dorm',
+    category: 'hostel',
+    unitType: 'bed',
+    capacity: 6,
+    totalUnits: 6,
+    propertyType: 'XTSY Travellers Hostel',
+    isBookable: true,
+    basePrice: 450, // Updated price
+    displayOrder: 40,
+    tags: ['preferred_by_group', 'preferred_by_families'],
+    image: ROOM_IMAGES['6-bed-mixed-female-dorm'][0],
+    images: ROOM_IMAGES['6-bed-mixed-female-dorm'],
+  },
+
+  // 6-Bed Mixed Dorm (Preferred by Groups & Families)
+  '6-bed-mixed-dorm': {
+    id: '6-bed-mixed-dorm',
+    name: 'Bed in 6-Bed Mixed Dormitory',
+    shortName: '6-Bed Mixed Dorm',
+    category: 'hostel',
+    unitType: 'bed',
+    capacity: 6,
+    totalUnits: 6,
+    propertyType: 'XTSY Travellers Hostel',
+    isBookable: true,
+    basePrice: 425, // Updated price
+    displayOrder: 50,
+    tags: ['preferred_by_group', 'preferred_by_families'],
+    image: ROOM_IMAGES['6-bed-mixed-dorm'][0],
+    images: ROOM_IMAGES['6-bed-mixed-dorm'],
+  },
+
+  // NEW: 8-Bed Mixed Dorm for XTSY Travellers Hostel (Preferred by Groups & Families)
+  '8-bed-mixed-dorm': {
+    id: '8-bed-mixed-dorm',
+    name: 'Bed in 8-Bed Mixed Dormitory',
+    shortName: '8-Bed Mixed Dorm',
+    category: 'hostel',
+    unitType: 'bed',
+    capacity: 8,
+    totalUnits: 8,
+    propertyType: 'XTSY Travellers Hostel',
+    isBookable: true,
+    basePrice: 350, // New price
+    displayOrder: 60,
+    tags: ['preferred_by_group', 'preferred_by_families', 'best_value'],
+    image: ROOM_IMAGES['8-bed-mixed-dorm'][0],
+    images: ROOM_IMAGES['8-bed-mixed-dorm'],
   },
 
   // === ECONOMY CATEGORY (OTA-only) ===
@@ -224,6 +276,7 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     propertyType: 'XTSY Economy',
     isBookable: false,
     basePrice: 399,
+    displayOrder: 100,
     image: ROOM_IMAGES['6-bed-mixed-economy-dorm'][0],
     images: ROOM_IMAGES['6-bed-mixed-economy-dorm'],
   },
@@ -239,6 +292,7 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     propertyType: 'XTSY Economy',
     isBookable: false,
     basePrice: 349,
+    displayOrder: 110,
     image: ROOM_IMAGES['8-bed-mixed-economy-dorm'][0],
     images: ROOM_IMAGES['8-bed-mixed-economy-dorm'],
   },
@@ -269,12 +323,12 @@ export const ROOM_NAME_TO_ID: Record<string, string> = {
   '6 Bed Mixed Dormitory': '6-bed-mixed-dorm',
   'King Double Room': 'king-double-room',
   'King Double': 'king-double-room',
-  'King Triple Room': 'king-triple-room',
-  'King Triple': 'king-triple-room',
-  'Bed in 8-Bed Mixed Dormitory': '8-bed-mixed-economy-dorm',
-  '8-Bed Economy Mixed': '8-bed-mixed-economy-dorm',
-  '8 Bed Mixed Dormitory': '8-bed-mixed-economy-dorm',
+  'Bed in 8-Bed Mixed Dormitory': '8-bed-mixed-dorm',
+  '8-Bed Mixed Dorm': '8-bed-mixed-dorm',
+  '8 Bed Mixed Dormitory': '8-bed-mixed-dorm',
+  // Economy variants
   'Bed in 8-Bed Mixed Economy Dorm': '8-bed-mixed-economy-dorm',
+  '8-Bed Economy Mixed': '8-bed-mixed-economy-dorm',
 };
 
 /**
@@ -317,17 +371,39 @@ export function getRoomType(roomTypeIdOrName: string): RoomTypeConfig | undefine
 }
 
 /**
- * Get all room types for a category
+ * Get all room types for a category, sorted by displayOrder
  */
 export function getRoomTypesByCategory(category: RoomCategory): RoomTypeConfig[] {
-  return Object.values(ROOM_TYPES).filter(r => r.category === category);
+  return Object.values(ROOM_TYPES)
+    .filter(r => r.category === category)
+    .sort((a, b) => a.displayOrder - b.displayOrder);
 }
 
 /**
- * Get all bookable room types
+ * Get all room types for a property, sorted by displayOrder
+ */
+export function getRoomTypesByProperty(propertyType: string): RoomTypeConfig[] {
+  return Object.values(ROOM_TYPES)
+    .filter(r => r.propertyType === propertyType)
+    .sort((a, b) => a.displayOrder - b.displayOrder);
+}
+
+/**
+ * Get all bookable room types, sorted by displayOrder
  */
 export function getBookableRoomTypes(): RoomTypeConfig[] {
-  return Object.values(ROOM_TYPES).filter(r => r.isBookable);
+  return Object.values(ROOM_TYPES)
+    .filter(r => r.isBookable)
+    .sort((a, b) => a.displayOrder - b.displayOrder);
+}
+
+/**
+ * Get bookable room types for a specific property
+ */
+export function getBookableRoomTypesByProperty(propertyType: string): RoomTypeConfig[] {
+  return Object.values(ROOM_TYPES)
+    .filter(r => r.isBookable && r.propertyType === propertyType)
+    .sort((a, b) => a.displayOrder - b.displayOrder);
 }
 
 /**

@@ -1,22 +1,24 @@
 /**
  * Inventory Calendar View - Apple-grade with pricing controls
- * Compact shrink view for calendar with real-time data integration
+ * Calendar + bulk date selection for price/block management per property
+ * With property-level filtering and full inventory controls
  */
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { ROOM_TYPES, getBookableRoomTypes, type RoomTypeConfig } from '@/config/roomTypes';
+import { ROOM_TYPES, getBookableRoomTypes, getBookableRoomTypesByProperty, type RoomTypeConfig, TAG_LABELS, TAG_COLORS } from '@/config/roomTypes';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { toast } from 'sonner';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import {
   ChevronLeft, ChevronRight, RefreshCw, X, Minus, Plus, Check,
-  DollarSign, Percent, Calendar, Loader2
+  DollarSign, Percent, Calendar, Loader2, Building, Tag
 } from 'lucide-react';
 import {
   format, addMonths, subMonths, startOfMonth, endOfMonth,
@@ -44,17 +46,36 @@ interface BookingEntry {
   booking_status: string;
 }
 
+interface PricingRule {
+  room_type_id: string;
+  start_date: string;
+  end_date: string;
+  adjustment_type: string;
+  adjustment_value: number;
+  is_active: boolean;
+}
+
 type DateStatus = 'bookable' | 'soldOut' | 'closed' | 'needsAttention' | 'past';
+
+// Available property types
+const PROPERTY_TYPES = [
+  { value: 'all', label: 'All Properties' },
+  { value: 'XTSY Luxury', label: 'XTSY Luxury' },
+  { value: 'XTSY Travellers Hostel', label: 'XTSY Travellers Hostel' },
+  { value: 'XTSY Economy', label: 'XTSY Economy' },
+];
 
 export function InventoryCalendarView() {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [blockedDates, setBlockedDates] = useState<BlockedDate[]>([]);
   const [inventory, setInventory] = useState<InventoryEntry[]>([]);
   const [bookings, setBookings] = useState<BookingEntry[]>([]);
+  const [pricingRules, setPricingRules] = useState<PricingRule[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedRoom, setSelectedRoom] = useState<RoomTypeConfig | null>(null);
   const [selectedDates, setSelectedDates] = useState<Set<string>>(new Set());
   const [updating, setUpdating] = useState(false);
+  const [selectedProperty, setSelectedProperty] = useState<string>('XTSY Travellers Hostel');
   
   // Controls
   const [isOpen, setIsOpen] = useState(true);
@@ -63,7 +84,13 @@ export function InventoryCalendarView() {
   const [discountPercent, setDiscountPercent] = useState<number | null>(null);
   const [showPricing, setShowPricing] = useState(false);
 
-  const rooms = useMemo(() => getBookableRoomTypes(), []);
+  // Get rooms filtered by selected property
+  const rooms = useMemo(() => {
+    if (selectedProperty === 'all') {
+      return getBookableRoomTypes();
+    }
+    return getBookableRoomTypesByProperty(selectedProperty);
+  }, [selectedProperty]);
 
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -71,20 +98,24 @@ export function InventoryCalendarView() {
       const monthStart = format(startOfMonth(currentMonth), 'yyyy-MM-dd');
       const monthEnd = format(endOfMonth(currentMonth), 'yyyy-MM-dd');
 
-      const [blockedRes, inventoryRes, bookingsRes] = await Promise.all([
+      const [blockedRes, inventoryRes, bookingsRes, pricingRes] = await Promise.all([
         supabase.from('blocked_dates').select('date, room_type, blocked').gte('date', monthStart).lte('date', monthEnd),
         supabase.from('room_inventory').select('date, room_type_id, available_count').gte('date', monthStart).lte('date', monthEnd),
         supabase.from('bookings').select('check_in, check_out, room_type, quantity, booking_status')
           .gte('check_in', monthStart).lte('check_out', monthEnd).in('booking_status', ['confirmed', 'pending']),
+        supabase.from('pricing_rules').select('room_type_id, start_date, end_date, adjustment_type, adjustment_value, is_active')
+          .lte('start_date', monthEnd).gte('end_date', monthStart).eq('is_active', true),
       ]);
 
       if (blockedRes.error) throw blockedRes.error;
       if (inventoryRes.error) throw inventoryRes.error;
       if (bookingsRes.error) throw bookingsRes.error;
-
+      // Pricing rules might not exist yet - don't throw
+      
       setBlockedDates(blockedRes.data || []);
       setInventory(inventoryRes.data || []);
       setBookings(bookingsRes.data || []);
+      setPricingRules(pricingRes.data || []);
     } catch (error) {
       console.error('Failed to fetch calendar data:', error);
       toast.error('Failed to load calendar data');
@@ -150,11 +181,11 @@ export function InventoryCalendarView() {
   }, [inventory, getBookedCount]);
 
   const statusColors: Record<DateStatus, string> = {
-    bookable: 'bg-emerald-600 hover:bg-emerald-500 text-white',
-    soldOut: 'bg-red-600/80 text-white',
-    closed: 'bg-zinc-700 text-zinc-400',
-    needsAttention: 'bg-amber-600 text-white',
-    past: 'bg-zinc-800/50 text-zinc-600 cursor-not-allowed',
+    bookable: 'bg-success hover:bg-success/90 text-success-foreground',
+    soldOut: 'bg-destructive/80 text-destructive-foreground',
+    closed: 'bg-muted text-muted-foreground',
+    needsAttention: 'bg-warning text-warning-foreground',
+    past: 'bg-muted/50 text-muted-foreground/50 cursor-not-allowed',
   };
 
   const days = useMemo(() => {
@@ -180,15 +211,34 @@ export function InventoryCalendarView() {
     setUpdating(true);
 
     try {
-      const dates = Array.from(selectedDates);
+      const dates = Array.from(selectedDates).sort();
+      const minDate = dates[0];
+      const maxDate = dates[dates.length - 1];
+
+      // Get current user for audit
+      const { data: { user } } = await supabase.auth.getUser();
 
       if (!isOpen) {
+        // Block dates
         const datesToBlock = dates.map(date => ({ date, room_type: selectedRoom.id, blocked: true }));
         const { error } = await supabase.from('blocked_dates').upsert(datesToBlock, { onConflict: 'date,room_type' });
         if (error) throw error;
+
+        // Log bulk operation
+        await supabase.from('inventory_bulk_operations').insert({
+          operation_type: 'block',
+          room_type_id: selectedRoom.id,
+          property_type: selectedRoom.propertyType,
+          dates_affected: dates,
+          new_values: { blocked: true },
+          applied_by: user?.id,
+          notes: `Blocked ${dates.length} date(s) for ${selectedRoom.name}`,
+        });
       } else {
+        // Unblock dates
         await supabase.from('blocked_dates').delete().eq('room_type', selectedRoom.id).in('date', dates);
         
+        // Update inventory counts
         const entries = dates.map(date => ({
           date,
           room_type_id: selectedRoom.id,
@@ -197,15 +247,64 @@ export function InventoryCalendarView() {
         }));
         const { error } = await supabase.from('room_inventory').upsert(entries, { onConflict: 'date,room_type_id' });
         if (error) throw error;
+
+        // Log bulk operation
+        await supabase.from('inventory_bulk_operations').insert({
+          operation_type: 'unblock',
+          room_type_id: selectedRoom.id,
+          property_type: selectedRoom.propertyType,
+          dates_affected: dates,
+          new_values: { available_count: roomsToSell, blocked: false },
+          applied_by: user?.id,
+          notes: `Updated ${dates.length} date(s) to ${roomsToSell} units for ${selectedRoom.name}`,
+        });
       }
 
-      // Handle pricing
-      if (priceOverride && priceOverride > 0) {
-        // Would update pricing_rules table here
-        toast.success(`Price set to ₹${priceOverride} for ${dates.length} date(s)`);
+      // Handle pricing rule creation
+      if ((priceOverride && priceOverride > 0) || (discountPercent && discountPercent > 0)) {
+        const ruleName = priceOverride 
+          ? `Price Override ₹${priceOverride}` 
+          : `${discountPercent}% Discount`;
+        
+        const pricingRule = {
+          room_type_id: selectedRoom.id,
+          rule_name: ruleName,
+          rule_type: priceOverride ? 'fixed' : 'percentage',
+          adjustment_type: priceOverride ? 'fixed' : 'percentage',
+          adjustment_value: priceOverride || discountPercent || 0,
+          start_date: minDate,
+          end_date: maxDate,
+          is_active: true,
+          created_by: user?.id,
+        };
+
+        const { error: pricingError } = await supabase
+          .from('pricing_rules')
+          .insert(pricingRule);
+
+        if (pricingError) {
+          console.error('Failed to create pricing rule:', pricingError);
+          toast.error('Failed to save pricing rule, but inventory was updated');
+        } else {
+          // Log pricing change
+          await supabase.from('inventory_bulk_operations').insert({
+            operation_type: 'price_change',
+            room_type_id: selectedRoom.id,
+            property_type: selectedRoom.propertyType,
+            dates_affected: dates,
+            new_values: { 
+              price_override: priceOverride, 
+              discount_percent: discountPercent,
+              rule_name: ruleName,
+            },
+            applied_by: user?.id,
+            notes: `Applied ${ruleName} for ${selectedRoom.name} from ${minDate} to ${maxDate}`,
+          });
+          toast.success(`Pricing rule created: ${ruleName}`);
+        }
       }
 
-      toast.success(`Updated ${dates.length} date(s)`);
+      toast.success(`Updated ${dates.length} date(s) for ${selectedRoom.name}`);
       setSelectedDates(new Set());
       setPriceOverride(null);
       setDiscountPercent(null);
@@ -222,18 +321,37 @@ export function InventoryCalendarView() {
   const renderCompactCalendar = (room: RoomTypeConfig) => (
     <motion.div
       key={room.id}
-      className="cursor-pointer group p-3 rounded-xl bg-slate-800/30 hover:bg-slate-800/50 border border-slate-700/50 hover:border-slate-600 transition-all"
+      className="cursor-pointer group p-3 rounded-xl bg-card hover:bg-accent border border-border hover:border-primary/30 transition-all"
       onClick={() => setSelectedRoom(room)}
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
     >
-      <div className="flex items-center justify-between mb-3">
-        <span className="text-sm font-medium text-white">{room.shortName}</span>
-        <span className="text-xs text-slate-400">{room.totalUnits} units</span>
+      <div className="flex items-center justify-between mb-2">
+        <span className="text-sm font-medium text-foreground">{room.shortName}</span>
+        <span className="text-xs text-muted-foreground">{room.totalUnits} units</span>
       </div>
+      
+      {/* Room Tags */}
+      {room.tags && room.tags.length > 0 && (
+        <div className="flex flex-wrap gap-1 mb-2">
+          {room.tags.slice(0, 2).map((tag) => (
+            <span
+              key={tag}
+              className={cn(
+                "inline-flex items-center gap-1 text-[9px] px-1.5 py-0.5 rounded-full font-medium",
+                TAG_COLORS[tag]?.bg || 'bg-muted',
+                TAG_COLORS[tag]?.text || 'text-muted-foreground'
+              )}
+            >
+              {TAG_LABELS[tag]}
+            </span>
+          ))}
+        </div>
+      )}
+      
       <div className="grid grid-cols-7 gap-0.5">
         {weekDays.map((day, i) => (
-          <div key={`${room.id}-${day}-${i}`} className="text-center text-[8px] text-slate-500 py-0.5">{day}</div>
+          <div key={`${room.id}-${day}-${i}`} className="text-center text-[8px] text-muted-foreground py-0.5">{day}</div>
         ))}
         {Array.from({ length: days[0].getDay() }).map((_, i) => <div key={`${room.id}-empty-${i}`} />)}
         {days.map(day => {
@@ -269,32 +387,49 @@ export function InventoryCalendarView() {
       >
         {/* Header */}
         <div className="flex items-center justify-between">
-          <Button variant="ghost" size="icon" onClick={() => { setSelectedRoom(null); setSelectedDates(new Set()); }} className="rounded-xl text-slate-300">
+          <Button variant="ghost" size="icon" onClick={() => { setSelectedRoom(null); setSelectedDates(new Set()); }} className="rounded-xl">
             <ChevronLeft className="w-5 h-5" />
           </Button>
           <div className="text-center">
-            <p className="text-xs text-slate-400 capitalize">{selectedRoom.propertyType}</p>
-            <h2 className="text-lg font-semibold text-white">{selectedRoom.name}</h2>
+            <p className="text-xs text-muted-foreground capitalize">{selectedRoom.propertyType}</p>
+            <h2 className="text-lg font-semibold text-foreground">{selectedRoom.name}</h2>
+            {/* Room Tags */}
+            {selectedRoom.tags && selectedRoom.tags.length > 0 && (
+              <div className="flex flex-wrap justify-center gap-1 mt-1">
+                {selectedRoom.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className={cn(
+                      "inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full font-medium",
+                      TAG_COLORS[tag]?.bg || 'bg-muted',
+                      TAG_COLORS[tag]?.text || 'text-muted-foreground'
+                    )}
+                  >
+                    {TAG_LABELS[tag]}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
           <div className="w-10" />
         </div>
 
         {/* Month Navigation */}
         <div className="flex items-center justify-between px-2">
-          <Button variant="ghost" size="icon" onClick={() => setCurrentMonth(prev => subMonths(prev, 1))} className="rounded-xl text-slate-300">
+          <Button variant="ghost" size="icon" onClick={() => setCurrentMonth(prev => subMonths(prev, 1))} className="rounded-xl">
             <ChevronLeft className="w-5 h-5" />
           </Button>
-          <span className="font-medium text-white">{format(currentMonth, 'MMMM yyyy')}</span>
-          <Button variant="ghost" size="icon" onClick={() => setCurrentMonth(prev => addMonths(prev, 1))} className="rounded-xl text-slate-300">
+          <span className="font-medium text-foreground">{format(currentMonth, 'MMMM yyyy')}</span>
+          <Button variant="ghost" size="icon" onClick={() => setCurrentMonth(prev => addMonths(prev, 1))} className="rounded-xl">
             <ChevronRight className="w-5 h-5" />
           </Button>
         </div>
 
         {/* Calendar Grid */}
-        <div className="bg-slate-800/30 rounded-2xl p-4 border border-slate-700/50">
+        <div className="bg-card rounded-2xl p-4 border border-border">
           <div className="grid grid-cols-7 gap-1.5">
             {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-              <div key={day} className="text-center text-xs text-slate-500 py-2 font-medium">{day}</div>
+              <div key={day} className="text-center text-xs text-muted-foreground py-2 font-medium">{day}</div>
             ))}
             {Array.from({ length: days[0].getDay() }).map((_, i) => <div key={`empty-${i}`} />)}
             {days.map(day => {
@@ -311,8 +446,8 @@ export function InventoryCalendarView() {
                   className={cn(
                     'aspect-square rounded-xl text-sm font-medium flex flex-col items-center justify-center transition-all relative',
                     statusColors[status],
-                    isSelected && 'ring-2 ring-primary ring-offset-2 ring-offset-slate-900',
-                    isToday(day) && 'ring-1 ring-white/30'
+                    isSelected && 'ring-2 ring-primary ring-offset-2 ring-offset-background',
+                    isToday(day) && 'ring-1 ring-foreground/30'
                   )}
                   whileHover={{ scale: status !== 'past' ? 1.05 : 1 }}
                   whileTap={{ scale: status !== 'past' ? 0.95 : 1 }}
@@ -330,14 +465,14 @@ export function InventoryCalendarView() {
         {/* Legend */}
         <div className="flex flex-wrap gap-3 justify-center text-xs">
           {[
-            { color: 'bg-emerald-600', label: 'Available' },
-            { color: 'bg-amber-600', label: 'Low Stock' },
-            { color: 'bg-red-600', label: 'Sold Out' },
-            { color: 'bg-zinc-700', label: 'Closed' },
+            { color: 'bg-success', label: 'Available' },
+            { color: 'bg-warning', label: 'Low Stock' },
+            { color: 'bg-destructive', label: 'Sold Out' },
+            { color: 'bg-muted', label: 'Closed' },
           ].map(item => (
             <div key={item.label} className="flex items-center gap-1.5">
               <div className={cn('w-3 h-3 rounded', item.color)} />
-              <span className="text-slate-400">{item.label}</span>
+              <span className="text-muted-foreground">{item.label}</span>
             </div>
           ))}
         </div>
@@ -461,15 +596,29 @@ export function InventoryCalendarView() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-bold text-white flex items-center gap-2">
+          <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
             <Calendar className="w-5 h-5 text-primary" />
             Inventory & Yield
           </h2>
-          <p className="text-sm text-slate-400">Manage room availability and pricing</p>
+          <p className="text-sm text-muted-foreground">Manage room availability and pricing by property</p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
+          {/* Property Selector */}
+          <Select value={selectedProperty} onValueChange={setSelectedProperty}>
+            <SelectTrigger className="w-[200px]">
+              <Building className="w-4 h-4 mr-2" />
+              <SelectValue placeholder="Select property" />
+            </SelectTrigger>
+            <SelectContent>
+              {PROPERTY_TYPES.map(pt => (
+                <SelectItem key={pt.value} value={pt.value}>
+                  {pt.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
           <Button variant="outline" size="sm" onClick={() => setCurrentMonth(new Date())}>Today</Button>
           <Button variant="outline" size="icon" onClick={fetchData} disabled={loading}>
             <RefreshCw className={cn('w-4 h-4', loading && 'animate-spin')} />
@@ -477,13 +626,31 @@ export function InventoryCalendarView() {
         </div>
       </div>
 
+      {/* Property Info Banner */}
+      {selectedProperty !== 'all' && (
+        <div className="bg-primary/10 border border-primary/20 rounded-lg px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <Building className="w-5 h-5 text-primary" />
+            <div>
+              <p className="font-medium text-foreground">{selectedProperty}</p>
+              <p className="text-xs text-muted-foreground">{rooms.length} room types available</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 text-xs">
+            <span className="px-2 py-1 bg-success/20 text-success rounded-full">Pricing Controls</span>
+            <span className="px-2 py-1 bg-warning/20 text-warning rounded-full">Date Blocking</span>
+            <span className="px-2 py-1 bg-primary/20 text-primary rounded-full">Bulk Operations</span>
+          </div>
+        </div>
+      )}
+
       {/* Month Display for Overview */}
       {!selectedRoom && (
         <div className="flex items-center justify-center gap-4">
           <Button variant="ghost" size="icon" onClick={() => setCurrentMonth(prev => subMonths(prev, 1))}>
             <ChevronLeft className="w-5 h-5" />
           </Button>
-          <span className="font-semibold text-white text-lg">{format(currentMonth, 'MMMM yyyy')}</span>
+          <span className="font-semibold text-foreground text-lg">{format(currentMonth, 'MMMM yyyy')}</span>
           <Button variant="ghost" size="icon" onClick={() => setCurrentMonth(prev => addMonths(prev, 1))}>
             <ChevronRight className="w-5 h-5" />
           </Button>
