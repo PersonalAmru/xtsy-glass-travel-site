@@ -8,17 +8,8 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { MapPin, Calendar, Users, Minus, Plus, ChevronDown, Check } from 'lucide-react';
 import { format, addDays } from 'date-fns';
-
-/**
- * Parse a date string (YYYY-MM-DD) as local time, not UTC
- * This prevents timezone offset issues where dates shift by 1 day
- */
-const parseLocalDate = (dateString: string | null): Date | undefined => {
-  if (!dateString) return undefined;
-  const [year, month, day] = dateString.split('-').map(Number);
-  return new Date(year, month - 1, day);
-};
 import { cn } from '@/lib/utils';
+import { parseLocalDate, formatLocalDateString, getLocalToday } from '@/lib/date-utils';
 import { getLocationOptions, Location } from '@/data/properties';
 import { Button } from '@/components/ui/button';
 import { ShinyButton } from '@/components/ui/shiny-button';
@@ -97,14 +88,13 @@ export const SearchEditBar: React.FC<SearchEditBarProps> = ({
   }, [initialGuests]);
   
   const locationOptions = getLocationOptions();
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  const today = getLocalToday();
 
-  // Check if any value has changed
+  // Check if any value has changed - use local date formatting for comparison
   const hasChanges = 
     location !== initialLocation ||
-    (checkInDate?.toISOString().split('T')[0] !== initialCheckIn) ||
-    (checkOutDate?.toISOString().split('T')[0] !== initialCheckOut) ||
+    (checkInDate ? formatLocalDateString(checkInDate) : null) !== initialCheckIn ||
+    (checkOutDate ? formatLocalDateString(checkOutDate) : null) !== initialCheckOut ||
     guests !== initialGuests;
 
   const handleGuestIncrement = useCallback(() => {
@@ -126,8 +116,9 @@ export const SearchEditBar: React.FC<SearchEditBarProps> = ({
       return;
     }
 
-    const checkInStr = checkInDate.toISOString().split('T')[0];
-    const checkOutStr = checkOutDate.toISOString().split('T')[0];
+    // Use local date formatting to prevent timezone offset issues
+    const checkInStr = formatLocalDateString(checkInDate);
+    const checkOutStr = formatLocalDateString(checkOutDate);
 
     // Update session storage
     const searchParams = {
