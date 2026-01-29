@@ -6,7 +6,7 @@
 import React, { useState, useCallback } from 'react';
 import { MapPin, Calendar, Users, Search, Minus, Plus, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
+import { ShinyButton } from '@/components/ui/shiny-button';
 import { trackButtonClick } from '@/hooks/usePageTracking';
 import {
   Select,
@@ -317,21 +317,15 @@ export const ModernBookingForm: React.FC<ModernBookingFormProps> = ({
           </Popover>
         </div>
 
-        {/* Search Button */}
-        <Button
+        {/* Search Button - Premium ShinyButton */}
+        <ShinyButton
           onClick={handleSubmit}
-          className={cn(
-            "w-full h-14 rounded-xl font-semibold text-base",
-            "bg-gradient-to-r from-primary to-primary/80",
-            "hover:from-primary/90 hover:to-primary/70",
-            "hover:shadow-lg hover:shadow-primary/25",
-            "active:scale-[0.98]",
-            "transition-all duration-200"
-          )}
+          className="w-full"
+          size="lg"
         >
-          <Search className="mr-2 h-5 w-5" />
+          <Search className="w-5 h-5" />
           Check Availability
-        </Button>
+        </ShinyButton>
       </div>
 
       {/* Footer Tags */}
