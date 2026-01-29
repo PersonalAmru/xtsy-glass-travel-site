@@ -11,6 +11,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useMediaQuery } from "@/hooks/use-mobile";
 import { useHappyGuestsContext } from "@/contexts/HappyGuestsContext";
 import { cn } from "@/lib/utils";
+import { formatLocalDateString } from "@/lib/date-utils";
 import { getLocationOptions } from "@/data/properties";
 import { ModernBookingForm } from "@/components/ui/modern-booking-form";
 import { useComponentTracking } from "@/hooks/useComponentTracking";
@@ -108,8 +109,9 @@ const HeroSection = () => {
       return;
     }
     
-    const checkInStr = checkIn.toISOString().split('T')[0];
-    const checkOutStr = checkOut.toISOString().split('T')[0];
+    // Use local date formatting to prevent timezone offset issues
+    const checkInStr = formatLocalDateString(checkIn);
+    const checkOutStr = formatLocalDateString(checkOut);
     
     if (checkInStr === checkOutStr) {
       alert("Check-out date cannot be the same as check-in date.");
