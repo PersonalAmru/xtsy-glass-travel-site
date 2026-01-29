@@ -1,44 +1,104 @@
 /**
  * SearchResults - Dedicated property search results page
  * Displays available properties based on search criteria
+ * Allows inline modification of search params - the FINAL place for changes
  * Future-ready for channel manager integration
  */
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, MapPin, Calendar, Users, Filter, Grid, List, Building2 } from "lucide-react";
-import { format } from "date-fns";
+import { ArrowLeft, Grid, List, Building2, Pencil, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { getPropertiesByLocation, getLocationById, Property, getAllActiveProperties } from "@/data/properties";
 import { PropertyCardCompact } from "@/components/property/PropertyCardCompact";
 import { ShinyButton } from "@/components/ui/shiny-button";
 import { Button } from "@/components/ui/button";
 import { useComponentTracking } from "@/hooks/useComponentTracking";
+import { SearchEditBar } from "@/components/search/SearchEditBar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const SearchResults = () => {
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [properties, setProperties] = useState<Property[]>([]);
+  const [showEditBar, setShowEditBar] = useState(true);
   
   const { trackCTA, trackCardClick, trackButton } = useComponentTracking({ section: 'search_results' });
 
-  // Parse search params
-  const location = searchParams.get('location') || 'shillong';
-  const checkIn = searchParams.get('checkIn');
-  const checkOut = searchParams.get('checkOut');
-  const guests = parseInt(searchParams.get('guests') || '2', 10);
+  // Parse search params - prefer URL, fallback to sessionStorage
+  const getInitialParams = useCallback(() => {
+    const urlLocation = searchParams.get('location');
+    const urlCheckIn = searchParams.get('checkIn');
+    const urlCheckOut = searchParams.get('checkOut');
+    const urlGuests = searchParams.get('guests');
 
-  const locationData = getLocationById(location);
+    // If URL has params, use them
+    if (urlLocation && urlCheckIn && urlCheckOut) {
+      return {
+        location: urlLocation,
+        checkIn: urlCheckIn,
+        checkOut: urlCheckOut,
+        guests: parseInt(urlGuests || '2', 10),
+      };
+    }
+
+    // Fallback to sessionStorage
+    try {
+      const stored = sessionStorage.getItem('xtsy_search_params');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        return {
+          location: parsed.location || 'shillong',
+          checkIn: parsed.checkIn || null,
+          checkOut: parsed.checkOut || null,
+          guests: parsed.guests || 2,
+        };
+      }
+    } catch (e) {
+      console.error('Error parsing session storage:', e);
+    }
+
+    return {
+      location: 'shillong',
+      checkIn: null,
+      checkOut: null,
+      guests: 2,
+    };
+  }, [searchParams]);
+
+  const [currentSearch, setCurrentSearch] = useState(getInitialParams);
+
+  const locationData = getLocationById(currentSearch.location);
+
+  // Sync session storage on mount and when params change
+  useEffect(() => {
+    const params = getInitialParams();
+    setCurrentSearch(params);
+    
+    // Store in sessionStorage for persistence
+    if (params.checkIn && params.checkOut) {
+      sessionStorage.setItem('xtsy_search_params', JSON.stringify(params));
+    }
+  }, [searchParams, getInitialParams]);
 
   useEffect(() => {
     // Fetch properties for location
-    const locationProperties = getPropertiesByLocation(location);
+    const locationProperties = getPropertiesByLocation(currentSearch.location);
     setProperties(locationProperties.length > 0 ? locationProperties : getAllActiveProperties());
-  }, [location]);
+  }, [currentSearch.location]);
+
+  const handleSearchUpdate = useCallback((params: {
+    location: string;
+    checkIn: string;
+    checkOut: string;
+    guests: number;
+  }) => {
+    setCurrentSearch(params);
+    // SessionStorage is updated in SearchEditBar
+  }, []);
 
   const handleViewDetails = (property: Property) => {
     trackCardClick(property.name, 'property', {
@@ -47,14 +107,9 @@ const SearchResults = () => {
       search_context: true,
     });
 
-    // Store search context for booking flow
-    if (checkIn && checkOut) {
-      sessionStorage.setItem('xtsy_search_params', JSON.stringify({
-        location,
-        checkIn,
-        checkOut,
-        guests,
-      }));
+    // Ensure search context is stored for booking flow
+    if (currentSearch.checkIn && currentSearch.checkOut) {
+      sessionStorage.setItem('xtsy_search_params', JSON.stringify(currentSearch));
     }
 
     navigate(`/properties/${property.id}`);
@@ -65,84 +120,57 @@ const SearchResults = () => {
     navigate('/');
   };
 
-  const handleModifySearch = () => {
-    trackButton('modify_search');
-    navigate('/');
-  };
-
-  // Format dates for display
-  const formatDate = (dateStr: string | null) => {
-    if (!dateStr) return 'Select date';
-    try {
-      return format(new Date(dateStr), 'MMM dd, yyyy');
-    } catch {
-      return 'Select date';
-    }
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       <Header />
       
       <main className="pt-20 pb-16">
-        {/* Search Summary Bar */}
-        <div className="sticky top-16 z-40 bg-slate-900/95 backdrop-blur-lg border-b border-white/10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              {/* Back button and search summary */}
-              <div className="flex items-center gap-4 w-full sm:w-auto">
+        {/* Sticky Header with Edit Toggle */}
+        <div className="sticky top-16 z-40 bg-background/95 backdrop-blur-lg border-b border-border/50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={handleBackToHome}
-                  className="text-white/70 hover:text-white hover:bg-white/10"
+                  className="text-muted-foreground hover:text-foreground hover:bg-accent"
                 >
                   <ArrowLeft className="w-5 h-5" />
                 </Button>
-
-                <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-sm">
-                  <div className="flex items-center gap-1.5 text-white/80">
-                    <MapPin className="w-4 h-4 text-primary" />
-                    <span className="font-medium">
-                      {locationData?.name || 'All Locations'}
-                      {locationData && <span className="text-white/50 ml-1">{locationData.state}</span>}
-                    </span>
-                  </div>
-
-                  {checkIn && checkOut && (
-                    <div className="flex items-center gap-1.5 text-white/60">
-                      <Calendar className="w-4 h-4" />
-                      <span>{formatDate(checkIn)} - {formatDate(checkOut)}</span>
-                    </div>
-                  )}
-
-                  <div className="flex items-center gap-1.5 text-white/60">
-                    <Users className="w-4 h-4" />
-                    <span>{guests} Guest{guests !== 1 ? 's' : ''}</span>
-                  </div>
+                <div>
+                  <h1 className="text-lg font-semibold text-foreground">
+                    {locationData?.name || 'All Locations'}
+                    {locationData && <span className="text-muted-foreground font-normal ml-1">• {locationData.state}</span>}
+                  </h1>
+                  <p className="text-sm text-muted-foreground">
+                    {properties.length} {properties.length === 1 ? 'property' : 'properties'} available
+                  </p>
                 </div>
               </div>
 
-              {/* Actions */}
-              <div className="flex items-center gap-2 w-full sm:w-auto">
+              <div className="flex items-center gap-2">
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={handleModifySearch}
-                  className="bg-white/5 border-white/20 text-white hover:bg-white/10 flex-1 sm:flex-none"
+                  onClick={() => setShowEditBar(!showEditBar)}
+                  className={cn(
+                    "gap-2",
+                    showEditBar && "bg-primary/10 border-primary/30 text-primary"
+                  )}
                 >
-                  <Filter className="w-4 h-4 mr-2" />
-                  Modify Search
+                  {showEditBar ? <X className="w-4 h-4" /> : <Pencil className="w-4 h-4" />}
+                  {showEditBar ? 'Hide' : 'Edit Search'}
                 </Button>
 
-                <div className="flex items-center border border-white/20 rounded-lg overflow-hidden">
+                <div className="flex items-center border border-border rounded-lg overflow-hidden">
                   <button
                     onClick={() => setViewMode('grid')}
                     className={cn(
                       "p-2 transition-colors",
                       viewMode === 'grid' 
-                        ? "bg-primary text-white" 
-                        : "bg-white/5 text-white/60 hover:text-white"
+                        ? "bg-primary text-primary-foreground" 
+                        : "bg-background text-muted-foreground hover:text-foreground"
                     )}
                     aria-label="Grid view"
                   >
@@ -153,8 +181,8 @@ const SearchResults = () => {
                     className={cn(
                       "p-2 transition-colors",
                       viewMode === 'list' 
-                        ? "bg-primary text-white" 
-                        : "bg-white/5 text-white/60 hover:text-white"
+                        ? "bg-primary text-primary-foreground" 
+                        : "bg-background text-muted-foreground hover:text-foreground"
                     )}
                     aria-label="List view"
                   >
@@ -166,6 +194,31 @@ const SearchResults = () => {
           </div>
         </div>
 
+        {/* Editable Search Bar - The FINAL place for modifications */}
+        {showEditBar && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="border-b border-border/30 bg-muted/30"
+          >
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+              <div className="mb-2">
+                <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">
+                  ✏️ Modify your search — This is the final place to make changes before booking
+                </p>
+              </div>
+              <SearchEditBar
+                location={currentSearch.location}
+                checkIn={currentSearch.checkIn}
+                checkOut={currentSearch.checkOut}
+                guests={currentSearch.guests}
+                onSearchUpdate={handleSearchUpdate}
+              />
+            </div>
+          </motion.div>
+        )}
+
         {/* Results Section */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Results Header */}
@@ -176,11 +229,11 @@ const SearchResults = () => {
           >
             <div className="flex items-center gap-3 mb-2">
               <Building2 className="w-6 h-6 text-primary" />
-              <h1 className="text-2xl sm:text-3xl font-bold text-white">
+              <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
                 Available Properties
-              </h1>
+              </h2>
             </div>
-            <p className="text-white/60">
+            <p className="text-muted-foreground">
               {properties.length} {properties.length === 1 ? 'property' : 'properties'} found
               {locationData && ` in ${locationData.name}, ${locationData.state}`}
             </p>
@@ -215,16 +268,16 @@ const SearchResults = () => {
               animate={{ opacity: 1, y: 0 }}
               className="text-center py-16"
             >
-              <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-white/5 flex items-center justify-center">
-                <Building2 className="w-10 h-10 text-white/30" />
+              <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-muted flex items-center justify-center">
+                <Building2 className="w-10 h-10 text-muted-foreground" />
               </div>
-              <h2 className="text-xl font-semibold text-white mb-2">
+              <h2 className="text-xl font-semibold text-foreground mb-2">
                 No properties found
               </h2>
-              <p className="text-white/60 mb-6">
+              <p className="text-muted-foreground mb-6">
                 We couldn't find any properties matching your search criteria.
               </p>
-              <ShinyButton onClick={handleModifySearch}>
+              <ShinyButton onClick={() => setShowEditBar(true)}>
                 Modify Search
               </ShinyButton>
             </motion.div>
@@ -240,19 +293,18 @@ const SearchResults = () => {
             >
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div>
-                  <h3 className="text-lg font-semibold text-white mb-1">
+                  <h3 className="text-lg font-semibold text-foreground mb-1">
                     More Properties Coming Soon
                   </h3>
-                  <p className="text-white/60 text-sm">
+                  <p className="text-muted-foreground text-sm">
                     We're expanding to new locations. Channel manager integration with Booking.com, MMT, Hostelworld & more.
                   </p>
                 </div>
                 <Button
                   variant="outline"
-                  className="bg-white/5 border-primary/30 text-primary hover:bg-primary/10 whitespace-nowrap"
+                  className="bg-background border-primary/30 text-primary hover:bg-primary/10 whitespace-nowrap"
                   onClick={() => {
                     trackButton('notify_new_properties');
-                    // Future: Open notification signup modal
                   }}
                 >
                   Get Notified
