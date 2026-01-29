@@ -1818,6 +1818,45 @@ export type Database = {
         }
         Relationships: []
       }
+      inventory_bulk_operations: {
+        Row: {
+          applied_at: string | null
+          applied_by: string | null
+          dates_affected: string[]
+          id: string
+          new_values: Json
+          notes: string | null
+          old_values: Json | null
+          operation_type: string
+          property_type: string | null
+          room_type_id: string
+        }
+        Insert: {
+          applied_at?: string | null
+          applied_by?: string | null
+          dates_affected: string[]
+          id?: string
+          new_values: Json
+          notes?: string | null
+          old_values?: Json | null
+          operation_type: string
+          property_type?: string | null
+          room_type_id: string
+        }
+        Update: {
+          applied_at?: string | null
+          applied_by?: string | null
+          dates_affected?: string[]
+          id?: string
+          new_values?: Json
+          notes?: string | null
+          old_values?: Json | null
+          operation_type?: string
+          property_type?: string | null
+          room_type_id?: string
+        }
+        Relationships: []
+      }
       invoice_counter: {
         Row: {
           counter: number
@@ -2373,6 +2412,62 @@ export type Database = {
           updated_at?: string | null
         }
         Relationships: []
+      }
+      property_inventory_settings: {
+        Row: {
+          auto_price_adjustment: boolean | null
+          bulk_operations_enabled: boolean | null
+          created_at: string | null
+          date_blocking_enabled: boolean | null
+          default_pricing_enabled: boolean | null
+          id: string
+          low_inventory_threshold: number | null
+          property_id: string | null
+          property_type: string
+          seasonal_pricing_enabled: boolean | null
+          settings_json: Json | null
+          updated_at: string | null
+          weekend_rate_multiplier: number | null
+        }
+        Insert: {
+          auto_price_adjustment?: boolean | null
+          bulk_operations_enabled?: boolean | null
+          created_at?: string | null
+          date_blocking_enabled?: boolean | null
+          default_pricing_enabled?: boolean | null
+          id?: string
+          low_inventory_threshold?: number | null
+          property_id?: string | null
+          property_type: string
+          seasonal_pricing_enabled?: boolean | null
+          settings_json?: Json | null
+          updated_at?: string | null
+          weekend_rate_multiplier?: number | null
+        }
+        Update: {
+          auto_price_adjustment?: boolean | null
+          bulk_operations_enabled?: boolean | null
+          created_at?: string | null
+          date_blocking_enabled?: boolean | null
+          default_pricing_enabled?: boolean | null
+          id?: string
+          low_inventory_threshold?: number | null
+          property_id?: string | null
+          property_type?: string
+          seasonal_pricing_enabled?: boolean | null
+          settings_json?: Json | null
+          updated_at?: string | null
+          weekend_rate_multiplier?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "property_inventory_settings_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       property_onboarding: {
         Row: {
