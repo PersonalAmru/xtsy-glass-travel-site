@@ -1,6 +1,6 @@
 /**
  * HeroSection - Clean, lightweight hero with modern booking form
- * Shows inline property cards after "Check Availability" click
+ * Navigates to dedicated search results page on "Check Availability"
  * Integrated with GTM tracking for conversion optimization
  */
 
@@ -11,10 +11,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { useMediaQuery } from "@/hooks/use-mobile";
 import { useHappyGuestsContext } from "@/contexts/HappyGuestsContext";
 import { cn } from "@/lib/utils";
-import { getLocationOptions, getPropertiesByLocation, Property } from "@/data/properties";
-import { PropertyCardCompact } from "@/components/property/PropertyCardCompact";
+import { getLocationOptions } from "@/data/properties";
 import { ModernBookingForm } from "@/components/ui/modern-booking-form";
-import { motion, AnimatePresence } from "framer-motion";
 import { useComponentTracking } from "@/hooks/useComponentTracking";
 
 const HeroSection = () => {
@@ -25,16 +23,14 @@ const HeroSection = () => {
   const [location, setLocation] = useState("shillong");
   const [currentLanguageIndex, setCurrentLanguageIndex] = useState(0);
   const [averageRating, setAverageRating] = useState(4.9);
-  const [showProperties, setShowProperties] = useState(false);
-  const [availableProperties, setAvailableProperties] = useState<Property[]>([]);
   const heroRef = useRef<HTMLDivElement>(null);
-  const propertySectionRef = useRef<HTMLDivElement>(null);
+  
 
   const { happyGuestsCount, incrementHappyGuests } = useHappyGuestsContext();
   const isMobile = useMediaQuery('(max-width: 767px)');
   
   // GTM Tracking
-  const { trackCTA, trackButton, trackFormSubmit, trackCardClick } = useComponentTracking({ section: 'hero' });
+  const { trackCTA, trackButton, trackFormSubmit } = useComponentTracking({ section: 'hero' });
   
   const locationOptions = getLocationOptions();
 
@@ -141,25 +137,14 @@ const HeroSection = () => {
       guests,
     });
 
-    // Get properties for location and show inline
-    const properties = getPropertiesByLocation(location);
-    setAvailableProperties(properties);
-    setShowProperties(true);
-
-    // Scroll to property section after a short delay
-    setTimeout(() => {
-      propertySectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 100);
-  };
-
-  const handleViewDetails = (property: Property) => {
-    // Track property card click
-    trackCardClick(property.name, 'property', {
-      property_id: property.id,
-      property_location: property.locationId,
+    // Navigate to dedicated search results page
+    const searchParams = new URLSearchParams({
+      location,
+      checkIn: checkInStr,
+      checkOut: checkOutStr,
+      guests: guests.toString(),
     });
-    // Navigate to property detail page
-    navigate(`/properties/${property.id}`);
+    navigate(`/search?${searchParams.toString()}`);
   };
 
   const scrollToContent = () => {
@@ -180,8 +165,7 @@ const HeroSection = () => {
   ];
 
   return (
-    <>
-      <section 
+    <section 
         ref={heroRef}
         id="home" 
         className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
@@ -273,54 +257,7 @@ const HeroSection = () => {
             <ChevronDown className="w-6 h-6" />
           </button>
         </div>
-      </section>
-
-      {/* Inline Property Cards Section */}
-      <AnimatePresence>
-        {showProperties && availableProperties.length > 0 && (
-          <motion.section
-            ref={propertySectionRef}
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 py-12 px-4"
-          >
-            <div className="max-w-6xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-center mb-8"
-              >
-                <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
-                  Available Properties
-                </h2>
-                <p className="text-white/60">
-                  {availableProperties.length} properties in {location.charAt(0).toUpperCase() + location.slice(1)}
-                </p>
-              </motion.div>
-
-              {/* Property Cards Grid - Stack on mobile, 2 cols on tablet/desktop */}
-              <div className="flex flex-col gap-6 sm:grid sm:grid-cols-2 lg:gap-8">
-                {availableProperties.map((property, index) => (
-                  <motion.div
-                    key={property.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="w-full"
-                  >
-                    <PropertyCardCompact
-                      property={property}
-                      onViewDetails={handleViewDetails}
-                    />
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </motion.section>
-        )}
-      </AnimatePresence>
-    </>
+    </section>
   );
 };
 
