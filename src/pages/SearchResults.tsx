@@ -24,7 +24,7 @@ const SearchResults = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [properties, setProperties] = useState<Property[]>([]);
-  const [showEditBar, setShowEditBar] = useState(true);
+  const [showEditBar, setShowEditBar] = useState(false);
   
   const { trackCTA, trackCardClick, trackButton } = useComponentTracking({ section: 'search_results' });
 
