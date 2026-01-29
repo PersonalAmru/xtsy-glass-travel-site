@@ -4,7 +4,7 @@
  * Session-persistent for consistent booking flow
  */
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { MapPin, Calendar, Users, Minus, Plus, ChevronDown, Check } from 'lucide-react';
 import { format, addDays } from 'date-fns';
@@ -67,6 +67,23 @@ export const SearchEditBar: React.FC<SearchEditBarProps> = ({
   const [checkOutOpen, setCheckOutOpen] = useState(false);
   const [guestsOpen, setGuestsOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  
+  // Sync state when props change (e.g., new search from hero)
+  useEffect(() => {
+    setLocation(initialLocation);
+  }, [initialLocation]);
+
+  useEffect(() => {
+    setCheckInDate(initialCheckIn ? new Date(initialCheckIn) : undefined);
+  }, [initialCheckIn]);
+
+  useEffect(() => {
+    setCheckOutDate(initialCheckOut ? new Date(initialCheckOut) : undefined);
+  }, [initialCheckOut]);
+
+  useEffect(() => {
+    setGuests(initialGuests);
+  }, [initialGuests]);
   
   const locationOptions = getLocationOptions();
   const today = new Date();
