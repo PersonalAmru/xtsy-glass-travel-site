@@ -40,14 +40,31 @@ const RoomsSection = () => {
 
   const hostelRooms = [
     {
+      id: "king-double-room",
+      name: "King Double Room",
+      price: 1620, // 10% winter discount (1800 * 0.9)
+      originalPrice: 1800,
+      description: "Spacious private room with king bed for two guests",
+      features: generateFeatures('hostel', 'King Double Room', 'private'),
+      maxGuests: 2,
+      maxRooms: 2,
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg",
+      images: [
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/2.jpg",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/3.JPG",
+        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/IMG_4077.jpg"
+      ]
+    },
+    {
       id: "4-bed-female-only-dorm",
       name: "Bed in 4-Bed Female Dormitory",
-      price: 765, // 10% winter discount (850 * 0.9)
-      originalPrice: 850,
+      price: 360, // 10% winter discount (400 * 0.9)
+      originalPrice: 400,
       description: "Female-only dormitory with modern amenities and comfortable beds",
       features: generateFeatures('hostel', 'Bed in 4-Bed Female Dormitory', 'dorm'),
       maxGuests: 4,
-      maxRooms: 1,
+      maxRooms: 4,
       image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg",
       images: [
         "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg",
@@ -63,12 +80,12 @@ const RoomsSection = () => {
     {
       id: "4-bed-mixed-female-dorm",
       name: "Bed in 4-Bed Mixed Dormitory", 
-      price: 720, // 10% winter discount (800 * 0.9)
-      originalPrice: 800,
+      price: 450, // 10% winter discount (500 * 0.9)
+      originalPrice: 500,
       description: "Mixed dormitory with shared facilities and social atmosphere",
       features: generateFeatures('hostel', 'Bed in 4-Bed Mixed Dormitory', 'dorm'),
       maxGuests: 4,
-      maxRooms: 1,
+      maxRooms: 4,
       image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/3.jpg",
       images: [
         "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/3.jpg",
@@ -80,12 +97,12 @@ const RoomsSection = () => {
     {
       id: "6-bed-mixed-female-dorm",
       name: "Bed in 6-Bed Female Dormitory",
-      price: 675, // 10% winter discount (750 * 0.9)
-      originalPrice: 750,
+      price: 315, // 10% winter discount (350 * 0.9)
+      originalPrice: 350,
       description: "Spacious female dormitory with modern amenities",
       features: generateFeatures('hostel', 'Bed in 6-Bed Female Dormitory', 'dorm'),
       maxGuests: 6,
-      maxRooms: 5,
+      maxRooms: 6,
       image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG",
       images: [
         "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG",
@@ -97,10 +114,10 @@ const RoomsSection = () => {
       ]
     },
     {
-      id: "6-bed-mixed-economy-dorm",
+      id: "6-bed-mixed-dorm",
       name: "Bed in 6-Bed Mixed Dormitory",
-      price: 630, // 10% winter discount (700 * 0.9)
-      originalPrice: 700,
+      price: 360, // 10% winter discount (400 * 0.9)
+      originalPrice: 400,
       description: "Budget-friendly mixed dormitory with essential amenities",
       features: generateFeatures('hostel', 'Bed in 6-Bed Mixed Dormitory', 'dorm'),
       maxGuests: 6,
@@ -116,67 +133,12 @@ const RoomsSection = () => {
       ]
     },
     {
-      id: "king-double-room",
-      name: "King Double Room",
-      price: 2520, // 10% winter discount (2800 * 0.9)
-      originalPrice: 2800,
-      description: "Spacious private room with king bed for two guests",
-      features: generateFeatures('hostel', 'King Double Room', 'private'),
-      maxGuests: 2,
-      maxRooms: 2,
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg",
-      images: [
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/2.jpg",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/3.JPG",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/IMG_4077.jpg"
-      ]
-    },
-    {
-      id: "king-triple-room",
-      name: "King Triple Room",
-      price: 3150, // 10% winter discount (3500 * 0.9)
-      originalPrice: 3500,
-      description: "Luxurious private room accommodating up to three guests",
-      features: generateFeatures('hostel', 'King Triple Room', 'private'),
-      maxGuests: 3,
-      maxRooms: 1,
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/1.jpg",
-      images: [
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/1.jpg",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/2.jpg",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/3.jpg",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/5.jpg",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/IMG_4077.jpg"
-      ]
-    }
-  ];
-
-  const economyRooms = [
-    {
-      id: "6-bed-mixed-economy-dorm",
-      name: "Bed in 6-Bed Female Dormitory",
-      price: 0, // No price - OTA only
-      description: "Budget-friendly female dormitory with essential amenities",
-      features: generateFeatures('economy', 'Bed in 6-Bed Female Dormitory', 'dorm'),
-      maxGuests: 6,
-      maxRooms: 6,
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG",
-      images: [
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/3.jpg",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/4.jpg",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/5.JPG",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/6.JPG",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/IMG_5160.png"
-      ]
-    },
-    {
-      id: "8-bed-mixed-economy-dorm",
-      name: "Bed in 8-Bed Mixed Dormitory", 
-      price: 0, // No price - OTA only
-      description: "Most economical option for backpackers and budget travelers",
-      features: generateFeatures('economy', 'Bed in 8-Bed Mixed Dormitory', 'dorm'),
+      id: "8-bed-mixed-dorm",
+      name: "Bed in 8-Bed Mixed Dormitory",
+      price: 270, // 10% winter discount (300 * 0.9)
+      originalPrice: 300,
+      description: "Best value mixed dormitory for budget-conscious backpackers",
+      features: generateFeatures('hostel', 'Bed in 8-Bed Mixed Dormitory', 'dorm'),
       maxGuests: 8,
       maxRooms: 8,
       image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg",
@@ -190,6 +152,7 @@ const RoomsSection = () => {
       ]
     }
   ];
+
 
   return (
     <section id="rooms" className="pb-8 sm:pb-12 md:pb-16 lg:pb-20 safe-area-padding bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 relative overflow-hidden">
@@ -258,18 +221,6 @@ const RoomsSection = () => {
             description="Budget-friendly and premium accommodation options in the heart of Shillong with modern amenities and vibrant community spaces"
             rooms={hostelRooms}
             propertyType="hostel"
-            onSelectRoom={scrollToCalendar}
-          />
-        </div>
-
-        {/* XTSY Economy Section - Center Aligned */}
-        <div className="center-aligned mb-16">
-          <PropertySection
-            title="XTSY Economy"
-            description="Your Ultra-Budget Stay Without Compromise  Simple, clean, and affordable. Designed for backpackers who need a safe, reliable place to crash with all the essentials."
-            economyNotice="XTSY Economy is exclusively available only on Booking.com [No Discounts applicable]"
-            rooms={economyRooms}
-            propertyType="economy"
             onSelectRoom={scrollToCalendar}
           />
         </div>

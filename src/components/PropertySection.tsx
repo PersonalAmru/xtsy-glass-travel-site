@@ -20,7 +20,7 @@ interface PropertySectionProps {
   title: string;
   description: string;
   rooms: Room[];
-  propertyType: "hostel" | "luxury" | "economy";
+  propertyType: "hostel" | "luxury";
   onSelectRoom: () => void;
   isLuxury?: boolean;
   economyNotice?: string;

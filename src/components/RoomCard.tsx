@@ -22,7 +22,7 @@ interface RoomCardProps {
     image: string;
     images?: string[];
   };
-  propertyType: "hostel" | "luxury" | "economy";
+  propertyType: "hostel" | "luxury";
   onSelectRoom: () => void;
   isLuxury?: boolean;
 }
@@ -72,7 +72,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
   };
   
   const displayPrice = getDisplayPrice();
-  const buttonText = propertyType === "hostel" ? `Select Bed - ${formatPrice(displayPrice)}/night` : propertyType === "luxury" ? `Select Suite - ${formatPrice(displayPrice)}/night` : propertyType === "economy" ? `Select Bed - ${formatPrice(displayPrice)}/night` : `Select Room - ${formatPrice(displayPrice)}/night`;
+  const buttonText = propertyType === "hostel" ? `Select Bed - ${formatPrice(displayPrice)}/night` : `Select Suite - ${formatPrice(displayPrice)}/night`;
   
   const images = room.images && room.images.length > 0 ? room.images : [room.image];
 
@@ -133,7 +133,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
                 className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 font-josefin mobile-button"
               >
                 {room.id === "signature-270-glass-suite" ? "View Suite Details" : 
-                 (room.id === "king-double-room" || room.id === "king-triple-room") ? "Select Room" : 
+                 room.id === "king-double-room" ? "Select Room" : 
                  buttonText.split(' - ')[0]}
               </Button>
             </div>
@@ -196,7 +196,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
             <div className="flex flex-wrap gap-1">
               {(() => {
                 // Use standardized feature generation utility
-                const roomType = (room.id === "king-double-room" || room.id === "king-triple-room") ? 'private' : 'dorm';
+                const roomType = room.id === "king-double-room" ? 'private' : 'dorm';
                 const standardizedFeatures = generateStandardizedFeatures(propertyType, room.name, roomType);
                 
                 return standardizedFeatures.map((feature, index) => (
@@ -219,9 +219,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
                 <span className="text-sm text-gray-300 font-josefin">{room.maxGuests} guests</span>
               </div>
               <div className="text-right">
-                {propertyType === "economy" ? (
-                  <span className="text-sm font-semibold text-blue-400 font-josefin">Available on Booking.com</span>
-                ) : room.originalPrice && room.originalPrice !== displayPrice ? (
+                {room.originalPrice && room.originalPrice !== displayPrice ? (
                   <div className="flex flex-col items-end">
                     <span className="text-sm text-gray-400 line-through font-josefin">{formatPrice(room.originalPrice)}</span>
                     <span className="text-lg font-bold text-orange-400 font-playfair">{formatPrice(displayPrice)}/night</span>
@@ -231,22 +229,13 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
                 )}
               </div>
             </div>
-            {propertyType === "economy" ? (
-              <Button 
-                onClick={() => window.open('https://www.booking.com/hotel/in/xtsy-economy-dorms.en-gb.html', '_blank')}
-                className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 font-josefin mobile-button"
-              >
-                Book on Booking.com
-              </Button>
-            ) : (
-              <Button 
-                onClick={handleRoomSelection}
-                className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 font-josefin mobile-button"
-              >
-                {(room.id === "king-double-room" || room.id === "king-triple-room") ? "Select Room" : 
-                 buttonText.split(' - ')[0]}
-              </Button>
-            )}
+            <Button 
+              onClick={handleRoomSelection}
+              className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 font-josefin mobile-button"
+            >
+              {room.id === "king-double-room" ? "Select Room" : 
+               buttonText.split(' - ')[0]}
+            </Button>
           </div>
         </CardContent>
       </Card>

@@ -158,10 +158,8 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
   // Availability lookup key to align with admin and edge function naming
   const availabilityKey = React.useMemo(() => {
     switch (room.id) {
-      case '8-bed-mixed-economy-dorm':
-        return '8-Bed Mixed Economy Dormitory';
-      case '6-bed-mixed-economy-dorm':
-        return '6-Bed Mixed Economy Dormitory';
+      case '8-bed-mixed-dorm':
+        return '8-Bed Mixed Dormitory';
       case '6-bed-mixed-dorm':
         return '6-Bed Mixed Dormitory';
       case '6-bed-mixed-female-dorm':
@@ -172,8 +170,6 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
         return '4-Bed Female Dormitory';
       case 'king-double-room':
         return 'King Double Room';
-      case 'king-triple-room':
-        return 'King Triple Room';
       case 'xtsy-270':
         return '270° Panorama Glass Ensuite';
       default:
@@ -184,9 +180,8 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
   // Name to use for availability/blocked-dates lookups (exact admin naming)
   const availabilityName = React.useMemo(() => {
     switch (room.id) {
-      case '8-bed-mixed-economy-dorm':
-        // Matches admin dashboard entry and blocked_dates.room_type
-        return 'Bed in 8 bed mixed economy dorm';
+      case '8-bed-mixed-dorm':
+        return 'Bed in 8-Bed Mixed Dormitory';
       default:
         return availabilityKey;
     }

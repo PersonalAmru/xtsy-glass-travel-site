@@ -293,7 +293,7 @@ export function InventoryManager() {
     );
   };
 
-  const categories: Array<'luxury' | 'hostel' | 'economy'> = ['luxury', 'hostel', 'economy'];
+  const categories: Array<'luxury' | 'hostel'> = ['luxury', 'hostel'];
 
   return (
     <div className="space-y-8">

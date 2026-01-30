@@ -5,7 +5,7 @@
  * Used across: booking flow, admin dashboard, inventory management, calendar blocking
  */
 
-export type RoomCategory = 'luxury' | 'hostel' | 'economy';
+export type RoomCategory = 'luxury' | 'hostel';
 export type UnitType = 'bed' | 'room';
 
 // Room tags for marketing and segmentation
@@ -100,20 +100,6 @@ export const ROOM_IMAGES: Record<string, string[]> = {
     'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/8.jpg',
     'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/9.jpg'
   ],
-  '6-bed-mixed-economy-dorm': [
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/3.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/4.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/5.JPG'
-  ],
-  '8-bed-mixed-economy-dorm': [
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/4.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/5.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/6.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/8.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/9.jpg'
-  ],
 };
 
 // Tag display labels
@@ -185,7 +171,7 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     totalUnits: 4,
     propertyType: 'XTSY Travellers Hostel',
     isBookable: true,
-    basePrice: 550, // Updated price
+    basePrice: 400, // Updated price
     displayOrder: 20,
     tags: ['solo_traveller'],
     image: ROOM_IMAGES['4-bed-female-only-dorm'][0],
@@ -221,7 +207,7 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     totalUnits: 6,
     propertyType: 'XTSY Travellers Hostel',
     isBookable: true,
-    basePrice: 450, // Updated price
+    basePrice: 350, // Updated price
     displayOrder: 40,
     tags: ['preferred_by_group', 'preferred_by_families'],
     image: ROOM_IMAGES['6-bed-mixed-female-dorm'][0],
@@ -239,14 +225,14 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     totalUnits: 6,
     propertyType: 'XTSY Travellers Hostel',
     isBookable: true,
-    basePrice: 425, // Updated price
+    basePrice: 400, // Updated price
     displayOrder: 50,
     tags: ['preferred_by_group', 'preferred_by_families'],
     image: ROOM_IMAGES['6-bed-mixed-dorm'][0],
     images: ROOM_IMAGES['6-bed-mixed-dorm'],
   },
 
-  // NEW: 8-Bed Mixed Dorm for XTSY Travellers Hostel (Preferred by Groups & Families)
+  // 8-Bed Mixed Dorm for XTSY Travellers Hostel (Best Value)
   '8-bed-mixed-dorm': {
     id: '8-bed-mixed-dorm',
     name: 'Bed in 8-Bed Mixed Dormitory',
@@ -257,45 +243,13 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     totalUnits: 8,
     propertyType: 'XTSY Travellers Hostel',
     isBookable: true,
-    basePrice: 350, // New price
+    basePrice: 300, // Updated price
     displayOrder: 60,
     tags: ['preferred_by_group', 'preferred_by_families', 'best_value'],
     image: ROOM_IMAGES['8-bed-mixed-dorm'][0],
     images: ROOM_IMAGES['8-bed-mixed-dorm'],
   },
 
-  // === ECONOMY CATEGORY (OTA-only) ===
-  '6-bed-mixed-economy-dorm': {
-    id: '6-bed-mixed-economy-dorm',
-    name: 'Bed in 6-Bed Economy Dormitory',
-    shortName: '6-Bed Economy',
-    category: 'economy',
-    unitType: 'bed',
-    capacity: 6,
-    totalUnits: 6,
-    propertyType: 'XTSY Economy',
-    isBookable: false,
-    basePrice: 399,
-    displayOrder: 100,
-    image: ROOM_IMAGES['6-bed-mixed-economy-dorm'][0],
-    images: ROOM_IMAGES['6-bed-mixed-economy-dorm'],
-  },
-
-  '8-bed-mixed-economy-dorm': {
-    id: '8-bed-mixed-economy-dorm',
-    name: 'Bed in 8-Bed Mixed Dormitory',
-    shortName: '8-Bed Economy Mixed',
-    category: 'economy',
-    unitType: 'bed',
-    capacity: 8,
-    totalUnits: 8,
-    propertyType: 'XTSY Economy',
-    isBookable: false,
-    basePrice: 349,
-    displayOrder: 110,
-    image: ROOM_IMAGES['8-bed-mixed-economy-dorm'][0],
-    images: ROOM_IMAGES['8-bed-mixed-economy-dorm'],
-  },
 };
 
 // All valid room type IDs
@@ -326,9 +280,6 @@ export const ROOM_NAME_TO_ID: Record<string, string> = {
   'Bed in 8-Bed Mixed Dormitory': '8-bed-mixed-dorm',
   '8-Bed Mixed Dorm': '8-bed-mixed-dorm',
   '8 Bed Mixed Dormitory': '8-bed-mixed-dorm',
-  // Economy variants
-  'Bed in 8-Bed Mixed Economy Dorm': '8-bed-mixed-economy-dorm',
-  '8-Bed Economy Mixed': '8-bed-mixed-economy-dorm',
 };
 
 /**
@@ -430,5 +381,4 @@ export function getAvailabilityLabel(roomTypeIdOrName: string, available: number
 export const PROPERTY_LABELS: Record<RoomCategory, string> = {
   luxury: 'XTSY Luxury',
   hostel: 'XTSY Travellers Hostel',
-  economy: 'XTSY Economy',
 };

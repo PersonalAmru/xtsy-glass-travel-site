@@ -7,7 +7,7 @@
 import { generateStandardizedFeatures } from '@/utils/roomFeatures';
 import { TAG_LABELS, TAG_COLORS, type RoomTag } from '@/config/roomTypes';
 
-export type RoomCategory = 'luxury' | 'hostel' | 'economy';
+export type RoomCategory = 'luxury' | 'hostel';
 export type RoomKind = 'private' | 'dorm';
 export type RoomStatus = 'available' | 'limited' | 'sold_out' | 'maintenance';
 
@@ -123,11 +123,11 @@ export const ROOM_INVENTORY: Record<string, RoomType> = {
     shortName: '4-Bed Female Dorm',
     category: 'hostel',
     kind: 'dorm',
-    basePrice: 550,
-    weekdayPrice: 550,
-    weekendPrice: 550,
-    discountedPrice: 550,
-    originalPrice: 550,
+    basePrice: 400,
+    weekdayPrice: 400,
+    weekendPrice: 400,
+    discountedPrice: 400,
+    originalPrice: 400,
     capacity: 4,
     totalUnits: 4,
     description: 'Female-only dormitory with modern amenities and comfortable beds',
@@ -185,11 +185,11 @@ export const ROOM_INVENTORY: Record<string, RoomType> = {
     shortName: '6-Bed Female Dorm',
     category: 'hostel',
     kind: 'dorm',
-    basePrice: 450,
-    weekdayPrice: 450,
-    weekendPrice: 450,
-    discountedPrice: 450,
-    originalPrice: 450,
+    basePrice: 350,
+    weekdayPrice: 350,
+    weekendPrice: 350,
+    discountedPrice: 350,
+    originalPrice: 350,
     capacity: 6,
     totalUnits: 6,
     description: 'Spacious female dormitory with modern amenities',
@@ -216,11 +216,11 @@ export const ROOM_INVENTORY: Record<string, RoomType> = {
     shortName: '6-Bed Mixed Dorm',
     category: 'hostel',
     kind: 'dorm',
-    basePrice: 425,
-    weekdayPrice: 425,
-    weekendPrice: 425,
-    discountedPrice: 425,
-    originalPrice: 425,
+    basePrice: 400,
+    weekdayPrice: 400,
+    weekendPrice: 400,
+    discountedPrice: 400,
+    originalPrice: 400,
     capacity: 6,
     totalUnits: 6,
     description: 'Budget-friendly mixed dormitory with essential amenities',
@@ -240,18 +240,18 @@ export const ROOM_INVENTORY: Record<string, RoomType> = {
     tags: ['preferred_by_group', 'preferred_by_families'],
   },
 
-  // NEW: 8-Bed Mixed Dorm for XTSY Travellers Hostel
+  // 8-Bed Mixed Dorm for XTSY Travellers Hostel (Best Value)
   '8-bed-mixed-dorm': {
     id: '8-bed-mixed-dorm',
     name: 'Bed in 8-Bed Mixed Dormitory',
     shortName: '8-Bed Mixed Dorm',
     category: 'hostel',
     kind: 'dorm',
-    basePrice: 350,
-    weekdayPrice: 350,
-    weekendPrice: 350,
-    discountedPrice: 350,
-    originalPrice: 350,
+    basePrice: 300,
+    weekdayPrice: 300,
+    weekendPrice: 300,
+    discountedPrice: 300,
+    originalPrice: 300,
     capacity: 8,
     totalUnits: 8,
     description: 'Best value mixed dormitory for budget-conscious backpackers',
@@ -271,64 +271,6 @@ export const ROOM_INVENTORY: Record<string, RoomType> = {
     tags: ['preferred_by_group', 'preferred_by_families', 'best_value'],
   },
 
-  // === ECONOMY CATEGORY (OTA-only) ===
-  '6-bed-mixed-economy-dorm': {
-    id: '6-bed-mixed-economy-dorm',
-    name: 'Bed in 6-Bed Female Dormitory',
-    shortName: '6-Bed Economy Female',
-    category: 'economy',
-    kind: 'dorm',
-    basePrice: 0,
-    weekdayPrice: 0,
-    weekendPrice: 0,
-    discountedPrice: 0,
-    originalPrice: 0,
-    capacity: 6,
-    totalUnits: 6,
-    description: 'Budget-friendly female dormitory with essential amenities',
-    features: generateStandardizedFeatures('economy', 'Bed in 6-Bed Female Dormitory', 'dorm'),
-    image: `${STORAGE_BASE}/6%20Bed%20MixedFemale%20Dorms/1.JPG`,
-    images: [
-      `${STORAGE_BASE}/6%20Bed%20MixedFemale%20Dorms/1.JPG`,
-      `${STORAGE_BASE}/6%20Bed%20MixedFemale%20Dorms/3.jpg`,
-      `${STORAGE_BASE}/6%20Bed%20MixedFemale%20Dorms/4.jpg`,
-      `${STORAGE_BASE}/6%20Bed%20MixedFemale%20Dorms/5.JPG`,
-      `${STORAGE_BASE}/6%20Bed%20MixedFemale%20Dorms/6.JPG`,
-      `${STORAGE_BASE}/6%20Bed%20MixedFemale%20Dorms/IMG_5160.png`,
-    ],
-    isBookable: false, // OTA only
-    propertyType: 'XTSY Economy',
-    displayOrder: 100,
-  },
-
-  '8-bed-mixed-economy-dorm': {
-    id: '8-bed-mixed-economy-dorm',
-    name: 'Bed in 8-Bed Mixed Dormitory',
-    shortName: '8-Bed Economy Mixed',
-    category: 'economy',
-    kind: 'dorm',
-    basePrice: 0,
-    weekdayPrice: 0,
-    weekendPrice: 0,
-    discountedPrice: 0,
-    originalPrice: 0,
-    capacity: 8,
-    totalUnits: 8,
-    description: 'Most economical option for backpackers and budget travelers',
-    features: generateStandardizedFeatures('economy', 'Bed in 8-Bed Mixed Dormitory', 'dorm'),
-    image: `${STORAGE_BASE}/8%20Bed%20Mixed%20Dorms/3.jpg`,
-    images: [
-      `${STORAGE_BASE}/8%20Bed%20Mixed%20Dorms/3.jpg`,
-      `${STORAGE_BASE}/8%20Bed%20Mixed%20Dorms/4.jpg`,
-      `${STORAGE_BASE}/8%20Bed%20Mixed%20Dorms/5.jpg`,
-      `${STORAGE_BASE}/8%20Bed%20Mixed%20Dorms/6.jpg`,
-      `${STORAGE_BASE}/8%20Bed%20Mixed%20Dorms/8.jpg`,
-      `${STORAGE_BASE}/8%20Bed%20Mixed%20Dorms/9.jpg`,
-    ],
-    isBookable: false, // OTA only
-    propertyType: 'XTSY Economy',
-    displayOrder: 110,
-  },
 };
 
 // Helper functions for filtering
@@ -377,5 +319,4 @@ export const STATUS_COLORS: Record<RoomStatus, { bg: string; text: string; borde
 export const CATEGORY_LABELS: Record<RoomCategory, string> = {
   luxury: 'XTSY Luxury',
   hostel: 'XTSY Travellers Hostel',
-  economy: 'XTSY Economy',
 };
