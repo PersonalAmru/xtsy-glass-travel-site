@@ -71,7 +71,7 @@ const AboutSection = () => {
     },
     {
       icon: Users,
-      title: "Mixed, Female-Only & Economy Dorms",
+      title: "Mixed & Female-Only Dorms",
       description: "Safe, spacious dormitories for all travelers"
     }
   ];

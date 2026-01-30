@@ -19,9 +19,9 @@ export const createRoomAliases = (roomName: string): string[] => {
   
   // 8-bed dormitory aliases
   if (lowerName.includes('8') && lowerName.includes('bed')) {
-    aliases.push('8-bed-mixed-economy-dorm');
-    aliases.push('Bed in 8 bed mixed economy dorm');
-    aliases.push('8 bed mixed economy dorm');
+    aliases.push('8-bed-mixed-dorm');
+    aliases.push('Bed in 8-Bed Mixed Dormitory');
+    aliases.push('8 Bed Mixed Dormitory');
   }
   
   // 6-bed dormitory aliases
@@ -34,11 +34,6 @@ export const createRoomAliases = (roomName: string): string[] => {
       aliases.push('6-bed-female-only-dormitory');
       aliases.push('Bed in 6-Bed Female Only Dormitory');
       aliases.push('6-bed-mixed-economy-dorm');
-      aliases.push('Bed in 6-Bed Female Dormitory');
-    }
-    if (lowerName.includes('economy')) {
-      aliases.push('6-bed-mixed-economy-dormitory');
-      aliases.push('Bed in 6-Bed Mixed Economy Dormitory');
       aliases.push('Bed in 6-Bed Female Dormitory');
     }
   }
@@ -61,15 +56,9 @@ export const createRoomAliases = (roomName: string): string[] => {
     aliases.push('270° Panorama Glass Ensuite');
   }
   
-  if (lowerName.includes('king')) {
-    if (lowerName.includes('double')) {
-      aliases.push('king-double-room');
-      aliases.push('King Double Room');
-    }
-    if (lowerName.includes('triple')) {
-      aliases.push('king-triple-room');
-      aliases.push('King Triple Room');
-    }
+  if (lowerName.includes('king') && lowerName.includes('double')) {
+    aliases.push('king-double-room');
+    aliases.push('King Double Room');
   }
   
   // Remove duplicates and return
@@ -84,27 +73,25 @@ export const standardizeRoomId = (roomName: string): string => {
   
   // Map to standard slug format
   if (lowerName.includes('8') && lowerName.includes('bed')) {
-    return '8-bed-mixed-economy-dorm';
+    return '8-bed-mixed-dorm';
   }
   
   if (lowerName.includes('6') && lowerName.includes('bed')) {
-    if (lowerName.includes('economy')) return '6-bed-mixed-economy-dormitory';
-    if (lowerName.includes('mixed')) return '6-bed-mixed-dormitory';
-    if (lowerName.includes('female')) return '6-bed-female-only-dormitory';
+    if (lowerName.includes('mixed')) return '6-bed-mixed-dorm';
+    if (lowerName.includes('female')) return '6-bed-mixed-female-dorm';
   }
   
   if (lowerName.includes('4') && lowerName.includes('bed')) {
-    if (lowerName.includes('mixed')) return '4-bed-mixed-dormitory';
-    if (lowerName.includes('female')) return '4-bed-female-only-dormitory';
+    if (lowerName.includes('mixed')) return '4-bed-mixed-female-dorm';
+    if (lowerName.includes('female')) return '4-bed-female-only-dorm';
   }
   
   if (lowerName.includes('270') || lowerName.includes('panorama')) {
-    return '270-panorama-glass-ensuite';
+    return 'xtsy-270';
   }
   
-  if (lowerName.includes('king')) {
-    if (lowerName.includes('double')) return 'king-double-room';
-    if (lowerName.includes('triple')) return 'king-triple-room';
+  if (lowerName.includes('king') && lowerName.includes('double')) {
+    return 'king-double-room';
   }
   
   // Fallback to normalized version
