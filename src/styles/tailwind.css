@@ -58,8 +58,8 @@
 
 @layer base {
   :root {
-    /* Light theme */
-    --background: 0 0% 99%;
+    /* Light theme - warm cream for visual appeal */
+    --background: 40 33% 97%;
     --foreground: 220 15% 15%;
     --card: 0 0% 100%;
     --card-foreground: 220 15% 15%;
