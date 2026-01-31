@@ -1,22 +1,27 @@
+import { memo, Suspense, lazy } from "react";
 import HeroSection from "@/components/HeroSection";
-import HomeTourPackages from "@/components/HomeTourPackages";
-import AboutXTSYSection from "@/components/AboutXTSYSection";
-import XTSYPrimeSection from "@/components/XTSYPrimeSection";
-import ReviewsSection from "@/components/ReviewsSection";
-import GroupBookingSection from "@/components/GroupBookingSection";
-import AdventureCallToAction from "@/components/AdventureCallToAction";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LazyWrapper from "@/components/LazyWrapper";
 import SEOContent from "@/components/SEOContent";
-import FAQSection from "@/components/FAQSection";
+
+// Lazy load below-fold sections for better initial load
+const HomeTourPackages = lazy(() => import("@/components/HomeTourPackages"));
+const AboutXTSYSection = lazy(() => import("@/components/AboutXTSYSection"));
+const XTSYPrimeSection = lazy(() => import("@/components/XTSYPrimeSection"));
+const ReviewsSection = lazy(() => import("@/components/ReviewsSection"));
+const GroupBookingSection = lazy(() => import("@/components/GroupBookingSection"));
+const AdventureCallToAction = lazy(() => import("@/components/AdventureCallToAction"));
+const FAQSection = lazy(() => import("@/components/FAQSection"));
 
 // Minimal mobile-friendly fallback
-const SectionFallback = ({ height = 'h-64' }: { height?: string }) => (
+const SectionFallback = memo(({ height = 'h-64' }: { height?: string }) => (
   <div className={`${height} bg-muted/30 rounded-lg mx-4`} />
-);
+));
 
-const Index = () => {
+SectionFallback.displayName = 'SectionFallback';
+
+const Index = memo(() => {
   return (
     <div className="min-h-screen">
       <SEOContent page="home" />
@@ -24,41 +29,57 @@ const Index = () => {
       <main style={{ contain: 'layout style' }}>
         <HeroSection />
         
-        {/* Tour Packages - FocusRail cards from Travel.tsx */}
+        {/* Tour Packages - FocusRail cards */}
         <LazyWrapper eager fallback={<SectionFallback height="h-96" />}>
-          <HomeTourPackages />
+          <Suspense fallback={<SectionFallback height="h-96" />}>
+            <HomeTourPackages />
+          </Suspense>
         </LazyWrapper>
         
-        {/* About XTSY - Replaces "Where to Stay" */}
+        {/* About XTSY */}
         <LazyWrapper fallback={<SectionFallback />}>
-          <AboutXTSYSection />
+          <Suspense fallback={<SectionFallback />}>
+            <AboutXTSYSection />
+          </Suspense>
         </LazyWrapper>
         
-        {/* XTSY Prime - Premium offerings with popup modals */}
+        {/* XTSY Prime - Premium offerings */}
         <LazyWrapper fallback={<SectionFallback height="h-80" />}>
-          <XTSYPrimeSection />
+          <Suspense fallback={<SectionFallback height="h-80" />}>
+            <XTSYPrimeSection />
+          </Suspense>
         </LazyWrapper>
         
         {/* Guest Reviews */}
         <LazyWrapper fallback={<SectionFallback />}>
-          <ReviewsSection />
+          <Suspense fallback={<SectionFallback />}>
+            <ReviewsSection />
+          </Suspense>
         </LazyWrapper>
         
         <LazyWrapper fallback={<SectionFallback height="h-48" />}>
-          <GroupBookingSection />
+          <Suspense fallback={<SectionFallback height="h-48" />}>
+            <GroupBookingSection />
+          </Suspense>
         </LazyWrapper>
         
         <LazyWrapper fallback={<SectionFallback height="h-48" />}>
-          <AdventureCallToAction />
+          <Suspense fallback={<SectionFallback height="h-48" />}>
+            <AdventureCallToAction />
+          </Suspense>
         </LazyWrapper>
         
         <LazyWrapper fallback={<SectionFallback />}>
-          <FAQSection />
+          <Suspense fallback={<SectionFallback />}>
+            <FAQSection />
+          </Suspense>
         </LazyWrapper>
       </main>
       <Footer />
     </div>
   );
-};
+});
+
+Index.displayName = 'Index';
 
 export default Index;
