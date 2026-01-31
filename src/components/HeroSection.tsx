@@ -204,8 +204,7 @@ const HeroSection = () => {
                   className="w-full h-full object-contain"
                   loading="eager"
                   decoding="sync"
-                  // @ts-expect-error - React 18.3 uses fetchPriority
-                  fetchpriority="high"
+                  fetchPriority="high"
                   width={128}
                   height={128}
                 />

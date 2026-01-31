@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { FocusRail, FocusRailItem } from "@/components/ui/focus-rail";
+import { OptimizedFocusRail, FocusRailItem } from "@/components/OptimizedFocusRail";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Globe, MapPin, Compass } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
@@ -342,8 +342,8 @@ const HomeTourPackages: React.FC<HomeTourPackagesProps> = ({ className }) => {
         </div>
       </div>
 
-      {/* Focus Rail Carousel */}
-      <FocusRail
+      {/* Optimized Focus Rail Carousel */}
+      <OptimizedFocusRail
         items={focusRailItems}
         autoPlay={true}
         interval={5000}
