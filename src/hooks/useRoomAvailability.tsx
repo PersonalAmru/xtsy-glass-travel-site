@@ -7,6 +7,7 @@ export interface AvailabilityData {
   isBlocked: boolean;
   isSoldOut: boolean;
   bookedCount: number;
+  adminBlocked?: boolean;
 }
 
 interface UseRoomAvailabilityReturn {
@@ -14,6 +15,7 @@ interface UseRoomAvailabilityReturn {
   loading: boolean;
   error: string | null;
   refetch: () => Promise<void>;
+  lastUpdated: number | null;
 }
 
 export const useRoomAvailability = (
@@ -24,12 +26,14 @@ export const useRoomAvailability = (
   const [availability, setAvailability] = useState<Record<string, AvailabilityData>>({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [lastUpdated, setLastUpdated] = useState<number | null>(null);
   
   // Use refs to prevent subscription re-creation loops
   const roomNameRef = useRef(roomName);
   const enabledRef = useRef(enabled);
   const roomIdRef = useRef(roomId);
   const lastRealtimeRefreshRef = useRef<number>(0);
+  const subscriptionIdRef = useRef<string>(`${Date.now()}`);
   
   // Update refs when values change
   useEffect(() => {
@@ -69,6 +73,7 @@ export const useRoomAvailability = (
       if (data?.success) {
         setAvailability(data.availability || {});
         setError(null);
+        setLastUpdated(Date.now());
       } else {
         throw new Error(data?.error || 'Failed to load availability data');
       }
@@ -95,44 +100,34 @@ export const useRoomAvailability = (
     loadAvailability();
   }, [roomName, enabled]);
 
-  // Stable callback for subscription handlers
-  const handleRealTimeUpdate = useCallback((payload: any) => {
+  // Stable callback for subscription handlers - refresh availability on any change
+  const handleRealTimeUpdate = useCallback(() => {
     const currentRoomName = roomNameRef.current;
     const currentEnabled = enabledRef.current;
     
     if (!currentEnabled || !currentRoomName) return;
 
-    // Throttle refreshes to max 1 per second to avoid UI glittering
+    // Throttle refreshes to max 500ms to provide fast updates while avoiding UI glittering
     const now = Date.now();
-    if (now - (lastRealtimeRefreshRef.current || 0) < 1000) {
+    if (now - (lastRealtimeRefreshRef.current || 0) < 500) {
       return;
     }
     lastRealtimeRefreshRef.current = now;
     
-    const newRecord = payload.new as any;
-    const oldRecord = payload.old as any;
-    const changedRoomType = newRecord?.room_type || oldRecord?.room_type;
-    
-    const roomAliases = [currentRoomName];
-    if (currentRoomName.includes('8') && currentRoomName.toLowerCase().includes('bed')) {
-      roomAliases.push('8-bed-mixed-economy-dorm');
-      roomAliases.push('Bed in 8 bed mixed economy dorm');
-    }
-    
-    if (changedRoomType && roomAliases.includes(changedRoomType)) {
-      loadAvailability();
-    }
+    console.log('[RoomAvailability] Real-time update triggered, refreshing...');
+    loadAvailability();
   }, [loadAvailability]);
 
-  // Single effect for real-time subscriptions - only create once
+  // Single effect for real-time subscriptions
   useEffect(() => {
     if (!enabled || !roomName) {
       return;
     }
 
-    // Create unique channel names that don't change on every render
-    const channelId = `${roomName.replace(/\s+/g, '_')}_${Date.now()}`;
+    // Create unique channel names
+    const channelId = subscriptionIdRef.current;
     
+    // Subscribe to blocked_dates changes (admin blocking)
     const blockedDatesChannel = supabase
       .channel(`blocked_dates_${channelId}`)
       .on('postgres_changes', {
@@ -142,6 +137,17 @@ export const useRoomAvailability = (
       }, handleRealTimeUpdate)
       .subscribe();
 
+    // Subscribe to room_inventory changes (capacity/availability)
+    const inventoryChannel = supabase
+      .channel(`inventory_${channelId}`)
+      .on('postgres_changes', {
+        event: '*',
+        schema: 'public',
+        table: 'room_inventory'
+      }, handleRealTimeUpdate)
+      .subscribe();
+
+    // Subscribe to bookings changes
     const bookingsChannel = supabase
       .channel(`bookings_${channelId}`)
       .on('postgres_changes', {
@@ -161,18 +167,22 @@ export const useRoomAvailability = (
       }, handleRealTimeUpdate)
       .subscribe();
 
+    console.log('[RoomAvailability] Subscribed to real-time updates for:', roomName);
+
     return () => {
       supabase.removeChannel(blockedDatesChannel);
+      supabase.removeChannel(inventoryChannel);
       supabase.removeChannel(bookingsChannel);
       supabase.removeChannel(statusChannel);
     };
-  }, []); // Empty dependency array - only create subscriptions once
+  }, [roomName, enabled, handleRealTimeUpdate]);
 
   return {
     availability,
     loading,
     error,
-    refetch
+    refetch,
+    lastUpdated
   };
 };
 

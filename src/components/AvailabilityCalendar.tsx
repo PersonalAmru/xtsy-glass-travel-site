@@ -29,7 +29,7 @@ export const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
     const dayData = availability[dateStr];
 
     // Check if admin has blocked this room entirely
-    if (dayData?.isBlocked) {
+    if (dayData?.isBlocked || dayData?.adminBlocked) {
       return 'bg-gray-500/80 border-gray-600';
     }
 
@@ -50,8 +50,8 @@ export const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
     const dateStr = format(date, 'yyyy-MM-dd');
     const dayData = availability[dateStr];
 
-    if (dayData?.isBlocked) {
-      return 'Admin Blocked';
+    if (dayData?.adminBlocked || dayData?.isBlocked) {
+      return 'Blocked by Admin';
     }
 
     switch (status) {
@@ -79,8 +79,8 @@ export const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
             <div className="text-muted-foreground">
               {dayData.bookedCount} / {dayData.total} booked
             </div>
-            {dayData.isBlocked && (
-              <div className="text-amber-300">Blocked by admin</div>
+            {(dayData.adminBlocked || dayData.isBlocked) && (
+              <div className="text-amber-300 font-medium">⚠️ Blocked by admin</div>
             )}
           </>
         )}

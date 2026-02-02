@@ -110,6 +110,21 @@ serve(async (req) => {
       console.log('Inventory query result:', inventory?.length || 0, 'records');
     }
 
+    // Get blocked dates from admin controls
+    const { data: blockedDates, error: blockedError } = await supabaseAdmin
+      .from('blocked_dates')
+      .select('date, blocked')
+      .in('room_type', keys)
+      .eq('blocked', true)
+      .gte('date', start_date)
+      .lte('date', end_date);
+
+    if (blockedError) {
+      console.log('Blocked dates query error (non-critical):', blockedError);
+    } else {
+      console.log('Blocked dates result:', blockedDates?.length || 0, 'blocked dates');
+    }
+
     // Get confirmed bookings for the period (using room_type field)
     const { data: confirmedBookings, error: bookingsError } = await supabaseAdmin
       .from('bookings')
@@ -128,11 +143,21 @@ serve(async (req) => {
     // Build availability calendar
     const availability = {};
     const inventoryMap = {};
+    const blockedMap = new Set<string>();
 
     // Map inventory data
     if (inventory) {
       inventory.forEach(item => {
         inventoryMap[item.date] = item.available_count;
+      });
+    }
+
+    // Map admin-blocked dates
+    if (blockedDates) {
+      blockedDates.forEach(item => {
+        if (item.blocked) {
+          blockedMap.add(item.date);
+        }
       });
     }
 
@@ -143,12 +168,15 @@ serve(async (req) => {
     for (let d = new Date(startDateObj); d <= endDateObj; d.setDate(d.getDate() + 1)) {
       const dateStr = d.toISOString().split('T')[0];
       
+      // Check if admin blocked this date
+      const isAdminBlocked = blockedMap.has(dateStr);
+      
       // Get available count from inventory or default to total units
-      const availableCount = inventoryMap[dateStr] ?? totalUnits;
+      const availableCount = isAdminBlocked ? 0 : (inventoryMap[dateStr] ?? totalUnits);
       
       // Calculate bookings for this specific date
       let bookedCount = 0;
-      if (confirmedBookings) {
+      if (confirmedBookings && !isAdminBlocked) {
         confirmedBookings.forEach(booking => {
           const checkIn = new Date(booking.check_in);
           const checkOut = new Date(booking.check_out);
@@ -161,14 +189,15 @@ serve(async (req) => {
         });
       }
       
-      const finalAvailableCount = Math.max(0, availableCount - bookedCount);
+      const finalAvailableCount = isAdminBlocked ? 0 : Math.max(0, availableCount - bookedCount);
       
       availability[dateStr] = {
         available: finalAvailableCount,
         total: totalUnits,
-        isBlocked: availableCount === 0 && bookedCount === 0,
+        isBlocked: isAdminBlocked,
         isSoldOut: finalAvailableCount === 0,
-        bookedCount
+        bookedCount,
+        adminBlocked: isAdminBlocked
       };
     }
 

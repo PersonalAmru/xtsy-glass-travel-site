@@ -27,10 +27,18 @@ const DAYS_OF_WEEK = [
 
 export type AvailabilityStatus = 'available' | 'limited' | 'soldOut' | 'blocked' | 'unknown';
 
+interface AvailabilityDataItem {
+  available: number;
+  total: number;
+  isBlocked?: boolean;
+  isSoldOut?: boolean;
+  adminBlocked?: boolean;
+}
+
 interface MiniCalendarProps {
   selectedDate?: Date;
   onDateSelect?: (date: Date) => void;
-  availability?: Record<string, { available: number; total: number; isBlocked?: boolean; isSoldOut?: boolean }>;
+  availability?: Record<string, AvailabilityDataItem>;
   className?: string;
 }
 
@@ -53,7 +61,8 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
     const dayData = availability[dateStr];
     
     if (!dayData) return 'unknown';
-    if (dayData.isBlocked) return 'blocked';
+    // Admin-blocked dates should be clearly marked
+    if (dayData.adminBlocked || dayData.isBlocked) return 'blocked';
     if (dayData.isSoldOut || dayData.available === 0) return 'soldOut';
     if (dayData.available <= 2) return 'limited';
     return 'available';
