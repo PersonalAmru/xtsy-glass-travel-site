@@ -30,26 +30,90 @@ interface InvoiceData {
   userId?: string;
 }
 
-// XTSY Brand Logo URL
-const XTSY_LOGO_URL = 'https://xtsy.one/lovable-uploads/160f683c-a41c-41fd-8bdb-700d74a7e027.png';
+// XTSY Brand Logo URL (hosted)
+const XTSY_LOGO_URL = 'https://xtsy-one.lovable.app/xtsy-invoice-logo.jpg';
+
+// Company Details
+const COMPANY = {
+  name: 'XTSY Travellers Hostel',
+  address: 'Diengiong',
+  area: 'New Shillong Township',
+  district: 'East Khasi Hills',
+  state: 'Meghalaya',
+  pincode: '793018',
+  country: 'India',
+  phone: '+918837317070',
+  email: 'admin@xtsy.one',
+  gstin: '17QSKPK1714H1ZE',
+  upi: '9863627070@okbizaxis',
+  hsnCode: '996311', // HSN/SAC for accommodation services
+};
+
+// Convert number to words (Indian system)
+function numberToWords(num: number): string {
+  const ones = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten',
+    'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
+  const tens = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+  
+  if (num === 0) return 'Zero';
+  
+  const crore = Math.floor(num / 10000000);
+  num %= 10000000;
+  const lakh = Math.floor(num / 100000);
+  num %= 100000;
+  const thousand = Math.floor(num / 1000);
+  num %= 1000;
+  const hundred = Math.floor(num / 100);
+  num %= 100;
+  const ten = Math.floor(num / 10);
+  const one = num % 10;
+  
+  let result = '';
+  
+  if (crore > 0) {
+    result += (crore < 20 ? ones[crore] : tens[Math.floor(crore / 10)] + ' ' + ones[crore % 10]) + ' Crore ';
+  }
+  if (lakh > 0) {
+    result += (lakh < 20 ? ones[lakh] : tens[Math.floor(lakh / 10)] + ' ' + ones[lakh % 10]) + ' Lakh ';
+  }
+  if (thousand > 0) {
+    result += (thousand < 20 ? ones[thousand] : tens[Math.floor(thousand / 10)] + ' ' + ones[thousand % 10]) + ' Thousand ';
+  }
+  if (hundred > 0) {
+    result += ones[hundred] + ' Hundred ';
+  }
+  if (ten > 0 || one > 0) {
+    if (result !== '') result += 'and ';
+    if (ten < 2) {
+      result += ones[ten * 10 + one];
+    } else {
+      result += tens[ten] + (one > 0 ? ' ' + ones[one] : '');
+    }
+  }
+  
+  return result.trim();
+}
 
 function generateInvoiceHTML(data: InvoiceData): string {
-  const now = new Date();
-  const formattedCheckIn = new Date(data.checkIn).toLocaleDateString('en-IN', {
-    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+  const invoiceDate = new Date();
+  const formattedInvoiceDate = invoiceDate.toLocaleDateString('en-IN', {
+    day: '2-digit', month: '2-digit', year: 'numeric'
   });
-  const formattedCheckOut = new Date(data.checkOut).toLocaleDateString('en-IN', {
-    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-  });
-  const formattedDate = now.toLocaleDateString('en-IN', {
-    year: 'numeric', month: 'long', day: 'numeric'
-  });
-  const formattedTime = now.toLocaleTimeString('en-IN', {
-    hour: '2-digit', minute: '2-digit', hour12: true
-  });
-  const invoiceTimestamp = `${formattedDate} at ${formattedTime}`;
-
+  
+  // Calculate CGST and SGST (split GST equally)
+  const cgstAmount = data.gstAmount / 2;
+  const sgstAmount = data.gstAmount / 2;
   const gstPercent = (data.gstRate * 100).toFixed(0);
+  const halfGstPercent = (Number(gstPercent) / 2).toFixed(1);
+  
+  // Total in words
+  const totalInWords = `Indian Rupee ${numberToWords(Math.round(data.totalAmount))} Only`;
+  
+  // Item description
+  const itemDescription = data.roomName;
+  const qtyDisplay = `${data.quantity * data.nights}.00`;
+  const rateDisplay = data.ratePerNight.toFixed(2);
+  const amountBeforeTax = data.subtotal;
 
   return `
 <!DOCTYPE html>
@@ -57,483 +121,399 @@ function generateInvoiceHTML(data: InvoiceData): string {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Invoice ${data.bookingId} - XTSY Travellers Hostel</title>
+  <title>Tax Invoice ${data.bookingId} - XTSY Travellers Hostel</title>
   <link rel="icon" href="/xtsy-favicon.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { 
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; 
-      background: #0f1419; 
-      color: #1e293b;
-      line-height: 1.6;
-      min-height: 100vh;
-      padding: 40px 20px;
-    }
-    .invoice { 
-      max-width: 800px; 
-      margin: 0 auto; 
-      background: white; 
-      border-radius: 24px;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-      overflow: hidden;
-    }
-    
-    /* Header with Logo */
-    .header { 
-      background: linear-gradient(135deg, #0f1419 0%, #1a202c 50%, #2d3748 100%);
-      color: white; 
-      padding: 48px;
-      position: relative;
-      overflow: hidden;
-    }
-    .header::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -10%;
-      width: 60%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.03), transparent);
-      transform: rotate(-12deg);
-    }
-    .header-content { 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: flex-start;
-      position: relative;
-      z-index: 1;
-    }
-    .logo-section { display: flex; align-items: center; gap: 16px; }
-    .logo-img {
-      height: 64px;
-      width: auto;
-      filter: brightness(0) invert(1);
-    }
-    .invoice-meta { text-align: right; }
-    .invoice-label { 
-      font-size: 11px; 
-      font-weight: 600;
-      text-transform: uppercase; 
-      letter-spacing: 0.15em;
-      opacity: 0.6;
-      margin-bottom: 4px;
-    }
-    .invoice-number { 
-      font-size: 24px; 
-      font-weight: 800; 
-      margin-bottom: 12px;
-      letter-spacing: -0.5px;
-    }
-    .invoice-timestamp { 
-      font-size: 13px; 
-      opacity: 0.7;
-      margin-bottom: 16px;
-    }
-    
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(251, 191, 36, 0.2);
-      color: #fbbf24;
-      padding: 8px 16px;
-      border-radius: 100px;
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      border: 1px solid rgba(251, 191, 36, 0.3);
-    }
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #fbbf24;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-    
-    .body { padding: 48px; }
-    
-    .section { margin-bottom: 40px; }
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-    .section-icon {
-      width: 36px;
-      height: 36px;
-      background: linear-gradient(135deg, #0f1419, #1a202c);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 16px;
-    }
-    .section-title { 
-      font-size: 13px; 
-      font-weight: 700; 
-      text-transform: uppercase; 
-      letter-spacing: 0.1em;
-      color: #64748b; 
-    }
-    
-    .guest-info { 
-      display: grid; 
-      grid-template-columns: 1fr 1fr; 
-      gap: 32px;
-      background: #f8fafc;
-      border-radius: 16px;
-      padding: 24px;
-    }
-    .info-block {}
-    .info-label { 
-      font-size: 11px; 
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #94a3b8;
-      margin-bottom: 4px;
-    }
-    .info-block h3 { 
-      font-size: 18px; 
-      font-weight: 700; 
-      color: #0f172a;
-      margin-bottom: 4px;
-    }
-    .info-block p { color: #64748b; font-size: 14px; }
-    
-    .booking-details {
-      background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-      border-radius: 16px;
-      padding: 28px;
-      border: 1px solid #e2e8f0;
-    }
-    .detail-row { 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center;
-      padding: 14px 0;
-      border-bottom: 1px solid #e2e8f0;
-    }
-    .detail-row:last-child { border-bottom: none; }
-    .detail-label { 
-      color: #64748b;
-      font-size: 14px;
-      font-weight: 500;
-    }
-    .detail-value { 
-      font-weight: 700;
-      font-size: 15px;
-      color: #0f172a;
-    }
-    .detail-value.highlight {
-      color: #0f1419;
-      font-size: 16px;
-    }
-    
-    .pricing-table { 
-      width: 100%; 
-      border-collapse: collapse;
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid #e2e8f0;
-    }
-    .pricing-table th { 
-      text-align: left; 
-      padding: 16px 20px;
-      background: #0f1419;
-      color: white;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-weight: 600;
-    }
-    .pricing-table th:last-child { text-align: right; }
-    .pricing-table td { 
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      line-height: 1.4;
       padding: 20px;
-      border-bottom: 1px solid #f1f5f9;
-      font-size: 14px;
+      font-size: 12px;
     }
-    .pricing-table td:last-child { 
-      text-align: right; 
-      font-weight: 700;
-      font-size: 15px;
-    }
-    .pricing-table tbody tr:last-child td { border-bottom: none; }
-    
-    .totals { 
-      margin-top: 24px;
-      background: #f8fafc;
-      border-radius: 16px;
-      padding: 24px;
-    }
-    .total-row { 
-      display: flex; 
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 0;
-    }
-    .total-label { 
-      color: #64748b;
-      font-size: 14px;
-      font-weight: 500;
-    }
-    .total-value { 
-      font-weight: 700;
-      font-size: 15px;
-      color: #0f172a;
-    }
-    .grand-total {
-      background: linear-gradient(135deg, #0f1419 0%, #1a202c 100%);
-      color: white;
-      padding: 20px 24px;
-      border-radius: 12px;
-      margin-top: 16px;
-    }
-    .grand-total .total-label,
-    .grand-total .total-value { 
-      color: white; 
-      font-size: 18px;
-      font-weight: 700;
+    .invoice {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px 40px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
     
-    .system-note {
-      background: #fffbeb;
-      border: 1px solid #fde68a;
-      border-radius: 12px;
-      padding: 16px 20px;
-      margin-top: 32px;
+    /* Header */
+    .header {
       display: flex;
+      justify-content: space-between;
       align-items: flex-start;
-      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #c41e3a;
     }
-    .system-note-icon {
-      width: 20px;
-      height: 20px;
-      color: #f59e0b;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .system-note-text {
-      font-size: 13px;
-      color: #92400e;
-      line-height: 1.5;
-    }
-    .system-note-text strong {
-      font-weight: 600;
-    }
-    
-    .footer {
-      background: #f8fafc;
-      padding: 40px 48px;
-      border-top: 1px solid #e2e8f0;
-    }
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .footer-brand { 
+    .logo-section {
       display: flex;
       align-items: center;
-      gap: 12px;
     }
-    .footer-logo {
-      height: 32px;
+    .logo-img {
+      height: 80px;
       width: auto;
     }
-    .footer-info {
+    .company-details {
+      text-align: left;
+      margin-left: 15px;
+    }
+    .company-name {
+      font-size: 18px;
+      font-weight: bold;
+      color: #c41e3a;
+      margin-bottom: 2px;
+    }
+    .company-address {
+      font-size: 11px;
+      color: #555;
+      line-height: 1.4;
+    }
+    .company-contact {
+      font-size: 11px;
+      color: #555;
+      margin-top: 3px;
+    }
+    .gstin {
+      font-size: 11px;
+      font-weight: bold;
+      color: #333;
+      margin-top: 3px;
+    }
+    
+    /* Tax Invoice Title */
+    .invoice-title {
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+      color: #c41e3a;
+      margin: 15px 0;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    
+    /* Bill To and Invoice Info */
+    .info-section {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      font-size: 11px;
+    }
+    .bill-to {
+      flex: 1;
+    }
+    .bill-to-label {
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 5px;
+    }
+    .bill-to-name {
+      font-size: 13px;
+      font-weight: bold;
+    }
+    .invoice-info {
       text-align: right;
     }
-    .footer-text { 
-      color: #64748b; 
-      font-size: 13px; 
-      margin-bottom: 4px;
+    .invoice-info-row {
+      margin-bottom: 3px;
     }
-    .footer-contact { 
-      color: #0f172a; 
-      font-weight: 600; 
-      font-size: 14px;
+    .invoice-info-label {
+      color: #666;
+    }
+    .invoice-info-value {
+      font-weight: bold;
+      color: #333;
     }
     
-    .watermark {
-      text-align: center;
-      padding: 24px;
-      color: #94a3b8;
+    /* Items Table */
+    .items-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 15px;
       font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
+    }
+    .items-table th {
+      background: #f8f8f8;
+      border: 1px solid #ddd;
+      padding: 8px 6px;
+      text-align: center;
+      font-weight: bold;
+      color: #333;
+    }
+    .items-table td {
+      border: 1px solid #ddd;
+      padding: 8px 6px;
+      text-align: center;
+    }
+    .items-table td.left {
+      text-align: left;
+    }
+    .items-table td.right {
+      text-align: right;
+    }
+    
+    /* Totals Section */
+    .totals-section {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+    .thanks-message {
+      font-style: italic;
+      color: #666;
+      font-size: 12px;
+    }
+    .totals {
+      width: 250px;
+    }
+    .totals-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 0;
+      font-size: 11px;
+    }
+    .totals-row.total {
+      font-weight: bold;
+      font-size: 13px;
+      border-top: 1px solid #ddd;
+      padding-top: 8px;
+      margin-top: 5px;
+    }
+    .totals-row.payment {
+      color: #666;
+    }
+    .totals-row.balance {
+      font-weight: bold;
+      font-size: 14px;
+      color: #c41e3a;
+    }
+    
+    /* Total in Words */
+    .total-words {
+      margin-top: 15px;
+      font-size: 11px;
+      font-style: italic;
+      color: #333;
+    }
+    
+    /* Payment Info */
+    .payment-info {
+      margin-top: 15px;
+      padding: 10px;
+      background: #f8f8f8;
+      border-radius: 4px;
+      font-size: 11px;
+    }
+    .payment-info strong {
+      color: #c41e3a;
+    }
+    
+    /* Terms */
+    .terms {
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px solid #ddd;
+    }
+    .terms-title {
+      font-weight: bold;
+      font-size: 11px;
+      color: #333;
+      margin-bottom: 5px;
+    }
+    .terms-list {
+      font-size: 10px;
+      color: #666;
+      list-style: none;
+    }
+    .terms-list li {
+      margin-bottom: 2px;
+    }
+    .terms-list li::before {
+      content: "• ";
+      color: #c41e3a;
+    }
+    
+    /* Footer */
+    .footer {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 10px;
+      color: #888;
+    }
+    .footer .eco {
+      color: #2e7d32;
+      margin-bottom: 5px;
+    }
+    .footer .system {
+      font-style: italic;
+    }
+    .footer .brand {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #c41e3a;
+      font-size: 14px;
     }
     
     @media print {
       body { 
-        background: white; 
+        background: white;
         padding: 0;
       }
-      .invoice { 
+      .invoice {
         box-shadow: none;
-        border-radius: 0;
+        padding: 20px;
       }
     }
     @media (max-width: 600px) {
-      body { padding: 16px; }
-      .header { padding: 32px 24px; }
-      .header-content { flex-direction: column; gap: 24px; }
-      .invoice-meta { text-align: left; }
-      .body { padding: 32px 24px; }
-      .guest-info { grid-template-columns: 1fr; gap: 24px; }
-      .footer { padding: 32px 24px; }
-      .footer-content { flex-direction: column; gap: 20px; text-align: center; }
-      .footer-info { text-align: center; }
+      .invoice { padding: 15px; }
+      .header { flex-direction: column; gap: 15px; }
+      .info-section { flex-direction: column; gap: 15px; }
+      .invoice-info { text-align: left; }
+      .totals-section { flex-direction: column; gap: 15px; }
+      .totals { width: 100%; }
     }
   </style>
 </head>
 <body>
   <div class="invoice">
+    <!-- Header -->
     <div class="header">
-      <div class="header-content">
-        <div class="logo-section">
-          <img src="${XTSY_LOGO_URL}" alt="XTSY Travellers Hostel" class="logo-img">
-        </div>
-        <div class="invoice-meta">
-          <div class="invoice-label">Proforma Invoice</div>
-          <div class="invoice-number">${data.bookingId}</div>
-          <div class="invoice-timestamp">Generated: ${invoiceTimestamp}</div>
-          <div class="status-badge">
-            <span class="status-dot"></span>
-            Pending Approval
+      <div class="logo-section">
+        <img src="${XTSY_LOGO_URL}" alt="XTSY Travellers Hostel" class="logo-img">
+        <div class="company-details">
+          <div class="company-name">${COMPANY.name}</div>
+          <div class="company-address">
+            ${COMPANY.address}<br>
+            ${COMPANY.area}<br>
+            ${COMPANY.district} ${COMPANY.state} ${COMPANY.pincode}<br>
+            ${COMPANY.country}
           </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="body">
-      <div class="section">
-        <div class="section-header">
-          <div class="section-icon">👤</div>
-          <div class="section-title">Guest Information</div>
-        </div>
-        <div class="guest-info">
-          <div class="info-block">
-            <div class="info-label">Guest Name</div>
-            <h3>${data.guestName}</h3>
-            <p>${data.guestEmail}</p>
-            <p>${data.guestPhone}</p>
-          </div>
-          <div class="info-block">
-            <div class="info-label">Billing Address</div>
-            ${data.guestAddress ? `<p>${data.guestAddress}</p>` : '<p>—</p>'}
-            ${data.guestCity ? `<p>${data.guestCity}${data.guestState ? `, ${data.guestState}` : ''}</p>` : ''}
-            ${data.guestPincode ? `<p>PIN: ${data.guestPincode}</p>` : ''}
-          </div>
-        </div>
-      </div>
-      
-      <div class="section">
-        <div class="section-header">
-          <div class="section-icon">📅</div>
-          <div class="section-title">Reservation Details</div>
-        </div>
-        <div class="booking-details">
-          <div class="detail-row">
-            <span class="detail-label">Check-in Date</span>
-            <span class="detail-value highlight">${formattedCheckIn}</span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-label">Check-out Date</span>
-            <span class="detail-value highlight">${formattedCheckOut}</span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-label">Duration of Stay</span>
-            <span class="detail-value">${data.nights} Night${data.nights > 1 ? 's' : ''}</span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-label">Accommodation</span>
-            <span class="detail-value">${data.roomName}</span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-label">Quantity</span>
-            <span class="detail-value">${data.quantity} ${data.roomType === 'dorm' ? 'Bed' : 'Room'}${data.quantity > 1 ? 's' : ''}</span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="section">
-        <div class="section-header">
-          <div class="section-icon">💰</div>
-          <div class="section-title">Pricing Summary</div>
-        </div>
-        <table class="pricing-table">
-          <thead>
-            <tr>
-              <th>Description</th>
-              <th>Qty × Nights</th>
-              <th>Rate/Night</th>
-              <th>Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>${data.roomName}</strong><br><span style="color: #64748b; font-size: 12px;">${data.roomType === 'dorm' ? 'Dormitory Bed' : 'Private Room'}</span></td>
-              <td>${data.quantity} × ${data.nights}</td>
-              <td>₹${data.ratePerNight.toLocaleString('en-IN')}</td>
-              <td>₹${data.subtotal.toLocaleString('en-IN')}</td>
-            </tr>
-          </tbody>
-        </table>
-        
-        <div class="totals">
-          <div class="total-row">
-            <span class="total-label">Subtotal</span>
-            <span class="total-value">₹${data.subtotal.toLocaleString('en-IN')}</span>
-          </div>
-          ${Number(gstPercent) > 0 ? `
-          <div class="total-row">
-            <span class="total-label">GST (${gstPercent}%)</span>
-            <span class="total-value">₹${data.gstAmount.toLocaleString('en-IN')}</span>
-          </div>
-          ` : ''}
-          <div class="total-row grand-total">
-            <span class="total-label">Total Payable</span>
-            <span class="total-value">₹${data.totalAmount.toLocaleString('en-IN')}</span>
-          </div>
-        </div>
-        
-        <div class="system-note">
-          <svg class="system-note-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-          </svg>
-          <div class="system-note-text">
-            <strong>Pending Confirmation:</strong> This is a proforma invoice. Your booking is awaiting host approval. 
-            Once approved, you will receive a confirmation notification and this invoice will be updated.
-          </div>
+          <div class="company-contact">${COMPANY.phone}<br>${COMPANY.email}</div>
+          <div class="gstin">GSTIN: ${COMPANY.gstin}</div>
         </div>
       </div>
     </div>
     
+    <!-- Tax Invoice Title -->
+    <div class="invoice-title">TAX INVOICE</div>
+    
+    <!-- Bill To and Invoice Info -->
+    <div class="info-section">
+      <div class="bill-to">
+        <div class="bill-to-label">Bill To:</div>
+        <div class="bill-to-name">${data.guestName}</div>
+        ${data.guestAddress ? `<div>${data.guestAddress}</div>` : ''}
+        ${data.guestCity || data.guestState ? `<div>${[data.guestCity, data.guestState].filter(Boolean).join(', ')}</div>` : ''}
+        ${data.guestPincode ? `<div>PIN: ${data.guestPincode}</div>` : ''}
+        <div>${data.guestPhone}</div>
+        <div>${data.guestEmail}</div>
+      </div>
+      <div class="invoice-info">
+        <div class="invoice-info-row">
+          <span class="invoice-info-label">Invoice#:</span>
+          <span class="invoice-info-value">${data.bookingId}</span>
+        </div>
+        <div class="invoice-info-row">
+          <span class="invoice-info-label">Invoice Date:</span>
+          <span class="invoice-info-value">${formattedInvoiceDate}</span>
+        </div>
+        <div class="invoice-info-row">
+          <span class="invoice-info-label">Terms:</span>
+          <span class="invoice-info-value">Due on Receipt</span>
+        </div>
+        <div class="invoice-info-row">
+          <span class="invoice-info-label">Due Date:</span>
+          <span class="invoice-info-value">${formattedInvoiceDate}</span>
+        </div>
+        <div class="invoice-info-row">
+          <span class="invoice-info-label">Place Of Supply:</span>
+          <span class="invoice-info-value">Meghalaya (17)</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Items Table -->
+    <table class="items-table">
+      <thead>
+        <tr>
+          <th style="width: 30px;">#</th>
+          <th style="width: 150px;">Item</th>
+          <th>Description</th>
+          <th style="width: 60px;">HSN/SAC</th>
+          <th style="width: 50px;">Qty</th>
+          <th style="width: 60px;">Rate</th>
+          <th style="width: 60px;">CGST</th>
+          <th style="width: 60px;">SGST</th>
+          <th style="width: 80px;">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td class="left">${itemDescription}</td>
+          <td class="left">${itemDescription}</td>
+          <td>${COMPANY.hsnCode}</td>
+          <td>${qtyDisplay}</td>
+          <td class="right">${rateDisplay}</td>
+          <td class="right">${cgstAmount.toFixed(2)}</td>
+          <td class="right">${sgstAmount.toFixed(2)}</td>
+          <td class="right">${amountBeforeTax.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <!-- Totals Section -->
+    <div class="totals-section">
+      <div class="thanks-message">Thanks for choosing XTSY!</div>
+      <div class="totals">
+        <div class="totals-row">
+          <span>Sub Total:</span>
+          <span>${amountBeforeTax.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span>
+        </div>
+        <div class="totals-row total">
+          <span>Total:</span>
+          <span>Rs.${data.totalAmount.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span>
+        </div>
+        <div class="totals-row payment">
+          <span>Payment Made:</span>
+          <span>(-) 0.00</span>
+        </div>
+        <div class="totals-row balance">
+          <span>Balance Due:</span>
+          <span>Rs.${data.totalAmount.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Total in Words -->
+    <div class="total-words">
+      <strong>Total In Words:</strong> ${totalInWords}
+    </div>
+    
+    <!-- Payment Info -->
+    <div class="payment-info">
+      Kindly make payments via <strong>UPI</strong> to <strong>${COMPANY.upi}</strong>
+    </div>
+    
+    <!-- Terms & Conditions -->
+    <div class="terms">
+      <div class="terms-title">Terms & Conditions</div>
+      <ul class="terms-list">
+        <li>10% Booking amount is not refundable</li>
+        <li>Balance payment should be made before check-in.</li>
+        <li>We are not responsible for lost/stolen items.</li>
+      </ul>
+    </div>
+    
+    <!-- Footer -->
     <div class="footer">
-      <div class="footer-content">
-        <div class="footer-brand">
-          <img src="${XTSY_LOGO_URL}" alt="XTSY" class="footer-logo">
-        </div>
-        <div class="footer-info">
-          <p class="footer-text">Thank you for choosing XTSY!</p>
-          <p class="footer-contact">hello@xtsyhostels.com | +91 9876543210</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="watermark">
-      System Generated Invoice • No Signature Required
+      <div class="eco">🌿 Save Paper. Support Sustainable Tourism.</div>
+      <div class="system">This is system generated e-invoice.</div>
+      <div class="brand">XTSY</div>
     </div>
   </div>
 </body>
@@ -575,7 +555,7 @@ serve(async (req) => {
         p_gst_rate: data.gstRate,
         p_gst_amount: data.gstAmount,
         p_total_amount: data.totalAmount,
-        p_message_to_host: null, // No longer required
+        p_message_to_host: null,
         p_address: data.guestAddress || null,
         p_city: data.guestCity || null,
         p_state: data.guestState || null,
@@ -621,7 +601,7 @@ serve(async (req) => {
           },
         });
 
-        // Send system welcome message in chat (XTSY Pings) - pending status
+        // Send system welcome message in chat
         const checkInFormatted = new Date(data.checkIn).toLocaleDateString('en-IN', { 
           weekday: 'short', month: 'short', day: 'numeric' 
         });
