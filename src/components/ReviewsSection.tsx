@@ -296,7 +296,7 @@ const ReviewsSection = () => {
     date: "August 2025",
     source: "Booking.com",
     roomType: "Mixed Dormitory Room",
-    property: "XTSY Economy"
+    property: "XTSY Travellers Hostel"
   }, {
     name: "Danish",
     rating: 10,
@@ -304,7 +304,7 @@ const ReviewsSection = () => {
     date: "August 2025",
     source: "Booking.com",
     roomType: "8-Bed Mixed Dormitory Room",
-    property: "XTSY Economy"
+    property: "XTSY Travellers Hostel"
   }, {
     name: "Keita",
     rating: 10,
@@ -312,7 +312,7 @@ const ReviewsSection = () => {
     date: "September 2025",
     source: "Booking.com",
     roomType: "Mixed Dormitory Room",
-    property: "XTSY Economy"
+    property: "XTSY Travellers Hostel"
   }, {
     name: "Gandharv",
     rating: 10,
@@ -320,7 +320,7 @@ const ReviewsSection = () => {
     date: "September 2025",
     source: "Booking.com",
     roomType: "Mixed Dormitory Room",
-    property: "XTSY Economy"
+    property: "XTSY Travellers Hostel"
   }, {
     name: "Ritika",
     rating: 10,
@@ -328,7 +328,7 @@ const ReviewsSection = () => {
     date: "August 2025",
     source: "Booking.com",
     roomType: "Female Dormitory Room",
-    property: "XTSY Economy"
+    property: "XTSY Travellers Hostel"
   }, {
     name: "Samdarshi",
     rating: 5,
