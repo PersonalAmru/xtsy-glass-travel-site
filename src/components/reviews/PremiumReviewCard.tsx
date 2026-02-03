@@ -93,10 +93,10 @@ const PremiumReviewCard = ({
         !isMobile && "hover:scale-[1.02] hover:-translate-y-1",
         // Animation delay based on index
         "animate-fade-in",
-        // Variant-specific sizing
-        variant === "carousel" && "h-[280px] p-5",
-        variant === "grid" && "p-5",
-        variant === "featured" && "p-6 md:p-8"
+        // Variant-specific sizing - compact cards with reduced padding
+        variant === "carousel" && "h-[240px] p-4",
+        variant === "grid" && "p-4",
+        variant === "featured" && "p-5 md:p-6"
       )}
       style={{ 
         animationDelay: `${index * 100}ms`,
@@ -126,7 +126,7 @@ const PremiumReviewCard = ({
       />
 
       {/* Header with avatar and info */}
-      <div className="flex items-start gap-3 mb-4">
+      <div className="flex items-start gap-2.5 mb-3">
         {/* Gradient Avatar */}
         <div 
           className={cn(
