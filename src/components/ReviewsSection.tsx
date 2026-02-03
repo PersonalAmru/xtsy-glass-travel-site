@@ -6,6 +6,7 @@ import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import PremiumReviewCard from "./reviews/PremiumReviewCard";
 import PlatformRatingCard from "./reviews/PlatformRatingCard";
 import { cn } from "@/lib/utils";
+import { useReviews, type Review } from "@/hooks/useReviews";
 
 // Number of reviews to show initially in the modal
 const REVIEWS_PER_PAGE = 12;
@@ -18,12 +19,15 @@ const isMobileDevice = () => {
 
 const ReviewsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedReview, setSelectedReview] = useState<any>(null);
+  const [selectedReview, setSelectedReview] = useState<Review | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isAllReviewsOpen, setIsAllReviewsOpen] = useState(false);
   const [visibleReviewsCount, setVisibleReviewsCount] = useState(REVIEWS_PER_PAGE);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+
+  // Fetch reviews from Supabase
+  const { reviews: dbReviews, loading: dbLoading, hasReviews } = useReviews();
 
   // Detect mobile on mount
   useEffect(() => {
@@ -40,8 +44,8 @@ const ReviewsSection = () => {
     }
   }, [isAllReviewsOpen]);
 
-  // Real OTA platform reviews
-  const allReviews = [{
+  // Hardcoded OTA platform reviews (fallback when DB is empty)
+  const fallbackReviews: Review[] = [{
     name: "Rohit",
     rating: 10,
     comment: "Exceptional",
@@ -537,15 +541,25 @@ const ReviewsSection = () => {
     highlights: "Great view · Quiet · Great value"
   }];
 
+  // Use DB reviews if available, otherwise fallback to hardcoded OTA reviews
+  const allReviewsCombined = useMemo(() => {
+    if (hasReviews && dbReviews.length > 0) {
+      // Combine DB reviews with fallback OTA reviews
+      return [...dbReviews, ...fallbackReviews];
+    }
+    // Use only fallback reviews when DB is empty
+    return fallbackReviews;
+  }, [dbReviews, hasReviews]);
+
   // Sort reviews by comment length (longest first) for carousel
   const filteredReviews = useMemo(() => 
-    [...allReviews].sort((a, b) => b.comment.length - a.comment.length), 
-    []
+    [...allReviewsCombined].sort((a, b) => b.comment.length - a.comment.length), 
+    [allReviewsCombined]
   );
 
   // Sort reviews by rating (highest first) for "View All" modal
   const topRatedReviews = useMemo(() => 
-    [...allReviews].sort((a, b) => {
+    [...allReviewsCombined].sort((a, b) => {
       // Normalize ratings to 0-10 scale for comparison
       const ratingA = a.source === "Google" || a.source === "MakeMyTrip" ? a.rating * 2 : a.rating;
       const ratingB = b.source === "Google" || b.source === "MakeMyTrip" ? b.rating * 2 : b.rating;
@@ -553,7 +567,7 @@ const ReviewsSection = () => {
       if (ratingB !== ratingA) return ratingB - ratingA;
       return b.comment.length - a.comment.length;
     }), 
-    []
+    [allReviewsCombined]
   );
 
   const nextReview = useCallback(() => {
@@ -564,7 +578,7 @@ const ReviewsSection = () => {
     setCurrentIndex(prev => (prev - 1 + Math.ceil(filteredReviews.length / 4)) % Math.ceil(filteredReviews.length / 4));
   }, [filteredReviews.length]);
 
-  const handleReviewClick = (review: any) => {
+  const handleReviewClick = (review: Review) => {
     setSelectedReview(review);
     setIsDialogOpen(true);
   };
@@ -786,7 +800,7 @@ const ReviewsSection = () => {
           <DialogHeader className="sticky top-0 bg-slate-900/95 backdrop-blur-xl z-10 pb-4 border-b border-white/10">
             <DialogTitle className="flex items-center gap-3 text-xl sm:text-2xl font-bold text-white">
               <Sparkles className="w-6 h-6 text-violet-400" />
-              All Guest Reviews ({allReviews.length})
+              All Guest Reviews ({allReviewsCombined.length})
             </DialogTitle>
             <VisuallyHidden>
               <DialogDescription>Browse all verified guest reviews</DialogDescription>
@@ -814,7 +828,7 @@ const ReviewsSection = () => {
             </div>
             
             {/* Load More Button */}
-            {visibleReviewsCount < allReviews.length && (
+            {visibleReviewsCount < allReviewsCombined.length && (
               <div className="flex justify-center pt-8 pb-4">
                 <Button
                   onClick={handleLoadMore}
@@ -832,15 +846,15 @@ const ReviewsSection = () => {
                       Loading...
                     </>
                   ) : (
-                    `Load More (${allReviews.length - visibleReviewsCount} remaining)`
+                    `Load More (${allReviewsCombined.length - visibleReviewsCount} remaining)`
                   )}
                 </Button>
               </div>
             )}
             
-            {visibleReviewsCount >= allReviews.length && (
+            {visibleReviewsCount >= allReviewsCombined.length && (
               <p className="text-center text-white/40 text-sm py-6">
-                All {allReviews.length} reviews loaded
+                All {allReviewsCombined.length} reviews loaded
               </p>
             )}
           </div>
@@ -907,8 +921,8 @@ const ReviewsSection = () => {
                       {/* Property badge */}
                       <span className={cn(
                         "text-[10px] px-2 py-0.5 rounded-full font-medium text-white",
-                        selectedReview.property === "XTSY Economy" 
-                          ? "bg-gradient-to-r from-blue-500 to-blue-600"
+                        selectedReview.property === "XTSY Luxury" 
+                          ? "bg-gradient-to-r from-purple-500 to-purple-600"
                           : "bg-gradient-to-r from-orange-500 to-amber-500"
                       )}>
                         {selectedReview.property}
