@@ -191,9 +191,9 @@ const XTSYPrimeSection: React.FC<XTSYPrimeSectionProps> = ({ className }) => {
   };
 
   return (
-    <section className={`relative py-12 md:py-20 bg-gradient-to-b from-background to-muted/30 ${className}`}>
+    <section className={`relative py-8 md:py-12 bg-gradient-to-b from-background to-muted/30 ${className}`}>
       {/* Section Header */}
-      <div className="container mx-auto px-4 mb-8">
+      <div className="container mx-auto px-4 mb-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
