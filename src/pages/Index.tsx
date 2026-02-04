@@ -4,6 +4,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LazyWrapper from "@/components/LazyWrapper";
 import SEOContent from "@/components/SEOContent";
+import SEOHead, { getSEOConfig } from "@/components/SEOHead";
+import { useScrollDepthTracking } from "@/hooks/useScrollDepthTracking";
 
 // Lazy load below-fold sections for better initial load
 const HomeTourPackages = lazy(() => import("@/components/HomeTourPackages"));
@@ -22,8 +24,19 @@ const SectionFallback = memo(({ height = 'h-64' }: { height?: string }) => (
 SectionFallback.displayName = 'SectionFallback';
 
 const Index = memo(() => {
+  // Track scroll depth milestones (25%, 50%, 75%, 100%)
+  useScrollDepthTracking({ pageId: 'homepage' });
+  
+  const seoConfig = getSEOConfig('home');
+  
   return (
     <div className="min-h-screen">
+      <SEOHead 
+        title={seoConfig.title}
+        description={seoConfig.description}
+        keywords={seoConfig.keywords}
+        canonicalUrl="https://xtsy.one/"
+      />
       <SEOContent page="home" />
       <Header />
       <main style={{ contain: 'layout style' }}>

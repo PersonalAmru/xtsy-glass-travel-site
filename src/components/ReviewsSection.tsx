@@ -7,6 +7,7 @@ import PremiumReviewCard from "./reviews/PremiumReviewCard";
 import PlatformRatingCard from "./reviews/PlatformRatingCard";
 import { cn } from "@/lib/utils";
 import { useReviews, type Review } from "@/hooks/useReviews";
+import { routeGTMEvent } from "@/utils/gtmEventRouter";
 
 // Number of reviews to show initially in the modal
 const REVIEWS_PER_PAGE = 12;
@@ -41,8 +42,31 @@ const ReviewsSection = () => {
   useEffect(() => {
     if (isAllReviewsOpen) {
       setVisibleReviewsCount(REVIEWS_PER_PAGE);
+      // Track review modal open
+      routeGTMEvent({
+        eventName: 'review_interaction',
+        params: {
+          action: 'view_all_opened',
+          review_count: allReviewsCombined?.length || 0,
+        },
+      });
     }
   }, [isAllReviewsOpen]);
+
+  // Track individual review expansion
+  const handleReviewClick = useCallback((review: Review) => {
+    setSelectedReview(review);
+    setIsDialogOpen(true);
+    routeGTMEvent({
+      eventName: 'review_interaction',
+      params: {
+        action: 'review_expanded',
+        review_source: review.source,
+        review_property: review.property,
+        review_rating: review.rating,
+      },
+    });
+  }, []);
 
   // Hardcoded OTA platform reviews (fallback when DB is empty)
   const fallbackReviews: Review[] = [{
@@ -578,10 +602,7 @@ const ReviewsSection = () => {
     setCurrentIndex(prev => (prev - 1 + Math.ceil(filteredReviews.length / 4)) % Math.ceil(filteredReviews.length / 4));
   }, [filteredReviews.length]);
 
-  const handleReviewClick = (review: Review) => {
-    setSelectedReview(review);
-    setIsDialogOpen(true);
-  };
+  // Removed duplicate handleReviewClick - now using the tracked version defined above
 
   useEffect(() => {
     const interval = setInterval(nextReview, 5000);

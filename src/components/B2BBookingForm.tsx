@@ -12,6 +12,7 @@ import { useApp } from "@/contexts/AppContext";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import FoodAddonsSection from "@/components/FoodAddonsSection";
+import { routeGTMEvent } from "@/utils/gtmEventRouter";
 
 interface B2BBookingFormProps {
   isOpen: boolean;
@@ -64,6 +65,24 @@ const B2BBookingForm = ({
   });
 
   const [nights, setNights] = useState(0);
+  const [hasTrackedOpen, setHasTrackedOpen] = useState(false);
+
+  // Track modal open event
+  useEffect(() => {
+    if (isOpen && !hasTrackedOpen) {
+      routeGTMEvent({
+        eventName: 'b2b_enquiry_start',
+        params: {
+          form_type: isCoupleFocused ? 'couple_getaway' : 'b2b_corporate',
+          form_location: 'group_booking_section',
+        },
+      });
+      setHasTrackedOpen(true);
+    }
+    if (!isOpen) {
+      setHasTrackedOpen(false);
+    }
+  }, [isOpen, hasTrackedOpen, isCoupleFocused]);
 
   // Calculate nights when dates change
   useEffect(() => {
@@ -104,6 +123,21 @@ const B2BBookingForm = ({
   };
 
   const handleSubmit = async () => {
+    // Track form submission
+    routeGTMEvent({
+      eventName: 'b2b_enquiry_submit',
+      params: {
+        form_type: isCoupleFocused ? 'couple_getaway' : 'b2b_corporate',
+        group_size: formData.guests,
+        nights: nights,
+        event_type: formData.eventType,
+        has_food_addons: formData.breakfast || formData.dinner,
+        estimated_value: isCoupleFocused ? 0 : finalTotal,
+        value: isCoupleFocused ? 500 : finalTotal, // Assign value for lead scoring
+        currency: 'INR',
+      },
+    });
+
     try {
       // Use secure RPC function with server-side validation
       const { data, error } = await supabase.rpc('create_booking_secure', {
