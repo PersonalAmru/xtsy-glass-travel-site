@@ -13,6 +13,7 @@ import { useApp } from "@/contexts/AppContext";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import FoodAddonsSection from "@/components/FoodAddonsSection";
+import { routeGTMEvent } from "@/utils/gtmEventRouter";
 
 interface GroupBookingFormProps {
   isOpen: boolean;
@@ -22,6 +23,7 @@ interface GroupBookingFormProps {
 const GroupBookingForm = ({ isOpen, onClose }: GroupBookingFormProps) => {
   const { formatPrice } = useApp();
   const { toast } = useToast();
+  const [hasTrackedOpen, setHasTrackedOpen] = useState(false);
   const [formData, setFormData] = useState({
     groupName: "",
     contactPerson: "",
@@ -59,6 +61,23 @@ const GroupBookingForm = ({ isOpen, onClose }: GroupBookingFormProps) => {
     { id: "private-room", name: "Private Room", pricePerNight: 2000, capacity: 2 },
     { id: "entire-property", name: "Entire Property", pricePerNight: 15000, capacity: 50 }
   ];
+
+  // Track modal open event
+  useEffect(() => {
+    if (isOpen && !hasTrackedOpen) {
+      routeGTMEvent({
+        eventName: 'group_enquiry_start',
+        params: {
+          form_type: 'group_booking',
+          form_location: 'group_booking_section',
+        },
+      });
+      setHasTrackedOpen(true);
+    }
+    if (!isOpen) {
+      setHasTrackedOpen(false);
+    }
+  }, [isOpen, hasTrackedOpen]);
 
   // Calculate nights when dates change
   useEffect(() => {
@@ -98,6 +117,20 @@ const GroupBookingForm = ({ isOpen, onClose }: GroupBookingFormProps) => {
   };
 
   const handleSubmit = async () => {
+    // Track form submission
+    routeGTMEvent({
+      eventName: 'group_enquiry_submit',
+      params: {
+        form_type: 'group_booking',
+        group_size: formData.guests,
+        nights: nights,
+        has_food_addons: formData.breakfast || formData.dinner,
+        estimated_value: finalTotal,
+        value: finalTotal,
+        currency: 'INR',
+      },
+    });
+
     try {
       // Use secure RPC function with server-side validation
       const { data, error } = await supabase.rpc('create_booking_secure', {

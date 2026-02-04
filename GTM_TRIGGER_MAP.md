@@ -1,9 +1,49 @@
 # GTM Trigger Map - XTSY Website
 
-**Last Updated:** 2026-01-28  
+**Last Updated:** 2026-02-04  
 **GTM Container:** GTM-5FXJ9QBK  
 **GA4 Property:** G-SJY2WX6L4B  
 **Google Ads:** AW-17352497815
+
+---
+
+## 🆕 NEW EVENTS (Create These in GTM)
+
+### Scroll Depth Events
+| Event Name | Trigger Type | Parameters | GA4 Event |
+|------------|--------------|------------|-----------|
+| `scroll_depth` | Custom Event | scroll_depth_percent, scroll_milestone, time_to_milestone_seconds | scroll_depth |
+
+**GTM Setup:**
+1. Create Trigger: `CE - scroll_depth` (Custom Event = scroll_depth)
+2. Create Variables: `DLV - scroll_depth_percent`, `DLV - scroll_milestone`, `DLV - time_to_milestone_seconds`
+3. Create GA4 Tag with parameters
+
+### Group/B2B Enquiry Events
+| Event Name | Category | Is Conversion | Value Multiplier |
+|------------|----------|---------------|------------------|
+| `group_enquiry_start` | form_interaction | ❌ | - |
+| `group_enquiry_submit` | conversion | ✅ | 1.5x |
+| `b2b_enquiry_start` | form_interaction | ❌ | - |
+| `b2b_enquiry_submit` | conversion | ✅ | 2.0x |
+
+**GTM Setup:**
+1. Create Triggers: `CE - group_enquiry_submit`, `CE - b2b_enquiry_submit`
+2. Create Variables: `DLV - group_size`, `DLV - nights`, `DLV - estimated_value`
+3. Create GA4 Tag: `generate_lead` with enquiry_type parameter
+4. Optional: Create Google Ads Conversion Tags for lead tracking
+
+### Review Interaction Events
+| Event Name | Category | Parameters |
+|------------|----------|------------|
+| `review_interaction` | engagement | action, review_source, review_property, review_rating |
+| `review_source_click` | engagement | source_platform, review_id |
+| `trust_signal_view` | engagement | signal_type |
+
+**GTM Setup:**
+1. Create Trigger: `CE - review_interaction`
+2. Create Variables: `DLV - action`, `DLV - review_source`, `DLV - review_property`
+3. Create GA4 Tag: `review_engagement` with all parameters
 
 ---
 

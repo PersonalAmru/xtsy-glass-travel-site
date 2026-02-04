@@ -282,6 +282,61 @@ export const GTM_TRIGGERS: Record<string, GTMEventConfig> = {
     requiresValidation: true,
   },
 
+  // === GROUP & B2B ENQUIRY EVENTS ===
+  group_enquiry_start: {
+    eventName: 'group_enquiry_start',
+    category: 'form_interaction',
+    priority: 'high',
+    isConversion: false,
+    requiresValidation: false,
+  },
+  group_enquiry_submit: {
+    eventName: 'group_enquiry_submit',
+    category: 'conversion',
+    priority: 'critical',
+    isConversion: true,
+    requiresValidation: true,
+    valueMultiplier: 1.5,
+  },
+  b2b_enquiry_start: {
+    eventName: 'b2b_enquiry_start',
+    category: 'form_interaction',
+    priority: 'high',
+    isConversion: false,
+    requiresValidation: false,
+  },
+  b2b_enquiry_submit: {
+    eventName: 'b2b_enquiry_submit',
+    category: 'conversion',
+    priority: 'critical',
+    isConversion: true,
+    requiresValidation: true,
+    valueMultiplier: 2.0,
+  },
+
+  // === REVIEW INTERACTION EVENTS ===
+  review_interaction: {
+    eventName: 'review_interaction',
+    category: 'engagement',
+    priority: 'medium',
+    isConversion: false,
+    requiresValidation: false,
+  },
+  review_source_click: {
+    eventName: 'review_source_click',
+    category: 'engagement',
+    priority: 'medium',
+    isConversion: false,
+    requiresValidation: false,
+  },
+  trust_signal_view: {
+    eventName: 'trust_signal_view',
+    category: 'engagement',
+    priority: 'low',
+    isConversion: false,
+    requiresValidation: false,
+  },
+
   // === ERROR EVENTS ===
   tracking_error: {
     eventName: 'tracking_error',
