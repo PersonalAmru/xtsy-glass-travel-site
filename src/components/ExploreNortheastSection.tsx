@@ -1,87 +1,100 @@
- import { Badge } from "@/components/ui/badge";
- import { Card, CardContent } from "@/components/ui/card";
- import { MapPin, Compass, Mountain, Camera, Users, Shield } from "lucide-react";
+import { motion } from "framer-motion";
+import { MapPin, Compass, Mountain, Camera, Shield, Plane } from "lucide-react";
  
  const highlights = [
    {
      icon: Mountain,
      title: "Living Root Bridges",
-     description: "Trek to the iconic double-decker living root bridges in Cherrapunji, a UNESCO World Heritage marvel."
+    description: "Trek to UNESCO-recognized natural wonders in Cherrapunji"
    },
    {
      icon: Camera,
      title: "Cleanest Village in Asia",
-     description: "Visit Mawlynnong, known for its pristine beauty and unique community-driven cleanliness."
+    description: "Experience Mawlynnong's pristine beauty & Khasi culture"
    },
    {
      icon: Compass,
      title: "Wettest Place on Earth",
-     description: "Experience Cherrapunji's legendary rainfall and breathtaking waterfalls year-round."
+    description: "Witness legendary waterfalls in Cherrapunji"
    },
    {
      icon: MapPin,
      title: "Scotland of the East",
-     description: "Explore Shillong's rolling hills, pine forests, and vibrant Khasi culture."
+    description: "Explore Shillong's rolling hills & pine forests"
    }
- ];
- 
- const travelTips = [
-   { icon: Shield, text: "Indian e-Visa accepted • No special permits for Meghalaya" },
-   { icon: Users, text: "English widely spoken • Safe for solo travelers" },
  ];
  
  const ExploreNortheastSection = () => {
    return (
-     <section className="py-12 bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 relative overflow-hidden">
-       <div className="absolute inset-0 bg-gradient-to-br from-emerald-100/30 via-transparent to-teal-100/30" />
-       <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500" />
-       
-       <div className="container mx-auto px-4 relative z-10">
-         {/* Header */}
-         <div className="text-center mb-10">
-           <Badge className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-sm px-4 py-2 mb-4">
-             🌏 Explore Northeast India with XTSY
-           </Badge>
-           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 font-playfair">
-             Meghalaya: The Abode of Clouds
-           </h2>
-           <p className="text-gray-600 max-w-2xl mx-auto">
-             Discover India's hidden gem — pristine landscapes, living root bridges, and warm Khasi hospitality await international travelers.
-           </p>
-         </div>
+    <section className="py-8 md:py-12 bg-gradient-to-b from-muted/30 to-background relative overflow-hidden">
+      <div className="container mx-auto px-4">
+        {/* Compact Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="text-center mb-6"
+        >
+          <div className="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 px-3 py-1.5 rounded-full text-xs font-semibold mb-3 border border-emerald-500/20">
+            <Plane className="w-3 h-3" />
+            For International Travelers
+          </div>
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
+            Explore <span className="text-emerald-600 dark:text-emerald-400">Northeast India</span> with XTSY
+          </h2>
+          <p className="text-muted-foreground text-sm max-w-xl mx-auto">
+            Meghalaya: The Abode of Clouds — pristine landscapes, living root bridges & warm Khasi hospitality
+          </p>
+        </motion.div>
  
-         {/* Highlights Grid */}
-         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        {/* Compact Highlights Grid */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-6">
            {highlights.map((item, index) => (
-             <Card key={index} className="bg-white/80 backdrop-blur-sm border-white/50 hover:shadow-lg transition-shadow">
-               <CardContent className="p-5 text-center">
-                 <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center">
-                   <item.icon className="h-6 w-6 text-white" />
-                 </div>
-                 <h3 className="font-semibold text-gray-900 mb-2">{item.title}</h3>
-                 <p className="text-sm text-gray-600">{item.description}</p>
-               </CardContent>
-             </Card>
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-4 hover:bg-card/80 hover:border-emerald-500/30 transition-all group"
+            >
+              <div className="flex items-start gap-3">
+                <div className="w-9 h-9 rounded-lg bg-emerald-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-500/20 transition-colors">
+                  <item.icon className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+                </div>
+                <div className="min-w-0">
+                  <h3 className="font-semibold text-foreground text-sm mb-1">{item.title}</h3>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{item.description}</p>
+                </div>
+              </div>
+            </motion.div>
            ))}
          </div>
  
-         {/* Travel Tips for Foreigners */}
-         <div className="bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-lg max-w-3xl mx-auto">
-           <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">
-             🛂 Travel Tips for International Visitors
-           </h3>
-           <div className="grid sm:grid-cols-2 gap-4">
-             {travelTips.map((tip, index) => (
-               <div key={index} className="flex items-center gap-3 text-gray-700">
-                 <tip.icon className="h-5 w-5 text-emerald-600 flex-shrink-0" />
-                 <span className="text-sm">{tip.text}</span>
-               </div>
-             ))}
+        {/* Compact Travel Info Bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="bg-card/60 backdrop-blur-sm border border-border/50 rounded-xl p-4 max-w-2xl mx-auto"
+        >
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6 text-xs md:text-sm">
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <Shield className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+              <span>Indian e-Visa accepted</span>
+            </div>
+            <div className="hidden sm:block w-px h-4 bg-border" />
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <span>No special permits needed</span>
+            </div>
+            <div className="hidden sm:block w-px h-4 bg-border" />
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <span>English widely spoken</span>
+            </div>
            </div>
-           <p className="text-center text-sm text-gray-500 mt-4">
-             XTSY is your gateway to authentic Northeast India experiences — from our Shillong hostel base, explore waterfalls, caves, and cultural wonders.
-           </p>
-         </div>
+        </motion.div>
        </div>
      </section>
    );
