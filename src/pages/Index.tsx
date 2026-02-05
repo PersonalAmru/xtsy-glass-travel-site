@@ -1,4 +1,4 @@
-import { memo, Suspense, lazy } from "react";
+ import { memo, Suspense, lazy } from "react";
 import HeroSection from "@/components/HeroSection";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -12,7 +12,7 @@ const HomeTourPackages = lazy(() => import("@/components/HomeTourPackages"));
 const AboutXTSYSection = lazy(() => import("@/components/AboutXTSYSection"));
 const XTSYPrimeSection = lazy(() => import("@/components/XTSYPrimeSection"));
 const ReviewsSection = lazy(() => import("@/components/ReviewsSection"));
-const GroupBookingSection = lazy(() => import("@/components/GroupBookingSection"));
+ const ExploreNortheastSection = lazy(() => import("@/components/ExploreNortheastSection"));
 const AdventureCallToAction = lazy(() => import("@/components/AdventureCallToAction"));
 const FAQSection = lazy(() => import("@/components/FAQSection"));
 
@@ -70,11 +70,11 @@ const Index = memo(() => {
           </Suspense>
         </LazyWrapper>
         
-        <LazyWrapper fallback={<SectionFallback height="h-48" />}>
-          <Suspense fallback={<SectionFallback height="h-48" />}>
-            <GroupBookingSection />
-          </Suspense>
-        </LazyWrapper>
+         <LazyWrapper fallback={<SectionFallback height="h-48" />}>
+           <Suspense fallback={<SectionFallback height="h-48" />}>
+             <ExploreNortheastSection />
+           </Suspense>
+         </LazyWrapper>
         
         <LazyWrapper fallback={<SectionFallback height="h-48" />}>
           <Suspense fallback={<SectionFallback height="h-48" />}>
