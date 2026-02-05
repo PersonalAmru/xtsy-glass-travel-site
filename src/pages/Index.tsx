@@ -9,10 +9,10 @@ import { useScrollDepthTracking } from "@/hooks/useScrollDepthTracking";
 
 // Lazy load below-fold sections for better initial load
 const HomeTourPackages = lazy(() => import("@/components/HomeTourPackages"));
+const ExploreNortheastSection = lazy(() => import("@/components/ExploreNortheastSection"));
 const AboutXTSYSection = lazy(() => import("@/components/AboutXTSYSection"));
 const XTSYPrimeSection = lazy(() => import("@/components/XTSYPrimeSection"));
 const ReviewsSection = lazy(() => import("@/components/ReviewsSection"));
- const ExploreNortheastSection = lazy(() => import("@/components/ExploreNortheastSection"));
 const AdventureCallToAction = lazy(() => import("@/components/AdventureCallToAction"));
 const FAQSection = lazy(() => import("@/components/FAQSection"));
 
@@ -56,6 +56,13 @@ const Index = memo(() => {
           </Suspense>
         </LazyWrapper>
         
+        {/* Explore Northeast - For International Travelers */}
+        <LazyWrapper fallback={<SectionFallback height="h-48" />}>
+          <Suspense fallback={<SectionFallback height="h-48" />}>
+            <ExploreNortheastSection />
+          </Suspense>
+        </LazyWrapper>
+        
         {/* About XTSY */}
         <LazyWrapper fallback={<SectionFallback />}>
           <Suspense fallback={<SectionFallback />}>
@@ -69,12 +76,6 @@ const Index = memo(() => {
             <ReviewsSection />
           </Suspense>
         </LazyWrapper>
-        
-         <LazyWrapper fallback={<SectionFallback height="h-48" />}>
-           <Suspense fallback={<SectionFallback height="h-48" />}>
-             <ExploreNortheastSection />
-           </Suspense>
-         </LazyWrapper>
         
         <LazyWrapper fallback={<SectionFallback height="h-48" />}>
           <Suspense fallback={<SectionFallback height="h-48" />}>
