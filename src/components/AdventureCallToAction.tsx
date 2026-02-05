@@ -20,36 +20,7 @@ const AdventureCallToAction = () => {
   };
 
   return (
-    <section className="pt-12 pb-16 bg-gradient-to-br from-slate-100 via-white to-slate-100 relative overflow-hidden -mt-1">
-      {/* Background animations - More densely packed */}
-      <div className="absolute inset-0">
-        {[...Array(8)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-r from-orange-400/15 to-red-400/15 rounded-full blur-xl animate-pulse"
-            style={{
-              left: `${5 + i * 12}%`,
-              top: `${5 + (i % 3) * 30}%`,
-              animationDelay: `${i * 0.8}s`,
-              animationDuration: `${3 + i * 0.2}s`
-            }}
-          />
-        ))}
-        {/* Additional smaller circles to fill gaps */}
-        {[...Array(6)].map((_, i) => (
-          <div
-            key={`small-${i}`}
-            className="absolute w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-orange-300/10 to-red-300/10 rounded-full blur-lg animate-pulse"
-            style={{
-              left: `${10 + i * 15}%`,
-              top: `${15 + (i % 2) * 40}%`,
-              animationDelay: `${i * 1}s`,
-              animationDuration: `${4 + i * 0.3}s`
-            }}
-          />
-        ))}
-      </div>
-
+    <section className="py-8 bg-gradient-to-b from-muted/30 to-background relative overflow-hidden">
       <div className="container mx-auto max-w-4xl relative z-10">
         <div className="text-center">
           <Card className="bg-gradient-to-r from-orange-500 to-red-500 border-0">
