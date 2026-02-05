@@ -263,3 +263,85 @@ input[type="submit"] {
     contain: layout style;
   }
 }
+
+/* ========================================
+   Cross-Platform Performance Fixes
+   ======================================== */
+
+/* Android Chrome - Fix overscroll glow and momentum */
+@supports not (-webkit-touch-callout: none) {
+  html, body {
+    overscroll-behavior: none;
+    overscroll-behavior-y: contain;
+  }
+  
+  /* Android touch feedback */
+  button, a, [role="button"] {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Android input zoom prevention */
+  input, select, textarea {
+    font-size: max(16px, 1rem);
+  }
+}
+
+/* Windows - High contrast and smooth scrolling */
+@media screen and (-ms-high-contrast: active) {
+  * {
+    forced-color-adjust: none;
+  }
+}
+
+/* Windows Edge smooth scrolling */
+@supports (-ms-ime-align: auto) {
+  html {
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+  }
+}
+
+/* Universal performance optimizations */
+@media (hover: none) and (pointer: coarse) {
+  /* Touch device optimizations */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Disable hover effects on touch */
+  .hover\:scale-105:hover,
+  .hover\:shadow-lg:hover {
+    transform: none;
+    box-shadow: inherit;
+  }
+}
+
+/* Force GPU compositing for all animated elements */
+.animate-fade-in,
+.animate-slide-up,
+.animate-scale-in,
+[class*="transition-"],
+[class*="duration-"] {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Prevent font flickering across all platforms */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Image rendering optimization */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Reduce paint complexity for performance */
+.reduce-paint {
+  contain: strict;
+  content-visibility: auto;
+}

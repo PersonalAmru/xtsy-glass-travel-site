@@ -1,6 +1,5 @@
 import React, { Suspense, memo } from 'react';
 import { useComponentOptimization } from '@/hooks/useOptimizedPerformance';
-import { XTSYInlineLoader } from '@/components/LoadingScreen';
 
 interface LazyWrapperProps {
   children: React.ReactNode;
@@ -10,16 +9,19 @@ interface LazyWrapperProps {
   eager?: boolean; // Render immediately without waiting for intersection
 }
 
-// Minimal static fallback for sections - no animations for mobile performance
-const SectionFallback = () => (
+// Minimal static fallback for sections - zero animations for performance
+const SectionFallback = memo(() => (
   <div 
-    className="bg-muted/30 rounded-lg" 
+    className="bg-muted/20 rounded-lg layout-stable" 
     style={{ 
       minHeight: '200px',
-      contain: 'layout style',
+      contain: 'layout style paint',
+      contentVisibility: 'auto',
     }} 
   />
-);
+));
+
+SectionFallback.displayName = 'SectionFallback';
 
 const LazyWrapper: React.FC<LazyWrapperProps> = memo(({ 
   children, 
@@ -30,16 +32,14 @@ const LazyWrapper: React.FC<LazyWrapperProps> = memo(({
 }) => {
   const { elementRef, shouldRender } = useComponentOptimization({ eager });
   
-  // Use branded XTSY loader or minimal fallback
-  const actualFallback = fallback || (
-    showBrandedLoader ? <XTSYInlineLoader size="sm" /> : <SectionFallback />
-  );
+  // Always use minimal fallback for performance - no branded loader
+  const actualFallback = fallback || <SectionFallback />;
 
   return (
     <div 
       ref={elementRef as any}
       style={{ 
-        contain: 'layout style',
+        contain: 'layout style paint',
         contentVisibility: 'auto',
         containIntrinsicSize: 'auto 300px',
       }}

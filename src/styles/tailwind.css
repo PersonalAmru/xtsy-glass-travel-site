@@ -1,6 +1,5 @@
 /* Font imports - must come before @tailwind */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Josefin+Sans:wght@200;300;400;500;600;700&family=Cardo:wght@400;700&display=swap');
-@import url('https://fonts.cdnfonts.com/css/glacial-indifference');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap');
 @import './responsive.css';
 @import './ios-optimizations.css';
 
@@ -10,15 +9,26 @@
 
 /* Slow connection optimizations */
 .slow-connection * {
-  animation-duration: 0s !important;
-  animation-delay: 0s !important;
-  transition-duration: 0.1s !important;
+  animation: none !important;
+  transition: none !important;
 }
 
 .slow-connection .floating-element,
 .slow-connection .animate-pulse,
 .slow-connection .animate-bounce {
   animation: none !important;
+}
+
+/* GPU acceleration for smooth animations */
+.gpu-accelerate {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Prevent layout shifts */
+.layout-stable {
+  contain: layout style;
 }
 
 /* Mobile performance: disable heavy effects */
@@ -35,7 +45,9 @@
   }
   
   /* Disable pulse animations on mobile for performance */
-  .animate-pulse {
+  .animate-pulse,
+  .animate-bounce,
+  .animate-spin {
     animation: none !important;
   }
   
@@ -45,14 +57,36 @@
   .shadow-2xl {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
   }
+  
+  /* Prevent layout thrashing on mobile */
+  * {
+    scroll-behavior: auto !important;
+  }
+  
+  /* GPU layer promotion for smoother scrolling */
+  .glass-card,
+  .glass-header,
+  .glass-card-enhanced {
+    transform: translateZ(0);
+  }
+}
+
+/* Tablet performance optimizations */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .backdrop-blur-xl,
+  .backdrop-blur-2xl,
+  .backdrop-blur-3xl {
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+  }
 }
 
 /* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
   * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
   }
 }
 

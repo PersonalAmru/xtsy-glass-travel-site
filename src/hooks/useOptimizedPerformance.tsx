@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { PerformanceOptimizer } from '@/utils/performanceOptimizer';
-import { detectMemoryLeaks, createDebouncedMonitor } from '@/utils/performanceCleanup';
 
 // Optimized hook for heavy operations with throttling and caching
 export const useOptimizedPerformance = () => {
@@ -10,61 +9,48 @@ export const useOptimizedPerformance = () => {
     lastCheck: Date.now()
   });
 
-  const debouncedMonitor = useRef(
-    createDebouncedMonitor(() => {
-      const metrics = PerformanceOptimizer.monitorPerformance();
-      if (metrics) {
-        setPerformanceData({
-          memory: {
-            used: metrics.usedJSHeapSize,
-            total: metrics.totalJSHeapSize,
-            limit: metrics.jsHeapSizeLimit
-          },
-          isOptimal: metrics.usedJSHeapSize < 250, // 250MB threshold
-          lastCheck: metrics.timestamp
-        });
-      }
-    }, 10000) // Check every 10 seconds max
-  );
-
-  useEffect(() => {
-    // Initial check
-    debouncedMonitor.current();
-    
-    // Set up periodic monitoring
-    const interval = setInterval(() => {
-      debouncedMonitor.current();
-      
-      // Check for memory leaks
-      if (detectMemoryLeaks()) {
-        PerformanceOptimizer.cleanupUnusedComponents();
-      }
-    }, 60000); // Every minute
-
-    return () => {
-      clearInterval(interval);
-    };
+  const checkPerformance = useCallback(() => {
+    const metrics = PerformanceOptimizer.monitorPerformance();
+    if (metrics) {
+      setPerformanceData({
+        memory: {
+          used: metrics.usedJSHeapSize,
+          total: metrics.totalJSHeapSize,
+          limit: metrics.jsHeapSizeLimit
+        },
+        isOptimal: metrics.usedJSHeapSize < 250,
+        lastCheck: metrics.timestamp
+      });
+    }
   }, []);
 
+  useEffect(() => {
+    // Delay initial check to not block render
+    const initialCheck = setTimeout(checkPerformance, 5000);
+    
+    // Set up periodic monitoring
+    const interval = setInterval(checkPerformance, 120000); // Every 2 minutes
+
+    return () => {
+      clearTimeout(initialCheck);
+      clearInterval(interval);
+    };
+  }, [checkPerformance]);
+
   const optimizeImages = useCallback((images: string[]) => {
-    // Preload only critical images to prevent memory bloat
-    const criticalImages = images.slice(0, 3); // Only first 3 images
+    // Preload only first 2 images to prevent memory bloat
+    const criticalImages = images.slice(0, 2);
     PerformanceOptimizer.preloadResources(criticalImages);
   }, []);
 
-  const throttledImageLoad = useCallback(
-    PerformanceOptimizer.throttle((callback: () => void) => {
-      callback();
-    }, 1000), // Throttle image loads to max 1 per second
-    []
-  );
+  const throttledImageLoad = useCallback((callback: () => void) => {
+    requestIdleCallback(() => callback(), { timeout: 2000 });
+  }, []);
 
-  const debouncedSearch = useCallback(
-    PerformanceOptimizer.debounce((callback: () => void) => {
-      callback();
-    }, 300), // Debounce search operations
-    []
-  );
+  const debouncedSearch = useCallback((callback: () => void) => {
+    const timeout = setTimeout(callback, 300);
+    return () => clearTimeout(timeout);
+  }, []);
 
   return {
     performanceData,
@@ -89,20 +75,23 @@ export const useComponentOptimization = (options?: { eager?: boolean }) => {
     
     if (!elementRef.current) return;
 
+    // Use passive observer for better performance
     observerRef.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           setIsVisible(entry.isIntersecting);
           if (entry.isIntersecting) {
-            setShouldRender(true);
-            // Disconnect after first render to save resources
-            observerRef.current?.disconnect();
+            // Use RAF to batch state updates
+            requestAnimationFrame(() => {
+              setShouldRender(true);
+              observerRef.current?.disconnect();
+            });
           }
         });
       },
       {
-        threshold: 0.01, // Lower threshold for faster triggering
-        rootMargin: '200px' // Start loading 200px before entering viewport
+        threshold: 0.01,
+        rootMargin: '150px' // Reduced from 200px for faster triggering
       }
     );
 
@@ -120,4 +109,29 @@ export const useComponentOptimization = (options?: { eager?: boolean }) => {
     isVisible,
     shouldRender
   };
+};
+
+// Hook for stable resize handling without layout thrashing
+export const useStableResize = (callback: (width: number, height: number) => void, delay = 100) => {
+  const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
+  
+  useEffect(() => {
+    const handleResize = () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      timeoutRef.current = setTimeout(() => {
+        callback(window.innerWidth, window.innerHeight);
+      }, delay);
+    };
+    
+    window.addEventListener('resize', handleResize, { passive: true });
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, [callback, delay]);
 };
