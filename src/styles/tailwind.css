@@ -362,8 +362,8 @@
   backface-visibility: hidden;
 }
 
-/* Performance optimizations */
-img {
+/* Performance optimizations - only for below-fold images */
+img.lazy-below-fold {
   content-visibility: auto;
   contain-intrinsic-size: 300px 200px;
 }

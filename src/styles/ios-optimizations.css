@@ -218,13 +218,8 @@ input[type="submit"] {
    Apple First-Paint Optimization
    ======================================== */
 
-/* Disable animations on first paint for faster LCP */
-@media (max-width: 767px) {
-  html:not(.hydrated) * {
-    animation: none !important;
-    transition: none !important;
-  }
-}
+/* NOTE: Removed html:not(.hydrated) rule - it was causing black screen issues 
+   by hiding content before React hydration. Use prefers-reduced-motion instead. */
 
 /* ========================================
    iOS Dark Mode Compatibility
