@@ -28,7 +28,7 @@
       /* Layout containment for faster paint */
       main,section,article{contain:content}
       /* Reduce layout shift - reserve space for images */
-      img,video{max-width:100%;height:auto;display:block;content-visibility:auto}
+      img,video{max-width:100%;height:auto;display:block}
       /* Performance for animations - disable during initial load */
       @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
       body.initial-load *{transition:none!important;animation-duration:.001ms!important}
@@ -38,10 +38,10 @@
       .hero-bg{background:linear-gradient(135deg,#020617 0%,#0f172a 50%,#020617 100%)}
       /* Primary color variables for hero */
       :root{--primary:25 95% 53%;--primary-foreground:0 0% 100%}
-      /* Prevent FOUC */
-      html:not(.hydrated) #root{visibility:hidden}
-      html.hydrated #root{visibility:visible}
     </style>
+    
+    <!-- Hydration script - add hydrated class immediately when DOM is ready -->
+    <script>document.documentElement.classList.add('hydrated');</script>
     
     <!-- Critical mobile viewport -->
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,viewport-fit=cover">
