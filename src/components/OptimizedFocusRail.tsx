@@ -98,12 +98,18 @@ const FocusCard = React.memo(({
       transition={{ type: "spring", stiffness: 260, damping: 26 }}
       onClick={onClick}
     >
+      {/* Image with loading skeleton */}
+      <div className="absolute inset-0 bg-muted animate-pulse" />
       <img
         src={item.imageSrc}
         alt={item.title}
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300"
         loading={isCenter ? "eager" : "lazy"}
         decoding="async"
+        onLoad={(e) => {
+          (e.target as HTMLImageElement).style.opacity = '1';
+        }}
+        style={{ opacity: 0 }}
       />
 
       {item.category && (

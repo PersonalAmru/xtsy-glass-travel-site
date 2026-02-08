@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { motion, AnimatePresence, PanInfo } from "framer-motion";
+import { motion, PanInfo } from "framer-motion";
 import { ChevronLeft, ChevronRight, ArrowUpRight, Clock, Mountain, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -173,24 +173,13 @@ export function FocusRail({
       onKeyDown={onKeyDown}
       onWheel={onWheel}
     >
-      {/* Background Ambience */}
+      {/* Background Ambience - reduced blur for performance */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeItem.id}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.6 }}
-            className="absolute inset-0"
-          >
-            <div
-              className="absolute inset-0 bg-cover bg-center scale-110 blur-3xl"
-              style={{ backgroundImage: `url(${activeItem.imageSrc})` }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/40" />
-          </motion.div>
-        </AnimatePresence>
+        <div
+          className="absolute inset-0 bg-cover bg-center scale-110 blur-xl transition-[background-image] duration-500"
+          style={{ backgroundImage: `url(${activeItem.imageSrc})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/40" />
       </div>
 
       {/* Main Stage */}
@@ -240,13 +229,13 @@ export function FocusRail({
                   scale,
                   rotateY,
                   opacity,
-                  filter: `blur(${blur}px) brightness(${brightness})`,
                 }}
                 whileHover={isCenter ? { scale: 1.03 } : {}}
                 whileTap={isCenter ? { scale: 0.97 } : {}}
                 transition={BASE_SPRING}
                 style={{
                   transformStyle: "preserve-3d",
+                  filter: isCenter ? 'none' : `brightness(${brightness})`,
                 }}
                 onClick={() => {
                   if (offset !== 0) {
@@ -258,11 +247,18 @@ export function FocusRail({
                   }
                 }}
               >
+                {/* Image with loading skeleton */}
+                <div className="absolute inset-0 bg-muted animate-pulse" />
                 <img
                   src={item.imageSrc}
                   alt={item.title}
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300"
                   loading={isCenter ? "eager" : "lazy"}
+                  decoding="async"
+                  onLoad={(e) => {
+                    (e.target as HTMLImageElement).style.opacity = '1';
+                  }}
+                  style={{ opacity: 0 }}
                 />
 
                 {/* Category Badge */}
