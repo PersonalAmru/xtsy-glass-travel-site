@@ -312,15 +312,9 @@ input[type="submit"] {
   }
 }
 
-/* Force GPU compositing for all animated elements */
-.animate-fade-in,
-.animate-slide-up,
-.animate-scale-in,
-[class*="transition-"],
-[class*="duration-"] {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
+/* GPU compositing only for actively animating elements - NOT blanket promotion */
+/* Removed: blanket translateZ(0) on all transition/duration classes was creating
+   hundreds of composite layers on first paint, causing scroll glitches */
 
 /* Prevent font flickering across all platforms */
 html {
@@ -329,8 +323,8 @@ html {
   text-rendering: optimizeLegibility;
 }
 
-/* Image rendering optimization */
-img {
+/* Image rendering optimization - only for specific high-DPI use cases */
+img.crisp-render {
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
 }

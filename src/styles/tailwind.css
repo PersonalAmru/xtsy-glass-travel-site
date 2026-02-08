@@ -352,14 +352,15 @@
   transition: var(--transition-glass);
 }
 
-/* Prevent glass element flickering globally */
-.glass-header,
-.glass-card,
-.glass-card-enhanced,
-.glass-dropdown,
-[class*="backdrop-blur"] {
-  transform: translateZ(0);
-  backface-visibility: hidden;
+/* Glass element stability - GPU promotion only on desktop where blur is active */
+@media (min-width: 768px) {
+  .glass-header,
+  .glass-card,
+  .glass-card-enhanced,
+  .glass-dropdown {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
 }
 
 /* Performance optimizations - only for below-fold images */

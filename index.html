@@ -25,13 +25,11 @@
       body::-webkit-scrollbar{display:none}
       #root{min-height:100vh;contain:layout style}
       .dark{color-scheme:dark}
-      /* Layout containment for faster paint */
-      main,section,article{contain:content}
       /* Reduce layout shift - reserve space for images */
       img,video{max-width:100%;height:auto;display:block}
       /* Performance for animations - disable during initial load */
       @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-      body.initial-load *{transition:none!important;animation-duration:.001ms!important}
+      body.initial-load *{transition:none!important;animation-duration:.001ms!important;animation-delay:0ms!important}
       /* iOS optimizations */
       @supports (-webkit-touch-callout:none){input,select,textarea{font-size:16px!important}}
       /* Hero background gradient - critical for LCP */

@@ -91,12 +91,11 @@ const FocusCard = React.memo(({
       }}
       style={{
         transformStyle: "preserve-3d",
-        filter: isCenter ? 'none' : `blur(${dist * 6}px) brightness(0.5)`,
-        willChange: isCenter ? 'transform' : 'auto',
+        filter: isCenter ? 'none' : `brightness(0.5)`,
       }}
       whileHover={isCenter ? { scale: 1.03 } : undefined}
       whileTap={isCenter ? { scale: 0.97 } : undefined}
-      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      transition={{ type: "spring", stiffness: 260, damping: 26 }}
       onClick={onClick}
     >
       <img
@@ -267,7 +266,7 @@ export function OptimizedFocusRail({
       {/* Optimized background - CSS transition instead of AnimatePresence */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div
-          className="absolute inset-0 bg-cover bg-center scale-110 blur-3xl transition-[background-image] duration-500"
+          className="absolute inset-0 bg-cover bg-center scale-110 blur-xl transition-[background-image] duration-500"
           style={{ backgroundImage: `url(${activeItem.imageSrc})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/40" />

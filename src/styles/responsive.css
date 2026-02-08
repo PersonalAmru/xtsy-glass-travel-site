@@ -171,13 +171,9 @@
   contain-intrinsic-size: auto 400px;
 }
 
-@media (max-width: 767px) {
-  /* More aggressive content visibility on mobile */
-  section:not(:first-child) {
-    content-visibility: auto;
-    contain-intrinsic-size: auto 300px;
-  }
-}
+/* Removed: blanket content-visibility:auto on all sections was causing
+   layout recalculation and visual glitches during first scroll.
+   Use .lazy-section class explicitly on specific below-fold sections instead. */
 
 /* ========================================
    Touch Target Optimizations
@@ -462,12 +458,11 @@ body.reduce-motion *::after {
 
 .scroll-container,
 [data-radix-scroll-area-viewport] {
-  contain: strict;
-  content-visibility: auto;
+  contain: layout style;
 }
 
-/* Optimize fixed/sticky elements */
-.sticky, .fixed {
+/* Optimize fixed/sticky elements - only header/nav, not all fixed elements */
+header.sticky, header.fixed, nav.sticky, nav.fixed {
   backface-visibility: hidden;
   transform: translateZ(0);
 }
