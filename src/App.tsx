@@ -173,13 +173,16 @@ function App() {
 
     const timer = setTimeout(() => {
       setIsLoading(false);
-      // Remove initial-load class after first paint
+      // Remove initial-load class AFTER a full frame cycle to prevent animation burst
+      // Using double-rAF ensures the browser has painted the first frame before enabling animations
       requestAnimationFrame(() => {
-        document.body.classList.remove('initial-load');
-        // Hide LCP skeleton after React has hydrated
-        if (typeof (window as any).__hideLCPSkeleton === 'function') {
-          (window as any).__hideLCPSkeleton();
-        }
+        requestAnimationFrame(() => {
+          document.body.classList.remove('initial-load');
+          // Hide LCP skeleton after React has hydrated
+          if (typeof (window as any).__hideLCPSkeleton === 'function') {
+            (window as any).__hideLCPSkeleton();
+          }
+        });
       });
     }, loadTime);
 
