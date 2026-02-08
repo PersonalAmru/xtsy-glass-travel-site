@@ -12,9 +12,9 @@
     <!-- LCP CRITICAL: Preload hero brand symbol with highest priority -->
     <link rel="preload" as="image" href="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png" fetchpriority="high" type="image/png">
     
-    <!-- Single critical font - reduced weight variants for faster load -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap"></noscript>
+    <!-- Non-blocking font loading via preload + onload pattern -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap"></noscript>
     
     <!-- Critical inline CSS for instant first paint -->
     <style>

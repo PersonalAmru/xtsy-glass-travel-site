@@ -1,5 +1,5 @@
-/* Font imports - must come before @tailwind */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap');
+/* Fonts loaded via index.html preload (non-blocking) — DO NOT use @import here */
+/* @import url for Google Fonts was render-blocking and adding 1-2s to LCP */
 @import './responsive.css';
 @import './ios-optimizations.css';
 

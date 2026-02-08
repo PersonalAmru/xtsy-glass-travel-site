@@ -3,7 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect, Suspense, lazy, ReactNode, memo } from "react";
-import LoadingScreen from "./components/LoadingScreen";
+// LoadingScreen removed from initial render gate — content renders immediately for faster LCP
 import PerformanceMonitor from "./components/PerformanceMonitor";
 import SecurityHeadersProvider from "./components/SecurityHeadersProvider";
 import ErrorBoundary from "./components/ErrorBoundary";
@@ -147,7 +147,7 @@ const XTSYRouteLoader = memo(() => (
 XTSYRouteLoader.displayName = 'XTSYRouteLoader';
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     // Add initial-load class to disable transitions during first paint
@@ -166,37 +166,28 @@ function App() {
       pii_redaction_enabled: true
     });
 
-    // Ultra-fast loading - minimize artificial delay
-    const connection = (navigator as any).connection;
-    const isSlowConnection = connection?.effectiveType === '2g' || connection?.effectiveType === 'slow-2g';
-    const loadTime = isSlowConnection ? 100 : 10; // Near-instant for fast connections
-
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-      // Remove initial-load class AFTER a full frame cycle to prevent animation burst
-      // Using double-rAF ensures the browser has painted the first frame before enabling animations
+    // Remove initial-load class after first paint using double-rAF
+    // This ensures the browser has painted content before enabling animations
+    requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          document.body.classList.remove('initial-load');
-          // Hide LCP skeleton after React has hydrated
-          if (typeof (window as any).__hideLCPSkeleton === 'function') {
-            (window as any).__hideLCPSkeleton();
-          }
-        });
+        document.body.classList.remove('initial-load');
+        setIsReady(true);
+        // Hide LCP skeleton after React has hydrated
+        if (typeof (window as any).__hideLCPSkeleton === 'function') {
+          (window as any).__hideLCPSkeleton();
+        }
       });
-    }, loadTime);
+    });
 
     // Cleanup function for app unmount
     return () => {
-      clearTimeout(timer);
       performGlobalCleanup();
       cleanupUnifiedImage();
     };
   }, []);
 
-  if (isLoading) {
-    return <LoadingScreen />;
-  }
+  // Render content immediately — no LoadingScreen gate
+  // body.initial-load class suppresses animations until first paint completes
 
   return (
     <SecurityHeadersProvider config={{ 
