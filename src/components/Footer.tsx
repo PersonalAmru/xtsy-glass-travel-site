@@ -136,7 +136,7 @@ const Footer = () => {
         <div className="border-t border-gray-700 mt-4 sm:mt-6 lg:mt-8 pt-3 sm:pt-4 lg:pt-6">
           {/* Legal Links */}
           <div className="text-center mb-4 sm:mb-6">
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs sm:text-sm">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-2 sm:gap-6 text-xs sm:text-sm">
               <Link to="/privacy-policy" className="text-gray-400 hover:text-orange-400 transition-colors duration-300 py-1">
                 Privacy Policy
               </Link>
