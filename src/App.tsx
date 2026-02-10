@@ -19,6 +19,7 @@ import { HappyGuestsProvider } from "./contexts/HappyGuestsContext";
 import { UserAuthProvider } from "./contexts/UserAuthContext";
 import ConsentModal from "./components/consent/ConsentModal";
 import { TrafficAnalyticsProvider } from "./hooks/useTrafficAnalytics";
+import FloatingWhatsApp from "./components/FloatingWhatsApp";
 
 // Optimized lazy loading with faster retry and better chunk handling
 const createLazyComponent = (importFn: () => Promise<any>) => {
@@ -267,6 +268,7 @@ function App() {
                 
                 <Route path="*" element={<NotFound />} />
               </Routes>
+               <FloatingWhatsApp />
               </TooltipProvider>
               </EnhancedAnalyticsProvider>
             </TrafficAnalyticsProvider>
