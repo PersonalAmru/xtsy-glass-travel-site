@@ -29,7 +29,7 @@ const Footer = () => {
   return <footer className="bg-gray-900 text-white py-4 sm:py-8 md:py-12 lg:py-16">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-          {/* Brand Section - Center aligned for all screens */}
+          {/* Brand Section */}
           <div className="text-center order-1 lg:order-1">
             <div className="flex items-center gap-2 justify-center mb-3 sm:mb-4 lg:mb-6">
               {!logoError ? <img src={xtsyLogo} alt="XTSY Travellers Hostel Logo" className="h-8 sm:h-12 lg:h-16 w-auto object-contain" loading="lazy" onLoad={handleLogoLoad} onError={handleLogoError} /> : <div className="h-8 sm:h-12 lg:h-16 w-16 sm:w-20 lg:w-24 bg-gradient-to-r from-orange-500 to-red-600 rounded flex items-center justify-center">
@@ -49,7 +49,7 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links - Center aligned for all screens */}
+          {/* Quick Links */}
           <div className="text-center order-2 lg:order-2">
             <h3 className="text-sm sm:text-lg lg:text-xl font-semibold mb-3 sm:mb-4 lg:mb-6 text-white">Quick Links</h3>
             <ul className="space-y-2 sm:space-y-3 lg:space-y-4">
@@ -86,7 +86,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Info - Center aligned for all screens */}
+          {/* Contact Info */}
           <div className="text-center order-3 lg:order-3">
             <h3 className="text-sm sm:text-lg lg:text-xl font-semibold mb-3 sm:mb-4 lg:mb-6 text-white">Contact Us</h3>
             <div className="space-y-2 sm:space-y-3 lg:space-y-4">
@@ -94,16 +94,14 @@ const Footer = () => {
                 <div className="text-gray-300 text-xs sm:text-sm lg:text-base leading-relaxed text-center">
                   <div className="font-medium text-white mb-1">XTSY Travellers Hostel</div>
                   <div className="text-xs sm:text-sm">Diengiong road, New Shillong</div>
-                  <div className="text-xs sm:text-sm">Township, Meghalaya - 793018  [Landmark: 800 Mtrs from New Shillong Centre Point]</div>
+                  <div className="text-xs sm:text-sm">Township, Meghalaya - 793018  [Landmark: 800 Mtrs from New Shillong Centre Point]</div>
                 </div>
               </div>
               
               <div className="flex items-start space-x-2 sm:space-x-3 justify-center">
                 <Phone className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-orange-400 mt-0.5 flex-shrink-0" />
                 <div className="text-gray-300 text-xs sm:text-sm lg:text-base text-center">
-                  <div className="font-medium">Group/Corporate Bookings: 
-+91 88373 17070</div>
-                  <div className="font-medium">Reception: +91 98633 17070 [Eurica]</div>
+                  <div className="font-medium">Reception: +91 6909436892 [Mr. Santhosh]</div>
                 </div>
               </div>
               
@@ -136,7 +134,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-700 mt-4 sm:mt-6 lg:mt-8 pt-3 sm:pt-4 lg:pt-6">
-          {/* Legal Links - Required for Google OAuth Verification */}
+          {/* Legal Links */}
           <div className="text-center mb-4 sm:mb-6">
             <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs sm:text-sm">
               <Link to="/privacy-policy" className="text-gray-400 hover:text-orange-400 transition-colors duration-300 py-1">
