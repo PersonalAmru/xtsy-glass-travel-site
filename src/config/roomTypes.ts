@@ -15,7 +15,13 @@ export type RoomTag =
   | 'preferred_by_group' 
   | 'preferred_by_families'
   | 'best_value'
-  | 'most_popular';
+  | 'most_popular'
+  | 'bestseller'
+  | 'recommended'
+  | 'preferred_by_female'
+  | 'preferred_by_couple'
+  | 'luxury_couple'
+  | 'sold_out';
 
 export interface RoomTypeConfig {
   id: string;                    // Unique database ID - used for all DB operations
@@ -110,6 +116,12 @@ export const TAG_LABELS: Record<RoomTag, string> = {
   preferred_by_families: 'Preferred by Families',
   best_value: 'Best Value',
   most_popular: 'Most Popular',
+  bestseller: 'Bestseller',
+  recommended: 'Recommended',
+  preferred_by_female: 'Preferred by Female',
+  preferred_by_couple: 'Preferred by Couple',
+  luxury_couple: 'Luxury Couple',
+  sold_out: 'Sold Out',
 };
 
 // Tag colors for UI
@@ -120,6 +132,12 @@ export const TAG_COLORS: Record<RoomTag, { bg: string; text: string }> = {
   preferred_by_families: { bg: 'bg-emerald-500/20', text: 'text-emerald-400' },
   best_value: { bg: 'bg-purple-500/20', text: 'text-purple-400' },
   most_popular: { bg: 'bg-orange-500/20', text: 'text-orange-400' },
+  bestseller: { bg: 'bg-yellow-500/20', text: 'text-yellow-400' },
+  recommended: { bg: 'bg-teal-500/20', text: 'text-teal-400' },
+  preferred_by_female: { bg: 'bg-pink-500/20', text: 'text-pink-400' },
+  preferred_by_couple: { bg: 'bg-rose-500/20', text: 'text-rose-400' },
+  luxury_couple: { bg: 'bg-amber-600/20', text: 'text-amber-300' },
+  sold_out: { bg: 'bg-red-600/20', text: 'text-red-400' },
 };
 
 export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
@@ -134,15 +152,15 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     totalUnits: 1,
     propertyType: 'XTSY Luxury',
     isBookable: true,
-    basePrice: 8500,
+    basePrice: 7489,
     displayOrder: 1,
-    tags: ['couple_favourite'],
+    tags: ['luxury_couple'],
     image: ROOM_IMAGES['xtsy-270'][0],
     images: ROOM_IMAGES['xtsy-270'],
   },
 
   // === HOSTEL CATEGORY (XTSY Travellers Hostel) ===
-  // King Double Room - First (Couple Favourite)
+  // King Double Room - First (Preferred by Couple)
   'king-double-room': {
     id: 'king-double-room',
     name: 'King Double Room',
@@ -150,17 +168,17 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     category: 'hostel',
     unitType: 'room',
     capacity: 2,
-    totalUnits: 2,
+    totalUnits: 3,
     propertyType: 'XTSY Travellers Hostel',
     isBookable: true,
-    basePrice: 1800, // Updated price
-    displayOrder: 10, // First in hostel category
-    tags: ['couple_favourite'],
+    basePrice: 2099,
+    displayOrder: 10,
+    tags: ['preferred_by_couple'],
     image: ROOM_IMAGES['king-double-room'][0],
     images: ROOM_IMAGES['king-double-room'],
   },
 
-  // 4-Bed Female Dorm (Solo Traveller)
+  // 4-Bed Female Dorm (Preferred by Female)
   '4-bed-female-only-dorm': {
     id: '4-bed-female-only-dorm',
     name: 'Bed in 4-Bed Female Dormitory',
@@ -171,14 +189,14 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     totalUnits: 4,
     propertyType: 'XTSY Travellers Hostel',
     isBookable: true,
-    basePrice: 400, // Updated price
+    basePrice: 419,
     displayOrder: 20,
-    tags: ['solo_traveller'],
+    tags: ['preferred_by_female'],
     image: ROOM_IMAGES['4-bed-female-only-dorm'][0],
     images: ROOM_IMAGES['4-bed-female-only-dorm'],
   },
 
-  // 4-Bed Mixed Dorm (Solo Traveller)
+  // 4-Bed Mixed Dorm (Preferred by Solo Traveller)
   '4-bed-mixed-female-dorm': {
     id: '4-bed-mixed-female-dorm',
     name: 'Bed in 4-Bed Mixed Dormitory',
@@ -189,14 +207,14 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     totalUnits: 4,
     propertyType: 'XTSY Travellers Hostel',
     isBookable: true,
-    basePrice: 500, // Updated price
+    basePrice: 529,
     displayOrder: 30,
     tags: ['solo_traveller'],
     image: ROOM_IMAGES['4-bed-mixed-female-dorm'][0],
     images: ROOM_IMAGES['4-bed-mixed-female-dorm'],
   },
 
-  // 6-Bed Female Dorm (Preferred by Groups & Families)
+  // 6-Bed Female Dorm (SOLD OUT)
   '6-bed-mixed-female-dorm': {
     id: '6-bed-mixed-female-dorm',
     name: 'Bed in 6-Bed Female Dormitory',
@@ -206,15 +224,15 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     capacity: 6,
     totalUnits: 6,
     propertyType: 'XTSY Travellers Hostel',
-    isBookable: true,
-    basePrice: 350, // Updated price
+    isBookable: false,
+    basePrice: 369,
     displayOrder: 40,
-    tags: ['preferred_by_group', 'preferred_by_families'],
+    tags: ['sold_out'],
     image: ROOM_IMAGES['6-bed-mixed-female-dorm'][0],
     images: ROOM_IMAGES['6-bed-mixed-female-dorm'],
   },
 
-  // 6-Bed Mixed Dorm (Preferred by Groups & Families)
+  // 6-Bed Mixed Dorm (Recommended)
   '6-bed-mixed-dorm': {
     id: '6-bed-mixed-dorm',
     name: 'Bed in 6-Bed Mixed Dormitory',
@@ -222,17 +240,17 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     category: 'hostel',
     unitType: 'bed',
     capacity: 6,
-    totalUnits: 6,
+    totalUnits: 18,
     propertyType: 'XTSY Travellers Hostel',
     isBookable: true,
-    basePrice: 400, // Updated price
+    basePrice: 419,
     displayOrder: 50,
-    tags: ['preferred_by_group', 'preferred_by_families'],
+    tags: ['recommended'],
     image: ROOM_IMAGES['6-bed-mixed-dorm'][0],
     images: ROOM_IMAGES['6-bed-mixed-dorm'],
   },
 
-  // 8-Bed Mixed Dorm for XTSY Travellers Hostel (Best Value)
+  // 8-Bed Mixed Dorm (Bestseller)
   '8-bed-mixed-dorm': {
     id: '8-bed-mixed-dorm',
     name: 'Bed in 8-Bed Mixed Dormitory',
@@ -240,12 +258,12 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     category: 'hostel',
     unitType: 'bed',
     capacity: 8,
-    totalUnits: 8,
+    totalUnits: 24,
     propertyType: 'XTSY Travellers Hostel',
     isBookable: true,
-    basePrice: 300, // Updated price
+    basePrice: 269,
     displayOrder: 60,
-    tags: ['preferred_by_group', 'preferred_by_families', 'best_value'],
+    tags: ['bestseller'],
     image: ROOM_IMAGES['8-bed-mixed-dorm'][0],
     images: ROOM_IMAGES['8-bed-mixed-dorm'],
   },

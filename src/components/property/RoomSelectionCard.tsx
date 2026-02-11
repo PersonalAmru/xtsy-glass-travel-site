@@ -4,7 +4,7 @@
  */
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { Users, Minus, Plus, Heart, User, UsersRound, Home } from 'lucide-react';
+import { Users, Minus, Plus, Heart, User, UsersRound, Home, Star, ThumbsUp, Crown, Ban } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { RoomType, TAG_LABELS, TAG_COLORS, RoomTag } from '@/data/roomInventory';
 import UnifiedImage from '@/components/UnifiedImage';
@@ -24,6 +24,12 @@ const TAG_ICONS: Record<RoomTag, React.ReactNode> = {
   preferred_by_families: <Home className="w-3 h-3" />,
   best_value: null,
   most_popular: null,
+  bestseller: <Star className="w-3 h-3" />,
+  recommended: <ThumbsUp className="w-3 h-3" />,
+  preferred_by_female: <User className="w-3 h-3" />,
+  preferred_by_couple: <Heart className="w-3 h-3" />,
+  luxury_couple: <Crown className="w-3 h-3" />,
+  sold_out: <Ban className="w-3 h-3" />,
 };
 
 export const RoomSelectionCard = ({
@@ -34,7 +40,8 @@ export const RoomSelectionCard = ({
 }: RoomSelectionCardProps) => {
   const isSelected = quantity > 0;
   const isDorm = room.kind === 'dorm';
-  const effectiveMax = isDorm ? Math.min(room.capacity, maxQuantity) : Math.min(room.totalUnits, maxQuantity);
+  const isSoldOut = !room.isBookable;
+  const effectiveMax = isSoldOut ? 0 : (isDorm ? Math.min(room.capacity, maxQuantity) : Math.min(room.totalUnits, maxQuantity));
 
   const handleIncrement = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -55,9 +62,11 @@ export const RoomSelectionCard = ({
       layout
       className={cn(
         "rounded-xl bg-white/5 border overflow-hidden transition-all duration-200",
-        isSelected 
-          ? "border-primary/40 bg-white/[0.08]" 
-          : "border-white/10 hover:border-white/20"
+        isSoldOut
+          ? "border-white/5 opacity-60 pointer-events-none"
+          : isSelected 
+            ? "border-primary/40 bg-white/[0.08]" 
+            : "border-white/10 hover:border-white/20"
       )}
     >
       <div className="flex items-center gap-4 p-4">
@@ -99,9 +108,15 @@ export const RoomSelectionCard = ({
               {isDorm ? '1 bed' : `${room.capacity} guests`}
             </span>
           </div>
-          <div className="mt-2">
+          <div className="mt-2 flex items-baseline gap-2">
+            {room.originalPrice > room.discountedPrice && (
+              <span className="text-sm text-white/40 line-through">₹{room.originalPrice.toLocaleString()}</span>
+            )}
             <span className="text-lg font-bold text-white">₹{room.discountedPrice.toLocaleString()}</span>
-            <span className="text-xs text-white/40 ml-1">/{isDorm ? 'bed' : 'night'}</span>
+            <span className="text-xs text-white/40">/{isDorm ? 'bed' : 'night'}</span>
+            {!room.isBookable && (
+              <span className="text-xs font-semibold text-red-400 bg-red-500/20 px-2 py-0.5 rounded-full">Sold Out</span>
+            )}
           </div>
         </div>
 
