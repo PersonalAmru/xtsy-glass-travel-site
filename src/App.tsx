@@ -19,6 +19,7 @@ import { HappyGuestsProvider } from "./contexts/HappyGuestsContext";
 import { UserAuthProvider } from "./contexts/UserAuthContext";
 import ConsentModal from "./components/consent/ConsentModal";
 import { TrafficAnalyticsProvider } from "./hooks/useTrafficAnalytics";
+import { ConversionSignalsProvider } from "./providers/ConversionSignalsProvider";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
 
 // Optimized lazy loading with faster retry and better chunk handling
@@ -200,6 +201,7 @@ function App() {
         <HappyGuestsProvider>
           <UserAuthProvider>
             <TrafficAnalyticsProvider>
+              <ConversionSignalsProvider>
               <EnhancedAnalyticsProvider>
                 
                 <ConsentModal />
@@ -271,6 +273,7 @@ function App() {
                <FloatingWhatsApp />
               </TooltipProvider>
               </EnhancedAnalyticsProvider>
+              </ConversionSignalsProvider>
             </TrafficAnalyticsProvider>
           </UserAuthProvider>
         </HappyGuestsProvider>

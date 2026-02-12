@@ -15,7 +15,7 @@ import { formatLocalDateString } from "@/lib/date-utils";
 import { getLocationOptions } from "@/data/properties";
 import { ModernBookingForm } from "@/components/ui/modern-booking-form";
 import { useComponentTracking } from "@/hooks/useComponentTracking";
-
+import { useConversionSignalsContext } from "@/providers/ConversionSignalsProvider";
 const HeroSection = () => {
   const navigate = useNavigate();
   const [checkIn, setCheckIn] = useState<Date | undefined>(new Date());
@@ -32,6 +32,7 @@ const HeroSection = () => {
   
   // GTM Tracking
   const { trackCTA, trackButton, trackFormSubmit } = useComponentTracking({ section: 'hero' });
+  const { trackSearchAvailability } = useConversionSignalsContext();
   
   const locationOptions = getLocationOptions();
 
@@ -133,10 +134,21 @@ const HeroSection = () => {
     }));
     
     // Track successful form submit
+    const nights = Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24));
     trackFormSubmit('booking_search', {
       location,
-      nights: Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24)),
+      nights,
       guests,
+    });
+
+    // Fire search_availability GTM event
+    trackSearchAvailability({
+      property_id: location,
+      checkin_date: checkInStr,
+      checkout_date: checkOutStr,
+      guests,
+      nights,
+      estimated_revenue: nights * guests * 300, // Avg estimate
     });
 
     // Navigate to dedicated search results page

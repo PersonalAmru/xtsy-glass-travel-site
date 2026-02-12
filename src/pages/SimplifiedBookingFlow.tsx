@@ -42,6 +42,7 @@ import { useOptionalAuth } from '@/hooks/useRequireAuth';
 import { generateInvoice, openInvoiceHTML, downloadInvoiceAsPDF } from '@/services/invoiceService';
 import { BookingChat } from '@/components/chat/BookingChat';
 import { pushToDataLayer, trackBookingStart, trackBookingComplete } from '@/utils/dataLayerService';
+import { routeGTMEvent } from '@/utils/gtmEventRouter';
 
 type BookingStep = 'summary' | 'details' | 'confirmation';
 
@@ -947,6 +948,20 @@ export default function SimplifiedBookingFlow() {
           isCompleted: true,
         });
 
+        // Fire booking_created GTM event (distinct from booking_confirmed)
+        routeGTMEvent({
+          eventName: 'booking_created',
+          params: {
+            transaction_id: result.bookingId,
+            property_id: 'xtsy-shillong',
+            value: total,
+            room_type: primaryRoom.room.name,
+            nights,
+            guests: selectedRooms.reduce((sum, r) => sum + (r.room.capacity * r.quantity), 0),
+            currency: 'INR',
+          },
+        });
+
         // Small delay to ensure GTM processes the event before UI transition
         await new Promise(resolve => setTimeout(resolve, 100));
         
@@ -1014,7 +1029,19 @@ export default function SimplifiedBookingFlow() {
                 subtotal={subtotal}
                 gstAmount={gstAmount}
                 total={total}
-                onNext={() => goToStep('details')}
+                onNext={() => {
+                  // Fire booking_payment_initiated when user proceeds to details
+                  routeGTMEvent({
+                    eventName: 'booking_payment_initiated',
+                    params: {
+                      estimated_revenue: total,
+                      room_type: selectedRooms[0]?.room.name || '',
+                      nights,
+                      currency: 'INR',
+                    },
+                  });
+                  goToStep('details');
+                }}
               />
             )}
 
