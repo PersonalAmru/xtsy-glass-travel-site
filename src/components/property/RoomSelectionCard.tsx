@@ -8,6 +8,7 @@ import { Users, Minus, Plus, Heart, User, UsersRound, Home, Star, ThumbsUp, Crow
 import { cn } from '@/lib/utils';
 import { RoomType, TAG_LABELS, TAG_COLORS, RoomTag } from '@/data/roomInventory';
 import UnifiedImage from '@/components/UnifiedImage';
+import { routeGTMEvent } from '@/utils/gtmEventRouter';
 
 interface RoomSelectionCardProps {
   room: RoomType;
@@ -47,6 +48,32 @@ export const RoomSelectionCard = ({
     e.stopPropagation();
     if (quantity < effectiveMax) {
       onQuantityChange(room.id, quantity + 1);
+      // Fire view_room on first selection
+      if (quantity === 0) {
+        routeGTMEvent({
+          eventName: 'view_room',
+          params: {
+            room_type: room.id,
+            room_name: room.name,
+            base_price: room.discountedPrice,
+            nights: 1,
+            property_name: room.propertyType || 'XTSY',
+            page_path: window.location.pathname,
+          },
+        });
+        // Auto-detect luxury room interest
+        if (room.id.includes('270') || room.name.toLowerCase().includes('270')) {
+          routeGTMEvent({
+            eventName: 'luxury_room_interest',
+            params: {
+              property_name: room.propertyType || 'XTSY Luxury',
+              room_type: room.id,
+              base_price: room.discountedPrice,
+              page_path: window.location.pathname,
+            },
+          });
+        }
+      }
     }
   };
 

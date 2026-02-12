@@ -24,6 +24,7 @@ import { useApp } from '@/contexts/AppContext';
 import UnifiedImage from './UnifiedImage';
 import TourPackageModal from './TourPackageModal';
 import { trackPackageViewed, trackPackageSelected } from '@/utils/dataLayerService';
+import { routeGTMEvent } from '@/utils/gtmEventRouter';
 
 // Import package images
 import meghalayaHiddenGemsImg from '@/assets/meghalaya-hidden-gems-new.jpg';
@@ -111,6 +112,17 @@ const PackageCard = ({ pkg, onSelect }: PackageCardProps) => {
   
   const handleClick = () => {
     trackPackageViewed(pkg.id, pkg.title, pkg.category, pkg.startingPrice);
+    // Fire view_package for GTM trigger
+    routeGTMEvent({
+      eventName: 'view_package',
+      params: {
+        package_id: pkg.id,
+        package_name: pkg.title,
+        duration_days: pkg.duration || 1,
+        base_price: pkg.startingPrice || 0,
+        page_path: window.location.pathname,
+      },
+    });
     onSelect();
   };
   

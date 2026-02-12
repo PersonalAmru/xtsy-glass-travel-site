@@ -282,6 +282,124 @@ export const GTM_TRIGGERS: Record<string, GTMEventConfig> = {
     requiresValidation: true,
   },
 
+  // === NEW GTM TRIGGERS (matching GTM container) ===
+  booking_created: {
+    eventName: 'booking_created',
+    category: 'conversion',
+    priority: 'critical',
+    isConversion: true,
+    requiresValidation: true,
+    valueMultiplier: 0.9,
+  },
+  booking_cancelled: {
+    eventName: 'booking_cancelled',
+    category: 'conversion',
+    priority: 'high',
+    isConversion: false,
+    requiresValidation: false,
+  },
+  booking_payment_initiated: {
+    eventName: 'booking_payment_initiated',
+    category: 'conversion',
+    priority: 'critical',
+    isConversion: true,
+    requiresValidation: true,
+    valueMultiplier: 0.8,
+  },
+  search_availability: {
+    eventName: 'search_availability',
+    category: 'engagement',
+    priority: 'high',
+    isConversion: false,
+    requiresValidation: false,
+  },
+  view_room: {
+    eventName: 'view_room',
+    category: 'engagement',
+    priority: 'medium',
+    isConversion: false,
+    requiresValidation: false,
+  },
+  view_package: {
+    eventName: 'view_package',
+    category: 'engagement',
+    priority: 'medium',
+    isConversion: false,
+    requiresValidation: false,
+  },
+  destination_interest_detected: {
+    eventName: 'destination_interest_detected',
+    category: 'engagement',
+    priority: 'medium',
+    isConversion: false,
+    requiresValidation: false,
+  },
+  engaged_property_explorer: {
+    eventName: 'engaged_property_explorer',
+    category: 'session_quality',
+    priority: 'high',
+    isConversion: false,
+    requiresValidation: true,
+  },
+  high_value_search_detected: {
+    eventName: 'high_value_search_detected',
+    category: 'session_quality',
+    priority: 'high',
+    isConversion: false,
+    requiresValidation: true,
+  },
+  high_value_abandonment: {
+    eventName: 'high_value_abandonment',
+    category: 'session_quality',
+    priority: 'high',
+    isConversion: false,
+    requiresValidation: true,
+  },
+  intent_score_update: {
+    eventName: 'intent_score_update',
+    category: 'session_quality',
+    priority: 'medium',
+    isConversion: false,
+    requiresValidation: false,
+  },
+  lead_initiated: {
+    eventName: 'lead_initiated',
+    category: 'form_interaction',
+    priority: 'high',
+    isConversion: false,
+    requiresValidation: false,
+  },
+  luxury_room_interest: {
+    eventName: 'luxury_room_interest',
+    category: 'engagement',
+    priority: 'high',
+    isConversion: false,
+    requiresValidation: false,
+  },
+  repeat_high_intent_visitor: {
+    eventName: 'repeat_high_intent_visitor',
+    category: 'session_quality',
+    priority: 'high',
+    isConversion: false,
+    requiresValidation: true,
+  },
+  whatsapp_hot_lead: {
+    eventName: 'whatsapp_hot_lead',
+    category: 'conversion',
+    priority: 'critical',
+    isConversion: true,
+    requiresValidation: true,
+    valueMultiplier: 1.3,
+  },
+  qualified_booking_intent: {
+    eventName: 'qualified_booking_intent',
+    category: 'conversion',
+    priority: 'critical',
+    isConversion: true,
+    requiresValidation: true,
+    valueMultiplier: 0.7,
+  },
+
   // === GROUP & B2B ENQUIRY EVENTS ===
   group_enquiry_start: {
     eventName: 'group_enquiry_start',
@@ -501,7 +619,7 @@ export const routeCTAEvent = (
  * Track engagement events
  */
 export const routeEngagementEvent = (
-  eventName: 'section_view' | 'scroll_depth' | 'modal_interaction' | 'package_viewed' | 'room_viewed',
+  eventName: 'section_view' | 'scroll_depth' | 'modal_interaction' | 'package_viewed' | 'room_viewed' | 'property_viewed' | 'view_room' | 'view_package' | 'destination_interest_detected' | 'luxury_room_interest' | 'search_availability',
   params: Record<string, unknown>
 ) => {
   return routeGTMEvent({ eventName, params });
@@ -529,7 +647,7 @@ export const routeFormEvent = (
  * Track validated conversion events
  */
 export const routeConversionEvent = (
-  eventName: 'whatsapp_engaged_validated' | 'call_engaged_validated' | 'lead_qualified' | 'booking_initiated' | 'booking_confirmed',
+  eventName: 'whatsapp_engaged_validated' | 'call_engaged_validated' | 'lead_qualified' | 'booking_initiated' | 'booking_confirmed' | 'booking_created' | 'booking_cancelled' | 'booking_payment_initiated' | 'whatsapp_hot_lead' | 'qualified_booking_intent',
   params: {
     value: number;
     currency?: string;
