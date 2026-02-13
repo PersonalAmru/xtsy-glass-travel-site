@@ -1,69 +1,65 @@
 
-# GTM & Landing Page Improvements Plan
 
-**Created:** 2026-02-04  
-**Status:** ✅ Completed  
-**Priority:** High  
+# Add Detailed Day-by-Day Itineraries from PDFs to /travel Tours
 
----
+## Overview
+Integrate the detailed day-by-day itineraries from 10 uploaded PDF documents into the existing tour packages on the /travel page. This involves extending the `TourPackage` data type to support structured itinerary data and updating the modal to display real itineraries instead of auto-generated ones.
 
-## 📊 Overview
+## What Changes
 
-This plan addressed all GTM tracking gaps and landing page improvements identified in the analysis. All user interactions are now properly tracked and counted as events in GA4.
+### 1. Extend the TourPackage Type with Itinerary Data
+Add an optional `itinerary` field to the `TourPackage` interface in `src/data/travelData.ts`:
 
----
+```text
+itinerary?: {
+  day: string;        // e.g. "Day 1", "Day 0"
+  title: string;      // e.g. "Guwahati to Shillong"
+  route?: string;     // e.g. "Drive: 3-4 hrs"
+  activities: string[];
+  overnight?: string; // e.g. "Shillong"
+}[]
+```
 
-## 🏷️ Phase 1: GTM Event Tracking Improvements
+### 2. Map PDFs to Existing Tour IDs
+Each PDF maps to an existing tour package. The itinerary data will be added to these entries:
 
-### 1.1 Scroll Depth Tracking (Homepage)
-**Status:** ✅ Completed  
-**Files:** `src/hooks/useScrollDepthTracking.ts`
+| PDF Document | Existing Tour | Section |
+|---|---|---|
+| Wilderness Survival Winter Camp | ID 202 - "Wilderness Survival Camp (Winter)" | XTSY Exclusives |
+| Northeast Ecological Immersion (Garo Hills) | ID 203 - "Northeast Ecological Immersion" | XTSY Exclusives |
+| Wari Chora Hidden Gem | ID 204 - "Wari Chora - Hidden Gem of Meghalaya" | XTSY Exclusives |
+| Himachal Yoga Retreat | ID 205 - "Himachal Yoga Retreat Program" | XTSY Exclusives |
+| Krem Chympe & Moopun Falls | ID 206 - "Khaddum Expedition - Krem Chympe" | XTSY Exclusives |
+| Double Decker Root Bridge | ID 1 - "Double Decker Root Bridge & Cherrapunji" | Northeast > Meghalaya |
+| Shillong Winter Cultural Sojourn | ID 5 - "Shillong Winter Cultural Sojourn" | Northeast > Meghalaya |
+| Moopun Falls & Phe Phe Falls | ID 7 - "Phi Phi & Moopun Waterfalls Adventure" | Northeast > Meghalaya |
+| Arunachal Tawang Exploration | ID 29 - "Tawang Monastery Exploration" | Northeast > Arunachal |
+| Northeast Ecological Immersion (Meghalaya 8-day) | ID 201 - "Meghalaya Biodiversity Research Expedition" | XTSY Exclusives |
 
-- [x] Created `useScrollDepthTracking` hook with debounced scroll listener
-- [x] Tracks scroll milestones: 25%, 50%, 75%, 100%
-- [x] Fires `scroll_depth` event at each milestone (once per session)
-- [x] Integrated with homepage via Index.tsx
+### 3. Update Tour Metadata Where PDFs Reveal Differences
+Some tours will get updated descriptions, highlights, and durations based on the actual PDF content:
 
-### 1.2 Review Section Tracking
-**Status:** ✅ Completed  
-**Files:** `src/components/ReviewsSection.tsx`
+- **ID 206 (Krem Chympe)**: Duration change from "6 Days" to "4 Days", highlights updated to include Moopun Falls, cave boating, and stalactite exploration
+- **ID 29 (Tawang)**: Highlights updated to include Bum La Pass (India-China border), Sela Pass 13,700 ft, Nuranang Waterfall, Madhuri Lake, hot springs
+- **ID 205 (Himachal Yoga)**: Duration change from "7 Days" to "6 Days", highlights updated for Dharamkot, Naddi, Kareri Village, Tushita Meditation Centre
+- **ID 5 (Shillong Sojourn)**: Highlights refined to match PDF (Air Force Museum, Golf Course, Don Bosco Museum, Cathedral)
 
-- [x] Added `review_interaction` event with action types
-- [x] Tracks review expansion (review_expanded)
-- [x] Tracks view all modal open (view_all_opened)
-- [x] Includes review source and property metadata
+### 4. Update TourPackageModal to Show Real Itineraries
+Modify `src/components/TourPackageModal.tsx` to prioritize the structured `itinerary` field from tour data over the auto-generated `generateOverallItineraryView` logic. When `tourPackage.itinerary` exists, render the actual day-by-day breakdown. Fall back to auto-generated view only when no itinerary data is present.
 
-### 1.3 Group Booking Form Tracking
-**Status:** ✅ Completed  
-**Files:** `src/components/GroupBookingForm.tsx`, `src/components/B2BBookingForm.tsx`
+### 5. Create Itinerary Data File
+To keep `travelData.ts` manageable, create a separate `src/data/tourItineraries.ts` file containing all 10 detailed itineraries, then merge them into the tour objects at export time.
 
-- [x] Added `group_enquiry_start` event (form opened)
-- [x] Added `group_enquiry_submit` event (form submitted)
-- [x] Added `b2b_enquiry_start` and `b2b_enquiry_submit`
-- [x] Includes group size, nights, value, food addons metadata
+## Files to Create
+- `src/data/tourItineraries.ts` — All 10 itineraries keyed by tour ID
 
-### 1.4 Register New Events in GTM Router
-**Status:** ✅ Completed  
-**Files:** `src/utils/gtmEventRouter.ts`
+## Files to Modify
+- `src/data/travelData.ts` — Add `itinerary` field to `TourPackage` interface, merge itinerary data into tour objects, update metadata for IDs 206/29/205/5
+- `src/components/TourPackageModal.tsx` — Render real itineraries when available (day-by-day cards with route, activities, overnight stay info)
 
-Added events:
-- [x] `group_enquiry_start`
-- [x] `group_enquiry_submit` (conversion, valueMultiplier: 1.5)
-- [x] `b2b_enquiry_start`
-- [x] `b2b_enquiry_submit` (conversion, valueMultiplier: 2.0)
-- [x] `review_interaction`
-- [x] `review_source_click`
-- [x] `trust_signal_view`
+## Technical Notes
+- The itinerary data is static and sourced directly from the PDFs, ensuring the /travel page becomes the single source of truth for tour content
+- No new dependencies required
+- The `TourItineraryService` auto-generation logic is preserved as fallback for tours without PDF-sourced itineraries
+- All existing GTM tracking (view_package, destination_interest_detected) continues to work unchanged since the data structure is additive only
 
----
-
-## 🏠 Phase 2: Landing Page SEO Improvements
-
-### 2.1 Add React Helmet for Meta Tags
-**Status:** ✅ Completed  
-**Files:** `src/components/SEOHead.tsx`, `src/pages/Index.tsx`
-
-- [x] Created `SEOHead` component using react-helmet
-- [x] Added dynamic `<title>` and `<meta description>` tags
-- [x] Meta tags now properly injected into `<head>`
-- [x] Integrated with homepage
