@@ -68,6 +68,14 @@ import wildernessAuthenticImg from "@/assets/wilderness-survival-authentic.jpg";
 
 const northeastEcologicalEducationImg = "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/Complete%20Guide%20To%20Backpacking%20In%20Arunachal%20Pradesh%20-%20Lost%20With%20Purpose.jpg";
 
+interface ItineraryDay {
+  day: string;
+  title: string;
+  route?: string;
+  activities: string[];
+  overnight?: string;
+}
+
 interface TourPackage {
   id: number;
   title: string;
@@ -82,6 +90,7 @@ interface TourPackage {
   highlights: string[];
   bestSeason: string;
   location: string;
+  itinerary?: ItineraryDay[];
 }
 
 interface TourPackageModalProps {
@@ -448,8 +457,69 @@ Looking forward to exploring with XTSY! 🌟`;
               </div>
 
               <div>
-                <h4 className="font-semibold text-gray-900 mb-3">Overall Itinerary Overview:</h4>
-                {isLoadingItinerary ? (
+                <h4 className="font-semibold text-gray-900 mb-3">
+                  {tourPackage.itinerary ? "Day-by-Day Itinerary:" : "Overall Itinerary Overview:"}
+                </h4>
+                {tourPackage.itinerary ? (
+                  /* Real PDF-sourced itinerary */
+                  <div className="space-y-4">
+                    {tourPackage.itinerary.map((day, index) => (
+                      <Card key={index} className="p-4 border border-gray-200 hover:border-orange-300 transition-colors">
+                        <div className="space-y-2">
+                          <div className="flex items-start justify-between gap-2">
+                            <h5 className="font-medium text-gray-900 text-sm leading-tight">{day.title}</h5>
+                            <Badge variant="outline" className="text-xs whitespace-nowrap">{day.day}</Badge>
+                          </div>
+                          
+                          {day.route && (
+                            <div className="flex items-center gap-1.5 text-xs text-orange-700 bg-orange-50 px-2 py-1 rounded">
+                              <MapPin className="h-3 w-3" />
+                              <span>{day.route}</span>
+                            </div>
+                          )}
+                          
+                          <div className="space-y-1">
+                            {day.activities.map((activity, aIndex) => (
+                              <div key={aIndex} className="flex items-start gap-2">
+                                <div className="w-1 h-1 bg-orange-500 rounded-full mt-1.5 flex-shrink-0" />
+                                <span className="text-xs text-gray-600">{activity}</span>
+                              </div>
+                            ))}
+                          </div>
+                          
+                          {day.overnight && (
+                            <div className="text-xs text-gray-500 mt-1 pt-1 border-t border-gray-100">
+                              🏨 <span className="font-medium">Overnight:</span> {day.overnight}
+                            </div>
+                          )}
+                        </div>
+                      </Card>
+                    ))}
+                    
+                    <Card className="bg-orange-50 border-orange-200 mt-6">
+                      <CardContent className="p-4">
+                        <h4 className="font-semibold text-gray-900 mb-3 text-center">Tour Package Pricing</h4>
+                        <div className="grid grid-cols-3 gap-4">
+                          <div className="text-center bg-white rounded-lg p-3 border border-orange-100">
+                            <p className="text-xs text-gray-500 mb-1">Per Person</p>
+                            <p className="font-bold text-lg text-orange-600">{formatPrice(parseInt(tourPackage.price.replace(/[^\d]/g, '')))}</p>
+                          </div>
+                          <div className="text-center bg-white rounded-lg p-3 border border-orange-100">
+                            <p className="text-xs text-gray-500 mb-1">Group of 4</p>
+                            <p className="font-bold text-lg text-orange-600">{formatPrice(parseInt(tourPackage.price.replace(/[^\d]/g, '')) * 3.5)}</p>
+                          </div>
+                          <div className="text-center bg-white rounded-lg p-3 border border-orange-100">
+                            <p className="text-xs text-gray-500 mb-1">Group of 10</p>
+                            <p className="font-bold text-lg text-orange-600">{formatPrice(parseInt(tourPackage.price.replace(/[^\d]/g, '')) * 8.5)}</p>
+                          </div>
+                        </div>
+                        <div className="text-xs text-gray-500 text-center mt-3">
+                          *Detailed itinerary sourced from official tour documentation
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                ) : isLoadingItinerary ? (
                   <div className="flex items-center justify-center py-8">
                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div>
                     <span className="ml-2 text-sm text-gray-600">Creating tour overview...</span>
