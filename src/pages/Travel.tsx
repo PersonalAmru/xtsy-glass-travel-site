@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import SEOContent from "@/components/SEOContent";
 import { LazyTourPackageModal } from "@/components/lazy/LazyTourPackageModal";
 import type { TourPackage, TravelFilters } from "@/data/travelData";
-import { getAllTours, filterTours } from "@/data/travelData";
+import { getAllTours, filterTours, mergeItinerary } from "@/data/travelData";
 
 // Modular sections
 import TravelHero from "@/components/travel/TravelHero";
@@ -40,7 +40,7 @@ const Travel = () => {
   }, [location.search]);
 
   const handleSelect = (tour: TourPackage) => {
-    setSelectedPackage(tour);
+    setSelectedPackage(mergeItinerary(tour));
     setIsModalOpen(true);
   };
 

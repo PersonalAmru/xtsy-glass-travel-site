@@ -3,6 +3,8 @@
 // All tour packages, types, and constants
 // ============================================
 
+import { tourItineraries } from "./tourItineraries";
+
 // Image imports — Domestic
 import meghalayaBiodiversityAuthenticImg from "@/assets/meghalaya-biodiversity-authentic.jpg";
 import wildernessSurvivalImg from "@/assets/wilderness-survival-authentic.jpg";
@@ -44,6 +46,14 @@ import kohimaWarImg from "@/assets/kohima-war-cemetery-premium.jpg";
 // Types
 // ============================================
 
+export interface ItineraryDay {
+  day: string;
+  title: string;
+  route?: string;
+  activities: string[];
+  overnight?: string;
+}
+
 export interface TourPackage {
   id: number;
   title: string;
@@ -63,6 +73,7 @@ export interface TourPackage {
   visaInfo?: string;
   groupSize?: string;
   region?: string;
+  itinerary?: ItineraryDay[];
 }
 
 export type TravelTheme = "all" | "adventure" | "cultural" | "leisure" | "educational";
@@ -79,11 +90,17 @@ export interface TravelFilters {
   season: SeasonFilter;
 }
 
+// Merge itinerary data into any tour by ID
+export const mergeItinerary = (tour: TourPackage): TourPackage => {
+  const itinerary = tourItineraries[tour.id];
+  return itinerary ? { ...tour, itinerary } : tour;
+};
+
 // ============================================
 // XTSY Exclusive Tours
 // ============================================
 
-export const exclusiveTours: TourPackage[] = [
+const _exclusiveTours: TourPackage[] = [
   {
     id: 203,
     title: "Northeast Ecological Immersion",
@@ -151,15 +168,15 @@ export const exclusiveTours: TourPackage[] = [
   {
     id: 206,
     title: "Khaddum Expedition — Krem Chympe",
-    description: "Epic underground adventure through India's fifth longest cave system — UNESCO World Heritage Site featuring 21+ km of limestone passages and underground rivers.",
-    duration: "6 Days",
+    description: "Epic underground adventure through India's fifth longest cave system featuring limestone passages, underground rivers, cave boating, and a trek to the stunning Moopun Falls.",
+    duration: "4 Days",
     difficulty: "Challenging",
     price: "₹36,500",
     image: kremChympeCaveImg,
     rating: 5.0,
     category: "adventure",
     location: "Meghalaya",
-    highlights: ["UNESCO Cave System Exploration", "Technical Caving & Rappelling", "Underground River Navigation", "Limestone Formation Study", "Professional Speleology Training", "Cave Photography Workshops", "Expert Cave Guide Team"],
+    highlights: ["Krem Chympe Cave Exploration", "Underground River & Cave Boating", "Stalactite & Stalagmite Photography", "Moopun Falls Trek & Swimming", "Speleology Training", "Jaintia Hills Scenic Drive"],
     bestSeason: "Oct-Mar",
     exclusive: true,
     groupSize: "4-6 people"
@@ -167,20 +184,22 @@ export const exclusiveTours: TourPackage[] = [
   {
     id: 205,
     title: "Himachal Yoga Retreat Program",
-    description: "Transformative winter yoga and meditation retreat in the peaceful Himalayan foothills — daily asana practice, pranayama, and spiritual workshops.",
-    duration: "7 Days",
+    description: "Transformative yoga and meditation retreat in Dharamkot, Dharamshala — daily asana, pranayama, Tushita meditation, Kareri village trek, and Himalayan immersion.",
+    duration: "6 Days",
     difficulty: "Easy",
     price: "₹42,500",
     image: himachalYogaRetreatImg,
     rating: 4.9,
     category: "cultural",
     location: "Himachal Pradesh",
-    highlights: ["Daily Hatha Yoga Sessions", "Guided Meditation Practices", "Pranayama Breathwork", "Ayurvedic Spa Treatments", "Himalayan Nature Walks", "Spiritual Philosophy Classes", "Organic Sattvic Cuisine"],
+    highlights: ["Daily Hatha & Ashtanga Yoga", "Tushita Meditation Centre Visit", "Kareri Village Nature Trek", "Pranayama & Breathwork", "Naddi Village Dhauladhar Views", "McLeod Ganj & Dalai Lama Temple", "Organic Sattvic Cuisine"],
     bestSeason: "Oct-Mar",
     exclusive: true,
     groupSize: "8-14 people"
   },
 ];
+
+export const exclusiveTours = _exclusiveTours.map(mergeItinerary);
 
 // ============================================
 // Northeast India Tours
@@ -227,7 +246,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
       rating: 4.7,
       category: "cultural",
       location: "Meghalaya",
-      highlights: ["Don Bosco Museum", "Police Bazaar Shopping", "Ward's Lake", "Elephant Falls", "Local Music Scene", "Pine Forest Walks"],
+      highlights: ["Air Force Museum", "Shillong Golf Course", "Don Bosco Centre for Indigenous Cultures", "Cathedral of Mary Help", "Ward's Lake & Lady Hydari Park", "Elephant Falls", "Police Bazaar & Live Music"],
       bestSeason: "Oct-Mar"
     },
     {
@@ -293,7 +312,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
     {
       id: 29,
       title: "Tawang Monastery Exploration",
-      description: "Discover the spiritual heart of Arunachal Pradesh — ancient monasteries, pristine mountain valleys, and Monpa tribal culture.",
+      description: "Discover the spiritual heart of Arunachal Pradesh — ancient monasteries, Bumla Pass at the India-China border, Sela Pass at 13,700 ft, and Monpa tribal culture.",
       duration: "6 Days",
       difficulty: "Moderate",
       price: "₹36,500",
@@ -301,7 +320,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
       rating: 4.8,
       category: "cultural",
       location: "Arunachal Pradesh",
-      highlights: ["Tawang Monastery — 400 years old", "Sela Pass Scenic Beauty", "Monpa Tribal Culture", "Madhuri Lake & Waterfalls", "War Memorial Visit", "Traditional Markets"],
+      highlights: ["Tawang Monastery — India's Largest", "Bumla Pass — India-China Border (15,200 ft)", "Sela Pass Crossing (13,700 ft)", "Nuranang Waterfall (100m)", "Madhuri Lake (Sangetsar Tso)", "Dirang Hot Springs", "Monpa Tribal Culture & Weaving"],
       bestSeason: "Mar-Oct"
     },
     {
