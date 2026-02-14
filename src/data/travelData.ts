@@ -823,10 +823,10 @@ export const reHimalayanExpedition: TourPackage = {
 // ============================================
 
 export const getAllTours = (): TourPackage[] => {
-  const northeast = Object.values(northeastTours).flat();
-  const heartland = Object.values(heartlandTours).flat();
-  const international = Object.values(internationalTours).flat();
-  return [...exclusiveTours, ...northeast, ...heartland, ...international];
+  const northeast = Object.values(northeastTours).flat().map(mergeItinerary);
+  const heartland = Object.values(heartlandTours).flat().map(mergeItinerary);
+  const international = Object.values(internationalTours).flat().map(mergeItinerary);
+  return [...exclusiveTours, ...northeast, ...heartland, ...international, mergeItinerary(reHimalayanExpedition)];
 };
 
 export const filterTours = (tours: TourPackage[], filters: TravelFilters): TourPackage[] => {
