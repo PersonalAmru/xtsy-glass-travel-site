@@ -499,6 +499,7 @@ Looking forward to exploring with XTSY! 🌟`;
                     <Card className="bg-orange-50 border-orange-200 mt-6">
                       <CardContent className="p-4">
                         <h4 className="font-semibold text-gray-900 mb-3 text-center">Tour Package Pricing</h4>
+                        <p className="text-xs text-muted-foreground text-center mb-2">Starting from — Private Touring</p>
                         <div className="grid grid-cols-3 gap-4">
                           <div className="text-center bg-white rounded-lg p-3 border border-orange-100">
                             <p className="text-xs text-gray-500 mb-1">Per Person</p>
@@ -506,11 +507,11 @@ Looking forward to exploring with XTSY! 🌟`;
                           </div>
                           <div className="text-center bg-white rounded-lg p-3 border border-orange-100">
                             <p className="text-xs text-gray-500 mb-1">Group of 4</p>
-                            <p className="font-bold text-lg text-orange-600">{formatPrice(parseInt(tourPackage.price.replace(/[^\d]/g, '')) * 3.5)}</p>
+                            <p className="font-bold text-lg text-orange-600">{formatPrice(Math.round(parseInt(tourPackage.price.replace(/[^\d]/g, '')) * 3.6))}</p>
                           </div>
                           <div className="text-center bg-white rounded-lg p-3 border border-orange-100">
-                            <p className="text-xs text-gray-500 mb-1">Group of 10</p>
-                            <p className="font-bold text-lg text-orange-600">{formatPrice(parseInt(tourPackage.price.replace(/[^\d]/g, '')) * 8.5)}</p>
+                            <p className="text-xs text-gray-500 mb-1">Group of 6</p>
+                            <p className="font-bold text-lg text-orange-600">{formatPrice(Math.round(parseInt(tourPackage.price.replace(/[^\d]/g, '')) * 5.1))}</p>
                           </div>
                         </div>
                         <div className="text-xs text-gray-500 text-center mt-3">
@@ -570,6 +571,7 @@ Looking forward to exploring with XTSY! 🌟`;
                     <Card className="bg-orange-50 border-orange-200 mt-6">
                       <CardContent className="p-4">
                         <h4 className="font-semibold text-gray-900 mb-3 text-center">Tour Package Pricing</h4>
+                        <p className="text-xs text-muted-foreground text-center mb-2">Starting from — Private Touring</p>
                         <div className="grid grid-cols-3 gap-4">
                           <div className="text-center bg-white rounded-lg p-3 border border-orange-100">
                             <p className="text-xs text-gray-500 mb-1">Per Person</p>
@@ -577,11 +579,11 @@ Looking forward to exploring with XTSY! 🌟`;
                           </div>
                           <div className="text-center bg-white rounded-lg p-3 border border-orange-100">
                             <p className="text-xs text-gray-500 mb-1">Group of 4</p>
-                            <p className="font-bold text-lg text-orange-600">{formatPrice(parseInt(tourPackage.price.replace(/[^\d]/g, '')) * 3.5)}</p>
+                            <p className="font-bold text-lg text-orange-600">{formatPrice(Math.round(parseInt(tourPackage.price.replace(/[^\d]/g, '')) * 3.6))}</p>
                           </div>
                           <div className="text-center bg-white rounded-lg p-3 border border-orange-100">
-                            <p className="text-xs text-gray-500 mb-1">Group of 10</p>
-                            <p className="font-bold text-lg text-orange-600">{formatPrice(parseInt(tourPackage.price.replace(/[^\d]/g, '')) * 8.5)}</p>
+                            <p className="text-xs text-gray-500 mb-1">Group of 6</p>
+                            <p className="font-bold text-lg text-orange-600">{formatPrice(Math.round(parseInt(tourPackage.price.replace(/[^\d]/g, '')) * 5.1))}</p>
                           </div>
                         </div>
                         <div className="text-xs text-gray-500 text-center mt-3">
