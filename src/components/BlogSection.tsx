@@ -1,132 +1,264 @@
 import React, { useState } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { BookOpen, ArrowRight, MapPin, ChevronDown } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { BookOpen, ChevronDown, ChevronUp, MapPin, Eye, Heart, MessageCircle } from 'lucide-react';
 
-// Use real Meghalaya destination images from Supabase storage and existing assets
-import dawkiImg from '@/assets/dawki-crystal-clear-authentic.jpg';
-import doubleDeckerImg from '@/assets/double-decker-bridge-new.jpg';
-import kremChympeImg from '@/assets/krem-chympe-cave-expedition.jpg';
-import wariChoraImg from '@/assets/wari-chora-authentic.jpg';
+interface BlogPost {
+  id: string;
+  title: string;
+  excerpt: string;
+  fullContent: string;
+  location: string;
+  readTime: string;
+  views: number;
+  likes: number;
+  comments: number;
+}
 
-const STORAGE_BASE = 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets';
-
-const blogPosts = [
+const blogPosts: BlogPost[] = [
   {
     id: 'living-root-bridges',
     title: 'The Living Root Bridges (Nongriat)',
-    excerpt: 'These are not just bridges; they are masterpieces of "bio-engineering" by the Khasi tribes. Grown over decades from the roots of ancient rubber trees.',
-    image: doubleDeckerImg,
+    excerpt: 'These are not just bridges; they are masterpieces of "bio-engineering" by the Khasi tribes.',
+    fullContent: 'These are not just bridges; they are masterpieces of "bio-engineering" by the Khasi tribes. Grown over decades from the roots of ancient rubber trees, the Double Decker Living Root Bridge is a testament to human patience. The trek down 3,500 steps is a rite of passage for any traveler, leading you into a lush jungle paradise that feels worlds away from modern life.',
     location: 'Nongriat, Meghalaya',
     readTime: '4 min',
+    views: 12480,
+    likes: 876,
+    comments: 42,
   },
   {
     id: 'nohkalikai-falls',
     title: 'Nohkalikai Falls (Sohra)',
-    excerpt: "India's tallest plunge waterfall leaps off a 1,115-foot cliff into a deep green pool. Watching the mist dance around the falls is a poetic experience.",
-    image: `${STORAGE_BASE}/Travel%20DOM/1/download%20(26).jpg`,
+    excerpt: "India's tallest plunge waterfall leaps off a 1,115-foot cliff into a deep green pool.",
+    fullContent: "As India's tallest plunge waterfall, Nohkalikai is a site of raw, dramatic power. It leaps off a 1,115-foot cliff into a deep green pool. Watching the mist dance around the falls while the sun catches the spray is a poetic experience that stays with you long after you've left the viewpoint.",
     location: 'Sohra, Meghalaya',
     readTime: '3 min',
+    views: 9320,
+    likes: 654,
+    comments: 31,
   },
   {
     id: 'umngot-river-dawki',
     title: 'The Umngot River (Dawki)',
-    excerpt: "Famous for having the clearest water in India, the Umngot River is like a sheet of liquid glass. Boats appear to be floating in mid-air.",
-    image: dawkiImg,
+    excerpt: "Famous for having the clearest water in India, the Umngot River is like a sheet of liquid glass.",
+    fullContent: "Famous for having the clearest water in India, the Umngot River is like a sheet of liquid glass. During the winter, the water is so transparent that boats appear to be floating in mid-air. A boat ride here offers a rare sense of clarity and peace as you glide over the smooth riverbed pebbles.",
     location: 'Dawki, Meghalaya',
     readTime: '3 min',
+    views: 11050,
+    likes: 793,
+    comments: 38,
   },
   {
     id: 'laitlum-canyons',
     title: 'Laitlum Canyons',
-    excerpt: 'Known as "The End of Hills," Laitlum offers some of the most vast and breathtaking views in the Northeast. Watch clouds roll through the valleys below.',
-    image: wariChoraImg,
+    excerpt: 'Known as "The End of Hills," Laitlum offers some of the most vast and breathtaking views in the Northeast.',
+    fullContent: 'Known as "The End of Hills," Laitlum offers some of the most vast and breathtaking views in the Northeast. Standing at the edge of these massive canyons, you can watch the clouds roll through the valleys below, revealing tiny tribal hamlets tucked into the green mountainside.',
     location: 'East Khasi Hills, Meghalaya',
     readTime: '3 min',
+    views: 7840,
+    likes: 521,
+    comments: 27,
   },
   {
     id: 'krang-suri-falls',
     title: 'Krang Suri Falls (Jaintia Hills)',
-    excerpt: 'Often described as a fairy-tale lagoon. Known for its shimmering, crystal-blue water, this waterfall is a hidden gem in the Jaintia Hills.',
-    image: `${STORAGE_BASE}/Travel%20DOM/1/download%20(26).jpg`,
+    excerpt: 'Often described as a fairy-tale lagoon with shimmering, crystal-blue water.',
+    fullContent: 'Krang Suri is often described as a fairy-tale lagoon. Known for its shimmering, crystal-blue water, this waterfall is a hidden gem in the Jaintia Hills. The path to the falls is paved with stone, offering a scenic walk before you reach the cool, inviting waters of the natural pool.',
     location: 'Jaintia Hills, Meghalaya',
     readTime: '3 min',
+    views: 8670,
+    likes: 612,
+    comments: 29,
   },
   {
     id: 'wei-sawdong-falls',
     title: 'Wei Sawdong Falls',
-    excerpt: 'This three-tiered waterfall is a masterpiece of nature. Three perfectly aligned cascades falling into turquoise basins — one of the most Instagrammable spots.',
-    image: kremChympeImg,
+    excerpt: 'This three-tiered waterfall is a masterpiece of nature — one of the most Instagrammable spots.',
+    fullContent: 'This three-tiered waterfall is a masterpiece of nature. Reaching Wei Sawdong requires a bit of a scramble down bamboo ladders, but the reward is a view of three perfectly aligned cascades falling into turquoise basins. It is widely considered one of the most beautiful and "Instagrammable" spots in the state.',
     location: 'East Khasi Hills, Meghalaya',
     readTime: '4 min',
+    views: 6920,
+    likes: 489,
+    comments: 22,
   },
   {
     id: 'mawlynnong-village',
     title: 'Mawlynnong Village',
-    excerpt: "Awarded 'Asia\'s Cleanest Village,' Mawlynnong is a lesson in community and sustainability — filled with colorful orchids and bamboo dustbins.",
-    image: dawkiImg,
+    excerpt: "Awarded 'Asia's Cleanest Village,' a lesson in community and sustainability.",
+    fullContent: "Awarded the title of \"Asia's Cleanest Village,\" Mawlynnong is a lesson in community and sustainability. The village is filled with colorful orchids, bamboo dustbins, and stone-paved paths. It's a quiet, peaceful place that proves how beautiful life can be when lived in harmony with the environment.",
     location: 'East Khasi Hills, Meghalaya',
     readTime: '3 min',
+    views: 10230,
+    likes: 734,
+    comments: 35,
   },
   {
     id: 'umiam-lake',
     title: 'Umiam Lake (Barapani)',
-    excerpt: 'A massive, serene reservoir surrounded by pine-covered hills. Perfect for sunset views, kayaking, or simply transitioning into the mountain mood.',
-    image: wariChoraImg,
+    excerpt: 'A massive, serene reservoir surrounded by pine-covered hills. Perfect for sunset views.',
+    fullContent: 'Often the first major site you see when driving toward Shillong, Umiam Lake is a massive, serene reservoir surrounded by pine-covered hills. It is a perfect spot for sunset views, kayaking, or simply having a picnic by the shore to transition into the "mountain mood."',
     location: 'Ri-Bhoi, Meghalaya',
     readTime: '3 min',
+    views: 5680,
+    likes: 398,
+    comments: 19,
   },
   {
     id: 'mawsmai-cave',
     title: 'Mawsmai Cave',
-    excerpt: 'This limestone cave is filled with ancient stalactites and stalagmites. Some sections require a squeeze, making you feel like a prehistoric explorer.',
-    image: kremChympeImg,
+    excerpt: 'This limestone cave is filled with ancient stalactites and stalagmites.',
+    fullContent: 'For those who love mystery, Mawsmai Cave offers a thrilling look into the world beneath the hills. This limestone cave is filled with ancient stalactites and stalagmites. Some sections require a bit of a squeeze, making you feel like a prehistoric explorer navigating a natural labyrinth.',
     location: 'Sohra, Meghalaya',
     readTime: '3 min',
+    views: 7120,
+    likes: 467,
+    comments: 24,
   },
   {
     id: 'elephant-falls',
     title: 'Elephant Falls',
-    excerpt: 'A beautiful three-step waterfall just outside Shillong. Highly accessible and perfect for a quick nature break with ferns and moss.',
-    image: doubleDeckerImg,
+    excerpt: 'A beautiful three-step waterfall just outside Shillong. Highly accessible.',
+    fullContent: 'Located just outside Shillong, Elephant Falls is a beautiful three-step waterfall. It is highly accessible and perfect for a quick nature break. Each level offers a unique view of the water as it fans out over the dark rocks, surrounded by ferns and moss.',
     location: 'Shillong, Meghalaya',
     readTime: '2 min',
+    views: 8940,
+    likes: 583,
+    comments: 28,
   },
   {
     id: 'garden-of-caves',
     title: 'Garden of Caves',
-    excerpt: "A hidden wonderland near Sohra — seven small caves and multiple waterfalls with natural rock formations like the 'King's Throne.'",
-    image: `${STORAGE_BASE}/Travel%20DOM/1/download%20(26).jpg`,
+    excerpt: "A hidden wonderland near Sohra — seven small caves and multiple waterfalls.",
+    fullContent: "A hidden wonderland near Sohra, the Garden of Caves features seven small caves and multiple waterfalls tucked into a lush valley. With natural rock formations like the \"King's Throne\" and soft golden light filtering through the trees, it feels like stepping into a secret, ancient garden.",
     location: 'Sohra, Meghalaya',
     readTime: '3 min',
+    views: 4560,
+    likes: 312,
+    comments: 16,
   },
   {
     id: 'mawphlang-sacred-forest',
     title: 'Mawphlang Sacred Forest',
-    excerpt: 'For over 800 years, not a single leaf has been allowed to be removed. Ancient ritual monoliths and rare medicinal plants preserved by deep-rooted belief.',
-    image: wariChoraImg,
+    excerpt: 'For over 800 years, not a single leaf has been allowed to be removed from this grove.',
+    fullContent: 'This forest is a spiritual heart for the Khasi people. For over 800 years, not a single leaf or stone has been allowed to be removed from this grove. Walking through Mawphlang with a local guide reveals ancient ritual monoliths and rare medicinal plants, all preserved by a deep-rooted cultural belief.',
     location: 'East Khasi Hills, Meghalaya',
     readTime: '4 min',
+    views: 6340,
+    likes: 445,
+    comments: 21,
   },
   {
     id: 'tyrshi-falls',
     title: 'Tyrshi Falls',
-    excerpt: 'A broad, powerful cascade in Jaintia Hills with a beautiful arch bridge providing panoramic views of vast green paddy fields below.',
-    image: dawkiImg,
+    excerpt: 'A broad, powerful cascade in Jaintia Hills with a panoramic arch bridge.',
+    fullContent: 'Found in the Jaintia Hills, Tyrshi Falls is a broad, powerful cascade. A beautiful arch bridge spans the valley nearby, providing a panoramic view of the vast green paddy fields below. It is a peaceful alternative to the more crowded falls in the Khasi Hills.',
     location: 'Jaintia Hills, Meghalaya',
     readTime: '3 min',
+    views: 3890,
+    likes: 278,
+    comments: 14,
   },
   {
     id: 'nokrek-biosphere',
     title: 'Nokrek Biosphere Reserve',
-    excerpt: 'Home of the rare Red Panda, Nokrek is a biodiversity hotspot offering raw, untamed jungle — a must for wildlife enthusiasts.',
-    image: kremChympeImg,
+    excerpt: 'Home of the rare Red Panda — raw, untamed nature at its best.',
+    fullContent: 'Located in the Garo Hills, Nokrek is a biodiversity hotspot and the home of the rare Red Panda. This is raw, untamed nature at its best. It offers a denser, wilder jungle experience and is a must for wildlife enthusiasts looking to explore the lesser-known parts of Meghalaya.',
     location: 'Garo Hills, Meghalaya',
     readTime: '4 min',
+    views: 5210,
+    likes: 367,
+    comments: 18,
   },
 ];
+
+const formatCount = (n: number) => {
+  if (n >= 1000) return `${(n / 1000).toFixed(1)}k`;
+  return n.toString();
+};
+
+const BlogCard = ({ post }: { post: BlogPost }) => {
+  const [expanded, setExpanded] = useState(false);
+  const [liked, setLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(post.likes);
+
+  const handleLike = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!liked) {
+      setLikeCount(prev => prev + 1);
+      setLiked(true);
+    } else {
+      setLikeCount(prev => prev - 1);
+      setLiked(false);
+    }
+  };
+
+  return (
+    <div
+      onClick={() => setExpanded(!expanded)}
+      className="group cursor-pointer border border-border/50 rounded-xl p-5 hover:border-primary/30 transition-all duration-300 hover:shadow-md bg-card/50 backdrop-blur-sm"
+    >
+      {/* Header Row */}
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 mb-1.5">
+            <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
+              <MapPin className="w-3 h-3 text-primary" />
+              {post.location}
+            </span>
+            <span className="text-xs text-muted-foreground">·</span>
+            <span className="text-xs text-muted-foreground">{post.readTime} read</span>
+          </div>
+          <h3 className="font-bold text-foreground group-hover:text-primary transition-colors text-base leading-tight">
+            {post.title}
+          </h3>
+        </div>
+        <div className="flex-shrink-0 mt-1">
+          {expanded ? (
+            <ChevronUp className="w-4 h-4 text-muted-foreground" />
+          ) : (
+            <ChevronDown className="w-4 h-4 text-muted-foreground" />
+          )}
+        </div>
+      </div>
+
+      {/* Stats Row */}
+      <div className="flex items-center gap-4 mt-3">
+        <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
+          <Eye className="w-3.5 h-3.5" />
+          {formatCount(post.views)}
+        </span>
+        <button
+          onClick={handleLike}
+          className={`inline-flex items-center gap-1 text-xs transition-colors ${liked ? 'text-red-500' : 'text-muted-foreground hover:text-red-400'}`}
+        >
+          <Heart className={`w-3.5 h-3.5 ${liked ? 'fill-current' : ''}`} />
+          {formatCount(likeCount)}
+        </button>
+        <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
+          <MessageCircle className="w-3.5 h-3.5" />
+          {post.comments}
+        </span>
+      </div>
+
+      {/* Excerpt (always visible) */}
+      {!expanded && (
+        <p className="text-sm text-muted-foreground mt-3 line-clamp-2">
+          {post.excerpt}
+        </p>
+      )}
+
+      {/* Expanded Content */}
+      {expanded && (
+        <div className="mt-4 pt-3 border-t border-border/40">
+          <p className="text-sm text-foreground/85 leading-relaxed">
+            {post.fullContent}
+          </p>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const BlogSection = () => {
   const [showAll, setShowAll] = useState(false);
@@ -134,7 +266,7 @@ const BlogSection = () => {
 
   return (
     <section className="pt-12 pb-16 px-4 bg-background" id="blog">
-      <div className="container mx-auto max-w-6xl">
+      <div className="container mx-auto max-w-4xl">
         <div className="text-center mb-10">
           <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
             <BookOpen className="w-3 h-3 mr-1" />
@@ -148,42 +280,9 @@ const BlogSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="flex flex-col gap-3">
           {visiblePosts.map((post) => (
-            <Card
-              key={post.id}
-              className="group overflow-hidden border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-lg cursor-pointer"
-            >
-              <div className="relative h-44 overflow-hidden">
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div className="absolute bottom-2 left-2">
-                  <span className="inline-flex items-center gap-1 bg-background/90 backdrop-blur-sm text-foreground text-xs px-2 py-1 rounded-full">
-                    <MapPin className="w-3 h-3 text-primary" />
-                    {post.location}
-                  </span>
-                </div>
-              </div>
-              <CardContent className="p-4">
-                <h3 className="font-bold text-foreground mb-2 line-clamp-1 group-hover:text-primary transition-colors">
-                  {post.title}
-                </h3>
-                <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
-                  {post.excerpt}
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-muted-foreground">{post.readTime} read</span>
-                  <span className="text-xs text-primary font-semibold group-hover:underline inline-flex items-center gap-1">
-                    Read More <ArrowRight className="w-3 h-3" />
-                  </span>
-                </div>
-              </CardContent>
-            </Card>
+            <BlogCard key={post.id} post={post} />
           ))}
         </div>
 
