@@ -795,6 +795,132 @@ export const internationalTours: Record<string, TourPackage[]> = {
 };
 
 // ============================================
+// Couple Luxury Packages (XTSY 270 Stay)
+// ============================================
+
+const _coupleLuxuryTours: TourPackage[] = [
+  {
+    id: 601,
+    title: "XTSY 270 Romantic Meghalaya Escape",
+    description: "3 nights in the XTSY 270 Panorama Glass Ensuite + curated couple experiences — stargazing, sunrise views, private waterfall trek, and candlelight Khasi dinner.",
+    duration: "4 Days",
+    difficulty: "Easy",
+    price: "₹38,500",
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/download%20(26).jpg",
+    rating: 4.9,
+    category: "leisure",
+    location: "Meghalaya",
+    highlights: ["XTSY 270 Panorama Suite — 3 Nights", "Private Waterfall Trek for Two", "Stargazing from Glass Room", "Candlelight Khasi Dinner", "Couple Spa & Wellness", "Sunrise Photography Session"],
+    bestSeason: "Oct-Mar",
+    exclusive: true,
+    groupSize: "2 people (Couples only)"
+  },
+  {
+    id: 602,
+    title: "XTSY 270 Honeymoon Cloud Retreat",
+    description: "Ultimate honeymoon experience — panoramic glass ensuite stay with Shillong city tour, Dawki boating, and premium couple dining under the stars.",
+    duration: "5 Days",
+    difficulty: "Easy",
+    price: "₹52,500",
+    image: shillongCherryBlossomImg,
+    rating: 5.0,
+    category: "leisure",
+    location: "Meghalaya",
+    highlights: ["XTSY 270 Panorama Suite — 4 Nights", "Dawki Crystal River Boating", "Shillong Scenic City Tour", "Private Dining Under Stars", "Couple Photography Package", "Cherry Blossom Walk (Seasonal)"],
+    bestSeason: "Oct-Mar",
+    exclusive: true,
+    groupSize: "2 people (Couples only)"
+  },
+  {
+    id: 603,
+    title: "XTSY 270 Adventure Couple Circuit",
+    description: "For adventurous couples — XTSY 270 luxury base camp with double decker root bridge trek, caving, and jungle camping under the Milky Way.",
+    duration: "6 Days",
+    difficulty: "Moderate",
+    price: "₹62,500",
+    image: doubleDeckerBridgeNewImg,
+    rating: 4.9,
+    category: "adventure",
+    location: "Meghalaya",
+    highlights: ["XTSY 270 Suite — 2 Nights Base Camp", "Double Decker Root Bridge Trek", "Couple Jungle Camping", "Cave Exploration Together", "Milky Way Night Session", "Adventure Photo Package"],
+    bestSeason: "Oct-Mar",
+    exclusive: true,
+    groupSize: "2 people (Couples only)"
+  },
+];
+
+export const coupleLuxuryTours = _coupleLuxuryTours.map(mergeItinerary);
+
+// ============================================
+// Solo Traveller & Bike Tours
+// ============================================
+
+const _soloAndBikeTours: TourPackage[] = [
+  {
+    id: 701,
+    title: "XTSY Solo Traveller Pass — Meghalaya",
+    description: "Safe, curated solo exploration with local buddy system, verified homestays, and 24/7 support. Women-only batches available. Making solo travel easy.",
+    duration: "5 Days",
+    difficulty: "Easy",
+    price: "₹22,500",
+    image: dawkiCrystalClearImg,
+    rating: 4.8,
+    category: "adventure",
+    location: "Meghalaya",
+    highlights: ["Verified Homestay Network", "Local Buddy System", "24/7 Safety Support", "Women-Only Batch Option", "Solo-Friendly Itinerary", "Community Meetups"],
+    bestSeason: "Oct-Mar",
+    groupSize: "Solo (1 person)"
+  },
+  {
+    id: 702,
+    title: "NE India Solo Bike Circuit — Meghalaya",
+    description: "Royal Enfield solo expedition through Meghalaya's stunning roads — mechanic support vehicle, all gear included, GPS-tracked for safety.",
+    duration: "6 Days",
+    difficulty: "Challenging",
+    price: "₹35,500",
+    image: bumlaPassBikeExpeditionImg,
+    rating: 4.9,
+    category: "adventure",
+    location: "Meghalaya",
+    highlights: ["Royal Enfield Himalayan Provided", "Mechanic Support Vehicle", "All Riding Gear Included", "GPS-Tracked Route", "Scenic Highway Stops", "Biker Community Meetup"],
+    bestSeason: "Oct-Mar",
+    groupSize: "Solo / Small Group"
+  },
+  {
+    id: 703,
+    title: "Arunachal Bike Expedition — Solo Friendly",
+    description: "Epic solo-friendly motorcycle journey through Arunachal — Sela Pass, Tawang, Bumla Pass with full support crew and safety net.",
+    duration: "8 Days",
+    difficulty: "Challenging",
+    price: "₹48,500",
+    image: tawangMonasteryMountainsImg,
+    rating: 4.9,
+    category: "adventure",
+    location: "Arunachal Pradesh",
+    highlights: ["Sela Pass 13,700 ft Crossing", "Tawang Monastery Visit", "Bumla Pass Border Ride", "Full Support Crew", "Solo-Safe Route Planning", "Royal Enfield + Gear Included"],
+    bestSeason: "Apr-Oct",
+    groupSize: "Solo / Small Group"
+  },
+  {
+    id: 704,
+    title: "Solo Female Traveller — NE Cultural Trail",
+    description: "Exclusively designed for solo female travellers — curated cultural immersion with women guides, verified safe stays, and local sisterhood network.",
+    duration: "5 Days",
+    difficulty: "Easy",
+    price: "₹24,500",
+    image: arunachalCulturalFestivalImg,
+    rating: 4.9,
+    category: "cultural",
+    location: "Northeast India",
+    highlights: ["Women Guides Only", "Verified Safe Homestays", "Local Sisterhood Network", "Cultural Workshop Access", "Emergency Support Line", "Solo Female Community"],
+    bestSeason: "Oct-Mar",
+    groupSize: "Solo Female (1 person)"
+  },
+];
+
+export const soloAndBikeTours = _soloAndBikeTours.map(mergeItinerary);
+
+// ============================================
 // RE Himalayan Expedition (Premium)
 // ============================================
 
@@ -826,7 +952,7 @@ export const getAllTours = (): TourPackage[] => {
   const northeast = Object.values(northeastTours).flat().map(mergeItinerary);
   const heartland = Object.values(heartlandTours).flat().map(mergeItinerary);
   const international = Object.values(internationalTours).flat().map(mergeItinerary);
-  return [...exclusiveTours, ...northeast, ...heartland, ...international, mergeItinerary(reHimalayanExpedition)];
+  return [...exclusiveTours, ...coupleLuxuryTours, ...soloAndBikeTours, ...northeast, ...heartland, ...international, mergeItinerary(reHimalayanExpedition)];
 };
 
 export const filterTours = (tours: TourPackage[], filters: TravelFilters): TourPackage[] => {

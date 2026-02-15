@@ -499,24 +499,36 @@ Looking forward to exploring with XTSY! 🌟`;
                     <Card className="bg-orange-50 border-orange-200 mt-6">
                       <CardContent className="p-4">
                         <h4 className="font-semibold text-gray-900 mb-3 text-center">Tour Package Pricing</h4>
-                        <p className="text-xs text-muted-foreground text-center mb-2">Starting from — Private Touring</p>
-                        <div className="grid grid-cols-3 gap-4">
-                          <div className="text-center bg-white rounded-lg p-3 border border-orange-100">
-                            <p className="text-xs text-gray-500 mb-1">Per Person</p>
-                            <p className="font-bold text-lg text-orange-600">{formatPrice(parseInt(tourPackage.price.replace(/[^\d]/g, '')))}</p>
-                          </div>
-                          <div className="text-center bg-white rounded-lg p-3 border border-orange-100">
-                            <p className="text-xs text-gray-500 mb-1">Group of 4</p>
-                            <p className="font-bold text-lg text-orange-600">{formatPrice(Math.round(parseInt(tourPackage.price.replace(/[^\d]/g, '')) * 3.6))}</p>
-                          </div>
-                          <div className="text-center bg-white rounded-lg p-3 border border-orange-100">
-                            <p className="text-xs text-gray-500 mb-1">Group of 6</p>
-                            <p className="font-bold text-lg text-orange-600">{formatPrice(Math.round(parseInt(tourPackage.price.replace(/[^\d]/g, '')) * 5.1))}</p>
-                          </div>
-                        </div>
-                        <div className="text-xs text-gray-500 text-center mt-3">
-                          *Detailed itinerary sourced from official tour documentation
-                        </div>
+                        <p className="text-xs text-muted-foreground text-center mb-2">Starting from — Private Touring (per person)</p>
+                        {(() => {
+                          const basePrice = parseInt(tourPackage.price.replace(/[^\d]/g, ''));
+                          const group4PP = Math.round(basePrice * 0.90);
+                          const group6PP = Math.round(basePrice * 0.85);
+                          return (
+                            <div className="grid grid-cols-3 gap-3">
+                              <div className="text-center bg-white rounded-lg p-3 border border-orange-100">
+                                <p className="text-xs text-gray-500 mb-1">Solo / Couple</p>
+                                <p className="font-bold text-lg text-orange-600">{formatPrice(basePrice)}</p>
+                                <p className="text-[10px] text-gray-400">per person</p>
+                              </div>
+                              <div className="text-center bg-white rounded-lg p-3 border border-emerald-200 relative">
+                                <div className="absolute -top-2 left-1/2 -translate-x-1/2 bg-emerald-500 text-white text-[9px] px-1.5 py-0.5 rounded-full font-semibold">SAVE 10%</div>
+                                <p className="text-xs text-gray-500 mb-1">Group of 4</p>
+                                <p className="font-bold text-lg text-emerald-600">{formatPrice(group4PP)}</p>
+                                <p className="text-[10px] text-gray-400">per person</p>
+                              </div>
+                              <div className="text-center bg-white rounded-lg p-3 border border-emerald-300 relative">
+                                <div className="absolute -top-2 left-1/2 -translate-x-1/2 bg-emerald-600 text-white text-[9px] px-1.5 py-0.5 rounded-full font-semibold">SAVE 15%</div>
+                                <p className="text-xs text-gray-500 mb-1">Group of 6</p>
+                                <p className="font-bold text-lg text-emerald-700">{formatPrice(group6PP)}</p>
+                                <p className="text-[10px] text-gray-400">per person</p>
+                              </div>
+                            </div>
+                          );
+                        })()}
+                        <p className="text-[10px] text-gray-400 text-center mt-2">
+                          Prices exclude transport to base city • GST as applicable • Customisable for couples & families
+                        </p>
                       </CardContent>
                     </Card>
                   </div>
@@ -571,24 +583,36 @@ Looking forward to exploring with XTSY! 🌟`;
                     <Card className="bg-orange-50 border-orange-200 mt-6">
                       <CardContent className="p-4">
                         <h4 className="font-semibold text-gray-900 mb-3 text-center">Tour Package Pricing</h4>
-                        <p className="text-xs text-muted-foreground text-center mb-2">Starting from — Private Touring</p>
-                        <div className="grid grid-cols-3 gap-4">
-                          <div className="text-center bg-white rounded-lg p-3 border border-orange-100">
-                            <p className="text-xs text-gray-500 mb-1">Per Person</p>
-                            <p className="font-bold text-lg text-orange-600">{formatPrice(parseInt(tourPackage.price.replace(/[^\d]/g, '')))}</p>
-                          </div>
-                          <div className="text-center bg-white rounded-lg p-3 border border-orange-100">
-                            <p className="text-xs text-gray-500 mb-1">Group of 4</p>
-                            <p className="font-bold text-lg text-orange-600">{formatPrice(Math.round(parseInt(tourPackage.price.replace(/[^\d]/g, '')) * 3.6))}</p>
-                          </div>
-                          <div className="text-center bg-white rounded-lg p-3 border border-orange-100">
-                            <p className="text-xs text-gray-500 mb-1">Group of 6</p>
-                            <p className="font-bold text-lg text-orange-600">{formatPrice(Math.round(parseInt(tourPackage.price.replace(/[^\d]/g, '')) * 5.1))}</p>
-                          </div>
-                        </div>
-                        <div className="text-xs text-gray-500 text-center mt-3">
-                          *Overall itinerary based on package highlights & exclusive experiences
-                        </div>
+                        <p className="text-xs text-muted-foreground text-center mb-2">Starting from — Private Touring (per person)</p>
+                        {(() => {
+                          const basePrice = parseInt(tourPackage.price.replace(/[^\d]/g, ''));
+                          const group4PP = Math.round(basePrice * 0.90);
+                          const group6PP = Math.round(basePrice * 0.85);
+                          return (
+                            <div className="grid grid-cols-3 gap-3">
+                              <div className="text-center bg-white rounded-lg p-3 border border-orange-100">
+                                <p className="text-xs text-gray-500 mb-1">Solo / Couple</p>
+                                <p className="font-bold text-lg text-orange-600">{formatPrice(basePrice)}</p>
+                                <p className="text-[10px] text-gray-400">per person</p>
+                              </div>
+                              <div className="text-center bg-white rounded-lg p-3 border border-emerald-200 relative">
+                                <div className="absolute -top-2 left-1/2 -translate-x-1/2 bg-emerald-500 text-white text-[9px] px-1.5 py-0.5 rounded-full font-semibold">SAVE 10%</div>
+                                <p className="text-xs text-gray-500 mb-1">Group of 4</p>
+                                <p className="font-bold text-lg text-emerald-600">{formatPrice(group4PP)}</p>
+                                <p className="text-[10px] text-gray-400">per person</p>
+                              </div>
+                              <div className="text-center bg-white rounded-lg p-3 border border-emerald-300 relative">
+                                <div className="absolute -top-2 left-1/2 -translate-x-1/2 bg-emerald-600 text-white text-[9px] px-1.5 py-0.5 rounded-full font-semibold">SAVE 15%</div>
+                                <p className="text-xs text-gray-500 mb-1">Group of 6</p>
+                                <p className="font-bold text-lg text-emerald-700">{formatPrice(group6PP)}</p>
+                                <p className="text-[10px] text-gray-400">per person</p>
+                              </div>
+                            </div>
+                          );
+                        })()}
+                        <p className="text-[10px] text-gray-400 text-center mt-2">
+                          Prices exclude transport to base city • GST as applicable • Customisable for couples & families
+                        </p>
                       </CardContent>
                     </Card>
                   </div>
