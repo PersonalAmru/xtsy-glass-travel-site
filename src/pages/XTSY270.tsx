@@ -110,24 +110,13 @@ Can't wait to create unforgettable memories in this architectural masterpiece! ð
       priceCurrency: XTSY270_DATA.priceCurrency
     }
   };
-  return <div className="min-h-screen bg-gradient-to-br from-amber-50 via-yellow-50/80 to-orange-100/60">
+  return <div className="min-h-screen bg-gradient-to-b from-stone-50 via-amber-50/40 to-stone-100">
       <Header />
       
       {/* Luxury Hero Section */}
       <main className="pt-16 relative overflow-hidden">
         {/* Premium Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-400/10 via-yellow-300/5 to-orange-200/15">
-          {[...Array(6)].map((_, i) => <div key={i} className="absolute rounded-full animate-pulse opacity-20" style={{
-          width: `${80 + i * 20}px`,
-          height: `${80 + i * 20}px`,
-          background: `linear-gradient(135deg, hsl(45 100% ${65 + i * 5}%), hsl(35 90% ${70 + i * 3}%))`,
-          left: `${10 + i * 15}%`,
-          top: `${5 + i * 12}%`,
-          animationDelay: `${i * 0.8}s`,
-          animationDuration: `${3 + i * 0.3}s`,
-          filter: 'blur(40px)'
-        }} />)}
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-br from-stone-200/20 via-transparent to-amber-100/10" />
 
         {/* Hero Section */}
         <section className="relative z-10 pt-8 pb-16">
@@ -152,13 +141,13 @@ Can't wait to create unforgettable memories in this architectural masterpiece! ð
             <div className="text-center mb-12 animate-fade-in" style={{
             animationDelay: '0.2s'
           }}>
-              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent leading-tight">
-                XTSY 270Â°
-              </h1>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                Panorama Glass Ensuite
-              </h2>
-              <p className="text-lg md:text-xl text-gray-800 font-medium max-w-3xl mx-auto leading-relaxed">
+               <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-stone-900 leading-tight">
+                 XTSY 270Â°
+               </h1>
+               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-stone-800">
+                 Panorama Glass Ensuite
+               </h2>
+               <p className="text-lg md:text-xl text-stone-700 font-medium max-w-3xl mx-auto leading-relaxed">
                 Experience India's most innovative architectural marvel â€” a 200% luxury ensuite with stunning 270Â° mountain panoramas that redefine hospitality excellence.
               </p>
             </div>
@@ -167,43 +156,43 @@ Can't wait to create unforgettable memories in this architectural masterpiece! ð
             <div className="text-center mb-8 animate-fade-in" style={{
             animationDelay: '0.35s'
           }}>
-              <h3 className="text-2xl md:text-3xl font-bold mb-3 text-gray-900">Seasonal offers - Prices might change later!</h3>
-              <p className="text-base md:text-lg text-gray-700 font-medium max-w-2xl mx-auto">
+               <h3 className="text-2xl md:text-3xl font-bold mb-3 text-stone-900">Seasonal offers - Prices might change later!</h3>
+               <p className="text-base md:text-lg text-stone-600 font-medium max-w-2xl mx-auto">
                 Experience luxury at flexible rates that adapt to your travel schedule
               </p>
             </div>
             <div className="flex flex-col md:flex-row justify-center gap-6 mb-12 animate-fade-in" style={{
             animationDelay: '0.4s'
           }}>
-              <Card className="glass-card bg-white/80 backdrop-blur-md border-white/60 shadow-xl">
-                <CardContent className="p-6 text-center">
-                  <div className="flex items-center justify-center gap-4 mb-2">
-                    <Calendar className="w-5 h-5 text-primary" />
-                    <span className="text-sm font-semibold text-gray-800">
+               <Card className="glass-card bg-white/90 backdrop-blur-md border-stone-200/60 shadow-xl">
+                 <CardContent className="p-6 text-center">
+                   <div className="flex items-center justify-center gap-4 mb-2">
+                     <Calendar className="w-5 h-5 text-primary" />
+                     <span className="text-sm font-semibold text-stone-700">
                       Weekday Rate
                     </span>
                   </div>
                   <div className="text-3xl font-bold text-primary mb-2">
                     {formatPrice(XTSY270_DATA.weekdayPrice)}
                   </div>
-                  <div className="text-sm text-gray-700 font-medium">
+                   <div className="text-sm text-stone-600 font-medium">
                     per night â€¢ Monday to Thursday
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="glass-card bg-white/80 backdrop-blur-md border-white/60 shadow-xl">
-                <CardContent className="p-6 text-center">
-                  <div className="flex items-center justify-center gap-4 mb-2">
-                    <Calendar className="w-5 h-5 text-primary" />
-                    <span className="text-sm font-semibold text-gray-800">
+               <Card className="glass-card bg-white/90 backdrop-blur-md border-stone-200/60 shadow-xl">
+                 <CardContent className="p-6 text-center">
+                   <div className="flex items-center justify-center gap-4 mb-2">
+                     <Calendar className="w-5 h-5 text-primary" />
+                     <span className="text-sm font-semibold text-stone-700">
                       Weekend Rate
                     </span>
                   </div>
                   <div className="text-3xl font-bold text-primary mb-2">
                     {formatPrice(XTSY270_DATA.weekendPrice)}
                   </div>
-                  <div className="text-sm text-gray-700 font-medium">
+                  <div className="text-sm text-stone-600 font-medium">
                     per night â€¢ Friday to Sunday
                   </div>
                 </CardContent>
@@ -251,11 +240,11 @@ Can't wait to create unforgettable memories in this architectural masterpiece! ð
               </div>
 
               <div className="text-center mb-12">
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
-                  The Vision
-                </h2>
-                <p className="text-xl text-gray-800 font-medium max-w-3xl mx-auto">
-                  Pioneering architectural innovation in the heart of Meghalaya's pristine landscapes
+               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-stone-900">
+                   The Vision
+                 </h2>
+                 <p className="text-xl text-stone-700 font-medium max-w-3xl mx-auto">
+                   Pioneering architectural innovation in the heart of Meghalaya's pristine landscapes
                 </p>
               </div>
               
@@ -356,22 +345,22 @@ Can't wait to create unforgettable memories in this architectural masterpiece! ð
             {/* Luxury Amenities Grid */}
             <div className="mb-20 animate-fade-in">
               <div className="text-center mb-12">
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
-                  Luxury Amenities
-                </h2>
-                <p className="text-xl text-gray-800 font-medium max-w-3xl mx-auto">
-                  Every detail crafted for the discerning traveler seeking uncompromising excellence
+               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-stone-900">
+                   Luxury Amenities
+                 </h2>
+                 <p className="text-xl text-stone-700 font-medium max-w-3xl mx-auto">
+                   Every detail crafted for the discerning traveler seeking uncompromising excellence
                 </p>
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {XTSY270_DATA.luxuryFeatures.map((feature, index) => <Card key={index} className="glass-card bg-white/80 backdrop-blur-md border-white/60 shadow-lg hover:shadow-xl transition-all duration-300 group">
-                    <CardContent className="p-6 text-center">
-                      <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
-                        <feature.icon className="w-8 h-8 text-primary mx-auto" />
-                      </div>
-                      <h3 className="text-lg font-semibold mb-2 text-gray-900">{feature.title}</h3>
-                      <p className="text-sm text-gray-700 font-medium">{feature.description}</p>
+               {XTSY270_DATA.luxuryFeatures.map((feature, index) => <Card key={index} className="bg-white/90 backdrop-blur-md border-stone-200/50 shadow-lg hover:shadow-xl transition-all duration-300 group">
+                     <CardContent className="p-6 text-center">
+                       <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                         <feature.icon className="w-8 h-8 text-primary mx-auto" />
+                       </div>
+                       <h3 className="text-lg font-semibold mb-2 text-stone-900">{feature.title}</h3>
+                       <p className="text-sm text-stone-600 font-medium">{feature.description}</p>
                     </CardContent>
                   </Card>)}
               </div>
@@ -383,16 +372,16 @@ Can't wait to create unforgettable memories in this architectural masterpiece! ð
             {/* Experience Details - Enhanced Luxury Section */}
             <div className="mb-20 animate-fade-in">
               <div className="text-center mb-12">
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
-                  Luxury Accommodation Details
-                </h2>
-                <p className="text-xl text-gray-800 font-medium max-w-3xl mx-auto">
-                  Meticulously crafted spaces designed for the ultimate comfort and sophistication
-                </p>
-              </div>
+               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-stone-900">
+                   Luxury Accommodation Details
+                 </h2>
+                 <p className="text-xl text-stone-700 font-medium max-w-3xl mx-auto">
+                   Meticulously crafted spaces designed for the ultimate comfort and sophistication
+                 </p>
+               </div>
               
               <div className="grid lg:grid-cols-3 gap-6">
-                <Card className="glass-card bg-white/80 backdrop-blur-md border-white/60 shadow-xl">
+                 <Card className="bg-white/90 backdrop-blur-md border-stone-200/50 shadow-xl">
                   <CardContent className="p-6 text-center">
                     <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300">
                       <Users className="w-12 h-12 text-primary mx-auto" />
@@ -404,7 +393,7 @@ Can't wait to create unforgettable memories in this architectural masterpiece! ð
                   </CardContent>
                 </Card>
                 
-                <Card className="glass-card bg-white/80 backdrop-blur-md border-white/60 shadow-xl">
+                 <Card className="bg-white/90 backdrop-blur-md border-stone-200/50 shadow-xl">
                   <CardContent className="p-6 text-center">
                     <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300">
                       <Bed className="w-12 h-12 text-primary mx-auto" />
@@ -416,7 +405,7 @@ Can't wait to create unforgettable memories in this architectural masterpiece! ð
                   </CardContent>
                 </Card>
                 
-                <Card className="glass-card bg-white/80 backdrop-blur-md border-white/60 shadow-xl">
+                <Card className="bg-white/90 backdrop-blur-md border-stone-200/50 shadow-xl">
                   <CardContent className="p-6 text-center">
                     <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300">
                       <Bath className="w-12 h-12 text-primary mx-auto" />
@@ -436,14 +425,14 @@ Can't wait to create unforgettable memories in this architectural masterpiece! ð
             {/* Bottom CTA Section */}
             <div className="mt-16 mb-24 text-center animate-fade-in">
               <div className="text-center mb-8">
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
-                  Reserve Your Experience
-                </h2>
-                <p className="text-xl text-gray-800 font-medium max-w-3xl mx-auto mb-8">
-                  Every detail crafted for the discerning traveler seeking uncompromising excellence. Only one suite available for the night in india
-                </p>
+               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-stone-900">
+                   Reserve Your Experience
+                 </h2>
+                 <p className="text-xl text-stone-700 font-medium max-w-3xl mx-auto mb-8">
+                   Every detail crafted for the discerning traveler seeking uncompromising excellence. Only one suite available for the night in India
+                 </p>
               </div>
-              <p className="text-sm text-gray-800 font-medium mt-4">
+              <p className="text-sm text-stone-600 font-medium mt-4">
                 Limited availability â€¢ Book 48 hours in advance for exclusive concierge services
               </p>
             </div>
