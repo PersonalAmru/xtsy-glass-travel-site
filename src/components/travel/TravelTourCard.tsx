@@ -27,7 +27,7 @@ const TravelTourCard = ({ tour, onSelect }: TravelTourCardProps) => {
 
   return (
     <Card
-      className="group cursor-pointer bg-card border-0 shadow-md hover:shadow-2xl transition-all duration-500 rounded-2xl overflow-hidden h-full flex flex-col"
+      className="group cursor-pointer bg-card border-0 shadow-md hover:shadow-xl transition-shadow duration-300 rounded-2xl overflow-hidden h-full flex flex-col"
       onClick={() => onSelect(tour)}
     >
       {/* Image */}
@@ -35,7 +35,7 @@ const TravelTourCard = ({ tour, onSelect }: TravelTourCardProps) => {
         <img
           src={tour.image}
           alt={`${tour.title} — ${tour.location}`}
-          className="w-full h-36 sm:h-44 md:h-48 object-cover group-hover:scale-110 transition-transform duration-700"
+          className="w-full h-36 sm:h-44 md:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
           loading="lazy"
           decoding="async"
         />

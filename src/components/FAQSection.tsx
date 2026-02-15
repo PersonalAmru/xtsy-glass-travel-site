@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { MessageCircle, Sparkles, Quote } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { MessageCircle, Sparkles, Quote, ChevronDown } from 'lucide-react';
 
 const FAQSection = () => {
+  const [showAll, setShowAll] = useState(false);
+
   const faqData = [
     {
       question: "What's the XTSY 270° Glass Suite all about?",
@@ -32,6 +35,17 @@ const FAQSection = () => {
       quoteName: "Dhruba"
     },
     {
+      question: "Is it safe for solo and female travelers?",
+      answer: "100%. We have 24/7 security, CCTV everywhere, female-only dorms, verified local guides, and emergency support. Northeast India is one of the safest regions—the locals are genuinely welcoming. Our female guests keep coming back.",
+      hasQuote: true,
+      quote: "XTSY made us feel safe and welcomed—it's honestly one of the safest places we've traveled to.",
+      quoteName: "Olivia"
+    },
+    {
+      question: "What's your cancellation policy?",
+      answer: "Straight up: all advance payments are non-refundable, and we don't accept cancellations once you've paid. BUT—you can modify your booking once within 90 days. Date change? Room upgrade/downgrade? We got you (subject to availability and fare difference). Just WhatsApp us or email booking@xtsy.one.",
+    },
+    {
       question: "What places do you cover in Northeast?",
       answer: "Meghalaya is our home turf (Living Root Bridges, Cherrapunji, Dawki, Mawlynnong). But we also cover Arunachal, Assam, Nagaland, Sikkim, Manipur, and more. Monsoon treks? High-altitude expeditions? We've got you.",
     },
@@ -42,17 +56,6 @@ const FAQSection = () => {
     {
       question: "Check-in/check-out times?",
       answer: "Check-in: 2 PM | Check-out: 11 AM. Need early check-in? Subject to availability (might cost extra). Late check-in is free until 11 PM, ₹500 after. We're here 24/7 so you can show up whenever.",
-    },
-    {
-      question: "What's your cancellation policy?",
-      answer: "Straight up: all advance payments are non-refundable, and we don't accept cancellations once you've paid. BUT—you can modify your booking once within 90 days. Date change? Room upgrade/downgrade? We got you (subject to availability and fare difference). Just WhatsApp us or email booking@xtsy.one.",
-    },
-    {
-      question: "Is it safe for solo and female travelers?",
-      answer: "100%. We have 24/7 security, CCTV everywhere, female-only dorms, verified local guides, and emergency support. Northeast India is one of the safest regions—the locals are genuinely welcoming. Our female guests keep coming back.",
-      hasQuote: true,
-      quote: "XTSY made us feel safe and welcomed—it's honestly one of the safest places we've traveled to.",
-      quoteName: "Olivia"
     },
     {
       question: "Best time to visit Northeast?",
@@ -93,42 +96,45 @@ const FAQSection = () => {
     }
   ];
 
+  // Show only 4 FAQs initially
+  const visibleFAQs = showAll ? faqData : faqData.slice(0, 4);
+
   return (
-    <section className="pt-12 pb-16 px-4 bg-background -mt-1" id="faq">
+    <section className="pt-10 pb-12 px-4 bg-background -mt-1" id="faq">
       <div className="container mx-auto max-w-4xl">
-        <div className="text-center mb-12">
-          <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
+        <div className="text-center mb-8">
+          <Badge className="mb-3 bg-primary/10 text-primary border-primary/20">
             <Sparkles className="w-3 h-3 mr-1" />
             Got Questions?
           </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
             Real Answers, No BS
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-sm text-muted-foreground max-w-xl mx-auto">
             Everything you need to know before your Northeast adventure
           </p>
         </div>
 
-        <Card className="glass-card border-border/50 shadow-xl">
-          <CardContent className="p-4 md:p-6">
-            <Accordion type="single" collapsible className="w-full space-y-2">
-              {faqData.map((faq, index) => (
+        <Card className="glass-card border-border/50 shadow-lg">
+          <CardContent className="p-3 md:p-5">
+            <Accordion type="single" collapsible className="w-full space-y-1.5">
+              {visibleFAQs.map((faq, index) => (
                 <AccordionItem 
                   key={index} 
                   value={`faq-${index}`} 
-                  className="border border-border/30 rounded-lg px-4 data-[state=open]:bg-accent/30 transition-colors"
+                  className="border border-border/30 rounded-lg px-3 data-[state=open]:bg-accent/30 transition-colors"
                 >
-                  <AccordionTrigger className="text-left text-base font-semibold hover:text-primary transition-colors py-4 hover:no-underline">
+                  <AccordionTrigger className="text-left text-sm font-semibold hover:text-primary transition-colors py-3 hover:no-underline">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground leading-relaxed pt-2 pb-4 space-y-3">
+                  <AccordionContent className="text-muted-foreground text-sm leading-relaxed pt-1 pb-3 space-y-2">
                     <p>{faq.answer}</p>
                     {faq.hasQuote && faq.quote && (
-                      <div className="flex items-start gap-2 mt-3 p-3 bg-primary/5 rounded-lg border border-primary/10">
-                        <Quote className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                      <div className="flex items-start gap-2 p-2.5 bg-primary/5 rounded-lg border border-primary/10">
+                        <Quote className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" />
                         <div>
-                          <p className="text-sm italic text-foreground/80">"{faq.quote}"</p>
-                          <p className="text-xs text-muted-foreground mt-1">— {faq.quoteName}, Verified Guest</p>
+                          <p className="text-xs italic text-foreground/80">"{faq.quote}"</p>
+                          <p className="text-[11px] text-muted-foreground mt-0.5">— {faq.quoteName}, Verified Guest</p>
                         </div>
                       </div>
                     )}
@@ -136,26 +142,40 @@ const FAQSection = () => {
                 </AccordionItem>
               ))}
             </Accordion>
+
+            {!showAll && (
+              <div className="text-center mt-4">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowAll(true)}
+                  className="text-primary hover:text-primary/80 text-xs"
+                >
+                  Show All {faqData.length} Questions
+                  <ChevronDown className="w-3.5 h-3.5 ml-1" />
+                </Button>
+              </div>
+            )}
           </CardContent>
         </Card>
 
-        <div className="text-center mt-8">
-          <p className="text-sm text-muted-foreground mb-4">
+        <div className="text-center mt-6">
+          <p className="text-xs text-muted-foreground mb-3">
             Still curious? Hit us up—we reply fast
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <div className="flex flex-col sm:flex-row gap-2 justify-center">
             <a 
               href="https://wa.me/918837317070" 
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
+              className="bg-primary text-primary-foreground px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
             >
               <MessageCircle className="w-4 h-4" />
               WhatsApp Us
             </a>
             <a 
               href="tel:+918837317070" 
-              className="bg-background text-foreground border border-border px-6 py-3 rounded-lg font-semibold hover:bg-accent transition-colors"
+              className="bg-background text-foreground border border-border px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-accent transition-colors"
             >
               Call +91 88373 17070
             </a>
