@@ -14,6 +14,7 @@ const AboutXTSYSection = lazy(() => import("@/components/AboutXTSYSection"));
 const XTSYPrimeSection = lazy(() => import("@/components/XTSYPrimeSection"));
 const ReviewsSection = lazy(() => import("@/components/ReviewsSection"));
 const AdventureCallToAction = lazy(() => import("@/components/AdventureCallToAction"));
+const BlogPreviewSection = lazy(() => import("@/components/BlogPreviewSection"));
 const FAQSection = lazy(() => import("@/components/FAQSection"));
 
 // Minimal mobile-friendly fallback
@@ -84,6 +85,14 @@ const Index = memo(() => {
           </Suspense>
         </LazyWrapper>
         
+        {/* Blog Preview */}
+        <LazyWrapper fallback={<SectionFallback />}>
+          <Suspense fallback={<SectionFallback />}>
+            <BlogPreviewSection />
+          </Suspense>
+        </LazyWrapper>
+
+        {/* FAQ */}
         <LazyWrapper fallback={<SectionFallback />}>
           <Suspense fallback={<SectionFallback />}>
             <FAQSection />
