@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { MessageCircle, Sparkles, Quote, ChevronDown } from 'lucide-react';
+import { MessageCircle, Sparkles, Quote } from 'lucide-react';
 
 const FAQSection = () => {
-  const [showAll, setShowAll] = useState(false);
-
   const faqData = [
     {
       question: "What's the XTSY 270° Glass Suite all about?",
@@ -34,14 +32,6 @@ const FAQSection = () => {
       quoteName: "Dhruba"
     },
     {
-      question: "Is it safe for solo and female travelers?",
-      answer: "100%. We have 24/7 security, CCTV everywhere, female-only dorms, verified local guides, and emergency support. Northeast India is one of the safest regions—the locals are genuinely welcoming. Our female guests keep coming back.",
-      hasQuote: true,
-      quote: "XTSY made us feel safe and welcomed—it's honestly one of the safest places we've traveled to.",
-      quoteName: "Olivia"
-    },
-    // Below fold — hidden by default
-    {
       question: "What places do you cover in Northeast?",
       answer: "Meghalaya is our home turf (Living Root Bridges, Cherrapunji, Dawki, Mawlynnong). But we also cover Arunachal, Assam, Nagaland, Sikkim, Manipur, and more. Monsoon treks? High-altitude expeditions? We've got you.",
     },
@@ -56,6 +46,13 @@ const FAQSection = () => {
     {
       question: "What's your cancellation policy?",
       answer: "Straight up: all advance payments are non-refundable, and we don't accept cancellations once you've paid. BUT—you can modify your booking once within 90 days. Date change? Room upgrade/downgrade? We got you (subject to availability and fare difference). Just WhatsApp us or email booking@xtsy.one.",
+    },
+    {
+      question: "Is it safe for solo and female travelers?",
+      answer: "100%. We have 24/7 security, CCTV everywhere, female-only dorms, verified local guides, and emergency support. Northeast India is one of the safest regions—the locals are genuinely welcoming. Our female guests keep coming back.",
+      hasQuote: true,
+      quote: "XTSY made us feel safe and welcomed—it's honestly one of the safest places we've traveled to.",
+      quoteName: "Olivia"
     },
     {
       question: "Best time to visit Northeast?",
@@ -96,45 +93,42 @@ const FAQSection = () => {
     }
   ];
 
-  const INITIAL_COUNT = 5;
-  const visibleFaqs = showAll ? faqData : faqData.slice(0, INITIAL_COUNT);
-
   return (
-    <section className="pt-8 pb-10 px-4 bg-background -mt-1" id="faq">
+    <section className="pt-12 pb-16 px-4 bg-background -mt-1" id="faq">
       <div className="container mx-auto max-w-4xl">
-        <div className="text-center mb-8">
-          <Badge className="mb-3 bg-primary/10 text-primary border-primary/20">
+        <div className="text-center mb-12">
+          <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
             <Sparkles className="w-3 h-3 mr-1" />
             Got Questions?
           </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
             Real Answers, No BS
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Everything you need to know before your Northeast adventure
           </p>
         </div>
 
         <Card className="glass-card border-border/50 shadow-xl">
-          <CardContent className="p-3 md:p-5">
-            <Accordion type="single" collapsible className="w-full space-y-1.5">
-              {visibleFaqs.map((faq, index) => (
+          <CardContent className="p-4 md:p-6">
+            <Accordion type="single" collapsible className="w-full space-y-2">
+              {faqData.map((faq, index) => (
                 <AccordionItem 
                   key={index} 
                   value={`faq-${index}`} 
                   className="border border-border/30 rounded-lg px-4 data-[state=open]:bg-accent/30 transition-colors"
                 >
-                  <AccordionTrigger className="text-left text-sm md:text-base font-semibold hover:text-primary transition-colors py-3 hover:no-underline">
+                  <AccordionTrigger className="text-left text-base font-semibold hover:text-primary transition-colors py-4 hover:no-underline">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground text-sm leading-relaxed pt-1 pb-3 space-y-2">
+                  <AccordionContent className="text-muted-foreground leading-relaxed pt-2 pb-4 space-y-3">
                     <p>{faq.answer}</p>
                     {faq.hasQuote && faq.quote && (
-                      <div className="flex items-start gap-2 p-2.5 bg-primary/5 rounded-lg border border-primary/10">
-                        <Quote className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" />
+                      <div className="flex items-start gap-2 mt-3 p-3 bg-primary/5 rounded-lg border border-primary/10">
+                        <Quote className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
                         <div>
-                          <p className="text-xs italic text-foreground/80">"{faq.quote}"</p>
-                          <p className="text-[11px] text-muted-foreground mt-0.5">— {faq.quoteName}, Verified Guest</p>
+                          <p className="text-sm italic text-foreground/80">"{faq.quote}"</p>
+                          <p className="text-xs text-muted-foreground mt-1">— {faq.quoteName}, Verified Guest</p>
                         </div>
                       </div>
                     )}
@@ -142,31 +136,11 @@ const FAQSection = () => {
                 </AccordionItem>
               ))}
             </Accordion>
-
-            {!showAll && (
-              <button
-                onClick={() => setShowAll(true)}
-                className="w-full mt-3 py-2.5 text-sm font-semibold text-primary hover:text-primary/80 transition-colors flex items-center justify-center gap-1.5 border-t border-border/30"
-              >
-                Show all {faqData.length} questions
-                <ChevronDown className="w-4 h-4" />
-              </button>
-            )}
-
-            {showAll && (
-              <button
-                onClick={() => setShowAll(false)}
-                className="w-full mt-3 py-2.5 text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors flex items-center justify-center gap-1.5 border-t border-border/30"
-              >
-                Show less
-                <ChevronDown className="w-4 h-4 rotate-180" />
-              </button>
-            )}
           </CardContent>
         </Card>
 
-        <div className="text-center mt-6">
-          <p className="text-sm text-muted-foreground mb-3">
+        <div className="text-center mt-8">
+          <p className="text-sm text-muted-foreground mb-4">
             Still curious? Hit us up—we reply fast
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">

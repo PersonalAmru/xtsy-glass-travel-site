@@ -84,14 +84,18 @@ const FocusCard = React.memo(({
       initial={false}
       animate={{
         x: xOffset,
+        z: zOffset,
         scale,
+        rotateY,
         opacity,
       }}
       style={{
+        transformStyle: "preserve-3d",
         filter: isCenter ? 'none' : `brightness(0.5)`,
       }}
-      whileHover={isCenter ? { scale: 1.02 } : undefined}
-      transition={{ type: "tween", duration: 0.35, ease: "easeOut" }}
+      whileHover={isCenter ? { scale: 1.03 } : undefined}
+      whileTap={isCenter ? { scale: 0.97 } : undefined}
+      transition={{ type: "spring", stiffness: 260, damping: 26 }}
       onClick={onClick}
     >
       {/* Image with loading skeleton */}
@@ -255,9 +259,10 @@ export function OptimizedFocusRail({
   return (
     <div
       className={cn(
-        "relative w-full h-[500px] md:h-[600px] flex items-center justify-center overflow-hidden select-none outline-none",
+        "relative w-full h-[580px] md:h-[680px] flex items-center justify-center overflow-hidden select-none outline-none",
         className
       )}
+      style={{ perspective: "1200px" }}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
       tabIndex={0}
@@ -276,6 +281,7 @@ export function OptimizedFocusRail({
       <div className="relative z-10 w-full h-full flex flex-col items-center justify-center">
         <motion.div
           className="relative w-full h-[320px] md:h-[400px] flex items-center justify-center cursor-grab active:cursor-grabbing"
+          style={{ transformStyle: "preserve-3d" }}
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={0.1}
