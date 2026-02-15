@@ -10,6 +10,7 @@ import { getAllTours, filterTours, mergeItinerary } from "@/data/travelData";
 // Modular sections
 import TravelHero from "@/components/travel/TravelHero";
 import TravelExclusives from "@/components/travel/TravelExclusives";
+import TravelCoupleAndSolo from "@/components/travel/TravelCoupleAndSolo";
 import TravelNortheast from "@/components/travel/TravelNortheast";
 import TravelHimalayas from "@/components/travel/TravelHimalayas";
 import TravelInternational from "@/components/travel/TravelInternational";
@@ -18,6 +19,7 @@ import TravelTrustSignals from "@/components/travel/TravelTrustSignals";
 import TravelFinalCTA from "@/components/travel/TravelFinalCTA";
 import TravelSectionHeader from "@/components/travel/TravelSectionHeader";
 import TravelTourCard from "@/components/travel/TravelTourCard";
+import TravelPromoBanners from "@/components/travel/TravelPromoBanners";
 
 import incredibleIndiaLogo from "@/assets/incredible-india-logo.png";
 
@@ -44,7 +46,6 @@ const Travel = () => {
     setIsModalOpen(true);
   };
 
-  // When filters are active, show filtered results instead of sections
   const filteredTours = isFiltering ? filterTours(getAllTours(), filters) : [];
 
   return (
@@ -53,14 +54,10 @@ const Travel = () => {
       <Header />
 
       <main className="flex-1">
-        {/* 1. Hero */}
         <TravelHero />
-
-        {/* 6. Filter bar (sticky) */}
         <TravelFiltersBar filters={filters} onChange={setFilters} />
 
         {isFiltering ? (
-          /* Filtered results view */
           <section className="py-12 sm:py-16 bg-background">
             <div className="container mx-auto px-4 sm:px-6">
               <TravelSectionHeader
@@ -87,26 +84,17 @@ const Travel = () => {
             </div>
           </section>
         ) : (
-          /* Default sectioned view — strict order */
           <>
-            {/* 2. XTSY Exclusives */}
             <TravelExclusives onSelect={handleSelect} />
-
-            {/* 3. Northeast India */}
+            <TravelCoupleAndSolo onSelect={handleSelect} />
             <TravelNortheast onSelect={handleSelect} />
-
-            {/* 4. Indian Himalayas & Heartland */}
             <TravelHimalayas onSelect={handleSelect} />
-
-            {/* 5. International Tours */}
             <TravelInternational onSelect={handleSelect} />
           </>
         )}
 
-        {/* 7. Trust signals */}
         <TravelTrustSignals />
 
-        {/* Incredible India partner */}
         <section className="py-8 bg-background border-t border-border">
           <div className="container mx-auto px-4 text-center">
             <img
@@ -119,13 +107,13 @@ const Travel = () => {
           </div>
         </section>
 
-        {/* 8. Final CTA */}
         <TravelFinalCTA />
       </main>
 
       <Footer />
 
-      {/* Tour Package Modal */}
+      <TravelPromoBanners />
+
       <LazyTourPackageModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
