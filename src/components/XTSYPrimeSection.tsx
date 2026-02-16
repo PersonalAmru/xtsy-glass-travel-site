@@ -4,7 +4,8 @@ import { FocusRail, FocusRailItem } from "@/components/ui/focus-rail";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { X, Sparkles, Mountain, PawPrint, Trophy, Heart, Laptop, Car, ArrowRight, CheckCircle2 } from "lucide-react";
+import { X, Sparkles, Mountain, PawPrint, Trophy, Heart, Laptop, Car, ArrowRight, CheckCircle2, Building2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { pushToDataLayer } from "@/utils/dataLayerService";
 
 // XTSY Prime images (from existing pages)
@@ -150,6 +151,7 @@ interface XTSYPrimeSectionProps {
 const XTSYPrimeSection: React.FC<XTSYPrimeSectionProps> = ({ className }) => {
   const [selectedOffering, setSelectedOffering] = useState<typeof xtsyPrimeOfferings[0] | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const focusRailItems: FocusRailItem[] = useMemo(() => 
     xtsyPrimeOfferings.map(offering => ({
@@ -183,11 +185,11 @@ const XTSYPrimeSection: React.FC<XTSYPrimeSectionProps> = ({ className }) => {
     }
   };
 
-  const handleWhatsAppBooking = (offering: typeof xtsyPrimeOfferings[0]) => {
-    const message = encodeURIComponent(
-      `Hi! I'm interested in ${offering.title}. Can you provide more details and availability?`
-    );
-    window.open(`https://wa.me/918837317070?text=${message}`, '_blank');
+  const handlePropertyNavigate = (propertySlug: string) => {
+    setIsModalOpen(false);
+    requestAnimationFrame(() => {
+      navigate(`/properties/${propertySlug}`);
+    });
   };
 
   return (
@@ -291,31 +293,51 @@ const XTSYPrimeSection: React.FC<XTSYPrimeSectionProps> = ({ className }) => {
                 </div>
 
                 {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Button
-                    size="lg"
-                    className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground"
-                    onClick={() => handleWhatsAppBooking(selectedOffering)}
-                  >
-                    Book via WhatsApp
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="flex-1 border-border text-foreground bg-background hover:bg-muted"
-                    onClick={() => {
-                      // Close modal first, then navigate after a short delay to prevent flash
-                      setIsModalOpen(false);
-                      // Use requestAnimationFrame to ensure modal closes before navigation
-                      requestAnimationFrame(() => {
-                        window.location.href = selectedOffering.path;
-                      });
-                    }}
-                  >
-                    View Full Details
-                  </Button>
+                {/* Property Selection */}
+                <div className="mb-4">
+                  <h4 className="text-sm font-semibold text-muted-foreground mb-3 uppercase tracking-wider">Book at</h4>
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    <Button
+                      size="lg"
+                      className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground justify-start gap-3"
+                      onClick={() => handlePropertyNavigate('xtsy-luxury')}
+                    >
+                      <Building2 className="w-5 h-5 flex-shrink-0" />
+                      <div className="text-left">
+                        <div className="font-semibold">XTSY Luxury</div>
+                        <div className="text-xs opacity-80">Premium Glass Suite</div>
+                      </div>
+                    </Button>
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="flex-1 border-border text-foreground bg-background hover:bg-muted justify-start gap-3"
+                      onClick={() => handlePropertyNavigate('xtsy-travellers-hostel')}
+                    >
+                      <Building2 className="w-5 h-5 flex-shrink-0" />
+                      <div className="text-left">
+                        <div className="font-semibold">XTSY Travellers Hostel</div>
+                        <div className="text-xs text-muted-foreground">Dorms & Private Rooms</div>
+                      </div>
+                    </Button>
+                  </div>
                 </div>
+
+                {/* View Full Details */}
+                <Button
+                  size="lg"
+                  variant="ghost"
+                  className="w-full text-primary hover:text-primary/80"
+                  onClick={() => {
+                    setIsModalOpen(false);
+                    requestAnimationFrame(() => {
+                      navigate(selectedOffering.path);
+                    });
+                  }}
+                >
+                  View Full Details
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
               </div>
             </DialogContent>
           </Dialog>
