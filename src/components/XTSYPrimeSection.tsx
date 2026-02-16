@@ -218,7 +218,7 @@ const XTSYPrimeSection: React.FC<XTSYPrimeSectionProps> = ({ className }) => {
       <FocusRail
         items={focusRailItems}
         autoPlay={true}
-        interval={6000}
+        interval={5000}
         loop={true}
         onItemClick={handleOfferingClick}
       />
