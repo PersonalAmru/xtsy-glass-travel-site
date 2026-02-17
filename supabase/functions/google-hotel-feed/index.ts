@@ -1,12 +1,12 @@
+import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createOptimizedClient } from '../_shared/supabaseClient.ts';
 import { PersistentCache } from '../_shared/persistentCache.ts';
 import { checkRateLimit, getClientIp, getRateLimitHeaders } from '../_shared/rateLimiter.ts';
 
-const CACHE_TTL = 900; // 15 minutes
+const CACHE_TTL = 900;
 const CACHE_KEY_HOTEL_LIST = 'google_hotel_list_xml';
 const CACHE_KEY_PRICE_FEED = 'google_price_feed_xml';
 
-// Property definitions
 const PROPERTIES = [
   {
     id: 'xtsy-travellers-hostel',
@@ -43,7 +43,6 @@ const PROPERTIES = [
   },
 ];
 
-// All room type IDs across all properties
 const ALL_ROOM_TYPE_IDS = PROPERTIES.flatMap((p) => p.roomTypes);
 
 function escapeXml(str: string): string {
@@ -103,18 +102,17 @@ interface BlockedRow {
   date: string;
 }
 
+// deno-lint-ignore no-explicit-any
 async function generatePriceAvailabilityXml(supabase: any): Promise<string> {
   const now = new Date();
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
-  // Fetch next 90 days window
   const endDate = new Date(today);
   endDate.setDate(endDate.getDate() + 90);
 
   const todayStr = formatDate(today);
   const endStr = formatDate(endDate);
 
-  // Parallel DB queries
   const [roomTypesRes, inventoryRes, blockedRes] = await Promise.all([
     supabase
       .from('room_types')
@@ -140,7 +138,6 @@ async function generatePriceAvailabilityXml(supabase: any): Promise<string> {
   const inventory: InventoryRow[] = inventoryRes.data || [];
   const blocked: BlockedRow[] = blockedRes.data || [];
 
-  // Index data for fast lookup
   const roomMap = new Map<string, RoomTypeRow>();
   for (const rt of roomTypes) {
     roomMap.set(rt.id, rt);
@@ -164,7 +161,6 @@ async function generatePriceAvailabilityXml(supabase: any): Promise<string> {
     `<Transaction timestamp="${timestamp}" id="${txnId}">`,
   ];
 
-  // Generate results for each property → room → date
   for (const prop of PROPERTIES) {
     for (const roomId of prop.roomTypes) {
       const room = roomMap.get(roomId);
@@ -175,7 +171,6 @@ async function generatePriceAvailabilityXml(supabase: any): Promise<string> {
         const dateStr = formatDate(checkDate);
         const key = `${roomId}|${dateStr}`;
 
-        // Determine availability
         let available: number;
         if (blockedSet.has(key)) {
           available = 0;
@@ -185,7 +180,6 @@ async function generatePriceAvailabilityXml(supabase: any): Promise<string> {
           available = room.total_units;
         }
 
-        // Price: base_price is GST-inclusive. Extract tax for Google's separate field.
         const baserate = room.base_price;
         const tax = Math.round((baserate * 12) / 112 * 100) / 100;
         const netRate = Math.round((baserate - tax) * 100) / 100;
@@ -218,8 +212,9 @@ async function generatePriceAvailabilityXml(supabase: any): Promise<string> {
   return lines.join('\n');
 }
 
-Deno.serve(async (req: Request) => {
-  // CORS preflight
+console.log("Google Hotel Feed function starting...");
+
+serve(async (req: Request) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, {
       headers: {
@@ -234,7 +229,6 @@ Deno.serve(async (req: Request) => {
   const feedType = url.searchParams.get('type') || 'hotel-list';
   const forceRefresh = url.searchParams.get('refresh') === 'true';
 
-  // Rate limiting
   const ip = getClientIp(req);
   const rateResult = await checkRateLimit(supabase, ip, 'google-hotel-feed', {
     endpoint: 'google-hotel-feed',
@@ -256,7 +250,6 @@ Deno.serve(async (req: Request) => {
     const cache = new PersistentCache(supabase);
     const cacheKey = feedType === 'price-availability' ? CACHE_KEY_PRICE_FEED : CACHE_KEY_HOTEL_LIST;
 
-    // Try cache first unless force refresh
     if (!forceRefresh) {
       const cached = await cache.get<string>(cacheKey);
       if (cached) {
@@ -270,7 +263,6 @@ Deno.serve(async (req: Request) => {
       }
     }
 
-    // Generate feed
     let xml: string;
     if (feedType === 'price-availability') {
       xml = await generatePriceAvailabilityXml(supabase);
@@ -278,7 +270,6 @@ Deno.serve(async (req: Request) => {
       xml = generateHotelListXml();
     }
 
-    // Store in cache
     await cache.set(cacheKey, xml, CACHE_TTL);
 
     return new Response(xml, {
