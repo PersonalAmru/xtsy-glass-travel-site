@@ -58,3 +58,7 @@ verify_jwt = false
 # WhatsApp Business API messaging
 [functions.send-whatsapp]
 verify_jwt = false
+
+# Google Hotel Ads XML Feed (public - Google crawler)
+[functions.google-hotel-feed]
+verify_jwt = false
