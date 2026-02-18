@@ -6,7 +6,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { ChevronDown, Sparkles } from "lucide-react";
+import { ChevronDown } from "lucide-react";
+import { SearchHintBar } from "@/components/SearchHintBar";
 import { supabase } from "@/integrations/supabase/client";
 import { useMediaQuery } from "@/hooks/use-mobile";
 import { useHappyGuestsContext } from "@/contexts/HappyGuestsContext";
@@ -196,10 +197,13 @@ const HeroSection = () => {
         <div className="relative z-10 text-center text-white w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 pt-4 md:pt-0">
           {/* Language Greeting & Symbol */}
           <div className="mb-6 sm:mb-10">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-md border border-white/10 mb-6">
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-sm text-white/70">Premium Stays in Northeast India</span>
-            </div>
+            <SearchHintBar onHintClick={(hint) => {
+              if (hint.action === 'navigate') {
+                navigate(hint.path!);
+              } else if (hint.action === 'scroll') {
+                document.querySelector(hint.target!)?.scrollIntoView({ behavior: 'smooth' });
+              }
+            }} />
 
             <div className="relative h-16 flex items-center justify-center mb-4">
               <span className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent transition-opacity duration-500">
