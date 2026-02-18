@@ -197,13 +197,7 @@ const HeroSection = () => {
         <div className="relative z-10 text-center text-white w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 pt-4 md:pt-0">
           {/* Language Greeting & Symbol */}
           <div className="mb-6 sm:mb-10">
-            <SearchHintBar onHintClick={(hint) => {
-              if (hint.action === 'navigate') {
-                navigate(hint.path!);
-              } else if (hint.action === 'scroll') {
-                document.querySelector(hint.target!)?.scrollIntoView({ behavior: 'smooth' });
-              }
-            }} />
+            <SearchHintBar />
 
             <div className="relative h-16 flex items-center justify-center mb-4">
               <span className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent transition-opacity duration-500">
