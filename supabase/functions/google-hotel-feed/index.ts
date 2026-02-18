@@ -18,6 +18,8 @@ const PROPERTIES = [
     postal_code: '175131',
     country: 'IN',
     phone: '+919882043885',
+    latitude: '32.2460',
+    longitude: '77.1845',
     category: 'hostel',
     roomTypes: [
       'king-double-room',
@@ -38,6 +40,8 @@ const PROPERTIES = [
     postal_code: '175131',
     country: 'IN',
     phone: '+919882043885',
+    latitude: '32.2460',
+    longitude: '77.1845',
     category: 'hotel',
     roomTypes: ['xtsy-270'],
   },
@@ -76,6 +80,8 @@ function generateHotelListXml(): string {
     lines.push(`      <component name="country">${prop.country}</component>`);
     lines.push(`    </address>`);
     lines.push(`    <phone type="main">${escapeXml(prop.phone)}</phone>`);
+    lines.push(`    <latitude>${prop.latitude}</latitude>`);
+    lines.push(`    <longitude>${prop.longitude}</longitude>`);
     lines.push(`    <category>${escapeXml(prop.category)}</category>`);
     lines.push(`  </listing>`);
   }
