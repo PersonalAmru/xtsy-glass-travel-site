@@ -123,15 +123,15 @@ Can't wait to create unforgettable memories in this architectural masterpiece! ð
           <div className="container mx-auto max-w-7xl px-4">
             {/* Luxury Badges */}
             <div className="flex flex-wrap justify-center gap-3 mb-8 animate-fade-in">
-              <Badge variant="outline" className="glass-card bg-white/80 border-white/60 text-gray-800 font-semibold backdrop-blur-md">
+              <Badge variant="outline" className="bg-white border-stone-200 text-stone-800 font-semibold shadow-sm">
                 <Award className="w-3 h-3 mr-1" />
                 India's First 270Â° Glass House
               </Badge>
-              <Badge variant="outline" className="glass-card bg-white/80 border-white/60 text-gray-800 font-semibold backdrop-blur-md">
+              <Badge variant="outline" className="bg-white border-stone-200 text-stone-800 font-semibold shadow-sm">
                 <Star className="w-3 h-3 mr-1" />
                 Architectural Excellence
               </Badge>
-              <Badge variant="outline" className="glass-card bg-white/80 border-white/60 text-gray-800 font-semibold backdrop-blur-md">
+              <Badge variant="outline" className="bg-white border-stone-200 text-stone-800 font-semibold shadow-sm">
                 <Mountain className="w-3 h-3 mr-1" />
                 Premium Mountain Views
               </Badge>
@@ -164,9 +164,9 @@ Can't wait to create unforgettable memories in this architectural masterpiece! ð
             <div className="flex flex-col md:flex-row justify-center gap-6 mb-12 animate-fade-in" style={{
             animationDelay: '0.4s'
           }}>
-               <Card className="glass-card bg-white/90 backdrop-blur-md border-stone-200/60 shadow-xl">
+               <Card className="bg-white border-stone-200 shadow-lg">
                  <CardContent className="p-6 text-center">
-                   <div className="flex items-center justify-center gap-4 mb-2">
+                   <div className="flex items-center justify-center gap-3 mb-2">
                      <Calendar className="w-5 h-5 text-primary" />
                      <span className="text-sm font-semibold text-stone-700">
                       Weekday Rate
@@ -181,9 +181,9 @@ Can't wait to create unforgettable memories in this architectural masterpiece! ð
                 </CardContent>
               </Card>
 
-               <Card className="glass-card bg-white/90 backdrop-blur-md border-stone-200/60 shadow-xl">
+               <Card className="bg-white border-stone-200 shadow-lg">
                  <CardContent className="p-6 text-center">
-                   <div className="flex items-center justify-center gap-4 mb-2">
+                   <div className="flex items-center justify-center gap-3 mb-2">
                      <Calendar className="w-5 h-5 text-primary" />
                      <span className="text-sm font-semibold text-stone-700">
                       Weekend Rate
@@ -203,7 +203,7 @@ Can't wait to create unforgettable memories in this architectural masterpiece! ð
             <figure className="animate-fade-in" style={{
             animationDelay: '0.6s'
           }} aria-label="XTSY 270Â° Panorama Glass Ensuite luxury experience">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl glass-card bg-white/10 backdrop-blur-sm border-white/20">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-stone-200/40">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10" />
                 <MobileImageCarousel images={XTSY270_DATA.images} alt="XTSY 270Â° Panorama Glass Ensuite â€” India's first luxury glass house with 270-degree mountain views" aspectRatio="video" showIndicators={true} showArrows={true} autoPlay={true} autoPlayInterval={5000} className="w-full h-[60vh] md:h-[70vh]" />
               </div>
@@ -354,7 +354,7 @@ Can't wait to create unforgettable memories in this architectural masterpiece! ð
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-               {XTSY270_DATA.luxuryFeatures.map((feature, index) => <Card key={index} className="bg-white/90 backdrop-blur-md border-stone-200/50 shadow-lg hover:shadow-xl transition-all duration-300 group">
+               {XTSY270_DATA.luxuryFeatures.map((feature, index) => <Card key={index} className="bg-white border-stone-200 shadow-md hover:shadow-lg transition-all duration-300 group">
                      <CardContent className="p-6 text-center">
                        <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
                          <feature.icon className="w-8 h-8 text-primary mx-auto" />
@@ -381,7 +381,7 @@ Can't wait to create unforgettable memories in this architectural masterpiece! ð
                </div>
               
               <div className="grid lg:grid-cols-3 gap-6">
-                 <Card className="bg-white/90 backdrop-blur-md border-stone-200/50 shadow-xl">
+                 <Card className="bg-white border-stone-200 shadow-lg">
                   <CardContent className="p-6 text-center">
                     <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300">
                       <Users className="w-12 h-12 text-primary mx-auto" />
@@ -393,7 +393,7 @@ Can't wait to create unforgettable memories in this architectural masterpiece! ð
                   </CardContent>
                 </Card>
                 
-                 <Card className="bg-white/90 backdrop-blur-md border-stone-200/50 shadow-xl">
+                 <Card className="bg-white border-stone-200 shadow-lg">
                   <CardContent className="p-6 text-center">
                     <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300">
                       <Bed className="w-12 h-12 text-primary mx-auto" />
@@ -405,7 +405,7 @@ Can't wait to create unforgettable memories in this architectural masterpiece! ð
                   </CardContent>
                 </Card>
                 
-                <Card className="bg-white/90 backdrop-blur-md border-stone-200/50 shadow-xl">
+                <Card className="bg-white border-stone-200 shadow-lg">
                   <CardContent className="p-6 text-center">
                     <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300">
                       <Bath className="w-12 h-12 text-primary mx-auto" />
