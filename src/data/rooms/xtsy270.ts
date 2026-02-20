@@ -84,6 +84,7 @@ export const XTSY270_DATA = {
     'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/270/IMG_9955.jpg',
     'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/270/IMG_9950.jpg',
     'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/270/IMG_9927.jpg',
+    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/270/IMG_9812.jpg'
   ],
 };
 

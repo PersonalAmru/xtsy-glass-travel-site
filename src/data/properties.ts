@@ -58,6 +58,7 @@ export const PROPERTIES: Record<string, Property> = {
       `${STORAGE_BASE}/270/IMG_9955.jpg`,
       `${STORAGE_BASE}/270/IMG_9950.jpg`,
       `${STORAGE_BASE}/270/IMG_9927.jpg`,
+      `${STORAGE_BASE}/270/IMG_9812.jpg`,
     ],
     amenities: ['270° Mountain Views', 'Premium Breakfast', 'Luxury Ensuite', 'Air Conditioning', '4K QLED TV'],
     priceRange: { min: 7489, max: 11500 },
