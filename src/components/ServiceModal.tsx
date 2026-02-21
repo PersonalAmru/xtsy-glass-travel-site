@@ -59,12 +59,12 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
       'Shared Lounge': [
         { property: 'XTSY Travellers Hostel', note: 'Free access included', type: 'info' },
         { property: 'XTSY Economy', note: 'Upgrade required for access', type: 'restriction' },
-        { property: 'XTSY Luxury', note: 'Premium lounge access included', type: 'premium' }
+        { property: 'XTSY Experience', note: 'Premium lounge access included', type: 'premium' }
       ],
       'Common Room': [
         { property: 'XTSY Travellers Hostel', note: 'Free access included', type: 'info' },
         { property: 'XTSY Economy', note: 'Upgrade required for access', type: 'restriction' },
-        { property: 'XTSY Luxury', note: 'Exclusive common room access', type: 'premium' }
+        { property: 'XTSY Experience', note: 'Exclusive common room access', type: 'premium' }
       ],
       'Games Room': [
         { property: 'XTSY Economy', note: 'Strictly NOT available', type: 'restriction' }
@@ -72,32 +72,32 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
       'Laundry': [
         { property: 'XTSY Travellers Hostel', note: '50% discount on laundry services', type: 'info' },
         { property: 'XTSY Economy', note: 'Upgrade required for service', type: 'restriction' },
-        { property: 'XTSY Luxury', note: 'Complimentary laundry service', type: 'premium' }
+        { property: 'XTSY Experience', note: 'Complimentary laundry service', type: 'premium' }
       ],
       'Terrace Access': [
         { property: 'XTSY Travellers Hostel', note: 'Free terrace access', type: 'info' },
         { property: 'XTSY Economy', note: 'Upgrade required for terrace', type: 'restriction' },
-        { property: 'XTSY Luxury', note: 'Private terrace access', type: 'premium' }
+        { property: 'XTSY Experience', note: 'Private terrace access', type: 'premium' }
       ],
       'Bonfire Nights': [
         { property: 'XTSY Travellers Hostel', note: 'Free participation', type: 'info' },
         { property: 'XTSY Economy', note: 'Upgrade required to join', type: 'restriction' },
-        { property: 'XTSY Luxury', note: 'VIP bonfire experience', type: 'premium' }
+        { property: 'XTSY Experience', note: 'VIP bonfire experience', type: 'premium' }
       ],
       'BBQ Experience': [
         { property: 'XTSY Travellers Hostel', note: 'Paid experience available', type: 'info' },
         { property: 'XTSY Economy', note: 'Upgrade required + fees', type: 'restriction' },
-        { property: 'XTSY Luxury', note: 'Complimentary BBQ included', type: 'premium' }
+        { property: 'XTSY Experience', note: 'Complimentary BBQ included', type: 'premium' }
       ],
       'Dome Photoshoot': [
         { property: 'XTSY Travellers Hostel', note: 'Included experience', type: 'info' },
         { property: 'XTSY Economy', note: 'Upgrade required for access', type: 'restriction' },
-        { property: 'XTSY Luxury', note: 'Professional photoshoot included', type: 'premium' }
+        { property: 'XTSY Experience', note: 'Professional photoshoot included', type: 'premium' }
       ],
       'Convenience Store': [
         { property: 'XTSY Travellers Hostel', note: '10% discount on all items', type: 'info' },
         { property: 'XTSY Economy', note: 'MRP pricing applies', type: 'restriction' },
-        { property: 'XTSY Luxury', note: 'Complimentary store credit included', type: 'premium' }
+        { property: 'XTSY Experience', note: 'Complimentary store credit included', type: 'premium' }
       ],
       'Charging Point': [
         { property: 'XTSY Economy', note: 'Not available - upgrade needed', type: 'restriction' }
@@ -110,15 +110,15 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
       ],
       'Tour Assistance': [
         { property: 'XTSY Economy', note: 'Strictly NOT available', type: 'restriction' },
-        { property: 'XTSY Luxury', note: 'Dedicated tour concierge service', type: 'premium' }
+        { property: 'XTSY Experience', note: 'Dedicated tour concierge service', type: 'premium' }
       ],
       'Group Bookings': [
         { property: 'XTSY Economy', note: 'Group size capped at 8 guests', type: 'restriction' },
-        { property: 'XTSY Luxury', note: 'Exclusive signature stay – only 1 available per night in India. Limited edition. Book fast.', type: 'premium' }
+        { property: 'XTSY Experience', note: 'Exclusive signature stay – only 1 available per night in India. Limited edition. Book fast.', type: 'premium' }
       ],
       'Event Space': [
         { property: 'XTSY Economy', note: 'Upgrade required for access', type: 'restriction' },
-        { property: 'XTSY Luxury', note: 'Premium event facilities with catering', type: 'premium' }
+        { property: 'XTSY Experience', note: 'Premium event facilities with catering', type: 'premium' }
       ],
       '24/7 Support': [
         { property: 'All Properties', note: 'WhatsApp support only during working hours', type: 'info' }
