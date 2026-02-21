@@ -48,8 +48,8 @@ export const PROPERTIES: Record<string, Property> = {
   'xtsy-luxury': {
     id: 'xtsy-luxury',
     slug: 'xtsy-luxury',
-    name: 'XTSY Luxury',
-    shortName: 'Luxury',
+    name: 'XTSY Experience',
+    shortName: 'Experience',
     locationId: 'shillong',
     description: 'Experience unparalleled luxury with our signature 270° Panorama Glass Suite offering breathtaking mountain views.',
     heroImage: `${STORAGE_BASE}/270/IMG_9812.jpg`,
