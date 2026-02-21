@@ -64,9 +64,8 @@ I'd love to experience India's first panoramic glass house with breathtaking mou
 • 270° transparent sanctuary experience
 • Queen bed ensuite with panoramic vistas
 
-💰 *Rates:*
-• Weekday: ₹${XTSY270_DATA.weekdayPrice.toLocaleString()}/night
-• Weekend: ₹${XTSY270_DATA.weekendPrice.toLocaleString()}/night
+💰 *Rate:*
+• Starting from ₹${XTSY270_DATA.price.toLocaleString()}/night
 
 🛏️ *Features I Love:*
 ✓ Queen bed accommodation for couples
@@ -156,12 +155,12 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
             <div className="text-center mb-8 animate-fade-in" style={{
             animationDelay: '0.35s'
           }}>
-               <h3 className="text-2xl md:text-3xl font-bold mb-3 text-stone-900">Seasonal offers - Prices might change later!</h3>
+               <h3 className="text-2xl md:text-3xl font-bold mb-3 text-stone-900">XTSY Experience</h3>
                <p className="text-base md:text-lg text-stone-600 font-medium max-w-2xl mx-auto">
-                Experience luxury at flexible rates that adapt to your travel schedule
+                India's signature 270° panoramic glass house
               </p>
             </div>
-            <div className="flex flex-col md:flex-row justify-center gap-6 mb-12 animate-fade-in" style={{
+            <div className="flex justify-center mb-12 animate-fade-in" style={{
             animationDelay: '0.4s'
           }}>
                <Card className="bg-white border-stone-200 shadow-lg">
@@ -169,31 +168,14 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
                    <div className="flex items-center justify-center gap-3 mb-2">
                      <Calendar className="w-5 h-5 text-primary" />
                      <span className="text-sm font-semibold text-stone-700">
-                      Weekday Rate
+                      Starting from
                     </span>
                   </div>
                   <div className="text-3xl font-bold text-primary mb-2">
-                    {formatPrice(XTSY270_DATA.weekdayPrice)}
+                    {formatPrice(XTSY270_DATA.price)}
                   </div>
                    <div className="text-sm text-stone-600 font-medium">
-                    per night • Monday to Thursday
-                  </div>
-                </CardContent>
-              </Card>
-
-               <Card className="bg-white border-stone-200 shadow-lg">
-                 <CardContent className="p-6 text-center">
-                   <div className="flex items-center justify-center gap-3 mb-2">
-                     <Calendar className="w-5 h-5 text-primary" />
-                     <span className="text-sm font-semibold text-stone-700">
-                      Weekend Rate
-                    </span>
-                  </div>
-                  <div className="text-3xl font-bold text-primary mb-2">
-                    {formatPrice(XTSY270_DATA.weekendPrice)}
-                  </div>
-                  <div className="text-sm text-stone-600 font-medium">
-                    per night • Friday to Sunday
+                    per night
                   </div>
                 </CardContent>
               </Card>
