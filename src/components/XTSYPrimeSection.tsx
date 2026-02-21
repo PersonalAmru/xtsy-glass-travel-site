@@ -304,7 +304,7 @@ const XTSYPrimeSection: React.FC<XTSYPrimeSectionProps> = ({ className }) => {
                     >
                       <Building2 className="w-5 h-5 flex-shrink-0" />
                       <div className="text-left">
-                        <div className="font-semibold">XTSY Luxury</div>
+                        <div className="font-semibold">XTSY Experience</div>
                         <div className="text-xs opacity-80">Premium Glass Suite</div>
                       </div>
                     </Button>
