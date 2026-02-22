@@ -41,14 +41,14 @@ const Index = memo(() => {
       <SEOContent page="home" />
       <Header />
       <main style={{ contain: 'layout style' }}>
-        <HeroSection />
-        
-        {/* XTSY Prime - Premium offerings (right after hero) */}
+        {/* XTSY Prime - Hero sliding section */}
         <LazyWrapper eager fallback={<SectionFallback height="h-80" />}>
           <Suspense fallback={<SectionFallback height="h-80" />}>
             <XTSYPrimeSection />
           </Suspense>
         </LazyWrapper>
+
+        <HeroSection />
         
         {/* Tour Packages - FocusRail cards */}
         <LazyWrapper eager fallback={<SectionFallback height="h-96" />}>
