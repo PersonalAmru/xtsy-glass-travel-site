@@ -118,7 +118,7 @@ Can't wait to create unforgettable memories in this architectural masterpiece! ð
         <div className="absolute inset-0 bg-gradient-to-br from-stone-200/20 via-transparent to-amber-100/10" />
 
         {/* Hero Section */}
-        <section className="relative z-10 pt-8 pb-16">
+        <section className="relative z-10 pt-2 pb-16">
           <div className="container mx-auto max-w-7xl px-4">
             {/* Luxury Badges */}
             <div className="flex flex-wrap justify-center gap-3 mb-8 animate-fade-in">
