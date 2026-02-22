@@ -120,32 +120,30 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
         {/* Hero Section */}
         <section className="relative z-10 pt-8 pb-16">
           <div className="container mx-auto max-w-7xl px-4">
-            {/* Hero Image Carousel with Pricing Overlay */}
-            <figure className="mb-10 animate-fade-in" aria-label="XTSY 270° Panorama Glass Ensuite luxury experience">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-stone-200/40">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent z-10 pointer-events-none" />
-                <MobileImageCarousel images={XTSY270_DATA.images} alt="XTSY 270° Panorama Glass Ensuite — India's first luxury glass house with 270-degree mountain views" aspectRatio="video" showIndicators={true} showArrows={true} autoPlay={true} autoPlayInterval={5000} className="w-full h-[60vh] md:h-[70vh]" />
-                
-                {/* Pricing Overlay */}
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 w-[90%] max-w-md">
-                  <div className="bg-white/15 backdrop-blur-xl border border-white/20 rounded-2xl px-6 py-5 text-center shadow-2xl">
-                    <h3 className="text-lg md:text-xl font-bold text-white mb-1 tracking-wide">XTSY Experience</h3>
-                    <p className="text-xs md:text-sm text-white/80 font-medium mb-3">
-                      India's signature 270° panoramic glass house
-                    </p>
-                    <span className="block text-[10px] font-semibold tracking-widest uppercase text-white/60 mb-1">
-                      Starting from
-                    </span>
-                    <div className="flex items-baseline justify-center gap-1">
-                      <span className="text-3xl md:text-4xl font-bold tracking-tight text-white drop-shadow-lg">
-                        {formatPrice(XTSY270_DATA.price)}
-                      </span>
-                    </div>
-                    <span className="text-xs text-white/70 font-medium">per night · inclusive of taxes</span>
-                  </div>
-                </div>
+            {/* Pricing Section - Above Carousel */}
+            <div className="text-center mb-8 animate-fade-in">
+              <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-1 tracking-wide">XTSY Experience</h3>
+              <p className="text-sm md:text-base text-muted-foreground font-medium mb-4">
+                India's signature 270° panoramic glass house
+              </p>
+              <span className="block text-[10px] font-semibold tracking-widest uppercase text-muted-foreground/70 mb-1">
+                Starting from
+              </span>
+              <div className="flex items-baseline justify-center gap-1">
+                <span className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
+                  {formatPrice(XTSY270_DATA.price)}
+                </span>
               </div>
-              <figcaption className="mt-4 text-center text-stone-600 font-medium text-sm">
+              <span className="text-sm text-muted-foreground font-medium">per night · inclusive of taxes</span>
+            </div>
+
+            {/* Hero Image Carousel */}
+            <figure className="mb-10 animate-fade-in" aria-label="XTSY 270° Panorama Glass Ensuite luxury experience">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-border/40">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10 pointer-events-none" />
+                <MobileImageCarousel images={XTSY270_DATA.images} alt="XTSY 270° Panorama Glass Ensuite — India's first luxury glass house with 270-degree mountain views" aspectRatio="video" showIndicators={true} showArrows={true} autoPlay={true} autoPlayInterval={5000} className="w-full h-[60vh] md:h-[70vh]" />
+              </div>
+              <figcaption className="mt-4 text-center text-muted-foreground font-medium text-sm">
                 India's first 270° panoramic glass house — where architecture meets nature in perfect harmony
               </figcaption>
             </figure>
