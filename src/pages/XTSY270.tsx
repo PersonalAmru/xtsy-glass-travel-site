@@ -120,72 +120,37 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
         {/* Hero Section */}
         <section className="relative z-10 pt-8 pb-16">
           <div className="container mx-auto max-w-7xl px-4">
-            {/* Hero Image Carousel - Above the fold */}
+            {/* Hero Image Carousel with Pricing Overlay */}
             <figure className="mb-10 animate-fade-in" aria-label="XTSY 270° Panorama Glass Ensuite luxury experience">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-stone-200/40">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent z-10 pointer-events-none" />
                 <MobileImageCarousel images={XTSY270_DATA.images} alt="XTSY 270° Panorama Glass Ensuite — India's first luxury glass house with 270-degree mountain views" aspectRatio="video" showIndicators={true} showArrows={true} autoPlay={true} autoPlayInterval={5000} className="w-full h-[60vh] md:h-[70vh]" />
+                
+                {/* Pricing Overlay */}
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 w-[90%] max-w-md">
+                  <div className="bg-white/15 backdrop-blur-xl border border-white/20 rounded-2xl px-6 py-5 text-center shadow-2xl">
+                    <h3 className="text-lg md:text-xl font-bold text-white mb-1 tracking-wide">XTSY Experience</h3>
+                    <p className="text-xs md:text-sm text-white/80 font-medium mb-3">
+                      India's signature 270° panoramic glass house
+                    </p>
+                    <span className="block text-[10px] font-semibold tracking-widest uppercase text-white/60 mb-1">
+                      Starting from
+                    </span>
+                    <div className="flex items-baseline justify-center gap-1">
+                      <span className="text-3xl md:text-4xl font-bold tracking-tight text-white drop-shadow-lg">
+                        {formatPrice(XTSY270_DATA.price)}
+                      </span>
+                    </div>
+                    <span className="text-xs text-white/70 font-medium">per night · inclusive of taxes</span>
+                  </div>
+                </div>
               </div>
-              <figcaption className="mt-4 text-center text-gray-700 font-medium">
+              <figcaption className="mt-4 text-center text-stone-600 font-medium text-sm">
                 India's first 270° panoramic glass house — where architecture meets nature in perfect harmony
               </figcaption>
-              <p className="mt-2 text-center text-sm text-gray-600 font-medium">
-                Architectural marvel purely designed and curated by Team XTSY
-              </p>
             </figure>
 
             {/* Luxury Badges */}
-            <div className="flex flex-wrap justify-center gap-3 mb-8 animate-fade-in">
-              <Badge variant="outline" className="bg-white border-stone-200 text-stone-800 font-semibold shadow-sm">
-                <Award className="w-3 h-3 mr-1" />
-                India's First 270° Glass House
-              </Badge>
-              <Badge variant="outline" className="bg-white border-stone-200 text-stone-800 font-semibold shadow-sm">
-                <Star className="w-3 h-3 mr-1" />
-                Architectural Excellence
-              </Badge>
-              <Badge variant="outline" className="bg-white border-stone-200 text-stone-800 font-semibold shadow-sm">
-                <Mountain className="w-3 h-3 mr-1" />
-                Premium Mountain Views
-              </Badge>
-            </div>
-
-            {/* Hero Title */}
-            <div className="text-center mb-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-               <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-stone-900 leading-tight">
-                 XTSY 270°
-               </h1>
-               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-stone-800">
-                 Panorama Glass Ensuite
-               </h2>
-               <p className="text-lg md:text-xl text-stone-700 font-medium max-w-3xl mx-auto leading-relaxed">
-                Experience India's most innovative architectural marvel — a 200% luxury ensuite with stunning 270° mountain panoramas that redefine hospitality excellence.
-              </p>
-            </div>
-
-            {/* Pricing Display */}
-            <div className="text-center mb-8 animate-fade-in" style={{ animationDelay: '0.35s' }}>
-               <h3 className="text-2xl md:text-3xl font-bold mb-3 text-stone-900">XTSY Experience</h3>
-               <p className="text-base md:text-lg text-stone-600 font-medium max-w-2xl mx-auto">
-                India's signature 270° panoramic glass house
-              </p>
-            </div>
-            <div className="flex justify-center mb-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
-              <div className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 rounded-3xl blur-xl opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative bg-card/80 backdrop-blur-2xl border border-border/30 shadow-lg shadow-black/5 rounded-2xl p-8 text-center">
-                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-3">
-                    Starting from
-                  </span>
-                  <div className="flex items-baseline justify-center gap-1 mb-1">
-                    <span className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
-                      {formatPrice(XTSY270_DATA.price)}
-                    </span>
-                  </div>
-                  <span className="text-sm text-muted-foreground font-medium">per night · inclusive of taxes</span>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
 
