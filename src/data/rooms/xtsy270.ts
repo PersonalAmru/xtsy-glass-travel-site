@@ -74,7 +74,7 @@ export const XTSY270_DATA = {
   priceCurrency: 'INR',
   weekendPrice: 11500,
   weekdayPrice: 8500,
-  price: 8500, // keeping for backward compatibility (weekday default)
+  price: 7489, // XTSY Experience starting price (inclusive of GST)
   maxGuests: 2,
   maxRooms: 1,
   image:
