@@ -120,6 +120,20 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
         {/* Hero Section */}
         <section className="relative z-10 pt-8 pb-16">
           <div className="container mx-auto max-w-7xl px-4">
+            {/* Hero Image Carousel - Above the fold */}
+            <figure className="mb-10 animate-fade-in" aria-label="XTSY 270° Panorama Glass Ensuite luxury experience">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-stone-200/40">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10" />
+                <MobileImageCarousel images={XTSY270_DATA.images} alt="XTSY 270° Panorama Glass Ensuite — India's first luxury glass house with 270-degree mountain views" aspectRatio="video" showIndicators={true} showArrows={true} autoPlay={true} autoPlayInterval={5000} className="w-full h-[60vh] md:h-[70vh]" />
+              </div>
+              <figcaption className="mt-4 text-center text-gray-700 font-medium">
+                India's first 270° panoramic glass house — where architecture meets nature in perfect harmony
+              </figcaption>
+              <p className="mt-2 text-center text-sm text-gray-600 font-medium">
+                Architectural marvel purely designed and curated by Team XTSY
+              </p>
+            </figure>
+
             {/* Luxury Badges */}
             <div className="flex flex-wrap justify-center gap-3 mb-8 animate-fade-in">
               <Badge variant="outline" className="bg-white border-stone-200 text-stone-800 font-semibold shadow-sm">
@@ -137,9 +151,7 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
             </div>
 
             {/* Hero Title */}
-            <div className="text-center mb-12 animate-fade-in" style={{
-            animationDelay: '0.2s'
-          }}>
+            <div className="text-center mb-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
                <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-stone-900 leading-tight">
                  XTSY 270°
                </h1>
@@ -152,9 +164,7 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
             </div>
 
             {/* Pricing Display */}
-            <div className="text-center mb-8 animate-fade-in" style={{
-            animationDelay: '0.35s'
-          }}>
+            <div className="text-center mb-8 animate-fade-in" style={{ animationDelay: '0.35s' }}>
                <h3 className="text-2xl md:text-3xl font-bold mb-3 text-stone-900">XTSY Experience</h3>
                <p className="text-base md:text-lg text-stone-600 font-medium max-w-2xl mx-auto">
                 India's signature 270° panoramic glass house
@@ -176,22 +186,6 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
                 </div>
               </div>
             </div>
-
-            {/* Hero Image Carousel */}
-            <figure className="animate-fade-in" style={{
-            animationDelay: '0.6s'
-          }} aria-label="XTSY 270° Panorama Glass Ensuite luxury experience">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-stone-200/40">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10" />
-                <MobileImageCarousel images={XTSY270_DATA.images} alt="XTSY 270° Panorama Glass Ensuite — India's first luxury glass house with 270-degree mountain views" aspectRatio="video" showIndicators={true} showArrows={true} autoPlay={true} autoPlayInterval={5000} className="w-full h-[60vh] md:h-[70vh]" />
-              </div>
-              <figcaption className="mt-4 text-center text-gray-700 font-medium">
-                India's first 270° panoramic glass house — where architecture meets nature in perfect harmony
-              </figcaption>
-              <p className="mt-2 text-center text-sm text-gray-600 font-medium">
-                Architectural marvel purely designed and curated by Team XTSY
-              </p>
-            </figure>
           </div>
         </section>
 
