@@ -160,25 +160,21 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
                 India's signature 270° panoramic glass house
               </p>
             </div>
-            <div className="flex justify-center mb-12 animate-fade-in" style={{
-            animationDelay: '0.4s'
-          }}>
-               <Card className="bg-white border-stone-200 shadow-lg">
-                 <CardContent className="p-6 text-center">
-                   <div className="flex items-center justify-center gap-3 mb-2">
-                     <Calendar className="w-5 h-5 text-primary" />
-                     <span className="text-sm font-semibold text-stone-700">
-                      Starting from
+            <div className="flex justify-center mb-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+              <div className="relative group">
+                <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 rounded-3xl blur-xl opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative bg-card/80 backdrop-blur-2xl border border-border/30 shadow-lg shadow-black/5 rounded-2xl p-8 text-center">
+                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-3">
+                    Starting from
+                  </span>
+                  <div className="flex items-baseline justify-center gap-1 mb-1">
+                    <span className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
+                      {formatPrice(XTSY270_DATA.price)}
                     </span>
                   </div>
-                  <div className="text-3xl font-bold text-primary mb-2">
-                    {formatPrice(XTSY270_DATA.price)}
-                  </div>
-                   <div className="text-sm text-stone-600 font-medium">
-                    per night
-                  </div>
-                </CardContent>
-              </Card>
+                  <span className="text-sm text-muted-foreground font-medium">per night · inclusive of taxes</span>
+                </div>
+              </div>
             </div>
 
             {/* Hero Image Carousel */}
