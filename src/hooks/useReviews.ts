@@ -16,7 +16,7 @@ const PROPERTY_IDS = {
 // Property names for display
 const PROPERTY_NAMES: Record<string, string> = {
   '11978251-839f-4274-ab1b-ec9c2d8bbaae': 'XTSY Travellers Hostel',
-  '5d67fd82-c64c-4cd0-b051-a29deb9c9b3b': 'XTSY Experience',
+  '5d67fd82-c64c-4cd0-b051-a29deb9c9b3b': 'XTSY Xperience',
 };
 
 export interface Review {
@@ -103,14 +103,14 @@ export function useReviews() {
   // Get review counts by property
   const reviewCounts = useMemo(() => ({
     hostel: reviews.filter(r => r.property === 'XTSY Travellers Hostel').length,
-    luxury: reviews.filter(r => r.property === 'XTSY Experience').length,
+    luxury: reviews.filter(r => r.property === 'XTSY Xperience').length,
     total: reviews.length,
   }), [reviews]);
 
   // Calculate average rating by property
   const averageRatings = useMemo(() => {
     const hostelReviews = reviews.filter(r => r.property === 'XTSY Travellers Hostel');
-    const luxuryReviews = reviews.filter(r => r.property === 'XTSY Experience');
+    const luxuryReviews = reviews.filter(r => r.property === 'XTSY Xperience');
     
     const calcAvg = (revs: Review[]) => 
       revs.length > 0 
