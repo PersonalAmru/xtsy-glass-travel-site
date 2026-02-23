@@ -3,6 +3,12 @@
  * Defines properties within locations, each with their own inventory
  */
 
+import xtsyStargazing from '@/assets/xtsy-270-stargazing.jpeg';
+import xtsyAerial from '@/assets/xtsy-270-aerial.jpeg';
+import xtsyMilkyway from '@/assets/xtsy-270-milkyway.jpeg';
+import xtsyMilkyway2 from '@/assets/xtsy-270-milkyway2.jpeg';
+import xtsyInterior from '@/assets/xtsy-270-interior.jpeg';
+
 export interface Location {
   id: string;
   name: string;
@@ -52,11 +58,13 @@ export const PROPERTIES: Record<string, Property> = {
     shortName: 'Xperience',
     locationId: 'shillong',
     description: 'Experience unparalleled luxury with our signature 270° Panorama Glass Suite offering breathtaking mountain views.',
-    heroImage: `${STORAGE_BASE}/270/IMG_9812.jpg`,
+    heroImage: xtsyStargazing,
     images: [
-      `${STORAGE_BASE}/270/IMG_9812.jpg`,
-      `${STORAGE_BASE}/270/IMG_9927.jpg`,
-      `${STORAGE_BASE}/270/IMG_9956.jpg`,
+      xtsyStargazing,
+      xtsyAerial,
+      xtsyMilkyway,
+      xtsyMilkyway2,
+      xtsyInterior,
     ],
     // Note: New local images (stargazing, aerial, milkyway, interior) used on /xtsy-270 page
     amenities: ['270° Mountain Views', 'Premium Breakfast', 'Luxury Ensuite', 'Air Conditioning', '4K QLED TV'],
