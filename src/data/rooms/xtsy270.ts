@@ -1,4 +1,9 @@
 import { Wifi, Coffee, Bath, Bed, Mountain, Star, Award, Eye, Sun, Moon, Users, MapPin, Wind, Thermometer, Shield, Camera } from 'lucide-react';
+import xtsyStargazing from '@/assets/xtsy-270-stargazing.jpeg';
+import xtsyAerial from '@/assets/xtsy-270-aerial.jpeg';
+import xtsyMilkyway from '@/assets/xtsy-270-milkyway.jpeg';
+import xtsyMilkyway2 from '@/assets/xtsy-270-milkyway2.jpeg';
+import xtsyInterior from '@/assets/xtsy-270-interior.jpeg';
 
 export const XTSY270_DATA = {
   path: '/xtsy-270',
@@ -77,12 +82,13 @@ export const XTSY270_DATA = {
   price: 7489, // XTSY Xperience starting price (inclusive of GST)
   maxGuests: 2,
   maxRooms: 1,
-  image:
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/270/IMG_9812.jpg',
+  image: xtsyStargazing,
   images: [
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/270/IMG_9812.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/270/IMG_9927.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/270/IMG_9956.jpg',
+    xtsyStargazing,
+    xtsyAerial,
+    xtsyMilkyway,
+    xtsyMilkyway2,
+    xtsyInterior,
   ],
 };
 
