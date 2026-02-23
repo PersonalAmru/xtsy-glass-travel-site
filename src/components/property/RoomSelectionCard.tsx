@@ -66,7 +66,7 @@ export const RoomSelectionCard = ({
           routeGTMEvent({
             eventName: 'luxury_room_interest',
             params: {
-              property_name: room.propertyType || 'XTSY Experience',
+              property_name: room.propertyType || 'XTSY Xperience',
               room_type: room.id,
               base_price: room.discountedPrice,
               page_path: window.location.pathname,

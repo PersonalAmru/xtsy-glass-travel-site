@@ -381,7 +381,7 @@ const AboutSection = () => {
                   <div className="flex items-start gap-3">
                     <Star className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
                     <div>
-                      <h4 className="font-bold text-slate-800 text-base mb-1">XTSY Experience Private Rooms</h4>
+                      <h4 className="font-bold text-slate-800 text-base mb-1">XTSY Xperience Private Rooms</h4>
                       <p className="text-sm text-slate-600">Premium ensuite rooms with modern amenities and concierge service</p>
                     </div>
                   </div>

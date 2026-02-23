@@ -80,7 +80,7 @@ export const ROOM_INVENTORY: Record<string, RoomType> = {
       `${STORAGE_BASE}/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140029.png`,
     ],
     isBookable: true,
-    propertyType: 'XTSY Experience',
+    propertyType: 'XTSY Xperience',
     displayOrder: 1,
     tags: ['luxury_couple'],
   },
@@ -317,6 +317,6 @@ export const STATUS_COLORS: Record<RoomStatus, { bg: string; text: string; borde
 
 // Category display names
 export const CATEGORY_LABELS: Record<RoomCategory, string> = {
-  luxury: 'XTSY Experience',
+  luxury: 'XTSY Xperience',
   hostel: 'XTSY Travellers Hostel',
 };

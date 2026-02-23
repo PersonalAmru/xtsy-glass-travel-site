@@ -48,8 +48,8 @@ export const PROPERTIES: Record<string, Property> = {
   'xtsy-luxury': {
     id: 'xtsy-luxury',
     slug: 'xtsy-luxury',
-    name: 'XTSY Experience',
-    shortName: 'Experience',
+    name: 'XTSY Xperience',
+    shortName: 'Xperience',
     locationId: 'shillong',
     description: 'Experience unparalleled luxury with our signature 270° Panorama Glass Suite offering breathtaking mountain views.',
     heroImage: `${STORAGE_BASE}/270/IMG_9812.jpg`,
@@ -58,6 +58,7 @@ export const PROPERTIES: Record<string, Property> = {
       `${STORAGE_BASE}/270/IMG_9927.jpg`,
       `${STORAGE_BASE}/270/IMG_9956.jpg`,
     ],
+    // Note: New local images (stargazing, aerial, milkyway, interior) used on /xtsy-270 page
     amenities: ['270° Mountain Views', 'Premium Breakfast', 'Luxury Ensuite', 'Air Conditioning', '4K QLED TV'],
     priceRange: { min: 7489, max: 11500 },
     rating: 4.9,
