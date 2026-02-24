@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { pushToDataLayer } from "@/utils/dataLayerService";
 
 // XTSY Prime images (from existing pages)
-import xtsy270Image from "@/assets/double-decker-bridge-new.jpg"; // Placeholder - will use actual 270 image
+import xtsyExperienceImage from "@/assets/xtsy-270-stargazing.jpeg";
 import petFriendlyHero from "@/assets/pet-friendly-hero.jpg";
 import xtsyVsZostelHero from "@/assets/xtsy-vs-zostel-hero-new.jpg";
 import femaleTravellersHero from "@/assets/female-travellers-hero.jpg";
@@ -18,10 +18,10 @@ import femaleTravellersHero from "@/assets/female-travellers-hero.jpg";
 const xtsyPrimeOfferings = [
   {
     id: "xtsy-270",
-    title: "XTSY 270° Panorama Glass Suite",
-    shortTitle: "XTSY 270°",
+    title: "XTSY Experience",
+    shortTitle: "XTSY Experience",
     description: "India's first panoramic glass house with 270° mountain views. Wake up to sunrises over the Himalayas in this architectural masterpiece.",
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/270/IMG_9956.jpg",
+    image: xtsyExperienceImage,
     icon: Mountain,
     price: "₹7,999",
     priceNote: "weekday / ₹9,999 weekend",
