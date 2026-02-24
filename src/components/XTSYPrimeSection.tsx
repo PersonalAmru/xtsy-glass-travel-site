@@ -34,7 +34,7 @@ const xtsyPrimeOfferings = [
       "Perfect for couples & proposals",
       "Sunrise & stargazing experience"
     ],
-    category: "Luxury Stay",
+    category: "Xperiential + Romantic Getaway",
     rating: 4.9,
     path: "/xtsy-270",
   },
