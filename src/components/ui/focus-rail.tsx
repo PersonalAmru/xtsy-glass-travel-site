@@ -17,6 +17,7 @@ export type FocusRailItem = {
   duration?: string;
   difficulty?: string;
   price?: string;
+  originalPrice?: string;
   rating?: number;
   highlights?: string[];
   category?: string;
@@ -329,9 +330,14 @@ export function FocusRail({
                     <div className="flex items-center justify-between">
                       <div>
                         <span className="text-white/60 text-xs">Starting from</span>
-                        <p className="text-xl md:text-2xl font-bold text-primary">
-                          {item.price}
-                        </p>
+                        <div className="flex items-baseline gap-2">
+                          {item.originalPrice && (
+                            <span className="text-white/40 text-sm line-through">{item.originalPrice}</span>
+                          )}
+                          <p className="text-xl md:text-2xl font-bold text-primary">
+                            {item.price}
+                          </p>
+                        </div>
                       </div>
                       <button className="bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-1.5 transition-colors">
                         Explore
