@@ -25,6 +25,8 @@ export interface DataLayerEvent {
   funnel_stage?: 'discovery' | 'consideration' | 'intent' | 'booking_start' | 'booking_complete';
   session_id?: string;
   visitor_id?: string;
+  /** CRITICAL: When true, GA4 will NOT count this as an interaction (preserves bounce rate) */
+  non_interaction?: boolean;
   [key: string]: unknown;
 }
 
@@ -107,9 +109,50 @@ const getConsentPreferences = (): { analytics: boolean; marketing: boolean } => 
   return { analytics: false, marketing: false };
 };
 
+// =============================================
+// NON-INTERACTION EVENTS
+// These events fire automatically and MUST NOT cancel bounces in GA4.
+// GTM tags for these events must have "Non-Interaction Hit = true"
+// and this flag is included in the dataLayer push for GTM to read.
+// =============================================
+const NON_INTERACTION_EVENTS = new Set([
+  // Passive page/session events
+  'page_view',
+  'virtual_page_view',
+  'xtsy_init',
+  'consent_default',
+  'consent_update',
+  'user_properties_set',
+  
+  // Auto-fired engagement signals (no user action)
+  'scroll_depth',
+  'section_view',
+  'intent_score_update',
+  'session_quality_signal',
+  'high_intent_detected',
+  'hot_lead_detected',
+  'engaged_property_explorer',
+  'high_value_abandonment',
+  'high_value_search_detected',
+  'repeat_high_intent_visitor',
+  'destination_interest_detected',
+  
+  // Passive tracking events
+  'page_load',
+  'page_navigation',
+  'carousel_navigate',
+  'property_viewed',
+  'trust_signal_view',
+  'tracking_error',
+]);
+
 /**
  * Push event to dataLayer
  * GTM will handle all external routing (GA4, Google Ads, etc.)
+ * 
+ * BOUNCE RATE FIX: Auto-firing events include `non_interaction: true`
+ * so they don't cancel bounces in GA4. Only genuine user actions
+ * (clicks, form submits, bookings) are interaction events.
  */
 export const pushToDataLayer = (event: Partial<DataLayerEvent>): void => {
   if (typeof window === 'undefined') return;
@@ -123,6 +166,9 @@ export const pushToDataLayer = (event: Partial<DataLayerEvent>): void => {
   // Ensure dataLayer exists
   (window as any).dataLayer = (window as any).dataLayer || [];
   
+  // Determine if this is a non-interaction event
+  const isNonInteraction = NON_INTERACTION_EVENTS.has(event.event || '');
+  
   // Build full event with required fields
   const fullEvent: DataLayerEvent = {
     event: event.event || 'custom_event',
@@ -132,11 +178,14 @@ export const pushToDataLayer = (event: Partial<DataLayerEvent>): void => {
     page_title: document.title,
     session_id: getSessionId(),
     visitor_id: getVisitorId(),
+    // CRITICAL: non_interaction flag for GA4 bounce rate accuracy
+    // GTM must read this via DLV and pass to GA4 Event tags
+    non_interaction: isNonInteraction,
     ...event,
   };
   
   (window as any).dataLayer.push(fullEvent);
-  console.log('[DataLayer] Event pushed:', fullEvent.event, fullEvent);
+  console.log(`[DataLayer] Event pushed (${isNonInteraction ? 'non-interaction' : 'INTERACTION'}):`, fullEvent.event, fullEvent);
   
   // Emit debug event for the debug panel
   window.dispatchEvent(new CustomEvent('datalayer-push', { detail: fullEvent }));
