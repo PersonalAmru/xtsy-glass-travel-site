@@ -6,6 +6,8 @@
 
 import { generateStandardizedFeatures } from '@/utils/roomFeatures';
 import { TAG_LABELS, TAG_COLORS, type RoomTag } from '@/config/roomTypes';
+import xtsyStargazing from '@/assets/xtsy-270-stargazing.jpeg';
+import xtsyInterior from '@/assets/xtsy-270-interior.jpeg';
 
 export type RoomCategory = 'luxury' | 'hostel';
 export type RoomKind = 'private' | 'dorm';
@@ -74,10 +76,10 @@ export const ROOM_INVENTORY: Record<string, RoomType> = {
       'Netflix & Chill',
       'Instagram Moments',
     ],
-    image: `${STORAGE_BASE}/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140811.png`,
+    image: xtsyStargazing,
     images: [
-      `${STORAGE_BASE}/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140811.png`,
-      `${STORAGE_BASE}/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140029.png`,
+      xtsyStargazing,
+      xtsyInterior,
     ],
     isBookable: true,
     propertyType: 'XTSY Xperience',
