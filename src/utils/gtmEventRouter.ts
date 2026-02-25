@@ -549,6 +549,7 @@ export const routeGTMEvent = (config: RouteEventParams): boolean => {
       event_category: eventConfig?.category,
       event_priority: eventConfig?.priority,
       is_conversion: eventConfig?.isConversion,
+      // Preserve non_interaction from params if explicitly set
       ...params,
     });
   }
