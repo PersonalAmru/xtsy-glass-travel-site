@@ -3,13 +3,13 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Calendar, Clock, Users, Star, MapPin, Minus, Plus, X } from "lucide-react";
+import { Calendar, Clock, Users, Star, MapPin, X, ChevronLeft, ChevronRight, Mountain, Sparkles, CheckCircle2 } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useApp } from "@/contexts/AppContext";
 import { TourItineraryService } from "@/utils/tourItineraryService";
 import { TourPricingService } from "@/utils/tourPricingService";
 import UnifiedImage from "./UnifiedImage";
+import { motion, AnimatePresence } from "framer-motion";
 
 import meghalayaHiddenGemsImg from "@/assets/meghalaya-hidden-gems-new.jpg";
 import meghalayaNatureAuthenticImg from "@/assets/meghalaya-nature-authentic.jpg";
@@ -107,9 +107,17 @@ interface OverallItinerary {
   activities: string[];
 }
 
+const categoryColors: Record<string, string> = {
+  adventure: "from-red-500 to-orange-500",
+  cultural: "from-purple-500 to-indigo-500",
+  leisure: "from-emerald-500 to-teal-500",
+  educational: "from-blue-500 to-cyan-500",
+};
+
 const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, tourPackage }) => {
   const [overallItinerary, setOverallItinerary] = useState<OverallItinerary[]>([]);
   const [isLoadingItinerary, setIsLoadingItinerary] = useState(false);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
   const location = useLocation();
   const navigate = useNavigate();
   const { formatPrice } = useApp();
@@ -123,10 +131,8 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
     const content = `${title} ${description} ${highlights}`;
 
     if (content.includes('northeast ecological education') || content.includes('ecological education program')) return northeastEcologicalEducationImg;
-    
     if (content.includes('biodiversity') || content.includes('research') || content.includes('ecological')) return meghalayaBiodiversityAuthenticImg;
     if (content.includes('wilderness') || content.includes('survival skills') || content.includes('bushcraft')) return wildernessAuthenticImg;
-
     if (content.includes('meghalaya hidden gems') || content.includes('hidden gems')) return meghalayaNatureAuthenticImg;
     if (content.includes('shillong day tour') || content.includes('cherry blossom')) return shillongCherryBlossomImg;
     if (content.includes('shillong') || content.includes('cultural experience')) return shillongCulturalImg;
@@ -137,7 +143,6 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
     if (content.includes('jaintia') || content.includes('caves') || content.includes('limestone')) return jaintiaCavesImg;
     if (content.includes('living root bridges') || content.includes('root bridge')) return livingRootBridgesAuthenticImg;
     if (content.includes('khasi hills') || content.includes('khasi')) return khasiHillsTrekImg;
-    
     if (content.includes('photography') || content.includes('photo')) return photographyTourImg;
     if (content.includes('wellness') || content.includes('yoga') || content.includes('meditation')) return wellnessRetreatImg;
     if (content.includes('offbeat') || content.includes('circuit')) return offbeatCircuitImg;
@@ -149,7 +154,6 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
     if (content.includes('research') || content.includes('expedition')) return researchExpeditionImg;
     if (content.includes('heritage') || content.includes('historical')) return heritageTrailImg;
     if (content.includes('extreme weather') || content.includes('survival')) return extremeWeatherImg;
-
     if (content.includes('valley of flowers') || content.includes('uttarakhand flowers')) return valleyOfFlowersImg;
     if (content.includes('spiti') || content.includes('cold desert')) return spitivalleyImg;
     if (content.includes('shimla') || content.includes('manali') || content.includes('honeymoon')) return shimlaManaliImg;
@@ -159,13 +163,10 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
     if (content.includes('char dham') || content.includes('pilgrimage')) return charDhamImg;
     if (content.includes('uttarakhand') || content.includes('himalaya')) return uttarakhandHimalayasImg;
     if (content.includes('himachal') || content.includes('valleys')) return himachalValleysImg;
-
     if (content.includes('kerala') || content.includes('backwater')) return keralaBackwatersAuthenticImg;
-    
     if (content.includes('thekkady') || content.includes('wildlife') || content.includes('periyar')) return thekkadyWildlifeImg;
     if (content.includes('tamil nadu') || content.includes('temple') || content.includes('dravidian')) return tamilNaduTemplesImg;
     if (content.includes('ooty') || content.includes('kodaikanal') || content.includes('nilgiri')) return ootyImg;
-
     if (content.includes('assam') || content.includes('tea garden')) return teaGardensAuthenticImg;
     if (content.includes('nagaland') || content.includes('hornbill') || content.includes('festival')) return nagalandHornbillImg;
     if (content.includes('sikkim') || content.includes('rhododendron') || content.includes('flower')) return sikkimRhododendronsImg;
@@ -180,19 +181,16 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
     if (content.includes('kohima') || content.includes('war cemetery')) return kohimaWarCemeteryImg;
 
     switch (tourPackage.category) {
-      case 'adventure':
-        return highAltitudeTrekImg;
-      case 'cultural':
-        return tribalCircuitImg;
-      case 'leisure':
-        return wellnessRetreatImg;
-      default:
-        return meghalayaNatureAuthenticImg;
+      case 'adventure': return highAltitudeTrekImg;
+      case 'cultural': return tribalCircuitImg;
+      case 'leisure': return wellnessRetreatImg;
+      default: return meghalayaNatureAuthenticImg;
     }
   };
 
   useEffect(() => {
     if (isOpen && tourPackage) {
+      setActiveImageIndex(0);
       fetchOverallItinerary();
     }
   }, [isOpen, tourPackage]);
@@ -215,7 +213,6 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
 
   const fetchOverallItinerary = async () => {
     if (!tourPackage) return;
-    
     setIsLoadingItinerary(true);
     try {
       const days = TourItineraryService.extractDays(tourPackage.duration);
@@ -231,412 +228,337 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
 
   const generateOverallItineraryView = (tourPackage: TourPackage, totalDays: number): OverallItinerary[] => {
     const phases: OverallItinerary[] = [];
-    
-    const arrivalDuration = totalDays <= 3 ? "Day 1" : totalDays <= 5 ? "Days 1-2" : "Days 1-2";
-    phases.push({
-      phase: "Arrival & Introduction",
-      duration: arrivalDuration,
-      description: getArrivalPhaseDescription(tourPackage),
-      highlights: getArrivalHighlights(tourPackage.highlights),
-      activities: getArrivalActivities(tourPackage)
-    });
-
+    const arrivalDuration = totalDays <= 3 ? "Day 1" : "Days 1-2";
+    phases.push({ phase: "Arrival & Introduction", duration: arrivalDuration, description: getArrivalPhaseDescription(tourPackage), highlights: getArrivalHighlights(tourPackage.highlights), activities: getArrivalActivities(tourPackage) });
     if (totalDays > 1) {
       const coreDuration = totalDays <= 3 ? "Day 2" : totalDays <= 5 ? "Days 3-4" : `Days 3-${totalDays-1}`;
-      phases.push({
-        phase: "Adventure & Exploration",
-        duration: coreDuration,
-        description: getCorePhaseDescription(tourPackage),
-        highlights: getCoreHighlights(tourPackage.highlights),
-        activities: getCoreActivities(tourPackage)
-      });
+      phases.push({ phase: "Adventure & Exploration", duration: coreDuration, description: getCorePhaseDescription(tourPackage), highlights: getCoreHighlights(tourPackage.highlights), activities: getCoreActivities(tourPackage) });
     }
-
     if (totalDays >= 3) {
-      phases.push({
-        phase: "Final Experiences & Farewell",
-        duration: `Day ${totalDays}`,
-        description: getFinalPhaseDescription(tourPackage),
-        highlights: getFinalHighlights(tourPackage.highlights),
-        activities: getFinalActivities(tourPackage)
-      });
+      phases.push({ phase: "Final Experiences & Farewell", duration: `Day ${totalDays}`, description: getFinalPhaseDescription(tourPackage), highlights: getFinalHighlights(tourPackage.highlights), activities: getFinalActivities(tourPackage) });
     }
-
     return phases;
   };
 
-  const getArrivalPhaseDescription = (tourPackage: TourPackage): string => {
-    const title = tourPackage.title.toLowerCase();
-    if (title.includes('meghalaya')) {
-      return "Welcome to the enchanting land of clouds! Experience traditional Khasi hospitality and begin your journey through mystical landscapes.";
-    }
-    if (title.includes('biodiversity') || title.includes('research')) {
-      return "Meet expert naturalists and get introduced to the incredible ecosystems and wildlife you'll encounter during your adventure.";
-    }
-    if (title.includes('wellness') || title.includes('yoga')) {
-      return "Arrive at your wellness sanctuary and begin your transformative journey with gentle introduction to healing practices.";
-    }
+  const getArrivalPhaseDescription = (tp: TourPackage) => {
+    const t = tp.title.toLowerCase();
+    if (t.includes('meghalaya')) return "Welcome to the enchanting land of clouds! Experience traditional Khasi hospitality and begin your journey through mystical landscapes.";
+    if (t.includes('biodiversity') || t.includes('research')) return "Meet expert naturalists and get introduced to the incredible ecosystems and wildlife you'll encounter during your adventure.";
+    if (t.includes('wellness') || t.includes('yoga')) return "Arrive at your wellness sanctuary and begin your transformative journey with gentle introduction to healing practices.";
     return "Warm welcome and introduction to your adventure destination with local culture immersion and journey overview.";
   };
-
-  const getCorePhaseDescription = (tourPackage: TourPackage): string => {
-    const category = tourPackage.category.toLowerCase();
-    const title = tourPackage.title.toLowerCase();
-    
-    if (title.includes('biodiversity') || title.includes('research')) {
-      return "Deep exploration of pristine wilderness, wildlife tracking, and nature discovery with expert guides.";
-    }
-    if (category === 'adventure') {
-      return "Thrilling adventures through breathtaking landscapes, challenging treks, and unforgettable experiences.";
-    }
-    if (category === 'cultural') {
-      return "Immersive cultural experiences, traditional interactions, and authentic local lifestyle discovery.";
-    }
+  const getCorePhaseDescription = (tp: TourPackage) => {
+    const c = tp.category.toLowerCase(); const t = tp.title.toLowerCase();
+    if (t.includes('biodiversity') || t.includes('research')) return "Deep exploration of pristine wilderness, wildlife tracking, and nature discovery with expert guides.";
+    if (c === 'adventure') return "Thrilling adventures through breathtaking landscapes, challenging treks, and unforgettable experiences.";
+    if (c === 'cultural') return "Immersive cultural experiences, traditional interactions, and authentic local lifestyle discovery.";
     return "Core adventure activities showcasing the best of your chosen destination with expert local guidance.";
   };
-
-  const getFinalPhaseDescription = (tourPackage: TourPackage): string => {
-    return "Conclude your adventure with final explorations, souvenir collection, and cherished memories to last a lifetime.";
-  };
-
-  const getArrivalHighlights = (highlights: string[]): string[] => {
-    return highlights.slice(0, Math.ceil(highlights.length * 0.3));
-  };
-
-  const getCoreHighlights = (highlights: string[]): string[] => {
-    const start = Math.ceil(highlights.length * 0.3);
-    return highlights.slice(start, start + Math.ceil(highlights.length * 0.5));
-  };
-
-  const getFinalHighlights = (highlights: string[]): string[] => {
-    const start = Math.ceil(highlights.length * 0.8);
-    return highlights.slice(start);
-  };
-
-  const getArrivalActivities = (tourPackage: TourPackage): string[] => {
-    return ["Welcome ceremony", "Local area orientation", "Cultural introduction", "Adventure briefing"];
-  };
-
-  const getCoreActivities = (tourPackage: TourPackage): string[] => {
-    const title = tourPackage.title.toLowerCase();
-    if (title.includes('trek') || title.includes('adventure')) {
-      return ["Guided expeditions", "Nature exploration", "Photography sessions", "Adventure activities"];
-    }
-    if (title.includes('cultural')) {
-      return ["Village visits", "Cultural performances", "Traditional crafts", "Local interactions"];
-    }
+  const getFinalPhaseDescription = (_tp: TourPackage) => "Conclude your adventure with final explorations, souvenir collection, and cherished memories to last a lifetime.";
+  const getArrivalHighlights = (h: string[]) => h.slice(0, Math.ceil(h.length * 0.3));
+  const getCoreHighlights = (h: string[]) => { const s = Math.ceil(h.length * 0.3); return h.slice(s, s + Math.ceil(h.length * 0.5)); };
+  const getFinalHighlights = (h: string[]) => h.slice(Math.ceil(h.length * 0.8));
+  const getArrivalActivities = (_tp: TourPackage) => ["Welcome ceremony", "Local area orientation", "Cultural introduction", "Adventure briefing"];
+  const getCoreActivities = (tp: TourPackage) => {
+    const t = tp.title.toLowerCase();
+    if (t.includes('trek') || t.includes('adventure')) return ["Guided expeditions", "Nature exploration", "Photography sessions", "Adventure activities"];
+    if (t.includes('cultural')) return ["Village visits", "Cultural performances", "Traditional crafts", "Local interactions"];
     return ["Main attractions", "Adventure activities", "Local experiences", "Scenic exploration"];
   };
-
-  const getFinalActivities = (tourPackage: TourPackage): string[] => {
-    return ["Final adventures", "Souvenir shopping", "Memory sharing", "Farewell celebration"];
-  };
-
+  const getFinalActivities = (_tp: TourPackage) => ["Final adventures", "Souvenir shopping", "Memory sharing", "Farewell celebration"];
   const generateFallbackOverallItinerary = (): OverallItinerary[] => [
-    {
-      phase: "Arrival & Welcome",
-      duration: "Day 1",
-      description: "Warm welcome and introduction to your adventure destination.",
-      highlights: ["Local welcome", "Journey briefing"],
-      activities: ["Arrival experience", "Local orientation"]
-    },
-    {
-      phase: "Adventure & Exploration",
-      duration: "Main Days",
-      description: "Core adventure activities and unforgettable experiences.",
-      highlights: ["Main attractions", "Adventure activities"],
-      activities: ["Guided tours", "Adventure experiences"]
-    }
+    { phase: "Arrival & Welcome", duration: "Day 1", description: "Warm welcome and introduction to your adventure destination.", highlights: ["Local welcome", "Journey briefing"], activities: ["Arrival experience", "Local orientation"] },
+    { phase: "Adventure & Exploration", duration: "Main Days", description: "Core adventure activities and unforgettable experiences.", highlights: ["Main attractions", "Adventure activities"], activities: ["Guided tours", "Adventure experiences"] }
   ];
 
   if (!tourPackage) return null;
 
   const handlePayAndConfirm = () => {
-    // Create a warm, branded welcome message for XTSY Travellers Hostel
-    const welcomeMessage = `🏠 *XTSY Travellers Hostel - Tour Inquiry*
-
-Namaste Team XTSY! 🙏
-
-I'd like to know more about the "${tourPackage.title}" tour package.
-
-📍 *Tour Details:*
-   • Duration: ${tourPackage.duration}
-   • Category: ${tourPackage.category}
-   • Best Season: ${tourPackage.bestSeason}
-   • Location: ${tourPackage.location}
-
-Could you please share availability and detailed pricing?
-
-Looking forward to exploring with XTSY! 🌟`;
-
+    const welcomeMessage = `🏠 *XTSY Travellers Hostel - Tour Inquiry*\n\nNamaste Team XTSY! 🙏\n\nI'd like to know more about the "${tourPackage.title}" tour package.\n\n📍 *Tour Details:*\n   • Duration: ${tourPackage.duration}\n   • Category: ${tourPackage.category}\n   • Best Season: ${tourPackage.bestSeason}\n   • Location: ${tourPackage.location}\n\nCould you please share availability and detailed pricing?\n\nLooking forward to exploring with XTSY! 🌟`;
     const whatsappURL = `https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent(welcomeMessage)}&type=phone_number&app_absent=0`;
     window.open(whatsappURL, '_blank');
-
     handleClose();
   };
 
-  const selectedImage = (tourPackage?.images && tourPackage.images[0]) || tourPackage?.image || getRelevantImage();
+  const allImages = tourPackage.images && tourPackage.images.length > 1
+    ? [...new Set(tourPackage.images)]
+    : [getRelevantImage()];
+
+  const gradientClass = categoryColors[tourPackage.category] || "from-amber-500 to-orange-500";
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent 
-        data-testid="tour-package-modal" 
-        className="max-w-4xl max-h-[90vh] overflow-y-auto"
+      <DialogContent
+        data-testid="tour-package-modal"
+        className="max-w-4xl p-0 gap-0 overflow-hidden bg-background border-0 shadow-2xl rounded-2xl"
         style={{
           position: 'fixed',
-          left: '50%',
-          top: '50%',
+          left: '50%', top: '50%',
           transform: 'translate(-50%, -50%)',
           width: 'min(calc(100vw - 16px), 56rem)',
-          maxWidth: '56rem',
-          maxHeight: 'min(calc(100vh - 32px), 90vh)',
-          boxSizing: 'border-box',
+          maxHeight: 'min(calc(100vh - 32px), 92vh)',
           margin: 0,
         }}
       >
-        <DialogHeader>
-          <DialogTitle className="text-2xl font-bold mb-2 text-foreground">
-            {tourPackage?.title || "Tour Package"}
-          </DialogTitle>
-          <DialogDescription className="sr-only">
-            Book your {tourPackage?.title || "tour package"} with detailed itinerary, pricing, and booking options
-          </DialogDescription>
-        </DialogHeader>
+        <div className="overflow-y-auto max-h-[min(calc(100vh-32px),92vh)]">
+          {/* Immersive Hero Section */}
+          <div className="relative h-72 sm:h-80 md:h-96 overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeImageIndex}
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4 }}
+                className="absolute inset-0"
+              >
+                <UnifiedImage
+                  src={allImages[activeImageIndex] || getRelevantImage()}
+                  alt={tourPackage.title}
+                  className="w-full h-full object-cover"
+                  threshold={0.1}
+                />
+              </motion.div>
+            </AnimatePresence>
 
-        <div className="grid grid-cols-1 gap-6">
-          <div className="w-full">
-            <div className="relative">
-              <UnifiedImage
-                src={selectedImage}
-                alt={tourPackage.title}
-                className="w-full h-80 lg:h-96 object-cover rounded-lg"
-                threshold={0.1}
-              />
-              <div className="absolute top-4 left-4">
-                <Badge variant="secondary" className="bg-white/90 text-black">
+            {/* Gradient overlays */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/10" />
+            <div className={`absolute inset-0 bg-gradient-to-br ${gradientClass} opacity-10`} />
+
+            {/* Close button */}
+            <button
+              onClick={handleClose}
+              className="absolute top-4 right-4 z-10 p-2.5 bg-black/40 backdrop-blur-md hover:bg-black/60 rounded-full text-white transition-all"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Image navigation */}
+            {allImages.length > 1 && (
+              <>
+                <button
+                  onClick={() => setActiveImageIndex(i => (i - 1 + allImages.length) % allImages.length)}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 z-10 p-2 bg-black/40 backdrop-blur-md hover:bg-black/60 rounded-full text-white transition-all"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={() => setActiveImageIndex(i => (i + 1) % allImages.length)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 z-10 p-2 bg-black/40 backdrop-blur-md hover:bg-black/60 rounded-full text-white transition-all"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+                <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                  {allImages.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setActiveImageIndex(i)}
+                      className={`w-2 h-2 rounded-full transition-all ${i === activeImageIndex ? 'bg-white w-6' : 'bg-white/50'}`}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+
+            {/* Hero content overlay */}
+            <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 z-10">
+              <div className="flex flex-wrap items-center gap-2 mb-3">
+                <Badge className={`bg-gradient-to-r ${gradientClass} text-white border-0 text-xs font-semibold px-3 py-1`}>
                   {tourPackage.category}
                 </Badge>
+                <div className="flex items-center gap-1 bg-white/20 backdrop-blur-md text-white px-2.5 py-1 rounded-full text-xs font-medium">
+                  <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
+                  {tourPackage.rating}
+                </div>
               </div>
-              <div className="absolute bottom-4 right-4 flex items-center gap-1 bg-black/70 text-white px-2 py-1 rounded">
-                <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
-                <span className="text-sm">{tourPackage.rating}</span>
+              <DialogHeader className="text-left space-y-0">
+                <DialogTitle className="text-xl sm:text-2xl md:text-3xl font-bold text-white leading-tight">
+                  {tourPackage.title}
+                </DialogTitle>
+                <DialogDescription className="sr-only">
+                  Book your {tourPackage.title} tour package
+                </DialogDescription>
+              </DialogHeader>
+              <div className="flex items-center gap-1.5 mt-2 text-white/80 text-sm">
+                <MapPin className="h-3.5 w-3.5" />
+                <span>{tourPackage.location}</span>
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="space-y-6">
-              <div>
-              <p className="text-gray-600 mb-4">{tourPackage.description}</p>
-              
-              <div className="grid grid-cols-3 gap-4 mb-4">
-                <div className="text-center">
-                  <Clock className="h-5 w-5 mx-auto mb-1 text-gray-500" />
-                  <p className="text-sm text-gray-600">{tourPackage.duration}</p>
-                </div>
-                <div className="text-center">
-                  <Users className="h-5 w-5 mx-auto mb-1 text-gray-500" />
-                  <p className="text-sm text-gray-600">{tourPackage.difficulty}</p>
-                </div>
-                <div className="text-center">
-                  <Calendar className="h-5 w-5 mx-auto mb-1 text-gray-500" />
-                  <p className="text-sm text-gray-600">{tourPackage.bestSeason}</p>
-                </div>
-              </div>
+          {/* Quick Stats Bar */}
+          <div className="grid grid-cols-3 border-b border-border bg-muted/30">
+            <div className="flex flex-col items-center py-4 gap-1 border-r border-border">
+              <Clock className="h-4 w-4 text-primary" />
+              <span className="text-xs font-semibold text-foreground">{tourPackage.duration}</span>
+              <span className="text-[10px] text-muted-foreground">Duration</span>
+            </div>
+            <div className="flex flex-col items-center py-4 gap-1 border-r border-border">
+              <Mountain className="h-4 w-4 text-primary" />
+              <span className="text-xs font-semibold text-foreground">{tourPackage.difficulty}</span>
+              <span className="text-[10px] text-muted-foreground">Difficulty</span>
+            </div>
+            <div className="flex flex-col items-center py-4 gap-1">
+              <Calendar className="h-4 w-4 text-primary" />
+              <span className="text-xs font-semibold text-foreground">{tourPackage.bestSeason}</span>
+              <span className="text-[10px] text-muted-foreground">Best Season</span>
+            </div>
+          </div>
 
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-2">Package Highlights:</h4>
-                <div className="space-y-1">
-                  {tourPackage.highlights.map((highlight, index) => (
-                    <div key={index} className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 bg-orange-500 rounded-full" />
-                      <span className="text-sm text-gray-600">{highlight}</span>
+          {/* Content Body */}
+          <div className="p-5 sm:p-6 space-y-6">
+            {/* Description */}
+            <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
+              {tourPackage.description}
+            </p>
+
+            {/* Highlights */}
+            <div>
+              <h4 className="text-sm font-bold text-foreground uppercase tracking-wider mb-3 flex items-center gap-2">
+                <Sparkles className="h-4 w-4 text-primary" />
+                Package Highlights
+              </h4>
+              <div className="grid sm:grid-cols-2 gap-2">
+                {tourPackage.highlights.map((highlight, index) => (
+                  <div key={index} className="flex items-center gap-2.5 bg-muted/40 rounded-xl px-3 py-2.5">
+                    <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
+                    <span className="text-sm text-foreground">{highlight}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Itinerary */}
+            <div>
+              <h4 className="text-sm font-bold text-foreground uppercase tracking-wider mb-3">
+                {tourPackage.itinerary ? "Day-by-Day Itinerary" : "Itinerary Overview"}
+              </h4>
+              {tourPackage.itinerary ? (
+                <div className="space-y-3">
+                  {tourPackage.itinerary.map((day, index) => (
+                    <div key={index} className="relative pl-6 pb-3 border-l-2 border-primary/20 last:border-l-0">
+                      <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary border-2 border-background" />
+                      <div className="bg-card border border-border rounded-xl p-4 hover:border-primary/30 transition-colors">
+                        <div className="flex items-start justify-between gap-2 mb-2">
+                          <h5 className="font-semibold text-foreground text-sm leading-tight">{day.title}</h5>
+                          <Badge variant="outline" className="text-xs whitespace-nowrap border-primary/30 text-primary">{day.day}</Badge>
+                        </div>
+                        {day.route && (
+                          <div className="flex items-center gap-1.5 text-xs text-primary bg-primary/5 px-2.5 py-1 rounded-lg mb-2 w-fit">
+                            <MapPin className="h-3 w-3" />
+                            <span>{day.route}</span>
+                          </div>
+                        )}
+                        <div className="space-y-1">
+                          {day.activities.map((activity, aIndex) => (
+                            <div key={aIndex} className="flex items-start gap-2">
+                              <div className="w-1.5 h-1.5 bg-primary/40 rounded-full mt-1.5 flex-shrink-0" />
+                              <span className="text-xs text-muted-foreground">{activity}</span>
+                            </div>
+                          ))}
+                        </div>
+                        {day.overnight && (
+                          <div className="text-xs text-muted-foreground mt-2 pt-2 border-t border-border">
+                            🏨 <span className="font-medium">Overnight:</span> {day.overnight}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   ))}
                 </div>
-              </div>
-
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-3">
-                  {tourPackage.itinerary ? "Day-by-Day Itinerary:" : "Overall Itinerary Overview:"}
-                </h4>
-                {tourPackage.itinerary ? (
-                  /* Real PDF-sourced itinerary */
-                  <div className="space-y-4">
-                    {tourPackage.itinerary.map((day, index) => (
-                      <Card key={index} className="p-4 border border-gray-200 hover:border-orange-300 transition-colors">
-                        <div className="space-y-2">
-                          <div className="flex items-start justify-between gap-2">
-                            <h5 className="font-medium text-gray-900 text-sm leading-tight">{day.title}</h5>
-                            <Badge variant="outline" className="text-xs whitespace-nowrap">{day.day}</Badge>
-                          </div>
-                          
-                          {day.route && (
-                            <div className="flex items-center gap-1.5 text-xs text-orange-700 bg-orange-50 px-2 py-1 rounded">
-                              <MapPin className="h-3 w-3" />
-                              <span>{day.route}</span>
+              ) : isLoadingItinerary ? (
+                <div className="flex items-center justify-center py-8">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
+                  <span className="ml-2 text-sm text-muted-foreground">Creating tour overview...</span>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {overallItinerary.map((phase, index) => (
+                    <div key={index} className="relative pl-6 pb-3 border-l-2 border-primary/20 last:border-l-0">
+                      <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary border-2 border-background" />
+                      <div className="bg-card border border-border rounded-xl p-4 hover:border-primary/30 transition-colors">
+                        <div className="flex items-start justify-between mb-2">
+                          <h5 className="font-semibold text-foreground text-sm">{phase.phase}</h5>
+                          <Badge variant="outline" className="text-xs border-primary/30 text-primary">{phase.duration}</Badge>
+                        </div>
+                        <p className="text-xs text-muted-foreground leading-relaxed mb-2">{phase.description}</p>
+                        {phase.highlights.length > 0 && (
+                          <div className="bg-primary/5 p-3 rounded-lg mb-2">
+                            <p className="text-xs font-medium text-primary mb-1.5">Highlights:</p>
+                            <div className="space-y-1">
+                              {phase.highlights.map((h, hI) => (
+                                <div key={hI} className="flex items-center gap-2">
+                                  <div className="w-1.5 h-1.5 bg-primary rounded-full" />
+                                  <span className="text-xs text-foreground">{h}</span>
+                                </div>
+                              ))}
                             </div>
-                          )}
-                          
-                          <div className="space-y-1">
-                            {day.activities.map((activity, aIndex) => (
-                              <div key={aIndex} className="flex items-start gap-2">
-                                <div className="w-1 h-1 bg-orange-500 rounded-full mt-1.5 flex-shrink-0" />
-                                <span className="text-xs text-gray-600">{activity}</span>
+                          </div>
+                        )}
+                        {phase.activities.length > 0 && (
+                          <div className="grid grid-cols-2 gap-1">
+                            {phase.activities.map((a, aI) => (
+                              <div key={aI} className="flex items-center gap-1.5">
+                                <div className="w-1 h-1 bg-muted-foreground rounded-full" />
+                                <span className="text-xs text-muted-foreground">{a}</span>
                               </div>
                             ))}
                           </div>
-                          
-                          {day.overnight && (
-                            <div className="text-xs text-gray-500 mt-1 pt-1 border-t border-gray-100">
-                              🏨 <span className="font-medium">Overnight:</span> {day.overnight}
-                            </div>
-                          )}
-                        </div>
-                      </Card>
-                    ))}
-                    
-                    <Card className="bg-orange-50 border-orange-200 mt-6">
-                      <CardContent className="p-4">
-                        <h4 className="font-semibold text-gray-900 mb-3 text-center">Tour Package Pricing</h4>
-                        <p className="text-xs text-muted-foreground text-center mb-2">Starting from — Private Touring (per person)</p>
-                        {(() => {
-                          const basePrice = parseInt(tourPackage.price.replace(/[^\d]/g, ''));
-                          const group4PP = Math.round(basePrice * 0.90);
-                          const group6PP = Math.round(basePrice * 0.85);
-                          return (
-                            <div className="grid grid-cols-3 gap-3">
-                              <div className="text-center bg-white rounded-lg p-3 border border-orange-100">
-                                <p className="text-xs text-gray-500 mb-1">Solo / Couple</p>
-                                <p className="font-bold text-lg text-orange-600">{formatPrice(basePrice)}</p>
-                                <p className="text-[10px] text-gray-400">per person</p>
-                              </div>
-                              <div className="text-center bg-white rounded-lg p-3 border border-emerald-200 relative">
-                                <div className="absolute -top-2 left-1/2 -translate-x-1/2 bg-emerald-500 text-white text-[9px] px-1.5 py-0.5 rounded-full font-semibold">SAVE 10%</div>
-                                <p className="text-xs text-gray-500 mb-1">Group of 4</p>
-                                <p className="font-bold text-lg text-emerald-600">{formatPrice(group4PP)}</p>
-                                <p className="text-[10px] text-gray-400">per person</p>
-                              </div>
-                              <div className="text-center bg-white rounded-lg p-3 border border-emerald-300 relative">
-                                <div className="absolute -top-2 left-1/2 -translate-x-1/2 bg-emerald-600 text-white text-[9px] px-1.5 py-0.5 rounded-full font-semibold">SAVE 15%</div>
-                                <p className="text-xs text-gray-500 mb-1">Group of 6</p>
-                                <p className="font-bold text-lg text-emerald-700">{formatPrice(group6PP)}</p>
-                                <p className="text-[10px] text-gray-400">per person</p>
-                              </div>
-                            </div>
-                          );
-                        })()}
-                        <p className="text-[10px] text-gray-400 text-center mt-2">
-                          Prices exclude transport to base city • GST as applicable • Customisable for couples & families
-                        </p>
-                      </CardContent>
-                    </Card>
-                  </div>
-                ) : isLoadingItinerary ? (
-                  <div className="flex items-center justify-center py-8">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div>
-                    <span className="ml-2 text-sm text-gray-600">Creating tour overview...</span>
-                  </div>
-                ) : (
-                  <div className="space-y-4">
-                    {overallItinerary.map((phase, index) => (
-                      <Card key={index} className="p-4 border border-gray-200 hover:border-orange-300 transition-colors">
-                        <div className="space-y-3">
-                          <div className="flex items-start justify-between">
-                            <h5 className="font-medium text-gray-900 text-sm leading-tight">{phase.phase}</h5>
-                            <Badge variant="outline" className="text-xs">{phase.duration}</Badge>
-                          </div>
-                          
-                          <p className="text-xs text-gray-600 leading-relaxed">{phase.description}</p>
-                          
-                          {phase.highlights && phase.highlights.length > 0 && (
-                            <div className="bg-orange-50 p-3 rounded-lg">
-                              <p className="text-xs font-medium text-orange-800 mb-2">Phase Highlights:</p>
-                              <div className="space-y-1">
-                                {phase.highlights.map((highlight, hIndex) => (
-                                  <div key={hIndex} className="flex items-center gap-2">
-                                    <div className="w-1 h-1 bg-orange-500 rounded-full" />
-                                    <span className="text-xs text-orange-700">{highlight}</span>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                          )}
-                          
-                          {phase.activities && phase.activities.length > 0 && (
-                            <div>
-                              <p className="text-xs font-medium text-gray-700 mb-2">Key Activities:</p>
-                              <div className="grid grid-cols-2 gap-1">
-                                {phase.activities.map((activity, aIndex) => (
-                                  <div key={aIndex} className="flex items-center gap-1">
-                                    <div className="w-1 h-1 bg-gray-400 rounded-full" />
-                                    <span className="text-xs text-gray-600">{activity}</span>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      </Card>
-                    ))}
-                    
-                    <Card className="bg-orange-50 border-orange-200 mt-6">
-                      <CardContent className="p-4">
-                        <h4 className="font-semibold text-gray-900 mb-3 text-center">Tour Package Pricing</h4>
-                        <p className="text-xs text-muted-foreground text-center mb-2">Starting from — Private Touring (per person)</p>
-                        {(() => {
-                          const basePrice = parseInt(tourPackage.price.replace(/[^\d]/g, ''));
-                          const group4PP = Math.round(basePrice * 0.90);
-                          const group6PP = Math.round(basePrice * 0.85);
-                          return (
-                            <div className="grid grid-cols-3 gap-3">
-                              <div className="text-center bg-white rounded-lg p-3 border border-orange-100">
-                                <p className="text-xs text-gray-500 mb-1">Solo / Couple</p>
-                                <p className="font-bold text-lg text-orange-600">{formatPrice(basePrice)}</p>
-                                <p className="text-[10px] text-gray-400">per person</p>
-                              </div>
-                              <div className="text-center bg-white rounded-lg p-3 border border-emerald-200 relative">
-                                <div className="absolute -top-2 left-1/2 -translate-x-1/2 bg-emerald-500 text-white text-[9px] px-1.5 py-0.5 rounded-full font-semibold">SAVE 10%</div>
-                                <p className="text-xs text-gray-500 mb-1">Group of 4</p>
-                                <p className="font-bold text-lg text-emerald-600">{formatPrice(group4PP)}</p>
-                                <p className="text-[10px] text-gray-400">per person</p>
-                              </div>
-                              <div className="text-center bg-white rounded-lg p-3 border border-emerald-300 relative">
-                                <div className="absolute -top-2 left-1/2 -translate-x-1/2 bg-emerald-600 text-white text-[9px] px-1.5 py-0.5 rounded-full font-semibold">SAVE 15%</div>
-                                <p className="text-xs text-gray-500 mb-1">Group of 6</p>
-                                <p className="font-bold text-lg text-emerald-700">{formatPrice(group6PP)}</p>
-                                <p className="text-[10px] text-gray-400">per person</p>
-                              </div>
-                            </div>
-                          );
-                        })()}
-                        <p className="text-[10px] text-gray-400 text-center mt-2">
-                          Prices exclude transport to base city • GST as applicable • Customisable for couples & families
-                        </p>
-                      </CardContent>
-                    </Card>
-                  </div>
-                )}
-              </div>
-            </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
-            <div className="space-y-6">
-            <Card className="p-6 bg-gradient-to-br from-orange-50 to-red-50">
-              <div className="text-center space-y-4">
-                <h3 className="text-lg font-semibold">Ready to Explore?</h3>
-                <p className="text-gray-600 text-sm">
-                  Click the button below to chat with us on WhatsApp and check availability for this amazing tour!
-                </p>
-                
-                <Button 
-                  onClick={handlePayAndConfirm}
-                  className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold py-3"
-                >
-                  Check for Availability
-                </Button>
-              </div>
-            </Card>
+            {/* Pricing Card */}
+            <div className="bg-gradient-to-br from-primary/5 via-muted/30 to-primary/5 border border-primary/20 rounded-2xl p-5">
+              <h4 className="font-bold text-foreground mb-1 text-center text-lg">Tour Package Pricing</h4>
+              <p className="text-xs text-muted-foreground text-center mb-4">Starting from — Private Touring (per person)</p>
+              {(() => {
+                const basePrice = parseInt(tourPackage.price.replace(/[^\d]/g, ''));
+                const group4PP = Math.round(basePrice * 0.90);
+                const group6PP = Math.round(basePrice * 0.85);
+                return (
+                  <div className="grid grid-cols-3 gap-3">
+                    <div className="text-center bg-card rounded-xl p-3 border border-border">
+                      <p className="text-xs text-muted-foreground mb-1">Solo / Couple</p>
+                      <p className="font-bold text-lg text-primary">{formatPrice(basePrice)}</p>
+                      <p className="text-[10px] text-muted-foreground">per person</p>
+                    </div>
+                    <div className="text-center bg-card rounded-xl p-3 border border-emerald-500/30 relative">
+                      <div className="absolute -top-2 left-1/2 -translate-x-1/2 bg-emerald-500 text-white text-[9px] px-2 py-0.5 rounded-full font-bold">SAVE 10%</div>
+                      <p className="text-xs text-muted-foreground mb-1">Group of 4</p>
+                      <p className="font-bold text-lg text-emerald-600">{formatPrice(group4PP)}</p>
+                      <p className="text-[10px] text-muted-foreground">per person</p>
+                    </div>
+                    <div className="text-center bg-card rounded-xl p-3 border border-emerald-500/40 relative">
+                      <div className="absolute -top-2 left-1/2 -translate-x-1/2 bg-emerald-600 text-white text-[9px] px-2 py-0.5 rounded-full font-bold">SAVE 15%</div>
+                      <p className="text-xs text-muted-foreground mb-1">Group of 6</p>
+                      <p className="font-bold text-lg text-emerald-700">{formatPrice(group6PP)}</p>
+                      <p className="text-[10px] text-muted-foreground">per person</p>
+                    </div>
+                  </div>
+                );
+              })()}
+              <p className="text-[10px] text-muted-foreground text-center mt-3">
+                Prices exclude transport to base city • GST as applicable • Customisable for couples & families
+              </p>
+            </div>
+
+            {/* CTA */}
+            <div className="sticky bottom-0 bg-background/95 backdrop-blur-md pt-4 pb-2 -mx-5 sm:-mx-6 px-5 sm:px-6 border-t border-border">
+              <Button
+                onClick={handlePayAndConfirm}
+                size="lg"
+                className={`w-full bg-gradient-to-r ${gradientClass} hover:opacity-90 text-white font-bold py-6 rounded-xl text-base shadow-lg transition-all`}
+              >
+                Check Availability on WhatsApp
+              </Button>
+              <p className="text-[10px] text-muted-foreground text-center mt-2">
+                Chat directly with our travel curator • No spam, ever
+              </p>
             </div>
           </div>
         </div>
