@@ -4,7 +4,7 @@ import { FocusRail, FocusRailItem } from "@/components/ui/focus-rail";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { X, Sparkles, Mountain, PawPrint, Trophy, Heart, Laptop, Car, ArrowRight, CheckCircle2, Building2 } from "lucide-react";
+import { X, Sparkles, Mountain, PawPrint, Trophy, Heart, Laptop, Car, ArrowRight, CheckCircle2, Building2, Star } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { pushToDataLayer } from "@/utils/dataLayerService";
 
@@ -231,115 +231,130 @@ const XTSYPrimeSection: React.FC<XTSYPrimeSectionProps> = ({ className }) => {
       <AnimatePresence>
         {isModalOpen && selectedOffering && (
           <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-            <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto p-0 bg-background border-border">
-              {/* Hero Image */}
-              <div className="relative h-64 md:h-80">
-                <img
-                  src={selectedOffering.image}
-                  alt={selectedOffering.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
-                
-                {/* Close Button */}
-                <button
-                  onClick={() => setIsModalOpen(false)}
-                  className="absolute top-4 right-4 p-2 bg-black/50 hover:bg-black/70 rounded-full text-white transition-colors"
-                >
-                  <X className="w-5 h-5" />
-                </button>
+            <DialogContent className="max-w-3xl p-0 gap-0 overflow-hidden bg-background border-0 shadow-2xl rounded-2xl">
+              <div className="max-h-[90vh] overflow-y-auto">
+                {/* Immersive Hero Image */}
+                <div className="relative h-64 sm:h-72 md:h-80 overflow-hidden">
+                  <motion.img
+                    initial={{ scale: 1.1 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.6 }}
+                    src={selectedOffering.image}
+                    alt={selectedOffering.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+                  
+                  <button
+                    onClick={() => setIsModalOpen(false)}
+                    className="absolute top-4 right-4 z-10 p-2.5 bg-black/40 backdrop-blur-md hover:bg-black/60 rounded-full text-white transition-all"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
 
-                {/* Category Badge */}
-                <div className="absolute top-4 left-4">
-                  <Badge className="bg-primary text-primary-foreground">
-                    {selectedOffering.category}
-                  </Badge>
-                </div>
-
-                {/* Title Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <div className="flex items-center gap-3 mb-2">
-                    <selectedOffering.icon className="w-8 h-8 text-primary" />
-                    <h3 className="text-2xl md:text-3xl font-bold text-foreground">
-                      {selectedOffering.title}
-                    </h3>
+                  <div className="absolute top-4 left-4 z-10">
+                    <Badge className="bg-primary/90 backdrop-blur-md text-primary-foreground border-0 font-semibold">
+                      {selectedOffering.category}
+                    </Badge>
                   </div>
-                </div>
-              </div>
 
-              {/* Content */}
-              <div className="p-6">
-                <DialogHeader className="mb-4">
-                  <DialogDescription className="text-base text-muted-foreground">
-                    {selectedOffering.description}
-                  </DialogDescription>
-                </DialogHeader>
-
-                {/* Pricing */}
-                <div className="flex items-baseline gap-2 mb-6">
-                  <span className="text-3xl font-bold text-primary">{selectedOffering.price}</span>
-                  <span className="text-muted-foreground">{selectedOffering.priceNote}</span>
-                </div>
-
-                {/* Features */}
-                <div className="mb-6">
-                  <h4 className="text-lg font-semibold text-foreground mb-3">What's Included</h4>
-                  <div className="grid md:grid-cols-2 gap-3">
-                    {selectedOffering.features.map((feature, index) => (
-                      <div key={index} className="flex items-center gap-2">
-                        <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0" />
-                        <span className="text-muted-foreground text-sm">{feature}</span>
+                  <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 z-10">
+                    <div className="flex items-center gap-3 mb-1">
+                      <div className="p-2 bg-white/15 backdrop-blur-md rounded-xl">
+                        <selectedOffering.icon className="w-6 h-6 text-white" />
                       </div>
-                    ))}
+                      <div>
+                        <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white leading-tight">
+                          {selectedOffering.title}
+                        </h3>
+                        <div className="flex items-center gap-1 mt-1">
+                          <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
+                          <span className="text-white/80 text-sm font-medium">{selectedOffering.rating}</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                {/* CTA Buttons */}
-                {/* Property Selection */}
-                <div className="mb-4">
-                  <h4 className="text-sm font-semibold text-muted-foreground mb-3 uppercase tracking-wider">Book at</h4>
-                  <div className="grid sm:grid-cols-2 gap-3">
-                    <Button
-                      size="lg"
-                      className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground justify-start gap-3"
-                      onClick={() => handlePropertyNavigate('xtsy-luxury')}
-                    >
-                      <Building2 className="w-5 h-5 flex-shrink-0" />
-                      <div className="text-left">
-                        <div className="font-semibold">XTSY Experience</div>
-                        <div className="text-xs opacity-80">Premium Glass Suite</div>
-                      </div>
-                    </Button>
-                    <Button
-                      size="lg"
-                      variant="outline"
-                      className="flex-1 border-border text-foreground bg-background hover:bg-muted justify-start gap-3"
-                      onClick={() => handlePropertyNavigate('xtsy-travellers-hostel')}
-                    >
-                      <Building2 className="w-5 h-5 flex-shrink-0" />
-                      <div className="text-left">
-                        <div className="font-semibold">XTSY Travellers Hostel</div>
-                        <div className="text-xs text-muted-foreground">Dorms & Private Rooms</div>
-                      </div>
-                    </Button>
-                  </div>
-                </div>
+                {/* Content */}
+                <div className="p-5 sm:p-6 space-y-6">
+                  <DialogHeader className="space-y-0">
+                    <DialogDescription className="text-base text-muted-foreground leading-relaxed">
+                      {selectedOffering.description}
+                    </DialogDescription>
+                  </DialogHeader>
 
-                {/* View Full Details */}
-                <Button
-                  size="lg"
-                  variant="ghost"
-                  className="w-full text-primary hover:text-primary/80"
-                  onClick={() => {
-                    setIsModalOpen(false);
-                    requestAnimationFrame(() => {
-                      navigate(selectedOffering.path);
-                    });
-                  }}
-                >
-                  View Full Details
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
+                  {/* Pricing */}
+                  <div className="flex items-baseline gap-2 bg-primary/5 border border-primary/20 rounded-xl p-4">
+                    {(selectedOffering as any).originalPrice && (
+                      <span className="text-lg text-muted-foreground line-through">{(selectedOffering as any).originalPrice}</span>
+                    )}
+                    <span className="text-3xl font-bold text-primary">{selectedOffering.price}</span>
+                    <span className="text-muted-foreground text-sm">{selectedOffering.priceNote}</span>
+                  </div>
+
+                  {/* Features */}
+                  <div>
+                    <h4 className="text-sm font-bold text-foreground uppercase tracking-wider mb-3 flex items-center gap-2">
+                      <Sparkles className="h-4 w-4 text-primary" />
+                      What's Included
+                    </h4>
+                    <div className="grid sm:grid-cols-2 gap-2">
+                      {selectedOffering.features.map((feature, index) => (
+                        <div key={index} className="flex items-center gap-2.5 bg-muted/40 rounded-xl px-3 py-2.5">
+                          <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
+                          <span className="text-sm text-foreground">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Property Selection */}
+                  <div>
+                    <h4 className="text-sm font-bold text-muted-foreground mb-3 uppercase tracking-wider">Book at</h4>
+                    <div className="grid sm:grid-cols-2 gap-3">
+                      <Button
+                        size="lg"
+                        className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground justify-start gap-3 rounded-xl h-auto py-4"
+                        onClick={() => handlePropertyNavigate('xtsy-luxury')}
+                      >
+                        <Building2 className="w-5 h-5 flex-shrink-0" />
+                        <div className="text-left">
+                          <div className="font-semibold">XTSY Experience</div>
+                          <div className="text-xs opacity-80">Premium Glass Suite</div>
+                        </div>
+                      </Button>
+                      <Button
+                        size="lg"
+                        variant="outline"
+                        className="flex-1 border-border text-foreground bg-card hover:bg-muted justify-start gap-3 rounded-xl h-auto py-4"
+                        onClick={() => handlePropertyNavigate('xtsy-travellers-hostel')}
+                      >
+                        <Building2 className="w-5 h-5 flex-shrink-0" />
+                        <div className="text-left">
+                          <div className="font-semibold">XTSY Travellers Hostel</div>
+                          <div className="text-xs text-muted-foreground">Dorms & Private Rooms</div>
+                        </div>
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* View Full Details */}
+                  <Button
+                    size="lg"
+                    variant="ghost"
+                    className="w-full text-primary hover:text-primary/80 font-semibold"
+                    onClick={() => {
+                      setIsModalOpen(false);
+                      requestAnimationFrame(() => {
+                        navigate(selectedOffering.path);
+                      });
+                    }}
+                  >
+                    View Full Details
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </div>
               </div>
             </DialogContent>
           </Dialog>
