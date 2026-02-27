@@ -5,9 +5,10 @@
  * Future-ready for channel manager integration
  */
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useReviews, PROPERTY_NAMES } from "@/hooks/useReviews";
 import { ArrowLeft, Grid, List, Building2, Pencil, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { getPropertiesByLocation, getLocationById, Property, getAllActiveProperties } from "@/data/properties";
@@ -27,6 +28,21 @@ const SearchResults = () => {
   const [showEditBar, setShowEditBar] = useState(false);
   
   const { trackCTA, trackCardClick, trackButton } = useComponentTracking({ section: 'search_results' });
+  const { reviews, averageRatings, reviewCounts } = useReviews();
+
+  // Map property IDs to their dynamic review data
+  const getPropertyReviewData = useCallback((propertyId: string) => {
+    const nameMap: Record<string, 'hostel' | 'luxury'> = {
+      'xtsy-travellers-hostel': 'hostel',
+      'xtsy-luxury': 'luxury',
+    };
+    const key = nameMap[propertyId];
+    if (!key) return { rating: 0, count: 0 };
+    return {
+      rating: averageRatings[key],
+      count: reviewCounts[key],
+    };
+  }, [averageRatings, reviewCounts]);
 
   // Parse search params - prefer URL, fallback to sessionStorage
   const getInitialParams = useCallback(() => {
@@ -255,10 +271,17 @@ const SearchResults = () => {
                   transition={{ delay: index * 0.1 }}
                   className={cn(viewMode === 'list' && "w-full")}
                 >
-                  <PropertyCardCompact
-                    property={property}
-                    onViewDetails={handleViewDetails}
-                  />
+                  {(() => {
+                    const reviewData = getPropertyReviewData(property.id);
+                    return (
+                      <PropertyCardCompact
+                        property={property}
+                        onViewDetails={handleViewDetails}
+                        dynamicRating={reviewData.rating}
+                        dynamicReviewCount={reviewData.count}
+                      />
+                    );
+                  })()}
                 </motion.div>
               ))}
             </div>
