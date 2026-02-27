@@ -327,14 +327,16 @@ const XTSYPrimeSection: React.FC<XTSYPrimeSectionProps> = ({ className }) => {
                       <Button
                         size="lg"
                         variant="outline"
-                        className="flex-1 border-border text-foreground bg-card hover:bg-muted justify-start gap-3 rounded-xl h-auto py-4"
-                        onClick={() => handlePropertyNavigate('xtsy-travellers-hostel')}
+                        className="flex-1 border-primary/30 text-primary bg-primary/5 hover:bg-primary/10 justify-center gap-2 rounded-xl h-auto py-4 font-semibold"
+                        onClick={() => {
+                          setIsModalOpen(false);
+                          requestAnimationFrame(() => {
+                            navigate('/xtsy-270');
+                          });
+                        }}
                       >
-                        <Building2 className="w-5 h-5 flex-shrink-0" />
-                        <div className="text-left">
-                          <div className="font-semibold">XTSY Travellers Hostel</div>
-                          <div className="text-xs text-muted-foreground">Dorms & Private Rooms</div>
-                        </div>
+                        Know More about XTSY Experience
+                        <ArrowRight className="w-4 h-4" />
                       </Button>
                     </div>
                   </div>
