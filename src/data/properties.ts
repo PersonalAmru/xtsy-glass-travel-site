@@ -8,6 +8,7 @@ import xtsyAerial from '@/assets/xtsy-270-aerial.jpeg';
 import xtsyMilkyway from '@/assets/xtsy-270-milkyway.jpeg';
 import xtsyMilkyway2 from '@/assets/xtsy-270-milkyway2.jpeg';
 import xtsyInterior from '@/assets/xtsy-270-interior.jpeg';
+import hostelHero from '@/assets/hostel-hero-9068.jpeg';
 
 export interface Location {
   id: string;
@@ -82,7 +83,7 @@ export const PROPERTIES: Record<string, Property> = {
     shortName: 'Hostel',
     locationId: 'shillong',
     description: 'The biggest hostel in Shillong with premium dormitories and private rooms for backpackers and travelers.',
-    heroImage: `${STORAGE_BASE}/New%20Images%20property/IMG_9068.jpeg`,
+    heroImage: hostelHero,
     images: [
       `${STORAGE_BASE}/New%20Images%20property/IMG_9068.jpeg`,
       `${STORAGE_BASE}/New%20Images%20property/IMG_9274.jpeg`,
