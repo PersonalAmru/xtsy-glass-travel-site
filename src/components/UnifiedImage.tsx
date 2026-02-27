@@ -130,7 +130,8 @@ const UnifiedImage: React.FC<UnifiedImageProps> = ({
           sizes={sizes}
           srcSet={srcSet}
           loading={priority ? "eager" : "lazy"}
-          decoding="async"
+          decoding={priority ? "sync" : "async"}
+          fetchPriority={priority ? "high" : "auto"}
         />
       )}
       
