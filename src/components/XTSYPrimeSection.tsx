@@ -309,48 +309,59 @@ const XTSYPrimeSection: React.FC<XTSYPrimeSectionProps> = ({ className }) => {
                     </div>
                   </div>
 
-                  {/* Property Selection - Only for XTSY 270 */}
-                  {selectedOffering.id === "xtsy-270" && (
-                    <div>
-                      <h4 className="text-sm font-bold text-muted-foreground mb-3 uppercase tracking-wider">Book at</h4>
-                      <div className="grid sm:grid-cols-2 gap-3">
-                        <Button
-                          size="lg"
-                          className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground justify-start gap-3 rounded-xl h-auto py-4"
-                          onClick={() => handlePropertyNavigate('xtsy-luxury')}
-                        >
-                          <Building2 className="w-5 h-5 flex-shrink-0" />
-                          <div className="text-left">
-                            <div className="font-semibold">XTSY Experience</div>
-                            <div className="text-xs opacity-80">Premium Glass Suite</div>
-                          </div>
-                        </Button>
-                        <Button
-                          size="lg"
-                          variant="outline"
-                          className="flex-1 border-primary/30 text-primary bg-primary/5 hover:bg-primary/10 justify-center gap-2 rounded-xl h-auto py-4 font-semibold"
-                          onClick={() => {
-                            setIsModalOpen(false);
-                            requestAnimationFrame(() => {
-                              navigate('/xtsy-270');
-                            });
-                          }}
-                        >
-                          Know More about XTSY Experience
-                          <ArrowRight className="w-4 h-4" />
-                        </Button>
-                      </div>
+                  {/* Property Selection */}
+                  <div>
+                    <h4 className="text-sm font-bold text-muted-foreground mb-3 uppercase tracking-wider">Book at</h4>
+                    <div className="grid sm:grid-cols-2 gap-3">
+                      <Button
+                        size="lg"
+                        className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground justify-start gap-3 rounded-xl h-auto py-4"
+                        onClick={() => handlePropertyNavigate('xtsy-luxury')}
+                      >
+                        <Building2 className="w-5 h-5 flex-shrink-0" />
+                        <div className="text-left">
+                          <div className="font-semibold">XTSY Experience</div>
+                          <div className="text-xs opacity-80">Premium Glass Suite</div>
+                        </div>
+                      </Button>
+                      <Button
+                        size="lg"
+                        variant="outline"
+                        className="flex-1 border-border hover:bg-accent justify-start gap-3 rounded-xl h-auto py-4"
+                        onClick={() => handlePropertyNavigate('xtsy-travellers-hostel')}
+                      >
+                        <Building2 className="w-5 h-5 flex-shrink-0" />
+                        <div className="text-left">
+                          <div className="font-semibold">XTSY Travellers Hostel</div>
+                          <div className="text-xs text-muted-foreground">Dorms & Private Rooms</div>
+                        </div>
+                      </Button>
                     </div>
+                  </div>
+
+                  {/* Know More - Only for XTSY 270 */}
+                  {selectedOffering.id === "xtsy-270" && (
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="w-full border-primary/30 text-primary bg-primary/5 hover:bg-primary/10 justify-center gap-2 rounded-xl h-auto py-4 font-semibold"
+                      onClick={() => {
+                        setIsModalOpen(false);
+                        requestAnimationFrame(() => {
+                          navigate('/xtsy-270');
+                        });
+                      }}
+                    >
+                      Know More about XTSY Experience
+                      <ArrowRight className="w-4 h-4" />
+                    </Button>
                   )}
 
-                  {/* View Full Details - For all other cards */}
+                  {/* View Full Details */}
                   <Button
                     size="lg"
-                    variant={selectedOffering.id === "xtsy-270" ? "ghost" : "default"}
-                    className={selectedOffering.id === "xtsy-270" 
-                      ? "w-full text-primary hover:text-primary/80 font-semibold"
-                      : "w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-xl"
-                    }
+                    variant="ghost"
+                    className="w-full text-primary hover:text-primary/80 font-semibold"
                     onClick={() => {
                       setIsModalOpen(false);
                       requestAnimationFrame(() => {
@@ -358,7 +369,7 @@ const XTSYPrimeSection: React.FC<XTSYPrimeSectionProps> = ({ className }) => {
                       });
                     }}
                   >
-                    {selectedOffering.id === "xtsy-270" ? "View Full Details" : "Explore Now"}
+                    View Full Details
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </div>
