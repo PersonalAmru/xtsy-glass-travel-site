@@ -5,7 +5,7 @@ import { XTSY270_DATA } from '@/data/rooms/xtsy270';
 import xtsyStargazing from '@/assets/xtsy-270-stargazing.jpeg';
 import xtsyAerial from '@/assets/xtsy-270-aerial.jpeg';
 import xtsyMilkyway from '@/assets/xtsy-270-new3.png';
-import xtsyMilkyway2 from '@/assets/xtsy-270-new4.png';
+import xtsyMilkyway2 from '@/assets/xtsy-270-milkyway2.jpeg';
 import xtsyInterior from '@/assets/xtsy-270-interior.jpeg';
 import MobileImageCarousel from '@/components/MobileImageCarousel';
 import { Badge } from '@/components/ui/badge';
@@ -188,7 +188,7 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
           }} aria-label="XTSY 270° Panorama Glass Ensuite luxury experience">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-stone-200/40">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10" />
-                <MobileImageCarousel images={[xtsyStargazing, xtsyMilkyway, xtsyAerial, xtsyMilkyway2, xtsyInterior]} alt="XTSY 270° Panorama Glass Ensuite — India's first luxury glass house with 270-degree mountain views" aspectRatio="video" showIndicators={true} showArrows={true} autoPlay={true} autoPlayInterval={5000} className="w-full h-[60vh] md:h-[70vh]" />
+                <MobileImageCarousel images={[xtsyStargazing, xtsyAerial, xtsyMilkyway, xtsyMilkyway2, xtsyInterior]} alt="XTSY 270° Panorama Glass Ensuite — India's first luxury glass house with 270-degree mountain views" aspectRatio="video" showIndicators={true} showArrows={true} autoPlay={true} autoPlayInterval={5000} className="w-full h-[60vh] md:h-[70vh]" />
               </div>
               <figcaption className="mt-4 text-center text-gray-700 font-medium">
                 India's first 270° panoramic glass house — where architecture meets nature in perfect harmony
