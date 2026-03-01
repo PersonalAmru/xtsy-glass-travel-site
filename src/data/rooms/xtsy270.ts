@@ -37,7 +37,7 @@ export const XTSY270_DATA = {
     },
     {
       icon: Bath,
-      title: 'Luxury Ensuite',
+      title: 'En Suite',
       description: 'Private washroom with premium fittings and panoramic views while bathing'
     },
     {
