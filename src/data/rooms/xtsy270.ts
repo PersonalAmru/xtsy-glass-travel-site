@@ -57,7 +57,7 @@ export const XTSY270_DATA = {
     },
     {
       icon: Thermometer,
-      title: 'Climate Perfection',
+      title: 'Netflix & Chill',
       description: 'Advanced climate control with blackout options for optimal comfort'
     },
     {
