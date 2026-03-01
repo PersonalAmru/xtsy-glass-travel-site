@@ -329,7 +329,7 @@ Can't wait to create unforgettable memories in this architectural masterpiece! ð
             <div className="mb-20 animate-fade-in">
               <div className="text-center mb-12">
                <h2 className="text-4xl md:text-5xl font-bold mb-6 text-stone-900">
-                   Luxury Amenities
+                    Premium Amenities
                  </h2>
                  <p className="text-xl text-stone-700 font-medium max-w-3xl mx-auto">
                    Every detail crafted for the discerning traveler seeking uncompromising excellence
@@ -393,7 +393,7 @@ Can't wait to create unforgettable memories in this architectural masterpiece! ð
                     <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300">
                       <Bath className="w-12 h-12 text-primary mx-auto" />
                     </div>
-                    <h3 className="text-2xl font-bold mb-4 text-gray-900">Luxury Ensuite</h3>
+                    <h3 className="text-2xl font-bold mb-4 text-gray-900">En Suite</h3>
                     <p className="text-gray-700 text-lg font-medium leading-relaxed">
                       Private spa-inspired washroom with <span className="font-bold text-primary">panoramic views</span> and premium Italian fixtures
                     </p>
