@@ -58,7 +58,7 @@ export const XTSY270_DATA = {
     {
       icon: Thermometer,
       title: 'Netflix & Chill',
-      description: 'Advanced climate control with blackout options for optimal comfort'
+      description: 'Enjoy Streaming in QLED 4K TV'
     },
     {
       icon: Shield,
