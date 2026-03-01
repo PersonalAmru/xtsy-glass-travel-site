@@ -1,4 +1,4 @@
-import { Wifi, Coffee, Bath, Bed, Mountain, Star, Award, Eye, Sun, Moon, Users, MapPin, Wind, Thermometer, Shield, Camera } from 'lucide-react';
+import { Wifi, Coffee, Bath, Bed, Mountain, Star, Award, Eye, Sun, Moon, Users, MapPin, Wind, Tv, Shield, Camera } from 'lucide-react';
 import xtsyStargazing from '@/assets/xtsy-270-stargazing.jpeg';
 import xtsyAerial from '@/assets/xtsy-270-aerial.jpeg';
 import xtsyMilkyway from '@/assets/xtsy-270-milkyway.jpeg';
@@ -56,7 +56,7 @@ export const XTSY270_DATA = {
       description: 'Complimentary premium breakfast served with spectacular sunrise views'
     },
     {
-      icon: Thermometer,
+      icon: Tv,
       title: 'Netflix & Chill',
       description: 'Enjoy Streaming in QLED 4K TV'
     },
