@@ -172,12 +172,18 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
                   <span className="inline-block text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-3">
                     Starting from
                   </span>
-                  <div className="flex items-baseline justify-center gap-1 mb-1">
-                    <span className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
-                      {formatPrice(XTSY270_DATA.price)}
-                    </span>
-                  </div>
-                  <span className="text-sm text-muted-foreground font-medium">per night · inclusive of taxes</span>
+                  <div className="flex items-baseline justify-center gap-2 mb-1">
+                     <span className="text-xl md:text-2xl font-medium tracking-tight text-muted-foreground line-through">
+                       {formatPrice(11999)}
+                     </span>
+                     <span className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
+                       {formatPrice(7499)}
+                     </span>
+                   </div>
+                   <span className="text-sm text-muted-foreground font-medium">per night · inclusive of taxes</span>
+                   <div className="mt-2">
+                     <span className="text-xs font-semibold tracking-widest uppercase text-primary">Limited time Offer</span>
+                   </div>
                 </div>
               </div>
             </div>
