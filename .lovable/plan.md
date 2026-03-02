@@ -1,13 +1,13 @@
 
 
-## Plan: Remove "Luxury Accommodation Details" Section
+## Plan: Add Small WhatsApp Button on XTSY 270 Page
 
 **File: `src/pages/XTSY270.tsx`**
 
-Remove lines 352–406, which include:
-- The separator before the section (line 352–353)
-- The entire "Luxury Accommodation Details" block with the three cards (Exclusive Occupancy, Premium Bedding, En Suite) (lines 355–403)
-- The separator after the section (lines 405–406)
+Add a small fixed WhatsApp button in the bottom-right corner of the page, linking to the business WhatsApp (`wa.me/918837317070`). It will use the existing `whatsapp-icon.svg` asset and fire the `lead_initiated` GTM event on click (consistent with the existing `FloatingWhatsApp` component).
 
-The "Reserve Your Experience" CTA and everything else on the page remains untouched.
+- Import the WhatsApp icon SVG and `routeGTMEvent`
+- Add a fixed-position `<a>` tag in the bottom-right corner (`fixed bottom-6 right-6 z-50`) with a small green circular button (`w-12 h-12 rounded-full bg-[#25D366]`) containing the WhatsApp icon
+- Opens `https://wa.me/918837317070` in a new tab
+- This is page-specific, placed inside the XTSY270 component's return JSX
 
