@@ -349,61 +349,6 @@ Can't wait to create unforgettable memories in this architectural masterpiece! ð
               </div>
             </div>
 
-            {/* Section Separator */}
-            <Separator className="my-16" />
-
-            {/* Experience Details - Enhanced Luxury Section */}
-            <div className="mb-20 animate-fade-in">
-              <div className="text-center mb-12">
-               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-stone-900">
-                   Luxury Accommodation Details
-                 </h2>
-                 <p className="text-xl text-stone-700 font-medium max-w-3xl mx-auto">
-                   Meticulously crafted spaces designed for the ultimate comfort and sophistication
-                 </p>
-               </div>
-              
-              <div className="grid lg:grid-cols-3 gap-6">
-                 <Card className="bg-white border-stone-200 shadow-lg">
-                  <CardContent className="p-6 text-center">
-                    <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300">
-                      <Users className="w-12 h-12 text-primary mx-auto" />
-                    </div>
-                    <h3 className="text-2xl font-bold mb-4 text-gray-900">Exclusive Occupancy</h3>
-                    <p className="text-gray-700 text-lg font-medium leading-relaxed">
-                      Intimate sanctuary for up to <span className="font-bold text-primary">2 distinguished guests</span> seeking unparalleled luxury and privacy
-                    </p>
-                  </CardContent>
-                </Card>
-                
-                 <Card className="bg-white border-stone-200 shadow-lg">
-                  <CardContent className="p-6 text-center">
-                    <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300">
-                      <Bed className="w-12 h-12 text-primary mx-auto" />
-                    </div>
-                    <h3 className="text-2xl font-bold mb-4 text-gray-900">Premium Bedding</h3>
-                    <p className="text-gray-700 text-lg font-medium leading-relaxed">
-                      Sumptuous <span className="font-bold text-primary">Queen bed</span> adorned with the finest Egyptian cotton linens and handcrafted comfort
-                    </p>
-                  </CardContent>
-                </Card>
-                
-                <Card className="bg-white border-stone-200 shadow-lg">
-                  <CardContent className="p-6 text-center">
-                    <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300">
-                      <Bath className="w-12 h-12 text-primary mx-auto" />
-                    </div>
-                    <h3 className="text-2xl font-bold mb-4 text-gray-900">En Suite</h3>
-                    <p className="text-gray-700 text-lg font-medium leading-relaxed">
-                      Private spa-inspired washroom with <span className="font-bold text-primary">panoramic views</span> and premium Italian fixtures
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-
-            {/* Section Separator */}
-            <Separator className="my-16" />
 
             {/* Bottom CTA Section */}
             <div className="mt-16 mb-24 text-center animate-fade-in">
