@@ -1,13 +1,16 @@
 
 
-## Plan: Add Small WhatsApp Button on XTSY 270 Page
+## Problem
 
-**File: `src/pages/XTSY270.tsx`**
+The `FloatingWhatsApp` component is imported in `App.tsx` but **never actually rendered** in the JSX tree. That's why no WhatsApp button appears on any page, including `/xtsy-270`.
 
-Add a small fixed WhatsApp button in the bottom-right corner of the page, linking to the business WhatsApp (`wa.me/918837317070`). It will use the existing `whatsapp-icon.svg` asset and fire the `lead_initiated` GTM event on click (consistent with the existing `FloatingWhatsApp` component).
+The page-specific WhatsApp button we added to `XTSY270.tsx` should work, but it may be visually hidden behind the "Will it be yours?" CTA bar or missing the Footer component (which would push content).
 
-- Import the WhatsApp icon SVG and `routeGTMEvent`
-- Add a fixed-position `<a>` tag in the bottom-right corner (`fixed bottom-6 right-6 z-50`) with a small green circular button (`w-12 h-12 rounded-full bg-[#25D366]`) containing the WhatsApp icon
-- Opens `https://wa.me/918837317070` in a new tab
-- This is page-specific, placed inside the XTSY270 component's return JSX
+## Plan
+
+**File: `src/App.tsx`** — Add `<FloatingWhatsApp />` to the rendered JSX, right after `</Routes>` and before closing `</TooltipProvider>`.
+
+This will make the floating WhatsApp button appear on all pages (except `/admin` and `/booking` as already handled by the component's logic).
+
+**File: `src/pages/XTSY270.tsx`** — Remove the duplicate page-specific WhatsApp button we added earlier (lines 395-404), since the global component will now handle it.
 
