@@ -14,6 +14,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Calendar, Mountain, Star, Award, Eye, Sun, Moon, Wifi, Coffee, Bath, Bed, Users, MapPin, Sparkles } from 'lucide-react';
 import XTSY270Modal from '@/components/XTSY270Modal';
+import whatsappIcon from '@/assets/whatsapp-icon.svg';
+import { routeGTMEvent } from '@/utils/gtmEventRouter';
 import B2BBookingForm from '@/components/B2BBookingForm';
 import { useApp } from '@/contexts/AppContext';
 const XTSY270: React.FC = () => {
@@ -390,6 +392,17 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
       <script type="application/ld+json" dangerouslySetInnerHTML={{
       __html: JSON.stringify(roomLd)
     }} />
+      {/* WhatsApp Button */}
+      <a
+        href="https://wa.me/918837317070"
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={() => routeGTMEvent({ eventName: 'lead_initiated', params: { lead_type: 'whatsapp', source: 'xtsy270_floating_btn', page: '/xtsy-270' } })}
+        className="fixed bottom-20 right-4 z-50 w-12 h-12 rounded-full bg-[#25D366] hover:bg-[#20BD5A] shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110"
+        aria-label="Chat on WhatsApp"
+      >
+        <img src={whatsappIcon} alt="WhatsApp" className="w-7 h-7" />
+      </a>
       <XTSY270Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       <B2BBookingForm isOpen={isB2BFormOpen} onClose={() => setIsB2BFormOpen(false)} customTitle="Will it be yours? - XTSY 270° Glass Suite" customDescription="India's First 270° Panoramic Glass House - Exclusive luxury experience" customIcon={Sparkles} maxGuests={2} fixedGuests={true} isCoupleFocused={true} />
     </div>;
