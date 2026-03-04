@@ -8,13 +8,15 @@ import xtsyInterior from '@/assets/xtsy-270-interior.jpeg';
 export const XTSY270_DATA = {
   path: '/xtsy-270',
   canonicalUrl: 'https://xtsy.one/xtsy-270',
-  name: 'XTSY 270° Panorama Glass Ensuite',
-  shortName: 'XTSY 270°',
-  seoTitle: 'XTSY 270° Panorama Glass Ensuite | India\'s First Luxury Glass House Shillong',
+  name: 'XTSY Xperience – 270° Glasshouse Glamping Retreat',
+  shortName: 'XTSY Xperience',
+  seoTitle: 'XTSY Xperience – India\'s First 270° Glasshouse Glamping Retreat | Shillong, Meghalaya',
   seoDescription:
-    'Experience India\'s first 270° panoramic glass house in Shillong. Luxury ensuite with stunning mountain views, architectural excellence, and premium amenities. From ₹8,500/night.',
+    'Sleep under stars. Wake to mountains. XTSY Xperience is India\'s first 270° panoramic glasshouse glamping retreat in Shillong. Luxury glamping for couples — pine forests, stargazing, and rolling hills. Book now.',
+  seoKeywords:
+    'glamping India, luxury glamping Shillong, glasshouse glamping, romantic glamping retreat, glamping Meghalaya, stargazing glamping, couples glamping India, 270 glass house, XTSY Xperience, glamping resort Shillong, unique glamping India, honeymoon glamping',
   description:
-    'India\'s pioneering 270° panoramic glass house offering unparalleled luxury and breathtaking mountain vistas. Experience architectural innovation meets hospitality excellence.',
+    'India\'s first 270° panoramic glasshouse glamping retreat. Sleep under the stars, wake to mountains — luxury glamping without compromise in Shillong, Meghalaya.',
   location: 'Shillong, Meghalaya, India',
   occupancy: { min: 1, max: 2 },
   bed: { type: 'Queen', count: 1 },
