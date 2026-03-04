@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { XTSY270_DATA } from '@/data/rooms/xtsy270';
@@ -18,92 +18,56 @@ import whatsappIcon from '@/assets/whatsapp-icon.svg';
 import { routeGTMEvent } from '@/utils/gtmEventRouter';
 import B2BBookingForm from '@/components/B2BBookingForm';
 import { useApp } from '@/contexts/AppContext';
+import SEOHead from '@/components/SEOHead';
 const XTSY270: React.FC = () => {
   const {
     formatPrice
   } = useApp();
-  const [isWeekend, setIsWeekend] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isB2BFormOpen, setIsB2BFormOpen] = useState(false);
   const title = XTSY270_DATA.seoTitle;
   const description = XTSY270_DATA.seoDescription;
   const canonicalUrl = XTSY270_DATA.canonicalUrl;
-
-  // Check if current day is weekend for dynamic pricing
-  useEffect(() => {
-    const today = new Date().getDay();
-    setIsWeekend(today === 0 || today === 6); // Sunday = 0, Saturday = 6
-  }, []);
-  const currentPrice = isWeekend ? XTSY270_DATA.weekendPrice : XTSY270_DATA.weekdayPrice;
-  const updateOrCreateMeta = (name: string, content: string) => {
-    let el = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
-    if (!el) {
-      el = document.createElement('meta');
-      el.setAttribute('name', name);
-      document.head.appendChild(el);
-    }
-    el.setAttribute('content', content);
-  };
-  const addOrUpdateCanonical = (url: string) => {
-    let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
-    if (!link) {
-      link = document.createElement('link');
-      link.setAttribute('rel', 'canonical');
-      document.head.appendChild(link);
-    }
-    link.setAttribute('href', url);
-  };
-  useEffect(() => {
-    document.title = title;
-    updateOrCreateMeta('description', description);
-    addOrUpdateCanonical(canonicalUrl);
-  }, []);
+  const keywords = (XTSY270_DATA as any).seoKeywords || '';
   const handleBookingClick = () => {
-    const message = `🏔️ *XTSY 270° - Panoramic Glass Suite Inquiry*
+    const message = `🏕️ *XTSY Xperience – Glasshouse Glamping Inquiry*
 
-Hi XTSY Team! I'm absolutely amazed by the 270° Glass Suite! 🌟
+Hi XTSY Team! I'd love to experience India's first 270° glasshouse glamping retreat! 🌟
 
-I'd love to experience India's first panoramic glass house with breathtaking mountain views!
-
-🏨 *What I'm Interested In:*
-• XTSY 270° Panorama Glass Ensuite
-• Premium luxury accommodation in Shillong
-• 270° transparent sanctuary experience
-• Queen bed ensuite with panoramic vistas
+🏔️ *What I'm Interested In:*
+• XTSY Xperience – 270° Glamping Retreat
+• Luxury glamping in Shillong, Meghalaya
+• Stargazing from bed & pine forest views
+• Romantic couples retreat
 
 💰 *Rate:*
 • Starting from ₹${XTSY270_DATA.price.toLocaleString()}/night
 
-🛏️ *Features I Love:*
-✓ Queen bed accommodation for couples
-✓ Private ensuite washroom
-✓ 270° panoramic mountain views
-✓ Award-winning architectural design
-
 Could you please share:
 📅 Availability for my preferred dates
 💳 Booking process & payment options
-🎁 Special packages or romantic add-ons
+🎁 Special romantic packages
 
-Can't wait to create unforgettable memories in this architectural masterpiece! 🏔️✨`;
+Can't wait to sleep under the stars! 🌌✨`;
     const whatsappUrl = `https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent(message)}&type=phone_number&app_absent=0`;
     window.open(whatsappUrl, '_blank');
   };
   const roomLd = {
     '@context': 'https://schema.org',
-    '@type': 'HotelRoom',
-    name: XTSY270_DATA.name,
-    description,
+    '@type': 'LodgingBusiness',
+    name: 'XTSY Xperience – 270° Glasshouse Glamping Retreat',
+    description: 'India\'s first 270° panoramic glasshouse glamping retreat in Shillong, Meghalaya. Sleep under stars, wake to mountains — luxury glamping for couples.',
     url: canonicalUrl,
-    occupancy: {
-      '@type': 'QuantitativeValue',
-      minValue: XTSY270_DATA.occupancy.min,
-      maxValue: XTSY270_DATA.occupancy.max
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Shillong',
+      addressRegion: 'Meghalaya',
+      addressCountry: 'IN'
     },
-    bed: {
-      '@type': 'BedDetails',
-      type: XTSY270_DATA.bed.type,
-      numberOfBeds: XTSY270_DATA.bed.count
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 25.5788,
+      longitude: 91.8933
     },
     amenityFeature: XTSY270_DATA.features.map(f => ({
       '@type': 'LocationFeatureSpecification',
@@ -112,11 +76,15 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
     })),
     offers: {
       '@type': 'Offer',
-      availability: 'https://schema.org/InStock',
-      priceCurrency: XTSY270_DATA.priceCurrency
-    }
+      availability: 'https://schema.org/LimitedAvailability',
+      priceCurrency: XTSY270_DATA.priceCurrency,
+      price: XTSY270_DATA.price,
+      description: 'Luxury glamping retreat for couples — per night, inclusive of taxes'
+    },
+    keywords: 'glamping India, luxury glamping Shillong, glasshouse glamping, romantic glamping, stargazing glamping, couples retreat'
   };
   return <div className="min-h-screen bg-gradient-to-b from-stone-50 via-amber-50/40 to-stone-100">
+      <SEOHead title={title} description={description} keywords={keywords} canonicalUrl={canonicalUrl} ogType="product" />
       <Header />
       
       {/* Luxury Hero Section */}
@@ -131,15 +99,15 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
             <div className="flex flex-wrap justify-center gap-3 mb-8 animate-fade-in">
               <Badge variant="outline" className="bg-white border-stone-200 text-stone-800 font-semibold shadow-sm">
                 <Award className="w-3 h-3 mr-1" />
-                India's First 270° Glass House
+                India's First Glasshouse Glamping
               </Badge>
               <Badge variant="outline" className="bg-white border-stone-200 text-stone-800 font-semibold shadow-sm">
                 <Star className="w-3 h-3 mr-1" />
-                Architectural Excellence
+                Intimate. Immersive. Iconic
               </Badge>
               <Badge variant="outline" className="bg-white border-stone-200 text-stone-800 font-semibold shadow-sm">
                 <Mountain className="w-3 h-3 mr-1" />
-                Premium Mountain Views
+                Scotland of The East
               </Badge>
             </div>
 
@@ -147,25 +115,28 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
             <div className="text-center mb-12 animate-fade-in" style={{
             animationDelay: '0.2s'
           }}>
-               <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-stone-900 leading-tight">
-                 XTSY 270°
+               <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-stone-900 leading-tight">
+                 XTSY Xperience
                </h1>
-               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-stone-800">
-                 Panorama Glass Ensuite
+               <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 text-stone-800">
+                 India's First 270° Glasshouse Glamping Retreat
                </h2>
-               <p className="text-lg md:text-xl text-stone-700 font-medium max-w-3xl mx-auto leading-relaxed">
-                Experience India's most innovative architectural marvel — a 200% luxury ensuite with stunning 270° mountain panoramas that redefine hospitality excellence.
-              </p>
+               <p className="text-lg md:text-xl text-stone-700 font-medium max-w-3xl mx-auto leading-relaxed mb-4">
+                Sleep under the stars. Wake to mountains.
+               </p>
+               <p className="text-base md:text-lg text-stone-600 max-w-3xl mx-auto leading-relaxed">
+                Experience our innovative architectural marvel inside pine forests &amp; mountains where you can stargaze open skies from your bed in Shillong — Scotland of The East.
+               </p>
             </div>
 
             {/* Pricing Display */}
             <div className="text-center mb-8 animate-fade-in" style={{
             animationDelay: '0.35s'
           }}>
-               <h3 className="text-2xl md:text-3xl font-bold mb-3 text-stone-900">XTSY Xperience</h3>
+               <h3 className="text-2xl md:text-3xl font-bold mb-3 text-stone-900">Mountains. Forest. Sky. Stars.</h3>
                <p className="text-base md:text-lg text-stone-600 font-medium max-w-2xl mx-auto">
-                India's signature 270° panoramic glass house
-              </p>
+                A luxury glamping retreat without compromise — designed for couples
+               </p>
             </div>
             <div className="flex justify-center mb-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
               <div className="relative group">
@@ -199,10 +170,10 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
                 <MobileImageCarousel images={[xtsyStargazing, xtsyAerial, xtsyMilkyway, xtsyMilkyway2, xtsyInterior]} alt="XTSY 270° Panorama Glass Ensuite — India's first luxury glass house with 270-degree mountain views" aspectRatio="video" showIndicators={true} showArrows={true} autoPlay={true} autoPlayInterval={5000} className="w-full h-[60vh] md:h-[70vh]" />
               </div>
               <figcaption className="mt-4 text-center text-gray-700 font-medium">
-                India's first 270° panoramic glass house — where architecture meets nature in perfect harmony
+                India's first 270° glasshouse glamping retreat — where architecture disappears into nature
               </figcaption>
               <p className="mt-2 text-center text-sm text-gray-600 font-medium">
-                Architectural marvel purely designed and curated by Team XTSY
+                Purely designed and curated by Team XTSY in the pine forests of Shillong
               </p>
             </figure>
           </div>
@@ -232,10 +203,10 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
 
               <div className="text-center mb-12">
                <h2 className="text-4xl md:text-5xl font-bold mb-6 text-stone-900">
-                   The Vision
+                   Luxury Glamping Reimagined
                  </h2>
                  <p className="text-xl text-stone-700 font-medium max-w-3xl mx-auto">
-                   Pioneering architectural innovation in the heart of Meghalaya's pristine landscapes
+                   One side opens to rolling mountains. The other overlooks pine forests. Above you — open sky and stargazing.
                 </p>
               </div>
               
@@ -258,12 +229,12 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
                     <div className="space-y-8">
                       <div>
                         <h3 className="text-3xl md:text-4xl font-bold mb-6 text-white leading-tight tracking-tight">
-                          India's First 270° Panorama Glass Ensuite
+                          Where Glamping Meets Moons &amp; Stars
                         </h3>
                         <p className="text-gray-200 text-lg md:text-xl font-medium leading-relaxed mb-8 tracking-wide">
-                          Conceived as a masterpiece of contemporary architecture, XTSY 270° redefines luxury accommodation through 
-                          innovative glass engineering. Our transparent sanctuary offers an unparalleled connection with nature while 
-                          maintaining the highest standards of comfort and privacy.
+                          This is not only a stay — but an experience designed to be remembered. Wake up to golden sunlight over the hills. 
+                          Sleep under stars from the comfort of premium bedding. Our luxury glamping retreat provides privacy, intimacy, 
+                          and breathtaking views — all in one space. Perfect for anniversary surprises, proposals, honeymoons, or romantic weekends.
                         </p>
                       </div>
                       
@@ -273,16 +244,16 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
                           <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
                             <Eye className="w-10 h-10 text-amber-500 mx-auto drop-shadow-sm" />
                           </div>
-                          <div className="text-lg font-bold text-gray-900 mb-2">270° Views</div>
-                          <div className="text-sm text-gray-600 font-medium">Panoramic Excellence</div>
+                          <div className="text-lg font-bold text-gray-900 mb-2">270° Panorama</div>
+                          <div className="text-sm text-gray-600 font-medium">Mountains, Forest &amp; Sky</div>
                         </div>
                         
                         <div className="group bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200/80 rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 hover:border-orange-300/60">
                           <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
                             <Award className="w-10 h-10 text-orange-500 mx-auto drop-shadow-sm" />
                           </div>
-                          <div className="text-lg font-bold text-gray-900 mb-2">First in India</div>
-                          <div className="text-sm text-gray-600 font-medium">Architectural Pioneer</div>
+                          <div className="text-lg font-bold text-gray-900 mb-2">Couples Retreat</div>
+                          <div className="text-sm text-gray-600 font-medium">Intimate &amp; Romantic</div>
                         </div>
                       </div>
                     </div>
@@ -295,8 +266,8 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
                             <Mountain className="w-6 h-6 text-white" />
                           </div>
                           <div>
-                            <div className="text-lg font-bold text-gray-900 mb-1">Panoramic Mountain Vistas</div>
-                            <div className="text-sm text-gray-600 font-medium">Uninterrupted 270° natural beauty</div>
+                            <div className="text-lg font-bold text-gray-900 mb-1">Rolling Mountain Vistas</div>
+                            <div className="text-sm text-gray-600 font-medium">Wake up to golden sunlight over the hills</div>
                           </div>
                         </div>
                       </div>
@@ -307,8 +278,8 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
                             <Sun className="w-6 h-6 text-white" />
                           </div>
                           <div>
-                            <div className="text-lg font-bold text-gray-900 mb-1">Sunrise to Sunset Immersion</div>
-                            <div className="text-sm text-gray-600 font-medium">Complete daylight experience in glass</div>
+                            <div className="text-lg font-bold text-gray-900 mb-1">Pine Forest Immersion</div>
+                            <div className="text-sm text-gray-600 font-medium">Architecture that disappears into nature</div>
                           </div>
                         </div>
                       </div>
@@ -319,8 +290,8 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
                             <Moon className="w-6 h-6 text-white" />
                           </div>
                           <div>
-                            <div className="text-lg font-bold text-gray-900 mb-1">Stargazing Sanctuary</div>
-                            <div className="text-sm text-gray-600 font-medium">Crystal-clear night sky views</div>
+                            <div className="text-lg font-bold text-gray-900 mb-1">Stargazing from Your Bed</div>
+                            <div className="text-sm text-gray-600 font-medium">Sleep under stars with premium comfort</div>
                           </div>
                         </div>
                       </div>
@@ -337,10 +308,10 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
             <div className="mb-20 animate-fade-in">
               <div className="text-center mb-12">
                <h2 className="text-4xl md:text-5xl font-bold mb-6 text-stone-900">
-                    Premium Amenities
+                    Luxury Without Compromise
                  </h2>
                  <p className="text-xl text-stone-700 font-medium max-w-3xl mx-auto">
-                   Every detail crafted for the discerning traveler seeking uncompromising excellence
+                   XTSY Xperience gives you mountains, forest, sky, stars — and still the comforts of a premium stay
                 </p>
               </div>
 
@@ -362,11 +333,11 @@ Can't wait to create unforgettable memories in this architectural masterpiece! �
             <div className="mt-16 mb-24 text-center animate-fade-in">
               <div className="text-center mb-8">
                <h2 className="text-4xl md:text-5xl font-bold mb-6 text-stone-900">
-                   Reserve Your Experience
-                 </h2>
-                 <p className="text-xl text-stone-700 font-medium max-w-3xl mx-auto mb-8">
-                   Every detail crafted for the discerning traveler seeking uncompromising excellence. Only one suite available for the night in India
-                 </p>
+                   A Glamping Stay Unlike Any Other
+                  </h2>
+                  <p className="text-xl text-stone-700 font-medium max-w-3xl mx-auto mb-8">
+                    Whether it's an anniversary surprise, a proposal, a honeymoon getaway, or a romantic weekend retreat — this is where unforgettable memories begin. Only one suite available per night in India.
+                  </p>
               </div>
               <p className="text-sm text-stone-600 font-medium mt-4">
                 Limited availability • Book 48 hours in advance for exclusive concierge services
