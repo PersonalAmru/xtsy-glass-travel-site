@@ -39,7 +39,7 @@ const MobileBottomNav = () => {
     { icon: Compass, label: 'Explore', path: '/gallery', activeColor: 'text-primary' },
     { icon: CalendarCheck, label: 'Book Now', path: '/booking', isBooking: true },
     { icon: Sparkles, label: 'Travel', path: '/travel', activeColor: 'text-primary' },
-    { icon: Phone, label: 'Call', path: 'tel:+916909436892', external: true },
+    { icon: Phone, label: 'Call', path: 'tel:+918837317070', external: true },
   ];
 
   const handleBookingClick = () => {
