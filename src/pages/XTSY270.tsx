@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import { XTSY270_DATA } from '@/data/rooms/xtsy270';
 import xtsyStargazing from '@/assets/xtsy-270-stargazing.jpeg';
 import xtsyAerial from '@/assets/xtsy-270-aerial.jpeg';
-import xtsyMilkyway from '@/assets/xtsy-270-glass-night.png';
+import xtsyMilkyway from '@/assets/xtsy-270-glass-night-new.png';
 import xtsyMilkyway2 from '@/assets/xtsy-270-new4.png';
 import xtsyInterior from '@/assets/xtsy-270-interior.jpeg';
 import MobileImageCarousel from '@/components/MobileImageCarousel';
