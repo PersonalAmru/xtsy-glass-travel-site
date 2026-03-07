@@ -346,7 +346,7 @@ Can't wait to sleep under the stars! 🌌✨`;
             </div>
 
             {/* Floating Button */}
-            <div className="fixed bottom-0 left-0 right-0 z-50 px-4 pb-[calc(env(safe-area-inset-bottom,0px)+12px)] pt-3 bg-transparent pointer-events-none">
+            <div className="fixed bottom-20 md:bottom-6 left-0 right-0 z-50 px-4 bg-transparent pointer-events-none">
               <div className="mx-auto max-w-5xl flex justify-center">
                 <Button size="lg" onClick={() => setIsB2BFormOpen(true)} className="pointer-events-auto rounded-xl px-8 md:px-12 py-4 md:py-6 text-white font-bold shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 ring-4 ring-primary/20 hover:ring-primary/30 relative overflow-hidden group">
                   <span className="relative z-10 bg-gradient-to-r from-yellow-300 via-white to-yellow-300 bg-clip-text text-transparent animate-pulse text-center text-lg md:text-xl">
