@@ -11,3 +11,6 @@ http://xtsy.one/* https://xtsy.one/:splat 301!
 # Block non-existent pages with proper 404
 /cafe / 301
 /blog / 301
+
+# Old slug redirect to new
+/xtsy-270 /xtsy-270-glasshouse 301

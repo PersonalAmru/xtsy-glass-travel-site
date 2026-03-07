@@ -25,10 +25,10 @@ const SEARCH_INDEX: SearchResult[] = [
   { title: '4-Bed Mixed Dorm', description: 'Solo traveller pick · From ₹529/night', icon: '🎒', path: '/search?location=shillong', keywords: ['dorm', '4 bed', 'solo', '529', 'mixed'] },
   { title: '4-Bed Female Dorm', description: 'Women only · From ₹419/night', icon: '👩', path: '/search?location=shillong', keywords: ['female', 'women', '4 bed', '419', 'ladies'] },
   { title: 'King Double Room', description: 'Couple favourite · From ₹2,099/night', icon: '👫', path: '/search?location=shillong', keywords: ['king', 'double', 'couple', 'private', 'room', '2099', 'luxury'] },
-  { title: 'XTSY 270° Panorama Glass Ensuite', description: 'Ultra luxury · From ₹7,489/night', icon: '✨', path: '/xtsy-270', keywords: ['270', 'panorama', 'glass', 'luxury', 'premium', 'ensuite', '7489', 'view', 'mountain'] },
+  { title: 'XTSY 270° Panorama Glass Ensuite', description: 'Ultra luxury · From ₹7,489/night', icon: '✨', path: '/xtsy-270-glasshouse', keywords: ['270', 'panorama', 'glass', 'luxury', 'premium', 'ensuite', '7489', 'view', 'mountain'] },
   // Properties
   { title: 'XTSY Travellers Hostel', description: 'Biggest hostel in North East India', icon: '🏠', path: '/properties', keywords: ['hostel', 'travellers', 'backpacker', 'shillong', 'budget', 'stay'] },
-  { title: 'XTSY Experience', description: 'Premium glass ensuite in Shillong', icon: '💎', path: '/xtsy-270', keywords: ['luxury', 'premium', 'glass', 'panorama', 'high-end', 'experience'] },
+  { title: 'XTSY Experience', description: 'Premium glass ensuite in Shillong', icon: '💎', path: '/xtsy-270-glasshouse', keywords: ['luxury', 'premium', 'glass', 'panorama', 'high-end', 'experience'] },
   // Destinations
   { title: 'Meghalaya', description: 'Abode of clouds · Shillong, Cherrapunji & more', icon: '🏔️', path: '/search?location=shillong', keywords: ['meghalaya', 'shillong', 'cherrapunji', 'clouds', 'northeast', 'north east'] },
   { title: 'North East India', description: 'Explore 8 sister states', icon: '🌿', path: '/travel', keywords: ['north east', 'northeast', 'india', 'assam', 'nagaland', 'manipur', 'mizoram', 'tripura', 'arunachal', 'sikkim'] },
