@@ -85,7 +85,7 @@ Can't wait to sleep under the stars! 🌌✨`;
     keywords: 'glamping India, luxury glamping Shillong, glasshouse glamping, romantic glamping, stargazing glamping, couples retreat'
   };
   return <div className="min-h-screen bg-gradient-to-b from-stone-50 via-amber-50/40 to-stone-100">
-      <SEOHead title={title} description={description} keywords={keywords} canonicalUrl={canonicalUrl} ogType="product" />
+      <SEOHead title={title} description={description} keywords={keywords} canonicalUrl={canonicalUrl} ogImage={ogImage} ogType="product" />
       <Header />
       
       {/* Luxury Hero Section */}
