@@ -349,7 +349,7 @@ Can't wait to sleep under the stars! 🌌✨`;
               <div className="mx-auto max-w-5xl flex justify-center">
                 <Button size="lg" onClick={() => setIsB2BFormOpen(true)} className="pointer-events-auto rounded-xl px-8 md:px-12 py-4 md:py-6 text-white font-bold shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 ring-4 ring-primary/20 hover:ring-primary/30 relative overflow-hidden group">
                   <span className="relative z-10 bg-gradient-to-r from-yellow-300 via-white to-yellow-300 bg-clip-text text-transparent animate-pulse text-center text-lg md:text-xl">
-                    Will it be yours?
+                    Reserve Now
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/3 opacity-50 group-hover:opacity-70 transition-opacity duration-300" />
                 </Button>
