@@ -213,6 +213,7 @@ function App() {
                 <Route path="/about" element={<LazyRoute><LazyAbout /></LazyRoute>} />
                 <Route path="/gallery" element={<LazyRoute><LazyGallery /></LazyRoute>} />
                 <Route path="/travel" element={<LazyRoute><LazyTravel /></LazyRoute>} />
+                <Route path="/xtsy-270-glasshouse" element={<LazyRoute><LazyXTSY270 /></LazyRoute>} />
                 <Route path="/xtsy-270" element={<LazyRoute><LazyXTSY270 /></LazyRoute>} />
                 <Route path="/pet-friendly" element={<LazyRoute><LazyPetFriendly /></LazyRoute>} />
                 <Route path="/xtsy-vs-zostel" element={<LazyRoute><LazyXTSYvsZostel /></LazyRoute>} />

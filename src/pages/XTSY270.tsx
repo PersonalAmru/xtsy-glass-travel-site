@@ -25,10 +25,11 @@ const XTSY270: React.FC = () => {
   } = useApp();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isB2BFormOpen, setIsB2BFormOpen] = useState(false);
-  const title = XTSY270_DATA.seoTitle;
-  const description = XTSY270_DATA.seoDescription;
+  const title = 'Luxury Glamping in Shillong | XTSY 270° Glasshouse';
+  const description = "Experience India's 270° glasshouse luxury glamping in Shillong. A private romantic stay surrounded by mountains, pine forests and star-gazing skies.";
   const canonicalUrl = XTSY270_DATA.canonicalUrl;
   const keywords = (XTSY270_DATA as any).seoKeywords || '';
+  const ogImage = 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/270/XTSY%20270%202_cropped_processed_by_imagy.jpg';
   const handleBookingClick = () => {
     const message = `🏕️ *XTSY Xperience – Glasshouse Glamping Inquiry*
 
@@ -84,7 +85,7 @@ Can't wait to sleep under the stars! 🌌✨`;
     keywords: 'glamping India, luxury glamping Shillong, glasshouse glamping, romantic glamping, stargazing glamping, couples retreat'
   };
   return <div className="min-h-screen bg-gradient-to-b from-stone-50 via-amber-50/40 to-stone-100">
-      <SEOHead title={title} description={description} keywords={keywords} canonicalUrl={canonicalUrl} ogType="product" />
+      <SEOHead title={title} description={description} keywords={keywords} canonicalUrl={canonicalUrl} ogImage={ogImage} ogType="product" />
       <Header />
       
       {/* Luxury Hero Section */}
