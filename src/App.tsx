@@ -166,7 +166,7 @@ const XTSYRouteLoader = memo(() => (
     }}>
       <div style={{
         height: '100%',
-        background: 'linear-gradient(90deg, #f97316, #a31545)',
+        background: 'linear-gradient(90deg, hsl(28, 92%, 52%), hsl(12, 85%, 48%))',
         borderRadius: 9999,
         animation: 'xtsy-loader-progress 1.2s ease-in-out infinite'
       }} />
