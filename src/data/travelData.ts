@@ -477,7 +477,7 @@ export const heartlandTours: Record<string, TourPackage[]> = {
       description: "Mild winter adventures with paragliding, river walks, and orchard tours — perfect blend of thrill and scenic beauty.",
       duration: "4 Days",
       difficulty: "Moderate",
-    price: "₹18,999",
+    price: "₹26,999",
       image: kulluValleyAdventureImg,
       rating: 4.5,
       category: "adventure",
