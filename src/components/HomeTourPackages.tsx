@@ -112,7 +112,7 @@ const soloPackages = [
     id: 702, title: "NE India Solo Bike Circuit",
     description: "Royal Enfield expedition with mechanic support & all gear included",
     duration: "6 Days", difficulty: "Challenging", price: "₹35,500",
-    image: bumlaPassBikeExpeditionImg, rating: 4.9, category: "adventure", location: "Meghalaya",
+    image: imgUrl("bumla-pass-bike-expedition.jpg"), rating: 4.9, category: "adventure", location: "Meghalaya",
     highlights: ["RE Himalayan Provided", "Support Vehicle", "GPS Tracked"],
   },
   {
