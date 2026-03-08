@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, memo } from "react";
 import { motion } from "framer-motion";
 import { OptimizedFocusRail, FocusRailItem } from "@/components/OptimizedFocusRail";
 import { Button } from "@/components/ui/button";
@@ -8,18 +8,10 @@ import { LazyTourPackageModal } from "@/components/lazy/LazyTourPackageModal";
 import { useApp } from "@/contexts/AppContext";
 import { useComponentTracking } from "@/hooks/useComponentTracking";
 
-import wariChoraAuthenticImg from "@/assets/wari-chora-authentic.jpg";
-import doubleDeckerBridgeNewImg from "@/assets/double-decker-bridge-new.jpg";
-import dawkiCrystalClearImg from "@/assets/dawki-crystal-clear-authentic.jpg";
-import kremChympeCaveImg from "@/assets/krem-chympe-cave-expedition.jpg";
-import arunachalCulturalFestivalImg from "@/assets/arunachal-cultural-festival.jpg";
-import bumlaPassBikeExpeditionImg from "@/assets/bumla-pass-bike-expedition.jpg";
-import assamTeaGardensImg from "@/assets/assam-tea-gardens-premium.jpg";
-import keralaBackwatersImg from "@/assets/kerala-backwaters-authentic.jpg";
-import gurudongmarLakeImg from "@/assets/gurudongmar-lake-high-altitude-stock.jpg";
-import tamilNaduMeenakshiTempleImg from "@/assets/tamil-nadu-meenakshi-temple.jpg";
-import shillongCherryBlossomImg from "@/assets/shillong-cherry-blossom.jpg";
-import tawangMonasteryMountainsImg from "@/assets/tawang-monastery-mountains.jpg";
+// Use URL references instead of eager imports - Vite handles these as separate assets
+// This prevents bundling 12 large images into the JS chunk
+const imgUrl = (path: string) => new URL(`../assets/${path}`, import.meta.url).href;
+
 
 // Domestic tour packages
 const domesticPackages = [
@@ -27,56 +19,56 @@ const domesticPackages = [
     id: 204, title: "Wari Chora - Hidden Gem of Meghalaya",
     description: "Trek through untamed forests, rappel down pristine waterfalls, and experience extreme wilderness camping",
     duration: "5 Days", difficulty: "Challenging", price: "₹48,500",
-    image: wariChoraAuthenticImg, rating: 4.9, category: "adventure", location: "Meghalaya",
+    image: imgUrl("wari-chora-authentic.jpg"), rating: 4.9, category: "adventure", location: "Meghalaya",
     highlights: ["Waterfall Rappelling", "Wilderness Camping", "Night Trek"],
   },
   {
     id: 1, title: "Double Decker Root Bridge & Cherrapunji",
     description: "Trek through pristine winter forests to discover 500-year-old living bridges",
     duration: "5 Days", difficulty: "Moderate", price: "₹29,500",
-    image: doubleDeckerBridgeNewImg, rating: 4.8, category: "adventure", location: "Meghalaya",
+    image: imgUrl("double-decker-bridge-new.jpg"), rating: 4.8, category: "adventure", location: "Meghalaya",
     highlights: ["Double Decker Root Bridge", "Rainbow Falls", "Bio-Luminescent Cave"],
   },
   {
     id: 4, title: "Dawki Crystal Waters Winter Escape",
     description: "Experience the world's clearest river — boat rides reveal the riverbed 20 feet below",
     duration: "3 Days", difficulty: "Easy", price: "₹16,500",
-    image: dawkiCrystalClearImg, rating: 4.9, category: "leisure", location: "Meghalaya",
+    image: imgUrl("dawki-crystal-clear-authentic.jpg"), rating: 4.9, category: "leisure", location: "Meghalaya",
     highlights: ["Transparent River Boating", "Indo-Bangladesh Border"],
   },
   {
     id: 206, title: "Krem Chympe Cave Expedition",
     description: "Underground adventure through India's fifth longest cave system with Moopun Falls trek",
     duration: "4 Days", difficulty: "Challenging", price: "₹36,500",
-    image: kremChympeCaveImg, rating: 5.0, category: "adventure", location: "Meghalaya",
+    image: imgUrl("krem-chympe-cave-expedition.jpg"), rating: 5.0, category: "adventure", location: "Meghalaya",
     highlights: ["Cave System", "Underground River", "Moopun Falls"],
   },
   {
     id: 21, title: "Arunachal Winter Cultural Festival",
     description: "Immerse in vibrant tribal traditions with dances, crafts, and mountain vistas",
     duration: "6 Days", difficulty: "Moderate", price: "₹36,500",
-    image: arunachalCulturalFestivalImg, rating: 4.8, category: "cultural", location: "Arunachal Pradesh",
+    image: imgUrl("arunachal-cultural-festival.jpg"), rating: 4.8, category: "cultural", location: "Arunachal Pradesh",
     highlights: ["Tribal Dance", "Traditional Crafts", "Mountain Monastery"],
   },
   {
     id: 55, title: "North Sikkim Winter Expedition",
     description: "Adventure through snow-kissed valleys and pristine winter landscapes",
     duration: "7 Days", difficulty: "Challenging", price: "₹42,500",
-    image: gurudongmarLakeImg, rating: 4.9, category: "adventure", location: "Sikkim",
+    image: imgUrl("gurudongmar-lake-high-altitude-stock.jpg"), rating: 4.9, category: "adventure", location: "Sikkim",
     highlights: ["Gurudongmar Lake", "Yumthang Valley", "Zero Point Snow"],
   },
   {
     id: 71, title: "Kerala Winter Backwaters Paradise",
     description: "Luxurious houseboat cruises through tranquil winter backwaters",
     duration: "5 Days", difficulty: "Easy", price: "₹29,500",
-    image: keralaBackwatersImg, rating: 4.8, category: "leisure", location: "Kerala",
+    image: imgUrl("kerala-backwaters-authentic.jpg"), rating: 4.8, category: "leisure", location: "Kerala",
     highlights: ["Traditional Houseboat", "Ayurvedic Spa", "Kerala Cuisine"],
   },
   {
     id: 81, title: "Grand Tamil Nadu Temple Circuit",
     description: "Ultimate 10-day spiritual odyssey through magnificent Dravidian temples",
     duration: "10 Days", difficulty: "Moderate", price: "₹62,500",
-    image: tamilNaduMeenakshiTempleImg, rating: 4.9, category: "cultural", location: "Tamil Nadu",
+    image: imgUrl("tamil-nadu-meenakshi-temple.jpg"), rating: 4.9, category: "cultural", location: "Tamil Nadu",
     highlights: ["Meenakshi Temple", "Brihadeeswara Temple", "Heritage Hotels"],
   },
 ];
@@ -95,14 +87,14 @@ const couplePackages = [
     id: 602, title: "XTSY 270 Honeymoon Cloud Retreat",
     description: "Ultimate honeymoon — panoramic glass ensuite with Dawki boating & dining under stars",
     duration: "5 Days", difficulty: "Easy", price: "₹52,500",
-    image: shillongCherryBlossomImg, rating: 5.0, category: "leisure", location: "Meghalaya",
+    image: imgUrl("shillong-cherry-blossom.jpg"), rating: 5.0, category: "leisure", location: "Meghalaya",
     highlights: ["XTSY 270 Suite", "Dawki Boating", "Couple Photography"],
   },
   {
     id: 603, title: "XTSY 270 Adventure Couple Circuit",
     description: "XTSY 270 luxury base camp with root bridge trek & jungle camping",
     duration: "6 Days", difficulty: "Moderate", price: "₹62,500",
-    image: doubleDeckerBridgeNewImg, rating: 4.9, category: "adventure", location: "Meghalaya",
+    image: imgUrl("double-decker-bridge-new.jpg"), rating: 4.9, category: "adventure", location: "Meghalaya",
     highlights: ["XTSY 270 Base Camp", "Root Bridge Trek", "Milky Way Night"],
   },
 ];
@@ -113,21 +105,21 @@ const soloPackages = [
     id: 701, title: "Solo Traveller Pass — Meghalaya",
     description: "Safe solo exploration with local buddy system & 24/7 support",
     duration: "5 Days", difficulty: "Easy", price: "₹22,500",
-    image: dawkiCrystalClearImg, rating: 4.8, category: "adventure", location: "Meghalaya",
+    image: imgUrl("dawki-crystal-clear-authentic.jpg"), rating: 4.8, category: "adventure", location: "Meghalaya",
     highlights: ["Local Buddy System", "Verified Homestays", "Women Batch Available"],
   },
   {
     id: 702, title: "NE India Solo Bike Circuit",
     description: "Royal Enfield expedition with mechanic support & all gear included",
     duration: "6 Days", difficulty: "Challenging", price: "₹35,500",
-    image: bumlaPassBikeExpeditionImg, rating: 4.9, category: "adventure", location: "Meghalaya",
+    image: imgUrl("bumla-pass-bike-expedition.jpg"), rating: 4.9, category: "adventure", location: "Meghalaya",
     highlights: ["RE Himalayan Provided", "Support Vehicle", "GPS Tracked"],
   },
   {
     id: 703, title: "Arunachal Bike Expedition — Solo Friendly",
     description: "Solo-friendly motorcycle journey — Sela Pass, Tawang, Bumla Pass",
     duration: "8 Days", difficulty: "Challenging", price: "₹48,500",
-    image: tawangMonasteryMountainsImg, rating: 4.9, category: "adventure", location: "Arunachal Pradesh",
+    image: imgUrl("tawang-monastery-mountains.jpg"), rating: 4.9, category: "adventure", location: "Arunachal Pradesh",
     highlights: ["Sela Pass 13,700 ft", "Tawang Monastery", "Bumla Pass Border"],
   },
 ];

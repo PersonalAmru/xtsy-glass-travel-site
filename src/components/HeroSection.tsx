@@ -52,7 +52,7 @@ const HeroSection = () => {
     return () => clearInterval(languageInterval);
   }, [languages.length, isMobile]);
 
-  // Fetch average rating
+  // Fetch average rating - deferred to avoid blocking initial render
   useEffect(() => {
     const fetchAverageRating = async () => {
       try {
@@ -82,8 +82,14 @@ const HeroSection = () => {
       }
     };
 
-    const timeoutId = setTimeout(fetchAverageRating, 100);
-    return () => clearTimeout(timeoutId);
+    // Use requestIdleCallback to defer non-critical fetch
+    if ('requestIdleCallback' in window) {
+      const idleId = requestIdleCallback(() => fetchAverageRating(), { timeout: 3000 });
+      return () => cancelIdleCallback(idleId);
+    } else {
+      const timeoutId = setTimeout(fetchAverageRating, 1500);
+      return () => clearTimeout(timeoutId);
+    }
   }, []);
 
   const handleSearch = () => {
@@ -186,10 +192,8 @@ const HeroSection = () => {
         className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-800 via-slate-700 to-slate-800"
       >
         {/* Static Background Elements */}
+        {/* Lightweight background - no GPU-heavy blur effects */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/15 rounded-full blur-[120px]" />
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-400/10 rounded-full blur-[100px]" />
-          <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-amber-400/8 rounded-full blur-[80px]" />
           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:64px_64px]" />
         </div>
 
@@ -242,12 +246,12 @@ const HeroSection = () => {
           />
 
           {/* Stats - no transforms */}
+          {/* Stats - no backdrop-blur for performance */}
           <div className="mt-10 sm:mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-3xl mx-auto">
-            {stats.map((stat, index) => (
+            {stats.map((stat) => (
               <div 
                 key={stat.label}
-                className="text-center p-4 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/5 hover:bg-white/10 transition-colors animate-fade-in"
-                style={{ animationDelay: `${0.3 + index * 0.1}s` }}
+                className="text-center p-4 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors"
               >
                 <div className={cn("text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r bg-clip-text text-transparent", stat.gradient)}>
                   {stat.value}
