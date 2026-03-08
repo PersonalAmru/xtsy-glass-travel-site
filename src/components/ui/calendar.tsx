@@ -30,7 +30,7 @@ function Calendar({
           "bg-muted/50 hover:bg-muted active:bg-muted/80",
           "transition-colors duration-150",
           "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-          "absolute left-0 cursor-pointer touch-manipulation"
+          "absolute left-1 cursor-pointer touch-manipulation"
         ),
         button_next: cn(
           // Larger hit target (44px) for easier selection on all devices
