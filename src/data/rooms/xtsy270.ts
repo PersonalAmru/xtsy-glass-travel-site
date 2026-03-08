@@ -8,13 +8,13 @@ import xtsyInterior from '@/assets/xtsy-270-interior.jpeg';
 export const XTSY270_DATA = {
   path: '/xtsy-270',
   canonicalUrl: 'https://xtsy.one/xtsy-270',
-  name: 'XTSY Xperience – 270° Glasshouse Glamping Retreat',
-  shortName: 'XTSY Xperience',
-  seoTitle: 'XTSY Xperience – India\'s First 270° Glasshouse Glamping Retreat | Shillong, Meghalaya',
+  name: 'XTSY Experience – 270° Glasshouse Glamping Retreat',
+  shortName: 'XTSY Experience',
+  seoTitle: 'XTSY Experience – India\'s First 270° Glasshouse Glamping Retreat | Shillong, Meghalaya',
   seoDescription:
-    'Sleep under stars. Wake to mountains. XTSY Xperience is India\'s first 270° panoramic glasshouse glamping retreat in Shillong. Luxury glamping for couples — pine forests, stargazing, and rolling hills. Book now.',
+    'Sleep under stars. Wake to mountains. XTSY Experience is India\'s first 270° panoramic glasshouse glamping retreat in Shillong. Luxury glamping for couples — pine forests, stargazing, and rolling hills. Book now.',
   seoKeywords:
-    'glamping India, luxury glamping Shillong, glasshouse glamping, romantic glamping retreat, glamping Meghalaya, stargazing glamping, couples glamping India, 270 glass house, XTSY Xperience, glamping resort Shillong, unique glamping India, honeymoon glamping',
+    'glamping India, luxury glamping Shillong, glasshouse glamping, romantic glamping retreat, glamping Meghalaya, stargazing glamping, couples glamping India, 270 glass house, XTSY Experience, glamping resort Shillong, unique glamping India, honeymoon glamping',
   description:
     'India\'s first 270° panoramic glasshouse glamping retreat. Sleep under the stars, wake to mountains — luxury glamping without compromise in Shillong, Meghalaya.',
   location: 'Shillong, Meghalaya, India',
