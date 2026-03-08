@@ -756,11 +756,20 @@ const ReviewsSection = () => {
             </span>
           </h3>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
-            <PlatformRatingCard platform="Google" rating={4.9} maxRating={5} isMobile={isMobile} />
-            <PlatformRatingCard platform="Booking.com" rating={9.8} maxRating={10} isMobile={isMobile} />
-            <PlatformRatingCard platform="Expedia" rating={9.8} maxRating={10} isMobile={isMobile} />
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 max-w-5xl mx-auto">
+            <PlatformRatingCard platform="Google" rating={4.8} maxRating={5} isMobile={isMobile} />
+            <PlatformRatingCard platform="Booking.com" rating={9.4} maxRating={10} isMobile={isMobile} />
+            <PlatformRatingCard platform="Expedia" rating={9.5} maxRating={10} isMobile={isMobile} />
             <PlatformRatingCard platform="MakeMyTrip" rating={4.4} maxRating={5} isMobile={isMobile} />
+            <PlatformRatingCard platform="GoIbibo" rating={4.6} maxRating={5} isMobile={isMobile} />
+            <PlatformRatingCard platform="Agoda" rating={9.6} maxRating={10} isMobile={isMobile} />
+          </div>
+          
+          {/* Coming Soon Platforms */}
+          <div className="flex flex-wrap items-center justify-center gap-3 mt-6">
+            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Coming Soon:</span>
+            <span className="inline-flex items-center px-3 py-1 rounded-full bg-muted/50 border border-border text-xs font-medium text-muted-foreground">Airbnb</span>
+            <span className="inline-flex items-center px-3 py-1 rounded-full bg-muted/50 border border-border text-xs font-medium text-muted-foreground">MMT Luxe</span>
           </div>
         </div>
 

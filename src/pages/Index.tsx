@@ -9,13 +9,10 @@ import { useScrollDepthTracking } from "@/hooks/useScrollDepthTracking";
 
 // Lazy load below-fold sections for better initial load
 const HomeTourPackages = lazy(() => import("@/components/HomeTourPackages"));
-const ExploreNortheastSection = lazy(() => import("@/components/ExploreNortheastSection"));
-const AboutXTSYSection = lazy(() => import("@/components/AboutXTSYSection"));
 const XTSYPrimeSection = lazy(() => import("@/components/XTSYPrimeSection"));
 const ReviewsSection = lazy(() => import("@/components/ReviewsSection"));
 const AdventureCallToAction = lazy(() => import("@/components/AdventureCallToAction"));
 const FAQSection = lazy(() => import("@/components/FAQSection"));
-const BlogSection = lazy(() => import("@/components/BlogSection"));
 
 // Minimal mobile-friendly fallback
 const SectionFallback = memo(({ height = 'h-64' }: { height?: string }) => (
@@ -57,24 +54,10 @@ const Index = memo(() => {
           </Suspense>
         </LazyWrapper>
         
-        {/* Explore Northeast - For International Travelers */}
-        <LazyWrapper fallback={<SectionFallback height="h-48" />}>
-          <Suspense fallback={<SectionFallback height="h-48" />}>
-            <ExploreNortheastSection />
-          </Suspense>
-        </LazyWrapper>
-        
         {/* Adventure CTA */}
         <LazyWrapper fallback={<SectionFallback height="h-48" />}>
           <Suspense fallback={<SectionFallback height="h-48" />}>
             <AdventureCallToAction />
-          </Suspense>
-        </LazyWrapper>
-        
-        {/* About XTSY */}
-        <LazyWrapper fallback={<SectionFallback />}>
-          <Suspense fallback={<SectionFallback />}>
-            <AboutXTSYSection />
           </Suspense>
         </LazyWrapper>
         
@@ -88,12 +71,6 @@ const Index = memo(() => {
         <LazyWrapper fallback={<SectionFallback />}>
           <Suspense fallback={<SectionFallback />}>
             <FAQSection />
-          </Suspense>
-        </LazyWrapper>
-
-        <LazyWrapper fallback={<SectionFallback />}>
-          <Suspense fallback={<SectionFallback />}>
-            <BlogSection />
           </Suspense>
         </LazyWrapper>
       </main>
