@@ -761,7 +761,7 @@ export const internationalTours: Record<string, TourPackage[]> = {
       description: "Marrakech's medina maze, Atlas Mountain villages, and a night under Saharan stars — North Africa's most immersive experience.",
       duration: "8 Days",
       difficulty: "Moderate",
-      price: "₹1,05,000",
+      price: "₹89,999",
       image: "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?w=800&q=80",
       rating: 4.7,
       category: "adventure",
