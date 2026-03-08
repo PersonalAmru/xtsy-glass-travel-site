@@ -55,7 +55,7 @@ Can't wait to sleep under the stars! 🌌✨`;
   const roomLd = {
     '@context': 'https://schema.org',
     '@type': 'LodgingBusiness',
-    name: 'XTSY Xperience – 270° Glasshouse Glamping Retreat',
+    name: 'XTSY Experience – 270° Glasshouse Glamping Retreat',
     description: 'India\'s first 270° panoramic glasshouse glamping retreat in Shillong, Meghalaya. Sleep under stars, wake to mountains — luxury glamping for couples.',
     url: canonicalUrl,
     address: {
