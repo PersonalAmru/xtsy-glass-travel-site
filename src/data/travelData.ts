@@ -490,7 +490,7 @@ export const heartlandTours: Record<string, TourPackage[]> = {
       description: "Experience Tibetan culture and peaceful mountain life during crisp winter months — meditation and trekking combined.",
       duration: "5 Days",
       difficulty: "Moderate",
-      price: "₹29,500",
+    price: "₹23,999",
       image: dharamshalaMcleodGanjImg,
       rating: 4.7,
       category: "cultural",
