@@ -36,7 +36,7 @@ const Footer = () => {
                   <span className="text-white font-bold text-lg sm:text-xl lg:text-2xl">XTSY</span>
                 </div>}
             </div>
-            <p className="text-gray-300 text-xs sm:text-sm lg:text-base leading-relaxed mb-3 sm:mb-4 lg:mb-6 px-2">
+            <p className="text-muted-foreground text-xs sm:text-sm lg:text-base leading-relaxed mb-3 sm:mb-4 lg:mb-6 px-2">
               Experience the authentic vibe of Shillong and unforgettable adventures with XTSY!
             </p>
             <div className="flex space-x-4 sm:space-x-6 justify-center">
