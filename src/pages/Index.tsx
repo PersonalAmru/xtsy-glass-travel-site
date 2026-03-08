@@ -9,13 +9,10 @@ import { useScrollDepthTracking } from "@/hooks/useScrollDepthTracking";
 
 // Lazy load below-fold sections for better initial load
 const HomeTourPackages = lazy(() => import("@/components/HomeTourPackages"));
-const ExploreNortheastSection = lazy(() => import("@/components/ExploreNortheastSection"));
-const AboutXTSYSection = lazy(() => import("@/components/AboutXTSYSection"));
 const XTSYPrimeSection = lazy(() => import("@/components/XTSYPrimeSection"));
 const ReviewsSection = lazy(() => import("@/components/ReviewsSection"));
 const AdventureCallToAction = lazy(() => import("@/components/AdventureCallToAction"));
 const FAQSection = lazy(() => import("@/components/FAQSection"));
-const BlogSection = lazy(() => import("@/components/BlogSection"));
 
 // Minimal mobile-friendly fallback
 const SectionFallback = memo(({ height = 'h-64' }: { height?: string }) => (
