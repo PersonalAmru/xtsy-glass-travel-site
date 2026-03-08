@@ -31,19 +31,16 @@ const Footer = () => {
   const linkClass = "text-muted-foreground hover:text-primary transition-colors duration-300";
   const footerLinkClass = `${linkClass} flex items-center gap-2 text-xs sm:text-sm lg:text-base justify-center py-1 touch-manipulation`;
 
-  return <footer className="bg-card border-t border-border text-foreground py-4 sm:py-6">
-      <div className="container mx-auto px-4 sm:px-6">
-        <div className="text-center mb-3 sm:mb-4">
-          <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-2 sm:gap-6 text-xs sm:text-sm">
-            <Link to="/privacy-policy" className={`${linkClass} py-1`}>Privacy Policy</Link>
-            <Link to="/terms-of-service" className={`${linkClass} py-1`}>Terms of Service</Link>
-            <button onClick={() => setPolicyModal({ isOpen: true, type: 'cancellation' })} className={`${linkClass} py-1`}>Cancellation Policy</button>
-            <button onClick={() => setPolicyModal({ isOpen: true, type: 'travel' })} className={`${linkClass} py-1`}>Travel Policies</button>
-            <button onClick={() => setPolicyModal({ isOpen: true, type: 'terms' })} className={`${linkClass} py-1`}>Hostel Terms & Conditions</button>
-          </div>
+  return <footer className="bg-card border-t border-border text-foreground py-2 sm:py-3">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-[10px] sm:text-xs text-muted-foreground mb-1.5">
+          <Link to="/privacy-policy" className={`${linkClass} py-0.5`}>Privacy Policy</Link>
+          <Link to="/terms-of-service" className={`${linkClass} py-0.5`}>Terms of Service</Link>
+          <button onClick={() => setPolicyModal({ isOpen: true, type: 'cancellation' })} className={`${linkClass} py-0.5`}>Cancellation Policy</button>
+          <button onClick={() => setPolicyModal({ isOpen: true, type: 'travel' })} className={`${linkClass} py-0.5`}>Travel Policies</button>
+          <button onClick={() => setPolicyModal({ isOpen: true, type: 'terms' })} className={`${linkClass} py-0.5`}>Hostel Terms & Conditions</button>
         </div>
-        
-        <p className="text-muted-foreground text-xs sm:text-sm lg:text-base text-center">© 2024 XTSY Travel. All rights reserved. Experience the XTSY Vibe.</p>
+        <p className="text-muted-foreground text-[10px] sm:text-xs text-center">© 2024 XTSY Travel. All rights reserved. Experience the XTSY Vibe.</p>
       </div>
       
       {policyModal.type && <PolicyModal isOpen={policyModal.isOpen} onClose={() => setPolicyModal({ isOpen: false, type: null })} type={policyModal.type} />}
