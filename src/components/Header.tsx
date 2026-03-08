@@ -64,7 +64,7 @@ const Header = () => {
                 src={xtsyLogo}
                 alt="XTSY Travellers Hostel"
                 className={`w-auto hover:opacity-80 transition-opacity cursor-pointer ${
-                  isMobile ? 'h-10' : isTablet ? 'h-11' : 'h-12'
+                  isMobile ? 'h-12' : isTablet ? 'h-14' : 'h-16'
                 }`}
                 loading="eager"
                 // @ts-expect-error - fetchpriority
