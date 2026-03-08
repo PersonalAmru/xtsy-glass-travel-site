@@ -322,7 +322,7 @@ const XTSYvsZostel = () => {
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Zostel runs 5 sub-brands (Zostel, Plus, Homes, Trips, House) through franchise partners. 
-              XTSY is one brand, one team, one standard — directly operated by XTSY One LLP.
+              XTSY is one brand, one team, one standard — directly operated by XTSY One.
             </p>
           </div>
 
