@@ -241,7 +241,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
       description: "Immerse in the Scotland of East during crisp winter months — explore colonial heritage, vibrant markets, and traditional Khasi culture.",
       duration: "2 Days",
       difficulty: "Easy",
-      price: "₹10,500",
+    price: "₹8,999",
       image: shillongCherryBlossomImg,
       rating: 4.7,
       category: "cultural",
