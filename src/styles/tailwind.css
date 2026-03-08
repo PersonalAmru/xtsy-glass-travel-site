@@ -182,50 +182,58 @@
 
   /* .dark class mirrors :root — unified dark system */
   .dark {
-    --background: 222 47% 4%;
-    --foreground: 0 0% 95%;
-    --card: 222 30% 8%;
-    --card-foreground: 0 0% 95%;
-    --popover: 222 30% 8%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 25 95% 53%;
+    --background: 225 40% 3%;
+    --foreground: 40 10% 94%;
+    --card: 225 28% 7%;
+    --card-foreground: 40 10% 94%;
+    --popover: 225 28% 7%;
+    --popover-foreground: 40 10% 94%;
+    --primary: 28 92% 52%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 220 15% 15%;
-    --secondary-foreground: 0 0% 95%;
-    --muted: 220 15% 15%;
-    --muted-foreground: 220 10% 55%;
-    --accent: 222 25% 12%;
-    --accent-foreground: 0 0% 95%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 95%;
-    --success: 142 76% 36%;
-    --success-foreground: 0 0% 95%;
-    --warning: 38 92% 50%;
-    --warning-foreground: 0 0% 15%;
-    --border: 220 15% 18%;
-    --input: 220 15% 18%;
-    --ring: 25 95% 53%;
+    --secondary: 225 18% 13%;
+    --secondary-foreground: 40 10% 90%;
+    --muted: 225 14% 12%;
+    --muted-foreground: 220 10% 52%;
+    --accent: 25 20% 11%;
+    --accent-foreground: 40 10% 94%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --success: 152 69% 31%;
+    --success-foreground: 0 0% 98%;
+    --warning: 40 96% 50%;
+    --warning-foreground: 0 0% 8%;
+    --border: 225 12% 16%;
+    --input: 225 15% 14%;
+    --ring: 28 92% 52%;
     
-    /* Brand tokens */
-    --brand-secondary: 0 84% 60%;
-    --brand-accent: 33 100% 55%;
-    --brand-verified: 220 85% 65%;
+    --brand-secondary: 0 72% 51%;
+    --brand-accent: 36 100% 55%;
+    --brand-gold: 38 90% 56%;
+    --brand-ember: 12 85% 48%;
+    --brand-copper: 22 70% 42%;
+    --brand-verified: 215 80% 58%;
     --whatsapp: 142 70% 45%;
     
-    /* Dark glassmorphism */
-    --glass-bg-solid: 222 30% 10%;
-    --glass-bg-tablet: 222 30% 8% / 0.88;
+    --surface-elevated: 225 24% 9%;
+    --surface-overlay: 225 20% 6%;
+    --surface-highlight: 28 92% 52% / 0.08;
+    
+    --glass-bg-solid: 225 28% 9%;
+    --glass-bg-tablet: 225 28% 7% / 0.88;
     --glass-bg-desktop: 0 0% 0% / 0.25;
-    --glass-border-light: 0 0% 100% / 0.12;
-    --glass-border-solid: 220 15% 22%;
-    --glass-shadow-light: 0 8px 32px hsl(0 0% 0% / 0.3);
-    --glass-shadow-solid: 0 4px 16px hsl(0 0% 0% / 0.2);
+    --glass-border-light: 0 0% 100% / 0.08;
+    --glass-border-solid: 225 12% 20%;
+    --glass-shadow-light: 0 8px 32px hsl(0 0% 0% / 0.4);
+    --glass-shadow-solid: 0 4px 16px hsl(0 0% 0% / 0.25);
     --glass-bg: rgba(0, 0, 0, 0.2);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    --gradient-primary: linear-gradient(135deg, hsl(25 95% 53%), hsl(0 84% 60%));
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --gradient-primary: linear-gradient(135deg, hsl(28 92% 52%), hsl(0 72% 51%));
+    --gradient-gold: linear-gradient(135deg, hsl(38 90% 56%), hsl(28 92% 52%));
+    --gradient-ember: linear-gradient(135deg, hsl(28 92% 52%), hsl(12 85% 48%));
     --gradient-glass: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
-    --shadow-elegant: 0 4px 20px -4px hsl(25 95% 53% / 0.25);
+    --shadow-elegant: 0 4px 24px -4px hsl(28 92% 52% / 0.2);
+    --shadow-premium: 0 8px 40px -8px hsl(0 0% 0% / 0.5);
   }
 
   body {
