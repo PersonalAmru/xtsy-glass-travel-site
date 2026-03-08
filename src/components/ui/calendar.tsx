@@ -94,8 +94,8 @@ function Calendar({
       components={{
         Chevron: ({ orientation, ...chevronProps }) => {
           // Larger icons (24px nav, 16px dropdowns) for better visibility
-          if (orientation === 'left') return <ChevronLeft className="h-6 w-6" {...chevronProps} />;
-          if (orientation === 'right') return <ChevronRight className="h-6 w-6" {...chevronProps} />;
+          if (orientation === 'left') return <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" {...chevronProps} />;
+          if (orientation === 'right') return <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" {...chevronProps} />;
           if (orientation === 'up') return <ChevronUp className="h-4 w-4" {...chevronProps} />;
           return <ChevronDown className="h-4 w-4" {...chevronProps} />;
         },
