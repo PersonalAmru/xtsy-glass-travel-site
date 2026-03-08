@@ -12,519 +12,668 @@ export interface ItineraryDay {
 }
 
 export const tourItineraries: Record<number, ItineraryDay[]> = {
-  // ── ID 202: Wilderness Survival Winter Camp ──
+  // ── ID 202: Wilderness Survival Winter Camp (FROM PDF) ──
   202: [
     {
       day: "Day 1",
-      title: "Arrival & Base Camp Setup",
-      route: "Guwahati to Wilderness Base Camp (Drive: 4-5 hrs)",
+      title: "Guwahati → Shillong (Transit Stay)",
+      route: "Drive: 3-4 hrs",
       activities: [
         "Pickup from Guwahati Airport/Railway Station",
-        "Drive through scenic Northeast countryside",
-        "Base camp orientation & safety briefing",
-        "Introduction to wilderness survival principles",
-        "Evening campfire & team bonding"
+        "Drive to Shillong via Umiam Lake (catchment & reservoir system)",
+        "Nongpoh – tea/snack break",
+        "Transit stay only — prep for camp"
       ],
-      overnight: "Wilderness Base Camp"
+      overnight: "Shillong"
     },
     {
       day: "Day 2",
-      title: "Shelter Building & Fire Making",
+      title: "Shillong → Mawphlang → Mawsynram (Forest Camp)",
+      route: "Drive: Shillong → Mawphlang → Mawsynram",
       activities: [
-        "Morning fitness & warm-up exercises",
-        "Natural shelter construction techniques",
-        "Fire making without matches — friction & flint methods",
-        "Water sourcing & purification in the wild",
-        "Knot tying & rope craft workshop",
-        "Night navigation basics"
+        "En-route stops at Mawphlang grasslands & valley viewpoints",
+        "Walk into forest belt campsite (pre-identified patch outside village)",
+        "Short forest walk (1-2 km) — cloud forest vegetation & karst terrain",
+        "Stream water sourcing — filter & boil techniques",
+        "Cold & damp survival briefing",
+        "Campfire cooking session",
+        "Sunset ridge walk",
+        "Bonfire & stargazing (sky permitting)"
       ],
-      overnight: "Self-built Shelters"
+      overnight: "Forest campsite near Mawsynram"
     },
     {
       day: "Day 3",
-      title: "Foraging & Navigation",
+      title: "Mawsynram → Swer → Mawkdok → Cherrapunji",
+      route: "Drive: Mawsynram → Mawkdok → Cherrapunji",
       activities: [
-        "Wild edible plant identification hike",
-        "Foraging walk with naturalist guide",
-        "Compass & map reading workshop",
-        "Natural navigation using sun, stars & terrain",
-        "Trap & snare building (demonstration only)",
-        "Cooking wild-foraged meals"
+        "Bungee jumping opportunity at Mawkdok",
+        "Mawkdok Viewpoint stop",
+        "Site selection for survival camp",
+        "Survival shelter building in damp conditions",
+        "Fire-making in damp conditions",
+        "Water sourcing + purification drill",
+        "Cold-weather layering drill",
+        "Open-fire cooking",
+        "Emergency signal practice",
+        "Low-light navigation drill",
+        "Wildlife awareness briefing"
       ],
-      overnight: "Wilderness Camp"
+      overnight: "Forest areas around Sohra (pre-approved land)"
     },
     {
       day: "Day 4",
-      title: "Survival Challenge Day",
+      title: "Cherrapunji → Dawki → Shnongpdeng",
+      route: "Drive: Cherrapunji → Dawki → Shnongpdeng",
       activities: [
-        "Full-day solo/team survival challenge",
-        "River crossing techniques",
-        "Emergency signaling methods",
-        "First aid in the wilderness",
-        "Wildlife awareness & safety protocols",
-        "Celebration campfire & certificate ceremony"
+        "En-route briefings at Dawki bridge & forest edge halt",
+        "Site selection for final camp",
+        "Fire-making in damp conditions",
+        "River water collection + purification",
+        "Cold exposure management drill"
       ],
-      overnight: "Wilderness Camp"
+      overnight: "Upper forest belt above Shnongpdeng"
     },
     {
       day: "Day 5",
-      title: "Departure",
+      title: "Shnongpdeng → Guwahati",
       activities: [
-        "Leave No Trace — campsite restoration",
-        "Feedback session & survival kit distribution",
-        "Drive back to Guwahati",
-        "Drop-off at Airport/Railway Station"
+        "Cold-start fire challenge",
+        "Hot drink prep from scratch",
+        "Camp dismantling & cleanup",
+        "Riverbank cleanup (Leave No Trace)",
+        "Drive back to Guwahati after breakfast",
+        "Drop-off at Airport/Railway Station",
+        "NOTE: Guide mandatory throughout"
       ]
     }
   ],
 
-  // ── ID 203: Northeast Ecological Immersion (Garo Hills) ──
+  // ── ID 203: Northeast Ecological Immersion (FROM PDF — 8 Days) ──
   203: [
     {
       day: "Day 1",
-      title: "Guwahati to Tura",
-      route: "Drive: 6-7 hrs via Goalpara",
+      title: "Guwahati → Shillong (Plateau & Wetland Ecology)",
+      route: "Drive: 3-4 hrs",
       activities: [
-        "Pickup from Guwahati Airport",
-        "Scenic drive through Assam plains to Garo Hills",
-        "Evening arrival at Tura — orientation briefing",
-        "Introduction to Garo tribal ecology & culture"
+        "Pickup from Guwahati Airport/Station",
+        "Umiam Lake — catchment area & wetland system study",
+        "Nongpoh — agro-forest belt & tea shacks",
+        "Ward's Lake — urban freshwater ecosystem",
+        "Don Bosco Museum — ethno-ecology of Northeast",
+        "Police Bazaar — local handicrafts & low-impact shopping",
+        "Ecology focus: Plateau climate & pine forest belt"
       ],
-      overnight: "Tura"
+      overnight: "Shillong"
     },
     {
       day: "Day 2",
-      title: "Nokrek Biosphere Reserve",
-      route: "Drive: 1.5 hrs from Tura",
+      title: "Shillong → Mawphlang → Cherrapunji (Sacred Forests & Escarpment)",
+      route: "Drive: Shillong → Mawphlang → Sohra",
       activities: [
-        "Visit Nokrek National Park — UNESCO Biosphere Reserve",
-        "Citrus Gene Sanctuary — world's only wild citrus habitat",
-        "Red Panda habitat exploration",
-        "Guided botanical walk with conservation scientist",
-        "Bird watching — Hornbills, Sunbirds & endemic species",
-        "Community interaction with Garo A'chik tribe"
+        "Mawphlang Sacred Grove — indigenous forest conservation model",
+        "Nohkalikai Gorge — escarpment & erosion system",
+        "Seven Sisters Falls (seasonal, monsoon-dependent)",
+        "Ecology focus: Sacred groves + cliff ecosystems"
+      ],
+      overnight: "Cherrapunji"
+    },
+    {
+      day: "Day 3",
+      title: "Cherrapunji → Nongriat (Living Root Bridge Zone)",
+      route: "Drive: Sohra → Tyrna | Trek: ~3,500 steps",
+      activities: [
+        "Trek from Tyrna down to Nongriat village",
+        "Double Decker Living Root Bridge — bio-engineering using tree roots",
+        "Stream & riparian forest exploration",
+        "Village horticulture study",
+        "Optional: Rainbow Falls (only if physically fit)",
+        "Village walk & Khasi home-cooked meal",
+        "No network = full digital detox",
+        "Ecology focus: Bio-engineering using tree roots"
+      ],
+      overnight: "Nongriat Homestay"
+    },
+    {
+      day: "Day 4",
+      title: "Nongriat → Sohra → Shillong (Rest / Buffer Day)",
+      route: "Trek up → drive to Shillong",
+      activities: [
+        "Sunrise at Double Decker Root Bridge",
+        "Trek back up to Tyrna",
+        "No forced sightseeing — recovery day",
+        "Optional: Local market visit, reflection, journaling",
+        "Optional Ward's Lake walk",
+        "Ecology focus: Human recovery + urban ecology"
+      ],
+      overnight: "Shillong"
+    },
+    {
+      day: "Day 5",
+      title: "Shillong → Mawsynram (High-Rainfall Forest Zone)",
+      route: "Drive: Shillong → Mawsynram",
+      activities: [
+        "Mawsynram Reserve Forest exploration",
+        "Moss forests & epiphytes study",
+        "Rainwater harvesting practices observation",
+        "Limestone terrain mapping",
+        "Ecology focus: World's highest rainfall micro-ecosystem"
+      ],
+      overnight: "Mawsynram / nearby village"
+    },
+    {
+      day: "Day 6",
+      title: "Mawsynram → Kongthong (Whistling Village)",
+      route: "Drive: Mawsynram → Kongthong",
+      activities: [
+        "Kongthong village visit — unique whistling name tradition",
+        "Community forest walk",
+        "Soundscape & cultural ecology study",
+        "Ecology focus: Bamboo forest + acoustic culture"
+      ],
+      overnight: "Kongthong"
+    },
+    {
+      day: "Day 7",
+      title: "Kongthong → Wahkhen (Bamboo & Gorge Ecology)",
+      route: "Drive: Kongthong → Wahkhen",
+      activities: [
+        "Mawryngkhang Trek (Bamboo Trail)",
+        "Bamboo forest + river gorge system study",
+        "Ecology focus: Bamboo forest + river gorge system"
+      ],
+      overnight: "Shillong"
+    },
+    {
+      day: "Day 8",
+      title: "Shillong → Guwahati (Wetland Exit)",
+      activities: [
+        "Drive to Guwahati",
+        "Brahmaputra floodplain wetlands (time permitting)",
+        "Drop-off at Guwahati Airport/Station",
+        "Trip concludes"
+      ]
+    }
+  ],
+
+  // ── ID 204: Wari Chora — Hidden Gem of Meghalaya (FROM PDF — 5 Days) ──
+  204: [
+    {
+      day: "Day 1",
+      title: "Arrival – Guwahati",
+      activities: [
+        "Arrival at Guwahati Airport/Station",
+        "Hotel check-in & rest after journey",
+        "Evening (optional): Brahmaputra riverfront walk",
+        "Local market / Fancy Bazaar exploration",
+        "Early dinner"
+      ],
+      overnight: "Guwahati"
+    },
+    {
+      day: "Day 2",
+      title: "Guwahati → Tura",
+      route: "Drive: 6-7 hrs via Dudhnoi",
+      activities: [
+        "Early start (6-7 AM)",
+        "Breakfast & checkout",
+        "Breakfast stop near Goalpara",
+        "Scenic hill drive after Dudhnoi",
+        "Reach Tura by evening",
+        "Light walk / local market exploration",
+        "Dinner & rest"
       ],
       overnight: "Tura"
     },
     {
       day: "Day 3",
-      title: "Siju Cave & Simsang River Ecosystem",
-      route: "Drive: 2 hrs from Tura",
+      title: "Tura → Baghmara + Siju Cave",
+      route: "Drive through remote Garo villages",
       activities: [
-        "Explore Siju Cave — one of India's longest cave systems",
-        "Bat colony observation & cave ecology study",
-        "Simsang River riparian ecosystem walk",
-        "Freshwater biodiversity sampling",
-        "Aquatic insect & fish species documentation",
-        "Evening lecture: Climate change impact on Garo Hills"
+        "Breakfast & checkout",
+        "Drive through remote Garo villages",
+        "Lunch en route",
+        "Stop at Simsang River viewpoint",
+        "Visit Siju Cave exploration"
       ],
-      overnight: "Siju / Baghmara"
+      overnight: "Baghmara"
     },
     {
       day: "Day 4",
-      title: "Balpakram National Park",
-      route: "Drive: 3 hrs from Siju",
+      title: "WARI CHORA — Full Day (from Baghmara)",
       activities: [
-        "Full-day exploration of Balpakram — 'Land of Spirits'",
-        "Canyon rim walk with panoramic views",
-        "Wild elephant & hoolock gibbon tracking",
-        "Medicinal plant documentation with tribal healer",
-        "Fossil exploration along canyon edges",
-        "Sunset at Balpakram plateau"
+        "Early start (6-7 AM)",
+        "Drive to trailhead (mandatory local guide)",
+        "Jungle trek to Wari Chora canyon",
+        "Traditional wooden boat ride through emerald canyon",
+        "Explore the canyon's pristine waters",
+        "Photography & quiet time",
+        "Packed lunch in the wilderness",
+        "Return by late afternoon — physically active day",
+        "Rest & recovery"
       ],
       overnight: "Baghmara"
     },
     {
       day: "Day 5",
-      title: "Wari Chora & Village Ecology",
+      title: "Baghmara → Guwahati",
+      route: "Drive: 6-7 hrs (via Tura side)",
       activities: [
-        "Community-managed forest walk",
-        "Butterfly & moth identification session",
-        "Participatory rural ecology mapping",
-        "Traditional Garo farming techniques observation",
-        "Jhum (shifting cultivation) & sustainable alternatives discussion",
-        "Cultural evening with Garo Wangala dance"
-      ],
-      overnight: "Tura"
-    },
-    {
-      day: "Day 6",
-      title: "Pelga Falls & Highland Ecology",
-      activities: [
-        "Trek to Pelga Falls through bamboo forests",
-        "Highland grassland ecosystem study",
-        "Orchid & epiphyte documentation",
-        "Soil & water quality testing workshop",
-        "Citizen science data compilation session"
-      ],
-      overnight: "Tura"
-    },
-    {
-      day: "Day 7",
-      title: "Research Synthesis & Presentation",
-      activities: [
-        "Morning bird census at Tura Peak",
-        "Group data analysis & findings presentation",
-        "Conservation action plan workshop",
-        "Certificate ceremony & feedback",
-        "Afternoon departure to Guwahati"
-      ],
-      overnight: "Guwahati (optional)"
-    },
-    {
-      day: "Day 8",
-      title: "Departure",
-      activities: [
-        "Transfer to Guwahati Airport/Railway Station",
-        "Trip concludes — carry forward your ecological learnings"
-      ]
-    }
-  ],
-
-  // ── ID 204: Wari Chora — Hidden Gem of Meghalaya ──
-  204: [
-    {
-      day: "Day 1",
-      title: "Guwahati to Wari Chora Base",
-      route: "Drive: 5-6 hrs",
-      activities: [
-        "Pickup from Guwahati Airport/Station",
-        "Drive through Khasi Hills to base village",
-        "Meet local guides & trek orientation",
-        "Equipment check & safety briefing",
-        "Evening bonfire with village community"
-      ],
-      overnight: "Village Homestay"
-    },
-    {
-      day: "Day 2",
-      title: "Canyon Trek & Waterfall Rappelling",
-      activities: [
-        "Early morning trek into Wari Chora canyon",
-        "River crossing through pristine streams",
-        "Waterfall rappelling — 60ft descent",
-        "Natural pool swimming & cliff jumping",
-        "Lunch in the wilderness",
-        "Canyoning through narrow gorge sections"
-      ],
-      overnight: "Wilderness Camp"
-    },
-    {
-      day: "Day 3",
-      title: "Deep Forest Exploration",
-      activities: [
-        "Trek through sacred Khasi forests",
-        "Rock climbing on natural formations",
-        "Wild river swim & natural jacuzzi pools",
-        "Night trek preparation — headlamp navigation",
-        "Extreme wilderness camping setup",
-        "Night trek through bioluminescent forest trails"
-      ],
-      overnight: "Forest Camp"
-    },
-    {
-      day: "Day 4",
-      title: "Summit & Return Trek",
-      activities: [
-        "Pre-dawn summit hike for sunrise views",
-        "Panoramic photography from summit point",
-        "Descent through alternate trail",
-        "Final waterfall swim & canyon exploration",
-        "Return to base village",
-        "Farewell dinner with local community"
-      ],
-      overnight: "Village Homestay"
-    },
-    {
-      day: "Day 5",
-      title: "Departure",
-      activities: [
-        "Morning village walk & goodbyes",
-        "Drive back to Guwahati",
+        "Breakfast",
+        "Optional stop: Jadisil Fish Sanctuary",
+        "Long but scenic return drive",
+        "Reach Guwahati by night",
         "Drop-off at Airport/Railway Station",
         "Trip concludes"
       ]
     }
   ],
 
-  // ── ID 205: Himachal Yoga Retreat Program ──
+  // ── ID 205: Himachal Yoga Retreat Program (FROM PDF — 6 Days) ──
   205: [
     {
       day: "Day 1",
-      title: "Arrival in Dharamshala",
-      route: "Airport pickup from Gaggal / Bus stand Dharamshala",
+      title: "Dharamsala (Lower Dharamsala)",
+      route: "Airport pickup from Gaggal / Bus stand Dharamsala",
       activities: [
-        "Welcome at retreat centre in Dharamkot",
-        "Herbal welcome drink & orientation",
-        "Introduction to retreat schedule & philosophy",
-        "Gentle evening yoga session",
-        "Sattvic dinner & early rest"
+        "Yoga session at War Memorial Park (Dharamsala)",
+        "Gentle nature walk: War Memorial Park → Tea Garden side path",
+        "Optional evening session (30-45 min): Yoga Nidra"
       ],
-      overnight: "Dharamkot Retreat Centre"
+      overnight: "Dharamsala town"
     },
     {
       day: "Day 2",
-      title: "Yoga Foundation & Naddi Village",
+      title: "Dharamsala → Dharamkot",
+      route: "Drive: 25-30 minutes (via McLeod Ganj)",
       activities: [
-        "6:00 AM — Pranayama & Breathwork session",
-        "7:30 AM — Hatha Yoga practice (2 hrs)",
-        "Organic breakfast",
-        "Walk to Naddi Village — Dhauladhar mountain views",
-        "Afternoon meditation & Yoga Nidra",
-        "Evening Kirtan & mantra chanting"
+        "Yoga at Dharamkot village meadow (Tushita Road side)",
+        "Naddi–Dharamkot Forest Trail (Silence Walk)",
+        "Tushita Meditation Centre (Outer Area / Public Session)",
+        "Herbal tea break",
+        "Evening meditation session"
       ],
-      overnight: "Dharamkot Retreat Centre"
+      overnight: "Dharamkot"
     },
     {
       day: "Day 3",
-      title: "Tushita Meditation Centre & Deep Practice",
+      title: "Dharamkot — Deep Practice Day",
       activities: [
-        "Morning Ashtanga Yoga flow",
-        "Visit Tushita Meditation Centre — Buddhist meditation session",
-        "Guided silent walking meditation in cedar forests",
-        "Afternoon workshop: Chakra balancing & energy healing",
-        "Evening restorative yoga & sound healing"
+        "Yoga at Gallu Devi Temple Meadow",
+        "Triund Trail (Partial Forest Walk Only)",
+        "Temple Silence Time (Gallu Devi Temple area)",
+        "Tea break at trail tea shops",
+        "Mountain viewpoint session near Gallu Devi"
       ],
-      overnight: "Dharamkot Retreat Centre"
+      overnight: "Dharamkot"
     },
     {
       day: "Day 4",
-      title: "Kareri Village Trek & Nature Immersion",
-      route: "Trek: 3-4 hrs round trip",
+      title: "Dharamkot → Naddi",
+      route: "Drive: 20 minutes",
       activities: [
-        "Early morning yoga at sunrise point",
-        "Trek to Kareri Village through pine & oak forests",
-        "Riverside meditation by Kareri stream",
-        "Picnic lunch with Himalayan views",
-        "Afternoon free time — Ayurvedic spa or journaling",
-        "Evening philosophy discussion: Patanjali's Yoga Sutras"
+        "Yoga at Naddi View Point Ridge",
+        "Forest walk: Naddi → Dal Lake Trail",
+        "Seated meditation at viewpoint edge",
+        "Herbal tea break (Naddi village)",
+        "Soft chanting / humming (optional)"
       ],
-      overnight: "Dharamkot Retreat Centre"
+      overnight: "Naddi"
     },
     {
       day: "Day 5",
-      title: "Advanced Practice & McLeod Ganj",
+      title: "Naddi → Kareri Village",
+      route: "Drive: 1.5-2 hours (via Ghera / Kareri road)",
       activities: [
-        "Advanced Pranayama techniques — Kapalabhati, Nadi Shodhana",
-        "Intensive Hatha Yoga practice",
-        "Visit McLeod Ganj — Dalai Lama Temple complex",
-        "Tibetan singing bowl meditation experience",
-        "Evening Yin Yoga & deep relaxation",
-        "Group sharing circle & reflections"
+        "Yoga at open field near Kareri River (village edge)",
+        "Kareri Village → Kareri River Walk",
+        "Village life experience",
+        "Light stretching + breathwork (riverside/meadow)"
       ],
-      overnight: "Dharamkot Retreat Centre"
+      overnight: "Kareri"
     },
     {
       day: "Day 6",
-      title: "Closing Ceremony & Departure",
+      title: "Closing Session & Departure",
       activities: [
-        "Sunrise meditation & final yoga session",
-        "Closing ceremony — certificate & blessings",
-        "Personal practice plan consultation",
-        "Brunch & farewell",
+        "Yoga at Kareri River Meadow / Village Field",
+        "Closing session: Gentle yoga, seated meditation, gratitude circle",
+        "Depart after breakfast or late morning",
         "Transfer to Gaggal Airport / Dharamshala bus stand",
         "Trip concludes"
       ]
     }
   ],
 
-  // ── ID 206: Krem Chympe & Moopun Falls ──
+  // ── ID 206: Krem Chympe & Moopun Falls (FROM PDF — 4 Days) ──
   206: [
     {
       day: "Day 1",
-      title: "Guwahati to Khaddum Village",
-      route: "Drive: 4-5 hrs via Jowai",
+      title: "Guwahati → Shillong",
+      route: "Drive: 3-4 hrs",
       activities: [
         "Pickup from Guwahati Airport/Station",
-        "Scenic drive through Jaintia Hills",
-        "Arrival at Khaddum — base for cave expeditions",
-        "Meet cave expedition team & safety briefing",
-        "Equipment fitting — helmets, harnesses, headlamps",
-        "Evening orientation on cave geology & formations"
+        "En-route: Umiam Lake (photo stop)",
+        "Lunch enroute & Nongpoh tea/snack break",
+        "Shillong evening: Ward's Lake, Cathedral of Mary Help of Christians",
+        "Police Bazaar exploration"
       ],
-      overnight: "Khaddum Village Homestay"
+      overnight: "Shillong"
     },
     {
       day: "Day 2",
-      title: "Krem Chympe Cave Exploration",
+      title: "Shillong → Krem Chympe Cave",
+      route: "Drive to Krem Chympe",
       activities: [
-        "Full-day cave expedition into Krem Chympe",
-        "Navigate limestone passages & underground chambers",
-        "Stalactite & stalagmite formation photography",
-        "Underground river navigation by boat",
-        "Cave boating through flooded passages",
-        "Speleology training — reading cave formations",
-        "Exit via alternate passage — technical climbing section"
+        "After breakfast — drive to Krem Chympe",
+        "Cave exploration with local guide (whole day)",
+        "Boating inside the cave",
+        "Stalactites & limestone chambers photography",
+        "Torch / headlamp compulsory — moderate walking inside cave"
       ],
-      overnight: "Khaddum Village Homestay"
+      overnight: "Jowai"
     },
     {
       day: "Day 3",
-      title: "Moopun Falls & Jungle Trek",
+      title: "Jowai → Moopun Falls → Shillong",
+      route: "Drive: 1 hr to Moopun Falls",
       activities: [
-        "Trek through dense jungle to Moopun Falls",
-        "Multi-tier waterfall exploration & swimming",
-        "Natural rock slides & canyon pools",
-        "Jungle lunch by the waterfall",
-        "Return trek via scenic ridge trail",
-        "Evening village cultural interaction"
+        "After breakfast — drive to Moopun Falls",
+        "Short hike to viewpoints",
+        "Exploring natural stone bridge",
+        "Picnic & photography",
+        "Swimming & relax time"
       ],
-      overnight: "Khaddum Village Homestay"
+      overnight: "Shillong"
     },
     {
       day: "Day 4",
-      title: "Departure",
+      title: "Shillong → Guwahati (Departure)",
       activities: [
-        "Morning village walk & farewell",
-        "Drive back to Guwahati via scenic route",
+        "After breakfast — drive to Guwahati",
+        "Lunch near Nongpoh",
+        "Optional Umiam Lake stop",
+        "Drop-off at Guwahati Airport/Railway Station",
+        "Trip concludes"
+      ]
+    }
+  ],
+
+  // ── ID 1: Double Decker Root Bridge & Cherrapunji (FROM PDF — 5 Days) ──
+  1: [
+    {
+      day: "Day 1",
+      title: "Guwahati → Shillong",
+      route: "Drive: 3-4 hrs",
+      activities: [
+        "Pickup from Guwahati Airport/Railway Station",
+        "Stops enroute: Umiam Lake (Barapani) – photo stop",
+        "Nongpoh tea/snack break",
+        "Shillong evening: Ward's Lake",
+        "Cathedral of Mary Help of Christians",
+        "Police Bazaar (shopping & dinner)"
+      ],
+      overnight: "Shillong"
+    },
+    {
+      day: "Day 2",
+      title: "Shillong → Cherrapunji",
+      route: "Drive to Cherrapunji",
+      activities: [
+        "Elephant Falls visit",
+        "Shillong Peak viewpoint",
+        "Mawkdok Dympep Valley Viewpoint",
+        "Nohkalikai Falls — India's tallest plunge waterfall",
+        "Seven Sisters Falls (Nohsngithiang Falls)",
+        "Optional: Mawsmai Cave exploration",
+        "Sunset viewpoints"
+      ],
+      overnight: "Cherrapunji"
+    },
+    {
+      day: "Day 3",
+      title: "Cherrapunji → Nongriat (Living Root Bridge Trek)",
+      route: "Drive: Cherrapunji → Tyrna | Trek: ~3,000 steps",
+      activities: [
+        "Early morning start — drive to Tyrna village",
+        "Trek down to Nongriat (1.5-2 hrs, approx 3,000 steps)",
+        "Double Decker Living Root Bridge",
+        "Rainbow Falls — 800 steps ahead of Double Decker",
+        "Village walk & local Khasi home-cooked dinner",
+        "No network = full digital detox",
+        "Peaceful night (no network zone)"
+      ],
+      overnight: "Nongriat Homestay"
+    },
+    {
+      day: "Day 4",
+      title: "Nongriat → Dawki → Shillong",
+      activities: [
+        "Sunrise at Double Decker Root Bridge",
+        "Trek back up to Tyrna",
+        "Drive towards Dawki",
+        "Umngot River boating (crystal-clear water)",
+        "Indo-Bangladesh border view",
+        "Evening: Drive back to Shillong (4-5 hrs with stops)"
+      ],
+      overnight: "Shillong"
+    },
+    {
+      day: "Day 5",
+      title: "Shillong → Guwahati → Departure",
+      activities: [
+        "Drive to Guwahati",
+        "Lunch enroute",
+        "Optional: Brahmaputra river, Fancy Bazaar (shopping)",
+        "Drop-off at Guwahati Airport/Railway Station",
+        "Trip concludes"
+      ]
+    }
+  ],
+
+  // ── ID 4: Dawki Crystal Waters (FROM PDF — Dawki & Krang Suri — 3 Days) ──
+  4: [
+    {
+      day: "Day 1",
+      title: "Guwahati → Shillong",
+      route: "Drive: 3-4 hrs",
+      activities: [
+        "Pickup from Guwahati Airport/Station",
+        "En-route: Umiam Lake – photo stop",
+        "Nongpoh – coffee/snack break & lunch en route",
+        "Shillong sightseeing: Ward's Lake",
+        "Cathedral of Mary Help of Christians",
+        "Police Bazaar (shopping & dinner)"
+      ],
+      overnight: "Shillong"
+    },
+    {
+      day: "Day 2",
+      title: "Shillong → Krang Suri → Dawki",
+      route: "Early start mandatory",
+      activities: [
+        "Drive: Shillong → Krang Suri Falls",
+        "Walk down to Krang Suri Falls",
+        "Swimming, photography, boating at the falls",
+        "Short nature walk around falls",
+        "Proceed: Krang Suri → Dawki",
+        "Umngot River boating at Dawki",
+        "Indo-Bangladesh Zero Point visit",
+        "Crystal clear water photography"
+      ],
+      overnight: "Shnongpdeng"
+    },
+    {
+      day: "Day 3",
+      title: "Shnongpdeng → Guwahati",
+      activities: [
+        "Early morning kayaking",
+        "Cliff jumping at Shnongpdeng",
+        "Zip lining over Umngot River",
+        "After breakfast — drive to Guwahati",
+        "Scenic valley views & lunch en route",
+        "Drop-off at Guwahati Airport/Railway Station",
+        "Trip concludes"
+      ]
+    }
+  ],
+
+  // ── ID 5: Shillong Winter Cultural Sojourn (FROM PDF — 2 Days + Day 0) ──
+  5: [
+    {
+      day: "Day 0",
+      title: "Guwahati → Shillong (Arrival)",
+      route: "Drive: 3-4 hrs",
+      activities: [
+        "Pickup from Guwahati Airport/Station",
+        "En-route: Umiam Lake – photos + fresh air",
+        "Nongpoh – tea/snack break",
+        "Check-in at Shillong hotel/homestay"
+      ],
+      overnight: "Shillong"
+    },
+    {
+      day: "Day 1",
+      title: "Shillong Core + Waterfalls + Culture",
+      activities: [
+        "Shillong Peak viewpoint",
+        "Elephant Falls visit",
+        "Ward's Lake stroll",
+        "Lunch at local restaurant",
+        "Don Bosco Museum — largest in Northeast",
+        "Cathedral of Mary Help of Christians",
+        "Lady Hydari Park",
+        "Evening: Police Bazaar – street food + shopping"
+      ],
+      overnight: "Shillong"
+    },
+    {
+      day: "Day 2",
+      title: "Nature & Calm Shillong → Departure",
+      activities: [
+        "Air Force Museum — aviation history",
+        "Golf Course (Gleneagles of the East)",
+        "Lunch",
+        "All Saints Church visit",
+        "Depart Shillong by 2:30 PM",
+        "Reach Guwahati by 6:30-7:00 PM",
+        "Drop-off at Airport/Railway Station"
+      ]
+    }
+  ],
+
+  // ── ID 6: Krang Suri Waterfall Budget Getaway ──
+  6: [
+    {
+      day: "Day 1",
+      title: "Guwahati to Krang Suri",
+      route: "Drive: 5-6 hrs via Jowai",
+      activities: [
+        "Pickup from Guwahati Airport/Station",
+        "Drive through Jaintia Hills",
+        "Arrival & trek to Krang Suri Waterfall",
+        "Swim in turquoise natural pools",
+        "Photography at the stunning cascade",
+        "Evening at local Jaintia homestay"
+      ],
+      overnight: "Jaintia Hills Homestay"
+    },
+    {
+      day: "Day 2",
+      title: "Exploration & Departure",
+      activities: [
+        "Morning revisit to Krang Suri — fewer crowds",
+        "Explore nearby caves & viewpoints",
+        "Jaintia tribal market visit",
+        "Local lunch — smoked pork & rice beer",
+        "Drive back to Guwahati",
+        "Drop-off at Airport/Railway Station"
+      ]
+    }
+  ],
+
+  // ── ID 7: Moopun Falls & Phe Phe Falls Adventure (FROM PDF — 3 Days) ──
+  7: [
+    {
+      day: "Day 1",
+      title: "Guwahati → Shillong",
+      route: "Drive: 3-4 hrs",
+      activities: [
+        "Pickup from Guwahati Airport/Station",
+        "En route: Umiam Lake – quick photo stop",
+        "Nongpoh – snacks / coffee break & lunch enroute",
+        "Shillong evening: Ward's Lake",
+        "Cathedral of Mary Help of Christians",
+        "Police Bazaar (dinner + stroll)"
+      ],
+      overnight: "Shillong"
+    },
+    {
+      day: "Day 2",
+      title: "Shillong → Moopun Falls → Phe Phe Falls → Jowai",
+      route: "Full waterfall day — early start",
+      activities: [
+        "Drive to Moopun Falls (2.5-3 hrs via Khliehriat → Mutong village)",
+        "Moopun Falls — easy 5-10 min walk from parking",
+        "Exploring natural stone bridge",
+        "Picnic, photography & short hike to viewpoints",
+        "Swimming & relax time at Moopun",
+        "Drive to Phe Phe Falls (1.5-2 hrs)",
+        "Short trek to Phe Phe Falls (15-30 mins one way)",
+        "Swimming, boating, kayaking & photography",
+        "Nature walks around the falls",
+        "Drive to Jowai (30-40 mins)"
+      ],
+      overnight: "Jowai"
+    },
+    {
+      day: "Day 3",
+      title: "Jowai → Guwahati",
+      activities: [
+        "Drive to Guwahati",
+        "Lunch enroute",
+        "Fancy Bazaar visit (optional)",
         "Drop-off at Airport/Railway Station",
         "Trip concludes"
       ]
     }
   ],
 
-  // ── ID 1: Double Decker Root Bridge & Cherrapunji ──
-  1: [
+  // ── ID 8: Meghalaya Waterfalls Budget Circuit ──
+  8: [
     {
       day: "Day 1",
-      title: "Guwahati to Shillong",
-      route: "Drive: 3-4 hrs via NH6",
-      activities: [
-        "Pickup from Guwahati Airport/Railway Station",
-        "Drive through scenic Khasi Hills",
-        "Stop at Umiam Lake (Barapani) for photo break",
-        "Arrival in Shillong — check-in & rest",
-        "Evening walk at Police Bazaar",
-        "Dinner at local Khasi restaurant"
-      ],
-      overnight: "Shillong"
-    },
-    {
-      day: "Day 2",
-      title: "Shillong to Cherrapunji",
-      route: "Drive: 2.5 hrs",
-      activities: [
-        "Breakfast & early departure to Cherrapunji",
-        "Visit Nohkalikai Falls — India's tallest plunge waterfall",
-        "Explore Mawsmai Cave — limestone formations",
-        "Seven Sisters Falls viewpoint",
-        "Eco Park & canyon rim walks",
-        "Arrival at Nongriat base village"
-      ],
-      overnight: "Cherrapunji"
-    },
-    {
-      day: "Day 3",
-      title: "Double Decker Root Bridge Trek",
-      route: "Trek: 3,500+ steps descent & ascent",
-      activities: [
-        "Early morning descent to Nongriat village",
-        "Cross single-decker living root bridge",
-        "Arrive at Double Decker Living Root Bridge — 500+ years old",
-        "Swim in Rainbow Falls natural pool",
-        "Photography at the iconic bridge structure",
-        "Packed lunch at Nongriat",
-        "Ascent back (challenging — 3,500 steps)"
-      ],
-      overnight: "Cherrapunji"
-    },
-    {
-      day: "Day 4",
-      title: "Cherrapunji Exploration & Mawlynnong",
-      route: "Drive: 2.5 hrs to Mawlynnong",
-      activities: [
-        "Visit Arwah Cave — fossil-rich limestone cave",
-        "Garden of Caves — waterfall & rock formations",
-        "Drive to Mawlynnong — Asia's cleanest village",
-        "Living Root Bridge at Riwai",
-        "Sky Walk — bamboo platform over valley",
-        "Bangladesh border viewpoint"
-      ],
-      overnight: "Shillong"
-    },
-    {
-      day: "Day 5",
-      title: "Shillong & Departure",
-      activities: [
-        "Don Bosco Museum — largest museum in Northeast",
-        "Cathedral of Mary Help of Christians",
-        "Ward's Lake morning walk",
-        "Souvenir shopping at Police Bazaar",
-        "Drive to Guwahati Airport — drop-off",
-        "Trip concludes"
-      ]
-    }
-  ],
-
-  // ── ID 5: Shillong Winter Cultural Sojourn ──
-  5: [
-    {
-      day: "Day 1",
-      title: "Arrival & Shillong Exploration",
-      route: "Guwahati to Shillong (Drive: 3-4 hrs)",
+      title: "Guwahati to Krang Suri Falls",
+      route: "Drive: 5-6 hrs via Jowai",
       activities: [
         "Pickup from Guwahati Airport/Station",
-        "Drive via Umiam Lake — photo stop",
-        "Check-in at Shillong hotel/homestay",
-        "Visit Air Force Museum — aviation history",
-        "Shillong Golf Course — one of the oldest in Asia",
-        "Evening at Police Bazaar — street food & shopping",
-        "Live music at local café (Shillong's music culture)"
+        "Drive to Jaintia Hills",
+        "Trek to Krang Suri Waterfall",
+        "Swimming in turquoise natural pools",
+        "Photography session at sunset light"
       ],
-      overnight: "Shillong"
+      overnight: "Jaintia Hills Homestay"
     },
     {
       day: "Day 2",
-      title: "Cultural Immersion & Departure",
+      title: "Moopun Falls & Hidden Cascades",
+      route: "Drive: 2-3 hrs",
       activities: [
-        "Morning visit to Don Bosco Centre for Indigenous Cultures",
-        "Cathedral of Mary Help of Christians",
-        "Ward's Lake & Lady Hydari Park walk",
-        "Elephant Falls visit",
-        "Local Khasi lunch — Jadoh, Tungrymbai & Doh Khlieh",
-        "Drive back to Guwahati for departure",
-        "Drop-off at Airport/Railway Station"
-      ]
-    }
-  ],
-
-  // ── ID 7: Moopun Falls & Phe Phe Falls Adventure ──
-  7: [
-    {
-      day: "Day 1",
-      title: "Guwahati to Phe Phe Falls",
-      route: "Drive: 4-5 hrs to East Khasi Hills",
-      activities: [
-        "Pickup from Guwahati Airport/Station",
-        "Drive through Khasi Hills countryside",
-        "Trek to Phe Phe Falls (2 hrs moderate trail)",
-        "Swim in crystal-clear turquoise pool",
-        "Photography at multi-tier cascade",
-        "Return trek & drive to base"
-      ],
-      overnight: "East Khasi Hills Homestay"
-    },
-    {
-      day: "Day 2",
-      title: "Moopun Waterfall Expedition",
-      activities: [
-        "Early departure for Moopun Falls trek",
-        "Jungle trail through dense subtropical forest",
-        "Arrive at Moopun Falls — dramatic multi-tier cascade",
-        "Natural rock sliding & swimming",
-        "Explore hidden pools above main falls",
-        "Packed lunch in the wilderness",
-        "Return trek via ridge trail with valley views"
+        "Trek to Moopun Falls through subtropical forest",
+        "Multi-tier waterfall swimming & rock slides",
+        "Explore hidden cascades above main falls",
+        "Packed jungle lunch",
+        "Photography at lesser-known waterfalls",
+        "Return to base"
       ],
       overnight: "East Khasi Hills Homestay"
     },
     {
       day: "Day 3",
-      title: "Hidden Falls & Departure",
+      title: "Departure",
       activities: [
-        "Morning trek to a lesser-known local waterfall",
-        "Village walk & interaction with Khasi families",
-        "Local Khasi lunch — authentic village cooking",
+        "Morning visit to a local waterfall",
+        "Village walk & Khasi breakfast",
         "Drive back to Guwahati",
         "Drop-off at Airport/Railway Station",
         "Trip concludes"
@@ -532,92 +681,88 @@ export const tourItineraries: Record<number, ItineraryDay[]> = {
     }
   ],
 
-  // ── ID 29: Arunachal Tawang Exploration ──
+  // ── ID 29: Arunachal Tawang Exploration (FROM PDF — 6 Days) ──
   29: [
     {
       day: "Day 1",
-      title: "Guwahati to Bhalukpong",
-      route: "Drive: 5-6 hrs",
+      title: "Guwahati → Dirang",
+      route: "Drive: Full day",
       activities: [
         "Pickup from Guwahati Airport/Station",
-        "Inner Line Permit (ILP) check at Bhalukpong",
-        "Drive through Assam plains to Arunachal foothills",
-        "Evening arrival & check-in",
-        "Riverside walk along Kameng River"
-      ],
-      overnight: "Bhalukpong"
-    },
-    {
-      day: "Day 2",
-      title: "Bhalukpong to Dirang",
-      route: "Drive: 4-5 hrs via Bomdila",
-      activities: [
-        "Scenic mountain drive through Eastern Himalayas",
-        "Stop at Bomdila Monastery — panoramic views",
-        "Visit Bomdila craft centre — Monpa weaving",
-        "Arrival at Dirang — hot springs soak",
-        "Dirang Dzong (fortress) exploration",
-        "Evening walk through apple & kiwi orchards"
+        "Enroute stops: Tezpur – breakfast + fuel",
+        "Bhalukpong – ILP checkpost",
+        "Kameng River views along the road",
+        "If time permits: Tipi Orchidarium",
+        "Bomdila Viewpoint (if time permits)"
       ],
       overnight: "Dirang"
     },
     {
-      day: "Day 3",
-      title: "Dirang to Tawang via Sela Pass",
-      route: "Drive: 6-7 hrs via Sela Pass (13,700 ft)",
+      day: "Day 2",
+      title: "Dirang → Tawang",
+      route: "Drive via Sela Pass (13,700 ft)",
       activities: [
-        "Early departure for Sela Pass crossing",
-        "Sela Pass — 13,700 ft, snow-capped panoramas",
+        "After breakfast — drive to Tawang",
+        "Dirang Dzong exploration",
+        "Sela Pass crossing (13,700 ft) — snow-capped panoramas",
         "Sela Lake — sacred frozen high-altitude lake",
-        "Stop at Jaswant Garh War Memorial",
-        "Visit Nuranang Waterfall (Jang Falls) — 100m cascade",
-        "Arrival at Tawang — evening monastery views"
+        "Jaswant Garh War Memorial stop",
+        "Nuranang (Jang) Waterfall — 100m cascade",
+        "Chill walk near Tawang market, momos mandatory"
+      ],
+      overnight: "Tawang"
+    },
+    {
+      day: "Day 3",
+      title: "Tawang Local Sightseeing",
+      activities: [
+        "After breakfast — cover in and around Tawang",
+        "Tawang Monastery — India's largest Buddhist monastery",
+        "Urgelling Monastery — birthplace of 6th Dalai Lama",
+        "Tawang War Memorial — 1962 heroes tribute",
+        "Craft Centre / local market exploration"
       ],
       overnight: "Tawang"
     },
     {
       day: "Day 4",
-      title: "Tawang Monastery & Bumla Pass",
-      route: "Bumla Pass: 37 km from Tawang (permit required)",
+      title: "Tawang → Bum La Pass → Madhuri Lake → Tawang",
+      route: "Drive: Full day | Army permits required",
       activities: [
-        "Visit Tawang Monastery — India's largest Buddhist monastery",
-        "Explore ancient manuscripts & prayer halls",
-        "Drive to Bumla Pass — India-China border (15,200 ft)",
-        "India-China border point & army post visit",
-        "Madhuri Lake (Sangetsar Tso) — stunning glacial lake",
-        "Visit PTSO Lake — high-altitude bird habitat",
-        "Evening Tawang market walk"
+        "After breakfast — full day border excursion",
+        "Sangetsar Lake (Madhuri Lake) — stunning glacial lake",
+        "Bum La Pass — India-China border (15,200 ft)",
+        "P.T. Tso Lake (Pankang Teng Tso)"
       ],
       overnight: "Tawang"
     },
     {
       day: "Day 5",
-      title: "Tawang to Bomdila",
-      route: "Drive: 7-8 hrs return journey",
+      title: "Tawang → Dirang",
+      route: "Drive: Return journey",
       activities: [
-        "Morning visit to Tawang War Memorial — 1962 heroes",
-        "Visit Urgelling Monastery — birthplace of 6th Dalai Lama",
-        "Return drive via Sela Pass",
-        "Stop at Bomdila for sunset views",
-        "Shopping for local handicrafts & Monpa textiles"
+        "After breakfast — drive to Dirang",
+        "Thupsung Dhargye Ling Buddhist Monastery visit",
+        "Hot springs at Dirang",
+        "Local market exploration"
       ],
-      overnight: "Bomdila"
+      overnight: "Dirang"
     },
     {
       day: "Day 6",
-      title: "Bomdila to Guwahati & Departure",
-      route: "Drive: 8-9 hrs",
+      title: "Dirang → Guwahati (Departure)",
+      route: "Drive: Full day",
       activities: [
-        "Early departure from Bomdila",
+        "After breakfast — drive to Guwahati",
         "Scenic descent through Arunachal foothills",
         "Lunch stop en route",
-        "Arrival at Guwahati — drop-off at Airport/Station",
+        "Drop-off at Guwahati Airport/Railway Station",
         "Trip concludes"
       ]
     }
   ],
 
-  // ── ID 201: Meghalaya Biodiversity Research Expedition (8-day) ──
+  // ── ID 201: Meghalaya Biodiversity Research Expedition (7-day + day 0) ──
   201: [
     {
       day: "Day 0",
@@ -730,120 +875,6 @@ export const tourItineraries: Record<number, ItineraryDay[]> = {
       activities: [
         "Transfer to Guwahati Airport/Railway Station",
         "Expedition concludes — take your field notes & research data home"
-      ]
-    }
-  ],
-
-  // ── ID 4: Dawki Crystal Waters Winter Escape ──
-  4: [
-    {
-      day: "Day 1",
-      title: "Guwahati to Dawki",
-      route: "Drive: 5-6 hrs via Shillong bypass",
-      activities: [
-        "Pickup from Guwahati Airport/Station",
-        "Scenic drive through Khasi Hills",
-        "Arrival at Dawki — Umngot River",
-        "Transparent river boating — see riverbed 20ft below",
-        "Photography at India's clearest river",
-        "Evening riverside bonfire"
-      ],
-      overnight: "Dawki Riverside Camp"
-    },
-    {
-      day: "Day 2",
-      title: "River Exploration & Border Views",
-      activities: [
-        "Sunrise kayaking on Umngot River",
-        "Visit Indo-Bangladesh border — Tamabil",
-        "Shnongpdeng cliff jumping & swimming",
-        "Snorkeling in crystal-clear waters",
-        "Local Khasi lunch — Jadoh & Tungrymbai",
-        "Evening stargazing by the river"
-      ],
-      overnight: "Dawki Riverside Camp"
-    },
-    {
-      day: "Day 3",
-      title: "Departure",
-      activities: [
-        "Morning boat ride — winter light photography",
-        "Visit Byrdaw Falls en route",
-        "Drive back to Guwahati",
-        "Drop-off at Airport/Railway Station",
-        "Trip concludes"
-      ]
-    }
-  ],
-
-  // ── ID 6: Krang Suri Waterfall Budget Getaway ──
-  6: [
-    {
-      day: "Day 1",
-      title: "Guwahati to Krang Suri",
-      route: "Drive: 5-6 hrs via Jowai",
-      activities: [
-        "Pickup from Guwahati Airport/Station",
-        "Drive through Jaintia Hills",
-        "Arrival & trek to Krang Suri Waterfall",
-        "Swim in turquoise natural pools",
-        "Photography at the stunning cascade",
-        "Evening at local Jaintia homestay"
-      ],
-      overnight: "Jaintia Hills Homestay"
-    },
-    {
-      day: "Day 2",
-      title: "Exploration & Departure",
-      activities: [
-        "Morning revisit to Krang Suri — fewer crowds",
-        "Explore nearby caves & viewpoints",
-        "Jaintia tribal market visit",
-        "Local lunch — smoked pork & rice beer",
-        "Drive back to Guwahati",
-        "Drop-off at Airport/Railway Station"
-      ]
-    }
-  ],
-
-  // ── ID 8: Meghalaya Waterfalls Budget Circuit ──
-  8: [
-    {
-      day: "Day 1",
-      title: "Guwahati to Krang Suri Falls",
-      route: "Drive: 5-6 hrs via Jowai",
-      activities: [
-        "Pickup from Guwahati Airport/Station",
-        "Drive to Jaintia Hills",
-        "Trek to Krang Suri Waterfall",
-        "Swimming in turquoise natural pools",
-        "Photography session at sunset light"
-      ],
-      overnight: "Jaintia Hills Homestay"
-    },
-    {
-      day: "Day 2",
-      title: "Moopun Falls & Hidden Cascades",
-      route: "Drive: 2-3 hrs",
-      activities: [
-        "Trek to Moopun Falls through subtropical forest",
-        "Multi-tier waterfall swimming & rock slides",
-        "Explore hidden cascades above main falls",
-        "Packed jungle lunch",
-        "Photography at lesser-known waterfalls",
-        "Return to base"
-      ],
-      overnight: "East Khasi Hills Homestay"
-    },
-    {
-      day: "Day 3",
-      title: "Departure",
-      activities: [
-        "Morning visit to a local waterfall",
-        "Village walk & Khasi breakfast",
-        "Drive back to Guwahati",
-        "Drop-off at Airport/Railway Station",
-        "Trip concludes"
       ]
     }
   ],
@@ -1559,7 +1590,7 @@ export const tourItineraries: Record<number, ItineraryDay[]> = {
       day: "Day 2",
       title: "Adventure Day — Paragliding & Trails",
       activities: [
-        "Morning paragliding at Solang Valley / Bir Billing prep",
+        "Morning paragliding at Solang Valley",
         "Tandem paraglide over snow-capped mountains",
         "Afternoon mountain biking trail — Naggar route",
         "Beas River walk & bridge crossing",
@@ -3041,54 +3072,55 @@ export const tourItineraries: Record<number, ItineraryDay[]> = {
     },
     {
       day: "Day 4",
-      title: "Atlas to Desert — Ait Benhaddou",
-      route: "Drive: 5-6 hrs via Tizi n'Tichka Pass",
+      title: "Atlas to Sahara — Dades Valley",
+      route: "Drive: 6-7 hrs via Tizi n'Tichka Pass",
       activities: [
-        "Cross Tizi n'Tichka Pass — 2,260m",
-        "Ait Benhaddou — UNESCO ksar (fortified village)",
-        "Hollywood's Morocco — Game of Thrones, Gladiator locations",
-        "Ouarzazate — Atlas Film Studios",
-        "Continue to Dades Valley"
+        "Cross High Atlas via Tizi n'Tichka Pass",
+        "Ait Benhaddou Kasbah — UNESCO & Game of Thrones site",
+        "Ouarzazate — Hollywood of Africa",
+        "Dades Gorge — dramatic canyon drive",
+        "Evening at valley guesthouse"
       ],
-      overnight: "Dades Gorge"
+      overnight: "Dades Valley"
     },
     {
       day: "Day 5",
-      title: "Todgha Gorge & Merzouga Desert",
-      route: "Drive: 5-6 hrs",
+      title: "Sahara Desert Experience",
+      route: "Drive: 4-5 hrs to Merzouga",
       activities: [
-        "Todgha Gorge — 300m canyon walls",
-        "Short hike in the gorge",
-        "Drive to Merzouga — gateway to Sahara",
-        "Camel caravan into Erg Chebbi dunes",
-        "Watch sunset from dune top",
-        "Night in desert camp — stargazing, drumming, Berber songs"
+        "Drive through Todra Gorge",
+        "Arrive at Merzouga — gateway to Erg Chebbi dunes",
+        "Camel caravan into the Sahara",
+        "Sunset over sand dunes",
+        "Night under Saharan stars — traditional camp",
+        "Berber music & drumming around campfire"
       ],
       overnight: "Sahara Desert Camp"
     },
     {
       day: "Day 6",
-      title: "Sahara Sunrise & Fes Journey",
-      route: "Drive: 8-9 hrs",
+      title: "Desert to Fes",
+      route: "Drive: 7-8 hrs via Ifrane",
       activities: [
-        "Sunrise over Sahara dunes",
-        "Camel ride back from camp",
-        "Long scenic drive through Ziz Valley",
-        "Stop at Ifrane — Morocco's Switzerland",
-        "Arrival in Fes — oldest medina in the world"
+        "Sahara sunrise — golden dune photography",
+        "Camel ride back to village",
+        "Long scenic drive through Middle Atlas",
+        "Stop at Ifrane — 'Switzerland of Morocco'",
+        "Cedar forest & Barbary macaques",
+        "Evening arrival in Fes"
       ],
       overnight: "Fes Riad"
     },
     {
       day: "Day 7",
-      title: "Fes Medina Exploration",
+      title: "Fes Medina Heritage",
       activities: [
-        "Fes el-Bali medina — 9,000 narrow lanes",
-        "Chouara Tanneries — iconic leather dyeing",
-        "Al-Qarawiyyin Mosque — world's oldest university",
+        "Fes Medina — world's largest car-free urban area",
+        "Chouara Tanneries — medieval leather dyeing",
+        "Al-Qarawiyyin — world's oldest university",
         "Bou Inania Madrasa — Marinid architecture",
-        "Pottery cooperative visit",
-        "Farewell dinner at palatial Riad"
+        "Pottery workshop in Fes",
+        "Farewell dinner — rooftop overlooking medina"
       ],
       overnight: "Fes"
     },
@@ -3096,14 +3128,14 @@ export const tourItineraries: Record<number, ItineraryDay[]> = {
       day: "Day 8",
       title: "Departure",
       activities: [
-        "Morning free for final shopping",
-        "Transfer to Fes Airport or Marrakech (optional train)",
+        "Morning free for last-minute medina shopping",
+        "Transfer to Fes Airport / drive to Marrakech",
         "Trip concludes"
       ]
     }
   ],
 
-  // ── ID 309: Georgia Wine & Mountains ──
+  // ── ID 309: Georgia Wine & Mountains Trail ──
   309: [
     {
       day: "Day 1",
@@ -3111,22 +3143,22 @@ export const tourItineraries: Record<number, ItineraryDay[]> = {
       activities: [
         "Arrival at Tbilisi International Airport",
         "Transfer to Old Town hotel",
-        "Narikala Fortress — panoramic city views",
-        "Abanotubani — sulfur baths district walk",
-        "Welcome dinner — khinkali & khachapuri"
+        "Tbilisi Old Town walking tour — sulfur baths district",
+        "Narikala Fortress cable car ride",
+        "Welcome dinner — Georgian supra feast"
       ],
       overnight: "Tbilisi"
     },
     {
       day: "Day 2",
-      title: "Tbilisi Cultural Tour",
+      title: "Tbilisi Heritage & Culture",
       activities: [
-        "Holy Trinity Cathedral (Tsminda Sameba)",
-        "Rustaveli Avenue — National Museum",
-        "Dry Bridge Flea Market — Soviet memorabilia",
-        "Wine tasting at Georgian Wine Bar",
-        "Traditional polyphonic singing performance",
-        "Evening cable car ride over Old Town"
+        "Holy Trinity Cathedral (Sameba)",
+        "Georgian National Museum",
+        "Dry Bridge flea market",
+        "Wine tasting at traditional marani (wine cellar)",
+        "Rustaveli Avenue evening walk",
+        "Traditional polyphonic singing performance"
       ],
       overnight: "Tbilisi"
     },
@@ -3135,50 +3167,52 @@ export const tourItineraries: Record<number, ItineraryDay[]> = {
       title: "Kakheti Wine Region",
       route: "Drive: 2 hrs",
       activities: [
-        "Drive to Kakheti — birthplace of wine (8,000 years)",
-        "Qvevri winemaking — UNESCO-listed clay vessel method",
-        "Visit traditional wine cellar — marani",
-        "Wine & cheese pairing lunch",
-        "Tsinandali Estate — historical wine estate",
-        "Gremi Monastery & fortress"
+        "Drive to Kakheti — cradle of wine (8,000 years)",
+        "Visit Chateau Mukhrani or Khareba winery",
+        "Traditional qvevri winemaking demonstration",
+        "Wine tasting — Saperavi, Rkatsiteli varieties",
+        "Sighnaghi — 'City of Love' hilltop walk",
+        "Bodbe Monastery — St. Nino's shrine"
       ],
-      overnight: "Kakheti / Telavi"
+      overnight: "Kakheti / Sighnaghi"
     },
     {
       day: "Day 4",
       title: "Kazbegi Mountain Day",
       route: "Drive: 3 hrs via Georgian Military Highway",
       activities: [
-        "Scenic drive on Georgian Military Highway",
-        "Ananuri Fortress — medieval castle on reservoir",
-        "Cross-pass at Jvari Pass — 2,379m",
-        "Gergeti Trinity Church — iconic mountain church at 2,170m",
-        "Mount Kazbek views — 5,033m peak",
-        "Natural hot springs in Kazbegi area"
+        "Drive along Georgian Military Highway",
+        "Ananuri Fortress on Zhinvali Reservoir",
+        "Cross-pass at Gudauri ski resort area",
+        "Gergeti Trinity Church — iconic Caucasus viewpoint",
+        "Mount Kazbek views (5,047m)",
+        "Village walk in Stepantsminda"
       ],
-      overnight: "Kazbegi (Stepantsminda)"
+      overnight: "Kazbegi / Stepantsminda"
     },
     {
       day: "Day 5",
-      title: "Mtskheta & Uplistsikhe",
-      route: "Drive: 3.5 hrs",
+      title: "Mtskheta & Jvari Monastery",
+      route: "Drive: 3 hrs from Kazbegi",
       activities: [
-        "Drive to Mtskheta — ancient capital, UNESCO site",
+        "Return via scenic mountain route",
         "Jvari Monastery — 6th century hilltop church",
-        "Svetitskhoveli Cathedral — Georgia's holiest site",
-        "Drive to Uplistsikhe — cave city from 1st millennium BC",
-        "Return to Tbilisi"
+        "Svetitskhoveli Cathedral — Georgia's holiest church",
+        "Mtskheta Old Town — UNESCO World Heritage",
+        "Afternoon free in Tbilisi"
       ],
       overnight: "Tbilisi"
     },
     {
       day: "Day 6",
-      title: "Free Day & Georgian Supra",
+      title: "Uplistsikhe & Gori",
+      route: "Drive: 1.5 hrs",
       activities: [
-        "Morning free — spa, shopping, or explore",
-        "Optional: Davit Gareja cave monastery day trip",
-        "Afternoon cooking class — khachapuri & churchkhela",
-        "Evening Georgian Supra feast — toasting tradition with tamada"
+        "Uplistsikhe Cave Town — 3,000-year-old rock city",
+        "Ancient theatre & wine cellars carved in rock",
+        "Stalin Museum in Gori (optional)",
+        "Return to Tbilisi",
+        "Farewell dinner at traditional restaurant"
       ],
       overnight: "Tbilisi"
     },
@@ -3186,112 +3220,10 @@ export const tourItineraries: Record<number, ItineraryDay[]> = {
       day: "Day 7",
       title: "Departure",
       activities: [
-        "Morning souvenir shopping — Meidan area",
+        "Morning free for shopping — churchkhela & spices",
+        "Optional: Tbilisi sulfur bath experience",
         "Transfer to Tbilisi Airport",
         "Trip concludes"
-      ]
-    }
-  ],
-
-  // ── ID 500: Tri-Nation Himalayan Motorbike Expedition ──
-  500: [
-    {
-      day: "Day 1",
-      title: "Guwahati — Rally Briefing & Gear Up",
-      activities: [
-        "Royal Enfield Himalayan bike allocation",
-        "Full riding gear fitting — premium equipment",
-        "Route briefing & documentation check",
-        "Test ride & bike familiarization",
-        "Evening team dinner & expedition kickoff"
-      ],
-      overnight: "Guwahati"
-    },
-    {
-      day: "Day 2-3",
-      title: "Northeast India Leg — Tezpur to Tawang",
-      route: "Ride: 400+ km over 2 days via Sela Pass (13,700 ft)",
-      activities: [
-        "Ride through Assam tea gardens to Bhalukpong",
-        "Arunachal ILP entry",
-        "Bomdila monastery stop",
-        "Epic Sela Pass crossing at 13,700 ft",
-        "Nuranang Waterfall halt",
-        "Arrival at Tawang — monastery visit"
-      ],
-      overnight: "Bhalukpong / Tawang"
-    },
-    {
-      day: "Day 4-5",
-      title: "Tawang Exploration & Return Ride",
-      activities: [
-        "Tawang Monastery — India's largest Buddhist monastery",
-        "Optional Bumla Pass ride (15,200 ft) — India-China border",
-        "Madhuri Lake visit",
-        "Return ride via Sela Pass to Dirang/Tezpur",
-        "Hot springs halt at Dirang"
-      ],
-      overnight: "Tawang / Dirang"
-    },
-    {
-      day: "Day 6-8",
-      title: "India to Nepal Border Crossing",
-      route: "Ride via Siliguri corridor to Kakarbhitta/Bhadrapur",
-      activities: [
-        "Ride through North Bengal — Darjeeling foothills",
-        "India-Nepal border crossing",
-        "Ride through Terai plains to Kathmandu valley",
-        "Kathmandu Durbar Square exploration",
-        "Swayambhunath & Boudhanath"
-      ],
-      overnight: "En route / Kathmandu"
-    },
-    {
-      day: "Day 9-10",
-      title: "Kathmandu to Pokhara & Back",
-      route: "Ride: 200 km each way",
-      activities: [
-        "Scenic ride to Pokhara",
-        "Phewa Lake & Annapurna views",
-        "Sarangkot sunrise",
-        "Return ride to Kathmandu",
-        "Nepal souvenirs & bike prep for Bhutan"
-      ],
-      overnight: "Pokhara / Kathmandu"
-    },
-    {
-      day: "Day 11-12",
-      title: "Nepal to Bhutan — Kingdom Entry",
-      route: "Ride via Phuentsholing border",
-      activities: [
-        "Ride to Nepal-Bhutan border",
-        "Bhutan immigration & permit",
-        "Ride through Bhutan foothills to Thimphu",
-        "Dochula Pass crossing — 108 chortens at 10,000 ft",
-        "Thimphu Dzong & Buddha Dordenma"
-      ],
-      overnight: "En route / Thimphu"
-    },
-    {
-      day: "Day 13-14",
-      title: "Paro & Tiger's Nest",
-      activities: [
-        "Ride to Paro valley",
-        "Tiger's Nest Monastery trek (bikes parked)",
-        "Paro Dzong & Ta Dzong museum",
-        "Prayer flag planting ceremony",
-        "Farewell Bhutanese dinner"
-      ],
-      overnight: "Paro"
-    },
-    {
-      day: "Day 15",
-      title: "Departure",
-      activities: [
-        "Bike return & expedition debrief",
-        "Certificate ceremony — Tri-Nation Expedition Finisher",
-        "Transfer to Paro Airport / overland return",
-        "Expedition concludes"
       ]
     }
   ],
