@@ -189,7 +189,7 @@ const HeroSection = () => {
     <section 
         ref={heroRef}
         id="home" 
-        className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-800 via-slate-700 to-slate-800"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-card to-background"
       >
         {/* Static Background Elements */}
         {/* Lightweight background - no GPU-heavy blur effects */}
