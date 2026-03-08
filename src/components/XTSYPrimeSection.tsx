@@ -41,7 +41,7 @@ const xtsyPrimeOfferings = [
     title: "Pet Friendly Stays",
     shortTitle: "Pet Friendly",
     description: "India's first pet-friendly travellers hostel. Your furry companions are welcome here with dedicated pet amenities and care support.",
-    image: petFriendlyHero,
+    image: imgUrl("pet-friendly-hero.jpg"),
     icon: PawPrint,
     price: "No Extra Charge",
     priceNote: "for pets",
