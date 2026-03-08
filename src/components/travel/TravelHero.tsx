@@ -27,7 +27,7 @@ const TravelHero = () => {
         </h1>
 
         {/* Subtitle */}
-        <p className="text-base sm:text-lg md:text-xl text-stone-300 max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed font-light">
+        <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed font-light">
           Curated journeys across India and the world — led by experience, not itineraries.
         </p>
 
