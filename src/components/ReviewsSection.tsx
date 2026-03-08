@@ -784,17 +784,17 @@ const ReviewsSection = () => {
         <DialogContent 
           className={cn(
             "max-w-6xl w-[95vw] sm:w-full max-h-[90vh]",
-            "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900",
-            "border-white/10"
+            "bg-gradient-to-br from-background via-card to-background",
+            "border-border"
           )}
           style={{
             WebkitOverflowScrolling: 'touch',
             overscrollBehavior: 'contain',
           }}
         >
-          <DialogHeader className="sticky top-0 bg-slate-900/95 backdrop-blur-xl z-10 pb-4 border-b border-white/10">
-            <DialogTitle className="flex items-center gap-3 text-xl sm:text-2xl font-bold text-white">
-              <Sparkles className="w-6 h-6 text-violet-400" />
+          <DialogHeader className="sticky top-0 bg-background/95 backdrop-blur-xl z-10 pb-4 border-b border-border">
+            <DialogTitle className="flex items-center gap-3 text-xl sm:text-2xl font-bold text-foreground">
+              <Sparkles className="w-6 h-6 text-primary" />
               All Guest Reviews ({allReviewsCombined.length})
             </DialogTitle>
             <VisuallyHidden>
