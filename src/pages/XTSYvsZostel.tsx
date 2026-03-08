@@ -233,8 +233,8 @@ const XTSYvsZostel = () => {
       answer: "No. Zostel has franchise hostels in only 3-4 NE locations. Their 'Zo Trips' offer pre-packaged bus tours to Meghalaya at ₹19,047/person on fixed dates — that's not local presence. XTSY covers all 8 states through our tour package ecosystem, government partnerships (Arunachal Pradesh Tourism), and curated multi-state itineraries — Meghalaya, Arunachal, Assam, Nagaland, Manipur, Mizoram, Sikkim, and Tripura.",
     },
     {
-      question: "What's the difference between Zo Trips and XTSY tour packages?",
-      answer: "Zo Trips are pre-packaged group bus tours with fixed dates, fixed itineraries, and outsourced logistics — 'Experience Meghalaya' costs ₹19,047/person. XTSY packages are fully customizable: choose your dates, group size (solo to 50+), stops, accommodation tier (dorm to 270° Suite), and pace. Our local team handles everything directly — no outsourcing.",
+      question: "What's the difference between Zo Trips and XTSY Travel?",
+      answer: "Zo Trips are pre-packaged group bus tours with fixed dates, fixed itineraries, and outsourced logistics — 'Experience Meghalaya' costs ₹19,047/person. XTSY Travel offers fully customizable curated private tours: choose your dates, group size (solo to 50+), stops, accommodation tier (dorm to 270° Suite), and pace. No franchise model — our local team handles everything directly.",
     },
     {
       question: "Can you handle 10–50+ people groups? Zostel limits to 6.",
