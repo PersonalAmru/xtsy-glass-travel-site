@@ -255,7 +255,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
       description: "Affordable 2-day escape to Meghalaya's stunning turquoise waterfall paradise — swim in crystal-clear natural pools surrounded by pristine jungle.",
       duration: "2 Days",
       difficulty: "Easy",
-      price: "₹10,500",
+      price: "₹8,999",
       image: krangSuriWaterfallImg,
       rating: 4.6,
       category: "leisure",
