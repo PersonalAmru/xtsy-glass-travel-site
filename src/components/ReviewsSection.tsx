@@ -863,8 +863,8 @@ const ReviewsSection = () => {
         <DialogContent 
           className={cn(
             "max-w-2xl w-[95vw] sm:w-full",
-            "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900",
-            "border-white/10"
+            "bg-gradient-to-br from-background via-card to-background",
+            "border-border"
           )}
           style={{
             WebkitOverflowScrolling: 'touch',
