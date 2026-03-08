@@ -40,7 +40,7 @@ function Calendar({
           "bg-muted/50 hover:bg-muted active:bg-muted/80",
           "transition-colors duration-150",
           "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-          "absolute right-0 cursor-pointer touch-manipulation"
+          "absolute right-1 cursor-pointer touch-manipulation"
         ),
         month_grid: "w-full border-collapse",
         weekdays: "flex mb-1",
