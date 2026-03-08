@@ -33,9 +33,9 @@ const TravelHero = () => {
 
         {/* Decorative divider */}
         <div className="flex items-center justify-center gap-3 mb-8 sm:mb-10">
-          <div className="w-16 h-px bg-gradient-to-r from-transparent to-amber-500/50" />
-          <div className="w-1.5 h-1.5 rotate-45 bg-amber-400" />
-          <div className="w-16 h-px bg-gradient-to-l from-transparent to-amber-500/50" />
+          <div className="w-16 h-px bg-gradient-to-r from-transparent to-primary/50" />
+          <div className="w-1.5 h-1.5 rotate-45 bg-primary" />
+          <div className="w-16 h-px bg-gradient-to-l from-transparent to-primary/50" />
         </div>
 
         {/* CTAs */}
