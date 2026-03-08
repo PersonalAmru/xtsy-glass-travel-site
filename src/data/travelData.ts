@@ -821,7 +821,7 @@ const _coupleLuxuryTours: TourPackage[] = [
     description: "Ultimate honeymoon experience — panoramic glass ensuite stay with Shillong city tour, Dawki boating, and premium couple dining under the stars.",
     duration: "5 Days",
     difficulty: "Easy",
-    price: "₹52,500",
+    price: "₹44,999",
     image: shillongCherryBlossomImg,
     rating: 5.0,
     category: "leisure",
