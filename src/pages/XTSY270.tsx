@@ -30,12 +30,12 @@ const XTSY270: React.FC = () => {
   const canonicalUrl = XTSY270_DATA.canonicalUrl;
   const keywords = (XTSY270_DATA as any).seoKeywords || '';
   const handleBookingClick = () => {
-    const message = `🏕️ *XTSY Xperience – Glasshouse Glamping Inquiry*
+    const message = `🏕️ *XTSY Experience – Glasshouse Glamping Inquiry*
 
 Hi XTSY Team! I'd love to experience India's first 270° glasshouse glamping retreat! 🌟
 
 🏔️ *What I'm Interested In:*
-• XTSY Xperience – 270° Glamping Retreat
+• XTSY Experience – 270° Glamping Retreat
 • Luxury glamping in Shillong, Meghalaya
 • Stargazing from bed & pine forest views
 • Romantic couples retreat
