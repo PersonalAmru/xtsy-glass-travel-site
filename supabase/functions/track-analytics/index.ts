@@ -71,6 +71,10 @@ const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
 const RATE_LIMIT = 100;
 const RATE_WINDOW = 60000;
 
+// In-memory geo cache to avoid repeated lookups for same IP
+const geoCache = new Map<string, { data: any; expiresAt: number }>();
+const GEO_CACHE_TTL = 10 * 60 * 1000; // 10 minutes
+
 function checkRateLimitLocal(visitorId: string): boolean {
   const now = Date.now();
   const record = rateLimitMap.get(visitorId);
