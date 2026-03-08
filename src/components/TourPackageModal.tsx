@@ -281,8 +281,8 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
   };
 
   const allImages = tourPackage.images && tourPackage.images.length > 1
-    ? [...new Set(tourPackage.images)]
-    : [getRelevantImage()];
+    ? [...new Set([tourPackage.image, ...tourPackage.images])]
+    : [tourPackage.image];
 
   const gradientClass = categoryColors[tourPackage.category] || "from-amber-500 to-orange-500";
 
