@@ -346,7 +346,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
       description: "Winter wildlife safaris in Kaziranga followed by aromatic tea garden tours — perfect weather for rhino spotting.",
       duration: "6 Days",
       difficulty: "Easy",
-      price: "₹36,500",
+      price: "₹29,999",
       image: assamTeaGardensImg,
       rating: 4.6,
       category: "leisure",
