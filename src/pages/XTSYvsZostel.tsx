@@ -353,7 +353,7 @@ const XTSYvsZostel = () => {
                   </div>
                   <div>
                     <CardTitle className="text-xl text-foreground">XTSY One LLP</CardTitle>
-                    <CardDescription>Owner-Operated Ecosystem</CardDescription>
+                    <CardDescription>Self-Sustaining Ecosystem</CardDescription>
                   </div>
                 </div>
               </CardHeader>
