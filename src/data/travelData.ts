@@ -213,7 +213,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
       description: "Experience the world's clearest river during perfect winter weather — boat rides reveal the riverbed 20 feet below like floating on glass.",
       duration: "3 Days",
       difficulty: "Easy",
-      price: "₹16,500",
+    price: "₹12,999",
       image: dawkiCrystalClearImg,
       rating: 4.9,
       category: "leisure",
