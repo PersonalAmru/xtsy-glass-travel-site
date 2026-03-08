@@ -837,7 +837,7 @@ const _coupleLuxuryTours: TourPackage[] = [
     description: "For adventurous couples — XTSY 270 luxury base camp with double decker root bridge trek, caving, and jungle camping under the Milky Way.",
     duration: "6 Days",
     difficulty: "Moderate",
-    price: "₹62,500",
+    price: "₹52,999",
     image: doubleDeckerBridgeNewImg,
     rating: 4.9,
     category: "adventure",
