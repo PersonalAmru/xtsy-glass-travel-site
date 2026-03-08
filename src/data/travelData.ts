@@ -877,7 +877,7 @@ const _soloAndBikeTours: TourPackage[] = [
     description: "Royal Enfield solo expedition through Meghalaya's stunning roads — mechanic support vehicle, all gear included, GPS-tracked for safety.",
     duration: "6 Days",
     difficulty: "Challenging",
-    price: "₹35,500",
+    price: "₹28,999",
     image: bumlaPassBikeExpeditionImg,
     rating: 4.9,
     category: "adventure",
