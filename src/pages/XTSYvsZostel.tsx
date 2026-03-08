@@ -335,7 +335,7 @@ const XTSYvsZostel = () => {
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4 border-primary/30 text-primary">The Core Difference</Badge>
             <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4 font-playfair">
-              Owner-Operated vs <span className="text-primary">Franchise Chain</span>
+              Self-Sustaining Ecosystem vs <span className="text-primary">Franchise Chain</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Zostel runs 5 sub-brands (Zostel, Plus, Homes, Trips, House) through franchise partners. 
