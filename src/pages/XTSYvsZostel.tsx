@@ -116,7 +116,7 @@ const XTSYvsZostel = () => {
     },
     {
       icon: Shield,
-      title: "Powered by XTSY One LLP",
+      title: "Powered by XTSY One",
       description: "Professionally registered & managed hospitality brand",
       detail: "Corporate backing ensures quality, reliability, and accountability — not just a hostel name",
     },
