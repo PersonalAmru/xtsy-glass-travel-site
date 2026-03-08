@@ -617,56 +617,78 @@ const XTSYvsZostel = () => {
         </div>
       </section>
 
-      {/* Who We Serve */}
+      {/* Brand Positioning — XTSY vs India's Hostel Chains */}
       <section className="py-16 md:py-20 bg-muted/20" id="comparison">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <Badge variant="outline" className="mb-4 border-primary/30 text-primary">Audience Comparison</Badge>
+            <Badge variant="outline" className="mb-4 border-primary/30 text-primary">Brand Positioning</Badge>
             <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4 font-playfair">
-              Who We <span className="text-primary">Serve</span>
+              XTSY vs India's <span className="text-primary">Hostel Chains</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              XTSY welcomes every kind of traveler. Here's how we compare.
+              How XTSY Travel's self-sustaining ecosystem compares to franchise-driven hostel brands
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {audienceComparison.map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <Card 
-                  key={index} 
-                  className={`transition-all hover:shadow-lg bg-card border-border hover:border-primary/40 ${
-                    item.highlight ? 'border-primary border-2 shadow-primary/10 shadow-lg' : ''
-                  }`}
-                >
-                  <CardHeader className="pb-3">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="p-2 rounded-lg bg-primary/10">
-                        <Icon className="h-5 w-5 text-primary" />
-                      </div>
-                      {item.xtsyWins && <CheckCircle2 className="h-4 w-4 text-emerald-500" />}
-                    </div>
-                    <CardTitle className="text-base text-foreground">{item.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-3 pt-0">
+          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {brandPositioning.map((brand, index) => (
+              <Card 
+                key={index} 
+                className={`transition-all hover:shadow-lg bg-card ${brand.color} ${
+                  brand.highlight ? 'border-2 shadow-primary/10 shadow-lg ring-1 ring-primary/20' : 'border'
+                }`}
+              >
+                <CardHeader className="pb-3">
+                  <div className="flex items-center justify-between mb-1">
+                    <CardTitle className="text-lg text-foreground">{brand.brand}</CardTitle>
+                    {brand.highlight && <Badge className="bg-primary text-primary-foreground text-[10px]">Our Pick</Badge>}
+                  </div>
+                  <CardDescription className="text-xs">{brand.tagline}</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4 pt-0 text-xs">
+                  <div>
+                    <span className="font-semibold text-foreground uppercase tracking-wider text-[10px]">Model</span>
+                    <p className="text-muted-foreground mt-1">{brand.model}</p>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-foreground uppercase tracking-wider text-[10px]">NE India Presence</span>
+                    <p className="text-muted-foreground mt-1">{brand.nePresence}</p>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-foreground uppercase tracking-wider text-[10px]">Pricing</span>
+                    <p className="text-muted-foreground mt-1">{brand.pricing}</p>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-foreground uppercase tracking-wider text-[10px]">Segments Served</span>
+                    <p className="text-muted-foreground mt-1">{brand.segments}</p>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-emerald-500 uppercase tracking-wider text-[10px]">Strengths</span>
+                    <ul className="mt-1 space-y-1">
+                      {brand.strengths.map((s, i) => (
+                        <li key={i} className="flex items-start gap-1.5 text-muted-foreground">
+                          <CheckCircle2 className="h-3 w-3 text-emerald-500 mt-0.5 shrink-0" />
+                          {s}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  {brand.weaknesses.length > 0 && (
                     <div>
-                      <span className="text-xs font-semibold text-primary uppercase tracking-wider">XTSY</span>
-                      <p className="text-xs text-muted-foreground mt-1">{item.xtsy}</p>
+                      <span className="font-semibold text-destructive uppercase tracking-wider text-[10px]">Gaps</span>
+                      <ul className="mt-1 space-y-1">
+                        {brand.weaknesses.map((w, i) => (
+                          <li key={i} className="flex items-start gap-1.5 text-muted-foreground">
+                            <X className="h-3 w-3 text-destructive mt-0.5 shrink-0" />
+                            {w}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                    <div>
-                      <span className="text-xs font-semibold text-muted-foreground/70 uppercase tracking-wider">Zostel</span>
-                      <p className="text-xs text-muted-foreground mt-1">{item.zostel}</p>
-                    </div>
-                    <div className="pt-2 border-t border-border">
-                      <p className={`text-xs font-medium ${item.xtsyWins ? 'text-emerald-600 dark:text-emerald-400' : 'text-muted-foreground'}`}>
-                        {item.verdict}
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
+                  )}
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
