@@ -594,7 +594,7 @@ export const heartlandTours: Record<string, TourPackage[]> = {
       description: "Luxurious houseboat cruises through tranquil winter backwaters — perfect weather for palm-fringed canal exploration.",
       duration: "5 Days",
       difficulty: "Easy",
-      price: "₹29,500",
+      price: "₹23,999",
       image: keralaBackwatersImg,
       rating: 4.8,
       category: "leisure",
