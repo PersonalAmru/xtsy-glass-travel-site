@@ -284,78 +284,73 @@ const XTSYRentals = () => {
               </TabsList>
             </div>
 
-            {/* Cars Grid */}
             <TabsContent value="cars">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
                 {cars.map((car, index) => (
                   <motion.div 
                     key={index}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                    transition={{ duration: 0.3, delay: index * 0.04 }}
                     viewport={{ once: true }}
-                    className="group bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 transition-all duration-500"
+                    className="group bg-card border border-border rounded-xl overflow-hidden hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-400"
                   >
-                    <div className="relative aspect-[16/9] overflow-hidden bg-gradient-to-br from-muted via-card to-muted">
-                      {/* Ambient glow behind vehicle */}
+                    <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-muted via-card to-muted">
                       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_60%,hsl(25_95%_53%/0.06),transparent_70%)]" />
                       <img
                         src={car.image}
                         alt={car.name}
-                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out drop-shadow-2xl p-2"
+                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out drop-shadow-xl p-1.5"
                         loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
                       
-                      {/* Shimmer */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-foreground/5 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
-                      
-                      <div className="absolute top-3 left-3">
-                        <Badge variant="outline" className="bg-background/60 backdrop-blur-sm border-border/50 text-foreground/90 text-xs">
+                      <div className="absolute top-2 left-2">
+                        <Badge variant="outline" className="bg-background/60 backdrop-blur-sm border-border/50 text-foreground/90 text-[10px] px-1.5 py-0.5">
                           {car.category}
                         </Badge>
                       </div>
                       {car.badge && (
-                        <div className="absolute top-3 right-3">
-                          <Badge className="bg-primary text-primary-foreground text-xs font-bold shadow-lg">
+                        <div className="absolute top-2 right-2">
+                          <Badge className="bg-primary text-primary-foreground text-[10px] px-1.5 py-0.5 font-bold">
                             {car.badge}
                           </Badge>
                         </div>
                       )}
                       
-                      <div className="absolute bottom-0 left-0 right-0 p-4">
-                        <h3 className="text-xl font-bold text-foreground drop-shadow-lg">{car.name}</h3>
+                      <div className="absolute bottom-0 left-0 right-0 px-3 py-2">
+                        <h3 className="text-sm font-bold text-foreground drop-shadow-lg">{car.name}</h3>
                       </div>
                     </div>
                     
-                    <div className="p-5">
-                      <div className="grid grid-cols-3 gap-2 mb-4">
-                        <div className="flex items-center gap-1.5 text-muted-foreground text-sm bg-muted/50 rounded-lg px-2 py-1.5">
-                          <Fuel className="w-3.5 h-3.5 text-primary" />
-                          <span>{car.fuel}</span>
+                    <div className="p-3">
+                      <div className="grid grid-cols-3 gap-1 mb-2.5">
+                        <div className="flex items-center gap-1 text-muted-foreground text-[10px] bg-muted/50 rounded px-1.5 py-1">
+                          <Fuel className="w-3 h-3 text-primary shrink-0" />
+                          <span className="truncate">{car.fuel}</span>
                         </div>
-                        <div className="flex items-center gap-1.5 text-muted-foreground text-sm bg-muted/50 rounded-lg px-2 py-1.5">
-                          <Settings className="w-3.5 h-3.5 text-primary" />
-                          <span>{car.transmission}</span>
+                        <div className="flex items-center gap-1 text-muted-foreground text-[10px] bg-muted/50 rounded px-1.5 py-1">
+                          <Settings className="w-3 h-3 text-primary shrink-0" />
+                          <span className="truncate">{car.transmission}</span>
                         </div>
-                        <div className="flex items-center gap-1.5 text-muted-foreground text-sm bg-muted/50 rounded-lg px-2 py-1.5">
-                          <Users className="w-3.5 h-3.5 text-primary" />
-                          <span>{car.seats} Seats</span>
+                        <div className="flex items-center gap-1 text-muted-foreground text-[10px] bg-muted/50 rounded px-1.5 py-1">
+                          <Users className="w-3 h-3 text-primary shrink-0" />
+                          <span>{car.seats}</span>
                         </div>
                       </div>
                       
-                      <div className="flex items-center justify-between pt-3 border-t border-border">
+                      <div className="flex items-center justify-between pt-2 border-t border-border">
                         <div>
-                          <span className="text-2xl font-bold text-primary">
+                          <span className="text-base font-bold text-primary">
                             {formatPrice(car.price)}
                           </span>
-                          <span className="text-muted-foreground text-sm">/day</span>
+                          <span className="text-muted-foreground text-[10px]">/day</span>
                         </div>
                         <button
                           onClick={() => handleWhatsAppBooking(car.name, car.price)}
-                          className="flex items-center gap-2 px-5 py-2.5 bg-[hsl(142_70%_45%)] hover:bg-[hsl(142_70%_50%)] text-primary-foreground rounded-xl transition-all duration-300 shadow-lg hover:scale-105 font-medium"
+                          className="flex items-center gap-1 px-3 py-1.5 bg-[hsl(142_70%_45%)] hover:bg-[hsl(142_70%_50%)] text-primary-foreground rounded-lg transition-all text-xs font-medium"
                         >
-                          <Phone className="w-4 h-4" />
+                          <Phone className="w-3 h-3" />
                           Book
                         </button>
                       </div>
