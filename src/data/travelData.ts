@@ -507,7 +507,7 @@ export const heartlandTours: Record<string, TourPackage[]> = {
       description: "Peaceful winter escape to pristine mountain lakes — colonial charm meets Kumaon hills beauty in perfect weather.",
       duration: "4 Days",
       difficulty: "Easy",
-      price: "₹18,999",
+    price: "₹24,999",
       image: nainitalLakeImg,
       rating: 4.6,
       category: "leisure",
