@@ -521,7 +521,7 @@ export const heartlandTours: Record<string, TourPackage[]> = {
       description: "Pre-season sacred sites exploration and winter yoga retreats — spiritual preparation in Himalayan foothills.",
       duration: "8 Days",
       difficulty: "Moderate",
-    price: "₹39,999",
+    price: "₹46,999",
       image: charDhamYatraImg,
       rating: 4.9,
       category: "cultural",
