@@ -41,7 +41,7 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4 sm:space-x-6 justify-center">
               <a href="https://www.instagram.com/xtsy.one/?next=%2F" target="_blank" rel="noopener noreferrer">
-                <Instagram className="h-5 w-5 sm:h-6 sm:w-6 text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-300 touch-manipulation" />
+                <Instagram className="h-5 w-5 sm:h-6 sm:w-6 text-muted-foreground hover:text-primary cursor-pointer transition-colors duration-300 touch-manipulation" />
               </a>
               <a href="https://www.youtube.com/@XTSY_Shillong" target="_blank" rel="noopener noreferrer">
                 <Youtube className="h-5 w-5 sm:h-6 sm:w-6 text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-300 touch-manipulation" />
