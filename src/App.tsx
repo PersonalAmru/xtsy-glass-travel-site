@@ -138,7 +138,7 @@ const XTSYRouteLoader = memo(() => (
         fontFamily: "'Playfair Display', serif",
         fontSize: 28,
         fontWeight: 700,
-        background: 'linear-gradient(90deg, #f97316, #dc2626)',
+        background: 'linear-gradient(90deg, hsl(28, 92%, 52%), hsl(0, 72%, 51%))',
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
         margin: '0 0 8px 0',
