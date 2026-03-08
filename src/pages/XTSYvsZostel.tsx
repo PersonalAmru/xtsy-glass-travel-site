@@ -209,7 +209,7 @@ const XTSYvsZostel = () => {
     },
     {
       question: "Is Zostel a franchise? Does that affect quality?",
-      answer: "Yes. Zostel operates multiple tiers — Zostel (hostels), Zostel Plus (premium partner properties), Zostel Homes (homestays), and Zo Trips (outsourced group tours). Each is run by a different franchise partner, meaning quality, cleanliness, and service vary location to location. XTSY is directly owned and operated by XTSY One LLP — one team, one standard, consistently high quality.",
+      answer: "Yes. Zostel operates multiple tiers — Zostel (hostels), Zostel Plus (premium partner properties), Zostel Homes (homestays), and Zo Trips (outsourced group tours). Each is run by a different franchise partner, meaning quality, cleanliness, and service vary location to location. XTSY is directly owned and operated by XTSY One — one team, one standard, consistently high quality.",
     },
     {
       question: "Does Zostel operate across all 8 Northeast states like XTSY?",
