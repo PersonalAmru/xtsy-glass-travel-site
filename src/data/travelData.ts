@@ -705,7 +705,7 @@ export const internationalTours: Record<string, TourPackage[]> = {
       description: "The last Shangri-La — Paro's Tiger's Nest, Thimphu's fortress monasteries, and Punakha's river valleys in the world's happiest country.",
       duration: "6 Days",
       difficulty: "Moderate",
-      price: "₹95,000",
+      price: "₹84,999",
       image: "https://images.unsplash.com/photo-1553856622-d1b352e24a45?w=800&q=80",
       rating: 4.9,
       category: "cultural",
