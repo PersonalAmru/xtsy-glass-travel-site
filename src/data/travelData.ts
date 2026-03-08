@@ -649,7 +649,7 @@ export const internationalTours: Record<string, TourPackage[]> = {
       description: "Beyond the beaches — explore Chiang Mai's temple trails, Krabi's emerald pools, and authentic Thai village life curated the XTSY way.",
       duration: "8 Days",
       difficulty: "Easy",
-      price: "₹78,000",
+      price: "₹64,999",
       image: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800&q=80",
       rating: 4.7,
       category: "cultural",
