@@ -377,7 +377,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
       description: "Walk through history at the pivotal WWII battleground and explore the resilient tribal heritage of the Naga people.",
       duration: "4 Days",
       difficulty: "Easy",
-    price: "₹18,999",
+    price: "₹19,999",
       image: kohimaWarImg,
       rating: 4.6,
       category: "cultural",
