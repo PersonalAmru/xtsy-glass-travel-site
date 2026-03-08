@@ -16,8 +16,8 @@ const TravelHero = () => {
       <div className="relative z-10 container mx-auto px-4 sm:px-6 text-center">
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full mb-6 sm:mb-8">
-          <Compass className="h-4 w-4 text-amber-400" />
-          <span className="text-xs sm:text-sm font-medium text-amber-200 tracking-wide uppercase">XTSY Voyage</span>
+          <Compass className="h-4 w-4 text-primary" />
+          <span className="text-xs sm:text-sm font-medium text-primary tracking-wide uppercase">XTSY Voyage</span>
         </div>
 
         {/* Title */}
