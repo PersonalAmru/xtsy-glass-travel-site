@@ -172,7 +172,7 @@ const XTSYRouteLoader = memo(() => (
       }} />
     </div>
     <style>{`
-      @keyframes xtsy-loader-pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.85; transform: scale(1.05); } }
+      @keyframes xtsy-loader-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
       @keyframes xtsy-loader-progress { 0% { width: 0%; margin-left: 0; } 50% { width: 60%; margin-left: 20%; } 100% { width: 0%; margin-left: 100%; } }
     `}</style>
   </div>
