@@ -565,7 +565,7 @@ export const heartlandTours: Record<string, TourPackage[]> = {
       description: "Exclusive deep dive into Tamil temple architecture with expert archaeologists — decode ancient inscriptions and Chola engineering genius.",
       duration: "10 Days",
       difficulty: "Moderate",
-    price: "₹52,999",
+    price: "₹54,999",
       image: tamilNaduBrihadeeswraUnescoImg,
       rating: 4.9,
       category: "educational",
