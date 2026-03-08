@@ -270,7 +270,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
       description: "Budget-friendly 3-day waterfall hopping tour through Meghalaya's hidden cascades — trek to pristine falls and swim in natural pools.",
       duration: "3 Days",
       difficulty: "Moderate",
-    price: "₹13,999",
+    price: "₹12,999",
       image: phiPhiWaterfallMeghalayaImg,
       images: [phiPhiWaterfallMeghalayaImg, moopunWaterfallImg],
       rating: 4.7,
