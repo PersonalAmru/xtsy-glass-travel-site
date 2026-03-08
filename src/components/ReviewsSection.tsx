@@ -830,9 +830,9 @@ const ReviewsSection = () => {
                   disabled={isLoadingMore}
                   className={cn(
                     "px-8 py-3 rounded-full font-medium",
-                    "bg-gradient-to-r from-violet-600 to-fuchsia-600",
-                    "hover:from-violet-500 hover:to-fuchsia-500",
-                    "text-white"
+                    "bg-gradient-to-r from-primary to-brand-ember",
+                    "hover:from-primary/90 hover:to-brand-ember/90",
+                    "text-primary-foreground"
                   )}
                 >
                   {isLoadingMore ? (
@@ -848,7 +848,7 @@ const ReviewsSection = () => {
             )}
             
             {visibleReviewsCount >= allReviewsCombined.length && (
-              <p className="text-center text-white/40 text-sm py-6">
+              <p className="text-center text-muted-foreground text-sm py-6">
                 All {allReviewsCombined.length} reviews loaded
               </p>
             )}
