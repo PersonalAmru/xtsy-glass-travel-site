@@ -62,7 +62,7 @@ const xtsyPrimeOfferings = [
     title: "XTSY vs Zostel",
     shortTitle: "Why XTSY?",
     description: "Zostel is a vibe, but your whole journey is a vibe with XTSY. We support large groups, families, educational tours, and cross-border adventures.",
-    image: xtsyVsZostelHero,
+    image: imgUrl("xtsy-vs-zostel-hero-new.jpg"),
     icon: Trophy,
     price: "Compare",
     priceNote: "and discover the difference",
