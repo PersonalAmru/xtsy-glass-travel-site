@@ -16,7 +16,7 @@ const TravelFinalCTA = () => (
           href="https://wa.me/919366074889?text=Hi%20XTSY%20Voyage!%20I%27d%20like%20to%20discuss%20a%20custom%20trip."
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-lg shadow-amber-500/25 transition-all hover:scale-105 text-sm sm:text-base"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-brand-ember hover:from-primary/90 hover:to-brand-ember/90 text-primary-foreground font-semibold rounded-full shadow-lg shadow-primary/25 transition-all hover:scale-105 text-sm sm:text-base"
         >
           <MessageCircle className="h-5 w-5" />
           Request a Custom Trip
