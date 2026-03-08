@@ -932,7 +932,7 @@ export const reHimalayanExpedition: TourPackage = {
   description: "Experience the ultimate cross-border adventure on a Royal Enfield Himalayan through Northeast India, Nepal, and Bhutan.",
   duration: "12-15 Days",
   difficulty: "Challenging",
-  price: "₹1,85,000",
+  price: "₹1,59,999",
   image: reHimalayanNepalExpedition,
   rating: 4.9,
   category: "adventure",
