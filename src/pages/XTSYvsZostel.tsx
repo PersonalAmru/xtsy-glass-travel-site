@@ -208,7 +208,7 @@ const XTSYvsZostel = () => {
     {
       icon: Star,
       title: "Franchise quality varies. XTSY is consistently 9.4+",
-      description: "Zostel's franchise model means quality depends on the local partner. XTSY is owner-operated — consistently rated 9.4/10 on Booking.com, 4.8/5 on Google, 9.6/10 on Agoda across every guest segment.",
+      description: "Zostel's franchise model means quality depends on the local partner. XTSY is a self-sustaining ecosystem — consistently rated 9.4/10 on Booking.com, 4.8/5 on Google, 9.6/10 on Agoda across every guest segment.",
     },
     {
       icon: AlertTriangle,
