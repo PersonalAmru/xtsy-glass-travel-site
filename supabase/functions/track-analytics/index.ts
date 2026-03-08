@@ -273,14 +273,7 @@ Deno.serve(async (req) => {
       }
     };
 
-    // Insert event into traveller_events
-    const { error: eventError } = await supabase.from('traveller_events').insert(eventData);
-    if (eventError) {
-      // Server-side only - generic code for debugging
-      console.error('[Analytics] Event insert failed - code: TE001');
-    }
-
-    // Upsert traveller profile
+    // Parallelize: Insert event + Upsert profile + Increment stats simultaneously
     const profileUpdate: Record<string, any> = {
       visitor_id: visitorId,
       last_seen_at: new Date().toISOString(),
@@ -288,37 +281,31 @@ Deno.serve(async (req) => {
       updated_at: new Date().toISOString(),
     };
 
-    // Set first touch attribution on first visit
     if (data.is_entrance) {
       profileUpdate.first_touch_source = data.source || data.utm_source || 'direct';
       profileUpdate.first_touch_medium = data.medium || data.utm_medium || null;
       profileUpdate.first_touch_campaign = data.utm_campaign || null;
     }
 
-    // Always update last touch
     profileUpdate.last_touch_source = data.source || data.utm_source || null;
     profileUpdate.last_touch_medium = data.medium || data.utm_medium || null;
 
-    // Upsert profile
-    const { error: profileError } = await supabase.from('traveller_profiles').upsert(profileUpdate, {
-      onConflict: 'visitor_id',
-    });
-    if (profileError) {
-      // Server-side only - generic code for debugging
-      console.error('[Analytics] Profile upsert failed - code: TP001');
+    const parallelOps: Promise<any>[] = [
+      supabase.from('traveller_events').insert(eventData),
+      supabase.from('traveller_profiles').upsert(profileUpdate, { onConflict: 'visitor_id' }),
+    ];
+
+    if (endpoint === 'pageview') {
+      parallelOps.push(
+        supabase.rpc('increment_traveller_stats', {
+          p_visitor_id: visitorId,
+          p_is_new_session: data.is_entrance || false
+        }).then(() => {}).catch(() => {})
+      );
     }
 
-    // Increment session/pageview counts
-    if (endpoint === 'pageview') {
-      const { error: rpcError } = await supabase.rpc('increment_traveller_stats', {
-        p_visitor_id: visitorId,
-        p_is_new_session: data.is_entrance || false
-      });
-      if (rpcError) {
-        // Server-side only - generic code for debugging
-        console.warn('[Analytics] Stats increment unavailable - code: TS001');
-      }
-    }
+    // Fire all in parallel, don't block on results
+    await Promise.allSettled(parallelOps);
 
     // ============ EXISTING ANALYTICS LOGIC ============
     switch (endpoint) {
