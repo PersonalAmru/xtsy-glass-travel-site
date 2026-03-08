@@ -23,7 +23,7 @@ const TravelHero = () => {
         {/* Title */}
         <h1 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 leading-[1.1] tracking-tight">
           Travel Beyond<br />
-          <span className="bg-gradient-to-r from-amber-300 via-orange-400 to-red-400 bg-clip-text text-transparent">the Map</span>
+          <span className="bg-gradient-to-r from-brand-gold via-primary to-destructive bg-clip-text text-transparent">the Map</span>
         </h1>
 
         {/* Subtitle */}
