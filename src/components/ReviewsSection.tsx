@@ -19,7 +19,6 @@ const isMobileDevice = () => {
 };
 
 const ReviewsSection = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedReview, setSelectedReview] = useState<Review | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isAllReviewsOpen, setIsAllReviewsOpen] = useState(false);
