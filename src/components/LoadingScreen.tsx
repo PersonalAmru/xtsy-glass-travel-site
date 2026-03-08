@@ -9,8 +9,8 @@ interface LoadingScreenProps {
 // Inline critical styles
 const loadingStyles = `
   @keyframes xtsy-loader-pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.85; transform: scale(1.05); }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
   }
   @keyframes xtsy-loader-progress {
     0% { width: 0%; margin-left: 0; }
