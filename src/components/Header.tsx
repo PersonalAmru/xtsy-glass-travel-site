@@ -74,10 +74,10 @@ const Header = () => {
                 onError={handleLogoError}
               />
             ) : (
-              <div className={`bg-gradient-to-r from-orange-500 to-red-600 rounded flex items-center justify-center ${
-                isMobile ? 'h-10 w-20' : isTablet ? 'h-11 w-22' : 'h-12 w-24'
+              <div className={`bg-gradient-to-r from-primary to-brand-secondary rounded-lg flex items-center justify-center ${
+                isMobile ? 'h-12 w-24' : isTablet ? 'h-14 w-28' : 'h-16 w-32'
               }`}>
-                <span className="text-white font-bold text-sm">XTSY</span>
+                <span className="text-white font-bold text-base">XTSY</span>
               </div>
             )}
           </Link>
