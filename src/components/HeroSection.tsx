@@ -52,7 +52,7 @@ const HeroSection = () => {
     return () => clearInterval(languageInterval);
   }, [languages.length, isMobile]);
 
-  // Fetch average rating
+  // Fetch average rating - deferred to avoid blocking initial render
   useEffect(() => {
     const fetchAverageRating = async () => {
       try {
@@ -82,8 +82,14 @@ const HeroSection = () => {
       }
     };
 
-    const timeoutId = setTimeout(fetchAverageRating, 100);
-    return () => clearTimeout(timeoutId);
+    // Use requestIdleCallback to defer non-critical fetch
+    if ('requestIdleCallback' in window) {
+      const idleId = requestIdleCallback(() => fetchAverageRating(), { timeout: 3000 });
+      return () => cancelIdleCallback(idleId);
+    } else {
+      const timeoutId = setTimeout(fetchAverageRating, 1500);
+      return () => clearTimeout(timeoutId);
+    }
   }, []);
 
   const handleSearch = () => {
