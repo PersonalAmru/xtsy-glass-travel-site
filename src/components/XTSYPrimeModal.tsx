@@ -36,8 +36,8 @@ const XTSYPrimeModal: React.FC<XTSYPrimeModalProps> = ({ isOpen, onClose, offeri
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-3xl p-0 gap-0 overflow-hidden bg-background border-0 shadow-2xl rounded-2xl">
-        <div className="max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-3xl p-0 gap-0 overflow-hidden bg-background border-0 shadow-2xl rounded-2xl max-h-[90vh]">
+        <div className="overflow-y-auto max-h-[90vh] overscroll-contain" style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'thin' }}>
           <div className="relative h-64 sm:h-72 md:h-80 overflow-hidden">
             <motion.img
               initial={{ scale: 1.1 }}
