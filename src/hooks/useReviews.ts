@@ -110,7 +110,7 @@ export function useReviews() {
   // Calculate average rating by property
   const averageRatings = useMemo(() => {
     const hostelReviews = reviews.filter(r => r.property === 'XTSY Travellers Hostel');
-    const luxuryReviews = reviews.filter(r => r.property === 'XTSY Xperience');
+    const luxuryReviews = reviews.filter(r => r.property === 'XTSY Experience');
     
     const calcAvg = (revs: Review[]) => 
       revs.length > 0 

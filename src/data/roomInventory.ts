@@ -319,6 +319,6 @@ export const STATUS_COLORS: Record<RoomStatus, { bg: string; text: string; borde
 
 // Category display names
 export const CATEGORY_LABELS: Record<RoomCategory, string> = {
-  luxury: 'XTSY Xperience',
+  luxury: 'XTSY Experience',
   hostel: 'XTSY Travellers Hostel',
 };

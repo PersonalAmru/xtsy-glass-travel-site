@@ -393,7 +393,7 @@ const RoomSelectionStep = ({
 
   // Get property type label
   const getPropertyLabel = (category: string) => {
-    if (category === 'luxury') return 'XTSY Xperience';
+    if (category === 'luxury') return 'XTSY Experience';
     if (category === 'hostel') return 'XTSY Travellers Hostel';
     if (category === 'economy') return 'XTSY Economy';
     return category;

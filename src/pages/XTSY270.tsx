@@ -311,7 +311,7 @@ Can't wait to sleep under the stars! 🌌✨`;
                     Luxury Without Compromise
                  </h2>
                  <p className="text-xl text-stone-700 font-medium max-w-3xl mx-auto">
-                   XTSY Xperience gives you mountains, forest, sky, stars — and still the comforts of a premium stay
+                   XTSY Experience gives you mountains, forest, sky, stars — and still the comforts of a premium stay
                 </p>
               </div>
 
