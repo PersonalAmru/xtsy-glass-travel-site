@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { Star, ChevronLeft, ChevronRight, X, Loader2, BadgeCheck, Quote, Sparkles } from "lucide-react";
+import { Star, X, Loader2, BadgeCheck, Quote, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@/components/ui/visually-hidden";
@@ -19,7 +19,6 @@ const isMobileDevice = () => {
 };
 
 const ReviewsSection = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedReview, setSelectedReview] = useState<Review | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isAllReviewsOpen, setIsAllReviewsOpen] = useState(false);
@@ -594,20 +593,7 @@ const ReviewsSection = () => {
     [allReviewsCombined]
   );
 
-  const nextReview = useCallback(() => {
-    setCurrentIndex(prev => (prev + 1) % Math.max(1, Math.ceil(filteredReviews.length / 4) - 1));
-  }, [filteredReviews.length]);
-
-  const prevReview = useCallback(() => {
-    setCurrentIndex(prev => (prev - 1 + Math.ceil(filteredReviews.length / 4)) % Math.ceil(filteredReviews.length / 4));
-  }, [filteredReviews.length]);
-
-  // Removed duplicate handleReviewClick - now using the tracked version defined above
-
-  useEffect(() => {
-    const interval = setInterval(nextReview, 5000);
-    return () => clearInterval(interval);
-  }, [nextReview]);
+  // Removed carousel navigation - now using CSS marquee animation
 
   // Load more reviews handler
   const handleLoadMore = useCallback(() => {
@@ -684,105 +670,71 @@ const ReviewsSection = () => {
           <div className="w-24 h-1 bg-gradient-to-r from-violet-500 to-fuchsia-500 mx-auto mt-6 rounded-full" />
         </div>
 
-        {/* Premium Carousel - Only render visible + adjacent slides to reduce DOM */}
-        <div className="relative mb-16">
-          <div className="overflow-hidden rounded-2xl">
-            <div 
-              className="flex transition-transform duration-700 ease-out" 
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-            >
-              {Array.from({ length: Math.ceil(filteredReviews.length / 4) }).map((_, slideIndex) => {
-                // Only render current slide and 1 adjacent slide in each direction
-                const isNearby = Math.abs(slideIndex - currentIndex) <= 1 || 
-                  (currentIndex === 0 && slideIndex === Math.ceil(filteredReviews.length / 4) - 1) ||
-                  (currentIndex === Math.ceil(filteredReviews.length / 4) - 1 && slideIndex === 0);
-                
-                return (
-                  <div key={slideIndex} className="w-full flex-shrink-0">
-                    {isNearby ? (
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-2">
-                        {filteredReviews.slice(slideIndex * 4, slideIndex * 4 + 4).map((review, index) => (
-                          <PremiumReviewCard
-                            key={`${slideIndex}-${index}`}
-                            review={review}
-                            onClick={() => handleReviewClick(review)}
-                            variant="carousel"
-                            isMobile={isMobile}
-                            index={index}
-                          />
-                        ))}
-                      </div>
-                    ) : (
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-2" style={{ minHeight: '200px' }} />
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Navigation Buttons */}
-          <Button 
-            variant="outline" 
-            size="icon" 
-            className={cn(
-              "absolute left-2 top-1/2 -translate-y-1/2 z-10",
-              "bg-white/5 border-white/10 text-white backdrop-blur-xl",
-              "hover:bg-white/10 hover:border-white/20 hover:scale-110",
-              "transition-all duration-300 rounded-full w-10 h-10"
-            )}
-            onClick={prevReview}
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </Button>
+        {/* Infinite Marquee - Row 1 (scrolls left) */}
+        <div className="relative mb-4 overflow-hidden">
+          {/* Gradient fade edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 z-10 bg-gradient-to-r from-slate-950 to-transparent pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 z-10 bg-gradient-to-l from-slate-950 to-transparent pointer-events-none" />
           
-          <Button 
-            variant="outline" 
-            size="icon" 
-            className={cn(
-              "absolute right-2 top-1/2 -translate-y-1/2 z-10",
-              "bg-white/5 border-white/10 text-white backdrop-blur-xl",
-              "hover:bg-white/10 hover:border-white/20 hover:scale-110",
-              "transition-all duration-300 rounded-full w-10 h-10"
-            )}
-            onClick={nextReview}
+          <div 
+            className="flex animate-marquee-left gap-4 hover:[animation-play-state:paused]"
+            style={{ '--marquee-duration': `${Math.max(30, filteredReviews.length * 5)}s` } as React.CSSProperties}
           >
-            <ChevronRight className="h-5 w-5" />
-          </Button>
-
-          {/* Carousel Dots */}
-          <div className="flex justify-center gap-2 mt-6">
-            {Array.from({ length: Math.ceil(filteredReviews.length / 4) }).slice(0, 8).map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setCurrentIndex(i)}
-                className={cn(
-                  "w-2 h-2 rounded-full transition-all duration-300",
-                  currentIndex === i 
-                    ? "w-8 bg-gradient-to-r from-violet-500 to-fuchsia-500" 
-                    : "bg-white/20 hover:bg-white/40"
-                )}
-              />
+            {/* Duplicate reviews for seamless loop */}
+            {[...filteredReviews, ...filteredReviews].map((review, index) => (
+              <div key={`row1-${index}`} className="flex-shrink-0 w-[300px] sm:w-[340px]">
+                <PremiumReviewCard
+                  review={review}
+                  onClick={() => handleReviewClick(review)}
+                  variant="carousel"
+                  isMobile={isMobile}
+                  index={index % 4}
+                />
+              </div>
             ))}
           </div>
+        </div>
 
-          {/* View All Button */}
-          <div className="flex justify-center mt-8">
-            <Button 
-              onClick={() => setIsAllReviewsOpen(true)}
-              className={cn(
-                "px-8 py-3 rounded-full font-medium",
-                "bg-gradient-to-r from-violet-600 to-fuchsia-600",
-                "hover:from-violet-500 hover:to-fuchsia-500",
-                "text-white shadow-lg shadow-violet-500/25",
-                "hover:shadow-xl hover:shadow-violet-500/30",
-                "transition-all duration-300 hover:scale-105"
-              )}
-            >
-              <Sparkles className="w-4 h-4 mr-2" />
-              View All {filteredReviews.length} Reviews
-            </Button>
+        {/* Infinite Marquee - Row 2 (scrolls right) */}
+        <div className="relative mb-12 overflow-hidden">
+          <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 z-10 bg-gradient-to-r from-slate-950 to-transparent pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 z-10 bg-gradient-to-l from-slate-950 to-transparent pointer-events-none" />
+          
+          <div 
+            className="flex animate-marquee-right gap-4 hover:[animation-play-state:paused]"
+            style={{ '--marquee-duration': `${Math.max(35, filteredReviews.length * 5.5)}s` } as React.CSSProperties}
+          >
+            {/* Reversed + duplicated for opposite direction seamless loop */}
+            {[...filteredReviews].reverse().concat([...filteredReviews].reverse()).map((review, index) => (
+              <div key={`row2-${index}`} className="flex-shrink-0 w-[300px] sm:w-[340px]">
+                <PremiumReviewCard
+                  review={review}
+                  onClick={() => handleReviewClick(review)}
+                  variant="carousel"
+                  isMobile={isMobile}
+                  index={index % 4}
+                />
+              </div>
+            ))}
           </div>
+        </div>
+
+        {/* View All Button */}
+        <div className="flex justify-center">
+          <Button 
+            onClick={() => setIsAllReviewsOpen(true)}
+            className={cn(
+              "px-8 py-3 rounded-full font-medium",
+              "bg-gradient-to-r from-violet-600 to-fuchsia-600",
+              "hover:from-violet-500 hover:to-fuchsia-500",
+              "text-white shadow-lg shadow-violet-500/25",
+              "hover:shadow-xl hover:shadow-violet-500/30",
+              "transition-all duration-300 hover:scale-105"
+            )}
+          >
+            <Sparkles className="w-4 h-4 mr-2" />
+            View All {filteredReviews.length} Reviews
+          </Button>
         </div>
 
         {/* Platform Ratings */}
