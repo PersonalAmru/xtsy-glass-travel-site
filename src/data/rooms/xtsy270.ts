@@ -1,4 +1,4 @@
-import { Wifi, Coffee, Bath, Bed, Mountain, Star, Award, Eye, Sun, Moon, Users, MapPin, Wind, Tv, Shield, Camera } from 'lucide-react';
+import { Wifi, Bath, Bed, Mountain, Star, Award, Eye, Sun, Moon, Users, MapPin, Wind, Tv, Shield, Camera } from 'lucide-react';
 import xtsyStargazing from '@/assets/xtsy-270-stargazing.jpeg';
 import xtsyAerial from '@/assets/xtsy-270-aerial.jpeg';
 import xtsyMilkyway from '@/assets/xtsy-270-milkyway.jpeg';
