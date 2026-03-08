@@ -52,7 +52,7 @@ const getSourceColor = (source: string) => {
 };
 
 const getPropertyColor = (property: string) => {
-  if (property === "XTSY Xperience") return "from-purple-500 to-purple-600";
+  if (property === "XTSY Experience") return "from-purple-500 to-purple-600";
   return "from-orange-500 to-amber-500";
 };
 

@@ -21,9 +21,9 @@ const SEOContent: React.FC<SEOContentProps> = ({ page = 'home' }) => {
         };
       case 'about':
         return {
-          title: "XTSY Travellers Hostel & Xperience | India's First 270° Glass Ensuite & Biggest Hostel in North East India",
+          title: "XTSY Travellers Hostel & Experience | India's First 270° Glass Ensuite & Biggest Hostel in North East India",
           description: "Discover XTSY – India's biggest hostel in North East India and highest-rated traveller hostel. Featuring India's first 270° stargazing glass suite and premium group accommodations. Powered by xtsyonellp.",
-          keywords: "biggest hostel north east india, biggest hostel shillong meghalaya, highest rated traveller hostel north east, best honeymoon stay india, group travel hostel india, luxury stargazing suite india, 270° glass room shillong, pan india travel brand, xtsyonellp, XTSY Travellers Hostel, XTSY Xperience, northeast india accommodation, stargazing glass suite, architectural innovation india, photographer friendly stay india, couple travel india 2025, backpacker hostel northeast india"
+          keywords: "biggest hostel north east india, biggest hostel shillong meghalaya, highest rated traveller hostel north east, best honeymoon stay india, group travel hostel india, luxury stargazing suite india, 270° glass room shillong, pan india travel brand, xtsyonellp, XTSY Travellers Hostel, XTSY Experience, northeast india accommodation, stargazing glass suite, architectural innovation india, photographer friendly stay india, couple travel india 2025, backpacker hostel northeast india"
         };
       case 'deals':
         return {

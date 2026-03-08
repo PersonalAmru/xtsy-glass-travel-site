@@ -82,7 +82,7 @@ export const ROOM_INVENTORY: Record<string, RoomType> = {
       xtsyInterior,
     ],
     isBookable: true,
-    propertyType: 'XTSY Xperience',
+    propertyType: 'XTSY Experience',
     displayOrder: 1,
     tags: ['luxury_couple'],
   },
@@ -319,6 +319,6 @@ export const STATUS_COLORS: Record<RoomStatus, { bg: string; text: string; borde
 
 // Category display names
 export const CATEGORY_LABELS: Record<RoomCategory, string> = {
-  luxury: 'XTSY Xperience',
+  luxury: 'XTSY Experience',
   hostel: 'XTSY Travellers Hostel',
 };

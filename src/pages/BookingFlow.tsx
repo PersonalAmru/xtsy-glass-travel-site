@@ -343,7 +343,7 @@ const getRoomTag = (room: RoomType) => {
   if (propertyType === 'XTSY Travellers Hostel' && room.kind === 'dorm') {
     return { label: 'Best Seller', color: 'bg-emerald-500/90 text-white' };
   }
-  if (propertyType === 'XTSY Xperience') {
+  if (propertyType === 'XTSY Experience') {
     return { label: 'Luxury', color: 'bg-amber-500/90 text-white' };
   }
   return null;
@@ -393,7 +393,7 @@ const RoomSelectionStep = ({
 
   // Get property type label
   const getPropertyLabel = (category: string) => {
-    if (category === 'luxury') return 'XTSY Xperience';
+    if (category === 'luxury') return 'XTSY Experience';
     if (category === 'hostel') return 'XTSY Travellers Hostel';
     if (category === 'economy') return 'XTSY Economy';
     return category;

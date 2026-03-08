@@ -30,12 +30,12 @@ const XTSY270: React.FC = () => {
   const canonicalUrl = XTSY270_DATA.canonicalUrl;
   const keywords = (XTSY270_DATA as any).seoKeywords || '';
   const handleBookingClick = () => {
-    const message = `🏕️ *XTSY Xperience – Glasshouse Glamping Inquiry*
+    const message = `🏕️ *XTSY Experience – Glasshouse Glamping Inquiry*
 
 Hi XTSY Team! I'd love to experience India's first 270° glasshouse glamping retreat! 🌟
 
 🏔️ *What I'm Interested In:*
-• XTSY Xperience – 270° Glamping Retreat
+• XTSY Experience – 270° Glamping Retreat
 • Luxury glamping in Shillong, Meghalaya
 • Stargazing from bed & pine forest views
 • Romantic couples retreat
@@ -55,7 +55,7 @@ Can't wait to sleep under the stars! 🌌✨`;
   const roomLd = {
     '@context': 'https://schema.org',
     '@type': 'LodgingBusiness',
-    name: 'XTSY Xperience – 270° Glasshouse Glamping Retreat',
+    name: 'XTSY Experience – 270° Glasshouse Glamping Retreat',
     description: 'India\'s first 270° panoramic glasshouse glamping retreat in Shillong, Meghalaya. Sleep under stars, wake to mountains — luxury glamping for couples.',
     url: canonicalUrl,
     address: {
@@ -116,7 +116,7 @@ Can't wait to sleep under the stars! 🌌✨`;
             animationDelay: '0.2s'
           }}>
                <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-stone-900 leading-tight">
-                 XTSY Xperience
+                 XTSY Experience
                </h1>
                <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 text-stone-800">
                  India's First 270° Glasshouse Glamping Retreat
@@ -311,7 +311,7 @@ Can't wait to sleep under the stars! 🌌✨`;
                     Luxury Without Compromise
                  </h2>
                  <p className="text-xl text-stone-700 font-medium max-w-3xl mx-auto">
-                   XTSY Xperience gives you mountains, forest, sky, stars — and still the comforts of a premium stay
+                   XTSY Experience gives you mountains, forest, sky, stars — and still the comforts of a premium stay
                 </p>
               </div>
 
