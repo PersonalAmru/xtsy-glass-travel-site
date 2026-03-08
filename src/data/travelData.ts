@@ -409,7 +409,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
       description: "Winter journey through ancient palaces and bamboo craft villages — discover sustainable tribal artisan traditions.",
       duration: "4 Days",
       difficulty: "Moderate",
-    price: "₹18,999",
+    price: "₹22,999",
       image: tripuraBambooHeritageImg,
       images: [tripuraBambooHeritageImg, mizoramBambooImg],
       rating: 4.5,
