@@ -26,7 +26,7 @@ const Footer = () => {
     setLogoLoaded(true);
     setLogoError(false);
   };
-  return <footer className="bg-gray-900 text-white py-4 sm:py-8 md:py-12 lg:py-16">
+  return <footer className="bg-card border-t border-border text-foreground py-4 sm:py-8 md:py-12 lg:py-16">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {/* Brand Section */}
