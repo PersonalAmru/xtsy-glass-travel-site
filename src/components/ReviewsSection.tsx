@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { Star, ChevronLeft, ChevronRight, X, Loader2, BadgeCheck, Quote, Sparkles } from "lucide-react";
+import { Star, X, Loader2, BadgeCheck, Quote, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@/components/ui/visually-hidden";
