@@ -228,7 +228,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
       description: "Trek through pristine winter forests to discover 500-year-old living bridges crafted by nature and tribal wisdom.",
       duration: "5 Days",
       difficulty: "Moderate",
-    price: "₹22,999",
+    price: "₹23,999",
       image: doubleDeckerBridgeNewImg,
       rating: 4.8,
       category: "adventure",
