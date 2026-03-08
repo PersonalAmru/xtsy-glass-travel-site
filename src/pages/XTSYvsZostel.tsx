@@ -479,7 +479,8 @@ const XTSYvsZostel = () => {
 
           <div className="text-center mt-6">
             <p className="text-sm text-muted-foreground">
-              XTSY operates across <strong className="text-foreground">all 8 NE states</strong> through owned properties, tours, govt partnerships, and multi-state itineraries
+              XTSY operates across <strong className="text-foreground">all 8 NE states</strong> — no franchise model. We plan curated private tours from solo to groups of 50+, with govt partnerships and multi-state itineraries.
+            </p>
             </p>
           </div>
         </div>
