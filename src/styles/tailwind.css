@@ -387,9 +387,9 @@ img.lazy-below-fold {
   @apply text-center mb-8 sm:mb-12;
 }
 
-.section-title-card {
-  @apply inline-block px-6 py-4 rounded-2xl bg-white/80 backdrop-blur-sm shadow-lg;
-}
+  .section-title-card {
+    @apply inline-block px-6 py-4 rounded-2xl bg-card/80 backdrop-blur-sm shadow-lg border border-border;
+  }
 
 .grid-3-fixed {
   @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 max-w-7xl;
