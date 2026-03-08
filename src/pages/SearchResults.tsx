@@ -140,7 +140,7 @@ const SearchResults = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       <Header />
       
-      <main className="pt-20 pb-16">
+      <main className="pb-16">
         {/* Sticky Header with Edit Toggle */}
         <div className="sticky top-16 z-40 bg-background/95 backdrop-blur-lg border-b border-border/50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
