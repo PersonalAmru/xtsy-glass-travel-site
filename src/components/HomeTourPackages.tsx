@@ -94,7 +94,7 @@ const couplePackages = [
     id: 603, title: "XTSY 270 Adventure Couple Circuit",
     description: "XTSY 270 luxury base camp with root bridge trek & jungle camping",
     duration: "6 Days", difficulty: "Moderate", price: "₹62,500",
-    image: doubleDeckerBridgeNewImg, rating: 4.9, category: "adventure", location: "Meghalaya",
+    image: imgUrl("double-decker-bridge-new.jpg"), rating: 4.9, category: "adventure", location: "Meghalaya",
     highlights: ["XTSY 270 Base Camp", "Root Bridge Trek", "Milky Way Night"],
   },
 ];
