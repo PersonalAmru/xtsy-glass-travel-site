@@ -143,7 +143,7 @@ const XTSYvsZostel = () => {
     { feature: "Corporate Retreats", xtsy: true, zostel: false, xtsyNote: "8+ Retreats" },
     { feature: "International Tours", xtsy: true, zostel: false, xtsyNote: "Cross-border" },
     { feature: "Pet-Friendly Stays", xtsy: true, zostel: false },
-    { feature: "No Franchise Model", xtsy: true, zostel: false, xtsyNote: "XTSY One LLP", zostelNote: "Franchise model" },
+    { feature: "No Franchise Model", xtsy: true, zostel: false, xtsyNote: "XTSY One", zostelNote: "Franchise model" },
     { feature: "Government Tourism Partner", xtsy: true, zostel: false, xtsyNote: "Arunachal Pradesh" },
     { feature: "Award Recognition", xtsy: true, zostel: false, xtsyNote: "NEITA 2025" },
     { feature: "NE States Coverage", xtsy: "8 States", zostel: "3–4 Franchises" },
