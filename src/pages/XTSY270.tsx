@@ -116,7 +116,7 @@ Can't wait to sleep under the stars! 🌌✨`;
             animationDelay: '0.2s'
           }}>
                <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-stone-900 leading-tight">
-                 XTSY Xperience
+                 XTSY Experience
                </h1>
                <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 text-stone-800">
                  India's First 270° Glasshouse Glamping Retreat
