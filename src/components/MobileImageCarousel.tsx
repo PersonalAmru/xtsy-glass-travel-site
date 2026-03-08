@@ -14,6 +14,8 @@ interface MobileImageCarouselProps {
   autoPlayInterval?: number;
   onImageChange?: (index: number) => void;
   onImageClick?: (images: string[], currentIndex: number) => void;
+  objectFit?: 'cover' | 'contain';
+  containerStyle?: React.CSSProperties;
 }
 
 const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
@@ -26,7 +28,9 @@ const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
   autoPlay = false,
   autoPlayInterval = 5000,
   onImageChange,
-  onImageClick
+  onImageClick,
+  objectFit = 'cover',
+  containerStyle
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
