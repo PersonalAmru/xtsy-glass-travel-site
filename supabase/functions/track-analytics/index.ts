@@ -92,7 +92,7 @@ function checkRateLimitLocal(visitorId: string): boolean {
   return true;
 }
 
-// Country lookup from IP
+// Country lookup from IP - with in-memory caching
 async function getGeoFromIP(ip: string): Promise<{ 
   country_code?: string; 
   country_name?: string;
@@ -106,8 +106,14 @@ async function getGeoFromIP(ip: string): Promise<{
       return null;
     }
 
+    // Check in-memory cache first
+    const cached = geoCache.get(ip);
+    if (cached && Date.now() < cached.expiresAt) {
+      return cached.data;
+    }
+
     const response = await fetch(`http://ip-api.com/json/${ip}?fields=status,country,countryCode,region,regionName,city,lat,lon`, {
-      signal: AbortSignal.timeout(2000),
+      signal: AbortSignal.timeout(1000), // Reduced from 2s to 1s
     });
 
     if (!response.ok) return null;
@@ -115,7 +121,7 @@ async function getGeoFromIP(ip: string): Promise<{
     const data = await response.json();
     if (data.status !== 'success') return null;
 
-    return {
+    const result = {
       country_code: data.countryCode,
       country_name: data.country,
       region: data.regionName,
@@ -123,6 +129,19 @@ async function getGeoFromIP(ip: string): Promise<{
       latitude: data.lat,
       longitude: data.lon,
     };
+
+    // Cache the result
+    geoCache.set(ip, { data: result, expiresAt: Date.now() + GEO_CACHE_TTL });
+    
+    // Evict old entries if cache grows too large
+    if (geoCache.size > 500) {
+      const now = Date.now();
+      for (const [key, val] of geoCache) {
+        if (now > val.expiresAt) geoCache.delete(key);
+      }
+    }
+
+    return result;
   } catch {
     return null;
   }
