@@ -875,7 +875,7 @@ const XTSYvsZostel = () => {
             Ready for the XTSY Difference?
           </h2>
           <p className="text-lg text-primary-foreground/90 mb-8 max-w-3xl mx-auto">
-            Join thousands of guests who chose owner-operated XTSY over franchise stays for their Northeast India journey — 
+            Join thousands of guests who chose XTSY One's self-sustaining ecosystem over franchise stays for their Northeast India journey — 
             from solo backpackers to 50-person corporate teams.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
