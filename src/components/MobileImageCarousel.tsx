@@ -159,11 +159,12 @@ const MobileImageCarousel: React.FC<MobileImageCarouselProps> = ({
 
   return (
     <div 
-      className={`relative overflow-hidden bg-gray-100 group ${aspectClasses[aspectRatio]} ${className}`}
+      className={`relative overflow-hidden bg-gray-100 group ${containerStyle ? '' : aspectClasses[aspectRatio]} ${className}`}
       {...swipeHandlers}
       style={{ 
         touchAction: 'pan-y pinch-zoom',
-        minHeight: '200px'
+        minHeight: '200px',
+        ...containerStyle
       }}
     >
       {/* Image container */}
