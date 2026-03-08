@@ -167,7 +167,7 @@ Can't wait to sleep under the stars! 🌌✨`;
           }} aria-label="XTSY 270° Panorama Glass Ensuite luxury experience">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-stone-200/40">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10" />
-                <MobileImageCarousel images={[xtsyStargazing, xtsyAerial, xtsyMilkyway, xtsyMilkyway2, xtsyInterior]} alt="XTSY 270° Panorama Glass Ensuite — India's first luxury glass house with 270-degree mountain views" aspectRatio="video" showIndicators={true} showArrows={true} autoPlay={true} autoPlayInterval={5000} className="w-full h-[60vh] md:h-[70vh]" />
+                <MobileImageCarousel images={[xtsyStargazing, xtsyAerial, xtsyMilkyway, xtsyMilkyway2, xtsyInterior]} alt="XTSY 270° Panorama Glass Ensuite — India's first luxury glass house with 270-degree mountain views" aspectRatio="video" showIndicators={true} showArrows={true} autoPlay={true} autoPlayInterval={5000} className="w-full" objectFit="contain" containerStyle={{ maxWidth: '1260px', height: '600px', margin: '0 auto' }} />
               </div>
               <figcaption className="mt-4 text-center text-gray-700 font-medium">
                 India's first 270° glasshouse glamping retreat — where architecture disappears into nature
