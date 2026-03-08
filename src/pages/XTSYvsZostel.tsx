@@ -48,7 +48,7 @@ const XTSYvsZostel = () => {
     {
       brand: "XTSY Travel",
       tagline: "Self-Sustaining Ecosystem — No Franchise Model",
-      model: "No franchise model. Curated private tours from solo to groups of 50+. XTSY One LLP — single, accountable entity.",
+      model: "No franchise model. Curated private tours from solo to groups of 50+. XTSY One — single, accountable entity.",
       nePresence: "8 NE states — HQ in Shillong, govt partnerships, 270° Glass Suite",
       pricing: "Transparent pricing, custom itineraries, year-round availability",
       segments: "Solo, couples, families, corporates, schools, groups 50+, pets",
