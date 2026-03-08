@@ -105,7 +105,7 @@ const soloPackages = [
     id: 701, title: "Solo Traveller Pass — Meghalaya",
     description: "Safe solo exploration with local buddy system & 24/7 support",
     duration: "5 Days", difficulty: "Easy", price: "₹22,500",
-    image: dawkiCrystalClearImg, rating: 4.8, category: "adventure", location: "Meghalaya",
+    image: imgUrl("dawki-crystal-clear-authentic.jpg"), rating: 4.8, category: "adventure", location: "Meghalaya",
     highlights: ["Local Buddy System", "Verified Homestays", "Women Batch Available"],
   },
   {
