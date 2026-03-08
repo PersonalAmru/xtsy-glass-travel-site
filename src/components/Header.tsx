@@ -40,7 +40,7 @@ const Header = () => {
   };
 
   const primeLinks = [
-    { to: "/xtsy-270", label: "XTSY Xperience 270°", icon: Mountain },
+    { to: "/xtsy-270", label: "XTSY Experience 270°", icon: Mountain },
     { to: "/pet-friendly", label: "Pet Friendly Stays", icon: PawPrint },
     { to: "/female-travellers", label: "Female Travellers", icon: Sparkles },
     { to: "/gallery", label: "Gallery", icon: Camera },
