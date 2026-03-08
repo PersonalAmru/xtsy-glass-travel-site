@@ -6,41 +6,58 @@ import GallerySection from "@/components/GallerySection";
 import Footer from "@/components/Footer";
 import SEOContent from "@/components/SEOContent";
 
+// Preload first row of gallery images (LCP candidates)
+const PRELOAD_IMAGES = [
+  "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140811.png",
+  "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140029.png",
+  "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/270/Gemini_Generated_Image_7so6yc7so6yc7so6%20(1)%20(1).png",
+];
+
 const Gallery = () => {
   const [searchParams] = useSearchParams();
-  
+
+  // Inject preload links for first-row images immediately
   useEffect(() => {
-    // Extract URL parameters
-    const category = searchParams.get('category');
-    const tag = searchParams.get('tag');
-    
-    // Scroll to gallery section after header when navigating to /gallery
+    const links: HTMLLinkElement[] = [];
+    PRELOAD_IMAGES.forEach((src) => {
+      // Avoid duplicate preloads
+      if (document.querySelector(`link[href="${src}"]`)) return;
+      const link = document.createElement("link");
+      link.rel = "preload";
+      link.as = "image";
+      link.href = src;
+      link.fetchPriority = "high";
+      document.head.appendChild(link);
+      links.push(link);
+    });
+    return () => links.forEach((l) => l.remove());
+  }, []);
+
+  useEffect(() => {
+    const category = searchParams.get("category");
+    const tag = searchParams.get("tag");
+
     setTimeout(() => {
-      const gallerySection = document.getElementById('gallery');
+      const gallerySection = document.getElementById("gallery");
       if (gallerySection) {
-        const headerHeight = 80; // Adjust based on your header height
+        const headerHeight = 80;
         const targetPosition = gallerySection.offsetTop - headerHeight;
-        window.scrollTo({
-          top: targetPosition,
-          behavior: 'smooth'
-        });
+        window.scrollTo({ top: targetPosition, behavior: "smooth" });
       }
-      
-      // Pass parameters to gallery component via custom event
+
       if (category || tag) {
-        const event = new CustomEvent('galleryFilter', {
-          detail: { category, tag }
-        });
-        window.dispatchEvent(event);
+        window.dispatchEvent(
+          new CustomEvent("galleryFilter", { detail: { category, tag } })
+        );
       }
     }, 100);
   }, [searchParams]);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <SEOContent page="gallery" />
       <Header />
-      <div className="pt-4"> {/* Reduced from pt-20 to pt-4 to minimize gap */}
+      <div className="pt-4">
         <GallerySection />
       </div>
       <Footer />
