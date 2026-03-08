@@ -363,7 +363,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
       description: "Trek through the Valley of Flowers of the East and explore Kohima's WWII heritage and vibrant Naga tribal culture.",
       duration: "5 Days",
       difficulty: "Moderate",
-    price: "₹23,999",
+    price: "₹25,999",
       image: nagalandHornbillImg,
       rating: 4.7,
       category: "adventure",
