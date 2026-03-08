@@ -735,10 +735,10 @@ const ReviewsSection = () => {
             onClick={() => setIsAllReviewsOpen(true)}
             className={cn(
               "px-8 py-3 rounded-full font-medium",
-              "bg-gradient-to-r from-violet-600 to-fuchsia-600",
-              "hover:from-violet-500 hover:to-fuchsia-500",
-              "text-white shadow-lg shadow-violet-500/25",
-              "hover:shadow-xl hover:shadow-violet-500/30",
+              "bg-gradient-to-r from-primary to-brand-ember",
+              "hover:from-primary/90 hover:to-brand-ember/90",
+              "text-primary-foreground shadow-lg shadow-primary/25",
+              "hover:shadow-xl hover:shadow-primary/30",
               "transition-all duration-300 hover:scale-105"
             )}
           >
