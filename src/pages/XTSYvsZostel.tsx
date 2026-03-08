@@ -828,7 +828,7 @@ const XTSYvsZostel = () => {
               </p>
               <p className="text-base sm:text-lg text-primary-foreground/80 max-w-2xl mx-auto mt-6">
                 From solo adventures to family celebrations, IIT reunions to corporate retreats, 
-                across 8 states of Northeast India — owner-operated, locally rooted, consistently rated 9.4+.
+                across 8 states of Northeast India — self-sustaining, locally rooted, consistently rated 9.4+.
               </p>
             </CardContent>
           </Card>
