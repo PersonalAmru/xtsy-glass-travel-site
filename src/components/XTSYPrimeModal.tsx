@@ -116,12 +116,15 @@ const XTSYPrimeModal: React.FC<XTSYPrimeModalProps> = ({ isOpen, onClose, offeri
                 <Button
                   size="lg"
                   className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground justify-start gap-3 rounded-xl h-auto py-4"
-                  onClick={() => handlePropertyNavigate('xtsy-luxury')}
+                  onClick={() => {
+                    onClose();
+                    requestAnimationFrame(() => navigate(offering.path));
+                  }}
                 >
                   <Building2 className="w-5 h-5 flex-shrink-0" />
                   <div className="text-left">
-                    <div className="font-semibold">XTSY Experience</div>
-                    <div className="text-xs opacity-80">Premium Glass Suite</div>
+                    <div className="font-semibold">{offering.title}</div>
+                    <div className="text-xs opacity-80">{offering.category}</div>
                   </div>
                 </Button>
                 <Button
@@ -130,27 +133,14 @@ const XTSYPrimeModal: React.FC<XTSYPrimeModalProps> = ({ isOpen, onClose, offeri
                   className="flex-1 border-primary/30 text-primary bg-primary/5 hover:bg-primary/10 justify-center gap-2 rounded-xl h-auto py-4 font-semibold"
                   onClick={() => {
                     onClose();
-                    requestAnimationFrame(() => navigate('/xtsy-270'));
+                    requestAnimationFrame(() => navigate(offering.path));
                   }}
                 >
-                  Know More about XTSY Experience
+                  Know More about {offering.title}
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </div>
             </div>
-
-            <Button
-              size="lg"
-              variant="ghost"
-              className="w-full text-primary hover:text-primary/80 font-semibold"
-              onClick={() => {
-                onClose();
-                requestAnimationFrame(() => navigate(offering.path));
-              }}
-            >
-              View Full Details
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
           </div>
         </div>
       </DialogContent>
