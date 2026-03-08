@@ -892,7 +892,7 @@ const _soloAndBikeTours: TourPackage[] = [
     description: "Epic solo-friendly motorcycle journey through Arunachal — Sela Pass, Tawang, Bumla Pass with full support crew and safety net.",
     duration: "8 Days",
     difficulty: "Challenging",
-    price: "₹48,500",
+    price: "₹39,999",
     image: tawangMonasteryMountainsImg,
     rating: 4.9,
     category: "adventure",
