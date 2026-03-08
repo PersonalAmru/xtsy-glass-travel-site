@@ -1,18 +1,16 @@
-import React, { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useMemo, lazy, Suspense } from "react";
+import { motion } from "framer-motion";
 import { FocusRail, FocusRailItem } from "@/components/ui/focus-rail";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { X, Sparkles, Mountain, PawPrint, Trophy, Heart, Laptop, Car, ArrowRight, CheckCircle2, Building2, Star } from "lucide-react";
+import { Sparkles, Mountain, PawPrint, Trophy, Heart, Laptop, Car, Star } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { pushToDataLayer } from "@/utils/dataLayerService";
 
-// XTSY Prime images (from existing pages)
-import xtsyExperienceImage from "@/assets/xtsy-270-stargazing.jpeg";
-import petFriendlyHero from "@/assets/pet-friendly-hero.jpg";
-import xtsyVsZostelHero from "@/assets/xtsy-vs-zostel-hero-new.jpg";
-import femaleTravellersHero from "@/assets/female-travellers-hero.jpg";
+// Use URL references instead of eager imports to reduce chunk size
+const imgUrl = (path: string) => new URL(`../assets/${path}`, import.meta.url).href;
+
+// Lazy load the modal since it's rarely shown
+const XTSYPrimeModal = lazy(() => import("@/components/XTSYPrimeModal"));
 
 // XTSY Prime offerings data - using imported images or verified Supabase URLs
 const xtsyPrimeOfferings = [
