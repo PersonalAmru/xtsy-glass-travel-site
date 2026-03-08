@@ -285,7 +285,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
       description: "Complete 3-day budget tour covering Krang Suri, Moopun, and multiple hidden waterfalls — perfect for nature lovers seeking affordable adventure.",
       duration: "3 Days",
       difficulty: "Easy",
-    price: "₹12,999",
+    price: "₹11,999",
       image: moopunWaterfallImg,
       rating: 4.5,
       category: "leisure",
