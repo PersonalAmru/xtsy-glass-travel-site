@@ -218,8 +218,6 @@ const HeroSection = () => {
                   width={128}
                   height={128}
                 />
-                {/* Glow effect rendered after image */}
-                <div className="absolute -inset-4 bg-primary/20 rounded-full blur-2xl -z-10" aria-hidden="true" />
               </div>
             </div>
 
