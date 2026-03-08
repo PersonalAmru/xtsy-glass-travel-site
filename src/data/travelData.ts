@@ -315,7 +315,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
       description: "Discover the spiritual heart of Arunachal Pradesh — ancient monasteries, Bumla Pass at the India-China border, Sela Pass at 13,700 ft, and Monpa tribal culture.",
       duration: "6 Days",
       difficulty: "Moderate",
-      price: "₹36,500",
+    price: "₹29,999",
       image: tawangMonasteryMountainsImg,
       rating: 4.8,
       category: "cultural",
