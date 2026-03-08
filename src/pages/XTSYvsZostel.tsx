@@ -481,8 +481,144 @@ const XTSYvsZostel = () => {
             <p className="text-sm text-muted-foreground">
               XTSY operates across <strong className="text-foreground">all 8 NE states</strong> — no franchise model. We plan curated private tours from solo to groups of 50+, with govt partnerships and multi-state itineraries.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Competitor Tour Packages — What They Actually Charge */}
+      <section className="py-16 md:py-20 bg-muted/20" id="competitor-packages">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <Badge variant="outline" className="mb-4 border-primary/30 text-primary">Real Pricing Comparison</Badge>
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4 font-playfair">
+              What Competitors <span className="text-primary">Actually Charge</span>
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              See how Zostel's Zo Trips and Thrillophilia's group packages compare to XTSY Travel's curated private tours — from solo to groups of 50+.
             </p>
           </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-10">
+            {/* Zostel Zo Trips */}
+            <Card className="border-border shadow-lg">
+              <CardHeader className="pb-3">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="p-2.5 rounded-lg bg-muted">
+                    <Home className="h-5 w-5 text-muted-foreground" />
+                  </div>
+                  <div>
+                    <CardTitle className="text-lg text-foreground">Zostel — Zo Trips</CardTitle>
+                    <CardDescription>Pre-packaged bus tours, fixed dates</CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                {[
+                  { name: "Experience Scorpions Live in Meghalaya", duration: "6 Nights", price: "₹28,570/person", dates: "20 Apr '26 only", model: "Fixed-date group bus tour" },
+                  { name: "Experience Sri Lanka", duration: "7 Nights", price: "₹47,800/person", dates: "3 fixed dates only", model: "Pre-packaged group tour" },
+                  { name: "Experience Japan", duration: "8 Nights", price: "₹1,36,053/person", dates: "3 fixed dates only", model: "Pre-packaged group tour" },
+                  { name: "Singapore Grand Prix 2026", duration: "5 Nights", price: "₹2,35,826/person", dates: "Oct '26 only", model: "Fixed-date event trip" },
+                ].map((trip, i) => (
+                  <div key={i} className="p-3 rounded-xl bg-muted/30 border border-border/50">
+                    <div className="flex items-start justify-between gap-2 mb-1">
+                      <h4 className="text-sm font-semibold text-foreground leading-tight">{trip.name}</h4>
+                      <Badge variant="outline" className="text-xs whitespace-nowrap shrink-0">{trip.duration}</Badge>
+                    </div>
+                    <p className="text-lg font-bold text-foreground">{trip.price}</p>
+                    <div className="flex flex-wrap gap-2 mt-1.5">
+                      <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">{trip.dates}</span>
+                      <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">{trip.model}</span>
+                    </div>
+                  </div>
+                ))}
+                <div className="pt-2 border-t border-border">
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <AlertTriangle className="h-3.5 w-3.5 text-destructive" />
+                    <span>No customization. No private tours. Groups bussed together on fixed dates.</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Thrillophilia */}
+            <Card className="border-border shadow-lg">
+              <CardHeader className="pb-3">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="p-2.5 rounded-lg bg-muted">
+                    <Compass className="h-5 w-5 text-muted-foreground" />
+                  </div>
+                  <div>
+                    <CardTitle className="text-lg text-foreground">Thrillophilia</CardTitle>
+                    <CardDescription>Large OTA — outsourced to local vendors</CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                {[
+                  { name: "Mesmerising Meghalaya | Group Tour", duration: "6D/5N", price: "₹19,348/person", rating: "4.8 (862 reviews)", model: "Group tour, outsourced logistics" },
+                  { name: "Best of Meghalaya | Group Tour", duration: "7D/6N", price: "₹25,377/person", rating: "4.6 (625 reviews)", model: "Group tour, outsourced logistics" },
+                  { name: "Holidays in Meghalaya | Private Tour", duration: "6D/5N", price: "₹25,132/person", rating: "4.5 (695 reviews)", model: "Private but vendor-operated" },
+                  { name: "Northeastern Nirvana (Assam+Meghalaya+AP)", duration: "10D/9N", price: "₹42,266/person", rating: "4.7 (448 reviews)", model: "Multi-state, outsourced vendors" },
+                ].map((trip, i) => (
+                  <div key={i} className="p-3 rounded-xl bg-muted/30 border border-border/50">
+                    <div className="flex items-start justify-between gap-2 mb-1">
+                      <h4 className="text-sm font-semibold text-foreground leading-tight">{trip.name}</h4>
+                      <Badge variant="outline" className="text-xs whitespace-nowrap shrink-0">{trip.duration}</Badge>
+                    </div>
+                    <p className="text-lg font-bold text-foreground">{trip.price}</p>
+                    <div className="flex flex-wrap gap-2 mt-1.5">
+                      <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">⭐ {trip.rating}</span>
+                      <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">{trip.model}</span>
+                    </div>
+                  </div>
+                ))}
+                <div className="pt-2 border-t border-border">
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <AlertTriangle className="h-3.5 w-3.5 text-destructive" />
+                    <span>OTA platform — Thrillophilia doesn't operate tours. Local vendors do. Quality varies.</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* XTSY Travel Advantage */}
+          <Card className="border-primary/40 border-2 shadow-xl bg-gradient-to-br from-primary/5 to-transparent max-w-5xl mx-auto">
+            <CardHeader>
+              <div className="flex items-center gap-3 mb-2">
+                <div className="p-2.5 rounded-lg bg-primary/10">
+                  <Shield className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <CardTitle className="text-xl text-foreground">XTSY Travel — The Local Alternative</CardTitle>
+                  <CardDescription>No franchise. No outsourcing. Curated private tours from solo to 50+.</CardDescription>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+                {[
+                  { icon: Clock, label: "Year-round availability", desc: "No fixed dates — travel when you want" },
+                  { icon: Users, label: "Solo to 50+ groups", desc: "Curated private tours at every scale" },
+                  { icon: Star, label: "9.4/10 on Booking.com", desc: "Consistently rated, not franchise-variable" },
+                  { icon: MapPin, label: "8 NE states covered", desc: "Local team across all of Northeast India" },
+                  { icon: DollarSign, label: "Transparent pricing", desc: "No hidden vendor markups or OTA commissions" },
+                  { icon: Mountain, label: "270° Glass Suite", desc: "India's first — no competitor has this" },
+                ].map((item, i) => {
+                  const Icon = item.icon;
+                  return (
+                    <div key={i} className="flex items-start gap-3 p-3 rounded-xl bg-primary/5 border border-primary/10">
+                      <Icon className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="text-sm font-semibold text-foreground">{item.label}</p>
+                        <p className="text-xs text-muted-foreground">{item.desc}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
