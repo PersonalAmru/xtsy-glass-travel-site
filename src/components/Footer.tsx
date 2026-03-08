@@ -32,8 +32,8 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="text-center order-1 lg:order-1">
             <div className="flex items-center gap-2 justify-center mb-3 sm:mb-4 lg:mb-6">
-              {!logoError ? <img src={xtsyLogo} alt="XTSY Travellers Hostel Logo" className="h-8 sm:h-12 lg:h-16 w-auto object-contain" loading="lazy" onLoad={handleLogoLoad} onError={handleLogoError} /> : <div className="h-8 sm:h-12 lg:h-16 w-16 sm:w-20 lg:w-24 bg-gradient-to-r from-orange-500 to-red-600 rounded flex items-center justify-center">
-                  <span className="text-white font-bold text-xs sm:text-sm lg:text-lg">XTSY</span>
+              {!logoError ? <img src={xtsyLogo} alt="XTSY Travellers Hostel Logo" className="h-12 sm:h-16 lg:h-20 w-auto object-contain" loading="lazy" onLoad={handleLogoLoad} onError={handleLogoError} /> : <div className="h-12 sm:h-16 lg:h-20 w-24 sm:w-28 lg:w-32 bg-gradient-to-r from-primary to-brand-secondary rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-sm sm:text-base lg:text-xl">XTSY</span>
                 </div>}
             </div>
             <p className="text-gray-300 text-xs sm:text-sm lg:text-base leading-relaxed mb-3 sm:mb-4 lg:mb-6 px-2">

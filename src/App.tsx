@@ -106,43 +106,75 @@ const LazyRoute = memo(({ children }: { children: ReactNode }) => (
 
 LazyRoute.displayName = 'LazyRoute';
 
-// Minimal inline route loader - no external CSS, instant render
+// Branded route loader matching XTSY identity
 const XTSYRouteLoader = memo(() => (
   <div style={{
     position: 'fixed',
     inset: 0,
-    // Match hero gradient background for seamless transition
     background: 'linear-gradient(135deg, #020617 0%, #0f172a 50%, #020617 100%)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    zIndex: 9999
+    zIndex: 9999,
+    flexDirection: 'column' as const,
+    gap: 24
   }}>
-    <div style={{ textAlign: 'center' }}>
-      <div style={{
-        width: 48,
-        height: 48,
-        margin: '0 auto 12px',
-        borderRadius: 12,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        animation: 'pulse 1.5s ease-in-out infinite',
-        boxShadow: '0 4px 20px rgba(163, 21, 69, 0.3)',
-        overflow: 'hidden'
-      }}>
-        <img 
-          src="/xtsy-favicon.png" 
-          alt="XTSY" 
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'contain'
-          }}
-        />
-      </div>
-      <style>{`@keyframes pulse { 0%, 100% { opacity: 1; box-shadow: 0 0 20px rgba(163, 21, 69, 0.4); } 50% { opacity: 0.85; box-shadow: 0 0 30px rgba(163, 21, 69, 0.6); } }`}</style>
+    {/* Logo */}
+    <div style={{
+      width: 100,
+      height: 100,
+      animation: 'xtsy-loader-pulse 2s ease-in-out infinite',
+      overflow: 'hidden'
+    }}>
+      <img 
+        src="/xtsy-favicon.png" 
+        alt="XTSY" 
+        style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+      />
     </div>
+    {/* Brand text */}
+    <div style={{ textAlign: 'center' }}>
+      <h2 style={{
+        fontFamily: "'Playfair Display', serif",
+        fontSize: 28,
+        fontWeight: 700,
+        background: 'linear-gradient(90deg, #f97316, #dc2626)',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        margin: '0 0 8px 0',
+        letterSpacing: '-0.02em'
+      }}>
+        Live the XTSY Vibe
+      </h2>
+      <p style={{
+        color: 'rgba(255,255,255,0.5)',
+        fontSize: 14,
+        fontWeight: 400,
+        margin: 0,
+        letterSpacing: '0.05em'
+      }}>
+        Premium Stays in Northeast India
+      </p>
+    </div>
+    {/* Progress bar */}
+    <div style={{
+      width: 100,
+      height: 3,
+      backgroundColor: 'rgba(255,255,255,0.1)',
+      borderRadius: 9999,
+      overflow: 'hidden'
+    }}>
+      <div style={{
+        height: '100%',
+        background: 'linear-gradient(90deg, #f97316, #a31545)',
+        borderRadius: 9999,
+        animation: 'xtsy-loader-progress 1.2s ease-in-out infinite'
+      }} />
+    </div>
+    <style>{`
+      @keyframes xtsy-loader-pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.85; transform: scale(1.05); } }
+      @keyframes xtsy-loader-progress { 0% { width: 0%; margin-left: 0; } 50% { width: 60%; margin-left: 20%; } 100% { width: 0%; margin-left: 100%; } }
+    `}</style>
   </div>
 ));
 
