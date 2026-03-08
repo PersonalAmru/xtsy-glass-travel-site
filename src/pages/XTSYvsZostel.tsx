@@ -418,7 +418,7 @@ const XTSYvsZostel = () => {
               <thead>
                 <tr className="bg-muted/50">
                   <th className="px-5 py-4 text-left font-semibold text-foreground text-sm">Aspect</th>
-                  <th className="px-5 py-4 text-center font-semibold text-primary text-sm">XTSY Packages</th>
+                  <th className="px-5 py-4 text-center font-semibold text-primary text-sm">XTSY Travel</th>
                   <th className="px-5 py-4 text-center font-semibold text-muted-foreground text-sm">Zo Trips (₹19,047/person)</th>
                 </tr>
               </thead>
