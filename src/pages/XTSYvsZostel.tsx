@@ -288,7 +288,7 @@ const XTSYvsZostel = () => {
         
         <div className="relative z-10 container mx-auto px-4 text-center">
           <Badge className="mb-4 bg-primary text-primary-foreground border-0 shadow-lg text-sm px-4 py-1.5">
-            Owner-Operated vs Franchise Chain
+            Self-Sustaining Ecosystem vs Franchise Chain
           </Badge>
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 text-white drop-shadow-2xl font-playfair">
             XTSY vs Zostel
