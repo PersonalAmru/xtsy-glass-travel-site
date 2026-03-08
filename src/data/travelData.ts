@@ -107,7 +107,7 @@ const _exclusiveTours: TourPackage[] = [
     description: "Winter biodiversity program exploring endemic species, conservation science, and climate research with expert ecologists. Small groups only.",
     duration: "8 Days",
     difficulty: "Easy",
-    price: "₹48,500",
+    price: "₹38,999",
     image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/Complete%20Guide%20To%20Backpacking%20In%20Arunachal%20Pradesh%20-%20Lost%20With%20Purpose.jpg",
     rating: 4.9,
     category: "educational",
