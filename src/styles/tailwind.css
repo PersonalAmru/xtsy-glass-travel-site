@@ -99,31 +99,37 @@
     --card-foreground: 220 15% 15%;
     --popover: 0 0% 100%;
     --popover-foreground: 220 15% 15%;
-    --primary: 220 85% 60%;
+    --primary: 25 95% 53%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 220 15% 96%;
+    --secondary: 30 20% 95%;
     --secondary-foreground: 220 15% 25%;
-    --muted: 220 15% 96%;
+    --muted: 30 15% 95%;
     --muted-foreground: 220 10% 50%;
-    --accent: 220 20% 95%;
-    --accent-foreground: 220 15% 25%;
+    --accent: 33 100% 96%;
+    --accent-foreground: 25 80% 30%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
     --success: 142 76% 36%;
     --success-foreground: 0 0% 100%;
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 100%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 220 85% 60%;
+    --border: 25 10% 88%;
+    --input: 25 10% 88%;
+    --ring: 25 95% 53%;
     --radius: 0.75rem;
     
+    /* Brand tokens */
+    --brand-secondary: 0 84% 60%;
+    --brand-accent: 33 100% 50%;
+    --brand-verified: 220 85% 60%;
+    --whatsapp: 142 70% 45%;
+    
     /* Enhanced glassmorphism design tokens - Progressive enhancement */
-    --glass-bg-solid: 220 15% 95%;
+    --glass-bg-solid: 30 15% 95%;
     --glass-bg-tablet: 0 0% 100% / 0.85;
     --glass-bg-desktop: 0 0% 100% / 0.1;
     --glass-border-light: 0 0% 100% / 0.2;
-    --glass-border-solid: 220 13% 91%;
+    --glass-border-solid: 25 10% 88%;
     --glass-blur-tablet: blur(8px);
     --glass-blur-desktop: blur(16px);
     --glass-shadow-light: 0 8px 32px hsl(220 15% 15% / 0.1);
@@ -135,10 +141,10 @@
     --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     --glass-blur: blur(16px);
     
-    /* Enhanced gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(220 85% 60%), hsl(220 70% 65%));
+    /* Enhanced gradients — brand-aligned */
+    --gradient-primary: linear-gradient(135deg, hsl(25 95% 53%), hsl(0 84% 60%));
     --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-    --shadow-elegant: 0 4px 20px -4px hsl(220 85% 60% / 0.15);
+    --shadow-elegant: 0 4px 20px -4px hsl(25 95% 53% / 0.15);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-glass: background 0.3s cubic-bezier(0.4, 0, 0.2, 1), backdrop-filter 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     
