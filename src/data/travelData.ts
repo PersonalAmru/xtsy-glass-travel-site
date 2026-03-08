@@ -301,7 +301,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
       description: "Immerse in vibrant tribal traditions during peak festival season with traditional dances, crafts, and mountain vistas.",
       duration: "6 Days",
       difficulty: "Moderate",
-    price: "₹28,999",
+    price: "₹31,999",
       image: arunachalCulturalFestivalImg,
       images: [arunachalCulturalFestivalImg, arunachalTribalImg],
       rating: 4.8,
