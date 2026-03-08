@@ -183,7 +183,7 @@ const XTSYvsZostel = () => {
     { aspect: "Pricing", xtsy: "Transparent, no hidden charges", zostel: "Base price + activity fees + transport charges (Zo Trips adds up)" },
   ];
 
-  // Zo Trips vs XTSY packages comparison
+  // Zo Trips vs XTSY Travel comparison
   const tripComparison = [
     { aspect: "Price", xtsy: "Custom packages — pay for what you need", zostel: "₹19,047/person fixed (Experience Meghalaya)" },
     { aspect: "Dates", xtsy: "Year-round, any date you choose", zostel: "Fixed departure dates only" },
