@@ -175,7 +175,7 @@ const XTSYvsZostel = () => {
 
   // Business model comparison data
   const businessModelData = [
-    { aspect: "Ownership", xtsy: "Owner-operated by XTSY One LLP — single, accountable entity", zostel: "Franchise/aggregator — Zostel Plus, Homes, Selections are partner-operated properties" },
+    { aspect: "Ownership", xtsy: "Self-sustaining ecosystem by XTSY One LLP — single, accountable entity", zostel: "Franchise/aggregator — Zostel Plus, Homes, Selections are partner-operated properties" },
     { aspect: "Quality Control", xtsy: "Direct control over every guest experience, staff training, and maintenance", zostel: "Varies by franchise partner — inconsistent quality across locations" },
     { aspect: "NE Tour Model", xtsy: "Local infrastructure + govt partnerships + year-round packages", zostel: "Zo Trips: outsourced group bus tours — pre-packaged, fixed dates, third-party logistics" },
     { aspect: "Revenue Model", xtsy: "Direct hospitality revenue — aligned with guest satisfaction", zostel: "Franchise fees + commission — incentive is scale, not quality" },
