@@ -192,10 +192,8 @@ const HeroSection = () => {
         className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-800 via-slate-700 to-slate-800"
       >
         {/* Static Background Elements */}
+        {/* Lightweight background - no GPU-heavy blur effects */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/15 rounded-full blur-[120px]" />
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-400/10 rounded-full blur-[100px]" />
-          <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-amber-400/8 rounded-full blur-[80px]" />
           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:64px_64px]" />
         </div>
 
