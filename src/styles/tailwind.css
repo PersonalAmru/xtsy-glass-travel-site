@@ -157,20 +157,20 @@
   }
 
   .dark {
-    /* Dark theme */
-    --background: 220 15% 8%;
+    /* Dark theme — XTSY brand orange primary */
+    --background: 222 47% 4%;
     --foreground: 0 0% 95%;
-    --card: 220 15% 10%;
+    --card: 222 30% 8%;
     --card-foreground: 0 0% 95%;
-    --popover: 220 15% 10%;
+    --popover: 222 30% 8%;
     --popover-foreground: 0 0% 95%;
-    --primary: 220 85% 65%;
-    --primary-foreground: 220 15% 8%;
+    --primary: 25 95% 53%;
+    --primary-foreground: 0 0% 100%;
     --secondary: 220 15% 15%;
     --secondary-foreground: 0 0% 95%;
     --muted: 220 15% 15%;
-    --muted-foreground: 220 10% 65%;
-    --accent: 220 15% 15%;
+    --muted-foreground: 220 10% 55%;
+    --accent: 222 25% 12%;
     --accent-foreground: 0 0% 95%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 95%;
@@ -178,16 +178,22 @@
     --success-foreground: 0 0% 95%;
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 15%;
-    --border: 220 15% 20%;
-    --input: 220 15% 20%;
-    --ring: 220 85% 65%;
+    --border: 220 15% 18%;
+    --input: 220 15% 18%;
+    --ring: 25 95% 53%;
+    
+    /* Brand tokens */
+    --brand-secondary: 0 84% 60%;
+    --brand-accent: 33 100% 55%;
+    --brand-verified: 220 85% 65%;
+    --whatsapp: 142 70% 45%;
     
     /* Dark glassmorphism - Progressive enhancement */
-    --glass-bg-solid: 220 15% 12%;
-    --glass-bg-tablet: 220 15% 10% / 0.88;
+    --glass-bg-solid: 222 30% 10%;
+    --glass-bg-tablet: 222 30% 8% / 0.88;
     --glass-bg-desktop: 0 0% 0% / 0.25;
     --glass-border-light: 0 0% 100% / 0.12;
-    --glass-border-solid: 220 15% 25%;
+    --glass-border-solid: 220 15% 22%;
     --glass-shadow-light: 0 8px 32px hsl(0 0% 0% / 0.3);
     --glass-shadow-solid: 0 4px 16px hsl(0 0% 0% / 0.2);
     
@@ -196,10 +202,10 @@
     --glass-border: rgba(255, 255, 255, 0.1);
     --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     
-    /* Dark gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(220 85% 65%), hsl(220 70% 70%));
+    /* Dark gradients — brand-aligned */
+    --gradient-primary: linear-gradient(135deg, hsl(25 95% 53%), hsl(0 84% 60%));
     --gradient-glass: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
-    --shadow-elegant: 0 4px 20px -4px hsl(220 85% 65% / 0.25);
+    --shadow-elegant: 0 4px 20px -4px hsl(25 95% 53% / 0.25);
   }
 
   body {
