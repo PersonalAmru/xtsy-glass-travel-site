@@ -79,7 +79,7 @@ const couplePackages = [
     id: 601, title: "XTSY 270 Romantic Meghalaya Escape",
     description: "Panorama Glass Ensuite + curated couple experiences with 15% couple discount",
     duration: "4 Days", difficulty: "Easy", price: "₹38,500",
-    image: xtsy270StargazingImg,
+    image: imgUrl("xtsy-270-stargazing.jpeg"),
     rating: 4.9, category: "leisure", location: "Meghalaya",
     highlights: ["XTSY 270 Suite", "Private Waterfall Trek", "Stargazing"],
   },
