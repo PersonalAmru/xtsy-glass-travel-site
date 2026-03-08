@@ -75,9 +75,9 @@ const Header = () => {
               />
             ) : (
               <div className={`bg-gradient-to-r from-primary to-brand-secondary rounded-lg flex items-center justify-center ${
-                isMobile ? 'h-12 w-24' : isTablet ? 'h-14 w-28' : 'h-16 w-32'
+                isMobile ? 'h-14 w-28' : isTablet ? 'h-[4.5rem] w-36' : 'h-[5.5rem] w-44'
               }`}>
-                <span className="text-white font-bold text-base">XTSY</span>
+                <span className="text-white font-bold text-lg">XTSY</span>
               </div>
             )}
           </Link>
