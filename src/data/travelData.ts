@@ -723,7 +723,7 @@ export const internationalTours: Record<string, TourPackage[]> = {
       description: "Ancient kingdoms, leopard safaris, and misty tea hills — Sri Lanka's extraordinary diversity compressed into one curated loop.",
       duration: "8 Days",
       difficulty: "Easy",
-      price: "₹68,000",
+      price: "₹56,999",
       image: "https://images.unsplash.com/photo-1586523969720-7a4e7e4e37d4?w=800&q=80",
       rating: 4.7,
       category: "cultural",
