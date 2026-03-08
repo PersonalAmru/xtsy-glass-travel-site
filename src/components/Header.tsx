@@ -48,7 +48,13 @@ const Header = () => {
 
   const navLinks = [
     { to: "/travel", label: "Travel", icon: Plane },
+    { to: "/about", label: "About Us", icon: HelpCircle },
     { to: "/faq", label: "FAQs", icon: HelpCircle },
+  ];
+
+  const moreLinks = [
+    { to: "/blog", label: "Discover Meghalaya", icon: MapPin },
+    { to: "/xtsy-vs-zostel", label: "XTSY vs Zostel", icon: Mountain },
   ];
 
   return (

@@ -54,24 +54,10 @@ const Index = memo(() => {
           </Suspense>
         </LazyWrapper>
         
-        {/* Explore Northeast - For International Travelers */}
-        <LazyWrapper fallback={<SectionFallback height="h-48" />}>
-          <Suspense fallback={<SectionFallback height="h-48" />}>
-            <ExploreNortheastSection />
-          </Suspense>
-        </LazyWrapper>
-        
         {/* Adventure CTA */}
         <LazyWrapper fallback={<SectionFallback height="h-48" />}>
           <Suspense fallback={<SectionFallback height="h-48" />}>
             <AdventureCallToAction />
-          </Suspense>
-        </LazyWrapper>
-        
-        {/* About XTSY */}
-        <LazyWrapper fallback={<SectionFallback />}>
-          <Suspense fallback={<SectionFallback />}>
-            <AboutXTSYSection />
           </Suspense>
         </LazyWrapper>
         
@@ -85,12 +71,6 @@ const Index = memo(() => {
         <LazyWrapper fallback={<SectionFallback />}>
           <Suspense fallback={<SectionFallback />}>
             <FAQSection />
-          </Suspense>
-        </LazyWrapper>
-
-        <LazyWrapper fallback={<SectionFallback />}>
-          <Suspense fallback={<SectionFallback />}>
-            <BlogSection />
           </Suspense>
         </LazyWrapper>
       </main>
