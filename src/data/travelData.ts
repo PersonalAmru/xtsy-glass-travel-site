@@ -329,7 +329,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
       description: "Epic motorcycle journey to the Indo-China border at 15,200 feet — conquer high-altitude mountain passes through breathtaking Himalayan landscapes.",
       duration: "8 Days",
       difficulty: "Challenging",
-      price: "₹48,500",
+    price: "₹39,999",
       image: bumlaPassBikeExpeditionImg,
       images: [bumlaPassBikeExpeditionImg, motorcycleMountainRoadImg],
       rating: 4.9,
