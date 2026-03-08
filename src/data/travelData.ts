@@ -631,7 +631,7 @@ export const internationalTours: Record<string, TourPackage[]> = {
       description: "From Hanoi's ancient quarters to Ha Long Bay's limestone karsts and Hoi An's lantern-lit streets — a curated journey through Vietnam's cultural heartbeat.",
       duration: "10 Days",
       difficulty: "Easy",
-      price: "₹88,000",
+      price: "₹74,999",
       image: "https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=800&q=80",
       rating: 4.8,
       category: "cultural",
