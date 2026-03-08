@@ -20,17 +20,17 @@ interface PremiumReviewCardProps {
   index?: number;
 }
 
-// Generate consistent gradient based on name
+// Generate consistent gradient based on name — brand-aligned warm tones
 const getAvatarGradient = (name: string) => {
   const gradients = [
-    "from-violet-500 via-purple-500 to-fuchsia-500",
-    "from-cyan-500 via-teal-500 to-emerald-500",
-    "from-orange-500 via-amber-500 to-yellow-500",
-    "from-rose-500 via-pink-500 to-fuchsia-500",
-    "from-blue-500 via-indigo-500 to-purple-500",
-    "from-emerald-500 via-green-500 to-lime-500",
-    "from-red-500 via-rose-500 to-pink-500",
-    "from-sky-500 via-blue-500 to-indigo-500",
+    "from-primary via-brand-gold to-brand-accent",
+    "from-brand-ember via-primary to-brand-gold",
+    "from-brand-copper via-brand-ember to-primary",
+    "from-brand-gold via-primary to-brand-ember",
+    "from-primary via-brand-ember to-brand-copper",
+    "from-brand-accent via-brand-gold to-primary",
+    "from-brand-ember via-brand-copper to-brand-gold",
+    "from-brand-gold via-brand-accent to-brand-ember",
   ];
   const index = name.charCodeAt(0) % gradients.length;
   return gradients[index];
@@ -39,21 +39,21 @@ const getAvatarGradient = (name: string) => {
 const getSourceColor = (source: string) => {
   switch (source) {
     case "Google":
-      return "from-blue-500 to-blue-600";
+      return "bg-brand-verified";
     case "Booking.com":
-      return "from-blue-600 to-blue-800";
+      return "bg-brand-verified/80";
     case "MakeMyTrip":
-      return "from-red-500 to-red-600";
+      return "bg-brand-secondary";
     case "Expedia":
-      return "from-yellow-500 to-orange-500";
+      return "bg-brand-gold";
     default:
-      return "from-gray-500 to-gray-600";
+      return "bg-muted";
   }
 };
 
 const getPropertyColor = (property: string) => {
-  if (property === "XTSY Experience") return "from-purple-500 to-purple-600";
-  return "from-orange-500 to-amber-500";
+  if (property === "XTSY Xperience") return "bg-gradient-to-r from-brand-copper to-brand-ember";
+  return "bg-gradient-to-r from-primary to-brand-gold";
 };
 
 const PremiumReviewCard = ({ 
@@ -85,13 +85,13 @@ const PremiumReviewCard = ({
     <div
       onClick={onClick}
       className={cn(
-        "group relative cursor-pointer rounded-2xl transition-all duration-500",
-        // Glassmorphism base
-        "bg-white/[0.03] backdrop-blur-xl border border-white/10",
+        "group relative cursor-pointer rounded-2xl transition-all duration-300",
+        // Glassmorphism base — brand aligned
+        "bg-card/60 backdrop-blur-xl border border-border",
         // Subtle glow effect on hover
-        !isMobile && "hover:bg-white/[0.06] hover:border-white/15 hover:shadow-lg hover:shadow-violet-500/10",
+        !isMobile && "hover:bg-card/80 hover:border-primary/20 hover:shadow-lg hover:shadow-primary/10",
         !isMobile && "hover:scale-[1.02] hover:-translate-y-1",
-        // Variant-specific sizing - compact cards with reduced padding
+        // Variant-specific sizing
         variant === "carousel" && "h-[240px] p-4",
         variant === "grid" && "p-4 animate-fade-in",
         variant === "featured" && "p-5 md:p-6 animate-fade-in"
@@ -104,11 +104,11 @@ const PremiumReviewCard = ({
       {/* Subtle glow behind card */}
       <div 
         className={cn(
-          "absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-500 pointer-events-none",
-          !isMobile && "group-hover:opacity-30"
+          "absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-300 pointer-events-none",
+          !isMobile && "group-hover:opacity-20"
         )} 
         style={{ 
-          background: "linear-gradient(135deg, rgba(139,92,246,0.3) 0%, rgba(217,70,239,0.2) 100%)",
+          background: "linear-gradient(135deg, hsl(var(--primary) / 0.3) 0%, hsl(var(--brand-ember) / 0.2) 100%)",
           filter: "blur(12px)",
           zIndex: -1 
         }} 
@@ -117,8 +117,8 @@ const PremiumReviewCard = ({
       {/* Quote icon */}
       <Quote 
         className={cn(
-          "absolute top-4 right-4 text-white/5 transition-all duration-500",
-          !isMobile && "group-hover:text-white/10 group-hover:scale-110",
+          "absolute top-4 right-4 text-muted-foreground/10 transition-all duration-300",
+          !isMobile && "group-hover:text-primary/15 group-hover:scale-110",
           variant === "featured" ? "w-12 h-12" : "w-8 h-8"
         )} 
       />
@@ -131,11 +131,11 @@ const PremiumReviewCard = ({
             "relative flex-shrink-0 rounded-full p-[2px]",
             `bg-gradient-to-br ${getAvatarGradient(review.name)}`,
             "shadow-md",
-            !isMobile && "group-hover:shadow-lg group-hover:shadow-violet-500/20"
+            !isMobile && "group-hover:shadow-lg group-hover:shadow-primary/20"
           )}
         >
           <div className={cn(
-            "flex items-center justify-center rounded-full bg-slate-900/90 font-bold text-white",
+            "flex items-center justify-center rounded-full bg-background font-bold text-foreground",
             variant === "featured" ? "w-14 h-14 text-lg" : "w-11 h-11 text-sm"
           )}>
             {initials}
@@ -143,8 +143,8 @@ const PremiumReviewCard = ({
           
           {/* Verified badge */}
           {isHighRating && (
-            <div className="absolute -bottom-1 -right-1 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full p-0.5 shadow-lg">
-              <BadgeCheck className="w-4 h-4 text-white" />
+            <div className="absolute -bottom-1 -right-1 bg-gradient-to-br from-success to-success/80 rounded-full p-0.5 shadow-lg">
+              <BadgeCheck className="w-4 h-4 text-success-foreground" />
             </div>
           )}
         </div>
@@ -153,39 +153,36 @@ const PremiumReviewCard = ({
         <div className="flex-1 min-w-0">
           {/* Guest name */}
           <h4 className={cn(
-            "font-semibold text-white truncate mb-1.5",
+            "font-semibold text-foreground truncate mb-1.5",
             variant === "featured" ? "text-lg" : "text-sm"
           )}>
             {review.name}
           </h4>
           
           {/* Rating badge - below name */}
-          <div className={cn(
-            "inline-flex items-center gap-1 px-2 py-0.5 rounded-full mb-1.5",
-            "bg-gradient-to-r from-yellow-500/20 to-amber-500/20 border border-yellow-500/30"
-          )}>
-            <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-            <span className="text-yellow-400 text-xs font-bold">{ratingDisplay}</span>
+          <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full mb-1.5 bg-primary/15 border border-primary/30">
+            <Star className="w-3 h-3 fill-primary text-primary" />
+            <span className="text-primary text-xs font-bold">{ratingDisplay}</span>
           </div>
 
           {/* Property badge */}
           <div className="flex items-center gap-2 flex-wrap">
             <span className={cn(
-              "text-[10px] px-2 py-0.5 rounded-full font-medium text-white",
-              `bg-gradient-to-r ${getPropertyColor(review.property)}`
+              "text-[10px] px-2 py-0.5 rounded-full font-medium text-primary-foreground",
+              getPropertyColor(review.property)
             )}>
               {review.property}
             </span>
             <span className={cn(
-              "text-[10px] px-2 py-0.5 rounded-full font-medium text-white",
-              `bg-gradient-to-r ${getSourceColor(review.source)}`
+              "text-[10px] px-2 py-0.5 rounded-full font-medium text-primary-foreground",
+              getSourceColor(review.source)
             )}>
               {review.source}
             </span>
           </div>
 
           {/* Date and room type */}
-          <p className="text-[10px] text-white/40 mt-1 truncate">
+          <p className="text-[10px] text-muted-foreground mt-1 truncate">
             {review.date} {review.roomType && `• ${review.roomType}`}
           </p>
         </div>
@@ -194,7 +191,7 @@ const PremiumReviewCard = ({
       {/* Review content */}
       <div className="flex-1">
         <p className={cn(
-          "text-white/70 leading-relaxed",
+          "text-muted-foreground leading-relaxed",
           variant === "featured" ? "text-sm" : "text-xs",
           variant === "carousel" && "line-clamp-4"
         )}>
@@ -207,9 +204,8 @@ const PremiumReviewCard = ({
         
         {review.comment.length > (variant === "carousel" ? 120 : 200) && variant !== "featured" && (
           <p className={cn(
-            "text-xs mt-2 font-medium transition-colors",
-            "bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent",
-            !isMobile && "group-hover:from-violet-300 group-hover:to-fuchsia-300"
+            "text-xs mt-2 font-medium transition-colors text-primary",
+            !isMobile && "group-hover:text-brand-gold"
           )}>
             Read full review →
           </p>
@@ -222,7 +218,7 @@ const PremiumReviewCard = ({
           {review.highlights.split(" · ").slice(0, 4).map((highlight, i) => (
             <span 
               key={i}
-              className="text-[10px] px-2 py-1 rounded-full bg-white/5 text-white/60 border border-white/10"
+              className="text-[10px] px-2 py-1 rounded-full bg-secondary text-secondary-foreground border border-border"
             >
               {highlight}
             </span>
