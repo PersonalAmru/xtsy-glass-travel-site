@@ -220,7 +220,7 @@ const XTSYvsZostel = () => {
   const faqs = [
     {
       question: "How is XTSY actually different from Zostel in Northeast India?",
-      answer: "Zostel is a franchise-operated hostel chain focused on solo backpackers. XTSY is a complete, owner-operated hospitality ecosystem — budget dorms to India's first 270° Glass Suite, solo trips to 50+ person groups, families with elders, IIT/IIM tours, corporate retreats, cross-border international tours, pet-friendly stays, and government tourism partnerships. We're NEITA 2025 nominated and operate across 8 Northeast states.",
+      answer: "Zostel is a franchise-operated hostel chain focused on solo backpackers. XTSY is a complete, self-sustaining hospitality ecosystem — budget dorms to India's first 270° Glass Suite, solo trips to 50+ person groups, families with elders, IIT/IIM tours, corporate retreats, cross-border international tours, pet-friendly stays, and government tourism partnerships. We're NEITA 2025 nominated and operate across 8 Northeast states.",
       quote: "Just one word for XTSY: THE BEST. It's one of the best stays I have been to lately.",
       quoteName: "Rahul"
     },
