@@ -816,7 +816,8 @@ const ReviewsSection = () => {
         </div>
       </div>
 
-      {/* All Reviews Modal */}
+      {/* All Reviews Modal - only rendered when open */}
+      {isAllReviewsOpen && (
       <Dialog open={isAllReviewsOpen} onOpenChange={setIsAllReviewsOpen}>
         <DialogContent 
           className={cn(
