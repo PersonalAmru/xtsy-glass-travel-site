@@ -581,7 +581,7 @@ img.lazy-below-fold {
   transform: translateX(-50%);
   width: 80px;
   height: 4px;
-  background: linear-gradient(90deg, hsl(25 95% 53%), hsl(0 84% 60%));
+  background: linear-gradient(90deg, hsl(28 92% 52%), hsl(0 72% 51%));
   border-radius: 9999px;
 }
 
@@ -596,9 +596,9 @@ img.lazy-below-fold {
 
 .travel-badge {
   @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold;
-  background: linear-gradient(135deg, hsl(25 95% 53%), hsl(0 84% 60%));
+  background: linear-gradient(135deg, hsl(28 92% 52%), hsl(0 72% 51%));
   color: white;
-  box-shadow: 0 2px 8px hsl(25 95% 53% / 0.3);
+  box-shadow: 0 2px 8px hsl(28 92% 52% / 0.25);
 }
 
 .travel-badge-outline {
