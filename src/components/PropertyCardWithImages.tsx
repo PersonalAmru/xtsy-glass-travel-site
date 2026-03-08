@@ -5,7 +5,7 @@ import { Users, TreePine, MapPin, Star } from "lucide-react";
 import PerformantImage from "./PerformantImage";
 
 // Real property images for XTSY
-import xtsy270Image from "@/assets/xtsy-brand-logo.png";
+import xtsy270Image from "@/assets/xtsy-brand-logo.webp";
 
 interface PropertyCardProps {
   property: {
