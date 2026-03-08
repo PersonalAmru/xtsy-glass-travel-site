@@ -1,478 +1,328 @@
-import { useState, useEffect } from "react";
-import { Card, CardContent } from "@/components/ui/card";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Badge } from "@/components/ui/badge";
-import { Camera, Eye, MapPin, Users, Mountain, Building, Image, Star, ChevronLeft, ChevronRight, Instagram } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import OptimizedImage from "./OptimizedImage";
+import { Image, Star, Users, Building } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import ImageLightbox from "./ImageLightbox";
+
 const GallerySection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
 
-  // Listen for URL parameter changes
   useEffect(() => {
     const handleGalleryFilter = (event: CustomEvent) => {
-      const {
-        category,
-        tag
-      } = event.detail;
-      if (category) {
-        setActiveCategory(category);
-      }
-      // Could also implement tag filtering here
+      const { category } = event.detail;
+      if (category) setActiveCategory(category);
     };
     window.addEventListener('galleryFilter', handleGalleryFilter as EventListener);
     return () => window.removeEventListener('galleryFilter', handleGalleryFilter as EventListener);
   }, []);
 
-  // Comprehensive gallery with ALL room images organized by property
   const galleryItems = [
-  // XTSY 270° Panorama Glass Suite (Luxury Property - Featured)
-  {
-    id: 1,
-    title: "270° Panorama Glass Ensuite - Main View",
-    category: "luxury-suite",
-    property: "XTSY 270° Glass Suite",
-    tags: ["panoramic-views", "glass-architecture", "premium-accommodation", "mountain-views"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140811.png",
-    description: "Exclusive 270-degree panoramic views - First in Shillong",
-    featured: true
-  }, {
-    id: 2,
-    title: "270° Panorama Glass Ensuite - Panoramic Vista",
-    category: "luxury-suite",
-    property: "XTSY 270° Glass Suite",
-    tags: ["panoramic-views", "glass-architecture", "premium-accommodation", "mountain-views"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140029.png",
-    description: "Breathtaking panoramic vista from the glass suite",
-    featured: true
-  },
-  // King Double Room (Private Room)
-  {
-    id: 3,
-    title: "King Double Room - Luxury Comfort",
-    category: "private-rooms",
-    property: "King Double Room",
-    tags: ["private-accommodation", "king-bed", "luxury-amenities", "couple-friendly"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg",
-    description: "Premium king double room with luxury amenities"
-  }, {
-    id: 4,
-    title: "King Double Room - Valley View",
-    category: "private-rooms",
-    property: "King Double Room",
-    tags: ["private-accommodation", "valley-view", "premium-amenities", "spacious"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/2.jpg",
-    description: "Stunning valley views from the king double room"
-  }, {
-    id: 5,
-    title: "King Double Room - Interior Design",
-    category: "private-rooms",
-    property: "King Double Room",
-    tags: ["private-accommodation", "modern-design", "comfortable-space"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/3.JPG",
-    description: "Modern interior design with comfort in mind"
-  }, {
-    id: 6,
-    title: "King Double Room - Premium Setup",
-    category: "private-rooms",
-    property: "King Double Room",
-    tags: ["private-accommodation", "premium-setup", "luxury-furnishing"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/IMG_4077.jpg",
-    description: "Premium room setup with luxury furnishing"
-  },
-  // King Triple Room (Private Room)
-  {
-    id: 7,
-    title: "King Triple Room - Family Space",
-    category: "private-rooms",
-    property: "King Triple Room",
-    tags: ["private-accommodation", "family-room", "triple-occupancy", "spacious-layout"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/1.jpg",
-    description: "Spacious triple room perfect for families"
-  }, {
-    id: 8,
-    title: "King Triple Room - Panoramic View",
-    category: "private-rooms",
-    property: "King Triple Room",
-    tags: ["private-accommodation", "panoramic-view", "family-friendly"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/2.jpg",
-    description: "Panoramic views from the family triple room"
-  }, {
-    id: 9,
-    title: "King Triple Room - Comfort Layout",
-    category: "private-rooms",
-    property: "King Triple Room",
-    tags: ["private-accommodation", "comfortable-layout", "extra-space"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/3.jpg",
-    description: "Comfortable layout with extra space for families"
-  }, {
-    id: 10,
-    title: "King Triple Room - Additional View",
-    category: "private-rooms",
-    property: "King Triple Room",
-    tags: ["private-accommodation", "spacious", "family-friendly"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/5.jpg",
-    description: "Additional view of the spacious family room"
-  },
-  // 4 Bed Female Only Dormitory
-  {
-    id: 11,
-    title: "4 Bed Female Only Dorm - Interior View",
-    category: "dormitories",
-    property: "4-Bed Female Only Dorm",
-    tags: ["female-dormitory", "modern-amenities", "comfortable-beds", "social-spaces"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg",
-    description: "Comfortable female-only dormitory with modern amenities"
-  }, {
-    id: 12,
-    title: "4 Bed Female Dorm - Bed Setup",
-    category: "dormitories",
-    property: "4-Bed Female Only Dorm",
-    tags: ["female-dormitory", "privacy-curtains", "individual-storage", "reading-lights"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/2.jpg",
-    description: "Individual bed spaces with privacy and storage"
-  }, {
-    id: 13,
-    title: "4 Bed Female Dorm - Room Layout",
-    category: "dormitories",
-    property: "4-Bed Female Only Dorm",
-    tags: ["female-dormitory", "spacious-layout", "natural-lighting", "clean-environment"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/3.jpg",
-    description: "Spacious layout with natural lighting"
-  }, {
-    id: 14,
-    title: "4 Bed Female Dorm - Premium View",
-    category: "dormitories",
-    property: "4-Bed Female Only Dorm",
-    tags: ["female-dormitory", "premium-bedding", "organized-space", "comfort-features"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/4.JPG",
-    description: "Premium bedding and organized sleeping space"
-  }, {
-    id: 15,
-    title: "4 Bed Female Dorm - Modern Facilities",
-    category: "dormitories",
-    property: "4-Bed Female Only Dorm",
-    tags: ["female-dormitory", "modern-facilities", "clean-space"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/5.JPG",
-    description: "Modern facilities with clean and organized space"
-  }, {
-    id: 16,
-    title: "4 Bed Female Dorm - Cozy Setup",
-    category: "dormitories",
-    property: "4-Bed Female Only Dorm",
-    tags: ["female-dormitory", "cozy-atmosphere", "comfortable"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/6.JPG",
-    description: "Cozy and comfortable dormitory atmosphere"
-  }, {
-    id: 17,
-    title: "4 Bed Female Dorm - Additional Space",
-    category: "dormitories",
-    property: "4-Bed Female Only Dorm",
-    tags: ["female-dormitory", "spacious", "well-maintained"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/7.JPG",
-    description: "Well-maintained space with ample room"
-  }, {
-    id: 18,
-    title: "4 Bed Female Dorm - Overview",
-    category: "dormitories",
-    property: "4-Bed Female Only Dorm",
-    tags: ["female-dormitory", "overview", "clean-organized"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/IMG_5161.png",
-    description: "Overview of the clean and organized dorm"
-  },
-  // 4 Bed Mixed Dormitory
-  {
-    id: 19,
-    title: "4 Bed Mixed Dorm - Social Space",
-    category: "dormitories",
-    property: "4-Bed Mixed Dorm",
-    tags: ["mixed-dormitory", "social-atmosphere", "modern-design", "shared-facilities"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/3.jpg",
-    description: "Mixed dormitory with vibrant social atmosphere"
-  }, {
-    id: 20,
-    title: "4 Bed Mixed Dorm - Comfort Setup",
-    category: "dormitories",
-    property: "4-Bed Mixed Dorm",
-    tags: ["mixed-dormitory", "comfortable-beds", "organized-layout"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/4.JPG",
-    description: "Comfortable bed setup with organized layout"
-  }, {
-    id: 21,
-    title: "4 Bed Mixed Dorm - Interior",
-    category: "dormitories",
-    property: "4-Bed Mixed Dorm",
-    tags: ["mixed-dormitory", "budget-friendly", "backpacker"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/5.jpg",
-    description: "Budget-friendly interior for backpackers"
-  }, {
-    id: 22,
-    title: "4 Bed Mixed Dorm - Overview",
-    category: "dormitories",
-    property: "4-Bed Mixed Dorm",
-    tags: ["mixed-dormitory", "overview", "social"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/IMG_5161.png",
-    description: "Overview of the social mixed dorm space"
-  },
-  // 6 Bed Mixed/Female Dormitory
-  {
-    id: 23,
-    title: "6 Bed Mixed Dorm - Large Space",
-    category: "dormitories",
-    property: "6-Bed Mixed/Female Dorm",
-    tags: ["mixed-dormitory", "spacious-room", "multiple-beds", "shared-living"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG",
-    description: "Spacious 6-bed dormitory for budget travelers"
-  }, {
-    id: 24,
-    title: "6 Bed Mixed Dorm - Interior View",
-    category: "dormitories",
-    property: "6-Bed Mixed/Female Dorm",
-    tags: ["mixed-dormitory", "budget-friendly", "social-space"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/3.jpg",
-    description: "Interior view of budget-friendly dormitory"
-  }, {
-    id: 25,
-    title: "6 Bed Mixed Dorm - Bed Arrangement",
-    category: "dormitories",
-    property: "6-Bed Mixed/Female Dorm",
-    tags: ["mixed-dormitory", "efficient-layout", "backpacker-friendly"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/4.jpg",
-    description: "Efficient bed arrangement for backpackers"
-  }, {
-    id: 26,
-    title: "6 Bed Mixed Dorm - Sleeping Area",
-    category: "dormitories",
-    property: "6-Bed Mixed/Female Dorm",
-    tags: ["mixed-dormitory", "comfortable", "organized"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/5.JPG",
-    description: "Comfortable and organized sleeping area"
-  }, {
-    id: 27,
-    title: "6 Bed Mixed Dorm - Additional Space",
-    category: "dormitories",
-    property: "6-Bed Mixed/Female Dorm",
-    tags: ["mixed-dormitory", "spacious", "well-maintained"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/6.JPG",
-    description: "Well-maintained additional space"
-  }, {
-    id: 28,
-    title: "6 Bed Mixed Dorm - Overview",
-    category: "dormitories",
-    property: "6-Bed Mixed/Female Dorm",
-    tags: ["mixed-dormitory", "overview", "budget"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/IMG_5160.png",
-    description: "Overview of the budget dormitory space"
-  },
-  // 8 Bed Mixed Dormitory
-  {
-    id: 29,
-    title: "8 Bed Mixed Dorm - Budget Space",
-    category: "dormitories",
-    property: "8-Bed Mixed Dorm",
-    tags: ["mixed-dormitory", "budget-accommodation", "backpacker-space"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg",
-    description: "Most economical option for backpackers"
-  }, {
-    id: 30,
-    title: "8 Bed Mixed Dorm - Sleeping Area",
-    category: "dormitories",
-    property: "8-Bed Mixed Dorm",
-    tags: ["mixed-dormitory", "economical-stay", "shared-accommodation"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/4.jpg",
-    description: "Economical sleeping area with essential amenities"
-  }, {
-    id: 31,
-    title: "8 Bed Mixed Dorm - Interior",
-    category: "dormitories",
-    property: "8-Bed Mixed Dorm",
-    tags: ["mixed-dormitory", "budget", "basic-amenities"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/5.jpg",
-    description: "Basic amenities for budget travelers"
-  }, {
-    id: 32,
-    title: "8 Bed Mixed Dorm - Bed Layout",
-    category: "dormitories",
-    property: "8-Bed Mixed Dorm",
-    tags: ["mixed-dormitory", "efficient", "backpacker"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/6.jpg",
-    description: "Efficient bed layout for backpackers"
-  }, {
-    id: 33,
-    title: "8 Bed Mixed Dorm - Sleeping Quarters",
-    category: "dormitories",
-    property: "8-Bed Mixed Dorm",
-    tags: ["mixed-dormitory", "budget-friendly", "shared"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/8.jpg",
-    description: "Budget-friendly shared sleeping quarters"
-  }, {
-    id: 34,
-    title: "8 Bed Mixed Dorm - Additional View",
-    category: "dormitories",
-    property: "8-Bed Mixed Dorm",
-    tags: ["mixed-dormitory", "economical", "basic"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/9.jpg",
-    description: "Additional view of economical accommodation"
-  }];
+    // XTSY 270° Glass Suite
+    {
+      id: 1, title: "270° Panorama Glass Suite", category: "luxury-suite",
+      property: "XTSY 270° Glass Suite", featured: true,
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140811.png",
+    },
+    {
+      id: 2, title: "270° Glass Suite - Panoramic Vista", category: "luxury-suite",
+      property: "XTSY 270° Glass Suite", featured: true,
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140029.png",
+    },
+    {
+      id: 35, title: "270° Glass Suite - Stargazing", category: "luxury-suite",
+      property: "XTSY 270° Glass Suite", featured: true,
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/270/Gemini_Generated_Image_7so6yc7so6yc7so6%20(1)%20(1).png",
+    },
+    // King Double Room
+    {
+      id: 3, title: "King Double Room", category: "private-rooms",
+      property: "King Double Room",
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg",
+    },
+    {
+      id: 4, title: "King Double - Valley View", category: "private-rooms",
+      property: "King Double Room",
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/2.jpg",
+    },
+    {
+      id: 5, title: "King Double - Interior", category: "private-rooms",
+      property: "King Double Room",
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/3.JPG",
+    },
+    {
+      id: 6, title: "King Double - Premium Setup", category: "private-rooms",
+      property: "King Double Room",
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/IMG_4077.jpg",
+    },
+    // King Triple Room
+    {
+      id: 7, title: "King Triple Room", category: "private-rooms",
+      property: "King Triple Room",
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/1.jpg",
+    },
+    {
+      id: 8, title: "King Triple - Panoramic", category: "private-rooms",
+      property: "King Triple Room",
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/2.jpg",
+    },
+    {
+      id: 9, title: "King Triple - Layout", category: "private-rooms",
+      property: "King Triple Room",
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/3.jpg",
+    },
+    {
+      id: 10, title: "King Triple - Additional", category: "private-rooms",
+      property: "King Triple Room",
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/5.jpg",
+    },
+    // 4 Bed Female Only Dorm
+    {
+      id: 11, title: "4-Bed Female Dorm", category: "dormitories",
+      property: "4-Bed Female Only Dorm",
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg",
+    },
+    {
+      id: 12, title: "Female Dorm - Bed Setup", category: "dormitories",
+      property: "4-Bed Female Only Dorm",
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/2.jpg",
+    },
+    {
+      id: 13, title: "Female Dorm - Layout", category: "dormitories",
+      property: "4-Bed Female Only Dorm",
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/3.jpg",
+    },
+    {
+      id: 14, title: "Female Dorm - Premium", category: "dormitories",
+      property: "4-Bed Female Only Dorm",
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/4.JPG",
+    },
+    {
+      id: 15, title: "Female Dorm - Facilities", category: "dormitories",
+      property: "4-Bed Female Only Dorm",
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/5.JPG",
+    },
+    {
+      id: 16, title: "Female Dorm - Cozy", category: "dormitories",
+      property: "4-Bed Female Only Dorm",
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/6.JPG",
+    },
+    // 4 Bed Mixed Dorm
+    {
+      id: 19, title: "4-Bed Mixed Dorm", category: "dormitories",
+      property: "4-Bed Mixed Dorm",
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/3.jpg",
+    },
+    {
+      id: 20, title: "Mixed Dorm - Comfort", category: "dormitories",
+      property: "4-Bed Mixed Dorm",
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/4.JPG",
+    },
+    {
+      id: 21, title: "Mixed Dorm - Interior", category: "dormitories",
+      property: "4-Bed Mixed Dorm",
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/5.jpg",
+    },
+    // 6 Bed Mixed Dorm
+    {
+      id: 23, title: "6-Bed Mixed Dorm", category: "dormitories",
+      property: "6-Bed Mixed/Female Dorm",
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG",
+    },
+    {
+      id: 24, title: "6-Bed Dorm - Interior", category: "dormitories",
+      property: "6-Bed Mixed/Female Dorm",
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/3.jpg",
+    },
+    {
+      id: 25, title: "6-Bed Dorm - Layout", category: "dormitories",
+      property: "6-Bed Mixed/Female Dorm",
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/4.jpg",
+    },
+    // 8 Bed Mixed Dorm
+    {
+      id: 29, title: "8-Bed Mixed Dorm", category: "dormitories",
+      property: "8-Bed Mixed Dorm",
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg",
+    },
+    {
+      id: 30, title: "8-Bed Dorm - Sleeping", category: "dormitories",
+      property: "8-Bed Mixed Dorm",
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/4.jpg",
+    },
+    {
+      id: 31, title: "8-Bed Dorm - Interior", category: "dormitories",
+      property: "8-Bed Mixed Dorm",
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/5.jpg",
+    },
+  ];
 
-  // Dynamic categories organized by property type
-  const categories = [{
-    id: "all",
-    label: "All Photos",
-    icon: Image,
-    count: galleryItems.length
-  }, {
-    id: "luxury-suite",
-    label: "Luxury Suite",
-    icon: Star,
-    count: galleryItems.filter(item => item.category === "luxury-suite").length
-  }, {
-    id: "private-rooms",
-    label: "Private Rooms",
-    icon: Building,
-    count: galleryItems.filter(item => item.category === "private-rooms").length
-  }, {
-    id: "dormitories",
-    label: "Dormitories",
-    icon: Users,
-    count: galleryItems.filter(item => item.category === "dormitories").length
-  }];
-  const filteredItems = activeCategory === "all" ? galleryItems : galleryItems.filter(item => item.category === activeCategory);
-  
+  const categories = [
+    { id: "all", label: "All Photos", icon: Image, count: galleryItems.length },
+    { id: "luxury-suite", label: "Luxury Suite", icon: Star, count: galleryItems.filter(i => i.category === "luxury-suite").length },
+    { id: "private-rooms", label: "Private Rooms", icon: Building, count: galleryItems.filter(i => i.category === "private-rooms").length },
+    { id: "dormitories", label: "Dormitories", icon: Users, count: galleryItems.filter(i => i.category === "dormitories").length },
+  ];
+
+  const filteredItems = activeCategory === "all" ? galleryItems : galleryItems.filter(i => i.category === activeCategory);
+
   const handleImageClick = (index: number) => {
     setLightboxIndex(index);
     setLightboxOpen(true);
   };
-  
-  const allImageUrls = filteredItems.map(item => item.image).filter(Boolean) as string[];
-  return <section id="gallery" className="py-16 sm:py-20 px-3 sm:px-4 bg-white relative overflow-hidden">
-      {/* Background animations */}
-      <div className="absolute inset-0">
-        {[...Array(4)].map((_, i) => <div key={i} className="absolute w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-r from-orange-400/10 to-red-400/10 rounded-full blur-xl animate-pulse" style={{
-        left: `${15 + i * 20}%`,
-        top: `${10 + i * 20}%`,
-        animationDelay: `${i * 1.5}s`,
-        animationDuration: `${4 + i * 0.5}s`
-      }} />)}
-      </div>
 
-      <div className="container mx-auto max-w-7xl relative z-10">
-        <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4 font-serif-sans">📸 Gallery</h2>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto font-seasons">
-            Explore all our accommodation options - from luxury suites to cozy dormitories
+  const handleImageLoad = useCallback((id: number) => {
+    setLoadedImages(prev => new Set(prev).add(id));
+  }, []);
+
+  const allImageUrls = filteredItems.map(i => i.image);
+
+  // Stagger animation variants
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.06 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.92 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }
+    },
+    exit: {
+      opacity: 0,
+      scale: 0.92,
+      transition: { duration: 0.25 }
+    }
+  };
+
+  return (
+    <section id="gallery" className="py-16 sm:py-20 px-3 sm:px-4 bg-background relative overflow-hidden">
+      <div className="container mx-auto max-w-6xl relative z-10">
+        {/* Header - Clean, no Instagram */}
+        <div className="text-center mb-10 sm:mb-14">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3">
+            📸 Gallery
+          </h2>
+          <p className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto">
+            Explore all our accommodation options — from luxury suites to cozy dormitories
           </p>
-          
-          {/* Instagram Follow Section */}
-          <div className="mt-8 mb-4">
-            <a
-              href="https://www.instagram.com/xtsy.one"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 hover:from-pink-600 hover:via-purple-600 hover:to-orange-600 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-            >
-              <Instagram className="h-6 w-6 text-white" />
-              <div className="text-left">
-                <div className="text-white font-bold text-lg">@xtsy.one</div>
-                <div className="text-white/90 text-sm">Follow us for more</div>
-              </div>
-            </a>
-            <p className="text-gray-600 text-sm mt-3 max-w-md mx-auto">
-              ✨ Discover breathtaking views, hidden gems, and unforgettable moments from our guests. Join our community and get inspired for your next adventure!
-            </p>
-          </div>
         </div>
 
-        {/* Enhanced Category Filter with Icons and Counts */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8 sm:mb-12">
-          {categories.map(category => {
-          const IconComponent = category.icon;
-          return <button key={category.id} onClick={() => setActiveCategory(category.id)} className={`flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all duration-300 text-sm sm:text-base ${activeCategory === category.id ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg transform scale-105" : "bg-white/80 backdrop-blur-sm text-gray-700 hover:bg-white hover:shadow-md border border-gray-200"}`}>
-                <IconComponent className="h-4 w-4" />
-                {category.label}
-                <Badge variant="secondary" className={`text-xs ${activeCategory === category.id ? "bg-white/20 text-white" : "bg-gray-100"}`}>
-                  {category.count}
-                </Badge>
-              </button>;
-        })}
+        {/* Category Filter Pills */}
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10 sm:mb-14">
+          {categories.map(cat => {
+            const Icon = cat.icon;
+            const isActive = activeCategory === cat.id;
+            return (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full font-medium transition-all duration-300 text-sm ${
+                  isActive
+                    ? "bg-primary text-primary-foreground shadow-md"
+                    : "bg-muted text-muted-foreground hover:bg-accent hover:text-accent-foreground border border-border"
+                }`}
+              >
+                <Icon className="h-4 w-4" />
+                {cat.label}
+                <span className={`text-xs px-1.5 py-0.5 rounded-full ${
+                  isActive ? "bg-primary-foreground/20 text-primary-foreground" : "bg-background text-muted-foreground"
+                }`}>
+                  {cat.count}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
-        {/* Vertical Gallery Grid */}
-        <div className="relative">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-            {filteredItems.map((item, index) => <Card key={item.id} className={`group overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer ${item.featured ? "ring-2 ring-orange-500 ring-opacity-50" : ""}`}>
-                  <CardContent className="p-0">
-                    <div className="relative overflow-hidden" onClick={() => handleImageClick(index)}>
-                      {item.image ? <img 
-                          src={item.image} 
-                          alt={item.title} 
-                          className="w-full h-48 sm:h-56 object-cover group-hover:scale-110 transition-transform duration-500"
-                          loading={item.featured ? "eager" : "lazy"}
-                        /> : <div className="w-full h-48 sm:h-56 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                          <div className="text-center">
-                            <Camera className="h-12 w-12 text-gray-400 mx-auto mb-2" />
-                            <p className="text-gray-500 text-sm">Gallery Image</p>
-                            <p className="text-gray-400 text-xs">Coming Soon</p>
-                          </div>
-                        </div>}
-                      
-                      {/* Featured Badge */}
-                      {item.featured && <div className="absolute top-3 left-3">
-                          <Badge className="bg-orange-500 text-white">
-                            <Star className="h-3 w-3 mr-1" />
-                            Featured
-                          </Badge>
-                        </div>}
-                      
-                      {/* Category Badge */}
-                      <div className="absolute top-3 right-3">
-                        <Badge variant="secondary" className="bg-black/70 text-white border-0">
-                          {categories.find(cat => cat.id === item.category)?.label || "Gallery"}
-                        </Badge>
-                      </div>
-                      
-                      {/* Hover Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      
-                      {/* Content Overlay */}
-                      <div className="absolute bottom-0 left-0 right-0 p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <h3 className="font-bold text-sm sm:text-base mb-1 line-clamp-2">{item.title}</h3>
-                        <p className="text-xs sm:text-sm text-gray-200 line-clamp-2 mb-2">{item.description}</p>
-                        {/* Tags */}
-                        <div className="flex flex-wrap gap-1">
-                          {item.tags.slice(0, 2).map(tag => <Badge key={tag} variant="outline" className="text-xs text-white border-white/30 bg-white/10">
-                              {tag.replace("-", " ")}
-                            </Badge>)}
-                          {item.tags.length > 2 && <Badge variant="outline" className="text-xs text-white border-white/30 bg-white/10">
-                              +{item.tags.length - 2}
-                            </Badge>}
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>)}
-          </div>
-        </div>
-        
-        {/* Gallery Stats */}
-        <div className="mt-12 text-center">
-          <div className="inline-flex items-center gap-4 bg-white/80 backdrop-blur-sm rounded-xl px-6 py-3 shadow-lg">
-            <div className="flex items-center gap-2">
-              <Image className="h-5 w-5 text-orange-500" />
-              <span className="text-sm font-medium text-gray-700">
-                Showing {filteredItems.length} of {galleryItems.length} images
-              </span>
-            </div>
-            {activeCategory !== "all" && <button onClick={() => setActiveCategory("all")} className="text-sm text-orange-500 hover:text-orange-600 font-medium">
+        {/* Instagram-grade Square Grid */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeCategory}
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            className="grid grid-cols-2 sm:grid-cols-3 gap-1 sm:gap-1.5"
+          >
+            {filteredItems.map((item, index) => (
+              <motion.div
+                key={item.id}
+                variants={itemVariants}
+                layout
+                className="relative group cursor-pointer overflow-hidden bg-muted"
+                style={{ aspectRatio: "1 / 1" }}
+                onClick={() => handleImageClick(index)}
+              >
+                {/* Skeleton placeholder */}
+                {!loadedImages.has(item.id) && (
+                  <div className="absolute inset-0 bg-muted animate-pulse" />
+                )}
+
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  loading={index < 6 ? "eager" : "lazy"}
+                  decoding="async"
+                  onLoad={() => handleImageLoad(item.id)}
+                  className={`w-full h-full object-cover transition-all duration-500 ease-out ${
+                    loadedImages.has(item.id) ? "opacity-100" : "opacity-0"
+                  } group-hover:scale-105`}
+                />
+
+                {/* Hover overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                {/* Info on hover */}
+                <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <p className="text-white text-xs sm:text-sm font-semibold leading-tight line-clamp-1">
+                    {item.title}
+                  </p>
+                  <p className="text-white/70 text-[10px] sm:text-xs mt-0.5">
+                    {item.property}
+                  </p>
+                </div>
+
+                {/* Featured badge */}
+                {item.featured && (
+                  <div className="absolute top-2 left-2">
+                    <Badge className="bg-primary text-primary-foreground text-[10px] px-1.5 py-0.5">
+                      <Star className="h-2.5 w-2.5 mr-0.5" />
+                      Featured
+                    </Badge>
+                  </div>
+                )}
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Stats bar */}
+        <div className="mt-10 text-center">
+          <div className="inline-flex items-center gap-3 bg-muted rounded-full px-5 py-2.5">
+            <Image className="h-4 w-4 text-primary" />
+            <span className="text-sm font-medium text-muted-foreground">
+              {filteredItems.length} of {galleryItems.length} photos
+            </span>
+            {activeCategory !== "all" && (
+              <button
+                onClick={() => setActiveCategory("all")}
+                className="text-sm text-primary hover:text-primary/80 font-medium"
+              >
                 View All →
-              </button>}
+              </button>
+            )}
           </div>
         </div>
       </div>
 
-      {/* Image Lightbox */}
+      {/* Lightbox */}
       <ImageLightbox
         isOpen={lightboxOpen}
         images={allImageUrls}
@@ -480,18 +330,8 @@ const GallerySection = () => {
         onClose={() => setLightboxOpen(false)}
         alt="Gallery Image"
       />
-
-      <style>
-        {`
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-        `}
-      </style>
-    </section>;
+    </section>
+  );
 };
+
 export default GallerySection;
