@@ -56,7 +56,7 @@ const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({
         </div>
       )}
 
-      <div className="flex flex-col md:flex-row gap-2 md:gap-3 h-[500px] md:h-[600px]">
+      <div className="flex flex-col md:flex-row gap-2 md:gap-3 h-[600px] md:h-[600px]">
         {options.map((option, index) => {
           const isActive = index === activeIndex;
           const isAnimated = animatedOptions.includes(index);
