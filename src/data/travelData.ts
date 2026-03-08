@@ -123,7 +123,7 @@ const _exclusiveTours: TourPackage[] = [
     description: "An adrenaline-fueled expedition through Meghalaya's most remote terrain. Trek through untamed forests, rappel down pristine waterfalls, and experience extreme wilderness camping.",
     duration: "5 Days",
     difficulty: "Challenging",
-    price: "₹48,500",
+    price: "₹32,999",
     image: wariChoraAuthenticImg,
     rating: 4.9,
     category: "adventure",
