@@ -87,7 +87,7 @@ const couplePackages = [
     id: 602, title: "XTSY 270 Honeymoon Cloud Retreat",
     description: "Ultimate honeymoon — panoramic glass ensuite with Dawki boating & dining under stars",
     duration: "5 Days", difficulty: "Easy", price: "₹52,500",
-    image: shillongCherryBlossomImg, rating: 5.0, category: "leisure", location: "Meghalaya",
+    image: imgUrl("shillong-cherry-blossom.jpg"), rating: 5.0, category: "leisure", location: "Meghalaya",
     highlights: ["XTSY 270 Suite", "Dawki Boating", "Couple Photography"],
   },
   {
