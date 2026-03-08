@@ -873,7 +873,7 @@ const ReviewsSection = () => {
         >
           {selectedReview && (
             <>
-              <DialogHeader className="pb-4 border-b border-white/10">
+              <DialogHeader className="pb-4 border-b border-border">
                 <VisuallyHidden>
                   <DialogDescription>View detailed review from {selectedReview.name}</DialogDescription>
                 </VisuallyHidden>
@@ -886,7 +886,7 @@ const ReviewsSection = () => {
                       "shadow-lg"
                     )}
                   >
-                    <div className="flex items-center justify-center w-14 h-14 rounded-full bg-slate-900/90 text-lg font-bold text-white">
+                    <div className="flex items-center justify-center w-14 h-14 rounded-full bg-background text-lg font-bold text-foreground">
                       {selectedReview.name
                         .split(" ")
                         .map((n: string) => n[0])
@@ -894,21 +894,21 @@ const ReviewsSection = () => {
                         .toUpperCase()
                         .slice(0, 2)}
                     </div>
-                    <div className="absolute -bottom-1 -right-1 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full p-0.5 shadow-lg">
-                      <BadgeCheck className="w-4 h-4 text-white" />
+                    <div className="absolute -bottom-1 -right-1 bg-gradient-to-br from-success to-success/80 rounded-full p-0.5 shadow-lg">
+                      <BadgeCheck className="w-4 h-4 text-success-foreground" />
                     </div>
                   </div>
 
                   <div className="flex-1">
-                    <DialogTitle className="text-lg sm:text-xl font-semibold text-white mb-2">
+                    <DialogTitle className="text-lg sm:text-xl font-semibold text-foreground mb-2">
                       {selectedReview.name}
                     </DialogTitle>
                     
                     <div className="flex items-center gap-2 flex-wrap mb-2">
                       {/* Rating */}
-                      <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-gradient-to-r from-yellow-500/20 to-amber-500/20 border border-yellow-500/30">
-                        <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                        <span className="text-yellow-400 text-xs font-bold">
+                      <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/15 border border-primary/30">
+                        <Star className="w-3 h-3 fill-primary text-primary" />
+                        <span className="text-primary text-xs font-bold">
                           {selectedReview.source === "Google" || selectedReview.source === "MakeMyTrip" 
                             ? `${selectedReview.rating}/5` 
                             : `${selectedReview.rating}/10`}
@@ -917,21 +917,21 @@ const ReviewsSection = () => {
                       
                       {/* Property badge */}
                       <span className={cn(
-                        "text-[10px] px-2 py-0.5 rounded-full font-medium text-white",
-                        selectedReview.property === "XTSY Experience" 
-                          ? "bg-gradient-to-r from-purple-500 to-purple-600"
-                          : "bg-gradient-to-r from-orange-500 to-amber-500"
+                        "text-[10px] px-2 py-0.5 rounded-full font-medium text-primary-foreground",
+                        selectedReview.property === "XTSY Xperience" 
+                          ? "bg-gradient-to-r from-brand-copper to-brand-ember"
+                          : "bg-gradient-to-r from-primary to-brand-gold"
                       )}>
                         {selectedReview.property}
                       </span>
                       
                       {/* Source badge */}
-                      <span className="text-[10px] px-2 py-0.5 rounded-full font-medium text-white bg-gradient-to-r from-violet-500 to-fuchsia-500">
+                      <span className="text-[10px] px-2 py-0.5 rounded-full font-medium text-primary-foreground bg-gradient-to-r from-brand-ember to-primary">
                         {selectedReview.source}
                       </span>
                     </div>
                     
-                    <p className="text-xs text-white/40">
+                    <p className="text-xs text-muted-foreground">
                       {selectedReview.date} {selectedReview.roomType && `• ${selectedReview.roomType}`}
                     </p>
                   </div>
@@ -946,20 +946,20 @@ const ReviewsSection = () => {
                 }}
               >
                 <div className="relative">
-                  <Quote className="absolute -top-2 -left-2 w-8 h-8 text-violet-500/20" />
-                  <p className="text-sm sm:text-base text-white/80 leading-relaxed pl-6 whitespace-pre-wrap">
+                  <Quote className="absolute -top-2 -left-2 w-8 h-8 text-primary/20" />
+                  <p className="text-sm sm:text-base text-foreground/80 leading-relaxed pl-6 whitespace-pre-wrap">
                     {selectedReview.comment}
                   </p>
                 </div>
                 
                 {selectedReview.highlights && (
-                  <div className="mt-6 pt-4 border-t border-white/10">
-                    <p className="text-xs text-white/40 mb-2">Highlights</p>
+                  <div className="mt-6 pt-4 border-t border-border">
+                    <p className="text-xs text-muted-foreground mb-2">Highlights</p>
                     <div className="flex flex-wrap gap-2">
                       {selectedReview.highlights.split(" · ").map((highlight: string, i: number) => (
                         <span 
                           key={i}
-                          className="text-xs px-3 py-1 rounded-full bg-white/5 text-white/60 border border-white/10"
+                          className="text-xs px-3 py-1 rounded-full bg-secondary text-secondary-foreground border border-border"
                         >
                           {highlight}
                         </span>
