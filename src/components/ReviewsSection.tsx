@@ -749,9 +749,9 @@ const ReviewsSection = () => {
 
         {/* Platform Ratings */}
         <div className="mt-16">
-          <h3 className="text-xl sm:text-2xl font-semibold text-white text-center mb-8">
+          <h3 className="text-xl sm:text-2xl font-semibold text-foreground text-center mb-8">
             Trusted Across{" "}
-            <span className="bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+            <span className="text-primary">
               All Platforms
             </span>
           </h3>
@@ -768,10 +768,10 @@ const ReviewsSection = () => {
         <div className="text-center mt-12">
           <div className={cn(
             "inline-flex items-center gap-2 px-6 py-3 rounded-full",
-            "bg-white/[0.03] backdrop-blur-xl border border-white/10"
+            "bg-secondary/50 backdrop-blur-xl border border-border"
           )}>
-            <BadgeCheck className="w-5 h-5 text-emerald-400" />
-            <span className="text-white/60 text-sm">
+            <BadgeCheck className="w-5 h-5 text-success" />
+            <span className="text-muted-foreground text-sm">
               Reviews automatically synced from all major booking platforms
             </span>
           </div>
