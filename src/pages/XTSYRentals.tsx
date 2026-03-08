@@ -296,12 +296,13 @@ const XTSYRentals = () => {
                     viewport={{ once: true }}
                     className="group bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 transition-all duration-500"
                   >
-                    <div className="relative aspect-[16/9] overflow-hidden bg-muted">
+                    <div className="relative aspect-[16/9] overflow-hidden bg-gradient-to-br from-muted via-card to-muted">
+                      {/* Ambient glow behind vehicle */}
+                      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_60%,hsl(25_95%_53%/0.06),transparent_70%)]" />
                       <img
                         src={car.image}
                         alt={car.name}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                        style={{ objectPosition: '50% 60%' }}
+                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out drop-shadow-2xl p-2"
                         loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
@@ -376,12 +377,12 @@ const XTSYRentals = () => {
                     viewport={{ once: true }}
                     className="group bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 transition-all duration-500"
                   >
-                    <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+                    <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-muted via-card to-muted">
+                      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_60%,hsl(25_95%_53%/0.06),transparent_70%)]" />
                       <img
                         src={bike.image}
                         alt={bike.name}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                        style={{ objectPosition: '50% 55%' }}
+                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out drop-shadow-2xl p-2"
                         loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
