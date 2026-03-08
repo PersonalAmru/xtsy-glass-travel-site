@@ -392,7 +392,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
       description: "Explore the world's only floating national park during ideal winter conditions — witness dancing deer and floating villages.",
       duration: "4 Days",
       difficulty: "Easy",
-      price: "₹23,500",
+    price: "₹18,999",
       image: manipurLoktakImg,
       rating: 4.7,
       category: "leisure",
