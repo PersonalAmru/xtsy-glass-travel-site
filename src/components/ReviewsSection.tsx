@@ -677,8 +677,13 @@ const ReviewsSection = () => {
           <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 z-10 bg-gradient-to-l from-slate-950 to-transparent pointer-events-none" />
           
           <div 
-            className="flex animate-marquee-left gap-4 hover:[animation-play-state:paused]"
-            style={{ '--marquee-duration': `${Math.max(30, filteredReviews.length * 5)}s` } as React.CSSProperties}
+            className="flex gap-4"
+            style={{ 
+              animation: `marquee-left ${Math.max(40, filteredReviews.length * 3)}s linear infinite`,
+              width: 'max-content',
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.animationPlayState = 'paused'}
+            onMouseLeave={(e) => e.currentTarget.style.animationPlayState = 'running'}
           >
             {/* Duplicate reviews for seamless loop */}
             {[...filteredReviews, ...filteredReviews].map((review, index) => (
@@ -688,7 +693,7 @@ const ReviewsSection = () => {
                   onClick={() => handleReviewClick(review)}
                   variant="carousel"
                   isMobile={isMobile}
-                  index={index % 4}
+                  index={0}
                 />
               </div>
             ))}
@@ -701,8 +706,13 @@ const ReviewsSection = () => {
           <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 z-10 bg-gradient-to-l from-slate-950 to-transparent pointer-events-none" />
           
           <div 
-            className="flex animate-marquee-right gap-4 hover:[animation-play-state:paused]"
-            style={{ '--marquee-duration': `${Math.max(35, filteredReviews.length * 5.5)}s` } as React.CSSProperties}
+            className="flex gap-4"
+            style={{ 
+              animation: `marquee-right ${Math.max(45, filteredReviews.length * 3.5)}s linear infinite`,
+              width: 'max-content',
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.animationPlayState = 'paused'}
+            onMouseLeave={(e) => e.currentTarget.style.animationPlayState = 'running'}
           >
             {/* Reversed + duplicated for opposite direction seamless loop */}
             {[...filteredReviews].reverse().concat([...filteredReviews].reverse()).map((review, index) => (
@@ -712,7 +722,7 @@ const ReviewsSection = () => {
                   onClick={() => handleReviewClick(review)}
                   variant="carousel"
                   isMobile={isMobile}
-                  index={index % 4}
+                  index={0}
                 />
               </div>
             ))}

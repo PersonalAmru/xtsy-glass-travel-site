@@ -91,17 +91,15 @@ const PremiumReviewCard = ({
         // Subtle glow effect on hover
         !isMobile && "hover:bg-white/[0.06] hover:border-white/15 hover:shadow-lg hover:shadow-violet-500/10",
         !isMobile && "hover:scale-[1.02] hover:-translate-y-1",
-        // Animation delay based on index
-        "animate-fade-in",
         // Variant-specific sizing - compact cards with reduced padding
         variant === "carousel" && "h-[240px] p-4",
-        variant === "grid" && "p-4",
-        variant === "featured" && "p-5 md:p-6"
+        variant === "grid" && "p-4 animate-fade-in",
+        variant === "featured" && "p-5 md:p-6 animate-fade-in"
       )}
-      style={{ 
+      style={variant !== "carousel" ? { 
         animationDelay: `${index * 100}ms`,
         animationFillMode: "both"
-      }}
+      } : undefined}
     >
       {/* Subtle glow behind card */}
       <div 
