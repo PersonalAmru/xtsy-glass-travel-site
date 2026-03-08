@@ -426,7 +426,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
       description: "Crystal-clear winter skies reveal stunning Kanchenjunga vistas — perfect season for Himalayan photography and monastery tours.",
       duration: "4 Days",
       difficulty: "Easy",
-    price: "₹18,999",
+    price: "₹21,999",
       image: pellingKanchenjungaImg,
       rating: 4.6,
       category: "leisure",
