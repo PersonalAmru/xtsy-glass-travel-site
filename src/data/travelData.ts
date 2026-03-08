@@ -171,7 +171,7 @@ const _exclusiveTours: TourPackage[] = [
     description: "Epic underground adventure through India's fifth longest cave system featuring limestone passages, underground rivers, cave boating, and a trek to the stunning Moopun Falls.",
     duration: "4 Days",
     difficulty: "Challenging",
-    price: "₹36,500",
+    price: "₹24,999",
     image: kremChympeCaveImg,
     rating: 5.0,
     category: "adventure",
