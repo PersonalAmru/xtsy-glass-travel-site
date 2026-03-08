@@ -67,7 +67,7 @@ export const PROPERTIES: Record<string, Property> = {
       xtsyMilkyway2,
       xtsyInterior,
     ],
-    // Note: New local images (stargazing, aerial, milkyway, interior) used on /xtsy-270-glasshouse page
+    // Note: New local images (stargazing, aerial, milkyway, interior) used on /xtsy-270 page
     amenities: ['270° Mountain Views', 'Premium Breakfast', 'Luxury Ensuite', 'Air Conditioning', '4K QLED TV'],
     priceRange: { min: 7489, max: 11500 },
     rating: 4.9,

@@ -6,8 +6,8 @@ import xtsyMilkyway2 from '@/assets/xtsy-270-milkyway2.jpeg';
 import xtsyInterior from '@/assets/xtsy-270-interior.jpeg';
 
 export const XTSY270_DATA = {
-  path: '/xtsy-270-glasshouse',
-  canonicalUrl: 'https://xtsy.one/xtsy-270-glasshouse',
+  path: '/xtsy-270',
+  canonicalUrl: 'https://xtsy.one/xtsy-270',
   name: 'XTSY Xperience – 270° Glasshouse Glamping Retreat',
   shortName: 'XTSY Xperience',
   seoTitle: 'XTSY Xperience – India\'s First 270° Glasshouse Glamping Retreat | Shillong, Meghalaya',

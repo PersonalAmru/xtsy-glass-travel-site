@@ -457,7 +457,7 @@ const XTSYvsZostel = () => {
               Call +91 88373 17070
             </Button>
             <Button size="lg" variant="outline" asChild className="bg-white/20 hover:bg-white/30 border-white text-white shadow-xl backdrop-blur-sm">
-              <a href="/xtsy-270-glasshouse">Explore XTSY 270°</a>
+              <a href="/xtsy-270">Explore XTSY 270°</a>
             </Button>
           </div>
         </div>

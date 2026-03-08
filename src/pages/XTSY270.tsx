@@ -25,11 +25,10 @@ const XTSY270: React.FC = () => {
   } = useApp();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isB2BFormOpen, setIsB2BFormOpen] = useState(false);
-  const title = 'Luxury Glamping in Shillong | XTSY 270° Glasshouse';
-  const description = "Experience India's 270° glasshouse luxury glamping in Shillong. A private romantic stay surrounded by mountains, pine forests and star-gazing skies.";
+  const title = XTSY270_DATA.seoTitle;
+  const description = XTSY270_DATA.seoDescription;
   const canonicalUrl = XTSY270_DATA.canonicalUrl;
   const keywords = (XTSY270_DATA as any).seoKeywords || '';
-  const ogImage = 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/270/XTSY%20270%202_cropped_processed_by_imagy.jpg';
   const handleBookingClick = () => {
     const message = `🏕️ *XTSY Xperience – Glasshouse Glamping Inquiry*
 
@@ -85,7 +84,7 @@ Can't wait to sleep under the stars! 🌌✨`;
     keywords: 'glamping India, luxury glamping Shillong, glasshouse glamping, romantic glamping, stargazing glamping, couples retreat'
   };
   return <div className="min-h-screen bg-gradient-to-b from-stone-50 via-amber-50/40 to-stone-100">
-      <SEOHead title={title} description={description} keywords={keywords} canonicalUrl={canonicalUrl} ogImage={ogImage} ogType="product" />
+      <SEOHead title={title} description={description} keywords={keywords} canonicalUrl={canonicalUrl} ogType="product" />
       <Header />
       
       {/* Luxury Hero Section */}
@@ -346,7 +345,7 @@ Can't wait to sleep under the stars! 🌌✨`;
             </div>
 
             {/* Floating Button */}
-            <div className="fixed bottom-20 md:bottom-6 left-0 right-0 z-50 px-4 bg-transparent pointer-events-none">
+            <div className="fixed bottom-0 left-0 right-0 z-50 px-4 pb-[calc(env(safe-area-inset-bottom,0px)+12px)] pt-3 bg-transparent pointer-events-none">
               <div className="mx-auto max-w-5xl flex justify-center">
                 <Button size="lg" onClick={() => setIsB2BFormOpen(true)} className="pointer-events-auto rounded-xl px-8 md:px-12 py-4 md:py-6 text-white font-bold shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 ring-4 ring-primary/20 hover:ring-primary/30 relative overflow-hidden group">
                   <span className="relative z-10 bg-gradient-to-r from-yellow-300 via-white to-yellow-300 bg-clip-text text-transparent animate-pulse text-center text-lg md:text-xl">

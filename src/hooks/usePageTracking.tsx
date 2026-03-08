@@ -30,7 +30,6 @@ const PAGE_CATEGORIES: Record<string, string> = {
   '/female-travellers': 'xtsy_prime',
   '/pet-friendly': 'xtsy_prime',
   '/xtsy-vs-zostel': 'xtsy_prime',
-  '/xtsy-270-glasshouse': 'xtsy_prime',
   '/xtsy-270': 'xtsy_prime',
   '/work-from-home': 'xtsy_prime',
   '/xtsy-rentals': 'xtsy_prime',

@@ -42,7 +42,7 @@ const RoomCard = ({ room, propertyType, onSelectRoom, isLuxury = false }: RoomCa
   const handleRoomSelection = () => {
     // Check if this is the XTSY 270 room - navigate to its dedicated page
     if (room.id === "signature-270-glass-suite") {
-      navigate('/xtsy-270-glasshouse');
+      navigate('/xtsy-270');
       // Scroll to top after navigation
       setTimeout(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
