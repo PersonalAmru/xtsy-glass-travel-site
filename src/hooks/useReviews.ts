@@ -103,7 +103,7 @@ export function useReviews() {
   // Get review counts by property
   const reviewCounts = useMemo(() => ({
     hostel: reviews.filter(r => r.property === 'XTSY Travellers Hostel').length,
-    luxury: reviews.filter(r => r.property === 'XTSY Xperience').length,
+    luxury: reviews.filter(r => r.property === 'XTSY Experience').length,
     total: reviews.length,
   }), [reviews]);
 
