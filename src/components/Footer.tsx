@@ -3,7 +3,7 @@ import { Phone, Mail, Instagram, Youtube, Home, Info, Image as ImageIcon, Camera
 import { pushToDataLayer } from "@/utils/dataLayerService";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
-import xtsyLogo from "@/assets/xtsy-brand-logo.webp";
+import xtsyLogo from "@/assets/xtsy-color-logo.png";
 import PolicyModal from "./PolicyModals";
 const Footer = () => {
   const [logoLoaded, setLogoLoaded] = useState(false);
