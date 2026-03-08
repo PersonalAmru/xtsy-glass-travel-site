@@ -19,7 +19,7 @@ const xtsyPrimeOfferings = [
     title: "XTSY Experience",
     shortTitle: "XTSY Experience",
     description: "India's first panoramic glass house with 270° mountain views. Wake up to sunrises over the Himalayas in this architectural masterpiece.",
-    image: xtsyExperienceImage,
+    image: imgUrl("xtsy-270-stargazing.jpeg"),
     icon: Mountain,
     price: "₹7,489",
     originalPrice: "₹11,999",
