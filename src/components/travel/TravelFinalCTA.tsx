@@ -1,13 +1,13 @@
 import { MessageCircle, Phone } from "lucide-react";
 
 const TravelFinalCTA = () => (
-  <section className="py-16 sm:py-20 bg-gradient-to-br from-stone-900 to-stone-950 relative overflow-hidden">
-    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_hsl(25_95%_53%_/_0.1),transparent_60%)]" />
+  <section className="py-16 sm:py-20 bg-gradient-to-br from-card to-background relative overflow-hidden">
+    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_hsl(var(--primary)_/_0.08),transparent_60%)]" />
     <div className="container mx-auto px-4 sm:px-6 text-center relative z-10">
-      <h2 className="font-playfair text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
+      <h2 className="font-playfair text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
         Not seeing your kind of journey?
       </h2>
-      <p className="text-stone-400 text-sm sm:text-base md:text-lg mb-8 max-w-xl mx-auto">
+      <p className="text-muted-foreground text-sm sm:text-base md:text-lg mb-8 max-w-xl mx-auto">
         We design bespoke itineraries for travelers who want something truly unique.
       </p>
 
