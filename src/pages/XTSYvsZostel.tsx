@@ -153,7 +153,7 @@ const XTSYvsZostel = () => {
     { feature: "Price Transparency", xtsy: true, zostel: false, xtsyNote: "Clear pricing", zostelNote: "Hidden add-ons" },
     { feature: "Tour Package Ecosystem", xtsy: true, zostel: false, xtsyNote: "40+ Packages" },
     { feature: "Female-Only Dorms", xtsy: true, zostel: true },
-    { feature: "Professional Management (LLP)", xtsy: true, zostel: true, xtsyNote: "XTSY One LLP" },
+    { feature: "Professional Management (LLP)", xtsy: true, zostel: true, xtsyNote: "XTSY One" },
   ];
 
   // Business model comparison data
