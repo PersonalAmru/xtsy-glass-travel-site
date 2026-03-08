@@ -667,7 +667,7 @@ export const internationalTours: Record<string, TourPackage[]> = {
       description: "Yoga at sunrise over rice terraces, temple ceremonies, and holistic wellness — Bali as it was meant to be experienced, not as a party island.",
       duration: "7 Days",
       difficulty: "Easy",
-      price: "₹72,000",
+      price: "₹59,999",
       image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80",
       rating: 4.9,
       category: "leisure",
