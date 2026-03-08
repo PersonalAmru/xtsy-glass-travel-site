@@ -18,6 +18,7 @@ import krangSuriWaterfallImg from "@/assets/krang-suri-waterfall.jpg";
 import phiPhiWaterfallMeghalayaImg from "@/assets/phi-phi-waterfall-meghalaya.jpg";
 import moopunWaterfallImg from "@/assets/moopun-waterfall.jpg";
 import assamTeaGardensImg from "@/assets/assam-tea-gardens-premium.jpg";
+import xtsy270StargazingImg from "@/assets/xtsy-270-stargazing.jpeg";
 import arunachalCulturalFestivalImg from "@/assets/arunachal-cultural-festival.jpg";
 import arunachalTribalImg from "@/assets/arunachal-tribal-premium.jpg";
 import tripuraBambooHeritageImg from "@/assets/tripura-bamboo-heritage.jpg";
@@ -806,7 +807,7 @@ const _coupleLuxuryTours: TourPackage[] = [
     duration: "4 Days",
     difficulty: "Easy",
     price: "₹32,999",
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/download%20(26).jpg",
+    image: xtsy270StargazingImg,
     rating: 4.9,
     category: "leisure",
     location: "Meghalaya",
