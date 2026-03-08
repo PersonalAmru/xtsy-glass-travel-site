@@ -119,7 +119,7 @@ const soloPackages = [
     id: 703, title: "Arunachal Bike Expedition — Solo Friendly",
     description: "Solo-friendly motorcycle journey — Sela Pass, Tawang, Bumla Pass",
     duration: "8 Days", difficulty: "Challenging", price: "₹48,500",
-    image: tawangMonasteryMountainsImg, rating: 4.9, category: "adventure", location: "Arunachal Pradesh",
+    image: imgUrl("tawang-monastery-mountains.jpg"), rating: 4.9, category: "adventure", location: "Arunachal Pradesh",
     highlights: ["Sela Pass 13,700 ft", "Tawang Monastery", "Bumla Pass Border"],
   },
 ];
