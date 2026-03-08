@@ -343,7 +343,7 @@ const getRoomTag = (room: RoomType) => {
   if (propertyType === 'XTSY Travellers Hostel' && room.kind === 'dorm') {
     return { label: 'Best Seller', color: 'bg-emerald-500/90 text-white' };
   }
-  if (propertyType === 'XTSY Xperience') {
+  if (propertyType === 'XTSY Experience') {
     return { label: 'Luxury', color: 'bg-amber-500/90 text-white' };
   }
   return null;
