@@ -268,7 +268,7 @@ const XTSYvsZostel = () => {
     <div className="min-h-screen bg-background">
       <SEOHead
         title="XTSY vs Zostel — Local Hospitality vs Franchise Chain | Northeast India"
-        description="Compare XTSY's owner-operated ecosystem vs Zostel's franchise model in Northeast India. 8 states, 270° Glass Suite, groups 50+, govt partnerships vs pre-packaged bus tours."
+        description="Compare XTSY's self-sustaining ecosystem vs Zostel's franchise model in Northeast India. 8 states, 270° Glass Suite, groups 50+, govt partnerships vs pre-packaged bus tours."
         keywords="XTSY vs Zostel, Northeast India hostel, Shillong hostel comparison, best hostel Meghalaya, Zostel franchise, Zo Trips alternative"
         canonicalUrl="https://xtsy.one/xtsy-vs-zostel"
       />
