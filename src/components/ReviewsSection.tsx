@@ -1010,6 +1010,7 @@ const ReviewsSection = () => {
           )}
         </DialogContent>
       </Dialog>
+      )}
     </section>
   );
 };
