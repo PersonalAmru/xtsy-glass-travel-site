@@ -862,7 +862,7 @@ const _soloAndBikeTours: TourPackage[] = [
     description: "Safe, curated solo exploration with local buddy system, verified homestays, and 24/7 support. Women-only batches available. Making solo travel easy.",
     duration: "5 Days",
     difficulty: "Easy",
-    price: "₹22,500",
+    price: "₹17,999",
     image: dawkiCrystalClearImg,
     rating: 4.8,
     category: "adventure",
