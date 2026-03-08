@@ -7,7 +7,7 @@ import xtsyAerial from '@/assets/xtsy-270-aerial.jpeg';
 import xtsyMilkyway from '@/assets/xtsy-270-glass-night-new.png';
 import xtsyMilkyway2 from '@/assets/xtsy-270-new4.png';
 import xtsyInterior from '@/assets/xtsy-270-interior.jpeg';
-import MobileImageCarousel from '@/components/MobileImageCarousel';
+import InteractiveSelector from '@/components/ui/interactive-selector';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -161,18 +161,46 @@ Can't wait to sleep under the stars! 🌌✨`;
               </div>
             </div>
 
-            {/* Hero Image Carousel */}
-            <figure className="animate-fade-in" style={{
-            animationDelay: '0.6s'
-          }} aria-label="XTSY 270° Panorama Glass Ensuite luxury experience">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-stone-200/40">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10" />
-                <MobileImageCarousel images={[xtsyStargazing, xtsyAerial, xtsyMilkyway, xtsyMilkyway2, xtsyInterior]} alt="XTSY 270° Panorama Glass Ensuite — India's first luxury glass house with 270-degree mountain views" aspectRatio="video" showIndicators={true} showArrows={true} autoPlay={true} autoPlayInterval={5000} className="w-full" objectFit="contain" containerStyle={{ maxWidth: '1260px', height: '600px', margin: '0 auto' }} />
-              </div>
-              <figcaption className="mt-4 text-center text-gray-700 font-medium">
+            {/* Hero Interactive Image Selector */}
+            <figure className="animate-fade-in" style={{ animationDelay: '0.6s' }} aria-label="XTSY 270° Panorama Glass Ensuite luxury experience">
+              <InteractiveSelector
+                options={[
+                  {
+                    title: 'Stargazing Suite',
+                    description: 'Sleep under open skies from your bed',
+                    image: xtsyStargazing,
+                    icon: <Star className="w-6 h-6" />,
+                  },
+                  {
+                    title: 'Aerial View',
+                    description: 'Architecture that disappears into nature',
+                    image: xtsyAerial,
+                    icon: <Eye className="w-6 h-6" />,
+                  },
+                  {
+                    title: 'Glass & Milky Way',
+                    description: '270° panoramic glass under the stars',
+                    image: xtsyMilkyway,
+                    icon: <Moon className="w-6 h-6" />,
+                  },
+                  {
+                    title: 'Night Glow',
+                    description: 'Luxury glamping illuminated by starlight',
+                    image: xtsyMilkyway2,
+                    icon: <Sparkles className="w-6 h-6" />,
+                  },
+                  {
+                    title: 'Interior Luxury',
+                    description: 'Premium comfort meets pine forest views',
+                    image: xtsyInterior,
+                    icon: <Mountain className="w-6 h-6" />,
+                  },
+                ]}
+              />
+              <figcaption className="mt-4 text-center text-muted-foreground font-medium">
                 India's first 270° glasshouse glamping retreat — where architecture disappears into nature
               </figcaption>
-              <p className="mt-2 text-center text-sm text-gray-600 font-medium">
+              <p className="mt-2 text-center text-sm text-muted-foreground">
                 Purely designed and curated by Team XTSY in the pine forests of Shillong
               </p>
             </figure>
