@@ -579,7 +579,7 @@ export const heartlandTours: Record<string, TourPackage[]> = {
       description: "Misty winter mornings and cool Western Ghats climate — romantic hill station escape with lakes and viewpoints.",
       duration: "3 Days",
       difficulty: "Easy",
-    price: "₹12,999",
+    price: "₹20,999",
       image: ootyKodaikanalImg,
       rating: 4.4,
       category: "leisure",
