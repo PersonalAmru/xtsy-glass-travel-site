@@ -684,29 +684,40 @@ const ReviewsSection = () => {
           <div className="w-24 h-1 bg-gradient-to-r from-violet-500 to-fuchsia-500 mx-auto mt-6 rounded-full" />
         </div>
 
-        {/* Premium Carousel */}
+        {/* Premium Carousel - Only render visible + adjacent slides to reduce DOM */}
         <div className="relative mb-16">
           <div className="overflow-hidden rounded-2xl">
             <div 
               className="flex transition-transform duration-700 ease-out" 
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
-              {Array.from({ length: Math.ceil(filteredReviews.length / 4) }).map((_, slideIndex) => (
-                <div key={slideIndex} className="w-full flex-shrink-0">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-2">
-                    {filteredReviews.slice(slideIndex * 4, slideIndex * 4 + 4).map((review, index) => (
-                      <PremiumReviewCard
-                        key={`${slideIndex}-${index}`}
-                        review={review}
-                        onClick={() => handleReviewClick(review)}
-                        variant="carousel"
-                        isMobile={isMobile}
-                        index={index}
-                      />
-                    ))}
+              {Array.from({ length: Math.ceil(filteredReviews.length / 4) }).map((_, slideIndex) => {
+                // Only render current slide and 1 adjacent slide in each direction
+                const isNearby = Math.abs(slideIndex - currentIndex) <= 1 || 
+                  (currentIndex === 0 && slideIndex === Math.ceil(filteredReviews.length / 4) - 1) ||
+                  (currentIndex === Math.ceil(filteredReviews.length / 4) - 1 && slideIndex === 0);
+                
+                return (
+                  <div key={slideIndex} className="w-full flex-shrink-0">
+                    {isNearby ? (
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-2">
+                        {filteredReviews.slice(slideIndex * 4, slideIndex * 4 + 4).map((review, index) => (
+                          <PremiumReviewCard
+                            key={`${slideIndex}-${index}`}
+                            review={review}
+                            onClick={() => handleReviewClick(review)}
+                            variant="carousel"
+                            isMobile={isMobile}
+                            index={index}
+                          />
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-2" style={{ minHeight: '200px' }} />
+                    )}
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
