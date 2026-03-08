@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, memo } from "react";
 import { motion } from "framer-motion";
 import { OptimizedFocusRail, FocusRailItem } from "@/components/OptimizedFocusRail";
 import { Button } from "@/components/ui/button";
@@ -8,18 +8,10 @@ import { LazyTourPackageModal } from "@/components/lazy/LazyTourPackageModal";
 import { useApp } from "@/contexts/AppContext";
 import { useComponentTracking } from "@/hooks/useComponentTracking";
 
-import wariChoraAuthenticImg from "@/assets/wari-chora-authentic.jpg";
-import doubleDeckerBridgeNewImg from "@/assets/double-decker-bridge-new.jpg";
-import dawkiCrystalClearImg from "@/assets/dawki-crystal-clear-authentic.jpg";
-import kremChympeCaveImg from "@/assets/krem-chympe-cave-expedition.jpg";
-import arunachalCulturalFestivalImg from "@/assets/arunachal-cultural-festival.jpg";
-import bumlaPassBikeExpeditionImg from "@/assets/bumla-pass-bike-expedition.jpg";
-import assamTeaGardensImg from "@/assets/assam-tea-gardens-premium.jpg";
-import keralaBackwatersImg from "@/assets/kerala-backwaters-authentic.jpg";
-import gurudongmarLakeImg from "@/assets/gurudongmar-lake-high-altitude-stock.jpg";
-import tamilNaduMeenakshiTempleImg from "@/assets/tamil-nadu-meenakshi-temple.jpg";
-import shillongCherryBlossomImg from "@/assets/shillong-cherry-blossom.jpg";
-import tawangMonasteryMountainsImg from "@/assets/tawang-monastery-mountains.jpg";
+// Use URL references instead of eager imports - Vite handles these as separate assets
+// This prevents bundling 12 large images into the JS chunk
+const imgUrl = (path: string) => new URL(`../assets/${path}`, import.meta.url).href;
+
 
 // Domestic tour packages
 const domesticPackages = [
