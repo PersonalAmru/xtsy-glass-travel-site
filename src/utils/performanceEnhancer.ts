@@ -26,7 +26,7 @@ export const setupLazyLoading = () => {
 // Preload critical resources
 export const preloadCriticalAssets = () => {
   const criticalImages = [
-    '/src/assets/xtsy-brand-logo.png',
+    '/src/assets/xtsy-brand-logo.webp',
     '/src/assets/meghalaya-hero.jpg',
     '/src/assets/xtsy-logo.png'
   ];

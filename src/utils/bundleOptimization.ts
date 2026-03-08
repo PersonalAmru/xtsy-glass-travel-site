@@ -4,7 +4,7 @@
 export const preloadCriticalResources = () => {
   // Critical above-the-fold images
   const criticalImages = [
-    '/src/assets/xtsy-brand-logo.png',
+    '/src/assets/xtsy-brand-logo.webp',
     '/src/assets/meghalaya-hero.jpg',
     '/src/assets/xtsy-logo.png',
     '/src/assets/xtsy-color-logo.png',

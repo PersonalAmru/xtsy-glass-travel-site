@@ -1,7 +1,7 @@
 // Image optimization utilities
 export const preloadCriticalImages = () => {
   const criticalImages = [
-    '/src/assets/xtsy-brand-logo.png',
+    '/src/assets/xtsy-brand-logo.webp',
     '/src/assets/meghalaya-hero.jpg',
     // Add other critical above-the-fold images
   ];

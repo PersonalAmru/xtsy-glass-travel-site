@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Menu, X, User, LogOut, Download, Phone, MessageCircle, MapPin, Mountain, Plane, HelpCircle, Camera, Sparkles, PawPrint } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import xtsyLogo from "@/assets/xtsy-brand-logo.png";
+import xtsyLogo from "@/assets/xtsy-brand-logo.webp";
 import { useMediaQuery } from "@/hooks/use-mobile";
 import { useUserAuth } from "@/contexts/UserAuthContext";
 import {

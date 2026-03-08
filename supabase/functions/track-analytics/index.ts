@@ -71,6 +71,10 @@ const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
 const RATE_LIMIT = 100;
 const RATE_WINDOW = 60000;
 
+// In-memory geo cache to avoid repeated lookups for same IP
+const geoCache = new Map<string, { data: any; expiresAt: number }>();
+const GEO_CACHE_TTL = 10 * 60 * 1000; // 10 minutes
+
 function checkRateLimitLocal(visitorId: string): boolean {
   const now = Date.now();
   const record = rateLimitMap.get(visitorId);
@@ -88,7 +92,7 @@ function checkRateLimitLocal(visitorId: string): boolean {
   return true;
 }
 
-// Country lookup from IP
+// Country lookup from IP - with in-memory caching
 async function getGeoFromIP(ip: string): Promise<{ 
   country_code?: string; 
   country_name?: string;
@@ -102,8 +106,14 @@ async function getGeoFromIP(ip: string): Promise<{
       return null;
     }
 
+    // Check in-memory cache first
+    const cached = geoCache.get(ip);
+    if (cached && Date.now() < cached.expiresAt) {
+      return cached.data;
+    }
+
     const response = await fetch(`http://ip-api.com/json/${ip}?fields=status,country,countryCode,region,regionName,city,lat,lon`, {
-      signal: AbortSignal.timeout(2000),
+      signal: AbortSignal.timeout(1000), // Reduced from 2s to 1s
     });
 
     if (!response.ok) return null;
@@ -111,7 +121,7 @@ async function getGeoFromIP(ip: string): Promise<{
     const data = await response.json();
     if (data.status !== 'success') return null;
 
-    return {
+    const result = {
       country_code: data.countryCode,
       country_name: data.country,
       region: data.regionName,
@@ -119,6 +129,19 @@ async function getGeoFromIP(ip: string): Promise<{
       latitude: data.lat,
       longitude: data.lon,
     };
+
+    // Cache the result
+    geoCache.set(ip, { data: result, expiresAt: Date.now() + GEO_CACHE_TTL });
+    
+    // Evict old entries if cache grows too large
+    if (geoCache.size > 500) {
+      const now = Date.now();
+      for (const [key, val] of geoCache) {
+        if (now > val.expiresAt) geoCache.delete(key);
+      }
+    }
+
+    return result;
   } catch {
     return null;
   }
@@ -250,14 +273,7 @@ Deno.serve(async (req) => {
       }
     };
 
-    // Insert event into traveller_events
-    const { error: eventError } = await supabase.from('traveller_events').insert(eventData);
-    if (eventError) {
-      // Server-side only - generic code for debugging
-      console.error('[Analytics] Event insert failed - code: TE001');
-    }
-
-    // Upsert traveller profile
+    // Parallelize: Insert event + Upsert profile + Increment stats simultaneously
     const profileUpdate: Record<string, any> = {
       visitor_id: visitorId,
       last_seen_at: new Date().toISOString(),
@@ -265,37 +281,31 @@ Deno.serve(async (req) => {
       updated_at: new Date().toISOString(),
     };
 
-    // Set first touch attribution on first visit
     if (data.is_entrance) {
       profileUpdate.first_touch_source = data.source || data.utm_source || 'direct';
       profileUpdate.first_touch_medium = data.medium || data.utm_medium || null;
       profileUpdate.first_touch_campaign = data.utm_campaign || null;
     }
 
-    // Always update last touch
     profileUpdate.last_touch_source = data.source || data.utm_source || null;
     profileUpdate.last_touch_medium = data.medium || data.utm_medium || null;
 
-    // Upsert profile
-    const { error: profileError } = await supabase.from('traveller_profiles').upsert(profileUpdate, {
-      onConflict: 'visitor_id',
-    });
-    if (profileError) {
-      // Server-side only - generic code for debugging
-      console.error('[Analytics] Profile upsert failed - code: TP001');
+    const parallelOps: Promise<any>[] = [
+      supabase.from('traveller_events').insert(eventData),
+      supabase.from('traveller_profiles').upsert(profileUpdate, { onConflict: 'visitor_id' }),
+    ];
+
+    if (endpoint === 'pageview') {
+      parallelOps.push(
+        supabase.rpc('increment_traveller_stats', {
+          p_visitor_id: visitorId,
+          p_is_new_session: data.is_entrance || false
+        }).then(() => {}).catch(() => {})
+      );
     }
 
-    // Increment session/pageview counts
-    if (endpoint === 'pageview') {
-      const { error: rpcError } = await supabase.rpc('increment_traveller_stats', {
-        p_visitor_id: visitorId,
-        p_is_new_session: data.is_entrance || false
-      });
-      if (rpcError) {
-        // Server-side only - generic code for debugging
-        console.warn('[Analytics] Stats increment unavailable - code: TS001');
-      }
-    }
+    // Fire all in parallel, don't block on results
+    await Promise.allSettled(parallelOps);
 
     // ============ EXISTING ANALYTICS LOGIC ============
     switch (endpoint) {
