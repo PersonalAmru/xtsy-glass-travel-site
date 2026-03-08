@@ -84,12 +84,21 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				// Brand-specific semantic tokens
+				// Brand extended palette
 				brand: {
-					DEFAULT: 'hsl(25 95% 53%)',
+					DEFAULT: 'hsl(var(--primary))',
 					secondary: 'hsl(var(--brand-secondary))',
 					accent: 'hsl(var(--brand-accent))',
+					gold: 'hsl(var(--brand-gold))',
+					ember: 'hsl(var(--brand-ember))',
+					copper: 'hsl(var(--brand-copper))',
 					verified: 'hsl(var(--brand-verified))',
+				},
+				// Premium surface tokens
+				surface: {
+					elevated: 'hsl(var(--surface-elevated))',
+					overlay: 'hsl(var(--surface-overlay))',
+					highlight: 'hsl(var(--surface-highlight))',
 				},
 				whatsapp: 'hsl(var(--whatsapp))',
 				sidebar: {
