@@ -82,7 +82,7 @@ export const ROOM_INVENTORY: Record<string, RoomType> = {
       xtsyInterior,
     ],
     isBookable: true,
-    propertyType: 'XTSY Xperience',
+    propertyType: 'XTSY Experience',
     displayOrder: 1,
     tags: ['luxury_couple'],
   },
