@@ -593,20 +593,7 @@ const ReviewsSection = () => {
     [allReviewsCombined]
   );
 
-  const nextReview = useCallback(() => {
-    setCurrentIndex(prev => (prev + 1) % Math.max(1, Math.ceil(filteredReviews.length / 4) - 1));
-  }, [filteredReviews.length]);
-
-  const prevReview = useCallback(() => {
-    setCurrentIndex(prev => (prev - 1 + Math.ceil(filteredReviews.length / 4)) % Math.ceil(filteredReviews.length / 4));
-  }, [filteredReviews.length]);
-
-  // Removed duplicate handleReviewClick - now using the tracked version defined above
-
-  useEffect(() => {
-    const interval = setInterval(nextReview, 5000);
-    return () => clearInterval(interval);
-  }, [nextReview]);
+  // Removed carousel navigation - now using CSS marquee animation
 
   // Load more reviews handler
   const handleLoadMore = useCallback(() => {
