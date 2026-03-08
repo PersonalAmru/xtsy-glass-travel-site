@@ -625,15 +625,15 @@ const ReviewsSection = () => {
         isMobile ? 'mobile-disable-pulse' : ''
       )}
     >
-      {/* Premium Dark Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950" />
+      {/* Premium Dark Background — brand aligned */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-card to-background" />
       
       {/* Animated gradient orbs - Disabled on mobile */}
       {!isMobile && (
         <>
-          <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-gradient-to-br from-violet-600/20 to-fuchsia-600/20 rounded-full blur-[120px] animate-pulse" />
-          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-gradient-to-br from-cyan-600/15 to-teal-600/15 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: "1s" }} />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br from-indigo-600/10 to-purple-600/10 rounded-full blur-[150px]" />
+          <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-gradient-to-br from-primary/15 to-brand-ember/15 rounded-full blur-[120px] animate-pulse" />
+          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-gradient-to-br from-brand-gold/10 to-brand-copper/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: "1s" }} />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br from-primary/5 to-brand-ember/5 rounded-full blur-[150px]" />
         </>
       )}
       
@@ -641,7 +641,7 @@ const ReviewsSection = () => {
       <div 
         className="absolute inset-0 opacity-[0.02]"
         style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(hsl(var(--foreground) / 0.1) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground) / 0.1) 1px, transparent 1px)`,
           backgroundSize: '50px 50px'
         }}
       />
@@ -649,32 +649,32 @@ const ReviewsSection = () => {
       <div className="container mx-auto max-w-7xl relative z-10">
         {/* Premium Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-violet-500/10 to-fuchsia-500/10 border border-violet-500/20 mb-6">
-            <Sparkles className="w-4 h-4 text-violet-400" />
-            <span className="text-sm font-medium bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+            <Sparkles className="w-4 h-4 text-primary" />
+            <span className="text-sm font-medium text-primary">
               Verified Guest Experiences
             </span>
           </div>
           
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 font-playfair">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 font-playfair">
             Guest{" "}
-            <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-pink-400 bg-clip-text text-transparent">
+            <span className="text-primary">
               Reviews
             </span>
           </h2>
           
-          <p className="text-base sm:text-lg text-white/60 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Discover what our amazing guests have to say about their unforgettable experiences at XTSY
           </p>
           
-          <div className="w-24 h-1 bg-gradient-to-r from-violet-500 to-fuchsia-500 mx-auto mt-6 rounded-full" />
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-brand-ember mx-auto mt-6 rounded-full" />
         </div>
 
         {/* Infinite Marquee - Row 1 (scrolls left) */}
         <div className="relative mb-4 overflow-hidden">
           {/* Gradient fade edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 z-10 bg-gradient-to-r from-slate-950 to-transparent pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 z-10 bg-gradient-to-l from-slate-950 to-transparent pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 z-10 bg-gradient-to-r from-background to-transparent pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 z-10 bg-gradient-to-l from-background to-transparent pointer-events-none" />
           
           <div 
             className="flex gap-4"
@@ -702,8 +702,8 @@ const ReviewsSection = () => {
 
         {/* Infinite Marquee - Row 2 (scrolls right) */}
         <div className="relative mb-12 overflow-hidden">
-          <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 z-10 bg-gradient-to-r from-slate-950 to-transparent pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 z-10 bg-gradient-to-l from-slate-950 to-transparent pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 z-10 bg-gradient-to-r from-background to-transparent pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 z-10 bg-gradient-to-l from-background to-transparent pointer-events-none" />
           
           <div 
             className="flex gap-4"
@@ -735,10 +735,10 @@ const ReviewsSection = () => {
             onClick={() => setIsAllReviewsOpen(true)}
             className={cn(
               "px-8 py-3 rounded-full font-medium",
-              "bg-gradient-to-r from-violet-600 to-fuchsia-600",
-              "hover:from-violet-500 hover:to-fuchsia-500",
-              "text-white shadow-lg shadow-violet-500/25",
-              "hover:shadow-xl hover:shadow-violet-500/30",
+              "bg-gradient-to-r from-primary to-brand-ember",
+              "hover:from-primary/90 hover:to-brand-ember/90",
+              "text-primary-foreground shadow-lg shadow-primary/25",
+              "hover:shadow-xl hover:shadow-primary/30",
               "transition-all duration-300 hover:scale-105"
             )}
           >
@@ -749,9 +749,9 @@ const ReviewsSection = () => {
 
         {/* Platform Ratings */}
         <div className="mt-16">
-          <h3 className="text-xl sm:text-2xl font-semibold text-white text-center mb-8">
+          <h3 className="text-xl sm:text-2xl font-semibold text-foreground text-center mb-8">
             Trusted Across{" "}
-            <span className="bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+            <span className="text-primary">
               All Platforms
             </span>
           </h3>
@@ -768,10 +768,10 @@ const ReviewsSection = () => {
         <div className="text-center mt-12">
           <div className={cn(
             "inline-flex items-center gap-2 px-6 py-3 rounded-full",
-            "bg-white/[0.03] backdrop-blur-xl border border-white/10"
+            "bg-secondary/50 backdrop-blur-xl border border-border"
           )}>
-            <BadgeCheck className="w-5 h-5 text-emerald-400" />
-            <span className="text-white/60 text-sm">
+            <BadgeCheck className="w-5 h-5 text-success" />
+            <span className="text-muted-foreground text-sm">
               Reviews automatically synced from all major booking platforms
             </span>
           </div>
@@ -784,17 +784,17 @@ const ReviewsSection = () => {
         <DialogContent 
           className={cn(
             "max-w-6xl w-[95vw] sm:w-full max-h-[90vh]",
-            "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900",
-            "border-white/10"
+            "bg-gradient-to-br from-background via-card to-background",
+            "border-border"
           )}
           style={{
             WebkitOverflowScrolling: 'touch',
             overscrollBehavior: 'contain',
           }}
         >
-          <DialogHeader className="sticky top-0 bg-slate-900/95 backdrop-blur-xl z-10 pb-4 border-b border-white/10">
-            <DialogTitle className="flex items-center gap-3 text-xl sm:text-2xl font-bold text-white">
-              <Sparkles className="w-6 h-6 text-violet-400" />
+          <DialogHeader className="sticky top-0 bg-background/95 backdrop-blur-xl z-10 pb-4 border-b border-border">
+            <DialogTitle className="flex items-center gap-3 text-xl sm:text-2xl font-bold text-foreground">
+              <Sparkles className="w-6 h-6 text-primary" />
               All Guest Reviews ({allReviewsCombined.length})
             </DialogTitle>
             <VisuallyHidden>
@@ -830,9 +830,9 @@ const ReviewsSection = () => {
                   disabled={isLoadingMore}
                   className={cn(
                     "px-8 py-3 rounded-full font-medium",
-                    "bg-gradient-to-r from-violet-600 to-fuchsia-600",
-                    "hover:from-violet-500 hover:to-fuchsia-500",
-                    "text-white"
+                    "bg-gradient-to-r from-primary to-brand-ember",
+                    "hover:from-primary/90 hover:to-brand-ember/90",
+                    "text-primary-foreground"
                   )}
                 >
                   {isLoadingMore ? (
@@ -848,7 +848,7 @@ const ReviewsSection = () => {
             )}
             
             {visibleReviewsCount >= allReviewsCombined.length && (
-              <p className="text-center text-white/40 text-sm py-6">
+              <p className="text-center text-muted-foreground text-sm py-6">
                 All {allReviewsCombined.length} reviews loaded
               </p>
             )}
@@ -863,8 +863,8 @@ const ReviewsSection = () => {
         <DialogContent 
           className={cn(
             "max-w-2xl w-[95vw] sm:w-full",
-            "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900",
-            "border-white/10"
+            "bg-gradient-to-br from-background via-card to-background",
+            "border-border"
           )}
           style={{
             WebkitOverflowScrolling: 'touch',
@@ -873,7 +873,7 @@ const ReviewsSection = () => {
         >
           {selectedReview && (
             <>
-              <DialogHeader className="pb-4 border-b border-white/10">
+              <DialogHeader className="pb-4 border-b border-border">
                 <VisuallyHidden>
                   <DialogDescription>View detailed review from {selectedReview.name}</DialogDescription>
                 </VisuallyHidden>
@@ -886,7 +886,7 @@ const ReviewsSection = () => {
                       "shadow-lg"
                     )}
                   >
-                    <div className="flex items-center justify-center w-14 h-14 rounded-full bg-slate-900/90 text-lg font-bold text-white">
+                    <div className="flex items-center justify-center w-14 h-14 rounded-full bg-background text-lg font-bold text-foreground">
                       {selectedReview.name
                         .split(" ")
                         .map((n: string) => n[0])
@@ -894,21 +894,21 @@ const ReviewsSection = () => {
                         .toUpperCase()
                         .slice(0, 2)}
                     </div>
-                    <div className="absolute -bottom-1 -right-1 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full p-0.5 shadow-lg">
-                      <BadgeCheck className="w-4 h-4 text-white" />
+                    <div className="absolute -bottom-1 -right-1 bg-gradient-to-br from-success to-success/80 rounded-full p-0.5 shadow-lg">
+                      <BadgeCheck className="w-4 h-4 text-success-foreground" />
                     </div>
                   </div>
 
                   <div className="flex-1">
-                    <DialogTitle className="text-lg sm:text-xl font-semibold text-white mb-2">
+                    <DialogTitle className="text-lg sm:text-xl font-semibold text-foreground mb-2">
                       {selectedReview.name}
                     </DialogTitle>
                     
                     <div className="flex items-center gap-2 flex-wrap mb-2">
                       {/* Rating */}
-                      <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-gradient-to-r from-yellow-500/20 to-amber-500/20 border border-yellow-500/30">
-                        <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                        <span className="text-yellow-400 text-xs font-bold">
+                      <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/15 border border-primary/30">
+                        <Star className="w-3 h-3 fill-primary text-primary" />
+                        <span className="text-primary text-xs font-bold">
                           {selectedReview.source === "Google" || selectedReview.source === "MakeMyTrip" 
                             ? `${selectedReview.rating}/5` 
                             : `${selectedReview.rating}/10`}
@@ -917,21 +917,21 @@ const ReviewsSection = () => {
                       
                       {/* Property badge */}
                       <span className={cn(
-                        "text-[10px] px-2 py-0.5 rounded-full font-medium text-white",
-                        selectedReview.property === "XTSY Experience" 
-                          ? "bg-gradient-to-r from-purple-500 to-purple-600"
-                          : "bg-gradient-to-r from-orange-500 to-amber-500"
+                        "text-[10px] px-2 py-0.5 rounded-full font-medium text-primary-foreground",
+                        selectedReview.property === "XTSY Xperience" 
+                          ? "bg-gradient-to-r from-brand-copper to-brand-ember"
+                          : "bg-gradient-to-r from-primary to-brand-gold"
                       )}>
                         {selectedReview.property}
                       </span>
                       
                       {/* Source badge */}
-                      <span className="text-[10px] px-2 py-0.5 rounded-full font-medium text-white bg-gradient-to-r from-violet-500 to-fuchsia-500">
+                      <span className="text-[10px] px-2 py-0.5 rounded-full font-medium text-primary-foreground bg-gradient-to-r from-brand-ember to-primary">
                         {selectedReview.source}
                       </span>
                     </div>
                     
-                    <p className="text-xs text-white/40">
+                    <p className="text-xs text-muted-foreground">
                       {selectedReview.date} {selectedReview.roomType && `• ${selectedReview.roomType}`}
                     </p>
                   </div>
@@ -946,20 +946,20 @@ const ReviewsSection = () => {
                 }}
               >
                 <div className="relative">
-                  <Quote className="absolute -top-2 -left-2 w-8 h-8 text-violet-500/20" />
-                  <p className="text-sm sm:text-base text-white/80 leading-relaxed pl-6 whitespace-pre-wrap">
+                  <Quote className="absolute -top-2 -left-2 w-8 h-8 text-primary/20" />
+                  <p className="text-sm sm:text-base text-foreground/80 leading-relaxed pl-6 whitespace-pre-wrap">
                     {selectedReview.comment}
                   </p>
                 </div>
                 
                 {selectedReview.highlights && (
-                  <div className="mt-6 pt-4 border-t border-white/10">
-                    <p className="text-xs text-white/40 mb-2">Highlights</p>
+                  <div className="mt-6 pt-4 border-t border-border">
+                    <p className="text-xs text-muted-foreground mb-2">Highlights</p>
                     <div className="flex flex-wrap gap-2">
                       {selectedReview.highlights.split(" · ").map((highlight: string, i: number) => (
                         <span 
                           key={i}
-                          className="text-xs px-3 py-1 rounded-full bg-white/5 text-white/60 border border-white/10"
+                          className="text-xs px-3 py-1 rounded-full bg-secondary text-secondary-foreground border border-border"
                         >
                           {highlight}
                         </span>
