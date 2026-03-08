@@ -43,7 +43,7 @@ const TravelHero = () => {
           <Button
             size="lg"
             onClick={() => scrollTo("travel-northeast")}
-            className="bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-semibold px-8 py-3 rounded-full shadow-lg shadow-amber-500/25 text-base"
+            className="bg-gradient-to-r from-primary to-brand-ember hover:from-primary/90 hover:to-brand-ember/90 text-primary-foreground font-semibold px-8 py-3 rounded-full shadow-lg shadow-primary/25 text-base"
           >
             <Compass className="h-5 w-5 mr-2" />
             Explore Tours
