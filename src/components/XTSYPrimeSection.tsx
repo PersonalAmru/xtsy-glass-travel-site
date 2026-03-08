@@ -83,7 +83,7 @@ const xtsyPrimeOfferings = [
     title: "Female Travellers",
     shortTitle: "Female Travellers",
     description: "Safe, empowering travel experiences for women. Women-only dormitories, secure spaces, and a supportive community.",
-    image: femaleTravellersHero,
+    image: imgUrl("female-travellers-hero.jpg"),
     icon: Heart,
     price: "₹599",
     priceNote: "per bed/night",
