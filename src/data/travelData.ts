@@ -608,7 +608,7 @@ export const heartlandTours: Record<string, TourPackage[]> = {
       description: "Periyar tiger reserve safaris and aromatic winter spice plantations — ideal season for wildlife and harvest tours.",
       duration: "3 Days",
       difficulty: "Easy",
-      price: "₹16,500",
+      price: "₹13,999",
       image: thekkadyWildlifeImg,
       rating: 4.6,
       category: "leisure",
