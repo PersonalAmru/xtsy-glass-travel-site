@@ -1,11 +1,12 @@
 /**
  * SearchHintBar - Interactive search console with typewriter hints
  * When idle: shows rotating typewriter hints
- * When focused: user types a query, matching results appear below
+ * When focused (no query): shows source-aware contextual suggestions
+ * When typing: matching results appear below
  */
 
-import { useState, useEffect, useRef, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Search, X, ArrowRight, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -15,36 +16,38 @@ interface SearchResult {
   icon: string;
   path: string;
   keywords: string[];
+  /** Tags for source-based relevance: 'budget','luxury','adventure','female','couples','work','pets','explore' */
+  tags?: string[];
 }
 
 const SEARCH_INDEX: SearchResult[] = [
   // Rooms & Booking
-  { title: '8-Bed Mixed Dorm', description: 'Bestseller · From ₹269/night', icon: '🛏️', path: '/search?location=shillong', keywords: ['dorm', 'dormitory', 'bed', 'mixed', 'cheap', 'budget', '269', 'hostel', 'backpacker', 'bestseller', '8 bed'] },
-  { title: '6-Bed Mixed Dorm', description: 'Recommended · From ₹419/night', icon: '🛏️', path: '/search?location=shillong', keywords: ['dorm', '6 bed', 'mixed', 'recommended', '419'] },
-  { title: '6-Bed Female Dorm', description: 'Women only · From ₹369/night', icon: '👩', path: '/search?location=shillong', keywords: ['female', 'women', 'girls', 'dorm', '6 bed', '369', 'ladies'] },
-  { title: '4-Bed Mixed Dorm', description: 'Solo traveller pick · From ₹529/night', icon: '🎒', path: '/search?location=shillong', keywords: ['dorm', '4 bed', 'solo', '529', 'mixed'] },
-  { title: '4-Bed Female Dorm', description: 'Women only · From ₹419/night', icon: '👩', path: '/search?location=shillong', keywords: ['female', 'women', '4 bed', '419', 'ladies'] },
-  { title: 'King Double Room', description: 'Couple favourite · From ₹2,099/night', icon: '👫', path: '/search?location=shillong', keywords: ['king', 'double', 'couple', 'private', 'room', '2099', 'luxury'] },
-  { title: 'XTSY 270° Panorama Glass Ensuite', description: 'Ultra luxury · From ₹7,489/night', icon: '✨', path: '/xtsy-270', keywords: ['270', 'panorama', 'glass', 'luxury', 'premium', 'ensuite', '7489', 'view', 'mountain'] },
+  { title: '8-Bed Mixed Dorm', description: 'Bestseller · From ₹269/night', icon: '🛏️', path: '/search?location=shillong', keywords: ['dorm', 'dormitory', 'bed', 'mixed', 'cheap', 'budget', '269', 'hostel', 'backpacker', 'bestseller', '8 bed'], tags: ['budget', 'explore'] },
+  { title: '6-Bed Mixed Dorm', description: 'Recommended · From ₹419/night', icon: '🛏️', path: '/search?location=shillong', keywords: ['dorm', '6 bed', 'mixed', 'recommended', '419'], tags: ['budget', 'explore'] },
+  { title: '6-Bed Female Dorm', description: 'Women only · From ₹369/night', icon: '👩', path: '/search?location=shillong', keywords: ['female', 'women', 'girls', 'dorm', '6 bed', '369', 'ladies'], tags: ['female', 'budget'] },
+  { title: '4-Bed Mixed Dorm', description: 'Solo traveller pick · From ₹529/night', icon: '🎒', path: '/search?location=shillong', keywords: ['dorm', '4 bed', 'solo', '529', 'mixed'], tags: ['budget', 'explore'] },
+  { title: '4-Bed Female Dorm', description: 'Women only · From ₹419/night', icon: '👩', path: '/search?location=shillong', keywords: ['female', 'women', '4 bed', '419', 'ladies'], tags: ['female', 'budget'] },
+  { title: 'King Double Room', description: 'Couple favourite · From ₹2,099/night', icon: '👫', path: '/search?location=shillong', keywords: ['king', 'double', 'couple', 'private', 'room', '2099', 'luxury'], tags: ['couples', 'luxury'] },
+  { title: 'XTSY 270° Panorama Glass Ensuite', description: 'Ultra luxury · From ₹7,489/night', icon: '✨', path: '/xtsy-270', keywords: ['270', 'panorama', 'glass', 'luxury', 'premium', 'ensuite', '7489', 'view', 'mountain'], tags: ['luxury'] },
   // Properties
-  { title: 'XTSY Travellers Hostel', description: 'Biggest hostel in North East India', icon: '🏠', path: '/properties', keywords: ['hostel', 'travellers', 'backpacker', 'shillong', 'budget', 'stay'] },
-  { title: 'XTSY Experience', description: 'Premium glass ensuite in Shillong', icon: '💎', path: '/xtsy-270', keywords: ['luxury', 'premium', 'glass', 'panorama', 'high-end', 'experience'] },
+  { title: 'XTSY Travellers Hostel', description: 'Biggest hostel in North East India', icon: '🏠', path: '/properties', keywords: ['hostel', 'travellers', 'backpacker', 'shillong', 'budget', 'stay'], tags: ['explore', 'budget'] },
+  { title: 'XTSY Experience', description: 'Premium glass ensuite in Shillong', icon: '💎', path: '/xtsy-270', keywords: ['luxury', 'premium', 'glass', 'panorama', 'high-end', 'experience'], tags: ['luxury'] },
   // Destinations
-  { title: 'Meghalaya', description: 'Abode of clouds · Shillong, Cherrapunji & more', icon: '🏔️', path: '/search?location=shillong', keywords: ['meghalaya', 'shillong', 'cherrapunji', 'clouds', 'northeast', 'north east'] },
-  { title: 'North East India', description: 'Explore 8 sister states', icon: '🌿', path: '/travel', keywords: ['north east', 'northeast', 'india', 'assam', 'nagaland', 'manipur', 'mizoram', 'tripura', 'arunachal', 'sikkim'] },
+  { title: 'Meghalaya', description: 'Abode of clouds · Shillong, Cherrapunji & more', icon: '🏔️', path: '/search?location=shillong', keywords: ['meghalaya', 'shillong', 'cherrapunji', 'clouds', 'northeast', 'north east'], tags: ['explore', 'adventure'] },
+  { title: 'North East India', description: 'Explore 8 sister states', icon: '🌿', path: '/travel', keywords: ['north east', 'northeast', 'india', 'assam', 'nagaland', 'manipur', 'mizoram', 'tripura', 'arunachal', 'sikkim'], tags: ['explore', 'adventure'] },
   // Pages
-  { title: 'Gallery', description: 'Photos & videos of XTSY', icon: '📸', path: '/gallery', keywords: ['gallery', 'photos', 'images', 'pictures', 'videos'] },
-  { title: 'Pet-Friendly Stays', description: 'Travel with your furry friend', icon: '🐾', path: '/pet-friendly', keywords: ['pet', 'dog', 'cat', 'animal', 'friendly', 'furry'] },
-  { title: 'Female Travellers', description: 'Safe stays for women solo travellers', icon: '👩‍💼', path: '/female-travellers', keywords: ['female', 'women', 'solo', 'girl', 'safe', 'ladies'] },
-  { title: 'Work From XTSY', description: 'Remote work-friendly hostel', icon: '💻', path: '/work-from-home', keywords: ['work', 'remote', 'laptop', 'wifi', 'digital nomad', 'workation', 'coworking'] },
-  { title: 'XTSY Rentals', description: 'Bike & car rentals in Shillong', icon: '🏍️', path: '/xtsy-rentals', keywords: ['rental', 'bike', 'car', 'scooty', 'ride', 'transport'] },
-  { title: 'XTSY vs Zostel', description: 'Honest comparison', icon: '⚔️', path: '/xtsy-vs-zostel', keywords: ['zostel', 'compare', 'comparison', 'vs', 'versus', 'alternative'] },
-  { title: 'About XTSY', description: 'Our story & mission', icon: '📖', path: '/about', keywords: ['about', 'story', 'team', 'mission', 'who'] },
+  { title: 'Gallery', description: 'Photos & videos of XTSY', icon: '📸', path: '/gallery', keywords: ['gallery', 'photos', 'images', 'pictures', 'videos'], tags: ['explore'] },
+  { title: 'Pet-Friendly Stays', description: 'Travel with your furry friend', icon: '🐾', path: '/pet-friendly', keywords: ['pet', 'dog', 'cat', 'animal', 'friendly', 'furry'], tags: ['pets'] },
+  { title: 'Female Travellers', description: 'Safe stays for women solo travellers', icon: '👩‍💼', path: '/female-travellers', keywords: ['female', 'women', 'solo', 'girl', 'safe', 'ladies'], tags: ['female'] },
+  { title: 'Work From XTSY', description: 'Remote work-friendly hostel', icon: '💻', path: '/work-from-home', keywords: ['work', 'remote', 'laptop', 'wifi', 'digital nomad', 'workation', 'coworking'], tags: ['work'] },
+  { title: 'XTSY Rentals', description: 'Bike & car rentals in Shillong', icon: '🏍️', path: '/xtsy-rentals', keywords: ['rental', 'bike', 'car', 'scooty', 'ride', 'transport'], tags: ['adventure', 'explore'] },
+  { title: 'XTSY vs Zostel', description: 'Honest comparison', icon: '⚔️', path: '/xtsy-vs-zostel', keywords: ['zostel', 'compare', 'comparison', 'vs', 'versus', 'alternative'], tags: ['explore'] },
+  { title: 'About XTSY', description: 'Our story & mission', icon: '📖', path: '/about', keywords: ['about', 'story', 'team', 'mission', 'who'], tags: ['explore'] },
   // Booking & Policies
-  { title: 'Book Now', description: 'Reserve your stay at XTSY', icon: '📅', path: '/book', keywords: ['book', 'reserve', 'booking', 'availability', 'check'] },
-  { title: 'Tour Packages', description: 'Curated adventure tours', icon: '🗺️', path: '/travel', keywords: ['tour', 'package', 'adventure', 'trek', 'trip', 'itinerary', 'group'] },
-  { title: 'Pricing & Cancellation Policy', description: 'Transparent policies', icon: '📋', path: '/pricing-cancellation-policy', keywords: ['pricing', 'cancel', 'refund', 'policy', 'cancellation'] },
-  { title: 'Privacy Policy', description: 'Your data, your rights', icon: '🔒', path: '/privacy-policy', keywords: ['privacy', 'data', 'gdpr', 'policy'] },
+  { title: 'Book Now', description: 'Reserve your stay at XTSY', icon: '📅', path: '/book', keywords: ['book', 'reserve', 'booking', 'availability', 'check'], tags: ['budget', 'luxury', 'couples'] },
+  { title: 'Tour Packages', description: 'Curated adventure tours', icon: '🗺️', path: '/travel', keywords: ['tour', 'package', 'adventure', 'trek', 'trip', 'itinerary', 'group'], tags: ['adventure', 'explore'] },
+  { title: 'Pricing & Cancellation Policy', description: 'Transparent policies', icon: '📋', path: '/pricing-cancellation-policy', keywords: ['pricing', 'cancel', 'refund', 'policy', 'cancellation'], tags: [] },
+  { title: 'Privacy Policy', description: 'Your data, your rights', icon: '🔒', path: '/privacy-policy', keywords: ['privacy', 'data', 'gdpr', 'policy'], tags: [] },
 ];
 
 const PLACEHOLDER_HINTS = [
@@ -56,8 +59,53 @@ const PLACEHOLDER_HINTS = [
   { text: 'Pet-friendly stays', icon: '🐾' },
 ];
 
+/**
+ * Detect visitor intent from UTM params, referrer, and current page
+ */
+function detectVisitorIntent(): string[] {
+  const params = new URLSearchParams(window.location.search);
+  const utmSource = (params.get('utm_source') || '').toLowerCase();
+  const utmMedium = (params.get('utm_medium') || '').toLowerCase();
+  const utmCampaign = (params.get('utm_campaign') || '').toLowerCase();
+  const utmContent = (params.get('utm_content') || '').toLowerCase();
+  const referrer = document.referrer.toLowerCase();
+  const path = window.location.pathname.toLowerCase();
+
+  const tags = new Set<string>();
+
+  // UTM campaign signals
+  const allUtm = `${utmSource} ${utmMedium} ${utmCampaign} ${utmContent}`;
+  if (/budget|cheap|dorm|hostel|backpack/i.test(allUtm)) tags.add('budget');
+  if (/luxury|premium|glass|270|ensuite|couple/i.test(allUtm)) tags.add('luxury');
+  if (/adventure|trek|tour|package|explore/i.test(allUtm)) tags.add('adventure');
+  if (/female|women|girl|solo.?female/i.test(allUtm)) tags.add('female');
+  if (/couple|honeymoon|romantic/i.test(allUtm)) tags.add('couples');
+  if (/work|remote|nomad|cowork/i.test(allUtm)) tags.add('work');
+  if (/pet|dog|animal/i.test(allUtm)) tags.add('pets');
+
+  // Referrer signals
+  if (/hostelworld|booking\.com|agoda|makemytrip|goibibo/i.test(referrer)) tags.add('budget');
+  if (/tripadvisor|lonelyplanet/i.test(referrer)) tags.add('explore');
+  if (/instagram|youtube|facebook|tiktok/i.test(referrer)) tags.add('explore');
+  if (/google|bing|duckduckgo/i.test(referrer)) tags.add('explore');
+
+  // Current page context
+  if (/female/i.test(path)) tags.add('female');
+  if (/270|luxury|premium/i.test(path)) tags.add('luxury');
+  if (/travel|tour|adventure/i.test(path)) tags.add('adventure');
+  if (/pet/i.test(path)) tags.add('pets');
+  if (/work|remote/i.test(path)) tags.add('work');
+  if (/rental/i.test(path)) tags.add('adventure');
+
+  // Default fallback
+  if (tags.size === 0) tags.add('explore');
+
+  return Array.from(tags);
+}
+
 export function SearchHintBar() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [query, setQuery] = useState('');
   const [isActive, setIsActive] = useState(false);
   const [results, setResults] = useState<SearchResult[]>([]);
@@ -69,6 +117,24 @@ export function SearchHintBar() {
   const [hintIndex, setHintIndex] = useState(0);
   const [hintText, setHintText] = useState('');
   const [isTypingHint, setIsTypingHint] = useState(true);
+
+  // Compute contextual suggestions based on traffic source
+  const contextualSuggestions = useMemo(() => {
+    const intentTags = detectVisitorIntent();
+    const scored = SEARCH_INDEX.map((item) => {
+      let score = 0;
+      for (const tag of intentTags) {
+        if (item.tags?.includes(tag)) score += 2;
+      }
+      return { item, score };
+    })
+      .filter((s) => s.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 5)
+      .map((s) => s.item);
+    return scored;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.pathname, location.search]);
 
   // Typewriter effect for placeholder when not active
   useEffect(() => {
@@ -140,16 +206,21 @@ export function SearchHintBar() {
     [navigate]
   );
 
+  // Determine what to show in dropdown
+  const displayResults = query.trim() ? results : (isActive ? contextualSuggestions : []);
+  const showDropdown = isActive && displayResults.length > 0;
+  const isContextual = isActive && !query.trim() && contextualSuggestions.length > 0;
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'ArrowDown') {
       e.preventDefault();
-      setSelectedIndex((p) => Math.min(p + 1, results.length - 1));
+      setSelectedIndex((p) => Math.min(p + 1, displayResults.length - 1));
     } else if (e.key === 'ArrowUp') {
       e.preventDefault();
       setSelectedIndex((p) => Math.max(p - 1, -1));
-    } else if (e.key === 'Enter' && selectedIndex >= 0 && results[selectedIndex]) {
+    } else if (e.key === 'Enter' && selectedIndex >= 0 && displayResults[selectedIndex]) {
       e.preventDefault();
-      handleSelect(results[selectedIndex]);
+      handleSelect(displayResults[selectedIndex]);
     } else if (e.key === 'Escape') {
       setIsActive(false);
       inputRef.current?.blur();
@@ -166,7 +237,7 @@ export function SearchHintBar() {
           isActive
             ? 'border-primary/50 bg-white/[0.16] shadow-[0_0_40px_rgba(249,115,22,0.18)] ring-1 ring-primary/30'
             : 'border-white/[0.2] hover:border-white/30 hover:bg-white/[0.15]',
-          results.length > 0 && isActive && 'rounded-b-none border-b-white/[0.06]'
+          showDropdown && 'rounded-b-none border-b-white/[0.06]'
         )}
       >
         <Search
@@ -223,16 +294,23 @@ export function SearchHintBar() {
       </div>
 
       {/* Results Dropdown */}
-      {isActive && results.length > 0 && (
+      {showDropdown && (
         <div
           className={cn(
             'absolute z-50 w-full rounded-b-2xl overflow-hidden',
-            'bg-slate-900/95 backdrop-blur-xl border border-t-0 border-white/[0.12]',
+            'bg-background/95 backdrop-blur-xl border border-t-0 border-white/[0.12]',
             'shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)]',
             'animate-in fade-in slide-in-from-top-1 duration-200'
           )}
         >
-          {results.map((result, i) => (
+          {/* Contextual header */}
+          {isContextual && (
+            <div className="px-4 pt-2.5 pb-1.5 flex items-center gap-1.5">
+              <Sparkles className="w-3 h-3 text-primary/70" />
+              <span className="text-[11px] font-medium text-primary/70 uppercase tracking-wider">Suggested for you</span>
+            </div>
+          )}
+          {displayResults.map((result, i) => (
             <button
               key={result.path + result.title}
               onClick={() => handleSelect(result)}
@@ -245,13 +323,13 @@ export function SearchHintBar() {
             >
               <span className="text-lg flex-shrink-0 w-8 text-center">{result.icon}</span>
               <div className="flex-1 min-w-0">
-                <div className="text-sm font-medium text-white/90 truncate">{result.title}</div>
-                <div className="text-xs text-white/40 truncate">{result.description}</div>
+                <div className="text-sm font-medium text-foreground/90 truncate">{result.title}</div>
+                <div className="text-xs text-muted-foreground truncate">{result.description}</div>
               </div>
               <ArrowRight
                 className={cn(
                   'w-3.5 h-3.5 flex-shrink-0 transition-all duration-200',
-                  selectedIndex === i ? 'text-primary opacity-100 translate-x-0' : 'text-white/20 opacity-0 -translate-x-1'
+                  selectedIndex === i ? 'text-primary opacity-100 translate-x-0' : 'text-muted-foreground opacity-0 -translate-x-1'
                 )}
               />
             </button>
@@ -264,13 +342,13 @@ export function SearchHintBar() {
         <div
           className={cn(
             'absolute z-50 w-full rounded-b-2xl overflow-hidden',
-            'bg-slate-900/95 backdrop-blur-xl border border-t-0 border-white/[0.12]',
+            'bg-background/95 backdrop-blur-xl border border-t-0 border-white/[0.12]',
             'shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)]',
             'px-4 py-6 text-center'
           )}
         >
-          <p className="text-sm text-white/40">No results for "{query}"</p>
-          <p className="text-xs text-white/25 mt-1">Try "dorm", "meghalaya", or "luxury"</p>
+          <p className="text-sm text-muted-foreground">No results for "{query}"</p>
+          <p className="text-xs text-muted-foreground/60 mt-1">Try "dorm", "meghalaya", or "luxury"</p>
         </div>
       )}
     </div>
