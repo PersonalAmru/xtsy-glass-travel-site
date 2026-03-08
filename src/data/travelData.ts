@@ -18,6 +18,7 @@ import krangSuriWaterfallImg from "@/assets/krang-suri-waterfall.jpg";
 import phiPhiWaterfallMeghalayaImg from "@/assets/phi-phi-waterfall-meghalaya.jpg";
 import moopunWaterfallImg from "@/assets/moopun-waterfall.jpg";
 import assamTeaGardensImg from "@/assets/assam-tea-gardens-premium.jpg";
+import xtsy270StargazingImg from "@/assets/xtsy-270-stargazing.jpeg";
 import arunachalCulturalFestivalImg from "@/assets/arunachal-cultural-festival.jpg";
 import arunachalTribalImg from "@/assets/arunachal-tribal-premium.jpg";
 import tripuraBambooHeritageImg from "@/assets/tripura-bamboo-heritage.jpg";
