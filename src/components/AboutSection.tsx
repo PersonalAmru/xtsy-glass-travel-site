@@ -9,7 +9,7 @@ const AboutSection = () => {
     document.title = 'About XTSY | India\'s Fastest-Growing Travel & Hospitality Brand | First 270° Glass Suite';
     
     const metaDescription = document.querySelector('meta[name="description"]');
-    const descContent = 'XTSY - India\'s fastest-growing travel & hospitality brand. Home to India\'s first 270° panoramic glass suite and Northeast India\'s biggest & highest-rated hostel. Award-nominated excellence. Powered by XTSY ONE LLP.';
+    const descContent = 'XTSY - India\'s fastest-growing travel & hospitality brand. Home to India\'s first 270° panoramic glass suite and Northeast India\'s biggest & highest-rated hostel. Award-nominated excellence. Powered by XTSY ONE.';
     if (metaDescription) {
       metaDescription.setAttribute('content', descContent);
     } else {

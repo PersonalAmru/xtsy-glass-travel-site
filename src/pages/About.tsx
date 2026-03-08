@@ -16,7 +16,7 @@ const About = () => {
     <div className="min-h-screen bg-background">
       <SEOHead
         title="About XTSY — India's Fastest-Growing Travel & Hospitality Brand"
-        description="Learn about XTSY Travellers Hostel & Luxury in Shillong, Meghalaya. NEITA 2025 nominated, 270° Glass Suite, Northeast India's biggest hostel. Powered by XTSY One LLP."
+        description="Learn about XTSY Travellers Hostel & Luxury in Shillong, Meghalaya. NEITA 2025 nominated, 270° Glass Suite, Northeast India's biggest hostel. Powered by XTSY One."
         keywords="XTSY about, XTSY hostel, Shillong hostel, Northeast India travel, NEITA 2025"
         canonicalUrl="https://xtsy.one/about"
       />
