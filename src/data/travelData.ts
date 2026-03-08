@@ -155,7 +155,7 @@ const _exclusiveTours: TourPackage[] = [
     description: "Master winter survival skills, nature navigation, and sustainable living in pristine Northeast wilderness.",
     duration: "5 Days",
     difficulty: "Challenging",
-    price: "₹29,500",
+    price: "₹22,999",
     image: wildernessSurvivalImg,
     rating: 4.8,
     category: "adventure",
