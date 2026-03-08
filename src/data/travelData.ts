@@ -440,7 +440,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
       description: "Adventure through snow-kissed valleys and pristine winter landscapes — challenging high-altitude exploration.",
       duration: "7 Days",
       difficulty: "Challenging",
-      price: "₹34,999",
+      price: "₹39,999",
       image: gurudongmarLakeImg,
       rating: 4.9,
       category: "adventure",
