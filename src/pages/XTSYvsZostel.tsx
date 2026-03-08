@@ -25,7 +25,7 @@ const XTSYvsZostel = () => {
 
   // Northeast India presence comparison — updated with pricing & model info
   const northeastPresence = [
-    { state: "Meghalaya", xtsy: "Shillong HQ — Hostel + Luxury + 270° Suite", zostel: "1 franchise hostel (Shillong)", xtsyModel: "Owner-operated, govt partner", zostelModel: "Franchise", xtsyWins: true },
+    { state: "Meghalaya", xtsy: "Shillong HQ — Hostel + Luxury + 270° Suite", zostel: "1 franchise hostel (Shillong)", xtsyModel: "Self-sustaining, govt partner", zostelModel: "Franchise", xtsyWins: true },
     { state: "Arunachal Pradesh", xtsy: "Govt. FAM Tour partner (Ek Bharat Shreshtha Bharat)", zostel: "No presence", xtsyModel: "Govt. collaboration", zostelModel: "—", xtsyWins: true },
     { state: "Assam", xtsy: "Tour packages via Guwahati hub", zostel: "1 franchise hostel", xtsyModel: "Tour ecosystem", zostelModel: "Franchise", xtsyWins: false },
     { state: "Nagaland", xtsy: "Curated Hornbill Festival tours", zostel: "Limited seasonal via Zo Trips", xtsyModel: "Year-round packages", zostelModel: "Fixed-date group bus tours", xtsyWins: true },
@@ -160,7 +160,7 @@ const XTSYvsZostel = () => {
     { feature: "Corporate Retreats", xtsy: true, zostel: false, xtsyNote: "8+ Retreats" },
     { feature: "International Tours", xtsy: true, zostel: false, xtsyNote: "Cross-border" },
     { feature: "Pet-Friendly Stays", xtsy: true, zostel: false },
-    { feature: "Owner-Operated (Not Franchise)", xtsy: true, zostel: false, xtsyNote: "XTSY One LLP", zostelNote: "Franchise model" },
+    { feature: "No Franchise Model", xtsy: true, zostel: false, xtsyNote: "XTSY One LLP", zostelNote: "Franchise model" },
     { feature: "Government Tourism Partner", xtsy: true, zostel: false, xtsyNote: "Arunachal Pradesh" },
     { feature: "Award Recognition", xtsy: true, zostel: false, xtsyNote: "NEITA 2025" },
     { feature: "NE States Coverage", xtsy: "8 States", zostel: "3–4 Franchises" },
@@ -175,7 +175,7 @@ const XTSYvsZostel = () => {
 
   // Business model comparison data
   const businessModelData = [
-    { aspect: "Ownership", xtsy: "Owner-operated by XTSY One LLP — single, accountable entity", zostel: "Franchise/aggregator — Zostel Plus, Homes, Selections are partner-operated properties" },
+    { aspect: "Ownership", xtsy: "Self-sustaining ecosystem by XTSY One LLP — single, accountable entity", zostel: "Franchise/aggregator — Zostel Plus, Homes, Selections are partner-operated properties" },
     { aspect: "Quality Control", xtsy: "Direct control over every guest experience, staff training, and maintenance", zostel: "Varies by franchise partner — inconsistent quality across locations" },
     { aspect: "NE Tour Model", xtsy: "Local infrastructure + govt partnerships + year-round packages", zostel: "Zo Trips: outsourced group bus tours — pre-packaged, fixed dates, third-party logistics" },
     { aspect: "Revenue Model", xtsy: "Direct hospitality revenue — aligned with guest satisfaction", zostel: "Franchise fees + commission — incentive is scale, not quality" },
@@ -208,7 +208,7 @@ const XTSYvsZostel = () => {
     {
       icon: Star,
       title: "Franchise quality varies. XTSY is consistently 9.4+",
-      description: "Zostel's franchise model means quality depends on the local partner. XTSY is owner-operated — consistently rated 9.4/10 on Booking.com, 4.8/5 on Google, 9.6/10 on Agoda across every guest segment.",
+      description: "Zostel's franchise model means quality depends on the local partner. XTSY is a self-sustaining ecosystem — consistently rated 9.4/10 on Booking.com, 4.8/5 on Google, 9.6/10 on Agoda across every guest segment.",
     },
     {
       icon: AlertTriangle,
@@ -220,7 +220,7 @@ const XTSYvsZostel = () => {
   const faqs = [
     {
       question: "How is XTSY actually different from Zostel in Northeast India?",
-      answer: "Zostel is a franchise-operated hostel chain focused on solo backpackers. XTSY is a complete, owner-operated hospitality ecosystem — budget dorms to India's first 270° Glass Suite, solo trips to 50+ person groups, families with elders, IIT/IIM tours, corporate retreats, cross-border international tours, pet-friendly stays, and government tourism partnerships. We're NEITA 2025 nominated and operate across 8 Northeast states.",
+      answer: "Zostel is a franchise-operated hostel chain focused on solo backpackers. XTSY is a complete, self-sustaining hospitality ecosystem — budget dorms to India's first 270° Glass Suite, solo trips to 50+ person groups, families with elders, IIT/IIM tours, corporate retreats, cross-border international tours, pet-friendly stays, and government tourism partnerships. We're NEITA 2025 nominated and operate across 8 Northeast states.",
       quote: "Just one word for XTSY: THE BEST. It's one of the best stays I have been to lately.",
       quoteName: "Rahul"
     },
@@ -268,7 +268,7 @@ const XTSYvsZostel = () => {
     <div className="min-h-screen bg-background">
       <SEOHead
         title="XTSY vs Zostel — Local Hospitality vs Franchise Chain | Northeast India"
-        description="Compare XTSY's owner-operated ecosystem vs Zostel's franchise model in Northeast India. 8 states, 270° Glass Suite, groups 50+, govt partnerships vs pre-packaged bus tours."
+        description="Compare XTSY's self-sustaining ecosystem vs Zostel's franchise model in Northeast India. 8 states, 270° Glass Suite, groups 50+, govt partnerships vs pre-packaged bus tours."
         keywords="XTSY vs Zostel, Northeast India hostel, Shillong hostel comparison, best hostel Meghalaya, Zostel franchise, Zo Trips alternative"
         canonicalUrl="https://xtsy.one/xtsy-vs-zostel"
       />
@@ -288,7 +288,7 @@ const XTSYvsZostel = () => {
         
         <div className="relative z-10 container mx-auto px-4 text-center">
           <Badge className="mb-4 bg-primary text-primary-foreground border-0 shadow-lg text-sm px-4 py-1.5">
-            Owner-Operated vs Franchise Chain
+            Self-Sustaining Ecosystem vs Franchise Chain
           </Badge>
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 text-white drop-shadow-2xl font-playfair">
             XTSY vs Zostel
@@ -335,7 +335,7 @@ const XTSYvsZostel = () => {
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4 border-primary/30 text-primary">The Core Difference</Badge>
             <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4 font-playfair">
-              Owner-Operated vs <span className="text-primary">Franchise Chain</span>
+              Self-Sustaining Ecosystem vs <span className="text-primary">Franchise Chain</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Zostel runs 5 sub-brands (Zostel, Plus, Homes, Trips, House) through franchise partners. 
@@ -353,7 +353,7 @@ const XTSYvsZostel = () => {
                   </div>
                   <div>
                     <CardTitle className="text-xl text-foreground">XTSY One LLP</CardTitle>
-                    <CardDescription>Owner-Operated Ecosystem</CardDescription>
+                    <CardDescription>Self-Sustaining Ecosystem</CardDescription>
                   </div>
                 </div>
               </CardHeader>
@@ -828,7 +828,7 @@ const XTSYvsZostel = () => {
               </p>
               <p className="text-base sm:text-lg text-primary-foreground/80 max-w-2xl mx-auto mt-6">
                 From solo adventures to family celebrations, IIT reunions to corporate retreats, 
-                across 8 states of Northeast India — owner-operated, locally rooted, consistently rated 9.4+.
+                across 8 states of Northeast India — self-sustaining, locally rooted, consistently rated 9.4+.
               </p>
             </CardContent>
           </Card>
@@ -875,7 +875,7 @@ const XTSYvsZostel = () => {
             Ready for the XTSY Difference?
           </h2>
           <p className="text-lg text-primary-foreground/90 mb-8 max-w-3xl mx-auto">
-            Join thousands of guests who chose owner-operated XTSY over franchise stays for their Northeast India journey — 
+            Join thousands of guests who chose XTSY One's self-sustaining ecosystem over franchise stays for their Northeast India journey — 
             from solo backpackers to 50-person corporate teams.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
