@@ -140,7 +140,7 @@ const _exclusiveTours: TourPackage[] = [
     description: "Comprehensive winter field study of Northeast's unique ecosystems with conservation experts and naturalist guides.",
     duration: "7 Days",
     difficulty: "Moderate",
-    price: "₹34,999",
+    price: "₹33,999",
     image: meghalayaBiodiversityAuthenticImg,
     rating: 4.9,
     category: "educational",
