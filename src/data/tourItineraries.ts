@@ -196,67 +196,50 @@ export const tourItineraries: Record<number, ItineraryDay[]> = {
     }
   ],
 
-  // ── ID 204: Wari Chora — Hidden Gem of Meghalaya (4 Days — Direct Route) ──
+  // ── ID 204: Wari Chora — Hidden Gem of Meghalaya (3 Days — Budget Direct) ──
   204: [
     {
       day: "Day 1",
       title: "Guwahati → Baghmara (Direct)",
       route: "Early morning arrival, drive: 8-9 hrs via Dudhnoi–Garo Hills",
       activities: [
-        "Early morning arrival at Guwahati Airport/Station (5-6 AM flight preferred)",
-        "XTSY pickup — breakfast packed for the road",
+        "Early morning arrival at Guwahati Airport/Station (5-6 AM preferred)",
+        "XTSY pickup — packed breakfast on the road",
         "Direct drive through Dudhnoi & Garo Hills (bypassing Tura)",
-        "Lunch stop at a roadside dhaba near Williamnagar",
+        "Lunch stop near Williamnagar",
         "Scenic drive through remote Garo villages",
         "Reach Baghmara by evening",
-        "Check-in, freshen up & light dinner",
-        "Early night — big day tomorrow"
+        "Check-in, dinner & early night — big day tomorrow"
       ],
       overnight: "Baghmara"
     },
     {
       day: "Day 2",
-      title: "WARI CHORA — Full Day Expedition",
+      title: "WARI CHORA — Full Day Expedition + Siju Cave",
       activities: [
-        "Early start (6 AM sharp)",
-        "Drive to trailhead (mandatory local guide joins)",
-        "Jungle trek through dense forest to Wari Chora canyon",
+        "Early start (5:30 AM)",
+        "Drive to trailhead with mandatory local guide",
+        "Jungle trek to Wari Chora canyon",
         "Traditional wooden boat ride through the emerald canyon",
-        "Explore the canyon's pristine turquoise waters",
-        "Photography & quiet time in the gorge",
+        "Explore pristine turquoise waters & photograph the gorge",
         "Packed lunch in the wilderness",
-        "Return trek by late afternoon — physically demanding day",
-        "Evening rest & campfire stories with local guides",
-        "Dinner & recovery"
+        "Return trek by early afternoon",
+        "Afternoon: Quick visit to Siju Cave & Simsang River viewpoint",
+        "Farewell dinner with local Garo cuisine",
+        "Rest & pack up"
       ],
       overnight: "Baghmara"
     },
     {
       day: "Day 3",
-      title: "Baghmara — Siju Cave & Simsang River",
-      activities: [
-        "Relaxed breakfast (rest those legs!)",
-        "Visit Siju Cave — one of the longest caves in India",
-        "Explore limestone formations & bat colonies",
-        "Lunch at Baghmara town",
-        "Afternoon: Simsang River viewpoint & nature walk",
-        "Optional: Jadisil Fish Sanctuary visit",
-        "Free time — explore local Garo market",
-        "Farewell dinner with local Garo cuisine"
-      ],
-      overnight: "Baghmara"
-    },
-    {
-      day: "Day 4",
-      title: "Baghmara → Guwahati (Departure)",
-      route: "Drive: 8-9 hrs return",
+      title: "Baghmara → Guwahati / Shillong (Departure)",
+      route: "Drive: 8-9 hrs to Guwahati or 7 hrs to Shillong",
       activities: [
         "Early breakfast & checkout",
         "Scenic return drive through Garo Hills",
         "Lunch stop en route",
-        "Reach Guwahati by evening",
-        "Drop-off at Airport / Railway Station",
-        "Trip concludes — memories forever"
+        "Drop-off at Guwahati Airport/Station OR Shillong (your choice)",
+        "Trip concludes"
       ]
     }
   ],
