@@ -44,71 +44,66 @@ const XTSYvsZostel = () => {
     { number: "270°", label: "India's First Glass Suite", icon: Mountain },
   ];
 
-  const audienceComparison = [
+  const brandPositioning = [
     {
-      title: "Solo Travelers",
-      icon: Users,
-      xtsy: "Warmly welcomed with vibrant community spaces, bonfire nights, and curated solo itineraries",
-      zostel: "Solo-friendly hostel environment with common areas",
-      verdict: "Both welcome solos — XTSY adds curated NE experiences",
-      xtsyWins: false,
-    },
-    {
-      title: "Luxury Couples & Honeymooners",
-      icon: Heart,
-      xtsy: "India's first 270° panoramic glass suite, lake-view private rooms, premium romantic packages",
-      zostel: "Zo Selections (premium tier coming) — still no luxury suites, no 270° equivalent",
-      verdict: "XTSY leads decisively — Zo Selections can't match 270° Suite",
-      xtsyWins: true,
-    },
-    {
-      title: "Large Groups (6+)",
-      icon: Users,
-      xtsy: "Encourages and actively supports groups of all sizes — 10, 20, 50+",
-      zostel: "⚠️ Actively discourages groups larger than 6 people — hostel model limits capacity",
-      verdict: "XTSY wins decisively — built for groups of any size",
-      xtsyWins: true,
+      brand: "XTSY Travel",
+      tagline: "Self-Sustaining Ecosystem — No Franchise Model",
+      model: "No franchise model. Curated private tours from solo to groups of 50+. XTSY One LLP — single, accountable entity.",
+      nePresence: "8 NE states — HQ in Shillong, govt partnerships, 270° Glass Suite",
+      pricing: "Transparent pricing, custom itineraries, year-round availability",
+      segments: "Solo, couples, families, corporates, schools, groups 50+, pets",
+      strengths: ["No franchise — consistent quality", "270° Glass Suite (India's first)", "NEITA 2025 nominated", "Pet-friendly stays", "Groups of any size", "Govt. tourism collaborator", "32+ IIT/IIM tours hosted"],
+      weaknesses: [],
+      color: "border-primary",
       highlight: true,
     },
     {
-      title: "Family Tours with Elders",
-      icon: Users,
-      xtsy: "Multi-generational support — grandparents to kids, accessibility, dedicated assistance",
-      zostel: "Hostel-focused — limited family infrastructure, no elder-friendly design",
-      verdict: "XTSY provides comprehensive family care",
-      xtsyWins: true,
+      brand: "Zostel",
+      tagline: "Franchise Hostel Chain + Zo Trips",
+      model: "Franchise model — Zostel, Zostel Plus, Zostel Homes, Zo Selections. Quality varies by franchise partner.",
+      nePresence: "1-2 franchise hostels (Shillong, possibly Gangtok). Zo Trips: outsourced bus tours.",
+      pricing: "Zo Trips Meghalaya: ₹28,570/person (fixed-date group bus tour)",
+      segments: "Solo backpackers, budget travelers. Discourages groups >6.",
+      strengths: ["50+ locations pan-India", "Strong brand recognition", "Hostel community culture"],
+      weaknesses: ["Franchise quality inconsistency", "No luxury tier", "Groups >6 discouraged", "No NE ecosystem", "Zo Trips = outsourced bus tours"],
+      color: "border-red-500/50",
+      highlight: false,
     },
     {
-      title: "Educational Tours",
-      icon: Building2,
-      xtsy: "32+ IIT/IIM tours, 40+ school trips — safety protocols, group coordination, learning experiences",
-      zostel: "Not specialized for educational group tours — hostel model only",
-      verdict: "XTSY is the educational tour leader in NE India",
-      xtsyWins: true,
+      brand: "The Hosteller",
+      tagline: "Company-Owned Hostel Chain + Workations",
+      model: "Company-owned hostels (not franchise). Expanding into workation & coliving. Bus service between hostels.",
+      nePresence: "Limited NE presence. Focused on Himachal, Rajasthan, Uttarakhand, Goa, Kashmir.",
+      pricing: "Dorms from ₹499/night. Private rooms available. Workation packages.",
+      segments: "Solo travelers, digital nomads, workation seekers. Limited family/group support.",
+      strengths: ["Company-owned (consistent quality)", "65+ hostels", "Workation & coliving model", "Inter-hostel bus network"],
+      weaknesses: ["Minimal NE India coverage", "No luxury suites", "No large group hosting", "No curated tour packages", "No pet-friendly option"],
+      color: "border-blue-500/50",
+      highlight: false,
     },
     {
-      title: "Corporate Retreats",
-      icon: Building2,
-      xtsy: "8+ corporate tours with professional coordination, team-building activities, dedicated spaces",
-      zostel: "No dedicated corporate offering — shared hostel spaces only",
-      verdict: "XTSY offers professional corporate solutions",
-      xtsyWins: true,
+      brand: "Moustache Escapes",
+      tagline: "Hostel + Select + Luxuria Tiers",
+      model: "Multi-tier: Hostel (budget), Select (mid-range), Luxuria (premium). Partner/managed properties.",
+      nePresence: "No significant NE presence. Focused on Rajasthan, Goa, Himachal, Kerala.",
+      pricing: "Dorms from ₹399. Luxuria premium tier available. Packaged experiences.",
+      segments: "Budget travelers, couples (Luxuria tier). No group/corporate specialization.",
+      strengths: ["Three clear tiers", "Luxuria premium option", "Destination diversity (Rajasthan, Goa, Kerala)"],
+      weaknesses: ["No NE India footprint", "No groups >10", "No educational/corporate tours", "Partner-managed properties", "No govt. collaborations"],
+      color: "border-yellow-500/50",
+      highlight: false,
     },
     {
-      title: "International Travelers",
-      icon: Plane,
-      xtsy: "Cross-border tour capabilities, English-speaking local staff, e-Visa guidance, multi-state itineraries",
-      zostel: "Zo Trips: pre-packaged bus tours (₹19,047/person for Meghalaya) — outsourced logistics, fixed dates",
-      verdict: "XTSY provides local, flexible support vs Zostel's outsourced group tours",
-      xtsyWins: true,
-    },
-    {
-      title: "Pet-Friendly Travel",
-      icon: Heart,
-      xtsy: "Dedicated pet-friendly stays — one of few in Northeast India",
-      zostel: "No pet-friendly options across any tier",
-      verdict: "XTSY is pet-friendly, Zostel isn't",
-      xtsyWins: true,
+      brand: "goSTOPS",
+      tagline: "Franchise Hostel + Workation + Coliving",
+      model: "Franchise model. Expanding via hostel franchises across India. Offsite & coliving products.",
+      nePresence: "No NE presence. Focused on Himachal, Uttarakhand, Goa, Rajasthan, Karnataka.",
+      pricing: "Dorms from ₹449. Franchise investment: ₹20-50 lakhs. Offsite packages for corporates.",
+      segments: "Solo backpackers, franchise investors, digital nomads. No family/elder support.",
+      strengths: ["Franchise expansion model", "20+ locations", "Workation & coliving", "Corporate offsite packages"],
+      weaknesses: ["Franchise quality varies", "Zero NE coverage", "No luxury option", "No curated private tours", "No pet-friendly stays", "No large group hosting"],
+      color: "border-green-500/50",
+      highlight: false,
     },
   ];
 
@@ -622,56 +617,78 @@ const XTSYvsZostel = () => {
         </div>
       </section>
 
-      {/* Who We Serve */}
+      {/* Brand Positioning — XTSY vs India's Hostel Chains */}
       <section className="py-16 md:py-20 bg-muted/20" id="comparison">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <Badge variant="outline" className="mb-4 border-primary/30 text-primary">Audience Comparison</Badge>
+            <Badge variant="outline" className="mb-4 border-primary/30 text-primary">Brand Positioning</Badge>
             <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4 font-playfair">
-              Who We <span className="text-primary">Serve</span>
+              XTSY vs India's <span className="text-primary">Hostel Chains</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              XTSY welcomes every kind of traveler. Here's how we compare.
+              How XTSY Travel's self-sustaining ecosystem compares to franchise-driven hostel brands
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {audienceComparison.map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <Card 
-                  key={index} 
-                  className={`transition-all hover:shadow-lg bg-card border-border hover:border-primary/40 ${
-                    item.highlight ? 'border-primary border-2 shadow-primary/10 shadow-lg' : ''
-                  }`}
-                >
-                  <CardHeader className="pb-3">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="p-2 rounded-lg bg-primary/10">
-                        <Icon className="h-5 w-5 text-primary" />
-                      </div>
-                      {item.xtsyWins && <CheckCircle2 className="h-4 w-4 text-emerald-500" />}
-                    </div>
-                    <CardTitle className="text-base text-foreground">{item.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-3 pt-0">
+          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {brandPositioning.map((brand, index) => (
+              <Card 
+                key={index} 
+                className={`transition-all hover:shadow-lg bg-card ${brand.color} ${
+                  brand.highlight ? 'border-2 shadow-primary/10 shadow-lg ring-1 ring-primary/20' : 'border'
+                }`}
+              >
+                <CardHeader className="pb-3">
+                  <div className="flex items-center justify-between mb-1">
+                    <CardTitle className="text-lg text-foreground">{brand.brand}</CardTitle>
+                    {brand.highlight && <Badge className="bg-primary text-primary-foreground text-[10px]">Our Pick</Badge>}
+                  </div>
+                  <CardDescription className="text-xs">{brand.tagline}</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4 pt-0 text-xs">
+                  <div>
+                    <span className="font-semibold text-foreground uppercase tracking-wider text-[10px]">Model</span>
+                    <p className="text-muted-foreground mt-1">{brand.model}</p>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-foreground uppercase tracking-wider text-[10px]">NE India Presence</span>
+                    <p className="text-muted-foreground mt-1">{brand.nePresence}</p>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-foreground uppercase tracking-wider text-[10px]">Pricing</span>
+                    <p className="text-muted-foreground mt-1">{brand.pricing}</p>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-foreground uppercase tracking-wider text-[10px]">Segments Served</span>
+                    <p className="text-muted-foreground mt-1">{brand.segments}</p>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-emerald-500 uppercase tracking-wider text-[10px]">Strengths</span>
+                    <ul className="mt-1 space-y-1">
+                      {brand.strengths.map((s, i) => (
+                        <li key={i} className="flex items-start gap-1.5 text-muted-foreground">
+                          <CheckCircle2 className="h-3 w-3 text-emerald-500 mt-0.5 shrink-0" />
+                          {s}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  {brand.weaknesses.length > 0 && (
                     <div>
-                      <span className="text-xs font-semibold text-primary uppercase tracking-wider">XTSY</span>
-                      <p className="text-xs text-muted-foreground mt-1">{item.xtsy}</p>
+                      <span className="font-semibold text-destructive uppercase tracking-wider text-[10px]">Gaps</span>
+                      <ul className="mt-1 space-y-1">
+                        {brand.weaknesses.map((w, i) => (
+                          <li key={i} className="flex items-start gap-1.5 text-muted-foreground">
+                            <X className="h-3 w-3 text-destructive mt-0.5 shrink-0" />
+                            {w}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                    <div>
-                      <span className="text-xs font-semibold text-muted-foreground/70 uppercase tracking-wider">Zostel</span>
-                      <p className="text-xs text-muted-foreground mt-1">{item.zostel}</p>
-                    </div>
-                    <div className="pt-2 border-t border-border">
-                      <p className={`text-xs font-medium ${item.xtsyWins ? 'text-emerald-600 dark:text-emerald-400' : 'text-muted-foreground'}`}>
-                        {item.verdict}
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
+                  )}
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
