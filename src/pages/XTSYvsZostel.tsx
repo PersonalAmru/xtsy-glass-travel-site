@@ -25,7 +25,7 @@ const XTSYvsZostel = () => {
 
   // Northeast India presence comparison — updated with pricing & model info
   const northeastPresence = [
-    { state: "Meghalaya", xtsy: "Shillong HQ — Hostel + Luxury + 270° Suite", zostel: "1 franchise hostel (Shillong)", xtsyModel: "Owner-operated, govt partner", zostelModel: "Franchise", xtsyWins: true },
+    { state: "Meghalaya", xtsy: "Shillong HQ — Hostel + Luxury + 270° Suite", zostel: "1 franchise hostel (Shillong)", xtsyModel: "Self-sustaining, govt partner", zostelModel: "Franchise", xtsyWins: true },
     { state: "Arunachal Pradesh", xtsy: "Govt. FAM Tour partner (Ek Bharat Shreshtha Bharat)", zostel: "No presence", xtsyModel: "Govt. collaboration", zostelModel: "—", xtsyWins: true },
     { state: "Assam", xtsy: "Tour packages via Guwahati hub", zostel: "1 franchise hostel", xtsyModel: "Tour ecosystem", zostelModel: "Franchise", xtsyWins: false },
     { state: "Nagaland", xtsy: "Curated Hornbill Festival tours", zostel: "Limited seasonal via Zo Trips", xtsyModel: "Year-round packages", zostelModel: "Fixed-date group bus tours", xtsyWins: true },
