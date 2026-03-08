@@ -335,7 +335,7 @@ const XTSYvsZostel = () => {
                     <Shield className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <CardTitle className="text-xl text-foreground">XTSY One LLP</CardTitle>
+                    <CardTitle className="text-xl text-foreground">XTSY One</CardTitle>
                     <CardDescription>Self-Sustaining Ecosystem</CardDescription>
                   </div>
                 </div>
