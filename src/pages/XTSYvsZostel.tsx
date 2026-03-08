@@ -399,7 +399,7 @@ const XTSYvsZostel = () => {
         </div>
       </section>
 
-      {/* NEW: Zo Trips vs XTSY Packages */}
+      {/* Zo Trips vs XTSY Travel */}
       <section className="py-16 md:py-20 bg-muted/20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
