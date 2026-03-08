@@ -196,75 +196,67 @@ export const tourItineraries: Record<number, ItineraryDay[]> = {
     }
   ],
 
-  // ── ID 204: Wari Chora — Hidden Gem of Meghalaya (FROM PDF — 5 Days) ──
+  // ── ID 204: Wari Chora — Hidden Gem of Meghalaya (4 Days — Direct Route) ──
   204: [
     {
       day: "Day 1",
-      title: "Arrival – Guwahati",
+      title: "Guwahati → Baghmara (Direct)",
+      route: "Early morning arrival, drive: 8-9 hrs via Dudhnoi–Garo Hills",
       activities: [
-        "Arrival at Guwahati Airport/Station",
-        "Hotel check-in & rest after journey",
-        "Evening (optional): Brahmaputra riverfront walk",
-        "Local market / Fancy Bazaar exploration",
-        "Early dinner"
+        "Early morning arrival at Guwahati Airport/Station (5-6 AM flight preferred)",
+        "XTSY pickup — breakfast packed for the road",
+        "Direct drive through Dudhnoi & Garo Hills (bypassing Tura)",
+        "Lunch stop at a roadside dhaba near Williamnagar",
+        "Scenic drive through remote Garo villages",
+        "Reach Baghmara by evening",
+        "Check-in, freshen up & light dinner",
+        "Early night — big day tomorrow"
       ],
-      overnight: "Guwahati"
+      overnight: "Baghmara"
     },
     {
       day: "Day 2",
-      title: "Guwahati → Tura",
-      route: "Drive: 6-7 hrs via Dudhnoi",
+      title: "WARI CHORA — Full Day Expedition",
       activities: [
-        "Early start (6-7 AM)",
-        "Breakfast & checkout",
-        "Breakfast stop near Goalpara",
-        "Scenic hill drive after Dudhnoi",
-        "Reach Tura by evening",
-        "Light walk / local market exploration",
-        "Dinner & rest"
+        "Early start (6 AM sharp)",
+        "Drive to trailhead (mandatory local guide joins)",
+        "Jungle trek through dense forest to Wari Chora canyon",
+        "Traditional wooden boat ride through the emerald canyon",
+        "Explore the canyon's pristine turquoise waters",
+        "Photography & quiet time in the gorge",
+        "Packed lunch in the wilderness",
+        "Return trek by late afternoon — physically demanding day",
+        "Evening rest & campfire stories with local guides",
+        "Dinner & recovery"
       ],
-      overnight: "Tura"
+      overnight: "Baghmara"
     },
     {
       day: "Day 3",
-      title: "Tura → Baghmara + Siju Cave",
-      route: "Drive through remote Garo villages",
+      title: "Baghmara — Siju Cave & Simsang River",
       activities: [
-        "Breakfast & checkout",
-        "Drive through remote Garo villages",
-        "Lunch en route",
-        "Stop at Simsang River viewpoint",
-        "Visit Siju Cave exploration"
+        "Relaxed breakfast (rest those legs!)",
+        "Visit Siju Cave — one of the longest caves in India",
+        "Explore limestone formations & bat colonies",
+        "Lunch at Baghmara town",
+        "Afternoon: Simsang River viewpoint & nature walk",
+        "Optional: Jadisil Fish Sanctuary visit",
+        "Free time — explore local Garo market",
+        "Farewell dinner with local Garo cuisine"
       ],
       overnight: "Baghmara"
     },
     {
       day: "Day 4",
-      title: "WARI CHORA — Full Day (from Baghmara)",
+      title: "Baghmara → Guwahati (Departure)",
+      route: "Drive: 8-9 hrs return",
       activities: [
-        "Early start (6-7 AM)",
-        "Drive to trailhead (mandatory local guide)",
-        "Jungle trek to Wari Chora canyon",
-        "Traditional wooden boat ride through emerald canyon",
-        "Explore the canyon's pristine waters",
-        "Photography & quiet time",
-        "Packed lunch in the wilderness",
-        "Return by late afternoon — physically active day",
-        "Rest & recovery"
-      ],
-      overnight: "Baghmara"
-    },
-    {
-      day: "Day 5",
-      title: "Baghmara → Guwahati",
-      route: "Drive: 6-7 hrs (via Tura side)",
-      activities: [
-        "Breakfast",
-        "Optional stop: Jadisil Fish Sanctuary",
-        "Long but scenic return drive",
-        "Reach Guwahati by night",
-        "Drop-off at Airport/Railway Station",
-        "Trip concludes"
+        "Early breakfast & checkout",
+        "Scenic return drive through Garo Hills",
+        "Lunch stop en route",
+        "Reach Guwahati by evening",
+        "Drop-off at Airport / Railway Station",
+        "Trip concludes — memories forever"
       ]
     }
   ],
