@@ -92,59 +92,59 @@
 
 @layer base {
   :root {
-    /* Light theme - warm cream for visual appeal */
-    --background: 40 33% 97%;
-    --foreground: 220 15% 15%;
-    --card: 0 0% 100%;
-    --card-foreground: 220 15% 15%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 15% 15%;
+    /* Unified dark theme — XTSY brand identity */
+    --background: 222 47% 4%;
+    --foreground: 0 0% 95%;
+    --card: 222 30% 8%;
+    --card-foreground: 0 0% 95%;
+    --popover: 222 30% 8%;
+    --popover-foreground: 0 0% 95%;
     --primary: 25 95% 53%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 30 20% 95%;
-    --secondary-foreground: 220 15% 25%;
-    --muted: 30 15% 95%;
-    --muted-foreground: 220 10% 50%;
-    --accent: 33 100% 96%;
-    --accent-foreground: 25 80% 30%;
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 220 15% 15%;
+    --muted-foreground: 220 10% 55%;
+    --accent: 222 25% 12%;
+    --accent-foreground: 0 0% 95%;
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: 0 0% 95%;
     --success: 142 76% 36%;
-    --success-foreground: 0 0% 100%;
+    --success-foreground: 0 0% 95%;
     --warning: 38 92% 50%;
-    --warning-foreground: 0 0% 100%;
-    --border: 25 10% 88%;
-    --input: 25 10% 88%;
+    --warning-foreground: 0 0% 15%;
+    --border: 220 15% 18%;
+    --input: 220 15% 18%;
     --ring: 25 95% 53%;
     --radius: 0.75rem;
     
     /* Brand tokens */
     --brand-secondary: 0 84% 60%;
-    --brand-accent: 33 100% 50%;
-    --brand-verified: 220 85% 60%;
+    --brand-accent: 33 100% 55%;
+    --brand-verified: 220 85% 65%;
     --whatsapp: 142 70% 45%;
     
-    /* Enhanced glassmorphism design tokens - Progressive enhancement */
-    --glass-bg-solid: 30 15% 95%;
-    --glass-bg-tablet: 0 0% 100% / 0.85;
-    --glass-bg-desktop: 0 0% 100% / 0.1;
-    --glass-border-light: 0 0% 100% / 0.2;
-    --glass-border-solid: 25 10% 88%;
+    /* Dark glassmorphism - Progressive enhancement */
+    --glass-bg-solid: 222 30% 10%;
+    --glass-bg-tablet: 222 30% 8% / 0.88;
+    --glass-bg-desktop: 0 0% 0% / 0.25;
+    --glass-border-light: 0 0% 100% / 0.12;
+    --glass-border-solid: 220 15% 22%;
     --glass-blur-tablet: blur(8px);
     --glass-blur-desktop: blur(16px);
-    --glass-shadow-light: 0 8px 32px hsl(220 15% 15% / 0.1);
-    --glass-shadow-solid: 0 4px 16px hsl(220 15% 15% / 0.08);
+    --glass-shadow-light: 0 8px 32px hsl(0 0% 0% / 0.3);
+    --glass-shadow-solid: 0 4px 16px hsl(0 0% 0% / 0.2);
     
-    /* Legacy glass tokens for compatibility */
-    --glass-bg: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.2);
-    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    /* Legacy dark glass tokens */
+    --glass-bg: rgba(0, 0, 0, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     --glass-blur: blur(16px);
     
-    /* Enhanced gradients — brand-aligned */
+    /* Dark gradients — brand-aligned */
     --gradient-primary: linear-gradient(135deg, hsl(25 95% 53%), hsl(0 84% 60%));
-    --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-    --shadow-elegant: 0 4px 20px -4px hsl(25 95% 53% / 0.15);
+    --gradient-glass: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+    --shadow-elegant: 0 4px 20px -4px hsl(25 95% 53% / 0.25);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-glass: background 0.3s cubic-bezier(0.4, 0, 0.2, 1), backdrop-filter 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     
@@ -156,8 +156,8 @@
     --travel-glow-cool: 0 0 40px hsl(220 85% 60% / 0.3);
   }
 
+  /* .dark class mirrors :root — unified dark system */
   .dark {
-    /* Dark theme — XTSY brand orange primary */
     --background: 222 47% 4%;
     --foreground: 0 0% 95%;
     --card: 222 30% 8%;
@@ -188,7 +188,7 @@
     --brand-verified: 220 85% 65%;
     --whatsapp: 142 70% 45%;
     
-    /* Dark glassmorphism - Progressive enhancement */
+    /* Dark glassmorphism */
     --glass-bg-solid: 222 30% 10%;
     --glass-bg-tablet: 222 30% 8% / 0.88;
     --glass-bg-desktop: 0 0% 0% / 0.25;
@@ -196,13 +196,9 @@
     --glass-border-solid: 220 15% 22%;
     --glass-shadow-light: 0 8px 32px hsl(0 0% 0% / 0.3);
     --glass-shadow-solid: 0 4px 16px hsl(0 0% 0% / 0.2);
-    
-    /* Legacy dark glass tokens */
     --glass-bg: rgba(0, 0, 0, 0.2);
     --glass-border: rgba(255, 255, 255, 0.1);
     --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    
-    /* Dark gradients — brand-aligned */
     --gradient-primary: linear-gradient(135deg, hsl(25 95% 53%), hsl(0 84% 60%));
     --gradient-glass: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
     --shadow-elegant: 0 4px 20px -4px hsl(25 95% 53% / 0.25);
