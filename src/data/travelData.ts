@@ -536,7 +536,7 @@ export const heartlandTours: Record<string, TourPackage[]> = {
       description: "Ultimate 10-day spiritual odyssey through Tamil Nadu's magnificent Dravidian temples — from Madurai's towering gopurams to Chidambaram's cosmic dance.",
       duration: "10 Days",
       difficulty: "Moderate",
-      price: "₹62,500",
+    price: "₹52,999",
       image: tamilNaduMeenakshiTempleImg,
       rating: 4.9,
       category: "cultural",
