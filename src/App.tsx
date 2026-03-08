@@ -244,6 +244,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/about" element={<LazyRoute><LazyAbout /></LazyRoute>} />
+                <Route path="/blog" element={<LazyRoute><LazyBlog /></LazyRoute>} />
                 <Route path="/gallery" element={<LazyRoute><LazyGallery /></LazyRoute>} />
                 <Route path="/travel" element={<LazyRoute><LazyTravel /></LazyRoute>} />
                 <Route path="/xtsy-270" element={<LazyRoute><LazyXTSY270 /></LazyRoute>} />
