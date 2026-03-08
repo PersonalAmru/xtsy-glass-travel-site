@@ -743,7 +743,7 @@ export const internationalTours: Record<string, TourPackage[]> = {
       description: "Istanbul's Byzantine grandeur meets Cappadocia's surreal balloon-dotted skies — a journey through millennia of civilisation.",
       duration: "9 Days",
       difficulty: "Easy",
-      price: "₹1,15,000",
+      price: "₹97,999",
       image: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=800&q=80",
       rating: 4.8,
       category: "cultural",
