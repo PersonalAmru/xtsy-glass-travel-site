@@ -550,7 +550,7 @@ export const heartlandTours: Record<string, TourPackage[]> = {
       description: "Immersive winter pilgrimage through Tamil Nadu's holiest shrines — witness ancient rituals, experience temple festivals.",
       duration: "9 Days",
       difficulty: "Easy",
-      price: "₹56,500",
+      price: "₹46,999",
       image: tamilNaduKanchipuramTempleImg,
       rating: 4.8,
       category: "cultural",
