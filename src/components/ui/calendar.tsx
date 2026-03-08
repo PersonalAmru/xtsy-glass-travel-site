@@ -15,30 +15,30 @@ function Calendar({
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
-      className={cn("p-4 pointer-events-auto bg-background rounded-xl border border-border shadow-lg overflow-hidden", className)}
+      className={cn("p-4 pointer-events-auto bg-background rounded-xl border border-border shadow-lg overflow-hidden relative", className)}
       classNames={{
         months: "flex flex-col sm:flex-row gap-4",
         month: "space-y-4",
-        month_caption: "flex justify-center pt-1 relative items-center h-10 px-12",
+        month_caption: "flex justify-center pt-1 items-center h-10",
         caption_label: "text-base font-semibold text-foreground tracking-tight",
-        nav: "flex items-center gap-2",
+        nav: "absolute top-3 left-3 right-3 flex items-center justify-between z-10 pointer-events-none",
         button_previous: cn(
-          "inline-flex items-center justify-center rounded-full",
-          "h-9 w-9 sm:h-11 sm:w-11 min-h-[36px] min-w-[36px] sm:min-h-[44px] sm:min-w-[44px]",
+          "inline-flex items-center justify-center rounded-full pointer-events-auto",
+          "h-9 w-9 sm:h-10 sm:w-10",
           "text-muted-foreground hover:text-foreground",
           "bg-muted/50 hover:bg-muted active:bg-muted/80",
           "transition-colors duration-150",
           "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-          "absolute left-0 cursor-pointer touch-manipulation"
+          "cursor-pointer touch-manipulation"
         ),
         button_next: cn(
-          "inline-flex items-center justify-center rounded-full",
-          "h-9 w-9 sm:h-11 sm:w-11 min-h-[36px] min-w-[36px] sm:min-h-[44px] sm:min-w-[44px]",
+          "inline-flex items-center justify-center rounded-full pointer-events-auto",
+          "h-9 w-9 sm:h-10 sm:w-10",
           "text-muted-foreground hover:text-foreground",
           "bg-muted/50 hover:bg-muted active:bg-muted/80",
           "transition-colors duration-150",
           "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-          "absolute right-0 cursor-pointer touch-manipulation"
+          "cursor-pointer touch-manipulation"
         ),
         month_grid: "w-full border-collapse",
         weekdays: "flex mb-1",
