@@ -46,7 +46,7 @@ const XTSYLoader = memo(({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) => {
             fontFamily: "'Playfair Display', serif",
             fontSize: s.heading,
             fontWeight: 700,
-            background: 'linear-gradient(90deg, #f97316, #dc2626)',
+            background: 'linear-gradient(90deg, hsl(28, 92%, 52%), hsl(0, 72%, 51%))',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             margin: '0 0 6px 0',
@@ -75,7 +75,7 @@ const XTSYLoader = memo(({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) => {
       }}>
         <div style={{
           height: '100%',
-          background: 'linear-gradient(90deg, #f97316, #a31545)',
+          background: 'linear-gradient(90deg, hsl(28, 92%, 52%), hsl(12, 85%, 48%))',
           borderRadius: 9999,
           animation: 'xtsy-loader-progress 1.2s ease-in-out infinite'
         }} />
@@ -95,7 +95,7 @@ const LoadingScreen = memo(({ minimal = false, size }: LoadingScreenProps) => {
     <div style={{
       position: 'fixed',
       inset: 0,
-      background: 'linear-gradient(135deg, #020617 0%, #0f172a 50%, #020617 100%)',
+      background: 'linear-gradient(135deg, hsl(225, 40%, 3%) 0%, hsl(225, 28%, 7%) 50%, hsl(225, 40%, 3%) 100%)',
       zIndex: 9999,
       display: 'flex',
       alignItems: 'center',

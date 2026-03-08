@@ -111,7 +111,7 @@ const XTSYRouteLoader = memo(() => (
   <div style={{
     position: 'fixed',
     inset: 0,
-    background: 'linear-gradient(135deg, #020617 0%, #0f172a 50%, #020617 100%)',
+    background: 'linear-gradient(135deg, hsl(225, 40%, 3%) 0%, hsl(225, 28%, 7%) 50%, hsl(225, 40%, 3%) 100%)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -138,7 +138,7 @@ const XTSYRouteLoader = memo(() => (
         fontFamily: "'Playfair Display', serif",
         fontSize: 28,
         fontWeight: 700,
-        background: 'linear-gradient(90deg, #f97316, #dc2626)',
+        background: 'linear-gradient(90deg, hsl(28, 92%, 52%), hsl(0, 72%, 51%))',
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
         margin: '0 0 8px 0',
@@ -166,7 +166,7 @@ const XTSYRouteLoader = memo(() => (
     }}>
       <div style={{
         height: '100%',
-        background: 'linear-gradient(90deg, #f97316, #a31545)',
+        background: 'linear-gradient(90deg, hsl(28, 92%, 52%), hsl(12, 85%, 48%))',
         borderRadius: 9999,
         animation: 'xtsy-loader-progress 1.2s ease-in-out infinite'
       }} />

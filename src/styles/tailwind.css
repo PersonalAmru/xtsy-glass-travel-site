@@ -92,116 +92,148 @@
 
 @layer base {
   :root {
-    /* Unified dark theme — XTSY brand identity */
-    --background: 222 47% 4%;
-    --foreground: 0 0% 95%;
-    --card: 222 30% 8%;
-    --card-foreground: 0 0% 95%;
-    --popover: 222 30% 8%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 25 95% 53%;
+    /* ═══════════════════════════════════════════════
+       XTSY Premium Brand Color System
+       Deep charcoal base + warm amber-gold primary
+       ═══════════════════════════════════════════════ */
+    
+    /* Surface hierarchy — deep charcoal with blue undertone */
+    --background: 225 40% 3%;
+    --foreground: 40 10% 94%;
+    --card: 225 28% 7%;
+    --card-foreground: 40 10% 94%;
+    --popover: 225 28% 7%;
+    --popover-foreground: 40 10% 94%;
+    
+    /* Primary — warm amber-gold (signature XTSY orange refined) */
+    --primary: 28 92% 52%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 220 15% 15%;
-    --secondary-foreground: 0 0% 95%;
-    --muted: 220 15% 15%;
-    --muted-foreground: 220 10% 55%;
-    --accent: 222 25% 12%;
-    --accent-foreground: 0 0% 95%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 95%;
-    --success: 142 76% 36%;
-    --success-foreground: 0 0% 95%;
-    --warning: 38 92% 50%;
-    --warning-foreground: 0 0% 15%;
-    --border: 220 15% 18%;
-    --input: 220 15% 18%;
-    --ring: 25 95% 53%;
+    
+    /* Secondary — muted warm slate */
+    --secondary: 225 18% 13%;
+    --secondary-foreground: 40 10% 90%;
+    
+    /* Muted — subtle warm gray */
+    --muted: 225 14% 12%;
+    --muted-foreground: 220 10% 52%;
+    
+    /* Accent — warm bronze undertone */
+    --accent: 25 20% 11%;
+    --accent-foreground: 40 10% 94%;
+    
+    /* Semantic states */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --success: 152 69% 31%;
+    --success-foreground: 0 0% 98%;
+    --warning: 40 96% 50%;
+    --warning-foreground: 0 0% 8%;
+    
+    /* Edges & inputs */
+    --border: 225 12% 16%;
+    --input: 225 15% 14%;
+    --ring: 28 92% 52%;
     --radius: 0.75rem;
     
-    /* Brand tokens */
-    --brand-secondary: 0 84% 60%;
-    --brand-accent: 33 100% 55%;
-    --brand-verified: 220 85% 65%;
+    /* ── Brand extended palette ── */
+    --brand-secondary: 0 72% 51%;
+    --brand-accent: 36 100% 55%;
+    --brand-gold: 38 90% 56%;
+    --brand-ember: 12 85% 48%;
+    --brand-copper: 22 70% 42%;
+    --brand-verified: 215 80% 58%;
     --whatsapp: 142 70% 45%;
     
-    /* Dark glassmorphism - Progressive enhancement */
-    --glass-bg-solid: 222 30% 10%;
-    --glass-bg-tablet: 222 30% 8% / 0.88;
-    --glass-bg-desktop: 0 0% 0% / 0.25;
-    --glass-border-light: 0 0% 100% / 0.12;
-    --glass-border-solid: 220 15% 22%;
-    --glass-blur-tablet: blur(8px);
-    --glass-blur-desktop: blur(16px);
-    --glass-shadow-light: 0 8px 32px hsl(0 0% 0% / 0.3);
-    --glass-shadow-solid: 0 4px 16px hsl(0 0% 0% / 0.2);
+    /* ── Premium surface tokens ── */
+    --surface-elevated: 225 24% 9%;
+    --surface-overlay: 225 20% 6%;
+    --surface-highlight: 28 92% 52% / 0.08;
     
-    /* Legacy dark glass tokens */
+    /* ── Glassmorphism (progressive enhancement) ── */
+    --glass-bg-solid: 225 28% 9%;
+    --glass-bg-tablet: 225 28% 7% / 0.88;
+    --glass-bg-desktop: 0 0% 0% / 0.25;
+    --glass-border-light: 0 0% 100% / 0.08;
+    --glass-border-solid: 225 12% 20%;
+    --glass-shadow-light: 0 8px 32px hsl(0 0% 0% / 0.4);
+    --glass-shadow-solid: 0 4px 16px hsl(0 0% 0% / 0.25);
     --glass-bg: rgba(0, 0, 0, 0.2);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     --glass-blur: blur(16px);
     
-    /* Dark gradients — brand-aligned */
-    --gradient-primary: linear-gradient(135deg, hsl(25 95% 53%), hsl(0 84% 60%));
+    /* ── Premium gradients ── */
+    --gradient-primary: linear-gradient(135deg, hsl(28 92% 52%), hsl(0 72% 51%));
+    --gradient-gold: linear-gradient(135deg, hsl(38 90% 56%), hsl(28 92% 52%));
+    --gradient-ember: linear-gradient(135deg, hsl(28 92% 52%), hsl(12 85% 48%));
     --gradient-glass: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
-    --shadow-elegant: 0 4px 20px -4px hsl(25 95% 53% / 0.25);
+    --shadow-elegant: 0 4px 24px -4px hsl(28 92% 52% / 0.2);
+    --shadow-premium: 0 8px 40px -8px hsl(0 0% 0% / 0.5);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-glass: background 0.3s cubic-bezier(0.4, 0, 0.2, 1), backdrop-filter 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     
-    /* Travel page specific tokens */
-    --travel-gradient-warm: linear-gradient(135deg, hsl(25 95% 53%), hsl(0 84% 60%));
-    --travel-gradient-cool: linear-gradient(135deg, hsl(220 85% 60%), hsl(262 83% 58%));
-    --travel-gradient-nature: linear-gradient(135deg, hsl(142 76% 36%), hsl(172 66% 50%));
-    --travel-glow-warm: 0 0 40px hsl(25 95% 53% / 0.3);
-    --travel-glow-cool: 0 0 40px hsl(220 85% 60% / 0.3);
+    /* Travel page tokens */
+    --travel-gradient-warm: linear-gradient(135deg, hsl(28 92% 52%), hsl(0 72% 51%));
+    --travel-gradient-cool: linear-gradient(135deg, hsl(215 80% 58%), hsl(262 75% 52%));
+    --travel-gradient-nature: linear-gradient(135deg, hsl(152 69% 31%), hsl(172 60% 42%));
+    --travel-glow-warm: 0 0 40px hsl(28 92% 52% / 0.25);
+    --travel-glow-cool: 0 0 40px hsl(215 80% 58% / 0.25);
   }
 
   /* .dark class mirrors :root — unified dark system */
   .dark {
-    --background: 222 47% 4%;
-    --foreground: 0 0% 95%;
-    --card: 222 30% 8%;
-    --card-foreground: 0 0% 95%;
-    --popover: 222 30% 8%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 25 95% 53%;
+    --background: 225 40% 3%;
+    --foreground: 40 10% 94%;
+    --card: 225 28% 7%;
+    --card-foreground: 40 10% 94%;
+    --popover: 225 28% 7%;
+    --popover-foreground: 40 10% 94%;
+    --primary: 28 92% 52%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 220 15% 15%;
-    --secondary-foreground: 0 0% 95%;
-    --muted: 220 15% 15%;
-    --muted-foreground: 220 10% 55%;
-    --accent: 222 25% 12%;
-    --accent-foreground: 0 0% 95%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 95%;
-    --success: 142 76% 36%;
-    --success-foreground: 0 0% 95%;
-    --warning: 38 92% 50%;
-    --warning-foreground: 0 0% 15%;
-    --border: 220 15% 18%;
-    --input: 220 15% 18%;
-    --ring: 25 95% 53%;
+    --secondary: 225 18% 13%;
+    --secondary-foreground: 40 10% 90%;
+    --muted: 225 14% 12%;
+    --muted-foreground: 220 10% 52%;
+    --accent: 25 20% 11%;
+    --accent-foreground: 40 10% 94%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --success: 152 69% 31%;
+    --success-foreground: 0 0% 98%;
+    --warning: 40 96% 50%;
+    --warning-foreground: 0 0% 8%;
+    --border: 225 12% 16%;
+    --input: 225 15% 14%;
+    --ring: 28 92% 52%;
     
-    /* Brand tokens */
-    --brand-secondary: 0 84% 60%;
-    --brand-accent: 33 100% 55%;
-    --brand-verified: 220 85% 65%;
+    --brand-secondary: 0 72% 51%;
+    --brand-accent: 36 100% 55%;
+    --brand-gold: 38 90% 56%;
+    --brand-ember: 12 85% 48%;
+    --brand-copper: 22 70% 42%;
+    --brand-verified: 215 80% 58%;
     --whatsapp: 142 70% 45%;
     
-    /* Dark glassmorphism */
-    --glass-bg-solid: 222 30% 10%;
-    --glass-bg-tablet: 222 30% 8% / 0.88;
+    --surface-elevated: 225 24% 9%;
+    --surface-overlay: 225 20% 6%;
+    --surface-highlight: 28 92% 52% / 0.08;
+    
+    --glass-bg-solid: 225 28% 9%;
+    --glass-bg-tablet: 225 28% 7% / 0.88;
     --glass-bg-desktop: 0 0% 0% / 0.25;
-    --glass-border-light: 0 0% 100% / 0.12;
-    --glass-border-solid: 220 15% 22%;
-    --glass-shadow-light: 0 8px 32px hsl(0 0% 0% / 0.3);
-    --glass-shadow-solid: 0 4px 16px hsl(0 0% 0% / 0.2);
+    --glass-border-light: 0 0% 100% / 0.08;
+    --glass-border-solid: 225 12% 20%;
+    --glass-shadow-light: 0 8px 32px hsl(0 0% 0% / 0.4);
+    --glass-shadow-solid: 0 4px 16px hsl(0 0% 0% / 0.25);
     --glass-bg: rgba(0, 0, 0, 0.2);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    --gradient-primary: linear-gradient(135deg, hsl(25 95% 53%), hsl(0 84% 60%));
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --gradient-primary: linear-gradient(135deg, hsl(28 92% 52%), hsl(0 72% 51%));
+    --gradient-gold: linear-gradient(135deg, hsl(38 90% 56%), hsl(28 92% 52%));
+    --gradient-ember: linear-gradient(135deg, hsl(28 92% 52%), hsl(12 85% 48%));
     --gradient-glass: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
-    --shadow-elegant: 0 4px 20px -4px hsl(25 95% 53% / 0.25);
+    --shadow-elegant: 0 4px 24px -4px hsl(28 92% 52% / 0.2);
+    --shadow-premium: 0 8px 40px -8px hsl(0 0% 0% / 0.5);
   }
 
   body {
@@ -501,9 +533,9 @@ img.lazy-below-fold {
 /* Travel page specific styles */
 .travel-hero-bg {
   background: linear-gradient(135deg, 
-    hsl(222 47% 4%) 0%, 
-    hsl(222 30% 8%) 50%, 
-    hsl(222 47% 4%) 100%);
+    hsl(225 40% 3%) 0%, 
+    hsl(225 28% 7%) 50%, 
+    hsl(225 40% 3%) 100%);
   position: relative;
 }
 
@@ -512,16 +544,16 @@ img.lazy-below-fold {
   position: absolute;
   inset: 0;
   background: 
-    radial-gradient(ellipse at 20% 20%, hsl(25 95% 53% / 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 80%, hsl(220 85% 60% / 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 50%, hsl(142 76% 36% / 0.05) 0%, transparent 70%);
+    radial-gradient(ellipse at 20% 20%, hsl(28 92% 52% / 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, hsl(215 80% 58% / 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, hsl(152 69% 31% / 0.04) 0%, transparent 70%);
   pointer-events: none;
 }
 
 .travel-tab-active {
   @apply relative overflow-hidden;
-  background: linear-gradient(135deg, hsl(25 95% 53%), hsl(0 84% 60%));
-  box-shadow: 0 4px 15px -3px hsl(25 95% 53% / 0.4);
+  background: linear-gradient(135deg, hsl(28 92% 52%), hsl(0 72% 51%));
+  box-shadow: 0 4px 15px -3px hsl(28 92% 52% / 0.35);
 }
 
 .travel-tab-active::before {
@@ -549,7 +581,7 @@ img.lazy-below-fold {
   transform: translateX(-50%);
   width: 80px;
   height: 4px;
-  background: linear-gradient(90deg, hsl(25 95% 53%), hsl(0 84% 60%));
+  background: linear-gradient(90deg, hsl(28 92% 52%), hsl(0 72% 51%));
   border-radius: 9999px;
 }
 
@@ -564,16 +596,16 @@ img.lazy-below-fold {
 
 .travel-badge {
   @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold;
-  background: linear-gradient(135deg, hsl(25 95% 53%), hsl(0 84% 60%));
+  background: linear-gradient(135deg, hsl(28 92% 52%), hsl(0 72% 51%));
   color: white;
-  box-shadow: 0 2px 8px hsl(25 95% 53% / 0.3);
+  box-shadow: 0 2px 8px hsl(28 92% 52% / 0.25);
 }
 
 .travel-badge-outline {
   @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold;
   background: rgba(255, 255, 255, 0.9);
-  border: 2px solid hsl(25 95% 53%);
-  color: hsl(25 95% 40%);
+  border: 2px solid hsl(28 92% 52%);
+  color: hsl(28 92% 40%);
 }
 
 /* Floating animation for decorative elements */
@@ -588,8 +620,8 @@ img.lazy-below-fold {
 
 /* Pulse glow effect */
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px hsl(25 95% 53% / 0.3); }
-  50% { box-shadow: 0 0 40px hsl(25 95% 53% / 0.5); }
+  0%, 100% { box-shadow: 0 0 20px hsl(28 92% 52% / 0.25); }
+  50% { box-shadow: 0 0 40px hsl(28 92% 52% / 0.4); }
 }
 
 .animate-pulse-glow {
