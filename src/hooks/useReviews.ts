@@ -16,7 +16,7 @@ const PROPERTY_IDS = {
 // Property names for display
 const PROPERTY_NAMES: Record<string, string> = {
   '11978251-839f-4274-ab1b-ec9c2d8bbaae': 'XTSY Travellers Hostel',
-  '5d67fd82-c64c-4cd0-b051-a29deb9c9b3b': 'XTSY Xperience',
+  '5d67fd82-c64c-4cd0-b051-a29deb9c9b3b': 'XTSY Experience',
 };
 
 export interface Review {
