@@ -246,12 +246,12 @@ const HeroSection = () => {
           />
 
           {/* Stats - no transforms */}
+          {/* Stats - no backdrop-blur for performance */}
           <div className="mt-10 sm:mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-3xl mx-auto">
-            {stats.map((stat, index) => (
+            {stats.map((stat) => (
               <div 
                 key={stat.label}
-                className="text-center p-4 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/5 hover:bg-white/10 transition-colors animate-fade-in"
-                style={{ animationDelay: `${0.3 + index * 0.1}s` }}
+                className="text-center p-4 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors"
               >
                 <div className={cn("text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r bg-clip-text text-transparent", stat.gradient)}>
                   {stat.value}
