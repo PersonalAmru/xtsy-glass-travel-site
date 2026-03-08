@@ -687,7 +687,7 @@ export const internationalTours: Record<string, TourPackage[]> = {
       description: "Kathmandu's living heritage meets Pokhara's serene lakeside — gentle treks with Annapurna views without the extreme altitude.",
       duration: "7 Days",
       difficulty: "Moderate",
-      price: "₹45,000",
+      price: "₹37,999",
       image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80",
       rating: 4.8,
       category: "adventure",
