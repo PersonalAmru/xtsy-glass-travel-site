@@ -207,7 +207,7 @@
 
 /* Dark mode overrides for better contrast */
 .dark .shiny-cta {
-  --shiny-cta-bg: hsl(222.2 84% 4.9%);
-  --shiny-cta-bg-subtle: hsl(217.2 32.6% 17.5%);
-  --shiny-cta-fg: hsl(210 40% 98%);
+  --shiny-cta-bg: hsl(222 47% 4%);
+  --shiny-cta-bg-subtle: hsl(220 15% 18%);
+  --shiny-cta-fg: hsl(0 0% 95%);
 }

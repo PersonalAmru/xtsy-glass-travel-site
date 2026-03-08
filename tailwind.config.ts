@@ -84,6 +84,14 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				// Brand-specific semantic tokens
+				brand: {
+					DEFAULT: 'hsl(25 95% 53%)',
+					secondary: 'hsl(var(--brand-secondary))',
+					accent: 'hsl(var(--brand-accent))',
+					verified: 'hsl(var(--brand-verified))',
+				},
+				whatsapp: 'hsl(var(--whatsapp))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
