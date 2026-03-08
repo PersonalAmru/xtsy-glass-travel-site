@@ -187,7 +187,7 @@ const _exclusiveTours: TourPackage[] = [
     description: "Transformative yoga and meditation retreat in Dharamkot, Dharamshala — daily asana, pranayama, Tushita meditation, Kareri village trek, and Himalayan immersion.",
     duration: "6 Days",
     difficulty: "Easy",
-    price: "₹42,500",
+    price: "₹28,999",
     image: himachalYogaRetreatImg,
     rating: 4.9,
     category: "cultural",
