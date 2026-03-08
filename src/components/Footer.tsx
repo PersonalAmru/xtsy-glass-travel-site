@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import xtsyLogo from "@/assets/xtsy-color-logo.png";
 import PolicyModal from "./PolicyModals";
+
 const Footer = () => {
   const [logoLoaded, setLogoLoaded] = useState(false);
   const [logoError, setLogoError] = useState(false);
@@ -26,14 +27,18 @@ const Footer = () => {
     setLogoLoaded(true);
     setLogoError(false);
   };
+
+  const linkClass = "text-muted-foreground hover:text-primary transition-colors duration-300";
+  const footerLinkClass = `${linkClass} flex items-center gap-2 text-xs sm:text-sm lg:text-base justify-center py-1 touch-manipulation`;
+
   return <footer className="bg-card border-t border-border text-foreground py-4 sm:py-8 md:py-12 lg:py-16">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {/* Brand Section */}
           <div className="text-center order-1 lg:order-1">
             <div className="flex items-center gap-2 justify-center mb-3 sm:mb-4 lg:mb-6">
-              {!logoError ? <img src={xtsyLogo} alt="XTSY Travellers Hostel Logo" className="h-20 sm:h-24 lg:h-28 w-auto object-contain" loading="lazy" onLoad={handleLogoLoad} onError={handleLogoError} /> : <div className="h-20 sm:h-24 lg:h-28 w-32 sm:w-36 lg:w-40 bg-gradient-to-r from-primary to-brand-secondary rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-lg sm:text-xl lg:text-2xl">XTSY</span>
+              {!logoError ? <img src={xtsyLogo} alt="XTSY Travellers Hostel Logo" className="h-20 sm:h-24 lg:h-28 w-auto object-contain" loading="lazy" onLoad={handleLogoLoad} onError={handleLogoError} /> : <div className="h-20 sm:h-24 lg:h-28 w-32 sm:w-36 lg:w-40 bg-gradient-to-r from-primary to-destructive rounded-lg flex items-center justify-center">
+                  <span className="text-primary-foreground font-bold text-lg sm:text-xl lg:text-2xl font-playfair">XTSY</span>
                 </div>}
             </div>
             <p className="text-muted-foreground text-xs sm:text-sm lg:text-base leading-relaxed mb-3 sm:mb-4 lg:mb-6 px-2">
@@ -51,63 +56,38 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div className="text-center order-2 lg:order-2">
-            <h3 className="text-sm sm:text-lg lg:text-xl font-semibold mb-3 sm:mb-4 lg:mb-6 text-white">Quick Links</h3>
+            <h3 className="text-sm sm:text-lg lg:text-xl font-semibold mb-3 sm:mb-4 lg:mb-6 text-foreground font-playfair">Quick Links</h3>
             <ul className="space-y-2 sm:space-y-3 lg:space-y-4">
-              <li>
-                <Link to="/" className="text-gray-300 hover:text-orange-400 transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm lg:text-base justify-center py-1 touch-manipulation">
-                  <Home className="h-4 w-4 sm:h-5 sm:w-5" />
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/about" className="text-gray-300 hover:text-orange-400 transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm lg:text-base justify-center py-1 touch-manipulation">
-                  <Info className="h-4 w-4 sm:h-5 sm:w-5" />
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link to="/xtsy-270" className="text-gray-300 hover:text-orange-400 transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm lg:text-base justify-center py-1 touch-manipulation">
-                  <Camera className="h-4 w-4 sm:h-5 sm:w-5" />
-                  XTSY 270°
-                </Link>
-              </li>
-              <li>
-                <Link to="/gallery" className="text-gray-300 hover:text-orange-400 transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm lg:text-base justify-center py-1 touch-manipulation">
-                  <ImageIcon className="h-4 w-4 sm:h-5 sm:w-5" />
-                  Gallery
-                </Link>
-              </li>
-               <li>
-                 <Link to="/travel" className="text-gray-300 hover:text-orange-400 transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm lg:text-base justify-center py-1 touch-manipulation">
-                   <Plane className="h-4 w-4 sm:h-5 sm:w-5" />
-                   Travel
-                 </Link>
-               </li>
+              <li><Link to="/" className={footerLinkClass}><Home className="h-4 w-4 sm:h-5 sm:w-5" />Home</Link></li>
+              <li><Link to="/about" className={footerLinkClass}><Info className="h-4 w-4 sm:h-5 sm:w-5" />About</Link></li>
+              <li><Link to="/xtsy-270" className={footerLinkClass}><Camera className="h-4 w-4 sm:h-5 sm:w-5" />XTSY 270°</Link></li>
+              <li><Link to="/gallery" className={footerLinkClass}><ImageIcon className="h-4 w-4 sm:h-5 sm:w-5" />Gallery</Link></li>
+              <li><Link to="/travel" className={footerLinkClass}><Plane className="h-4 w-4 sm:h-5 sm:w-5" />Travel</Link></li>
             </ul>
           </div>
 
           {/* Contact Info */}
           <div className="text-center order-3 lg:order-3">
-            <h3 className="text-sm sm:text-lg lg:text-xl font-semibold mb-3 sm:mb-4 lg:mb-6 text-white">Contact Us</h3>
+            <h3 className="text-sm sm:text-lg lg:text-xl font-semibold mb-3 sm:mb-4 lg:mb-6 text-foreground font-playfair">Contact Us</h3>
             <div className="space-y-2 sm:space-y-3 lg:space-y-4">
               <div className="flex items-start space-x-2 sm:space-x-3 justify-center">
-                <div className="text-gray-300 text-xs sm:text-sm lg:text-base leading-relaxed text-center">
-                  <div className="font-medium text-white mb-1">XTSY Travellers Hostel</div>
+                <div className="text-muted-foreground text-xs sm:text-sm lg:text-base leading-relaxed text-center">
+                  <div className="font-medium text-foreground mb-1">XTSY Travellers Hostel</div>
                   <div className="text-xs sm:text-sm">Diengiong road, New Shillong</div>
                   <div className="text-xs sm:text-sm">Township, Meghalaya - 793018  [Landmark: 800 Mtrs from New Shillong Centre Point]</div>
                 </div>
               </div>
               
               <div className="flex items-start space-x-2 sm:space-x-3 justify-center">
-                <Phone className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-orange-400 mt-0.5 flex-shrink-0" />
-                <div className="text-gray-300 text-xs sm:text-sm lg:text-base text-center">
+                <Phone className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-primary mt-0.5 flex-shrink-0" />
+                <div className="text-muted-foreground text-xs sm:text-sm lg:text-base text-center">
                   <div className="font-medium">Connect with us: +91 8837317070 [XTSY Booking Desk]</div>
                 </div>
               </div>
               
               <div className="flex items-center space-x-2 sm:space-x-3 justify-center">
-                <Mail className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-orange-400 flex-shrink-0" />
-                <div className="text-gray-300 text-xs sm:text-sm lg:text-base font-medium">
+                <Mail className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-primary flex-shrink-0" />
+                <div className="text-muted-foreground text-xs sm:text-sm lg:text-base font-medium">
                   booking@xtsy.one
                 </div>
               </div>
@@ -124,7 +104,7 @@ const Footer = () => {
                     });
                     window.open('https://maps.app.goo.gl/6WaBkJmkb1NjEB2i9', '_blank');
                   }} 
-                  className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white text-xs sm:text-sm lg:text-base px-4 sm:px-6 lg:px-8 py-2 sm:py-2.5 lg:py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105 shadow-lg min-h-[44px] touch-manipulation"
+                  className="bg-gradient-to-r from-primary to-destructive hover:from-primary/90 hover:to-destructive/90 text-primary-foreground text-xs sm:text-sm lg:text-base px-4 sm:px-6 lg:px-8 py-2 sm:py-2.5 lg:py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105 shadow-lg min-h-[44px] touch-manipulation"
                 >
                   Get Directions
                 </Button>
@@ -133,46 +113,23 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-700 mt-4 sm:mt-6 lg:mt-8 pt-3 sm:pt-4 lg:pt-6">
+        <div className="border-t border-border mt-4 sm:mt-6 lg:mt-8 pt-3 sm:pt-4 lg:pt-6">
           {/* Legal Links */}
           <div className="text-center mb-4 sm:mb-6">
             <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-2 sm:gap-6 text-xs sm:text-sm">
-              <Link to="/privacy-policy" className="text-gray-400 hover:text-orange-400 transition-colors duration-300 py-1">
-                Privacy Policy
-              </Link>
-              <Link to="/terms-of-service" className="text-gray-400 hover:text-orange-400 transition-colors duration-300 py-1">
-                Terms of Service
-              </Link>
-              <button onClick={() => setPolicyModal({
-              isOpen: true,
-              type: 'cancellation'
-            })} className="text-gray-400 hover:text-orange-400 transition-colors duration-300 py-1">
-                Cancellation Policy
-              </button>
-              <button onClick={() => setPolicyModal({
-              isOpen: true,
-              type: 'travel'
-            })} className="text-gray-400 hover:text-orange-400 transition-colors duration-300 py-1">
-                Travel Policies
-              </button>
-              <button onClick={() => setPolicyModal({
-              isOpen: true,
-              type: 'terms'
-            })} className="text-gray-400 hover:text-orange-400 transition-colors duration-300 py-1">
-                Hostel Terms & Conditions
-              </button>
+              <Link to="/privacy-policy" className={`${linkClass} py-1`}>Privacy Policy</Link>
+              <Link to="/terms-of-service" className={`${linkClass} py-1`}>Terms of Service</Link>
+              <button onClick={() => setPolicyModal({ isOpen: true, type: 'cancellation' })} className={`${linkClass} py-1`}>Cancellation Policy</button>
+              <button onClick={() => setPolicyModal({ isOpen: true, type: 'travel' })} className={`${linkClass} py-1`}>Travel Policies</button>
+              <button onClick={() => setPolicyModal({ isOpen: true, type: 'terms' })} className={`${linkClass} py-1`}>Hostel Terms & Conditions</button>
             </div>
           </div>
           
-          <p className="text-gray-400 text-xs sm:text-sm lg:text-base text-center">© 2024 XTSY Travel. All rights reserved. Experience the XTSY Vibe.</p>
+          <p className="text-muted-foreground text-xs sm:text-sm lg:text-base text-center">© 2024 XTSY Travel. All rights reserved. Experience the XTSY Vibe.</p>
         </div>
       </div>
       
-      {/* Policy Modals */}
-      {policyModal.type && <PolicyModal isOpen={policyModal.isOpen} onClose={() => setPolicyModal({
-      isOpen: false,
-      type: null
-    })} type={policyModal.type} />}
+      {policyModal.type && <PolicyModal isOpen={policyModal.isOpen} onClose={() => setPolicyModal({ isOpen: false, type: null })} type={policyModal.type} />}
     </footer>;
 };
 export default Footer;
