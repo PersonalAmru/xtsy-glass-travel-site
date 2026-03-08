@@ -23,14 +23,13 @@ function Calendar({
         caption_label: "text-base font-semibold text-foreground tracking-tight",
         nav: "flex items-center gap-2",
         button_previous: cn(
-          // Larger hit target (44px) for easier selection on all devices
           "inline-flex items-center justify-center rounded-full",
-          "h-11 w-11 min-h-[44px] min-w-[44px]",
+          "h-9 w-9 sm:h-11 sm:w-11 min-h-[36px] min-w-[36px] sm:min-h-[44px] sm:min-w-[44px]",
           "text-muted-foreground hover:text-foreground",
           "bg-muted/50 hover:bg-muted active:bg-muted/80",
           "transition-colors duration-150",
           "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-          "absolute left-1 cursor-pointer touch-manipulation"
+          "absolute left-0 cursor-pointer touch-manipulation"
         ),
         button_next: cn(
           // Larger hit target (44px) for easier selection on all devices
