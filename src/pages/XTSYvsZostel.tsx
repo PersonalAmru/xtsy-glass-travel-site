@@ -58,18 +58,6 @@ const XTSYvsZostel = () => {
       highlight: true,
     },
     {
-      brand: "Zostel",
-      tagline: "Franchise Hostel Chain + Zo Trips",
-      model: "Franchise model — Zostel, Zostel Plus, Zostel Homes, Zo Selections. Quality varies by franchise partner.",
-      nePresence: "1-2 franchise hostels (Shillong, possibly Gangtok). Zo Trips: outsourced bus tours.",
-      pricing: "Zo Trips Meghalaya: ₹28,570/person (fixed-date group bus tour)",
-      segments: "Solo backpackers, budget travelers. Discourages groups >6.",
-      strengths: ["50+ locations pan-India", "Strong brand recognition", "Hostel community culture"],
-      weaknesses: ["Franchise quality inconsistency", "No luxury tier", "Groups >6 discouraged", "No NE ecosystem", "Zo Trips = outsourced bus tours"],
-      color: "border-red-500/50",
-      highlight: false,
-    },
-    {
       brand: "The Hosteller",
       tagline: "Company-Owned Hostel Chain + Workations",
       model: "Company-owned hostels (not franchise). Expanding into workation & coliving. Bus service between hostels.",
