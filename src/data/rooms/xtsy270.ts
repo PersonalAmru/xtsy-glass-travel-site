@@ -53,11 +53,6 @@ export const XTSY270_DATA = {
       description: 'Seamless internet for remote work and streaming with mountain views'
     },
     {
-      icon: Coffee,
-      title: 'Gourmet Breakfast',
-      description: 'Complimentary premium breakfast served with spectacular sunrise views'
-    },
-    {
       icon: Tv,
       title: 'Netflix & Chill',
       description: 'Enjoy Streaming in QLED 4K TV'
