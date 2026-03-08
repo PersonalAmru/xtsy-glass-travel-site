@@ -56,7 +56,7 @@ const Header = () => {
       isMobile ? 'bg-black/95' : 'bg-black/80 backdrop-blur-md'
     }`}>
       <div className="responsive-container mobile-compact">
-        <div className={`flex justify-between items-center ${isMobile ? 'h-14' : 'h-16'}`}>
+        <div className={`flex justify-between items-center ${isMobile ? 'h-16' : 'h-20'}`}>
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 touch-target ml-4 sm:ml-6">
             {!logoError ? (
@@ -64,7 +64,7 @@ const Header = () => {
                 src={xtsyLogo}
                 alt="XTSY Travellers Hostel"
                 className={`w-auto hover:opacity-80 transition-opacity cursor-pointer ${
-                  isMobile ? 'h-14' : isTablet ? 'h-16' : 'h-20'
+                  isMobile ? 'h-[3.5rem]' : isTablet ? 'h-[4.5rem]' : 'h-[5.5rem]'
                 }`}
                 loading="eager"
                 // @ts-expect-error - fetchpriority
@@ -75,9 +75,9 @@ const Header = () => {
               />
             ) : (
               <div className={`bg-gradient-to-r from-primary to-brand-secondary rounded-lg flex items-center justify-center ${
-                isMobile ? 'h-12 w-24' : isTablet ? 'h-14 w-28' : 'h-16 w-32'
+                isMobile ? 'h-14 w-28' : isTablet ? 'h-[4.5rem] w-36' : 'h-[5.5rem] w-44'
               }`}>
-                <span className="text-white font-bold text-base">XTSY</span>
+                <span className="text-white font-bold text-lg">XTSY</span>
               </div>
             )}
           </Link>
