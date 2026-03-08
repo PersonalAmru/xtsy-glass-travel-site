@@ -25,7 +25,7 @@ const TravelFinalCTA = () => (
           href="https://wa.me/918837317070?text=Hi!%20I%27d%20like%20to%20talk%20to%20an%20XTSY%20Travel%20Curator."
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-6 py-3 border border-amber-400/40 text-amber-200 hover:bg-amber-400/10 rounded-full transition-all text-sm sm:text-base"
+          className="inline-flex items-center gap-2 px-6 py-3 border border-primary/40 text-primary hover:bg-primary/10 rounded-full transition-all text-sm sm:text-base"
         >
           <Phone className="h-5 w-5" />
           Talk to an XTSY Travel Curator

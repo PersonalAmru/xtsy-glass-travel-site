@@ -52,7 +52,7 @@ const TravelHero = () => {
             size="lg"
             variant="outline"
             onClick={() => scrollTo("travel-exclusives")}
-            className="border-amber-400/40 text-amber-200 hover:bg-amber-400/10 hover:text-amber-100 px-8 py-3 rounded-full text-base bg-transparent"
+            className="border-primary/40 text-primary hover:bg-primary/10 px-8 py-3 rounded-full text-base bg-transparent"
           >
             <Star className="h-5 w-5 mr-2" />
             XTSY Exclusives
