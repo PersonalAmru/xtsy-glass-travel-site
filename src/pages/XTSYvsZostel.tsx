@@ -190,7 +190,7 @@ const XTSYvsZostel = () => {
     { aspect: "Group Size", xtsy: "Solo to 50+ — your choice", zostel: "Pre-formed groups, bussed together" },
     { aspect: "Itinerary", xtsy: "Fully customizable — add/remove stops", zostel: "Fixed itinerary, no changes allowed" },
     { aspect: "Logistics", xtsy: "Local team handles everything — transport, guides, meals", zostel: "Outsourced to third-party operators" },
-    { aspect: "Accommodation", xtsy: "Own property — dorms to 270° Suite", zostel: "Franchise hostels or partner stays" },
+    { aspect: "Accommodation", xtsy: "No franchise model — dorms to 270° Suite, curated private tours from solo to groups of 50+", zostel: "Franchise hostels or partner stays" },
     { aspect: "Local Knowledge", xtsy: "Staff lives here — knows hidden gems, seasonal tips", zostel: "Tour leaders may not be from the region" },
   ];
 
