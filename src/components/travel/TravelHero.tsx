@@ -9,9 +9,9 @@ const TravelHero = () => {
   return (
     <section className="relative py-16 sm:py-20 md:py-28 lg:py-36 overflow-hidden">
       {/* Cinematic background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-stone-950 via-stone-900 to-stone-800" />
-      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=60')] bg-cover bg-center opacity-20" />
-      <div className="absolute inset-0 bg-gradient-to-t from-stone-950/90 via-transparent to-stone-950/60" />
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-card to-background" />
+      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=60')] bg-cover bg-center opacity-15" />
+      <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-background/60" />
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 text-center">
         {/* Badge */}
