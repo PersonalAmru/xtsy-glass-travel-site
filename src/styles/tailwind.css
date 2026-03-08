@@ -205,7 +205,7 @@
   }
 
   body {
-    @apply font-sans antialiased;
+    @apply font-josefin antialiased bg-background text-foreground;
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
