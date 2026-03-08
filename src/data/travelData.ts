@@ -453,7 +453,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
       description: "Tranquil monastery stays and gentle valley walks during peaceful winter months — spiritual rejuvenation in the Himalayas.",
       duration: "4 Days",
       difficulty: "Moderate",
-      price: "₹23,500",
+    price: "₹18,999",
       image: sikkimRhododendronImg,
       rating: 4.7,
       category: "leisure",
