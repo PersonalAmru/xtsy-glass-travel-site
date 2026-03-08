@@ -188,6 +188,24 @@ const Header = () => {
 
                   <div className="mx-5 my-2 border-t border-white/10" />
 
+                  {/* More */}
+                  <div className="px-5 py-2">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-primary/80">More</span>
+                  </div>
+                  {moreLinks.map((link) => (
+                    <SheetClose asChild key={link.to}>
+                      <Link
+                        to={link.to}
+                        className="flex items-center gap-3 px-5 py-3 text-white/80 hover:text-white hover:bg-white/5 transition-colors text-sm font-medium"
+                      >
+                        <link.icon size={18} className="text-primary/70" />
+                        {link.label}
+                      </Link>
+                    </SheetClose>
+                  ))}
+
+                  <div className="mx-5 my-2 border-t border-white/10" />
+
                   {/* Contact CTAs */}
                   <div className="px-5 py-2">
                     <span className="text-xs font-semibold uppercase tracking-wider text-primary/80">Connect</span>
