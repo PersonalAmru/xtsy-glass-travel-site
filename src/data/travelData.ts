@@ -907,7 +907,7 @@ const _soloAndBikeTours: TourPackage[] = [
     description: "Exclusively designed for solo female travellers — curated cultural immersion with women guides, verified safe stays, and local sisterhood network.",
     duration: "5 Days",
     difficulty: "Easy",
-    price: "₹24,500",
+    price: "₹19,999",
     image: arunachalCulturalFestivalImg,
     rating: 4.9,
     category: "cultural",
