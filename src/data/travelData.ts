@@ -779,7 +779,7 @@ export const internationalTours: Record<string, TourPackage[]> = {
       description: "Europe's most surprising destination — ancient winemaking traditions, Caucasus mountain villages, and Tbilisi's eclectic charm.",
       duration: "7 Days",
       difficulty: "Easy",
-      price: "₹82,000",
+      price: "₹69,999",
       image: "https://images.unsplash.com/photo-1565008576549-57569a49371d?w=800&q=80",
       rating: 4.6,
       category: "cultural",
