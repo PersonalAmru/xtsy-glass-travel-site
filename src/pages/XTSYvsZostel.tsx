@@ -405,7 +405,7 @@ const XTSYvsZostel = () => {
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4 border-primary/30 text-primary">Trip Comparison</Badge>
             <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4 font-playfair">
-              Zo Trips vs <span className="text-primary">XTSY Packages</span>
+              Zo Trips vs <span className="text-primary">XTSY Travel</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Zostel's "Experience Meghalaya" costs <strong className="text-foreground">₹19,047/person</strong> for a pre-packaged bus tour with fixed dates and outsourced logistics. 
