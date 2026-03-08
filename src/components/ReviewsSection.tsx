@@ -893,8 +893,10 @@ const ReviewsSection = () => {
           </div>
         </DialogContent>
       </Dialog>
+      )}
 
-      {/* Review Detail Modal */}
+      {/* Review Detail Modal - only rendered when open */}
+      {isDialogOpen && (
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent 
           className={cn(
