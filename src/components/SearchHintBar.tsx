@@ -162,17 +162,17 @@ export function SearchHintBar() {
       <div
         className={cn(
           'relative flex items-center gap-2.5 px-4 py-2.5 rounded-2xl',
-          'bg-white/[0.06] backdrop-blur-xl border transition-all duration-500',
+          'bg-white/[0.12] backdrop-blur-xl border transition-all duration-500',
           isActive
-            ? 'border-primary/40 bg-white/[0.1] shadow-[0_0_30px_rgba(249,115,22,0.12)] ring-1 ring-primary/20'
-            : 'border-white/[0.12] hover:border-white/20 hover:bg-white/[0.08]',
+            ? 'border-primary/50 bg-white/[0.16] shadow-[0_0_40px_rgba(249,115,22,0.18)] ring-1 ring-primary/30'
+            : 'border-white/[0.2] hover:border-white/30 hover:bg-white/[0.15]',
           results.length > 0 && isActive && 'rounded-b-none border-b-white/[0.06]'
         )}
       >
         <Search
           className={cn(
             'w-4 h-4 flex-shrink-0 transition-colors duration-300',
-            isActive ? 'text-primary' : 'text-white/40'
+            isActive ? 'text-primary' : 'text-white/60'
           )}
         />
 
@@ -184,7 +184,7 @@ export function SearchHintBar() {
             onChange={(e) => setQuery(e.target.value)}
             onFocus={() => setIsActive(true)}
             onKeyDown={handleKeyDown}
-            className="w-full bg-transparent text-sm text-white/90 placeholder-transparent outline-none caret-primary"
+            className="w-full bg-transparent text-sm text-white placeholder-transparent outline-none caret-primary"
             placeholder="Search XTSY..."
             aria-label="Search XTSY"
             autoComplete="off"
@@ -192,15 +192,15 @@ export function SearchHintBar() {
           {/* Custom animated placeholder */}
           {!query && !isActive && (
             <div className="absolute inset-0 flex items-center pointer-events-none">
-              <span className="text-sm text-white/40 truncate">
+              <span className="text-sm text-primary/90 font-medium truncate">
                 {PLACEHOLDER_HINTS[hintIndex].icon} {hintText}
               </span>
-              <span className="inline-block w-[2px] h-4 ml-0.5 bg-primary/60 animate-pulse rounded-full" />
+              <span className="inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full" />
             </div>
           )}
           {!query && isActive && (
             <div className="absolute inset-0 flex items-center pointer-events-none">
-              <span className="text-sm text-white/30">Search rooms, places, pages...</span>
+              <span className="text-sm text-white/50">Search rooms, places, pages...</span>
             </div>
           )}
         </div>
@@ -213,12 +213,12 @@ export function SearchHintBar() {
             }}
             className="flex-shrink-0 p-1 rounded-full hover:bg-white/10 transition-colors"
           >
-            <X className="w-3.5 h-3.5 text-white/40" />
+            <X className="w-3.5 h-3.5 text-white/50" />
           </button>
         )}
 
         {!isActive && (
-          <Sparkles className="w-3.5 h-3.5 flex-shrink-0 text-white/20" />
+          <Sparkles className="w-3.5 h-3.5 flex-shrink-0 text-primary/40" />
         )}
       </div>
 
