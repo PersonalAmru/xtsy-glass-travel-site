@@ -407,6 +407,16 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
     roomCount: number;
     roomType: string;
     totalAmount: number;
+    ratePerNight: number;
+    quantity: number;
+    nights: number;
+    gstRate: number;
+    gstAmount: number;
+    subtotal: number;
+    guestEmail: string;
+    guestPhone: string;
+    guestCity: string;
+    roomSelections: { roomName: string; quantity: number; ratePerNight: number; gstRate: number; lineTotal: number }[];
   } | null>(null);
 
   useEffect(() => {
