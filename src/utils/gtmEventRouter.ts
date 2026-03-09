@@ -514,10 +514,10 @@ export interface RouteEventParams {
 export const routeGTMEvent = (config: RouteEventParams): boolean => {
   const { eventName, params, skipDataLayer = false } = config;
   
-  // 1. BLOCK ADMIN/LOVABLE TRAFFIC
-  if (isLovableSession()) {
-    console.log(`[GTM Router] BLOCKED (admin): ${eventName}`);
-    return false;
+  // 1. TAG ADMIN TRAFFIC (routed to separate GTM container GTM-MS23NHMF)
+  const isAdmin = isLovableSession();
+  if (isAdmin) {
+    params.is_admin_session = true;
   }
   
   // 2. GET EVENT CONFIG
