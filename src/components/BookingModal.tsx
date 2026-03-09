@@ -398,6 +398,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
   const [lightboxRoom, setLightboxRoom] = useState<BookingRoom | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showCelebration, setShowCelebration] = useState(false);
   const [successData, setSuccessData] = useState<{
     guestName: string;
     checkIn: string;
