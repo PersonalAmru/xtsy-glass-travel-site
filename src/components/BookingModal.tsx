@@ -418,7 +418,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
   }, [user?.profile]);
 
   useEffect(() => {
-    if (!isOpen && !showSuccessModal) {
+    if (!isOpen && !showSuccessModal && !showCelebration) {
       setStep(1);
       setRoomSelections([]);
       setCheckIn(initialCheckIn);
@@ -435,9 +435,10 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
       setPromotionalConsent(false);
       setLightboxRoom(null);
       setShowSuccessModal(false);
+      setShowCelebration(false);
       setSuccessData(null);
     }
-  }, [isOpen, showSuccessModal, initialCheckIn, initialCheckOut, initialGuests]);
+  }, [isOpen, showSuccessModal, showCelebration, initialCheckIn, initialCheckOut, initialGuests]);
 
   useEffect(() => {
     if (isOpen) {
