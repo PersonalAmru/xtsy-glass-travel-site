@@ -7,6 +7,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Marquee keyframes — defined here so inline style references work (Tailwind tree-shakes unused utility keyframes) */
+@keyframes marquee-left {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-33.333%); }
+}
+@keyframes marquee-right {
+  0% { transform: translateX(-33.333%); }
+  100% { transform: translateX(0%); }
+}
+
 /* Slow connection optimizations */
 .slow-connection * {
   animation: none !important;
