@@ -17,6 +17,7 @@ import { useUserAuth } from '@/contexts/UserAuthContext';
 import { getBookableRoomTypes, RoomTypeConfig, ROOM_TYPES, ROOM_IMAGES } from '@/config/roomTypes';
 import { motion, AnimatePresence } from 'framer-motion';
 import EnquirySuccessModal from './EnquirySuccessModal';
+import CelebrationInterstitial from './CelebrationInterstitial';
 import { CurrencySelector } from './CurrencySelector';
 import { useApp } from '@/contexts/AppContext';
 
