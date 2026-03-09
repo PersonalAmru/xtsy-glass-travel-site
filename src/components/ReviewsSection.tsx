@@ -677,7 +677,7 @@ const ReviewsSection = () => {
           <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 z-10 bg-gradient-to-l from-background to-transparent pointer-events-none" />
           
           <div 
-            className="flex gap-4"
+            className="flex gap-4 marquee-track"
             style={{ 
               animation: `marquee-left ${Math.max(40, filteredReviews.length * 3)}s linear infinite`,
               width: 'max-content',
@@ -685,8 +685,8 @@ const ReviewsSection = () => {
             onMouseEnter={(e) => e.currentTarget.style.animationPlayState = 'paused'}
             onMouseLeave={(e) => e.currentTarget.style.animationPlayState = 'running'}
           >
-            {/* Duplicate reviews for seamless loop */}
-            {[...filteredReviews, ...filteredReviews].map((review, index) => (
+            {/* Triple reviews for seamless continuous loop */}
+            {[...filteredReviews, ...filteredReviews, ...filteredReviews].map((review, index) => (
               <div key={`row1-${index}`} className="flex-shrink-0 w-[300px] sm:w-[340px]">
                 <PremiumReviewCard
                   review={review}
