@@ -17,6 +17,7 @@ import { useUserAuth } from '@/contexts/UserAuthContext';
 import { getBookableRoomTypes, RoomTypeConfig, ROOM_TYPES, ROOM_IMAGES } from '@/config/roomTypes';
 import { motion, AnimatePresence } from 'framer-motion';
 import EnquirySuccessModal from './EnquirySuccessModal';
+import CelebrationInterstitial from './CelebrationInterstitial';
 import { CurrencySelector } from './CurrencySelector';
 import { useApp } from '@/contexts/AppContext';
 
@@ -397,6 +398,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
   const [lightboxRoom, setLightboxRoom] = useState<BookingRoom | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showCelebration, setShowCelebration] = useState(false);
   const [successData, setSuccessData] = useState<{
     guestName: string;
     checkIn: string;
@@ -416,7 +418,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
   }, [user?.profile]);
 
   useEffect(() => {
-    if (!isOpen && !showSuccessModal) {
+    if (!isOpen && !showSuccessModal && !showCelebration) {
       setStep(1);
       setRoomSelections([]);
       setCheckIn(initialCheckIn);
@@ -433,9 +435,10 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
       setPromotionalConsent(false);
       setLightboxRoom(null);
       setShowSuccessModal(false);
+      setShowCelebration(false);
       setSuccessData(null);
     }
-  }, [isOpen, showSuccessModal, initialCheckIn, initialCheckOut, initialGuests]);
+  }, [isOpen, showSuccessModal, showCelebration, initialCheckIn, initialCheckOut, initialGuests]);
 
   useEffect(() => {
     if (isOpen) {
@@ -609,7 +612,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
           roomType: primaryRoom?.name || 'Premium Stay',
           totalAmount,
         });
-        setShowSuccessModal(true);
+        setShowCelebration(true);
       } else {
         const errors = results.filter(r => !r.success).map(r => r.error).join(', ');
         toast.error('Some bookings failed', { description: errors });
@@ -1321,6 +1324,18 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
           />
         )}
       </AnimatePresence>
+
+      {/* Celebration Interstitial - 3 seconds */}
+      {successData && (
+        <CelebrationInterstitial
+          isOpen={showCelebration}
+          guestName={successData.guestName}
+          onComplete={() => {
+            setShowCelebration(false);
+            setShowSuccessModal(true);
+          }}
+        />
+      )}
 
       {/* Enquiry Success Modal */}
       {successData && (
