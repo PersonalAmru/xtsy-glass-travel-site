@@ -1,5 +1,6 @@
 /**
  * User Authentication Page - Supabase Auth
+ * Glassmorphic two-column layout with hero image + testimonials
  * Email/Password signin only with OTP-based password recovery (2-min expiry)
  */
 
@@ -31,8 +32,32 @@ import {
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import xtsyFavicon from '@/assets/xtsy-favicon.png';
+import { SignInLayout, OrDivider, type Testimonial } from '@/components/ui/sign-in';
 
 type AuthView = 'signin' | 'signup' | 'signup-success' | 'forgot' | 'otp-verify' | 'new-password' | 'reset-success' | 'success';
+
+const HERO_IMAGE = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80';
+
+const TESTIMONIALS: Testimonial[] = [
+  {
+    avatarSrc: 'https://randomuser.me/api/portraits/women/57.jpg',
+    name: 'Priya Sharma',
+    handle: '@priya_travels',
+    text: 'XTSY made our Meghalaya trip unforgettable. Seamless booking and amazing local experiences!',
+  },
+  {
+    avatarSrc: 'https://randomuser.me/api/portraits/men/64.jpg',
+    name: 'Rahul Mehta',
+    handle: '@rahul.adventure',
+    text: 'The best platform for Northeast India stays. Clean, reliable, and genuinely helpful.',
+  },
+  {
+    avatarSrc: 'https://randomuser.me/api/portraits/men/32.jpg',
+    name: 'Arjun Das',
+    handle: '@arjun.explores',
+    text: 'From Shillong to Tawang — XTSY helped us plan the perfect road trip with trusted homestays.',
+  },
+];
 
 export default function UserAuth() {
   const navigate = useNavigate();
@@ -141,13 +166,11 @@ export default function UserAuth() {
     
     try {
       await signUpEmail(email, password);
-      // If we get here without throwing, check if user was created but needs email confirmation
-      // The context will set user if auto-confirmed, otherwise show signup success
       if (!user) {
         setView('signup-success');
       }
     } catch {
-      // Error handled by context - error will be displayed
+      // Error handled by context
     }
   };
 
@@ -171,7 +194,7 @@ export default function UserAuth() {
       if (error) throw error;
       
       if (data?.success) {
-        setCountdown(120); // 2 minutes
+        setCountdown(120);
         setView('otp-verify');
       } else {
         setLocalError(data?.error || 'Failed to send OTP');
@@ -286,9 +309,7 @@ export default function UserAuth() {
   // Show loading while initializing
   if (!isInitialized) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/30 flex flex-col items-center justify-center">
-        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
-        
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center">
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -298,7 +319,6 @@ export default function UserAuth() {
           <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center shadow-lg shadow-primary/20 overflow-hidden">
             <img src={xtsyFavicon} alt="XTSY" className="w-12 h-12 object-contain" />
           </div>
-          
           <div className="flex flex-col items-center gap-3">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: '0ms' }} />
@@ -313,114 +333,106 @@ export default function UserAuth() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/30 flex flex-col">
-      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
-      
-      {/* Header */}
-      <header className="relative z-10 px-4 sm:px-6 pt-4 sm:pt-6">
-        <div className="max-w-md mx-auto flex items-center justify-between">
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            onClick={handleBack}
-            className="rounded-full hover:bg-muted/80"
-          >
-            <ArrowLeft className="w-5 h-5" />
-          </Button>
-          <Link to="/" className="text-xl font-bold text-primary">
-            XTSY
-          </Link>
-          <div className="w-10" />
-        </div>
-      </header>
+    <SignInLayout heroImageSrc={HERO_IMAGE} testimonials={TESTIMONIALS}>
+      {/* Back button + XTSY branding */}
+      <div className="flex items-center justify-between mb-8">
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          onClick={handleBack}
+          className="rounded-full hover:bg-muted/80"
+        >
+          <ArrowLeft className="w-5 h-5" />
+        </Button>
+        <Link to="/" className="text-xl font-bold text-primary">
+          XTSY
+        </Link>
+        <div className="w-10" />
+      </div>
 
-      {/* Main Content */}
-      <main className="flex-1 px-4 sm:px-6 py-8 relative z-10">
-        <div className="max-w-md mx-auto">
-          <AnimatePresence mode="wait">
-            {view === 'success' ? (
-              <SuccessView key="success" />
-            ) : view === 'reset-success' ? (
-              <ResetSuccessView key="reset-success" onContinue={() => setView('signin')} />
-            ) : view === 'new-password' ? (
-              <NewPasswordView
-                key="new-password"
-                newPassword={newPassword}
-                setNewPassword={setNewPassword}
-                showNewPassword={showNewPassword}
-                setShowNewPassword={setShowNewPassword}
-                onSubmit={handleResetPassword}
-                isLoading={otpLoading}
-                error={displayError}
-              />
-            ) : view === 'otp-verify' ? (
-              <OTPVerifyView
-                key="otp-verify"
-                email={email}
-                otp={otp}
-                setOtp={setOtp}
-                countdown={countdown}
-                onVerify={handleVerifyOTP}
-                onResend={handleResendOTP}
-                isLoading={otpLoading}
-                error={displayError}
-              />
-            ) : view === 'forgot' ? (
-              <ForgotPasswordView
-                key="forgot"
-                email={email}
-                setEmail={setEmail}
-                onSubmit={handleRequestOTP}
-                isLoading={otpLoading}
-                error={displayError}
-                onBack={() => setView('signin')}
-              />
-            ) : view === 'signup-success' ? (
-              <SignUpSuccessView 
-                key="signup-success" 
-                email={email}
-                onContinue={() => setView('signin')} 
-              />
-            ) : view === 'signup' ? (
-              <SignUpView
-                key="signup"
-                email={email}
-                setEmail={setEmail}
-                password={password}
-                setPassword={setPassword}
-                confirmPassword={confirmPassword}
-                setConfirmPassword={setConfirmPassword}
-                showPassword={showPassword}
-                setShowPassword={setShowPassword}
-                showConfirmPassword={showConfirmPassword}
-                setShowConfirmPassword={setShowConfirmPassword}
-                onSubmit={handleEmailSignUp}
-                isLoading={isLoading}
-                error={displayError}
-                onSwitchToSignIn={() => setView('signin')}
-              />
-            ) : (
-              <SignInView
-                key="signin"
-                email={email}
-                setEmail={setEmail}
-                password={password}
-                setPassword={setPassword}
-                showPassword={showPassword}
-                setShowPassword={setShowPassword}
-                onSubmit={handleEmailSignIn}
-                isLoading={isLoading}
-                error={displayError}
-                onForgotPassword={() => setView('forgot')}
-                onSwitchToSignUp={() => setView('signup')}
-              />
-            )}
-          </AnimatePresence>
-        </div>
-      </main>
+      {/* Animated views */}
+      <AnimatePresence mode="wait">
+        {view === 'success' ? (
+          <SuccessView key="success" />
+        ) : view === 'reset-success' ? (
+          <ResetSuccessView key="reset-success" onContinue={() => setView('signin')} />
+        ) : view === 'new-password' ? (
+          <NewPasswordView
+            key="new-password"
+            newPassword={newPassword}
+            setNewPassword={setNewPassword}
+            showNewPassword={showNewPassword}
+            setShowNewPassword={setShowNewPassword}
+            onSubmit={handleResetPassword}
+            isLoading={otpLoading}
+            error={displayError}
+          />
+        ) : view === 'otp-verify' ? (
+          <OTPVerifyView
+            key="otp-verify"
+            email={email}
+            otp={otp}
+            setOtp={setOtp}
+            countdown={countdown}
+            onVerify={handleVerifyOTP}
+            onResend={handleResendOTP}
+            isLoading={otpLoading}
+            error={displayError}
+          />
+        ) : view === 'forgot' ? (
+          <ForgotPasswordView
+            key="forgot"
+            email={email}
+            setEmail={setEmail}
+            onSubmit={handleRequestOTP}
+            isLoading={otpLoading}
+            error={displayError}
+            onBack={() => setView('signin')}
+          />
+        ) : view === 'signup-success' ? (
+          <SignUpSuccessView 
+            key="signup-success" 
+            email={email}
+            onContinue={() => setView('signin')} 
+          />
+        ) : view === 'signup' ? (
+          <SignUpView
+            key="signup"
+            email={email}
+            setEmail={setEmail}
+            password={password}
+            setPassword={setPassword}
+            confirmPassword={confirmPassword}
+            setConfirmPassword={setConfirmPassword}
+            showPassword={showPassword}
+            setShowPassword={setShowPassword}
+            showConfirmPassword={showConfirmPassword}
+            setShowConfirmPassword={setShowConfirmPassword}
+            onSubmit={handleEmailSignUp}
+            isLoading={isLoading}
+            error={displayError}
+            onSwitchToSignIn={() => setView('signin')}
+          />
+        ) : (
+          <SignInView
+            key="signin"
+            email={email}
+            setEmail={setEmail}
+            password={password}
+            setPassword={setPassword}
+            showPassword={showPassword}
+            setShowPassword={setShowPassword}
+            onSubmit={handleEmailSignIn}
+            isLoading={isLoading}
+            error={displayError}
+            onForgotPassword={() => setView('forgot')}
+            onSwitchToSignUp={() => setView('signup')}
+          />
+        )}
+      </AnimatePresence>
 
       {/* Footer */}
-      <footer className="relative z-10 px-4 sm:px-6 py-6 text-center">
+      <div className="mt-8 pt-6 border-t border-border/30 text-center">
         <p className="text-xs text-muted-foreground">
           By continuing, you agree to our{' '}
           <Link to="/terms" className="underline hover:text-foreground transition-colors">
@@ -431,10 +443,14 @@ export default function UserAuth() {
             Privacy Policy
           </Link>
         </p>
-      </footer>
-    </div>
+      </div>
+    </SignInLayout>
   );
 }
+
+// ============================================================
+// SUB-VIEWS
+// ============================================================
 
 // Success View
 function SuccessView() {
@@ -453,12 +469,8 @@ function SuccessView() {
       >
         <CheckCircle2 className="w-10 h-10 text-green-500" />
       </motion.div>
-      <h2 className="text-2xl font-semibold text-foreground mb-2">
-        Welcome back!
-      </h2>
-      <p className="text-muted-foreground">
-        Redirecting you now...
-      </p>
+      <h2 className="text-2xl font-semibold text-foreground mb-2">Welcome back!</h2>
+      <p className="text-muted-foreground">Redirecting you now...</p>
     </motion.div>
   );
 }
@@ -480,12 +492,8 @@ function ResetSuccessView({ onContinue }: { onContinue: () => void }) {
       >
         <CheckCircle2 className="w-10 h-10 text-green-500" />
       </motion.div>
-      <h2 className="text-2xl font-semibold text-foreground mb-2">
-        Password Reset!
-      </h2>
-      <p className="text-muted-foreground mb-8">
-        Your password has been updated successfully.
-      </p>
+      <h2 className="text-2xl font-semibold text-foreground mb-2">Password Reset!</h2>
+      <p className="text-muted-foreground mb-8">Your password has been updated successfully.</p>
       <Button onClick={onContinue} className="gap-2">
         Sign In Now
         <ArrowRight className="w-4 h-4" />
@@ -494,7 +502,7 @@ function ResetSuccessView({ onContinue }: { onContinue: () => void }) {
   );
 }
 
-// Sign Up Success View (Email Confirmation Pending)
+// Sign Up Success View
 function SignUpSuccessView({ email, onContinue }: { email: string; onContinue: () => void }) {
   return (
     <motion.div
@@ -511,15 +519,9 @@ function SignUpSuccessView({ email, onContinue }: { email: string; onContinue: (
       >
         <Mail className="w-10 h-10 text-primary" />
       </motion.div>
-      <h2 className="text-2xl font-semibold text-foreground mb-2">
-        Check Your Email
-      </h2>
-      <p className="text-muted-foreground mb-2">
-        We've sent a confirmation link to:
-      </p>
-      <p className="text-foreground font-medium mb-6">
-        {email}
-      </p>
+      <h2 className="text-2xl font-semibold text-foreground mb-2">Check Your Email</h2>
+      <p className="text-muted-foreground mb-2">We've sent a confirmation link to:</p>
+      <p className="text-foreground font-medium mb-6">{email}</p>
       <p className="text-sm text-muted-foreground mb-8">
         Click the link in the email to activate your account, then come back here to sign in.
       </p>
@@ -543,16 +545,7 @@ interface OTPVerifyViewProps {
   error: string | null;
 }
 
-function OTPVerifyView({
-  email,
-  otp,
-  setOtp,
-  countdown,
-  onVerify,
-  onResend,
-  isLoading,
-  error
-}: OTPVerifyViewProps) {
+function OTPVerifyView({ email, otp, setOtp, countdown, onVerify, onResend, isLoading, error }: OTPVerifyViewProps) {
   const formatTime = (seconds: number) => {
     const m = Math.floor(seconds / 60);
     const s = seconds % 60;
@@ -574,24 +567,14 @@ function OTPVerifyView({
         >
           <Timer className="w-10 h-10 text-primary" />
         </motion.div>
-        <h1 className="text-2xl font-bold text-foreground mb-2">
-          Enter OTP
-        </h1>
-        <p className="text-muted-foreground text-sm">
-          We've sent a 6-digit code to
-        </p>
+        <h1 className="text-2xl font-bold text-foreground mb-2">Enter OTP</h1>
+        <p className="text-muted-foreground text-sm">We've sent a 6-digit code to</p>
         <p className="font-medium text-foreground">{email}</p>
       </div>
 
       <div className="space-y-6">
-        {/* OTP Input */}
         <div className="flex justify-center">
-          <InputOTP
-            maxLength={6}
-            value={otp}
-            onChange={setOtp}
-            disabled={isLoading}
-          >
+          <InputOTP maxLength={6} value={otp} onChange={setOtp} disabled={isLoading}>
             <InputOTPGroup>
               <InputOTPSlot index={0} className="w-12 h-14 text-xl" />
               <InputOTPSlot index={1} className="w-12 h-14 text-xl" />
@@ -606,7 +589,6 @@ function OTPVerifyView({
           </InputOTP>
         </div>
 
-        {/* Countdown Timer */}
         <div className="text-center">
           {countdown > 0 ? (
             <div className="flex items-center justify-center gap-2 text-primary">
@@ -625,23 +607,10 @@ function OTPVerifyView({
           className="w-full h-12 rounded-xl text-base font-medium gap-2"
           disabled={isLoading || otp.length !== 6 || countdown <= 0}
         >
-          {isLoading ? (
-            <Loader2 className="w-5 h-5 animate-spin" />
-          ) : (
-            <>
-              Verify OTP
-              <ArrowRight className="w-5 h-5" />
-            </>
-          )}
+          {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : <>Verify OTP <ArrowRight className="w-5 h-5" /></>}
         </Button>
 
-        <Button 
-          type="button"
-          variant="ghost" 
-          onClick={onResend}
-          disabled={countdown > 0 || isLoading}
-          className="w-full gap-2"
-        >
+        <Button type="button" variant="ghost" onClick={onResend} disabled={countdown > 0 || isLoading} className="w-full gap-2">
           <RefreshCw className="w-4 h-4" />
           Resend OTP
         </Button>
@@ -661,15 +630,7 @@ interface NewPasswordViewProps {
   error: string | null;
 }
 
-function NewPasswordView({
-  newPassword,
-  setNewPassword,
-  showNewPassword,
-  setShowNewPassword,
-  onSubmit,
-  isLoading,
-  error
-}: NewPasswordViewProps) {
+function NewPasswordView({ newPassword, setNewPassword, showNewPassword, setShowNewPassword, onSubmit, isLoading, error }: NewPasswordViewProps) {
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -680,19 +641,13 @@ function NewPasswordView({
         <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
           <Lock className="w-8 h-8 text-primary" />
         </div>
-        <h1 className="text-2xl font-bold text-foreground mb-2">
-          Set New Password
-        </h1>
-        <p className="text-muted-foreground">
-          Enter your new password below
-        </p>
+        <h1 className="text-2xl font-bold text-foreground mb-2">Set New Password</h1>
+        <p className="text-muted-foreground">Enter your new password below</p>
       </div>
 
       <form onSubmit={onSubmit} className="space-y-6">
         <div className="space-y-2">
-          <Label htmlFor="new-password" className="text-sm font-medium">
-            New Password
-          </Label>
+          <Label htmlFor="new-password" className="text-sm font-medium">New Password</Label>
           <div className="relative">
             <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
             <Input
@@ -701,15 +656,11 @@ function NewPasswordView({
               placeholder="At least 6 characters"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
-              className="pl-11 pr-11 h-12 rounded-xl bg-muted/50 border-muted-foreground/20 focus:border-primary focus:ring-primary"
+              className="pl-11 pr-11 h-12 rounded-xl bg-muted/50 border-border/30 focus:border-primary focus:ring-primary"
               autoComplete="new-password"
               autoFocus
             />
-            <button
-              type="button"
-              onClick={() => setShowNewPassword(!showNewPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-            >
+            <button type="button" onClick={() => setShowNewPassword(!showNewPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors">
               {showNewPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
             </button>
           </div>
@@ -717,19 +668,8 @@ function NewPasswordView({
 
         {error && <ErrorMessage message={error} />}
 
-        <Button 
-          type="submit" 
-          className="w-full h-12 rounded-xl text-base font-medium gap-2"
-          disabled={isLoading || !newPassword || newPassword.length < 6}
-        >
-          {isLoading ? (
-            <Loader2 className="w-5 h-5 animate-spin" />
-          ) : (
-            <>
-              Reset Password
-              <ArrowRight className="w-5 h-5" />
-            </>
-          )}
+        <Button type="submit" className="w-full h-12 rounded-xl text-base font-medium gap-2" disabled={isLoading || !newPassword || newPassword.length < 6}>
+          {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : <>Reset Password <ArrowRight className="w-5 h-5" /></>}
         </Button>
       </form>
     </motion.div>
@@ -746,14 +686,7 @@ interface ForgotPasswordViewProps {
   onBack: () => void;
 }
 
-function ForgotPasswordView({
-  email,
-  setEmail,
-  onSubmit,
-  isLoading,
-  error,
-  onBack
-}: ForgotPasswordViewProps) {
+function ForgotPasswordView({ email, setEmail, onSubmit, isLoading, error, onBack }: ForgotPasswordViewProps) {
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -764,19 +697,13 @@ function ForgotPasswordView({
         <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
           <Lock className="w-8 h-8 text-primary" />
         </div>
-        <h1 className="text-2xl font-bold text-foreground mb-2">
-          Reset Password
-        </h1>
-        <p className="text-muted-foreground">
-          Enter your email to receive a 6-digit OTP
-        </p>
+        <h1 className="text-2xl font-bold text-foreground mb-2">Reset Password</h1>
+        <p className="text-muted-foreground">Enter your email to receive a 6-digit OTP</p>
       </div>
 
       <form onSubmit={onSubmit} className="space-y-6">
         <div className="space-y-2">
-          <Label htmlFor="reset-email" className="text-sm font-medium">
-            Email Address
-          </Label>
+          <Label htmlFor="reset-email" className="text-sm font-medium">Email Address</Label>
           <div className="relative">
             <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
             <Input
@@ -785,7 +712,7 @@ function ForgotPasswordView({
               placeholder="you@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="pl-11 h-12 rounded-xl bg-muted/50 border-muted-foreground/20 focus:border-primary focus:ring-primary"
+              className="pl-11 h-12 rounded-xl bg-muted/50 border-border/30 focus:border-primary focus:ring-primary"
               autoComplete="email"
               autoFocus
             />
@@ -794,27 +721,11 @@ function ForgotPasswordView({
 
         {error && <ErrorMessage message={error} />}
 
-        <Button 
-          type="submit" 
-          className="w-full h-12 rounded-xl text-base font-medium gap-2"
-          disabled={isLoading || !email}
-        >
-          {isLoading ? (
-            <Loader2 className="w-5 h-5 animate-spin" />
-          ) : (
-            <>
-              Send OTP
-              <ArrowRight className="w-5 h-5" />
-            </>
-          )}
+        <Button type="submit" className="w-full h-12 rounded-xl text-base font-medium gap-2" disabled={isLoading || !email}>
+          {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : <>Send OTP <ArrowRight className="w-5 h-5" /></>}
         </Button>
 
-        <Button 
-          type="button"
-          variant="ghost" 
-          onClick={onBack}
-          className="w-full"
-        >
+        <Button type="button" variant="ghost" onClick={onBack} className="w-full">
           Back to Sign In
         </Button>
       </form>
@@ -838,17 +749,8 @@ interface SignInViewProps {
 }
 
 function SignInView({
-  email,
-  setEmail,
-  password,
-  setPassword,
-  showPassword,
-  setShowPassword,
-  onSubmit,
-  isLoading,
-  error,
-  onForgotPassword,
-  onSwitchToSignUp
+  email, setEmail, password, setPassword, showPassword, setShowPassword,
+  onSubmit, isLoading, error, onForgotPassword, onSwitchToSignUp
 }: SignInViewProps) {
   return (
     <motion.div
@@ -857,15 +759,15 @@ function SignInView({
       exit={{ opacity: 0, y: -20 }}
     >
       {/* Header */}
-      <div className="text-center mb-8">
-        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-primary/25 overflow-hidden">
-          <img src={xtsyFavicon} alt="XTSY" className="w-10 h-10 object-contain" />
+      <div className="mb-8">
+        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mb-6 shadow-lg shadow-primary/20 overflow-hidden">
+          <img src={xtsyFavicon} alt="XTSY" className="w-9 h-9 object-contain" />
         </div>
         <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
           Welcome back
         </h1>
         <p className="text-muted-foreground">
-          Sign in to continue your journey
+          Access your account and continue your journey with us
         </p>
       </div>
 
@@ -873,44 +775,37 @@ function SignInView({
       <form onSubmit={onSubmit} className="space-y-4">
         <div className="space-y-2">
           <Label htmlFor="email" className="text-sm font-medium">
-            Email
+            Email Address
           </Label>
           <div className="relative">
             <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
             <Input
               id="email"
               type="email"
+              name="email"
               placeholder="you@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="pl-11 h-12 rounded-xl bg-muted/50 border-muted-foreground/20 focus:border-primary focus:ring-primary"
+              className="pl-11 h-12 rounded-xl bg-muted/50 border-border/30 focus:border-primary focus:ring-primary"
               autoComplete="email"
             />
           </div>
         </div>
 
         <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <Label htmlFor="password" className="text-sm font-medium">
-              Password
-            </Label>
-            <button
-              type="button"
-              onClick={onForgotPassword}
-              className="text-sm text-primary hover:text-primary/80 transition-colors"
-            >
-              Forgot password?
-            </button>
-          </div>
+          <Label htmlFor="password" className="text-sm font-medium">
+            Password
+          </Label>
           <div className="relative">
             <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
             <Input
               id="password"
               type={showPassword ? 'text' : 'password'}
+              name="password"
               placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="pl-11 pr-11 h-12 rounded-xl bg-muted/50 border-muted-foreground/20 focus:border-primary focus:ring-primary"
+              className="pl-11 pr-11 h-12 rounded-xl bg-muted/50 border-border/30 focus:border-primary focus:ring-primary"
               autoComplete="current-password"
             />
             <button
@@ -921,6 +816,21 @@ function SignInView({
               {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
             </button>
           </div>
+        </div>
+
+        {/* Remember me + Reset password */}
+        <div className="flex items-center justify-between text-sm">
+          <label className="flex items-center gap-2 text-muted-foreground cursor-pointer">
+            <input type="checkbox" name="remember" className="rounded border-border/50 bg-muted/50 text-primary focus:ring-primary/30 w-4 h-4" />
+            Keep me signed in
+          </label>
+          <button
+            type="button"
+            onClick={onForgotPassword}
+            className="text-primary hover:text-primary/80 transition-colors"
+          >
+            Reset password
+          </button>
         </div>
 
         {error && <ErrorMessage message={error} />}
@@ -941,15 +851,18 @@ function SignInView({
         </Button>
       </form>
 
+      {/* Or divider */}
+      <OrDivider />
+
       {/* Switch to Sign Up */}
-      <p className="text-center mt-8 text-muted-foreground">
-        Don't have an account?{' '}
+      <p className="text-center text-muted-foreground text-sm">
+        New to XTSY?{' '}
         <button
           type="button"
           onClick={onSwitchToSignUp}
           className="text-primary font-medium hover:text-primary/80 transition-colors"
         >
-          Create one
+          Create Account
         </button>
       </p>
     </motion.div>
@@ -975,20 +888,9 @@ interface SignUpViewProps {
 }
 
 function SignUpView({
-  email,
-  setEmail,
-  password,
-  setPassword,
-  confirmPassword,
-  setConfirmPassword,
-  showPassword,
-  setShowPassword,
-  showConfirmPassword,
-  setShowConfirmPassword,
-  onSubmit,
-  isLoading,
-  error,
-  onSwitchToSignIn
+  email, setEmail, password, setPassword, confirmPassword, setConfirmPassword,
+  showPassword, setShowPassword, showConfirmPassword, setShowConfirmPassword,
+  onSubmit, isLoading, error, onSwitchToSignIn
 }: SignUpViewProps) {
   return (
     <motion.div
@@ -997,9 +899,9 @@ function SignUpView({
       exit={{ opacity: 0, y: -20 }}
     >
       {/* Header */}
-      <div className="text-center mb-8">
-        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-primary/25 overflow-hidden">
-          <img src={xtsyFavicon} alt="XTSY" className="w-10 h-10 object-contain" />
+      <div className="mb-8">
+        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mb-6 shadow-lg shadow-primary/20 overflow-hidden">
+          <img src={xtsyFavicon} alt="XTSY" className="w-9 h-9 object-contain" />
         </div>
         <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
           Create Account
@@ -1009,12 +911,10 @@ function SignUpView({
         </p>
       </div>
 
-      {/* Email Form */}
+      {/* Form */}
       <form onSubmit={onSubmit} className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="signup-email" className="text-sm font-medium">
-            Email
-          </Label>
+          <Label htmlFor="signup-email" className="text-sm font-medium">Email</Label>
           <div className="relative">
             <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
             <Input
@@ -1023,16 +923,14 @@ function SignUpView({
               placeholder="you@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="pl-11 h-12 rounded-xl bg-muted/50 border-muted-foreground/20 focus:border-primary focus:ring-primary"
+              className="pl-11 h-12 rounded-xl bg-muted/50 border-border/30 focus:border-primary focus:ring-primary"
               autoComplete="email"
             />
           </div>
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="signup-password" className="text-sm font-medium">
-            Password
-          </Label>
+          <Label htmlFor="signup-password" className="text-sm font-medium">Password</Label>
           <div className="relative">
             <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
             <Input
@@ -1041,23 +939,17 @@ function SignUpView({
               placeholder="At least 6 characters"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="pl-11 pr-11 h-12 rounded-xl bg-muted/50 border-muted-foreground/20 focus:border-primary focus:ring-primary"
+              className="pl-11 pr-11 h-12 rounded-xl bg-muted/50 border-border/30 focus:border-primary focus:ring-primary"
               autoComplete="new-password"
             />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-            >
+            <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors">
               {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
             </button>
           </div>
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="confirm-password" className="text-sm font-medium">
-            Confirm Password
-          </Label>
+          <Label htmlFor="confirm-password" className="text-sm font-medium">Confirm Password</Label>
           <div className="relative">
             <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
             <Input
@@ -1066,14 +958,10 @@ function SignUpView({
               placeholder="Confirm your password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="pl-11 pr-11 h-12 rounded-xl bg-muted/50 border-muted-foreground/20 focus:border-primary focus:ring-primary"
+              className="pl-11 pr-11 h-12 rounded-xl bg-muted/50 border-border/30 focus:border-primary focus:ring-primary"
               autoComplete="new-password"
             />
-            <button
-              type="button"
-              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-            >
+            <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors">
               {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
             </button>
           </div>
@@ -1081,30 +969,16 @@ function SignUpView({
 
         {error && <ErrorMessage message={error} />}
 
-        <Button 
-          type="submit" 
-          className="w-full h-12 rounded-xl text-base font-medium gap-2"
-          disabled={isLoading}
-        >
-          {isLoading ? (
-            <Loader2 className="w-5 h-5 animate-spin" />
-          ) : (
-            <>
-              Create Account
-              <ArrowRight className="w-5 h-5" />
-            </>
-          )}
+        <Button type="submit" className="w-full h-12 rounded-xl text-base font-medium gap-2" disabled={isLoading}>
+          {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : <>Create Account <ArrowRight className="w-5 h-5" /></>}
         </Button>
       </form>
 
-      {/* Switch to Sign In */}
-      <p className="text-center mt-8 text-muted-foreground">
+      <OrDivider />
+
+      <p className="text-center text-muted-foreground text-sm">
         Already have an account?{' '}
-        <button
-          type="button"
-          onClick={onSwitchToSignIn}
-          className="text-primary font-medium hover:text-primary/80 transition-colors"
-        >
+        <button type="button" onClick={onSwitchToSignIn} className="text-primary font-medium hover:text-primary/80 transition-colors">
           Sign in
         </button>
       </p>
