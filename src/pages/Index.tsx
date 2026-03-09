@@ -1,4 +1,4 @@
- import { memo, Suspense, lazy } from "react";
+ import { memo, lazy } from "react";
 import HeroSection from "@/components/HeroSection";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
