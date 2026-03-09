@@ -1,28 +1,16 @@
 
 
-## Fix: Review Marquee Not Scrolling
+## Problem
 
-### Root Cause
-The marquee animation is broken because of a mismatch between how keyframes are defined and how they're used:
+The `FloatingWhatsApp` component is imported in `App.tsx` but **never actually rendered** in the JSX tree. That's why no WhatsApp button appears on any page, including `/xtsy-270`.
 
-- **Keyframes** (`marquee-left`, `marquee-right`) are defined in `tailwind.config.ts`, which means Tailwind only generates the `@keyframes` CSS when the corresponding utility classes (`animate-marquee-left`, `animate-marquee-right`) are used in markup.
-- **But** `ReviewsSection.tsx` applies the animation via **inline styles** (`style={{ animation: 'marquee-left 40s linear infinite' }}`), not Tailwind classes. Since no element uses `className="animate-marquee-left"`, Tailwind tree-shakes the keyframes — they never appear in the final CSS.
+The page-specific WhatsApp button we added to `XTSY270.tsx` should work, but it may be visually hidden behind the "Will it be yours?" CTA bar or missing the Footer component (which would push content).
 
-### Fix
+## Plan
 
-**Option A (cleanest):** Add the `@keyframes` to `src/index.css` so they exist regardless of Tailwind class usage. Then the inline style references will work.
+**File: `src/App.tsx`** — Add `<FloatingWhatsApp />` to the rendered JSX, right after `</Routes>` and before closing `</TooltipProvider>`.
 
-**File: `src/index.css`** — Add raw `@keyframes` for `marquee-left` and `marquee-right`:
-```css
-@keyframes marquee-left {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-33.333%); }
-}
-@keyframes marquee-right {
-  0% { transform: translateX(-33.333%); }
-  100% { transform: translateX(0%); }
-}
-```
+This will make the floating WhatsApp button appear on all pages (except `/admin` and `/booking` as already handled by the component's logic).
 
-No other files need changes. The inline `animation` style in `ReviewsSection.tsx` already references the correct keyframe names and durations.
+**File: `src/pages/XTSY270.tsx`** — Remove the duplicate page-specific WhatsApp button we added earlier (lines 395-404), since the global component will now handle it.
 
