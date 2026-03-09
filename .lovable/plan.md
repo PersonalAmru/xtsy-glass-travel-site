@@ -1,16 +1,71 @@
 
 
-## Problem
+## Plan: Update Invoice Layout to Professional Zoho-Style Quotation
 
-The `FloatingWhatsApp` component is imported in `App.tsx` but **never actually rendered** in the JSX tree. That's why no WhatsApp button appears on any page, including `/xtsy-270`.
+### Overview
+Replace the current Airbnb-style success modal with a professional tax invoice/quotation layout matching the XTSY PDF format (GSTIN, SAC code, CGST/SGST split, terms, amount in words).
 
-The page-specific WhatsApp button we added to `XTSY270.tsx` should work, but it may be visually hidden behind the "Will it be yours?" CTA bar or missing the Footer component (which would push content).
+### Changes
 
-## Plan
+#### 1. Pass additional data to EnquirySuccessModal
+**File: `src/components/BookingModal.tsx`**
+- Expand `successData` type to include: `ratePerNight`, `quantity`, `gstRate`, `gstAmount`, `subtotal`, `roomSelections` array, `guestEmail`, `guestPhone`, `guestCity`
+- Pass these through to `EnquirySuccessModal`
 
-**File: `src/App.tsx`** — Add `<FloatingWhatsApp />` to the rendered JSX, right after `</Routes>` and before closing `</TooltipProvider>`.
+#### 2. Expand EnquirySuccessModal props
+**File: `src/components/EnquirySuccessModal.tsx`**
+- Add new props: `ratePerNight`, `quantity`, `gstRate`, `gstAmount`, `subtotal`, `guestEmail`, `guestPhone`, `guestCity`
 
-This will make the floating WhatsApp button appear on all pages (except `/admin` and `/booking` as already handled by the component's logic).
+#### 3. Redesign the modal body with professional invoice layout
+**File: `src/components/EnquirySuccessModal.tsx`**
 
-**File: `src/pages/XTSY270.tsx`** — Remove the duplicate page-specific WhatsApp button we added earlier (lines 395-404), since the global component will now handle it.
+Replace the booking summary card with a Zoho-style invoice section:
+
+- **Header**: Keep the emerald gradient success header (already nice) but update title to "Booking Received!"
+- **Invoice section** (below header):
+  - XTSY letterhead: company name, address, GSTIN `17QSKPK1714H1ZE`, PAN `QSKPK1714H`, email, website
+  - "Bill To" block: guest name, phone, email, city
+  - Line items table with columns: Services | SAC | Qty | Rate | Tax | Amount
+    - Room name, SAC code 996311, quantity x nights, rate per night, tax amount, line total
+  - Tax breakdown: Taxable amount, CGST (half of GST), SGST (half of GST)
+  - **Total in bold** with Indian number-to-words conversion
+  - Terms: "All disputes subject to Meghalaya jurisdiction" + non-refundable booking notice
+  - UPI payment info: `9863627070@okbizaxis`
+- **Action buttons**: "Download Invoice" (generates printable HTML), "View My Bookings" / "Sign In", "Return Home"
+- Keep the locked chat preview for non-authenticated users
+
+#### 4. Number-to-words utility
+Add a small helper function (inline or utility) to convert INR amounts to Indian English words (e.g., "Two Thousand Five Hundred Fourteen Rupees").
+
+#### 5. Download Invoice function
+Add a "Download Invoice" button that opens a clean printable HTML invoice in a new tab (similar to existing `ProfessionalInvoice.tsx` pattern but matching the new Zoho layout).
+
+### Visual Structure
+```text
+┌─────────────────────────────────┐
+│  [Emerald gradient header]      │
+│  ✓ Booking Received!            │
+│  Thank you, {name}! 🎉         │
+│  [Awaiting Host Confirmation]   │
+├─────────────────────────────────┤
+│  XTSY Travellers Hostel         │
+│  GSTIN: 17QSKPK1714H1ZE        │
+│  PAN: QSKPK1714H               │
+├─────────────────────────────────┤
+│  Bill To: {guest}  │ Stay Dates │
+├─────────────────────────────────┤
+│  SERVICES  │SAC   │QTY│RATE│AMT │
+│  Room Name │996311│2x3│₹X  │₹Y  │
+├─────────────────────────────────┤
+│  Taxable:  ₹X                   │
+│  CGST @2.5%: ₹X  SGST @2.5%: ₹X│
+│  TOTAL: ₹X (in words)          │
+├─────────────────────────────────┤
+│  Terms & Conditions             │
+│  UPI: 9863627070@okbizaxis      │
+├─────────────────────────────────┤
+│  [Download Invoice] [View My..] │
+│  [Return Home]                  │
+└─────────────────────────────────┘
+```
 
