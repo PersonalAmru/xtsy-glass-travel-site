@@ -407,6 +407,16 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
     roomCount: number;
     roomType: string;
     totalAmount: number;
+    ratePerNight: number;
+    quantity: number;
+    nights: number;
+    gstRate: number;
+    gstAmount: number;
+    subtotal: number;
+    guestEmail: string;
+    guestPhone: string;
+    guestCity: string;
+    roomSelections: { roomName: string; quantity: number; ratePerNight: number; gstRate: number; lineTotal: number }[];
   } | null>(null);
 
   useEffect(() => {
@@ -603,6 +613,20 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
       if (allSuccess) {
         // Store success data and show success modal instead of closing
         const primaryRoom = ROOMS.find(r => r.id === roomSelections[0]?.roomId);
+        const selectionDetails = roomSelections.map(sel => {
+          const room = ROOMS.find(r => r.id === sel.roomId);
+          const rate = room?.price || 0;
+          const lineSubtotal = rate * sel.quantity * nights;
+          const lineGstRate = rate >= 7500 ? 18 : 5;
+          const lineGst = Math.round(lineSubtotal * (lineGstRate / 100));
+          return {
+            roomName: room?.name || 'Room',
+            quantity: sel.quantity,
+            ratePerNight: rate,
+            gstRate: lineGstRate,
+            lineTotal: lineSubtotal + lineGst,
+          };
+        });
         setSuccessData({
           guestName,
           checkIn: format(checkIn, 'yyyy-MM-dd'),
@@ -611,6 +635,16 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
           roomCount: roomSelections.reduce((sum, sel) => sum + sel.quantity, 0),
           roomType: primaryRoom?.name || 'Premium Stay',
           totalAmount,
+          ratePerNight: primaryRoom?.price || 0,
+          quantity: roomSelections.reduce((sum, sel) => sum + sel.quantity, 0),
+          nights,
+          gstRate: gstBreakdown.gst18Base > 0 ? 18 : 5,
+          gstAmount,
+          subtotal,
+          guestEmail,
+          guestPhone,
+          guestCity,
+          roomSelections: selectionDetails,
         });
         setShowCelebration(true);
       } else {
@@ -1350,6 +1384,16 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
           roomType={successData.roomType}
           totalAmount={successData.totalAmount}
           isAuthenticated={!!user}
+          ratePerNight={successData.ratePerNight}
+          quantity={successData.quantity}
+          nights={successData.nights}
+          gstRate={successData.gstRate}
+          gstAmount={successData.gstAmount}
+          subtotal={successData.subtotal}
+          guestEmail={successData.guestEmail}
+          guestPhone={successData.guestPhone}
+          guestCity={successData.guestCity}
+          roomSelections={successData.roomSelections}
         />
       )}
     </div>
