@@ -176,7 +176,7 @@ const OfferCardComponent = memo(({ offer }: { offer: OfferCard }) => {
         <div className="space-y-1.5 mb-5">
           {offer.conditions.map((c, i) => (
             <div key={i} className="flex items-center gap-2 text-xs text-muted-foreground">
-              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500/70 shrink-0" />
+              <CheckCircle2 className="h-3.5 w-3.5 text-primary/70 shrink-0" />
               {c}
             </div>
           ))}
