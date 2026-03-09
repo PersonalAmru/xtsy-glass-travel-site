@@ -1384,6 +1384,16 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
           roomType={successData.roomType}
           totalAmount={successData.totalAmount}
           isAuthenticated={!!user}
+          ratePerNight={successData.ratePerNight}
+          quantity={successData.quantity}
+          nights={successData.nights}
+          gstRate={successData.gstRate}
+          gstAmount={successData.gstAmount}
+          subtotal={successData.subtotal}
+          guestEmail={successData.guestEmail}
+          guestPhone={successData.guestPhone}
+          guestCity={successData.guestCity}
+          roomSelections={successData.roomSelections}
         />
       )}
     </div>
