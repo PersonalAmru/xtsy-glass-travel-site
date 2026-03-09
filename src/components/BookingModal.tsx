@@ -611,7 +611,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
           roomType: primaryRoom?.name || 'Premium Stay',
           totalAmount,
         });
-        setShowSuccessModal(true);
+        setShowCelebration(true);
       } else {
         const errors = results.filter(r => !r.success).map(r => r.error).join(', ');
         toast.error('Some bookings failed', { description: errors });
