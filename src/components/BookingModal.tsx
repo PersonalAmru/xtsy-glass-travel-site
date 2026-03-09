@@ -1324,6 +1324,18 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
         )}
       </AnimatePresence>
 
+      {/* Celebration Interstitial - 3 seconds */}
+      {successData && (
+        <CelebrationInterstitial
+          isOpen={showCelebration}
+          guestName={successData.guestName}
+          onComplete={() => {
+            setShowCelebration(false);
+            setShowSuccessModal(true);
+          }}
+        />
+      )}
+
       {/* Enquiry Success Modal */}
       {successData && (
         <EnquirySuccessModal
