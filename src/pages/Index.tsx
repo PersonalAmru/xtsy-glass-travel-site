@@ -42,36 +42,26 @@ const Index = memo(() => {
         
         {/* XTSY Prime - Premium offerings (right after hero) */}
         <LazyWrapper eager fallback={<SectionFallback height="h-80" />}>
-          <Suspense fallback={<SectionFallback height="h-80" />}>
-            <XTSYPrimeSection />
-          </Suspense>
+          <XTSYPrimeSection />
         </LazyWrapper>
         
         {/* Tour Packages - FocusRail cards */}
         <LazyWrapper eager fallback={<SectionFallback height="h-96" />}>
-          <Suspense fallback={<SectionFallback height="h-96" />}>
-            <HomeTourPackages />
-          </Suspense>
+          <HomeTourPackages />
         </LazyWrapper>
         
         {/* Adventure CTA */}
         <LazyWrapper fallback={<SectionFallback height="h-48" />}>
-          <Suspense fallback={<SectionFallback height="h-48" />}>
-            <AdventureCallToAction />
-          </Suspense>
+          <AdventureCallToAction />
         </LazyWrapper>
         
         {/* Guest Reviews */}
         <LazyWrapper fallback={<SectionFallback />}>
-          <Suspense fallback={<SectionFallback />}>
-            <ReviewsSection />
-          </Suspense>
+          <ReviewsSection />
         </LazyWrapper>
         
         <LazyWrapper fallback={<SectionFallback />}>
-          <Suspense fallback={<SectionFallback />}>
-            <FAQSection />
-          </Suspense>
+          <FAQSection />
         </LazyWrapper>
       </main>
       <Footer />

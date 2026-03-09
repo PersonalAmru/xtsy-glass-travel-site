@@ -39,9 +39,7 @@ const LazyWrapper: React.FC<LazyWrapperProps> = memo(({
     <div 
       ref={elementRef as any}
       style={{ 
-        contain: 'layout style paint',
-        contentVisibility: 'auto',
-        containIntrinsicSize: 'auto 300px',
+        contain: 'layout style',
       }}
     >
       {shouldRender ? (
