@@ -141,12 +141,19 @@
       })();
     </script>
     
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-5FXJ9QBK');</script>
+    <!-- Google Tag Manager - Conditional Container Routing -->
+    <!-- Admin/Lovable traffic → GTM-MS23NHMF | Real users → GTM-5FXJ9QBK -->
+    <script>(function(w,d,s,l){
+      var containerId = w.__isLovableAdmin ? 'GTM-MS23NHMF' : 'GTM-5FXJ9QBK';
+      w.__activeGTMContainer = containerId;
+      w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],j=d.createElement(s),
+      dl=l!='dataLayer'?'&l='+l:'';j.async=true;
+      j.src='https://www.googletagmanager.com/gtm.js?id='+containerId+dl;
+      f.parentNode.insertBefore(j,f);
+      console.log('%c[GTM] Container: ' + containerId + (w.__isLovableAdmin ? ' (ADMIN)' : ' (PRODUCTION)'),
+        'background:' + (w.__isLovableAdmin ? '#FF9800' : '#4CAF50') + ';color:white;font-weight:bold;padding:2px 8px;border-radius:4px;');
+    })(window,document,'script','dataLayer');</script>
     <!-- End Google Tag Manager -->
     
     <!-- HTTP Client Hints for image optimization -->
@@ -610,7 +617,7 @@
   <meta name="twitter:description" content="XTSY Travellers Hostel - India&#39;s best hostel experience in Shillong, Meghalaya. The biggest hostel in North East India offering luxury accommodations, budget stays, and unforgettable travel experiences. Book the best hostel in India for your Meghalaya adventure.">
 </head>
   <body>
-    <!-- Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) - Uses production container for noscript fallback -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FXJ9QBK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     
