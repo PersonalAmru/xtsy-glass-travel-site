@@ -91,7 +91,7 @@ export const useComponentOptimization = (options?: { eager?: boolean }) => {
       },
       {
         threshold: 0.01,
-        rootMargin: '150px' // Reduced from 200px for faster triggering
+        rootMargin: '600px' // Large margin to preload sections well before they scroll into view
       }
     );
 
