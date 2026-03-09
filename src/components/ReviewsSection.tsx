@@ -706,7 +706,7 @@ const ReviewsSection = () => {
           <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 z-10 bg-gradient-to-l from-background to-transparent pointer-events-none" />
           
           <div 
-            className="flex gap-4"
+            className="flex gap-4 marquee-track"
             style={{ 
               animation: `marquee-right ${Math.max(45, filteredReviews.length * 3.5)}s linear infinite`,
               width: 'max-content',
@@ -714,18 +714,21 @@ const ReviewsSection = () => {
             onMouseEnter={(e) => e.currentTarget.style.animationPlayState = 'paused'}
             onMouseLeave={(e) => e.currentTarget.style.animationPlayState = 'running'}
           >
-            {/* Reversed + duplicated for opposite direction seamless loop */}
-            {[...filteredReviews].reverse().concat([...filteredReviews].reverse()).map((review, index) => (
-              <div key={`row2-${index}`} className="flex-shrink-0 w-[300px] sm:w-[340px]">
-                <PremiumReviewCard
-                  review={review}
-                  onClick={() => handleReviewClick(review)}
-                  variant="carousel"
-                  isMobile={isMobile}
-                  index={0}
-                />
-              </div>
-            ))}
+            {/* Triple reversed for seamless continuous loop */}
+            {(() => {
+              const reversed = [...filteredReviews].reverse();
+              return [...reversed, ...reversed, ...reversed].map((review, index) => (
+                <div key={`row2-${index}`} className="flex-shrink-0 w-[300px] sm:w-[340px]">
+                  <PremiumReviewCard
+                    review={review}
+                    onClick={() => handleReviewClick(review)}
+                    variant="carousel"
+                    isMobile={isMobile}
+                    index={0}
+                  />
+                </div>
+              ));
+            })()}
           </div>
         </div>
 
