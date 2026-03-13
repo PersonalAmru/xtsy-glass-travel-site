@@ -610,7 +610,7 @@ export const heartlandTours: Record<string, TourPackage[]> = {
       duration: "3 Days",
       difficulty: "Easy",
     price: "₹19,999",
-      image: thekkadyWildlifeImg,
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/periyar%20boat%20wildlife.jpg",
       rating: 4.6,
       category: "leisure",
       location: "Kerala",
