@@ -364,7 +364,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
       duration: "5 Days",
       difficulty: "Moderate",
     price: "₹25,999",
-      image: nagalandHornbillImg,
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/nagaland.jpg",
       rating: 4.7,
       category: "adventure",
       location: "Nagaland",
