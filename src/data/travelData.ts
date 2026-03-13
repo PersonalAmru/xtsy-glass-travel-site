@@ -189,7 +189,7 @@ const _exclusiveTours: TourPackage[] = [
     duration: "6 Days",
     difficulty: "Easy",
     price: "₹39,999",
-    image: himachalYogaRetreatImg,
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/kanchenjunga-mountain-pelling-sikkim-1-city-hero.jpg",
     rating: 4.9,
     category: "cultural",
     location: "Himachal Pradesh",
