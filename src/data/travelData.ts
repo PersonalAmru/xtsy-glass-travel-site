@@ -839,7 +839,7 @@ const _coupleLuxuryTours: TourPackage[] = [
     duration: "6 Days",
     difficulty: "Moderate",
     price: "₹52,999",
-    image: doubleDeckerBridgeNewImg,
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/double%20decker.jpg",
     rating: 4.9,
     category: "adventure",
     location: "Meghalaya",
