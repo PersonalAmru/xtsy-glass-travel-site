@@ -596,7 +596,7 @@ export const heartlandTours: Record<string, TourPackage[]> = {
       duration: "5 Days",
       difficulty: "Easy",
     price: "₹28,999",
-      image: keralaBackwatersImg,
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/Kerala%20boat%20house.jpg",
       rating: 4.8,
       category: "leisure",
       location: "Kerala",
