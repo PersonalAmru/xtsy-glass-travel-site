@@ -725,7 +725,7 @@ export const internationalTours: Record<string, TourPackage[]> = {
       duration: "8 Days",
       difficulty: "Easy",
       price: "₹56,999",
-      image: "https://images.unsplash.com/photo-1586523969720-7a4e7e4e37d4?w=800&q=80",
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/sri%20lankan%20wildlife.jpg",
       rating: 4.7,
       category: "cultural",
       location: "Sri Lanka",
