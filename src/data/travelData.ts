@@ -317,7 +317,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
       duration: "6 Days",
       difficulty: "Moderate",
     price: "₹33,999",
-      image: tawangMonasteryMountainsImg,
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/Tawang-Monastery.jpg",
       rating: 4.8,
       category: "cultural",
       location: "Arunachal Pradesh",
