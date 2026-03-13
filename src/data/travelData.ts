@@ -566,7 +566,7 @@ export const heartlandTours: Record<string, TourPackage[]> = {
       duration: "10 Days",
       difficulty: "Moderate",
     price: "₹54,999",
-      image: tamilNaduBrihadeeswraUnescoImg,
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/dravidian%20architecture.jpg",
       rating: 4.9,
       category: "educational",
       location: "Tamil Nadu",
