@@ -455,7 +455,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
       duration: "4 Days",
       difficulty: "Moderate",
     price: "₹21,999",
-      image: sikkimRhododendronImg,
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/sikkim%20winter.png",
       rating: 4.7,
       category: "leisure",
       location: "Sikkim",
