@@ -538,7 +538,7 @@ export const heartlandTours: Record<string, TourPackage[]> = {
       duration: "10 Days",
       difficulty: "Moderate",
     price: "₹52,999",
-      image: tamilNaduMeenakshiTempleImg,
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/Temple%20circuit%20tamil%20nadi.jpg",
       rating: 4.9,
       category: "cultural",
       location: "Tamil Nadu",
