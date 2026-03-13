@@ -378,7 +378,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
       duration: "4 Days",
       difficulty: "Easy",
     price: "₹19,999",
-      image: kohimaWarImg,
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/kohima.jpg",
       rating: 4.6,
       category: "cultural",
       location: "Nagaland",
