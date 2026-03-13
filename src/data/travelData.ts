@@ -271,7 +271,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
       duration: "3 Days",
       difficulty: "Moderate",
     price: "₹12,999",
-      image: phiPhiWaterfallMeghalayaImg,
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/70q7obg5shx31.jpg",
       images: [phiPhiWaterfallMeghalayaImg, moopunWaterfallImg],
       rating: 4.7,
       category: "adventure",
