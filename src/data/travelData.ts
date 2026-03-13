@@ -229,7 +229,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
       duration: "5 Days",
       difficulty: "Moderate",
     price: "₹23,999",
-      image: doubleDeckerBridgeNewImg,
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/double%20decker.jpg",
       rating: 4.8,
       category: "adventure",
       location: "Meghalaya",
