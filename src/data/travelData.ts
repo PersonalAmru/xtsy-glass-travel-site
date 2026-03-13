@@ -552,7 +552,7 @@ export const heartlandTours: Record<string, TourPackage[]> = {
       duration: "9 Days",
       difficulty: "Easy",
     price: "₹46,999",
-      image: tamilNaduKanchipuramTempleImg,
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/9%20day%20spritual%20tour.jpg",
       rating: 4.8,
       category: "cultural",
       location: "Tamil Nadu",
