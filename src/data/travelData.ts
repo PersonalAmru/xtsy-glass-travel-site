@@ -823,7 +823,7 @@ const _coupleLuxuryTours: TourPackage[] = [
     duration: "5 Days",
     difficulty: "Easy",
     price: "₹44,999",
-    image: shillongCherryBlossomImg,
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/752879197.jpg",
     rating: 5.0,
     category: "leisure",
     location: "Meghalaya",
