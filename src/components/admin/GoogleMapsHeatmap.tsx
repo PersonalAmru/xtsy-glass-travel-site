@@ -9,6 +9,57 @@ import { MapPin, Users, TrendingUp, AlertCircle, RefreshCw, CheckCircle, Info, E
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
+/* eslint-disable @typescript-eslint/no-namespace */
+declare global {
+  interface Window {
+    google: typeof google;
+  }
+  namespace google.maps {
+    interface MapTypeStyle {
+      elementType?: string;
+      featureType?: string;
+      stylers: Array<Record<string, string>>;
+    }
+    class Map {
+      constructor(el: HTMLElement, opts?: any);
+      setCenter(latLng: any): void;
+      setZoom(zoom: number): void;
+      getZoom(): number;
+      fitBounds(bounds: any): void;
+      addListener(event: string, handler: () => void): any;
+      controls: any[];
+    }
+    class LatLng {
+      constructor(lat: number, lng: number);
+    }
+    class LatLngBounds {
+      extend(latLng: any): void;
+    }
+    class InfoWindow {
+      constructor(opts?: any);
+      open(opts: any): void;
+      close(): void;
+    }
+    class Marker {
+      constructor(opts?: any);
+      addListener(event: string, handler: () => void): any;
+      setMap(map: any): void;
+    }
+    class Size {
+      constructor(w: number, h: number);
+    }
+    namespace visualization {
+      class HeatmapLayer {
+        constructor(opts?: any);
+        setMap(map: any): void;
+      }
+    }
+    namespace event {
+      function removeListener(listener: any): void;
+    }
+    const ControlPosition: Record<string, number>;
+  }
+}
 
 // Dark theme map styles
 const darkMapStyles: google.maps.MapTypeStyle[] = [
