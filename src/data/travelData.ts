@@ -427,7 +427,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
       duration: "4 Days",
       difficulty: "Easy",
     price: "₹21,999",
-      image: pellingKanchenjungaImg,
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/kanchenjunga-mountain-pelling-sikkim-1-city-hero.jpg",
       rating: 4.6,
       category: "leisure",
       location: "Sikkim",
