@@ -492,7 +492,7 @@ export const heartlandTours: Record<string, TourPackage[]> = {
       duration: "5 Days",
       difficulty: "Moderate",
     price: "₹31,999",
-      image: dharamshalaMcleodGanjImg,
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/dharmsala.jpg",
       rating: 4.7,
       category: "cultural",
       location: "Himachal Pradesh",
