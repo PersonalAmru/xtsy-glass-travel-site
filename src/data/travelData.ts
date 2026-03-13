@@ -580,7 +580,7 @@ export const heartlandTours: Record<string, TourPackage[]> = {
       duration: "3 Days",
       difficulty: "Easy",
     price: "₹20,999",
-      image: ootyKodaikanalImg,
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/Kodai.jpg",
       rating: 4.4,
       category: "leisure",
       location: "Tamil Nadu",
