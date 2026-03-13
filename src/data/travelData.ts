@@ -257,7 +257,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
       duration: "2 Days",
       difficulty: "Easy",
       price: "₹7,999",
-      image: krangSuriWaterfallImg,
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/krank%20surri.webp",
       rating: 4.6,
       category: "leisure",
       location: "Meghalaya",
