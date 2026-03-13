@@ -909,7 +909,7 @@ const _soloAndBikeTours: TourPackage[] = [
     duration: "5 Days",
     difficulty: "Easy",
     price: "₹19,999",
-    image: arunachalCulturalFestivalImg,
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/dress-of-north-east-india.jpg",
     rating: 4.9,
     category: "cultural",
     location: "Northeast India",
