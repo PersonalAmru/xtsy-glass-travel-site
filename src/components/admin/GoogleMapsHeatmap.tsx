@@ -53,6 +53,10 @@ declare global {
         constructor(opts?: any);
         setMap(map: any): void;
       }
+      interface WeightedLocation {
+        location: any;
+        weight: number;
+      }
     }
     namespace event {
       function removeListener(listener: any): void;
