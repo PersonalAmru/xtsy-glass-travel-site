@@ -894,7 +894,7 @@ const _soloAndBikeTours: TourPackage[] = [
     duration: "8 Days",
     difficulty: "Challenging",
     price: "₹39,999",
-    image: tawangMonasteryMountainsImg,
+    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/Bike%20trip%20arunachal.jpg",
     rating: 4.9,
     category: "adventure",
     location: "Arunachal Pradesh",
