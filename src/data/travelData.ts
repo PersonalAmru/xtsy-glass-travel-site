@@ -394,7 +394,7 @@ export const northeastTours: Record<string, TourPackage[]> = {
       duration: "4 Days",
       difficulty: "Easy",
     price: "₹20,999",
-      image: manipurLoktakImg,
+      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/maipur%20lokak%20lake.webp",
       rating: 4.7,
       category: "leisure",
       location: "Manipur",
