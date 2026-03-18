@@ -93,7 +93,7 @@ const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({
         {/* Swipeable full image */}
         <div
           className="relative rounded-2xl overflow-hidden h-[420px] touch-pan-y"
-          onTouchStart={handleTouchStart}
+          onTouchStart={(e) => { if (autoPlayRef.current) clearInterval(autoPlayRef.current); handleTouchStart(e); }}
           onTouchEnd={handleTouchEnd}
         >
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent z-10" />
@@ -170,6 +170,8 @@ const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({
                 transition: 'flex 0.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease, transform 0.5s ease',
               }}
               onClick={() => handleOptionClick(index)}
+              onMouseEnter={() => { if (autoPlayRef.current) clearInterval(autoPlayRef.current); }}
+              onMouseLeave={() => resetAutoPlay()}
             >
               <div
                 className={`
