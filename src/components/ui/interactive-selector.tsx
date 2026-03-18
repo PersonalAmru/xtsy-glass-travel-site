@@ -48,6 +48,7 @@ const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({
 
   const handleOptionClick = (index: number) => {
     if (index !== activeIndex) setActiveIndex(index);
+    resetAutoPlay();
   };
 
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
