@@ -1,16 +1,18 @@
 
+## Plan: Add Auto-Scroll to InteractiveSelector Carousel
 
-## Problem
+### What
+Add a 2.5-second auto-advance timer to the `InteractiveSelector` component so the hero carousel on the XTSY 270 page cycles through all 5 images automatically. The timer resets on user interaction (swipe or click).
 
-The `FloatingWhatsApp` component is imported in `App.tsx` but **never actually rendered** in the JSX tree. That's why no WhatsApp button appears on any page, including `/xtsy-270`.
+### Technical Details
 
-The page-specific WhatsApp button we added to `XTSY270.tsx` should work, but it may be visually hidden behind the "Will it be yours?" CTA bar or missing the Footer component (which would push content).
+**File: `src/components/ui/interactive-selector.tsx`**
 
-## Plan
+Add a `useEffect` that runs a `setInterval` every 2500ms, advancing `activeIndex` to the next slide (wrapping back to 0 after the last). The interval resets whenever the user manually changes the slide (click on desktop, swipe on mobile, or dot click).
 
-**File: `src/App.tsx`** — Add `<FloatingWhatsApp />` to the rendered JSX, right after `</Routes>` and before closing `</TooltipProvider>`.
+- Add `autoPlay` interval ref
+- In the interval callback: `setActiveIndex(prev => (prev + 1) % options.length)`
+- Clear and restart the interval on any manual interaction (`handleOptionClick`, `handleTouchEnd`, dot click)
+- Clean up interval on unmount
 
-This will make the floating WhatsApp button appear on all pages (except `/admin` and `/booking` as already handled by the component's logic).
-
-**File: `src/pages/XTSY270.tsx`** — Remove the duplicate page-specific WhatsApp button we added earlier (lines 395-404), since the global component will now handle it.
-
+No other changes — layout, styling, touch handling, and desktop accordion behavior remain untouched.
