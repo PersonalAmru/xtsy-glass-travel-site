@@ -23,6 +23,21 @@ const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({
   const [isMobile, setIsMobile] = useState(false);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
+  const autoPlayRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const resetAutoPlay = useCallback(() => {
+    if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+    autoPlayRef.current = setInterval(() => {
+      setActiveIndex(prev => (prev + 1) % options.length);
+    }, 2500);
+  }, [options.length]);
+
+  useEffect(() => {
+    resetAutoPlay();
+    return () => {
+      if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+    };
+  }, [resetAutoPlay]);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
