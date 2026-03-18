@@ -23,6 +23,21 @@ const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({
   const [isMobile, setIsMobile] = useState(false);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
+  const autoPlayRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const resetAutoPlay = useCallback(() => {
+    if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+    autoPlayRef.current = setInterval(() => {
+      setActiveIndex(prev => (prev + 1) % options.length);
+    }, 2500);
+  }, [options.length]);
+
+  useEffect(() => {
+    resetAutoPlay();
+    return () => {
+      if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+    };
+  }, [resetAutoPlay]);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -33,6 +48,7 @@ const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({
 
   const handleOptionClick = (index: number) => {
     if (index !== activeIndex) setActiveIndex(index);
+    resetAutoPlay();
   };
 
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
@@ -49,7 +65,8 @@ const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({
         setActiveIndex(prev => prev - 1);
       }
     }
-  }, [activeIndex, options.length]);
+    resetAutoPlay();
+  }, [activeIndex, options.length, resetAutoPlay]);
 
   useEffect(() => {
     const timers: ReturnType<typeof setTimeout>[] = [];
@@ -103,7 +120,7 @@ const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({
           {options.map((_, index) => (
             <button
               key={index}
-              onClick={() => setActiveIndex(index)}
+              onClick={() => { setActiveIndex(index); resetAutoPlay(); }}
               className={`rounded-full transition-all duration-300 ${
                 index === activeIndex
                   ? 'w-8 h-2.5 bg-primary'
