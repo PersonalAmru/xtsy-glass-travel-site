@@ -120,7 +120,7 @@ const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({
           {options.map((_, index) => (
             <button
               key={index}
-              onClick={() => setActiveIndex(index)}
+              onClick={() => { setActiveIndex(index); resetAutoPlay(); }}
               className={`rounded-full transition-all duration-300 ${
                 index === activeIndex
                   ? 'w-8 h-2.5 bg-primary'
