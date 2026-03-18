@@ -65,7 +65,8 @@ const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({
         setActiveIndex(prev => prev - 1);
       }
     }
-  }, [activeIndex, options.length]);
+    resetAutoPlay();
+  }, [activeIndex, options.length, resetAutoPlay]);
 
   useEffect(() => {
     const timers: ReturnType<typeof setTimeout>[] = [];
