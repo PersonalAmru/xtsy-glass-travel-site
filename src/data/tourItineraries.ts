@@ -3202,4 +3202,103 @@ export const tourItineraries: Record<number, ItineraryDay[]> = {
       ]
     }
   ],
+
+  // ── ID 601: XTSY 270 Romantic Meghalaya Escape — Meghalaya Honeymoon Circuit ──
+  601: [
+    {
+      day: "Day 1",
+      title: "Arrival & Romantic Glasshouse Experience",
+      route: "Guwahati → Shillong",
+      activities: [
+        "Arrival at Lokpriya Gopinath Bordoloi International Airport or Guwahati Railway Station",
+        "Scenic drive towards the hills of Shillong",
+        "En route stop at the breathtaking Umiam Lake — tranquil waters stretching across surrounding hills and pine forests",
+        "Continue toward your romantic retreat near New Shillong",
+        "Check in to the XTSY Panorama Glasshouse",
+        "Evening surrounded by peaceful forest landscapes and fresh mountain air",
+        "Glasshouse Experience — panoramic glasshouse architecture, peaceful forest surroundings",
+        "Transparent roof perfect for stargazing — the magical experience of sleeping under the moon and stars"
+      ],
+      overnight: "XTSY Panorama Glasshouse"
+    },
+    {
+      day: "Day 2",
+      title: "Shillong Exploration & Romantic Candlelight Evening",
+      route: "Shillong sightseeing",
+      activities: [
+        "Wake up to beautiful forest views and enjoy breakfast surrounded by nature",
+        "Explore the scenic charm of Shillong — the 'Scotland of the East'",
+        "Ward's Lake — a serene colonial-era lake surrounded by gardens and wooden walkways",
+        "Elephant Falls — one of Meghalaya's most famous multi-tier waterfalls",
+        "Shillong Peak — the highest point in Shillong offering panoramic views of the city and surrounding hills",
+        "Laitlum Canyons — witness one of the most breathtaking sunsets in Meghalaya, dramatic cliffs and endless valleys glow in golden light",
+        "Romantic Candlelight Night — private candlelight dinner",
+        "Cozy bonfire setup under the open sky",
+        "Quiet romantic evening surrounded by forest and nature"
+      ],
+      overnight: "XTSY Panorama Glasshouse"
+    },
+    {
+      day: "Day 3",
+      title: "Journey to the Land of Waterfalls (Cherrapunji)",
+      route: "Shillong → Cherrapunji",
+      activities: [
+        "After breakfast, scenic drive to Cherrapunji — one of the wettest places on Earth",
+        "Check in to your stay in Cherrapunji",
+        "Nohkalikai Falls — the tallest plunge waterfall in India with breathtaking valley views",
+        "Garden of Caves — hidden natural attraction with natural ponds, waterfalls, caves, and large rocks, each with its own peaceful charm",
+        "Seven Sisters Falls — magnificent seven-stream waterfall cascading down massive cliffs",
+        "Mawsmai Cave — fascinating limestone cave with natural rock formations",
+        "Sweeping valley views from Eco Park — hills stretching endlessly toward the Bangladesh plains"
+      ],
+      overnight: "Cherrapunji"
+    },
+    {
+      day: "Day 4",
+      title: "Mawlynnong Village & Journey to Dawki",
+      route: "Cherrapunji → Mawlynnong → Dawki",
+      activities: [
+        "Sunrise at Double Decker Living Root Bridge",
+        "After breakfast, journey toward the Dawki Indo-Bangladesh border region",
+        "Mawlynnong Village — Asia's Cleanest Village with flower-lined pathways and bamboo houses",
+        "Slow romantic walk through peaceful village surroundings",
+        "Short hike to Riwai Living Root Bridge — bio-engineering wonder over 100 years old",
+        "Mawlynnong Balancing Rock — natural geological marvel where a massive boulder appears delicately balanced",
+        "Scenic drive toward Dawki and check in to riverside camping site near the stunning Umngot River",
+        "Peaceful riverside walks, sunset views over the crystal-clear river",
+        "Cozy bonfire under the stars and quiet romantic time away from the crowds"
+      ],
+      overnight: "Dawki Riverside Camp"
+    },
+    {
+      day: "Day 5",
+      title: "Sunrise Kayaking & Umngot River Experience",
+      route: "Dawki → Guwahati",
+      activities: [
+        "Early wake up for sunrise on the Umngot River",
+        "Private sunrise kayaking experience for couples — boats and kayaks appear to float in mid-air on the crystal-clear water",
+        "Famous Dawki boating experience — gliding across emerald-clear river surrounded by lush hills and stunning reflections",
+        "Kayaking and paddle boating",
+        "Riverside photography and quiet nature walks along the riverbanks",
+        "Relaxing by the crystal-clear waters",
+        "Journey back toward Shillong and onward to Guwahati"
+      ],
+      overnight: "Guwahati"
+    },
+    {
+      day: "Day 6",
+      title: "Kamakhya Temple & Brahmaputra Sunset Cruise",
+      route: "Guwahati → Departure",
+      activities: [
+        "After breakfast, visit the revered Kamakhya Temple — one of the most important Shakti Peethas in India",
+        "Panoramic views of the city and the mighty Brahmaputra River from Nilachal Hills",
+        "Couples seek blessings for a happy and prosperous life together",
+        "Brahmaputra Sunset Cruise — relaxing cruise on one of the widest rivers in the world",
+        "Scenic sunset views, relaxing open-deck seating, and soothing river breeze",
+        "Calm and romantic evening atmosphere over the vast Brahmaputra waters",
+        "Drop-off at Lokpriya Gopinath Bordoloi International Airport or Guwahati Railway Station",
+        "Meghalaya tour concludes with unforgettable memories of misty hills, waterfalls, living root bridges, and magical sunsets"
+      ]
+    }
+  ],
 };
