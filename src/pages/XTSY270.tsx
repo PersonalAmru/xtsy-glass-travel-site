@@ -150,7 +150,7 @@ Can't wait to sleep under the stars! 🌌✨`;
                       {formatPrice(11999)}
                     </span>
                     <span className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
-                      {formatPrice(7499)}
+                      {formatPrice(4999)}
                     </span>
                   </div>
                   <span className="text-sm text-muted-foreground font-medium">per night · inclusive of taxes</span>
