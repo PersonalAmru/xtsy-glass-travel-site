@@ -271,6 +271,21 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
     { phase: "Adventure & Exploration", duration: "Main Days", description: "Core adventure activities and unforgettable experiences.", highlights: ["Main attractions", "Adventure activities"], activities: ["Guided tours", "Adventure experiences"] }
   ];
 
+  const allImages = tourPackage
+    ? (tourPackage.images && tourPackage.images.length > 1
+        ? [...new Set([tourPackage.image, ...tourPackage.images])]
+        : [tourPackage.image])
+    : [];
+
+  // Auto-scroll carousel every 3 seconds
+  useEffect(() => {
+    if (allImages.length <= 1 || !isOpen) return;
+    const interval = setInterval(() => {
+      setActiveImageIndex(i => (i + 1) % allImages.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [allImages.length, isOpen]);
+
   if (!tourPackage) return null;
 
   const handlePayAndConfirm = () => {
@@ -279,10 +294,6 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
     window.open(whatsappURL, '_blank');
     handleClose();
   };
-
-  const allImages = tourPackage.images && tourPackage.images.length > 1
-    ? [...new Set([tourPackage.image, ...tourPackage.images])]
-    : [tourPackage.image];
 
   const gradientClass = categoryColors[tourPackage.category] || "from-amber-500 to-orange-500";
 
