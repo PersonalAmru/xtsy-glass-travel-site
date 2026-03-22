@@ -284,6 +284,15 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
     ? [...new Set([tourPackage.image, ...tourPackage.images])]
     : [tourPackage.image];
 
+  // Auto-scroll carousel every 3 seconds
+  useEffect(() => {
+    if (allImages.length <= 1 || !isOpen) return;
+    const interval = setInterval(() => {
+      setActiveImageIndex(i => (i + 1) % allImages.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [allImages.length, isOpen]);
+
   const gradientClass = categoryColors[tourPackage.category] || "from-amber-500 to-orange-500";
 
   return (
