@@ -271,18 +271,11 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
     { phase: "Adventure & Exploration", duration: "Main Days", description: "Core adventure activities and unforgettable experiences.", highlights: ["Main attractions", "Adventure activities"], activities: ["Guided tours", "Adventure experiences"] }
   ];
 
-  if (!tourPackage) return null;
-
-  const handlePayAndConfirm = () => {
-    const welcomeMessage = `🏠 *XTSY Travellers Hostel - Tour Inquiry*\n\nNamaste Team XTSY! 🙏\n\nI'd like to know more about the "${tourPackage.title}" tour package.\n\n📍 *Tour Details:*\n   • Duration: ${tourPackage.duration}\n   • Category: ${tourPackage.category}\n   • Best Season: ${tourPackage.bestSeason}\n   • Location: ${tourPackage.location}\n\nCould you please share availability and detailed pricing?\n\nLooking forward to exploring with XTSY! 🌟`;
-    const whatsappURL = `https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent(welcomeMessage)}&type=phone_number&app_absent=0`;
-    window.open(whatsappURL, '_blank');
-    handleClose();
-  };
-
-  const allImages = tourPackage.images && tourPackage.images.length > 1
-    ? [...new Set([tourPackage.image, ...tourPackage.images])]
-    : [tourPackage.image];
+  const allImages = tourPackage
+    ? (tourPackage.images && tourPackage.images.length > 1
+        ? [...new Set([tourPackage.image, ...tourPackage.images])]
+        : [tourPackage.image])
+    : [];
 
   // Auto-scroll carousel every 3 seconds
   useEffect(() => {
@@ -292,6 +285,15 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
     }, 3000);
     return () => clearInterval(interval);
   }, [allImages.length, isOpen]);
+
+  if (!tourPackage) return null;
+
+  const handlePayAndConfirm = () => {
+    const welcomeMessage = `🏠 *XTSY Travellers Hostel - Tour Inquiry*\n\nNamaste Team XTSY! 🙏\n\nI'd like to know more about the "${tourPackage.title}" tour package.\n\n📍 *Tour Details:*\n   • Duration: ${tourPackage.duration}\n   • Category: ${tourPackage.category}\n   • Best Season: ${tourPackage.bestSeason}\n   • Location: ${tourPackage.location}\n\nCould you please share availability and detailed pricing?\n\nLooking forward to exploring with XTSY! 🌟`;
+    const whatsappURL = `https://api.whatsapp.com/send/?phone=918837317070&text=${encodeURIComponent(welcomeMessage)}&type=phone_number&app_absent=0`;
+    window.open(whatsappURL, '_blank');
+    handleClose();
+  };
 
   const gradientClass = categoryColors[tourPackage.category] || "from-amber-500 to-orange-500";
 
