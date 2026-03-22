@@ -816,9 +816,11 @@ const _coupleLuxuryTours: TourPackage[] = [
     exclusive: true,
     groupSize: "2 people (Couples only)",
     images: [
-      "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Tour%20package%20images/0d867554ce5e908bf4f368f3383ebeac.jpg",
+      "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/270/ChatGPT%20Image%20Feb%2028,%202026,%2002_15_59%20PM.png",
       "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/270/XTSY%20270%202.jpeg",
-      "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Tour%20package%20images/0f79859e8a8385448d8d2019ea7695d2.jpg"
+      "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Tour%20package%20images/0f79859e8a8385448d8d2019ea7695d2.jpg",
+      "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Tour%20package%20images/0d867554ce5e908bf4f368f3383ebeac.jpg",
+      "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Tour%20package%20images/d10e6601241f39cb8a461da97b8343bf.jpg"
     ]
   },
   {
