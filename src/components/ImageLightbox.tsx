@@ -94,7 +94,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({
 
   return (
     <div 
-      className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
       onClick={handleBackdropClick}
     >
       {/* Close button */}
@@ -136,26 +136,27 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({
       )}
 
       {/* Main image */}
-      <div className="relative flex items-center justify-center">
+      <div className="relative flex items-center justify-center max-w-[90vw] max-h-[85vh]">
         {isLoading && (
           <div className="absolute inset-0 flex items-center justify-center z-10">
             <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin" />
           </div>
         )}
         
-        {/* Instagram post size container (4:5 aspect ratio) */}
-        <div className="w-72 h-[360px] md:w-80 md:h-[400px] lg:w-[432px] lg:h-[540px] aspect-[4/5] bg-black/20 rounded-lg overflow-hidden">
-          <img
-            src={images[currentIndex]}
-            alt={`${alt} - Image ${currentIndex + 1}`}
-            className={cn(
-              "w-full h-full object-cover transition-opacity duration-300",
-              isLoading ? "opacity-0" : "opacity-100"
-            )}
-            onLoad={handleImageLoad}
-            draggable={false}
-          />
-        </div>
+        <img
+          src={images[currentIndex]}
+          alt={`${alt} - Image ${currentIndex + 1}`}
+          className={cn(
+            "max-w-[90vw] max-h-[85vh] object-contain rounded-lg transition-opacity duration-300",
+            isLoading ? "opacity-0" : "opacity-100"
+          )}
+          onLoad={handleImageLoad}
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = '/placeholder.svg';
+            setIsLoading(false);
+          }}
+          draggable={false}
+        />
       </div>
 
       {/* Image indicators */}
