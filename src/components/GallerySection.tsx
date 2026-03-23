@@ -33,12 +33,12 @@ const GalleryTile = memo(({
     <div
       ref={tileRef}
       className="gallery-tile relative group cursor-pointer overflow-hidden bg-muted"
-      style={{ aspectRatio: "1 / 1", contentVisibility: index >= 6 ? "auto" : "visible" } as React.CSSProperties}
+      style={{ aspectRatio: "1 / 1" }}
       onClick={onClick}
     >
       {/* Low-cost skeleton */}
       {!loaded && (
-        <div className="absolute inset-0 bg-muted animate-pulse" />
+        <div className="absolute inset-0 z-0 bg-muted animate-pulse" />
       )}
 
       <img
@@ -52,9 +52,14 @@ const GalleryTile = memo(({
         fetchPriority={shouldEager ? "high" : "auto"}
         sizes="(max-width: 640px) 50vw, 33vw"
         onLoad={() => setLoaded(true)}
-        className={`w-full h-full object-cover transition-opacity duration-300 ${
+        onError={(e) => {
+          (e.currentTarget as HTMLImageElement).src = "/placeholder.svg";
+          setLoaded(true);
+        }}
+        className={`w-full h-full object-cover relative z-10 ${
           loaded ? "opacity-100" : "opacity-0"
-        } group-hover:scale-105 transition-transform duration-500`}
+        }`}
+        style={{ transition: "opacity 0.3s ease, transform 0.5s ease" }}
       />
 
       {/* Hover overlay — CSS only, no JS animation lib */}
