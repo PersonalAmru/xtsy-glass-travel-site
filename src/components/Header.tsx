@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import { Menu, X, User, LogOut, Download, Phone, MessageCircle, MapPin, Mountain, Plane, HelpCircle, Camera, Sparkles, PawPrint } from "lucide-react";
+import React, { useState, lazy, Suspense } from "react";
+import { Menu, X, User, LogOut, Download, Phone, MessageCircle, MapPin, Mountain, Plane, HelpCircle, Camera, Sparkles, PawPrint, Search } from "lucide-react";
+
+const IntelligentSearchOverlay = lazy(() => import("@/components/IntelligentSearchOverlay"));
 import { Link, useNavigate } from "react-router-dom";
 import xtsyLogo from "@/assets/xtsy-color-logo.png";
 import { useMediaQuery } from "@/hooks/use-mobile";
