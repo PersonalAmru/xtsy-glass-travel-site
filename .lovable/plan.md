@@ -1,21 +1,25 @@
 
 
-## Plan: Fix Gallery Lightbox Visibility
+## Plan: Fix Lightbox Not Opening for All Gallery Images
 
-### Problem
-The lightbox uses a small fixed-size container (`w-72 h-[360px]`) with `object-cover`, making images appear tiny and cropped. The `bg-black/95` overlay combined with the small image makes it look too dark.
+### Investigation
 
-### Changes (single file: `src/components/ImageLightbox.tsx`)
+The code in `GallerySection.tsx` correctly passes `onClick={() => handleImageClick(index)}` to every `GalleryTile`, and the tile wrapper div has `cursor-pointer` and the `onClick` handler. The overlays all have `pointer-events-none`. The `ImageLightbox` receives `allImageUrls` from `filteredItems.map(i => i.image)` and `lightboxIndex`.
 
-**1. Replace fixed-size container with responsive viewport-filling layout (lines 146-158)**
-- Remove the fixed `w-72 h-[360px]` container and `aspect-[4/5]`
-- Use `max-w-[90vw] max-h-[85vh]` with `object-contain` so images fill the viewport while preserving aspect ratio
+However, there is a potential issue: the `<img>` element has `relative z-10` which elevates it into its own stacking context above the parent div. While clicks should still bubble, some browsers may have issues with click propagation on replaced elements (`<img>`) that sit above their parent in z-index. Additionally, the skeleton div intercepts the stacking.
 
-**2. Reduce overlay darkness (line 97)**
-- Change `bg-black/95` to `bg-black/80` for a less oppressive backdrop
+### Changes (single file: `src/components/GallerySection.tsx`)
 
-**3. Add onError fallback on the lightbox image**
-- If an image fails to load in the lightbox, fall back to `/placeholder.svg` and mark as loaded
+**1. Add explicit `onClick` directly on the `<img>` element (lines 44-63)**
+- Add `onClick={onClick}` to the `<img>` tag itself as a safety net, ensuring clicks on the image always trigger the lightbox regardless of stacking context issues.
+- Also add `cursor-pointer` to the image class.
 
-No other files changed.
+**2. Add `pointer-events-none` to the skeleton placeholder (line 41)**
+- Ensure the skeleton cannot intercept clicks while visible (before image loads).
+
+**3. Ensure the wrapper div click always fires (line 35-37)**
+- Add `role="button"` and `tabIndex={0}` for accessibility and to reinforce clickability.
+- Add `onKeyDown` for Enter/Space to open lightbox.
+
+These are small, targeted changes to guarantee every tile opens the lightbox consistently.
 
