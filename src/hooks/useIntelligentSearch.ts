@@ -18,13 +18,13 @@ export interface CategorizedResults {
   items: SearchEntry[];
 }
 
-const FUSE_OPTIONS: Fuse.IFuseOptions<SearchEntry> = {
+const FUSE_OPTIONS = {
   keys: [
-    { name: 'title', weight: 0.35 },
-    { name: 'keywords', weight: 0.3 },
-    { name: 'description', weight: 0.15 },
-    { name: 'location', weight: 0.1 },
-    { name: 'synonyms', weight: 0.1 },
+    { name: 'title' as const, weight: 0.35 },
+    { name: 'keywords' as const, weight: 0.3 },
+    { name: 'description' as const, weight: 0.15 },
+    { name: 'location' as const, weight: 0.1 },
+    { name: 'synonyms' as const, weight: 0.1 },
   ],
   threshold: 0.35,
   distance: 120,
