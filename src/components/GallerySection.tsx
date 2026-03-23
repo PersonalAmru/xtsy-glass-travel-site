@@ -92,8 +92,8 @@ GalleryTile.displayName = "GalleryTile";
 
 const GALLERY_ITEMS: GalleryItem[] = [
   // XTSY 270° Glass Suite
-  { id: 1, title: "270° Panorama Glass Suite", category: "luxury-suite", property: "XTSY 270° Glass Suite", featured: true, image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140811.png" },
-  { id: 2, title: "270° Glass Suite - Panoramic Vista", category: "luxury-suite", property: "XTSY 270° Glass Suite", featured: true, image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140029.png" },
+  { id: 1, title: "270° Panorama Glass Suite", category: "luxury-suite", property: "XTSY 270° Glass Suite", featured: true, image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/270/ChatGPT%20Image%20Mar%207,%202026,%2008_23_20%20PM.png" },
+  { id: 2, title: "270° Glass Suite - Panoramic Vista", category: "luxury-suite", property: "XTSY 270° Glass Suite", featured: true, image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/270/ChatGPT%20Image%20Feb%2028,%202026,%2002_15_59%20PM.png" },
   { id: 35, title: "270° Glass Suite - Stargazing", category: "luxury-suite", property: "XTSY 270° Glass Suite", featured: true, image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/270/Gemini_Generated_Image_7so6yc7so6yc7so6%20(1)%20(1).png" },
   // King Double Room
   { id: 3, title: "King Double Room", category: "private-rooms", property: "King Double Room", image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg" },
