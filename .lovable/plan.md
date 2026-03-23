@@ -1,15 +1,21 @@
 
 
-## Plan: Replace First Two Gallery Image URLs
+## Plan: Fix Gallery Lightbox Visibility
 
-### What
-Replace the broken image URLs for the first two gallery items (id 1 and id 2) with the valid XTSY 270 asset URLs provided.
+### Problem
+The lightbox uses a small fixed-size container (`w-72 h-[360px]`) with `object-cover`, making images appear tiny and cropped. The `bg-black/95` overlay combined with the small image makes it look too dark.
 
-### Changes (single file: `src/components/GallerySection.tsx`)
+### Changes (single file: `src/components/ImageLightbox.tsx`)
 
-**Lines 95-96** — Update the `image` field:
-- Item id 1: change URL to `https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/270/ChatGPT%20Image%20Mar%207,%202026,%2008_23_20%20PM.png`
-- Item id 2: change URL to `https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/270/ChatGPT%20Image%20Feb%2028,%202026,%2002_15_59%20PM.png`
+**1. Replace fixed-size container with responsive viewport-filling layout (lines 146-158)**
+- Remove the fixed `w-72 h-[360px]` container and `aspect-[4/5]`
+- Use `max-w-[90vw] max-h-[85vh]` with `object-contain` so images fill the viewport while preserving aspect ratio
 
-Everything else (titles, categories, featured flags, grid layout, error handling, transitions) remains unchanged.
+**2. Reduce overlay darkness (line 97)**
+- Change `bg-black/95` to `bg-black/80` for a less oppressive backdrop
+
+**3. Add onError fallback on the lightbox image**
+- If an image fails to load in the lightbox, fall back to `/placeholder.svg` and mark as loaded
+
+No other files changed.
 
