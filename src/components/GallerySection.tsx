@@ -32,13 +32,16 @@ const GalleryTile = memo(({
   return (
     <div
       ref={tileRef}
+      role="button"
+      tabIndex={0}
       className="gallery-tile relative group cursor-pointer overflow-hidden bg-muted"
       style={{ aspectRatio: "1 / 1" }}
       onClick={onClick}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick(); } }}
     >
       {/* Low-cost skeleton */}
       {!loaded && (
-        <div className="absolute inset-0 z-0 bg-muted animate-pulse" />
+        <div className="absolute inset-0 z-0 bg-muted animate-pulse pointer-events-none" />
       )}
 
       <img
@@ -51,12 +54,13 @@ const GalleryTile = memo(({
         decoding={shouldEager ? "sync" : "async"}
         fetchPriority={shouldEager ? "high" : "auto"}
         sizes="(max-width: 640px) 50vw, 33vw"
+        onClick={onClick}
         onLoad={() => setLoaded(true)}
         onError={(e) => {
           (e.currentTarget as HTMLImageElement).src = "/placeholder.svg";
           setLoaded(true);
         }}
-        className={`w-full h-full object-cover relative z-10 ${
+        className={`w-full h-full object-cover relative z-10 cursor-pointer ${
           loaded ? "opacity-100" : "opacity-0"
         }`}
         style={{ transition: "opacity 0.3s ease, transform 0.5s ease" }}
