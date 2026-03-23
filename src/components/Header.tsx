@@ -256,6 +256,11 @@ const Header = () => {
           </div>
         </div>
       </div>
+      {searchOpen && (
+        <Suspense fallback={null}>
+          <IntelligentSearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
+        </Suspense>
+      )}
     </header>
   );
 };
