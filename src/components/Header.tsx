@@ -93,6 +93,15 @@ const Header = () => {
 
           {/* Right side */}
           <div className="flex items-center gap-2 sm:gap-3 mr-4 sm:mr-6">
+            {/* Search Button */}
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="flex items-center justify-center w-10 h-10 rounded-md text-white hover:bg-white/10 hover:text-primary transition-colors touch-target"
+              aria-label="Search"
+            >
+              <Search size={20} />
+            </button>
+
             {/* Sign In / Profile */}
             {isAuthenticated ? (
               <DropdownMenu>
