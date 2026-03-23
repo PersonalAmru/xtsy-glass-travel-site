@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef, memo } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Image, Star, Users, Building } from "lucide-react";
-import ImageLightbox from "./ImageLightbox";
+import InstagramPreviewModal from "./InstagramPreviewModal";
 
 interface GalleryItem {
   id: number;
