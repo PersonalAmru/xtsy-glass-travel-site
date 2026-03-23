@@ -1,27 +1,15 @@
 
 
-## Plan: Fix Gallery Image Loading Issues
+## Plan: Replace First Two Gallery Image URLs
 
-### Root Cause
-
-The `GalleryTile` component in `src/components/GallerySection.tsx` has a CSS conflict: two conflicting Tailwind transition utilities (`transition-opacity` and `transition-transform`) are applied to the `<img>` tag. In Tailwind, only the last `transition-*` class wins, so the opacity fade-in never actually transitions — images stay at `opacity-0` permanently, appearing as dark boxes even after loading.
-
-Additionally, there is no `onError` handler, so broken images remain invisible forever.
+### What
+Replace the broken image URLs for the first two gallery items (id 1 and id 2) with the valid XTSY 270 asset URLs provided.
 
 ### Changes (single file: `src/components/GallerySection.tsx`)
 
-**1. Fix the CSS transition conflict on the `<img>` tag (line 55-57)**
-- Replace the two conflicting `transition-opacity` / `transition-transform` utilities with a single `transition-all` or explicit `transition` style that handles both opacity and transform together.
-- Result: images will properly fade in from `opacity-0` to `opacity-100` on load.
+**Lines 95-96** — Update the `image` field:
+- Item id 1: change URL to `https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/270/ChatGPT%20Image%20Mar%207,%202026,%2008_23_20%20PM.png`
+- Item id 2: change URL to `https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/270/ChatGPT%20Image%20Feb%2028,%202026,%2002_15_59%20PM.png`
 
-**2. Add `onError` fallback handler**
-- Add an `onError` callback that sets the image `src` to `/placeholder.svg` and marks it as loaded, so no image card stays blank.
-
-**3. Remove `contentVisibility: "auto"` for items index >= 6**
-- This CSS property can cause rendering issues where images in lower rows never become visible. Remove it to ensure all tiles render correctly.
-
-**4. Ensure proper stacking with explicit z-index**
-- Give the skeleton placeholder `z-0` and the image `z-10` so the loaded image always appears above the skeleton.
-
-No other files or components are changed.
+Everything else (titles, categories, featured flags, grid layout, error handling, transitions) remains unchanged.
 
