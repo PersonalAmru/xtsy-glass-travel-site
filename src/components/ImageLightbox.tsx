@@ -138,7 +138,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({
       {/* Main image */}
       <div className="relative flex items-center justify-center max-w-[90vw] max-h-[85vh]">
         {isLoading && (
-          <div className="absolute inset-0 flex items-center justify-center z-10">
+          <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
             <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin" />
           </div>
         )}
@@ -146,10 +146,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({
         <img
           src={images[currentIndex]}
           alt={`${alt} - Image ${currentIndex + 1}`}
-          className={cn(
-            "max-w-[90vw] max-h-[85vh] object-contain rounded-lg transition-opacity duration-300",
-            isLoading ? "opacity-0" : "opacity-100"
-          )}
+          className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg"
           onLoad={handleImageLoad}
           onError={(e) => {
             (e.target as HTMLImageElement).src = '/placeholder.svg';
