@@ -24,6 +24,7 @@ import {
 const Header = () => {
   const [logoLoaded, setLogoLoaded] = useState(false);
   const [logoError, setLogoError] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const navigate = useNavigate();
   const { user, signOut } = useUserAuth();
   const isAuthenticated = !!user;
