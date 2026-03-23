@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import { Menu, X, User, LogOut, Download, Phone, MessageCircle, MapPin, Mountain, Plane, HelpCircle, Camera, Sparkles, PawPrint } from "lucide-react";
+import React, { useState, lazy, Suspense } from "react";
+import { Menu, X, User, LogOut, Download, Phone, MessageCircle, MapPin, Mountain, Plane, HelpCircle, Camera, Sparkles, PawPrint, Search } from "lucide-react";
+
+const IntelligentSearchOverlay = lazy(() => import("@/components/IntelligentSearchOverlay"));
 import { Link, useNavigate } from "react-router-dom";
 import xtsyLogo from "@/assets/xtsy-color-logo.png";
 import { useMediaQuery } from "@/hooks/use-mobile";
@@ -22,6 +24,7 @@ import {
 const Header = () => {
   const [logoLoaded, setLogoLoaded] = useState(false);
   const [logoError, setLogoError] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const navigate = useNavigate();
   const { user, signOut } = useUserAuth();
   const isAuthenticated = !!user;
@@ -90,6 +93,15 @@ const Header = () => {
 
           {/* Right side */}
           <div className="flex items-center gap-2 sm:gap-3 mr-4 sm:mr-6">
+            {/* Search Button */}
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="flex items-center justify-center w-10 h-10 rounded-md text-white hover:bg-white/10 hover:text-primary transition-colors touch-target"
+              aria-label="Search"
+            >
+              <Search size={20} />
+            </button>
+
             {/* Sign In / Profile */}
             {isAuthenticated ? (
               <DropdownMenu>
@@ -244,6 +256,11 @@ const Header = () => {
           </div>
         </div>
       </div>
+      {searchOpen && (
+        <Suspense fallback={null}>
+          <IntelligentSearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
+        </Suspense>
+      )}
     </header>
   );
 };
