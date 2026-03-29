@@ -119,6 +119,7 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
   const [overallItinerary, setOverallItinerary] = useState<OverallItinerary[]>([]);
   const [isLoadingItinerary, setIsLoadingItinerary] = useState(false);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { formatPrice } = useApp();
