@@ -49,6 +49,7 @@ const LazyXTSYRentals = createLazyComponent(() => import("./pages/XTSYRentals"))
 const LazyAbout = createLazyComponent(() => import("./pages/About"));
 const LazyOffers = createLazyComponent(() => import("./pages/Offers"));
 const LazyBlog = createLazyComponent(() => import("./pages/Blog"));
+const LazyDestinations = createLazyComponent(() => import("./pages/Destinations"));
 const LazyGallery = createLazyComponent(() => import("./pages/Gallery"));
 const LazyTravel = createLazyComponent(() => import("./pages/Travel"));
 const LazyPrivacyPolicy = createLazyComponent(() => import("./pages/PrivacyPolicy"));
@@ -246,6 +247,7 @@ function App() {
                 <Route path="/" element={<Index />} />
                 <Route path="/about" element={<LazyRoute><LazyAbout /></LazyRoute>} />
                 <Route path="/blog" element={<LazyRoute><LazyBlog /></LazyRoute>} />
+                <Route path="/destinations" element={<LazyRoute><LazyDestinations /></LazyRoute>} />
                 <Route path="/gallery" element={<LazyRoute><LazyGallery /></LazyRoute>} />
                 <Route path="/travel" element={<LazyRoute><LazyTravel /></LazyRoute>} />
                 <Route path="/xtsy-270" element={<LazyRoute><LazyXTSY270 /></LazyRoute>} />
