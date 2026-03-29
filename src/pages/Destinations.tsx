@@ -248,7 +248,7 @@ const Destinations = () => {
           {/* NAP Section for Local SEO */}
           <section className="mt-12 text-center text-sm text-muted-foreground">
             <p className="font-semibold text-foreground">XTSY Travellers Hostel</p>
-            <p>Laitumkhrah, Shillong, Meghalaya 793003, India</p>
+            <p>Mawdiangdiang Road, New Shillong Township - 793018, Meghalaya, India</p>
             <p>
               Phone: <a href="tel:+918837317070" className="text-primary">+91 8837317070</a> |
               Email: <a href="mailto:admin@xtsy.one" className="text-primary">admin@xtsy.one</a>
