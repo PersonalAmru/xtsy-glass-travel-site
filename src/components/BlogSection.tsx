@@ -342,8 +342,9 @@ const BlogSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
             Discover Meghalaya
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            14 places that make Meghalaya unlike anywhere else on Earth
+           <p className="text-muted-foreground max-w-2xl mx-auto">
+            {blogPosts.length} places and guides that make Meghalaya unlike anywhere else on Earth
+          </p>
           </p>
         </div>
 
