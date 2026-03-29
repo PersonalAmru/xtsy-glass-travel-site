@@ -137,7 +137,7 @@ const Destinations = () => {
         keywords={seo.keywords}
         canonicalUrl="https://xtsy.one/destinations"
       />
-      <SEOContent page="destinations" />
+      {/* SEOContent doesn't support destinations yet */}
       <Header />
 
       <main className="pt-4 pb-16">
