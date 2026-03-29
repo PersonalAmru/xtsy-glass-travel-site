@@ -81,28 +81,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Popular Searches */}
-        <div className="border-t border-border/50 pt-4 mb-4">
-          <p className="text-[10px] sm:text-xs text-muted-foreground mb-2 font-medium">Popular Searches</p>
-          <div className="flex flex-wrap gap-1.5">
-            {[
-              { label: "Best Hostel Shillong", to: "/search?q=best+hostel+shillong" },
-              { label: "Meghalaya Tour Packages", to: "/travel" },
-              { label: "Glass Suite Stargazing", to: "/xtsy-270" },
-              { label: "Living Root Bridges", to: "/destinations#living-root-bridges" },
-              { label: "Dawki River", to: "/destinations#dawki-umngot-river" },
-              { label: "Budget Stay Meghalaya", to: "/booking" },
-            ].map(({ label, to }) => (
-              <Link
-                key={label}
-                to={to}
-                className="text-[10px] sm:text-xs px-2 py-0.5 rounded-full border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/30 transition-colors"
-              >
-                {label}
-              </Link>
-            ))}
-          </div>
-        </div>
+
 
         <p className="text-muted-foreground text-[10px] sm:text-xs text-center">
           © 2025 XTSY Travel. All rights reserved. Experience the XTSY Vibe.
