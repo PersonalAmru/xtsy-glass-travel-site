@@ -33,7 +33,6 @@ Disallow: /index.html
 
 # Non-existent pages to ignore
 Disallow: /cafe
-Disallow: /blog
 
 # Sitemap location
 Sitemap: https://xtsy.one/sitemap.xml

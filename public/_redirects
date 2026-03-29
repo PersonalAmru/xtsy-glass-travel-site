@@ -10,4 +10,3 @@ http://xtsy.one/* https://xtsy.one/:splat 301!
 
 # Block non-existent pages with proper 404
 /cafe / 301
-/blog / 301
