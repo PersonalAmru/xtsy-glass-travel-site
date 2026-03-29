@@ -3190,6 +3190,93 @@ export type Database = {
           },
         ]
       }
+      tour_enquiries: {
+        Row: {
+          approved_at: string | null
+          approved_by: string | null
+          city: string | null
+          created_at: string
+          email: string
+          enquiry_id: string
+          group_type: string
+          guest_name: string
+          id: string
+          package_category: string
+          package_difficulty: string
+          package_duration: string
+          package_location: string
+          package_title: string
+          per_person_price: number
+          preferred_date: string
+          rejected_at: string | null
+          rejected_by: string | null
+          rejection_reason: string | null
+          special_requests: string | null
+          status: string
+          total_amount: number
+          travellers: number
+          updated_at: string
+          user_id: string | null
+          whatsapp_number: string
+        }
+        Insert: {
+          approved_at?: string | null
+          approved_by?: string | null
+          city?: string | null
+          created_at?: string
+          email: string
+          enquiry_id: string
+          group_type?: string
+          guest_name: string
+          id?: string
+          package_category: string
+          package_difficulty: string
+          package_duration: string
+          package_location: string
+          package_title: string
+          per_person_price: number
+          preferred_date: string
+          rejected_at?: string | null
+          rejected_by?: string | null
+          rejection_reason?: string | null
+          special_requests?: string | null
+          status?: string
+          total_amount: number
+          travellers?: number
+          updated_at?: string
+          user_id?: string | null
+          whatsapp_number: string
+        }
+        Update: {
+          approved_at?: string | null
+          approved_by?: string | null
+          city?: string | null
+          created_at?: string
+          email?: string
+          enquiry_id?: string
+          group_type?: string
+          guest_name?: string
+          id?: string
+          package_category?: string
+          package_difficulty?: string
+          package_duration?: string
+          package_location?: string
+          package_title?: string
+          per_person_price?: number
+          preferred_date?: string
+          rejected_at?: string | null
+          rejected_by?: string | null
+          rejection_reason?: string | null
+          special_requests?: string | null
+          status?: string
+          total_amount?: number
+          travellers?: number
+          updated_at?: string
+          user_id?: string | null
+          whatsapp_number?: string
+        }
+        Relationships: []
+      }
       traffic_defense_logs: {
         Row: {
           check_details: Json | null
