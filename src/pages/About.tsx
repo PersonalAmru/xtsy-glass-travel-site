@@ -46,7 +46,7 @@ const About = () => {
                   <div>
                     <p className="font-semibold text-foreground">XTSY Travellers Hostel</p>
                     <p className="text-muted-foreground text-sm">
-                      Laitumkhrah, Shillong, Meghalaya 793003, India
+                      Mawdiangdiang Road, New Shillong Township - 793018, Meghalaya, India
                     </p>
                   </div>
                 </div>

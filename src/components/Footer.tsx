@@ -47,7 +47,7 @@ const Footer = () => {
             <ul className="space-y-2 text-xs sm:text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
                 <MapPin className="w-3.5 h-3.5 mt-0.5 text-primary flex-shrink-0" />
-                <span>Laitumkhrah, Shillong, Meghalaya 793003, India</span>
+                <span>XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township - 793018</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 text-primary flex-shrink-0" />
