@@ -289,6 +289,7 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
   const gradientClass = categoryColors[tourPackage.category] || "from-amber-500 to-orange-500";
 
   return (
+    <>
     <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent
         data-testid="tour-package-modal"
