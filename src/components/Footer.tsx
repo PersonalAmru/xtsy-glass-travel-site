@@ -84,7 +84,7 @@ const Footer = () => {
 
 
         <p className="text-muted-foreground text-[10px] sm:text-xs text-center">
-          © 2025 XTSY Travel. All rights reserved. Experience the XTSY Vibe.
+          © 2025 XTSY One. All rights reserved. Experience the XTSY Vibe.
         </p>
       </div>
 
