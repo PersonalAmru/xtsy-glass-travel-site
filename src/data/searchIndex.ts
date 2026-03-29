@@ -34,8 +34,11 @@ export const SYNONYM_MAP: Record<string, string[]> = {
   'female': ['women', 'girls', 'ladies', 'women only', 'female only'],
   'pet': ['dog', 'cat', 'animal', 'furry friend', 'pet friendly'],
   'work': ['remote work', 'coworking', 'digital nomad', 'workation', 'work from home', 'wfh'],
-  'meghalaya': ['abode of clouds', 'scotland of east', 'shillong', 'cherrapunji', 'dawki', 'living root bridge'],
+  'meghalaya': ['abode of clouds', 'scotland of east', 'shillong', 'cherrapunji', 'dawki', 'living root bridge', 'sohra'],
   'northeast': ['north east india', 'seven sisters', 'NE india', 'assam', 'nagaland', 'manipur', 'mizoram', 'tripura', 'arunachal', 'sikkim'],
+  'best time to visit': ['when to go', 'season', 'best month', 'weather'],
+  'how to reach': ['directions', 'transport', 'travel to', 'getting there', 'airport', 'train'],
+  'couple': ['honeymoon', 'romantic', 'anniversary', 'proposal', 'valentine'],
 };
 
 // Expand a query with synonyms
