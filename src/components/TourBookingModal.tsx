@@ -258,7 +258,7 @@ const TourBookingModal: React.FC<TourBookingModalProps> = ({ isOpen, onClose, to
                       selected={preferredDate}
                       onSelect={setPreferredDate}
                       disabled={(date) => date < new Date()}
-                      initialFocus
+                      autoFocus
                       className={cn("p-3 pointer-events-auto")}
                     />
                   </PopoverContent>
