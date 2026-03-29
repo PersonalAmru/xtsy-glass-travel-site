@@ -566,6 +566,13 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
         </div>
       </DialogContent>
     </Dialog>
+
+    <TourBookingModal
+      isOpen={isBookingOpen}
+      onClose={() => setIsBookingOpen(false)}
+      tourPackage={tourPackage}
+    />
+    </>
   );
 };
 
