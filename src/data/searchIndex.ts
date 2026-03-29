@@ -327,7 +327,24 @@ function buildSearchIndex(): SearchEntry[] {
     { title: 'Travel & Tours', description: '30+ curated tour packages across India', category: 'pages', icon: '✈️', url: '/travel', keywords: ['travel', 'tours', 'packages', 'trip', 'itinerary', 'adventure'] },
     { title: 'Blog — Discover Meghalaya', description: 'Travel guides and destination stories', category: 'pages', icon: '📝', url: '/blog', keywords: ['blog', 'meghalaya guide', 'travel blog', 'things to do shillong'] },
     { title: 'Offers & Deals', description: 'Latest offers on stays and tours', category: 'pages', icon: '🎁', url: '/offers', keywords: ['offers', 'deals', 'discount', 'coupon', 'promo'] },
+    { title: 'Destinations — Meghalaya Guide', description: 'Top 10 places to visit in Meghalaya', category: 'pages', icon: '🗺️', url: '/destinations', keywords: ['destinations', 'meghalaya tourist places', 'places to visit meghalaya', 'meghalaya tourism', 'top 10 meghalaya'] },
   ];
+
+  // 7. Destination entries for search
+  const destinationEntries: Omit<SearchEntry, 'id'>[] = [
+    { title: 'Living Root Bridges, Nongriat', description: 'UNESCO-nominated bio-engineered bridges by Khasi tribes', category: 'locations', icon: '🌉', url: '/destinations#living-root-bridges', location: 'Nongriat, Meghalaya', keywords: ['living root bridge', 'double decker bridge', 'nongriat trek', 'root bridge meghalaya', 'unesco meghalaya'] },
+    { title: 'Dawki & Umngot River', description: 'Clearest river in Asia — boats float in mid-air', category: 'locations', icon: '🚣', url: '/destinations#dawki-umngot-river', location: 'Dawki, Meghalaya', keywords: ['dawki river', 'umngot river', 'clearest river india', 'crystal clear river', 'dawki boat ride'] },
+    { title: 'Cherrapunji (Sohra)', description: 'Wettest place on Earth — waterfalls & living root bridges', category: 'locations', icon: '🌧️', url: '/destinations#cherrapunji', location: 'Sohra, Meghalaya', keywords: ['cherrapunji', 'sohra', 'wettest place earth', 'seven sisters falls', 'cherrapunji tour'] },
+    { title: 'Mawlynnong Village', description: "Asia's Cleanest Village — sustainable community living", category: 'locations', icon: '🌸', url: '/destinations#mawlynnong', location: 'East Khasi Hills', keywords: ['mawlynnong', 'cleanest village asia', 'clean village meghalaya', 'mawlynnong tour'] },
+    { title: 'Laitlum Canyons', description: 'End of Hills — dramatic canyon viewpoints near Shillong', category: 'locations', icon: '🏔️', url: '/destinations#laitlum-canyons', location: 'Near Shillong', keywords: ['laitlum canyons', 'end of hills', 'canyon trek shillong', 'laitlum viewpoint'] },
+    { title: 'Nohkalikai Falls', description: "India's tallest plunge waterfall at 1,115 feet", category: 'locations', icon: '💧', url: '/destinations#nohkalikai-falls', location: 'Cherrapunji', keywords: ['nohkalikai falls', 'tallest waterfall india', 'cherrapunji waterfall', 'plunge waterfall'] },
+    { title: 'Mawphlang Sacred Forest', description: '800-year-old protected sacred grove of the Khasi people', category: 'locations', icon: '🌲', url: '/destinations#mawphlang-sacred-forest', location: 'East Khasi Hills', keywords: ['mawphlang', 'sacred forest', 'sacred grove meghalaya', 'ancient forest'] },
+    { title: 'Umiam Lake (Barapani)', description: 'Scenic reservoir with kayaking and sunset views', category: 'locations', icon: '🏞️', url: '/destinations#umiam-lake', location: 'Ri-Bhoi, Meghalaya', keywords: ['umiam lake', 'barapani', 'shillong lake', 'kayaking meghalaya'] },
+  ];
+
+  destinationEntries.forEach((d, i) => {
+    entries.push({ ...d, id: `dest-${i}` } as SearchEntry);
+  });
 
   pageEntries.forEach((p, i) => {
     entries.push({ ...p, id: `page-${i}` } as SearchEntry);
