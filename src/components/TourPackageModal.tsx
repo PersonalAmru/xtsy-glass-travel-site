@@ -552,14 +552,14 @@ const TourPackageModal: React.FC<TourPackageModalProps> = ({ isOpen, onClose, to
             {/* CTA */}
             <div className="sticky bottom-0 bg-background/95 backdrop-blur-md pt-4 pb-2 -mx-5 sm:-mx-6 px-5 sm:px-6 border-t border-border">
               <Button
-                onClick={handlePayAndConfirm}
+                onClick={() => setIsBookingOpen(true)}
                 size="lg"
                 className={`w-full bg-gradient-to-r ${gradientClass} hover:opacity-90 text-white font-bold py-6 rounded-xl text-base shadow-lg transition-all`}
               >
-                Check Availability on WhatsApp
+                Book This Tour
               </Button>
               <p className="text-[10px] text-muted-foreground text-center mt-2">
-                Chat directly with our travel curator • No spam, ever
+                Submit an enquiry • Our travel curator will confirm within 2 hours
               </p>
             </div>
           </div>
