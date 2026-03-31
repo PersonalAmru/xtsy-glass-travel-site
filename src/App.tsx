@@ -299,6 +299,7 @@ function App() {
                 <Route path="/admin/whatsapp" element={<LazyRoute><AdminWhatsAppTemplates /></LazyRoute>} />
                 <Route path="/admin/traffic" element={<LazyRoute><LiveTrafficCommandCenter /></LazyRoute>} />
                 <Route path="/admin/datalayer" element={<LazyRoute><AdminDataLayerDebug /></LazyRoute>} />
+                <Route path="/admin/tours" element={<LazyRoute><AdminTours /></LazyRoute>} />
                 {/* Franchise Routes */}
                 <Route path="/franchise/login" element={<LazyRoute><FranchiseLogin /></LazyRoute>} />
                 <Route path="/franchise" element={<LazyRoute><FranchiseDashboard /></LazyRoute>} />
