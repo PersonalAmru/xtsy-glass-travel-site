@@ -678,3 +678,8 @@ img.lazy-below-fold {
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
 }
+
+/* Tours marketplace nature theme */
+.tours-section-bg {
+  background: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(150 20% 5%) 50%, hsl(var(--background)) 100%);
+}

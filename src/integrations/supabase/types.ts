@@ -3277,6 +3277,108 @@ export type Database = {
         }
         Relationships: []
       }
+      tours: {
+        Row: {
+          best_season: string | null
+          category: string
+          created_at: string | null
+          currency: string | null
+          description: string
+          difficulty: string
+          duration: string
+          exclusions: string[] | null
+          exclusive: boolean | null
+          faqs: Json | null
+          group_size: string | null
+          highlights: string[] | null
+          id: string
+          images: string[] | null
+          inclusions: string[] | null
+          international: boolean | null
+          is_published: boolean | null
+          itinerary: Json | null
+          location: string
+          locations_covered: string[] | null
+          original_price: number | null
+          price: number
+          rating: number | null
+          region: string | null
+          review_count: number | null
+          short_description: string | null
+          slug: string
+          sort_order: number | null
+          title: string
+          updated_at: string | null
+          visa_info: string | null
+        }
+        Insert: {
+          best_season?: string | null
+          category?: string
+          created_at?: string | null
+          currency?: string | null
+          description: string
+          difficulty?: string
+          duration: string
+          exclusions?: string[] | null
+          exclusive?: boolean | null
+          faqs?: Json | null
+          group_size?: string | null
+          highlights?: string[] | null
+          id?: string
+          images?: string[] | null
+          inclusions?: string[] | null
+          international?: boolean | null
+          is_published?: boolean | null
+          itinerary?: Json | null
+          location: string
+          locations_covered?: string[] | null
+          original_price?: number | null
+          price: number
+          rating?: number | null
+          region?: string | null
+          review_count?: number | null
+          short_description?: string | null
+          slug: string
+          sort_order?: number | null
+          title: string
+          updated_at?: string | null
+          visa_info?: string | null
+        }
+        Update: {
+          best_season?: string | null
+          category?: string
+          created_at?: string | null
+          currency?: string | null
+          description?: string
+          difficulty?: string
+          duration?: string
+          exclusions?: string[] | null
+          exclusive?: boolean | null
+          faqs?: Json | null
+          group_size?: string | null
+          highlights?: string[] | null
+          id?: string
+          images?: string[] | null
+          inclusions?: string[] | null
+          international?: boolean | null
+          is_published?: boolean | null
+          itinerary?: Json | null
+          location?: string
+          locations_covered?: string[] | null
+          original_price?: number | null
+          price?: number
+          rating?: number | null
+          region?: string | null
+          review_count?: number | null
+          short_description?: string | null
+          slug?: string
+          sort_order?: number | null
+          title?: string
+          updated_at?: string | null
+          visa_info?: string | null
+        }
+        Relationships: []
+      }
       traffic_defense_logs: {
         Row: {
           check_details: Json | null

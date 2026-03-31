@@ -52,6 +52,9 @@ const LazyBlog = createLazyComponent(() => import("./pages/Blog"));
 const LazyDestinations = createLazyComponent(() => import("./pages/Destinations"));
 const LazyGallery = createLazyComponent(() => import("./pages/Gallery"));
 const LazyTravel = createLazyComponent(() => import("./pages/Travel"));
+const LazyTours = createLazyComponent(() => import("./pages/Tours"));
+const LazyTourDetail = createLazyComponent(() => import("./pages/TourDetail"));
+const AdminTours = createLazyComponent(() => import("./pages/admin/AdminTours"));
 const LazyPrivacyPolicy = createLazyComponent(() => import("./pages/PrivacyPolicy"));
 const LazyTermsOfService = createLazyComponent(() => import("./pages/TermsOfService"));
 const LazyPricingCancellationPolicy = createLazyComponent(() => import("./pages/PricingCancellationPolicy"));
@@ -249,7 +252,9 @@ function App() {
                 <Route path="/blog" element={<LazyRoute><LazyBlog /></LazyRoute>} />
                 <Route path="/destinations" element={<LazyRoute><LazyDestinations /></LazyRoute>} />
                 <Route path="/gallery" element={<LazyRoute><LazyGallery /></LazyRoute>} />
-                <Route path="/travel" element={<LazyRoute><LazyTravel /></LazyRoute>} />
+                <Route path="/travel" element={<LazyRoute><LazyTours /></LazyRoute>} />
+                <Route path="/tours" element={<LazyRoute><LazyTours /></LazyRoute>} />
+                <Route path="/tours/:slug" element={<LazyRoute><LazyTourDetail /></LazyRoute>} />
                 <Route path="/xtsy-270" element={<LazyRoute><LazyXTSY270 /></LazyRoute>} />
                 <Route path="/pet-friendly" element={<LazyRoute><LazyPetFriendly /></LazyRoute>} />
                 <Route path="/xtsy-vs-zostel" element={<LazyRoute><LazyXTSYvsZostel /></LazyRoute>} />
@@ -294,6 +299,7 @@ function App() {
                 <Route path="/admin/whatsapp" element={<LazyRoute><AdminWhatsAppTemplates /></LazyRoute>} />
                 <Route path="/admin/traffic" element={<LazyRoute><LiveTrafficCommandCenter /></LazyRoute>} />
                 <Route path="/admin/datalayer" element={<LazyRoute><AdminDataLayerDebug /></LazyRoute>} />
+                <Route path="/admin/tours" element={<LazyRoute><AdminTours /></LazyRoute>} />
                 {/* Franchise Routes */}
                 <Route path="/franchise/login" element={<LazyRoute><FranchiseLogin /></LazyRoute>} />
                 <Route path="/franchise" element={<LazyRoute><FranchiseDashboard /></LazyRoute>} />
