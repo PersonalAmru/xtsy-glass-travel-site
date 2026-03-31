@@ -95,12 +95,12 @@ export const ModernBookingForm: React.FC<ModernBookingFormProps> = ({
     )}>
       {/* Header */}
       <div className="text-center mb-6">
-        <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-1">
-          Find Your Perfect Stay
+        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
+          <span className="bg-gradient-to-r from-primary via-orange-400 to-rose-400 bg-clip-text text-transparent">
+            Best Hostel
+          </span>
+          <span className="text-foreground"> in Shillong</span>
         </h2>
-        <p className="text-sm text-muted-foreground">
-          Premium homestays in Northeast India
-        </p>
       </div>
 
       {/* Form Fields */}
