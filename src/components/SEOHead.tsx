@@ -111,6 +111,11 @@ const SEO_CONFIG: Record<string, { title: string; description: string; keywords?
     description: "Complete Meghalaya travel guide: Living Root Bridges, Dawki, Cherrapunji, Mawlynnong & more. Plan your trip with XTSY.",
     keywords: "places to visit Meghalaya, Meghalaya tourist places, Meghalaya tourism, best time visit Meghalaya",
   },
+  tours: {
+    title: "North East India Tour Packages 2026 | XTSY Travel",
+    description: "30+ curated tours across Meghalaya, Nagaland, Assam, Arunachal Pradesh & Sikkim. Living root bridges, safaris, tribal festivals. From ₹7,999.",
+    keywords: "Northeast India tours, Meghalaya tour packages, Nagaland tours, Assam safari, Arunachal Pradesh trips, Sikkim tours",
+  },
 };
 
 export const SEOHead = ({
