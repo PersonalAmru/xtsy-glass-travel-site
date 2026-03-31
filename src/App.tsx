@@ -252,7 +252,9 @@ function App() {
                 <Route path="/blog" element={<LazyRoute><LazyBlog /></LazyRoute>} />
                 <Route path="/destinations" element={<LazyRoute><LazyDestinations /></LazyRoute>} />
                 <Route path="/gallery" element={<LazyRoute><LazyGallery /></LazyRoute>} />
-                <Route path="/travel" element={<LazyRoute><LazyTravel /></LazyRoute>} />
+                <Route path="/travel" element={<LazyRoute><LazyTours /></LazyRoute>} />
+                <Route path="/tours" element={<LazyRoute><LazyTours /></LazyRoute>} />
+                <Route path="/tours/:slug" element={<LazyRoute><LazyTourDetail /></LazyRoute>} />
                 <Route path="/xtsy-270" element={<LazyRoute><LazyXTSY270 /></LazyRoute>} />
                 <Route path="/pet-friendly" element={<LazyRoute><LazyPetFriendly /></LazyRoute>} />
                 <Route path="/xtsy-vs-zostel" element={<LazyRoute><LazyXTSYvsZostel /></LazyRoute>} />
