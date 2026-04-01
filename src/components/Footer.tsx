@@ -23,8 +23,6 @@ const Footer = () => {
               <li><Link to="/about" className={linkClass}>About XTSY</Link></li>
               <li><Link to="/gallery" className={linkClass}>Gallery</Link></li>
               <li><Link to="/travel" className={linkClass}>Tour Packages</Link></li>
-              <li><Link to="/blog" className={linkClass}>Blog</Link></li>
-              <li><Link to="/destinations" className={linkClass}>Destinations</Link></li>
             </ul>
           </div>
 
