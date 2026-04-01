@@ -56,12 +56,7 @@ const LazyPrivacyPolicy = createLazyComponent(() => import("./pages/PrivacyPolic
 const LazyTermsOfService = createLazyComponent(() => import("./pages/TermsOfService"));
 const LazyPricingCancellationPolicy = createLazyComponent(() => import("./pages/PricingCancellationPolicy"));
 const AdminLogin = createLazyComponent(() => import("./pages/AdminLogin"));
-const BookingFlow = createLazyComponent(() => import("./pages/BookingFlow"));
 const SimplifiedBookingFlow = createLazyComponent(() => import("./pages/SimplifiedBookingFlow"));
-const PropertySelection = createLazyComponent(() => import("./pages/PropertySelection"));
-const PropertyBookingFlow = createLazyComponent(() => import("./pages/PropertyBookingFlow"));
-const PropertyDetail = createLazyComponent(() => import("./pages/PropertyDetail"));
-const SearchResults = createLazyComponent(() => import("./pages/SearchResults"));
 
 // User auth pages
 const UserAuth = createLazyComponent(() => import("./pages/user/UserAuth"));
