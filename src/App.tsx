@@ -258,12 +258,7 @@ function App() {
                 <Route path="/terms" element={<LazyRoute><LazyTermsOfService /></LazyRoute>} />
                 <Route path="/pricing-cancellation-policy" element={<LazyRoute><LazyPricingCancellationPolicy /></LazyRoute>} />
                 <Route path="/admin-login" element={<LazyRoute><AdminLogin /></LazyRoute>} />
-                <Route path="/booking" element={<LazyRoute><BookingFlow /></LazyRoute>} />
                 <Route path="/book" element={<LazyRoute><SimplifiedBookingFlow /></LazyRoute>} />
-                <Route path="/search" element={<LazyRoute><SearchResults /></LazyRoute>} />
-                <Route path="/properties" element={<LazyRoute><PropertySelection /></LazyRoute>} />
-                <Route path="/properties/:propertyId" element={<LazyRoute><PropertyDetail /></LazyRoute>} />
-                <Route path="/:locationSlug/:propertySlug/book" element={<LazyRoute><PropertyBookingFlow /></LazyRoute>} />
                 
                 {/* User Auth Routes */}
                 <Route path="/auth" element={<LazyRoute><UserAuth /></LazyRoute>} />

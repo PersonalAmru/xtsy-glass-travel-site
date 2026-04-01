@@ -56,7 +56,6 @@ const Header = () => {
   ];
 
   const moreLinks = [
-    { to: "/blog", label: "Discover Meghalaya", icon: MapPin },
     { to: "/xtsy-vs-zostel", label: "XTSY vs Zostel", icon: Mountain },
   ];
 
