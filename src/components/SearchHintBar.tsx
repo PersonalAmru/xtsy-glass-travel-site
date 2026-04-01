@@ -22,18 +22,18 @@ interface SearchResult {
 
 const SEARCH_INDEX: SearchResult[] = [
   // Rooms & Booking
-  { title: '8-Bed Mixed Dorm', description: 'Bestseller · From ₹269/night', icon: '🛏️', path: '/search?location=shillong', keywords: ['dorm', 'dormitory', 'bed', 'mixed', 'cheap', 'budget', '269', 'hostel', 'backpacker', 'bestseller', '8 bed'], tags: ['budget', 'explore'] },
-  { title: '6-Bed Mixed Dorm', description: 'Recommended · From ₹419/night', icon: '🛏️', path: '/search?location=shillong', keywords: ['dorm', '6 bed', 'mixed', 'recommended', '419'], tags: ['budget', 'explore'] },
-  { title: '6-Bed Female Dorm', description: 'Women only · From ₹369/night', icon: '👩', path: '/search?location=shillong', keywords: ['female', 'women', 'girls', 'dorm', '6 bed', '369', 'ladies'], tags: ['female', 'budget'] },
-  { title: '4-Bed Mixed Dorm', description: 'Solo traveller pick · From ₹529/night', icon: '🎒', path: '/search?location=shillong', keywords: ['dorm', '4 bed', 'solo', '529', 'mixed'], tags: ['budget', 'explore'] },
-  { title: '4-Bed Female Dorm', description: 'Women only · From ₹419/night', icon: '👩', path: '/search?location=shillong', keywords: ['female', 'women', '4 bed', '419', 'ladies'], tags: ['female', 'budget'] },
-  { title: 'King Double Room', description: 'Couple favourite · From ₹2,099/night', icon: '👫', path: '/search?location=shillong', keywords: ['king', 'double', 'couple', 'private', 'room', '2099', 'luxury'], tags: ['couples', 'luxury'] },
+  { title: '8-Bed Mixed Dorm', description: 'Bestseller · From ₹269/night', icon: '🛏️', path: '/book', keywords: ['dorm', 'dormitory', 'bed', 'mixed', 'cheap', 'budget', '269', 'hostel', 'backpacker', 'bestseller', '8 bed'], tags: ['budget', 'explore'] },
+  { title: '6-Bed Mixed Dorm', description: 'Recommended · From ₹419/night', icon: '🛏️', path: '/book', keywords: ['dorm', '6 bed', 'mixed', 'recommended', '419'], tags: ['budget', 'explore'] },
+  { title: '6-Bed Female Dorm', description: 'Women only · From ₹369/night', icon: '👩', path: '/book', keywords: ['female', 'women', 'girls', 'dorm', '6 bed', '369', 'ladies'], tags: ['female', 'budget'] },
+  { title: '4-Bed Mixed Dorm', description: 'Solo traveller pick · From ₹529/night', icon: '🎒', path: '/book', keywords: ['dorm', '4 bed', 'solo', '529', 'mixed'], tags: ['budget', 'explore'] },
+  { title: '4-Bed Female Dorm', description: 'Women only · From ₹419/night', icon: '👩', path: '/book', keywords: ['female', 'women', '4 bed', '419', 'ladies'], tags: ['female', 'budget'] },
+  { title: 'King Double Room', description: 'Couple favourite · From ₹2,099/night', icon: '👫', path: '/book', keywords: ['king', 'double', 'couple', 'private', 'room', '2099', 'luxury'], tags: ['couples', 'luxury'] },
   { title: 'XTSY 270° Panorama Glass Ensuite', description: 'Ultra luxury · From ₹7,489/night', icon: '✨', path: '/xtsy-270', keywords: ['270', 'panorama', 'glass', 'luxury', 'premium', 'ensuite', '7489', 'view', 'mountain'], tags: ['luxury'] },
   // Properties
-  { title: 'XTSY Travellers Hostel', description: 'Biggest hostel in North East India', icon: '🏠', path: '/properties', keywords: ['hostel', 'travellers', 'backpacker', 'shillong', 'budget', 'stay'], tags: ['explore', 'budget'] },
+  { title: 'XTSY Travellers Hostel', description: 'Biggest hostel in North East India', icon: '🏠', path: '/', keywords: ['hostel', 'travellers', 'backpacker', 'shillong', 'budget', 'stay'], tags: ['explore', 'budget'] },
   { title: 'XTSY Experience', description: 'Premium glass ensuite in Shillong', icon: '💎', path: '/xtsy-270', keywords: ['luxury', 'premium', 'glass', 'panorama', 'high-end', 'experience'], tags: ['luxury'] },
   // Destinations
-  { title: 'Meghalaya', description: 'Abode of clouds · Shillong, Cherrapunji & more', icon: '🏔️', path: '/search?location=shillong', keywords: ['meghalaya', 'shillong', 'cherrapunji', 'clouds', 'northeast', 'north east'], tags: ['explore', 'adventure'] },
+  { title: 'Meghalaya', description: 'Abode of clouds · Shillong, Cherrapunji & more', icon: '🏔️', path: '/tours', keywords: ['meghalaya', 'shillong', 'cherrapunji', 'clouds', 'northeast', 'north east'], tags: ['explore', 'adventure'] },
   { title: 'North East India', description: 'Explore 8 sister states', icon: '🌿', path: '/travel', keywords: ['north east', 'northeast', 'india', 'assam', 'nagaland', 'manipur', 'mizoram', 'tripura', 'arunachal', 'sikkim'], tags: ['explore', 'adventure'] },
   // Pages
   { title: 'Gallery', description: 'Photos & videos of XTSY', icon: '📸', path: '/gallery', keywords: ['gallery', 'photos', 'images', 'pictures', 'videos'], tags: ['explore'] },

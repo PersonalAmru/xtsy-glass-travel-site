@@ -47,9 +47,6 @@ const LazyXTSYRentals = createLazyComponent(() => import("./pages/XTSYRentals"))
 
 // Other lazy pages
 const LazyAbout = createLazyComponent(() => import("./pages/About"));
-const LazyOffers = createLazyComponent(() => import("./pages/Offers"));
-const LazyBlog = createLazyComponent(() => import("./pages/Blog"));
-const LazyDestinations = createLazyComponent(() => import("./pages/Destinations"));
 const LazyGallery = createLazyComponent(() => import("./pages/Gallery"));
 const LazyTravel = createLazyComponent(() => import("./pages/Travel"));
 const LazyTours = createLazyComponent(() => import("./pages/Tours"));
@@ -59,12 +56,7 @@ const LazyPrivacyPolicy = createLazyComponent(() => import("./pages/PrivacyPolic
 const LazyTermsOfService = createLazyComponent(() => import("./pages/TermsOfService"));
 const LazyPricingCancellationPolicy = createLazyComponent(() => import("./pages/PricingCancellationPolicy"));
 const AdminLogin = createLazyComponent(() => import("./pages/AdminLogin"));
-const BookingFlow = createLazyComponent(() => import("./pages/BookingFlow"));
 const SimplifiedBookingFlow = createLazyComponent(() => import("./pages/SimplifiedBookingFlow"));
-const PropertySelection = createLazyComponent(() => import("./pages/PropertySelection"));
-const PropertyBookingFlow = createLazyComponent(() => import("./pages/PropertyBookingFlow"));
-const PropertyDetail = createLazyComponent(() => import("./pages/PropertyDetail"));
-const SearchResults = createLazyComponent(() => import("./pages/SearchResults"));
 
 // User auth pages
 const UserAuth = createLazyComponent(() => import("./pages/user/UserAuth"));
@@ -249,8 +241,6 @@ function App() {
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/about" element={<LazyRoute><LazyAbout /></LazyRoute>} />
-                <Route path="/blog" element={<LazyRoute><LazyBlog /></LazyRoute>} />
-                <Route path="/destinations" element={<LazyRoute><LazyDestinations /></LazyRoute>} />
                 <Route path="/gallery" element={<LazyRoute><LazyGallery /></LazyRoute>} />
                 <Route path="/travel" element={<LazyRoute><LazyTours /></LazyRoute>} />
                 <Route path="/tours" element={<LazyRoute><LazyTours /></LazyRoute>} />
@@ -261,19 +251,14 @@ function App() {
                 <Route path="/female-travellers" element={<LazyRoute><LazyFemaleTravellers /></LazyRoute>} />
                 <Route path="/work-from-home" element={<LazyRoute><LazyWorkFromHome /></LazyRoute>} />
                 <Route path="/xtsy-rentals" element={<LazyRoute><LazyXTSYRentals /></LazyRoute>} />
-                <Route path="/offers" element={<LazyRoute><LazyOffers /></LazyRoute>} />
+                
                 <Route path="/privacy-policy" element={<LazyRoute><LazyPrivacyPolicy /></LazyRoute>} />
                 <Route path="/privacy" element={<LazyRoute><LazyPrivacyPolicy /></LazyRoute>} />
                 <Route path="/terms-of-service" element={<LazyRoute><LazyTermsOfService /></LazyRoute>} />
                 <Route path="/terms" element={<LazyRoute><LazyTermsOfService /></LazyRoute>} />
                 <Route path="/pricing-cancellation-policy" element={<LazyRoute><LazyPricingCancellationPolicy /></LazyRoute>} />
                 <Route path="/admin-login" element={<LazyRoute><AdminLogin /></LazyRoute>} />
-                <Route path="/booking" element={<LazyRoute><BookingFlow /></LazyRoute>} />
                 <Route path="/book" element={<LazyRoute><SimplifiedBookingFlow /></LazyRoute>} />
-                <Route path="/search" element={<LazyRoute><SearchResults /></LazyRoute>} />
-                <Route path="/properties" element={<LazyRoute><PropertySelection /></LazyRoute>} />
-                <Route path="/properties/:propertyId" element={<LazyRoute><PropertyDetail /></LazyRoute>} />
-                <Route path="/:locationSlug/:propertySlug/book" element={<LazyRoute><PropertyBookingFlow /></LazyRoute>} />
                 
                 {/* User Auth Routes */}
                 <Route path="/auth" element={<LazyRoute><UserAuth /></LazyRoute>} />

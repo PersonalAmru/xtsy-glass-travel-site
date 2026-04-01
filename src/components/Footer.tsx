@@ -23,8 +23,6 @@ const Footer = () => {
               <li><Link to="/about" className={linkClass}>About XTSY</Link></li>
               <li><Link to="/gallery" className={linkClass}>Gallery</Link></li>
               <li><Link to="/travel" className={linkClass}>Tour Packages</Link></li>
-              <li><Link to="/blog" className={linkClass}>Blog</Link></li>
-              <li><Link to="/destinations" className={linkClass}>Destinations</Link></li>
             </ul>
           </div>
 
@@ -32,7 +30,7 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold text-foreground text-sm mb-3">Stays</h3>
             <ul className="space-y-1.5">
-              <li><Link to="/booking" className={linkClass}>Book a Room</Link></li>
+              <li><Link to="/book" className={linkClass}>Book a Room</Link></li>
               <li><Link to="/xtsy-270" className={linkClass}>270° Glass Suite</Link></li>
               <li><Link to="/pet-friendly" className={linkClass}>Pet-Friendly</Link></li>
               <li><Link to="/female-travellers" className={linkClass}>Women Safe Stays</Link></li>
