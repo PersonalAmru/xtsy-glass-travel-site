@@ -47,9 +47,6 @@ const LazyXTSYRentals = createLazyComponent(() => import("./pages/XTSYRentals"))
 
 // Other lazy pages
 const LazyAbout = createLazyComponent(() => import("./pages/About"));
-const LazyOffers = createLazyComponent(() => import("./pages/Offers"));
-const LazyBlog = createLazyComponent(() => import("./pages/Blog"));
-const LazyDestinations = createLazyComponent(() => import("./pages/Destinations"));
 const LazyGallery = createLazyComponent(() => import("./pages/Gallery"));
 const LazyTravel = createLazyComponent(() => import("./pages/Travel"));
 const LazyTours = createLazyComponent(() => import("./pages/Tours"));
