@@ -252,6 +252,7 @@ function App() {
                 <Route path="/female-travellers" element={<LazyRoute><LazyFemaleTravellers /></LazyRoute>} />
                 <Route path="/work-from-home" element={<LazyRoute><LazyWorkFromHome /></LazyRoute>} />
                 <Route path="/xtsy-rentals" element={<LazyRoute><LazyXTSYRentals /></LazyRoute>} />
+                <Route path="/tab-bistro" element={<LazyRoute><LazyTabBistro /></LazyRoute>} />
                 
                 <Route path="/privacy-policy" element={<LazyRoute><LazyPrivacyPolicy /></LazyRoute>} />
                 <Route path="/privacy" element={<LazyRoute><LazyPrivacyPolicy /></LazyRoute>} />
