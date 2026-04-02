@@ -36,6 +36,7 @@ const Footer = () => {
               <li><Link to="/female-travellers" className={linkClass}>Women Safe Stays</Link></li>
               <li><Link to="/work-from-home" className={linkClass}>Workation</Link></li>
               <li><Link to="/xtsy-rentals" className={linkClass}>Bike Rentals</Link></li>
+              <li><Link to="/tab-bistro" className={linkClass}>TAB Bistro</Link></li>
             </ul>
           </div>
 
