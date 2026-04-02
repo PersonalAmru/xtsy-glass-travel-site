@@ -104,11 +104,11 @@ const TabBistro = memo(() => {
       <Header />
 
       {/* Hero */}
-      <section className="relative h-[70vh] min-h-[480px] overflow-hidden">
+      <section className="relative overflow-hidden">
         <img
           src={HERO_IMG}
           alt="TAB Bistro by XTSY — forest dining in Shillong"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="w-full h-auto block"
           loading="eager"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
