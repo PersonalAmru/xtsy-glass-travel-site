@@ -104,22 +104,15 @@ const TabBistro = memo(() => {
       <Header />
 
       {/* Hero */}
-      <section className="relative h-[75vh] min-h-[500px] overflow-hidden">
-        <img
-          src={HERO_IMG}
-          alt="TAB Bistro by XTSY — forest dining in Shillong"
-          className="absolute inset-0 w-full h-full object-cover object-top"
-          loading="eager"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-        <div className="absolute inset-0 z-10 flex flex-col justify-end pb-10 px-4 sm:px-8 max-w-6xl mx-auto">
+      <section className="bg-background py-16 sm:py-24 px-4 sm:px-8">
+        <div className="max-w-6xl mx-auto">
           <span className="inline-flex items-center gap-2 text-amber-400 font-medium text-sm tracking-widest uppercase mb-3">
             <UtensilsCrossed className="w-4 h-4" /> Forest Dining Experience
           </span>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 font-playfair leading-tight">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-4 font-playfair leading-tight">
             TAB Bistro <span className="text-amber-400">by XTSY</span>
           </h1>
-          <p className="text-white/80 text-base sm:text-lg max-w-2xl leading-relaxed">
+          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl leading-relaxed">
             A multi-cuisine forest dining experience offering global flavours, handcrafted beverages, desserts, and curated culinary experiences in the pine forests of Shillong.
           </p>
           <div className="flex flex-wrap gap-3 mt-6">
@@ -133,7 +126,7 @@ const TabBistro = memo(() => {
             <Button
               size="lg"
               variant="outline"
-              className="border-white/30 text-white hover:bg-white/10"
+              className="border-border text-foreground hover:bg-accent"
               onClick={() => {
                 document.getElementById("catering")?.scrollIntoView({ behavior: "smooth" });
               }}
