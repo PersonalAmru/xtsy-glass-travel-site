@@ -161,15 +161,6 @@ const TabBistro = memo(() => {
           </div>
         </section>
 
-        {/* Image Break */}
-        <div className="rounded-2xl overflow-hidden aspect-[21/9]">
-          <img
-            src={SECONDARY_IMG}
-            alt="TAB Bistro food and ambience"
-            className="w-full h-full object-cover"
-            loading="lazy"
-          />
-        </div>
 
         {/* Desserts */}
         <section>
