@@ -199,6 +199,7 @@ const Tours = () => {
           </div>
         </section>
 
+        <SignatureExperiences />
         <ExperienceHighlights />
         <UniqueExperiences />
         <ToursCTA />
