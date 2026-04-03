@@ -9,6 +9,7 @@ import TourListingCard from "@/components/tours/TourListingCard";
 import TourFiltersSidebar, { type MarketplaceFilters, DEFAULT_MARKETPLACE_FILTERS } from "@/components/tours/TourFiltersSidebar";
 import ExperienceHighlights from "@/components/tours/ExperienceHighlights";
 import UniqueExperiences from "@/components/tours/UniqueExperiences";
+import SignatureExperiences from "@/components/tours/SignatureExperiences";
 import ToursCTA from "@/components/tours/ToursCTA";
 import { LazyTourPackageModal } from "@/components/lazy/LazyTourPackageModal";
 import { getAllTours, mergeItinerary } from "@/data/travelData";
@@ -198,6 +199,7 @@ const Tours = () => {
           </div>
         </section>
 
+        <SignatureExperiences />
         <ExperienceHighlights />
         <UniqueExperiences />
         <ToursCTA />
