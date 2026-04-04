@@ -1,5 +1,5 @@
 import React, { useState, lazy, Suspense } from "react";
-import { Menu, X, User, LogOut, Download, Phone, MessageCircle, MapPin, Mountain, Plane, HelpCircle, Camera, Sparkles, PawPrint, Search } from "lucide-react";
+import { Menu, X, User, LogOut, Download, Phone, MessageCircle, MapPin, Mountain, Plane, HelpCircle, Camera, Sparkles, PawPrint, Search, UtensilsCrossed } from "lucide-react";
 
 const IntelligentSearchOverlay = lazy(() => import("@/components/IntelligentSearchOverlay"));
 import { Link, useNavigate } from "react-router-dom";
@@ -181,6 +181,19 @@ const Header = () => {
                       </Link>
                     </SheetClose>
                   ))}
+
+                  {/* TAB Bistro Prominent CTA */}
+                  <div className="px-5 py-3">
+                    <SheetClose asChild>
+                      <Link
+                        to="/tab-bistro"
+                        className="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-lg bg-amber-500/15 border border-amber-500/30 text-amber-400 hover:bg-amber-500/25 hover:text-amber-300 transition-colors text-sm font-bold tracking-wide"
+                      >
+                        <UtensilsCrossed size={18} />
+                        TAB Bistro by XTSY
+                      </Link>
+                    </SheetClose>
+                  </div>
 
                   <div className="mx-5 my-2 border-t border-white/10" />
 
