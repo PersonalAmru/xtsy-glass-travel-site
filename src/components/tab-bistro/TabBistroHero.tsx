@@ -35,6 +35,13 @@ const TabBistroHero = memo(() => (
       <div className="flex flex-wrap justify-center gap-3">
         <Button
           size="lg"
+          className="bg-emerald-500 hover:bg-emerald-600 text-black font-bold text-base px-8 animate-pulse hover:animate-none"
+          onClick={() => window.open(`${WHATSAPP}Hi, I'm an in-house guest at XTSY. I'd like to book a table at TAB Bistro with the 15%25 in-house guest discount.`, "_blank")}
+        >
+          Book Now — Before the Crave is Gone
+        </Button>
+        <Button
+          size="lg"
           className="bg-amber-500 hover:bg-amber-600 text-black font-semibold"
           onClick={() => window.open(`${WHATSAPP}Hi, I'd like to reserve a table at TAB Bistro.`, "_blank")}
         >
