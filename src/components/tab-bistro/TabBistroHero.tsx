@@ -21,9 +21,15 @@ const TabBistroHero = memo(() => (
       </p>
 
       {/* Promo */}
-      <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 rounded-full px-5 py-2 mb-8">
-        <span className="text-amber-400 font-bold text-sm">15% Dine-In Discount</span>
-        <span className="text-muted-foreground text-xs">on orders above ₹999</span>
+      <div className="flex flex-col items-center gap-3 mb-8">
+        <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 rounded-full px-5 py-2">
+          <span className="text-amber-400 font-bold text-sm">15% Dine-In Discount</span>
+          <span className="text-muted-foreground text-xs">on orders above ₹999</span>
+        </div>
+        <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-5 py-2">
+          <span className="text-emerald-400 font-bold text-sm">Flat 15% Off for In-House Guests</span>
+          <span className="text-muted-foreground text-xs">staying at XTSY properties</span>
+        </div>
       </div>
 
       <div className="flex flex-wrap justify-center gap-3">
