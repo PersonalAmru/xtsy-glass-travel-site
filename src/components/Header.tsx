@@ -1,5 +1,5 @@
 import React, { useState, lazy, Suspense } from "react";
-import { Menu, X, User, LogOut, Download, Phone, MessageCircle, MapPin, Mountain, Plane, HelpCircle, Camera, Sparkles, PawPrint, Search } from "lucide-react";
+import { Menu, X, User, LogOut, Download, Phone, MessageCircle, MapPin, Mountain, Plane, HelpCircle, Camera, Sparkles, PawPrint, Search, UtensilsCrossed } from "lucide-react";
 
 const IntelligentSearchOverlay = lazy(() => import("@/components/IntelligentSearchOverlay"));
 import { Link, useNavigate } from "react-router-dom";
