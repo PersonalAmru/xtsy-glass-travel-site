@@ -336,6 +336,13 @@ function App() {
                 <Route path="/budget-trip-to-meghalaya" element={<LazyRoute><BlogBudgetTrip /></LazyRoute>} />
                 <Route path="/meghalaya-photo-gallery" element={<LazyRoute><MeghalayaPhotoGallery /></LazyRoute>} />
                 
+                {/* High-Intent SEO Landing Pages */}
+                <Route path="/best-hostel-in-shillong" element={<LazyRoute><BestHostelShillong /></LazyRoute>} />
+                <Route path="/hotels-homestays-shillong" element={<LazyRoute><HotelsHomestaysShillong /></LazyRoute>} />
+                <Route path="/luxury-glamping-shillong" element={<LazyRoute><LuxuryGlampingShillong /></LazyRoute>} />
+                <Route path="/destination-wedding-shillong" element={<LazyRoute><DestinationWeddingShillong /></LazyRoute>} />
+                <Route path="/restaurant-shillong" element={<LazyRoute><LazyTabBistro /></LazyRoute>} />
+                
                 <Route path="*" element={<NotFound />} />
               </Routes>
               <FloatingWhatsApp />
