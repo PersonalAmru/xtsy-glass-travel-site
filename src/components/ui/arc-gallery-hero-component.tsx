@@ -89,8 +89,8 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
       <div
         className="absolute left-1/2 -translate-x-1/2"
         style={{
-          width: dimensions.radius * 2,
-          height: dimensions.radius * 2,
+          width: effectiveRadius * 2,
+          height: effectiveRadius * 2,
           bottom: dimensions.cardSize < 100 ? '40%' : '35%',
         }}
       >
@@ -106,8 +106,8 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
           {validEntries.map(({ img, originalIndex }, i) => {
             const angle = startAngle + step * i;
             const angleRad = (angle * Math.PI) / 180;
-            const x = Math.cos(angleRad) * dimensions.radius;
-            const y = Math.sin(angleRad) * dimensions.radius;
+            const x = Math.cos(angleRad) * effectiveRadius;
+            const y = Math.sin(angleRad) * effectiveRadius;
 
             return (
               <div
