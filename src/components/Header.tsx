@@ -195,6 +195,19 @@ const Header = () => {
                     </SheetClose>
                   </div>
 
+                  {/* Meghalaya Explore CTA */}
+                  <div className="px-5 pb-3">
+                    <SheetClose asChild>
+                      <Link
+                        to="/things-to-do-in-meghalaya"
+                        className="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/25 hover:text-emerald-300 transition-colors text-sm font-bold tracking-wide"
+                      >
+                        <Mountain size={18} />
+                        Explore Meghalaya
+                      </Link>
+                    </SheetClose>
+                  </div>
+
                   <div className="mx-5 my-2 border-t border-white/10" />
 
                   {/* Pages */}
