@@ -27,6 +27,38 @@ const Index = memo(() => {
   
   const seoConfig = getSEOConfig('home');
   
+  const hostelSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Hostel',
+    name: 'XTSY Travellers Hostel',
+    description: seoConfig.description,
+    url: 'https://xtsy.one',
+    telephone: '+918837317070',
+    email: 'xtsytravellershostel@gmail.com',
+    image: 'https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/social-images/social-1765259372136-with_padding.png',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Mawkhar, Shillong',
+      addressLocality: 'Shillong',
+      addressRegion: 'Meghalaya',
+      postalCode: '793001',
+      addressCountry: 'IN',
+    },
+    geo: { '@type': 'GeoCoordinates', latitude: 25.5788, longitude: 91.8933 },
+    priceRange: '₹450 - ₹8,500',
+    starRating: { '@type': 'Rating', ratingValue: '4.8' },
+    aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.8', reviewCount: '320', bestRating: '5' },
+    checkinTime: '13:00',
+    checkoutTime: '11:00',
+    numberOfRooms: 20,
+    petsAllowed: true,
+    sameAs: [
+      'https://www.instagram.com/xtsytravellershostel',
+      'https://www.facebook.com/xtsytravellershostel',
+      'https://g.co/kgs/XTSY',
+    ],
+  };
+
   return (
     <div className="min-h-screen">
       <SEOHead 
@@ -35,6 +67,9 @@ const Index = memo(() => {
         keywords={seoConfig.keywords}
         canonicalUrl="https://xtsy.one/"
       />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(hostelSchema)}</script>
+      </Helmet>
       <SEOContent page="home" />
       <Header />
       <main style={{ contain: 'layout style' }}>
