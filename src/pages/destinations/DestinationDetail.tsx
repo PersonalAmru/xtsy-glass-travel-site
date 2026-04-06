@@ -190,7 +190,7 @@ const DestinationDetail = () => {
 };
 
 const HeroSlideshow = ({ images, destination }: { images: { src: string; alt: string }[]; destination: any }) => {
-  const validImages = images.filter(img => img.src && img.src !== '/placeholder.svg');
+  const { validImages, loading } = useValidatedImages(images);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -203,24 +203,36 @@ const HeroSlideshow = ({ images, destination }: { images: { src: string; alt: st
 
   return (
     <div className="relative h-[40vh] md:h-[50vh] overflow-hidden bg-muted">
-      <AnimatePresence mode="wait">
-        <motion.img
-          key={currentIndex}
-          src={validImages[currentIndex]?.src || '/placeholder.svg'}
-          alt={validImages[currentIndex]?.alt || `${destination.name} Meghalaya`}
-          className="absolute inset-0 w-full h-full object-cover"
-          loading="eager"
-          decoding="sync"
-          fetchPriority="high"
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8, ease: 'easeInOut' }}
-          onError={(e) => {
-            (e.target as HTMLImageElement).style.display = 'none';
-          }}
-        />
-      </AnimatePresence>
+      {/* Always show two layers for crossfade — no blackout */}
+      {validImages.length > 0 && (
+        <>
+          {/* Background layer: next image preloaded underneath */}
+          <img
+            src={validImages[(currentIndex + 1) % validImages.length]?.src}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          {/* Foreground layer: current image with fade */}
+          <AnimatePresence initial={false}>
+            <motion.img
+              key={currentIndex}
+              src={validImages[currentIndex].src}
+              alt={validImages[currentIndex].alt}
+              className="absolute inset-0 w-full h-full object-cover"
+              loading="eager"
+              fetchPriority="high"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8, ease: 'easeInOut' }}
+            />
+          </AnimatePresence>
+        </>
+      )}
+      {loading && validImages.length === 0 && (
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-muted" />
+      )}
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12 container mx-auto max-w-5xl">
         <Breadcrumbs items={[
