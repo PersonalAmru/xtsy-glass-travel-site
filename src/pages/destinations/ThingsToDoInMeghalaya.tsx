@@ -1,12 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import DestinationCard from '@/components/destinations/DestinationCard';
-import { RadialScrollGallery } from '@/components/ui/portfolio-and-image-gallery';
-import { ArrowUpRight, MapPin, Calendar, Mountain, TreePine, Waves } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
+import { ArcGalleryHero } from '@/components/ui/arc-gallery-hero-component';
+import { MapPin, Calendar, Mountain, TreePine, Waves } from 'lucide-react';
 import {
   meghalayaDestinations,
   getDestinationsByRegion,
