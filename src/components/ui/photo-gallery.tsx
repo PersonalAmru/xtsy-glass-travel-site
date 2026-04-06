@@ -144,7 +144,7 @@ export const PhotoGallery = ({
       rotate: 0,
       scale: 1,
       transition: {
-        type: 'spring',
+        type: 'spring' as const,
         stiffness: 70,
         damping: 12,
         mass: 1,
