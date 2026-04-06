@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import Header from '@/components/Header';
@@ -5,7 +6,8 @@ import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import DestinationCard from '@/components/destinations/DestinationCard';
 import { ArcGalleryHero } from '@/components/ui/arc-gallery-hero-component';
-import { MapPin, Calendar, Mountain, TreePine, Waves } from 'lucide-react';
+import { MapPin, Calendar, Mountain, TreePine, Waves, ChevronDown } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import {
   meghalayaDestinations,
   getDestinationsByRegion,
@@ -267,20 +269,9 @@ const ThingsToDoInMeghalaya = () => {
             </div>
           </section>
 
-          {/* All Destinations */}
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-              All {meghalayaDestinations.length} Places to Visit in Meghalaya
-            </h2>
-            <p className="mt-3 text-muted-foreground">
-              The complete list of destinations across Meghalaya — waterfalls, caves, viewpoints, villages, and adventure spots.
-            </p>
-            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {meghalayaDestinations.map((dest) => (
-                <DestinationCard key={dest.slug} destination={dest} />
-              ))}
-            </div>
-          </section>
+          {/* All Destinations with Show More */}
+          <AllDestinationsSection />
+
 
           {/* FAQ Section */}
           <section>
@@ -329,6 +320,41 @@ const ThingsToDoInMeghalaya = () => {
 
       <Footer />
     </div>
+  );
+};
+
+const INITIAL_SHOW = 12;
+
+const AllDestinationsSection = () => {
+  const [showAll, setShowAll] = useState(false);
+  const visible = showAll ? meghalayaDestinations : meghalayaDestinations.slice(0, INITIAL_SHOW);
+
+  return (
+    <section>
+      <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+        All {meghalayaDestinations.length} Places to Visit in Meghalaya
+      </h2>
+      <p className="mt-3 text-muted-foreground">
+        The complete list of destinations across Meghalaya — waterfalls, caves, viewpoints, villages, and adventure spots.
+      </p>
+      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {visible.map((dest) => (
+          <DestinationCard key={dest.slug} destination={dest} />
+        ))}
+      </div>
+      {!showAll && meghalayaDestinations.length > INITIAL_SHOW && (
+        <div className="mt-8 text-center">
+          <Button
+            variant="outline"
+            onClick={() => setShowAll(true)}
+            className="gap-2"
+          >
+            Show All {meghalayaDestinations.length} Destinations
+            <ChevronDown className="h-4 w-4" />
+          </Button>
+        </div>
+      )}
+    </section>
   );
 };
 

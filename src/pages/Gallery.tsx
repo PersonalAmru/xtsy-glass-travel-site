@@ -37,20 +37,31 @@ const Gallery = () => {
     const category = searchParams.get("category");
     const tag = searchParams.get("tag");
 
-    setTimeout(() => {
+    const tryScroll = () => {
       const gallerySection = document.getElementById("gallery");
       if (gallerySection) {
         const headerHeight = 80;
         const targetPosition = gallerySection.offsetTop - headerHeight;
         window.scrollTo({ top: targetPosition, behavior: "smooth" });
-      }
 
-      if (category || tag) {
-        window.dispatchEvent(
-          new CustomEvent("galleryFilter", { detail: { category, tag } })
-        );
+        if (category || tag) {
+          window.dispatchEvent(
+            new CustomEvent("galleryFilter", { detail: { category, tag } })
+          );
+        }
+        return true;
       }
-    }, 100);
+      return false;
+    };
+
+    if (!tryScroll()) {
+      const observer = new MutationObserver(() => {
+        if (tryScroll()) observer.disconnect();
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+      const timeout = setTimeout(() => observer.disconnect(), 3000);
+      return () => { observer.disconnect(); clearTimeout(timeout); };
+    }
   }, [searchParams]);
 
   return (

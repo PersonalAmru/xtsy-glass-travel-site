@@ -48,6 +48,14 @@ const Tours = () => {
     setSearchParams(params, { replace: true });
   }, [filters, setSearchParams]);
 
+  // Body scroll lock for mobile filters
+  useEffect(() => {
+    if (showMobileFilters) {
+      document.body.style.overflow = 'hidden';
+      return () => { document.body.style.overflow = ''; };
+    }
+  }, [showMobileFilters]);
+
   const allTours = useMemo(() => getAllTours(), []);
 
   const filteredTours = useMemo(() => {
@@ -177,11 +185,7 @@ const Tours = () => {
               {/* Tour grid */}
               <div className="flex-1">
                 {filteredTours.length > 0 ? (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
-                    {filteredTours.map(tour => (
-                      <TourListingCard key={tour.id} tour={tour} onSelect={handleSelect} />
-                    ))}
-                  </div>
+                  <TourGrid tours={filteredTours} onSelect={handleSelect} />
                 ) : (
                   <div className="text-center py-20">
                     <p className="text-lg text-muted-foreground mb-4">No tours match your filters.</p>
@@ -229,6 +233,39 @@ const Tours = () => {
         </div>
       )}
     </div>
+  );
+};
+
+const TOURS_PER_PAGE = 12;
+
+const TourGrid = ({ tours, onSelect }: { tours: TourPackage[]; onSelect: (t: TourPackage) => void }) => {
+  const [visibleCount, setVisibleCount] = useState(TOURS_PER_PAGE);
+  const visible = tours.slice(0, visibleCount);
+
+  // Reset when filters change
+  useEffect(() => {
+    setVisibleCount(TOURS_PER_PAGE);
+  }, [tours]);
+
+  return (
+    <>
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
+        {visible.map(tour => (
+          <TourListingCard key={tour.id} tour={tour} onSelect={onSelect} />
+        ))}
+      </div>
+      {visibleCount < tours.length && (
+        <div className="mt-8 text-center">
+          <Button
+            variant="outline"
+            onClick={() => setVisibleCount(c => c + TOURS_PER_PAGE)}
+            className="border-emerald-500/30 text-emerald-400"
+          >
+            Load More ({tours.length - visibleCount} remaining)
+          </Button>
+        </div>
+      )}
+    </>
   );
 };
 

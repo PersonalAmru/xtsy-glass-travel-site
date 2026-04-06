@@ -24,7 +24,7 @@ const AdventureCallToAction = () => {
       <div className="container mx-auto max-w-4xl relative z-10">
         <div className="text-center">
           <Card className="bg-gradient-to-r from-orange-500 to-red-500 border-0">
-            <CardContent className="glass-card p-6 sm:p-8 text-center bg-white/10 backdrop-blur-md border border-white/20">
+            <CardContent className="glass-card p-6 sm:p-8 text-center bg-white/15 border border-white/20">
               <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 font-serif-sans">
                 🌟 Ready for Adventure?
               </h3>
