@@ -1,52 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://xtsy.one/</loc><lastmod>2026-04-06</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://xtsy.one/about</loc><lastmod>2026-04-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://xtsy.one/gallery</loc><lastmod>2026-04-06</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://xtsy.one/tours</loc><lastmod>2026-04-06</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://xtsy.one/tab-bistro</loc><lastmod>2026-04-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://xtsy.one/book</loc><lastmod>2026-04-06</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://xtsy.one/privacy-policy</loc><lastmod>2026-04-06</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://xtsy.one/terms-of-service</loc><lastmod>2026-04-06</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
-
-  <!-- Meghalaya SEO Pillar -->
-  <url><loc>https://xtsy.one/things-to-do-in-meghalaya</loc><lastmod>2026-04-06</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-
-  <!-- Category Pages -->
-  <url><loc>https://xtsy.one/meghalaya-waterfalls</loc><lastmod>2026-04-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://xtsy.one/meghalaya-caves</loc><lastmod>2026-04-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://xtsy.one/meghalaya-villages</loc><lastmod>2026-04-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://xtsy.one/meghalaya-viewpoints</loc><lastmod>2026-04-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-
-  <!-- Monetization Pages -->
-  <url><loc>https://xtsy.one/meghalaya-tour-packages</loc><lastmod>2026-04-06</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://xtsy.one/meghalaya-couple-tour-package</loc><lastmod>2026-04-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://xtsy.one/shillong-tour-package</loc><lastmod>2026-04-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-
-  <!-- Blog Cluster -->
-  <url><loc>https://xtsy.one/best-time-to-visit-meghalaya</loc><lastmod>2026-04-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://xtsy.one/hidden-places-in-meghalaya</loc><lastmod>2026-04-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://xtsy.one/3-day-meghalaya-itinerary</loc><lastmod>2026-04-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://xtsy.one/5-day-meghalaya-itinerary</loc><lastmod>2026-04-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://xtsy.one/budget-trip-to-meghalaya</loc><lastmod>2026-04-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-
-  <!-- Photo Gallery -->
-  <url><loc>https://xtsy.one/meghalaya-photo-gallery</loc><lastmod>2026-04-06</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-
-  <!-- Destination Cluster Pages (Top 15) -->
-  <url><loc>https://xtsy.one/places-to-visit/umiam-lake</loc><lastmod>2026-04-06</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://xtsy.one/places-to-visit/shillong-peak</loc><lastmod>2026-04-06</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://xtsy.one/places-to-visit/elephant-falls</loc><lastmod>2026-04-06</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://xtsy.one/places-to-visit/laitlum-canyons</loc><lastmod>2026-04-06</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://xtsy.one/places-to-visit/nohkalikai-falls</loc><lastmod>2026-04-06</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://xtsy.one/places-to-visit/double-decker-living-root-bridge</loc><lastmod>2026-04-06</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://xtsy.one/places-to-visit/dawki-umngot-river</loc><lastmod>2026-04-06</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://xtsy.one/places-to-visit/mawlynnong-village</loc><lastmod>2026-04-06</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://xtsy.one/places-to-visit/krang-suri-falls</loc><lastmod>2026-04-06</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://xtsy.one/places-to-visit/mawsmai-cave</loc><lastmod>2026-04-06</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://xtsy.one/places-to-visit/mawphlang-sacred-forest</loc><lastmod>2026-04-06</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://xtsy.one/places-to-visit/shnongpdeng</loc><lastmod>2026-04-06</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://xtsy.one/places-to-visit/rainbow-falls</loc><lastmod>2026-04-06</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://xtsy.one/places-to-visit/wei-sawdong-falls</loc><lastmod>2026-04-06</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://xtsy.one/places-to-visit/nongriat-village</loc><lastmod>2026-04-06</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/</loc><lastmod>2026-04-07</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://xtsy.one/about</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://xtsy.one/gallery</loc><lastmod>2026-04-07</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://xtsy.one/tours</loc><lastmod>2026-04-07</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://xtsy.one/book</loc><lastmod>2026-04-07</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://xtsy.one/faq</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/best-hostel-in-shillong</loc><lastmod>2026-04-07</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://xtsy.one/hotels-homestays-shillong</loc><lastmod>2026-04-07</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://xtsy.one/luxury-glamping-shillong</loc><lastmod>2026-04-07</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://xtsy.one/destination-wedding-shillong</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://xtsy.one/restaurant-shillong</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://xtsy.one/xtsy-270</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://xtsy.one/tab-bistro</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://xtsy.one/pet-friendly</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://xtsy.one/female-travellers</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://xtsy.one/work-from-home</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://xtsy.one/xtsy-rentals</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://xtsy.one/xtsy-vs-zostel</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://xtsy.one/things-to-do-in-meghalaya</loc><lastmod>2026-04-07</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://xtsy.one/meghalaya-waterfalls</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://xtsy.one/meghalaya-caves</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://xtsy.one/meghalaya-villages</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://xtsy.one/meghalaya-viewpoints</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://xtsy.one/meghalaya-tour-packages</loc><lastmod>2026-04-07</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://xtsy.one/meghalaya-couple-tour-package</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://xtsy.one/shillong-tour-package</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://xtsy.one/best-time-to-visit-meghalaya</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://xtsy.one/hidden-places-in-meghalaya</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://xtsy.one/3-day-meghalaya-itinerary</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://xtsy.one/5-day-meghalaya-itinerary</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://xtsy.one/budget-trip-to-meghalaya</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://xtsy.one/meghalaya-photo-gallery</loc><lastmod>2026-04-07</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/umiam-lake</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/shillong-peak</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/elephant-falls</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/laitlum-canyons</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/nohkalikai-falls</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/double-decker-living-root-bridge</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/dawki-umngot-river</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/mawlynnong-village</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/krang-suri-falls</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/mawsmai-cave</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/mawphlang-sacred-forest</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/shnongpdeng</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/rainbow-falls</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/wei-sawdong-falls</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/nongriat-village</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/mawryngkhang-bamboo-trail</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/seven-sisters-falls</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/eco-park-sohra</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/garden-of-caves</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/arwah-cave</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/kynrem-falls</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/dainthlen-falls</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/krem-mawmluh</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/krem-liat-prah</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/dawki-suspension-bridge</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/thadlaskein-lake</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/nartiang-monoliths</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/phe-phe-falls</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/jakrem-hot-springs</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/mawjymbuin-cave</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/nongjrong-sunrise-viewpoint</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/wah-rilang-viewpoint</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/mawthadraishan-peak</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/bishop-falls</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/sweet-falls</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/spread-eagle-falls</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/langshiang-falls</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/nongkhnum-island</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/ranikor</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/siju-cave</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/balpakram-national-park</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/tura-peak</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/places-to-visit/nokrek-biosphere-reserve</loc><lastmod>2026-04-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://xtsy.one/privacy-policy</loc><lastmod>2026-04-07</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://xtsy.one/terms-of-service</loc><lastmod>2026-04-07</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://xtsy.one/pricing-cancellation-policy</loc><lastmod>2026-04-07</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>
