@@ -92,8 +92,8 @@ const ThingsToDoInMeghalaya = () => {
 
       <Header />
 
-      <main className="pt-20">
-        {/* Hero */}
+      <main>
+        {/* Hero — flush against header */}
         <section className="relative py-16 md:py-24 overflow-hidden">
           {/* Hero background image */}
           <div className="absolute inset-0">
@@ -130,7 +130,7 @@ const ThingsToDoInMeghalaya = () => {
 
         {/* Photo Gallery — Explore Meghalaya's Icons */}
         <PhotoGallery
-          images={featured.slice(0, 5).map((dest) => ({
+          images={featured.slice(0, 8).map((dest) => ({
             src: getDestinationImageUrl(dest.slug),
             alt: `${dest.name} Meghalaya`,
             label: dest.name,

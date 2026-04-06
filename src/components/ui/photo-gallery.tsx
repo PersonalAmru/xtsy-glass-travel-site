@@ -112,11 +112,34 @@ export const PhotoGallery = ({
 }: PhotoGalleryProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [validatedImages, setValidatedImages] = useState<PhotoItem[]>([]);
   // Track which slot is currently flipping and what image index it shows
   const [slotImageIndices, setSlotImageIndices] = useState<number[]>([0, 1, 2, 3, 4]);
   const [currentFlipSlot, setCurrentFlipSlot] = useState(0);
 
-  const allSrcs = images.map(img => img.src);
+  // Validate images on mount
+  useEffect(() => {
+    let cancelled = false;
+    const validate = async () => {
+      const results = await Promise.allSettled(
+        images.map(img => new Promise<PhotoItem>((resolve, reject) => {
+          const el = new Image();
+          el.onload = () => resolve(img);
+          el.onerror = () => reject();
+          el.src = img.src;
+        }))
+      );
+      if (cancelled) return;
+      const valid = results
+        .filter((r): r is PromiseFulfilledResult<PhotoItem> => r.status === 'fulfilled')
+        .map(r => r.value);
+      setValidatedImages(valid.length > 0 ? valid : images.slice(0, 5));
+    };
+    validate();
+    return () => { cancelled = true; };
+  }, [images]);
+
+  const allSrcs = validatedImages.map(img => img.src);
   const totalImages = allSrcs.length;
 
   useEffect(() => {
@@ -246,7 +269,7 @@ export const PhotoGallery = ({
                 <FlippingPhoto
                   images={allSrcs}
                   currentImageIndex={slot.imageIndex}
-                  alt={images[slot.imageIndex]?.alt ?? ''}
+                  alt={validatedImages[slot.imageIndex]?.alt ?? ''}
                   direction={slot.direction}
                   className="w-full h-full"
                 />

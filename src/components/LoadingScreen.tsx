@@ -6,66 +6,33 @@ interface LoadingScreenProps {
   size?: 'sm' | 'md' | 'lg';
 }
 
-// Inline critical styles
 const loadingStyles = `
-  @keyframes xtsy-loader-pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
-  }
   @keyframes xtsy-loader-progress {
-    0% { width: 0%; margin-left: 0; }
-    50% { width: 60%; margin-left: 20%; }
-    100% { width: 0%; margin-left: 100%; }
+    0% { width: 0%; }
+    50% { width: 60%; }
+    100% { width: 100%; }
   }
 `;
 
-// Branded XTSY loader - matches route loader in App.tsx
 const XTSYLoader = memo(({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) => {
   const sizes = {
-    sm: { logo: 48, bar: 60, heading: 18, sub: 11 },
-    md: { logo: 80, bar: 80, heading: 24, sub: 13 },
-    lg: { logo: 100, bar: 100, heading: 28, sub: 14 }
+    sm: { logo: 100, bar: 80 },
+    md: { logo: 140, bar: 100 },
+    lg: { logo: 160, bar: 120 }
   };
   const s = sizes[size];
 
   return (
-    <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: size === 'sm' ? 12 : 24 }}>
-      {/* Logo */}
-      <div style={{
-        width: s.logo,
-        height: s.logo,
-        animation: 'xtsy-loader-pulse 2s ease-in-out infinite',
-        overflow: 'hidden'
-      }}>
-        <img src="/xtsy-favicon.png" alt="XTSY" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-      </div>
-      {/* Brand text */}
-      {size !== 'sm' && (
-        <div style={{ textAlign: 'center' }}>
-          <h2 style={{
-            fontFamily: "'Playfair Display', serif",
-            fontSize: s.heading,
-            fontWeight: 700,
-            background: 'linear-gradient(90deg, hsl(28, 92%, 52%), hsl(0, 72%, 51%))',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            margin: '0 0 6px 0',
-            letterSpacing: '-0.02em'
-          }}>
-            Live the XTSY Vibe
-          </h2>
-          <p style={{
-            color: 'rgba(255,255,255,0.5)',
-            fontSize: s.sub,
-            fontWeight: 400,
-            margin: 0,
-            letterSpacing: '0.05em'
-          }}>
-            Premium Stays in Northeast India
-          </p>
-        </div>
-      )}
-      {/* Progress bar */}
+    <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
+      <img
+        src="/xtsy-color-logo.png"
+        alt="XTSY"
+        style={{ width: s.logo, height: 'auto', objectFit: 'contain' }}
+        onError={(e) => {
+          // Fallback to favicon
+          (e.target as HTMLImageElement).src = '/xtsy-favicon.png';
+        }}
+      />
       <div style={{
         width: s.bar,
         height: 3,
@@ -87,7 +54,6 @@ const XTSYLoader = memo(({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) => {
 
 XTSYLoader.displayName = 'XTSYLoader';
 
-// Main loading screen for full-page loading
 const LoadingScreen = memo(({ minimal = false, size }: LoadingScreenProps) => {
   const loaderSize = minimal ? 'sm' : (size || 'lg');
 
@@ -110,7 +76,6 @@ const LoadingScreen = memo(({ minimal = false, size }: LoadingScreenProps) => {
 
 LoadingScreen.displayName = 'LoadingScreen';
 
-// Inline loader for modals and sections
 export const XTSYInlineLoader = memo(({ 
   size = 'sm',
   className = ''
@@ -134,7 +99,6 @@ export const XTSYInlineLoader = memo(({
 
 XTSYInlineLoader.displayName = 'XTSYInlineLoader';
 
-// Modal loading overlay
 export const XTSYModalLoader = memo(() => (
   <div style={{
     position: 'fixed',
