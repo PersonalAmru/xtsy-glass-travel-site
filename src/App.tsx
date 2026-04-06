@@ -313,6 +313,23 @@ function App() {
                 {/* Admin Franchise Permissions */}
                 <Route path="/admin/franchise-permissions" element={<LazyRoute><AdminFranchisePermissions /></LazyRoute>} />
                 
+                {/* Meghalaya SEO Pages */}
+                <Route path="/things-to-do-in-meghalaya" element={<LazyRoute><ThingsToDoInMeghalaya /></LazyRoute>} />
+                <Route path="/places-to-visit/:slug" element={<LazyRoute><DestinationDetail /></LazyRoute>} />
+                <Route path="/meghalaya-waterfalls" element={<LazyRoute><CategoryPage /></LazyRoute>} />
+                <Route path="/meghalaya-caves" element={<LazyRoute><CategoryPage /></LazyRoute>} />
+                <Route path="/meghalaya-villages" element={<LazyRoute><CategoryPage /></LazyRoute>} />
+                <Route path="/meghalaya-viewpoints" element={<LazyRoute><CategoryPage /></LazyRoute>} />
+                <Route path="/meghalaya-tour-packages" element={<LazyRoute><MeghalayaTourPackages /></LazyRoute>} />
+                <Route path="/meghalaya-couple-tour-package" element={<LazyRoute><MeghalayaCoupleTourPackage /></LazyRoute>} />
+                <Route path="/shillong-tour-package" element={<LazyRoute><ShillongTourPackage /></LazyRoute>} />
+                <Route path="/best-time-to-visit-meghalaya" element={<LazyRoute><BlogBestTimeToVisit /></LazyRoute>} />
+                <Route path="/hidden-places-in-meghalaya" element={<LazyRoute><BlogHiddenPlaces /></LazyRoute>} />
+                <Route path="/3-day-meghalaya-itinerary" element={<LazyRoute><BlogItinerary3Day /></LazyRoute>} />
+                <Route path="/5-day-meghalaya-itinerary" element={<LazyRoute><BlogItinerary5Day /></LazyRoute>} />
+                <Route path="/budget-trip-to-meghalaya" element={<LazyRoute><BlogBudgetTrip /></LazyRoute>} />
+                <Route path="/meghalaya-photo-gallery" element={<LazyRoute><MeghalayaPhotoGallery /></LazyRoute>} />
+                
                 <Route path="*" element={<NotFound />} />
               </Routes>
               <FloatingWhatsApp />
