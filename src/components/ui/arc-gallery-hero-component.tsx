@@ -76,17 +76,21 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
   const count = Math.max(validEntries.length, 2);
   const step = (endAngle - startAngle) / (count - 1);
 
+  // Scale radius down when many images fail so the arc stays compact
+  const scaleFactor = Math.max(0.5, validEntries.length / Math.max(images.length, 1));
+  const effectiveRadius = Math.round(dimensions.radius * scaleFactor);
+
   return (
     <section
       className={`relative w-full bg-background overflow-x-clip ${className}`}
-      style={{ minHeight: `${dimensions.radius * 2 + dimensions.cardSize + 200}px` }}
+      style={{ minHeight: `${effectiveRadius * 2 + dimensions.cardSize + 200}px` }}
     >
       {/* Arc container */}
       <div
         className="absolute left-1/2 -translate-x-1/2"
         style={{
-          width: dimensions.radius * 2,
-          height: dimensions.radius * 2,
+          width: effectiveRadius * 2,
+          height: effectiveRadius * 2,
           bottom: dimensions.cardSize < 100 ? '40%' : '35%',
         }}
       >
@@ -102,8 +106,8 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
           {validEntries.map(({ img, originalIndex }, i) => {
             const angle = startAngle + step * i;
             const angleRad = (angle * Math.PI) / 180;
-            const x = Math.cos(angleRad) * dimensions.radius;
-            const y = Math.sin(angleRad) * dimensions.radius;
+            const x = Math.cos(angleRad) * effectiveRadius;
+            const y = Math.sin(angleRad) * effectiveRadius;
 
             return (
               <div
