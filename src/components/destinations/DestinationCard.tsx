@@ -20,18 +20,24 @@ const DestinationCard = ({ destination, className = '' }: DestinationCardProps) 
       to={`/places-to-visit/${destination.slug}`}
       className={`group block rounded-xl overflow-hidden bg-card border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-lg ${className}`}
     >
-      <div className="relative aspect-[4/3] overflow-hidden">
+      <div className="relative aspect-[4/3] overflow-hidden bg-muted">
         {imgState === 'loading' && (
           <Skeleton className="absolute inset-0 rounded-none" shimmer />
         )}
-        <img
-          src={getDestinationImageUrl(destination.slug)}
-          alt={`${destination.name} Meghalaya`}
-          loading="lazy"
-          className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${imgState === 'loading' ? 'opacity-0' : 'opacity-100'}`}
-          onLoad={() => setImgState('loaded')}
-          onError={() => setImgState('error')}
-        />
+        {showFallback ? (
+          <div className="absolute inset-0 flex items-center justify-center bg-muted">
+            <MapPin className="h-8 w-8 text-muted-foreground/40" />
+          </div>
+        ) : (
+          <img
+            src={getDestinationImageUrl(destination.slug)}
+            alt={`${destination.name} Meghalaya`}
+            loading="lazy"
+            className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${imgState === 'loading' ? 'opacity-0' : 'opacity-100'}`}
+            onLoad={() => setImgState('loaded')}
+            onError={() => setImgState('error')}
+          />
+        )}
         {imgState === 'loaded' && (
           <div className="absolute top-3 left-3">
             <span className="px-2.5 py-1 text-xs font-medium bg-black/60 backdrop-blur-sm text-white rounded-full capitalize">
