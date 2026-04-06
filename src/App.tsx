@@ -100,6 +100,12 @@ const BlogItinerary5Day = createLazyComponent(() => import("./pages/destinations
 const BlogBudgetTrip = createLazyComponent(() => import("./pages/destinations/BlogBudgetTrip"));
 const MeghalayaPhotoGallery = createLazyComponent(() => import("./pages/destinations/MeghalayaPhotoGallery"));
 
+// High-intent SEO landing pages
+const BestHostelShillong = createLazyComponent(() => import("./pages/BestHostelShillong"));
+const HotelsHomestaysShillong = createLazyComponent(() => import("./pages/HotelsHomestaysShillong"));
+const LuxuryGlampingShillong = createLazyComponent(() => import("./pages/LuxuryGlampingShillong"));
+const DestinationWeddingShillong = createLazyComponent(() => import("./pages/DestinationWeddingShillong"));
+
 // PWA Install pages
 const UserInstall = createLazyComponent(() => import("./pages/install/UserInstall"));
 const AdminInstall = createLazyComponent(() => import("./pages/install/AdminInstall"));
