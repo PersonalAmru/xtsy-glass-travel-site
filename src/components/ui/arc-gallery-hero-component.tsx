@@ -76,28 +76,18 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
   const count = Math.max(validEntries.length, 2);
   const step = (endAngle - startAngle) / (count - 1);
 
-  const sectionHeight = dimensions.radius + dimensions.cardSize + 120;
-
   return (
     <section
       className={`relative w-full bg-background overflow-x-clip ${className}`}
-      style={{ height: `${sectionHeight}px` }}
+      style={{ minHeight: `${dimensions.radius * 2 + dimensions.cardSize + 200}px` }}
     >
-      {/* Content overlay — centered in section */}
-      <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
-        <div className="max-w-2xl mx-auto text-center px-4 pointer-events-auto">
-          {title}
-          {subtitle}
-          {cta}
-        </div>
-      </div>
-
-      {/* Arc container — anchored at bottom */}
+      {/* Arc container */}
       <div
-        className="absolute left-1/2 -translate-x-1/2 bottom-0"
+        className="absolute left-1/2 -translate-x-1/2"
         style={{
           width: dimensions.radius * 2,
-          height: dimensions.radius,
+          height: dimensions.radius * 2,
+          bottom: dimensions.cardSize < 100 ? '40%' : '35%',
         }}
       >
         {/* Pivot at bottom center */}
@@ -161,6 +151,21 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
         </div>
       </div>
 
+      {/* Content overlay */}
+      <div
+        className="absolute left-1/2 w-full px-4"
+        style={{
+          bottom: '8%',
+          transform: 'translateX(-50%)',
+          animation: 'arc-fade-in-up 0.8s ease-out 0.5s both',
+        }}
+      >
+        <div className="max-w-2xl mx-auto text-center">
+          {title}
+          {subtitle}
+          {cta}
+        </div>
+      </div>
 
       <style>{`
         @keyframes arc-card-appear {
