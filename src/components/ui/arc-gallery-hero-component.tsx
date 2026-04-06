@@ -78,8 +78,8 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
 
   return (
     <section
-      className={`relative w-full overflow-hidden bg-background ${className}`}
-      style={{ minHeight: dimensions.cardSize < 100 ? '90vh' : '80vh' }}
+      className={`relative w-full bg-background ${className}`}
+      style={{ minHeight: dimensions.cardSize < 100 ? '100vh' : '90vh', paddingTop: dimensions.cardSize + 20 }}
     >
       {/* Arc container */}
       <div
