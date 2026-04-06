@@ -76,18 +76,28 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
   const count = Math.max(validEntries.length, 2);
   const step = (endAngle - startAngle) / (count - 1);
 
+  const sectionHeight = dimensions.radius + dimensions.cardSize + 120;
+
   return (
     <section
       className={`relative w-full bg-background overflow-x-clip ${className}`}
-      style={{ minHeight: `${dimensions.radius * 2 + dimensions.cardSize + 200}px` }}
+      style={{ height: `${sectionHeight}px` }}
     >
-      {/* Arc container */}
+      {/* Content overlay — centered in section */}
+      <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+        <div className="max-w-2xl mx-auto text-center px-4 pointer-events-auto">
+          {title}
+          {subtitle}
+          {cta}
+        </div>
+      </div>
+
+      {/* Arc container — anchored at bottom */}
       <div
-        className="absolute left-1/2 -translate-x-1/2"
+        className="absolute left-1/2 -translate-x-1/2 bottom-0"
         style={{
           width: dimensions.radius * 2,
-          height: dimensions.radius * 2,
-          bottom: dimensions.cardSize < 100 ? '40%' : '35%',
+          height: dimensions.radius,
         }}
       >
         {/* Pivot at bottom center */}
