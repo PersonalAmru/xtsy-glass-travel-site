@@ -269,7 +269,7 @@ export const PhotoGallery = ({
                 <FlippingPhoto
                   images={allSrcs}
                   currentImageIndex={slot.imageIndex}
-                  alt={images[slot.imageIndex]?.alt ?? ''}
+                  alt={validatedImages[slot.imageIndex]?.alt ?? ''}
                   direction={slot.direction}
                   className="w-full h-full"
                 />
