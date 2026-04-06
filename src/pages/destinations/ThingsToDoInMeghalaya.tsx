@@ -16,6 +16,7 @@ import {
 } from '@/data/meghalayaDestinations';
 
 const ThingsToDoInMeghalaya = () => {
+  const navigate = useNavigate();
   const nearShillong = getDestinationsByRegion('Near Shillong');
   const cherrapunji = getDestinationsByRegion('Cherrapunji & Sohra');
   const adventures = getDestinationsByCategory('adventure');
