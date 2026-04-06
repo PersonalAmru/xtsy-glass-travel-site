@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import heroImage from '@/assets/northeast-ecological-education-authentic.jpg';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import Header from '@/components/Header';
@@ -93,13 +94,24 @@ const ThingsToDoInMeghalaya = () => {
 
       <main className="pt-20">
         {/* Hero */}
-        <section className="relative py-16 md:py-24 bg-gradient-to-b from-background to-muted/30">
-          <div className="container mx-auto px-4 max-w-5xl">
+        <section className="relative py-16 md:py-24 overflow-hidden">
+          {/* Hero background image */}
+          <div className="absolute inset-0">
+            <img
+              src={heroImage}
+              alt="Meghalaya landscape — lush green hills and waterfalls"
+              className="w-full h-full object-cover"
+              fetchPriority="high"
+              loading="eager"
+            />
+            <div className="absolute inset-0 bg-black/65" />
+          </div>
+          <div className="relative container mx-auto px-4 max-w-5xl">
             <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Things to Do in Meghalaya' }]} />
-            <h1 className="mt-6 text-3xl md:text-5xl font-bold text-foreground leading-tight">
+            <h1 className="mt-6 text-3xl md:text-5xl font-bold text-white leading-tight">
               Things to Do in Meghalaya: 50 Most Beautiful Places to Visit
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground max-w-3xl">
+            <p className="mt-4 text-lg text-white/80 max-w-3xl">
               Meghalaya — the "Abode of Clouds" — is home to India's tallest waterfalls, crystal-clear rivers, living root bridges, and ancient caves. From the dramatic canyons near Shillong to the unexplored Garo Hills, here's your complete guide to the best experiences in Northeast India's most stunning state.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
@@ -107,7 +119,7 @@ const ThingsToDoInMeghalaya = () => {
                 <Link
                   key={cat.slug}
                   to={`/${cat.slug}`}
-                  className="px-4 py-2 rounded-full border border-border text-sm text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                  className="px-4 py-2 rounded-full border border-white/30 text-sm text-white hover:bg-primary hover:text-primary-foreground transition-colors"
                 >
                   {cat.name}
                 </Link>
