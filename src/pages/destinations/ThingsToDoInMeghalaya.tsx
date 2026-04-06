@@ -6,7 +6,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import DestinationCard from '@/components/destinations/DestinationCard';
-import { ArcGalleryHero } from '@/components/ui/arc-gallery-hero-component';
+import { PhotoGallery } from '@/components/ui/photo-gallery';
 import { MapPin, Calendar, Mountain, TreePine, Waves, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -128,23 +128,15 @@ const ThingsToDoInMeghalaya = () => {
           </div>
         </section>
 
-        {/* Arc Gallery Hero — Explore Meghalaya's Icons */}
-        <ArcGalleryHero
-          images={featured.slice(0, 10).map((dest) => ({
+        {/* Photo Gallery — Explore Meghalaya's Icons */}
+        <PhotoGallery
+          images={featured.slice(0, 5).map((dest) => ({
             src: getDestinationImageUrl(dest.slug),
             alt: `${dest.name} Meghalaya`,
             label: dest.name,
             slug: dest.slug,
           }))}
-          startAngle={15}
-          endAngle={165}
-          radiusLg={480}
-          radiusMd={360}
-          radiusSm={240}
-          cardSizeLg={120}
-          cardSizeMd={100}
-          cardSizeSm={75}
-          onCardClick={(index) => {
+          onPhotoClick={(index) => {
             const dest = featured[index];
             if (dest) navigate(`/places-to-visit/${dest.slug}`);
           }}
