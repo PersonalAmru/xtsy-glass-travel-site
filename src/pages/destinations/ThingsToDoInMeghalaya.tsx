@@ -130,7 +130,7 @@ const ThingsToDoInMeghalaya = () => {
 
         {/* Photo Gallery — Explore Meghalaya's Icons */}
         <PhotoGallery
-          images={featured.slice(0, 5).map((dest) => ({
+          images={featured.slice(0, 8).map((dest) => ({
             src: getDestinationImageUrl(dest.slug),
             alt: `${dest.name} Meghalaya`,
             label: dest.name,
