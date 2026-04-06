@@ -282,7 +282,8 @@ const BestHostelShillong = memo(() => {
           <nav className="border-t border-border pt-8">
             <h2 className="text-lg font-semibold text-foreground mb-4">Explore More</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-              <Link to="/hotels-homestays-shillong" className="text-sm text-primary hover:underline">Hotels & Homestays in Shillong</Link>
+              <Link to="/hotels-in-shillong" className="text-sm text-primary hover:underline">Hotels in Shillong</Link>
+              <Link to="/homestays-in-shillong" className="text-sm text-primary hover:underline">Homestays in Shillong</Link>
               <Link to="/luxury-glamping-shillong" className="text-sm text-primary hover:underline">Luxury Glamping Shillong</Link>
               <Link to="/xtsy-270" className="text-sm text-primary hover:underline">270° Glass Suite</Link>
               <Link to="/female-travellers" className="text-sm text-primary hover:underline">Female Travellers</Link>

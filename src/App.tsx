@@ -102,7 +102,8 @@ const MeghalayaPhotoGallery = createLazyComponent(() => import("./pages/destinat
 
 // High-intent SEO landing pages
 const BestHostelShillong = createLazyComponent(() => import("./pages/BestHostelShillong"));
-const HotelsHomestaysShillong = createLazyComponent(() => import("./pages/HotelsHomestaysShillong"));
+const HotelsInShillong = createLazyComponent(() => import("./pages/HotelsInShillong"));
+const HomestaysInShillong = createLazyComponent(() => import("./pages/HomestaysInShillong"));
 const LuxuryGlampingShillong = createLazyComponent(() => import("./pages/LuxuryGlampingShillong"));
 const DestinationWeddingShillong = createLazyComponent(() => import("./pages/DestinationWeddingShillong"));
 
@@ -338,10 +339,11 @@ function App() {
                 
                 {/* High-Intent SEO Landing Pages */}
                 <Route path="/best-hostel-in-shillong" element={<LazyRoute><BestHostelShillong /></LazyRoute>} />
-                <Route path="/hotels-homestays-shillong" element={<LazyRoute><HotelsHomestaysShillong /></LazyRoute>} />
+                <Route path="/hotels-in-shillong" element={<LazyRoute><HotelsInShillong /></LazyRoute>} />
+                <Route path="/homestays-in-shillong" element={<LazyRoute><HomestaysInShillong /></LazyRoute>} />
                 <Route path="/luxury-glamping-shillong" element={<LazyRoute><LuxuryGlampingShillong /></LazyRoute>} />
                 <Route path="/destination-wedding-shillong" element={<LazyRoute><DestinationWeddingShillong /></LazyRoute>} />
-                <Route path="/restaurant-shillong" element={<LazyRoute><LazyTabBistro /></LazyRoute>} />
+                <Route path="/restaurant-in-shillong" element={<LazyRoute><LazyTabBistro /></LazyRoute>} />
                 
                 <Route path="*" element={<NotFound />} />
               </Routes>

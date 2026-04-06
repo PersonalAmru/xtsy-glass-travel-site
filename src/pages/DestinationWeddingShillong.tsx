@@ -232,7 +232,8 @@ const DestinationWeddingShillong = memo(() => {
               <Link to="/best-hostel-in-shillong" className="text-sm text-primary hover:underline">Guest Accommodation</Link>
               <Link to="/meghalaya-couple-tour-package" className="text-sm text-primary hover:underline">Couple Tour Package</Link>
               <Link to="/meghalaya-photo-gallery" className="text-sm text-primary hover:underline">Photo Gallery</Link>
-              <Link to="/hotels-homestays-shillong" className="text-sm text-primary hover:underline">Places to Stay</Link>
+              <Link to="/hotels-in-shillong" className="text-sm text-primary hover:underline">Hotels in Shillong</Link>
+              <Link to="/homestays-in-shillong" className="text-sm text-primary hover:underline">Homestays in Shillong</Link>
             </div>
           </nav>
         </div>
