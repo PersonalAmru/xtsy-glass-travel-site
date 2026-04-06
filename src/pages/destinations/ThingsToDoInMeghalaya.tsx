@@ -92,8 +92,8 @@ const ThingsToDoInMeghalaya = () => {
 
       <Header />
 
-      <main className="pt-20">
-        {/* Hero */}
+      <main>
+        {/* Hero — flush against header */}
         <section className="relative py-16 md:py-24 overflow-hidden">
           {/* Hero background image */}
           <div className="absolute inset-0">
