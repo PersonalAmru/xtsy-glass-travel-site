@@ -161,21 +161,6 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
         </div>
       </div>
 
-      {/* Content overlay */}
-      <div
-        className="absolute left-1/2 w-full px-4"
-        style={{
-          bottom: '8%',
-          transform: 'translateX(-50%)',
-          animation: 'arc-fade-in-up 0.8s ease-out 0.5s both',
-        }}
-      >
-        <div className="max-w-2xl mx-auto text-center">
-          {title}
-          {subtitle}
-          {cta}
-        </div>
-      </div>
 
       <style>{`
         @keyframes arc-card-appear {
