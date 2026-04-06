@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import GallerySection from "@/components/GallerySection";
 import Footer from "@/components/Footer";
 import SEOContent from "@/components/SEOContent";
+import SEOHead from "@/components/SEOHead";
 
 // Preload first row of gallery images (LCP candidates)
 const PRELOAD_IMAGES = [
