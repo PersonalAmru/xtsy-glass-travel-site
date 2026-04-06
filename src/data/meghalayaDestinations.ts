@@ -15,8 +15,11 @@ export interface MeghalayaDestination {
 
 const SUPABASE_BUCKET_URL = 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Meghalaya%20things%20to%20do';
 
+// Cache-bust version — increment to force refresh after Supabase uploads
+const IMAGE_VERSION = '2';
+
 export const getDestinationImageUrl = (slug: string, index: number = 1) =>
-  `${SUPABASE_BUCKET_URL}/${slug}-meghalaya-${index}.webp`;
+  `${SUPABASE_BUCKET_URL}/${slug}-meghalaya-${index}.webp?v=${IMAGE_VERSION}`;
 
 export const getDestinationImages = (slug: string, count: number = 3) =>
   Array.from({ length: count }, (_, i) => ({
