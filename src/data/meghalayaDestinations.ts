@@ -18,11 +18,24 @@ const SUPABASE_BUCKET_URL = 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1
 export const getDestinationImageUrl = (slug: string, index: number = 1) =>
   `${SUPABASE_BUCKET_URL}/${slug}-meghalaya-${index}.webp`;
 
-export const getDestinationImages = (slug: string, count: number = 3) =>
-  Array.from({ length: count }, (_, i) => ({
+// Override image indices for specific destinations (1-based)
+const destinationImageOverrides: Record<string, number[]> = {
+  'wei-sawdong-falls': [2, 3], // skip image 1
+};
+
+export const getDestinationImages = (slug: string, count: number = 3) => {
+  const overrides = destinationImageOverrides[slug];
+  if (overrides) {
+    return overrides.map((idx) => ({
+      src: getDestinationImageUrl(slug, idx),
+      alt: `${slug.replace(/-/g, ' ')} Meghalaya - Photo ${idx}`,
+    }));
+  }
+  return Array.from({ length: count }, (_, i) => ({
     src: getDestinationImageUrl(slug, i + 1),
     alt: `${slug.replace(/-/g, ' ')} Meghalaya - Photo ${i + 1}`,
   }));
+};
 
 export const meghalayaDestinations: MeghalayaDestination[] = [
   {
