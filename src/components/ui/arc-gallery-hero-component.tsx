@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 
 type ArcGalleryHeroProps = {
   images: { src: string; alt: string; label?: string; slug?: string }[];
@@ -57,7 +57,23 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
     return () => window.removeEventListener('resize', handleResize);
   }, [radiusLg, radiusMd, radiusSm, cardSizeLg, cardSizeMd, cardSizeSm]);
 
-  const count = Math.max(images.length, 2);
+  // Track which images failed to load
+  const [failedIndexes, setFailedIndexes] = useState<Set<number>>(new Set());
+
+  const handleImageError = useCallback((index: number) => {
+    setFailedIndexes(prev => {
+      const next = new Set(prev);
+      next.add(index);
+      return next;
+    });
+  }, []);
+
+  // Filter to only valid images for arc positioning
+  const validEntries = images
+    .map((img, i) => ({ img, originalIndex: i }))
+    .filter(({ originalIndex }) => !failedIndexes.has(originalIndex));
+
+  const count = Math.max(validEntries.length, 2);
   const step = (endAngle - startAngle) / (count - 1);
 
   return (
@@ -83,7 +99,7 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
             transform: 'translateX(-50%)',
           }}
         >
-          {images.map((img, i) => {
+          {validEntries.map(({ img, originalIndex }, i) => {
             const angle = startAngle + step * i;
             const angleRad = (angle * Math.PI) / 180;
             const x = Math.cos(angleRad) * dimensions.radius;
@@ -91,7 +107,7 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
 
             return (
               <div
-                key={i}
+                key={originalIndex}
                 className="absolute"
                 style={{
                   width: dimensions.cardSize,
@@ -104,13 +120,13 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
               >
                 <div
                   className="w-full h-full rounded-xl overflow-hidden shadow-lg ring-1 ring-white/10 cursor-pointer transition-transform duration-300 hover:scale-110 hover:z-10 group relative"
-                  onClick={() => onCardClick?.(i)}
+                  onClick={() => onCardClick?.(originalIndex)}
                   role="button"
                   tabIndex={0}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
-                      onCardClick?.(i);
+                      onCardClick?.(originalIndex);
                     }
                   }}
                 >
@@ -119,9 +135,7 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
                     alt={img.alt}
                     className="w-full h-full object-cover"
                     loading="lazy"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = `https://placehold.co/400x400/1a1a2e/e2e8f0?text=${encodeURIComponent(img.label || 'Meghalaya')}`;
-                    }}
+                    onError={() => handleImageError(originalIndex)}
                   />
                   {img.label && (
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-2">
