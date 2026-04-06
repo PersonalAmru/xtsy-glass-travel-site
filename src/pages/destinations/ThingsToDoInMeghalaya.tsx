@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import heroImage from '@/assets/northeast-ecological-education-authentic.jpg';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import Header from '@/components/Header';
