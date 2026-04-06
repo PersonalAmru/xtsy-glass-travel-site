@@ -73,37 +73,8 @@ const DestinationDetail = () => {
       <Header />
 
       <main className="pt-20">
-        {/* Hero Image */}
-        <div className="relative h-[40vh] md:h-[50vh] overflow-hidden bg-muted">
-          <img
-            src={images[0]?.src}
-            alt={`${destination.name} Meghalaya aerial view`}
-            className="w-full h-full object-cover"
-            loading="eager"
-            decoding="sync"
-            fetchPriority="high"
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = '/placeholder.svg';
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12 container mx-auto max-w-5xl">
-            <Breadcrumbs items={[
-              { label: 'Home', href: '/' },
-              { label: 'Things to Do', href: '/things-to-do-in-meghalaya' },
-              { label: destination.name },
-            ]} />
-            <h1 className="mt-3 text-3xl md:text-5xl font-bold text-foreground">
-              {destination.name} Travel Guide
-            </h1>
-            <div className="mt-2 flex items-center gap-2 text-muted-foreground">
-              <MapPin className="h-4 w-4" />
-              <span>{destination.region}, Meghalaya</span>
-              <span className="mx-1">·</span>
-              <span className="capitalize">{destination.category}</span>
-            </div>
-          </div>
-        </div>
+        {/* Hero Image Slideshow */}
+        <HeroSlideshow images={images} destination={destination} />
 
         <div className="container mx-auto px-4 max-w-5xl py-12 space-y-12">
 
