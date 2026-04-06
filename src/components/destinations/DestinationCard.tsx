@@ -12,7 +12,8 @@ interface DestinationCardProps {
 const DestinationCard = ({ destination, className = '' }: DestinationCardProps) => {
   const [imgState, setImgState] = useState<'loading' | 'loaded' | 'error'>('loading');
 
-  if (imgState === 'error') return null;
+  // Don't remove the card on error — show a placeholder to prevent layout shifts
+  const showFallback = imgState === 'error';
 
   return (
     <Link
