@@ -86,6 +86,20 @@ const AdminDataLayerDebug = createLazyComponent(() => import("./pages/admin/Admi
 const FranchiseLogin = createLazyComponent(() => import("./pages/franchise/FranchiseLogin"));
 const FranchiseDashboard = createLazyComponent(() => import("./pages/franchise/FranchiseDashboard"));
 
+// Destination / SEO pages
+const ThingsToDoInMeghalaya = createLazyComponent(() => import("./pages/destinations/ThingsToDoInMeghalaya"));
+const DestinationDetail = createLazyComponent(() => import("./pages/destinations/DestinationDetail"));
+const CategoryPage = createLazyComponent(() => import("./pages/destinations/CategoryPage"));
+const MeghalayaTourPackages = createLazyComponent(() => import("./pages/destinations/MeghalayaTourPackages"));
+const MeghalayaCoupleTourPackage = createLazyComponent(() => import("./pages/destinations/MeghalayaCoupleTourPackage"));
+const ShillongTourPackage = createLazyComponent(() => import("./pages/destinations/ShillongTourPackage"));
+const BlogBestTimeToVisit = createLazyComponent(() => import("./pages/destinations/BlogBestTimeToVisit"));
+const BlogHiddenPlaces = createLazyComponent(() => import("./pages/destinations/BlogHiddenPlaces"));
+const BlogItinerary3Day = createLazyComponent(() => import("./pages/destinations/BlogItinerary3Day"));
+const BlogItinerary5Day = createLazyComponent(() => import("./pages/destinations/BlogItinerary5Day"));
+const BlogBudgetTrip = createLazyComponent(() => import("./pages/destinations/BlogBudgetTrip"));
+const MeghalayaPhotoGallery = createLazyComponent(() => import("./pages/destinations/MeghalayaPhotoGallery"));
+
 // PWA Install pages
 const UserInstall = createLazyComponent(() => import("./pages/install/UserInstall"));
 const AdminInstall = createLazyComponent(() => import("./pages/install/AdminInstall"));
