@@ -179,6 +179,17 @@ const Tours = () => {
                 {filteredTours.length > 0 ? (
                   <TourGrid tours={filteredTours} onSelect={handleSelect} />
                 ) : (
+                  <div className="text-center py-20">
+                    <p className="text-lg text-muted-foreground mb-4">No tours match your filters.</p>
+                    <Button
+                      variant="outline"
+                      onClick={() => setFilters(DEFAULT_MARKETPLACE_FILTERS)}
+                      className="border-emerald-500/30 text-emerald-400"
+                    >
+                      Clear all filters
+                    </Button>
+                  </div>
+                )}
               </div>
             </div>
           </div>
