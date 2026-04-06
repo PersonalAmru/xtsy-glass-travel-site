@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Header from '@/components/Header';
 import { Shield, Users, Heart, Sparkles, Phone, MessageCircle, Check, Star } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -8,15 +7,9 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import heroImage from '@/assets/female-travellers-hero.jpg';
 import safeDormImage from '@/assets/female-safe-amenities.jpg';
 import communityImage from '@/assets/female-community-bonding.jpg';
+import SEOHead from '@/components/SEOHead';
 
 const FemaleTravellers = () => {
-  useEffect(() => {
-    document.title = "Female Travellers - XTSY Prime | Safe & Empowering Travel";
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'XTSY Prime welcomes female travelers with safe spaces, women-only dormitories, and empowering travel experiences in Northeast India.');
-    }
-  }, []);
 
   const handleWhatsAppBooking = () => {
     window.open('https://wa.me/918837317070?text=Hi%2C%20I%20would%20like%20to%20book%20for%20female%20travelers', '_blank');
@@ -73,6 +66,12 @@ const FemaleTravellers = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Safe Stays for Women — Female-Only Dorms in Shillong | XTSY"
+        description="Female-only dorms with 24/7 security, CCTV, personal lockers. India's safest hostel for solo women travellers in Shillong, Meghalaya."
+        keywords="female hostel Shillong, women solo travel India, safe hostel women, girls dorm Meghalaya, female traveller hostel northeast India"
+        canonicalUrl="https://xtsy.one/female-travellers"
+      />
       <Header />
       
       {/* Hero Section */}

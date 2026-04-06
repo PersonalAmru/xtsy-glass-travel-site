@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import SEOHead from "@/components/SEOHead";
 import { Wifi, Mountain, Coffee, Users, Zap, Clock, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -133,14 +134,14 @@ const WorkFromHome = () => {
     avatar: "D",
     verified: true
   }];
-  useEffect(() => {
-    document.title = "Work From Home in Shillong | Remote Work at XTSY Prime | Digital Nomad Hostel";
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Work remotely from the Himalayas at XTSY Prime, Shillong. High-speed internet, co-working spaces, mountain views. Perfect for digital nomads & remote workers.');
-    }
-  }, []);
-return <>
+
+  return <>
+      <SEOHead
+        title="Work From Shillong — Remote Work & Digital Nomad Hostel | XTSY"
+        description="Work remotely from XTSY Shillong. High-speed WiFi, co-working spaces, mountain views. Perfect workation for digital nomads & remote workers in Meghalaya."
+        keywords="workation Shillong, work from Shillong, digital nomad hostel Meghalaya, co-working space Shillong, remote work India, work from mountain"
+        canonicalUrl="https://xtsy.one/work-from-home"
+      />
       <Header />
 
       {/* Hero Section - Apple-inspired with proper spacing */}

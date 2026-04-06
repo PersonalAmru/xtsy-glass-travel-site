@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppBookingForm from "@/components/WhatsAppBookingForm";
@@ -8,39 +8,19 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { PawPrint, Heart, Shield, Plane, Home, Users, Phone, Globe, MessageCircle } from "lucide-react";
 import petFriendlyHero from "@/assets/pet-friendly-hero.jpg";
+import SEOHead from "@/components/SEOHead";
 
 const PetFriendly = () => {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
-  useEffect(() => {
-    document.title = "India's 1st Pet Friendly Travellers Hostel | XTSY Prime Pet Travel Accommodation";
-    
-    // SEO Meta Tags
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'XTSY Prime - India\'s first pet-friendly travellers hostel in Shillong, Meghalaya. Pet-friendly accommodation, domestic & international pet travel arrangements, complete pet care support by Team XTSY.');
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = 'XTSY Prime - India\'s first pet-friendly travellers hostel in Shillong, Meghalaya. Pet-friendly accommodation, domestic & international pet travel arrangements, complete pet care support by Team XTSY.';
-      document.head.appendChild(meta);
-    }
-
-    // Keywords meta tag
-    const metaKeywords = document.querySelector('meta[name="keywords"]');
-    const keywords = 'pet friendly hostel India, pet friendly accommodation Shillong, pet travel India, dog friendly hostel Meghalaya, cat friendly hostel, pet friendly travellers hostel, pet travel arrangements, international pet travel India, domestic pet travel, pet care hostel, pet friendly stay Northeast India, pet friendly accommodation Meghalaya';
-    if (metaKeywords) {
-      metaKeywords.setAttribute('content', keywords);
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'keywords';
-      meta.content = keywords;
-      document.head.appendChild(meta);
-    }
-  }, []);
-
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background to-background/95">
+      <SEOHead
+        title="Pet-Friendly Hostel in Shillong — Travel With Your Pet | XTSY"
+        description="India's first pet-friendly travellers hostel in Shillong. Dog & cat friendly rooms, pet travel arrangements, open spaces. XTSY Meghalaya."
+        keywords="pet friendly hostel Shillong, dog friendly hotel Meghalaya, pet friendly accommodation India, travel with pets Shillong, pet friendly stay northeast India"
+        canonicalUrl="https://xtsy.one/pet-friendly"
+      />
       <Header />
       
       <main className="flex-1 pb-12">

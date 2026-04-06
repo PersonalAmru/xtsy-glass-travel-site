@@ -100,6 +100,12 @@ const BlogItinerary5Day = createLazyComponent(() => import("./pages/destinations
 const BlogBudgetTrip = createLazyComponent(() => import("./pages/destinations/BlogBudgetTrip"));
 const MeghalayaPhotoGallery = createLazyComponent(() => import("./pages/destinations/MeghalayaPhotoGallery"));
 
+// High-intent SEO landing pages
+const BestHostelShillong = createLazyComponent(() => import("./pages/BestHostelShillong"));
+const HotelsHomestaysShillong = createLazyComponent(() => import("./pages/HotelsHomestaysShillong"));
+const LuxuryGlampingShillong = createLazyComponent(() => import("./pages/LuxuryGlampingShillong"));
+const DestinationWeddingShillong = createLazyComponent(() => import("./pages/DestinationWeddingShillong"));
+
 // PWA Install pages
 const UserInstall = createLazyComponent(() => import("./pages/install/UserInstall"));
 const AdminInstall = createLazyComponent(() => import("./pages/install/AdminInstall"));
@@ -329,6 +335,13 @@ function App() {
                 <Route path="/5-day-meghalaya-itinerary" element={<LazyRoute><BlogItinerary5Day /></LazyRoute>} />
                 <Route path="/budget-trip-to-meghalaya" element={<LazyRoute><BlogBudgetTrip /></LazyRoute>} />
                 <Route path="/meghalaya-photo-gallery" element={<LazyRoute><MeghalayaPhotoGallery /></LazyRoute>} />
+                
+                {/* High-Intent SEO Landing Pages */}
+                <Route path="/best-hostel-in-shillong" element={<LazyRoute><BestHostelShillong /></LazyRoute>} />
+                <Route path="/hotels-homestays-shillong" element={<LazyRoute><HotelsHomestaysShillong /></LazyRoute>} />
+                <Route path="/luxury-glamping-shillong" element={<LazyRoute><LuxuryGlampingShillong /></LazyRoute>} />
+                <Route path="/destination-wedding-shillong" element={<LazyRoute><DestinationWeddingShillong /></LazyRoute>} />
+                <Route path="/restaurant-shillong" element={<LazyRoute><LazyTabBistro /></LazyRoute>} />
                 
                 <Route path="*" element={<NotFound />} />
               </Routes>
