@@ -66,6 +66,12 @@ const Gallery = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="XTSY Photo Gallery — Hostel, Glass Suite & Meghalaya Photos"
+        description="See inside XTSY Shillong — 270° glass suite, dormitories, common areas, mountain views. Real photos from India's biggest hostel in Meghalaya."
+        keywords="XTSY photos, Shillong hostel gallery, glass suite photos, hostel rooms Meghalaya, XTSY Shillong images"
+        canonicalUrl="https://xtsy.one/gallery"
+      />
       <SEOContent page="gallery" />
       <Header />
       <div className="pt-4">
