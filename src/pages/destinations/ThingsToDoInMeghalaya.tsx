@@ -114,53 +114,53 @@ const ThingsToDoInMeghalaya = () => {
           </div>
         </section>
 
-        {/* Interactive Radial Gallery */}
-        <section className="py-12 bg-muted/10">
-          <div className="container mx-auto px-4 max-w-6xl text-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground">Explore Meghalaya's Icons</h2>
-            <p className="text-muted-foreground mt-2">Scroll to discover — click to explore</p>
-            <p className="text-sm text-muted-foreground/60 mt-1">↓ Scroll</p>
-          </div>
-          <RadialScrollGallery
-            scrollDuration={3000}
-            visiblePercentage={45}
-            baseRadius={500}
-            mobileRadius={200}
-            onItemSelect={(index) => {
-              const dest = featured[index];
-              if (dest) window.location.href = `/places-to-visit/${dest.slug}`;
-            }}
-          >
-            {(hoveredIndex) =>
-              featured.slice(0, 8).map((dest, index) => {
-                const isActive = hoveredIndex === index;
-                return (
-                  <div key={dest.slug} className="w-48 md:w-56">
-                    <div className="relative rounded-xl overflow-hidden shadow-lg">
-                      <img
-                        src={getDestinationImageUrl(dest.slug)}
-                        alt={`${dest.name} Meghalaya`}
-                        className="w-full aspect-[3/4] object-cover"
-                        loading="lazy"
-                      />
-                      <div className={`absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent transition-opacity ${isActive ? 'opacity-100' : 'opacity-70'}`} />
-                      <div className="absolute bottom-0 left-0 right-0 p-3">
-                        <Badge variant="secondary" className="mb-1 text-[10px] capitalize">{dest.category}</Badge>
-                        <h3 className="text-white font-semibold text-sm leading-tight">{dest.name}</h3>
-                        {isActive && (
-                          <div className="flex items-center gap-1 mt-1 text-white/80 text-xs">
-                            <span>Explore</span>
-                            <ArrowUpRight className="h-3 w-3" />
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })
-            }
-          </RadialScrollGallery>
-        </section>
+        {/* Arc Gallery Hero — Explore Meghalaya's Icons */}
+        <ArcGalleryHero
+          images={featured.slice(0, 10).map((dest) => ({
+            src: getDestinationImageUrl(dest.slug),
+            alt: `${dest.name} Meghalaya`,
+            label: dest.name,
+            slug: dest.slug,
+          }))}
+          startAngle={15}
+          endAngle={165}
+          radiusLg={480}
+          radiusMd={360}
+          radiusSm={240}
+          cardSizeLg={120}
+          cardSizeMd={100}
+          cardSizeSm={75}
+          onCardClick={(index) => {
+            const dest = featured[index];
+            if (dest) navigate(`/places-to-visit/${dest.slug}`);
+          }}
+          title={
+            <h2 className="text-2xl md:text-4xl font-bold text-foreground">
+              Explore Meghalaya's Icons
+            </h2>
+          }
+          subtitle={
+            <p className="text-muted-foreground mt-3 text-sm md:text-base">
+              Click any destination to discover waterfalls, caves, living root bridges & more
+            </p>
+          }
+          cta={
+            <div className="mt-5 flex flex-wrap gap-3 justify-center">
+              <Link
+                to="/meghalaya-tour-packages"
+                className="px-5 py-2.5 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
+              >
+                View Tour Packages
+              </Link>
+              <Link
+                to="/meghalaya-photo-gallery"
+                className="px-5 py-2.5 border border-border text-foreground rounded-lg text-sm font-medium hover:bg-muted transition-colors"
+              >
+                Photo Gallery
+              </Link>
+            </div>
+          }
+        />
 
         {/* Content Sections */}
         <div className="container mx-auto px-4 max-w-5xl py-12 space-y-16">
