@@ -39,13 +39,18 @@ const Photo = ({
   alt,
   className,
   direction = 'right',
+  onLoadSuccess,
+  onLoadError,
 }: {
   src: string;
   alt: string;
   className?: string;
   direction?: Direction;
+  onLoadSuccess?: () => void;
+  onLoadError?: () => void;
 }) => {
   const [rotation, setRotation] = useState(0);
+  const [imgStatus, setImgStatus] = useState<'loading' | 'loaded' | 'error'>('loading');
   const x = useMotionValue(200);
   const y = useMotionValue(200);
 
@@ -64,11 +69,17 @@ const Photo = ({
     y.set(200);
   };
 
+  if (imgStatus === 'error') return null;
+
   return (
     <motion.div
       style={{ rotate: rotation }}
       whileHover={{ scale: 1.05, rotate: 0 }}
-      className={cn('rounded-xl overflow-hidden border-2 border-white/10 shadow-xl', className)}
+      className={cn(
+        'rounded-xl overflow-hidden shadow-xl',
+        imgStatus === 'loaded' ? 'border-2 border-white/10' : 'border-0',
+        className
+      )}
     >
       <div
         onMouseMove={handleMouse}
@@ -79,8 +90,13 @@ const Photo = ({
           src={src}
           alt={alt}
           loading="lazy"
-          className="w-full h-full object-cover"
+          className={cn(
+            'w-full h-full object-cover transition-opacity duration-300',
+            imgStatus === 'loaded' ? 'opacity-100' : 'opacity-0'
+          )}
           style={{ width: '100%', height: '100%' }}
+          onLoad={() => { setImgStatus('loaded'); onLoadSuccess?.(); }}
+          onError={() => { setImgStatus('error'); onLoadError?.(); }}
         />
       </div>
     </motion.div>
