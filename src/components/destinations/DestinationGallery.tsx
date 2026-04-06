@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import UnifiedImage from '@/components/UnifiedImage';
 
@@ -43,7 +43,7 @@ const DestinationGallery = ({ images, destinationName, className = '' }: Destina
               loading="lazy"
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               onError={(e) => {
-                (e.target as HTMLImageElement).style.display = 'none';
+                (e.target as HTMLImageElement).src = `/placeholder.svg`;
               }}
             />
             <figcaption className="sr-only">{image.alt}</figcaption>
@@ -52,49 +52,64 @@ const DestinationGallery = ({ images, destinationName, className = '' }: Destina
         ))}
       </div>
 
-      {/* Lightbox */}
+      {/* Lightbox with keyboard navigation */}
       {lightboxIndex !== null && (
-        <div
-          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center"
-          onClick={closeLightbox}
-        >
-          <button
-            onClick={closeLightbox}
-            className="absolute top-4 right-4 text-white/80 hover:text-white z-50"
-            aria-label="Close lightbox"
-          >
-            <X className="h-8 w-8" />
-          </button>
-
-          <button
-            onClick={(e) => { e.stopPropagation(); navigate('prev'); }}
-            className="absolute left-4 text-white/80 hover:text-white z-50"
-            aria-label="Previous image"
-          >
-            <ChevronLeft className="h-10 w-10" />
-          </button>
-
-          <img
-            src={images[lightboxIndex].src}
-            alt={images[lightboxIndex].alt}
-            className="max-w-[90vw] max-h-[85vh] object-contain"
-            onClick={(e) => e.stopPropagation()}
-          />
-
-          <button
-            onClick={(e) => { e.stopPropagation(); navigate('next'); }}
-            className="absolute right-4 text-white/80 hover:text-white z-50"
-            aria-label="Next image"
-          >
-            <ChevronRight className="h-10 w-10" />
-          </button>
-
-          <p className="absolute bottom-4 text-white/60 text-sm text-center">
-            {images[lightboxIndex].alt} — {lightboxIndex + 1} / {images.length}
-          </p>
-        </div>
+        <LightboxOverlay
+          images={images}
+          index={lightboxIndex}
+          onClose={closeLightbox}
+          onNavigate={navigate}
+        />
       )}
     </>
+  );
+};
+
+const LightboxOverlay = ({ images, index, onClose, onNavigate }: {
+  images: GalleryImage[];
+  index: number;
+  onClose: () => void;
+  onNavigate: (dir: 'prev' | 'next') => void;
+}) => {
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowLeft') onNavigate('prev');
+      if (e.key === 'ArrowRight') onNavigate('next');
+    };
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKey);
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKey);
+    };
+  }, [onClose, onNavigate]);
+
+  return (
+    <div
+      className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center"
+      onClick={onClose}
+    >
+      <button onClick={onClose} className="absolute top-4 right-4 text-white/80 hover:text-white z-50" aria-label="Close lightbox">
+        <X className="h-8 w-8" />
+      </button>
+      <button onClick={(e) => { e.stopPropagation(); onNavigate('prev'); }} className="absolute left-4 text-white/80 hover:text-white z-50" aria-label="Previous image">
+        <ChevronLeft className="h-10 w-10" />
+      </button>
+      <img
+        src={images[index].src}
+        alt={images[index].alt}
+        className="max-w-[90vw] max-h-[85vh] object-contain"
+        onClick={(e) => e.stopPropagation()}
+        onError={(e) => { (e.target as HTMLImageElement).src = '/placeholder.svg'; }}
+      />
+      <button onClick={(e) => { e.stopPropagation(); onNavigate('next'); }} className="absolute right-4 text-white/80 hover:text-white z-50" aria-label="Next image">
+        <ChevronRight className="h-10 w-10" />
+      </button>
+      <p className="absolute bottom-4 text-white/60 text-sm text-center">
+        {images[index].alt} — {index + 1} / {images.length}
+      </p>
+    </div>
   );
 };
 

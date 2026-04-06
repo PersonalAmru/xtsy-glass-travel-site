@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import Header from '@/components/Header';
@@ -267,20 +268,9 @@ const ThingsToDoInMeghalaya = () => {
             </div>
           </section>
 
-          {/* All Destinations */}
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-              All {meghalayaDestinations.length} Places to Visit in Meghalaya
-            </h2>
-            <p className="mt-3 text-muted-foreground">
-              The complete list of destinations across Meghalaya — waterfalls, caves, viewpoints, villages, and adventure spots.
-            </p>
-            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {meghalayaDestinations.map((dest) => (
-                <DestinationCard key={dest.slug} destination={dest} />
-              ))}
-            </div>
-          </section>
+          {/* All Destinations with Show More */}
+          <AllDestinationsSection />
+
 
           {/* FAQ Section */}
           <section>

@@ -63,7 +63,7 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
   return (
     <section
       className={`relative w-full overflow-hidden bg-background ${className}`}
-      style={{ minHeight: '80vh' }}
+      style={{ minHeight: dimensions.cardSize < 100 ? '90vh' : '80vh' }}
     >
       {/* Arc container */}
       <div
@@ -71,7 +71,7 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
         style={{
           width: dimensions.radius * 2,
           height: dimensions.radius * 2,
-          bottom: '35%',
+          bottom: dimensions.cardSize < 100 ? '40%' : '35%',
         }}
       >
         {/* Pivot at bottom center */}

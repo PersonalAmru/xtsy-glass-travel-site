@@ -8,7 +8,7 @@ import { destinationCategories, getDestinationsByCategory } from '@/data/meghala
 
 const CategoryPage = () => {
   const { pathname } = useLocation();
-  const slug = pathname.replace('/', '');
+  const slug = pathname.replace(/^\/|\/$/g, '');
   const category = destinationCategories.find(c => c.slug === slug);
 
   if (!category) {
