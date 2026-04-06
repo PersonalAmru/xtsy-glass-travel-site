@@ -177,23 +177,8 @@ const Tours = () => {
               {/* Tour grid */}
               <div className="flex-1">
                 {filteredTours.length > 0 ? (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
-                    {filteredTours.map(tour => (
-                      <TourListingCard key={tour.id} tour={tour} onSelect={handleSelect} />
-                    ))}
-                  </div>
+                  <TourGrid tours={filteredTours} onSelect={handleSelect} />
                 ) : (
-                  <div className="text-center py-20">
-                    <p className="text-lg text-muted-foreground mb-4">No tours match your filters.</p>
-                    <Button
-                      variant="outline"
-                      onClick={() => setFilters(DEFAULT_MARKETPLACE_FILTERS)}
-                      className="border-emerald-500/30 text-emerald-400"
-                    >
-                      Clear all filters
-                    </Button>
-                  </div>
-                )}
               </div>
             </div>
           </div>
