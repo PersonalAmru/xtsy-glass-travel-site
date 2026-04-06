@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, ArrowRight } from 'lucide-react';
 import { getDestinationImageUrl, type MeghalayaDestination } from '@/data/meghalayaDestinations';
@@ -9,10 +9,21 @@ interface DestinationCardProps {
   className?: string;
 }
 
+const MAX_IMAGE_INDEX = 6;
+
 const DestinationCard = ({ destination, className = '' }: DestinationCardProps) => {
   const [imgState, setImgState] = useState<'loading' | 'loaded' | 'error'>('loading');
+  const [currentIndex, setCurrentIndex] = useState(1);
 
-  // Don't remove the card on error — show a placeholder to prevent layout shifts
+  const handleError = useCallback(() => {
+    if (currentIndex < MAX_IMAGE_INDEX) {
+      // Try next image index
+      setCurrentIndex(prev => prev + 1);
+    } else {
+      setImgState('error');
+    }
+  }, [currentIndex]);
+
   const showFallback = imgState === 'error';
 
   return (
@@ -30,12 +41,12 @@ const DestinationCard = ({ destination, className = '' }: DestinationCardProps) 
           </div>
         ) : (
           <img
-            src={getDestinationImageUrl(destination.slug)}
+            src={getDestinationImageUrl(destination.slug, currentIndex)}
             alt={`${destination.name} Meghalaya`}
             loading="lazy"
             className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${imgState === 'loading' ? 'opacity-0' : 'opacity-100'}`}
             onLoad={() => setImgState('loaded')}
-            onError={() => setImgState('error')}
+            onError={handleError}
           />
         )}
         {imgState === 'loaded' && (
