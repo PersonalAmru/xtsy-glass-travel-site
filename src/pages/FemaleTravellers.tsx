@@ -66,6 +66,12 @@ const FemaleTravellers = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Safe Stays for Women — Female-Only Dorms in Shillong | XTSY"
+        description="Female-only dorms with 24/7 security, CCTV, personal lockers. India's safest hostel for solo women travellers in Shillong, Meghalaya."
+        keywords="female hostel Shillong, women solo travel India, safe hostel women, girls dorm Meghalaya, female traveller hostel northeast India"
+        canonicalUrl="https://xtsy.one/female-travellers"
+      />
       <Header />
       
       {/* Hero Section */}

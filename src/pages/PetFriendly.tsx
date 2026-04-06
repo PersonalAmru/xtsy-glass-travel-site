@@ -15,6 +15,12 @@ const PetFriendly = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background to-background/95">
+      <SEOHead
+        title="Pet-Friendly Hostel in Shillong — Travel With Your Pet | XTSY"
+        description="India's first pet-friendly travellers hostel in Shillong. Dog & cat friendly rooms, pet travel arrangements, open spaces. XTSY Meghalaya."
+        keywords="pet friendly hostel Shillong, dog friendly hotel Meghalaya, pet friendly accommodation India, travel with pets Shillong, pet friendly stay northeast India"
+        canonicalUrl="https://xtsy.one/pet-friendly"
+      />
       <Header />
       
       <main className="flex-1 pb-12">
