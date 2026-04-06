@@ -57,7 +57,6 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
     return () => window.removeEventListener('resize', handleResize);
   }, [radiusLg, radiusMd, radiusSm, cardSizeLg, cardSizeMd, cardSizeSm]);
 
-  // Track which images failed to load
   const [failedIndexes, setFailedIndexes] = useState<Set<number>>(new Set());
 
   const handleImageError = useCallback((index: number) => {
@@ -68,7 +67,6 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
     });
   }, []);
 
-  // Filter to only valid images for arc positioning
   const validEntries = images
     .map((img, i) => ({ img, originalIndex: i }))
     .filter(({ originalIndex }) => !failedIndexes.has(originalIndex));
@@ -76,25 +74,31 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
   const count = Math.max(validEntries.length, 2);
   const step = (endAngle - startAngle) / (count - 1);
 
-  // Scale radius down when many images fail so the arc stays compact
   const scaleFactor = Math.max(0.5, validEntries.length / Math.max(images.length, 1));
   const effectiveRadius = Math.round(dimensions.radius * scaleFactor);
+
+  // The arc's visual height: the topmost card sits at sin(90°)*radius = radius from the pivot
+  // Plus half a card size for the card extending above that point
+  const arcVisualHeight = effectiveRadius + dimensions.cardSize / 2;
+  // Total section height: arc + gap + text area
+  const textAreaHeight = 180;
+  const gap = 24;
+  const totalHeight = arcVisualHeight + gap + textAreaHeight;
 
   return (
     <section
       className={`relative w-full bg-background overflow-x-clip ${className}`}
-      style={{ minHeight: `${effectiveRadius * 2 + dimensions.cardSize + 200}px` }}
+      style={{ height: `${totalHeight}px` }}
     >
-      {/* Arc container */}
+      {/* Arc container — positioned from top */}
       <div
         className="absolute left-1/2 -translate-x-1/2"
         style={{
           width: effectiveRadius * 2,
           height: effectiveRadius * 2,
-          bottom: dimensions.cardSize < 100 ? '40%' : '35%',
+          top: arcVisualHeight - effectiveRadius * 2 + dimensions.cardSize / 2,
         }}
       >
-        {/* Pivot at bottom center */}
         <div
           className="absolute"
           style={{
@@ -155,11 +159,11 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
         </div>
       </div>
 
-      {/* Content overlay */}
+      {/* Content — positioned from bottom */}
       <div
         className="absolute left-1/2 w-full px-4"
         style={{
-          bottom: '8%',
+          bottom: '24px',
           transform: 'translateX(-50%)',
           animation: 'arc-fade-in-up 0.8s ease-out 0.5s both',
         }}
@@ -175,7 +179,7 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
         @keyframes arc-card-appear {
           from {
             opacity: 0;
-            transform: rotate(${0}deg) scale(0.5);
+            transform: rotate(0deg) scale(0.5);
           }
           to {
             opacity: 1;
