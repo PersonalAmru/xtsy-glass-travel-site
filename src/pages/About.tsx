@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import AboutSection from "@/components/AboutSection";
 import AboutXTSYSection from "@/components/AboutXTSYSection";
@@ -8,6 +9,29 @@ import SEOContent from "@/components/SEOContent";
 import SEOHead, { getSEOConfig } from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { MapPin, Phone, Mail, Clock, Navigation } from "lucide-react";
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'XTSY Travellers Hostel',
+  url: 'https://xtsy.one',
+  logo: 'https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/social-images/social-1765259372136-with_padding.png',
+  description: 'India\'s biggest hostel in Northeast India. Accommodation, tours, dining, and experiences in Shillong, Meghalaya.',
+  telephone: '+918837317070',
+  email: 'xtsytravellershostel@gmail.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Mawkhar, Shillong',
+    addressLocality: 'Shillong',
+    addressRegion: 'Meghalaya',
+    postalCode: '793001',
+    addressCountry: 'IN',
+  },
+  sameAs: [
+    'https://www.instagram.com/xtsytravellershostel',
+    'https://www.facebook.com/xtsytravellershostel',
+  ],
+};
 
 const About = () => {
   const seo = getSEOConfig('about');
@@ -24,6 +48,9 @@ const About = () => {
         keywords={seo.keywords}
         canonicalUrl="https://xtsy.one/about"
       />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(organizationSchema)}</script>
+      </Helmet>
       <SEOContent page="about" />
       <Header />
       <main>
