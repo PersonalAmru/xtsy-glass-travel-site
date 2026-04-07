@@ -1,4 +1,4 @@
-import { Star, BadgeCheck, Quote } from "lucide-react";
+import { Star, BadgeCheck, Quote, MessageSquare } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface Review {
@@ -10,6 +10,9 @@ interface Review {
   roomType?: string;
   property: string;
   highlights?: string;
+  ownerReply?: string;
+  travelType?: string;
+  localGuide?: boolean;
 }
 
 interface PremiumReviewCardProps {
@@ -92,7 +95,7 @@ const PremiumReviewCard = ({
         !isMobile && "hover:bg-card/80 hover:border-primary/20 hover:shadow-lg hover:shadow-primary/10",
         !isMobile && "hover:scale-[1.02] hover:-translate-y-1",
         // Variant-specific sizing
-        variant === "carousel" && "h-[240px] p-4",
+        variant === "carousel" && "min-h-[260px] p-4",
         variant === "grid" && "p-4 animate-fade-in",
         variant === "featured" && "p-5 md:p-6 animate-fade-in"
       )}
