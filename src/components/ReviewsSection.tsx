@@ -565,14 +565,27 @@ const ReviewsSection = () => {
     highlights: "Great view · Quiet · Great value"
   }];
 
-  // Use DB reviews if available, otherwise fallback to hardcoded OTA reviews
+  // Combine all review sources: DB reviews + Google reviews + OTA fallback reviews
   const allReviewsCombined = useMemo(() => {
-    if (hasReviews && dbReviews.length > 0) {
-      // Combine DB reviews with fallback OTA reviews
-      return [...dbReviews, ...fallbackReviews];
-    }
-    // Use only fallback reviews when DB is empty
-    return fallbackReviews;
+    const googleReviewsMapped: Review[] = googleReviews.map(r => ({
+      ...r,
+      source: "Google" as const,
+    }));
+    
+    const combined = [
+      ...(hasReviews && dbReviews.length > 0 ? dbReviews : []),
+      ...googleReviewsMapped,
+      ...fallbackReviews,
+    ];
+    
+    // Deduplicate by name + comment substring
+    const seen = new Set<string>();
+    return combined.filter(r => {
+      const key = `${r.name}-${r.comment.slice(0, 30)}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
   }, [dbReviews, hasReviews]);
 
   // Sort reviews by comment length (longest first) for carousel
