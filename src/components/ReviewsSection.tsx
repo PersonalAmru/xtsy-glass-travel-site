@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { Star, X, Loader2, BadgeCheck, Quote, Sparkles } from "lucide-react";
+import { Star, X, Loader2, BadgeCheck, Quote, Sparkles, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@/components/ui/visually-hidden";
@@ -8,6 +8,7 @@ import PlatformRatingCard from "./reviews/PlatformRatingCard";
 import { cn } from "@/lib/utils";
 import { useReviews, type Review } from "@/hooks/useReviews";
 import { routeGTMEvent } from "@/utils/gtmEventRouter";
+import { googleReviews } from "@/data/googleReviews";
 
 // Number of reviews to show initially in the modal
 const REVIEWS_PER_PAGE = 12;
