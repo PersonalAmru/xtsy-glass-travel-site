@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { Star, X, Loader2, BadgeCheck, Quote, Sparkles } from "lucide-react";
+import { Star, X, Loader2, BadgeCheck, Quote, Sparkles, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@/components/ui/visually-hidden";
@@ -8,6 +8,7 @@ import PlatformRatingCard from "./reviews/PlatformRatingCard";
 import { cn } from "@/lib/utils";
 import { useReviews, type Review } from "@/hooks/useReviews";
 import { routeGTMEvent } from "@/utils/gtmEventRouter";
+import { googleReviews } from "@/data/googleReviews";
 
 // Number of reviews to show initially in the modal
 const REVIEWS_PER_PAGE = 12;
@@ -564,14 +565,27 @@ const ReviewsSection = () => {
     highlights: "Great view · Quiet · Great value"
   }];
 
-  // Use DB reviews if available, otherwise fallback to hardcoded OTA reviews
+  // Combine all review sources: DB reviews + Google reviews + OTA fallback reviews
   const allReviewsCombined = useMemo(() => {
-    if (hasReviews && dbReviews.length > 0) {
-      // Combine DB reviews with fallback OTA reviews
-      return [...dbReviews, ...fallbackReviews];
-    }
-    // Use only fallback reviews when DB is empty
-    return fallbackReviews;
+    const googleReviewsMapped: Review[] = googleReviews.map(r => ({
+      ...r,
+      source: "Google" as const,
+    }));
+    
+    const combined = [
+      ...(hasReviews && dbReviews.length > 0 ? dbReviews : []),
+      ...googleReviewsMapped,
+      ...fallbackReviews,
+    ];
+    
+    // Deduplicate by name + comment substring
+    const seen = new Set<string>();
+    return combined.filter(r => {
+      const key = `${r.name}-${r.comment.slice(0, 30)}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
   }, [dbReviews, hasReviews]);
 
   // Sort reviews by comment length (longest first) for carousel
@@ -976,6 +990,26 @@ const ReviewsSection = () => {
                           {highlight}
                         </span>
                       ))}
+                    </div>
+                  </div>
+                )}
+                
+                {/* Owner Reply */}
+                {selectedReview.ownerReply && (
+                  <div className="mt-6 pt-4 border-t border-border">
+                    <div className="flex items-start gap-3 p-4 rounded-xl bg-primary/5 border border-primary/10">
+                      <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-primary to-brand-ember flex items-center justify-center">
+                        <MessageSquare className="w-5 h-5 text-primary-foreground" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-1">
+                          <p className="text-sm font-semibold text-foreground">XTSY Travellers Hostel</p>
+                          <span className="text-[10px] px-2 py-0.5 rounded-full bg-primary/15 text-primary font-medium">Owner</span>
+                        </div>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          {selectedReview.ownerReply}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 )}

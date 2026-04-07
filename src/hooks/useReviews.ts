@@ -30,6 +30,9 @@ export interface Review {
   highlights?: string;
   photos?: string[];
   verified?: boolean;
+  ownerReply?: string;
+  travelType?: string;
+  localGuide?: boolean;
 }
 
 interface DBReview {
