@@ -158,14 +158,14 @@ const HeroSection = () => {
       estimated_revenue: nights * guests * 300, // Avg estimate
     });
 
-    // Navigate to dedicated search results page
+    // Navigate to booking flow with search params
     const searchParams = new URLSearchParams({
       location,
       checkIn: checkInStr,
       checkOut: checkOutStr,
       guests: guests.toString(),
     });
-    navigate(`/search?${searchParams.toString()}`);
+    navigate(`/book?${searchParams.toString()}`);
   };
 
   const scrollToContent = () => {
