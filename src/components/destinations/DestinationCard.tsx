@@ -1,7 +1,7 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, ArrowRight } from 'lucide-react';
-import { getDestinationImageUrl, type MeghalayaDestination } from '@/data/meghalayaDestinations';
+import { getDestinationImageUrl, getFirstValidImageIndex, knownImageIndices, type MeghalayaDestination } from '@/data/meghalayaDestinations';
 import { Skeleton } from '@/components/ui/skeleton';
 
 interface DestinationCardProps {
@@ -9,22 +9,28 @@ interface DestinationCardProps {
   className?: string;
 }
 
-const MAX_IMAGE_INDEX = 6;
-
 const DestinationCard = ({ destination, className = '' }: DestinationCardProps) => {
-  const [imgState, setImgState] = useState<'loading' | 'loaded' | 'error'>('loading');
-  const [currentIndex, setCurrentIndex] = useState(1);
+  const firstIndex = useMemo(() => getFirstValidImageIndex(destination.slug), [destination.slug]);
+  const hasImage = firstIndex !== null;
+  
+  const [imgState, setImgState] = useState<'loading' | 'loaded' | 'error'>(
+    hasImage ? 'loading' : 'error'
+  );
+  const [currentIndexPos, setCurrentIndexPos] = useState(0);
+  
+  const availableIndices = useMemo(() => knownImageIndices[destination.slug] || [], [destination.slug]);
 
   const handleError = useCallback(() => {
-    if (currentIndex < MAX_IMAGE_INDEX) {
-      // Try next image index
-      setCurrentIndex(prev => prev + 1);
+    const nextPos = currentIndexPos + 1;
+    if (nextPos < availableIndices.length) {
+      setCurrentIndexPos(nextPos);
     } else {
       setImgState('error');
     }
-  }, [currentIndex]);
+  }, [currentIndexPos, availableIndices.length]);
 
-  const showFallback = imgState === 'error';
+  const currentImageIndex = availableIndices[currentIndexPos] ?? 1;
+  const showFallback = imgState === 'error' || !hasImage;
 
   return (
     <Link
@@ -32,19 +38,22 @@ const DestinationCard = ({ destination, className = '' }: DestinationCardProps) 
       className={`group block rounded-xl overflow-hidden bg-card border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-lg ${className}`}
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-muted">
-        {imgState === 'loading' && (
-          <Skeleton className="absolute inset-0 rounded-none" shimmer />
+        {imgState === 'loading' && hasImage && (
+          <div className="absolute inset-0 bg-muted animate-pulse">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-shimmer" />
+          </div>
         )}
         {showFallback ? (
-          <div className="absolute inset-0 flex items-center justify-center bg-muted">
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-muted gap-2">
             <MapPin className="h-8 w-8 text-muted-foreground/40" />
+            <span className="text-xs text-muted-foreground/40 capitalize">{destination.category}</span>
           </div>
         ) : (
           <img
-            src={getDestinationImageUrl(destination.slug, currentIndex)}
+            src={getDestinationImageUrl(destination.slug, currentImageIndex)}
             alt={`${destination.name} Meghalaya`}
             loading="lazy"
-            className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${imgState === 'loading' ? 'opacity-0' : 'opacity-100'}`}
+            className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-105 ${imgState === 'loading' ? 'opacity-0' : 'opacity-100'}`}
             onLoad={() => setImgState('loaded')}
             onError={handleError}
           />
