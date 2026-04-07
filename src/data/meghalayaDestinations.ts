@@ -18,6 +18,43 @@ const SUPABASE_BUCKET_URL = 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1
 export const getDestinationImageUrl = (slug: string, index: number = 1) =>
   `${SUPABASE_BUCKET_URL}/${slug}-meghalaya-${index}.webp`;
 
+/**
+ * Known available image indices per destination slug.
+ * Verified against Supabase storage to prevent 404 requests.
+ * Destinations not listed here have NO images uploaded.
+ */
+export const knownImageIndices: Record<string, number[]> = {
+  'dawki-suspension-bridge': [2, 3],
+  'dawki-umngot-river': [2, 3],
+  'double-decker-living-root-bridge': [2, 3],
+  'elephant-falls': [1, 2],
+  'jakrem-hot-springs': [4],
+  'krang-suri-falls': [2, 3],
+  'krem-liat-prah': [1, 2],
+  'laitlum-canyons': [2, 3, 4],
+  'mawjymbuin-cave': [2],
+  'mawlynnong-village': [1, 2],
+  'mawphlang-sacred-forest': [1, 2, 3],
+  'mawryngkhang-bamboo-trail': [1, 2],
+  'mawsmai-cave': [1, 2, 3],
+  'mawthadraishan-peak': [1, 2, 3],
+  'nohkalikai-falls': [1, 2],
+  'nokrek-biosphere-reserve': [1],
+  'nongjrong-sunrise-viewpoint': [1, 2, 3],
+  'nongkhnum-island': [1, 2, 3],
+  'nongriat-village': [1, 2, 3],
+  'rainbow-falls': [4],
+  'ranikor': [1, 2, 3],
+  'shillong-peak': [2, 3],
+  'siju-cave': [2, 3],
+  'spread-eagle-falls': [1, 2],
+  'sweet-falls': [1, 2],
+  'thadlaskein-lake': [2, 3],
+  'tura-peak': [2, 3],
+  'umiam-lake': [1, 2],
+  'wei-sawdong-falls': [2, 3],
+};
+
 // Override image indices for specific destinations (1-based)
 const destinationImageOverrides: Record<string, number[]> = {
   'wei-sawdong-falls': [2, 3], // skip image 1
@@ -31,10 +68,28 @@ export const getDestinationImages = (slug: string, count: number = 3) => {
       alt: `${slug.replace(/-/g, ' ')} Meghalaya - Photo ${idx}`,
     }));
   }
+  
+  // Use known indices if available
+  const known = knownImageIndices[slug];
+  if (known) {
+    return known.map((idx) => ({
+      src: getDestinationImageUrl(slug, idx),
+      alt: `${slug.replace(/-/g, ' ')} Meghalaya - Photo ${idx}`,
+    }));
+  }
+  
   return Array.from({ length: count }, (_, i) => ({
     src: getDestinationImageUrl(slug, i + 1),
     alt: `${slug.replace(/-/g, ' ')} Meghalaya - Photo ${i + 1}`,
   }));
+};
+
+/**
+ * Returns the first known valid image index for a slug, or null if no images exist.
+ */
+export const getFirstValidImageIndex = (slug: string): number | null => {
+  const known = knownImageIndices[slug];
+  return known && known.length > 0 ? known[0] : null;
 };
 
 export const meghalayaDestinations: MeghalayaDestination[] = [
