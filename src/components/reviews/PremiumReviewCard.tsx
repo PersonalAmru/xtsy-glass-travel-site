@@ -215,6 +215,36 @@ const PremiumReviewCard = ({
         )}
       </div>
 
+      {/* Owner Reply */}
+      {review.ownerReply && variant !== "carousel" && (
+        <div className="mt-3 pt-3 border-t border-border/50">
+          <div className="flex items-start gap-2">
+            <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/15 flex items-center justify-center">
+              <MessageSquare className="w-3 h-3 text-primary" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-[10px] font-semibold text-primary mb-0.5">XTSY Travellers Hostel · Owner</p>
+              <p className="text-[11px] text-muted-foreground leading-relaxed">
+                {variant === "grid" ? (review.ownerReply.length > 80 ? review.ownerReply.slice(0, 80) + "..." : review.ownerReply) : review.ownerReply}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Owner Reply - Carousel compact */}
+      {review.ownerReply && variant === "carousel" && (
+        <div className="mt-2 pt-2 border-t border-border/30">
+          <div className="flex items-center gap-1.5">
+            <MessageSquare className="w-3 h-3 text-primary/60 flex-shrink-0" />
+            <p className="text-[10px] text-muted-foreground truncate">
+              <span className="font-medium text-primary/70">Owner: </span>
+              {review.ownerReply.length > 50 ? review.ownerReply.slice(0, 50) + "..." : review.ownerReply}
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Highlights */}
       {review.highlights && variant === "featured" && (
         <div className="mt-4 flex flex-wrap gap-2">
