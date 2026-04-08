@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOContent from "@/components/SEOContent";
+import { SEOHead } from "@/components/SEOHead";
 import { LazyTourPackageModal } from "@/components/lazy/LazyTourPackageModal";
 import type { TourPackage, TravelFilters } from "@/data/travelData";
 import { getAllTours, filterTours, mergeItinerary } from "@/data/travelData";
@@ -50,6 +51,12 @@ const Travel = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOHead
+        title="Meghalaya Tour Packages 2026 | XTSY Curated Trips"
+        description="30+ Meghalaya & Northeast India tour packages. Living root bridges, Dawki, Cherrapunji, caving, bike rides. Starting ₹13,999."
+        keywords="Meghalaya tour packages, Northeast India tours, living root bridges tour, Cherrapunji tour, Dawki trip"
+        canonicalUrl="https://xtsy.one/travel"
+      />
       <SEOContent page="travel" />
       <Header />
 

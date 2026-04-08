@@ -55,6 +55,18 @@ const buildFAQSchema = (faqs: SEOPageData['faqs']) => ({
   })),
 });
 
+const buildBreadcrumbSchema = (page: SEOPageData, categoryLabel: string) => ({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://xtsy.one/' },
+    { '@type': 'ListItem', position: 2, name: categoryLabel, item: 'https://xtsy.one/things-to-do-in-meghalaya' },
+    { '@type': 'ListItem', position: 3, name: page.h1 },
+  ],
+});
+
+const DEFAULT_OG_IMAGE = 'https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/social-images/social-1765259372136-with_padding.png';
+
 const FAQItem = ({ faq }: { faq: { question: string; answer: string } }) => {
   const [open, setOpen] = useState(false);
   return (
@@ -88,7 +100,14 @@ const ProgrammaticSEOPage = () => {
         <meta property="og:description" content={page.metaDescription} />
         <meta property="og:url" content={`https://xtsy.one/${page.slug}`} />
         <meta property="og:type" content="website" />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE} />
+        <meta property="og:site_name" content="XTSY Travel" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={page.title} />
+        <meta name="twitter:description" content={page.metaDescription} />
+        <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
         <script type="application/ld+json">{JSON.stringify(buildSchema(page))}</script>
+        <script type="application/ld+json">{JSON.stringify(buildBreadcrumbSchema(page, categoryLabel))}</script>
         {page.faqs.length > 0 && (
           <script type="application/ld+json">{JSON.stringify(buildFAQSchema(page.faqs))}</script>
         )}
