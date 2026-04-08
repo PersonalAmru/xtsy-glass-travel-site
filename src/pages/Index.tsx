@@ -80,7 +80,12 @@ const Index = memo(() => {
       <main style={{ contain: 'layout style' }}>
         <HeroSection />
         
-        {/* Destination Explorer - right after hero */}
+        {/* Trending Destinations - right after hero */}
+        <LazyWrapper eager fallback={<SectionFallback height="h-72" />}>
+          <TrendingDestinations />
+        </LazyWrapper>
+        
+        {/* Destination Explorer */}
         <LazyWrapper eager fallback={<SectionFallback height="h-64" />}>
           <DestinationExplorer />
         </LazyWrapper>
@@ -88,11 +93,6 @@ const Index = memo(() => {
         {/* XTSY Prime - Premium offerings */}
         <LazyWrapper eager fallback={<SectionFallback height="h-80" />}>
           <XTSYPrimeSection />
-        </LazyWrapper>
-        
-        {/* Trending Destinations - horizontal carousel */}
-        <LazyWrapper eager fallback={<SectionFallback height="h-72" />}>
-          <TrendingDestinations />
         </LazyWrapper>
         
         {/* Tour Packages - FocusRail cards */}
@@ -108,11 +108,6 @@ const Index = memo(() => {
         {/* Guest Reviews */}
         <LazyWrapper fallback={<SectionFallback />}>
           <ReviewsSection />
-        </LazyWrapper>
-        
-        {/* Trust Platform Badges */}
-        <LazyWrapper fallback={<SectionFallback height="h-32" />}>
-          <TrustPlatforms />
         </LazyWrapper>
         
         <LazyWrapper fallback={<SectionFallback />}>
