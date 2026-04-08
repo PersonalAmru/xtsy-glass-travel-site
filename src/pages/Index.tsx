@@ -91,6 +91,11 @@ const Index = memo(() => {
           <DestinationExplorer />
         </LazyWrapper>
         
+        {/* Trip Builder - interactive planner */}
+        <LazyWrapper fallback={<SectionFallback height="h-96" />}>
+          <TripBuilder />
+        </LazyWrapper>
+        
         {/* XTSY Prime - Premium offerings */}
         <LazyWrapper eager fallback={<SectionFallback height="h-80" />}>
           <XTSYPrimeSection />
