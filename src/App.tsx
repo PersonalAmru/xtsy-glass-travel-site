@@ -100,6 +100,9 @@ const BlogItinerary5Day = createLazyComponent(() => import("./pages/destinations
 const BlogBudgetTrip = createLazyComponent(() => import("./pages/destinations/BlogBudgetTrip"));
 const MeghalayaPhotoGallery = createLazyComponent(() => import("./pages/destinations/MeghalayaPhotoGallery"));
 
+// Programmatic SEO engine
+const ProgrammaticSEOPage = createLazyComponent(() => import("./pages/seo/ProgrammaticSEOPage"));
+
 // High-intent SEO landing pages
 const BestHostelShillong = createLazyComponent(() => import("./pages/BestHostelShillong"));
 const HotelsInShillong = createLazyComponent(() => import("./pages/HotelsInShillong"));
@@ -344,6 +347,9 @@ function App() {
                 <Route path="/luxury-glamping-shillong" element={<LazyRoute><LuxuryGlampingShillong /></LazyRoute>} />
                 <Route path="/destination-wedding-shillong" element={<LazyRoute><DestinationWeddingShillong /></LazyRoute>} />
                 <Route path="/restaurant-in-shillong" element={<LazyRoute><LazyTabBistro /></LazyRoute>} />
+                
+                {/* Programmatic SEO Pages — 300+ keyword-targeted landing pages */}
+                <Route path="/:slug" element={<LazyRoute><ProgrammaticSEOPage /></LazyRoute>} />
                 
                 <Route path="*" element={<NotFound />} />
               </Routes>
