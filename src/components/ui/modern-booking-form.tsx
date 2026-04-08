@@ -102,7 +102,7 @@ export const ModernBookingForm: React.FC<ModernBookingFormProps> = ({
           <span className="text-foreground"> in Shillong</span>
         </h2>
         <p className="text-sm text-muted-foreground mt-2">
-          Backpacker community stay in the heart of Meghalaya
+          XTSY — hassle free end to end travel solutions
         </p>
       </div>
 
