@@ -3,6 +3,7 @@
 
 User-agent: Googlebot
 Allow: /
+Allow: /places-to-visit/
 Disallow: /admin
 Disallow: /admin-login
 Disallow: /franchise
@@ -11,6 +12,7 @@ Disallow: /index.html
 
 User-agent: Bingbot
 Allow: /
+Allow: /places-to-visit/
 Disallow: /admin
 Disallow: /admin-login
 Disallow: /franchise
@@ -25,6 +27,7 @@ Allow: /
 
 User-agent: *
 Allow: /
+Allow: /places-to-visit/
 Disallow: /admin
 Disallow: /admin-login
 Disallow: /franchise
