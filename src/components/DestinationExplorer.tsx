@@ -136,11 +136,15 @@ const CategoryCard = memo(({ cat, onOpen }: { cat: ExplorerCategory; onOpen: () 
           {/* Mini thumbnails */}
           {thumbs.length > 0 && (
             <div className="flex items-center gap-1.5 mt-2">
-              {thumbs.map((src, i) => (
-                <div key={i} className="w-8 h-8 rounded-md overflow-hidden border border-border/30">
-                  <img src={src} alt="" loading="lazy" className="w-full h-full object-cover" />
-                </div>
-              ))}
+              {cat.destinations.slice(0, 3).map((d, i) => {
+                const src = getThumbnail(d.slug);
+                if (!src) return null;
+                return (
+                  <div key={i} className="w-8 h-8 rounded-md overflow-hidden border border-border/30">
+                    <img src={src} alt={`${d.name} destination in Meghalaya`} loading="lazy" className="w-full h-full object-cover" />
+                  </div>
+                );
+              })}
               {cat.destinations.length > 3 && (
                 <span className="text-[10px] text-muted-foreground ml-1">+{cat.destinations.length - 3} more</span>
               )}
