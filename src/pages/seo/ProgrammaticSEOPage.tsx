@@ -158,7 +158,7 @@ const ProgrammaticSEOPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const page = slug ? findSEOPage(slug) : undefined;
 
-  if (!page) return <Navigate to="/404" replace />;
+  if (!page) return <NotFound />;
 
   const related = getRelatedPages(page.slug);
   const categoryLabel = categoryLabels[page.category] || page.category;
