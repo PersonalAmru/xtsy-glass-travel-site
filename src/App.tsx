@@ -204,6 +204,15 @@ const XTSYRouteLoader = memo(() => (
 
 XTSYRouteLoader.displayName = 'XTSYRouteLoader';
 
+// Scroll to top on every route change
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
+
 function App() {
   const [isReady, setIsReady] = useState(false);
 
