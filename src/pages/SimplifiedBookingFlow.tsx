@@ -149,6 +149,127 @@ const StepIndicator = ({ currentStep }: { currentStep: number; total: number }) 
   );
 };
 
+// Room Selection Step (shown when entering from hero search)
+const RoomSelectionStep = ({
+  availableRooms,
+  selectedRooms,
+  onRoomChange,
+  nights,
+  onNext,
+}: {
+  availableRooms: RoomType[];
+  selectedRooms: SelectedRoom[];
+  onRoomChange: (roomId: string, quantity: number) => void;
+  nights: number;
+  onNext: () => void;
+}) => {
+  const getQuantity = (roomId: string) => {
+    return selectedRooms.find(sr => sr.room.id === roomId)?.quantity || 0;
+  };
+
+  const totalAmount = selectedRooms.reduce((sum, sr) => {
+    const rate = sr.room.kind === 'dorm' ? 0 : 0.05;
+    const roomTotal = sr.room.discountedPrice * sr.quantity * nights;
+    return sum + roomTotal + Math.round(roomTotal * rate);
+  }, 0);
+
+  return (
+    <div className="flex flex-col min-h-[calc(100vh-10rem)] px-4 pb-32">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="mb-4"
+      >
+        <h3 className="text-lg font-bold text-white mb-1">Select Your Rooms</h3>
+        <p className="text-sm text-white/50">{nights} night{nights > 1 ? 's' : ''} · Choose rooms & beds</p>
+      </motion.div>
+
+      <div className="space-y-3">
+        {availableRooms.map((room, idx) => {
+          const qty = getQuantity(room.id);
+          const maxQty = room.kind === 'dorm' ? room.totalUnits : room.totalUnits;
+          return (
+            <motion.div
+              key={room.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.05 }}
+              className={cn(
+                "p-4 rounded-2xl border transition-all",
+                qty > 0
+                  ? "bg-white/10 border-white/20"
+                  : "bg-white/5 border-white/10"
+              )}
+            >
+              <div className="flex gap-3">
+                <div className="w-16 h-16 rounded-xl overflow-hidden bg-white/10 flex-shrink-0">
+                  <UnifiedImage
+                    src={room.image}
+                    alt={room.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="font-semibold text-white text-sm truncate">{room.name}</p>
+                  <p className="text-xs text-white/40 mt-0.5">
+                    {room.kind === 'dorm' ? `${room.capacity}-bed ${room.category}` : `Up to ${room.capacity} guests`}
+                  </p>
+                  <div className="flex items-baseline gap-1.5 mt-1">
+                    <span className="font-bold text-white">₹{room.discountedPrice.toLocaleString()}</span>
+                    {room.originalPrice > room.discountedPrice && (
+                      <span className="text-xs text-white/30 line-through">₹{room.originalPrice.toLocaleString()}</span>
+                    )}
+                    <span className="text-xs text-white/40">/{room.kind === 'dorm' ? 'bed' : 'night'}</span>
+                  </div>
+                </div>
+                {/* Quantity control */}
+                <div className="flex items-center gap-2 flex-shrink-0">
+                  <button
+                    onClick={() => onRoomChange(room.id, Math.max(0, qty - 1))}
+                    disabled={qty === 0}
+                    className="w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center disabled:opacity-30 active:scale-95 transition-all"
+                  >
+                    −
+                  </button>
+                  <span className="w-6 text-center font-bold text-white">{qty}</span>
+                  <button
+                    onClick={() => onRoomChange(room.id, Math.min(maxQty, qty + 1))}
+                    disabled={qty >= maxQty}
+                    className="w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center disabled:opacity-30 active:scale-95 transition-all"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Continue Button */}
+      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md p-4 bg-gradient-to-t from-[hsl(220,20%,12%)] via-[hsl(220,20%,12%)] to-transparent pt-8">
+        <div className="flex items-center justify-between mb-3 px-1">
+          <span className="text-white/50 text-sm">
+            {selectedRooms.length > 0 ? `${selectedRooms.reduce((s, r) => s + r.quantity, 0)} selected` : 'Select rooms'}
+          </span>
+          {totalAmount > 0 && (
+            <span className="font-bold text-white">₹{totalAmount.toLocaleString()}</span>
+          )}
+        </div>
+        <motion.button
+          whileTap={{ scale: 0.98 }}
+          onClick={onNext}
+          disabled={selectedRooms.length === 0}
+          className="w-full h-14 rounded-2xl font-bold text-base bg-white text-[hsl(220,20%,15%)] shadow-xl shadow-black/20 flex items-center justify-center gap-2 disabled:opacity-40"
+        >
+          Continue to Summary
+          <ChevronRight className="w-5 h-5" />
+        </motion.button>
+      </div>
+    </div>
+  );
+};
+
 // Summary Step
 const SummaryStep = ({
   checkIn,
