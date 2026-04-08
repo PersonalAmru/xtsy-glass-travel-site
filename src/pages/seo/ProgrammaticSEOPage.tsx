@@ -1,4 +1,5 @@
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+import NotFound from '@/pages/NotFound';
 import { Helmet } from 'react-helmet';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -157,7 +158,7 @@ const ProgrammaticSEOPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const page = slug ? findSEOPage(slug) : undefined;
 
-  if (!page) return <Navigate to="/404" replace />;
+  if (!page) return <NotFound />;
 
   const related = getRelatedPages(page.slug);
   const categoryLabel = categoryLabels[page.category] || page.category;
