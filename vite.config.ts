@@ -31,7 +31,19 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === 'development' && componentTagger(),
-    mode === 'production' && prerenderPlugin(),
+    mode === 'production' && vitePrerender({
+      staticDir: path.join(__dirname, 'dist'),
+      routes: getAllPrerenderRoutes(),
+      minify: true,
+      postProcess(renderedRoute: any) {
+        // Fix empty titles from SPA rendering
+        renderedRoute.html = renderedRoute.html.replace(
+          /<title><\/title>/,
+          `<title>XTSY — Shillong's #1 Hostel & Travel Platform</title>`
+        );
+        return renderedRoute;
+      },
+    }),
   ].filter(Boolean),
   resolve: {
     alias: {
