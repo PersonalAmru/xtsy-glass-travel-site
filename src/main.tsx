@@ -90,7 +90,7 @@ const queryClient = new QueryClient({
 
 const root = document.getElementById("root")!;
 
-createRoot(root).render(
+const appJSX = (
   <StrictMode>
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
@@ -101,5 +101,12 @@ createRoot(root).render(
         </BrowserRouter>
       </QueryClientProvider>
     </ErrorBoundary>
-  </StrictMode>,
+  </StrictMode>
 );
+
+// If the root has pre-rendered content (from vite-plugin-prerender), hydrate instead of render
+if (root.hasChildNodes()) {
+  hydrateRoot(root, appJSX);
+} else {
+  createRoot(root).render(appJSX);
+}
