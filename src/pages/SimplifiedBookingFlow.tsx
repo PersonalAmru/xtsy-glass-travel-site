@@ -888,41 +888,29 @@ export default function SimplifiedBookingFlow() {
         // Fallback: try URL search params from hero search
         const urlCheckIn = searchParams.get('checkIn');
         const urlCheckOut = searchParams.get('checkOut');
-        const urlGuests = parseInt(searchParams.get('guests') || '2', 10);
         const urlLocation = searchParams.get('location') || 'shillong';
 
         if (urlCheckIn && urlCheckOut) {
           setCheckIn(parseISO(urlCheckIn));
           setCheckOut(parseISO(urlCheckOut));
+          setFromHeroSearch(true);
 
           // Set property name based on location
           const isXperience = urlLocation === 'xtsy-xperience' || urlLocation === 'xtsy-270';
           setPropertyName(isXperience ? 'XTSY Xperience' : 'XTSY Travellers Hostel');
 
-          // Auto-select a default room based on guest count and location
-          const bookableRooms = Object.values(ROOM_INVENTORY).filter(r => {
-            if (!r.isBookable) return false;
-            if (isXperience) return r.propertyType === 'XTSY Experience';
-            return r.propertyType !== 'XTSY Experience';
-          });
+          // Get all bookable rooms for this property
+          const bookableRooms = Object.values(ROOM_INVENTORY)
+            .filter(r => {
+              if (!r.isBookable) return false;
+              if (isXperience) return r.propertyType === 'XTSY Experience';
+              return r.propertyType !== 'XTSY Experience';
+            })
+            .sort((a, b) => a.displayOrder - b.displayOrder);
 
-          // Pick the best fit: prefer private rooms for small groups, dorms for larger
-          let defaultRoom: RoomType | undefined;
-          if (urlGuests <= 2) {
-            defaultRoom = bookableRooms.find(r => r.kind === 'private') || bookableRooms[0];
-          } else {
-            // For larger groups, pick the most affordable dorm or first available
-            defaultRoom = bookableRooms
-              .filter(r => r.kind === 'dorm')
-              .sort((a, b) => a.discountedPrice - b.discountedPrice)[0]
-              || bookableRooms[0];
-          }
-
-          if (defaultRoom) {
-            const qty = defaultRoom.kind === 'dorm' 
-              ? Math.min(urlGuests, defaultRoom.totalUnits) 
-              : 1;
-            setSelectedRooms([{ room: defaultRoom, quantity: qty }]);
+          if (bookableRooms.length > 0) {
+            setAvailableRooms(bookableRooms);
+            setCurrentStep('rooms');
           } else {
             navigate('/');
           }
