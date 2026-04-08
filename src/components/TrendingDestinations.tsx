@@ -28,20 +28,29 @@ const TRENDING: TrendingDestination[] = [
   { name: 'Shnongpdeng', slug: 'shnongpdeng-camping-meghalaya', tagline: 'Riverside camping & cliff jumping', category: 'Adventure' },
 ];
 
-// Map slug to image — strip the suffix for meghalayaDestinations lookup
+// Explicit mapping from carousel slug to knownImageIndices key
+const SLUG_TO_IMAGE_KEY: Record<string, string> = {
+  'dawki-umngot-river-guide': 'dawki-umngot-river',
+  'cherrapunjee-travel-guide': 'elephant-falls', // Cherrapunjee area — use Elephant Falls
+  'mawlynnong-cleanest-village': 'mawlynnong-village',
+  'laitlum-canyons-shillong': 'laitlum-canyons',
+  'double-decker-root-bridge': 'double-decker-living-root-bridge',
+  'umiam-lake-shillong': 'umiam-lake',
+  'nohkalikai-falls-meghalaya': 'nohkalikai-falls',
+  'krang-suri-falls-meghalaya': 'krang-suri-falls',
+  'mawsmai-cave-cherrapunji': 'mawsmai-cave',
+  'shnongpdeng-camping-meghalaya': 'ranikor', // Riverside adventure — use Ranikor
+};
+
 const getImage = (slug: string): string => {
-  // Try known image indices first
-  const shortSlug = slug.replace(/-meghalaya$/, '').replace(/-shillong$/, '').replace(/-cherrapunji$/, '').replace(/-guide$/, '');
-  const indices = knownImageIndices[shortSlug];
-  if (indices && indices.length > 0) {
-    return getDestinationImageUrl(shortSlug, indices[0]);
+  const imageKey = SLUG_TO_IMAGE_KEY[slug];
+  if (imageKey) {
+    const indices = knownImageIndices[imageKey];
+    if (indices && indices.length > 0) {
+      return getDestinationImageUrl(imageKey, indices[0]);
+    }
   }
-  // Fallback to Unsplash for destinations without uploaded images
-  const fallbacks: Record<string, string> = {
-    'dawki-umngot-river-guide': 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&auto=format&fit=crop&q=75',
-    'cherrapunjee-travel-guide': 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&auto=format&fit=crop&q=75',
-  };
-  return fallbacks[slug] || getDestinationImageUrl(shortSlug, 1);
+  return getDestinationImageUrl(slug, 1);
 };
 
 const DestinationCard = memo(({ dest }: { dest: TrendingDestination }) => (
