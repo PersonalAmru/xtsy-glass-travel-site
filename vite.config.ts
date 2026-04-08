@@ -55,6 +55,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === 'development' && componentTagger(),
+    mode === 'production' && seoInlineMetaPlugin(),
     mode === 'production' && prerenderPlugin(),
   ].filter(Boolean),
   resolve: {
