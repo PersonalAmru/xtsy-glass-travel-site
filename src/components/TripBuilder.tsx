@@ -6,7 +6,7 @@ import { memo, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Clock, Backpack, Mountain, Heart, Camera, PawPrint, Trees,
-  Waves, Tent, Footprints, Compass, Sun, Kayak,
+  Waves, Tent, Footprints, Compass, Sun,
   MapPin, ChevronRight, ChevronLeft, Sparkles, Send, Check, Loader2
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
