@@ -1165,7 +1165,7 @@ export default function SimplifiedBookingFlow() {
         <BookingHeader
           step={stepTitle}
           stepNumber={stepNumber}
-          totalSteps={2}
+          totalSteps={totalSteps}
           onBack={goBack}
           canGoBack={canGoBack}
           onHome={() => navigate(-1)}
@@ -1176,7 +1176,7 @@ export default function SimplifiedBookingFlow() {
       <div className="max-w-md mx-auto">
         {/* Step Indicator */}
         {currentStep !== 'confirmation' && (
-          <StepIndicator currentStep={stepNumber - 1} total={2} />
+          <StepIndicator currentStep={stepNumber - 1} total={totalSteps} />
         )}
 
         {/* Step Content */}
