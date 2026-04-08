@@ -740,7 +740,7 @@ export default function SimplifiedBookingFlow() {
   const [bookingUUID, setBookingUUID] = useState('');
   const [chatOpen, setChatOpen] = useState(false);
 
-  // Load booking data from sessionStorage
+  // Load booking data from sessionStorage OR URL search params (hero search)
   useEffect(() => {
     try {
       const bookingData = sessionStorage.getItem('xtsy_simplified_booking');
@@ -750,7 +750,6 @@ export default function SimplifiedBookingFlow() {
         if (data.checkOut) setCheckOut(parseISO(data.checkOut));
         if (data.propertyName) setPropertyName(data.propertyName);
         if (data.selectedRooms && Array.isArray(data.selectedRooms)) {
-          // Reconstruct room objects from IDs
           const rooms: SelectedRoom[] = data.selectedRooms
             .map((sr: { roomId: string; quantity: number }) => {
               const room = ROOM_INVENTORY[sr.roomId];
@@ -763,13 +762,55 @@ export default function SimplifiedBookingFlow() {
           setSelectedRooms(rooms);
         }
       } else {
-        // No booking data, redirect back
-        navigate('/');
+        // Fallback: try URL search params from hero search
+        const urlCheckIn = searchParams.get('checkIn');
+        const urlCheckOut = searchParams.get('checkOut');
+        const urlGuests = parseInt(searchParams.get('guests') || '2', 10);
+        const urlLocation = searchParams.get('location') || 'shillong';
+
+        if (urlCheckIn && urlCheckOut) {
+          setCheckIn(parseISO(urlCheckIn));
+          setCheckOut(parseISO(urlCheckOut));
+
+          // Set property name based on location
+          const isXperience = urlLocation === 'xtsy-xperience' || urlLocation === 'xtsy-270';
+          setPropertyName(isXperience ? 'XTSY Xperience' : 'XTSY Travellers Hostel');
+
+          // Auto-select a default room based on guest count and location
+          const bookableRooms = Object.values(ROOM_INVENTORY).filter(r => {
+            if (!r.isBookable) return false;
+            if (isXperience) return r.propertyType === 'XTSY Experience';
+            return r.propertyType !== 'XTSY Experience';
+          });
+
+          // Pick the best fit: prefer private rooms for small groups, dorms for larger
+          let defaultRoom: RoomType | undefined;
+          if (urlGuests <= 2) {
+            defaultRoom = bookableRooms.find(r => r.kind === 'private') || bookableRooms[0];
+          } else {
+            // For larger groups, pick the most affordable dorm or first available
+            defaultRoom = bookableRooms
+              .filter(r => r.kind === 'dorm')
+              .sort((a, b) => a.discountedPrice - b.discountedPrice)[0]
+              || bookableRooms[0];
+          }
+
+          if (defaultRoom) {
+            const qty = defaultRoom.kind === 'dorm' 
+              ? Math.min(urlGuests, defaultRoom.totalUnits) 
+              : 1;
+            setSelectedRooms([{ room: defaultRoom, quantity: qty }]);
+          } else {
+            navigate('/');
+          }
+        } else {
+          navigate('/');
+        }
       }
     } catch {
       navigate('/');
     }
-  }, [navigate]);
+  }, [navigate, searchParams]);
 
   // Pre-fill guest details from user
   useEffect(() => {
