@@ -51,6 +51,12 @@ const Travel = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOHead
+        title="Meghalaya Tour Packages 2026 | XTSY Curated Trips"
+        description="30+ Meghalaya & Northeast India tour packages. Living root bridges, Dawki, Cherrapunji, caving, bike rides. Starting ₹13,999."
+        keywords="Meghalaya tour packages, Northeast India tours, living root bridges tour, Cherrapunji tour, Dawki trip"
+        canonicalUrl="https://xtsy.one/travel"
+      />
       <SEOContent page="travel" />
       <Header />
 
