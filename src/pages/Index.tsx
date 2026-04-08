@@ -15,7 +15,7 @@ const TrendingDestinations = lazy(() => import("@/components/TrendingDestination
 const HomeTourPackages = lazy(() => import("@/components/HomeTourPackages"));
 const AdventureCallToAction = lazy(() => import("@/components/AdventureCallToAction"));
 const ReviewsSection = lazy(() => import("@/components/ReviewsSection"));
-const TrustPlatforms = lazy(() => import("@/components/TrustPlatforms"));
+
 const FAQSection = lazy(() => import("@/components/FAQSection"));
 const SEOFooterLinks = lazy(() => import("@/components/SEOFooterLinks"));
 
