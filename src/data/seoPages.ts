@@ -1,5 +1,7 @@
 // Programmatic SEO Page Registry — 300+ keyword-targeted pages
 import { EXPANSION_SEO_PAGES } from './seoPagesExpansion';
+import { PILLAR_PAGES } from './seoPillarPages';
+import { DESTINATION_PAGES } from './seoDestinationPages';
 
 export type SEOPageCategory = 
   | 'hostels' | 'hotels' | 'homestays' | 'glamping' | 'accommodation'
@@ -1059,6 +1061,8 @@ const BASE_SEO_PAGES: SEOPageData[] = [
 ];
 
 export const ALL_SEO_PAGES: SEOPageData[] = [
+  ...PILLAR_PAGES,
+  ...DESTINATION_PAGES,
   ...BASE_SEO_PAGES,
   ...EXPANSION_SEO_PAGES,
 ];
