@@ -185,7 +185,7 @@ const DestinationExplorer = memo(() => {
 
       {/* Category modal */}
       <Dialog open={!!openCat} onOpenChange={(open) => !open && handleClose()}>
-        <DialogContent className="sm:max-w-lg max-h-[85vh] overflow-y-auto">
+        <DialogContent className="sm:max-w-2xl max-h-[85vh] overflow-y-auto">
           {openCat && activeConfig && (
             <>
               <DialogHeader>
