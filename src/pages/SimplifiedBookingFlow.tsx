@@ -978,12 +978,13 @@ export default function SimplifiedBookingFlow() {
   }, [selectedRooms, nights]);
 
   // Navigation
-  const stepNumber = currentStep === 'summary' ? 1 : currentStep === 'details' ? 2 : 2;
-  const stepTitle = currentStep === 'summary' ? 'Review' : currentStep === 'details' ? 'Guest Details' : 'Confirmed';
-  const canGoBack = currentStep === 'details';
+  const totalSteps = fromHeroSearch ? 3 : 2;
+  const stepNumber = currentStep === 'rooms' ? 1 : currentStep === 'summary' ? (fromHeroSearch ? 2 : 1) : currentStep === 'details' ? (fromHeroSearch ? 3 : 2) : totalSteps;
+  const stepTitle = currentStep === 'rooms' ? 'Select Rooms' : currentStep === 'summary' ? 'Review' : currentStep === 'details' ? 'Guest Details' : 'Confirmed';
+  const canGoBack = currentStep === 'details' || (currentStep === 'summary' && fromHeroSearch);
 
   const goToStep = useCallback((step: BookingStep) => {
-    const stepOrder: BookingStep[] = ['summary', 'details', 'confirmation'];
+    const stepOrder: BookingStep[] = ['rooms', 'summary', 'details', 'confirmation'];
     const currentIdx = stepOrder.indexOf(currentStep);
     const newIdx = stepOrder.indexOf(step);
     setDirection(newIdx > currentIdx ? 1 : -1);
@@ -993,10 +994,28 @@ export default function SimplifiedBookingFlow() {
   const goBack = useCallback(() => {
     if (currentStep === 'details') {
       goToStep('summary');
+    } else if (currentStep === 'summary' && fromHeroSearch) {
+      goToStep('rooms');
     } else {
       navigate(-1);
     }
-  }, [currentStep, goToStep, navigate]);
+  }, [currentStep, fromHeroSearch, goToStep, navigate]);
+
+  // Handle room quantity change from room selection step
+  const handleRoomChange = useCallback((roomId: string, quantity: number) => {
+    setSelectedRooms(prev => {
+      const room = ROOM_INVENTORY[roomId] || availableRooms.find(r => r.id === roomId);
+      if (!room) return prev;
+      if (quantity === 0) {
+        return prev.filter(sr => sr.room.id !== roomId);
+      }
+      const existing = prev.find(sr => sr.room.id === roomId);
+      if (existing) {
+        return prev.map(sr => sr.room.id === roomId ? { ...sr, quantity } : sr);
+      }
+      return [...prev, { room, quantity }];
+    });
+  }, [availableRooms]);
 
   // Handle booking submission
   const handleSubmitBooking = async () => {
