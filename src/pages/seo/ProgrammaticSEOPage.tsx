@@ -3,9 +3,13 @@ import { Helmet } from 'react-helmet';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import { findSEOPage, getRelatedPages, type SEOPageData, type SchemaType } from '@/data/seoPages';
-import { Check, MapPin, Phone, Star, ChevronDown, ChevronUp } from 'lucide-react';
-import { useState } from 'react';
+import AuthorBox from '@/components/seo/AuthorBox';
+import TrustSignals from '@/components/seo/TrustSignals';
+import TopicalClusterNav from '@/components/seo/TopicalClusterNav';
+import ConversionLinks from '@/components/seo/ConversionLinks';
+import { findSEOPage, getRelatedPages, getPagesByCategory, type SEOPageData } from '@/data/seoPages';
+import { Check, ChevronDown, ChevronUp } from 'lucide-react';
+import { useState, memo } from 'react';
 
 const categoryLabels: Record<string, string> = {
   hostels: 'Hostels', hotels: 'Hotels', homestays: 'Homestays', glamping: 'Glamping',
@@ -17,6 +21,7 @@ const categoryLabels: Record<string, string> = {
   seasonal: 'Seasonal Guides', events: 'Events', 'travel-agency': 'Travel Agency',
 };
 
+// Enhanced schema builder with more types
 const buildSchema = (page: SEOPageData) => {
   const base: any = {
     '@context': 'https://schema.org',
@@ -32,15 +37,44 @@ const buildSchema = (page: SEOPageData) => {
       telephone: '+91-8787537633',
       priceRange: '₹499 - ₹4,999',
       aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.8', reviewCount: '320', bestRating: '5' },
+      geo: { '@type': 'GeoCoordinates', latitude: 25.5788, longitude: 91.8933 },
+      amenityFeature: [
+        { '@type': 'LocationFeatureSpecification', name: 'Free WiFi', value: true },
+        { '@type': 'LocationFeatureSpecification', name: 'Restaurant', value: true },
+        { '@type': 'LocationFeatureSpecification', name: 'Pet Friendly', value: true },
+      ],
     });
   }
 
   if (page.schemaType === 'TouristTrip') {
-    Object.assign(base, { touristType: 'Adventure', provider: { '@type': 'TravelAgency', name: 'XTSY', url: 'https://xtsy.one' } });
+    Object.assign(base, {
+      touristType: 'Adventure',
+      provider: { '@type': 'TravelAgency', name: 'XTSY Travel', url: 'https://xtsy.one', telephone: '+91-8787537633' },
+    });
   }
 
   if (page.schemaType === 'TouristAttraction') {
-    Object.assign(base, { isAccessibleForFree: true, address: { '@type': 'PostalAddress', addressRegion: 'Meghalaya', addressCountry: 'IN' } });
+    Object.assign(base, {
+      isAccessibleForFree: true,
+      address: { '@type': 'PostalAddress', addressRegion: 'Meghalaya', addressCountry: 'IN' },
+    });
+  }
+
+  if (page.schemaType === 'Restaurant') {
+    Object.assign(base, {
+      servesCuisine: ['Indian', 'Continental', 'Local Khasi'],
+      address: { '@type': 'PostalAddress', streetAddress: 'Mawdiangdiang Road', addressLocality: 'Shillong', addressRegion: 'Meghalaya', postalCode: '793018', addressCountry: 'IN' },
+      telephone: '+91-8787537633',
+    });
+  }
+
+  if (['TravelGuide', 'Article'].includes(page.schemaType)) {
+    Object.assign(base, {
+      author: { '@type': 'Organization', name: 'XTSY Travel', url: 'https://xtsy.one' },
+      publisher: { '@type': 'Organization', name: 'XTSY Travel', url: 'https://xtsy.one' },
+      datePublished: '2025-01-01',
+      dateModified: new Date().toISOString().split('T')[0],
+    });
   }
 
   return base;
@@ -65,9 +99,20 @@ const buildBreadcrumbSchema = (page: SEOPageData, categoryLabel: string) => ({
   ],
 });
 
+// Organization schema for E-E-A-T
+const ORG_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'XTSY Travellers Hostel',
+  url: 'https://xtsy.one',
+  logo: 'https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/social-images/social-1765259372136-with_padding.png',
+  sameAs: ['https://www.instagram.com/xtsytravellershostel', 'https://www.facebook.com/xtsytravellershostel'],
+  contactPoint: { '@type': 'ContactPoint', telephone: '+91-8787537633', contactType: 'customer service' },
+};
+
 const DEFAULT_OG_IMAGE = 'https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/social-images/social-1765259372136-with_padding.png';
 
-const FAQItem = ({ faq }: { faq: { question: string; answer: string } }) => {
+const FAQItem = memo(({ faq }: { faq: { question: string; answer: string } }) => {
   const [open, setOpen] = useState(false);
   return (
     <div className="border border-border rounded-lg">
@@ -78,7 +123,8 @@ const FAQItem = ({ faq }: { faq: { question: string; answer: string } }) => {
       {open && <div className="px-4 pb-4 text-sm text-muted-foreground">{faq.answer}</div>}
     </div>
   );
-};
+});
+FAQItem.displayName = 'FAQItem';
 
 const ProgrammaticSEOPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -88,6 +134,11 @@ const ProgrammaticSEOPage = () => {
 
   const related = getRelatedPages(page.slug);
   const categoryLabel = categoryLabels[page.category] || page.category;
+  
+  // Get more same-category pages for cross-linking
+  const categoryPages = getPagesByCategory(page.category)
+    .filter(p => p.slug !== page.slug)
+    .slice(0, 6);
 
   return (
     <div className="min-h-screen bg-background">
@@ -99,15 +150,18 @@ const ProgrammaticSEOPage = () => {
         <meta property="og:title" content={page.title} />
         <meta property="og:description" content={page.metaDescription} />
         <meta property="og:url" content={`https://xtsy.one/${page.slug}`} />
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
         <meta property="og:image" content={DEFAULT_OG_IMAGE} />
         <meta property="og:site_name" content="XTSY Travel" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={page.title} />
         <meta name="twitter:description" content={page.metaDescription} />
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
+        <meta name="author" content="XTSY Travel Team" />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
         <script type="application/ld+json">{JSON.stringify(buildSchema(page))}</script>
         <script type="application/ld+json">{JSON.stringify(buildBreadcrumbSchema(page, categoryLabel))}</script>
+        <script type="application/ld+json">{JSON.stringify(ORG_SCHEMA)}</script>
         {page.faqs.length > 0 && (
           <script type="application/ld+json">{JSON.stringify(buildFAQSchema(page.faqs))}</script>
         )}
@@ -116,7 +170,7 @@ const ProgrammaticSEOPage = () => {
       <Header />
 
       <main className="pt-20">
-        <div className="container mx-auto px-4 max-w-4xl py-10">
+        <article className="container mx-auto px-4 max-w-4xl py-10">
           <Breadcrumbs items={[
             { label: 'Home', href: '/' },
             { label: categoryLabel, href: `/things-to-do-in-meghalaya` },
@@ -124,7 +178,23 @@ const ProgrammaticSEOPage = () => {
           ]} />
 
           <h1 className="mt-6 text-3xl md:text-4xl font-bold text-foreground leading-tight">{page.h1}</h1>
+          
+          {/* Last updated + reading time for E-E-A-T */}
+          <div className="mt-2 flex items-center gap-3 text-xs text-muted-foreground">
+            <span>Updated: April 2026</span>
+            <span>•</span>
+            <span>By XTSY Travel Team</span>
+            <span>•</span>
+            <span>Based in Shillong, Meghalaya</span>
+          </div>
+          
           <p className="mt-4 text-lg text-muted-foreground leading-relaxed">{page.intro}</p>
+
+          {/* Trust Signals */}
+          <TrustSignals />
+
+          {/* Quick Conversion Links */}
+          <ConversionLinks />
 
           {/* CTA Banner */}
           <div className="mt-8 bg-primary/10 rounded-xl p-6 flex flex-col sm:flex-row items-center gap-4">
@@ -162,6 +232,12 @@ const ProgrammaticSEOPage = () => {
             ))}
           </div>
 
+          {/* Topical Cluster Navigation */}
+          <TopicalClusterNav category={page.category} currentSlug={page.slug} />
+
+          {/* Author Box - E-E-A-T */}
+          <AuthorBox />
+
           {/* FAQ Section */}
           {page.faqs.length > 0 && (
             <section className="mt-12">
@@ -188,9 +264,23 @@ const ProgrammaticSEOPage = () => {
             </div>
           </section>
 
+          {/* Same-Category Pages - Cross Linking */}
+          {categoryPages.length > 0 && (
+            <nav className="mt-10 border-t border-border pt-8">
+              <h2 className="text-lg font-semibold text-foreground mb-4">More {categoryLabel}</h2>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {categoryPages.map(rp => (
+                  <Link key={rp.slug} to={`/${rp.slug}`} className="text-sm text-primary hover:underline">
+                    {rp.h1}
+                  </Link>
+                ))}
+              </div>
+            </nav>
+          )}
+
           {/* Related Pages */}
           {related.length > 0 && (
-            <nav className="mt-10 border-t border-border pt-8">
+            <nav className="mt-8 border-t border-border pt-8">
               <h2 className="text-lg font-semibold text-foreground mb-4">Related Pages</h2>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {related.map(rp => (
@@ -214,7 +304,7 @@ const ProgrammaticSEOPage = () => {
               <Link to="/book" className="text-sm text-primary hover:underline">Book Your Stay</Link>
             </div>
           </nav>
-        </div>
+        </article>
       </main>
 
       <Footer />
