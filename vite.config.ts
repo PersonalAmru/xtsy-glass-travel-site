@@ -20,6 +20,32 @@ function prerenderPlugin(): Plugin {
   };
 }
 
+// SEO Inline Meta Plugin — injects page-specific <title> and <meta> at build time
+// so Google sees unique metadata for each of the 210+ pages on first crawl
+function seoInlineMetaPlugin(): Plugin {
+  return {
+    name: 'xtsy-seo-inline-meta',
+    apply: 'build',
+    transformIndexHtml: {
+      order: 'pre',
+      async handler(html) {
+        try {
+          const result = execSync('npx tsx -e "import{generateInlineScript}from\'./scripts/generateSEOInlineScript\';console.log(generateInlineScript())"', {
+            cwd: process.cwd(),
+            encoding: 'utf-8',
+            timeout: 30000,
+          });
+          // Inject the inline script right before </head>
+          return html.replace('</head>', `${result.trim()}\n</head>`);
+        } catch (e) {
+          console.warn('⚠️ SEO inline meta injection skipped:', (e as Error).message?.substring(0, 100));
+          return html;
+        }
+      }
+    }
+  };
+}
+
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
