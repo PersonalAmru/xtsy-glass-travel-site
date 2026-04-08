@@ -124,10 +124,10 @@ const BookingHeader = ({
 );
 
 // Step Indicator
-const StepIndicator = ({ currentStep }: { currentStep: number; total: number }) => {
+const StepIndicator = ({ currentStep, total }: { currentStep: number; total: number }) => {
   return (
     <div className="flex items-center justify-center gap-1.5 py-6">
-      {[0, 1].map((index) => (
+      {Array.from({ length: total }, (_, index) => (
         <motion.div
           key={index}
           initial={false}
