@@ -1,10 +1,11 @@
 // Programmatic SEO Page Registry — 300+ keyword-targeted pages
-// Each entry maps a keyword cluster to a dedicated landing page
+import { EXPANSION_SEO_PAGES } from './seoPagesExpansion';
 
 export type SEOPageCategory = 
   | 'hostels' | 'hotels' | 'homestays' | 'glamping' | 'accommodation'
   | 'rentals' | 'tours' | 'travel-guides' | 'destinations' | 'attractions'
-  | 'itineraries' | 'activities' | 'hospitals' | 'restaurants' | 'weddings';
+  | 'itineraries' | 'activities' | 'hospitals' | 'restaurants' | 'weddings'
+  | 'transport' | 'competitor-capture' | 'food-dining' | 'seasonal' | 'events' | 'travel-agency';
 
 export type SchemaType = 
   | 'LodgingBusiness' | 'Hostel' | 'Hotel' | 'TouristAttraction' 
@@ -1044,7 +1045,7 @@ const itineraryPages: SEOPageData[] = [
 // COMBINE ALL PAGES
 // ============================================================================
 
-export const ALL_SEO_PAGES: SEOPageData[] = [
+const BASE_SEO_PAGES: SEOPageData[] = [
   ...hostelPages,
   ...hotelPages,
   ...homestayPages,
@@ -1055,6 +1056,11 @@ export const ALL_SEO_PAGES: SEOPageData[] = [
   ...attractionPages,
   ...activityPages,
   ...itineraryPages,
+];
+
+export const ALL_SEO_PAGES: SEOPageData[] = [
+  ...BASE_SEO_PAGES,
+  ...EXPANSION_SEO_PAGES,
 ];
 
 // Helper to find a page by slug

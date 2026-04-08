@@ -12,7 +12,9 @@ const categoryLabels: Record<string, string> = {
   accommodation: 'Accommodation', rentals: 'Rentals', tours: 'Tour Packages',
   'travel-guides': 'Travel Guides', destinations: 'Destinations', attractions: 'Attractions',
   itineraries: 'Itineraries', activities: 'Activities', hospitals: 'Near Hospitals',
-  restaurants: 'Dining', weddings: 'Weddings & Events',
+  restaurants: 'Dining', weddings: 'Weddings & Events', transport: 'Transport',
+  'competitor-capture': 'Hostel Comparison', 'food-dining': 'Food & Dining',
+  seasonal: 'Seasonal Guides', events: 'Events', 'travel-agency': 'Travel Agency',
 };
 
 const buildSchema = (page: SEOPageData) => {
