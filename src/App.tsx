@@ -1,7 +1,7 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { useState, useEffect, Suspense, lazy, ReactNode, memo } from "react";
 // LoadingScreen removed from initial render gate — content renders immediately for faster LCP
 import PerformanceMonitor from "./components/PerformanceMonitor";
@@ -204,6 +204,15 @@ const XTSYRouteLoader = memo(() => (
 
 XTSYRouteLoader.displayName = 'XTSYRouteLoader';
 
+// Scroll to top on every route change
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
+
 function App() {
   const [isReady, setIsReady] = useState(false);
 
@@ -264,6 +273,7 @@ function App() {
                 <TooltipProvider>
                 <Toaster />
               <Sonner />
+              <ScrollToTop />
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/about" element={<LazyRoute><LazyAbout /></LazyRoute>} />
