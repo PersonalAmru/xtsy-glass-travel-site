@@ -29,6 +29,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === 'development' && componentTagger(),
+    mode === 'production' && prerenderPlugin(),
   ].filter(Boolean),
   resolve: {
     alias: {
