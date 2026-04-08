@@ -44,7 +44,7 @@ import { BookingChat } from '@/components/chat/BookingChat';
 import { pushToDataLayer, trackBookingStart, trackBookingComplete } from '@/utils/dataLayerService';
 import { routeGTMEvent } from '@/utils/gtmEventRouter';
 
-type BookingStep = 'summary' | 'details' | 'confirmation';
+type BookingStep = 'rooms' | 'summary' | 'details' | 'confirmation';
 
 interface SelectedRoom {
   room: RoomType;
