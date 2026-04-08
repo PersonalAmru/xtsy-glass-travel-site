@@ -1,5 +1,5 @@
 // Programmatic SEO Page Registry — 300+ keyword-targeted pages
-// Each entry maps a keyword cluster to a dedicated landing page
+import { EXPANSION_SEO_PAGES } from './seoPagesExpansion';
 
 export type SEOPageCategory = 
   | 'hostels' | 'hotels' | 'homestays' | 'glamping' | 'accommodation'
