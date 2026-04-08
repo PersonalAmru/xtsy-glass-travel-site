@@ -1045,7 +1045,7 @@ const itineraryPages: SEOPageData[] = [
 // COMBINE ALL PAGES
 // ============================================================================
 
-export const ALL_SEO_PAGES: SEOPageData[] = [
+const BASE_SEO_PAGES: SEOPageData[] = [
   ...hostelPages,
   ...hotelPages,
   ...homestayPages,
@@ -1056,6 +1056,11 @@ export const ALL_SEO_PAGES: SEOPageData[] = [
   ...attractionPages,
   ...activityPages,
   ...itineraryPages,
+];
+
+export const ALL_SEO_PAGES: SEOPageData[] = [
+  ...BASE_SEO_PAGES,
+  ...EXPANSION_SEO_PAGES,
 ];
 
 // Helper to find a page by slug
