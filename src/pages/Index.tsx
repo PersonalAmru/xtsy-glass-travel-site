@@ -12,6 +12,7 @@ import { useScrollDepthTracking } from "@/hooks/useScrollDepthTracking";
 const DestinationExplorer = lazy(() => import("@/components/DestinationExplorer"));
 const XTSYPrimeSection = lazy(() => import("@/components/XTSYPrimeSection"));
 const TrendingDestinations = lazy(() => import("@/components/TrendingDestinations"));
+const TripBuilder = lazy(() => import("@/components/TripBuilder"));
 const HomeTourPackages = lazy(() => import("@/components/HomeTourPackages"));
 const AdventureCallToAction = lazy(() => import("@/components/AdventureCallToAction"));
 const ReviewsSection = lazy(() => import("@/components/ReviewsSection"));
@@ -88,6 +89,11 @@ const Index = memo(() => {
         {/* Destination Explorer */}
         <LazyWrapper eager fallback={<SectionFallback height="h-64" />}>
           <DestinationExplorer />
+        </LazyWrapper>
+        
+        {/* Trip Builder - interactive planner */}
+        <LazyWrapper fallback={<SectionFallback height="h-96" />}>
+          <TripBuilder />
         </LazyWrapper>
         
         {/* XTSY Prime - Premium offerings */}
