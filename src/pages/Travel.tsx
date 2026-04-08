@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOContent from "@/components/SEOContent";
+import { SEOHead } from "@/components/SEOHead";
 import { LazyTourPackageModal } from "@/components/lazy/LazyTourPackageModal";
 import type { TourPackage, TravelFilters } from "@/data/travelData";
 import { getAllTours, filterTours, mergeItinerary } from "@/data/travelData";
