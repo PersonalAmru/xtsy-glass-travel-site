@@ -1,7 +1,24 @@
-import { defineConfig } from "vite";
+import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
+import { execSync } from "child_process";
+
+// Post-build plugin to pre-render SEO pages
+function prerenderPlugin(): Plugin {
+  return {
+    name: 'xtsy-prerender',
+    apply: 'build',
+    closeBundle() {
+      try {
+        console.log('\n🔧 Running SEO pre-render...');
+        execSync('npx tsx scripts/prerender.ts', { stdio: 'inherit', cwd: process.cwd() });
+      } catch (e) {
+        console.warn('⚠️ Pre-render skipped (non-fatal):', (e as Error).message);
+      }
+    }
+  };
+}
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -12,6 +29,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === 'development' && componentTagger(),
+    mode === 'production' && prerenderPlugin(),
   ].filter(Boolean),
   resolve: {
     alias: {
