@@ -1058,13 +1058,6 @@ export const ALL_SEO_PAGES: SEOPageData[] = [
   ...itineraryPages,
 ];
 
-import { EXPANSION_SEO_PAGES } from './seoPagesExpansion';
-
-export const ALL_SEO_PAGES: SEOPageData[] = [
-  ...BASE_SEO_PAGES,
-  ...EXPANSION_SEO_PAGES,
-];
-
 // Helper to find a page by slug
 export const findSEOPage = (slug: string): SEOPageData | undefined => {
   return ALL_SEO_PAGES.find(p => p.slug === slug);
