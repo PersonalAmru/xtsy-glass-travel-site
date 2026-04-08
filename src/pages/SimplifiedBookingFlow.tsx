@@ -1190,7 +1190,17 @@ export default function SimplifiedBookingFlow() {
             exit="out"
             transition={pageTransition}
           >
-            {currentStep === 'summary' && (
+            {currentStep === 'rooms' && (
+              <RoomSelectionStep
+                availableRooms={availableRooms}
+                selectedRooms={selectedRooms}
+                onRoomChange={handleRoomChange}
+                nights={nights}
+                onNext={() => goToStep('summary')}
+              />
+            )}
+
+            {currentStep === 'summary' && selectedRooms.length > 0 && (
               <SummaryStep
                 checkIn={checkIn}
                 checkOut={checkOut}
