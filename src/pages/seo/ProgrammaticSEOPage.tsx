@@ -8,6 +8,7 @@ import TrustSignals from '@/components/seo/TrustSignals';
 import TopicalClusterNav from '@/components/seo/TopicalClusterNav';
 import ConversionLinks from '@/components/seo/ConversionLinks';
 import { findSEOPage, getRelatedPages, getPagesByCategory, type SEOPageData } from '@/data/seoPages';
+import { getWheelLinks, type InternalLink } from '@/data/seoLinkingWheel';
 import { Check, ChevronDown, ChevronUp } from 'lucide-react';
 import { useState, memo } from 'react';
 
@@ -125,6 +126,33 @@ const FAQItem = memo(({ faq }: { faq: { question: string; answer: string } }) =>
   );
 });
 FAQItem.displayName = 'FAQItem';
+
+const LINK_TYPE_LABELS: Record<string, string> = {
+  homepage: '🏠', 'master-pillar': '📖', pillar: '📚', destination: '📍', attraction: '🎯', itinerary: '🗓️',
+};
+
+const WheelLinksNav = memo(({ slug }: { slug: string }) => {
+  const links = getWheelLinks(slug);
+  if (links.length === 0) return null;
+  return (
+    <nav className="mt-10 border border-border rounded-xl p-5 bg-muted/20" aria-label="Related destinations">
+      <h3 className="text-sm font-semibold text-foreground mb-3">🔗 Explore Related Pages</h3>
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+        {links.map(link => (
+          <Link
+            key={link.slug}
+            to={`/${link.slug}`}
+            className="flex items-center gap-1.5 text-sm text-primary hover:underline py-1"
+          >
+            <span aria-hidden="true">{LINK_TYPE_LABELS[link.type]}</span>
+            {link.label}
+          </Link>
+        ))}
+      </div>
+    </nav>
+  );
+});
+WheelLinksNav.displayName = 'WheelLinksNav';
 
 const ProgrammaticSEOPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -264,6 +292,9 @@ const ProgrammaticSEOPage = () => {
             </div>
           </section>
 
+          {/* Internal Linking Wheel — 10 contextual links */}
+          <WheelLinksNav slug={page.slug} />
+
           {/* Same-Category Pages - Cross Linking */}
           {categoryPages.length > 0 && (
             <nav className="mt-10 border-t border-border pt-8">
@@ -291,19 +322,6 @@ const ProgrammaticSEOPage = () => {
               </div>
             </nav>
           )}
-
-          {/* Category Explore */}
-          <nav className="mt-8 border-t border-border pt-8">
-            <h2 className="text-lg font-semibold text-foreground mb-4">Explore More</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-              <Link to="/best-hostel-in-shillong" className="text-sm text-primary hover:underline">Best Hostel in Shillong</Link>
-              <Link to="/meghalaya-tour-packages" className="text-sm text-primary hover:underline">Meghalaya Tour Packages</Link>
-              <Link to="/things-to-do-in-meghalaya" className="text-sm text-primary hover:underline">Things to Do in Meghalaya</Link>
-              <Link to="/tours" className="text-sm text-primary hover:underline">Tour Packages</Link>
-              <Link to="/gallery" className="text-sm text-primary hover:underline">Photo Gallery</Link>
-              <Link to="/book" className="text-sm text-primary hover:underline">Book Your Stay</Link>
-            </div>
-          </nav>
         </article>
       </main>
 

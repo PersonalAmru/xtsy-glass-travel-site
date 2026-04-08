@@ -14,6 +14,7 @@ const XTSYPrimeSection = lazy(() => import("@/components/XTSYPrimeSection"));
 const ReviewsSection = lazy(() => import("@/components/ReviewsSection"));
 const AdventureCallToAction = lazy(() => import("@/components/AdventureCallToAction"));
 const FAQSection = lazy(() => import("@/components/FAQSection"));
+const DestinationExplorer = lazy(() => import("@/components/DestinationExplorer"));
 
 // Minimal mobile-friendly fallback
 const SectionFallback = memo(({ height = 'h-64' }: { height?: string }) => (
@@ -84,6 +85,11 @@ const Index = memo(() => {
         {/* Tour Packages - FocusRail cards */}
         <LazyWrapper eager fallback={<SectionFallback height="h-96" />}>
           <HomeTourPackages />
+        </LazyWrapper>
+        
+        {/* Destination Explorer - branch view navigation */}
+        <LazyWrapper fallback={<SectionFallback height="h-64" />}>
+          <DestinationExplorer />
         </LazyWrapper>
         
         {/* Adventure CTA */}
