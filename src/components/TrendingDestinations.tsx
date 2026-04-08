@@ -53,11 +53,11 @@ const TRENDING: TrendingDestination[] = [
   { name: 'Hornbill Festival', slug: 'travel', tagline: "Nagaland's Festival of Festivals", category: 'Festival', location: 'Nagaland', imageOverride: nagalandHornbillImg },
   
   // International
-  { name: 'Vietnam Discovery', slug: 'travel', tagline: 'Hanoi, Ha Long Bay & Hoi An lanterns', category: 'International', location: 'Vietnam', imageOverride: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/Vietnam-hoi-an-river.webp' },
-  { name: 'Bali Wellness Retreat', slug: 'travel', tagline: 'Yoga, rice terraces & temple ceremonies', category: 'International', location: 'Bali, Indonesia', imageOverride: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/Bali-paradise.webp' },
-  { name: 'Nepal Himalayan Trek', slug: 'travel', tagline: 'Kathmandu, Pokhara & Poon Hill sunrise', category: 'International', location: 'Nepal', imageOverride: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/Nepal-Himalayas.webp' },
+  { name: 'Vietnam Discovery', slug: 'travel', tagline: 'Hanoi, Ha Long Bay & Hoi An lanterns', category: 'International', location: 'Vietnam', imageOverride: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=600&auto=format&fit=crop&q=75' },
+  { name: 'Bali Wellness Retreat', slug: 'travel', tagline: 'Yoga, rice terraces & temple ceremonies', category: 'International', location: 'Bali, Indonesia', imageOverride: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&auto=format&fit=crop&q=75' },
+  { name: 'Nepal Himalayan Trek', slug: 'travel', tagline: 'Kathmandu, Pokhara & Poon Hill sunrise', category: 'International', location: 'Nepal', imageOverride: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=600&auto=format&fit=crop&q=75' },
   { name: 'Bhutan Mindful Kingdom', slug: 'travel', tagline: "Tiger's Nest & Gross National Happiness", category: 'International', location: 'Bhutan', imageOverride: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/Bhutan-Hill-Stations.webp' },
-  { name: 'Thailand Escape', slug: 'travel', tagline: 'Temples, islands & street food culture', category: 'International', location: 'Thailand', imageOverride: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/Thailand-island.webp' },
+  { name: 'Thailand Escape', slug: 'travel', tagline: 'Temples, islands & street food culture', category: 'International', location: 'Thailand', imageOverride: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=600&auto=format&fit=crop&q=75' },
 ];
 
 // Mapping from carousel slug to knownImageIndices key (Meghalaya only)
