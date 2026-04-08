@@ -101,6 +101,9 @@ export const ModernBookingForm: React.FC<ModernBookingFormProps> = ({
           </span>
           <span className="text-foreground"> in Shillong</span>
         </h2>
+        <p className="text-sm text-muted-foreground mt-2">
+          Backpacker community stay in the heart of Meghalaya
+        </p>
       </div>
 
       {/* Form Fields */}

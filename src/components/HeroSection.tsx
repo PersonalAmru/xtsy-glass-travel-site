@@ -230,15 +230,9 @@ const HeroSection = () => {
               </div>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-orange-400 to-rose-400 bg-clip-text text-transparent mb-2">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-orange-400 to-rose-400 bg-clip-text text-transparent mb-4">
               Live the XTSY Vibe
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-white/60 font-medium mb-1">
-              Best Hostel in Shillong
-            </p>
-            <p className="text-sm text-white/40 max-w-md mx-auto">
-              Backpacker community stay in the heart of Meghalaya
-            </p>
           </div>
 
           {/* Modern Booking Form */}
