@@ -1,25 +1,23 @@
-import { defineConfig } from "vite";
+import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
-import vitePrerender from "vite-plugin-prerender";
 import { execSync } from "child_process";
-import { STATIC_ROUTES } from "./scripts/generate-prerender-routes";
 
-// Collect all SEO slugs at config time for pre-rendering
-function getAllPrerenderRoutes(): string[] {
-  try {
-    // Use tsx to extract slugs from the SEO data at build time
-    const result = execSync(
-      'npx tsx -e "import{ALL_SEO_PAGES}from\'./src/data/seoPages\';console.log(JSON.stringify(ALL_SEO_PAGES.map(p=>\'/\'+p.slug)))"',
-      { encoding: 'utf-8', cwd: process.cwd(), timeout: 30000 }
-    ).trim();
-    const seoRoutes: string[] = JSON.parse(result);
-    return [...new Set([...STATIC_ROUTES, ...seoRoutes])];
-  } catch (e) {
-    console.warn('⚠️ Could not load SEO routes, using static routes only:', (e as Error).message);
-    return STATIC_ROUTES;
-  }
+// Post-build plugin to pre-render SEO pages
+function prerenderPlugin(): Plugin {
+  return {
+    name: 'xtsy-prerender',
+    apply: 'build',
+    closeBundle() {
+      try {
+        console.log('\n🔧 Running SEO pre-render...');
+        execSync('npx tsx scripts/prerender.ts', { stdio: 'inherit', cwd: process.cwd() });
+      } catch (e) {
+        console.warn('⚠️ Pre-render skipped (non-fatal):', (e as Error).message);
+      }
+    }
+  };
 }
 
 // https://vitejs.dev/config/
@@ -31,17 +29,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === 'development' && componentTagger(),
-    mode === 'production' && vitePrerender({
-      staticDir: path.join(__dirname, 'dist'),
-      routes: getAllPrerenderRoutes(),
-      postProcess(renderedRoute: any) {
-        renderedRoute.html = renderedRoute.html.replace(
-          /<title><\/title>/,
-          `<title>XTSY — Shillong's #1 Hostel & Travel Platform</title>`
-        );
-        return renderedRoute;
-      },
-    }),
+    mode === 'production' && prerenderPlugin(),
   ].filter(Boolean),
   resolve: {
     alias: {
@@ -70,14 +58,14 @@ export default defineConfig(({ mode }) => ({
         assetFileNames: 'assets/[name]-[hash:8].[ext]',
       },
     },
-    chunkSizeWarningLimit: 500, // Stricter limit for smaller bundles
+    chunkSizeWarningLimit: 500,
     minify: 'terser',
     terserOptions: {
       compress: {
         drop_console: mode === 'production',
         drop_debugger: true,
         pure_funcs: mode === 'production' ? ['console.log', 'console.info', 'console.debug', 'console.warn'] : [],
-        passes: 2, // Multiple compression passes
+        passes: 2,
         ecma: 2020,
       },
       mangle: {
@@ -89,10 +77,9 @@ export default defineConfig(({ mode }) => ({
     },
     cssCodeSplit: true,
     cssMinify: 'lightningcss',
-    sourcemap: false, // Disable sourcemaps in production for smaller bundles
-    reportCompressedSize: false, // Faster builds
+    sourcemap: false,
+    reportCompressedSize: false,
   },
-  // Enable dependency optimization
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom', '@tanstack/react-query'],
   },
