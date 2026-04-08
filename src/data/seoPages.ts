@@ -4,7 +4,8 @@
 export type SEOPageCategory = 
   | 'hostels' | 'hotels' | 'homestays' | 'glamping' | 'accommodation'
   | 'rentals' | 'tours' | 'travel-guides' | 'destinations' | 'attractions'
-  | 'itineraries' | 'activities' | 'hospitals' | 'restaurants' | 'weddings';
+  | 'itineraries' | 'activities' | 'hospitals' | 'restaurants' | 'weddings'
+  | 'transport' | 'competitor-capture' | 'food-dining' | 'seasonal' | 'events' | 'travel-agency';
 
 export type SchemaType = 
   | 'LodgingBusiness' | 'Hostel' | 'Hotel' | 'TouristAttraction' 
@@ -1055,6 +1056,13 @@ export const ALL_SEO_PAGES: SEOPageData[] = [
   ...attractionPages,
   ...activityPages,
   ...itineraryPages,
+];
+
+import { EXPANSION_SEO_PAGES } from './seoPagesExpansion';
+
+export const ALL_SEO_PAGES: SEOPageData[] = [
+  ...BASE_SEO_PAGES,
+  ...EXPANSION_SEO_PAGES,
 ];
 
 // Helper to find a page by slug
