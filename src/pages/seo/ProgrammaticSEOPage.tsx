@@ -8,7 +8,8 @@ import TrustSignals from '@/components/seo/TrustSignals';
 import TopicalClusterNav from '@/components/seo/TopicalClusterNav';
 import ConversionLinks from '@/components/seo/ConversionLinks';
 import { findSEOPage, getRelatedPages, getPagesByCategory, type SEOPageData } from '@/data/seoPages';
-import { getWheelLinks, type InternalLink } from '@/data/seoLinkingWheel';
+import { getWheelLinks } from '@/data/seoLinkingWheel';
+import { getHeroImageForPage } from '@/utils/seoHeroImages';
 import { Check, ChevronDown, ChevronUp } from 'lucide-react';
 import { useState, memo } from 'react';
 
@@ -22,7 +23,6 @@ const categoryLabels: Record<string, string> = {
   seasonal: 'Seasonal Guides', events: 'Events', 'travel-agency': 'Travel Agency',
 };
 
-// Enhanced schema builder with more types
 const buildSchema = (page: SEOPageData) => {
   const base: any = {
     '@context': 'https://schema.org',
@@ -100,7 +100,6 @@ const buildBreadcrumbSchema = (page: SEOPageData, categoryLabel: string) => ({
   ],
 });
 
-// Organization schema for E-E-A-T
 const ORG_SCHEMA = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
@@ -162,8 +161,8 @@ const ProgrammaticSEOPage = () => {
 
   const related = getRelatedPages(page.slug);
   const categoryLabel = categoryLabels[page.category] || page.category;
+  const heroImage = getHeroImageForPage(page.slug, page.category);
   
-  // Get more same-category pages for cross-linking
   const categoryPages = getPagesByCategory(page.category)
     .filter(p => p.slug !== page.slug)
     .slice(0, 6);
@@ -179,12 +178,12 @@ const ProgrammaticSEOPage = () => {
         <meta property="og:description" content={page.metaDescription} />
         <meta property="og:url" content={`https://xtsy.one/${page.slug}`} />
         <meta property="og:type" content="article" />
-        <meta property="og:image" content={DEFAULT_OG_IMAGE} />
+        <meta property="og:image" content={heroImage || DEFAULT_OG_IMAGE} />
         <meta property="og:site_name" content="XTSY Travel" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={page.title} />
         <meta name="twitter:description" content={page.metaDescription} />
-        <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
+        <meta name="twitter:image" content={heroImage || DEFAULT_OG_IMAGE} />
         <meta name="author" content="XTSY Travel Team" />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
         <script type="application/ld+json">{JSON.stringify(buildSchema(page))}</script>
@@ -197,17 +196,29 @@ const ProgrammaticSEOPage = () => {
 
       <Header />
 
-      <main className="pt-20">
-        <article className="container mx-auto px-4 max-w-4xl py-10">
+      {/* Hero Banner */}
+      <div className="relative w-full h-[40vh] min-h-[280px] max-h-[420px] overflow-hidden">
+        <img
+          src={heroImage}
+          alt={page.h1}
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          fetchPriority="high"
+          onError={(e) => {
+            const target = e.currentTarget;
+            target.style.display = 'none';
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 container mx-auto px-4 max-w-4xl pb-6">
           <Breadcrumbs items={[
             { label: 'Home', href: '/' },
-            { label: categoryLabel, href: `/things-to-do-in-meghalaya` },
+            { label: categoryLabel, href: '/things-to-do-in-meghalaya' },
             { label: page.h1 },
           ]} />
-
-          <h1 className="mt-6 text-3xl md:text-4xl font-bold text-foreground leading-tight">{page.h1}</h1>
-          
-          {/* Last updated + reading time for E-E-A-T */}
+          <h1 className="mt-3 text-2xl sm:text-3xl md:text-4xl font-bold text-foreground leading-tight drop-shadow-sm">
+            {page.h1}
+          </h1>
           <div className="mt-2 flex items-center gap-3 text-xs text-muted-foreground">
             <span>Updated: April 2026</span>
             <span>•</span>
@@ -215,8 +226,12 @@ const ProgrammaticSEOPage = () => {
             <span>•</span>
             <span>Based in Shillong, Meghalaya</span>
           </div>
-          
-          <p className="mt-4 text-lg text-muted-foreground leading-relaxed">{page.intro}</p>
+        </div>
+      </div>
+
+      <main className="pt-6">
+        <article className="container mx-auto px-4 max-w-4xl pb-10">
+          <p className="text-lg text-muted-foreground leading-relaxed">{page.intro}</p>
 
           {/* Trust Signals */}
           <TrustSignals />
@@ -292,10 +307,10 @@ const ProgrammaticSEOPage = () => {
             </div>
           </section>
 
-          {/* Internal Linking Wheel — 10 contextual links */}
+          {/* Internal Linking Wheel */}
           <WheelLinksNav slug={page.slug} />
 
-          {/* Same-Category Pages - Cross Linking */}
+          {/* Same-Category Pages */}
           {categoryPages.length > 0 && (
             <nav className="mt-10 border-t border-border pt-8">
               <h2 className="text-lg font-semibold text-foreground mb-4">More {categoryLabel}</h2>
