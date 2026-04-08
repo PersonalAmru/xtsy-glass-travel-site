@@ -44,7 +44,7 @@ const LazyImage: React.FC<LazyImageProps> = ({
       {!loaded && !error && (
         <img
           src={placeholder}
-          alt=""
+          alt={`Loading ${alt}`}
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${loaded ? 'opacity-0' : 'opacity-100'}`}
         />
       )}

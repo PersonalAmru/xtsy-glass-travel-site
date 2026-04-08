@@ -102,7 +102,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   const defaultPlaceholder = isSupabaseStorageUrl(src) ? (
     <img
       src={variants.thumb}
-      alt=""
+      alt={alt ? `Loading ${alt}` : 'Loading image'}
       className={cn("w-full h-full object-cover blur-sm transition-opacity duration-300", className)}
       loading="eager"
     />

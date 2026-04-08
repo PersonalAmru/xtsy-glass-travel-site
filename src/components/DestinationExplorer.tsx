@@ -141,7 +141,7 @@ const CategoryCard = memo(({ cat, onOpen }: { cat: ExplorerCategory; onOpen: () 
                 if (!src) return null;
                 return (
                   <div key={i} className="w-8 h-8 rounded-md overflow-hidden border border-border/30">
-                    <img src={src} alt={`${d.name} destination in Meghalaya`} loading="lazy" className="w-full h-full object-cover" />
+                    <img src={src} alt={`${d.label} destination in Meghalaya`} loading="lazy" className="w-full h-full object-cover" />
                   </div>
                 );
               })}
