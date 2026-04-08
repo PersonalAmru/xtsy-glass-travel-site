@@ -10,7 +10,7 @@ const AuthorBox = () => (
         <p className="font-semibold text-foreground text-sm">Written by XTSY Travel Team</p>
         <p className="text-xs text-muted-foreground mt-0.5">Local travel experts based in Shillong, Meghalaya</p>
         <div className="flex flex-wrap gap-3 mt-2 text-xs text-muted-foreground">
-          <span className="flex items-center gap-1"><MapPin className="h-3 w-3" /> Based in Shillong since 2019</span>
+          <span className="flex items-center gap-1"><MapPin className="h-3 w-3" /> Based in Shillong since 2024</span>
           <span className="flex items-center gap-1"><Star className="h-3 w-3" /> 4.8★ Google Rating (320+ reviews)</span>
           <span className="flex items-center gap-1"><Calendar className="h-3 w-3" /> 5,000+ guests hosted</span>
         </div>
