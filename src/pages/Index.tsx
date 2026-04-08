@@ -1,4 +1,4 @@
- import { memo, lazy } from "react";
+import { memo, lazy } from "react";
 import { Helmet } from "react-helmet";
 import HeroSection from "@/components/HeroSection";
 import Header from "@/components/Header";
@@ -9,12 +9,15 @@ import SEOHead, { getSEOConfig } from "@/components/SEOHead";
 import { useScrollDepthTracking } from "@/hooks/useScrollDepthTracking";
 
 // Lazy load below-fold sections for better initial load
-const HomeTourPackages = lazy(() => import("@/components/HomeTourPackages"));
-const XTSYPrimeSection = lazy(() => import("@/components/XTSYPrimeSection"));
-const ReviewsSection = lazy(() => import("@/components/ReviewsSection"));
-const AdventureCallToAction = lazy(() => import("@/components/AdventureCallToAction"));
-const FAQSection = lazy(() => import("@/components/FAQSection"));
 const DestinationExplorer = lazy(() => import("@/components/DestinationExplorer"));
+const XTSYPrimeSection = lazy(() => import("@/components/XTSYPrimeSection"));
+const TrendingDestinations = lazy(() => import("@/components/TrendingDestinations"));
+const HomeTourPackages = lazy(() => import("@/components/HomeTourPackages"));
+const AdventureCallToAction = lazy(() => import("@/components/AdventureCallToAction"));
+const ReviewsSection = lazy(() => import("@/components/ReviewsSection"));
+const TrustPlatforms = lazy(() => import("@/components/TrustPlatforms"));
+const FAQSection = lazy(() => import("@/components/FAQSection"));
+const SEOFooterLinks = lazy(() => import("@/components/SEOFooterLinks"));
 
 // Minimal mobile-friendly fallback
 const SectionFallback = memo(({ height = 'h-64' }: { height?: string }) => (
@@ -87,6 +90,11 @@ const Index = memo(() => {
           <XTSYPrimeSection />
         </LazyWrapper>
         
+        {/* Trending Destinations - horizontal carousel */}
+        <LazyWrapper eager fallback={<SectionFallback height="h-72" />}>
+          <TrendingDestinations />
+        </LazyWrapper>
+        
         {/* Tour Packages - FocusRail cards */}
         <LazyWrapper eager fallback={<SectionFallback height="h-96" />}>
           <HomeTourPackages />
@@ -102,8 +110,18 @@ const Index = memo(() => {
           <ReviewsSection />
         </LazyWrapper>
         
+        {/* Trust Platform Badges */}
+        <LazyWrapper fallback={<SectionFallback height="h-32" />}>
+          <TrustPlatforms />
+        </LazyWrapper>
+        
         <LazyWrapper fallback={<SectionFallback />}>
           <FAQSection />
+        </LazyWrapper>
+        
+        {/* SEO Footer Links - crawl hub */}
+        <LazyWrapper fallback={<SectionFallback height="h-48" />}>
+          <SEOFooterLinks />
         </LazyWrapper>
       </main>
       <Footer />

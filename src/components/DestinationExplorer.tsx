@@ -1,8 +1,9 @@
 import { memo, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight, MapPin, Compass, Droplets, Mountain, Trees, Waves, Footprints, X, ExternalLink } from 'lucide-react';
+import { ChevronRight, MapPin, Compass, Droplets, Mountain, Trees, Waves, Footprints, ExternalLink } from 'lucide-react';
 import { EXPLORER_CATEGORIES, type ExplorerCategory } from '@/data/seoLinkingWheel';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { getDestinationImageUrl, knownImageIndices } from '@/data/meghalayaDestinations';
 
 const CATEGORY_CONFIG: Record<string, {
   gradient: string;
@@ -103,8 +104,20 @@ const DestinationModalContent = memo(({ cat }: { cat: ExplorerCategory }) => {
 });
 DestinationModalContent.displayName = 'DestinationModalContent';
 
+// Get thumbnail for a destination
+const getThumbnail = (slug: string): string | null => {
+  const shortSlug = slug.replace(/-meghalaya$/, '').replace(/-shillong$/, '').replace(/-cherrapunji$/, '').replace(/-guide$/, '');
+  const indices = knownImageIndices[shortSlug];
+  if (indices && indices.length > 0) {
+    return getDestinationImageUrl(shortSlug, indices[0]);
+  }
+  return null;
+};
+
 const CategoryCard = memo(({ cat, onOpen }: { cat: ExplorerCategory; onOpen: () => void }) => {
   const config = CATEGORY_CONFIG[cat.id] || CATEGORY_CONFIG.waterfalls;
+  // Get up to 3 thumbnails
+  const thumbs = cat.destinations.slice(0, 3).map(d => getThumbnail(d.slug)).filter(Boolean) as string[];
 
   return (
     <button
@@ -120,6 +133,19 @@ const CategoryCard = memo(({ cat, onOpen }: { cat: ExplorerCategory; onOpen: () 
         <div className="flex-1 min-w-0">
           <h3 className="font-semibold text-foreground text-base sm:text-lg leading-tight">{cat.label}</h3>
           <p className="text-xs sm:text-sm text-muted-foreground mt-0.5 line-clamp-1">{config.description}</p>
+          {/* Mini thumbnails */}
+          {thumbs.length > 0 && (
+            <div className="flex items-center gap-1.5 mt-2">
+              {thumbs.map((src, i) => (
+                <div key={i} className="w-8 h-8 rounded-md overflow-hidden border border-border/30">
+                  <img src={src} alt="" loading="lazy" className="w-full h-full object-cover" />
+                </div>
+              ))}
+              {cat.destinations.length > 3 && (
+                <span className="text-[10px] text-muted-foreground ml-1">+{cat.destinations.length - 3} more</span>
+              )}
+            </div>
+          )}
         </div>
         <div className="flex items-center gap-2 flex-shrink-0">
           <span className="text-xs font-medium text-primary bg-primary/10 px-2.5 py-1 rounded-full">

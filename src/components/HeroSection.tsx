@@ -191,10 +191,15 @@ const HeroSection = () => {
         id="home" 
         className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-card to-background"
       >
-        {/* Static Background Elements */}
-        {/* Lightweight background - no GPU-heavy blur effects */}
+        {/* Background layers */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Grid pattern */}
           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:64px_64px]" />
+          {/* Faint mountain silhouette */}
+          <div className="absolute bottom-0 left-0 right-0 h-[30%] opacity-[0.04]" style={{
+            background: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1440 320\'%3E%3Cpath fill=\'%23ffffff\' d=\'M0,224L48,213.3C96,203,192,181,288,186.7C384,192,480,224,576,218.7C672,213,768,171,864,165.3C960,160,1056,192,1152,197.3C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z\'/%3E%3C/svg%3E") no-repeat bottom center',
+            backgroundSize: 'cover',
+          }} />
         </div>
 
         {/* Main Content - no transforms */}
@@ -225,9 +230,15 @@ const HeroSection = () => {
               </div>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-orange-400 to-rose-400 bg-clip-text text-transparent mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-orange-400 to-rose-400 bg-clip-text text-transparent mb-2">
               Live the XTSY Vibe
             </h1>
+            <p className="text-base sm:text-lg md:text-xl text-white/60 font-medium mb-1">
+              Best Hostel in Shillong
+            </p>
+            <p className="text-sm text-white/40 max-w-md mx-auto">
+              Backpacker community stay in the heart of Meghalaya
+            </p>
           </div>
 
           {/* Modern Booking Form */}
@@ -244,6 +255,14 @@ const HeroSection = () => {
             onSubmit={handleSearch}
             className="animate-fade-in"
           />
+          
+          {/* Trust microcopy */}
+          <div className="flex flex-wrap items-center justify-center gap-4 mt-4 text-white/40 text-xs">
+            <span className="flex items-center gap-1.5">✓ Best price guaranteed</span>
+            <span className="flex items-center gap-1.5">✓ Free WiFi</span>
+            <span className="flex items-center gap-1.5">✓ Travel desk</span>
+            <span className="flex items-center gap-1.5">✓ Community vibes</span>
+          </div>
 
           {/* Stats - no transforms */}
           {/* Stats - no backdrop-blur for performance */}
