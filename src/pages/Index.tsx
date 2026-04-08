@@ -12,6 +12,7 @@ import { useScrollDepthTracking } from "@/hooks/useScrollDepthTracking";
 const DestinationExplorer = lazy(() => import("@/components/DestinationExplorer"));
 const XTSYPrimeSection = lazy(() => import("@/components/XTSYPrimeSection"));
 const TrendingDestinations = lazy(() => import("@/components/TrendingDestinations"));
+const TripBuilder = lazy(() => import("@/components/TripBuilder"));
 const HomeTourPackages = lazy(() => import("@/components/HomeTourPackages"));
 const AdventureCallToAction = lazy(() => import("@/components/AdventureCallToAction"));
 const ReviewsSection = lazy(() => import("@/components/ReviewsSection"));
