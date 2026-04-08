@@ -1,23 +1,25 @@
-import { defineConfig, type Plugin } from "vite";
+import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
+import vitePrerender from "vite-plugin-prerender";
 import { execSync } from "child_process";
+import { STATIC_ROUTES } from "./scripts/generate-prerender-routes";
 
-// Post-build plugin to pre-render SEO pages
-function prerenderPlugin(): Plugin {
-  return {
-    name: 'xtsy-prerender',
-    apply: 'build',
-    closeBundle() {
-      try {
-        console.log('\n🔧 Running SEO pre-render...');
-        execSync('npx tsx scripts/prerender.ts', { stdio: 'inherit', cwd: process.cwd() });
-      } catch (e) {
-        console.warn('⚠️ Pre-render skipped (non-fatal):', (e as Error).message);
-      }
-    }
-  };
+// Collect all SEO slugs at config time for pre-rendering
+function getAllPrerenderRoutes(): string[] {
+  try {
+    // Use tsx to extract slugs from the SEO data at build time
+    const result = execSync(
+      'npx tsx -e "import{ALL_SEO_PAGES}from\'./src/data/seoPages\';console.log(JSON.stringify(ALL_SEO_PAGES.map(p=>\'/\'+p.slug)))"',
+      { encoding: 'utf-8', cwd: process.cwd(), timeout: 30000 }
+    ).trim();
+    const seoRoutes: string[] = JSON.parse(result);
+    return [...new Set([...STATIC_ROUTES, ...seoRoutes])];
+  } catch (e) {
+    console.warn('⚠️ Could not load SEO routes, using static routes only:', (e as Error).message);
+    return STATIC_ROUTES;
+  }
 }
 
 // https://vitejs.dev/config/
@@ -29,7 +31,17 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === 'development' && componentTagger(),
-    mode === 'production' && prerenderPlugin(),
+    mode === 'production' && vitePrerender({
+      staticDir: path.join(__dirname, 'dist'),
+      routes: getAllPrerenderRoutes(),
+      postProcess(renderedRoute: any) {
+        renderedRoute.html = renderedRoute.html.replace(
+          /<title><\/title>/,
+          `<title>XTSY — Shillong's #1 Hostel & Travel Platform</title>`
+        );
+        return renderedRoute;
+      },
+    }),
   ].filter(Boolean),
   resolve: {
     alias: {
