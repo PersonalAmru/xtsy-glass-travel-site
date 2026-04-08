@@ -845,6 +845,10 @@ export default function SimplifiedBookingFlow() {
   const [checkOut, setCheckOut] = useState<Date | undefined>();
   const [selectedRooms, setSelectedRooms] = useState<SelectedRoom[]>([]);
   const [propertyName, setPropertyName] = useState('');
+  const [availableRooms, setAvailableRooms] = useState<RoomType[]>([]);
+  const [fromHeroSearch, setFromHeroSearch] = useState(false);
+  const [selectedRooms, setSelectedRooms] = useState<SelectedRoom[]>([]);
+  const [propertyName, setPropertyName] = useState('');
   const [guestDetails, setGuestDetails] = useState<GuestDetails>({
     name: '',
     email: '',
