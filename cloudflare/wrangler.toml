@@ -1,0 +1,8 @@
+name = "xtsy-prerender"
+main = "worker.js"
+compatibility_date = "2024-09-01"
+
+# KV namespace for pre-rendered HTML cache
+[[kv_namespaces]]
+binding = "PRERENDER_CACHE"
+id = "YOUR_KV_NAMESPACE_ID"
