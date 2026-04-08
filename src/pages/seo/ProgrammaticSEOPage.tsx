@@ -127,6 +127,33 @@ const FAQItem = memo(({ faq }: { faq: { question: string; answer: string } }) =>
 });
 FAQItem.displayName = 'FAQItem';
 
+const LINK_TYPE_LABELS: Record<string, string> = {
+  homepage: '🏠', 'master-pillar': '📖', pillar: '📚', destination: '📍', attraction: '🎯', itinerary: '🗓️',
+};
+
+const WheelLinksNav = memo(({ slug }: { slug: string }) => {
+  const links = getWheelLinks(slug);
+  if (links.length === 0) return null;
+  return (
+    <nav className="mt-10 border border-border rounded-xl p-5 bg-muted/20" aria-label="Related destinations">
+      <h3 className="text-sm font-semibold text-foreground mb-3">🔗 Explore Related Pages</h3>
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+        {links.map(link => (
+          <Link
+            key={link.slug}
+            to={`/${link.slug}`}
+            className="flex items-center gap-1.5 text-sm text-primary hover:underline py-1"
+          >
+            <span aria-hidden="true">{LINK_TYPE_LABELS[link.type]}</span>
+            {link.label}
+          </Link>
+        ))}
+      </div>
+    </nav>
+  );
+});
+WheelLinksNav.displayName = 'WheelLinksNav';
+
 const ProgrammaticSEOPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const page = slug ? findSEOPage(slug) : undefined;
