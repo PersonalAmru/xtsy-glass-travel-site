@@ -255,6 +255,14 @@ const HeroSection = () => {
             onSubmit={handleSearch}
             className="animate-fade-in"
           />
+          
+          {/* Trust microcopy */}
+          <div className="flex flex-wrap items-center justify-center gap-4 mt-4 text-white/40 text-xs">
+            <span className="flex items-center gap-1.5">✓ Best price guaranteed</span>
+            <span className="flex items-center gap-1.5">✓ Free WiFi</span>
+            <span className="flex items-center gap-1.5">✓ Travel desk</span>
+            <span className="flex items-center gap-1.5">✓ Community vibes</span>
+          </div>
 
           {/* Stats - no transforms */}
           {/* Stats - no backdrop-blur for performance */}
