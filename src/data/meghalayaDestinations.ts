@@ -33,7 +33,7 @@ export const knownImageIndices: Record<string, number[]> = {
   'krem-liat-prah': [1, 2],
   'laitlum-canyons': [2, 3, 4],
   'mawjymbuin-cave': [2],
-  'mawlynnong-village': [1, 2],
+  'mawlynnong-village': [2, 1],
   'mawphlang-sacred-forest': [1, 2, 3],
   'mawryngkhang-bamboo-trail': [1, 2],
   'mawsmai-cave': [1, 2, 3],
