@@ -1149,8 +1149,8 @@ export default function SimplifiedBookingFlow() {
     }
   };
 
-  // Don't render until data is loaded
-  if (!checkIn || !checkOut || selectedRooms.length === 0) {
+  // Don't render until dates are loaded (rooms can be empty for hero search entry)
+  if (!checkIn || !checkOut) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-[hsl(220,20%,12%)] to-[hsl(220,25%,6%)] flex items-center justify-center">
         <div className="text-white/50">Loading booking details...</div>
