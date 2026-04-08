@@ -38,4 +38,5 @@ Disallow: /index.html
 Disallow: /cafe
 
 # Sitemap location
+Sitemap: https://xtsy.one/sitemap_index.xml
 Sitemap: https://xtsy.one/sitemap.xml

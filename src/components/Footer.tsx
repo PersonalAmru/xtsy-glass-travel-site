@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Instagram, Youtube } from "lucide-react";
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import PolicyModal from "./PolicyModals";
+const SEOFooterCrawlLinks = lazy(() => import("./SEOFooterCrawlLinks"));
 
 const Footer = () => {
   const [policyModal, setPolicyModal] = useState<{
@@ -82,7 +83,12 @@ const Footer = () => {
 
 
 
-        <p className="text-muted-foreground text-[10px] sm:text-xs text-center">
+        {/* SEO Crawl Links — internal linking for crawl depth optimization */}
+        <Suspense fallback={null}>
+          <SEOFooterCrawlLinks />
+        </Suspense>
+
+        <p className="text-muted-foreground text-[10px] sm:text-xs text-center mt-6">
           © 2025 XTSY One. All rights reserved. Experience the XTSY Vibe.
         </p>
       </div>
