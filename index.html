@@ -274,89 +274,74 @@
           {
             "@type": "Offer",
             "itemOffered": {
-              "@type": "Product",
+              "@type": "HotelRoom",
               "name": "270° Panorama Glass Ensuite",
               "description": "Luxury panoramic glass suite with 270-degree mountain views, king-size bed, and premium amenities in Shillong, Meghalaya",
               "image": "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/20250722_0921_Meghalaya%20Getaway%20View_remix_01k0r405w4f66svm6nn0qdtxye%20(1).png",
-              "brand": {
-                "@type": "Brand",
-                "name": "XTSY Travel"
+              "occupancy": {
+                "@type": "QuantitativeValue",
+                "value": 2
               },
-              "offers": {
-                "@type": "Offer",
-                "price": "8500",
-                "priceCurrency": "INR",
-                "availability": "https://schema.org/InStock",
-                "url": "https://xtsy.one/xtsy-270",
-                "validFrom": "2024-01-01",
-                "priceValidUntil": "2026-12-31"
-              },
-              "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.9",
-                "bestRating": "5",
-                "ratingCount": "86",
-                "reviewCount": "72"
+              "bed": {
+                "@type": "BedDetails",
+                "typeOfBed": "King",
+                "numberOfBeds": 1
               }
-            }
-          },
-          {
-            "@type": "Offer", 
-            "itemOffered": {
-              "@type": "Product",
-              "name": "Dormitory Beds",
-              "description": "Budget-friendly dormitory beds with comfortable bedding, personal lockers, and shared amenities in India's biggest hostel",
-              "image": "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Dormitory/dormitory-interior.jpg",
-              "brand": {
-                "@type": "Brand",
-                "name": "XTSY Travel"
-              },
-              "offers": {
-                "@type": "Offer",
-                "price": "450",
-                "priceCurrency": "INR",
-                "availability": "https://schema.org/InStock",
-                "url": "https://xtsy.one/booking",
-                "validFrom": "2024-01-01",
-                "priceValidUntil": "2026-12-31"
-              },
-              "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.7",
-                "bestRating": "5",
-                "ratingCount": "124",
-                "reviewCount": "98"
-              }
-            }
+            },
+            "price": "8500",
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock",
+            "url": "https://xtsy.one/xtsy-270",
+            "validFrom": "2024-01-01",
+            "priceValidUntil": "2026-12-31"
           },
           {
             "@type": "Offer",
             "itemOffered": {
-              "@type": "Product", 
+              "@type": "HotelRoom",
+              "name": "Dormitory Beds",
+              "description": "Budget-friendly dormitory beds with comfortable bedding, personal lockers, and shared amenities in India's biggest hostel",
+              "image": "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Dormitory/dormitory-interior.jpg",
+              "occupancy": {
+                "@type": "QuantitativeValue",
+                "value": 1
+              },
+              "bed": {
+                "@type": "BedDetails",
+                "typeOfBed": "Single",
+                "numberOfBeds": 1
+              }
+            },
+            "price": "450",
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock",
+            "url": "https://xtsy.one/booking",
+            "validFrom": "2024-01-01",
+            "priceValidUntil": "2026-12-31"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "HotelRoom",
               "name": "Private Rooms",
               "description": "Comfortable private rooms with ensuite bathrooms, modern amenities, and scenic mountain views in Shillong",
               "image": "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Private%20Rooms/private-room-interior.jpg",
-              "brand": {
-                "@type": "Brand",
-                "name": "XTSY Travel"
+              "occupancy": {
+                "@type": "QuantitativeValue",
+                "value": 2
               },
-              "offers": {
-                "@type": "Offer",
-                "price": "2500",
-                "priceCurrency": "INR",
-                "availability": "https://schema.org/InStock",
-                "url": "https://xtsy.one/booking",
-                "validFrom": "2024-01-01",
-                "priceValidUntil": "2026-12-31"
-              },
-              "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.8",
-                "bestRating": "5",
-                "ratingCount": "37",
-                "reviewCount": "19"
+              "bed": {
+                "@type": "BedDetails",
+                "typeOfBed": "Queen",
+                "numberOfBeds": 1
               }
-            }
+            },
+            "price": "2500",
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock",
+            "url": "https://xtsy.one/booking",
+            "validFrom": "2024-01-01",
+            "priceValidUntil": "2026-12-31"
           }
         ]
       },
@@ -430,55 +415,7 @@
     }
     </script>
     
-    <!-- Structured Data - FAQ for SEO -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What is the best time to visit Shillong, Meghalaya?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "The best time to visit Shillong is October to May for clear skies and pleasant weather. June to September is monsoon season — ideal for experiencing Cherrapunji's waterfalls at full force. XTSY Travellers Hostel is open year-round."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How to reach Shillong from Guwahati?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Shillong is 100 km from Guwahati Airport (GAU), approximately 2.5 hours by road via NH6. Shared taxis run every 30 minutes from ISBT Guwahati. XTSY can arrange airport transfers for guests."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How much does a hostel in Shillong cost per night?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "At XTSY Travellers Hostel, dormitory beds start from ₹450/night, private rooms from ₹2,500/night, and the exclusive 270° Glass Stargazing Suite from ₹8,500/night. Prices vary by season."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is the biggest hostel in Northeast India?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "XTSY Travellers Hostel in Shillong is the biggest hostel in Northeast India, featuring multiple room types including dormitories, private rooms, and India's first 270° panoramic glass suite."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Does XTSY offer Meghalaya tour packages?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, XTSY offers 30+ curated tour packages including Living Root Bridge treks, Dawki river expeditions, cave explorations, and multi-day Meghalaya itineraries starting from ₹13,999."
-          }
-        }
-      ]
-    }
-    </script>
+    <!-- FAQPage schema moved to individual page components to prevent duplicates -->
     
     
     <!-- PWA and Mobile App Integration -->
