@@ -65,6 +65,53 @@ const Index = memo(() => {
     ],
   };
 
+  const homeFaqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What is the best time to visit Shillong, Meghalaya?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The best time to visit Shillong is October to May for clear skies and pleasant weather. June to September is monsoon season — ideal for experiencing Cherrapunji\'s waterfalls at full force. XTSY Travellers Hostel is open year-round.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How to reach Shillong from Guwahati?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Shillong is 100 km from Guwahati Airport (GAU), approximately 2.5 hours by road via NH6. Shared taxis run every 30 minutes from ISBT Guwahati. XTSY can arrange airport transfers for guests.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How much does a hostel in Shillong cost per night?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'At XTSY Travellers Hostel, dormitory beds start from ₹450/night, private rooms from ₹2,500/night, and the exclusive 270° Glass Stargazing Suite from ₹8,500/night. Prices vary by season.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What is the biggest hostel in Northeast India?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'XTSY Travellers Hostel in Shillong is the biggest hostel in Northeast India, featuring multiple room types including dormitories, private rooms, and India\'s first 270° panoramic glass suite.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does XTSY offer Meghalaya tour packages?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, XTSY offers 30+ curated tour packages including Living Root Bridge treks, Dawki river expeditions, cave explorations, and multi-day Meghalaya itineraries starting from ₹13,999.',
+        },
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen">
       <SEOHead 
@@ -75,6 +122,7 @@ const Index = memo(() => {
       />
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(hostelSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(homeFaqSchema)}</script>
       </Helmet>
       <SEOContent page="home" />
       <Header />
