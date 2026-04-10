@@ -5,7 +5,7 @@ import AboutSection from "@/components/AboutSection";
 import AboutXTSYSection from "@/components/AboutXTSYSection";
 import ExploreNortheastSection from "@/components/ExploreNortheastSection";
 import Footer from "@/components/Footer";
-import SEOContent from "@/components/SEOContent";
+
 import SEOHead, { getSEOConfig } from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { MapPin, Phone, Mail, Clock, Navigation } from "lucide-react";
@@ -51,7 +51,7 @@ const About = () => {
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(organizationSchema)}</script>
       </Helmet>
-      <SEOContent page="about" />
+      
       <Header />
       <main>
         <div className="container mx-auto px-4 pt-4">
