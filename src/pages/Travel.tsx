@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import SEOContent from "@/components/SEOContent";
+
 import { SEOHead } from "@/components/SEOHead";
 import { LazyTourPackageModal } from "@/components/lazy/LazyTourPackageModal";
 import type { TourPackage, TravelFilters } from "@/data/travelData";
@@ -57,7 +57,7 @@ const Travel = () => {
         keywords="Meghalaya tour packages, Northeast India tours, living root bridges tour, Cherrapunji tour, Dawki trip"
         canonicalUrl="https://xtsy.one/travel"
       />
-      <SEOContent page="travel" />
+      
       <Header />
 
       <main className="flex-1">

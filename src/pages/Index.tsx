@@ -4,7 +4,7 @@ import HeroSection from "@/components/HeroSection";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LazyWrapper from "@/components/LazyWrapper";
-import SEOContent from "@/components/SEOContent";
+
 import SEOHead, { getSEOConfig } from "@/components/SEOHead";
 import { useScrollDepthTracking } from "@/hooks/useScrollDepthTracking";
 
@@ -124,7 +124,7 @@ const Index = memo(() => {
         <script type="application/ld+json">{JSON.stringify(hostelSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(homeFaqSchema)}</script>
       </Helmet>
-      <SEOContent page="home" />
+      
       <Header />
       <main style={{ contain: 'layout style' }}>
         <HeroSection />

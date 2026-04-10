@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SEOContent from '@/components/SEOContent';
+
 import SEOHead from '@/components/SEOHead';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -131,7 +131,7 @@ const FAQ = () => {
         keywords="XTSY FAQ, hostel Shillong questions, glass suite FAQ, Meghalaya travel FAQ, booking help XTSY"
         canonicalUrl="https://xtsy.one/faq"
       />
-      <SEOContent page="faq" />
+      
       <Header />
       
       <main className="pt-20">

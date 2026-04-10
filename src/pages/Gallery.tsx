@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import Header from "@/components/Header";
 import GallerySection from "@/components/GallerySection";
 import Footer from "@/components/Footer";
-import SEOContent from "@/components/SEOContent";
+
 import SEOHead from "@/components/SEOHead";
 
 // Preload first row of gallery images (LCP candidates)
@@ -73,7 +73,7 @@ const Gallery = () => {
         keywords="XTSY photos, Shillong hostel gallery, glass suite photos, hostel rooms Meghalaya, XTSY Shillong images"
         canonicalUrl="https://xtsy.one/gallery"
       />
-      <SEOContent page="gallery" />
+      
       <Header />
       <div className="pt-4">
         <GallerySection />
