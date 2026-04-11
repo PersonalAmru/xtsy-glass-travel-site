@@ -36,8 +36,8 @@ const buildSchema = (page: SEOPageData) => {
   if (['Hostel', 'Hotel', 'LodgingBusiness'].includes(page.schemaType)) {
     Object.assign(base, {
       address: { '@type': 'PostalAddress', streetAddress: 'Mawdiangdiang Road', addressLocality: 'Shillong', addressRegion: 'Meghalaya', postalCode: '793018', addressCountry: 'IN' },
-      telephone: '+91-8787537633',
-      priceRange: '₹499 - ₹4,999',
+      telephone: '+91-8837317070',
+      priceRange: '₹450 - ₹8,500',
       aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.8', reviewCount: '320', bestRating: '5' },
       geo: { '@type': 'GeoCoordinates', latitude: 25.5788, longitude: 91.8933 },
       amenityFeature: [
@@ -51,7 +51,7 @@ const buildSchema = (page: SEOPageData) => {
   if (page.schemaType === 'TouristTrip') {
     Object.assign(base, {
       touristType: 'Adventure',
-      provider: { '@type': 'TravelAgency', name: 'XTSY Travel', url: 'https://xtsy.one', telephone: '+91-8787537633' },
+      provider: { '@type': 'TravelAgency', name: 'XTSY Travel', url: 'https://xtsy.one', telephone: '+91-8837317070' },
     });
   }
 
@@ -66,18 +66,29 @@ const buildSchema = (page: SEOPageData) => {
     Object.assign(base, {
       servesCuisine: ['Indian', 'Continental', 'Local Khasi'],
       address: { '@type': 'PostalAddress', streetAddress: 'Mawdiangdiang Road', addressLocality: 'Shillong', addressRegion: 'Meghalaya', postalCode: '793018', addressCountry: 'IN' },
-      telephone: '+91-8787537633',
+      telephone: '+91-8837317070',
     });
   }
+
+  // Add dateModified to ALL schema types for freshness signals
+  const dateModified = new Date().toISOString().split('T')[0];
 
   if (['TravelGuide', 'Article'].includes(page.schemaType)) {
     Object.assign(base, {
       author: { '@type': 'Organization', name: 'XTSY Travel', url: 'https://xtsy.one' },
-      publisher: { '@type': 'Organization', name: 'XTSY Travel', url: 'https://xtsy.one' },
+      publisher: { '@type': 'Organization', name: 'XTSY Travel', url: 'https://xtsy.one', logo: { '@type': 'ImageObject', url: 'https://xtsy.one/lovable-uploads/160f683c-a41c-41fd-8bdb-700d74a7e027.png' } },
       datePublished: '2025-01-01',
-      dateModified: new Date().toISOString().split('T')[0],
+      dateModified,
     });
+  } else {
+    base.dateModified = dateModified;
   }
+
+  // Speakable schema for AI citation eligibility (SGE, ChatGPT, Perplexity)
+  base.speakable = {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['article h1', 'article h2', 'article p:first-of-type'],
+  };
 
   return base;
 };
@@ -108,7 +119,7 @@ const ORG_SCHEMA = {
   url: 'https://xtsy.one',
   logo: 'https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/social-images/social-1765259372136-with_padding.png',
   sameAs: ['https://www.instagram.com/xtsytravellershostel', 'https://www.facebook.com/xtsytravellershostel'],
-  contactPoint: { '@type': 'ContactPoint', telephone: '+91-8787537633', contactType: 'customer service' },
+  contactPoint: { '@type': 'ContactPoint', telephone: '+91-8837317070', contactType: 'customer service' },
 };
 
 const DEFAULT_OG_IMAGE = 'https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/social-images/social-1765259372136-with_padding.png';
