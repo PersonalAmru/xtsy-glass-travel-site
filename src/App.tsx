@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useState, useEffect, Suspense, lazy, ReactNode, memo } from "react";
+import { Navigate } from "react-router-dom";
 // LoadingScreen removed from initial render gate — content renders immediately for faster LCP
 import PerformanceMonitor from "./components/PerformanceMonitor";
 import SecurityHeadersProvider from "./components/SecurityHeadersProvider";
@@ -119,6 +120,9 @@ const FranchiseInstall = createLazyComponent(() => import("./pages/install/Franc
 // Admin Franchise Permissions
 const AdminFranchisePermissions = createLazyComponent(() => import("./pages/admin/AdminFranchisePermissions"));
 const AdminSEODashboard = createLazyComponent(() => import("./pages/admin/AdminSEODashboard"));
+
+// Redirect /travel → /tours (fixes keyword cannibalization)
+const TravelRedirect = () => <Navigate to="/tours" replace />;
 
 // Fast route wrapper with minimal loading state
 const LazyRoute = memo(({ children }: { children: ReactNode }) => (
@@ -279,7 +283,8 @@ function App() {
                 <Route path="/" element={<Index />} />
                 <Route path="/about" element={<LazyRoute><LazyAbout /></LazyRoute>} />
                 <Route path="/gallery" element={<LazyRoute><LazyGallery /></LazyRoute>} />
-                <Route path="/travel" element={<LazyRoute><LazyTours /></LazyRoute>} />
+                {/* /travel → 301 redirect to /tours to fix keyword cannibalization */}
+                <Route path="/travel" element={<TravelRedirect />} />
                 <Route path="/tours" element={<LazyRoute><LazyTours /></LazyRoute>} />
                 <Route path="/tours/:slug" element={<LazyRoute><LazyTourDetail /></LazyRoute>} />
                 <Route path="/xtsy-270" element={<LazyRoute><LazyXTSY270 /></LazyRoute>} />
@@ -291,9 +296,9 @@ function App() {
                 <Route path="/tab-bistro" element={<LazyRoute><LazyTabBistro /></LazyRoute>} />
                 
                 <Route path="/privacy-policy" element={<LazyRoute><LazyPrivacyPolicy /></LazyRoute>} />
-                <Route path="/privacy" element={<LazyRoute><LazyPrivacyPolicy /></LazyRoute>} />
+                <Route path="/privacy" element={<Navigate to="/privacy-policy" replace />} />
                 <Route path="/terms-of-service" element={<LazyRoute><LazyTermsOfService /></LazyRoute>} />
-                <Route path="/terms" element={<LazyRoute><LazyTermsOfService /></LazyRoute>} />
+                <Route path="/terms" element={<Navigate to="/terms-of-service" replace />} />
                 <Route path="/pricing-cancellation-policy" element={<LazyRoute><LazyPricingCancellationPolicy /></LazyRoute>} />
                 <Route path="/admin-login" element={<LazyRoute><AdminLogin /></LazyRoute>} />
                 <Route path="/book" element={<LazyRoute><SimplifiedBookingFlow /></LazyRoute>} />
