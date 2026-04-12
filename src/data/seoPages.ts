@@ -2,6 +2,7 @@
 import { EXPANSION_SEO_PAGES } from './seoPagesExpansion';
 import { PILLAR_PAGES } from './seoPillarPages';
 import { DESTINATION_PAGES } from './seoDestinationPages';
+import { LAST_MINUTE_SEO_PAGES } from './seoLastMinutePages';
 
 export type SEOPageCategory = 
   | 'hostels' | 'hotels' | 'homestays' | 'glamping' | 'accommodation'
@@ -1065,6 +1066,7 @@ export const ALL_SEO_PAGES: SEOPageData[] = [
   ...DESTINATION_PAGES,
   ...BASE_SEO_PAGES,
   ...EXPANSION_SEO_PAGES,
+  ...LAST_MINUTE_SEO_PAGES,
 ];
 
 // Helper to find a page by slug
