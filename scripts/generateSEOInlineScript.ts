@@ -49,6 +49,12 @@ const STATIC_ROUTE_META: Record<string, SEOMapEntry> = {
   'meghalaya-5-day-itinerary': { t: '5-Day Meghalaya Itinerary — Complete Trip | XTSY', d: 'Comprehensive 5-day Meghalaya itinerary. Shillong, Cherrapunji, Dawki, living root bridges, Mawlynnong.' },
   'meghalaya-photo-gallery': { t: 'Meghalaya Photo Gallery — Best Travel Photos | XTSY', d: 'Stunning Meghalaya photos: waterfalls, living root bridges, Dawki, caves, and mountain views.' },
   'all-pages': { t: 'All Pages — XTSY Travel Site Directory', d: 'Complete site directory of XTSY Travel. Browse all pages: hostel, tours, guides, destinations, and more.' },
+  // Last-minute high-intent pages
+  'hostels-in-shillong-today': { t: 'Hostels in Shillong Available Today — Book Now | XTSY', d: 'Find hostels available in Shillong today. Dorm beds from ₹269/night, private rooms from ₹2,099. Real-time availability.' },
+  'shillong-last-minute-stays': { t: 'Last Minute Stays in Shillong — Available Now | XTSY', d: 'Need a last-minute stay in Shillong? Rooms and dorms available right now from ₹269/night. Instant booking.' },
+  'meghalaya-trip-today': { t: 'Start Your Meghalaya Trip Today — Stays & Tours | XTSY', d: 'Planning a spontaneous Meghalaya trip? Stays from ₹269/night and tours ready to start today. Book instantly.' },
+  'hotels-in-shillong-available-now': { t: 'Hotels in Shillong Available Now — Instant Booking | XTSY', d: 'Hotels and rooms in Shillong available right now. Private rooms from ₹2,099. Real-time availability.' },
+  'shillong-stay-tonight': { t: 'Stay in Shillong Tonight — Rooms & Beds Available | XTSY', d: 'Need a place to stay in Shillong tonight? Beds from ₹269, rooms from ₹2,099. Instant booking confirmation.' },
 };
 
 // Destination pages from meghalayaDestinations — need to import slugs
