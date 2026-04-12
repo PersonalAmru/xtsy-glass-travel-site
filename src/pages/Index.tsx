@@ -4,6 +4,7 @@ import HeroSection from "@/components/HeroSection";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LazyWrapper from "@/components/LazyWrapper";
+import LastMinuteBanner from "@/components/LastMinuteBanner";
 
 import SEOHead, { getSEOConfig } from "@/components/SEOHead";
 import { useScrollDepthTracking } from "@/hooks/useScrollDepthTracking";
@@ -16,6 +17,8 @@ const TripBuilder = lazy(() => import("@/components/TripBuilder"));
 const HomeTourPackages = lazy(() => import("@/components/HomeTourPackages"));
 const AdventureCallToAction = lazy(() => import("@/components/AdventureCallToAction"));
 const ReviewsSection = lazy(() => import("@/components/ReviewsSection"));
+const AvailableStaysNow = lazy(() => import("@/components/AvailableStaysNow"));
+const TonightsDeals = lazy(() => import("@/components/TonightsDeals"));
 
 const FAQSection = lazy(() => import("@/components/FAQSection"));
 const SEOFooterLinks = lazy(() => import("@/components/SEOFooterLinks"));
@@ -129,6 +132,16 @@ const Index = memo(() => {
       <main style={{ contain: 'layout style' }}>
         <HeroSection />
         
+        {/* Last-Minute Banner — urgency signal right after hero */}
+        <div className="max-w-5xl mx-auto px-4 mt-4 mb-2">
+          <LastMinuteBanner />
+        </div>
+        
+        {/* Available Stays Right Now — real-time cards */}
+        <LazyWrapper eager fallback={<SectionFallback height="h-80" />}>
+          <AvailableStaysNow />
+        </LazyWrapper>
+        
         {/* Trending Destinations - right after hero */}
         <LazyWrapper eager fallback={<SectionFallback height="h-72" />}>
           <TrendingDestinations />
@@ -152,6 +165,11 @@ const Index = memo(() => {
         {/* Tour Packages - FocusRail cards */}
         <LazyWrapper eager fallback={<SectionFallback height="h-96" />}>
           <HomeTourPackages />
+        </LazyWrapper>
+        
+        {/* Tonight's Deals — urgency-driven deals */}
+        <LazyWrapper fallback={<SectionFallback height="h-64" />}>
+          <TonightsDeals />
         </LazyWrapper>
         
         {/* Adventure CTA */}
