@@ -34,6 +34,7 @@ const buildSchema = (page: SEOPageData) => {
   };
 
   if (['Hostel', 'Hotel', 'LodgingBusiness'].includes(page.schemaType)) {
+    const todayISO = new Date().toISOString().split('T')[0];
     Object.assign(base, {
       address: { '@type': 'PostalAddress', streetAddress: 'Mawdiangdiang Road', addressLocality: 'Shillong', addressRegion: 'Meghalaya', postalCode: '793018', addressCountry: 'IN' },
       telephone: '+91-8837317070',
@@ -44,6 +45,41 @@ const buildSchema = (page: SEOPageData) => {
         { '@type': 'LocationFeatureSpecification', name: 'Free WiFi', value: true },
         { '@type': 'LocationFeatureSpecification', name: 'Restaurant', value: true },
         { '@type': 'LocationFeatureSpecification', name: 'Pet Friendly', value: true },
+      ],
+      // Offer + Availability schema for rich results
+      makesOffer: [
+        {
+          '@type': 'Offer',
+          name: 'Dorm Bed',
+          priceCurrency: 'INR',
+          price: '269',
+          priceValidUntil: todayISO,
+          availability: 'https://schema.org/InStock',
+          validFrom: todayISO,
+          url: 'https://xtsy.one/book',
+          priceSpecification: {
+            '@type': 'UnitPriceSpecification',
+            price: '269',
+            priceCurrency: 'INR',
+            unitText: 'night',
+          },
+        },
+        {
+          '@type': 'Offer',
+          name: 'Private Room',
+          priceCurrency: 'INR',
+          price: '2099',
+          priceValidUntil: todayISO,
+          availability: 'https://schema.org/LimitedAvailability',
+          validFrom: todayISO,
+          url: 'https://xtsy.one/book',
+          priceSpecification: {
+            '@type': 'UnitPriceSpecification',
+            price: '2099',
+            priceCurrency: 'INR',
+            unitText: 'night',
+          },
+        },
       ],
     });
   }
