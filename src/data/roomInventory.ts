@@ -13,6 +13,72 @@ export type RoomCategory = 'luxury' | 'hostel';
 export type RoomKind = 'private' | 'dorm';
 export type RoomStatus = 'available' | 'limited' | 'sold_out' | 'maintenance';
 
+/**
+ * Seasonal Pricing — auto-switches on May 1, 2026
+ * April = current lower prices (with hype messaging)
+ * May+ = new higher prices
+ */
+const MAY_PRICING_START = new Date('2026-05-01T00:00:00+05:30');
+
+export function isMayPricingActive(): boolean {
+  return new Date() >= MAY_PRICING_START;
+}
+
+interface SeasonalPrice {
+  april: number;
+  may: number;
+  originalApril: number;
+  originalMay: number;
+}
+
+const SEASONAL_PRICES: Record<string, SeasonalPrice> = {
+  'xtsy-270':              { april: 4999, may: 4999, originalApril: 11999, originalMay: 11999 },
+  'king-double-room':      { april: 2099, may: 2399, originalApril: 3099,  originalMay: 3499 },
+  '4-bed-female-only-dorm':{ april: 419,  may: 419,  originalApril: 679,   originalMay: 679 },
+  '4-bed-mixed-female-dorm':{ april: 529, may: 569,  originalApril: 749,   originalMay: 799 },
+  '6-bed-mixed-female-dorm':{ april: 369, may: 389,  originalApril: 599,   originalMay: 599 },
+  '6-bed-mixed-dorm':      { april: 419,  may: 469,  originalApril: 630,   originalMay: 699 },
+  '8-bed-mixed-dorm':      { april: 269,  may: 329,  originalApril: 550,   originalMay: 550 },
+};
+
+function getSeasonalPrice(roomId: string): { discounted: number; original: number } {
+  const prices = SEASONAL_PRICES[roomId];
+  if (!prices) return { discounted: 0, original: 0 };
+  const isMay = isMayPricingActive();
+  return {
+    discounted: isMay ? prices.may : prices.april,
+    original: isMay ? prices.originalMay : prices.originalApril,
+  };
+}
+
+/**
+ * Get April price-hike urgency message (returns null after May 1)
+ */
+export function getPriceHikeMessage(roomId: string): string | null {
+  if (isMayPricingActive()) return null;
+  const prices = SEASONAL_PRICES[roomId];
+  if (!prices || prices.may <= prices.april) return null;
+  const increase = prices.may - prices.april;
+  return `Price increases by ₹${increase} from May 1`;
+}
+
+/**
+ * Get realistic simulated availability for a room
+ * Uses deterministic-ish values that feel natural
+ */
+export function getSimulatedAvailability(roomId: string): number {
+  const room = ROOM_INVENTORY[roomId];
+  if (!room) return 0;
+  // Use hour of day as seed for slight variation
+  const hour = new Date().getHours();
+  const seed = (roomId.charCodeAt(0) + hour) % 7;
+  if (room.totalUnits === 1) return 1; // XTSY 270 — always 1
+  if (room.totalUnits <= 4) return Math.max(1, Math.min(room.totalUnits, 1 + (seed % 3))); // 1-3
+  if (room.totalUnits <= 8) return Math.max(2, Math.min(room.totalUnits, 2 + (seed % 4))); // 2-5
+  // Large dorms (18, 24 beds) — show moderate scarcity
+  return Math.max(3, Math.min(8, 3 + (seed % 5))); // 3-7
+}
+
 export interface RoomType {
   id: string;
   name: string;
@@ -57,11 +123,11 @@ export const ROOM_INVENTORY: Record<string, RoomType> = {
     shortName: '270° Glass Suite',
     category: 'luxury',
     kind: 'private',
-    basePrice: 7489,
-    weekdayPrice: 7489,
-    weekendPrice: 7489,
-    discountedPrice: 7489,
-    originalPrice: 7489,
+    basePrice: getSeasonalPrice('xtsy-270').discounted,
+    weekdayPrice: getSeasonalPrice('xtsy-270').discounted,
+    weekendPrice: getSeasonalPrice('xtsy-270').discounted,
+    discountedPrice: getSeasonalPrice('xtsy-270').discounted,
+    originalPrice: getSeasonalPrice('xtsy-270').original,
     capacity: 2,
     totalUnits: 1,
     description: "India's pioneering 270° panoramic glass house offering unparalleled luxury and breathtaking mountain vistas.",
