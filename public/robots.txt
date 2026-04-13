@@ -8,7 +8,6 @@ Disallow: /admin
 Disallow: /admin-login
 Disallow: /franchise
 Disallow: /franchise-login
-Disallow: /index.html
 
 User-agent: Bingbot
 Allow: /
@@ -17,7 +16,6 @@ Disallow: /admin
 Disallow: /admin-login
 Disallow: /franchise
 Disallow: /franchise-login
-Disallow: /index.html
 
 User-agent: Twitterbot
 Allow: /
@@ -32,10 +30,6 @@ Disallow: /admin
 Disallow: /admin-login
 Disallow: /franchise
 Disallow: /franchise-login
-Disallow: /index.html
-
-# Non-existent pages to ignore
-Disallow: /cafe
 
 # Sitemap location
 Sitemap: https://xtsy.one/sitemap_index.xml
