@@ -1,28 +1,38 @@
 /**
  * Available Stays Right Now — Real-time availability cards with urgency signals
- * Shows bookable rooms with social proof and scarcity indicators
+ * Shows bookable rooms with realistic social proof and scarcity indicators
  */
-import { memo, useState, useEffect, useMemo } from 'react';
-import { Bed, Users, Clock, TrendingUp, ChevronRight, Flame } from 'lucide-react';
+import { memo, useMemo } from 'react';
+import { Users, Clock, ChevronRight, Flame, TrendingUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { getBookableRooms, TAG_LABELS, type RoomType } from '@/data/roomInventory';
+import { getBookableRooms, TAG_LABELS, type RoomType, getSimulatedAvailability, getPriceHikeMessage } from '@/data/roomInventory';
 import { formatLocalDateString } from '@/lib/date-utils';
 import { cn } from '@/lib/utils';
 
-const SOCIAL_PROOF_MESSAGES = [
-  'Booked 3 times today',
-  'Last booked 10 min ago',
-  'Popular this week',
-  'Trending now',
-  'Booked 5 times today',
-];
+/**
+ * Social proof messages scaled to room size
+ */
+function getSocialProof(room: RoomType): string {
+  if (room.totalUnits === 1) return 'Last booked 2 hours ago';
+  if (room.totalUnits <= 4) return 'Booked 1× today';
+  if (room.totalUnits <= 8) return 'Booked 2× today';
+  return 'Popular this week';
+}
 
-const AvailabilityCard = memo(({ room, index }: { room: RoomType; index: number }) => {
+const AvailabilityCard = memo(({ room }: { room: RoomType }) => {
   const today = formatLocalDateString(new Date());
   const tomorrow = formatLocalDateString(new Date(Date.now() + 86400000));
-  const socialProof = SOCIAL_PROOF_MESSAGES[index % SOCIAL_PROOF_MESSAGES.length];
-  const viewingCount = useMemo(() => Math.floor(Math.random() * 6) + 2, []);
-  const isLow = room.totalUnits <= 4;
+  const socialProof = getSocialProof(room);
+  const availableLeft = getSimulatedAvailability(room.id);
+  const priceHike = getPriceHikeMessage(room.id);
+
+  // Viewing count proportional to room size
+  const viewingCount = useMemo(() => {
+    if (room.totalUnits === 1) return 1;
+    if (room.totalUnits <= 4) return 1 + (new Date().getMinutes() % 2);
+    return 2 + (new Date().getMinutes() % 3);
+  }, [room.totalUnits]);
+
   const discount = room.originalPrice > room.discountedPrice
     ? Math.round((1 - room.discountedPrice / room.originalPrice) * 100)
     : 0;
@@ -42,9 +52,9 @@ const AvailabilityCard = memo(({ room, index }: { room: RoomType; index: number 
             {discount}% OFF
           </span>
         )}
-        {isLow && (
+        {availableLeft <= 3 && (
           <span className="absolute top-2 right-2 bg-orange-500/90 text-white text-xs font-medium px-2 py-0.5 rounded-full flex items-center gap-1">
-            <Flame className="w-3 h-3" /> Only {room.totalUnits} left
+            <Flame className="w-3 h-3" /> Only {availableLeft} left
           </span>
         )}
       </div>
@@ -67,6 +77,11 @@ const AvailabilityCard = memo(({ room, index }: { room: RoomType; index: number 
         )}
         <span className="text-xs text-muted-foreground">/ night</span>
       </div>
+
+      {/* Price hike warning */}
+      {priceHike && (
+        <p className="text-[11px] text-red-400 font-medium mt-1">⏰ {priceHike}</p>
+      )}
 
       {/* Social proof */}
       <div className="flex items-center gap-3 mt-2 text-[11px] text-muted-foreground">
@@ -110,9 +125,9 @@ const AvailableStaysNow = memo(() => {
 
       {/* Horizontal scroll on mobile, grid on desktop */}
       <div className="flex md:grid md:grid-cols-3 gap-4 overflow-x-auto pb-4 md:pb-0 snap-x snap-mandatory scrollbar-hide">
-        {rooms.map((room, i) => (
+        {rooms.map((room) => (
           <div key={room.id} className="snap-start shrink-0 w-[85vw] md:w-auto">
-            <AvailabilityCard room={room} index={i} />
+            <AvailabilityCard room={room} />
           </div>
         ))}
       </div>
