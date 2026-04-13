@@ -103,12 +103,14 @@ export function generateInlineScript(): string {
   return `<script>
 (function(){
 var m=${JSON.stringify(map)};
+var r={'travel':'tours','privacy':'privacy-policy','terms':'terms-of-service'};
 var p=location.pathname.replace(/^\\/|\\/$$/g,'');
+if(r[p]){var cn=document.querySelector('link[rel="canonical"]');if(cn)cn.setAttribute('href','https://xtsy.one/'+r[p]);return;}
+var u='https://xtsy.one/'+(p||'');
 if(m[p]){
 document.title=m[p].t;
 var d=document.querySelector('meta[name="description"]');
 if(d)d.setAttribute('content',m[p].d);
-var u='https://xtsy.one/'+(p||'');
 var c=document.querySelector('link[rel="canonical"]');
 if(c)c.setAttribute('href',u);
 var ot=document.querySelector('meta[property="og:title"]');
@@ -121,13 +123,12 @@ var tt=document.querySelector('meta[name="twitter:title"]');
 if(tt)tt.setAttribute('content',m[p].t);
 var td=document.querySelector('meta[name="twitter:description"]');
 if(td)td.setAttribute('content',m[p].d);
+}else{
+var cn2=document.querySelector('link[rel="canonical"]');
+if(cn2)cn2.setAttribute('href',u);
 }
-var hp='https://xtsy.one/'+p;
 var hl=document.querySelectorAll('link[hreflang]');
-hl.forEach(function(l){l.setAttribute('href',hp)});
-if(!p){hp='https://xtsy.one/';}
-var cn=document.querySelector('link[rel="canonical"]');
-if(cn&&!m[p])cn.setAttribute('href',hp);
+hl.forEach(function(l){l.setAttribute('href',u)});
 })();
 </script>`;
 }
