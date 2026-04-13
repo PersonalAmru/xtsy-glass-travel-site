@@ -19,7 +19,7 @@ const STATIC_ROUTE_META: Record<string, SEOMapEntry> = {
   'about': { t: 'About XTSY — India\'s Biggest Hostel in Northeast', d: 'XTSY Travellers Hostel, Shillong. India\'s first 270° glass suite, NEITA 2025 nominated. 2.5 hrs from Guwahati airport. Learn our story.' },
   'gallery': { t: 'XTSY Photo Gallery — Hostel & Glass Suite Photos', d: 'See inside XTSY Shillong — 270° glass suite, dormitories, common areas, mountain views. Real photos from India\'s biggest hostel.' },
   'tours': { t: 'North East India Tour Packages 2026 | XTSY Travel', d: '30+ curated tours across Meghalaya, Nagaland, Assam, Arunachal Pradesh & Sikkim. Living root bridges, safaris, tribal festivals. From ₹7,999.' },
-  'travel': { t: 'North East India Tour Packages 2026 | XTSY Travel', d: '30+ curated tours across Meghalaya, Nagaland, Assam, Arunachal Pradesh & Sikkim. Living root bridges, safaris, tribal festivals. From ₹7,999.' },
+  // /travel redirects to /tours — no metadata here to avoid canonical conflict
   'xtsy-270': { t: '270° Glass Suite — India\'s First Stargazing Room | XTSY', d: 'India\'s first 270° panoramic glass suite in Shillong. Stargazing, mountain views, luxury glamping. Perfect for couples & anniversaries.' },
   'pet-friendly': { t: 'Pet-Friendly Hostel in Shillong | XTSY Travel', d: 'Travel with your pet to XTSY Shillong. Dog-friendly rooms, open spaces, mountain walks. Northeast India\'s pet-friendly hostel.' },
   'female-travellers': { t: 'Safe Stays for Women — Female Dorms | XTSY Shillong', d: 'Female-only dorms with 24/7 security, CCTV, personal lockers. India\'s safest hostel for solo women travellers in Shillong.' },
@@ -103,24 +103,32 @@ export function generateInlineScript(): string {
   return `<script>
 (function(){
 var m=${JSON.stringify(map)};
+var r={'travel':'tours','privacy':'privacy-policy','terms':'terms-of-service'};
 var p=location.pathname.replace(/^\\/|\\/$$/g,'');
+if(r[p]){var cn=document.querySelector('link[rel="canonical"]');if(cn)cn.setAttribute('href','https://xtsy.one/'+r[p]);return;}
+var u='https://xtsy.one/'+(p||'');
 if(m[p]){
 document.title=m[p].t;
 var d=document.querySelector('meta[name="description"]');
 if(d)d.setAttribute('content',m[p].d);
 var c=document.querySelector('link[rel="canonical"]');
-if(c)c.setAttribute('href','https://xtsy.one/'+p);
+if(c)c.setAttribute('href',u);
 var ot=document.querySelector('meta[property="og:title"]');
 if(ot)ot.setAttribute('content',m[p].t);
 var od=document.querySelector('meta[property="og:description"]');
 if(od)od.setAttribute('content',m[p].d);
 var ou=document.querySelector('meta[property="og:url"]');
-if(ou)ou.setAttribute('content','https://xtsy.one/'+p);
+if(ou)ou.setAttribute('content',u);
 var tt=document.querySelector('meta[name="twitter:title"]');
 if(tt)tt.setAttribute('content',m[p].t);
 var td=document.querySelector('meta[name="twitter:description"]');
 if(td)td.setAttribute('content',m[p].d);
+}else{
+var cn2=document.querySelector('link[rel="canonical"]');
+if(cn2)cn2.setAttribute('href',u);
 }
+var hl=document.querySelectorAll('link[hreflang]');
+hl.forEach(function(l){l.setAttribute('href',u)});
 })();
 </script>`;
 }
