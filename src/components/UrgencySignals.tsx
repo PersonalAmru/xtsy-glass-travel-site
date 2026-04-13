@@ -1,13 +1,16 @@
 /**
  * Urgency + Social Proof Signals — Reusable components for scarcity/proof cues
  * Display near booking buttons and room cards
+ * Uses inventory-aware realistic numbers
  */
 import { memo, useState, useEffect, useMemo } from 'react';
-import { Eye, Flame, Clock, TrendingUp } from 'lucide-react';
+import { Eye, Flame, Clock } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { getSimulatedAvailability, getPriceHikeMessage } from '@/data/roomInventory';
 
 interface UrgencyBadgeProps {
   totalUnits: number;
+  roomId?: string;
   roomName?: string;
   className?: string;
   variant?: 'inline' | 'floating';
@@ -15,11 +18,26 @@ interface UrgencyBadgeProps {
 
 /**
  * Shows viewing count + scarcity signal near a room card
+ * Viewing count is proportional to room popularity/size
  */
-export const UrgencyBadge = memo(({ totalUnits, roomName, className, variant = 'inline' }: UrgencyBadgeProps) => {
-  const viewingCount = useMemo(() => Math.floor(Math.random() * 5) + 2, []);
-  const bookedToday = useMemo(() => Math.floor(Math.random() * 4) + 1, []);
-  const isLow = totalUnits <= 4;
+export const UrgencyBadge = memo(({ totalUnits, roomId, roomName, className, variant = 'inline' }: UrgencyBadgeProps) => {
+  // Viewing count scales with room size: small rooms 1-2, large dorms 2-4
+  const viewingCount = useMemo(() => {
+    if (totalUnits === 1) return 1; // XTSY 270: always 1 viewer
+    if (totalUnits <= 4) return 1 + (new Date().getMinutes() % 2); // 1-2
+    return 2 + (new Date().getMinutes() % 3); // 2-4
+  }, [totalUnits]);
+
+  // Realistic booked-today: 1 for small rooms, 1-2 for medium, 1-3 for large
+  const bookedToday = useMemo(() => {
+    if (totalUnits === 1) return 1;
+    if (totalUnits <= 6) return 1 + (new Date().getHours() % 2);
+    return 1 + (new Date().getHours() % 3);
+  }, [totalUnits]);
+
+  const availableLeft = roomId ? getSimulatedAvailability(roomId) : Math.min(totalUnits, 3);
+  const isLow = availableLeft <= 3;
+  const priceHike = roomId ? getPriceHikeMessage(roomId) : null;
 
   return (
     <div className={cn(
@@ -35,7 +53,12 @@ export const UrgencyBadge = memo(({ totalUnits, roomName, className, variant = '
       </span>
       {isLow && (
         <span className="flex items-center gap-1 text-orange-400 font-medium">
-          <Flame className="w-3 h-3" /> Only {totalUnits} left!
+          <Flame className="w-3 h-3" /> Only {availableLeft} left!
+        </span>
+      )}
+      {priceHike && (
+        <span className="flex items-center gap-1 text-red-400 font-medium">
+          ⏰ {priceHike}
         </span>
       )}
     </div>
@@ -65,18 +88,18 @@ export const ScarcityPill = memo(({ unitsLeft, className }: { unitsLeft: number;
 ScarcityPill.displayName = 'ScarcityPill';
 
 /**
- * Animated live viewer count
+ * Animated live viewer count — realistic range (2-6)
  */
 export const LiveViewerCount = memo(({ className }: { className?: string }) => {
-  const [count, setCount] = useState(() => Math.floor(Math.random() * 8) + 3);
+  const [count, setCount] = useState(() => 2 + (new Date().getMinutes() % 4));
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCount(prev => {
         const change = Math.random() > 0.5 ? 1 : -1;
-        return Math.max(2, Math.min(15, prev + change));
+        return Math.max(2, Math.min(6, prev + change));
       });
-    }, 15000);
+    }, 20000);
     return () => clearInterval(interval);
   }, []);
 

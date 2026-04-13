@@ -1,15 +1,15 @@
 /**
  * Tonight's Deals — Urgency-driven deals section with countdown timers
- * Shows discounted rooms with time-limited visual urgency
+ * Shows discounted rooms with time-limited visual urgency + April price-hike messaging
  */
-import { memo, useState, useEffect, useMemo } from 'react';
-import { Clock, Zap, ChevronRight, Star } from 'lucide-react';
+import { memo, useState, useEffect } from 'react';
+import { Clock, Zap, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { getBookableRooms, type RoomType } from '@/data/roomInventory';
+import { getBookableRooms, type RoomType, getSimulatedAvailability, isMayPricingActive } from '@/data/roomInventory';
 import { formatLocalDateString } from '@/lib/date-utils';
 import { cn } from '@/lib/utils';
 
-const CountdownTimer = memo(({ hoursLeft }: { hoursLeft: number }) => {
+const CountdownTimer = memo(() => {
   const [timeLeft, setTimeLeft] = useState(() => {
     const now = new Date();
     const endOfDay = new Date(now);
@@ -44,6 +44,7 @@ const DealCard = memo(({ room }: { room: RoomType }) => {
   const discount = room.originalPrice > room.discountedPrice
     ? Math.round((1 - room.discountedPrice / room.originalPrice) * 100)
     : 0;
+  const availableLeft = getSimulatedAvailability(room.id);
 
   if (discount <= 0) return null;
 
@@ -68,9 +69,14 @@ const DealCard = memo(({ room }: { room: RoomType }) => {
             <span className="text-xs text-muted-foreground line-through">₹{room.originalPrice}</span>
           </div>
           <div className="flex items-center gap-2 mt-1.5">
-            <CountdownTimer hoursLeft={3} />
-            <span className="text-[11px] text-muted-foreground">Valid today only</span>
+            <CountdownTimer />
+            <span className="text-[11px] text-muted-foreground">
+              {availableLeft <= 3 ? `Only ${availableLeft} left` : 'Valid today only'}
+            </span>
           </div>
+          {!isMayPricingActive() && (
+            <p className="text-[10px] text-red-400 font-medium mt-1">⏰ Prices go up May 1</p>
+          )}
         </div>
       </div>
 
@@ -102,7 +108,9 @@ const TonightsDeals = memo(() => {
         </h2>
       </div>
       <p className="text-sm text-muted-foreground mb-6 ml-12">
-        Limited-time prices — book before they're gone
+        {isMayPricingActive()
+          ? 'Limited-time prices — book before they\'re gone'
+          : '🔥 Last chance at April rates — prices increase from May 1'}
       </p>
 
       <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 overflow-x-auto pb-4 md:pb-0 snap-x snap-mandatory scrollbar-hide">

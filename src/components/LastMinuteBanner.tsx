@@ -2,10 +2,10 @@
  * Last-Minute Mode Banner — Triggered when user searches for today/tonight
  * Shows urgency-driven availability with real-time room counts
  */
-import { memo, useState, useEffect } from 'react';
-import { Flame, Clock, Users, ChevronRight } from 'lucide-react';
+import { memo } from 'react';
+import { Flame, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { getBookableRooms, type RoomType } from '@/data/roomInventory';
+import { getBookableRooms, getSimulatedAvailability, isMayPricingActive } from '@/data/roomInventory';
 import { formatLocalDateString } from '@/lib/date-utils';
 import { cn } from '@/lib/utils';
 
@@ -17,7 +17,11 @@ const LastMinuteBanner = memo(({ className }: LastMinuteBannerProps) => {
   const rooms = getBookableRooms();
   const today = formatLocalDateString(new Date());
   const lowestPrice = Math.min(...rooms.map(r => r.discountedPrice));
-  const totalBeds = rooms.reduce((sum, r) => sum + r.totalUnits, 0);
+
+  // Realistic total: sum of simulated availability per room
+  const totalAvailable = rooms.reduce((sum, r) => sum + getSimulatedAvailability(r.id), 0);
+
+  const showPriceHike = !isMayPricingActive();
 
   return (
     <div className={cn(
@@ -33,14 +37,22 @@ const LastMinuteBanner = memo(({ className }: LastMinuteBannerProps) => {
             🔥 Available Today in Shillong
           </h3>
           <p className="text-sm text-muted-foreground mt-1">
-            {totalBeds}+ beds available tonight · Starting from <span className="text-orange-400 font-semibold">₹{lowestPrice}/night</span>
+            {totalAvailable} beds available tonight · Starting from <span className="text-orange-400 font-semibold">₹{lowestPrice}/night</span>
           </p>
+          {showPriceHike && (
+            <p className="text-xs text-red-400 font-medium mt-1.5 flex items-center gap-1">
+              ⏰ April rates ending soon — prices increase from May 1
+            </p>
+          )}
           <div className="flex flex-wrap gap-3 mt-3">
-            {rooms.slice(0, 3).map(room => (
-              <span key={room.id} className="text-xs bg-background/60 border border-border/50 rounded-full px-3 py-1 text-muted-foreground">
-                {room.shortName} · ₹{room.discountedPrice}
-              </span>
-            ))}
+            {rooms.slice(0, 3).map(room => {
+              const avail = getSimulatedAvailability(room.id);
+              return (
+                <span key={room.id} className="text-xs bg-background/60 border border-border/50 rounded-full px-3 py-1 text-muted-foreground">
+                  {room.shortName} · ₹{room.discountedPrice} · {avail} left
+                </span>
+              );
+            })}
           </div>
           <Link
             to={`/book?checkIn=${today}&checkOut=${formatLocalDateString(new Date(Date.now() + 86400000))}&guests=1`}
