@@ -3,11 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     
-    <!-- Critical Performance: Preconnect to essential domains FIRST -->
+    <!-- Critical Performance: Preconnect to max 3 essential domains (Lighthouse warning >4) -->
     <link rel="preconnect" href="https://oidnydyyjyjfnyadhyzn.supabase.co" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
     
     <!-- LCP CRITICAL: Preload hero brand symbol with highest priority -->
     <link rel="preload" as="image" href="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png" fetchpriority="high" type="image/png">
@@ -51,7 +50,8 @@
     <link rel="icon" type="image/png" href="https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/uploads/1765259352370-with_padding.png">
     <link rel="apple-touch-icon" href="/xtsy-favicon.png">
     
-    <!-- DNS Prefetch for non-critical domains -->
+    <!-- DNS Prefetch for non-critical domains (use dns-prefetch instead of preconnect to avoid >4 warning) -->
+    <link rel="dns-prefetch" href="//www.googletagmanager.com">
     <link rel="dns-prefetch" href="//api.exchangerate-api.com">
     <link rel="dns-prefetch" href="//checkout.razorpay.com">
     <link rel="dns-prefetch" href="//wa.me">
@@ -188,13 +188,53 @@
     <meta name="geo.position" content="25.5788;91.8933" />
     <meta name="ICBM" content="25.5788, 91.8933" />
     
+    <!-- Global audience targeting -->
+    <meta name="target" content="all" />
+    <meta name="audience" content="all" />
+    <meta name="coverage" content="Worldwide" />
+    <meta name="distribution" content="Global" />
+    <meta name="rating" content="General" />
+    
     <!-- Canonical URL - Production domain -->
     <link rel="canonical" href="https://xtsy.one/" />
     
-    <!-- Alternative language pages -->
-    <link rel="alternate" hreflang="en-in" href="https://xtsy.one/" />
+    <!-- Comprehensive hreflang for global discovery -->
     <link rel="alternate" hreflang="en" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="en-IN" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="en-US" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="en-GB" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="en-AU" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="en-SG" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="en-CA" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="en-ZA" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="en-NZ" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="en-IE" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="en-PH" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="en-MY" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="fr" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="de" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="es" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="pt" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="ja" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="ko" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="zh" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="ru" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="ar" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="hi" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="bn" href="https://xtsy.one/" />
     <link rel="alternate" hreflang="x-default" href="https://xtsy.one/" />
+    
+    <!-- OG locale alternatives for international social sharing -->
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale:alternate" content="en_GB" />
+    <meta property="og:locale:alternate" content="fr_FR" />
+    <meta property="og:locale:alternate" content="de_DE" />
+    <meta property="og:locale:alternate" content="es_ES" />
+    <meta property="og:locale:alternate" content="ja_JP" />
+    <meta property="og:locale:alternate" content="ko_KR" />
+    <meta property="og:locale:alternate" content="zh_CN" />
+    <meta property="og:locale:alternate" content="pt_BR" />
+    <meta property="og:locale:alternate" content="ru_RU" />
     
     <!-- Author and Organization -->
     <meta name="author" content="XTSY Travel" />
@@ -237,9 +277,7 @@
     <!-- Foldable device support -->
     <meta name="screen-spanning" content="single-fold-vertical | single-fold-horizontal | none">
     
-    <!-- Non-critical fonts - defer with print media trick -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Josefin+Sans:wght@400;600&display=swap"></noscript>
+    <!-- Non-critical fonts removed to reduce render blocking - Josefin Sans already loaded above -->
     
   </head>
   <body>
