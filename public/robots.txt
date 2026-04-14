@@ -1,5 +1,6 @@
 # XTSY Travel - robots.txt
 # Canonical domain: https://xtsy.one
+# Global travel destination — Shillong, Meghalaya, Northeast India
 
 User-agent: Googlebot
 Allow: /
@@ -17,10 +18,60 @@ Disallow: /admin-login
 Disallow: /franchise
 Disallow: /franchise-login
 
+# International search engines
+User-agent: Yandex
+Allow: /
+Allow: /places-to-visit/
+Disallow: /admin
+Disallow: /franchise
+Crawl-delay: 2
+
+User-agent: Baiduspider
+Allow: /
+Allow: /places-to-visit/
+Disallow: /admin
+Disallow: /franchise
+
+User-agent: NaverBot
+Allow: /
+Allow: /places-to-visit/
+Disallow: /admin
+Disallow: /franchise
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Sogou
+Allow: /
+Disallow: /admin
+Disallow: /franchise
+
 User-agent: Twitterbot
 Allow: /
 
 User-agent: facebookexternalhit
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: PinterestBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# AI search engines
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
 Allow: /
 
 User-agent: *

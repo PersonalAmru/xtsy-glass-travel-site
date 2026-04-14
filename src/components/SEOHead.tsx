@@ -137,17 +137,24 @@ export const SEOHead = ({
       <meta name="description" content={finalDescription} />
       {keywords && <meta name="keywords" content={keywords} />}
       <link rel="canonical" href={finalCanonical} />
+      {/* Global audience signals */}
+      <meta name="target" content="all" />
+      <meta name="audience" content="all" />
+      <meta name="coverage" content="Worldwide" />
+      <meta name="distribution" content="Global" />
       <meta property="og:type" content={ogType} />
       <meta property="og:title" content={finalTitle} />
       <meta property="og:description" content={finalDescription} />
       <meta property="og:image" content={ogImage} />
       <meta property="og:url" content={finalCanonical} />
       <meta property="og:site_name" content="XTSY Travel" />
+      <meta property="og:locale" content="en_IN" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={finalTitle} />
       <meta name="twitter:description" content={finalDescription} />
       <meta name="twitter:image" content={ogImage} />
       {noIndex && <meta name="robots" content="noindex, nofollow" />}
+      {!noIndex && <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />}
     </Helmet>
   );
 };

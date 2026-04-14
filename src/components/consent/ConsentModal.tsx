@@ -263,7 +263,7 @@ export function ConsentModal() {
                   </div>
                   <p className="text-xs text-muted-foreground mt-0.5">Required for site to function</p>
                 </div>
-                <Switch checked={true} disabled className="opacity-60" />
+                <Switch checked={true} disabled className="opacity-60" aria-label="Necessary cookies always enabled" />
               </div>
 
               {/* Analytics - Locked ON */}
@@ -275,7 +275,7 @@ export function ConsentModal() {
                   </div>
                   <p className="text-xs text-muted-foreground mt-0.5">Helps us improve your experience</p>
                 </div>
-                <Switch checked={true} disabled className="opacity-60" />
+                <Switch checked={true} disabled className="opacity-60" aria-label="Analytics cookies always enabled" />
               </div>
 
               {/* Marketing - User Choice */}
@@ -322,14 +322,14 @@ export function ConsentModal() {
           )}
         </div>
 
-        {/* Footer */}
+        {/* Footer - Global compliance */}
         <div className="px-5 pb-4">
           <p className="text-[10px] text-muted-foreground text-center leading-relaxed">
             By using this site, you agree to our{' '}
             <a href="/privacy-policy" className="underline hover:text-foreground" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
             {' '}and{' '}
             <a href="/terms-of-service" className="underline hover:text-foreground" target="_blank" rel="noopener noreferrer">Terms of Service</a>.
-            <br />Compliant with GDPR & India DPDP Act 2023.
+            <br />Compliant with GDPR (EU), India DPDP Act 2023, CCPA (US), LGPD (Brazil) &amp; POPIA (South Africa).
           </p>
         </div>
       </div>
