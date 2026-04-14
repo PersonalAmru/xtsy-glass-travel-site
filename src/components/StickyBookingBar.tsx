@@ -49,7 +49,8 @@ const StickyBookingBar = memo(() => {
           </div>
           <button
             onClick={handleBook}
-            className="bg-primary text-primary-foreground text-sm font-semibold px-5 py-2.5 rounded-xl hover:bg-primary/90 transition-colors"
+            aria-label="Check room availability and book now"
+            className="bg-primary text-primary-foreground text-sm font-semibold px-5 py-3 min-h-[48px] rounded-xl hover:bg-primary/90 transition-colors touch-manipulation"
           >
             Check Availability
           </button>
@@ -71,7 +72,8 @@ const StickyBookingBar = memo(() => {
           <select
             value={guests}
             onChange={(e) => setGuests(Number(e.target.value))}
-            className="bg-transparent border-none text-sm text-foreground focus:outline-none cursor-pointer"
+            aria-label="Number of guests"
+            className="bg-transparent border-none text-sm text-foreground focus:outline-none cursor-pointer min-h-[44px]"
           >
             {[1,2,3,4,5,6].map(n => (
               <option key={n} value={n}>{n} Guest{n > 1 ? 's' : ''}</option>
@@ -80,9 +82,10 @@ const StickyBookingBar = memo(() => {
         </div>
         <button
           onClick={handleBook}
-          className="ml-auto bg-primary text-primary-foreground text-sm font-semibold px-5 py-2 rounded-xl hover:bg-primary/90 transition-colors flex items-center gap-1.5"
+          aria-label="Search rooms and check availability now"
+          className="ml-auto bg-primary text-primary-foreground text-sm font-semibold px-5 py-2.5 min-h-[48px] rounded-xl hover:bg-primary/90 transition-colors flex items-center gap-1.5 touch-manipulation"
         >
-          <Search className="w-4 h-4" /> Check Availability Now
+          <Search className="w-4 h-4" aria-hidden="true" /> Check Availability Now
         </button>
       </div>
     </div>
