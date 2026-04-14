@@ -63,20 +63,36 @@ export function getPriceHikeMessage(roomId: string): string | null {
 }
 
 /**
+ * Simulate traffic level — uses hour-of-day as proxy
+ * Peak hours (10-14, 19-22) = high traffic → show tighter scarcity
+ * Off-peak = low traffic → slightly more availability shown
+ */
+function isHighTraffic(): boolean {
+  const hour = new Date().getHours();
+  return (hour >= 10 && hour <= 14) || (hour >= 19 && hour <= 22);
+}
+
+/**
  * Get realistic simulated availability for a room
- * Uses deterministic-ish values that feel natural
+ * High traffic: always under 3 (1-2)
+ * Low traffic: always under 6 (1-5)
+ * XTSY 270: always exactly 1
  */
 export function getSimulatedAvailability(roomId: string): number {
   const room = ROOM_INVENTORY[roomId];
   if (!room) return 0;
-  // Use hour of day as seed for slight variation
+  if (room.totalUnits === 1) return 1; // XTSY 270 — always 1
+
   const hour = new Date().getHours();
   const seed = (roomId.charCodeAt(0) + hour) % 7;
-  if (room.totalUnits === 1) return 1; // XTSY 270 — always 1
-  if (room.totalUnits <= 4) return Math.max(1, Math.min(room.totalUnits, 1 + (seed % 3))); // 1-3
-  if (room.totalUnits <= 8) return Math.max(2, Math.min(room.totalUnits, 2 + (seed % 4))); // 2-5
-  // Large dorms (18, 24 beds) — show moderate scarcity
-  return Math.max(3, Math.min(8, 3 + (seed % 5))); // 3-7
+  const highTraffic = isHighTraffic();
+
+  if (highTraffic) {
+    // Under 3: show 1 or 2
+    return 1 + (seed % 2); // 1-2
+  }
+  // Under 6: show 1-5
+  return 1 + (seed % 5); // 1-5
 }
 
 export interface RoomType {
