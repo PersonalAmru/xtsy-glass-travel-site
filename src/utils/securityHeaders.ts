@@ -33,7 +33,7 @@ export function generateSecurityHeaders(config: SecurityHeadersConfig = {}) {
     ].join('; '),
 
     // Referrer Policy - no referrer for privacy
-    'Referrer-Policy': 'no-referrer',
+    'Referrer-Policy': 'strict-origin-when-cross-origin',
 
     // Permissions Policy - restrict browser features
     'Permissions-Policy': 'geolocation=(), microphone=(), camera=(), payment=()',
