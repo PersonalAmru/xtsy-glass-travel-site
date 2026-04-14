@@ -82,16 +82,15 @@ export function getSimulatedAvailability(roomId: string): number {
   const room = ROOM_INVENTORY[roomId];
   if (!room) return 0;
   if (room.totalUnits === 1) return 1; // XTSY 270 — always 1
+  if (room.kind === 'private') return 1; // Private rooms (King Double) — always show 1 left
 
   const hour = new Date().getHours();
   const seed = (roomId.charCodeAt(0) + hour) % 7;
   const highTraffic = isHighTraffic();
 
   if (highTraffic) {
-    // Under 3: show 1 or 2
     return 1 + (seed % 2); // 1-2
   }
-  // Under 6: show 1-5
   return 1 + (seed % 5); // 1-5
 }
 
