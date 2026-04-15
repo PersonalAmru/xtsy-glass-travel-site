@@ -350,6 +350,9 @@
       // Performance marker for LCP
       if(window.performance&&performance.mark)performance.mark('lcp-skeleton-rendered');
       
+      // P2: Dynamic dateModified for Speakable schema
+      (function(){var s=document.querySelector('script[type="application/ld+json"]');if(s){try{var d=JSON.parse(s.textContent);if(d['@type']==='WebPage'){d.dateModified=new Date().toISOString().split('T')[0];s.textContent=JSON.stringify(d)}}catch(e){}}})();
+      
       // Fade out skeleton after React hydrates
       window.__hideLCPSkeleton=function(){
         var s=document.getElementById('lcp-skeleton');
