@@ -4563,6 +4563,7 @@ export type Database = {
       cleanup_expired_cache: { Args: never; Returns: number }
       cleanup_expired_otp: { Args: never; Returns: undefined }
       cleanup_expired_rate_limits: { Args: never; Returns: undefined }
+      cleanup_old_traffic_data: { Args: never; Returns: Json }
       cleanup_rate_limits: { Args: never; Returns: undefined }
       cleanup_stale_realtime_visitors: { Args: never; Returns: number }
       compute_intent_score: {

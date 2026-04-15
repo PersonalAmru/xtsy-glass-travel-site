@@ -2,6 +2,7 @@
  * WhatsApp Business API Edge Function
  * Sends templated WhatsApp messages for booking notifications
  * Requires: WHATSAPP_ACCESS_TOKEN, WHATSAPP_PHONE_NUMBER_ID secrets
+ * AUTH: Admin-only — requires valid JWT with admin role
  */
 
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.49.1'
@@ -29,19 +30,13 @@ function replaceVariables(text: string, variables: Record<string, string>): stri
 
 // Format phone number to international format (remove spaces, add country code)
 function formatPhoneNumber(phone: string): string {
-  // Remove all non-digit characters
   let cleaned = phone.replace(/\D/g, '');
-  
-  // If starts with 0, assume India and add 91
   if (cleaned.startsWith('0')) {
     cleaned = '91' + cleaned.substring(1);
   }
-  
-  // If doesn't have country code (10 digits for India), add 91
   if (cleaned.length === 10) {
     cleaned = '91' + cleaned;
   }
-  
   return cleaned;
 }
 
@@ -52,10 +47,59 @@ Deno.serve(async (req) => {
   }
 
   try {
+    // ============================================
+    // P0 SECURITY: Authenticate & authorize caller
+    // ============================================
+    const authHeader = req.headers.get('Authorization');
+    if (!authHeader?.startsWith('Bearer ')) {
+      return new Response(
+        JSON.stringify({ success: false, error: 'Unauthorized — missing token' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!;
+    const SUPABASE_ANON_KEY = Deno.env.get('SUPABASE_ANON_KEY')!;
+    const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+
+    // Verify the caller's JWT
+    const userClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+      global: { headers: { Authorization: authHeader } },
+    });
+
+    const token = authHeader.replace('Bearer ', '');
+    const { data: claimsData, error: claimsError } = await userClient.auth.getClaims(token);
+    if (claimsError || !claimsData?.claims) {
+      return new Response(
+        JSON.stringify({ success: false, error: 'Unauthorized — invalid token' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    const userId = claimsData.claims.sub as string;
+
+    // Check admin role using service client
+    const serviceClient = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+    const { data: roleData } = await serviceClient
+      .from('user_roles')
+      .select('role')
+      .eq('user_id', userId)
+      .in('role', ['admin', 'moderator'])
+      .limit(1);
+
+    if (!roleData || roleData.length === 0) {
+      console.warn(`[WhatsApp] Forbidden: user ${userId} is not admin`);
+      return new Response(
+        JSON.stringify({ success: false, error: 'Forbidden — admin access required' }),
+        { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+    // ============================================
+    // END AUTH CHECK
+    // ============================================
+
     const WHATSAPP_ACCESS_TOKEN = Deno.env.get('WHATSAPP_ACCESS_TOKEN');
     const WHATSAPP_PHONE_NUMBER_ID = Deno.env.get('WHATSAPP_PHONE_NUMBER_ID');
-    const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!;
-    const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 
     if (!WHATSAPP_ACCESS_TOKEN || !WHATSAPP_PHONE_NUMBER_ID) {
       console.error('WhatsApp credentials not configured');
@@ -68,12 +112,10 @@ Deno.serve(async (req) => {
       );
     }
 
-    const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
-
     const body: WhatsAppRequest = await req.json();
     const { template_key, phone_number, variables } = body;
 
-    console.log(`[WhatsApp] Sending ${template_key} to ${phone_number.substring(0, 5)}***`);
+    console.log(`[WhatsApp] Admin ${userId} sending ${template_key} to ${phone_number.substring(0, 5)}***`);
 
     // Validate required fields
     if (!template_key || !phone_number) {
@@ -84,7 +126,7 @@ Deno.serve(async (req) => {
     }
 
     // Fetch template from database
-    const { data: template, error: templateError } = await supabase
+    const { data: template, error: templateError } = await serviceClient
       .from('whatsapp_templates')
       .select('*')
       .eq('template_key', template_key)
@@ -109,7 +151,6 @@ Deno.serve(async (req) => {
     const formattedPhone = formatPhoneNumber(phone_number);
 
     // Build WhatsApp API payload
-    // Using interactive message with CTA button if available
     let payload: any = {
       messaging_product: 'whatsapp',
       recipient_type: 'individual',
@@ -117,13 +158,10 @@ Deno.serve(async (req) => {
     };
 
     if (template.cta_button_text && ctaUrl) {
-      // Interactive message with CTA button
       payload.type = 'interactive';
       payload.interactive = {
         type: 'cta_url',
-        body: {
-          text: messageBody
-        },
+        body: { text: messageBody },
         action: {
           name: 'cta_url',
           parameters: {
@@ -133,12 +171,8 @@ Deno.serve(async (req) => {
         }
       };
     } else {
-      // Simple text message
       payload.type = 'text';
-      payload.text = {
-        preview_url: true,
-        body: messageBody
-      };
+      payload.text = { preview_url: true, body: messageBody };
     }
 
     console.log('[WhatsApp] Sending payload:', JSON.stringify(payload, null, 2));

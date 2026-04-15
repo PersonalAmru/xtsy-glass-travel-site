@@ -233,7 +233,7 @@ function App() {
 
     // Log security initialization
     logger.security('app_initialized', {
-      environment: process.env.NODE_ENV,
+      environment: import.meta.env.MODE,
       timestamp: new Date().toISOString(),
       security_headers_enabled: true,
       pii_redaction_enabled: true
@@ -264,8 +264,8 @@ function App() {
 
   return (
     <SecurityHeadersProvider config={{ 
-      isDevelopment: process.env.NODE_ENV === 'development',
-      enableHSTS: process.env.NODE_ENV === 'production'
+      isDevelopment: import.meta.env.MODE === 'development',
+      enableHSTS: import.meta.env.MODE === 'production'
     }}>
       <div className="dark">
         <PerformanceMonitor />

@@ -11,7 +11,7 @@ export interface SecurityHeadersConfig {
 
 export function generateSecurityHeaders(config: SecurityHeadersConfig = {}) {
   const {
-    isDevelopment = process.env.NODE_ENV === 'development',
+    isDevelopment = import.meta.env.MODE === 'development',
     supabaseUrl = 'https://oidnydyyjyjfnyadhyzn.supabase.co',
     customDomains = []
   } = config;
