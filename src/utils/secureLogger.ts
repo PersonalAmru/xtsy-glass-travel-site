@@ -98,8 +98,8 @@ function redactPIIFromObject(obj: any, depth = 0): any {
  * Enhanced logger with PII redaction and structured logging
  */
 export class SecureLogger {
-  private isDevelopment = process.env.NODE_ENV === 'development';
-  private isProduction = process.env.NODE_ENV === 'production';
+  private isDevelopment = import.meta.env.MODE === 'development';
+  private isProduction = import.meta.env.MODE === 'production';
   
   private formatLogEntry(level: string, message: string, data?: any) {
     const timestamp = new Date().toISOString();
