@@ -273,6 +273,7 @@
 
   body {
     @apply font-josefin antialiased bg-background text-foreground;
+    /* Keep body scrollbar hidden for aesthetic, but allow main content scrollbar */
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
@@ -281,14 +282,33 @@
     display: none;
   }
   
-  /* Hide scrollbars globally on all scrollable elements */
-  *::-webkit-scrollbar {
+  /* Only hide scrollbars on horizontal-scroll containers and decorative elements */
+  /* DO NOT hide scrollbars globally — accessibility requirement for keyboard/mouse users */
+  .hide-scrollbar::-webkit-scrollbar {
     display: none;
   }
-  
-  * {
+  .hide-scrollbar {
     scrollbar-width: none;
     -ms-overflow-style: none;
+  }
+  
+  /* Main content area: show thin styled scrollbar for accessibility */
+  #root {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted-foreground) / 0.2) transparent;
+  }
+  #root::-webkit-scrollbar {
+    width: 6px;
+  }
+  #root::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  #root::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.2);
+    border-radius: 4px;
+  }
+  #root::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.4);
   }
   
   /* Allow scrollbar in dialog/modal content for accessibility */
