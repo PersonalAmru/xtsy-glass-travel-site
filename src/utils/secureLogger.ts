@@ -109,7 +109,7 @@ export class SecureLogger {
       message: redactPII(message),
       ...(data && { data: redactPIIFromObject(data) }),
       // Add environment context
-      environment: process.env.NODE_ENV || 'unknown',
+      environment: import.meta.env.MODE || 'unknown',
       // Add user context if available (but redacted)
       userContext: this.getUserContext()
     };

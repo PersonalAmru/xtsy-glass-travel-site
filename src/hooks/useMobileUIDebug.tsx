@@ -67,7 +67,7 @@ export const useMobileUIDebug = ({ componentName, enabled = true }: MobileUIDebu
 
       if (error) {
         console.warn('[MobileUIDebug] Failed to report:', error);
-      } else if (process.env.NODE_ENV === 'development') {
+      } else if (import.meta.env.MODE === 'development') {
         console.log('[MobileUIDebug] Reported:', { componentName, errorType, errorMessage });
       }
     } catch (err) {
