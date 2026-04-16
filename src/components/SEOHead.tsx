@@ -3,7 +3,7 @@
  * Uses react-helmet for actual <head> injection
  */
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 
 interface SEOHeadProps {
   title?: string;
