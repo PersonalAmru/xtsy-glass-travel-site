@@ -7,7 +7,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 interface BreadcrumbsProps {
   items: Array<{ label: string; href?: string }>;

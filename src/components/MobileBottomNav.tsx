@@ -77,6 +77,7 @@ const MobileBottomNav = () => {
                     <button
                       key={index}
                       onClick={handleBookingClick}
+                      aria-label="Book a stay"
                       className="relative flex flex-col items-center justify-center -mt-5"
                     >
                       {/* Pulse ring animation */}
@@ -117,6 +118,7 @@ const MobileBottomNav = () => {
                     <a
                       key={index}
                       href={item.path}
+                      aria-label={item.label}
                       className="flex flex-col items-center justify-center py-2 px-3 min-w-[56px] touch-target"
                     >
                       <motion.div whileTap={{ scale: 0.9 }}>
@@ -134,6 +136,7 @@ const MobileBottomNav = () => {
                   <Link
                     key={index}
                     to={item.path}
+                    aria-label={item.label}
                     className="relative flex flex-col items-center justify-center py-2 px-3 min-w-[56px] touch-target"
                   >
                     <motion.div 

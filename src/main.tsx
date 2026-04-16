@@ -8,6 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 import { AppProvider } from "@/contexts/AppContext";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { preloadLCPImage } from "./utils/criticalImagePreloader";
+import { HelmetProvider } from "react-helmet-async";
 
 // Polyfill for Safari which doesn't support requestIdleCallback
 const scheduleIdleTask = (callback: () => void, timeout = 2000) => {
@@ -93,13 +94,15 @@ const root = document.getElementById("root")!;
 const appJSX = (
   <StrictMode>
     <ErrorBoundary>
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <AppProvider>
-            <App />
-          </AppProvider>
-        </BrowserRouter>
-      </QueryClientProvider>
+      <HelmetProvider>
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter>
+            <AppProvider>
+              <App />
+            </AppProvider>
+          </BrowserRouter>
+        </QueryClientProvider>
+      </HelmetProvider>
     </ErrorBoundary>
   </StrictMode>
 );
