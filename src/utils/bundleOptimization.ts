@@ -2,31 +2,17 @@
 // Enhanced bundle optimization utilities for fast page transitions
 
 export const preloadCriticalResources = () => {
-  // Critical above-the-fold images
-  const criticalImages = [
-    '/src/assets/xtsy-brand-logo.webp',
-    '/src/assets/meghalaya-hero.jpg',
-    '/src/assets/xtsy-logo.png',
-    '/src/assets/xtsy-color-logo.png',
-    '/placeholder.svg',
-  ];
-
-  criticalImages.forEach(src => {
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.as = 'image';
-    link.href = src;
-    link.fetchPriority = 'high';
-    document.head.appendChild(link);
-  });
-
-  // Preload critical CSS
-  const criticalCSS = document.createElement('link');
-  criticalCSS.rel = 'preload';
-  criticalCSS.as = 'style';
-  criticalCSS.href = '/src/styles/tailwind.css';
-  criticalCSS.fetchPriority = 'high';
-  document.head.appendChild(criticalCSS);
+  // NOTE: Do not preload /src/* paths — those only exist in dev. In production,
+  // Vite emits hashed filenames under /assets/. Preloading non-existent URLs
+  // wastes bandwidth, blocks the network, and slows LCP.
+  // Critical images are already preloaded by criticalImagePreloader.ts using
+  // the correct production URLs (Supabase CDN).
+  const criticalPlaceholder = document.createElement('link');
+  criticalPlaceholder.rel = 'preload';
+  criticalPlaceholder.as = 'image';
+  criticalPlaceholder.href = '/placeholder.svg';
+  criticalPlaceholder.fetchPriority = 'low';
+  document.head.appendChild(criticalPlaceholder);
 };
 
 // Defer non-critical scripts
