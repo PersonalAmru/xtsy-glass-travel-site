@@ -5,6 +5,14 @@
 
 import { Helmet } from 'react-helmet-async';
 
+interface ArticleMeta {
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
+  section?: string;
+  tags?: string[];
+}
+
 interface SEOHeadProps {
   title?: string;
   description?: string;
@@ -13,6 +21,8 @@ interface SEOHeadProps {
   ogImage?: string;
   ogType?: 'website' | 'article' | 'product';
   noIndex?: boolean;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
+  article?: ArticleMeta;
 }
 
 const DEFAULT_TITLE = "XTSY — Best Hostel in Shillong, Meghalaya | Northeast India";
@@ -126,10 +136,15 @@ export const SEOHead = ({
   ogImage = DEFAULT_OG_IMAGE,
   ogType = 'website',
   noIndex = false,
+  structuredData,
+  article,
 }: SEOHeadProps) => {
   const finalTitle = title || DEFAULT_TITLE;
   const finalDescription = description || DEFAULT_DESCRIPTION;
   const finalCanonical = canonicalUrl || SITE_URL;
+  const schemas = structuredData
+    ? (Array.isArray(structuredData) ? structuredData : [structuredData])
+    : [];
 
   return (
     <Helmet>
@@ -146,15 +161,39 @@ export const SEOHead = ({
       <meta property="og:title" content={finalTitle} />
       <meta property="og:description" content={finalDescription} />
       <meta property="og:image" content={ogImage} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
       <meta property="og:url" content={finalCanonical} />
       <meta property="og:site_name" content="XTSY Travel" />
       <meta property="og:locale" content="en_IN" />
       <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@xtsytravel" />
       <meta name="twitter:title" content={finalTitle} />
       <meta name="twitter:description" content={finalDescription} />
       <meta name="twitter:image" content={ogImage} />
+      {/* Article-specific meta */}
+      {ogType === 'article' && article?.publishedTime && (
+        <meta property="article:published_time" content={article.publishedTime} />
+      )}
+      {ogType === 'article' && article?.modifiedTime && (
+        <meta property="article:modified_time" content={article.modifiedTime} />
+      )}
+      {ogType === 'article' && article?.author && (
+        <meta property="article:author" content={article.author} />
+      )}
+      {ogType === 'article' && article?.section && (
+        <meta property="article:section" content={article.section} />
+      )}
+      {ogType === 'article' && article?.tags?.map(tag => (
+        <meta key={tag} property="article:tag" content={tag} />
+      ))}
       {noIndex && <meta name="robots" content="noindex, nofollow" />}
       {!noIndex && <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />}
+      {schemas.map((schema, i) => (
+        <script key={i} type="application/ld+json">
+          {JSON.stringify(schema)}
+        </script>
+      ))}
     </Helmet>
   );
 };
