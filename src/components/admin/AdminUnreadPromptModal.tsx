@@ -167,7 +167,7 @@ export const AdminUnreadPromptModal = () => {
 
               {counts.unreadMessages > 0 && (
                 <button
-                  onClick={() => goTo('/admin/guest-chats')}
+                  onClick={() => goTo('/admin/chats')}
                   className="w-full flex items-center gap-4 p-4 rounded-2xl bg-emerald-500/10 hover:bg-emerald-500/15 border border-emerald-500/20 transition-colors text-left group"
                 >
                   <div className="w-11 h-11 rounded-xl bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
