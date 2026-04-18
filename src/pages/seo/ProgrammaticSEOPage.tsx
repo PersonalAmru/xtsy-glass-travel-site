@@ -10,9 +10,9 @@ import TopicalClusterNav from '@/components/seo/TopicalClusterNav';
 import ConversionLinks from '@/components/seo/ConversionLinks';
 import { findSEOPage, getRelatedPages, getPagesByCategory, type SEOPageData } from '@/data/seoPages';
 import { getWheelLinks } from '@/data/seoLinkingWheel';
-import { getHeroImageForPage } from '@/utils/seoHeroImages';
-import { Check, ChevronDown, ChevronUp } from 'lucide-react';
-import { useState, memo } from 'react';
+import { getHeroImageForPage, getAIHeroURL } from '@/utils/seoHeroImages';
+import { Check, ChevronDown, ChevronUp, MessageCircle, Sparkles } from 'lucide-react';
+import { useState, memo, useEffect } from 'react';
 
 const categoryLabels: Record<string, string> = {
   hostels: 'Hostels', hotels: 'Hotels', homestays: 'Homestays', glamping: 'Glamping',
@@ -123,8 +123,13 @@ const buildSchema = (page: SEOPageData) => {
   // Speakable schema for AI citation eligibility (SGE, ChatGPT, Perplexity)
   base.speakable = {
     '@type': 'SpeakableSpecification',
-    cssSelector: ['article h1', 'article h2', 'article p:first-of-type'],
+    cssSelector: ['article h1', 'article h2', 'article p:first-of-type', 'article [data-quick-answer]'],
   };
+
+  // Quick Answer for AI Answer Engines
+  if (page.quickAnswer) {
+    base.abstract = page.quickAnswer;
+  }
 
   return base;
 };
@@ -205,12 +210,27 @@ const ProgrammaticSEOPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const page = slug ? findSEOPage(slug) : undefined;
 
+  // Hook order must be stable across renders — declare hooks BEFORE any early return
+  const curatedHero = page ? getHeroImageForPage(page.slug, page.category) : '';
+  const aiHero = page ? getAIHeroURL(page.slug) : '';
+  const [heroSrc, setHeroSrc] = useState(curatedHero);
+
+  useEffect(() => {
+    if (!page) return;
+    // Probe AI hero; fall back silently to curated if missing
+    const img = new Image();
+    img.onload = () => setHeroSrc(aiHero);
+    img.onerror = () => setHeroSrc(curatedHero);
+    img.src = aiHero;
+  }, [page, aiHero, curatedHero]);
+
   if (!page) return <NotFound />;
 
   const related = getRelatedPages(page.slug);
   const categoryLabel = categoryLabels[page.category] || page.category;
-  const heroImage = getHeroImageForPage(page.slug, page.category);
-  
+  const heroImage = heroSrc || curatedHero;
+  const waLink = `https://wa.me/918837317070?text=Hi, I want help planning my ${page.h1} trip`;
+
   const categoryPages = getPagesByCategory(page.category)
     .filter(p => p.slug !== page.slug)
     .slice(0, 6);
@@ -281,6 +301,26 @@ const ProgrammaticSEOPage = () => {
         <article className="container mx-auto px-4 max-w-4xl pb-10">
           <p className="text-lg text-muted-foreground leading-relaxed">{page.intro}</p>
 
+          {/* AI Quick Answer for Travelers — Speakable schema target, AI Answer Engine optimised */}
+          {page.quickAnswer && (
+            <div className="mt-6 border-l-4 border-primary bg-primary/5 rounded-r-xl p-5">
+              <div className="flex items-center gap-2 text-sm font-semibold text-primary mb-2">
+                <Sparkles className="h-4 w-4" />
+                Quick Answer for Travelers
+              </div>
+              <p className="text-foreground leading-relaxed">{page.quickAnswer}</p>
+              <a
+                href={waLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+              >
+                <MessageCircle className="h-4 w-4" />
+                Get instant help on WhatsApp
+              </a>
+            </div>
+          )}
+
           {/* Trust Signals */}
           <TrustSignals />
 
@@ -291,7 +331,7 @@ const ProgrammaticSEOPage = () => {
           <div className="mt-8 bg-primary/10 rounded-xl p-6 flex flex-col sm:flex-row items-center gap-4">
             <div className="flex-1">
               <p className="font-semibold text-foreground">Ready to explore?</p>
-              <p className="text-sm text-muted-foreground">Book your stay at XTSY Travellers Hostel — rated 4.8★ on Google</p>
+              <p className="text-sm text-muted-foreground">Book your stay at XTSY Travellers Hostel — rated 4.8★ on Google • 24/7 check-in</p>
             </div>
             <a
               href={page.ctaLink}

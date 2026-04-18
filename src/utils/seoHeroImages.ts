@@ -97,12 +97,22 @@ const CATEGORY_HERO_MAP: Record<string, string> = {
   hospitals: `${THINGS_TO_DO}/shillong-peak-meghalaya-3.webp`,
 };
 
+const SUPABASE_HERO_BUCKET = 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/seo-heroes';
+
 const DEFAULT_HERO = `${THINGS_TO_DO}/laitlum-canyons-meghalaya-2.webp`;
 
 /**
  * Get the hero image URL for a given SEO page.
- * Priority: slug-specific → category fallback → default
+ * Priority: AI-generated (Supabase seo-heroes bucket) → slug-specific curated → category fallback → default.
+ *
+ * Note: AI heroes are produced on-demand by the `generate-seo-hero` edge function.
+ * The browser will fall back to the curated/category image if the AI hero hasn't been generated yet.
  */
 export const getHeroImageForPage = (slug: string, category: string): string => {
   return SLUG_HERO_MAP[slug] || CATEGORY_HERO_MAP[category] || DEFAULT_HERO;
+};
+
+/** URL where the AI-generated hero would live if/when produced. */
+export const getAIHeroURL = (slug: string): string => {
+  return `${SUPABASE_HERO_BUCKET}/${slug}.webp`;
 };
