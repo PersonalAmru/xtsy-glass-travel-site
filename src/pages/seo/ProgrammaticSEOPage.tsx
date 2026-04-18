@@ -123,8 +123,13 @@ const buildSchema = (page: SEOPageData) => {
   // Speakable schema for AI citation eligibility (SGE, ChatGPT, Perplexity)
   base.speakable = {
     '@type': 'SpeakableSpecification',
-    cssSelector: ['article h1', 'article h2', 'article p:first-of-type'],
+    cssSelector: ['article h1', 'article h2', 'article p:first-of-type', 'article [data-quick-answer]'],
   };
+
+  // Quick Answer for AI Answer Engines
+  if (page.quickAnswer) {
+    base.abstract = page.quickAnswer;
+  }
 
   return base;
 };
