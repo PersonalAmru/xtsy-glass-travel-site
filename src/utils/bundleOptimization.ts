@@ -37,25 +37,11 @@ export const optimizeFontLoading = () => {
   document.head.appendChild(link2);
 };
 
-// Prefetch route chunks for faster page transitions - delayed to not impact LCP
+// Route prefetch — only triggered on real user intent (link hover/visible),
+// not blanket prefetched on load. Disabled here to free bandwidth for LCP.
 export const prefetchRouteChunks = () => {
-  // Only prefetch after page is fully interactive
-  const idleCallback = window.requestIdleCallback || ((cb) => setTimeout(cb, 500));
-  
-  idleCallback(() => {
-    // Limit prefetch to most common routes only - reduces network load
-    const routeChunks = [
-      () => import('../pages/Travel'),
-      () => import('../pages/XTSY270'),
-    ];
-    
-    // Stagger prefetch with longer delays to avoid network congestion
-    routeChunks.forEach((chunk, index) => {
-      setTimeout(() => {
-        chunk().catch(() => {}); // Silently fail - this is just prefetch
-      }, index * 500); // Increased delay between chunks
-    });
-  }, { timeout: 5000 }); // Only run when truly idle, with 5s timeout
+  // Intentionally a no-op — prefetching unrequested routes wastes bandwidth
+  // on mobile and competes with critical resources. Enable per-link if needed.
 };
 
 // Service Worker for caching
