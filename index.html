@@ -20,7 +20,7 @@
       /* Critical above-the-fold styles - inline for instant render */
       *{margin:0;padding:0;box-sizing:border-box}
       html{font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeSpeed}
-      body{background:#020617;color:#fff;min-height:100vh;overflow-x:hidden;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
+      body{background:#faf8f3;color:#1a1a1a;min-height:100vh;overflow-x:hidden;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
       body::-webkit-scrollbar{display:none}
       #root{min-height:100vh;contain:layout style}
       .dark{color-scheme:dark}
@@ -276,18 +276,18 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FXJ9QBK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     
-    <!-- LCP CRITICAL: Render hero skeleton IMMEDIATELY before React hydrates -->
+    <!-- LCP CRITICAL: Light brand splash matches site bg to prevent dark flash -->
     <style id="lcp-critical-css">
-      #lcp-skeleton{position:fixed;inset:0;z-index:9998;background:linear-gradient(135deg,#020617,#0f172a,#020617);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:1;transition:opacity .3s ease-out}
+      #lcp-skeleton{position:fixed;inset:0;z-index:9998;background:#faf8f3;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:1;transition:opacity .25s ease-out}
       #lcp-skeleton.fade-out{opacity:0;pointer-events:none}
       #lcp-skeleton img{width:96px;height:96px;object-fit:contain;animation:lcp-pulse 1.5s ease-in-out infinite}
       #lcp-skeleton h1{margin-top:16px;font-size:28px;font-weight:700;background:linear-gradient(90deg,#f97316,#fb923c,#f87171);-webkit-background-clip:text;background-clip:text;color:transparent}
-      #lcp-skeleton p{margin-top:8px;font-size:14px;color:rgba(255,255,255,0.6)}
+      #lcp-skeleton p{margin-top:8px;font-size:14px;color:rgba(26,26,26,0.55)}
       @keyframes lcp-pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.05);opacity:0.9}}
       @media(min-width:768px){#lcp-skeleton img{width:128px;height:128px}#lcp-skeleton h1{font-size:40px}}
     </style>
     
-    <!-- LCP Skeleton - renders BEFORE React, shows LCP image immediately -->
+    <!-- LCP Skeleton - light brand background, removed as soon as React renders -->
     <div id="lcp-skeleton" aria-hidden="true">
       <img 
         src="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png" 
@@ -296,6 +296,7 @@
         height="128"
         fetchpriority="high"
         decoding="sync"
+        onerror="this.style.display='none'"
       />
       <h1>Live the XTSY Vibe</h1>
       <p>Premium Stays in Northeast India</p>
@@ -341,17 +342,30 @@
       // P2: Dynamic dateModified for Speakable schema
       (function(){var s=document.querySelector('script[type="application/ld+json"]');if(s){try{var d=JSON.parse(s.textContent);if(d['@type']==='WebPage'){d.dateModified=new Date().toISOString().split('T')[0];s.textContent=JSON.stringify(d)}}catch(e){}}})();
       
-      // Fade out skeleton after React hydrates (with fail-safes)
+      // Fade out skeleton after React hydrates (with multiple fail-safes)
       window.__hideLCPSkeleton=function(){
         var s=document.getElementById('lcp-skeleton');
         if(!s||s.classList.contains('fade-out'))return;
         s.classList.add('fade-out');
-        setTimeout(function(){if(s&&s.parentNode)s.remove();var c=document.getElementById('lcp-critical-css');if(c)c.remove()},300);
+        setTimeout(function(){if(s&&s.parentNode)s.remove();var c=document.getElementById('lcp-critical-css');if(c)c.remove()},250);
       };
-      // Fail-safe 1: hide on window load (covers slow hydration)
-      window.addEventListener('load',function(){setTimeout(window.__hideLCPSkeleton,400)});
-      // Fail-safe 2: absolute max 3s — never block UX even if React fails
-      setTimeout(window.__hideLCPSkeleton,3000);
+      // Fail-safe 1: MutationObserver — hide as soon as React paints real content
+      // (waits for #root to have a meaningful child, not just an empty wrapper)
+      (function(){
+        var root=document.getElementById('root');
+        if(!root||!window.MutationObserver)return;
+        var obs=new MutationObserver(function(){
+          if(root.children.length>0&&root.firstElementChild&&root.firstElementChild.children.length>0){
+            obs.disconnect();
+            requestAnimationFrame(function(){requestAnimationFrame(window.__hideLCPSkeleton)});
+          }
+        });
+        obs.observe(root,{childList:true,subtree:true});
+      })();
+      // Fail-safe 2: hide on window load (covers slow hydration)
+      window.addEventListener('load',function(){setTimeout(window.__hideLCPSkeleton,300)});
+      // Fail-safe 3: absolute max 2.5s — never block UX even if React fails
+      setTimeout(window.__hideLCPSkeleton,2500);
     </script>
     
     <script type="module" src="/src/main.tsx"></script>
