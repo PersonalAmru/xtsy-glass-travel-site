@@ -22,7 +22,7 @@ import ConsentModal from "./components/consent/ConsentModal";
 import { TrafficAnalyticsProvider } from "./hooks/useTrafficAnalytics";
 import { ConversionSignalsProvider } from "./providers/ConversionSignalsProvider";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
-import StickyBookingBar from "./components/StickyBookingBar";
+// StickyBookingBar removed — was creating footer "Check Availability Now" CTA per stakeholder feedback
 
 // Optimized lazy loading with faster retry and better chunk handling
 const createLazyComponent = (importFn: () => Promise<any>) => {
@@ -376,8 +376,7 @@ function App() {
                 <Route path="*" element={<NotFound />} />
               </Routes>
               <FloatingWhatsApp />
-              <StickyBookingBar />
-               
+
               </TooltipProvider>
               </EnhancedAnalyticsProvider>
               </ConversionSignalsProvider>

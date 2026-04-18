@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { AdminNotificationBell } from '@/components/admin/AdminNotificationBell';
 import { SecurityAlertNotification } from '@/components/admin/SecurityAlertNotification';
+import { AdminUnreadPromptModal } from '@/components/admin/AdminUnreadPromptModal';
 import { BookingChat } from '@/components/chat/BookingChat';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
@@ -327,6 +328,9 @@ export function UnifiedAdminLayout({ children }: UnifiedAdminLayoutProps) {
 
       {/* Security Alert Notifications - Real-time intrusion alerts */}
       <SecurityAlertNotification />
+
+      {/* Once-per-session prompt for unread bookings/messages */}
+      <AdminUnreadPromptModal />
 
       {/* Chat Modal */}
       {chatBookingId && (

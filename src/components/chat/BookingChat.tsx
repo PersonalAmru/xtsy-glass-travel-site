@@ -208,12 +208,16 @@ export const BookingChat: React.FC<BookingChatProps> = ({
           transition={{ type: 'spring', damping: 28, stiffness: 350 }}
           onClick={(e) => e.stopPropagation()}
           className={cn(
-            // Mobile: full width, bottom sheet style with safe area
-            "w-full max-h-[90vh] h-[85vh] rounded-t-3xl",
-            // Tablet: centered modal with proper sizing
-            "md:w-[420px] md:max-w-[90vw] md:h-auto md:max-h-[85vh] md:min-h-[500px] md:rounded-3xl",
-            // Desktop: slightly larger
-            "lg:w-[480px] lg:max-h-[80vh] lg:min-h-[550px]",
+            // Mobile (default): true bottom-sheet, dynamic viewport height for keyboard
+            "w-full h-[90dvh] max-h-[90dvh] rounded-t-3xl",
+            // Small tablets (sm): a bit narrower, still bottom-anchored
+            "sm:h-[85dvh] sm:max-h-[85dvh]",
+            // Tablet (md): centered modal, fixed comfortable size
+            "md:w-[460px] md:max-w-[92vw] md:h-[78dvh] md:max-h-[680px] md:min-h-[520px] md:rounded-3xl",
+            // Desktop (lg): wider for inbox-style admin use
+            "lg:w-[520px] lg:h-[75dvh] lg:max-h-[720px] lg:min-h-[560px]",
+            // Extra-large screens (xl): admin gets even more breathing room
+            "xl:w-[560px] xl:max-h-[760px]",
             // Common styles - Apple-grade glassmorphism
             "overflow-hidden flex flex-col",
             "bg-gradient-to-b from-[hsl(160,32%,15%)] via-[hsl(160,35%,12%)] to-[hsl(160,38%,8%)]",
@@ -223,17 +227,17 @@ export const BookingChat: React.FC<BookingChatProps> = ({
             "backdrop-blur-2xl backdrop-saturate-150"
           )}
         >
-          {/* Header - Apple-grade design */}
-          <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 bg-black/10">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center">
-                <Bell className="w-5 h-5 text-white" />
+          {/* Header - Apple-grade design, responsive truncation */}
+          <div className="flex items-center justify-between gap-3 px-4 sm:px-5 py-3 sm:py-4 border-b border-white/10 bg-black/10 flex-shrink-0">
+            <div className="flex items-center gap-3 min-w-0 flex-1">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center flex-shrink-0">
+                <Bell className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
               </div>
-              <div>
-                <h3 className="text-white font-semibold text-lg flex items-center gap-2">
+              <div className="min-w-0 flex-1">
+                <h3 className="text-white font-semibold text-base sm:text-lg flex items-center gap-2 truncate">
                   XTSY Pings
                 </h3>
-                <p className="text-white/60 text-sm">{headerTitle}</p>
+                <p className="text-white/60 text-xs sm:text-sm truncate">{headerTitle}</p>
               </div>
             </div>
             <button
