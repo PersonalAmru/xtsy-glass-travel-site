@@ -10,9 +10,9 @@ import TopicalClusterNav from '@/components/seo/TopicalClusterNav';
 import ConversionLinks from '@/components/seo/ConversionLinks';
 import { findSEOPage, getRelatedPages, getPagesByCategory, type SEOPageData } from '@/data/seoPages';
 import { getWheelLinks } from '@/data/seoLinkingWheel';
-import { getHeroImageForPage } from '@/utils/seoHeroImages';
-import { Check, ChevronDown, ChevronUp } from 'lucide-react';
-import { useState, memo } from 'react';
+import { getHeroImageForPage, getAIHeroURL } from '@/utils/seoHeroImages';
+import { Check, ChevronDown, ChevronUp, MessageCircle, Sparkles } from 'lucide-react';
+import { useState, memo, useEffect } from 'react';
 
 const categoryLabels: Record<string, string> = {
   hostels: 'Hostels', hotels: 'Hotels', homestays: 'Homestays', glamping: 'Glamping',
@@ -205,12 +205,27 @@ const ProgrammaticSEOPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const page = slug ? findSEOPage(slug) : undefined;
 
+  // Hook order must be stable across renders — declare hooks BEFORE any early return
+  const curatedHero = page ? getHeroImageForPage(page.slug, page.category) : '';
+  const aiHero = page ? getAIHeroURL(page.slug) : '';
+  const [heroSrc, setHeroSrc] = useState(curatedHero);
+
+  useEffect(() => {
+    if (!page) return;
+    // Probe AI hero; fall back silently to curated if missing
+    const img = new Image();
+    img.onload = () => setHeroSrc(aiHero);
+    img.onerror = () => setHeroSrc(curatedHero);
+    img.src = aiHero;
+  }, [page, aiHero, curatedHero]);
+
   if (!page) return <NotFound />;
 
   const related = getRelatedPages(page.slug);
   const categoryLabel = categoryLabels[page.category] || page.category;
-  const heroImage = getHeroImageForPage(page.slug, page.category);
-  
+  const heroImage = heroSrc || curatedHero;
+  const waLink = `https://wa.me/918837317070?text=Hi, I want help planning my ${page.h1} trip`;
+
   const categoryPages = getPagesByCategory(page.category)
     .filter(p => p.slug !== page.slug)
     .slice(0, 6);
