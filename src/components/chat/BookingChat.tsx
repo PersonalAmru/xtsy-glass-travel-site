@@ -227,17 +227,17 @@ export const BookingChat: React.FC<BookingChatProps> = ({
             "backdrop-blur-2xl backdrop-saturate-150"
           )}
         >
-          {/* Header - Apple-grade design */}
-          <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 bg-black/10">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center">
-                <Bell className="w-5 h-5 text-white" />
+          {/* Header - Apple-grade design, responsive truncation */}
+          <div className="flex items-center justify-between gap-3 px-4 sm:px-5 py-3 sm:py-4 border-b border-white/10 bg-black/10 flex-shrink-0">
+            <div className="flex items-center gap-3 min-w-0 flex-1">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center flex-shrink-0">
+                <Bell className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
               </div>
-              <div>
-                <h3 className="text-white font-semibold text-lg flex items-center gap-2">
+              <div className="min-w-0 flex-1">
+                <h3 className="text-white font-semibold text-base sm:text-lg flex items-center gap-2 truncate">
                   XTSY Pings
                 </h3>
-                <p className="text-white/60 text-sm">{headerTitle}</p>
+                <p className="text-white/60 text-xs sm:text-sm truncate">{headerTitle}</p>
               </div>
             </div>
             <button
