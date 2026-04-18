@@ -1,93 +1,43 @@
-// Performance enhancement utilities for 0.2s target loading
+// Performance enhancement utilities — production-safe, non-blocking
+// IMPORTANT: Do NOT preload /src/* paths (dev-only) or prefetch routes
+// that don't have static asset URLs. Vite emits hashed /assets/* in prod.
 
-// Lazy loading with intersection observer
+// Lazy loading with intersection observer (for legacy lazy images)
 export const setupLazyLoading = () => {
   const images = document.querySelectorAll('img[loading="lazy"]');
-  
-  if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target as HTMLImageElement;
-          img.src = img.dataset.src || img.src;
-          img.classList.remove('lazy');
-          imageObserver.unobserve(img);
-        }
-      });
-    }, {
-      rootMargin: '50px 0px',
-      threshold: 0.01
+  if (!('IntersectionObserver' in window)) return;
+
+  const imageObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const img = entry.target as HTMLImageElement;
+        if (img.dataset.src) img.src = img.dataset.src;
+        img.classList.remove('lazy');
+        imageObserver.unobserve(img);
+      }
     });
+  }, { rootMargin: '200px 0px', threshold: 0.01 });
 
-    images.forEach(img => imageObserver.observe(img));
-  }
+  images.forEach((img) => imageObserver.observe(img));
 };
 
-// Preload critical resources
-export const preloadCriticalAssets = () => {
-  const criticalImages = [
-    '/src/assets/xtsy-brand-logo.webp',
-    '/src/assets/meghalaya-hero.jpg',
-    '/src/assets/xtsy-logo.png'
-  ];
-
-  criticalImages.forEach(src => {
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.as = 'image';
-    link.href = src;
-    link.fetchPriority = 'high';
-    document.head.appendChild(link);
-  });
-};
-
-// Optimize fonts
+// Optimize fonts — global font-display swap
 export const optimizeFonts = () => {
   const style = document.createElement('style');
-  style.textContent = `
-    @font-face {
-      font-display: swap;
-    }
-  `;
+  style.textContent = `@font-face{font-display:swap}`;
   document.head.appendChild(style);
 };
 
-// Enable compression hints
-export const enableCompression = () => {
-  const meta = document.createElement('meta');
-  meta.httpEquiv = 'Content-Encoding';
-  meta.content = 'gzip, deflate, br';
-  document.head.appendChild(meta);
-};
-
-// Route prefetching for critical pages
-export const prefetchRoutes = () => {
-  const criticalRoutes = ['/travel', '/xtsy-270', '/gallery'];
-  
-  criticalRoutes.forEach(route => {
-    const link = document.createElement('link');
-    link.rel = 'prefetch';
-    link.href = route;
-    document.head.appendChild(link);
-  });
-};
-
-// Initialize all performance optimizations
+// Initialize all performance optimizations (safe, no broken preloads)
 export const initializePerformanceEnhancements = () => {
-  // Run after DOM is loaded
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      setupLazyLoading();
-      preloadCriticalAssets();
-      optimizeFonts();
-      enableCompression();
-      prefetchRoutes();
-    });
-  } else {
+  const run = () => {
     setupLazyLoading();
-    preloadCriticalAssets();
     optimizeFonts();
-    enableCompression();
-    prefetchRoutes();
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', run, { once: true });
+  } else {
+    run();
   }
 };
