@@ -341,11 +341,17 @@
       // P2: Dynamic dateModified for Speakable schema
       (function(){var s=document.querySelector('script[type="application/ld+json"]');if(s){try{var d=JSON.parse(s.textContent);if(d['@type']==='WebPage'){d.dateModified=new Date().toISOString().split('T')[0];s.textContent=JSON.stringify(d)}}catch(e){}}})();
       
-      // Fade out skeleton after React hydrates
+      // Fade out skeleton after React hydrates (with multiple fail-safes)
       window.__hideLCPSkeleton=function(){
         var s=document.getElementById('lcp-skeleton');
-        if(s){s.classList.add('fade-out');setTimeout(function(){s.remove();var c=document.getElementById('lcp-critical-css');if(c)c.remove()},300)}
+        if(s){s.classList.add('fade-out');setTimeout(function(){if(s&&s.parentNode)s.remove();var c=document.getElementById('lcp-critical-css');if(c)c.remove()},300)}
       };
+      // Fail-safe 1: hide on window load (covers slow hydration)
+      window.addEventListener('load',function(){setTimeout(window.__hideLCPSkeleton,200)});
+      // Fail-safe 2: absolute max 2.5s — never block UX even if React fails
+      setTimeout(window.__hideLCPSkeleton,2500);
+      // Fail-safe 3: hide as soon as #root has children (React mounted)
+      (function(){var r=document.getElementById('root');if(!r||!('MutationObserver' in window))return;var o=new MutationObserver(function(){if(r.children.length>0){window.__hideLCPSkeleton();o.disconnect()}});o.observe(r,{childList:true})})();
     </script>
     
     <script type="module" src="/src/main.tsx"></script>
