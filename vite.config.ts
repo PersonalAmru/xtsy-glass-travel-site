@@ -68,16 +68,24 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         // Aggressive code splitting for smaller initial bundle
-        manualChunks: {
-          'react-core': ['react', 'react-dom'],
-          'router': ['react-router-dom'],
-          'radix-core': ['@radix-ui/react-dialog', '@radix-ui/react-select'],
-          'radix-ui': ['@radix-ui/react-tabs', '@radix-ui/react-accordion', '@radix-ui/react-popover'],
-          'supabase': ['@supabase/supabase-js'],
-          'query': ['@tanstack/react-query'],
-          'forms': ['react-hook-form', '@hookform/resolvers', 'zod'],
-          'date': ['date-fns', 'react-day-picker'],
-          'charts': ['recharts'],
+        manualChunks: (id: string) => {
+          if (!id.includes('node_modules')) return undefined;
+          if (id.includes('react-dom') || id.includes('/react/') || id.includes('scheduler')) return 'react-core';
+          if (id.includes('react-router')) return 'router';
+          if (id.includes('@radix-ui/react-dialog') || id.includes('@radix-ui/react-select') || id.includes('@radix-ui/react-popover')) return 'radix-core';
+          if (id.includes('@radix-ui')) return 'radix-ui';
+          if (id.includes('@supabase')) return 'supabase';
+          if (id.includes('@tanstack/react-query')) return 'query';
+          if (id.includes('react-hook-form') || id.includes('@hookform') || id.includes('/zod/')) return 'forms';
+          if (id.includes('date-fns') || id.includes('react-day-picker')) return 'date';
+          if (id.includes('recharts') || id.includes('d3-')) return 'charts';
+          if (id.includes('lucide-react')) return 'icons';
+          if (id.includes('embla-carousel')) return 'carousel';
+          if (id.includes('fuse.js')) return 'search';
+          if (id.includes('framer-motion')) return 'motion';
+          if (id.includes('@sentry')) return 'sentry';
+          if (id.includes('react-helmet-async')) return 'helmet';
+          return 'vendor';
         },
         // Optimize chunk filenames for better caching
         chunkFileNames: 'assets/[name]-[hash:8].js',
