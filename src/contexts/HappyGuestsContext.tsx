@@ -89,7 +89,16 @@ export const HappyGuestsProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    fetchHappyGuestsCount();
+    // Defer Supabase fetch — non-critical metric, must not block LCP/TBT
+    const ric = (window as any).requestIdleCallback;
+    const handle = typeof ric === 'function'
+      ? ric(() => fetchHappyGuestsCount(), { timeout: 4000 })
+      : setTimeout(fetchHappyGuestsCount, 2500);
+    return () => {
+      const cic = (window as any).cancelIdleCallback;
+      if (typeof cic === 'function' && typeof handle === 'number') cic(handle);
+      else clearTimeout(handle as any);
+    };
   }, [fetchHappyGuestsCount]);
 
   return (
