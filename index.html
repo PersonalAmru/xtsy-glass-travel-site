@@ -20,7 +20,7 @@
       /* Critical above-the-fold styles - inline for instant render */
       *{margin:0;padding:0;box-sizing:border-box}
       html{font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeSpeed}
-      body{background:#faf8f3;color:#1a1a1a;min-height:100vh;overflow-x:hidden;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
+      body{background:#020617;color:#f5f5f5;min-height:100vh;overflow-x:hidden;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
       body::-webkit-scrollbar{display:none}
       #root{min-height:100vh;contain:layout style}
       .dark{color-scheme:dark}
@@ -278,11 +278,11 @@
     
     <!-- LCP CRITICAL: Light brand splash matches site bg to prevent dark flash -->
     <style id="lcp-critical-css">
-      #lcp-skeleton{position:fixed;inset:0;z-index:9998;background:#faf8f3;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:1;transition:opacity .25s ease-out}
+      #lcp-skeleton{position:fixed;inset:0;z-index:9998;background:linear-gradient(135deg,#020617 0%,#0f172a 50%,#020617 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:1;transition:opacity .25s ease-out}
       #lcp-skeleton.fade-out{opacity:0;pointer-events:none}
       #lcp-skeleton img{width:96px;height:96px;object-fit:contain;animation:lcp-pulse 1.5s ease-in-out infinite}
       #lcp-skeleton h1{margin-top:16px;font-size:28px;font-weight:700;background:linear-gradient(90deg,#f97316,#fb923c,#f87171);-webkit-background-clip:text;background-clip:text;color:transparent}
-      #lcp-skeleton p{margin-top:8px;font-size:14px;color:rgba(26,26,26,0.55)}
+      #lcp-skeleton p{margin-top:8px;font-size:14px;color:rgba(255,255,255,0.6)}
       @keyframes lcp-pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.05);opacity:0.9}}
       @media(min-width:768px){#lcp-skeleton img{width:128px;height:128px}#lcp-skeleton h1{font-size:40px}}
     </style>
