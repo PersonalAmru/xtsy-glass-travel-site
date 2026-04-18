@@ -1,8 +1,14 @@
-// Programmatic SEO Page Registry — 300+ keyword-targeted pages
+// Programmatic SEO Page Registry — 1,400+ keyword-targeted pages
 import { EXPANSION_SEO_PAGES } from './seoPagesExpansion';
 import { PILLAR_PAGES } from './seoPillarPages';
 import { DESTINATION_PAGES } from './seoDestinationPages';
 import { LAST_MINUTE_SEO_PAGES } from './seoLastMinutePages';
+import { ROUTE_SEO_PAGES } from './seoPagesRoutes';
+import { INTENT_STAY_SEO_PAGES } from './seoPagesIntent';
+import { INSTITUTION_SEO_PAGES } from './seoPagesInstitutions';
+import { ACTIVITY_SEO_PAGES } from './seoPagesActivities';
+import { DURATION_ITINERARY_SEO_PAGES } from './seoPagesDurations';
+import { GLOBAL_NE_SEO_PAGES } from './seoPagesGlobalNE';
 
 export type SEOPageCategory = 
   | 'hostels' | 'hotels' | 'homestays' | 'glamping' | 'accommodation'
@@ -40,6 +46,10 @@ export interface SEOPageData {
   ctaText: string;
   ctaLink: string;
   keywords: string[];
+  /** Concise 1–2 sentence answer surfaced as "Quick Answer for Travelers" + Speakable schema */
+  quickAnswer?: string;
+  /** Optional list of nearby attraction labels for the Nearby Attractions section */
+  nearbyAttractions?: string[];
 }
 
 // Helper to generate page data efficiently
@@ -1067,6 +1077,13 @@ export const ALL_SEO_PAGES: SEOPageData[] = [
   ...BASE_SEO_PAGES,
   ...EXPANSION_SEO_PAGES,
   ...LAST_MINUTE_SEO_PAGES,
+  // ===== 1,400+ programmatic expansion =====
+  ...ROUTE_SEO_PAGES,
+  ...INTENT_STAY_SEO_PAGES,
+  ...INSTITUTION_SEO_PAGES,
+  ...ACTIVITY_SEO_PAGES,
+  ...DURATION_ITINERARY_SEO_PAGES,
+  ...GLOBAL_NE_SEO_PAGES,
 ];
 
 // Helper to find a page by slug
