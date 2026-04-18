@@ -1,6 +1,8 @@
 import { Sparkles, Clock } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import romanticForestDining from "@/assets/romantic-forest-dining.jpg";
+import hiddenWaterfallExpedition from "@/assets/hidden-waterfall-expedition.jpg";
 
 const EXPERIENCES = [
   {
@@ -22,14 +24,14 @@ const EXPERIENCES = [
     description: "A private candlelight dinner experience set inside a forest environment.",
     duration: "2–3 hours",
     includes: ["Multi-course dinner", "Decorated dining setup", "Desserts and sweets", "Signature mocktails"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/TAB%20Bistro/IMG_9274.jpeg",
+    image: romanticForestDining,
   },
   {
     title: "Hidden Waterfall Expedition",
     description: "Guided journey exploring hidden waterfalls and nature trails around Shillong.",
     duration: "Half-day or full-day",
     includes: ["Local guide", "Packed meals from TAB Bistro", "Photography stops"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Xperience/northeast-waterfall-expedition.jpg",
+    image: hiddenWaterfallExpedition,
   },
 ];
 
