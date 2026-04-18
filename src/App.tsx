@@ -18,9 +18,11 @@ import { EnhancedAnalyticsProvider } from "./hooks/useEnhancedAnalytics";
 import { HappyGuestsProvider } from "./contexts/HappyGuestsContext";
 
 import { UserAuthProvider } from "./contexts/UserAuthContext";
+import ConsentModal from "./components/consent/ConsentModal";
 import { TrafficAnalyticsProvider } from "./hooks/useTrafficAnalytics";
 import { ConversionSignalsProvider } from "./providers/ConversionSignalsProvider";
-import DeferredAppShell from "./components/DeferredAppShell";
+import FloatingWhatsApp from "./components/FloatingWhatsApp";
+import StickyBookingBar from "./components/StickyBookingBar";
 
 // Optimized lazy loading with faster retry and better chunk handling
 const createLazyComponent = (importFn: () => Promise<any>) => {
@@ -273,6 +275,7 @@ function App() {
               <ConversionSignalsProvider>
               <EnhancedAnalyticsProvider>
                 
+                <ConsentModal />
                 <TooltipProvider>
                 <Toaster />
               <Sonner />
@@ -372,7 +375,9 @@ function App() {
                 
                 <Route path="*" element={<NotFound />} />
               </Routes>
-              <DeferredAppShell />
+              <FloatingWhatsApp />
+              <StickyBookingBar />
+               
               </TooltipProvider>
               </EnhancedAnalyticsProvider>
               </ConversionSignalsProvider>

@@ -20,7 +20,7 @@
       /* Critical above-the-fold styles - inline for instant render */
       *{margin:0;padding:0;box-sizing:border-box}
       html{font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeSpeed}
-      body{background:#020617;color:#f5f5f5;min-height:100vh;overflow-x:hidden;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
+      body{background:#020617;color:#fff;min-height:100vh;overflow-x:hidden;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
       body::-webkit-scrollbar{display:none}
       #root{min-height:100vh;contain:layout style}
       .dark{color-scheme:dark}
@@ -144,28 +144,19 @@
       })();
     </script>
     
-    <!-- Google Tag Manager — DEFERRED until after page load to protect LCP/TTI.
-         Consent defaults already pushed above; GTM picks them up on init. -->
-    <script>
-      (function(){
-        function loadGTM(){
-          var w=window,d=document,s='script',l='dataLayer';
-          var containerId = w.__isLovableAdmin ? 'GTM-MS23NHMF' : 'GTM-5FXJ9QBK';
-          w.__activeGTMContainer = containerId;
-          w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
-          var f=d.getElementsByTagName(s)[0],j=d.createElement(s);
-          j.async=true;
-          j.src='https://www.googletagmanager.com/gtm.js?id='+containerId+'&l='+l;
-          f.parentNode.insertBefore(j,f);
-        }
-        // Load GTM after page is interactive — protects LCP & TBT
-        if (document.readyState === 'complete') {
-          setTimeout(loadGTM, 100);
-        } else {
-          window.addEventListener('load', function(){ setTimeout(loadGTM, 100); }, { once: true });
-        }
-      })();
-    </script>
+    <!-- Google Tag Manager - Conditional Container Routing -->
+    <!-- Admin/Lovable traffic → GTM-MS23NHMF | Real users → GTM-5FXJ9QBK -->
+    <script>(function(w,d,s,l){
+      var containerId = w.__isLovableAdmin ? 'GTM-MS23NHMF' : 'GTM-5FXJ9QBK';
+      w.__activeGTMContainer = containerId;
+      w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],j=d.createElement(s),
+      dl=l!='dataLayer'?'&l='+l:'';j.async=true;
+      j.src='https://www.googletagmanager.com/gtm.js?id='+containerId+dl;
+      f.parentNode.insertBefore(j,f);
+      console.log('%c[GTM] Container: ' + containerId + (w.__isLovableAdmin ? ' (ADMIN)' : ' (PRODUCTION)'),
+        'background:' + (w.__isLovableAdmin ? '#FF9800' : '#4CAF50') + ';color:white;font-weight:bold;padding:2px 8px;border-radius:4px;');
+    })(window,document,'script','dataLayer');</script>
     <!-- End Google Tag Manager -->
     
     <!-- HTTP Client Hints for image optimization -->
@@ -207,9 +198,30 @@
     <!-- Canonical URL - Production domain -->
     <link rel="canonical" href="https://xtsy.one/" />
     
-    <!-- Hreflang — only languages with translated pages. Duplicates harm SEO + waste bytes. -->
+    <!-- Comprehensive hreflang for global discovery -->
     <link rel="alternate" hreflang="en" href="https://xtsy.one/" />
     <link rel="alternate" hreflang="en-IN" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="en-US" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="en-GB" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="en-AU" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="en-SG" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="en-CA" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="en-ZA" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="en-NZ" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="en-IE" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="en-PH" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="en-MY" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="fr" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="de" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="es" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="pt" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="ja" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="ko" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="zh" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="ru" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="ar" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="hi" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="bn" href="https://xtsy.one/" />
     <link rel="alternate" hreflang="x-default" href="https://xtsy.one/" />
     
     <!-- OG locale alternatives for international social sharing -->
@@ -276,9 +288,9 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FXJ9QBK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     
-    <!-- LCP CRITICAL: Light brand splash matches site bg to prevent dark flash -->
+    <!-- LCP CRITICAL: Render hero skeleton IMMEDIATELY before React hydrates -->
     <style id="lcp-critical-css">
-      #lcp-skeleton{position:fixed;inset:0;z-index:9998;background:linear-gradient(135deg,#020617 0%,#0f172a 50%,#020617 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:1;transition:opacity .25s ease-out}
+      #lcp-skeleton{position:fixed;inset:0;z-index:9998;background:linear-gradient(135deg,#020617,#0f172a,#020617);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:1;transition:opacity .3s ease-out}
       #lcp-skeleton.fade-out{opacity:0;pointer-events:none}
       #lcp-skeleton img{width:96px;height:96px;object-fit:contain;animation:lcp-pulse 1.5s ease-in-out infinite}
       #lcp-skeleton h1{margin-top:16px;font-size:28px;font-weight:700;background:linear-gradient(90deg,#f97316,#fb923c,#f87171);-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -287,7 +299,7 @@
       @media(min-width:768px){#lcp-skeleton img{width:128px;height:128px}#lcp-skeleton h1{font-size:40px}}
     </style>
     
-    <!-- LCP Skeleton - light brand background, removed as soon as React renders -->
+    <!-- LCP Skeleton - renders BEFORE React, shows LCP image immediately -->
     <div id="lcp-skeleton" aria-hidden="true">
       <img 
         src="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png" 
@@ -296,7 +308,6 @@
         height="128"
         fetchpriority="high"
         decoding="sync"
-        onerror="this.style.display='none'"
       />
       <h1>Live the XTSY Vibe</h1>
       <p>Premium Stays in Northeast India</p>
@@ -342,30 +353,11 @@
       // P2: Dynamic dateModified for Speakable schema
       (function(){var s=document.querySelector('script[type="application/ld+json"]');if(s){try{var d=JSON.parse(s.textContent);if(d['@type']==='WebPage'){d.dateModified=new Date().toISOString().split('T')[0];s.textContent=JSON.stringify(d)}}catch(e){}}})();
       
-      // Fade out skeleton after React hydrates (with multiple fail-safes)
+      // Fade out skeleton after React hydrates
       window.__hideLCPSkeleton=function(){
         var s=document.getElementById('lcp-skeleton');
-        if(!s||s.classList.contains('fade-out'))return;
-        s.classList.add('fade-out');
-        setTimeout(function(){if(s&&s.parentNode)s.remove();var c=document.getElementById('lcp-critical-css');if(c)c.remove()},250);
+        if(s){s.classList.add('fade-out');setTimeout(function(){s.remove();var c=document.getElementById('lcp-critical-css');if(c)c.remove()},300)}
       };
-      // Fail-safe 1: MutationObserver — hide as soon as React paints real content
-      // (waits for #root to have a meaningful child, not just an empty wrapper)
-      (function(){
-        var root=document.getElementById('root');
-        if(!root||!window.MutationObserver)return;
-        var obs=new MutationObserver(function(){
-          if(root.children.length>0&&root.firstElementChild&&root.firstElementChild.children.length>0){
-            obs.disconnect();
-            requestAnimationFrame(function(){requestAnimationFrame(window.__hideLCPSkeleton)});
-          }
-        });
-        obs.observe(root,{childList:true,subtree:true});
-      })();
-      // Fail-safe 2: hide on window load (covers slow hydration)
-      window.addEventListener('load',function(){setTimeout(window.__hideLCPSkeleton,300)});
-      // Fail-safe 3: absolute max 2.5s — never block UX even if React fails
-      setTimeout(window.__hideLCPSkeleton,2500);
     </script>
     
     <script type="module" src="/src/main.tsx"></script>

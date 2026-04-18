@@ -179,14 +179,9 @@ export function ConsentModal() {
           justify-content: center !important;
           padding: 16px !important;
           z-index: 2147483647 !important;
-          background-color: rgba(0, 0, 0, 0.45) !important;
-          backdrop-filter: blur(4px) !important;
-          -webkit-backdrop-filter: blur(4px) !important;
-          animation: consentBackdropFade 0.25s ease-out forwards !important;
-        }
-        @keyframes consentBackdropFade {
-          from { opacity: 0; }
-          to { opacity: 1; }
+          background-color: rgba(0, 0, 0, 0.7) !important;
+          backdrop-filter: blur(8px) !important;
+          -webkit-backdrop-filter: blur(8px) !important;
         }
         .consent-modal-content {
           width: 100% !important;
