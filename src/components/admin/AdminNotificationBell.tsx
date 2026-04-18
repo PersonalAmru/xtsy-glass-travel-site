@@ -175,23 +175,34 @@ export const AdminNotificationBell: React.FC<AdminNotificationBellProps> = ({
       <motion.button
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
+        aria-label={unreadCount > 0 ? `${unreadCount} unread notifications` : 'Notifications'}
         className={cn(
           "relative w-10 h-10 rounded-full flex items-center justify-center transition-colors",
-          "bg-white/10 hover:bg-white/20 text-white"
+          "bg-white/10 hover:bg-white/20 text-white",
+          unreadCount > 0 && "ring-2 ring-red-500/40"
         )}
       >
-        <Bell className="w-5 h-5" />
+        <Bell className={cn("w-5 h-5", unreadCount > 0 && "animate-[wiggle_1.2s_ease-in-out_infinite]")} />
         {unreadCount > 0 && (
-          <motion.span
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            className={cn(
-              "absolute -top-1 -right-1 min-w-[20px] h-5 px-1.5 rounded-full",
-              "bg-red-500 text-white text-xs font-bold flex items-center justify-center"
-            )}
-          >
-            {unreadCount > 9 ? '9+' : unreadCount}
-          </motion.span>
+          <>
+            {/* Persistent pulse ring to draw attention */}
+            <motion.span
+              className="absolute inset-0 rounded-full bg-red-500/30"
+              animate={{ scale: [1, 1.4, 1], opacity: [0.6, 0, 0.6] }}
+              transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut" }}
+            />
+            <motion.span
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              className={cn(
+                "absolute -top-1 -right-1 min-w-[20px] h-5 px-1.5 rounded-full",
+                "bg-red-500 text-white text-xs font-bold flex items-center justify-center",
+                "shadow-lg shadow-red-500/50 z-10"
+              )}
+            >
+              {unreadCount > 9 ? '9+' : unreadCount}
+            </motion.span>
+          </>
         )}
       </motion.button>
 

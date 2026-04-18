@@ -208,12 +208,16 @@ export const BookingChat: React.FC<BookingChatProps> = ({
           transition={{ type: 'spring', damping: 28, stiffness: 350 }}
           onClick={(e) => e.stopPropagation()}
           className={cn(
-            // Mobile: full width, bottom sheet style with safe area
-            "w-full max-h-[90vh] h-[85vh] rounded-t-3xl",
-            // Tablet: centered modal with proper sizing
-            "md:w-[420px] md:max-w-[90vw] md:h-auto md:max-h-[85vh] md:min-h-[500px] md:rounded-3xl",
-            // Desktop: slightly larger
-            "lg:w-[480px] lg:max-h-[80vh] lg:min-h-[550px]",
+            // Mobile (default): true bottom-sheet, dynamic viewport height for keyboard
+            "w-full h-[90dvh] max-h-[90dvh] rounded-t-3xl",
+            // Small tablets (sm): a bit narrower, still bottom-anchored
+            "sm:h-[85dvh] sm:max-h-[85dvh]",
+            // Tablet (md): centered modal, fixed comfortable size
+            "md:w-[460px] md:max-w-[92vw] md:h-[78dvh] md:max-h-[680px] md:min-h-[520px] md:rounded-3xl",
+            // Desktop (lg): wider for inbox-style admin use
+            "lg:w-[520px] lg:h-[75dvh] lg:max-h-[720px] lg:min-h-[560px]",
+            // Extra-large screens (xl): admin gets even more breathing room
+            "xl:w-[560px] xl:max-h-[760px]",
             // Common styles - Apple-grade glassmorphism
             "overflow-hidden flex flex-col",
             "bg-gradient-to-b from-[hsl(160,32%,15%)] via-[hsl(160,35%,12%)] to-[hsl(160,38%,8%)]",
