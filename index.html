@@ -144,18 +144,34 @@
       })();
     </script>
     
-    <!-- Google Tag Manager - Conditional Container Routing -->
+    <!-- Google Tag Manager - Deferred load (LCP optimization) -->
+    <!-- Loads via requestIdleCallback OR after 2.5s OR on first interaction — whichever comes first -->
     <!-- Admin/Lovable traffic → GTM-MS23NHMF | Real users → GTM-5FXJ9QBK -->
     <script>(function(w,d,s,l){
-      var containerId = w.__isLovableAdmin ? 'GTM-MS23NHMF' : 'GTM-5FXJ9QBK';
-      w.__activeGTMContainer = containerId;
-      w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
-      var f=d.getElementsByTagName(s)[0],j=d.createElement(s),
-      dl=l!='dataLayer'?'&l='+l:'';j.async=true;
-      j.src='https://www.googletagmanager.com/gtm.js?id='+containerId+dl;
-      f.parentNode.insertBefore(j,f);
-      console.log('%c[GTM] Container: ' + containerId + (w.__isLovableAdmin ? ' (ADMIN)' : ' (PRODUCTION)'),
-        'background:' + (w.__isLovableAdmin ? '#FF9800' : '#4CAF50') + ';color:white;font-weight:bold;padding:2px 8px;border-radius:4px;');
+      var loaded = false;
+      function loadGTM(){
+        if (loaded) return; loaded = true;
+        var containerId = w.__isLovableAdmin ? 'GTM-MS23NHMF' : 'GTM-5FXJ9QBK';
+        w.__activeGTMContainer = containerId;
+        w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+        var f=d.getElementsByTagName(s)[0],j=d.createElement(s),
+        dl=l!='dataLayer'?'&l='+l:'';j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+containerId+dl;
+        f.parentNode.insertBefore(j,f);
+        console.log('%c[GTM] Container: ' + containerId + (w.__isLovableAdmin ? ' (ADMIN)' : ' (PRODUCTION)'),
+          'background:' + (w.__isLovableAdmin ? '#FF9800' : '#4CAF50') + ';color:white;font-weight:bold;padding:2px 8px;border-radius:4px;');
+      }
+      // Strategy 1: requestIdleCallback (best — waits for browser idle)
+      if ('requestIdleCallback' in w) {
+        w.requestIdleCallback(loadGTM, { timeout: 2500 });
+      } else {
+        // Strategy 2: Fallback timeout for Safari
+        setTimeout(loadGTM, 2500);
+      }
+      // Strategy 3: Load immediately on first user interaction (don't lose events)
+      ['scroll','mousedown','touchstart','keydown'].forEach(function(ev){
+        w.addEventListener(ev, loadGTM, { once: true, passive: true });
+      });
     })(window,document,'script','dataLayer');</script>
     <!-- End Google Tag Manager -->
     
