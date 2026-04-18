@@ -296,6 +296,26 @@ const ProgrammaticSEOPage = () => {
         <article className="container mx-auto px-4 max-w-4xl pb-10">
           <p className="text-lg text-muted-foreground leading-relaxed">{page.intro}</p>
 
+          {/* AI Quick Answer for Travelers — Speakable schema target, AI Answer Engine optimised */}
+          {page.quickAnswer && (
+            <div className="mt-6 border-l-4 border-primary bg-primary/5 rounded-r-xl p-5">
+              <div className="flex items-center gap-2 text-sm font-semibold text-primary mb-2">
+                <Sparkles className="h-4 w-4" />
+                Quick Answer for Travelers
+              </div>
+              <p className="text-foreground leading-relaxed">{page.quickAnswer}</p>
+              <a
+                href={waLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+              >
+                <MessageCircle className="h-4 w-4" />
+                Get instant help on WhatsApp
+              </a>
+            </div>
+          )}
+
           {/* Trust Signals */}
           <TrustSignals />
 
@@ -306,7 +326,7 @@ const ProgrammaticSEOPage = () => {
           <div className="mt-8 bg-primary/10 rounded-xl p-6 flex flex-col sm:flex-row items-center gap-4">
             <div className="flex-1">
               <p className="font-semibold text-foreground">Ready to explore?</p>
-              <p className="text-sm text-muted-foreground">Book your stay at XTSY Travellers Hostel — rated 4.8★ on Google</p>
+              <p className="text-sm text-muted-foreground">Book your stay at XTSY Travellers Hostel — rated 4.8★ on Google • 24/7 check-in</p>
             </div>
             <a
               href={page.ctaLink}
