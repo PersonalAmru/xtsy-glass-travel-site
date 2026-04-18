@@ -144,19 +144,28 @@
       })();
     </script>
     
-    <!-- Google Tag Manager - Conditional Container Routing -->
-    <!-- Admin/Lovable traffic → GTM-MS23NHMF | Real users → GTM-5FXJ9QBK -->
-    <script>(function(w,d,s,l){
-      var containerId = w.__isLovableAdmin ? 'GTM-MS23NHMF' : 'GTM-5FXJ9QBK';
-      w.__activeGTMContainer = containerId;
-      w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
-      var f=d.getElementsByTagName(s)[0],j=d.createElement(s),
-      dl=l!='dataLayer'?'&l='+l:'';j.async=true;
-      j.src='https://www.googletagmanager.com/gtm.js?id='+containerId+dl;
-      f.parentNode.insertBefore(j,f);
-      console.log('%c[GTM] Container: ' + containerId + (w.__isLovableAdmin ? ' (ADMIN)' : ' (PRODUCTION)'),
-        'background:' + (w.__isLovableAdmin ? '#FF9800' : '#4CAF50') + ';color:white;font-weight:bold;padding:2px 8px;border-radius:4px;');
-    })(window,document,'script','dataLayer');</script>
+    <!-- Google Tag Manager — DEFERRED until after page load to protect LCP/TTI.
+         Consent defaults already pushed above; GTM picks them up on init. -->
+    <script>
+      (function(){
+        function loadGTM(){
+          var w=window,d=document,s='script',l='dataLayer';
+          var containerId = w.__isLovableAdmin ? 'GTM-MS23NHMF' : 'GTM-5FXJ9QBK';
+          w.__activeGTMContainer = containerId;
+          w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+          var f=d.getElementsByTagName(s)[0],j=d.createElement(s);
+          j.async=true;
+          j.src='https://www.googletagmanager.com/gtm.js?id='+containerId+'&l='+l;
+          f.parentNode.insertBefore(j,f);
+        }
+        // Load GTM after page is interactive — protects LCP & TBT
+        if (document.readyState === 'complete') {
+          setTimeout(loadGTM, 100);
+        } else {
+          window.addEventListener('load', function(){ setTimeout(loadGTM, 100); }, { once: true });
+        }
+      })();
+    </script>
     <!-- End Google Tag Manager -->
     
     <!-- HTTP Client Hints for image optimization -->
