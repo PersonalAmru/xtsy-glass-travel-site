@@ -116,3 +116,36 @@ export const getHeroImageForPage = (slug: string, category: string): string => {
 export const getAIHeroURL = (slug: string): string => {
   return `${SUPABASE_HERO_BUCKET}/${slug}.webp`;
 };
+
+// Wave 3B — Pool of contextual section images, rotated per section index so each
+// page renders distinct supporting visuals (no duplicates within a page).
+const SECTION_IMAGE_POOL = [
+  `${THINGS_TO_DO}/double-decker-living-root-bridge-meghalaya-2.webp`,
+  `${THINGS_TO_DO}/dawki-umngot-river-meghalaya-2.webp`,
+  `${THINGS_TO_DO}/laitlum-canyons-meghalaya-3.webp`,
+  `${THINGS_TO_DO}/nohkalikai-falls-meghalaya-1.webp`,
+  `${THINGS_TO_DO}/mawlynnong-village-meghalaya-1.webp`,
+  `${THINGS_TO_DO}/krang-suri-falls-meghalaya-2.webp`,
+  `${THINGS_TO_DO}/shillong-peak-meghalaya-2.webp`,
+  `${THINGS_TO_DO}/nongriat-village-meghalaya-1.webp`,
+  `${THINGS_TO_DO}/umiam-lake-meghalaya-1.webp`,
+  `${THINGS_TO_DO}/mawphlang-sacred-forest-meghalaya-1.webp`,
+];
+
+/**
+ * Pick a contextual image for a section based on the page slug + section index.
+ * Deterministic: same slug+index always returns the same image.
+ */
+export const getSectionImage = (slug: string, sectionIndex: number, heroToAvoid?: string): string => {
+  // Deterministic hash from slug
+  let h = 0;
+  for (let i = 0; i < slug.length; i++) h = (h * 31 + slug.charCodeAt(i)) | 0;
+  const start = Math.abs(h) % SECTION_IMAGE_POOL.length;
+  let img = SECTION_IMAGE_POOL[(start + sectionIndex) % SECTION_IMAGE_POOL.length];
+  // Avoid repeating the hero image as the first section image
+  if (img === heroToAvoid) {
+    img = SECTION_IMAGE_POOL[(start + sectionIndex + 1) % SECTION_IMAGE_POOL.length];
+  }
+  return img;
+};
+

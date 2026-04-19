@@ -10,7 +10,7 @@ import TopicalClusterNav from '@/components/seo/TopicalClusterNav';
 import ConversionLinks from '@/components/seo/ConversionLinks';
 import { findSEOPage, getRelatedPages, getPagesByCategory, type SEOPageData } from '@/data/seoPages';
 import { getWheelLinks } from '@/data/seoLinkingWheel';
-import { getHeroImageForPage, getAIHeroURL } from '@/utils/seoHeroImages';
+import { getHeroImageForPage, getAIHeroURL, getSectionImage } from '@/utils/seoHeroImages';
 import { Check, ChevronDown, ChevronUp, MessageCircle, Sparkles } from 'lucide-react';
 import { useState, memo, useEffect } from 'react';
 
@@ -360,24 +360,39 @@ const ProgrammaticSEOPage = () => {
             </a>
           </div>
 
-          {/* Content Sections */}
+          {/* Content Sections — Wave 3B injects contextual images on every other section */}
           <div className="mt-10 space-y-8">
-            {page.sections.map((section, i) => (
-              <section key={i}>
-                <h2 className="text-xl font-bold text-foreground mb-3">{section.heading}</h2>
-                <p className="text-muted-foreground leading-relaxed">{section.content}</p>
-                {section.listItems && (
-                  <ul className="mt-3 space-y-2">
-                    {section.listItems.map((item, j) => (
-                      <li key={j} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </section>
-            ))}
+            {page.sections.map((section, i) => {
+              const showImg = i > 0 && i % 2 === 1; // image after sections 2, 4, 6...
+              const sectionImg = showImg ? getSectionImage(page.slug, i, heroImage) : null;
+              return (
+                <section key={i}>
+                  <h2 className="text-xl font-bold text-foreground mb-3">{section.heading}</h2>
+                  {sectionImg && (
+                    <img
+                      src={sectionImg}
+                      alt={`${section.heading} — ${page.h1}`}
+                      loading="lazy"
+                      className="w-full h-56 sm:h-64 object-cover rounded-xl mb-4"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
+                    />
+                  )}
+                  <p className="text-muted-foreground leading-relaxed">{section.content}</p>
+                  {section.listItems && (
+                    <ul className="mt-3 space-y-2">
+                      {section.listItems.map((item, j) => (
+                        <li key={j} className="flex items-start gap-2 text-sm text-muted-foreground">
+                          <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </section>
+              );
+            })}
           </div>
 
           {/* Topical Cluster Navigation */}
