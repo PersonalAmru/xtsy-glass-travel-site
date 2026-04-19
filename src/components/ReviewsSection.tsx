@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { Star, X, Loader2, BadgeCheck, Quote, Sparkles, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
@@ -631,8 +631,27 @@ const ReviewsSection = () => {
     return gradients[index];
   };
 
+  // Wave 2G — pause marquee animations when section is off-screen
+  const sectionRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!node || typeof IntersectionObserver === 'undefined') return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        const tracks = node.querySelectorAll<HTMLElement>('.marquee-track');
+        tracks.forEach(t => {
+          t.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
+        });
+      },
+      { threshold: 0.01 }
+    );
+    io.observe(node);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <section 
+      ref={sectionRef}
       id="reviews" 
       className={cn(
         "relative py-20 px-4 overflow-hidden -mt-1",
