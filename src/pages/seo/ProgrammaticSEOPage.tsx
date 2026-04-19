@@ -226,6 +226,15 @@ const ProgrammaticSEOPage = () => {
 
   if (!page) return <NotFound />;
 
+  // Wave 1A — Thin-content guard. Pages with <3 sections OR <600 chars total body fall through to NotFound
+  // to avoid Google soft-404 / "doorway page" penalties.
+  const totalBodyLen =
+    (page.intro?.length || 0) +
+    page.sections.reduce((acc, s) => acc + (s.content?.length || 0), 0);
+  if (page.sections.length < 3 || totalBodyLen < 600) {
+    return <NotFound />;
+  }
+
   const related = getRelatedPages(page.slug);
   const categoryLabel = categoryLabels[page.category] || page.category;
   const heroImage = heroSrc || curatedHero;
@@ -273,8 +282,16 @@ const ProgrammaticSEOPage = () => {
           loading="eager"
           fetchPriority="high"
           onError={(e) => {
+            // Wave 1M — never display:none; cascade through AI hero → curated → brand placeholder
             const target = e.currentTarget;
-            target.style.display = 'none';
+            const BRAND_FALLBACK = '/lovable-uploads/8059ea95-94d4-46f8-bea8-7c19b95dc4d2.png';
+            if (target.src !== aiHero && aiHero) {
+              target.src = aiHero;
+            } else if (target.src !== curatedHero && curatedHero) {
+              target.src = curatedHero;
+            } else if (!target.src.endsWith(BRAND_FALLBACK)) {
+              target.src = BRAND_FALLBACK;
+            }
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />

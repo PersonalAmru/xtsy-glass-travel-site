@@ -24,20 +24,34 @@ import { ConversionSignalsProvider } from "./providers/ConversionSignalsProvider
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
 // StickyBookingBar removed — was creating footer "Check Availability Now" CTA per stakeholder feedback
 
-// Optimized lazy loading with faster retry and better chunk handling
+// Wave 1J/K — Hardened lazy loading: 3 retries with backoff, then hard reload
+// to pull fresh chunk hashes after a deploy invalidates the user's stale bundle.
 const createLazyComponent = (importFn: () => Promise<any>) => {
-  return lazy(() => 
-    importFn().catch((err) => {
-      console.warn('Chunk load failed, retrying...', err.message);
-      // Faster retry - 100ms then 250ms
-      return new Promise(resolve => setTimeout(resolve, 100))
-        .then(importFn)
-        .catch(() => {
-          return new Promise(resolve => setTimeout(resolve, 250)).then(importFn);
-        });
-    })
+  return lazy(() =>
+    importFn()
+      .catch(() => new Promise(r => setTimeout(r, 250)).then(importFn))
+      .catch(() => new Promise(r => setTimeout(r, 750)).then(importFn))
+      .catch(() => new Promise(r => setTimeout(r, 2000)).then(importFn))
+      .catch((err) => {
+        console.error('Chunk load failed after 3 retries — forcing reload', err?.message);
+        // Avoid infinite reload loops with a session flag
+        const RELOAD_KEY = '__xtsy_chunk_reload';
+        if (!sessionStorage.getItem(RELOAD_KEY)) {
+          sessionStorage.setItem(RELOAD_KEY, String(Date.now()));
+          window.location.reload();
+        }
+        // Return a placeholder component so React doesn't crash mid-reload
+        return { default: () => null };
+      })
   );
 };
+
+// Clear reload guard once user successfully navigates
+if (typeof window !== 'undefined') {
+  window.addEventListener('load', () => {
+    setTimeout(() => sessionStorage.removeItem('__xtsy_chunk_reload'), 5000);
+  });
+}
 
 // XTSY Prime pages - frequently accessed, preload on hover
 const LazyXTSY270 = createLazyComponent(() => import("./pages/XTSY270"));
