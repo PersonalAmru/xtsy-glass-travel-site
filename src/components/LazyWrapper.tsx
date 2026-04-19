@@ -40,6 +40,9 @@ const LazyWrapper: React.FC<LazyWrapperProps> = memo(({
       ref={elementRef as any}
       style={{ 
         contain: 'layout style',
+        // Wave 2H — content-visibility skips layout/paint cost for offscreen sections
+        contentVisibility: 'auto',
+        containIntrinsicSize: '600px',
       }}
     >
       {shouldRender ? (

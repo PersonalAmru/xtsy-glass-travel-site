@@ -137,33 +137,29 @@ const Index = memo(() => {
           <LastMinuteBanner />
         </div>
         
-        {/* Available Stays Right Now — real-time cards */}
+        {/* Wave 2E — Demoted XTSYPrime + HomeTourPackages from eager.
+            Only the first 2 below-fold sections hydrate eagerly to keep TBT low. */}
         <LazyWrapper eager fallback={<SectionFallback height="h-80" />}>
           <AvailableStaysNow />
         </LazyWrapper>
         
-        {/* Trending Destinations - right after hero */}
         <LazyWrapper eager fallback={<SectionFallback height="h-72" />}>
           <TrendingDestinations />
         </LazyWrapper>
         
-        {/* Destination Explorer */}
-        <LazyWrapper eager fallback={<SectionFallback height="h-64" />}>
+        <LazyWrapper fallback={<SectionFallback height="h-64" />}>
           <DestinationExplorer />
         </LazyWrapper>
         
-        {/* Trip Builder - interactive planner */}
         <LazyWrapper fallback={<SectionFallback height="h-96" />}>
           <TripBuilder />
         </LazyWrapper>
         
-        {/* XTSY Prime - Premium offerings */}
-        <LazyWrapper eager fallback={<SectionFallback height="h-80" />}>
+        <LazyWrapper fallback={<SectionFallback height="h-80" />}>
           <XTSYPrimeSection />
         </LazyWrapper>
         
-        {/* Tour Packages - FocusRail cards */}
-        <LazyWrapper eager fallback={<SectionFallback height="h-96" />}>
+        <LazyWrapper fallback={<SectionFallback height="h-96" />}>
           <HomeTourPackages />
         </LazyWrapper>
         
