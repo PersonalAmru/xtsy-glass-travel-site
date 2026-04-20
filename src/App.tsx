@@ -61,6 +61,7 @@ const LazyFemaleTravellers = createLazyComponent(() => import("./pages/FemaleTra
 const LazyWorkFromHome = createLazyComponent(() => import("./pages/WorkFromHome"));
 const LazyXTSYRentals = createLazyComponent(() => import("./pages/XTSYRentals"));
 const LazyTabBistro = createLazyComponent(() => import("./pages/TabBistro"));
+const LazyDawkiCampsite = createLazyComponent(() => import("./pages/XTSYAdventureCampsiteDawki"));
 
 // Other lazy pages
 const LazyAbout = createLazyComponent(() => import("./pages/About"));
