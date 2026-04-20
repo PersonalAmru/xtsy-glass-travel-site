@@ -139,6 +139,51 @@ const AdminSEODashboard = createLazyComponent(() => import("./pages/admin/AdminS
 // Redirect /travel → /tours (fixes keyword cannibalization)
 const TravelRedirect = () => <Navigate to="/tours" replace />;
 
+/**
+ * In-flow, non-blocking route loader.
+ * Stability fix (Apr 2026): replaced the previous full-screen `position: fixed`
+ * dark overlay (z-index 9999) which was flashing as a "black screen" during
+ * any route/Suspense transition and intermittently during scroll on Safari/iOS.
+ * Now renders a small in-flow skeleton so the existing page chrome (header,
+ * background) stays visible while the chunk loads.
+ */
+const XTSYRouteLoader = memo(() => (
+  <div
+    role="status"
+    aria-label="Loading page"
+    style={{
+      minHeight: '60vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexDirection: 'column' as const,
+      gap: 16,
+      padding: 24,
+      background: 'transparent',
+    }}
+  >
+    <div style={{
+      width: 56,
+      height: 56,
+      borderRadius: '50%',
+      border: '3px solid hsl(28, 92%, 52% / 0.2)',
+      borderTopColor: 'hsl(28, 92%, 52%)',
+      animation: 'xtsy-spin 0.9s linear infinite',
+    }} />
+    <p style={{
+      color: 'hsl(0, 0%, 100% / 0.6)',
+      fontSize: 13,
+      letterSpacing: '0.04em',
+      margin: 0,
+    }}>
+      Loading…
+    </p>
+    <style>{`@keyframes xtsy-spin { to { transform: rotate(360deg); } }`}</style>
+  </div>
+));
+
+XTSYRouteLoader.displayName = 'XTSYRouteLoader';
+
 // Fast route wrapper with minimal loading state
 const LazyRoute = memo(({ children }: { children: ReactNode }) => (
   <ErrorBoundary>
@@ -149,80 +194,6 @@ const LazyRoute = memo(({ children }: { children: ReactNode }) => (
 ));
 
 LazyRoute.displayName = 'LazyRoute';
-
-// Branded route loader matching XTSY identity
-const XTSYRouteLoader = memo(() => (
-  <div style={{
-    position: 'fixed',
-    inset: 0,
-    background: 'linear-gradient(135deg, hsl(225, 40%, 3%) 0%, hsl(225, 28%, 7%) 50%, hsl(225, 40%, 3%) 100%)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 9999,
-    flexDirection: 'column' as const,
-    gap: 24
-  }}>
-    {/* Logo */}
-    <div style={{
-      width: 100,
-      height: 100,
-      animation: 'xtsy-loader-pulse 2s ease-in-out infinite',
-      overflow: 'hidden'
-    }}>
-      <img 
-        src="/xtsy-favicon.png" 
-        alt="XTSY" 
-        style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-      />
-    </div>
-    {/* Brand text */}
-    <div style={{ textAlign: 'center' }}>
-      <h2 style={{
-        fontFamily: "'Playfair Display', serif",
-        fontSize: 28,
-        fontWeight: 700,
-        background: 'linear-gradient(90deg, hsl(28, 92%, 52%), hsl(0, 72%, 51%))',
-        WebkitBackgroundClip: 'text',
-        WebkitTextFillColor: 'transparent',
-        margin: '0 0 8px 0',
-        letterSpacing: '-0.02em'
-      }}>
-        Live the XTSY Vibe
-      </h2>
-      <p style={{
-        color: 'rgba(255,255,255,0.5)',
-        fontSize: 14,
-        fontWeight: 400,
-        margin: 0,
-        letterSpacing: '0.05em'
-      }}>
-        Premium Stays in Northeast India
-      </p>
-    </div>
-    {/* Progress bar */}
-    <div style={{
-      width: 100,
-      height: 3,
-      backgroundColor: 'rgba(255,255,255,0.1)',
-      borderRadius: 9999,
-      overflow: 'hidden'
-    }}>
-      <div style={{
-        height: '100%',
-        background: 'linear-gradient(90deg, hsl(28, 92%, 52%), hsl(12, 85%, 48%))',
-        borderRadius: 9999,
-        animation: 'xtsy-loader-progress 1.2s ease-in-out infinite'
-      }} />
-    </div>
-    <style>{`
-      @keyframes xtsy-loader-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
-      @keyframes xtsy-loader-progress { 0% { width: 0%; margin-left: 0; } 50% { width: 60%; margin-left: 20%; } 100% { width: 0%; margin-left: 100%; } }
-    `}</style>
-  </div>
-));
-
-XTSYRouteLoader.displayName = 'XTSYRouteLoader';
 
 // Scroll to top on every route change
 const ScrollToTop = () => {
