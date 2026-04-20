@@ -177,6 +177,25 @@ function buildSearchIndex(): SearchEntry[] {
     keywords: ['bike rental shillong', 'car rental meghalaya', 'scooty rent', 'royal enfield shillong', 'self drive'],
   });
 
+  // 3b. XTSY Adventure Campsite Dawki — featured experience entry
+  entries.push({
+    id: 'exp-dawki-campsite',
+    title: 'XTSY Adventure Campsite — Dawki',
+    description: 'Riverside camping on Umngot · ₹699 only camping · ₹899 with breakfast',
+    category: 'experiences',
+    icon: '⛺',
+    url: '/xtsy-adventure-campsite-dawki',
+    price: '₹699',
+    location: 'Dawki, Meghalaya',
+    keywords: [
+      'dawki camping', 'camping in dawki', 'umngot river camping', 'dawki tent stay',
+      'riverside camping meghalaya', 'xtsy adventure campsite', 'best camping dawki',
+      'budget stay dawki', 'dawki bonfire', 'dawki kayaking', 'stay in dawki today',
+      'camping near dawki', 'tent stay meghalaya', 'meghalaya adventure camping',
+    ],
+    synonyms: ['adventure', 'budget'],
+  });
+
   // 4. Locations
   Object.values(LOCATIONS).forEach((loc) => {
     entries.push({

@@ -48,7 +48,39 @@ export const LOCATIONS: Record<string, Location> = {
     country: 'India',
     isActive: true,
   },
+  'dawki': {
+    id: 'dawki',
+    name: 'Dawki',
+    state: 'Meghalaya',
+    country: 'India',
+    isActive: true,
+  },
 };
+
+// Dawki Camping image filenames as stored in Supabase (xtsy-gallery-assets/Dawki Camping/)
+const DAWKI_CAMPING_IMAGES_RAW = [
+  'WhatsApp Image 2026-04-15 at 21.36.33.jpeg',
+  'WhatsApp Image 2026-04-15 at 21.36.33 (1).jpeg',
+  'WhatsApp Image 2026-04-15 at 21.36.33 (2).jpeg',
+  'WhatsApp Image 2026-04-15 at 21.36.37.jpeg',
+  'WhatsApp Image 2026-04-15 at 21.36.38.jpeg',
+  'WhatsApp Image 2026-04-15 at 21.36.39.jpeg',
+  'WhatsApp Image 2026-04-15 at 21.36.39 (1).jpeg',
+  'WhatsApp Image 2026-04-15 at 21.36.40.jpeg',
+  'WhatsApp Image 2026-04-15 at 21.36.41.jpeg',
+  'WhatsApp Image 2026-04-15 at 21.36.43.jpeg',
+  'WhatsApp Image 2026-04-16 at 16.05.03.jpeg',
+  'WhatsApp Image 2026-04-16 at 16.05.03 (1).jpeg',
+  'WhatsApp Image 2026-04-16 at 16.05.04.jpeg',
+  'WhatsApp Image 2026-04-16 at 16.05.04 (1).jpeg',
+  'WhatsApp Image 2026-04-16 at 16.05.04 (2).jpeg',
+  'WhatsApp Image 2026-04-16 at 16.05.06.jpeg',
+  'WhatsApp Image 2026-04-16 at 16.05.06 (1).jpeg',
+];
+
+export const DAWKI_CAMPING_IMAGES = DAWKI_CAMPING_IMAGES_RAW.map(
+  (name) => `${STORAGE_BASE}/Dawki%20Camping/${encodeURIComponent(name)}`,
+);
 
 // ==================== PROPERTIES ====================
 export const PROPERTIES: Record<string, Property> = {
@@ -104,6 +136,23 @@ export const PROPERTIES: Record<string, Property> = {
       '6-bed-mixed-dorm',
       '8-bed-mixed-dorm',
     ],
+    isActive: true,
+  },
+  'xtsy-adventure-campsite-dawki': {
+    id: 'xtsy-adventure-campsite-dawki',
+    slug: 'xtsy-adventure-campsite-dawki',
+    name: 'XTSY Adventure Campsite',
+    shortName: 'Campsite',
+    locationId: 'dawki',
+    description: 'Riverside camping in Dawki on the crystal-clear Umngot — bonfires, kayaking and starlit skies for 80+ guests.',
+    heroImage: DAWKI_CAMPING_IMAGES[0],
+    images: DAWKI_CAMPING_IMAGES.slice(0, 8),
+    amenities: ['Riverside Pitches', 'Shared Washrooms', 'Bonfire (chargeable)', 'Water Activities (chargeable)', 'Dinner On Request'],
+    priceRange: { min: 699, max: 899 },
+    rating: 4.8,
+    reviewCount: 24,
+    category: 'budget',
+    roomTypeIds: [], // experience-based; no room cards
     isActive: true,
   },
 };
