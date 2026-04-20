@@ -61,6 +61,7 @@ const LazyFemaleTravellers = createLazyComponent(() => import("./pages/FemaleTra
 const LazyWorkFromHome = createLazyComponent(() => import("./pages/WorkFromHome"));
 const LazyXTSYRentals = createLazyComponent(() => import("./pages/XTSYRentals"));
 const LazyTabBistro = createLazyComponent(() => import("./pages/TabBistro"));
+const LazyDawkiCampsite = createLazyComponent(() => import("./pages/XTSYAdventureCampsiteDawki"));
 
 // Other lazy pages
 const LazyAbout = createLazyComponent(() => import("./pages/About"));
@@ -280,6 +281,7 @@ function App() {
                 <Route path="/work-from-home" element={<LazyRoute><LazyWorkFromHome /></LazyRoute>} />
                 <Route path="/xtsy-rentals" element={<LazyRoute><LazyXTSYRentals /></LazyRoute>} />
                 <Route path="/tab-bistro" element={<LazyRoute><LazyTabBistro /></LazyRoute>} />
+                <Route path="/xtsy-adventure-campsite-dawki" element={<LazyRoute><LazyDawkiCampsite /></LazyRoute>} />
                 
                 <Route path="/privacy-policy" element={<LazyRoute><LazyPrivacyPolicy /></LazyRoute>} />
                 <Route path="/privacy" element={<Navigate to="/privacy-policy" replace />} />

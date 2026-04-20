@@ -19,6 +19,7 @@ const AdventureCallToAction = lazy(() => import("@/components/AdventureCallToAct
 const ReviewsSection = lazy(() => import("@/components/ReviewsSection"));
 const AvailableStaysNow = lazy(() => import("@/components/AvailableStaysNow"));
 const TonightsDeals = lazy(() => import("@/components/TonightsDeals"));
+const DawkiCampsiteCard = lazy(() => import("@/components/DawkiCampsiteCard"));
 
 const FAQSection = lazy(() => import("@/components/FAQSection"));
 const SEOFooterLinks = lazy(() => import("@/components/SEOFooterLinks"));
@@ -157,6 +158,11 @@ const Index = memo(() => {
         
         <LazyWrapper fallback={<SectionFallback height="h-80" />}>
           <XTSYPrimeSection />
+        </LazyWrapper>
+        
+        {/* New: Dawki Adventure Campsite — minimal experience card */}
+        <LazyWrapper fallback={<SectionFallback height="h-80" />}>
+          <DawkiCampsiteCard />
         </LazyWrapper>
         
         <LazyWrapper fallback={<SectionFallback height="h-96" />}>
