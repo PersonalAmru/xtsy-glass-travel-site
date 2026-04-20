@@ -9,46 +9,46 @@ interface LazyWrapperProps {
   eager?: boolean; // Render immediately without waiting for intersection
 }
 
-// Minimal static fallback for sections - zero animations for performance
+// Brand-aware fallback (dark theme matches site bg, prevents black flash)
 const SectionFallback = memo(() => (
-  <div 
-    className="bg-muted/20 rounded-lg layout-stable" 
-    style={{ 
+  <div
+    className="bg-muted/10 rounded-lg layout-stable"
+    style={{
       minHeight: '200px',
-      contain: 'layout style paint',
-      contentVisibility: 'auto',
-    }} 
+      contain: 'layout style',
+    }}
   />
 ));
 
 SectionFallback.displayName = 'SectionFallback';
 
-const LazyWrapper: React.FC<LazyWrapperProps> = memo(({ 
-  children, 
+/**
+ * Stability fix (Apr 2026):
+ * - Removed `content-visibility: auto` + `contain-intrinsic-size` which caused
+ *   black/blank flashes during fast scroll on the dark-themed homepage. The
+ *   browser was skipping paint for offscreen sections faster than the IO could
+ *   re-mount them, exposing the near-black page background.
+ * - Kept `contain: layout style` for layout stability without skipping paint.
+ * - Fallback now renders a soft muted block (never empty) so the area is never
+ *   visually "missing" while the chunk loads.
+ */
+const LazyWrapper: React.FC<LazyWrapperProps> = memo(({
+  children,
   fallback,
-  threshold = 0.1,
   showBrandedLoader = false,
-  eager = false
+  eager = false,
 }) => {
   const { elementRef, shouldRender } = useComponentOptimization({ eager });
-  
-  // Always use minimal fallback for performance - no branded loader
+
   const actualFallback = fallback || <SectionFallback />;
 
   return (
-    <div 
+    <div
       ref={elementRef as any}
-      style={{ 
-        contain: 'layout style',
-        // Wave 2H — content-visibility skips layout/paint cost for offscreen sections
-        contentVisibility: 'auto',
-        containIntrinsicSize: '600px',
-      }}
+      style={{ contain: 'layout style' }}
     >
       {shouldRender ? (
-        <Suspense fallback={actualFallback}>
-          {children}
-        </Suspense>
+        <Suspense fallback={actualFallback}>{children}</Suspense>
       ) : (
         actualFallback
       )}
