@@ -42,7 +42,7 @@ const DawkiCampsiteCard = memo(() => {
                 src={DAWKI_CAMPING_IMAGES[0]}
                 alt="XTSY Adventure Campsite on the Umngot River in Dawki, Meghalaya"
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
-                loading="lazy"
+                
               />
               <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-black/60 via-black/10 to-transparent" />
               <div className="absolute bottom-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/15 backdrop-blur text-white text-xs">

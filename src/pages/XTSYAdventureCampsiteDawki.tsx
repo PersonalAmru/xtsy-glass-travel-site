@@ -129,8 +129,8 @@ const XTSYAdventureCampsiteDawki = memo(() => {
           src={DAWKI_CAMPING_IMAGES[0]}
           alt="XTSY Adventure Campsite on the Umngot River, Dawki, Meghalaya"
           className="absolute inset-0 w-full h-full object-cover"
-          loading="eager"
-          fetchPriority="high"
+          priority
+          
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/70" />
         <div className="relative z-10 h-full flex flex-col justify-end max-w-6xl mx-auto px-4 sm:px-6 pb-12">
@@ -286,7 +286,7 @@ const XTSYAdventureCampsiteDawki = memo(() => {
                   src={src}
                   alt={`XTSY Adventure Campsite Dawki photo ${i + 1}`}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
+                  
                 />
               </button>
             ))}
@@ -333,11 +333,9 @@ const XTSYAdventureCampsiteDawki = memo(() => {
         <InstagramPreviewModal
           isOpen
           onClose={closePreview}
-          images={DAWKI_CAMPING_IMAGES.map((src, i) => ({
-            src,
-            alt: `XTSY Adventure Campsite Dawki photo ${i + 1}`,
-          }))}
+          images={DAWKI_CAMPING_IMAGES}
           initialIndex={previewIndex}
+          alt="XTSY Adventure Campsite Dawki"
         />
       )}
     </div>
