@@ -38,6 +38,7 @@ import { supabase } from '@/integrations/supabase/client';
 import UnifiedImage from '@/components/UnifiedImage';
 import { useEnhancedAnalytics } from '@/hooks/useEnhancedAnalytics';
 import { ROOM_INVENTORY, RoomType } from '@/data/roomInventory';
+import { getCanonicalRate, getBreakfastInclusion } from '@/utils/rateSanityCheck';
 import { useOptionalAuth } from '@/hooks/useRequireAuth';
 import { generateInvoice, openInvoiceHTML, downloadInvoiceAsPDF } from '@/services/invoiceService';
 import { BookingChat } from '@/components/chat/BookingChat';
