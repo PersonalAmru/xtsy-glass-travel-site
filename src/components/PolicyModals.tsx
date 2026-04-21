@@ -17,7 +17,7 @@ const PolicyModal = ({ isOpen, onClose, type }: PolicyModalProps) => {
       <div className="text-center">
         <Clock className="h-12 w-12 text-orange-500 mx-auto mb-3" />
         <h3 className="text-xl font-bold text-gray-800 mb-2">Cancellation & Modification Policy</h3>
-        <p className="text-gray-600">XTSY Travellers Hostel & XTSY Experience</p>
+        <p className="text-gray-600">XTSY Travellers Hostel & Experience by XTSY</p>
       </div>
 
       <Card className="bg-red-50 border-red-200">
@@ -179,7 +179,7 @@ const PolicyModal = ({ isOpen, onClose, type }: PolicyModalProps) => {
               </ul>
             </div>
             <div>
-              <p className="font-medium text-gray-800">XTSY Experience:</p>
+              <p className="font-medium text-gray-800">Experience by XTSY:</p>
               <ul className="text-sm text-gray-700 space-y-1 mt-1">
                 <li>• No strict quiet hours, premium privacy</li>
                 <li>• All privileges included with room service</li>
@@ -279,7 +279,7 @@ const PolicyModal = ({ isOpen, onClose, type }: PolicyModalProps) => {
               </ul>
             </div>
             <div>
-              <p className="font-medium text-blue-700">XTSY Experience:</p>
+              <p className="font-medium text-blue-700">Experience by XTSY:</p>
               <ul className="text-xs text-gray-600 space-y-1 mt-1">
                 <li>• All services included</li>
                 <li>• Exclusive premium facilities and experiences</li>

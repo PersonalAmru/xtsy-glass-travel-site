@@ -30,12 +30,12 @@ const XTSY270: React.FC = () => {
   const keywords = (XTSY270_DATA as any).seoKeywords || '';
 
   const handleBookingClick = () => {
-    const message = `🏕️ *XTSY Experience – Glasshouse Glamping Inquiry*
+    const message = `🏕️ *Experience by XTSY – Glasshouse Glamping Inquiry*
 
 Hi XTSY Team! I'd love to experience India's first 270° glasshouse glamping retreat! 🌟
 
 🏔️ *What I'm Interested In:*
-• XTSY Experience – 270° Glamping Retreat
+• Experience by XTSY – 270° Glamping Retreat
 • Luxury glamping in Shillong, Meghalaya
 • Stargazing from bed & pine forest views
 • Romantic couples retreat
@@ -56,7 +56,7 @@ Can't wait to sleep under the stars! 🌌✨`;
   const roomLd = {
     '@context': 'https://schema.org',
     '@type': 'LodgingBusiness',
-    name: 'XTSY Experience – 270° Glasshouse Glamping Retreat',
+    name: 'Experience by XTSY – 270° Glasshouse Glamping Retreat',
     description: 'India\'s first 270° panoramic glasshouse glamping retreat in Shillong, Meghalaya. Sleep under stars, wake to mountains — luxury glamping for couples.',
     url: canonicalUrl,
     address: {
@@ -116,7 +116,7 @@ Can't wait to sleep under the stars! 🌌✨`;
             {/* Hero Title */}
             <div className="text-center mb-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-foreground leading-tight">
-                XTSY Experience
+                Experience by XTSY
               </h1>
               <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 text-foreground/80">
                 India's First 270° Glasshouse Glamping Retreat
@@ -295,7 +295,7 @@ Can't wait to sleep under the stars! 🌌✨`;
                   Luxury Without Compromise
                 </h2>
                 <p className="text-xl text-muted-foreground font-medium max-w-3xl mx-auto">
-                  XTSY Experience gives you mountains, forest, sky, stars — and still the comforts of a premium stay
+                  Experience by XTSY gives you mountains, forest, sky, stars — and still the comforts of a premium stay
                 </p>
               </div>
 

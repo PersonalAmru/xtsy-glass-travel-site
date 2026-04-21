@@ -31,7 +31,7 @@ export const PricingCancellationPolicy: React.FC = () => {
             <section>
               <p className="text-lg">
                 This document outlines our pricing structure, applicable taxes (GST), payment terms, 
-                and cancellation policies for all services offered by XTSY Travellers Hostel, XTSY Experience, 
+                and cancellation policies for all services offered by XTSY Travellers Hostel, Experience by XTSY, 
                 and XTSY Travel experiences.
               </p>
             </section>

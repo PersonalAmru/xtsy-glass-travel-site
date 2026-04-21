@@ -42,7 +42,7 @@ const UniqueExperiences = () => (
           <span className="text-xs text-amber-400 font-medium uppercase tracking-wider">Only at XTSY</span>
         </div>
         <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-white mb-3">
-          Unique XTSY Experiences
+          Unique Experience by XTSYs
         </h2>
         <p className="text-muted-foreground max-w-lg mx-auto text-sm">
           Proprietary experiences you won't find anywhere else

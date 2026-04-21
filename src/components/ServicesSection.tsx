@@ -51,10 +51,10 @@ const Line: React.FC<EmojiItem> = ({ e, t }) => (
 const ServicesSection = () => {
 const services: ServiceCard[] = [
     {
-      // XTSY Experience — premium everything included
+      // Experience by XTSY — premium everything included
       tone: "luxury",
       icon: <Gem className="h-5 w-5" />,
-      title: "XTSY Experience",
+      title: "Experience by XTSY",
       badge: "Premium",
       highlights: [
         { e: "⚡", t: "Premium Ports & Fast Charging" },

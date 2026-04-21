@@ -31,7 +31,7 @@ const SEARCH_INDEX: SearchResult[] = [
   { title: 'XTSY 270° Panorama Glass Ensuite', description: 'Ultra luxury · From ₹7,489/night', icon: '✨', path: '/xtsy-270', keywords: ['270', 'panorama', 'glass', 'luxury', 'premium', 'ensuite', '7489', 'view', 'mountain'], tags: ['luxury'] },
   // Properties
   { title: 'XTSY Travellers Hostel', description: 'Biggest hostel in North East India', icon: '🏠', path: '/', keywords: ['hostel', 'travellers', 'backpacker', 'shillong', 'budget', 'stay'], tags: ['explore', 'budget'] },
-  { title: 'XTSY Experience', description: 'Premium glass ensuite in Shillong', icon: '💎', path: '/xtsy-270', keywords: ['luxury', 'premium', 'glass', 'panorama', 'high-end', 'experience'], tags: ['luxury'] },
+  { title: 'Experience by XTSY', description: 'Premium glass ensuite in Shillong', icon: '💎', path: '/xtsy-270', keywords: ['luxury', 'premium', 'glass', 'panorama', 'high-end', 'experience'], tags: ['luxury'] },
   // Destinations
   { title: 'Meghalaya', description: 'Abode of clouds · Shillong, Cherrapunji & more', icon: '🏔️', path: '/tours', keywords: ['meghalaya', 'shillong', 'cherrapunji', 'clouds', 'northeast', 'north east'], tags: ['explore', 'adventure'] },
   { title: 'North East India', description: 'Explore 8 sister states', icon: '🌿', path: '/travel', keywords: ['north east', 'northeast', 'india', 'assam', 'nagaland', 'manipur', 'mizoram', 'tripura', 'arunachal', 'sikkim'], tags: ['explore', 'adventure'] },
