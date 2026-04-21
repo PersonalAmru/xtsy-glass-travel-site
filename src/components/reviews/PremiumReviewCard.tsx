@@ -55,7 +55,7 @@ const getSourceColor = (source: string) => {
 };
 
 const getPropertyColor = (property: string) => {
-  if (property === "XTSY Xperience") return "bg-gradient-to-r from-brand-copper to-brand-ember";
+  if (property === "Experience by XTSY") return "bg-gradient-to-r from-brand-copper to-brand-ember";
   return "bg-gradient-to-r from-primary to-brand-gold";
 };
 

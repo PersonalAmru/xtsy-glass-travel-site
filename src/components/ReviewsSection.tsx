@@ -963,7 +963,7 @@ const ReviewsSection = () => {
                       {/* Property badge */}
                       <span className={cn(
                         "text-[10px] px-2 py-0.5 rounded-full font-medium text-primary-foreground",
-                        selectedReview.property === "XTSY Xperience" 
+                        selectedReview.property === "Experience by XTSY" 
                           ? "bg-gradient-to-r from-brand-copper to-brand-ember"
                           : "bg-gradient-to-r from-primary to-brand-gold"
                       )}>
