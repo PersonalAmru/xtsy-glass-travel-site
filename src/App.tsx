@@ -62,6 +62,8 @@ const LazyWorkFromHome = createLazyComponent(() => import("./pages/WorkFromHome"
 const LazyXTSYRentals = createLazyComponent(() => import("./pages/XTSYRentals"));
 const LazyTabBistro = createLazyComponent(() => import("./pages/TabBistro"));
 const LazyDawkiCampsite = createLazyComponent(() => import("./pages/XTSYAdventureCampsiteDawki"));
+const LazyPropertySelector = createLazyComponent(() => import("./pages/PropertySelector"));
+const LazyCampsiteBooking = createLazyComponent(() => import("./pages/CampsiteBookingFlow"));
 
 // Other lazy pages
 const LazyAbout = createLazyComponent(() => import("./pages/About"));
@@ -290,6 +292,8 @@ function App() {
                 <Route path="/pricing-cancellation-policy" element={<LazyRoute><LazyPricingCancellationPolicy /></LazyRoute>} />
                 <Route path="/admin-login" element={<LazyRoute><AdminLogin /></LazyRoute>} />
                 <Route path="/book" element={<LazyRoute><SimplifiedBookingFlow /></LazyRoute>} />
+                <Route path="/book/select" element={<LazyRoute><LazyPropertySelector /></LazyRoute>} />
+                <Route path="/book/campsite" element={<LazyRoute><LazyCampsiteBooking /></LazyRoute>} />
                 
                 {/* User Auth Routes */}
                 <Route path="/auth" element={<LazyRoute><UserAuth /></LazyRoute>} />

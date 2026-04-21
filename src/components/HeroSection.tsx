@@ -165,7 +165,7 @@ const HeroSection = () => {
       checkOut: checkOutStr,
       guests: guests.toString(),
     });
-    navigate(`/book?${searchParams.toString()}`);
+    navigate(`/book/select?${searchParams.toString()}`);
   };
 
   const scrollToContent = () => {
