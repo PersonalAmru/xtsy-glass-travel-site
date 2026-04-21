@@ -202,10 +202,10 @@ const RoomsSection = () => {
           </div>
         </div>
 
-        {/* XTSY Experience Section - Center Aligned */}
+        {/* Experience by XTSY Section - Center Aligned */}
         <div className="center-aligned mb-16">
           <PropertySection
-            title="XTSY Experience"
+            title="Experience by XTSY"
             description="Premium accommodation with breathtaking 270-degree views, luxury amenities, and exceptional service for discerning travelers"
             rooms={luxuryRooms}
             propertyType="luxury"

@@ -54,7 +54,7 @@ const PropertyCardWithImages = ({ property, onSelectProperty }: PropertyCardProp
           <div className="text-center">
             <MapPin className="h-12 w-12 text-gray-400 dark:text-gray-300 mx-auto mb-2" />
             <p className="text-gray-500 dark:text-gray-300 text-sm">Live the Shillong Vibe</p>
-            <p className="text-gray-400 dark:text-gray-400 text-xs">XTSY Experience Banner</p>
+            <p className="text-gray-400 dark:text-gray-400 text-xs">Experience by XTSY Banner</p>
           </div>
         </div>
       )}

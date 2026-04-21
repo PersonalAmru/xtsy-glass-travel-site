@@ -60,7 +60,7 @@ type DateStatus = 'bookable' | 'soldOut' | 'closed' | 'needsAttention' | 'past';
 // Available property types
 const PROPERTY_TYPES = [
   { value: 'all', label: 'All Properties' },
-  { value: 'XTSY Experience', label: 'XTSY Experience' },
+  { value: 'Experience by XTSY', label: 'Experience by XTSY' },
   { value: 'XTSY Travellers Hostel', label: 'XTSY Travellers Hostel' },
   { value: 'XTSY Economy', label: 'XTSY Economy' },
 ];

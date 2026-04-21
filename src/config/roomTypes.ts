@@ -31,7 +31,7 @@ export interface RoomTypeConfig {
   unitType: UnitType;            // 'bed' for dorms, 'room' for private
   capacity: number;              // Number of beds/guests
   totalUnits: number;            // Total inventory available
-  propertyType: string;          // XTSY Experience, XTSY Travellers Hostel, XTSY Economy
+  propertyType: string;          // Experience by XTSY, XTSY Travellers Hostel, XTSY Economy
   isBookable: boolean;           // false for OTA-only rooms
   basePrice: number;             // Base price per night in INR
   image?: string;                // Primary room image URL
@@ -150,7 +150,7 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     unitType: 'room',
     capacity: 2,
     totalUnits: 1,
-    propertyType: 'XTSY Experience',
+    propertyType: 'Experience by XTSY',
     isBookable: true,
     basePrice: 7489,
     displayOrder: 1,
@@ -397,6 +397,6 @@ export function getAvailabilityLabel(roomTypeIdOrName: string, available: number
  * Property type labels for display
  */
 export const PROPERTY_LABELS: Record<RoomCategory, string> = {
-  luxury: 'XTSY Experience',
+  luxury: 'Experience by XTSY',
   hostel: 'XTSY Travellers Hostel',
 };

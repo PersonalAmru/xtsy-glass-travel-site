@@ -909,8 +909,8 @@ export default function SimplifiedBookingFlow() {
           const bookableRooms = Object.values(ROOM_INVENTORY)
             .filter(r => {
               if (!r.isBookable) return false;
-              if (isXperience) return r.propertyType === 'XTSY Experience';
-              return r.propertyType !== 'XTSY Experience';
+              if (isXperience) return r.propertyType === 'Experience by XTSY';
+              return r.propertyType !== 'Experience by XTSY';
             })
             .sort((a, b) => a.displayOrder - b.displayOrder);
 

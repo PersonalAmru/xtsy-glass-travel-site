@@ -886,7 +886,7 @@ const XTSYvsZostel = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" onClick={handleWhatsAppBooking} className="bg-background hover:bg-background/90 text-foreground shadow-xl font-bold">
               <MessageCircle className="mr-2 h-5 w-5" />
-              Book Your XTSY Experience
+              Book Your Experience by XTSY
             </Button>
             <Button size="lg" variant="outline" onClick={handleCall} className="bg-primary-foreground/10 hover:bg-primary-foreground/20 border-primary-foreground text-primary-foreground shadow-xl backdrop-blur-sm">
               <Phone className="mr-2 h-5 w-5" />

@@ -16,8 +16,8 @@ const XTSYPrimeModal = lazy(() => import("@/components/XTSYPrimeModal"));
 const xtsyPrimeOfferings = [
   {
     id: "xtsy-270",
-    title: "XTSY Experience",
-    shortTitle: "XTSY Experience",
+    title: "Experience by XTSY",
+    shortTitle: "Experience by XTSY",
     description: "India's first panoramic glass house with 270° mountain views. Wake up to sunrises over the Himalayas in this architectural masterpiece.",
     image: imgUrl("xtsy-270-stargazing.jpeg"),
     icon: Mountain,

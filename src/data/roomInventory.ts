@@ -33,12 +33,12 @@ interface SeasonalPrice {
 
 const SEASONAL_PRICES: Record<string, SeasonalPrice> = {
   'xtsy-270':              { april: 4999, may: 4999, originalApril: 11999, originalMay: 11999 },
-  'king-double-room':      { april: 2099, may: 2399, originalApril: 3099,  originalMay: 3499 },
+  'king-double-room':      { april: 2399, may: 2399, originalApril: 3499,  originalMay: 3499 },
   '4-bed-female-only-dorm':{ april: 419,  may: 419,  originalApril: 679,   originalMay: 679 },
-  '4-bed-mixed-female-dorm':{ april: 529, may: 569,  originalApril: 749,   originalMay: 799 },
-  '6-bed-mixed-female-dorm':{ april: 369, may: 389,  originalApril: 599,   originalMay: 599 },
-  '6-bed-mixed-dorm':      { april: 419,  may: 469,  originalApril: 630,   originalMay: 699 },
-  '8-bed-mixed-dorm':      { april: 269,  may: 329,  originalApril: 550,   originalMay: 550 },
+  '4-bed-mixed-female-dorm':{ april: 569, may: 569,  originalApril: 799,   originalMay: 799 },
+  '6-bed-mixed-female-dorm':{ april: 389, may: 389,  originalApril: 599,   originalMay: 599 },
+  '6-bed-mixed-dorm':      { april: 469, may: 469,  originalApril: 699,   originalMay: 699 },
+  '8-bed-mixed-dorm':      { april: 329, may: 329,  originalApril: 550,   originalMay: 550 },
 };
 
 function getSeasonalPrice(roomId: string): { discounted: number; original: number } {
@@ -163,7 +163,7 @@ export const ROOM_INVENTORY: Record<string, RoomType> = {
       xtsyInterior,
     ],
     isBookable: true,
-    propertyType: 'XTSY Experience',
+    propertyType: 'Experience by XTSY',
     displayOrder: 1,
     tags: ['luxury_couple'],
   },
@@ -400,6 +400,6 @@ export const STATUS_COLORS: Record<RoomStatus, { bg: string; text: string; borde
 
 // Category display names
 export const CATEGORY_LABELS: Record<RoomCategory, string> = {
-  luxury: 'XTSY Experience',
+  luxury: 'Experience by XTSY',
   hostel: 'XTSY Travellers Hostel',
 };
