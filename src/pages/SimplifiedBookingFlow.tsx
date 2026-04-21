@@ -889,14 +889,20 @@ export default function SimplifiedBookingFlow() {
         const urlCheckIn = searchParams.get('checkIn');
         const urlCheckOut = searchParams.get('checkOut');
         const urlLocation = searchParams.get('location') || 'shillong';
+        const urlProperty = searchParams.get('property'); // 'xtsy-experience' | 'xtsy-hostel' | null
 
         if (urlCheckIn && urlCheckOut) {
           setCheckIn(parseISO(urlCheckIn));
           setCheckOut(parseISO(urlCheckOut));
           setFromHeroSearch(true);
 
-          // Set property name based on location
-          const isXperience = urlLocation === 'xtsy-xperience' || urlLocation === 'xtsy-270';
+          // Determine which property to show rooms for.
+          // Priority: explicit property param > location-based fallback
+          const isXperience =
+            urlProperty === 'xtsy-experience' ||
+            urlLocation === 'xtsy-xperience' ||
+            urlLocation === 'xtsy-270';
+
           setPropertyName(isXperience ? 'XTSY Xperience' : 'XTSY Travellers Hostel');
 
           // Get all bookable rooms for this property
