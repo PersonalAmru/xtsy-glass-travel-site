@@ -87,7 +87,7 @@ export const PROPERTIES: Record<string, Property> = {
   'xtsy-luxury': {
     id: 'xtsy-luxury',
     slug: 'xtsy-luxury',
-    name: 'XTSY Experience',
+    name: 'Experience by XTSY',
     shortName: 'Experience',
     locationId: 'shillong',
     description: 'Experience unparalleled luxury with our signature 270° Panorama Glass Suite offering breathtaking mountain views.',
