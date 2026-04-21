@@ -76,7 +76,7 @@ const isWeekendDay = (): boolean => {
 
 // Get XTSY 270 price based on current day
 const getXtsy270DynamicPrice = (): number => {
-  return isWeekendDay() ? 11500 : 8500;
+  return 4999;
 };
 
 // Helper to check if room is XTSY 270

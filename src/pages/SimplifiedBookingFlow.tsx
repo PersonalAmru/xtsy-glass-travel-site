@@ -38,6 +38,7 @@ import { supabase } from '@/integrations/supabase/client';
 import UnifiedImage from '@/components/UnifiedImage';
 import { useEnhancedAnalytics } from '@/hooks/useEnhancedAnalytics';
 import { ROOM_INVENTORY, RoomType } from '@/data/roomInventory';
+import { getCanonicalRate, getBreakfastInclusion } from '@/utils/rateSanityCheck';
 import { useOptionalAuth } from '@/hooks/useRequireAuth';
 import { generateInvoice, openInvoiceHTML, downloadInvoiceAsPDF } from '@/services/invoiceService';
 import { BookingChat } from '@/components/chat/BookingChat';
@@ -346,27 +347,34 @@ const SummaryStep = ({
           Selected Rooms
         </h4>
         <div className="space-y-3">
-          {selectedRooms.map(({ room, quantity }) => (
-            <div key={room.id} className="flex items-center gap-3">
-              <div className="w-14 h-14 rounded-lg overflow-hidden bg-white/10 flex-shrink-0">
-                <UnifiedImage
-                  src={room.image}
-                  alt={room.name}
-                  className="w-full h-full object-cover"
-                />
+          {selectedRooms.map(({ room, quantity }) => {
+            const breakfastNote = getBreakfastInclusion(room.id);
+            const canonicalPrice = getCanonicalRate(room.id);
+            return (
+              <div key={room.id} className="flex items-center gap-3">
+                <div className="w-14 h-14 rounded-lg overflow-hidden bg-white/10 flex-shrink-0">
+                  <UnifiedImage
+                    src={room.image}
+                    alt={room.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="font-medium text-white text-sm truncate">{room.name}</p>
+                  <p className="text-xs text-white/50">
+                    {quantity} × {room.kind === 'dorm' ? 'bed' : 'room'}
+                  </p>
+                  {breakfastNote && (
+                    <p className="text-[11px] text-amber-300 mt-0.5">✨ {breakfastNote}</p>
+                  )}
+                </div>
+                <div className="text-right">
+                  <p className="font-semibold text-white">₹{(canonicalPrice * quantity * nights).toLocaleString()}</p>
+                  <p className="text-xs text-white/40">{nights}N</p>
+                </div>
               </div>
-              <div className="flex-1 min-w-0">
-                <p className="font-medium text-white text-sm truncate">{room.name}</p>
-                <p className="text-xs text-white/50">
-                  {quantity} × {room.kind === 'dorm' ? 'bed' : 'room'}
-                </p>
-              </div>
-              <div className="text-right">
-                <p className="font-semibold text-white">₹{(room.discountedPrice * quantity * nights).toLocaleString()}</p>
-                <p className="text-xs text-white/40">{nights}N</p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </motion.div>
 
@@ -903,7 +911,7 @@ export default function SimplifiedBookingFlow() {
             urlLocation === 'xtsy-xperience' ||
             urlLocation === 'xtsy-270';
 
-          setPropertyName(isXperience ? 'XTSY Xperience' : 'XTSY Travellers Hostel');
+          setPropertyName(isXperience ? 'Experience by XTSY' : 'XTSY Travellers Hostel');
 
           // Get all bookable rooms for this property
           const bookableRooms = Object.values(ROOM_INVENTORY)

@@ -28,7 +28,7 @@ const SEARCH_INDEX: SearchResult[] = [
   { title: '4-Bed Mixed Dorm', description: 'Solo traveller pick · From ₹529/night', icon: '🎒', path: '/book', keywords: ['dorm', '4 bed', 'solo', '529', 'mixed'], tags: ['budget', 'explore'] },
   { title: '4-Bed Female Dorm', description: 'Women only · From ₹419/night', icon: '👩', path: '/book', keywords: ['female', 'women', '4 bed', '419', 'ladies'], tags: ['female', 'budget'] },
   { title: 'King Double Room', description: 'Couple favourite · From ₹2,099/night', icon: '👫', path: '/book', keywords: ['king', 'double', 'couple', 'private', 'room', '2099', 'luxury'], tags: ['couples', 'luxury'] },
-  { title: 'XTSY 270° Panorama Glass Ensuite', description: 'Ultra luxury · From ₹7,489/night', icon: '✨', path: '/xtsy-270', keywords: ['270', 'panorama', 'glass', 'luxury', 'premium', 'ensuite', '7489', 'view', 'mountain'], tags: ['luxury'] },
+  { title: 'Panorama by XTSY – 270° Glass Ensuite', description: 'Ultra luxury · ₹4,999/night · Complimentary breakfast for 2', icon: '✨', path: '/xtsy-270', keywords: ['270', 'panorama', 'glass', 'luxury', 'premium', 'ensuite', '4999', 'view', 'mountain', 'experience by xtsy'], tags: ['luxury'] },
   // Properties
   { title: 'XTSY Travellers Hostel', description: 'Biggest hostel in North East India', icon: '🏠', path: '/', keywords: ['hostel', 'travellers', 'backpacker', 'shillong', 'budget', 'stay'], tags: ['explore', 'budget'] },
   { title: 'Experience by XTSY', description: 'Premium glass ensuite in Shillong', icon: '💎', path: '/xtsy-270', keywords: ['luxury', 'premium', 'glass', 'panorama', 'high-end', 'experience'], tags: ['luxury'] },
