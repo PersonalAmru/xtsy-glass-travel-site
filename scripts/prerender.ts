@@ -14,8 +14,11 @@ import path from 'path';
 // We need to import the SEO data at build time.
 // Since seoPages.ts uses TypeScript, we use dynamic import via tsx.
 async function loadSEOPages() {
-  const { ALL_SEO_PAGES } = await import('../src/data/seoPages.js');
-  return ALL_SEO_PAGES;
+  // tsx executes this script with TypeScript loader, so import the .ts source
+  // directly. The previous `.js` extension caused the import to fail silently
+  // and resulted in zero pre-rendered HTML files (the #1 indexation blocker).
+  const mod = await import('../src/data/seoPages');
+  return (mod as any).ALL_SEO_PAGES;
 }
 
 interface SEOPageData {
@@ -47,12 +50,23 @@ function buildSchema(page: SEOPageData): string {
   };
 
   if (['Hostel', 'Hotel', 'LodgingBusiness'].includes(page.schemaType)) {
+    // Only attach reviews to TRUE property routes — review spam on
+    // informational pages risks Google manual action.
+    const PROPERTY_ROUTES = new Set([
+      'best-hostel-in-shillong',
+      'xtsy-travellers-hostel',
+      'experience-by-xtsy',
+      'xtsy-270-glasshouse',
+      'hostel-shillong',
+    ]);
     Object.assign(base, {
       address: { '@type': 'PostalAddress', streetAddress: 'Mawdiangdiang Road', addressLocality: 'Shillong', addressRegion: 'Meghalaya', postalCode: '793018', addressCountry: 'IN' },
-      telephone: '+91-8787537633',
-      priceRange: '₹499 - ₹4,999',
-      aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.8', reviewCount: '320', bestRating: '5' },
+      telephone: '+91-8837317070',
+      priceRange: '₹329 - ₹4,999',
     });
+    if (PROPERTY_ROUTES.has(page.slug)) {
+      (base as any).aggregateRating = { '@type': 'AggregateRating', ratingValue: '4.8', reviewCount: '320', bestRating: '5', worstRating: '1' };
+    }
   }
 
   if (page.schemaType === 'TouristTrip') {

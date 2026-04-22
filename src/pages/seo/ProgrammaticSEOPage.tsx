@@ -35,53 +35,67 @@ const buildSchema = (page: SEOPageData) => {
 
   if (['Hostel', 'Hotel', 'LodgingBusiness'].includes(page.schemaType)) {
     const todayISO = new Date().toISOString().split('T')[0];
+    // Only attach reviews/ratings to TRUE property routes (avoid review-spam penalty
+    // on programmatic informational pages like /from-delhi-to-shillong-hostel)
+    const PROPERTY_ROUTES = new Set([
+      'best-hostel-in-shillong',
+      'xtsy-travellers-hostel',
+      'experience-by-xtsy',
+      'xtsy-270-glasshouse',
+      'hostel-shillong',
+    ]);
+    const isRealProperty = PROPERTY_ROUTES.has(page.slug);
+
     Object.assign(base, {
       address: { '@type': 'PostalAddress', streetAddress: 'Mawdiangdiang Road', addressLocality: 'Shillong', addressRegion: 'Meghalaya', postalCode: '793018', addressCountry: 'IN' },
       telephone: '+91-8837317070',
-      priceRange: '₹450 - ₹8,500',
-      aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.8', reviewCount: '320', bestRating: '5' },
+      priceRange: '₹329 - ₹4,999',
       geo: { '@type': 'GeoCoordinates', latitude: 25.5788, longitude: 91.8933 },
       amenityFeature: [
         { '@type': 'LocationFeatureSpecification', name: 'Free WiFi', value: true },
         { '@type': 'LocationFeatureSpecification', name: 'Restaurant', value: true },
         { '@type': 'LocationFeatureSpecification', name: 'Pet Friendly', value: true },
       ],
-      // Offer + Availability schema for rich results
+      // Canonical published rates (synced with rateSanityCheck.ts)
       makesOffer: [
         {
           '@type': 'Offer',
-          name: 'Dorm Bed',
+          name: 'Dorm Bed (8-Bed Mixed)',
           priceCurrency: 'INR',
-          price: '269',
-          priceValidUntil: todayISO,
+          price: '329',
+          priceValidUntil: '2026-12-31',
           availability: 'https://schema.org/InStock',
           validFrom: todayISO,
           url: 'https://xtsy.one/book',
           priceSpecification: {
             '@type': 'UnitPriceSpecification',
-            price: '269',
+            price: '329',
             priceCurrency: 'INR',
             unitText: 'night',
           },
         },
         {
           '@type': 'Offer',
-          name: 'Private Room',
+          name: 'King Double Room',
           priceCurrency: 'INR',
-          price: '2099',
-          priceValidUntil: todayISO,
+          price: '2399',
+          priceValidUntil: '2026-12-31',
           availability: 'https://schema.org/LimitedAvailability',
           validFrom: todayISO,
           url: 'https://xtsy.one/book',
           priceSpecification: {
             '@type': 'UnitPriceSpecification',
-            price: '2099',
+            price: '2399',
             priceCurrency: 'INR',
             unitText: 'night',
           },
         },
       ],
     });
+
+    if (isRealProperty) {
+      base.aggregateRating = { '@type': 'AggregateRating', ratingValue: '4.8', reviewCount: '320', bestRating: '5', worstRating: '1' };
+    }
   }
 
   if (page.schemaType === 'TouristTrip') {
