@@ -55,7 +55,7 @@ const Index = memo(() => {
       addressCountry: 'IN',
     },
     geo: { '@type': 'GeoCoordinates', latitude: 25.5788, longitude: 91.8933 },
-    priceRange: '₹450 - ₹8,500',
+    priceRange: '₹329 - ₹4,999',
     starRating: { '@type': 'Rating', ratingValue: '4.8' },
     aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.8', reviewCount: '320', bestRating: '5' },
     checkinTime: '13:00',

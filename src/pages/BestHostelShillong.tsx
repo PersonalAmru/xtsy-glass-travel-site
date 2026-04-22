@@ -29,7 +29,7 @@ const BestHostelShillong = memo(() => {
       latitude: 25.5788,
       longitude: 91.8933,
     },
-    priceRange: '₹450 - ₹8,500',
+    priceRange: '₹329 - ₹4,999',
     starRating: { '@type': 'Rating', ratingValue: '4.8' },
     aggregateRating: {
       '@type': 'AggregateRating',
@@ -90,10 +90,10 @@ const BestHostelShillong = memo(() => {
   };
 
   const roomTypes = [
-    { name: '6-Bed Mixed Dorm', price: '₹450', desc: 'Personal locker, reading light, charging port', icon: Bed },
+    { name: '6-Bed Mixed Dorm', price: '₹469', desc: 'Personal locker, reading light, charging port', icon: Bed },
     { name: '4-Bed Female Dorm', price: '₹550', desc: 'Women-only, extra privacy curtains, secure access', icon: Shield },
     { name: 'Private Double Room', price: '₹2,500', desc: 'Ensuite bathroom, mountain views, queen bed', icon: Mountain },
-    { name: '270° Glass Suite', price: '₹8,500', desc: 'India\'s first panoramic glass suite, stargazing', icon: Star },
+    { name: 'Panorama by XTSY', price: '₹4,999', desc: 'India\'s first panoramic glass suite, stargazing', icon: Star },
   ];
 
   const amenities = [

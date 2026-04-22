@@ -22,7 +22,7 @@ const HotelsInShillong = memo(() => {
           '@type': 'LodgingBusiness',
           name: 'XTSY Travellers Hostel',
           description: 'India\'s biggest hostel — private rooms, 270° glass suite, and budget dorms',
-          priceRange: '₹450 - ₹8,500',
+          priceRange: '₹329 - ₹4,999',
           starRating: { '@type': 'Rating', ratingValue: '4.8' },
         },
       },
