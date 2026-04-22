@@ -11,7 +11,7 @@ import { describe, it, expect } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 
-const ROOT = path.resolve(__dirname, '..', '..');
+const ROOT = path.resolve(__dirname, '..');
 const STALE_PRICE_TOKENS = ['₹450', '₹269', '₹2,099', '₹8,500', '499 - ₹4,999', '450 - ₹8,500'];
 const CANONICAL_PRICE_RANGE = '₹329 - ₹4,999';
 
