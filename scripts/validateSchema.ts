@@ -14,9 +14,12 @@ interface Issue { source: string; message: string; severity: 'error' | 'warning'
 
 function validateBlock(json: any, source: string): Issue[] {
   const issues: Issue[] = [];
-  const visit = (node: any) => {
+  // Track depth so nested @type references (e.g., parentOrganization, mainEntity)
+  // are not validated as if they were the root entity. Only validate the
+  // top-level type and direct schema children.
+  const visit = (node: any, depth: number) => {
     if (!node || typeof node !== 'object') return;
-    if (Array.isArray(node)) { node.forEach(visit); return; }
+    if (Array.isArray(node)) { node.forEach(n => visit(n, depth)); return; }
     if (node['@type'] === 'AggregateRating') {
       if (!node.reviewCount && !node.ratingCount) {
         issues.push({ source, message: 'AggregateRating missing reviewCount/ratingCount', severity: 'error' });
@@ -30,15 +33,17 @@ function validateBlock(json: any, source: string): Issue[] {
       if (!node.price) issues.push({ source, message: 'Offer missing price', severity: 'error' });
       if (!node.availability) issues.push({ source, message: 'Offer missing availability', severity: 'warning' });
     }
-    if (['Hostel', 'Hotel', 'LodgingBusiness'].includes(node['@type'])) {
+    // Only enforce address/priceRange on the ROOT entity. Nested references
+    // like { @type: "Hostel", name, url } in parentOrganization are stubs.
+    if (depth === 0 && ['Hostel', 'Hotel', 'LodgingBusiness'].includes(node['@type'])) {
       if (!node.address) issues.push({ source, message: `${node['@type']} missing address`, severity: 'error' });
       if (!node.priceRange) issues.push({ source, message: `${node['@type']} missing priceRange`, severity: 'warning' });
     }
-    for (const v of Object.values(node)) visit(v);
+    for (const v of Object.values(node)) visit(v, depth + 1);
   };
   if (!json['@context']) issues.push({ source, message: 'Missing @context', severity: 'error' });
   if (!json['@type']) issues.push({ source, message: 'Missing @type', severity: 'error' });
-  visit(json);
+  visit(json, 0);
   return issues;
 }
 
