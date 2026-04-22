@@ -22,12 +22,12 @@ interface SearchResult {
 
 const SEARCH_INDEX: SearchResult[] = [
   // Rooms & Booking
-  { title: '8-Bed Mixed Dorm', description: 'Bestseller · From ₹269/night', icon: '🛏️', path: '/book', keywords: ['dorm', 'dormitory', 'bed', 'mixed', 'cheap', 'budget', '269', 'hostel', 'backpacker', 'bestseller', '8 bed'], tags: ['budget', 'explore'] },
+  { title: '8-Bed Mixed Dorm', description: 'Bestseller · From ₹329/night', icon: '🛏️', path: '/book', keywords: ['dorm', 'dormitory', 'bed', 'mixed', 'cheap', 'budget', '269', 'hostel', 'backpacker', 'bestseller', '8 bed'], tags: ['budget', 'explore'] },
   { title: '6-Bed Mixed Dorm', description: 'Recommended · From ₹419/night', icon: '🛏️', path: '/book', keywords: ['dorm', '6 bed', 'mixed', 'recommended', '419'], tags: ['budget', 'explore'] },
   { title: '6-Bed Female Dorm', description: 'Women only · From ₹369/night', icon: '👩', path: '/book', keywords: ['female', 'women', 'girls', 'dorm', '6 bed', '369', 'ladies'], tags: ['female', 'budget'] },
   { title: '4-Bed Mixed Dorm', description: 'Solo traveller pick · From ₹529/night', icon: '🎒', path: '/book', keywords: ['dorm', '4 bed', 'solo', '529', 'mixed'], tags: ['budget', 'explore'] },
   { title: '4-Bed Female Dorm', description: 'Women only · From ₹419/night', icon: '👩', path: '/book', keywords: ['female', 'women', '4 bed', '419', 'ladies'], tags: ['female', 'budget'] },
-  { title: 'King Double Room', description: 'Couple favourite · From ₹2,099/night', icon: '👫', path: '/book', keywords: ['king', 'double', 'couple', 'private', 'room', '2099', 'luxury'], tags: ['couples', 'luxury'] },
+  { title: 'King Double Room', description: 'Couple favourite · From ₹2,399/night', icon: '👫', path: '/book', keywords: ['king', 'double', 'couple', 'private', 'room', '2099', 'luxury'], tags: ['couples', 'luxury'] },
   { title: 'Panorama by XTSY – 270° Glass Ensuite', description: 'Ultra luxury · ₹4,999/night · Complimentary breakfast for 2', icon: '✨', path: '/xtsy-270', keywords: ['270', 'panorama', 'glass', 'luxury', 'premium', 'ensuite', '4999', 'view', 'mountain', 'experience by xtsy'], tags: ['luxury'] },
   // Properties
   { title: 'XTSY Travellers Hostel', description: 'Biggest hostel in North East India', icon: '🏠', path: '/', keywords: ['hostel', 'travellers', 'backpacker', 'shillong', 'budget', 'stay'], tags: ['explore', 'budget'] },
@@ -51,7 +51,7 @@ const SEARCH_INDEX: SearchResult[] = [
 ];
 
 const PLACEHOLDER_HINTS = [
-  { text: 'Book dorm from ₹269/night', icon: '🛏️' },
+  { text: 'Book dorm from ₹329/night', icon: '🛏️' },
   { text: 'Explore Meghalaya', icon: '🏔️' },
   { text: 'Search North East India', icon: '🌿' },
   { text: 'XTSY 270° Glass Ensuite', icon: '✨' },
