@@ -20,7 +20,7 @@ const LuxuryGlampingShillong = memo(() => {
       addressRegion: 'Meghalaya',
       addressCountry: 'IN',
     },
-    priceRange: '₹8,500/night',
+    priceRange: '₹4,999/night',
     starRating: { '@type': 'Rating', ratingValue: '4.9' },
     amenityFeature: [
       { '@type': 'LocationFeatureSpecification', name: '270° Panoramic Glass Walls', value: true },
@@ -48,7 +48,7 @@ const LuxuryGlampingShillong = memo(() => {
         name: 'How much does glamping cost in Shillong?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'XTSY\'s 270° Glass Suite is priced at ₹8,500/night including premium breakfast, WiFi, and all amenities. This is the only panoramic glass suite in Northeast India.',
+          text: 'XTSY\'s 270° Glass Suite is priced at ₹4,999/night including premium breakfast, WiFi, and all amenities. This is the only panoramic glass suite in Northeast India.',
         },
       },
       {
@@ -68,7 +68,7 @@ const LuxuryGlampingShillong = memo(() => {
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>Luxury Glamping in Shillong — 270° Glass Suite | XTSY Meghalaya</title>
-        <meta name="description" content="India's first 270° panoramic glass suite in Shillong. Luxury glamping with stargazing, mountain views, sunrise from bed. Perfect for couples, anniversaries, proposals. ₹8,500/night." />
+        <meta name="description" content="India's first 270° panoramic glass suite in Shillong. Luxury glamping with stargazing, mountain views, sunrise from bed. Perfect for couples, anniversaries, proposals. ₹4,999/night." />
         <meta name="keywords" content="glamping in Shillong, luxury glamping Meghalaya, glass suite Shillong, stargazing room India, romantic stay Shillong, luxury stay Meghalaya, couple friendly hotel Shillong, honeymoon Shillong, unique stays India" />
         <link rel="canonical" href="https://xtsy.one/luxury-glamping-shillong" />
         <meta property="og:title" content="270° Glass Suite — Luxury Glamping in Shillong" />
@@ -128,7 +128,7 @@ const LuxuryGlampingShillong = memo(() => {
 
           {/* What's Included */}
           <section>
-            <h2 className="text-2xl font-bold text-foreground">What's Included at ₹8,500/night</h2>
+            <h2 className="text-2xl font-bold text-foreground">What's Included at ₹4,999/night</h2>
             <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
               {[
                 '270° panoramic glass walls',

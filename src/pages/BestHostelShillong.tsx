@@ -12,7 +12,7 @@ const BestHostelShillong = memo(() => {
     '@context': 'https://schema.org',
     '@type': 'Hostel',
     name: 'XTSY Travellers Hostel',
-    description: 'India\'s biggest hostel in Shillong, Meghalaya. Budget dorms from ₹450, private rooms, luxury 270° glass suite.',
+    description: 'India\'s biggest hostel in Shillong, Meghalaya. Budget dorms from ₹329, private rooms, luxury 270° glass suite.',
     url: 'https://xtsy.one/best-hostel-in-shillong',
     telephone: '+918837317070',
     email: 'xtsytravellershostel@gmail.com',
@@ -59,7 +59,7 @@ const BestHostelShillong = memo(() => {
         name: 'What is the best hostel in Shillong?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'XTSY Travellers Hostel is rated the best hostel in Shillong with a 4.8★ rating. It\'s India\'s biggest hostel in Northeast India, offering budget dorms from ₹450, private rooms, and India\'s first 270° panoramic glass suite.',
+          text: 'XTSY Travellers Hostel is rated the best hostel in Shillong with a 4.8★ rating. It\'s India\'s biggest hostel in Northeast India, offering budget dorms from ₹329, private rooms, and India\'s first 270° panoramic glass suite.',
         },
       },
       {
@@ -67,7 +67,7 @@ const BestHostelShillong = memo(() => {
         name: 'How much does a hostel in Shillong cost?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Hostel beds in Shillong start from ₹450/night for a dorm bed at XTSY. Private rooms start at ₹2,500/night, and the premium 270° Glass Suite is ₹8,500/night.',
+          text: 'Hostel beds in Shillong start from ₹329/night for a dorm bed at XTSY. Private rooms start at ₹2,500/night, and the premium 270° Glass Suite is ₹4,999/night.',
         },
       },
       {
@@ -110,11 +110,11 @@ const BestHostelShillong = memo(() => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Best Hostel in Shillong 2026 — Budget Dorms from ₹450 | XTSY</title>
-        <meta name="description" content="XTSY is the best hostel in Shillong, Meghalaya. India's biggest hostel with budget dorms from ₹450, private rooms, 270° glass suite. 4.8★ rated. Book direct for best price." />
+        <title>Best Hostel in Shillong 2026 — Budget Dorms from ₹329 | XTSY</title>
+        <meta name="description" content="XTSY is the best hostel in Shillong, Meghalaya. India's biggest hostel with budget dorms from ₹329, private rooms, 270° glass suite. 4.8★ rated. Book direct for best price." />
         <meta name="keywords" content="best hostel in Shillong, hostel in Shillong, budget hostel Shillong, backpacker hostel Meghalaya, cheap hostel Shillong, dorm bed Shillong, hostel near Shillong, budget stay Shillong, Shillong accommodation budget" />
         <link rel="canonical" href="https://xtsy.one/best-hostel-in-shillong" />
-        <meta property="og:title" content="Best Hostel in Shillong — XTSY | Dorms from ₹450" />
+        <meta property="og:title" content="Best Hostel in Shillong — XTSY | Dorms from ₹329" />
         <meta property="og:description" content="India's biggest hostel in Shillong. Budget dorms, private rooms, 270° glass suite. 4.8★ rated by 320+ guests." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://xtsy.one/best-hostel-in-shillong" />
@@ -136,7 +136,7 @@ const BestHostelShillong = memo(() => {
               Best Hostel in Shillong, Meghalaya
             </h1>
             <p className="mt-4 text-lg text-muted-foreground max-w-3xl">
-              XTSY Travellers Hostel is Shillong's top-rated hostel with 320+ reviews and a 4.8★ rating. From budget dorms at ₹450/night to India's first 270° panoramic glass suite — we offer every type of stay for backpackers, couples, and groups visiting Meghalaya.
+              XTSY Travellers Hostel is Shillong's top-rated hostel with 320+ reviews and a 4.8★ rating. From budget dorms at ₹329/night to India's first 270° panoramic glass suite — we offer every type of stay for backpackers, couples, and groups visiting Meghalaya.
             </p>
             <div className="mt-4 flex items-center gap-4 text-sm text-muted-foreground">
               <span className="flex items-center gap-1"><MapPin className="h-4 w-4" /> Mawkhar, Shillong</span>
@@ -158,7 +158,7 @@ const BestHostelShillong = memo(() => {
           {/* Room Types */}
           <section>
             <h2 className="text-2xl md:text-3xl font-bold text-foreground">Room Types & Pricing</h2>
-            <p className="mt-2 text-muted-foreground">Something for every budget — from ₹450 dorm beds to luxury glamping.</p>
+            <p className="mt-2 text-muted-foreground">Something for every budget — from ₹329 dorm beds to luxury glamping.</p>
             <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
               {roomTypes.map((room) => (
                 <Card key={room.name} className="border-border/50">
@@ -228,7 +228,7 @@ const BestHostelShillong = memo(() => {
                 </thead>
                 <tbody className="text-muted-foreground">
                   {[
-                    ['Starting Price', '₹450/night', '₹500-800/night'],
+                    ['Starting Price', '₹329/night', '₹500-800/night'],
                     ['Glass Suite', '✅ 270° Panoramic', '❌'],
                     ['Pet Friendly', '✅', '❌'],
                     ['Female Dorms', '✅ Dedicated', 'Limited'],

@@ -18,12 +18,12 @@ const BlogBudgetTrip = () => (
         <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Things to Do', href: '/things-to-do-in-meghalaya' }, { label: 'Budget Trip' }]} />
         <h1 className="mt-6 text-3xl md:text-4xl font-bold text-foreground">Budget Trip to Meghalaya — Under ₹10,000 for 5 Days</h1>
         <p className="mt-4 text-muted-foreground leading-relaxed">
-          Meghalaya is one of the most budget-friendly destinations in India. With dorm beds starting at ₹450/night at XTSY and affordable local food, you can explore the state's best attractions without breaking the bank.
+          Meghalaya is one of the most budget-friendly destinations in India. With dorm beds starting at ₹329/night at XTSY and affordable local food, you can explore the state's best attractions without breaking the bank.
         </p>
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
           {[
-            { icon: Bed, title: 'Accommodation', cost: '₹450–₹800/night', desc: 'XTSY dorm beds from ₹450. Private rooms from ₹2,500. Budget homestays in villages from ₹500.' },
+            { icon: Bed, title: 'Accommodation', cost: '₹450–₹800/night', desc: 'XTSY dorm beds from ₹329. Private rooms from ₹2,500. Budget homestays in villages from ₹500.' },
             { icon: UtensilsCrossed, title: 'Food', cost: '₹300–₹500/day', desc: 'Local Khasi food at ₹80-150 per meal. TAB Bistro multi-cuisine from ₹150. Street food at Police Bazaar.' },
             { icon: Car, title: 'Transport', cost: '₹200–₹600/day', desc: 'Shared taxis Shillong-Cherrapunji ₹200. Dawki shared cab ₹300. Local Shillong taxis ₹100-200.' },
             { icon: IndianRupee, title: 'Activities', cost: '₹0–₹300/day', desc: 'Most viewpoints and waterfalls are free. Cave entries ₹20-50. Dawki boating ₹800/boat (shared).' },
@@ -54,7 +54,7 @@ const BlogBudgetTrip = () => (
 
         <section className="mt-10 bg-primary/10 rounded-2xl p-8 text-center">
           <h2 className="text-xl font-bold text-foreground">Stay at XTSY — Shillong's Best Budget Hostel</h2>
-          <p className="mt-2 text-sm text-muted-foreground">Dorms from ₹450/night. Breakfast, WiFi, and community included.</p>
+          <p className="mt-2 text-sm text-muted-foreground">Dorms from ₹329/night. Breakfast, WiFi, and community included.</p>
           <Link to="/book" className="mt-4 inline-block px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium">Book Now</Link>
         </section>
         <nav className="mt-8 border-t border-border pt-8">
