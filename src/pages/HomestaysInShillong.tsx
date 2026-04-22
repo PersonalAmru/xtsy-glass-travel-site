@@ -22,7 +22,7 @@ const HomestaysInShillong = memo(() => {
           '@type': 'LodgingBusiness',
           name: 'XTSY Travellers Hostel',
           description: 'Hostel with homestay vibes — community kitchen, local food, and cultural experiences',
-          priceRange: '₹450 - ₹8,500',
+          priceRange: '₹329 - ₹4,999',
           starRating: { '@type': 'Rating', ratingValue: '4.8' },
         },
       },
