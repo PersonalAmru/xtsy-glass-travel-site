@@ -33,7 +33,7 @@ const SITE_URL = "https://xtsy.one";
 const SEO_CONFIG: Record<string, { title: string; description: string; keywords?: string }> = {
   home: {
     title: "XTSY — Best Hostel in Shillong, Meghalaya | Northeast India",
-    description: "India's biggest hostel in Shillong. Budget dorms from ₹450, 270° glass suite, curated Meghalaya tours. NEITA 2025 nominated. Book direct.",
+    description: "India's biggest hostel in Shillong. Budget dorms from ₹329, 270° glass suite, curated Meghalaya tours. NEITA 2025 nominated. Book direct.",
     keywords: "best hostel Shillong, biggest hostel northeast India, Shillong hostel, Meghalaya accommodation, budget stay Shillong",
   },
   travel: {
@@ -53,7 +53,7 @@ const SEO_CONFIG: Record<string, { title: string; description: string; keywords?
   },
   booking: {
     title: "Book Your Stay — XTSY Hostel Shillong | Best Rates",
-    description: "Book dorms from ₹450, private rooms from ₹2,500, 270° glass suite from ₹8,500. Best price guaranteed at XTSY Shillong.",
+    description: "Book dorms from ₹329, King Double rooms from ₹2,399, Panorama 270° glass suite at ₹4,999. Best price guaranteed at XTSY Shillong.",
     keywords: "book hostel Shillong, hostel booking Meghalaya, Shillong room booking",
   },
   search: {
