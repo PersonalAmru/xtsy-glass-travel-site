@@ -101,26 +101,26 @@ describe('SEO regression: schema integrity', () => {
 
 describe('SEO regression: page volume', () => {
   it('ALL_SEO_PAGES is pruned to ≤ 250 high-quality slugs', async () => {
-    const mod = await import('../data/seoPages');
+    const mod: any = await import('../src/data/seoPages');
     expect(mod.ALL_SEO_PAGES.length).toBeGreaterThan(150);
     expect(mod.ALL_SEO_PAGES.length).toBeLessThanOrEqual(250);
   });
 
   it('every retained page belongs to a high-quality category', async () => {
-    const mod = await import('../data/seoPages');
-    const { HIGH_QUALITY_CATEGORIES, ALWAYS_KEEP_SLUGS } = await import(
-      '../data/seoQualityFilter'
-    );
+    const mod: any = await import('../src/data/seoPages');
+    const filter: any = await import('../src/data/seoQualityFilter');
     const offenders = mod.ALL_SEO_PAGES.filter(
-      p => !HIGH_QUALITY_CATEGORIES.has(p.category) && !ALWAYS_KEEP_SLUGS.has(p.slug),
+      (p: any) =>
+        !filter.HIGH_QUALITY_CATEGORIES.has(p.category) &&
+        !filter.ALWAYS_KEEP_SLUGS.has(p.slug),
     );
-    expect(offenders.map(o => o.slug)).toEqual([]);
+    expect(offenders.map((o: any) => o.slug)).toEqual([]);
   });
 });
 
 describe('SEO regression: rateSanityCheck integrity', () => {
   it('exposes the canonical Shillong rates', async () => {
-    const mod = await import('../utils/rateSanityCheck');
+    const mod: any = await import('../src/utils/rateSanityCheck');
     expect(mod.SHILLONG_CANONICAL_RATES['xtsy-270']).toBe(4999);
     expect(mod.SHILLONG_CANONICAL_RATES['king-double-room']).toBe(2399);
     expect(mod.SHILLONG_CANONICAL_RATES['8-bed-mixed-dorm']).toBe(329);
