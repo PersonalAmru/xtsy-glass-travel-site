@@ -1071,13 +1071,15 @@ const BASE_SEO_PAGES: SEOPageData[] = [
   ...itineraryPages,
 ];
 
-export const ALL_SEO_PAGES: SEOPageData[] = [
+import { filterHighQualityPages } from './seoQualityFilter';
+
+// Raw set — every programmatic page we know about.
+const RAW_SEO_PAGES: SEOPageData[] = [
   ...PILLAR_PAGES,
   ...DESTINATION_PAGES,
   ...BASE_SEO_PAGES,
   ...EXPANSION_SEO_PAGES,
   ...LAST_MINUTE_SEO_PAGES,
-  // ===== 1,400+ programmatic expansion =====
   ...ROUTE_SEO_PAGES,
   ...INTENT_STAY_SEO_PAGES,
   ...INSTITUTION_SEO_PAGES,
@@ -1085,6 +1087,12 @@ export const ALL_SEO_PAGES: SEOPageData[] = [
   ...DURATION_ITINERARY_SEO_PAGES,
   ...GLOBAL_NE_SEO_PAGES,
 ];
+
+// Public surface — quality-filtered to ~200 pages. Drops thin/duplicate
+// clusters that risk Google "doorway page" classification and protects
+// crawl budget. See src/data/seoQualityFilter.ts for the rules.
+export const ALL_SEO_PAGES: SEOPageData[] = filterHighQualityPages(RAW_SEO_PAGES);
+export const RAW_SEO_PAGES_COUNT = RAW_SEO_PAGES.length;
 
 // Helper to find a page by slug
 export const findSEOPage = (slug: string): SEOPageData | undefined => {
