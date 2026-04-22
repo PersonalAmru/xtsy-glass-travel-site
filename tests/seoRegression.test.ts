@@ -36,13 +36,22 @@ function readSrcFiles(): { file: string; content: string }[] {
 
 describe('SEO regression: stale prices', () => {
   const files = readSrcFiles();
+  // Files with legitimate non-room price references (menu items, vehicle
+  // rentals, third-party hostel comparison ranges, total trip budgets).
+  const ALLOWED_NON_ROOM_PRICES = new Set([
+    'src/data/tabBistroMenu.ts',
+    'src/data/seoPagesExpansion.ts',   // Honda Dio scooter at ₹450/day
+    'src/data/seoPillarPages.ts',      // Competitor hostel comparison ranges
+    'src/data/seoPages.ts',            // ₹8,500 trip budget total
+    'src/pages/destinations/BlogBudgetTrip.tsx', // Budget range narrative
+    'src/pages/HotelsInShillong.tsx',  // Hotel category description ranges
+  ]);
 
   for (const token of STALE_PRICE_TOKENS) {
     it(`no source file contains stale price token "${token}"`, () => {
       const offenders = files
         .filter(f => f.content.includes(token))
-        // tabBistroMenu legitimately uses ₹269 for menu items, not rooms
-        .filter(f => !f.file.endsWith('tabBistroMenu.ts'))
+        .filter(f => !ALLOWED_NON_ROOM_PRICES.has(f.file.replace(/\\/g, '/')))
         .map(f => f.file);
       expect(offenders, `Stale price "${token}" found in: ${offenders.join(', ')}`).toEqual([]);
     });
