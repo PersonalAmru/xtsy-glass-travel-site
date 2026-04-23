@@ -74,12 +74,13 @@ export default function IntelligentSearchOverlay({ isOpen, onClose }: Intelligen
 
   const handleSelect = useCallback(
     (entry: SearchEntry) => {
-      // Track search analytics
+      // Track search analytics — local + Supabase
       try {
         const searches = JSON.parse(sessionStorage.getItem('xtsy_search_analytics') || '[]');
         searches.push({ query, selected: entry.title, url: entry.url, ts: Date.now() });
         sessionStorage.setItem('xtsy_search_analytics', JSON.stringify(searches.slice(-50)));
       } catch {}
+      logSearchClick({ query, source: 'header_overlay', url: entry.url, title: entry.title });
 
       clearSearch();
       onClose();
@@ -115,19 +116,24 @@ export default function IntelligentSearchOverlay({ isOpen, onClose }: Intelligen
     setSelectedIndex(-1);
   }, [query]);
 
-  // Track zero-result queries
+  // Track every meaningful query (debounced inside logger) + zero-result queries
   useEffect(() => {
-    if (!isEmptyQuery && !hasResults && query.length >= 3) {
+    if (isEmptyQuery || query.length < 3) return;
+    logSearchQuery({
+      query,
+      source: 'header_overlay',
+      resultCount: flatResults.length,
+    });
+    if (!hasResults) {
       try {
         const zeroResults = JSON.parse(sessionStorage.getItem('xtsy_zero_results') || '[]');
-        // Deduplicate
         if (!zeroResults.includes(query.trim().toLowerCase())) {
           zeroResults.push(query.trim().toLowerCase());
           sessionStorage.setItem('xtsy_zero_results', JSON.stringify(zeroResults.slice(-30)));
         }
       } catch {}
     }
-  }, [query, isEmptyQuery, hasResults]);
+  }, [query, isEmptyQuery, hasResults, flatResults.length]);
 
   const handleTrendingClick = (label: string) => {
     setQuery(label);
