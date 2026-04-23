@@ -3004,6 +3004,60 @@ export type Database = {
           },
         ]
       }
+      search_queries: {
+        Row: {
+          clicked_result_title: string | null
+          clicked_result_url: string | null
+          country_code: string | null
+          created_at: string
+          device_type: string | null
+          id: string
+          page_path: string | null
+          query: string
+          query_normalized: string | null
+          result_count: number | null
+          session_id: string | null
+          source: string | null
+          user_agent: string | null
+          visitor_id: string | null
+          zero_results: boolean | null
+        }
+        Insert: {
+          clicked_result_title?: string | null
+          clicked_result_url?: string | null
+          country_code?: string | null
+          created_at?: string
+          device_type?: string | null
+          id?: string
+          page_path?: string | null
+          query: string
+          query_normalized?: string | null
+          result_count?: number | null
+          session_id?: string | null
+          source?: string | null
+          user_agent?: string | null
+          visitor_id?: string | null
+          zero_results?: boolean | null
+        }
+        Update: {
+          clicked_result_title?: string | null
+          clicked_result_url?: string | null
+          country_code?: string | null
+          created_at?: string
+          device_type?: string | null
+          id?: string
+          page_path?: string | null
+          query?: string
+          query_normalized?: string | null
+          result_count?: number | null
+          session_id?: string | null
+          source?: string | null
+          user_agent?: string | null
+          visitor_id?: string | null
+          zero_results?: boolean | null
+        }
+        Relationships: []
+      }
       secret_access_log: {
         Row: {
           access_granted: boolean
