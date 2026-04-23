@@ -211,7 +211,7 @@ const TrendingDestinations = memo(() => {
             ref={scrollRef}
             onScroll={updateScrollState}
             className="flex gap-4 overflow-x-auto scrollbar-hide pb-2 -mx-1 px-1"
-            style={{ scrollSnapType: 'x mandatory' }}
+            style={{ scrollSnapType: 'x mandatory', minHeight: '288px' }}
           >
             {TRENDING.map((dest, i) => (
               <div key={`${dest.slug}-${i}`} style={{ scrollSnapAlign: 'start' }}>
