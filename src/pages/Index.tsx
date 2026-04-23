@@ -144,6 +144,11 @@ const Index = memo(() => {
           <AvailableStaysNow />
         </LazyWrapper>
         
+        {/* Dawki Adventure Campsite — featured prominently right below Shillong stays */}
+        <LazyWrapper eager fallback={<SectionFallback height="h-80" />}>
+          <DawkiCampsiteCard />
+        </LazyWrapper>
+        
         <LazyWrapper eager fallback={<SectionFallback height="h-72" />}>
           <TrendingDestinations />
         </LazyWrapper>
@@ -158,11 +163,6 @@ const Index = memo(() => {
         
         <LazyWrapper fallback={<SectionFallback height="h-80" />}>
           <XTSYPrimeSection />
-        </LazyWrapper>
-        
-        {/* New: Dawki Adventure Campsite — minimal experience card */}
-        <LazyWrapper fallback={<SectionFallback height="h-80" />}>
-          <DawkiCampsiteCard />
         </LazyWrapper>
         
         <LazyWrapper fallback={<SectionFallback height="h-96" />}>
