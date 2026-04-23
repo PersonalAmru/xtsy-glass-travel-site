@@ -140,7 +140,7 @@ const Index = memo(() => {
         
         {/* Wave 2E — Demoted XTSYPrime + HomeTourPackages from eager.
             Only the first 2 below-fold sections hydrate eagerly to keep TBT low. */}
-        <LazyWrapper eager fallback={<SectionFallback height="h-72" />}>
+        <LazyWrapper eager fallback={<SectionFallback height="h-[420px]" />}>
           <TrendingDestinations />
         </LazyWrapper>
         

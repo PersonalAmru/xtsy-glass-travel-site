@@ -152,18 +152,23 @@ const TrendingDestinations = memo(() => {
   }, [updateScrollState]);
 
   return (
-    <section className="py-12 md:py-16 bg-background">
+    <section
+      id="popular-destinations"
+      aria-label="Popular Destinations"
+      className="py-10 md:py-16 bg-background scroll-mt-24"
+      style={{ contain: 'layout style', minHeight: '420px' }}
+    >
       <div className="container mx-auto px-4 max-w-6xl">
-        <div className="flex items-end justify-between mb-8">
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-medium mb-3">
+        <div className="flex items-end justify-between mb-6 md:mb-8 gap-4">
+          <div className="min-w-0">
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-primary/10 text-primary text-[11px] sm:text-xs font-medium mb-2 sm:mb-3">
               <TrendingUp className="h-3.5 w-3.5" />
               Trending Now
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground leading-tight">
+            <h2 className="text-xl sm:text-2xl md:text-4xl font-bold text-foreground leading-tight">
               Popular Destinations
             </h2>
-            <p className="mt-2 text-muted-foreground text-sm sm:text-base max-w-lg">
+            <p className="mt-1.5 sm:mt-2 text-muted-foreground text-xs sm:text-sm md:text-base max-w-lg leading-snug">
               Top picks across Meghalaya, Northeast India & beyond
             </p>
           </div>
@@ -206,7 +211,7 @@ const TrendingDestinations = memo(() => {
             ref={scrollRef}
             onScroll={updateScrollState}
             className="flex gap-4 overflow-x-auto scrollbar-hide pb-2 -mx-1 px-1"
-            style={{ scrollSnapType: 'x mandatory' }}
+            style={{ scrollSnapType: 'x mandatory', minHeight: '288px' }}
           >
             {TRENDING.map((dest, i) => (
               <div key={`${dest.slug}-${i}`} style={{ scrollSnapAlign: 'start' }}>
