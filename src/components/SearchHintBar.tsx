@@ -9,6 +9,7 @@ import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Search, X, ArrowRight, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { logSearchQuery, logSearchClick } from '@/lib/searchAnalytics';
 
 interface SearchResult {
   title: string;
@@ -184,6 +185,10 @@ export function SearchHintBar() {
       .map((s) => s.item);
     setResults(scored);
     setSelectedIndex(-1);
+    // Log to admin analytics (debounced inside logger)
+    if (q.length >= 3) {
+      logSearchQuery({ query: q, source: 'hero_hint_bar', resultCount: scored.length });
+    }
   }, [query]);
 
   // Close on outside click
@@ -199,11 +204,12 @@ export function SearchHintBar() {
 
   const handleSelect = useCallback(
     (result: SearchResult) => {
+      logSearchClick({ query, source: 'hero_hint_bar', url: result.path, title: result.title });
       setIsActive(false);
       setQuery('');
       navigate(result.path);
     },
-    [navigate]
+    [navigate, query]
   );
 
   // Determine what to show in dropdown
