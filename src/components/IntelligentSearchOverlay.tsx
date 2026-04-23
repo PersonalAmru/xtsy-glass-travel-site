@@ -10,6 +10,7 @@ import { Search, X, ArrowRight, TrendingUp, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useIntelligentSearch } from '@/hooks/useIntelligentSearch';
 import { CATEGORY_LABELS, type SearchEntry } from '@/data/searchIndex';
+import { logSearchQuery, logSearchClick } from '@/lib/searchAnalytics';
 
 interface IntelligentSearchOverlayProps {
   isOpen: boolean;
