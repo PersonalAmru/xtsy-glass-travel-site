@@ -140,6 +140,10 @@ const Index = memo(() => {
         
         {/* Wave 2E — Demoted XTSYPrime + HomeTourPackages from eager.
             Only the first 2 below-fold sections hydrate eagerly to keep TBT low. */}
+        <LazyWrapper eager fallback={<SectionFallback height="h-72" />}>
+          <TrendingDestinations />
+        </LazyWrapper>
+        
         <LazyWrapper eager fallback={<SectionFallback height="h-80" />}>
           <AvailableStaysNow />
         </LazyWrapper>
@@ -147,10 +151,6 @@ const Index = memo(() => {
         {/* Dawki Adventure Campsite — featured prominently right below Shillong stays */}
         <LazyWrapper eager fallback={<SectionFallback height="h-80" />}>
           <DawkiCampsiteCard />
-        </LazyWrapper>
-        
-        <LazyWrapper eager fallback={<SectionFallback height="h-72" />}>
-          <TrendingDestinations />
         </LazyWrapper>
         
         <LazyWrapper fallback={<SectionFallback height="h-64" />}>
