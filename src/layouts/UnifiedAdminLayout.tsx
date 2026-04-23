@@ -38,19 +38,21 @@ import {
   Activity,
   Download,
   Shield,
+  Search,
 } from 'lucide-react';
 
 interface UnifiedAdminLayoutProps {
   children: ReactNode;
 }
 
-// Streamlined admin menu - 5 core pages only
+// Streamlined admin menu
 const menuItems = [
   { id: 'overview', label: 'Dashboard', icon: Home, path: '/admin' },
   { id: 'traffic', label: 'Live Traffic', icon: Activity, path: '/admin/traffic' },
   { id: 'bookings', label: 'Bookings Calendar', icon: Calendar, path: '/admin/bookings' },
   { id: 'inventory', label: 'Inventory', icon: Package, path: '/admin/inventory' },
   { id: 'analytics', label: 'Analytics', icon: BarChart3, path: '/admin/analytics' },
+  { id: 'search', label: 'Search Console', icon: Search, path: '/admin/analytics/search' },
 ];
 
 export function UnifiedAdminLayout({ children }: UnifiedAdminLayoutProps) {

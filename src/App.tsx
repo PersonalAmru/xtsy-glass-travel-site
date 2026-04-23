@@ -85,6 +85,7 @@ const UserProfile = createLazyComponent(() => import("./pages/user/UserProfile")
 // Admin pages - Unified layout with hamburger menu
 const AdminOverview = createLazyComponent(() => import("./pages/admin/AdminOverview"));
 const AdminAnalytics = createLazyComponent(() => import("./pages/admin/AdminAnalytics"));
+const AdminSearchConsole = createLazyComponent(() => import("./pages/admin/AdminSearchConsole"));
 const AdminInventory = createLazyComponent(() => import("./pages/admin/AdminInventory"));
 const AdminActivity = createLazyComponent(() => import("./pages/admin/AdminActivity"));
 const AdminPropertiesV2 = createLazyComponent(() => import("./pages/admin/AdminPropertiesV2"));
@@ -303,6 +304,8 @@ function App() {
                 <Route path="/admin" element={<LazyRoute><AdminOverview /></LazyRoute>} />
                 <Route path="/admin/dashboard" element={<LazyRoute><AdminOverview /></LazyRoute>} />
                 <Route path="/admin/analytics" element={<LazyRoute><AdminAnalytics /></LazyRoute>} />
+                <Route path="/admin/analytics/search" element={<LazyRoute><AdminSearchConsole /></LazyRoute>} />
+                <Route path="/admin/search" element={<LazyRoute><AdminSearchConsole /></LazyRoute>} />
                 <Route path="/admin/bookings" element={<LazyRoute><AdminBookingsCalendar /></LazyRoute>} />
                 <Route path="/admin/chats" element={<LazyRoute><AdminGuestChats /></LazyRoute>} />
                 <Route path="/admin/inventory" element={<LazyRoute><AdminInventory /></LazyRoute>} />
