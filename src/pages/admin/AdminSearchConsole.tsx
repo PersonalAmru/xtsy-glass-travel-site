@@ -315,7 +315,7 @@ export default function AdminSearchConsole() {
               <AppleSectionHeader
                 title="Top Search Queries"
                 subtitle="Most-searched terms across the site"
-                icon={<TrendingUp className="w-4 h-4" />}
+
               />
               {loading ? (
                 <div className="p-4 space-y-2">{[...Array(5)].map((_, i) => <Skeleton key={i} className="h-8 bg-white/5" />)}</div>
@@ -360,7 +360,7 @@ export default function AdminSearchConsole() {
               <AppleSectionHeader
                 title="Zero-Result Queries"
                 subtitle="Searches that returned nothing — content gaps to fill"
-                icon={<AlertTriangle className="w-4 h-4 text-amber-400" />}
+
               />
               {loading ? (
                 <div className="p-4 space-y-2">{[...Array(5)].map((_, i) => <Skeleton key={i} className="h-8 bg-white/5" />)}</div>
@@ -397,7 +397,7 @@ export default function AdminSearchConsole() {
               <AppleSectionHeader
                 title="Top Clicked Results"
                 subtitle="Where searchers actually went"
-                icon={<MousePointerClick className="w-4 h-4" />}
+
               />
               {loading ? (
                 <div className="p-4 space-y-2">{[...Array(5)].map((_, i) => <Skeleton key={i} className="h-8 bg-white/5" />)}</div>
