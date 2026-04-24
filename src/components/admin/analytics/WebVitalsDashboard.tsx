@@ -39,22 +39,24 @@ const percentile = (arr: number[], p: number): number => {
   return Math.round(sorted[idx] * 1000) / 1000;
 };
 
+const goodCls = "bg-success text-success-foreground";
+const warnCls = "bg-warning text-warning-foreground";
 const lcpBadge = (ms: number) => {
   if (!ms) return <Badge variant="outline">No data</Badge>;
-  if (ms <= 2500) return <Badge className="bg-green-600">{ms} ms · Good</Badge>;
-  if (ms <= 4000) return <Badge className="bg-amber-500">{ms} ms · Needs work</Badge>;
+  if (ms <= 2500) return <Badge className={goodCls}>{ms} ms · Good</Badge>;
+  if (ms <= 4000) return <Badge className={warnCls}>{ms} ms · Needs work</Badge>;
   return <Badge variant="destructive">{ms} ms · Poor</Badge>;
 };
 const inpBadge = (ms: number) => {
   if (!ms) return <Badge variant="outline">No data</Badge>;
-  if (ms <= 200) return <Badge className="bg-green-600">{ms} ms · Good</Badge>;
-  if (ms <= 500) return <Badge className="bg-amber-500">{ms} ms · Needs work</Badge>;
+  if (ms <= 200) return <Badge className={goodCls}>{ms} ms · Good</Badge>;
+  if (ms <= 500) return <Badge className={warnCls}>{ms} ms · Needs work</Badge>;
   return <Badge variant="destructive">{ms} ms · Poor</Badge>;
 };
 const clsBadge = (cls: number) => {
   if (!cls) return <Badge variant="outline">0</Badge>;
-  if (cls <= 0.1) return <Badge className="bg-green-600">{cls.toFixed(3)}</Badge>;
-  if (cls <= 0.25) return <Badge className="bg-amber-500">{cls.toFixed(3)}</Badge>;
+  if (cls <= 0.1) return <Badge className={goodCls}>{cls.toFixed(3)}</Badge>;
+  if (cls <= 0.25) return <Badge className={warnCls}>{cls.toFixed(3)}</Badge>;
   return <Badge variant="destructive">{cls.toFixed(3)}</Badge>;
 };
 
