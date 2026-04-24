@@ -20,20 +20,17 @@
       /* Critical above-the-fold styles - inline for instant render */
       *{margin:0;padding:0;box-sizing:border-box}
       html{font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeSpeed}
-      body{background:#020617;color:#fff;min-height:100vh;overflow-x:hidden;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
+      /* SAFETY: cream/neutral background prevents black-screen failure mode.
+         Hero paints its own dark gradient on top, so visual is unchanged. */
+      body{background:#faf7f2;color:#0f172a;min-height:100vh;overflow-x:hidden;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
       body::-webkit-scrollbar{display:none}
-      #root{min-height:100vh;contain:layout style}
+      #root{min-height:100vh;contain:layout style;background:#020617}
       .dark{color-scheme:dark}
-      /* Reduce layout shift - reserve space for images */
       img,video{max-width:100%;height:auto;display:block}
-      /* Performance for animations - disable during initial load */
       @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
       body.initial-load *{transition:none!important;animation-duration:.001ms!important;animation-delay:0ms!important}
-      /* iOS optimizations */
       @supports (-webkit-touch-callout:none){input,select,textarea{font-size:16px!important}}
-      /* Hero background gradient - critical for LCP */
       .hero-bg{background:linear-gradient(135deg,#020617 0%,#0f172a 50%,#020617 100%)}
-      /* Primary color variables for hero */
       :root{--primary:25 95% 53%;--primary-foreground:0 0% 100%}
     </style>
     
@@ -144,9 +141,9 @@
       })();
     </script>
     
-    <!-- Google Tag Manager - Deferred load (LCP optimization) -->
-    <!-- Loads via requestIdleCallback OR after 2.5s OR on first interaction — whichever comes first -->
-    <!-- Admin/Lovable traffic → GTM-MS23NHMF | Real users → GTM-5FXJ9QBK -->
+    <!-- Google Tag Manager - Heavily deferred to protect LCP/INP -->
+    <!-- Loads ONLY after window.load + 3s idle. First-interaction triggers removed —
+         they were starving LCP on mobile (GTM-MS23NHMF in admin, GTM-5FXJ9QBK in prod). -->
     <script>(function(w,d,s,l){
       var loaded = false;
       function loadGTM(){
@@ -158,20 +155,19 @@
         dl=l!='dataLayer'?'&l='+l:'';j.async=true;
         j.src='https://www.googletagmanager.com/gtm.js?id='+containerId+dl;
         f.parentNode.insertBefore(j,f);
-        console.log('%c[GTM] Container: ' + containerId + (w.__isLovableAdmin ? ' (ADMIN)' : ' (PRODUCTION)'),
-          'background:' + (w.__isLovableAdmin ? '#FF9800' : '#4CAF50') + ';color:white;font-weight:bold;padding:2px 8px;border-radius:4px;');
       }
-      // Strategy 1: requestIdleCallback (best — waits for browser idle)
-      if ('requestIdleCallback' in w) {
-        w.requestIdleCallback(loadGTM, { timeout: 2500 });
+      function schedule(){
+        if ('requestIdleCallback' in w) {
+          w.requestIdleCallback(loadGTM, { timeout: 5000 });
+        } else {
+          setTimeout(loadGTM, 3000);
+        }
+      }
+      if (document.readyState === 'complete') {
+        setTimeout(schedule, 1500);
       } else {
-        // Strategy 2: Fallback timeout for Safari
-        setTimeout(loadGTM, 2500);
+        w.addEventListener('load', function(){ setTimeout(schedule, 1500); }, { once: true });
       }
-      // Strategy 3: Load immediately on first user interaction (don't lose events)
-      ['scroll','mousedown','touchstart','keydown'].forEach(function(ev){
-        w.addEventListener(ev, loadGTM, { once: true, passive: true });
-      });
     })(window,document,'script','dataLayer');</script>
     <!-- End Google Tag Manager -->
     
@@ -223,17 +219,9 @@
     <link rel="alternate" hreflang="en-IN" href="https://xtsy.one/" />
     <link rel="alternate" hreflang="x-default" href="https://xtsy.one/" />
     
-    <!-- OG locale alternatives for international social sharing -->
+    <!-- OG locale alternatives (trimmed — only the ones we serve content for) -->
     <meta property="og:locale:alternate" content="en_US" />
     <meta property="og:locale:alternate" content="en_GB" />
-    <meta property="og:locale:alternate" content="fr_FR" />
-    <meta property="og:locale:alternate" content="de_DE" />
-    <meta property="og:locale:alternate" content="es_ES" />
-    <meta property="og:locale:alternate" content="ja_JP" />
-    <meta property="og:locale:alternate" content="ko_KR" />
-    <meta property="og:locale:alternate" content="zh_CN" />
-    <meta property="og:locale:alternate" content="pt_BR" />
-    <meta property="og:locale:alternate" content="ru_RU" />
     
     <!-- Author and Organization -->
     <meta name="author" content="XTSY Travel" />
