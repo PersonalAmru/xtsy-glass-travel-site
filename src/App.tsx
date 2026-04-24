@@ -208,6 +208,14 @@ const ScrollToTop = () => {
   return null;
 };
 
+// RUM (Real User Monitoring) — captures Web Vitals per route. Lazy-imported
+// hook to avoid pulling PerformanceObserver wiring into the initial bundle.
+const WebVitalsBeacon = () => {
+  const { useWebVitalsReporter } = require('./hooks/useWebVitalsReporter');
+  useWebVitalsReporter();
+  return null;
+};
+
 function App() {
   const [isReady, setIsReady] = useState(false);
 
@@ -269,6 +277,7 @@ function App() {
                 <Toaster />
               <Sonner />
               <ScrollToTop />
+              <WebVitalsBeacon />
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/about" element={<LazyRoute><LazyAbout /></LazyRoute>} />
