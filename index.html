@@ -259,14 +259,16 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FXJ9QBK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     
-    <!-- LCP CRITICAL: Render hero skeleton IMMEDIATELY before React hydrates -->
+    <!-- LCP CRITICAL: Hero skeleton — CSS-only auto-dismiss prevents black-screen failure mode.
+         Even if JS never executes, the skeleton fades out at 4.5s via CSS animation. -->
     <style id="lcp-critical-css">
-      #lcp-skeleton{position:fixed;inset:0;z-index:9998;background:linear-gradient(135deg,#020617,#0f172a,#020617);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:1;transition:opacity .3s ease-out}
+      #lcp-skeleton{position:fixed;inset:0;z-index:9998;background:linear-gradient(135deg,#020617,#0f172a,#020617);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:1;transition:opacity .3s ease-out;animation:lcp-skeleton-autohide 0s linear 4.5s forwards}
       #lcp-skeleton.fade-out{opacity:0;pointer-events:none}
       #lcp-skeleton img{width:96px;height:96px;object-fit:contain;animation:lcp-pulse 1.5s ease-in-out infinite}
       #lcp-skeleton h1{margin-top:16px;font-size:28px;font-weight:700;background:linear-gradient(90deg,#f97316,#fb923c,#f87171);-webkit-background-clip:text;background-clip:text;color:transparent}
       #lcp-skeleton p{margin-top:8px;font-size:14px;color:rgba(255,255,255,0.6)}
       @keyframes lcp-pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.05);opacity:0.9}}
+      @keyframes lcp-skeleton-autohide{to{opacity:0;visibility:hidden;pointer-events:none}}
       @media(min-width:768px){#lcp-skeleton img{width:128px;height:128px}#lcp-skeleton h1{font-size:40px}}
     </style>
     
