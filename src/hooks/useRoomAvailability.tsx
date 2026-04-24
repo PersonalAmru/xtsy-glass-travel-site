@@ -49,8 +49,37 @@ export const useRoomAvailability = (
     }
 
     try {
-      setLoading(true);
       setError(null);
+
+      // OTA FALLBACK: load cached availability first so the UI is never blank
+      // while the live edge function is in-flight (cold start or slow OTA).
+      // This prevents perceived slowness without blocking first paint.
+      try {
+        const today = new Date().toISOString().split('T')[0];
+        const { data: cached } = await supabase
+          .from('ota_availability_cache')
+          .select('*')
+          .eq('room_type_name', roomName)
+          .gte('cache_date', today)
+          .order('cache_date', { ascending: true })
+          .limit(120);
+        if (cached && cached.length) {
+          const map: Record<string, AvailabilityData> = {};
+          cached.forEach((row: any) => {
+            map[row.cache_date] = {
+              available: row.available,
+              total: row.total,
+              isBlocked: row.is_blocked,
+              isSoldOut: row.is_sold_out,
+              bookedCount: Math.max(0, row.total - row.available),
+            };
+          });
+          setAvailability(map);
+          setLoading(false); // Render cached data immediately
+        }
+      } catch {
+        // Cache lookup failure should never block live fetch
+      }
 
       // Get availability for next 3 months
       const startDate = new Date();
@@ -79,8 +108,8 @@ export const useRoomAvailability = (
       }
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Failed to load availability';
-      setError(errorMessage);
-      setAvailability({});
+      // Only surface error if we have nothing cached to show
+      setError((prev) => (Object.keys(availability).length ? null : errorMessage));
     } finally {
       setLoading(false);
     }
