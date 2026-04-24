@@ -2151,6 +2151,42 @@ export type Database = {
         }
         Relationships: []
       }
+      ota_availability_cache: {
+        Row: {
+          available: number
+          cache_date: string
+          cached_at: string
+          id: string
+          is_blocked: boolean | null
+          is_sold_out: boolean | null
+          room_type_id: string | null
+          room_type_name: string
+          total: number
+        }
+        Insert: {
+          available?: number
+          cache_date: string
+          cached_at?: string
+          id?: string
+          is_blocked?: boolean | null
+          is_sold_out?: boolean | null
+          room_type_id?: string | null
+          room_type_name: string
+          total?: number
+        }
+        Update: {
+          available?: number
+          cache_date?: string
+          cached_at?: string
+          id?: string
+          is_blocked?: boolean | null
+          is_sold_out?: boolean | null
+          room_type_id?: string | null
+          room_type_name?: string
+          total?: number
+        }
+        Relationships: []
+      }
       ota_connections: {
         Row: {
           api_key: string | null
@@ -3004,6 +3040,66 @@ export type Database = {
           },
         ]
       }
+      route_performance_metrics: {
+        Row: {
+          cls_score: number | null
+          connection_type: string | null
+          created_at: string
+          deploy_version: string | null
+          device_type: string | null
+          fcp_ms: number | null
+          gtm_loaded: boolean | null
+          id: string
+          inp_ms: number | null
+          lcp_ms: number | null
+          metric_date: string
+          route: string
+          seo_jsonld_size: number | null
+          skeleton_dismissed: boolean | null
+          ttfb_ms: number | null
+          user_agent: string | null
+          visitor_id: string | null
+        }
+        Insert: {
+          cls_score?: number | null
+          connection_type?: string | null
+          created_at?: string
+          deploy_version?: string | null
+          device_type?: string | null
+          fcp_ms?: number | null
+          gtm_loaded?: boolean | null
+          id?: string
+          inp_ms?: number | null
+          lcp_ms?: number | null
+          metric_date?: string
+          route: string
+          seo_jsonld_size?: number | null
+          skeleton_dismissed?: boolean | null
+          ttfb_ms?: number | null
+          user_agent?: string | null
+          visitor_id?: string | null
+        }
+        Update: {
+          cls_score?: number | null
+          connection_type?: string | null
+          created_at?: string
+          deploy_version?: string | null
+          device_type?: string | null
+          fcp_ms?: number | null
+          gtm_loaded?: boolean | null
+          id?: string
+          inp_ms?: number | null
+          lcp_ms?: number | null
+          metric_date?: string
+          route?: string
+          seo_jsonld_size?: number | null
+          skeleton_dismissed?: boolean | null
+          ttfb_ms?: number | null
+          user_agent?: string | null
+          visitor_id?: string | null
+        }
+        Relationships: []
+      }
       search_queries: {
         Row: {
           clicked_result_title: string | null
@@ -3243,6 +3339,48 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      sitemap_health_checks: {
+        Row: {
+          checked_at: string
+          error_message: string | null
+          http_status: number | null
+          id: string
+          is_crawlable: boolean | null
+          is_valid_xml: boolean | null
+          newest_lastmod: string | null
+          oldest_lastmod: string | null
+          response_time_ms: number | null
+          sitemap_url: string
+          url_count: number | null
+        }
+        Insert: {
+          checked_at?: string
+          error_message?: string | null
+          http_status?: number | null
+          id?: string
+          is_crawlable?: boolean | null
+          is_valid_xml?: boolean | null
+          newest_lastmod?: string | null
+          oldest_lastmod?: string | null
+          response_time_ms?: number | null
+          sitemap_url: string
+          url_count?: number | null
+        }
+        Update: {
+          checked_at?: string
+          error_message?: string | null
+          http_status?: number | null
+          id?: string
+          is_crawlable?: boolean | null
+          is_valid_xml?: boolean | null
+          newest_lastmod?: string | null
+          oldest_lastmod?: string | null
+          response_time_ms?: number | null
+          sitemap_url?: string
+          url_count?: number | null
+        }
+        Relationships: []
       }
       tour_enquiries: {
         Row: {
