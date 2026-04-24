@@ -140,16 +140,18 @@ const Index = memo(() => {
         
         {/* Wave 2E — Demoted XTSYPrime + HomeTourPackages from eager.
             Only the first 2 below-fold sections hydrate eagerly to keep TBT low. */}
-        <LazyWrapper eager fallback={<SectionFallback height="h-[420px]" />}>
+        {/* Wave 3 — All below-fold sections deferred via IntersectionObserver.
+            Eager hydration was starving the hero LCP paint. */}
+        <LazyWrapper fallback={<SectionFallback height="h-[420px]" />}>
           <TrendingDestinations />
         </LazyWrapper>
         
-        <LazyWrapper eager fallback={<SectionFallback height="h-80" />}>
+        <LazyWrapper fallback={<SectionFallback height="h-80" />}>
           <AvailableStaysNow />
         </LazyWrapper>
         
         {/* Dawki Adventure Campsite — featured prominently right below Shillong stays */}
-        <LazyWrapper eager fallback={<SectionFallback height="h-80" />}>
+        <LazyWrapper fallback={<SectionFallback height="h-80" />}>
           <DawkiCampsiteCard />
         </LazyWrapper>
         

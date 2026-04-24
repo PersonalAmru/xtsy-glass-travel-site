@@ -20,20 +20,17 @@
       /* Critical above-the-fold styles - inline for instant render */
       *{margin:0;padding:0;box-sizing:border-box}
       html{font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeSpeed}
-      body{background:#020617;color:#fff;min-height:100vh;overflow-x:hidden;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
+      /* SAFETY: cream/neutral background prevents black-screen failure mode.
+         Hero paints its own dark gradient on top, so visual is unchanged. */
+      body{background:#faf7f2;color:#0f172a;min-height:100vh;overflow-x:hidden;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
       body::-webkit-scrollbar{display:none}
-      #root{min-height:100vh;contain:layout style}
+      #root{min-height:100vh;contain:layout style;background:#020617}
       .dark{color-scheme:dark}
-      /* Reduce layout shift - reserve space for images */
       img,video{max-width:100%;height:auto;display:block}
-      /* Performance for animations - disable during initial load */
       @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
       body.initial-load *{transition:none!important;animation-duration:.001ms!important;animation-delay:0ms!important}
-      /* iOS optimizations */
       @supports (-webkit-touch-callout:none){input,select,textarea{font-size:16px!important}}
-      /* Hero background gradient - critical for LCP */
       .hero-bg{background:linear-gradient(135deg,#020617 0%,#0f172a 50%,#020617 100%)}
-      /* Primary color variables for hero */
       :root{--primary:25 95% 53%;--primary-foreground:0 0% 100%}
     </style>
     
@@ -50,13 +47,10 @@
     <link rel="icon" type="image/png" href="https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/uploads/1765259352370-with_padding.png">
     <link rel="apple-touch-icon" href="/xtsy-favicon.png">
     
-    <!-- DNS Prefetch for non-critical domains (use dns-prefetch instead of preconnect to avoid >4 warning) -->
+    <!-- DNS Prefetch — kept minimal to avoid Lighthouse warnings -->
     <link rel="dns-prefetch" href="//www.googletagmanager.com">
-    <link rel="dns-prefetch" href="//api.exchangerate-api.com">
     <link rel="dns-prefetch" href="//checkout.razorpay.com">
     <link rel="dns-prefetch" href="//wa.me">
-    <link rel="dns-prefetch" href="//www.google-analytics.com">
-    <link rel="dns-prefetch" href="//region1.google-analytics.com">
     
     <!-- GTM SINGLE AUTHORITY - GTM-5FXJ9QBK is the sole analytics routing system -->
     <!-- NO direct gtag.js, GA4, Google Ads, or GT-* tags allowed -->
@@ -144,9 +138,9 @@
       })();
     </script>
     
-    <!-- Google Tag Manager - Deferred load (LCP optimization) -->
-    <!-- Loads via requestIdleCallback OR after 2.5s OR on first interaction — whichever comes first -->
-    <!-- Admin/Lovable traffic → GTM-MS23NHMF | Real users → GTM-5FXJ9QBK -->
+    <!-- Google Tag Manager - Heavily deferred to protect LCP/INP -->
+    <!-- Loads ONLY after window.load + 3s idle. First-interaction triggers removed —
+         they were starving LCP on mobile (GTM-MS23NHMF in admin, GTM-5FXJ9QBK in prod). -->
     <script>(function(w,d,s,l){
       var loaded = false;
       function loadGTM(){
@@ -158,20 +152,19 @@
         dl=l!='dataLayer'?'&l='+l:'';j.async=true;
         j.src='https://www.googletagmanager.com/gtm.js?id='+containerId+dl;
         f.parentNode.insertBefore(j,f);
-        console.log('%c[GTM] Container: ' + containerId + (w.__isLovableAdmin ? ' (ADMIN)' : ' (PRODUCTION)'),
-          'background:' + (w.__isLovableAdmin ? '#FF9800' : '#4CAF50') + ';color:white;font-weight:bold;padding:2px 8px;border-radius:4px;');
       }
-      // Strategy 1: requestIdleCallback (best — waits for browser idle)
-      if ('requestIdleCallback' in w) {
-        w.requestIdleCallback(loadGTM, { timeout: 2500 });
+      function schedule(){
+        if ('requestIdleCallback' in w) {
+          w.requestIdleCallback(loadGTM, { timeout: 5000 });
+        } else {
+          setTimeout(loadGTM, 3000);
+        }
+      }
+      if (document.readyState === 'complete') {
+        setTimeout(schedule, 1500);
       } else {
-        // Strategy 2: Fallback timeout for Safari
-        setTimeout(loadGTM, 2500);
+        w.addEventListener('load', function(){ setTimeout(schedule, 1500); }, { once: true });
       }
-      // Strategy 3: Load immediately on first user interaction (don't lose events)
-      ['scroll','mousedown','touchstart','keydown'].forEach(function(ev){
-        w.addEventListener(ev, loadGTM, { once: true, passive: true });
-      });
     })(window,document,'script','dataLayer');</script>
     <!-- End Google Tag Manager -->
     
@@ -223,17 +216,9 @@
     <link rel="alternate" hreflang="en-IN" href="https://xtsy.one/" />
     <link rel="alternate" hreflang="x-default" href="https://xtsy.one/" />
     
-    <!-- OG locale alternatives for international social sharing -->
+    <!-- OG locale alternatives (trimmed — only the ones we serve content for) -->
     <meta property="og:locale:alternate" content="en_US" />
     <meta property="og:locale:alternate" content="en_GB" />
-    <meta property="og:locale:alternate" content="fr_FR" />
-    <meta property="og:locale:alternate" content="de_DE" />
-    <meta property="og:locale:alternate" content="es_ES" />
-    <meta property="og:locale:alternate" content="ja_JP" />
-    <meta property="og:locale:alternate" content="ko_KR" />
-    <meta property="og:locale:alternate" content="zh_CN" />
-    <meta property="og:locale:alternate" content="pt_BR" />
-    <meta property="og:locale:alternate" content="ru_RU" />
     
     <!-- Author and Organization -->
     <meta name="author" content="XTSY Travel" />
@@ -245,23 +230,10 @@
     </script>
 
     <!-- Structured Data - Hostel (Primary Entity) -->
+    <!-- Slim Hostel JSON-LD in head — full review/offer catalog is mounted client-side via React Helmet
+         to keep <head> small (was ~5KB, now ~700 bytes). Critical for LCP. -->
     <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"Hostel","name":"XTSY Travellers Hostel","description":"India's biggest hostel in Shillong, Meghalaya. Budget dorms from ₹329, private rooms, and India's first 270° panoramic glass suite. A global travel destination for international backpackers, solo travellers, and adventure seekers.","url":"https://xtsy.one","logo":"https://xtsy.one/lovable-uploads/160f683c-a41c-41fd-8bdb-700d74a7e027.png","image":["https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/20250722_0921_Meghalaya%20Getaway%20View_remix_01k0r405w4f66svm6nn0qdtxye%20(1).png","https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Private%20Rooms/private-room-interior.jpg","https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Dormitory/dormitory-interior.jpg"],"address":{"@type":"PostalAddress","streetAddress":"Mawdiangdiang Road, New Shillong Township","addressLocality":"Shillong","addressRegion":"Meghalaya","addressCountry":"IN","postalCode":"793018"},"geo":{"@type":"GeoCoordinates","latitude":25.5788,"longitude":91.8933},"telephone":"+91-8837317070","email":"xtsytravellershostel@gmail.com","priceRange":"₹329 - ₹4,999","currenciesAccepted":"INR,USD,EUR,GBP","paymentAccepted":"Cash, Credit Card, UPI, Net Banking","openingHours":"Mo-Su 00:00-23:59","checkinTime":"13:00","checkoutTime":"11:00","numberOfRooms":20,"petsAllowed":true,"starRating":{"@type":"Rating","ratingValue":"4.8","bestRating":"5"},"amenityFeature":[{"@type":"LocationFeatureSpecification","name":"Free WiFi","value":true},{"@type":"LocationFeatureSpecification","name":"Air Conditioning","value":true},{"@type":"LocationFeatureSpecification","name":"Complimentary Breakfast","value":true},{"@type":"LocationFeatureSpecification","name":"Games Room","value":true},{"@type":"LocationFeatureSpecification","name":"Mountain Views","value":true},{"@type":"LocationFeatureSpecification","name":"24/7 Security","value":true},{"@type":"LocationFeatureSpecification","name":"Personal Lockers","value":true},{"@type":"LocationFeatureSpecification","name":"Female-Only Dorms","value":true},{"@type":"LocationFeatureSpecification","name":"Co-Working Space","value":true},{"@type":"LocationFeatureSpecification","name":"Pet Friendly","value":true}],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","bestRating":"5","worstRating":"1","ratingCount":"320","reviewCount":"189"},"review":[{"@type":"Review","author":{"@type":"Person","name":"Ananya Sharma"},"datePublished":"2025-12-15","reviewBody":"Best hostel experience in Northeast India! The 270° glass suite was absolutely breathtaking. Woke up to panoramic mountain views. Staff was incredibly helpful with tour arrangements to Dawki and Cherrapunji.","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"}},{"@type":"Review","author":{"@type":"Person","name":"Rahul Verma"},"datePublished":"2026-01-22","reviewBody":"Stayed in the mixed dorm for 4 nights. Clean beds, great Wi-Fi, and the common area is perfect for meeting fellow travelers. The breakfast included with the stay is a bonus. Best value hostel in Shillong.","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"}},{"@type":"Review","author":{"@type":"Person","name":"Priya Nair"},"datePublished":"2026-02-10","reviewBody":"As a solo female traveler, I felt completely safe here. The female-only dorm has excellent security with CCTV and personal lockers. Location is great — close to Police Bazaar and easy to arrange day trips.","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"}},{"@type":"Review","author":{"@type":"Person","name":"Mark Thompson"},"datePublished":"2026-03-05","reviewBody":"I've stayed in hostels across Southeast Asia and India. XTSY is genuinely one of the best. The mountain views, the vibe, and the tour packages they offer to living root bridges and Dawki made my Meghalaya trip unforgettable.","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"}},{"@type":"Review","author":{"@type":"Person","name":"Sneha Gupta"},"datePublished":"2026-03-18","reviewBody":"Booked the private room for our anniversary. TAB Bistro on-site has amazing food. The staff arranged a surprise cake and decorated the room. Will definitely come back for the glass suite next time!","reviewRating":{"@type":"Rating","ratingValue":"4","bestRating":"5"}}],"potentialAction":{"@type":"ReserveAction","target":{"@type":"EntryPoint","urlTemplate":"https://xtsy.one/book","actionPlatform":["http://schema.org/DesktopWebPlatform","http://schema.org/MobileWebPlatform"]},"result":{"@type":"LodgingReservation","name":"Book a Stay at XTSY"}},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Accommodation Types","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"HotelRoom","name":"Panorama by XTSY – 270° Glass Ensuite","description":"India's first 270° panoramic glass suite with mountain views, king-size bed, and premium amenities","image":"https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/20250722_0921_Meghalaya%20Getaway%20View_remix_01k0r405w4f66svm6nn0qdtxye%20(1).png","occupancy":{"@type":"QuantitativeValue","value":2},"bed":{"@type":"BedDetails","typeOfBed":"King","numberOfBeds":1}},"price":"4999","priceCurrency":"INR","availability":"https://schema.org/InStock","url":"https://xtsy.one/xtsy-270","validFrom":"2024-01-01","priceValidUntil":"2026-12-31"},{"@type":"Offer","itemOffered":{"@type":"HotelRoom","name":"Dormitory Beds","description":"Budget-friendly dorm beds with personal lockers, shared amenities, and 24/7 security","image":"https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Dormitory/dormitory-interior.jpg","occupancy":{"@type":"QuantitativeValue","value":1},"bed":{"@type":"BedDetails","typeOfBed":"Single","numberOfBeds":1}},"price":"329","priceCurrency":"INR","availability":"https://schema.org/InStock","url":"https://xtsy.one/book","validFrom":"2024-01-01","priceValidUntil":"2026-12-31"},{"@type":"Offer","itemOffered":{"@type":"HotelRoom","name":"Private Rooms","description":"Private rooms with ensuite bathrooms, mountain views, and modern amenities","image":"https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Private%20Rooms/private-room-interior.jpg","occupancy":{"@type":"QuantitativeValue","value":2},"bed":{"@type":"BedDetails","typeOfBed":"Queen","numberOfBeds":1}},"price":"2399","priceCurrency":"INR","availability":"https://schema.org/InStock","url":"https://xtsy.one/book","validFrom":"2024-01-01","priceValidUntil":"2026-12-31"}]},"foundingDate":"2024","areaServed":[{"@type":"Place","name":"Shillong, Meghalaya"},{"@type":"Place","name":"Northeast India"},{"@type":"Country","name":"India"},{"@type":"Continent","name":"Asia"},{"@type":"Place","name":"World"}],"sameAs":["https://www.instagram.com/xtsytravellershostel","https://www.facebook.com/xtsytravellershostel","https://g.co/kgs/XTSY"],"mainEntityOfPage":"https://xtsy.one","knowsLanguage":["en","hi","bn"]}
-    </script>
-
-    <!-- Structured Data - TravelAgency -->
-    <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"TravelAgency","name":"XTSY Travel Services","description":"Curated Meghalaya and Northeast India tour packages — living root bridges, Dawki, Cherrapunji, and adventure tours from ₹7,999","url":"https://xtsy.one/tours","parentOrganization":{"@type":"Hostel","name":"XTSY Travellers Hostel","url":"https://xtsy.one"},"areaServed":[{"@type":"Place","name":"Meghalaya, India"},{"@type":"Place","name":"Assam, India"},{"@type":"Place","name":"Arunachal Pradesh, India"},{"@type":"Place","name":"Nagaland, India"},{"@type":"Place","name":"Sikkim, India"}],"hasOfferCatalog":{"@type":"OfferCatalog","name":"Northeast India Tour Packages","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"TouristTrip","name":"5-Day Meghalaya Explorer","description":"Shillong, Cherrapunji waterfalls, Dawki boating, Mawlynnong village — all meals and transfers included","touristType":["Adventure","Nature","Culture"]},"price":"13999","priceCurrency":"INR"},{"@type":"Offer","itemOffered":{"@type":"TouristTrip","name":"Living Root Bridges Trek","description":"Trek to the double-decker living root bridges of Nongriat with experienced local guides","touristType":["Adventure","Trekking"]},"price":"7999","priceCurrency":"INR"}]},"telephone":"+91-8837317070","address":{"@type":"PostalAddress","streetAddress":"Mawdiangdiang Road, New Shillong Township","addressLocality":"Shillong","addressRegion":"Meghalaya","addressCountry":"IN","postalCode":"793018"}}
-    </script>
-
-    <!-- Structured Data - Speakable (AI Citation: Google SGE, ChatGPT, Perplexity) -->
-    <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"WebPage","name":"XTSY — Best Hostel in Shillong, Meghalaya","speakable":{"@type":"SpeakableSpecification","cssSelector":["h1",".hero-description","[data-speakable]"]},"mainEntity":{"@type":"Hostel","name":"XTSY Travellers Hostel","url":"https://xtsy.one"}}
-    </script>
-
-    <!-- Structured Data - ItemList (Carousel Rich Results for Tour Packages) -->
-    <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"ItemList","name":"Top Meghalaya Tour Packages by XTSY","itemListOrder":"https://schema.org/ItemListOrderDescending","numberOfItems":5,"itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"TouristTrip","name":"5-Day Meghalaya Explorer","description":"Complete Meghalaya tour — Shillong, Cherrapunji, Dawki, living root bridges. All meals & transfers included.","url":"https://xtsy.one/tours","touristType":["Adventure","Nature"],"provider":{"@type":"TravelAgency","name":"XTSY Travel","telephone":"+91-8837317070"},"offers":{"@type":"Offer","price":"13999","priceCurrency":"INR","availability":"https://schema.org/InStock"}}},{"@type":"ListItem","position":2,"item":{"@type":"TouristTrip","name":"Living Root Bridges Trek","description":"Trek to the iconic double-decker living root bridges of Nongriat with expert local guides.","url":"https://xtsy.one/tours","touristType":["Adventure","Trekking"],"offers":{"@type":"Offer","price":"7999","priceCurrency":"INR","availability":"https://schema.org/InStock"}}},{"@type":"ListItem","position":3,"item":{"@type":"TouristTrip","name":"Dawki & Shnongpdeng Adventure","description":"Crystal-clear Umngot River boating, camping, kayaking, and cliff jumping at Shnongpdeng.","url":"https://xtsy.one/tours","touristType":["Adventure","Water Sports"],"offers":{"@type":"Offer","price":"9999","priceCurrency":"INR","availability":"https://schema.org/InStock"}}},{"@type":"ListItem","position":4,"item":{"@type":"TouristTrip","name":"Meghalaya Couple Retreat","description":"Romantic getaway with 270° glass suite, scenic drives, private dining, and waterfall visits.","url":"https://xtsy.one/meghalaya-couple-tour-package","touristType":["Romance","Luxury"],"offers":{"@type":"Offer","price":"19999","priceCurrency":"INR","availability":"https://schema.org/InStock"}}},{"@type":"ListItem","position":5,"item":{"@type":"TouristTrip","name":"3-Day Shillong Weekend Escape","description":"Quick Shillong getaway — Laitlum Canyons, Elephant Falls, Police Bazaar, and local cuisine.","url":"https://xtsy.one/shillong-tour-package","touristType":["Weekend","Culture"],"offers":{"@type":"Offer","price":"5999","priceCurrency":"INR","availability":"https://schema.org/InStock"}}}]}
+    {"@context":"https://schema.org","@type":"Hostel","name":"XTSY Travellers Hostel","url":"https://xtsy.one","logo":"https://xtsy.one/lovable-uploads/160f683c-a41c-41fd-8bdb-700d74a7e027.png","telephone":"+91-8837317070","priceRange":"₹329 - ₹4,999","address":{"@type":"PostalAddress","streetAddress":"Mawdiangdiang Road, New Shillong Township","addressLocality":"Shillong","addressRegion":"Meghalaya","addressCountry":"IN","postalCode":"793018"},"geo":{"@type":"GeoCoordinates","latitude":25.5788,"longitude":91.8933},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"320","reviewCount":"189","bestRating":"5"}}
     </script>
     <!-- PWA and Mobile App Integration -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -287,14 +259,16 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FXJ9QBK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     
-    <!-- LCP CRITICAL: Render hero skeleton IMMEDIATELY before React hydrates -->
+    <!-- LCP CRITICAL: Hero skeleton — CSS-only auto-dismiss prevents black-screen failure mode.
+         Even if JS never executes, the skeleton fades out at 4.5s via CSS animation. -->
     <style id="lcp-critical-css">
-      #lcp-skeleton{position:fixed;inset:0;z-index:9998;background:linear-gradient(135deg,#020617,#0f172a,#020617);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:1;transition:opacity .3s ease-out}
+      #lcp-skeleton{position:fixed;inset:0;z-index:9998;background:linear-gradient(135deg,#020617,#0f172a,#020617);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:1;transition:opacity .3s ease-out;animation:lcp-skeleton-autohide 0s linear 4.5s forwards}
       #lcp-skeleton.fade-out{opacity:0;pointer-events:none}
       #lcp-skeleton img{width:96px;height:96px;object-fit:contain;animation:lcp-pulse 1.5s ease-in-out infinite}
       #lcp-skeleton h1{margin-top:16px;font-size:28px;font-weight:700;background:linear-gradient(90deg,#f97316,#fb923c,#f87171);-webkit-background-clip:text;background-clip:text;color:transparent}
       #lcp-skeleton p{margin-top:8px;font-size:14px;color:rgba(255,255,255,0.6)}
       @keyframes lcp-pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.05);opacity:0.9}}
+      @keyframes lcp-skeleton-autohide{to{opacity:0;visibility:hidden;pointer-events:none}}
       @media(min-width:768px){#lcp-skeleton img{width:128px;height:128px}#lcp-skeleton h1{font-size:40px}}
     </style>
     

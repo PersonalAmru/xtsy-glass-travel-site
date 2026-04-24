@@ -107,9 +107,32 @@ const appJSX = (
   </StrictMode>
 );
 
+// LCP SKELETON DISMISSAL — guaranteed to fire even if hydration is slow.
+// 1) Immediate dismiss after React commits.
+// 2) Safety timeout (4s) — if React never commits, we still un-cover the page
+//    so the user never sees the dreaded black screen.
+const dismissLCPSkeleton = () => {
+  try {
+    const fn = (window as any).__hideLCPSkeleton;
+    if (typeof fn === 'function') fn();
+    else {
+      const s = document.getElementById('lcp-skeleton');
+      if (s) s.remove();
+    }
+  } catch {}
+};
+
+// Safety net — runs no matter what
+window.setTimeout(dismissLCPSkeleton, 4000);
+
 // If the root has pre-rendered content (from vite-plugin-prerender), hydrate instead of render
 if (root.hasChildNodes()) {
   hydrateRoot(root, appJSX);
 } else {
   createRoot(root).render(appJSX);
 }
+
+// Dismiss skeleton on the next frame after render commits
+requestAnimationFrame(() => {
+  requestAnimationFrame(dismissLCPSkeleton);
+});
