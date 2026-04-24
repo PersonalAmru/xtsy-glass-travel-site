@@ -566,7 +566,7 @@ serve(async (req) => {
 
       if (error) {
         console.error('Database error:', error);
-        throw new Error(error.message);
+        throw new Error('Booking creation failed');
       }
 
       const dbResult = result as { success: boolean; bookingId?: string; bookingUUID?: string; error?: string };
@@ -680,7 +680,7 @@ serve(async (req) => {
     console.error('Invoice generation error:', error);
     return new Response(JSON.stringify({
       success: false,
-      error: error instanceof Error ? error.message : 'Unknown error',
+      error: 'Invoice generation failed. Please try again or contact support.',
     }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
