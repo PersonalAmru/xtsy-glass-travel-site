@@ -22,6 +22,7 @@ import ConsentModal from "./components/consent/ConsentModal";
 import { TrafficAnalyticsProvider } from "./hooks/useTrafficAnalytics";
 import { ConversionSignalsProvider } from "./providers/ConversionSignalsProvider";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
+import { useWebVitalsReporter } from "./hooks/useWebVitalsReporter";
 // StickyBookingBar removed — was creating footer "Check Availability Now" CTA per stakeholder feedback
 
 // Wave 1J/K — Hardened lazy loading: 3 retries with backoff, then hard reload
@@ -208,10 +209,8 @@ const ScrollToTop = () => {
   return null;
 };
 
-// RUM (Real User Monitoring) — captures Web Vitals per route. Lazy-imported
-// hook to avoid pulling PerformanceObserver wiring into the initial bundle.
+// RUM (Real User Monitoring) — captures Web Vitals per route.
 const WebVitalsBeacon = () => {
-  const { useWebVitalsReporter } = require('./hooks/useWebVitalsReporter');
   useWebVitalsReporter();
   return null;
 };
