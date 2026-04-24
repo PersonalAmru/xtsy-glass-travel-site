@@ -98,7 +98,7 @@ serve(async (req) => {
     if (error) {
       console.error('Failed to insert mobile UI log:', error);
       return new Response(
-        JSON.stringify({ error: 'Failed to log error', details: error.message }),
+        JSON.stringify({ error: 'Failed to log error' }),
         { 
           status: 500, 
           headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
@@ -123,7 +123,7 @@ serve(async (req) => {
   } catch (error) {
     console.error('Error in mobile-ui-debug function:', error);
     return new Response(
-      JSON.stringify({ error: 'Internal server error', details: String(error) }),
+      JSON.stringify({ error: 'Internal server error' }),
       { 
         status: 500, 
         headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
