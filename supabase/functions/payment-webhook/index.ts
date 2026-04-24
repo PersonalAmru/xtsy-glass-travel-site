@@ -20,14 +20,17 @@ serve(async (req) => {
       return new Response(JSON.stringify({ error: 'Invalid request format' }), { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
     }
 
-    // Verify Razorpay webhook signature when provided
+    // Verify Razorpay webhook signature - MANDATORY for any event-bearing request
     const razorpaySignature = req.headers.get('x-razorpay-signature');
     const webhookSecret = Deno.env.get('RAZORPAY_WEBHOOK_SECRET') ?? '';
-    if (body?.event && razorpaySignature) {
+    if (body?.event) {
       if (!webhookSecret) {
-        // Log error server-side only - don't expose config state to client
         console.error('[Payment Webhook] Critical: Webhook secret not configured');
         return new Response(JSON.stringify({ error: 'Webhook processing failed. Please contact support.' }), { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+      }
+      if (!razorpaySignature) {
+        console.warn('[Payment Webhook] Rejected: missing signature header');
+        return new Response(JSON.stringify({ error: 'Authentication failed' }), { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
       }
       const encoder = new TextEncoder();
       const key = await crypto.subtle.importKey(
@@ -40,6 +43,33 @@ serve(async (req) => {
       const signatureBytes = await crypto.subtle.sign('HMAC', key, encoder.encode(rawBody));
       const computed = Array.from(new Uint8Array(signatureBytes)).map(b => b.toString(16).padStart(2, '0')).join('');
       if (computed !== razorpaySignature) {
+        console.warn('[Payment Webhook] Rejected: signature mismatch');
+        return new Response(JSON.stringify({ error: 'Authentication failed' }), { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+      }
+    }
+
+    // Verify SMS/email payment webhooks via shared secret HMAC
+    if (body?.type === 'sms_payment' || body?.type === 'email_payment') {
+      const altSecret = Deno.env.get('PAYMENT_WEBHOOK_SECRET') ?? '';
+      const altSignature = req.headers.get('x-webhook-signature');
+      if (!altSecret) {
+        console.error('[Payment Webhook] Critical: PAYMENT_WEBHOOK_SECRET not configured');
+        return new Response(JSON.stringify({ error: 'Webhook processing failed. Please contact support.' }), { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+      }
+      if (!altSignature) {
+        return new Response(JSON.stringify({ error: 'Authentication failed' }), { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+      }
+      const encoder = new TextEncoder();
+      const key = await crypto.subtle.importKey(
+        'raw',
+        encoder.encode(altSecret),
+        { name: 'HMAC', hash: 'SHA-256' },
+        false,
+        ['sign']
+      );
+      const signatureBytes = await crypto.subtle.sign('HMAC', key, encoder.encode(rawBody));
+      const computed = Array.from(new Uint8Array(signatureBytes)).map(b => b.toString(16).padStart(2, '0')).join('');
+      if (computed !== altSignature) {
         return new Response(JSON.stringify({ error: 'Authentication failed' }), { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
       }
     }
