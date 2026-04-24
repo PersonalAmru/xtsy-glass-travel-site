@@ -145,7 +145,7 @@ export const WebVitalsDashboard = () => {
           <CardContent><div className="text-2xl font-bold">{rows.length}</div></CardContent>
         </Card>
         <Card>
-          <CardHeader className="pb-2"><CardTitle className="text-sm flex items-center gap-2"><AlertTriangle className="h-4 w-4 text-amber-500" /> Degrading</CardTitle></CardHeader>
+          <CardHeader className="pb-2"><CardTitle className="text-sm flex items-center gap-2"><AlertTriangle className="h-4 w-4 text-warning" /> Degrading</CardTitle></CardHeader>
           <CardContent><div className="text-2xl font-bold">{degrading.length}</div><p className="text-xs text-muted-foreground">LCP &gt; 2.5s or INP &gt; 200ms</p></CardContent>
         </Card>
         <Card>
@@ -179,10 +179,10 @@ export const WebVitalsDashboard = () => {
             <p className="text-sm text-muted-foreground">No checks yet. Click "Run check now".</p>
           ) : (
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-              <div><div className="text-muted-foreground">HTTP</div><div className="font-bold">{sitemap.http_status === 200 ? <span className="text-green-600">{sitemap.http_status}</span> : <span className="text-destructive">{sitemap.http_status ?? 'ERR'}</span>}</div></div>
+              <div><div className="text-muted-foreground">HTTP</div><div className="font-bold">{sitemap.http_status === 200 ? <span className="text-success">{sitemap.http_status}</span> : <span className="text-destructive">{sitemap.http_status ?? 'ERR'}</span>}</div></div>
               <div><div className="text-muted-foreground">URLs</div><div className="font-bold">{sitemap.url_count}</div></div>
               <div><div className="text-muted-foreground">Newest lastmod</div><div className="font-bold">{sitemap.newest_lastmod || '—'}</div></div>
-              <div><div className="text-muted-foreground">Crawlable</div><div className="font-bold">{sitemap.is_crawlable ? <span className="text-green-600">Yes</span> : <span className="text-destructive">No</span>}</div></div>
+              <div><div className="text-muted-foreground">Crawlable</div><div className="font-bold">{sitemap.is_crawlable ? <span className="text-success">Yes</span> : <span className="text-destructive">No</span>}</div></div>
               <div className="col-span-full text-xs text-muted-foreground">Checked: {new Date(sitemap.checked_at).toLocaleString()} · {sitemap.response_time_ms}ms{sitemap.error_message ? ` · ${sitemap.error_message}` : ''}</div>
             </div>
           )}

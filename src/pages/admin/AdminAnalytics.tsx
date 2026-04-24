@@ -14,8 +14,9 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { cn } from '@/lib/utils';
+import { WebVitalsDashboard } from '@/components/admin/analytics/WebVitalsDashboard';
 import {
-  RefreshCw, Monitor, Smartphone, Tablet, BarChart3, Zap,
+  RefreshCw, Monitor, Smartphone, Tablet, BarChart3, Zap, Activity,
 } from 'lucide-react';
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
@@ -72,7 +73,7 @@ const ConversionFunnel = ({ data }: { data: any }) => {
 
 export default function AdminAnalytics() {
   const [daysBack, setDaysBack] = useState(30);
-  const [activeView, setActiveView] = useState<'traffic' | 'gtm'>('traffic');
+  const [activeView, setActiveView] = useState<'traffic' | 'gtm' | 'vitals'>('traffic');
   const { loading, error, geoHeatmap, funnel, traffic, behavior, trends, refresh } = useAdminAnalytics(daysBack);
 
   return (
@@ -85,11 +86,15 @@ export default function AdminAnalytics() {
             <p className="text-sm text-muted-foreground">Traffic, conversions & GTM triggers</p>
           </div>
           <div className="flex items-center gap-3">
-            <Tabs value={activeView} onValueChange={(v) => setActiveView(v as 'traffic' | 'gtm')}>
+            <Tabs value={activeView} onValueChange={(v) => setActiveView(v as any)}>
               <TabsList>
                 <TabsTrigger value="traffic" className="flex items-center gap-2">
                   <BarChart3 className="h-4 w-4" />
                   Traffic
+                </TabsTrigger>
+                <TabsTrigger value="vitals" className="flex items-center gap-2">
+                  <Activity className="h-4 w-4" />
+                  Web Vitals
                 </TabsTrigger>
                 <TabsTrigger value="gtm" className="flex items-center gap-2">
                   <Zap className="h-4 w-4" />
@@ -125,6 +130,9 @@ export default function AdminAnalytics() {
 
         {/* GTM Event Monitor View */}
         {activeView === 'gtm' && <GTMEventMonitor />}
+
+        {/* Web Vitals (RUM) View */}
+        {activeView === 'vitals' && <WebVitalsDashboard />}
 
         {/* Traffic Analytics View */}
         {activeView === 'traffic' && (
