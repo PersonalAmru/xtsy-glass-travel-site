@@ -15,6 +15,7 @@
  * filter automatically picks it up across the SPA, prerender, and sitemap.
  */
 import type { SEOPageData, SEOPageCategory } from './seoPages';
+import { RECOVERY_FILTERED_OUT, RECOVERY_LIVE_PAGES } from './seoAffectedSlugs';
 
 // Categories that drive bookings or have unique editorial value.
 export const HIGH_QUALITY_CATEGORIES: ReadonlySet<SEOPageCategory> = new Set([
@@ -43,7 +44,8 @@ export const PER_CATEGORY_CAP: Record<string, number> = {
   itineraries: 30,
 };
 
-// Slugs we ALWAYS keep regardless of category caps (pillar + brand pages).
+// Slugs we ALWAYS keep regardless of category caps (pillar + brand pages
+// + GSC-flagged "Discovered – currently not indexed" recovery list).
 export const ALWAYS_KEEP_SLUGS: ReadonlySet<string> = new Set([
   'best-hostel-in-shillong',
   'xtsy-travellers-hostel',
@@ -51,6 +53,9 @@ export const ALWAYS_KEEP_SLUGS: ReadonlySet<string> = new Set([
   'xtsy-270-glasshouse',
   'hostel-shillong',
   'things-to-do-in-meghalaya',
+  // GSC recovery — force inclusion so findSEOPage stops returning undefined.
+  ...RECOVERY_FILTERED_OUT,
+  ...RECOVERY_LIVE_PAGES,
 ]);
 
 /**
