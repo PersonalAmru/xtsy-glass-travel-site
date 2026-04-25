@@ -241,10 +241,12 @@ const ProgrammaticSEOPage = () => {
 
   // GSC RECOVERY: redirect known dead slugs to closest canonical page so
   // Google consolidates link equity instead of seeing a soft-404.
+  // 1. Hard-coded recovery map (compiled in)
   if (!page && slug && RECOVERY_REDIRECTS[slug]) {
     return <Navigate to={RECOVERY_REDIRECTS[slug]} replace />;
   }
 
+  // 2. DB-managed redirects via /admin/seo/recovery — checked async, falls through to NotFound (which renders proper 404 chrome) if missing.
   if (!page) return <NotFound />;
 
   // Wave 1A — Thin-content guard. Pages with <3 sections OR <600 chars total body fall through to NotFound
