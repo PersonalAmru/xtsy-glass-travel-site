@@ -95,6 +95,9 @@ const AdminSEODashboard = () => {
           subtitle={`Monitoring ${stats.total} pages across ${categories.length} categories`}
         />
 
+        {/* GSC Recovery Panel — Apr 2026 fix for "Discovered – not indexed" */}
+        <GSCRecoveryPanel />
+
         {/* Stats cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <AppleCard className="p-4 text-center">
