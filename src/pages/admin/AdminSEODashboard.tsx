@@ -96,6 +96,11 @@ const AdminSEODashboard = () => {
         />
 
         {/* GSC Recovery Panel — Apr 2026 fix for "Discovered – not indexed" */}
+        <div className="flex justify-end">
+          <a href="/admin/seo/recovery" className="text-sm text-primary hover:underline">
+            → Open Coverage Recovery & Redirect Manager
+          </a>
+        </div>
         <GSCRecoveryPanel />
 
         {/* Stats cards */}

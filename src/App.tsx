@@ -140,6 +140,7 @@ const FranchiseInstall = createLazyComponent(() => import("./pages/install/Franc
 // Admin Franchise Permissions
 const AdminFranchisePermissions = createLazyComponent(() => import("./pages/admin/AdminFranchisePermissions"));
 const AdminSEODashboard = createLazyComponent(() => import("./pages/admin/AdminSEODashboard"));
+const AdminSEORecovery = createLazyComponent(() => import("./pages/admin/AdminSEORecovery"));
 
 // Redirect /travel → /tours (fixes keyword cannibalization)
 const TravelRedirect = () => <Navigate to="/tours" replace />;
@@ -343,6 +344,7 @@ function App() {
                 {/* Admin Franchise Permissions */}
                 <Route path="/admin/franchise-permissions" element={<LazyRoute><AdminFranchisePermissions /></LazyRoute>} />
                 <Route path="/admin/seo" element={<LazyRoute><AdminSEODashboard /></LazyRoute>} />
+                <Route path="/admin/seo/recovery" element={<LazyRoute><AdminSEORecovery /></LazyRoute>} />
                 
                 {/* Meghalaya SEO Pages */}
                 <Route path="/things-to-do-in-meghalaya" element={<LazyRoute><ThingsToDoInMeghalaya /></LazyRoute>} />
