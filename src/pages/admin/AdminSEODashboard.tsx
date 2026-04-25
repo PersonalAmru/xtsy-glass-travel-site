@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Search, CheckCircle, AlertTriangle, XCircle, ExternalLink } from 'lucide-react';
 import { ALL_SEO_PAGES, type SEOPageData, type SEOPageCategory } from '@/data/seoPages';
+import GSCRecoveryPanel from '@/components/admin/seo/GSCRecoveryPanel';
 
 const CATEGORY_LABELS: Record<string, string> = {
   'hostels': 'Hostel',
