@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, Navigate } from 'react-router-dom';
 import NotFound from '@/pages/NotFound';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -9,6 +9,7 @@ import TrustSignals from '@/components/seo/TrustSignals';
 import TopicalClusterNav from '@/components/seo/TopicalClusterNav';
 import ConversionLinks from '@/components/seo/ConversionLinks';
 import { findSEOPage, getRelatedPages, getPagesByCategory, type SEOPageData } from '@/data/seoPages';
+import { RECOVERY_REDIRECTS } from '@/data/seoAffectedSlugs';
 import { getWheelLinks } from '@/data/seoLinkingWheel';
 import { getHeroImageForPage, getAIHeroURL, getSectionImage } from '@/utils/seoHeroImages';
 import { Check, ChevronDown, ChevronUp, MessageCircle, Sparkles } from 'lucide-react';
@@ -237,6 +238,12 @@ const ProgrammaticSEOPage = () => {
     img.onerror = () => setHeroSrc(curatedHero);
     img.src = aiHero;
   }, [page, aiHero, curatedHero]);
+
+  // GSC RECOVERY: redirect known dead slugs to closest canonical page so
+  // Google consolidates link equity instead of seeing a soft-404.
+  if (!page && slug && RECOVERY_REDIRECTS[slug]) {
+    return <Navigate to={RECOVERY_REDIRECTS[slug]} replace />;
+  }
 
   if (!page) return <NotFound />;
 
