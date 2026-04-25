@@ -3277,6 +3277,132 @@ export type Database = {
         }
         Relationships: []
       }
+      seo_coverage_status: {
+        Row: {
+          crawl_request_count: number
+          created_at: string
+          current_status: string
+          gsc_status: string | null
+          http_status: number | null
+          id: string
+          last_checked_at: string | null
+          last_crawl_requested_at: string | null
+          last_indexed_at: string | null
+          notes: string | null
+          resolution_type: string | null
+          target_path: string | null
+          updated_at: string
+          url_path: string
+        }
+        Insert: {
+          crawl_request_count?: number
+          created_at?: string
+          current_status?: string
+          gsc_status?: string | null
+          http_status?: number | null
+          id?: string
+          last_checked_at?: string | null
+          last_crawl_requested_at?: string | null
+          last_indexed_at?: string | null
+          notes?: string | null
+          resolution_type?: string | null
+          target_path?: string | null
+          updated_at?: string
+          url_path: string
+        }
+        Update: {
+          crawl_request_count?: number
+          created_at?: string
+          current_status?: string
+          gsc_status?: string | null
+          http_status?: number | null
+          id?: string
+          last_checked_at?: string | null
+          last_crawl_requested_at?: string | null
+          last_indexed_at?: string | null
+          notes?: string | null
+          resolution_type?: string | null
+          target_path?: string | null
+          updated_at?: string
+          url_path?: string
+        }
+        Relationships: []
+      }
+      seo_crawl_requests: {
+        Row: {
+          created_at: string
+          id: string
+          provider: string
+          requested_by: string | null
+          response_body: string | null
+          response_code: number | null
+          status: string
+          url_path: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          provider: string
+          requested_by?: string | null
+          response_body?: string | null
+          response_code?: number | null
+          status?: string
+          url_path: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          provider?: string
+          requested_by?: string | null
+          response_body?: string | null
+          response_code?: number | null
+          status?: string
+          url_path?: string
+        }
+        Relationships: []
+      }
+      seo_redirects: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          hit_count: number
+          id: string
+          is_active: boolean
+          last_hit_at: string | null
+          notes: string | null
+          source_path: string
+          status_code: number
+          target_path: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          hit_count?: number
+          id?: string
+          is_active?: boolean
+          last_hit_at?: string | null
+          notes?: string | null
+          source_path: string
+          status_code?: number
+          target_path: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          hit_count?: number
+          id?: string
+          is_active?: boolean
+          last_hit_at?: string | null
+          notes?: string | null
+          source_path?: string
+          status_code?: number
+          target_path?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       settlements: {
         Row: {
           amount: number
