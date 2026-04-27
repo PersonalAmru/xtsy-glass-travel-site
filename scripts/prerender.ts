@@ -238,15 +238,30 @@ async function prerender() {
     }
   }
 
-  // Also pre-render places-to-visit pages if they exist
-  const placesDir = path.join(distDir, 'places-to-visit');
-  if (!fs.existsSync(placesDir)) {
-    fs.mkdirSync(placesDir, { recursive: true });
-  }
+  // Write a manifest so we can verify post-build that prerendering ran
+  const manifest = {
+    generatedAt: new Date().toISOString(),
+    total: pages.length,
+    success,
+    failed,
+    slugs: pages.slice(0, 50).map(p => p.slug),
+  };
+  fs.writeFileSync(
+    path.join(distDir, 'prerender-manifest.json'),
+    JSON.stringify(manifest, null, 2),
+    'utf-8'
+  );
 
-  console.log(`\n✅ Pre-rendered ${success} pages successfully.`);
-  if (failed > 0) console.log(`⚠️  ${failed} pages failed.`);
+  console.log(`\n✅ Pre-rendered ${success}/${pages.length} pages successfully.`);
+  if (failed > 0) {
+    console.error(`❌ ${failed} pages failed.`);
+    process.exit(1);
+  }
   console.log(`📁 Output: ${distDir}/`);
+  console.log(`📋 Manifest: ${distDir}/prerender-manifest.json`);
 }
 
-prerender().catch(console.error);
+prerender().catch(err => {
+  console.error('❌ Prerender fatal:', err);
+  process.exit(1);
+});
