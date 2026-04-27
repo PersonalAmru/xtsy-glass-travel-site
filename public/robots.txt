@@ -1,7 +1,8 @@
-# XTSY Travel - robots.txt
-# Canonical domain: https://xtsy.one
-# Global travel destination — Shillong, Meghalaya, Northeast India
+# XTSY Travel — robots.txt (auto-generated 2026-04-27)
+# Canonical: https://xtsy.one
+# Total indexable URLs: 321
 
+# ── Search engines ───────────────────────────────────────────────
 User-agent: Googlebot
 Allow: /
 Allow: /places-to-visit/
@@ -9,6 +10,7 @@ Disallow: /admin
 Disallow: /admin-login
 Disallow: /franchise
 Disallow: /franchise-login
+Disallow: /api/
 
 User-agent: Bingbot
 Allow: /
@@ -18,7 +20,6 @@ Disallow: /admin-login
 Disallow: /franchise
 Disallow: /franchise-login
 
-# International search engines
 User-agent: Yandex
 Allow: /
 Allow: /places-to-visit/
@@ -46,6 +47,10 @@ Allow: /
 Disallow: /admin
 Disallow: /franchise
 
+User-agent: Applebot
+Allow: /
+
+# ── Social previews ──────────────────────────────────────────────
 User-agent: Twitterbot
 Allow: /
 
@@ -58,10 +63,7 @@ Allow: /
 User-agent: PinterestBot
 Allow: /
 
-User-agent: Applebot
-Allow: /
-
-# AI search engines
+# ── AI crawlers ──────────────────────────────────────────────────
 User-agent: GPTBot
 Allow: /
 
@@ -74,6 +76,16 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# ── Default ──────────────────────────────────────────────────────
 User-agent: *
 Allow: /
 Allow: /places-to-visit/
@@ -81,6 +93,8 @@ Disallow: /admin
 Disallow: /admin-login
 Disallow: /franchise
 Disallow: /franchise-login
+Disallow: /api/
 
-# Sitemap location
+# Sitemap
 Sitemap: https://xtsy.one/sitemap_index.xml
+Sitemap: https://xtsy.one/sitemap.xml
