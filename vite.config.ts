@@ -105,8 +105,10 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === 'development' && componentTagger(),
+    mode === 'production' && seoArtifactsPlugin(),
     mode === 'production' && seoInlineMetaPlugin(),
     mode === 'production' && prerenderPlugin(),
+    mode === 'production' && schemaValidatorPlugin(),
   ].filter(Boolean),
   resolve: {
     alias: {
