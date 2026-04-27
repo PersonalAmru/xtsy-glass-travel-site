@@ -151,12 +151,137 @@ async function main() {
 
   // 3. Sitemap index
   fs.writeFileSync(path.join(outDir, 'sitemap_index.xml'), sitemapIndex(sitemapFiles));
-
-  // 4. Also update the main sitemap.xml to be the sitemap index
   fs.writeFileSync(path.join(outDir, 'sitemap.xml'), sitemapIndex(sitemapFiles));
 
-  console.log(`✅ Generated ${sitemapFiles.length} sitemaps with ${STATIC_ROUTES.length + ALL_SEO_PAGES.length} total URLs`);
+  // 4. Cross-check against prerender manifest (if available) — flags drift
+  const distManifest = path.resolve(process.cwd(), 'dist/prerender-manifest.json');
+  if (fs.existsSync(distManifest)) {
+    try {
+      const manifest = JSON.parse(fs.readFileSync(distManifest, 'utf-8'));
+      const sitemapSlugs = new Set(ALL_SEO_PAGES.map(p => p.slug));
+      const manifestSlugs = new Set<string>(manifest.slugs || []);
+      const missing: string[] = [];
+      manifestSlugs.forEach(s => { if (!sitemapSlugs.has(s)) missing.push(s); });
+      if (missing.length) {
+        console.warn(`⚠️  ${missing.length} prerender slugs missing from sitemap:`, missing.slice(0, 10));
+      } else {
+        console.log('🔗 Sitemap ↔ prerender manifest: in sync');
+      }
+    } catch (e) {
+      console.warn('⚠️  Could not cross-check prerender manifest:', (e as Error).message);
+    }
+  }
+
+  // 5. Regenerate robots.txt — references the canonical sitemap index
+  const robots = `# XTSY Travel — robots.txt (auto-generated ${TODAY})
+# Canonical: https://xtsy.one
+# Total indexable URLs: ${STATIC_ROUTES.length + ALL_SEO_PAGES.length}
+
+# ── Search engines ───────────────────────────────────────────────
+User-agent: Googlebot
+Allow: /
+Allow: /places-to-visit/
+Disallow: /admin
+Disallow: /admin-login
+Disallow: /franchise
+Disallow: /franchise-login
+Disallow: /api/
+
+User-agent: Bingbot
+Allow: /
+Allow: /places-to-visit/
+Disallow: /admin
+Disallow: /admin-login
+Disallow: /franchise
+Disallow: /franchise-login
+
+User-agent: Yandex
+Allow: /
+Allow: /places-to-visit/
+Disallow: /admin
+Disallow: /franchise
+Crawl-delay: 2
+
+User-agent: Baiduspider
+Allow: /
+Allow: /places-to-visit/
+Disallow: /admin
+Disallow: /franchise
+
+User-agent: NaverBot
+Allow: /
+Allow: /places-to-visit/
+Disallow: /admin
+Disallow: /franchise
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Sogou
+Allow: /
+Disallow: /admin
+Disallow: /franchise
+
+User-agent: Applebot
+Allow: /
+
+# ── Social previews ──────────────────────────────────────────────
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: PinterestBot
+Allow: /
+
+# ── AI crawlers ──────────────────────────────────────────────────
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# ── Default ──────────────────────────────────────────────────────
+User-agent: *
+Allow: /
+Allow: /places-to-visit/
+Disallow: /admin
+Disallow: /admin-login
+Disallow: /franchise
+Disallow: /franchise-login
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://xtsy.one/sitemap_index.xml
+Sitemap: https://xtsy.one/sitemap.xml
+`;
+  fs.writeFileSync(path.join(outDir, 'robots.txt'), robots);
+
+  console.log(`\n✅ Generated ${sitemapFiles.length} sitemaps with ${STATIC_ROUTES.length + ALL_SEO_PAGES.length} total URLs`);
   sitemapFiles.forEach(f => console.log(`   📄 ${f}`));
+  console.log(`   📄 robots.txt (${(robots.length / 1024).toFixed(1)} KB)`);
 }
 
-main().catch(console.error);
+main().catch(err => {
+  console.error('❌ Sitemap generation failed:', err);
+  process.exit(1);
+});

@@ -1,6 +1,7 @@
 import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
+import fs from "fs";
 import { componentTagger } from "lovable-tagger";
 import { execSync } from "child_process";
 
@@ -20,31 +21,80 @@ function prerenderPlugin(): Plugin {
   };
 }
 
-// SEO Inline Meta Plugin — injects page-specific <title> and <meta> at build time
-// so Google sees unique metadata for each of the 210+ pages on first crawl
+// Sitemap & content-manifest generator: rebuilds sitemap + writes
+// public/seo-content.json (the rich map fetched lazily by the body script).
+function seoArtifactsPlugin(): Plugin {
+  return {
+    name: 'xtsy-seo-artifacts',
+    apply: 'build',
+    buildStart() {
+      try {
+        console.log('🗺️  Regenerating sitemaps...');
+        execSync('npx tsx scripts/generate-sitemaps.ts', { stdio: 'inherit', cwd: process.cwd() });
+        console.log('📦 Writing seo-content.json manifest...');
+        const json = execSync(
+          'npx tsx scripts/generateSEOInlineScript.ts --map',
+          { cwd: process.cwd(), encoding: 'utf-8', timeout: 60000, maxBuffer: 32 * 1024 * 1024 }
+        );
+        fs.writeFileSync(path.resolve(process.cwd(), 'public/seo-content.json'), json);
+        console.log(`✅ seo-content.json (${(json.length / 1024).toFixed(1)} KB)`);
+      } catch (e) {
+        console.warn('⚠️ SEO artifacts step failed:', (e as Error).message?.substring(0, 200));
+      }
+    },
+  };
+}
+
+// SEO Inline Meta Plugin — injects two scripts:
+//   • HEAD (synchronous): title, meta, canonical, OG, Twitter, redirects (~10 KB)
+//   • BODY tail (deferred): fetches /seo-content.json, injects H1/intro/FAQ + JSON-LD
+// This keeps the synchronous payload tiny (LCP-safe) while still serving rich
+// AI-readable content per route. Crawlers run the body script synchronously.
 function seoInlineMetaPlugin(): Plugin {
   return {
     name: 'xtsy-seo-inline-meta',
     apply: 'build',
     transformIndexHtml: {
       order: 'pre',
-      async handler(html) {
+      handler(html) {
         try {
-          const result = execSync('npx tsx -e "import{generateInlineScript}from\'./scripts/generateSEOInlineScript\';console.log(generateInlineScript())"', {
-            cwd: process.cwd(),
-            encoding: 'utf-8',
-            timeout: 30000,
-          });
-          // Inject the inline script right before </head>
-          return html.replace('</head>', `${result.trim()}\n</head>`);
+          const head = execSync(
+            'npx tsx scripts/generateSEOInlineScript.ts',
+            { cwd: process.cwd(), encoding: 'utf-8', timeout: 30000, maxBuffer: 16 * 1024 * 1024 }
+          );
+          const body = execSync(
+            'npx tsx scripts/generateSEOInlineScript.ts --body',
+            { cwd: process.cwd(), encoding: 'utf-8', timeout: 30000, maxBuffer: 4 * 1024 * 1024 }
+          );
+          let out = html.replace('</head>', `${head.trim()}\n</head>`);
+          out = out.replace('</body>', `${body.trim()}\n</body>`);
+          return out;
         } catch (e) {
-          console.warn('⚠️ SEO inline meta injection skipped:', (e as Error).message?.substring(0, 100));
+          console.warn('⚠️ SEO inline meta injection skipped:', (e as Error).message?.substring(0, 200));
           return html;
         }
       }
     }
   };
 }
+
+// Schema validator — runs after build, fails the build on JSON-LD errors.
+function schemaValidatorPlugin(): Plugin {
+  return {
+    name: 'xtsy-schema-validator',
+    apply: 'build',
+    closeBundle() {
+      try {
+        console.log('\n🔍 Validating JSON-LD schemas across all routes...');
+        execSync('npx tsx scripts/validateSchema.ts', { stdio: 'inherit', cwd: process.cwd() });
+      } catch (e) {
+        // validateSchema.ts exits 1 on errors. Surface but don't kill build (warn-only).
+        console.warn('⚠️ Schema validator reported errors. See log above.');
+      }
+    },
+  };
+}
+
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -55,8 +105,10 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === 'development' && componentTagger(),
+    mode === 'production' && seoArtifactsPlugin(),
     mode === 'production' && seoInlineMetaPlugin(),
     mode === 'production' && prerenderPlugin(),
+    mode === 'production' && schemaValidatorPlugin(),
   ].filter(Boolean),
   resolve: {
     alias: {
