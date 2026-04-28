@@ -29,7 +29,7 @@ import {
   Copy, Trash2, Search as SearchIcon, FileWarning, Link as LinkIcon, RefreshCw,
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { ALL_RESOLVABLE_SLUGS } from '@/utils/seoSlugRegistry';
+import { isResolvable } from '@/utils/seoSlugRegistry';
 import { RECOVERY_REDIRECTS } from '@/data/seoAffectedSlugs';
 import { GONE_SLUGS } from '@/data/seoGoneSlugs';
 
@@ -108,14 +108,13 @@ function parseManual(text: string): GSCIssue[] {
 }
 
 function mapToInternal(issues: GSCIssue[]): MappedIssue[] {
-  const registrySet = new Set(ALL_RESOLVABLE_SLUGS.map(s => s.replace(/^\/|\/$/g, '')));
   return issues.map(i => {
     let route = '/';
     try { route = new URL(i.url).pathname || '/'; } catch { route = i.url; }
     const slug = route.replace(/^\/|\/$/g, '');
     const redirectTarget = (RECOVERY_REDIRECTS as Record<string, string>)[slug];
     const isGone = GONE_SLUGS.has(slug);
-    const isInRegistry = registrySet.has(slug) || slug === '';
+    const isInRegistry = isResolvable(route);
     let matchedFile: MappedIssue['matchedFile'] = 'unknown';
     if (isInRegistry) {
       if (route.startsWith('/places-to-visit/')) matchedFile = 'destination';
