@@ -52,12 +52,10 @@ export const optimizeFonts = () => {
   document.head.appendChild(style);
 };
 
-// Enable compression hints
+// Compression is a server/CDN concern — never inject Content-Encoding as a meta tag
+// (it's a response header; injecting it client-side fails Lighthouse and confuses crawlers).
 export const enableCompression = () => {
-  const meta = document.createElement('meta');
-  meta.httpEquiv = 'Content-Encoding';
-  meta.content = 'gzip, deflate, br';
-  document.head.appendChild(meta);
+  // No-op. Compression is enforced at the Cloudflare/Lovable edge.
 };
 
 // Route prefetching for critical pages

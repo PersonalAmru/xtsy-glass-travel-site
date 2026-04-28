@@ -24,7 +24,9 @@
          Hero paints its own dark gradient on top, so visual is unchanged. */
       body{background:#faf7f2;color:#0f172a;min-height:100vh;overflow-x:hidden;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
       body::-webkit-scrollbar{display:none}
-      #root{min-height:100vh;contain:layout style;background:#020617}
+      /* Match body cream so the SPA shell never paints a black screen pre-hydration.
+         Hero sections render their own dark gradient above this. */
+      #root{min-height:100vh;contain:style;background:#faf7f2}
       .dark{color-scheme:dark}
       img,video{max-width:100%;height:auto;display:block}
       @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
