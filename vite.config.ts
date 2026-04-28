@@ -87,8 +87,10 @@ function seoInlineMetaPlugin(): Plugin {
             'npx tsx scripts/generateSEOInlineScript.ts',
             { cwd: process.cwd(), encoding: 'utf-8', timeout: 30000, maxBuffer: 16 * 1024 * 1024 }
           );
+          // Pass the SEO map hash so the body script fetches the versioned URL
+          // (cache-friendly + auto-invalidated each deploy when content changes).
           const body = execSync(
-            'npx tsx scripts/generateSEOInlineScript.ts --body',
+            `npx tsx scripts/generateSEOInlineScript.ts --body ${__seoMapHash}`,
             { cwd: process.cwd(), encoding: 'utf-8', timeout: 30000, maxBuffer: 4 * 1024 * 1024 }
           );
           let out = html.replace('</head>', `${head.trim()}\n</head>`);
