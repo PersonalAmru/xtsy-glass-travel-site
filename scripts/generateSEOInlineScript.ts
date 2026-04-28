@@ -201,13 +201,22 @@ window.__xtsySlug=p;
 // Crawlers (GPTBot, PerplexityBot, ClaudeBot, Googlebot) wait for network
 // idle, so they reliably see this content. Real users get unblocked LCP.
 // ---------------------------------------------------------------------------
-export function generateInlineBodyScript(): string {
+export function generateInlineBodyScript(versionHash?: string): string {
+  // Append a content-hash query string so the manifest is cached forever
+  // (immutable) at the CDN/browser, but invalidated on every deploy where
+  // the SEO map changes. Falls back to no-version in dev.
+  const v = versionHash ? `?v=${versionHash}` : '';
   return `<script>
 (function(){
+var V=${JSON.stringify(v)};
+var LCP_DEADLINE=2500; // ms — must inject before this for SEO/LCP target
+var injectedAt=null;
+window.__xtsySEOInjected=false;
+window.__xtsySEOInjectStart=performance.now();
 var run=function(){
   var p=window.__xtsySlug||location.pathname.replace(/^\\/|\\/$/g,'');
   if(!p||document.getElementById('ai-seo-content'))return;
-  fetch('/seo-content.json',{credentials:'omit'}).then(function(r){return r.ok?r.json():null;}).then(function(M){
+  fetch('/seo-content.json'+V,{credentials:'omit',cache:'force-cache'}).then(function(r){return r.ok?r.json():null;}).then(function(M){
     if(!M)return;
     var e=M[p];if(!e)return;
     var u='https://xtsy.one/'+p;
@@ -229,6 +238,15 @@ var run=function(){
         var faq={'@context':'https://schema.org','@type':'FAQPage',mainEntity:e.f.map(function(q){return{'@type':'Question',name:q[0],acceptedAnswer:{'@type':'Answer',text:q[1]}};})};
         var s2=document.createElement('script');s2.type='application/ld+json';s2.text=JSON.stringify(faq);document.head.appendChild(s2);
       }
+      window.__xtsySEOInjected=true;
+      injectedAt=performance.now();
+      var elapsed=injectedAt-window.__xtsySEOInjectStart;
+      // Runtime LCP guard — log a beacon if injection missed the deadline so
+      // useWebVitalsReporter / admin analytics can flag slow SEO hydration.
+      if(elapsed>LCP_DEADLINE){
+        try{(window.dataLayer=window.dataLayer||[]).push({event:'seo_inject_slow',slug:p,elapsed_ms:Math.round(elapsed),deadline_ms:LCP_DEADLINE});}catch(_){}
+      }
+      try{window.dispatchEvent(new CustomEvent('xtsy:seo-injected',{detail:{slug:p,elapsed:elapsed}}));}catch(_){}
     }catch(_){}
   }).catch(function(){});
 };
@@ -237,8 +255,10 @@ var run=function(){
 var ua=navigator.userAgent||'';
 var isBot=/Googlebot|bingbot|GPTBot|ChatGPT-User|PerplexityBot|ClaudeBot|Applebot|YandexBot|DuckDuckBot|facebookexternalhit|Twitterbot|LinkedInBot/i.test(ua);
 if(isBot){run();}
-else if('requestIdleCallback' in window){requestIdleCallback(run,{timeout:3000});}
-else{setTimeout(run,1500);}
+else if('requestIdleCallback' in window){requestIdleCallback(run,{timeout:1500});}
+else{setTimeout(run,800);}
+// Hard fallback — guarantee injection before LCP_DEADLINE for non-bots too.
+setTimeout(function(){if(!window.__xtsySEOInjected)run();},LCP_DEADLINE-300);
 })();
 </script>`;
 }
@@ -250,13 +270,23 @@ export function generateInlineScript(): string {
   return generateInlineHeadScript();
 }
 
+// Compute a stable short content hash for the SEO map (used for cache-busting).
+import crypto from 'crypto';
+export function computeSEOMapHash(): string {
+  const json = JSON.stringify(generateSEOMap());
+  return crypto.createHash('sha256').update(json).digest('hex').slice(0, 10);
+}
+
 // CLI usage: prints HEAD + BODY scripts and the rich map JSON for inspection
 if (process.argv[1]?.includes('generateSEOInlineScript')) {
   const arg = process.argv[2];
   if (arg === '--map') {
     process.stdout.write(JSON.stringify(generateSEOMap()));
+  } else if (arg === '--hash') {
+    process.stdout.write(computeSEOMapHash());
   } else if (arg === '--body') {
-    process.stdout.write(generateInlineBodyScript());
+    const hash = process.argv[3] || computeSEOMapHash();
+    process.stdout.write(generateInlineBodyScript(hash));
   } else {
     process.stdout.write(generateInlineHeadScript());
   }
