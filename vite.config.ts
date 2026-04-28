@@ -162,6 +162,7 @@ export default defineConfig(({ mode }) => ({
     mode === 'production' && seoInlineMetaPlugin(),
     mode === 'production' && prerenderPlugin(),
     mode === 'production' && schemaValidatorPlugin(),
+    mode === 'production' && sitemapConsistencyPlugin(),
   ].filter(Boolean),
   resolve: {
     alias: {
