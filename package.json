@@ -8,7 +8,11 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "seo:diff": "tsx scripts/diffSitemapManifest.ts",
+    "seo:diff:strict": "tsx scripts/diffSitemapManifest.ts --strict",
+    "seo:postdeploy": "tsx scripts/postDeploySchemaCheck.ts",
+    "seo:postdeploy:live": "tsx scripts/postDeploySchemaCheck.ts --base https://xtsy.one --routes top"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

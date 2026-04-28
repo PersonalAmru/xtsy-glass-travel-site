@@ -138,10 +138,34 @@ function sitemapConsistencyPlugin(): Plugin {
           stdio: 'inherit',
           cwd: process.cwd(),
         });
+        // Always emit the standalone diff report (HTML + JSON) — non-fatal.
+        execSync('npx tsx scripts/diffSitemapManifest.ts', { stdio: 'inherit', cwd: process.cwd() });
       } catch (e) {
         // In CI, the script exits 1 on mismatch. Honor that here.
         const inCI = !!process.env.CI;
         console.warn('⚠️ Sitemap consistency check reported issues.');
+        if (inCI) throw e;
+      }
+    },
+  };
+}
+
+// Post-deploy/post-build schema validator — re-fetches every prerendered route
+// (from local dist/), confirms JSON-LD parses, FAQPage blocks have questions,
+// and core meta tags are present. Writes HTML + JSON report to dist/seo-reports.
+function postBuildSchemaPlugin(): Plugin {
+  return {
+    name: 'xtsy-post-build-schema',
+    apply: 'build',
+    closeBundle() {
+      try {
+        console.log('\n🧪 Post-build schema/FAQ validation...');
+        execSync('npx tsx scripts/postDeploySchemaCheck.ts --out dist/seo-reports', {
+          stdio: 'inherit', cwd: process.cwd(),
+        });
+      } catch (e) {
+        const inCI = !!process.env.CI;
+        console.warn('⚠️ Post-build schema validation reported errors.');
         if (inCI) throw e;
       }
     },
@@ -163,6 +187,7 @@ export default defineConfig(({ mode }) => ({
     mode === 'production' && prerenderPlugin(),
     mode === 'production' && schemaValidatorPlugin(),
     mode === 'production' && sitemapConsistencyPlugin(),
+    mode === 'production' && postBuildSchemaPlugin(),
   ].filter(Boolean),
   resolve: {
     alias: {
