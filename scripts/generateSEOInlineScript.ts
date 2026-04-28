@@ -270,13 +270,23 @@ export function generateInlineScript(): string {
   return generateInlineHeadScript();
 }
 
+// Compute a stable short content hash for the SEO map (used for cache-busting).
+import crypto from 'crypto';
+export function computeSEOMapHash(): string {
+  const json = JSON.stringify(generateSEOMap());
+  return crypto.createHash('sha256').update(json).digest('hex').slice(0, 10);
+}
+
 // CLI usage: prints HEAD + BODY scripts and the rich map JSON for inspection
 if (process.argv[1]?.includes('generateSEOInlineScript')) {
   const arg = process.argv[2];
   if (arg === '--map') {
     process.stdout.write(JSON.stringify(generateSEOMap()));
+  } else if (arg === '--hash') {
+    process.stdout.write(computeSEOMapHash());
   } else if (arg === '--body') {
-    process.stdout.write(generateInlineBodyScript());
+    const hash = process.argv[3] || computeSEOMapHash();
+    process.stdout.write(generateInlineBodyScript(hash));
   } else {
     process.stdout.write(generateInlineHeadScript());
   }
