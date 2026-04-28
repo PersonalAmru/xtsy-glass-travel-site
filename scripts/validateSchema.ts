@@ -199,6 +199,62 @@ async function main() {
   console.log(`   Errors          : ${errors.length}`);
   console.log(`   Warnings        : ${warnings.length}`);
 
+  // -----------------------------------------------------------------------
+  // Optional artifact: HTML + JSON report (--report <dir>)
+  // -----------------------------------------------------------------------
+  const reportFlagIdx = process.argv.indexOf('--report');
+  if (reportFlagIdx !== -1) {
+    const reportDir = path.resolve(process.cwd(), process.argv[reportFlagIdx + 1] || 'dist/seo-reports');
+    fs.mkdirSync(reportDir, { recursive: true });
+    const json = {
+      generatedAt: new Date().toISOString(),
+      routesChecked,
+      totalBlocks,
+      errors: errors.length,
+      warnings: warnings.length,
+      issues: allIssues,
+    };
+    fs.writeFileSync(path.join(reportDir, 'schema-report.json'), JSON.stringify(json, null, 2));
+
+    const escape = (s: string) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c] as string));
+    const routeFromSource = (src: string) => {
+      const m = src.match(/route:\/([^\s(]+)/) || src.match(/dist\/([^#\s]+)/);
+      return m ? m[1].replace(/\/index\.html$/, '') : '';
+    };
+    const rows = allIssues.map(i => {
+      const slug = routeFromSource(i.source);
+      const link = slug ? `<a href="https://xtsy.one/${slug}" target="_blank" rel="noopener">/${slug}</a>` : '<em>—</em>';
+      return `<tr class="${i.severity}"><td>${i.severity.toUpperCase()}</td><td>${link}</td><td>${escape(i.source)}</td><td>${escape(i.message)}</td></tr>`;
+    }).join('\n');
+    const html = `<!doctype html><html><head><meta charset="utf-8"><title>XTSY SEO Schema Report</title>
+<style>
+body{font:14px/1.5 -apple-system,Segoe UI,sans-serif;margin:24px;color:#0f172a;background:#f8fafc}
+h1{margin:0 0 8px}small{color:#64748b}
+table{border-collapse:collapse;width:100%;margin-top:16px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+th,td{padding:8px 12px;border-bottom:1px solid #e2e8f0;text-align:left;vertical-align:top;font-size:13px}
+th{background:#f1f5f9;position:sticky;top:0}
+tr.error td:first-child{color:#b91c1c;font-weight:600}
+tr.warning td:first-child{color:#b45309;font-weight:600}
+.summary{display:flex;gap:16px;margin:12px 0}
+.summary div{padding:8px 12px;background:#fff;border-radius:6px;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+a{color:#2563eb;text-decoration:none}a:hover{text-decoration:underline}
+</style></head><body>
+<h1>XTSY SEO Schema Report</h1>
+<small>Generated ${json.generatedAt}</small>
+<div class="summary">
+  <div><strong>${routesChecked}</strong> routes</div>
+  <div><strong>${totalBlocks}</strong> JSON-LD blocks</div>
+  <div style="color:#b91c1c"><strong>${errors.length}</strong> errors</div>
+  <div style="color:#b45309"><strong>${warnings.length}</strong> warnings</div>
+</div>
+<table><thead><tr><th>Sev</th><th>Route</th><th>Source</th><th>Message</th></tr></thead>
+<tbody>${rows || '<tr><td colspan="4">✅ No issues</td></tr>'}</tbody></table>
+</body></html>`;
+    fs.writeFileSync(path.join(reportDir, 'schema-report.html'), html);
+    console.log(`📝 Report: ${reportDir}/schema-report.html`);
+    console.log(`📝 Report: ${reportDir}/schema-report.json`);
+  }
+
   if (allIssues.length === 0) {
     console.log('\n✅ All JSON-LD blocks valid.');
     process.exit(0);
