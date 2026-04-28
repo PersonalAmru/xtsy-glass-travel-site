@@ -105,7 +105,7 @@ function seoInlineMetaPlugin(): Plugin {
   };
 }
 
-// Schema validator — runs after build, fails the build on JSON-LD errors.
+// Schema validator — runs after build, writes HTML+JSON report to dist/seo-reports/.
 function schemaValidatorPlugin(): Plugin {
   return {
     name: 'xtsy-schema-validator',
@@ -113,10 +113,36 @@ function schemaValidatorPlugin(): Plugin {
     closeBundle() {
       try {
         console.log('\n🔍 Validating JSON-LD schemas across all routes...');
-        execSync('npx tsx scripts/validateSchema.ts', { stdio: 'inherit', cwd: process.cwd() });
+        execSync('npx tsx scripts/validateSchema.ts --report dist/seo-reports', {
+          stdio: 'inherit',
+          cwd: process.cwd(),
+        });
       } catch (e) {
         // validateSchema.ts exits 1 on errors. Surface but don't kill build (warn-only).
-        console.warn('⚠️ Schema validator reported errors. See log above.');
+        console.warn('⚠️ Schema validator reported errors. See dist/seo-reports/schema-report.html');
+      }
+    },
+  };
+}
+
+// Sitemap-vs-prerender consistency check — fails CI if URLs in any sitemap or
+// the robots.txt sitemap_index entries don't match the prerender manifest.
+function sitemapConsistencyPlugin(): Plugin {
+  return {
+    name: 'xtsy-sitemap-consistency',
+    apply: 'build',
+    closeBundle() {
+      try {
+        console.log('\n🧭 Checking sitemap ↔ prerender-manifest consistency...');
+        execSync('npx tsx scripts/checkSitemapConsistency.ts', {
+          stdio: 'inherit',
+          cwd: process.cwd(),
+        });
+      } catch (e) {
+        // In CI, the script exits 1 on mismatch. Honor that here.
+        const inCI = !!process.env.CI;
+        console.warn('⚠️ Sitemap consistency check reported issues.');
+        if (inCI) throw e;
       }
     },
   };
