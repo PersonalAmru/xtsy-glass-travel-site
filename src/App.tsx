@@ -88,6 +88,7 @@ const UserProfile = createLazyComponent(() => import("./pages/user/UserProfile")
 const AdminOverview = createLazyComponent(() => import("./pages/admin/AdminOverview"));
 const AdminAnalytics = createLazyComponent(() => import("./pages/admin/AdminAnalytics"));
 const AdminSearchConsole = createLazyComponent(() => import("./pages/admin/AdminSearchConsole"));
+const AdminGSCErrors = createLazyComponent(() => import("./pages/admin/AdminGSCErrors"));
 const AdminInventory = createLazyComponent(() => import("./pages/admin/AdminInventory"));
 const AdminActivity = createLazyComponent(() => import("./pages/admin/AdminActivity"));
 const AdminPropertiesV2 = createLazyComponent(() => import("./pages/admin/AdminPropertiesV2"));
@@ -347,6 +348,7 @@ function App() {
                 <Route path="/admin/franchise-permissions" element={<LazyRoute><AdminFranchisePermissions /></LazyRoute>} />
                 <Route path="/admin/seo" element={<LazyRoute><AdminSEODashboard /></LazyRoute>} />
                 <Route path="/admin/seo/recovery" element={<LazyRoute><AdminSEORecovery /></LazyRoute>} />
+                <Route path="/admin/seo/gsc-errors" element={<LazyRoute><AdminGSCErrors /></LazyRoute>} />
                 
                 {/* Meghalaya SEO Pages */}
                 <Route path="/things-to-do-in-meghalaya" element={<LazyRoute><ThingsToDoInMeghalaya /></LazyRoute>} />
