@@ -201,13 +201,22 @@ window.__xtsySlug=p;
 // Crawlers (GPTBot, PerplexityBot, ClaudeBot, Googlebot) wait for network
 // idle, so they reliably see this content. Real users get unblocked LCP.
 // ---------------------------------------------------------------------------
-export function generateInlineBodyScript(): string {
+export function generateInlineBodyScript(versionHash?: string): string {
+  // Append a content-hash query string so the manifest is cached forever
+  // (immutable) at the CDN/browser, but invalidated on every deploy where
+  // the SEO map changes. Falls back to no-version in dev.
+  const v = versionHash ? `?v=${versionHash}` : '';
   return `<script>
 (function(){
+var V=${JSON.stringify(v)};
+var LCP_DEADLINE=2500; // ms — must inject before this for SEO/LCP target
+var injectedAt=null;
+window.__xtsySEOInjected=false;
+window.__xtsySEOInjectStart=performance.now();
 var run=function(){
   var p=window.__xtsySlug||location.pathname.replace(/^\\/|\\/$/g,'');
   if(!p||document.getElementById('ai-seo-content'))return;
-  fetch('/seo-content.json',{credentials:'omit'}).then(function(r){return r.ok?r.json():null;}).then(function(M){
+  fetch('/seo-content.json'+V,{credentials:'omit',cache:'force-cache'}).then(function(r){return r.ok?r.json():null;}).then(function(M){
     if(!M)return;
     var e=M[p];if(!e)return;
     var u='https://xtsy.one/'+p;
