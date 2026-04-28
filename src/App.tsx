@@ -8,6 +8,7 @@ import { Navigate } from "react-router-dom";
 import PerformanceMonitor from "./components/PerformanceMonitor";
 import SecurityHeadersProvider from "./components/SecurityHeadersProvider";
 import ErrorBoundary from "./components/ErrorBoundary";
+import RouteErrorBoundary from "./components/RouteErrorBoundary";
 import { logger } from "./utils/piiRedactedLogger";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -278,6 +279,7 @@ function App() {
               <Sonner />
               <ScrollToTop />
               <WebVitalsBeacon />
+              <RouteErrorBoundary routeKey={typeof window !== 'undefined' ? window.location.pathname : ''}>
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/about" element={<LazyRoute><LazyAbout /></LazyRoute>} />
@@ -379,6 +381,7 @@ function App() {
                 
                 <Route path="*" element={<NotFound />} />
               </Routes>
+              </RouteErrorBoundary>
               <FloatingWhatsApp />
 
               </TooltipProvider>
