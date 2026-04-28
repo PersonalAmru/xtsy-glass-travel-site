@@ -238,6 +238,15 @@ var run=function(){
         var faq={'@context':'https://schema.org','@type':'FAQPage',mainEntity:e.f.map(function(q){return{'@type':'Question',name:q[0],acceptedAnswer:{'@type':'Answer',text:q[1]}};})};
         var s2=document.createElement('script');s2.type='application/ld+json';s2.text=JSON.stringify(faq);document.head.appendChild(s2);
       }
+      window.__xtsySEOInjected=true;
+      injectedAt=performance.now();
+      var elapsed=injectedAt-window.__xtsySEOInjectStart;
+      // Runtime LCP guard — log a beacon if injection missed the deadline so
+      // useWebVitalsReporter / admin analytics can flag slow SEO hydration.
+      if(elapsed>LCP_DEADLINE){
+        try{(window.dataLayer=window.dataLayer||[]).push({event:'seo_inject_slow',slug:p,elapsed_ms:Math.round(elapsed),deadline_ms:LCP_DEADLINE});}catch(_){}
+      }
+      try{window.dispatchEvent(new CustomEvent('xtsy:seo-injected',{detail:{slug:p,elapsed:elapsed}}));}catch(_){}
     }catch(_){}
   }).catch(function(){});
 };
@@ -246,8 +255,10 @@ var run=function(){
 var ua=navigator.userAgent||'';
 var isBot=/Googlebot|bingbot|GPTBot|ChatGPT-User|PerplexityBot|ClaudeBot|Applebot|YandexBot|DuckDuckBot|facebookexternalhit|Twitterbot|LinkedInBot/i.test(ua);
 if(isBot){run();}
-else if('requestIdleCallback' in window){requestIdleCallback(run,{timeout:3000});}
-else{setTimeout(run,1500);}
+else if('requestIdleCallback' in window){requestIdleCallback(run,{timeout:1500});}
+else{setTimeout(run,800);}
+// Hard fallback — guarantee injection before LCP_DEADLINE for non-bots too.
+setTimeout(function(){if(!window.__xtsySEOInjected)run();},LCP_DEADLINE-300);
 })();
 </script>`;
 }
