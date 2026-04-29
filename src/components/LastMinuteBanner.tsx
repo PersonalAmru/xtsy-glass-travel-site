@@ -33,14 +33,14 @@ const LastMinuteBanner = memo(({ className }: LastMinuteBannerProps) => {
           <Flame className="w-5 h-5 text-orange-400" />
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-base md:text-lg font-bold text-foreground flex items-center gap-2">
+          <h3 className="text-base md:text-lg font-bold text-slate-900 flex items-center gap-2">
             🔥 Available Today in Shillong
           </h3>
-          <p className="text-sm text-muted-foreground mt-1">
-            {totalAvailable} beds available tonight · Starting from <span className="text-orange-400 font-semibold">₹{lowestPrice}/night</span>
+          <p className="text-sm text-slate-700 mt-1">
+            {totalAvailable} beds available tonight · Starting from <span className="text-orange-600 font-semibold">₹{lowestPrice}/night</span>
           </p>
           {showPriceHike && (
-            <p className="text-xs text-red-400 font-medium mt-1.5 flex items-center gap-1">
+            <p className="text-xs text-red-600 font-medium mt-1.5 flex items-center gap-1">
               ⏰ April rates ending soon — prices increase from May 1
             </p>
           )}
@@ -48,7 +48,7 @@ const LastMinuteBanner = memo(({ className }: LastMinuteBannerProps) => {
             {rooms.slice(0, 3).map(room => {
               const avail = getSimulatedAvailability(room.id);
               return (
-                <span key={room.id} className="text-xs bg-background/60 border border-border/50 rounded-full px-3 py-1 text-muted-foreground">
+                <span key={room.id} className="text-xs bg-white/80 border border-orange-200 rounded-full px-3 py-1 text-slate-700">
                   {room.shortName} · ₹{room.discountedPrice} · {avail} left
                 </span>
               );
