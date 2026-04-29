@@ -181,10 +181,10 @@ const DestinationExplorer = memo(() => {
               <Compass className="h-4 w-4" />
               Destination Explorer
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 leading-tight">
               Explore Meghalaya Destinations
             </h2>
-            <p className="mt-3 text-muted-foreground text-sm sm:text-base max-w-xl mx-auto">
+            <p className="mt-3 text-slate-600 text-sm sm:text-base max-w-xl mx-auto">
               Discover waterfalls, caves, villages, and adventure experiences across the Abode of Clouds
             </p>
           </div>

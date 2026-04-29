@@ -103,11 +103,11 @@ const TonightsDeals = memo(() => {
         <div className="p-2 bg-orange-500/15 rounded-lg">
           <Zap className="w-5 h-5 text-orange-400" />
         </div>
-        <h2 className="text-xl md:text-2xl font-bold text-foreground">
+        <h2 className="text-xl md:text-2xl font-bold text-slate-900">
           Tonight's Deals in Meghalaya
         </h2>
       </div>
-      <p className="text-sm text-muted-foreground mb-6 ml-12">
+      <p className="text-sm text-slate-600 mb-6 ml-12">
         {isMayPricingActive()
           ? 'Limited-time prices — book before they\'re gone'
           : '🔥 Last chance at April rates — prices increase from May 1'}
