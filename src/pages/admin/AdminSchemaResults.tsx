@@ -50,6 +50,22 @@ const REPORT_PATHS = [
   "/dist/seo-reports/post-deploy-schema.json",
 ];
 
+/** Normalize the report from postDeploySchemaCheck.ts (which uses
+ *  `base`/`total`/`errored`/`warned`) into our display shape. */
+function normalize(raw: any): Report {
+  const results: RouteResult[] = raw?.results ?? [];
+  const total = raw?.total ?? raw?.summary?.total ?? results.length;
+  const failed = raw?.errored ?? raw?.summary?.failed ?? results.filter((r: any) => r.errors?.length).length;
+  const warnings = raw?.warned ?? raw?.summary?.warnings ?? results.filter((r: any) => r.warnings?.length && !r.errors?.length).length;
+  const passed = total - failed - warnings;
+  return {
+    generatedAt: raw?.generatedAt,
+    baseUrl: raw?.base ?? raw?.baseUrl,
+    summary: { total, passed, failed, warnings },
+    results,
+  };
+}
+
 const AdminSchemaResults = () => {
   const [report, setReport] = useState<Report | null>(null);
   const [loading, setLoading] = useState(true);
@@ -64,8 +80,8 @@ const AdminSchemaResults = () => {
       try {
         const res = await fetch(`${url}?t=${Date.now()}`, { cache: "no-store" });
         if (res.ok) {
-          const json = (await res.json()) as Report;
-          setReport(json);
+          const raw = await res.json();
+          setReport(normalize(raw));
           setLoading(false);
           return;
         }
@@ -82,7 +98,7 @@ const AdminSchemaResults = () => {
   const onUpload = (file: File) => {
     const reader = new FileReader();
     reader.onload = () => {
-      try { setReport(JSON.parse(String(reader.result))); setError(null); }
+      try { setReport(normalize(JSON.parse(String(reader.result)))); setError(null); }
       catch (e: any) { setError(`Invalid JSON: ${e.message}`); }
     };
     reader.readAsText(file);
