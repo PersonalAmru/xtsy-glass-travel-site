@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { SEOHead } from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
-import { Home, MapPin, Search } from "lucide-react";
+import { Home, MapPin, Search, RefreshCw, MessageCircle, Phone } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { GONE_SLUGS } from "@/data/seoGoneSlugs";
@@ -73,7 +73,12 @@ const NotFound = ({ statusCode }: NotFoundProps) => {
             )}
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-10">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3 justify-center mb-6">
+            {!isGone && (
+              <Button onClick={() => window.location.reload()} size="lg" variant="secondary">
+                <RefreshCw className="mr-2 h-4 w-4" /> Try Again
+              </Button>
+            )}
             <Button asChild size="lg">
               <Link to="/" aria-label="Go to homepage">
                 <Home className="mr-2 h-4 w-4" /> Homepage
@@ -87,6 +92,24 @@ const NotFound = ({ statusCode }: NotFoundProps) => {
             <Button asChild variant="ghost" size="lg">
               <Link to="/all-pages" aria-label="See all pages">
                 <Search className="mr-2 h-4 w-4" /> All Pages
+              </Link>
+            </Button>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-10">
+            <Button asChild variant="outline" size="sm">
+              <a href="https://wa.me/918837317070" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+                <MessageCircle className="mr-2 h-4 w-4" /> WhatsApp Us
+              </a>
+            </Button>
+            <Button asChild variant="outline" size="sm">
+              <a href="tel:+918837317070" aria-label="Call XTSY">
+                <Phone className="mr-2 h-4 w-4" /> Call +91 88373 17070
+              </a>
+            </Button>
+            <Button asChild variant="ghost" size="sm">
+              <Link to="/book" aria-label="Book direct">
+                Book Direct
               </Link>
             </Button>
           </div>
