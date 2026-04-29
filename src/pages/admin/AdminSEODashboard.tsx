@@ -103,6 +103,9 @@ const AdminSEODashboard = () => {
           <a href="/admin/seo/gsc-errors" className="text-sm text-primary hover:underline">
             → Search Console crawl/indexing errors
           </a>
+          <a href="/admin/seo/schema-results" className="text-sm text-primary hover:underline">
+            → Post-deploy schema validation results
+          </a>
         </div>
         <GSCRecoveryPanel />
 
