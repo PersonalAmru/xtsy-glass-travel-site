@@ -77,6 +77,7 @@ const AdminTours = createLazyComponent(() => import("./pages/admin/AdminTours"))
 const LazyPrivacyPolicy = createLazyComponent(() => import("./pages/PrivacyPolicy"));
 const LazyTermsOfService = createLazyComponent(() => import("./pages/TermsOfService"));
 const LazyPricingCancellationPolicy = createLazyComponent(() => import("./pages/PricingCancellationPolicy"));
+const LazyContact = createLazyComponent(() => import("./pages/Contact"));
 const AdminLogin = createLazyComponent(() => import("./pages/AdminLogin"));
 const SimplifiedBookingFlow = createLazyComponent(() => import("./pages/SimplifiedBookingFlow"));
 
@@ -304,6 +305,9 @@ function App() {
                 <Route path="/terms-of-service" element={<LazyRoute><LazyTermsOfService /></LazyRoute>} />
                 <Route path="/terms" element={<Navigate to="/terms-of-service" replace />} />
                 <Route path="/pricing-cancellation-policy" element={<LazyRoute><LazyPricingCancellationPolicy /></LazyRoute>} />
+                <Route path="/refund-cancellation-policy" element={<Navigate to="/pricing-cancellation-policy" replace />} />
+                <Route path="/contact" element={<LazyRoute><LazyContact /></LazyRoute>} />
+                <Route path="/contact-us" element={<Navigate to="/contact" replace />} />
                 <Route path="/admin-login" element={<LazyRoute><AdminLogin /></LazyRoute>} />
                 <Route path="/book" element={<LazyRoute><SimplifiedBookingFlow /></LazyRoute>} />
                 <Route path="/book/select" element={<LazyRoute><LazyPropertySelector /></LazyRoute>} />
