@@ -89,6 +89,47 @@ export async function createBooking(request: BookingRequest): Promise<CreateBook
 
     console.log('Booking created successfully:', result.bookingId);
 
+    // Fire-and-forget admin notification email to booking@xtsy.one
+    try {
+      void supabase.functions.invoke('send-transactional-email', {
+        body: {
+          templateName: 'admin-booking-notification',
+          recipientEmail: 'booking@xtsy.one',
+          idempotencyKey: `admin-booking-${result.bookingId}`,
+          templateData: {
+            bookingId: result.bookingId,
+            guestName: guestDetails.guestName,
+            email: guestDetails.email,
+            phone: guestDetails.whatsappNumber,
+            checkIn: bookingData.checkIn,
+            checkOut: bookingData.checkOut,
+            nights: Math.max(
+              1,
+              Math.ceil(
+                (new Date(bookingData.checkOut).getTime() - new Date(bookingData.checkIn).getTime()) /
+                  (1000 * 60 * 60 * 24)
+              )
+            ),
+            guests: totalGuests,
+            roomType: bookingData.selectedRooms[0]?.name,
+            quantity: totalQuantity,
+            subtotal,
+            taxes: gst,
+            totalAmount,
+            address: guestDetails.address,
+            city: guestDetails.city,
+            state: guestDetails.state,
+            pincode: guestDetails.pincode,
+            specialRequests: guestDetails.specialRequests,
+            emergencyContact: guestDetails.emergencyContact,
+            source: 'Website — bookingService',
+          },
+        },
+      }).catch((e) => console.warn('Admin email dispatch failed', e));
+    } catch (e) {
+      console.warn('Admin email dispatch threw', e);
+    }
+
     return {
       success: true,
       bookingId: result.bookingId

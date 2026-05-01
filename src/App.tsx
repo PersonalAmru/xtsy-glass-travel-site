@@ -78,6 +78,7 @@ const LazyPrivacyPolicy = createLazyComponent(() => import("./pages/PrivacyPolic
 const LazyTermsOfService = createLazyComponent(() => import("./pages/TermsOfService"));
 const LazyPricingCancellationPolicy = createLazyComponent(() => import("./pages/PricingCancellationPolicy"));
 const LazyContact = createLazyComponent(() => import("./pages/Contact"));
+const LazyUnsubscribe = createLazyComponent(() => import("./pages/Unsubscribe"));
 const AdminLogin = createLazyComponent(() => import("./pages/AdminLogin"));
 const SimplifiedBookingFlow = createLazyComponent(() => import("./pages/SimplifiedBookingFlow"));
 
@@ -308,6 +309,7 @@ function App() {
                 <Route path="/refund-cancellation-policy" element={<Navigate to="/pricing-cancellation-policy" replace />} />
                 <Route path="/contact" element={<LazyRoute><LazyContact /></LazyRoute>} />
                 <Route path="/contact-us" element={<Navigate to="/contact" replace />} />
+                <Route path="/unsubscribe" element={<LazyRoute><LazyUnsubscribe /></LazyRoute>} />
                 <Route path="/admin-login" element={<LazyRoute><AdminLogin /></LazyRoute>} />
                 <Route path="/book" element={<LazyRoute><SimplifiedBookingFlow /></LazyRoute>} />
                 <Route path="/book/select" element={<LazyRoute><LazyPropertySelector /></LazyRoute>} />

@@ -62,3 +62,16 @@ verify_jwt = false
 # Google Hotel Ads XML Feed (public - Google crawler)
 [functions.google-hotel-feed]
 verify_jwt = false
+
+# Transactional emails
+[functions.send-transactional-email]
+verify_jwt = true
+
+[functions.preview-transactional-email]
+verify_jwt = false
+
+[functions.handle-email-unsubscribe]
+verify_jwt = false
+
+[functions.handle-email-suppression]
+verify_jwt = false
