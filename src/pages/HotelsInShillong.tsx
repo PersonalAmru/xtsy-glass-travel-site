@@ -84,7 +84,7 @@ const HotelsInShillong = memo(() => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Best Hotels in Shillong 2026 — Budget to Luxury | Complete Guide</title>
+        <title>Hotels in Shillong from ₹329/night — Cheaper than Booking.com | XTSY</title>
         <meta name="description" content="Find the best hotels in Shillong — budget, mid-range, and luxury. Compare prices from ₹1,200-₹4,999/night. Book direct for best rates in Meghalaya's capital." />
         <meta name="keywords" content="hotel in Shillong, best hotel Shillong, budget hotel Shillong, luxury hotel Shillong, Shillong hotel booking, hotels near Police Bazaar, cheap hotel Shillong, 3 star hotel Shillong" />
         <link rel="canonical" href="https://xtsy.one/hotels-in-shillong" />

@@ -84,7 +84,7 @@ const HomestaysInShillong = memo(() => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Best Homestays in Shillong 2026 — Guest Houses & Local Stays</title>
+        <title>Homestays in Shillong from ₹329/night — Beats Airbnb Prices | XTSY</title>
         <meta name="description" content="Find the best homestays and guest houses in Shillong. Authentic Khasi experiences, home-cooked meals, from ₹800/night. Compare options for your Meghalaya trip." />
         <meta name="keywords" content="homestay in Shillong, guest house Shillong, Shillong homestay, best homestay Meghalaya, Khasi homestay, cheap homestay Shillong, family homestay Shillong, local stay Shillong" />
         <link rel="canonical" href="https://xtsy.one/homestays-in-shillong" />

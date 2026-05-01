@@ -136,8 +136,8 @@ const Tours = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEOHead
-        title="North East India Tour Packages 2026 | XTSY Travel"
-        description="30+ curated tour packages across Meghalaya, Nagaland, Assam, Arunachal Pradesh & Sikkim. Living root bridges, wildlife safaris, tribal festivals. Starting ₹7,999."
+        title="Northeast India Tour Packages from ₹7,999 — Cheaper than Thrillophilia | XTSY"
+        description="30+ curated Meghalaya, Nagaland, Assam, Arunachal & Sikkim tours from ₹7,999. Living root bridges, Dawki, tribal festivals. Book direct & save 20-30% vs OTAs."
         keywords="Northeast India tours, Meghalaya tour packages, Nagaland tours, Assam safari, Arunachal Pradesh trips, Sikkim tours, North East India travel"
         canonicalUrl="https://xtsy.one/tours"
       />
