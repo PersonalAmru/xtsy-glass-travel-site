@@ -39,11 +39,42 @@ function generateSEOHTML(url, originalHTML) {
   return null; // We'll use KV store for pre-rendered content
 }
 
+// In-memory micro-cache for redirect lookups (per worker isolate)
+const REDIRECT_CACHE = new Map();
+const REDIRECT_TTL_MS = 60_000;
+
+async function resolveLegacyRedirect(path, env) {
+  if (!env.SUPABASE_URL || !env.SUPABASE_FUNCTIONS_HOST) return null;
+  const cached = REDIRECT_CACHE.get(path);
+  if (cached && cached.expires > Date.now()) return cached.value;
+
+  try {
+    const endpoint = `${env.SUPABASE_FUNCTIONS_HOST}/seo-redirect-resolver?path=${encodeURIComponent(path)}`;
+    const res = await fetch(endpoint, {
+      headers: env.SUPABASE_ANON_KEY
+        ? { apikey: env.SUPABASE_ANON_KEY, authorization: `Bearer ${env.SUPABASE_ANON_KEY}` }
+        : {},
+      cf: { cacheTtl: 60, cacheEverything: true },
+    });
+    if (!res.ok) {
+      REDIRECT_CACHE.set(path, { value: null, expires: Date.now() + REDIRECT_TTL_MS });
+      return null;
+    }
+    const data = await res.json();
+    const value = data && data.found ? { target: data.target, status: data.status || 301 } : null;
+    REDIRECT_CACHE.set(path, { value, expires: Date.now() + REDIRECT_TTL_MS });
+    return value;
+  } catch (e) {
+    console.error('redirect resolver error', e);
+    return null;
+  }
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const userAgent = request.headers.get('user-agent') || '';
-    
+
     // Skip for non-HTML requests (assets, API calls, etc.)
     const path = url.pathname;
     if (
@@ -52,6 +83,26 @@ export default {
       path.match(/\.(js|css|png|jpg|jpeg|webp|avif|svg|ico|woff2?|ttf|eot|map|json|xml|txt|pdf)$/i)
     ) {
       return fetch(request);
+    }
+
+    // --- Legacy URL → real 301 redirects (applies to bots AND users) ---
+    // Looks up seo_redirects via the seo-redirect-resolver edge function and
+    // issues a true HTTP 301 instead of relying on the SPA's <Navigate replace>.
+    if (request.method === 'GET' || request.method === 'HEAD') {
+      const redirect = await resolveLegacyRedirect(path, env);
+      if (redirect && redirect.target) {
+        const targetUrl = redirect.target.startsWith('http')
+          ? redirect.target
+          : `${url.origin}${redirect.target.startsWith('/') ? '' : '/'}${redirect.target}${url.search}`;
+        return new Response(null, {
+          status: redirect.status || 301,
+          headers: {
+            location: targetUrl,
+            'cache-control': 'public, max-age=3600',
+            'x-redirect-source': 'seo-redirect-resolver',
+          },
+        });
+      }
     }
 
     // If not a bot, serve normally

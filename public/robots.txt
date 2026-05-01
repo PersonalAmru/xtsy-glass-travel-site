@@ -95,15 +95,5 @@ Disallow: /franchise
 Disallow: /franchise-login
 Disallow: /api/
 
-# Sitemaps — index + every individual sitemap (Googlebot prefers explicit listing)
+# Sitemap — single index entry (all child sitemaps are referenced inside)
 Sitemap: https://xtsy.one/sitemap_index.xml
-Sitemap: https://xtsy.one/sitemap.xml
-Sitemap: https://xtsy.one/sitemap-static.xml
-Sitemap: https://xtsy.one/sitemap-priority.xml
-Sitemap: https://xtsy.one/sitemap-programmatic.xml
-Sitemap: https://xtsy.one/sitemap-destinations.xml
-Sitemap: https://xtsy.one/sitemap-guides.xml
-Sitemap: https://xtsy.one/sitemap-tours.xml
-Sitemap: https://xtsy.one/sitemap-hostel.xml
-Sitemap: https://xtsy.one/sitemap-dining.xml
-Sitemap: https://xtsy.one/sitemap-misc.xml

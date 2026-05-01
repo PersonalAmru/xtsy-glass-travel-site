@@ -74,6 +74,10 @@ const ToursHero = ({ onSearch }: ToursHeroProps) => {
         alt="Mountains and pine forests of Northeast India under starry skies"
         className="absolute inset-0 w-full h-full object-cover"
         fetchPriority="high"
+        loading="eager"
+        decoding="sync"
+        width={1920}
+        height={1080}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
 

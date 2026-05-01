@@ -32,13 +32,13 @@ const SITE_URL = "https://xtsy.one";
 
 const SEO_CONFIG: Record<string, { title: string; description: string; keywords?: string }> = {
   home: {
-    title: "XTSY — Best Hostel in Shillong, Meghalaya | Northeast India",
-    description: "India's biggest hostel in Shillong. Budget dorms from ₹329, 270° glass suite, curated Meghalaya tours. NEITA 2025 nominated. Book direct.",
+    title: "XTSY — Shillong Hostel from ₹329/night (Cheaper than OYO) | Meghalaya",
+    description: "India's biggest hostel in Shillong. Dorms from ₹329, 270° glass suite ₹4,999, curated Meghalaya tours from ₹7,999. Book direct — save 20-30% vs Booking.com.",
     keywords: "best hostel Shillong, biggest hostel northeast India, Shillong hostel, Meghalaya accommodation, budget stay Shillong",
   },
   travel: {
-    title: "Meghalaya Tour Packages 2026 | XTSY Curated Trips",
-    description: "30+ Meghalaya & Northeast India tour packages. Living root bridges, Dawki, Cherrapunji, caving, bike rides. Starting ₹13,999.",
+    title: "Meghalaya Tour Packages from ₹13,999 — Beats Thrillophilia Pricing | XTSY",
+    description: "30+ Meghalaya & Northeast India tour packages from ₹13,999. Living root bridges, Dawki, Cherrapunji, caving, bike rides. Direct booking saves up to 30%.",
     keywords: "Meghalaya tour packages, Northeast India tours, living root bridges tour, Cherrapunji tour, Dawki trip",
   },
   gallery: {
@@ -52,7 +52,7 @@ const SEO_CONFIG: Record<string, { title: string; description: string; keywords?
     keywords: "XTSY about, biggest hostel northeast, Shillong hostel story, NEITA 2025",
   },
   booking: {
-    title: "Book Your Stay — XTSY Hostel Shillong | Best Rates",
+    title: "Book Shillong Hostel — Dorms ₹329 / Glass Suite ₹4,999 (Best Price) | XTSY",
     description: "Book dorms from ₹329, King Double rooms from ₹2,399, Panorama 270° glass suite at ₹4,999. Best price guaranteed at XTSY Shillong.",
     keywords: "book hostel Shillong, hostel booking Meghalaya, Shillong room booking",
   },
@@ -122,7 +122,7 @@ const SEO_CONFIG: Record<string, { title: string; description: string; keywords?
     keywords: "places to visit Meghalaya, Meghalaya tourist places, Meghalaya tourism, best time visit Meghalaya",
   },
   tours: {
-    title: "North East India Tour Packages 2026 | XTSY Travel",
+    title: "Northeast India Tours from ₹7,999 — Cheaper than Thrillophilia | XTSY",
     description: "30+ curated tours across Meghalaya, Nagaland, Assam, Arunachal Pradesh & Sikkim. Living root bridges, safaris, tribal festivals. From ₹7,999.",
     keywords: "Northeast India tours, Meghalaya tour packages, Nagaland tours, Assam safari, Arunachal Pradesh trips, Sikkim tours",
   },
@@ -141,7 +141,21 @@ export const SEOHead = ({
 }: SEOHeadProps) => {
   const finalTitle = title || DEFAULT_TITLE;
   const finalDescription = description || DEFAULT_DESCRIPTION;
-  const finalCanonical = canonicalUrl || SITE_URL;
+  // Canonical fallback: derive from current pathname instead of defaulting every
+  // page to the homepage (which previously caused massive duplicate-canonical
+  // signals across programmatic SEO pages). Strip query/hash, drop trailing
+  // slash (except root), and only fall back to SITE_URL on the SSR/server pass.
+  const deriveCanonicalFromLocation = (): string => {
+    if (typeof window === 'undefined') return SITE_URL;
+    try {
+      const path = window.location.pathname || '/';
+      const cleaned = path === '/' ? '/' : path.replace(/\/+$/, '');
+      return `${SITE_URL}${cleaned}`;
+    } catch {
+      return SITE_URL;
+    }
+  };
+  const finalCanonical = canonicalUrl || deriveCanonicalFromLocation();
   const schemas = structuredData
     ? (Array.isArray(structuredData) ? structuredData : [structuredData])
     : [];
