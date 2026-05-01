@@ -32,13 +32,13 @@ const SITE_URL = "https://xtsy.one";
 
 const SEO_CONFIG: Record<string, { title: string; description: string; keywords?: string }> = {
   home: {
-    title: "XTSY — Best Hostel in Shillong, Meghalaya | Northeast India",
-    description: "India's biggest hostel in Shillong. Budget dorms from ₹329, 270° glass suite, curated Meghalaya tours. NEITA 2025 nominated. Book direct.",
+    title: "XTSY — Shillong Hostel from ₹329/night (Cheaper than OYO) | Meghalaya",
+    description: "India's biggest hostel in Shillong. Dorms from ₹329, 270° glass suite ₹4,999, curated Meghalaya tours from ₹7,999. Book direct — save 20-30% vs Booking.com.",
     keywords: "best hostel Shillong, biggest hostel northeast India, Shillong hostel, Meghalaya accommodation, budget stay Shillong",
   },
   travel: {
-    title: "Meghalaya Tour Packages 2026 | XTSY Curated Trips",
-    description: "30+ Meghalaya & Northeast India tour packages. Living root bridges, Dawki, Cherrapunji, caving, bike rides. Starting ₹13,999.",
+    title: "Meghalaya Tour Packages from ₹13,999 — Beats Thrillophilia Pricing | XTSY",
+    description: "30+ Meghalaya & Northeast India tour packages from ₹13,999. Living root bridges, Dawki, Cherrapunji, caving, bike rides. Direct booking saves up to 30%.",
     keywords: "Meghalaya tour packages, Northeast India tours, living root bridges tour, Cherrapunji tour, Dawki trip",
   },
   gallery: {
