@@ -145,7 +145,7 @@ const Tours = () => {
       />
       {/* LCP hero preload — mobile-first money page */}
       <Helmet>
-        <link rel="preload" as="image" href={toursHeroImg} fetchpriority="high" />
+        <link rel="preload" as="image" href={toursHeroImg} {...({ fetchpriority: 'high' } as any)} />
       </Helmet>
       <Header />
 
