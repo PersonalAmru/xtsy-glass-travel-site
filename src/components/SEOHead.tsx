@@ -141,7 +141,21 @@ export const SEOHead = ({
 }: SEOHeadProps) => {
   const finalTitle = title || DEFAULT_TITLE;
   const finalDescription = description || DEFAULT_DESCRIPTION;
-  const finalCanonical = canonicalUrl || SITE_URL;
+  // Canonical fallback: derive from current pathname instead of defaulting every
+  // page to the homepage (which previously caused massive duplicate-canonical
+  // signals across programmatic SEO pages). Strip query/hash, drop trailing
+  // slash (except root), and only fall back to SITE_URL on the SSR/server pass.
+  const deriveCanonicalFromLocation = (): string => {
+    if (typeof window === 'undefined') return SITE_URL;
+    try {
+      const path = window.location.pathname || '/';
+      const cleaned = path === '/' ? '/' : path.replace(/\/+$/, '');
+      return `${SITE_URL}${cleaned}`;
+    } catch {
+      return SITE_URL;
+    }
+  };
+  const finalCanonical = canonicalUrl || deriveCanonicalFromLocation();
   const schemas = structuredData
     ? (Array.isArray(structuredData) ? structuredData : [structuredData])
     : [];
