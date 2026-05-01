@@ -52,7 +52,7 @@ const SEO_CONFIG: Record<string, { title: string; description: string; keywords?
     keywords: "XTSY about, biggest hostel northeast, Shillong hostel story, NEITA 2025",
   },
   booking: {
-    title: "Book Your Stay — XTSY Hostel Shillong | Best Rates",
+    title: "Book Shillong Hostel — Dorms ₹329 / Glass Suite ₹4,999 (Best Price) | XTSY",
     description: "Book dorms from ₹329, King Double rooms from ₹2,399, Panorama 270° glass suite at ₹4,999. Best price guaranteed at XTSY Shillong.",
     keywords: "book hostel Shillong, hostel booking Meghalaya, Shillong room booking",
   },
@@ -122,7 +122,7 @@ const SEO_CONFIG: Record<string, { title: string; description: string; keywords?
     keywords: "places to visit Meghalaya, Meghalaya tourist places, Meghalaya tourism, best time visit Meghalaya",
   },
   tours: {
-    title: "North East India Tour Packages 2026 | XTSY Travel",
+    title: "Northeast India Tours from ₹7,999 — Cheaper than Thrillophilia | XTSY",
     description: "30+ curated tours across Meghalaya, Nagaland, Assam, Arunachal Pradesh & Sikkim. Living root bridges, safaris, tribal festivals. From ₹7,999.",
     keywords: "Northeast India tours, Meghalaya tour packages, Nagaland tours, Assam safari, Arunachal Pradesh trips, Sikkim tours",
   },
