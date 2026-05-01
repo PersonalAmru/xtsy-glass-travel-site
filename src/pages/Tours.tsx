@@ -1,9 +1,11 @@
 import { useState, useMemo, useCallback, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import ToursHero from "@/components/tours/ToursHero";
+import toursHeroImg from "@/assets/tours-hero-mountains.jpg";
 import DestinationGrid from "@/components/tours/DestinationGrid";
 import TourListingCard from "@/components/tours/TourListingCard";
 import TourFiltersSidebar, { type MarketplaceFilters, DEFAULT_MARKETPLACE_FILTERS } from "@/components/tours/TourFiltersSidebar";
@@ -141,6 +143,10 @@ const Tours = () => {
         keywords="Northeast India tours, Meghalaya tour packages, Nagaland tours, Assam safari, Arunachal Pradesh trips, Sikkim tours, North East India travel"
         canonicalUrl="https://xtsy.one/tours"
       />
+      {/* LCP hero preload — mobile-first money page */}
+      <Helmet>
+        <link rel="preload" as="image" href={toursHeroImg} fetchpriority="high" />
+      </Helmet>
       <Header />
 
       <main className="flex-1">
