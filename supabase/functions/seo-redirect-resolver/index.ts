@@ -45,7 +45,7 @@ Deno.serve(async (req) => {
     if (error) {
       console.error('seo_redirects lookup error:', error);
       return new Response(
-        JSON.stringify({ found: false, error: error.message }),
+        JSON.stringify({ found: false, error: 'An internal error occurred. Please try again.' }),
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
@@ -82,9 +82,8 @@ Deno.serve(async (req) => {
     );
   } catch (e) {
     console.error('seo-redirect-resolver fatal:', e);
-    const msg = e instanceof Error ? e.message : 'Unknown error';
     return new Response(
-      JSON.stringify({ error: msg }),
+      JSON.stringify({ error: 'An internal error occurred. Please try again.' }),
       { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );
   }
