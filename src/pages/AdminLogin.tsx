@@ -120,24 +120,8 @@ const AdminLogin = () => {
       }
 
       if (authData.user) {
-        console.log('[AdminLogin] User authenticated, checking admin access for:', authData.user.email);
-        
-        // Check if email is the designated admin email
-        const isAdminEmail = authData.user.email === 'xtsy.social@gmail.com';
-        
-        if (!isAdminEmail) {
-          console.log('[AdminLogin] 🚨 UNAUTHORIZED ACCESS ATTEMPT - Non-admin email:', authData.user.email);
-          
-          // CRITICAL SECURITY LOG: Unauthorized access attempt
-          await logUnauthorizedAccess(email.trim(), 'admin_console');
-          
-          await supabase.auth.signOut({ scope: 'global' });
-          localStorage.removeItem(ADMIN_FLOW_KEY);
-          toast.error("Access denied.");
-          return;
-        }
-
-        // Server-side role verification
+        // Server-side role verification is the sole authorization gate.
+        // Email-based pre-checks were removed to avoid leaking admin identity in the client bundle.
         console.log('[AdminLogin] Verifying admin role for user:', authData.user.id);
         
         const { data: isAdmin, error: roleError } = await supabase.rpc('has_role', {

@@ -105,6 +105,46 @@ Deno.serve(async (req) => {
     )
   }
 
+  // SECURITY: Determine if the caller is an admin/staff member. Non-privileged
+  // callers may only invoke templates that define a fixed `to` recipient — this
+  // prevents authenticated users from using this endpoint as an open mail relay
+  // to arbitrary email addresses (deliverability/reputation abuse).
+  let isPrivilegedCaller = false
+  try {
+    const authHeader = req.headers.get('Authorization')
+    if (authHeader?.startsWith('Bearer ')) {
+      const token = authHeader.slice('Bearer '.length)
+      const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY')
+      if (token && token !== supabaseAnonKey && token !== supabaseServiceKey) {
+        const authClient = createClient(supabaseUrl, supabaseAnonKey ?? supabaseServiceKey)
+        const { data: claimsData } = await authClient.auth.getClaims(token)
+        const userId = claimsData?.claims?.sub
+        if (userId) {
+          const adminClient = createClient(supabaseUrl, supabaseServiceKey)
+          const { data: allowed } = await adminClient.rpc('is_admin_or_staff', { _user_id: userId })
+          if (allowed === true) isPrivilegedCaller = true
+        }
+      }
+      // Service-role tokens are inherently privileged.
+      if (token === supabaseServiceKey) isPrivilegedCaller = true
+    }
+  } catch (e) {
+    console.warn('Privilege check failed; treating caller as unprivileged', e)
+  }
+
+  if (!template.to && !isPrivilegedCaller) {
+    console.warn('Rejected non-privileged send to caller-supplied recipient', {
+      templateName,
+    })
+    return new Response(
+      JSON.stringify({ error: 'Forbidden: this template requires elevated privileges.' }),
+      {
+        status: 403,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      }
+    )
+  }
+
   // Resolve effective recipient: template-level `to` takes precedence over
   // the caller-provided recipientEmail. This allows notification templates
   // to always send to a fixed address (e.g., site owner from env var).

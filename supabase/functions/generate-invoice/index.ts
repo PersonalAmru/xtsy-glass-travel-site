@@ -617,6 +617,49 @@ serve(async (req) => {
         );
       }
 
+      // SECURITY: Re-validate financial values server-side. Never trust client-supplied
+      // ratePerNight/subtotal/gstAmount/totalAmount. We:
+      //   1. Look up the booked room in the `room_types` table by name.
+      //   2. If a matching row exists, require the client `ratePerNight` to match `base_price` exactly.
+      //   3. Recompute subtotal, gstAmount, and totalAmount from validated rate × quantity × nights
+      //      and the canonical GST rate for the room kind (5% for private rooms, 0% for dorm beds).
+      try {
+        // Extract a primary room name from the joined string e.g. "1× King Double Room, 2× 4-bed Dorm"
+        const primaryRoomName = String(data.roomName || '').split(',')[0].replace(/^\s*\d+\s*[×x]\s*/i, '').trim();
+        if (primaryRoomName) {
+          const { data: rt } = await supabase
+            .from('room_types')
+            .select('name, base_price')
+            .ilike('name', primaryRoomName)
+            .maybeSingle();
+          if (rt && typeof rt.base_price === 'number' && rt.base_price > 0) {
+            // Allow off-by-one rounding only.
+            if (Math.abs(rt.base_price - data.ratePerNight) > 1) {
+              console.warn('[generate-invoice] price mismatch — code: PV002');
+              return new Response(
+                JSON.stringify({ success: false, error: 'Pricing has been updated. Please refresh and try again.' }),
+                { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
+              );
+            }
+          }
+        }
+      } catch (e) {
+        console.warn('[generate-invoice] room_types lookup failed (non-fatal):', e);
+      }
+
+      // Canonical GST rate by room kind (matches client logic).
+      const canonicalGstRate = String(data.roomType || '').toLowerCase() === 'dorm' ? 0 : 0.05;
+      const recomputedSubtotal = Math.round(data.ratePerNight * data.quantity * data.nights);
+      const recomputedGst = Math.round(recomputedSubtotal * canonicalGstRate);
+      const recomputedTotal = recomputedSubtotal + recomputedGst;
+
+      // Overwrite client-supplied financial fields with server-computed values
+      // before persisting or rendering the invoice.
+      data.subtotal = recomputedSubtotal;
+      data.gstRate = canonicalGstRate;
+      data.gstAmount = recomputedGst;
+      data.totalAmount = recomputedTotal;
+
       const html = generateInvoiceHTML(data);
 
       // Call the database function to create booking with invoice

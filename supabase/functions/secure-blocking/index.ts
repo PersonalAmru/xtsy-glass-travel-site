@@ -188,7 +188,7 @@ serve(async (req) => {
     });
   } catch (error) {
     console.error('secure-blocking error', error);
-    return new Response(JSON.stringify({ error: String(error) }), {
+    return new Response(JSON.stringify({ error: 'An internal error occurred. Please try again.' }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });

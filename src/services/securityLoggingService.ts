@@ -239,17 +239,16 @@ export async function logSecurityEvent(event: SecurityEvent): Promise<void> {
   }
 }
 
-// Log admin login attempt
+// Log admin login attempt.
+// Authorization decisions are made exclusively by the server-side `has_role` RPC,
+// so this client-side logger no longer references any admin email address.
 export async function logAdminLoginAttempt(email: string, success: boolean, reason?: string): Promise<void> {
-  const isAuthorizedAdmin = email.trim().toLowerCase() === 'xtsy.social@gmail.com';
-  
   await logSecurityEvent({
-    eventType: success ? 'login_success' : (isAuthorizedAdmin ? 'login_failure' : 'unauthorized_access'),
-    severity: success ? 'low' : (isAuthorizedAdmin ? 'medium' : 'critical'),
+    eventType: success ? 'login_success' : 'login_failure',
+    severity: success ? 'low' : 'medium',
     email,
     attemptDetails: {
       admin_email_attempted: email,
-      is_authorized_email: isAuthorizedAdmin,
       login_success: success,
       reason: reason || (success ? 'Successful admin login' : 'Failed login attempt'),
       attempted_at: new Date().toISOString(),

@@ -318,7 +318,7 @@ Deno.serve(async (req) => {
   } catch (error) {
     console.error('[traveller-intelligence] Error:', error);
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: 'An internal error occurred. Please try again.' }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         status: 500,
