@@ -206,7 +206,7 @@ const TrendingDestinations = memo(() => {
             style={{ scrollSnapType: 'x mandatory', minHeight: '288px' }}
           >
             {TRENDING.map((dest, i) => (
-              <div key={`${dest.slug}-${i}`} style={{ scrollSnapAlign: 'start' }}>
+              <div key={`${dest.href}-${i}`} style={{ scrollSnapAlign: 'start' }}>
                 <DestinationCard dest={dest} />
               </div>
             ))}
