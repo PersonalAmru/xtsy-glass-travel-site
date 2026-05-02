@@ -60,9 +60,7 @@ const Header = () => {
   ];
 
   return (
-    <header className={`sticky top-0 z-50 safe-top safe-left safe-right border-b border-white/10 ${
-      isMobile ? 'bg-black/95' : 'bg-black/80 backdrop-blur-md'
-    }`}>
+    <header className="sticky top-0 z-50 safe-top safe-left safe-right border-b border-white/10 bg-black">
       <div className="responsive-container mobile-compact">
         <div className={`flex justify-between items-center ${isMobile ? 'h-16' : 'h-20'}`}>
           {/* Logo */}
