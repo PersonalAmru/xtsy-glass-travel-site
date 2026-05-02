@@ -423,17 +423,17 @@ function generateInvoiceHTML(data: InvoiceData): string {
     <div class="info-section">
       <div class="bill-to">
         <div class="bill-to-label">Bill To:</div>
-        <div class="bill-to-name">${data.guestName}</div>
-        ${data.guestAddress ? `<div>${data.guestAddress}</div>` : ''}
-        ${data.guestCity || data.guestState ? `<div>${[data.guestCity, data.guestState].filter(Boolean).join(', ')}</div>` : ''}
-        ${data.guestPincode ? `<div>PIN: ${data.guestPincode}</div>` : ''}
-        <div>${data.guestPhone}</div>
-        <div>${data.guestEmail}</div>
+        <div class="bill-to-name">${h(clamp(data.guestName, 200))}</div>
+        ${data.guestAddress ? `<div>${h(clamp(data.guestAddress, 300))}</div>` : ''}
+        ${data.guestCity || data.guestState ? `<div>${h([clamp(data.guestCity, 100), clamp(data.guestState, 100)].filter(Boolean).join(', '))}</div>` : ''}
+        ${data.guestPincode ? `<div>PIN: ${h(clamp(data.guestPincode, 20))}</div>` : ''}
+        <div>${h(clamp(data.guestPhone, 30))}</div>
+        <div>${h(clamp(data.guestEmail, 254))}</div>
       </div>
       <div class="invoice-info">
         <div class="invoice-info-row">
           <span class="invoice-info-label">Invoice#:</span>
-          <span class="invoice-info-value">${data.bookingId}</span>
+          <span class="invoice-info-value">${h(clamp(data.bookingId, 64))}</span>
         </div>
         <div class="invoice-info-row">
           <span class="invoice-info-label">Invoice Date:</span>
