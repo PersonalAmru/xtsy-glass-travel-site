@@ -80,7 +80,7 @@ const getImage = (dest: TrendingDestination): string => {
 
 const DestinationCard = memo(({ dest }: { dest: TrendingDestination }) => (
   <Link
-    to={`/${dest.slug}`}
+    to={dest.href}
     className="group flex-shrink-0 w-[280px] sm:w-[320px] rounded-2xl overflow-hidden relative bg-card border border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-xl"
   >
     <div className="relative h-[200px] sm:h-[220px] overflow-hidden">
