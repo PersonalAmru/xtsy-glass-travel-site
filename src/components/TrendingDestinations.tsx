@@ -20,75 +20,67 @@ import nagalandHornbillImg from '@/assets/nagaland-hornbill-premium.jpg';
 
 interface TrendingDestination {
   name: string;
-  slug: string;
+  /** Full route path the card links to (e.g. "/places-to-visit/dawki-umngot-river"). */
+  href: string;
+  /** Image key in knownImageIndices (Meghalaya destinations). Optional when imageOverride is set. */
+  imageKey?: string;
   tagline: string;
   category: string;
   location: string;
   imageOverride?: string; // direct image URL or imported asset
 }
 
+// All Meghalaya cards route to /places-to-visit/<slug> (DestinationDetail) which is
+// fast, has no thin-content guard, and is guaranteed to render. Northeast/International
+// cards route to /travel. XTSY 270 keeps its dedicated route.
 const TRENDING: TrendingDestination[] = [
-  // Meghalaya
-  { name: 'Dawki – Umngot River', slug: 'dawki-umngot-river-guide', tagline: 'Crystal-clear waters & glass-bottom boating', category: 'River', location: 'Meghalaya' },
-  { name: 'Cherrapunjee', slug: 'cherrapunjee-travel-guide', tagline: 'Wettest place on Earth & living root bridges', category: 'Heritage', location: 'Meghalaya' },
-  { name: 'Mawlynnong Village', slug: 'mawlynnong-cleanest-village', tagline: "Asia's cleanest village experience", category: 'Village', location: 'Meghalaya' },
-  { name: 'Laitlum Canyons', slug: 'laitlum-canyons-shillong', tagline: 'Dramatic canyon views above the clouds', category: 'Viewpoint', location: 'Meghalaya' },
-  { name: 'Nongriat Root Bridge', slug: 'double-decker-root-bridge', tagline: 'Trek to the iconic double-decker bridge', category: 'Trek', location: 'Meghalaya' },
-  
-  // XTSY 270 Romantic Escape
-  { name: 'Romantic Meghalaya Escape', slug: 'xtsy-270', tagline: '270° glasshouse glamping under the stars', category: 'Romantic', location: 'Shillong', imageOverride: xtsy270Stargazing },
-  
-  // More Meghalaya
-  { name: 'Umiam Lake', slug: 'umiam-lake-shillong', tagline: 'Scenic lake surrounded by pine hills', category: 'Lake', location: 'Meghalaya' },
-  { name: 'Nohkalikai Falls', slug: 'nohkalikai-falls-meghalaya', tagline: "India's tallest plunge waterfall at 340m", category: 'Waterfall', location: 'Meghalaya' },
-  { name: 'Krang Suri Falls', slug: 'krang-suri-falls-meghalaya', tagline: 'Turquoise pool hidden in Jaintia Hills', category: 'Waterfall', location: 'Meghalaya' },
-  { name: 'Mawsmai Cave', slug: 'mawsmai-cave-cherrapunji', tagline: 'Walk through ancient limestone formations', category: 'Cave', location: 'Meghalaya' },
-  { name: 'Shnongpdeng', slug: 'shnongpdeng-camping-meghalaya', tagline: 'Riverside camping & cliff jumping', category: 'Adventure', location: 'Meghalaya' },
-  
-  // Northeast India
-  { name: 'Tawang Monastery', slug: 'travel', tagline: "India's largest Buddhist monastery at 10,000 ft", category: 'Spiritual', location: 'Arunachal Pradesh', imageOverride: tawangMonasteryImg },
-  { name: 'Assam Tea Heritage', slug: 'travel', tagline: 'Kaziranga wildlife & tea garden trails', category: 'Wildlife', location: 'Assam', imageOverride: assamTeaGardensImg },
-  { name: 'Pelling & Kanchenjunga', slug: 'travel', tagline: 'Sunrise views of the third highest peak', category: 'Mountain', location: 'Sikkim', imageOverride: pellingKanchenjungaImg },
-  { name: 'Arunachal Tribal Trail', slug: 'travel', tagline: 'Ancient tribal cultures & Ziro Valley', category: 'Cultural', location: 'Arunachal Pradesh', imageOverride: arunachalTribalImg },
-  { name: 'Hornbill Festival', slug: 'travel', tagline: "Nagaland's Festival of Festivals", category: 'Festival', location: 'Nagaland', imageOverride: nagalandHornbillImg },
-  
-  // International
-  { name: 'Vietnam Discovery', slug: 'travel', tagline: 'Hanoi, Ha Long Bay & Hoi An lanterns', category: 'International', location: 'Vietnam', imageOverride: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=600&auto=format&fit=crop&q=75' },
-  { name: 'Bali Wellness Retreat', slug: 'travel', tagline: 'Yoga, rice terraces & temple ceremonies', category: 'International', location: 'Bali, Indonesia', imageOverride: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&auto=format&fit=crop&q=75' },
-  { name: 'Nepal Himalayan Trek', slug: 'travel', tagline: 'Kathmandu, Pokhara & Poon Hill sunrise', category: 'International', location: 'Nepal', imageOverride: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=600&auto=format&fit=crop&q=75' },
-  { name: 'Bhutan Mindful Kingdom', slug: 'travel', tagline: "Tiger's Nest & Gross National Happiness", category: 'International', location: 'Bhutan', imageOverride: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/Bhutan-Hill-Stations.webp' },
-  { name: 'Thailand Escape', slug: 'travel', tagline: 'Temples, islands & street food culture', category: 'International', location: 'Thailand', imageOverride: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=600&auto=format&fit=crop&q=75' },
-];
+  // Meghalaya — DestinationDetail route
+  { name: 'Dawki – Umngot River', href: '/places-to-visit/dawki-umngot-river', imageKey: 'dawki-umngot-river', tagline: 'Crystal-clear waters & glass-bottom boating', category: 'River', location: 'Meghalaya' },
+  { name: 'Nohkalikai Falls', href: '/places-to-visit/nohkalikai-falls', imageKey: 'nohkalikai-falls', tagline: "India's tallest plunge waterfall at 340m", category: 'Waterfall', location: 'Meghalaya' },
+  { name: 'Mawlynnong Village', href: '/places-to-visit/mawlynnong-village', imageKey: 'mawlynnong-village', tagline: "Asia's cleanest village experience", category: 'Village', location: 'Meghalaya' },
+  { name: 'Laitlum Canyons', href: '/places-to-visit/laitlum-canyons', imageKey: 'laitlum-canyons', tagline: 'Dramatic canyon views above the clouds', category: 'Viewpoint', location: 'Meghalaya' },
+  { name: 'Nongriat Root Bridge', href: '/places-to-visit/double-decker-living-root-bridge', imageKey: 'double-decker-living-root-bridge', tagline: 'Trek to the iconic double-decker bridge', category: 'Trek', location: 'Meghalaya' },
 
-// Mapping from carousel slug to knownImageIndices key (Meghalaya only)
-const SLUG_TO_IMAGE_KEY: Record<string, string> = {
-  'dawki-umngot-river-guide': 'dawki-umngot-river',
-  'cherrapunjee-travel-guide': 'elephant-falls',
-  'mawlynnong-cleanest-village': 'mawlynnong-village',
-  'laitlum-canyons-shillong': 'laitlum-canyons',
-  'double-decker-root-bridge': 'double-decker-living-root-bridge',
-  'umiam-lake-shillong': 'umiam-lake',
-  'nohkalikai-falls-meghalaya': 'nohkalikai-falls',
-  'krang-suri-falls-meghalaya': 'krang-suri-falls',
-  'mawsmai-cave-cherrapunji': 'mawsmai-cave',
-  'shnongpdeng-camping-meghalaya': 'ranikor',
-};
+  // XTSY 270 Romantic Escape
+  { name: 'Romantic Meghalaya Escape', href: '/xtsy-270', tagline: '270° glasshouse glamping under the stars', category: 'Romantic', location: 'Shillong', imageOverride: xtsy270Stargazing },
+
+  // More Meghalaya — DestinationDetail route
+  { name: 'Umiam Lake', href: '/places-to-visit/umiam-lake', imageKey: 'umiam-lake', tagline: 'Scenic lake surrounded by pine hills', category: 'Lake', location: 'Meghalaya' },
+  { name: 'Elephant Falls', href: '/places-to-visit/elephant-falls', imageKey: 'elephant-falls', tagline: 'Three-tiered waterfall near Shillong', category: 'Waterfall', location: 'Meghalaya' },
+  { name: 'Krang Suri Falls', href: '/places-to-visit/krang-suri-falls', imageKey: 'krang-suri-falls', tagline: 'Turquoise pool hidden in Jaintia Hills', category: 'Waterfall', location: 'Meghalaya' },
+  { name: 'Mawsmai Cave', href: '/places-to-visit/mawsmai-cave', imageKey: 'mawsmai-cave', tagline: 'Walk through ancient limestone formations', category: 'Cave', location: 'Meghalaya' },
+  { name: 'Seven Sisters Falls', href: '/places-to-visit/seven-sisters-falls', imageKey: 'seven-sisters-falls', tagline: 'Multiple cascades down dramatic cliffs', category: 'Waterfall', location: 'Meghalaya' },
+
+  // Northeast India
+  { name: 'Tawang Monastery', href: '/travel', tagline: "India's largest Buddhist monastery at 10,000 ft", category: 'Spiritual', location: 'Arunachal Pradesh', imageOverride: tawangMonasteryImg },
+  { name: 'Assam Tea Heritage', href: '/travel', tagline: 'Kaziranga wildlife & tea garden trails', category: 'Wildlife', location: 'Assam', imageOverride: assamTeaGardensImg },
+  { name: 'Pelling & Kanchenjunga', href: '/travel', tagline: 'Sunrise views of the third highest peak', category: 'Mountain', location: 'Sikkim', imageOverride: pellingKanchenjungaImg },
+  { name: 'Arunachal Tribal Trail', href: '/travel', tagline: 'Ancient tribal cultures & Ziro Valley', category: 'Cultural', location: 'Arunachal Pradesh', imageOverride: arunachalTribalImg },
+  { name: 'Hornbill Festival', href: '/travel', tagline: "Nagaland's Festival of Festivals", category: 'Festival', location: 'Nagaland', imageOverride: nagalandHornbillImg },
+
+  // International
+  { name: 'Vietnam Discovery', href: '/travel', tagline: 'Hanoi, Ha Long Bay & Hoi An lanterns', category: 'International', location: 'Vietnam', imageOverride: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=600&auto=format&fit=crop&q=75' },
+  { name: 'Bali Wellness Retreat', href: '/travel', tagline: 'Yoga, rice terraces & temple ceremonies', category: 'International', location: 'Bali, Indonesia', imageOverride: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&auto=format&fit=crop&q=75' },
+  { name: 'Nepal Himalayan Trek', href: '/travel', tagline: 'Kathmandu, Pokhara & Poon Hill sunrise', category: 'International', location: 'Nepal', imageOverride: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=600&auto=format&fit=crop&q=75' },
+  { name: 'Bhutan Mindful Kingdom', href: '/travel', tagline: "Tiger's Nest & Gross National Happiness", category: 'International', location: 'Bhutan', imageOverride: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/Bhutan-Hill-Stations.webp' },
+  { name: 'Thailand Escape', href: '/travel', tagline: 'Temples, islands & street food culture', category: 'International', location: 'Thailand', imageOverride: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=600&auto=format&fit=crop&q=75' },
+];
 
 const getImage = (dest: TrendingDestination): string => {
   if (dest.imageOverride) return dest.imageOverride;
-  const imageKey = SLUG_TO_IMAGE_KEY[dest.slug];
-  if (imageKey) {
-    const indices = knownImageIndices[imageKey];
+  if (dest.imageKey) {
+    const indices = knownImageIndices[dest.imageKey];
     if (indices && indices.length > 0) {
-      return getDestinationImageUrl(imageKey, indices[0]);
+      return getDestinationImageUrl(dest.imageKey, indices[0]);
     }
+    return getDestinationImageUrl(dest.imageKey, 1);
   }
-  return getDestinationImageUrl(dest.slug, 1);
+  return '';
 };
 
 const DestinationCard = memo(({ dest }: { dest: TrendingDestination }) => (
   <Link
-    to={`/${dest.slug}`}
+    to={dest.href}
     className="group flex-shrink-0 w-[280px] sm:w-[320px] rounded-2xl overflow-hidden relative bg-card border border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-xl"
   >
     <div className="relative h-[200px] sm:h-[220px] overflow-hidden">
@@ -214,7 +206,7 @@ const TrendingDestinations = memo(() => {
             style={{ scrollSnapType: 'x mandatory', minHeight: '288px' }}
           >
             {TRENDING.map((dest, i) => (
-              <div key={`${dest.slug}-${i}`} style={{ scrollSnapAlign: 'start' }}>
+              <div key={`${dest.href}-${i}`} style={{ scrollSnapAlign: 'start' }}>
                 <DestinationCard dest={dest} />
               </div>
             ))}
