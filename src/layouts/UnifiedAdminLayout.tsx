@@ -67,29 +67,26 @@ export function UnifiedAdminLayout({ children }: UnifiedAdminLayoutProps) {
   useEffect(() => {
     const checkAdmin = async () => {
       try {
-        // Check for admin session marker
-        const isAdminSession = localStorage.getItem('xtsy_admin_session') === 'true';
-        
         const { data: { user } } = await supabase.auth.getUser();
-        
+
         if (!user) {
           localStorage.removeItem('xtsy_admin_session');
           navigate('/admin-login');
           return;
         }
 
-        // Check if admin email and has admin session marker
-        if (user.email !== 'xtsy.social@gmail.com' || !isAdminSession) {
-          const { data: hasRole } = await supabase.rpc('has_role', {
-            _user_id: user.id,
-            _role: 'admin',
-          });
+        // SECURITY: Always verify admin role server-side via has_role RPC.
+        // The localStorage session marker is a UX hint only and must NEVER
+        // be used as a security gate (it is client-controllable).
+        const { data: hasRole, error: roleError } = await supabase.rpc('has_role', {
+          _user_id: user.id,
+          _role: 'admin',
+        });
 
-          if (!hasRole || !isAdminSession) {
-            // Not an admin or didn't login via admin portal
-            navigate('/admin-login');
-            return;
-          }
+        if (roleError || !hasRole) {
+          localStorage.removeItem('xtsy_admin_session');
+          navigate('/admin-login');
+          return;
         }
 
         setIsAdmin(true);

@@ -706,15 +706,74 @@ serve(async (req) => {
     }
 
     if (action === 'get') {
-      // Get existing invoice
+      // SECURITY: Require authentication and ownership/admin check.
+      // Booking IDs are sequential (XTH-INV-NNN); without auth they were enumerable.
+      const authHeader = req.headers.get('Authorization');
+      if (!authHeader?.startsWith('Bearer ')) {
+        return new Response(JSON.stringify({ success: false, error: 'Unauthorized' }), {
+          status: 401,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+
+      const userClient = createClient(
+        Deno.env.get('SUPABASE_URL')!,
+        Deno.env.get('SUPABASE_ANON_KEY')!,
+        { global: { headers: { Authorization: authHeader } } }
+      );
+
+      const token = authHeader.replace('Bearer ', '');
+      const { data: claimsData, error: claimsError } = await userClient.auth.getClaims(token);
+      if (claimsError || !claimsData?.claims) {
+        return new Response(JSON.stringify({ success: false, error: 'Unauthorized' }), {
+          status: 401,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+
+      const callerUserId = claimsData.claims.sub as string | undefined;
+      const callerEmail = (claimsData.claims.email as string | undefined)?.toLowerCase();
+
+      // Get existing invoice (service-role read so we can check ownership)
       const { data: invoice, error } = await supabase
         .from('booking_invoices')
         .select('*')
         .eq('booking_id', bookingId)
         .single();
 
-      if (error) {
-        throw new Error('Invoice not found');
+      if (error || !invoice) {
+        return new Response(JSON.stringify({ success: false, error: 'Invoice not found' }), {
+          status: 404,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+
+      // Ownership check: caller must be the booking's user, the guest email, or an admin/staff role
+      let authorized = false;
+      if (callerEmail && invoice.guest_email && invoice.guest_email.toLowerCase() === callerEmail) {
+        authorized = true;
+      }
+      if (!authorized && callerUserId) {
+        const { data: bookingRow } = await supabase
+          .from('bookings')
+          .select('user_id')
+          .eq('booking_id', bookingId)
+          .maybeSingle();
+        if (bookingRow?.user_id && bookingRow.user_id === callerUserId) {
+          authorized = true;
+        }
+      }
+      if (!authorized && callerUserId) {
+        const { data: isAdmin } = await supabase.rpc('has_role', { _user_id: callerUserId, _role: 'admin' });
+        const { data: isStaff } = await supabase.rpc('has_role', { _user_id: callerUserId, _role: 'staff' });
+        if (isAdmin || isStaff) authorized = true;
+      }
+
+      if (!authorized) {
+        return new Response(JSON.stringify({ success: false, error: 'Forbidden' }), {
+          status: 403,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
       }
 
       // Regenerate HTML if not stored
