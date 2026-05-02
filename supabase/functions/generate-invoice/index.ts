@@ -1,10 +1,28 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { checkRateLimit } from "../_shared/rateLimiter.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
+
+// HTML-entity encoder to prevent stored XSS in invoice templates
+function h(s: unknown): string {
+  if (s === null || s === undefined) return '';
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+// Truncate user-supplied strings to safe lengths
+function clamp(s: unknown, max: number): string {
+  const str = s === null || s === undefined ? '' : String(s);
+  return str.length > max ? str.slice(0, max) : str;
+}
 
 interface InvoiceData {
   bookingId: string;
@@ -121,7 +139,7 @@ function generateInvoiceHTML(data: InvoiceData): string {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tax Invoice ${data.bookingId} - XTSY Travellers Hostel</title>
+  <title>Tax Invoice ${h(clamp(data.bookingId, 64))} - XTSY Travellers Hostel</title>
   <link rel="icon" href="/xtsy-favicon.png" type="image/png">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -405,17 +423,17 @@ function generateInvoiceHTML(data: InvoiceData): string {
     <div class="info-section">
       <div class="bill-to">
         <div class="bill-to-label">Bill To:</div>
-        <div class="bill-to-name">${data.guestName}</div>
-        ${data.guestAddress ? `<div>${data.guestAddress}</div>` : ''}
-        ${data.guestCity || data.guestState ? `<div>${[data.guestCity, data.guestState].filter(Boolean).join(', ')}</div>` : ''}
-        ${data.guestPincode ? `<div>PIN: ${data.guestPincode}</div>` : ''}
-        <div>${data.guestPhone}</div>
-        <div>${data.guestEmail}</div>
+        <div class="bill-to-name">${h(clamp(data.guestName, 200))}</div>
+        ${data.guestAddress ? `<div>${h(clamp(data.guestAddress, 300))}</div>` : ''}
+        ${data.guestCity || data.guestState ? `<div>${h([clamp(data.guestCity, 100), clamp(data.guestState, 100)].filter(Boolean).join(', '))}</div>` : ''}
+        ${data.guestPincode ? `<div>PIN: ${h(clamp(data.guestPincode, 20))}</div>` : ''}
+        <div>${h(clamp(data.guestPhone, 30))}</div>
+        <div>${h(clamp(data.guestEmail, 254))}</div>
       </div>
       <div class="invoice-info">
         <div class="invoice-info-row">
           <span class="invoice-info-label">Invoice#:</span>
-          <span class="invoice-info-value">${data.bookingId}</span>
+          <span class="invoice-info-value">${h(clamp(data.bookingId, 64))}</span>
         </div>
         <div class="invoice-info-row">
           <span class="invoice-info-label">Invoice Date:</span>
@@ -454,8 +472,8 @@ function generateInvoiceHTML(data: InvoiceData): string {
       <tbody>
         <tr>
           <td>1</td>
-          <td class="left">${itemDescription}</td>
-          <td class="left">${itemDescription}</td>
+          <td class="left">${h(clamp(itemDescription, 200))}</td>
+          <td class="left">${h(clamp(itemDescription, 200))}</td>
           <td>${COMPANY.hsnCode}</td>
           <td>${qtyDisplay}</td>
           <td class="right">${rateDisplay}</td>
@@ -532,13 +550,75 @@ serve(async (req) => {
     const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
     const supabase = createClient(supabaseUrl, supabaseKey);
 
+    // IP-based rate limiting to prevent booking spam (10 invoice requests / 5 min per IP)
+    const ipAddress =
+      req.headers.get('cf-connecting-ip') ||
+      req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+      req.headers.get('x-real-ip') ||
+      'unknown';
+
+    const rl = await checkRateLimit(supabase, ipAddress, 'generate-invoice', {
+      endpoint: 'generate-invoice',
+      maxRequests: 10,
+      windowMs: 5 * 60 * 1000,
+    });
+
+    if (!rl.allowed) {
+      return new Response(
+        JSON.stringify({ success: false, error: 'Too many requests. Please try again shortly.' }),
+        {
+          status: 429,
+          headers: {
+            ...corsHeaders,
+            'Content-Type': 'application/json',
+            'Retry-After': String(Math.max(1, Math.ceil((rl.resetAt.getTime() - Date.now()) / 1000))),
+          },
+        },
+      );
+    }
+
     const { action, bookingId, invoiceData } = await req.json();
 
     if (action === 'generate') {
       // Generate new invoice
       const data = invoiceData as InvoiceData;
+
+      // Server-side validation: required fields, types, and length limits to prevent abuse and stored XSS payload bloat
+      const errors: string[] = [];
+      const reqStr = (v: unknown, name: string, max: number, min = 1) => {
+        if (typeof v !== 'string' || v.trim().length < min) errors.push(`${name} required`);
+        else if (v.length > max) errors.push(`${name} too long`);
+      };
+      const reqNum = (v: unknown, name: string, min = 0) => {
+        if (typeof v !== 'number' || !Number.isFinite(v) || v < min) errors.push(`${name} invalid`);
+      };
+
+      reqStr(data?.guestName, 'guestName', 200);
+      reqStr(data?.guestEmail, 'guestEmail', 254);
+      reqStr(data?.guestPhone, 'guestPhone', 30);
+      reqStr(data?.checkIn, 'checkIn', 32);
+      reqStr(data?.checkOut, 'checkOut', 32);
+      reqStr(data?.roomName, 'roomName', 200);
+      reqStr(data?.roomType, 'roomType', 100);
+      reqNum(data?.quantity, 'quantity', 1);
+      reqNum(data?.nights, 'nights', 1);
+      reqNum(data?.ratePerNight, 'ratePerNight', 0);
+      reqNum(data?.subtotal, 'subtotal', 0);
+      reqNum(data?.gstRate, 'gstRate', 0);
+      reqNum(data?.gstAmount, 'gstAmount', 0);
+      reqNum(data?.totalAmount, 'totalAmount', 0);
+      if (data?.guestAddress !== undefined && data?.guestAddress !== null && (typeof data.guestAddress !== 'string' || data.guestAddress.length > 300)) errors.push('guestAddress invalid');
+      if (data?.specialRequests !== undefined && data?.specialRequests !== null && (typeof data.specialRequests !== 'string' || data.specialRequests.length > 1000)) errors.push('specialRequests invalid');
+
+      if (errors.length > 0) {
+        return new Response(
+          JSON.stringify({ success: false, error: 'Invalid input', details: errors }),
+          { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
+        );
+      }
+
       const html = generateInvoiceHTML(data);
-      
+
       // Call the database function to create booking with invoice
       const { data: result, error } = await supabase.rpc('create_booking_with_invoice', {
         p_guest_name: data.guestName,
