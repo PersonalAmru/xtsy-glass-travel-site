@@ -139,7 +139,7 @@ function generateInvoiceHTML(data: InvoiceData): string {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tax Invoice ${data.bookingId} - XTSY Travellers Hostel</title>
+  <title>Tax Invoice ${h(clamp(data.bookingId, 64))} - XTSY Travellers Hostel</title>
   <link rel="icon" href="/xtsy-favicon.png" type="image/png">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -472,8 +472,8 @@ function generateInvoiceHTML(data: InvoiceData): string {
       <tbody>
         <tr>
           <td>1</td>
-          <td class="left">${itemDescription}</td>
-          <td class="left">${itemDescription}</td>
+          <td class="left">${h(clamp(itemDescription, 200))}</td>
+          <td class="left">${h(clamp(itemDescription, 200))}</td>
           <td>${COMPANY.hsnCode}</td>
           <td>${qtyDisplay}</td>
           <td class="right">${rateDisplay}</td>
