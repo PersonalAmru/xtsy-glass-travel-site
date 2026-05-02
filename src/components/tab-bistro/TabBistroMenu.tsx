@@ -30,27 +30,30 @@ const TabBistroMenu = memo(() => {
         ))}
       </div>
 
-      {/* Categories */}
-      <div className="space-y-8">
-        {activeSection.categories.map((cat) => (
-          <div key={cat.title}>
-            <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-              <span className="w-1 h-5 bg-amber-500 rounded-full" />
-              {cat.title}
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
-              {cat.items.map((item) => (
-                <div
-                  key={item.name}
-                  className="flex items-baseline justify-between py-2 border-b border-border/50 last:border-0"
-                >
-                  <span className="text-sm text-foreground pr-3">{item.name}</span>
-                  <span className="text-sm font-medium text-amber-400 whitespace-nowrap">{item.price}</span>
-                </div>
-              ))}
+      {/* Categories — headings + price range only */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {activeSection.categories.map((cat) => {
+          const nums = cat.items
+            .flatMap((i) => i.price.match(/\d+/g) ?? [])
+            .map((n) => parseInt(n, 10))
+            .filter((n) => !isNaN(n));
+          const min = nums.length ? Math.min(...nums) : null;
+          const max = nums.length ? Math.max(...nums) : null;
+          const range =
+            min === null ? "" : min === max ? `₹${min}` : `₹${min} – ₹${max}`;
+          return (
+            <div
+              key={cat.title}
+              className="flex items-center justify-between gap-3 p-4 rounded-xl bg-card border border-border hover:border-amber-500/40 transition-colors"
+            >
+              <h3 className="text-sm sm:text-base font-semibold text-foreground flex items-center gap-2">
+                <span className="w-1 h-5 bg-amber-500 rounded-full" />
+                {cat.title}
+              </h3>
+              <span className="text-sm font-medium text-amber-400 whitespace-nowrap">{range}</span>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
