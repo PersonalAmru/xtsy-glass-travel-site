@@ -1,10 +1,28 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { checkRateLimit } from "../_shared/rateLimiter.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
+
+// HTML-entity encoder to prevent stored XSS in invoice templates
+function h(s: unknown): string {
+  if (s === null || s === undefined) return '';
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+// Truncate user-supplied strings to safe lengths
+function clamp(s: unknown, max: number): string {
+  const str = s === null || s === undefined ? '' : String(s);
+  return str.length > max ? str.slice(0, max) : str;
+}
 
 interface InvoiceData {
   bookingId: string;
