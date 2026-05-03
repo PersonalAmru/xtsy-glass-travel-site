@@ -18,7 +18,7 @@ const DawkiCampsiteCard = memo(() => {
         <div className="flex items-end justify-between mb-6">
           <div>
             <p className="text-xs uppercase tracking-widest text-primary font-semibold mb-2">New · Camping Experience</p>
-            <h2 className="text-2xl sm:text-3xl font-bold">XTSY Adventure Campsite, Dawki</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">XTSY Adventure Campsite, Dawki</h2>
           </div>
           <Link
             to="/xtsy-adventure-campsite-dawki"

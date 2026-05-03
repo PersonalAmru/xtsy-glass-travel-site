@@ -116,13 +116,13 @@ const AvailableStaysNow = memo(() => {
           <TrendingUp className="w-5 h-5 text-emerald-400" />
         </div>
         <div>
-          <p className="text-[11px] font-semibold tracking-[0.18em] text-emerald-500 uppercase">Shillong Properties</p>
-          <h2 className="text-xl md:text-2xl font-bold text-foreground">
+          <p className="text-[11px] font-semibold tracking-[0.18em] text-emerald-700 uppercase">Shillong Properties</p>
+          <h2 className="text-xl md:text-2xl font-bold text-slate-900">
             Available Stays Right Now
           </h2>
         </div>
       </div>
-      <p className="text-sm text-muted-foreground mb-6 ml-12">
+      <p className="text-sm text-slate-700 mb-6 ml-12">
         Real-time availability in Shillong · Updated just now
       </p>
 
