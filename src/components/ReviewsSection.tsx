@@ -784,7 +784,7 @@ const ReviewsSection = () => {
             )}
           >
             <Sparkles className="w-4 h-4 mr-2" />
-            View All {filteredReviews.length} Reviews
+            View All {allReviewsCombined.length} Reviews
           </Button>
         </div>
 
