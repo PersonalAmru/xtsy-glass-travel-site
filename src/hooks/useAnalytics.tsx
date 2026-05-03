@@ -166,14 +166,20 @@ export const useAnalytics = () => {
   const scrollDepth = useRef<number>(0);
   const isFirstPage = useRef<boolean>(true);
 
-  // Track scroll depth
+  // Track scroll depth (rAF-throttled to avoid forced layout on every scroll tick)
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (scrollHeight > 0) {
-        const currentDepth = Math.round((window.scrollY / scrollHeight) * 100);
-        scrollDepth.current = Math.max(scrollDepth.current, currentDepth);
-      }
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+        if (scrollHeight > 0) {
+          const currentDepth = Math.round((window.scrollY / scrollHeight) * 100);
+          scrollDepth.current = Math.max(scrollDepth.current, currentDepth);
+        }
+        ticking = false;
+      });
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
