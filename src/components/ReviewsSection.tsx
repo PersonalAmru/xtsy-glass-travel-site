@@ -588,9 +588,14 @@ const ReviewsSection = () => {
     });
   }, [dbReviews, hasReviews]);
 
-  // Sort reviews by comment length (longest first) for carousel
+  // Sort reviews by comment length (longest first) for carousel.
+  // Cap the marquee pool to a small set — we triple the array per row (×2 rows)
+  // for a seamless loop, so even 12 yields 72 DOM nodes. Rendering all
+  // 100+ reviews caused massive paint/layout cost during scroll.
   const filteredReviews = useMemo(() => 
-    [...allReviewsCombined].sort((a, b) => b.comment.length - a.comment.length), 
+    [...allReviewsCombined]
+      .sort((a, b) => b.comment.length - a.comment.length)
+      .slice(0, 12), 
     [allReviewsCombined]
   );
 
@@ -779,7 +784,7 @@ const ReviewsSection = () => {
             )}
           >
             <Sparkles className="w-4 h-4 mr-2" />
-            View All {filteredReviews.length} Reviews
+            View All {allReviewsCombined.length} Reviews
           </Button>
         </div>
 
