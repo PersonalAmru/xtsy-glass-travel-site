@@ -20,6 +20,7 @@ import { HappyGuestsProvider } from "./contexts/HappyGuestsContext";
 
 import { UserAuthProvider } from "./contexts/UserAuthContext";
 import ConsentModal from "./components/consent/ConsentModal";
+const ConsentDebugPanel = lazy(() => import("./components/debug/ConsentDebugPanel"));
 import { TrafficAnalyticsProvider } from "./hooks/useTrafficAnalytics";
 import { ConversionSignalsProvider } from "./providers/ConversionSignalsProvider";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
@@ -278,6 +279,7 @@ function App() {
               <EnhancedAnalyticsProvider>
                 
                 <ConsentModal />
+                <Suspense fallback={null}><ConsentDebugPanel /></Suspense>
                 <TooltipProvider>
                 <Toaster />
               <Sonner />
