@@ -53,7 +53,13 @@ const initSentry = async () => {
 const initializeNonCritical = () => {
   // Phase 1: Sentry (3s delay)
   scheduleIdleTask(initSentry, 3000);
-  
+
+  // Phase 1.5: Consent-gated Contentsquare/Hotjar loader (fallback to GTM tag)
+  scheduleIdleTask(async () => {
+    const { initContentsquareLoader } = await import("./utils/contentsquareLoader");
+    initContentsquareLoader();
+  }, 2000);
+
   // Phase 2: Low priority optimizations (5s delay)
   scheduleIdleTask(async () => {
     const [{ initializePerformanceEnhancements }, { initializePerformanceOptimizations }] = await Promise.all([
