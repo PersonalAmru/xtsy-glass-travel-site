@@ -50,8 +50,10 @@ function shouldShow(): boolean {
   if (import.meta.env.DEV) return true;
   try {
     const url = new URL(window.location.href);
-    if (url.searchParams.get('debug') === 'consent') return true;
+    const dbg = url.searchParams.get('debug');
+    if (dbg === 'consent' || dbg === 'hotjar') return true;
     if (localStorage.getItem('xtsy_debug_consent') === 'true') return true;
+    if (localStorage.getItem('xtsy_debug_hotjar') === 'true') return true;
   } catch { /* noop */ }
   return false;
 }
