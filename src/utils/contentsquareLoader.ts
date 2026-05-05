@@ -28,6 +28,8 @@ export interface CSLoaderState {
   lastError?: string;
   loadedAt?: number;
   durationMs?: number;
+  attempts?: number;
+  lastAttemptAt?: number;
 }
 
 declare global {
@@ -143,6 +145,10 @@ function reportFailure(reason: string, extra?: Record<string, unknown>) {
   );
 }
 
+const MAX_ATTEMPTS = 2;
+const RETRY_DELAY_MS = 3000;
+let attemptCount = 0;
+
 function injectScript(): void {
   if (typeof window === 'undefined' || typeof document === 'undefined') return;
 
@@ -161,14 +167,20 @@ function injectScript(): void {
       return;
     }
 
+    attemptCount += 1;
+    const attemptNum = attemptCount;
+
     window._uxa = window._uxa || [];
     const s = document.createElement('script');
     s.src = SCRIPT_URL;
     s.async = true;
-    s.crossOrigin = 'anonymous';
+    // NOTE: crossOrigin intentionally NOT set — Contentsquare CDN does not
+    // require CORS and `crossOrigin="anonymous"` caused some edge caches to
+    // reject the request. Removing it reduces failure surface.
 
     const t0 = performance.now();
-    publish({ status: 'loading' });
+    publish({ status: 'loading', attempts: attemptNum, lastAttemptAt: Date.now() });
+    console.info(`${LOG} Attempt ${attemptNum}/${MAX_ATTEMPTS} — injecting script.`);
 
     s.onload = () => {
       window.__cs_uxa_loaded = true;
@@ -177,27 +189,40 @@ function injectScript(): void {
       console.info(
         `%c${LOG} ✓ Contentsquare/Hotjar tag loaded`,
         'background:#22c55e;color:#fff;padding:2px 8px;border-radius:4px;',
-        { src: SCRIPT_URL, ms: dt }
+        { src: SCRIPT_URL, ms: dt, attempt: attemptNum }
       );
     };
     s.onerror = (err) => {
-      // Most ad/script-blockers surface as an `error` event with no useful detail.
-      const blocked = navigator?.onLine !== false; // online but blocked → likely blocker
+      const blocked = navigator?.onLine !== false;
+      const willRetry = attemptNum < MAX_ATTEMPTS;
+      console.warn(
+        `${LOG} ✗ Attempt ${attemptNum}/${MAX_ATTEMPTS} failed.`,
+        { likely_blocker: blocked, willRetry, raw: String(err) }
+      );
+      try { s.remove(); } catch { /* noop */ }
+
+      if (willRetry) {
+        publish({
+          status: 'loading',
+          lastError: `attempt ${attemptNum} failed — retrying in ${RETRY_DELAY_MS}ms`,
+        });
+        setTimeout(() => injectScript(), RETRY_DELAY_MS);
+        return;
+      }
+
       publish({
         status: blocked ? 'blocked' : 'error',
-        lastError: 'script onerror (network/blocked/CORS)',
+        lastError: `script onerror after ${attemptNum} attempts (network/blocked/CORS)`,
       });
       reportFailure('Failed to load Contentsquare/Hotjar tag', {
         navigator_online: navigator?.onLine,
         likely_blocker: blocked,
+        attempts: attemptNum,
         raw: String(err),
       });
-      // Graceful fallback — remove the broken tag so retries can happen later.
-      try { s.remove(); } catch { /* noop */ }
     };
 
     document.head.appendChild(s);
-    console.info(`${LOG} Injecting script (analytics consent granted).`);
   } catch (e: any) {
     publish({ status: 'error', lastError: e?.message || String(e) });
     reportFailure('Unexpected exception during script injection', { stack: e?.stack });

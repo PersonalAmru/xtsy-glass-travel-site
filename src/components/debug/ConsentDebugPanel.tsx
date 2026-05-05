@@ -50,8 +50,10 @@ function shouldShow(): boolean {
   if (import.meta.env.DEV) return true;
   try {
     const url = new URL(window.location.href);
-    if (url.searchParams.get('debug') === 'consent') return true;
+    const dbg = url.searchParams.get('debug');
+    if (dbg === 'consent' || dbg === 'hotjar') return true;
     if (localStorage.getItem('xtsy_debug_consent') === 'true') return true;
+    if (localStorage.getItem('xtsy_debug_hotjar') === 'true') return true;
   } catch { /* noop */ }
   return false;
 }
@@ -125,12 +127,19 @@ export default function ConsentDebugPanel() {
             <div><span className="text-slate-400">Consent source:</span> {loader.consentSource}</div>
             <div><span className="text-slate-400">Analytics consent:</span> {String(loader.analyticsConsent)}</div>
             <div><span className="text-slate-400">GCM analytics_storage:</span> {gcm}</div>
+            {loader.attempts != null && (
+              <div><span className="text-slate-400">Attempts:</span> {loader.attempts}</div>
+            )}
             {loader.durationMs != null && (
               <div><span className="text-slate-400">Load time:</span> {loader.durationMs}ms</div>
             )}
             {loader.lastError && (
               <div className="text-rose-300 break-words">err: {loader.lastError}</div>
             )}
+            <div>
+              <span className="text-slate-400">Script in DOM:</span>{' '}
+              {String(!!document.querySelector('script[src*="t.contentsquare.net"]'))}
+            </div>
             <details className="mt-2">
               <summary className="cursor-pointer text-slate-400">xtsy_consent_v2</summary>
               <pre className="mt-1 max-h-40 overflow-auto whitespace-pre-wrap break-words text-[10px] bg-slate-950/60 p-2 rounded">
@@ -138,7 +147,7 @@ export default function ConsentDebugPanel() {
               </pre>
             </details>
             <div className="pt-2 text-[10px] text-slate-500">
-              Toggle with <code>?debug=consent</code> or <code>localStorage.xtsy_debug_consent='true'</code>
+              Toggle with <code>?debug=hotjar</code>, <code>?debug=consent</code>, or <code>localStorage.xtsy_debug_hotjar='true'</code>
             </div>
           </div>
         </div>
