@@ -28,6 +28,8 @@ export interface CSLoaderState {
   lastError?: string;
   loadedAt?: number;
   durationMs?: number;
+  attempts?: number;
+  lastAttemptAt?: number;
 }
 
 declare global {
