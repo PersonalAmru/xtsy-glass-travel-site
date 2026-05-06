@@ -409,7 +409,11 @@ function GSCRerankTab() {
 // ─────────────────────────────────────────────────────────────────────────────
 export default function AdminSEOPriority() {
   return (
-    <UnifiedAdminLayout title="SEO Priority — Top-7 Push" subtitle="Verify, export, and re-rank the high-impression optimization queue.">
+    <UnifiedAdminLayout>
+      <div className="mb-6">
+        <h1 className="text-2xl font-semibold">SEO Priority — Top-7 Push</h1>
+        <p className="text-sm text-muted-foreground">Verify, export, and re-rank the high-impression optimization queue.</p>
+      </div>
       <Tabs defaultValue="status" className="space-y-4">
         <TabsList>
           <TabsTrigger value="status">Overrides Status</TabsTrigger>
