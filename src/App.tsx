@@ -147,6 +147,7 @@ const FranchiseInstall = createLazyComponent(() => import("./pages/install/Franc
 const AdminFranchisePermissions = createLazyComponent(() => import("./pages/admin/AdminFranchisePermissions"));
 const AdminSEODashboard = createLazyComponent(() => import("./pages/admin/AdminSEODashboard"));
 const AdminSEORecovery = createLazyComponent(() => import("./pages/admin/AdminSEORecovery"));
+const AdminSEOPriority = createLazyComponent(() => import("./pages/admin/AdminSEOPriority"));
 
 // Redirect /travel → /tours (fixes keyword cannibalization)
 const TravelRedirect = () => <Navigate to="/tours" replace />;
@@ -356,6 +357,7 @@ function App() {
                 {/* Admin Franchise Permissions */}
                 <Route path="/admin/franchise-permissions" element={<LazyRoute><AdminFranchisePermissions /></LazyRoute>} />
                 <Route path="/admin/seo" element={<LazyRoute><AdminSEODashboard /></LazyRoute>} />
+                <Route path="/admin/seo/priority" element={<LazyRoute><AdminSEOPriority /></LazyRoute>} />
                 <Route path="/admin/seo/recovery" element={<LazyRoute><AdminSEORecovery /></LazyRoute>} />
                 <Route path="/admin/seo/gsc-errors" element={<LazyRoute><AdminGSCErrors /></LazyRoute>} />
                 <Route path="/admin/seo/schema-results" element={<LazyRoute><AdminSchemaResults /></LazyRoute>} />
