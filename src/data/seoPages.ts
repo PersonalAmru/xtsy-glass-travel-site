@@ -1091,7 +1091,8 @@ const RAW_SEO_PAGES: SEOPageData[] = [
 // Public surface — quality-filtered to ~200 pages. Drops thin/duplicate
 // clusters that risk Google "doorway page" classification and protects
 // crawl budget. See src/data/seoQualityFilter.ts for the rules.
-export const ALL_SEO_PAGES: SEOPageData[] = filterHighQualityPages(RAW_SEO_PAGES);
+import { applySEOOverrides } from './seoPagesOverrides';
+export const ALL_SEO_PAGES: SEOPageData[] = applySEOOverrides(filterHighQualityPages(RAW_SEO_PAGES));
 export const RAW_SEO_PAGES_COUNT = RAW_SEO_PAGES.length;
 
 // Helper to find a page by slug
