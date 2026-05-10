@@ -178,7 +178,11 @@ export function generateAllSlugs() {
   };
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+// CLI entrypoint — guarded so the file is safe to import in the browser bundle.
+// Without `typeof process` guard, every SEO data file that re-exports from
+// here (routes/activities/durations/intent) crashed with "process is not defined"
+// on first import, causing every programmatic SEO page to black-screen.
+if (typeof process !== 'undefined' && process.argv?.[1] && import.meta.url === `file://${process.argv[1]}`) {
   const all = generateAllSlugs();
   console.log(`Routes: ${all.routes.length}`);
   console.log(`Intent: ${all.intent.length}`);
