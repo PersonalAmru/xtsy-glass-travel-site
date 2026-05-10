@@ -261,11 +261,29 @@ const ProgrammaticSEOPage = () => {
   const related = getRelatedPages(page.slug);
   const categoryLabel = categoryLabels[page.category] || page.category;
   const heroImage = heroSrc || curatedHero;
-  const waLink = `https://wa.me/918837317070?text=Hi, I want help planning my ${page.h1} trip`;
+
+  // Programmatic pages must NOT show specific prices (they drift, mislead, and
+  // create indexing risk on aggregator pages). Strip ₹ amounts and "from ₹X"
+  // phrasing — replace with generic "starting at best rate" so WhatsApp/booking
+  // becomes the source of truth.
+  const stripPrice = (s: string): string => s
+    ?.replace(/(from|starting at|just|only|@|at)?\s*₹\s?[\d,]+(\s?\/\s?(night|person|pp|stay|day))?/gi, 'on request')
+    ?.replace(/\bRs\.?\s*[\d,]+\b/gi, 'on request')
+    ?.replace(/\bINR\s*[\d,]+\b/gi, 'on request')
+    ?.replace(/\b(?:starting|priced)\s+(?:at\s+)?on request/gi, 'on request')
+    ?? s;
+
+  const safeIntro = stripPrice(page.intro || '');
+  const safeQuickAnswer = stripPrice(page.quickAnswer || '');
+
+  const waBookHref = `https://wa.me/918837317070?text=${encodeURIComponent(`Hi XTSY! I want to BOOK: ${page.h1}`)}`;
+  const waQuoteHref = `https://wa.me/918837317070?text=${encodeURIComponent(`Hi XTSY! Please share a QUOTE for: ${page.h1}`)}`;
+  const waLink = waQuoteHref;
 
   const categoryPages = getPagesByCategory(page.category)
     .filter(p => p.slug !== page.slug)
     .slice(0, 6);
+
 
   return (
     <div className="min-h-screen bg-background">
