@@ -261,11 +261,29 @@ const ProgrammaticSEOPage = () => {
   const related = getRelatedPages(page.slug);
   const categoryLabel = categoryLabels[page.category] || page.category;
   const heroImage = heroSrc || curatedHero;
-  const waLink = `https://wa.me/918837317070?text=Hi, I want help planning my ${page.h1} trip`;
+
+  // Programmatic pages must NOT show specific prices (they drift, mislead, and
+  // create indexing risk on aggregator pages). Strip ₹ amounts and "from ₹X"
+  // phrasing — replace with generic "starting at best rate" so WhatsApp/booking
+  // becomes the source of truth.
+  const stripPrice = (s: string): string => s
+    ?.replace(/(from|starting at|just|only|@|at)?\s*₹\s?[\d,]+(\s?\/\s?(night|person|pp|stay|day))?/gi, 'on request')
+    ?.replace(/\bRs\.?\s*[\d,]+\b/gi, 'on request')
+    ?.replace(/\bINR\s*[\d,]+\b/gi, 'on request')
+    ?.replace(/\b(?:starting|priced)\s+(?:at\s+)?on request/gi, 'on request')
+    ?? s;
+
+  const safeIntro = stripPrice(page.intro || '');
+  const safeQuickAnswer = stripPrice(page.quickAnswer || '');
+
+  const waBookHref = `https://wa.me/918837317070?text=${encodeURIComponent(`Hi XTSY! I want to BOOK: ${page.h1}`)}`;
+  const waQuoteHref = `https://wa.me/918837317070?text=${encodeURIComponent(`Hi XTSY! Please share a QUOTE for: ${page.h1}`)}`;
+  const waLink = waQuoteHref;
 
   const categoryPages = getPagesByCategory(page.category)
     .filter(p => p.slug !== page.slug)
     .slice(0, 6);
+
 
   return (
     <div className="min-h-screen bg-background">
@@ -337,18 +355,18 @@ const ProgrammaticSEOPage = () => {
         </div>
       </div>
 
-      <main className="pt-6">
+      <main className="pt-6 pb-32">
         <article className="container mx-auto px-4 max-w-4xl pb-10">
-          <p className="text-lg text-muted-foreground leading-relaxed">{page.intro}</p>
+          <p className="text-lg text-muted-foreground leading-relaxed">{safeIntro}</p>
 
           {/* AI Quick Answer for Travelers — Speakable schema target, AI Answer Engine optimised */}
-          {page.quickAnswer && (
-            <div className="mt-6 border-l-4 border-primary bg-primary/5 rounded-r-xl p-5">
+          {safeQuickAnswer && (
+            <div className="mt-6 border-l-4 border-primary bg-primary/5 rounded-r-xl p-5" data-quick-answer>
               <div className="flex items-center gap-2 text-sm font-semibold text-primary mb-2">
                 <Sparkles className="h-4 w-4" />
                 Quick Answer for Travelers
               </div>
-              <p className="text-foreground leading-relaxed">{page.quickAnswer}</p>
+              <p className="text-foreground leading-relaxed">{safeQuickAnswer}</p>
               <a
                 href={waLink}
                 target="_blank"
@@ -367,26 +385,36 @@ const ProgrammaticSEOPage = () => {
           {/* Quick Conversion Links */}
           <ConversionLinks />
 
-          {/* CTA Banner */}
+          {/* Primary CTA Banner — no prices, WhatsApp first */}
           <div className="mt-8 bg-primary/10 rounded-xl p-6 flex flex-col sm:flex-row items-center gap-4">
             <div className="flex-1">
-              <p className="font-semibold text-foreground">Ready to explore?</p>
-              <p className="text-sm text-muted-foreground">Book your stay at XTSY Travellers Hostel — rated 4.8★ on Google • 24/7 check-in</p>
+              <p className="font-semibold text-foreground">Plan this with XTSY</p>
+              <p className="text-sm text-muted-foreground">Get a tailored quote, real-time availability, and local-expert advice — usually within minutes on WhatsApp.</p>
             </div>
-            <a
-              href={page.ctaLink}
-              target={page.ctaLink.startsWith('http') ? '_blank' : undefined}
-              rel={page.ctaLink.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors whitespace-nowrap"
-            >
-              {page.ctaText}
-            </a>
+            <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+              <a
+                href={waBookHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors text-center"
+              >
+                Book Now
+              </a>
+              <a
+                href={waQuoteHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-3 border border-primary text-primary rounded-lg font-medium hover:bg-primary/5 transition-colors text-center"
+              >
+                Check Quote
+              </a>
+            </div>
           </div>
 
           {/* Content Sections — Wave 3B injects contextual images on every other section */}
           <div className="mt-10 space-y-8">
             {page.sections.map((section, i) => {
-              const showImg = i > 0 && i % 2 === 1; // image after sections 2, 4, 6...
+              const showImg = i > 0 && i % 2 === 1;
               const sectionImg = showImg ? getSectionImage(page.slug, i, heroImage) : null;
               return (
                 <section key={i}>
@@ -402,7 +430,7 @@ const ProgrammaticSEOPage = () => {
                       }}
                     />
                   )}
-                  <p className="text-muted-foreground leading-relaxed">{section.content}</p>
+                  <p className="text-muted-foreground leading-relaxed">{stripPrice(section.content)}</p>
                   {section.listItems && (
                     <ul className="mt-3 space-y-2">
                       {section.listItems.map((item, j) => (
@@ -436,16 +464,16 @@ const ProgrammaticSEOPage = () => {
             </section>
           )}
 
-          {/* Bottom CTA */}
+          {/* Bottom CTA — no prices, WhatsApp first */}
           <section className="mt-12 bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl p-8 text-center">
             <h2 className="text-2xl font-bold text-foreground">Plan Your Meghalaya Trip with XTSY</h2>
-            <p className="mt-2 text-muted-foreground">Stay at Shillong's #1 rated hostel. Dorms from ₹499, private rooms from ₹1,499.</p>
+            <p className="mt-2 text-muted-foreground">Talk to our local team for live availability, custom itineraries, and the best rate for your dates — usually within minutes on WhatsApp.</p>
             <div className="mt-4 flex flex-col sm:flex-row gap-3 justify-center">
-              <a href={page.ctaLink} target={page.ctaLink.startsWith('http') ? '_blank' : undefined} rel={page.ctaLink.startsWith('http') ? 'noopener noreferrer' : undefined} className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors">
-                {page.ctaText}
+              <a href={waBookHref} target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors">
+                Book Now
               </a>
-              <a href="https://wa.me/918787537633?text=Hi, I need help planning my Meghalaya trip" target="_blank" rel="noopener noreferrer" className="px-6 py-3 border border-primary text-primary rounded-lg font-medium hover:bg-primary/10 transition-colors">
-                Chat on WhatsApp
+              <a href={waQuoteHref} target="_blank" rel="noopener noreferrer" className="px-6 py-3 border border-primary text-primary rounded-lg font-medium hover:bg-primary/10 transition-colors">
+                Check Quote
               </a>
             </div>
           </section>
