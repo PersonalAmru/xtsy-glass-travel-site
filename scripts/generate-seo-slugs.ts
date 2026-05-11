@@ -292,35 +292,28 @@ export function generateAllSlugs() {
   const activities = generateActivitySlugs();
   const durations = generateDurationItinerarySlugs();
   const globalNE = generateGlobalNESlugs();
+  const groupTours = generateGroupTourSlugs();
+  const corporate = generateCorporateSlugs();
+  const workation = generateWorkationSlugs();
+  const themed = generateThemedTripSlugs();
+  const roadBike = generateRoadBikeTripSlugs();
+  const seasonalFest = generateSeasonalFestivalSlugs();
 
   return {
-    routes,
-    intent,
-    institutions,
-    activities,
-    durations,
-    globalNE,
+    routes, intent, institutions, activities, durations, globalNE,
+    groupTours, corporate, workation, themed, roadBike, seasonalFest,
     total:
-      routes.length +
-      intent.length +
-      institutions.length +
-      activities.length +
-      durations.length +
-      globalNE.length,
+      routes.length + intent.length + institutions.length + activities.length +
+      durations.length + globalNE.length + groupTours.length + corporate.length +
+      workation.length + themed.length + roadBike.length + seasonalFest.length,
   };
 }
 
 // CLI entrypoint — guarded so the file is safe to import in the browser bundle.
-// Without `typeof process` guard, every SEO data file that re-exports from
-// here (routes/activities/durations/intent) crashed with "process is not defined"
-// on first import, causing every programmatic SEO page to black-screen.
 if (typeof process !== 'undefined' && process.argv?.[1] && import.meta.url === `file://${process.argv[1]}`) {
   const all = generateAllSlugs();
-  console.log(`Routes: ${all.routes.length}`);
-  console.log(`Intent: ${all.intent.length}`);
-  console.log(`Institutions: ${all.institutions.length}`);
-  console.log(`Activities: ${all.activities.length}`);
-  console.log(`Durations: ${all.durations.length}`);
-  console.log(`Global NE: ${all.globalNE.length}`);
+  Object.entries(all).forEach(([k, v]) => {
+    if (Array.isArray(v)) console.log(`${k}: ${v.length}`);
+  });
   console.log(`TOTAL: ${all.total}`);
 }
