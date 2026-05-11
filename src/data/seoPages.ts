@@ -14,7 +14,8 @@ export type SEOPageCategory =
   | 'hostels' | 'hotels' | 'homestays' | 'glamping' | 'accommodation'
   | 'rentals' | 'tours' | 'travel-guides' | 'destinations' | 'attractions'
   | 'itineraries' | 'activities' | 'hospitals' | 'restaurants' | 'weddings'
-  | 'transport' | 'competitor-capture' | 'food-dining' | 'seasonal' | 'events' | 'travel-agency';
+  | 'transport' | 'competitor-capture' | 'food-dining' | 'seasonal' | 'events' | 'travel-agency'
+  | 'group-tours' | 'corporate' | 'workation' | 'themed-trips' | 'road-bike-trips';
 
 export type SchemaType = 
   | 'LodgingBusiness' | 'Hostel' | 'Hotel' | 'TouristAttraction' 
