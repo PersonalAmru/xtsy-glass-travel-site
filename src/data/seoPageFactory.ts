@@ -457,3 +457,324 @@ export function buildGlobalNEPage(slug: string): SEOPageData {
     quickAnswer: `${stateLabel} is best visited Oct–Apr. The nearest hub is Guwahati (GAU). XTSY can arrange a custom plan — WhatsApp +91 88373 17070.`,
   });
 }
+
+// =============================================================
+// NORTHEAST EXPANSION BUILDERS — group / corporate / workation / themed / seasonal
+// All factories enforce AI-answer rules:
+//   - quickAnswer 40–240 chars, period-ended, direct answer in first 30 words
+//   - intro opens with the answer (no "Looking for", "Welcome to", "Are you")
+//   - 8 FAQs (each 25–280 chars)
+//   - title 35–60 chars, meta 130–160 chars
+//   - 4+ sections, ≥1 bulleted listItems block
+//   - WhatsApp deep-link CTA with prefilled context (no hardcoded prices)
+// =============================================================
+
+const WA = '+918837317070';
+const waLink = (msg: string) => `https://wa.me/918837317070?text=${encodeURIComponent(msg)}`;
+
+const clamp = (s: string, min: number, max: number) => {
+  if (s.length <= max) return s;
+  return s.slice(0, max - 1).replace(/\s+\S*$/, '') + '…';
+};
+
+const eightFaqs = (
+  scope: string,
+  intent: string,
+  ctaLabel: string,
+): SEOFaq[] => [
+  { question: `What does an XTSY ${intent} in ${scope} include?`, answer: `Curated stays, ground transport, local guides, key activities and 24/7 on-trip support across ${scope}. Custom itineraries built on WhatsApp ${WA}.` },
+  { question: `How many people can join a ${intent} in ${scope}?`, answer: `XTSY runs ${intent} groups of 6 to 60 across ${scope}. Larger groups (corporate / college) are quoted separately on WhatsApp ${WA}.` },
+  { question: `What is the best month for a ${intent} in ${scope}?`, answer: `October to April delivers the most reliable weather across Northeast India. Monsoon (Jun–Sep) is dramatic but plan buffer days for landslides on hill routes.` },
+  { question: `How early should I book a ${intent} in ${scope}?`, answer: `Lock dates 4–8 weeks ahead in peak season (Oct–Mar). Off-season groups can confirm in 7–10 days. Last-minute bookings handled on WhatsApp.` },
+  { question: `Are XTSY ${intent} packages customisable for ${scope}?`, answer: `Yes — every itinerary is rebuilt around your group size, dates, budget and pace. Send your brief on WhatsApp ${WA} for a quote.` },
+  { question: `Do you handle inner-line permits for ${scope}?`, answer: `Yes. XTSY processes inner-line permits for Arunachal, Mizoram and Nagaland for all confirmed group bookings; share IDs at least 7 days before travel.` },
+  { question: `What kind of stays does XTSY use for a ${intent} in ${scope}?`, answer: `A mix of vetted hostels, boutique homestays, glamping camps and 3-star hotels — chosen by group profile and route. All properties are personally inspected.` },
+  { question: `How do I confirm a ${intent} for ${scope}?`, answer: `Send your dates, group size and intent on WhatsApp ${WA}. We reply with a quote within an hour and ${ctaLabel.toLowerCase()} once confirmed.` },
+];
+
+const groupHighlightsSection = (scope: string, intent: string): SEOSection => ({
+  heading: `Why XTSY for ${slugToLabel(intent)} in ${scope}`,
+  content: `XTSY has hosted 200+ groups across Northeast India since 2022. Operators on the ground in Meghalaya, Assam and Arunachal mean nothing is outsourced — every transfer, guide and stay is owned end-to-end.`,
+  listItems: [
+    `Group size handled: 6–60 (corporate, college, friends, family)`,
+    `Single point of contact on WhatsApp throughout the trip`,
+    `Inner-line permits arranged for Arunachal, Mizoram, Nagaland`,
+    `Vetted hostels, homestays, glamping camps and 3-star hotels`,
+    `Curated experiences with native Khasi, Garo and Mising guides`,
+    `On-trip 24/7 support number with on-ground escalation`,
+  ],
+});
+
+const corporateInclusionsSection = (scope: string): SEOSection => ({
+  heading: `What's Included in a Corporate Retreat in ${scope}`,
+  content: `Standard XTSY corporate packages bundle accommodation, meeting space, F&B, ground transport and curated team experiences. AV and conference setup added on request.`,
+  listItems: [
+    `Twin-share rooms with attached bath, hot water, fast WiFi`,
+    `Conference / breakout space with projector and whiteboard`,
+    `Three meals + tea/coffee, vegetarian and Jain options`,
+    `Branded transport from Guwahati airport (GAU) onwards`,
+    `1–2 curated team-building experiences (caving, river day, root-bridge trek)`,
+    `Dedicated trip lead + bookkeeping invoice with GST`,
+  ],
+});
+
+const workationInclusionsSection = (scope: string): SEOSection => ({
+  heading: `What's Included in a Workation Stay in ${scope}`,
+  content: `Long-stay workation rates at XTSY include weekly housekeeping, fast fibre WiFi, daily breakfast and access to a dedicated quiet zone. Ideal for remote workers and digital nomads.`,
+  listItems: [
+    `Fibre WiFi (50+ Mbps verified) with backup mobile hotspot`,
+    `Ergonomic desk + chair, daylight reading lamp`,
+    `Weekly housekeeping and laundry service`,
+    `Quiet zone with no-call hours (10am–5pm)`,
+    `Daily breakfast at TAB Bistro, monthly meal plans available`,
+    `Weekly community dinner with other long-stay guests`,
+  ],
+});
+
+// ---- Group tours (group-tour-cherrapunji, school-tour-meghalaya, etc.) ----
+export function buildGroupTourPage(slug: string): SEOPageData {
+  // intent prefix from a known list, rest = scope (destination or state)
+  const intents = [
+    'large-group-tour', 'group-tour-package', 'group-tour',
+    'team-outing', 'company-offsite', 'startup-retreat',
+    'school-tour', 'college-trip',
+  ];
+  const intent = intents.find(i => slug.startsWith(i + '-')) ?? 'group-tour';
+  const scope = slug.slice(intent.length + 1);
+  const scopeLabel = slugToLabel(scope);
+  const intentLabel = slugToLabel(intent);
+  const title = clamp(`${intentLabel} ${scopeLabel} ${YEAR} – Custom Itineraries by XTSY`, 35, 60);
+  const metaDescription = clamp(`${intentLabel} packages in ${scopeLabel} for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp ${WA}.`, 130, 160);
+  const quickAnswer = clamp(`XTSY runs custom ${intentLabel.toLowerCase()} programmes in ${scopeLabel} for 6–60 people, covering stays, transport, permits and curated experiences end-to-end. Get a quote on WhatsApp ${WA}.`, 40, 240);
+
+  return buildPage({
+    slug,
+    category: 'group-tours',
+    title,
+    metaDescription,
+    h1: `${intentLabel} in ${scopeLabel} — ${YEAR}`,
+    intro: `XTSY operates curated ${intentLabel.toLowerCase()} packages across ${scopeLabel} with on-ground operations in Shillong, Guwahati and Tawang. Every itinerary is rebuilt around your group size, dates and pace — stays, transport, permits and guides are handled in-house, not outsourced.`,
+    sections: [
+      groupHighlightsSection(scopeLabel, intent),
+      thingsToDoSection(scope.split('-')[0]),
+      howToReachSection(scope.split('-')[0]),
+      bestTimeSection(scope.split('-')[0]),
+      travelTipsSection(),
+    ],
+    faqs: eightFaqs(scopeLabel, intentLabel.toLowerCase(), 'lock the booking'),
+    schemaType: 'TouristTrip',
+    related: ['meghalaya-tour-packages', 'shillong-tour-package', 'corporate-retreat-shillong', 'best-hostel-in-shillong', 'meghalaya-travel-guide'],
+    ctaText: 'Get Group Quote',
+    ctaLink: waLink(`Hi XTSY, I'd like a quote for a ${intentLabel.toLowerCase()} in ${scopeLabel}.`),
+    keywords: [`${intentLabel.toLowerCase()} ${scopeLabel.toLowerCase()}`, `${scopeLabel.toLowerCase()} group tour`, `${scopeLabel.toLowerCase()} team outing`, 'northeast india group tour'],
+    quickAnswer,
+  });
+}
+
+// ---- Corporate retreats (corporate-retreat-shillong-3-day, etc.) ----
+export function buildCorporateRetreatPage(slug: string): SEOPageData {
+  const intents = [
+    'corporate-retreat', 'corporate-offsite', 'corporate-team-building',
+    'leadership-retreat', 'business-travel', 'conference-venue',
+  ];
+  const intent = intents.find(i => slug.startsWith(i + '-')) ?? 'corporate-retreat';
+  const rest = slug.slice(intent.length + 1);
+  // optional duration suffix like "-3-day"
+  const durMatch = rest.match(/-(\d+)-day$/);
+  const duration = durMatch ? `${durMatch[1]}-day` : '';
+  const scope = duration ? rest.replace(`-${duration}`, '') : rest;
+  const scopeLabel = slugToLabel(scope);
+  const intentLabel = slugToLabel(intent);
+  const durLabel = duration ? `${duration.replace('-', ' ')} ` : '';
+  const title = clamp(`${durLabel}${intentLabel} in ${scopeLabel} ${YEAR} – XTSY`, 35, 60);
+  const metaDescription = clamp(`Plan a ${durLabel}${intentLabel.toLowerCase()} in ${scopeLabel} with XTSY: stays, conference space, transport, F&B and team experiences. WhatsApp ${WA} for a quote.`, 130, 160);
+  const quickAnswer = clamp(`XTSY plans ${durLabel}${intentLabel.toLowerCase()} programmes in ${scopeLabel} with conference space, twin-share stays, transport, F&B and curated team experiences. Get a quote on WhatsApp ${WA}.`, 40, 240);
+
+  return buildPage({
+    slug,
+    category: 'corporate',
+    title,
+    metaDescription,
+    h1: `${durLabel}${intentLabel} in ${scopeLabel}`,
+    intro: `XTSY designs ${intentLabel.toLowerCase()} programmes in ${scopeLabel} that combine productive offsite time with high-recall team experiences — caving, river days, root-bridge treks and Khasi cultural sessions. Conference space, AV and bookkeeping invoices included.`,
+    sections: [
+      corporateInclusionsSection(scopeLabel),
+      groupHighlightsSection(scopeLabel, intent),
+      thingsToDoSection(scope.split('-')[0]),
+      bestTimeSection(scope.split('-')[0]),
+      travelTipsSection(),
+    ],
+    faqs: eightFaqs(scopeLabel, intentLabel.toLowerCase(), 'issue the GST invoice'),
+    schemaType: 'EventVenue',
+    related: ['meghalaya-tour-packages', 'shillong-tour-package', 'group-tour-shillong', 'best-hostel-in-shillong', 'meghalaya-travel-guide'],
+    ctaText: 'Request Corporate Quote',
+    ctaLink: waLink(`Hi XTSY, I'd like a corporate quote for ${intentLabel.toLowerCase()} in ${scopeLabel}${duration ? ` (${duration})` : ''}.`),
+    keywords: [`${intentLabel.toLowerCase()} ${scopeLabel.toLowerCase()}`, `${scopeLabel.toLowerCase()} offsite`, `${scopeLabel.toLowerCase()} team building`, 'corporate retreat northeast india'],
+    quickAnswer,
+  });
+}
+
+// ---- Workation (workation-ziro, digital-nomad-stay-shillong, etc.) ----
+export function buildWorkationPage(slug: string): SEOPageData {
+  const intents = [
+    'workation', 'digital-nomad-stay', 'long-stay', 'monthly-stay',
+    'remote-work-stay', 'wifi-stay-for-nomads',
+  ];
+  const intent = intents.find(i => slug.startsWith(i + '-')) ?? 'workation';
+  const scope = slug.slice(intent.length + 1);
+  const scopeLabel = slugToLabel(scope);
+  const intentLabel = slugToLabel(intent);
+  const title = clamp(`${intentLabel} in ${scopeLabel} ${YEAR} – Long-Stay by XTSY`, 35, 60);
+  const metaDescription = clamp(`${intentLabel} stays in ${scopeLabel} for remote workers and digital nomads. Fast fibre WiFi, weekly housekeeping, monthly rates. WhatsApp ${WA}.`, 130, 160);
+  const quickAnswer = clamp(`XTSY offers ${intentLabel.toLowerCase()} stays in ${scopeLabel} with verified 50+ Mbps fibre WiFi, daily breakfast, weekly housekeeping and monthly rates for remote workers. WhatsApp ${WA} for live availability.`, 40, 240);
+
+  return buildPage({
+    slug,
+    category: 'workation',
+    title,
+    metaDescription,
+    h1: `${intentLabel} in ${scopeLabel}`,
+    intro: `XTSY runs purpose-built ${intentLabel.toLowerCase()} stays in ${scopeLabel} for remote workers, founders and digital nomads. Verified fibre WiFi, ergonomic desks, quiet hours and a community of long-stay guests — billed weekly or monthly with no hidden fees.`,
+    sections: [
+      workationInclusionsSection(scopeLabel),
+      thingsToDoSection(scope.split('-')[0]),
+      bestTimeSection(scope.split('-')[0]),
+      travelTipsSection(),
+    ],
+    faqs: eightFaqs(scopeLabel, intentLabel.toLowerCase(), 'confirm the long-stay'),
+    schemaType: 'LodgingBusiness',
+    related: ['best-hostel-in-shillong', 'work-from-home', 'homestays-in-shillong', 'meghalaya-travel-guide', 'shillong-travel-guide'],
+    ctaText: 'Check Long-Stay Quote',
+    ctaLink: waLink(`Hi XTSY, I'd like a long-stay (workation) quote in ${scopeLabel}.`),
+    keywords: [`workation ${scopeLabel.toLowerCase()}`, `digital nomad ${scopeLabel.toLowerCase()}`, `long stay ${scopeLabel.toLowerCase()}`, 'remote work stay northeast india'],
+    quickAnswer,
+  });
+}
+
+// ---- Themed (honeymoon, family, weekend, student, friends, etc.) ----
+export function buildThemedTripPage(slug: string): SEOPageData {
+  const intents = [
+    'honeymoon-package', 'romantic-getaway', 'family-tour', 'family-vacation',
+    'weekend-trip', 'student-trip', 'solo-adventure', 'friends-trip',
+    'photography-tour', 'birding-tour',
+  ];
+  const intent = intents.find(i => slug.startsWith(i + '-')) ?? 'family-tour';
+  const scope = slug.slice(intent.length + 1);
+  const scopeLabel = slugToLabel(scope);
+  const intentLabel = slugToLabel(intent);
+  const title = clamp(`${intentLabel} ${scopeLabel} ${YEAR} – Custom by XTSY`, 35, 60);
+  const metaDescription = clamp(`Custom ${intentLabel.toLowerCase()} in ${scopeLabel}: vetted stays, transport, guides and curated experiences. Quote in under an hour on WhatsApp ${WA}.`, 130, 160);
+  const quickAnswer = clamp(`XTSY plans custom ${intentLabel.toLowerCase()} itineraries in ${scopeLabel} with vetted stays, transport, guides and on-trip support. Quote in under an hour on WhatsApp ${WA}.`, 40, 240);
+
+  return buildPage({
+    slug,
+    category: 'themed-trips',
+    title,
+    metaDescription,
+    h1: `${intentLabel} in ${scopeLabel}`,
+    intro: `XTSY builds ${intentLabel.toLowerCase()} itineraries in ${scopeLabel} from scratch — pace, stays and experiences chosen for who is travelling, not what is on a brochure. On-ground operations across Meghalaya, Assam and Arunachal mean transparent pricing and zero outsourcing.`,
+    sections: [
+      groupHighlightsSection(scopeLabel, intent),
+      thingsToDoSection(scope.split('-')[0]),
+      howToReachSection(scope.split('-')[0]),
+      bestTimeSection(scope.split('-')[0]),
+      travelTipsSection(),
+    ],
+    faqs: eightFaqs(scopeLabel, intentLabel.toLowerCase(), 'confirm the booking'),
+    schemaType: 'TouristTrip',
+    related: ['meghalaya-tour-packages', 'meghalaya-couple-tour-package', 'shillong-tour-package', 'best-hostel-in-shillong', 'meghalaya-travel-guide'],
+    ctaText: 'Plan This Trip',
+    ctaLink: waLink(`Hi XTSY, I'd like a quote for a ${intentLabel.toLowerCase()} in ${scopeLabel}.`),
+    keywords: [`${intentLabel.toLowerCase()} ${scopeLabel.toLowerCase()}`, `${scopeLabel.toLowerCase()} ${intent.split('-')[0]}`, `northeast india ${intent.split('-')[0]}`],
+    quickAnswer,
+  });
+}
+
+// ---- Bike + road trip ----
+export function buildRoadBikeTripPage(slug: string): SEOPageData {
+  const intents = [
+    'royal-enfield-trip', 'self-drive-itinerary', 'bike-tour-package',
+    'self-drive-trip', 'bike-trip', 'road-trip',
+  ];
+  const intent = intents.find(i => slug.startsWith(i + '-')) ?? 'bike-trip';
+  let rest = slug.slice(intent.length + 1);
+  const fromMatch = rest.match(/-from-([a-z-]+)$/);
+  const origin = fromMatch ? fromMatch[1] : '';
+  const scope = origin ? rest.replace(`-from-${origin}`, '') : rest;
+  const scopeLabel = slugToLabel(scope);
+  const intentLabel = slugToLabel(intent);
+  const originLabel = origin ? slugToLabel(origin) : '';
+  const title = clamp(`${intentLabel} ${scopeLabel}${origin ? ` from ${originLabel}` : ''} ${YEAR}`, 35, 60);
+  const metaDescription = clamp(`${intentLabel} to ${scopeLabel}${origin ? ` from ${originLabel}` : ''}: route, fuel, permits, stays and curated stops. Quote on WhatsApp ${WA}.`, 130, 160);
+  const quickAnswer = clamp(`XTSY plans ${intentLabel.toLowerCase()} routes to ${scopeLabel}${origin ? ` from ${originLabel}` : ''} with bike rental, permits, fuel stops, vetted stays and on-route support. WhatsApp ${WA} for a quote.`, 40, 240);
+
+  return buildPage({
+    slug,
+    category: 'road-bike-trips',
+    title,
+    metaDescription,
+    h1: `${intentLabel} to ${scopeLabel}${origin ? ` from ${originLabel}` : ''}`,
+    intro: `${intentLabel} routes to ${scopeLabel}${origin ? ` from ${originLabel}` : ''} require permits, fuel planning and reliable stays. XTSY handles bike rental, inner-line permits, day-by-day fuel stops and vetted accommodation across the entire route — with on-call breakdown support.`,
+    sections: [
+      groupHighlightsSection(scopeLabel, intent),
+      howToReachSection(scope, origin || undefined),
+      thingsToDoSection(scope),
+      bestTimeSection(scope),
+      travelTipsSection(),
+    ],
+    faqs: eightFaqs(scopeLabel, intentLabel.toLowerCase(), 'confirm the bike + permit booking'),
+    schemaType: 'TouristTrip',
+    related: ['meghalaya-tour-packages', 'xtsy-rentals', 'shillong-tour-package', 'best-hostel-in-shillong', 'meghalaya-travel-guide'],
+    ctaText: 'Get Route Quote',
+    ctaLink: waLink(`Hi XTSY, I'd like a ${intentLabel.toLowerCase()} quote to ${scopeLabel}${origin ? ` from ${originLabel}` : ''}.`),
+    keywords: [`${intentLabel.toLowerCase()} ${scopeLabel.toLowerCase()}`, `bike trip northeast india`, `${scopeLabel.toLowerCase()} road trip`, 'royal enfield northeast'],
+    quickAnswer,
+  });
+}
+
+// ---- Seasonal + festival ----
+export function buildSeasonalPage(slug: string): SEOPageData {
+  // monsoon-in-{x}, winter-in-{x}, summer-in-{x}, autumn-in-{x}, spring-in-{x}
+  // OR a known festival slug
+  const seasons = ['monsoon', 'winter', 'summer', 'autumn', 'spring'];
+  const inMatch = seasons.find(s => slug.startsWith(`${s}-in-`));
+  let scope = '';
+  let intent = '';
+  let intentLabel = '';
+  if (inMatch) {
+    intent = inMatch;
+    scope = slug.replace(`${inMatch}-in-`, '');
+    intentLabel = `${slugToLabel(inMatch)} in ${slugToLabel(scope)}`;
+  } else {
+    // festival slug — treat the whole slug as a label
+    intent = 'festival';
+    scope = slug;
+    intentLabel = slugToLabel(slug);
+  }
+  const scopeLabel = slugToLabel(scope);
+  const title = clamp(`${intentLabel} ${YEAR} – XTSY Travel Guide`, 35, 60);
+  const metaDescription = clamp(`${intentLabel} guide: best spots, what to pack, where to stay and how XTSY can plan the trip. WhatsApp ${WA} for a custom itinerary.`, 130, 160);
+  const quickAnswer = clamp(`${intentLabel} is best experienced ${intent === 'festival' ? 'with confirmed dates and pre-booked stays — XTSY handles both' : 'with the right gear, route and stays — XTSY plans the full trip end-to-end'}. WhatsApp ${WA}.`, 40, 240);
+
+  return buildPage({
+    slug,
+    category: 'seasonal',
+    title,
+    metaDescription,
+    h1: intentLabel,
+    intro: `${intentLabel} draws travellers for very specific reasons — weather, light, festivals or harvest. This XTSY guide covers the must-do spots, what to pack, where to stay and how to plan the logistics so the trip actually happens.`,
+    sections: [
+      groupHighlightsSection(scopeLabel, intent),
+      thingsToDoSection(scope.split('-')[0]),
+      bestTimeSection(scope.split('-')[0]),
+      travelTipsSection(),
+    ],
+    faqs: eightFaqs(scopeLabel, intentLabel.toLowerCase(), 'confirm dates and stays'),
+    schemaType: intent === 'festival' ? 'LocalBusiness' : 'TravelGuide',
+    related: ['meghalaya-travel-guide', 'meghalaya-tour-packages', 'best-hostel-in-shillong', 'shillong-travel-guide', 'things-to-do-in-meghalaya'],
+    ctaText: 'Plan This Trip',
+    ctaLink: waLink(`Hi XTSY, I'd like to plan a trip for ${intentLabel}.`),
+    keywords: [`${intentLabel.toLowerCase()}`, `northeast india ${intent}`, `${scopeLabel.toLowerCase()} ${intent}`],
+    quickAnswer,
+  });
+}
