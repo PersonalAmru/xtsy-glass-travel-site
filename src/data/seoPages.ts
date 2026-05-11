@@ -9,6 +9,7 @@ import { INSTITUTION_SEO_PAGES } from './seoPagesInstitutions';
 import { ACTIVITY_SEO_PAGES } from './seoPagesActivities';
 import { DURATION_ITINERARY_SEO_PAGES } from './seoPagesDurations';
 import { GLOBAL_NE_SEO_PAGES } from './seoPagesGlobalNE';
+import { NE_EXPANSION_SEO_PAGES } from './seoPagesNortheastExpansion';
 
 export type SEOPageCategory = 
   | 'hostels' | 'hotels' | 'homestays' | 'glamping' | 'accommodation'
@@ -1087,6 +1088,7 @@ const RAW_SEO_PAGES: SEOPageData[] = [
   ...ACTIVITY_SEO_PAGES,
   ...DURATION_ITINERARY_SEO_PAGES,
   ...GLOBAL_NE_SEO_PAGES,
+  ...NE_EXPANSION_SEO_PAGES,
 ];
 
 // Public surface — quality-filtered to ~200 pages. Drops thin/duplicate

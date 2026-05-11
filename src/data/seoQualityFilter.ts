@@ -28,6 +28,13 @@ export const HIGH_QUALITY_CATEGORIES: ReadonlySet<SEOPageCategory> = new Set([
   'attractions',
   'restaurants',
   'itineraries',
+  // NE expansion (Phase 1) — high-commercial-intent clusters.
+  'group-tours',
+  'corporate',
+  'workation',
+  'themed-trips',
+  'road-bike-trips',
+  'seasonal',
 ]);
 
 // Hard per-category cap to prevent any single cluster from dominating the
@@ -42,6 +49,13 @@ export const PER_CATEGORY_CAP: Record<string, number> = {
   attractions: 7,
   restaurants: 4,
   itineraries: 30,
+  // NE expansion caps — sized to land near 1,250 net new indexable URLs.
+  'group-tours': 220,
+  'corporate': 180,
+  'workation': 120,
+  'themed-trips': 380,
+  'road-bike-trips': 160,
+  'seasonal': 200,
 };
 
 // Slugs we ALWAYS keep regardless of category caps (pillar + brand pages
