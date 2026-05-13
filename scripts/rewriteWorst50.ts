@@ -140,14 +140,21 @@ Return STRICT JSON via the tool call. Constraints:
     tools: [{ type: 'function', function: { name: 'emit_rewrite', description: 'Emit the rewritten SEO page', parameters: SCHEMA } }],
     tool_choice: { type: 'function', function: { name: 'emit_rewrite' } },
   };
-  const r = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
-    method: 'POST', headers: { Authorization: `Bearer ${KEY}`, 'Content-Type': 'application/json' }, body: JSON.stringify(body),
-  });
-  if (!r.ok) { console.error(`  ${p.slug}: HTTP ${r.status}`, (await r.text()).slice(0, 200)); return null; }
-  const j: any = await r.json();
-  const tc = j.choices?.[0]?.message?.tool_calls?.[0];
-  if (!tc) { console.error(`  ${p.slug}: no tool_call`, JSON.stringify(j).slice(0, 200)); return null; }
-  try { return JSON.parse(tc.function.arguments) as AIResp; } catch (e) { console.error(`  ${p.slug}: bad JSON`, e); return null; }
+  try {
+    const r = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
+      method: 'POST', headers: { Authorization: `Bearer ${KEY}`, 'Content-Type': 'application/json' }, body: JSON.stringify(body),
+    });
+    const text = await r.text();
+    if (!r.ok) { console.error(`  ${p.slug}: HTTP ${r.status} ${text.slice(0, 160)}`); return null; }
+    if (!text) { console.error(`  ${p.slug}: empty body`); return null; }
+    const j: any = JSON.parse(text);
+    const tc = j.choices?.[0]?.message?.tool_calls?.[0];
+    if (!tc) { console.error(`  ${p.slug}: no tool_call`); return null; }
+    return JSON.parse(tc.function.arguments) as AIResp;
+  } catch (e: any) {
+    console.error(`  ${p.slug}: ${e?.message ?? e}`);
+    return null;
+  }
 }
 
 const results: { slug: string; data: AIResp }[] = [];
