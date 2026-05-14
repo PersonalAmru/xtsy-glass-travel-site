@@ -2,25 +2,22 @@
  * Auto-rewrite the 50 lowest-scoring SEO pages using Lovable AI Gateway.
  * Output → src/data/seoPagesOverridesBottom50.ts
  *
- * Each rewrite enforces the AI-answer eligibility template:
- *  - quickAnswer 80–220 chars ending with period
- *  - intro lead sentence ≥ 14 words, no weak openers
- *  - 5 sections, each with 5–6 listItems
- *  - 8 FAQs, answers 60–260 chars
- *  - title 45–58 chars including a slug keyword
- *  - meta 140–158 chars
- *  - h1 distinct from title
- *  - keywords 6–10 tokens
+ * Resilient: checkpoints to /tmp/rewrite50-checkpoint.json after each success.
+ * Run twice (BATCH_OFFSET=0 then 25) or pass --batch=0 / --batch=1.
  */
-import { writeFileSync } from 'node:fs';
+import { writeFileSync, readFileSync, existsSync } from 'node:fs';
 import { ALL_SEO_PAGES } from '../src/data/seoPages';
 import { getWheelLinks } from '../src/data/seoLinkingWheel';
 import type { SEOPageData } from '../src/data/seoPages';
-
-// Bottom 50 slugs (from latest audit run; deterministic by score asc).
-// We re-derive at runtime so it stays in sync.
 import { PILLAR_PAGES } from '../src/data/seoPillarPages';
 import { DESTINATION_PAGES } from '../src/data/seoDestinationPages';
+
+const CHECKPOINT = '/tmp/rewrite50-checkpoint.json';
+const OUT_FILE = 'src/data/seoPagesOverridesBottom50.ts';
+const BATCH_SIZE = 25;
+const arg = process.argv.find((a) => a.startsWith('--batch='));
+const BATCH = arg ? parseInt(arg.split('=')[1], 10) : 0; // 0 → first 25, 1 → next 25
+const ONLY_BATCH = process.argv.includes('--only-batch');
 
 const isHostel = (p: SEOPageData) => p.category === 'hostels' || /hostel|dorm|backpacker|budget-stay/.test(p.slug);
 const seen = new Set<string>();
@@ -60,7 +57,15 @@ const ranked = targets
   .slice(0, 50)
   .map((x) => x.p);
 
-console.log(`Rewriting ${ranked.length} pages…`);
+const checkpoint: Record<string, any> = existsSync(CHECKPOINT)
+  ? JSON.parse(readFileSync(CHECKPOINT, 'utf8'))
+  : {};
+console.log(`Loaded checkpoint with ${Object.keys(checkpoint).length} prior rewrites.`);
+
+const start = BATCH * BATCH_SIZE;
+const end = ONLY_BATCH ? start + BATCH_SIZE : ranked.length;
+const slice = ranked.slice(start, end).filter((p) => !checkpoint[p.slug]);
+console.log(`Rewriting batch ${BATCH}: ${slice.length} pending pages (range ${start}..${end - 1}).`);
 
 const KEY = process.env.LOVABLE_API_KEY;
 if (!KEY) { console.error('LOVABLE_API_KEY missing'); process.exit(1); }
@@ -68,18 +73,18 @@ if (!KEY) { console.error('LOVABLE_API_KEY missing'); process.exit(1); }
 const SCHEMA = {
   type: 'object',
   properties: {
-    title: { type: 'string', description: '45-58 chars, include a slug keyword + a hook' },
-    metaDescription: { type: 'string', description: '140-158 chars, action-oriented, mentions XTSY/WhatsApp' },
-    h1: { type: 'string', description: 'Distinct from title' },
-    intro: { type: 'string', description: '120-220 words; first sentence ≥14 words and a direct answer (no "Looking for"/"Welcome")' },
-    quickAnswer: { type: 'string', description: '80-220 chars, ends with period; 1–2 sentence direct answer' },
+    title: { type: 'string' },
+    metaDescription: { type: 'string' },
+    h1: { type: 'string' },
+    intro: { type: 'string' },
+    quickAnswer: { type: 'string' },
     sections: {
       type: 'array', minItems: 5, maxItems: 5,
       items: {
         type: 'object',
         properties: {
           heading: { type: 'string' },
-          content: { type: 'string', description: '4–6 sentences with concrete entities (places, prices, distances).' },
+          content: { type: 'string' },
           listItems: { type: 'array', minItems: 5, maxItems: 6, items: { type: 'string' } },
         },
         required: ['heading', 'content', 'listItems'],
@@ -89,10 +94,7 @@ const SCHEMA = {
       type: 'array', minItems: 8, maxItems: 8,
       items: {
         type: 'object',
-        properties: {
-          question: { type: 'string' },
-          answer: { type: 'string', description: '60–260 chars' },
-        },
+        properties: { question: { type: 'string' }, answer: { type: 'string' } },
         required: ['question', 'answer'],
       },
     },
@@ -112,91 +114,96 @@ function classifyIntent(slug: string): string {
   return 'transactional';
 }
 
-async function rewrite(p: SEOPageData): Promise<AIResp | null> {
+async function rewrite(p: SEOPageData, timeoutMs = 45000): Promise<AIResp | null> {
   const intent = classifyIntent(p.slug);
   const wheel = getWheelLinks(p.slug).slice(0, 8).map((l) => l.slug || '/').join(', ');
-  const sys = `You are a senior SEO + AI-Overview editor for XTSY (xtsy.one), a Northeast India travel marketplace based in Shillong, Meghalaya. WhatsApp: +91 8837317070. Always rewrite for AI-answer eligibility (Google AI Overviews, ChatGPT, Gemini): direct answer first, entity-rich bullets, structured FAQs. NEVER fabricate prices — if a price must appear say "from request" or omit. Mention WhatsApp +91 8837317070 once for booking intent. British English, factual, concise.`;
-  const usr = `Rewrite the page below for slug "${p.slug}" (intent=${intent}, category=${p.category}).
-Goal: lift it to grade A on AI-answer audit.
-Internal link context (already wired in template, just inform tone): ${wheel}.
+  const sys = `You are a senior SEO + AI-Overview editor for XTSY (xtsy.one), a Northeast India travel marketplace based in Shillong, Meghalaya. WhatsApp: +91 8837317070. Always rewrite for AI-answer eligibility (Google AI Overviews, ChatGPT, Gemini): direct answer first, entity-rich bullets, structured FAQs. NEVER fabricate prices — say "from request" or omit. Mention WhatsApp +91 8837317070 once for booking intent. British English, factual, concise.`;
+  const usr = `Rewrite slug "${p.slug}" (intent=${intent}, category=${p.category}). Lift to grade A AI-answer.
+Internal link context: ${wheel}.
 
 Existing title: ${p.title}
 Existing meta: ${p.metaDescription}
-Existing intro: ${p.intro?.slice(0, 400)}
-Existing FAQs (sample): ${(p.faqs ?? []).slice(0, 3).map((f) => f.question).join(' | ')}
+Existing intro: ${(p.intro ?? '').slice(0, 400)}
+Existing FAQs: ${(p.faqs ?? []).slice(0, 3).map((f) => f.question).join(' | ')}
 
-Return STRICT JSON via the tool call. Constraints:
-- title 45–58 chars
-- metaDescription 140–158 chars
-- intro 120–220 words, first sentence ≥14 words and a direct answer
-- quickAnswer 80–220 chars, period-terminated
-- exactly 5 sections, each with 5–6 listItems and 4–6 sentence content
-- exactly 8 FAQs, answers 60–260 chars
-- keywords 6–10 lower-case tokens including the primary slug keyword`;
+Constraints: title 45–58 chars; metaDescription 140–158 chars; intro 120–220 words with first sentence ≥14 words & direct answer; quickAnswer 80–220 chars period-terminated; exactly 5 sections each with 5–6 listItems; exactly 8 FAQs with 60–260 char answers; keywords 6–10 lower-case tokens.`;
 
-  const body = {
-    model: 'google/gemini-3-flash-preview',
-    messages: [{ role: 'system', content: sys }, { role: 'user', content: usr }],
-    tools: [{ type: 'function', function: { name: 'emit_rewrite', description: 'Emit the rewritten SEO page', parameters: SCHEMA } }],
-    tool_choice: { type: 'function', function: { name: 'emit_rewrite' } },
-  };
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), timeoutMs);
   try {
     const r = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
-      method: 'POST', headers: { Authorization: `Bearer ${KEY}`, 'Content-Type': 'application/json' }, body: JSON.stringify(body),
+      method: 'POST',
+      headers: { Authorization: `Bearer ${KEY}`, 'Content-Type': 'application/json' },
+      signal: ctrl.signal,
+      body: JSON.stringify({
+        model: 'google/gemini-3-flash-preview',
+        messages: [{ role: 'system', content: sys }, { role: 'user', content: usr }],
+        tools: [{ type: 'function', function: { name: 'emit_rewrite', description: 'Emit rewritten SEO page', parameters: SCHEMA } }],
+        tool_choice: { type: 'function', function: { name: 'emit_rewrite' } },
+      }),
     });
     const text = await r.text();
     if (!r.ok) { console.error(`  ${p.slug}: HTTP ${r.status} ${text.slice(0, 160)}`); return null; }
-    if (!text) { console.error(`  ${p.slug}: empty body`); return null; }
     const j: any = JSON.parse(text);
     const tc = j.choices?.[0]?.message?.tool_calls?.[0];
     if (!tc) { console.error(`  ${p.slug}: no tool_call`); return null; }
     return JSON.parse(tc.function.arguments) as AIResp;
   } catch (e: any) {
-    console.error(`  ${p.slug}: ${e?.message ?? e}`);
+    console.error(`  ${p.slug}: ${e?.name === 'AbortError' ? 'timeout' : e?.message ?? e}`);
     return null;
+  } finally {
+    clearTimeout(t);
   }
 }
 
-const results: { slug: string; data: AIResp }[] = [];
-
-// Run with limited concurrency
-const CONCURRENCY = 4;
-let cursor = 0;
-async function worker(id: number) {
-  while (cursor < ranked.length) {
-    const i = cursor++;
-    const p = ranked[i];
-    process.stdout.write(`[${i + 1}/${ranked.length}] ${p.slug} … `);
-    let attempt = 0;
-    while (attempt < 3) {
-      const out = await rewrite(p);
-      if (out) {
-        results.push({ slug: p.slug, data: out });
-        process.stdout.write('✓\n');
-        break;
-      }
-      attempt++;
-      await new Promise((r) => setTimeout(r, 1500 * attempt));
-    }
-    if (attempt === 3) process.stdout.write('✗\n');
-  }
-}
-
-await Promise.all(Array.from({ length: CONCURRENCY }, (_, i) => worker(i)));
-
-console.log(`\n✅ ${results.length}/${ranked.length} rewrites complete`);
-
-const banner = `/**
+function flushOutput() {
+  const banner = `/**
  * Auto-generated rewrites for the 50 lowest-scoring AI-answer pages.
  * Generated: ${new Date().toISOString()}
  * Source: scripts/rewriteWorst50.ts (Lovable AI Gateway, gemini-3-flash-preview)
- * Merged into ALL_SEO_PAGES via seoPagesOverrides.applySEOOverrides.
  */
 import type { SEOPageData } from './seoPages';
 
 type SEOOverride = Partial<SEOPageData> & { slug: string };
 
-export const BOTTOM50_SEO_REWRITES: SEOOverride[] = ${JSON.stringify(results.map((r) => ({ slug: r.slug, ...r.data })), null, 2)};
+export const BOTTOM50_SEO_REWRITES: SEOOverride[] = ${JSON.stringify(
+    Object.entries(checkpoint).map(([slug, data]) => ({ slug, ...(data as object) })),
+    null,
+    2,
+  )};
 `;
-writeFileSync('src/data/seoPagesOverridesBottom50.ts', banner);
-console.log('📁 wrote src/data/seoPagesOverridesBottom50.ts');
+  writeFileSync(OUT_FILE, banner);
+  writeFileSync(CHECKPOINT, JSON.stringify(checkpoint, null, 2));
+}
+
+const CONCURRENCY = 3;
+let cursor = 0;
+let completed = 0;
+async function worker() {
+  while (cursor < slice.length) {
+    const i = cursor++;
+    const p = slice[i];
+    process.stdout.write(`[${i + 1}/${slice.length}] ${p.slug} … `);
+    let attempt = 0;
+    let ok = false;
+    while (attempt < 2 && !ok) {
+      const out = await rewrite(p);
+      if (out) {
+        checkpoint[p.slug] = out;
+        completed++;
+        if (completed % 3 === 0) flushOutput();
+        process.stdout.write('✓\n');
+        ok = true;
+      } else {
+        attempt++;
+        if (attempt < 2) await new Promise((r) => setTimeout(r, 1500 * attempt));
+      }
+    }
+    if (!ok) process.stdout.write('✗\n');
+  }
+}
+
+await Promise.all(Array.from({ length: CONCURRENCY }, () => worker()));
+flushOutput();
+console.log(`\n✅ Done. Total in checkpoint: ${Object.keys(checkpoint).length}/50`);
+console.log(`📁 wrote ${OUT_FILE}`);
