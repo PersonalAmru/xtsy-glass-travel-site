@@ -1274,7 +1274,21 @@ export default function SimplifiedBookingFlow() {
                 total={total}
                 invoiceHtml={invoiceHtml}
                 onGoHome={() => navigate('/')}
-                onOpenChat={() => setChatOpen(true)}
+                onWhatsAppHost={() => {
+                  openWhatsAppDirectly(
+                    generateBookingMessage({
+                      roomType: selectedRooms.map(r => `${r.quantity}× ${r.room.name}`).join(', '),
+                      guests: selectedRooms.reduce((s, r) => s + r.quantity, 0),
+                      checkIn: format(checkIn, 'yyyy-MM-dd'),
+                      checkOut: format(checkOut, 'yyyy-MM-dd'),
+                      nights,
+                      totalPrice: total,
+                      guestName: guestDetails.name,
+                      email: guestDetails.email,
+                      phone: guestDetails.phone,
+                    }) + `\n\nEnquiry ID: ${bookingId}`
+                  );
+                }}
               />
             )}
           </motion.div>
