@@ -413,8 +413,8 @@ const SummaryStep = ({
       >
         <Shield className="w-5 h-5 text-emerald-400" />
         <div>
-          <p className="font-medium text-emerald-400">Pay at Hotel</p>
-          <p className="text-sm text-white/50">No advance payment required</p>
+          <p className="font-medium text-emerald-400">No payment now · Enquiry only</p>
+          <p className="text-sm text-white/50">Host confirms availability before any payment</p>
         </div>
       </motion.div>
 
