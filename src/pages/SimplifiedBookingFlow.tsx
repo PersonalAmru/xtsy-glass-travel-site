@@ -41,7 +41,7 @@ import { ROOM_INVENTORY, RoomType } from '@/data/roomInventory';
 import { getCanonicalRate, getBreakfastInclusion } from '@/utils/rateSanityCheck';
 import { useOptionalAuth } from '@/hooks/useRequireAuth';
 import { generateInvoice, openInvoiceHTML, downloadInvoiceAsPDF } from '@/services/invoiceService';
-import { BookingChat } from '@/components/chat/BookingChat';
+import { openWhatsAppDirectly, generateBookingMessage } from '@/utils/privacyCompliantWhatsApp';
 import { pushToDataLayer, trackBookingStart, trackBookingComplete } from '@/utils/dataLayerService';
 import { routeGTMEvent } from '@/utils/gtmEventRouter';
 
