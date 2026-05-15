@@ -628,7 +628,7 @@ const GuestDetailsStep = ({
             </>
           ) : (
             <>
-              Book Now
+              Send Enquiry
               <span className="text-sm font-normal opacity-80">• ₹{total.toLocaleString()}</span>
             </>
           )}
