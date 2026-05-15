@@ -1164,7 +1164,7 @@ export default function SimplifiedBookingFlow() {
         await new Promise(resolve => setTimeout(resolve, 100));
         
         goToStep('confirmation');
-        toast.success('Booking submitted! Awaiting host approval.');
+        toast.success('Enquiry sent! The host will confirm on WhatsApp shortly.');
       } else {
         toast.error(result.error || 'Booking failed. Please try again.');
       }
