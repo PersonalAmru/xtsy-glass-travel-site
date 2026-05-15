@@ -882,8 +882,7 @@ export default function SimplifiedBookingFlow() {
   const [invoiceHtml, setInvoiceHtml] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [bookingId, setBookingId] = useState('');
-  const [bookingUUID, setBookingUUID] = useState('');
-  const [chatOpen, setChatOpen] = useState(false);
+  const [, setBookingUUID] = useState('');
 
   // Load booking data from sessionStorage OR URL search params (hero search)
   useEffect(() => {
