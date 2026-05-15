@@ -41,7 +41,7 @@ import { ROOM_INVENTORY, RoomType } from '@/data/roomInventory';
 import { getCanonicalRate, getBreakfastInclusion } from '@/utils/rateSanityCheck';
 import { useOptionalAuth } from '@/hooks/useRequireAuth';
 import { generateInvoice, openInvoiceHTML, downloadInvoiceAsPDF } from '@/services/invoiceService';
-import { BookingChat } from '@/components/chat/BookingChat';
+import { openWhatsAppDirectly, generateBookingMessage } from '@/utils/privacyCompliantWhatsApp';
 import { pushToDataLayer, trackBookingStart, trackBookingComplete } from '@/utils/dataLayerService';
 import { routeGTMEvent } from '@/utils/gtmEventRouter';
 
@@ -413,8 +413,8 @@ const SummaryStep = ({
       >
         <Shield className="w-5 h-5 text-emerald-400" />
         <div>
-          <p className="font-medium text-emerald-400">Pay at Hotel</p>
-          <p className="text-sm text-white/50">No advance payment required</p>
+          <p className="font-medium text-emerald-400">No payment now · Enquiry only</p>
+          <p className="text-sm text-white/50">Host confirms availability before any payment</p>
         </div>
       </motion.div>
 
@@ -425,7 +425,7 @@ const SummaryStep = ({
           onClick={onNext}
           className="w-full h-14 rounded-2xl font-bold text-base bg-white text-[hsl(220,20%,15%)] shadow-xl shadow-black/20 flex items-center justify-center gap-2"
         >
-          Continue to Guest Details
+          Continue · Send Enquiry
           <ChevronRight className="w-5 h-5" />
         </motion.button>
       </div>
@@ -628,7 +628,7 @@ const GuestDetailsStep = ({
             </>
           ) : (
             <>
-              Book Now
+              Send Enquiry
               <span className="text-sm font-normal opacity-80">• ₹{total.toLocaleString()}</span>
             </>
           )}
@@ -648,7 +648,7 @@ const ConfirmationStep = ({
   total,
   invoiceHtml,
   onGoHome,
-  onOpenChat,
+  onWhatsAppHost,
 }: {
   bookingId: string;
   guestName: string;
@@ -658,7 +658,7 @@ const ConfirmationStep = ({
   total: number;
   invoiceHtml?: string;
   onGoHome: () => void;
-  onOpenChat: () => void;
+  onWhatsAppHost: () => void;
 }) => {
   const handleViewInvoice = () => {
     if (invoiceHtml) {
@@ -668,7 +668,7 @@ const ConfirmationStep = ({
 
   const handleDownloadPDF = async () => {
     if (invoiceHtml) {
-      await downloadInvoiceAsPDF(invoiceHtml, `Invoice-${bookingId}.pdf`);
+      await downloadInvoiceAsPDF(invoiceHtml, `Enquiry-${bookingId}.pdf`);
     }
   };
 
@@ -696,7 +696,7 @@ const ConfirmationStep = ({
         transition={{ delay: 0.2 }}
         className="text-3xl font-bold text-white mb-3 tracking-tight"
       >
-        Booking Received!
+        Enquiry Sent!
       </motion.h2>
 
       <motion.p
@@ -705,29 +705,43 @@ const ConfirmationStep = ({
         transition={{ delay: 0.3 }}
         className="text-white/60 mb-2 text-lg"
       >
-        Thank you, {guestName.split(' ')[0]}!
+        Thanks, {guestName.split(' ')[0]}!
       </motion.p>
-      
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.35 }}
-        className="flex items-center gap-2 text-amber-400 mb-8 text-sm font-medium"
+        className="flex items-center gap-2 text-amber-400 mb-4 text-sm font-medium"
       >
         <Shield className="w-4 h-4" />
         <span>Awaiting host confirmation</span>
+      </motion.div>
+
+      {/* Enquiry disclaimer */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="w-full max-w-sm mb-6 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-left"
+      >
+        <p className="text-amber-200 text-sm leading-relaxed">
+          <span className="font-semibold">This is a booking enquiry</span>, not a confirmed reservation.
+          The host will review your dates and reach out on WhatsApp shortly to confirm
+          availability and share payment details. No charge has been made.
+        </p>
       </motion.div>
 
       {/* Booking Details Card */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
+        transition={{ delay: 0.45 }}
         className="p-5 rounded-2xl bg-white/5 border border-white/10 text-left w-full max-w-sm mb-6"
       >
         <div className="space-y-3">
           <div className="flex justify-between">
-            <span className="text-white/50">Booking ID</span>
+            <span className="text-white/50">Enquiry ID</span>
             <span className="font-mono font-bold text-emerald-400">{bookingId}</span>
           </div>
           <div className="flex justify-between">
@@ -745,7 +759,7 @@ const ConfirmationStep = ({
             <span className="font-medium text-white">{format(checkOut, 'MMM d, yyyy')}</span>
           </div>
           <div className="flex justify-between pt-2 border-t border-white/10">
-            <span className="text-white/50">Total</span>
+            <span className="text-white/50">Estimated Total</span>
             <span className="font-bold text-white">₹{total.toLocaleString()}</span>
           </div>
         </div>
@@ -765,7 +779,7 @@ const ConfirmationStep = ({
             className="flex-1 h-12 rounded-xl bg-white/10 hover:bg-white/15 text-white font-medium text-sm flex items-center justify-center gap-2 transition-colors"
           >
             <FileText className="w-4 h-4" />
-            View Invoice
+            View Summary
           </motion.button>
           <motion.button
             whileTap={{ scale: 0.98 }}
@@ -778,27 +792,27 @@ const ConfirmationStep = ({
         </motion.div>
       )}
 
-      {/* Message to Host Button */}
+      {/* WhatsApp Host CTA */}
       <motion.button
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.55 }}
         whileTap={{ scale: 0.98 }}
-        onClick={onOpenChat}
-        className="w-full max-w-sm h-12 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 font-medium text-sm flex items-center justify-center gap-2 transition-colors border border-emerald-500/20 mb-4"
+        onClick={onWhatsAppHost}
+        className="w-full max-w-sm h-14 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-base flex items-center justify-center gap-2 transition-colors shadow-xl shadow-emerald-500/20 mb-4"
       >
-        <MessageCircle className="w-4 h-4" />
-        Message to Host
+        <MessageCircle className="w-5 h-5" />
+        Message Host on WhatsApp
       </motion.button>
 
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.6 }}
-        className="flex items-center gap-2 text-sm text-white/40 mb-6"
+        className="flex items-center gap-2 text-sm text-white/40 mb-6 text-center"
       >
         <Sparkles className="w-4 h-4" />
-        <span>Confirmation sent to your email & WhatsApp</span>
+        <span>Enquiry copy sent to your email & WhatsApp</span>
       </motion.div>
 
       <motion.button
@@ -868,8 +882,7 @@ export default function SimplifiedBookingFlow() {
   const [invoiceHtml, setInvoiceHtml] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [bookingId, setBookingId] = useState('');
-  const [bookingUUID, setBookingUUID] = useState('');
-  const [chatOpen, setChatOpen] = useState(false);
+  const [, setBookingUUID] = useState('');
 
   // Load booking data from sessionStorage OR URL search params (hero search)
   useEffect(() => {
@@ -1151,7 +1164,7 @@ export default function SimplifiedBookingFlow() {
         await new Promise(resolve => setTimeout(resolve, 100));
         
         goToStep('confirmation');
-        toast.success('Booking submitted! Awaiting host approval.');
+        toast.success('Enquiry sent! The host will confirm on WhatsApp shortly.');
       } else {
         toast.error(result.error || 'Booking failed. Please try again.');
       }
@@ -1260,21 +1273,26 @@ export default function SimplifiedBookingFlow() {
                 total={total}
                 invoiceHtml={invoiceHtml}
                 onGoHome={() => navigate('/')}
-                onOpenChat={() => setChatOpen(true)}
+                onWhatsAppHost={() => {
+                  openWhatsAppDirectly(
+                    generateBookingMessage({
+                      roomType: selectedRooms.map(r => `${r.quantity}× ${r.room.name}`).join(', '),
+                      guests: selectedRooms.reduce((s, r) => s + r.quantity, 0),
+                      checkIn: format(checkIn, 'yyyy-MM-dd'),
+                      checkOut: format(checkOut, 'yyyy-MM-dd'),
+                      nights,
+                      totalPrice: total,
+                      guestName: guestDetails.name,
+                      email: guestDetails.email,
+                      phone: guestDetails.phone,
+                    }) + `\n\nEnquiry ID: ${bookingId}`
+                  );
+                }}
               />
             )}
           </motion.div>
         </AnimatePresence>
       </div>
-
-      {/* Chat Dialog */}
-      {chatOpen && bookingUUID && (
-        <BookingChat
-          bookingId={bookingUUID}
-          isOpen={chatOpen}
-          onClose={() => setChatOpen(false)}
-        />
-      )}
     </div>
   );
 }
