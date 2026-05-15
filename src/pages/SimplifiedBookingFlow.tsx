@@ -1266,15 +1266,6 @@ export default function SimplifiedBookingFlow() {
           </motion.div>
         </AnimatePresence>
       </div>
-
-      {/* Chat Dialog */}
-      {chatOpen && bookingUUID && (
-        <BookingChat
-          bookingId={bookingUUID}
-          isOpen={chatOpen}
-          onClose={() => setChatOpen(false)}
-        />
-      )}
     </div>
   );
 }
