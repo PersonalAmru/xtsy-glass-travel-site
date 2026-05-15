@@ -425,7 +425,7 @@ const SummaryStep = ({
           onClick={onNext}
           className="w-full h-14 rounded-2xl font-bold text-base bg-white text-[hsl(220,20%,15%)] shadow-xl shadow-black/20 flex items-center justify-center gap-2"
         >
-          Continue to Guest Details
+          Continue · Send Enquiry
           <ChevronRight className="w-5 h-5" />
         </motion.button>
       </div>
