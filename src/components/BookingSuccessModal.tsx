@@ -35,7 +35,7 @@ const BookingSuccessModal = ({ isOpen, onClose, bookingId, guestName }: BookingS
           {/* Success Message */}
           <div className="space-y-2">
             <h2 className="text-2xl font-bold text-gray-900">
-              Booking Received!
+              Enquiry Sent!
             </h2>
             <p className="text-gray-600">
               Thank you, {guestName}!
@@ -44,30 +44,30 @@ const BookingSuccessModal = ({ isOpen, onClose, bookingId, guestName }: BookingS
 
           {/* Booking ID */}
           <div className="bg-gray-50 rounded-lg p-4">
-            <p className="text-sm text-gray-600 mb-1">Your Booking ID:</p>
+            <p className="text-sm text-gray-600 mb-1">Your Enquiry ID:</p>
             <p className="font-mono font-bold text-lg text-gray-900">{bookingId}</p>
           </div>
 
           {/* Main Message */}
           <div className="space-y-4">
-            <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded">
+            <div className="bg-amber-50 border-l-4 border-amber-400 p-4 rounded">
               <div className="flex items-start">
-                <MessageCircle className="w-5 h-5 text-blue-600 mt-0.5 mr-2 flex-shrink-0" />
+                <MessageCircle className="w-5 h-5 text-amber-600 mt-0.5 mr-2 flex-shrink-0" />
                 <div className="text-left">
-                  <p className="text-blue-800 font-semibold">
-                    We will get back to you shortly!
+                  <p className="text-amber-800 font-semibold">
+                    This is an enquiry, not a confirmed booking
                   </p>
-                  <p className="text-blue-700 text-sm mt-1">
-                    Our team will contact you via WhatsApp with payment details and booking confirmation within the next few hours.
+                  <p className="text-amber-700 text-sm mt-1">
+                    The host will review your request and confirm availability via WhatsApp shortly. No payment has been taken.
                   </p>
                 </div>
               </div>
             </div>
 
             <div className="text-sm text-gray-600 space-y-1">
-              <p>• A WhatsApp message has been sent to your number</p>
-              <p>• Please keep your booking ID safe for reference</p>
-              <p>• Check your WhatsApp for further updates</p>
+              <p>• The host will reach out on WhatsApp</p>
+              <p>• Please keep your Enquiry ID for reference</p>
+              <p>• Final confirmation is at the host's discretion</p>
             </div>
           </div>
 
