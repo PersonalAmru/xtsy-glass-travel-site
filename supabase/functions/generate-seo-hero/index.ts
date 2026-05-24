@@ -201,7 +201,29 @@ Deno.serve(async (req) => {
       console.log(`[${body.slug}] Pexels query: "${query}"`);
       result = await fetchFromPexels(query, PEXELS_API_KEY);
       if (result) source = "pexels";
+
+      // Pexels fallback chain — try progressively more generic queries before giving up
+      if (!result) {
+        const fallbackQueries = [
+          `${body.category} northeast india`,
+          "northeast india landscape",
+          "meghalaya travel",
+          "india mountain landscape",
+        ];
+        for (const fq of fallbackQueries) {
+          console.log(`[${body.slug}] Pexels fallback query: "${fq}"`);
+          result = await fetchFromPexels(fq, PEXELS_API_KEY);
+          if (result) { source = "pexels-fallback"; break; }
+        }
+      }
     }
+
+    // Pexels-only mode: never escalate to AI
+    if (!useAI && !result) {
+      return new Response(JSON.stringify({ error: "Pexels returned no results for any fallback query" }),
+        { status: 502, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    }
+
 
     // 3. AI path (opt-in OR Pexels failed and AI key available)
     if (!result && LOVABLE_API_KEY) {
