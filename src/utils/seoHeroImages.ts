@@ -4,6 +4,9 @@
  * with category-level fallbacks for pages without specific images.
  */
 
+import { SEO_HERO_MANIFEST } from '@/data/seoHeroManifest';
+
+
 const SUPABASE_BUCKET = 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets';
 const THINGS_TO_DO = `${SUPABASE_BUCKET}/Meghalaya%20things%20to%20do`;
 
@@ -114,7 +117,7 @@ const DEFAULT_HERO = `${THINGS_TO_DO}/laitlum-canyons-meghalaya-2.webp`;
  * The browser will fall back to the curated/category image if the AI hero hasn't been generated yet.
  */
 export const getHeroImageForPage = (slug: string, category: string): string => {
-  return SLUG_HERO_MAP[slug] || CATEGORY_HERO_MAP[category] || DEFAULT_HERO;
+  return SEO_HERO_MANIFEST[slug] || SLUG_HERO_MAP[slug] || CATEGORY_HERO_MAP[category] || DEFAULT_HERO;
 };
 
 /** URL where the AI-generated hero would live if/when produced. */
