@@ -4,6 +4,9 @@
  * with category-level fallbacks for pages without specific images.
  */
 
+import { SEO_HERO_MANIFEST } from '@/data/seoHeroManifest';
+
+
 const SUPABASE_BUCKET = 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets';
 const THINGS_TO_DO = `${SUPABASE_BUCKET}/Meghalaya%20things%20to%20do`;
 
