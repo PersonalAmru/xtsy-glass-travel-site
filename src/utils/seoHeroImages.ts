@@ -116,8 +116,6 @@ const DEFAULT_HERO = `${THINGS_TO_DO}/laitlum-canyons-meghalaya-2.webp`;
  * Note: AI heroes are produced on-demand by the `generate-seo-hero` edge function.
  * The browser will fall back to the curated/category image if the AI hero hasn't been generated yet.
  */
-import { SEO_HERO_MANIFEST } from '@/data/seoHeroManifest';
-
 export const getHeroImageForPage = (slug: string, category: string): string => {
   return SEO_HERO_MANIFEST[slug] || SLUG_HERO_MAP[slug] || CATEGORY_HERO_MAP[category] || DEFAULT_HERO;
 };
