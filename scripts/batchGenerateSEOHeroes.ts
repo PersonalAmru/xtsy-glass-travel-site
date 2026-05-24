@@ -52,7 +52,7 @@ const ranked = [...ALL_SEO_PAGES]
 
 console.log(`Phase C — batching ${ranked.length} slugs (useAI=${USE_AI}, force=${FORCE})`);
 
-async function callOne(p: SEOPageData): Promise<{ slug: string; ok: boolean; source?: string; url?: string; error?: string }> {
+async function callOne(p: SEOPageData, attempt = 1): Promise<{ slug: string; ok: boolean; source?: string; url?: string; error?: string }> {
   try {
     const res = await fetch(FN_URL, {
       method: 'POST',
@@ -68,14 +68,27 @@ async function callOne(p: SEOPageData): Promise<{ slug: string; ok: boolean; sou
       }),
     });
     const data = await res.json().catch(() => ({}));
-    if (!res.ok) return { slug: p.slug, ok: false, error: data.error || `HTTP ${res.status}` };
+    if (!res.ok) {
+      const err = data.error || `HTTP ${res.status}`;
+      const retriable = /rate limit|429|No image source/i.test(err);
+      if (retriable && attempt < 5) {
+        await new Promise((r) => setTimeout(r, 1500 * attempt * attempt));
+        return callOne(p, attempt + 1);
+      }
+      return { slug: p.slug, ok: false, error: err };
+    }
     return { slug: p.slug, ok: true, source: data.source, url: data.url };
   } catch (e) {
+    if (attempt < 5) {
+      await new Promise((r) => setTimeout(r, 1500 * attempt * attempt));
+      return callOne(p, attempt + 1);
+    }
     return { slug: p.slug, ok: false, error: e instanceof Error ? e.message : String(e) };
   }
 }
 
-const CONCURRENCY = USE_AI ? 2 : 5;
+
+const CONCURRENCY = USE_AI ? 2 : 3;
 const results: Awaited<ReturnType<typeof callOne>>[] = [];
 let cursor = 0;
 
