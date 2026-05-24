@@ -124,7 +124,12 @@ export const getAIHeroURL = (slug: string): string => {
 
 // Wave 3B — Pool of contextual section images, rotated per section index so each
 // page renders distinct supporting visuals (no duplicates within a page).
-const SECTION_IMAGE_POOL = [
+// Phase B — split by Northeast state so pages targeting Assam/Arunachal/etc.
+// no longer show only Meghalaya scenery.
+const TRAVEL_PAGE = `${SUPABASE_BUCKET}/Travel%20page`;
+const TRAVEL_DOM = `${SUPABASE_BUCKET}/Travel%20DOM/1`;
+
+const MEGHALAYA_POOL = [
   `${THINGS_TO_DO}/double-decker-living-root-bridge-meghalaya-2.webp`,
   `${THINGS_TO_DO}/dawki-umngot-river-meghalaya-2.webp`,
   `${THINGS_TO_DO}/laitlum-canyons-meghalaya-3.webp`,
@@ -137,20 +142,98 @@ const SECTION_IMAGE_POOL = [
   `${THINGS_TO_DO}/mawphlang-sacred-forest-meghalaya-1.webp`,
 ];
 
+const ASSAM_POOL = [
+  `${TRAVEL_PAGE}/north%20east%20tour.jpg`,
+  `${TRAVEL_PAGE}/dress-of-north-east-india.jpg`,
+  `${TRAVEL_PAGE}/70q7obg5shx31.jpg`,
+];
+
+const ARUNACHAL_POOL = [
+  `${TRAVEL_PAGE}/Tawang-Monastery.jpg`,
+  `${TRAVEL_PAGE}/Bike%20trip%20arunachal.jpg`,
+  `${TRAVEL_DOM}/Complete%20Guide%20To%20Backpacking%20In%20Arunachal%20Pradesh%20-%20Lost%20With%20Purpose.jpg`,
+];
+
+const NAGALAND_POOL = [
+  `${TRAVEL_PAGE}/nagaland.jpg`,
+  `${TRAVEL_PAGE}/kohima.jpg`,
+  `${TRAVEL_PAGE}/dress-of-north-east-india.jpg`,
+];
+
+const SIKKIM_POOL = [
+  `${TRAVEL_PAGE}/kanchenjunga-mountain-pelling-sikkim-1-city-hero.jpg`,
+  `${TRAVEL_PAGE}/sikkim%20winter.png`,
+  `${TRAVEL_PAGE}/north%20east%20tour.jpg`,
+];
+
+const MANIPUR_POOL = [
+  `${TRAVEL_PAGE}/maipur%20lokak%20lake.webp`,
+  `${TRAVEL_PAGE}/dress-of-north-east-india.jpg`,
+  `${TRAVEL_PAGE}/north%20east%20tour.jpg`,
+];
+
+const MIZORAM_POOL = [
+  `${TRAVEL_PAGE}/dress-of-north-east-india.jpg`,
+  `${TRAVEL_PAGE}/north%20east%20tour.jpg`,
+  `${TRAVEL_PAGE}/70q7obg5shx31.jpg`,
+];
+
+const TRIPURA_POOL = [
+  `${TRAVEL_PAGE}/dress-of-north-east-india.jpg`,
+  `${TRAVEL_PAGE}/north%20east%20tour.jpg`,
+  `${TRAVEL_PAGE}/70q7obg5shx31.jpg`,
+];
+
+const STATE_SECTION_POOLS: Record<string, string[]> = {
+  meghalaya: MEGHALAYA_POOL,
+  assam: ASSAM_POOL,
+  arunachal: ARUNACHAL_POOL,
+  nagaland: NAGALAND_POOL,
+  sikkim: SIKKIM_POOL,
+  manipur: MANIPUR_POOL,
+  mizoram: MIZORAM_POOL,
+  tripura: TRIPURA_POOL,
+};
+
+// Keywords that hint at each state. First match wins; meghalaya is the fallback.
+const STATE_KEYWORDS: Array<{ state: keyof typeof STATE_SECTION_POOLS; needles: string[] }> = [
+  { state: 'arunachal', needles: ['arunachal', 'tawang', 'ziro', 'itanagar', 'bomdila', 'sela-pass'] },
+  { state: 'sikkim', needles: ['sikkim', 'gangtok', 'pelling', 'lachung', 'lachen', 'kanchenjunga', 'gurudongmar'] },
+  { state: 'nagaland', needles: ['nagaland', 'kohima', 'dimapur', 'hornbill', 'mokokchung', 'mon-'] },
+  { state: 'manipur', needles: ['manipur', 'imphal', 'loktak', 'ukhrul'] },
+  { state: 'mizoram', needles: ['mizoram', 'aizawl', 'lunglei', 'champhai'] },
+  { state: 'tripura', needles: ['tripura', 'agartala', 'unakoti', 'udaipur-tripura'] },
+  { state: 'assam', needles: ['assam', 'guwahati', 'kaziranga', 'majuli', 'jorhat', 'tezpur', 'sivasagar', 'tea-garden'] },
+  { state: 'meghalaya', needles: ['meghalaya', 'shillong', 'cherrapunji', 'dawki', 'mawlynnong', 'nongriat', 'jaintia', 'khasi', 'garo', 'mawsynram', 'umiam', 'laitlum', 'nohkalikai', 'krang-suri'] },
+];
+
+/** Infer Northeast state from a slug. Defaults to meghalaya (our home turf). */
+const inferStateFromSlug = (slug: string): keyof typeof STATE_SECTION_POOLS => {
+  const s = slug.toLowerCase();
+  for (const { state, needles } of STATE_KEYWORDS) {
+    if (needles.some(n => s.includes(n))) return state;
+  }
+  return 'meghalaya';
+};
+
 /**
  * Pick a contextual image for a section based on the page slug + section index.
  * Deterministic: same slug+index always returns the same image.
+ * State-aware: routes to the matching Northeast state pool.
  */
 export const getSectionImage = (slug: string, sectionIndex: number, heroToAvoid?: string): string => {
+  const state = inferStateFromSlug(slug);
+  const pool = STATE_SECTION_POOLS[state] ?? MEGHALAYA_POOL;
   // Deterministic hash from slug
   let h = 0;
   for (let i = 0; i < slug.length; i++) h = (h * 31 + slug.charCodeAt(i)) | 0;
-  const start = Math.abs(h) % SECTION_IMAGE_POOL.length;
-  let img = SECTION_IMAGE_POOL[(start + sectionIndex) % SECTION_IMAGE_POOL.length];
+  const start = Math.abs(h) % pool.length;
+  let img = pool[(start + sectionIndex) % pool.length];
   // Avoid repeating the hero image as the first section image
-  if (img === heroToAvoid) {
-    img = SECTION_IMAGE_POOL[(start + sectionIndex + 1) % SECTION_IMAGE_POOL.length];
+  if (img === heroToAvoid && pool.length > 1) {
+    img = pool[(start + sectionIndex + 1) % pool.length];
   }
   return img;
 };
+
 
