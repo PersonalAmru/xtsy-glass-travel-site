@@ -88,7 +88,7 @@ async function callOne(p: SEOPageData, attempt = 1): Promise<{ slug: string; ok:
 }
 
 
-const CONCURRENCY = USE_AI ? 2 : 5;
+const CONCURRENCY = USE_AI ? 2 : 3;
 const results: Awaited<ReturnType<typeof callOne>>[] = [];
 let cursor = 0;
 
