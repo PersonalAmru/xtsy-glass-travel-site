@@ -95,6 +95,11 @@ const CATEGORY_HERO_MAP: Record<string, string> = {
   events: `${THINGS_TO_DO}/mawphlang-sacred-forest-meghalaya-2.webp`,
   'travel-agency': `${THINGS_TO_DO}/dawki-umngot-river-meghalaya-3.webp`,
   hospitals: `${THINGS_TO_DO}/shillong-peak-meghalaya-3.webp`,
+  'themed-trips': `${THINGS_TO_DO}/double-decker-living-root-bridge-meghalaya-3.webp`,
+  'group-tours': `${THINGS_TO_DO}/mawphlang-sacred-forest-meghalaya-1.webp`,
+  corporate: `${THINGS_TO_DO}/umiam-lake-meghalaya-2.webp`,
+  'road-bike-trips': `${THINGS_TO_DO}/laitlum-canyons-meghalaya-4.webp`,
+  workation: `${THINGS_TO_DO}/nongjrong-sunrise-viewpoint-meghalaya-3.webp`,
 };
 
 const SUPABASE_HERO_BUCKET = 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/seo-heroes';
