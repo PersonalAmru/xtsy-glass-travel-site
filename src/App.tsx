@@ -362,6 +362,7 @@ function App() {
                 <Route path="/admin/seo/recovery" element={<LazyRoute><AdminSEORecovery /></LazyRoute>} />
                 <Route path="/admin/seo/gsc-errors" element={<LazyRoute><AdminGSCErrors /></LazyRoute>} />
                 <Route path="/admin/seo/schema-results" element={<LazyRoute><AdminSchemaResults /></LazyRoute>} />
+                <Route path="/admin/seo/hero-manager" element={<LazyRoute><AdminSEOHeroManager /></LazyRoute>} />
                 
                 {/* Meghalaya SEO Pages */}
                 <Route path="/things-to-do-in-meghalaya" element={<LazyRoute><ThingsToDoInMeghalaya /></LazyRoute>} />
