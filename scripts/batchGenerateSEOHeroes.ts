@@ -37,20 +37,42 @@ const CATEGORY_PRIORITY: Partial<Record<SEOPageCategory, number>> = {
 };
 
 const args = process.argv.slice(2);
-const limitArg = args.indexOf('--limit');
-const LIMIT = limitArg >= 0 ? parseInt(args[limitArg + 1], 10) : 50;
+const argVal = (name: string, def: number) => {
+  const i = args.indexOf(name);
+  return i >= 0 ? parseInt(args[i + 1], 10) : def;
+};
+const LIMIT = argVal('--limit', 50);
 const USE_AI = !args.includes('--pexels');
 const FORCE = args.includes('--force');
+const ONLY_FAILED = args.includes('--only-failed');
+const MAX_ATTEMPTS = argVal('--max-attempts', 5);
+const BACKOFF_MS = argVal('--backoff', 1500);
 
 function rank(p: SEOPageData): number {
   return CATEGORY_PRIORITY[p.category] ?? 10;
 }
 
-const ranked = [...ALL_SEO_PAGES]
-  .sort((a, b) => rank(b) - rank(a))
-  .slice(0, LIMIT);
+// Load existing manifest early so --only-failed can filter pre-batch
+import { writeFileSync, readFileSync, existsSync, mkdirSync } from 'node:fs';
+const MANIFEST_PATH = 'src/data/seoHeroManifest.ts';
+const existing: Record<string, string> = {};
+if (existsSync(MANIFEST_PATH)) {
+  const txt = readFileSync(MANIFEST_PATH, 'utf8');
+  const m = txt.match(/SEO_HERO_MANIFEST\s*:\s*Record<string,\s*string>\s*=\s*(\{[\s\S]*?\});/);
+  if (m) {
+    try { Object.assign(existing, eval('(' + m[1] + ')')); } catch { /* ignore */ }
+  }
+}
 
-console.log(`Phase C — batching ${ranked.length} slugs (useAI=${USE_AI}, force=${FORCE})`);
+let pool = [...ALL_SEO_PAGES].sort((a, b) => rank(b) - rank(a));
+if (ONLY_FAILED && !FORCE) {
+  pool = pool.filter((p) => !existing[p.slug]);
+}
+const ranked = pool.slice(0, LIMIT);
+
+console.log(
+  `Phase C — batching ${ranked.length} slugs (useAI=${USE_AI}, force=${FORCE}, onlyFailed=${ONLY_FAILED}, maxAttempts=${MAX_ATTEMPTS}, backoff=${BACKOFF_MS}ms)`,
+);
 
 async function callOne(p: SEOPageData, attempt = 1): Promise<{ slug: string; ok: boolean; source?: string; url?: string; error?: string }> {
   try {
@@ -70,17 +92,17 @@ async function callOne(p: SEOPageData, attempt = 1): Promise<{ slug: string; ok:
     const data = await res.json().catch(() => ({}));
     if (!res.ok) {
       const err = data.error || `HTTP ${res.status}`;
-      const retriable = /rate limit|429|No image source/i.test(err);
-      if (retriable && attempt < 5) {
-        await new Promise((r) => setTimeout(r, 1500 * attempt * attempt));
+      const retriable = /rate limit|429|No image source|Pexels returned no results/i.test(err);
+      if (retriable && attempt < MAX_ATTEMPTS) {
+        await new Promise((r) => setTimeout(r, BACKOFF_MS * attempt * attempt));
         return callOne(p, attempt + 1);
       }
       return { slug: p.slug, ok: false, error: err };
     }
     return { slug: p.slug, ok: true, source: data.source, url: data.url };
   } catch (e) {
-    if (attempt < 5) {
-      await new Promise((r) => setTimeout(r, 1500 * attempt * attempt));
+    if (attempt < MAX_ATTEMPTS) {
+      await new Promise((r) => setTimeout(r, BACKOFF_MS * attempt * attempt));
       return callOne(p, attempt + 1);
     }
     return { slug: p.slug, ok: false, error: e instanceof Error ? e.message : String(e) };
@@ -107,17 +129,7 @@ async function worker(id: number) {
 
 await Promise.all(Array.from({ length: CONCURRENCY }, (_, i) => worker(i + 1)));
 
-// ─────────── Merge into manifest ───────────
-import { writeFileSync, readFileSync, existsSync } from 'node:fs';
-const MANIFEST_PATH = 'src/data/seoHeroManifest.ts';
-const existing: Record<string, string> = {};
-if (existsSync(MANIFEST_PATH)) {
-  const txt = readFileSync(MANIFEST_PATH, 'utf8');
-  const m = txt.match(/SEO_HERO_MANIFEST\s*:\s*Record<string,\s*string>\s*=\s*(\{[\s\S]*?\});/);
-  if (m) {
-    try { Object.assign(existing, eval('(' + m[1] + ')')); } catch { /* ignore */ }
-  }
-}
+// ─────────── Merge results into manifest (loaded earlier) ───────────
 for (const r of results) if (r.ok && r.url) existing[r.slug] = r.url;
 
 const sorted = Object.keys(existing).sort();
@@ -140,13 +152,46 @@ const fail = results.length - ok;
 const bySource: Record<string, number> = {};
 for (const r of results) if (r.ok && r.source) bySource[r.source] = (bySource[r.source] ?? 0) + 1;
 
+const remainingFailing = ALL_SEO_PAGES
+  .filter((p) => !existing[p.slug])
+  .map((p) => {
+    const r = results.find((x) => x.slug === p.slug);
+    return { slug: p.slug, category: p.category, lastError: r?.error ?? 'not attempted this pass' };
+  });
+
+const summary = {
+  ranAt: new Date().toISOString(),
+  flags: { LIMIT, USE_AI, FORCE, ONLY_FAILED, MAX_ATTEMPTS, BACKOFF_MS },
+  attempted: results.length,
+  succeeded: ok,
+  failedThisPass: fail,
+  cachedTotal: sorted.length,
+  totalSlugs: ALL_SEO_PAGES.length,
+  sources: bySource,
+  remainingFailing,
+};
+
+try {
+  mkdirSync('/mnt/documents', { recursive: true });
+  const reportPath = `/mnt/documents/seo-hero-batch-${Date.now()}.json`;
+  writeFileSync(reportPath, JSON.stringify(summary, null, 2));
+  console.log(`Summary report: ${reportPath}`);
+} catch {
+  writeFileSync('seo-hero-batch-report.json', JSON.stringify(summary, null, 2));
+  console.log('Summary report: seo-hero-batch-report.json');
+}
+
 console.log('\n──────── Phase C Summary ────────');
-console.log(`OK:     ${ok}/${results.length}`);
-console.log(`Fail:   ${fail}`);
-console.log(`Source:`, bySource);
+console.log(`Attempted:       ${results.length}`);
+console.log(`Succeeded:       ${ok}`);
+console.log(`Failed this pass:${fail}`);
+console.log(`Cached total:    ${sorted.length} / ${ALL_SEO_PAGES.length}`);
+console.log(`Remaining:       ${remainingFailing.length}`);
+console.log(`Sources:`, bySource);
 if (fail > 0) {
-  console.log('\nFailures:');
+  console.log('\nFailures (this pass):');
   for (const r of results.filter((x) => !x.ok)) console.log(`  - ${r.slug}: ${r.error}`);
   process.exit(1);
 }
+
 
