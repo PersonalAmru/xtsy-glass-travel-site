@@ -37,14 +37,16 @@ const CATEGORY_PRIORITY: Partial<Record<SEOPageCategory, number>> = {
 };
 
 const args = process.argv.slice(2);
-const limitArg = args.indexOf('--limit');
-const LIMIT = limitArg >= 0 ? parseInt(args[limitArg + 1], 10) : 50;
+const argVal = (name: string, def: number) => {
+  const i = args.indexOf(name);
+  return i >= 0 ? parseInt(args[i + 1], 10) : def;
+};
+const LIMIT = argVal('--limit', 50);
 const USE_AI = !args.includes('--pexels');
 const FORCE = args.includes('--force');
-
-function rank(p: SEOPageData): number {
-  return CATEGORY_PRIORITY[p.category] ?? 10;
-}
+const ONLY_FAILED = args.includes('--only-failed');
+const MAX_ATTEMPTS = argVal('--max-attempts', 5);
+const BACKOFF_MS = argVal('--backoff', 1500);
 
 const ranked = [...ALL_SEO_PAGES]
   .sort((a, b) => rank(b) - rank(a))
