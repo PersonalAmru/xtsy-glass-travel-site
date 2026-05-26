@@ -57,6 +57,11 @@ type Probe = {
   redirects: number;
   canonical: string | null;
   canonicalMismatch: boolean;
+  // true only when the canonical is the static index.html homepage fallback —
+  // expected to be overridden client-side / at the edge. Suppressed from the
+  // mismatch totals so the report focuses on real problems.
+  staticFallback: boolean;
+  hasSlimEntry: boolean;
   error: string | null;
   ms: number;
 };
