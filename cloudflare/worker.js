@@ -202,52 +202,45 @@ export default {
       }
     }
 
-    // If not a bot, serve normally
-    if (!isBot(userAgent)) {
-      return fetch(request);
-    }
+    // --- SEO head rewrite (applies to BOTH bots and human visitors) ---
+    // Resolves the slim per-route map, then rewrites canonical/og:url/og:title/
+    // og:description/twitter/<title>/<meta name="description"> at the edge so
+    // non-JS preview crawlers (Slack, Facebook, LinkedIn) and curl-based audits
+    // see route-correct metadata before the SPA hydrates.
+    const slug = path.replace(/^\/|\/$/g, '');
+    const canonical = `${url.origin}${slug ? '/' + slug : '/'}`;
+    const slimMap = await getSlimMap(url.origin);
+    const entry = slimMap[slug] || null;
 
-    // --- BOT DETECTED ---
-    console.log(`🤖 Bot detected: ${userAgent.substring(0, 80)} → ${path}`);
-
-    // Try to get pre-rendered content from KV store
-    if (env.PRERENDER_CACHE) {
-      const cacheKey = path === '/' ? '/' : path.replace(/\/$/, '');
-      const cached = await env.PRERENDER_CACHE.get(cacheKey, 'text');
-      
-      if (cached) {
-        console.log(`✅ Serving pre-rendered: ${cacheKey}`);
-        return new Response(cached, {
-          headers: {
-            'content-type': 'text/html;charset=utf-8',
-            'x-rendered-by': 'cloudflare-prerender',
-            'cache-control': 'public, max-age=86400, s-maxage=604800',
-          },
-        });
+    // Bot path: try KV pre-render first, fall back to origin + rewrite
+    if (isBot(userAgent)) {
+      console.log(`🤖 Bot detected: ${userAgent.substring(0, 80)} → ${path}`);
+      if (env.PRERENDER_CACHE) {
+        const cacheKey = path === '/' ? '/' : path.replace(/\/$/, '');
+        const cached = await env.PRERENDER_CACHE.get(cacheKey, 'text');
+        if (cached) {
+          console.log(`✅ Serving pre-rendered: ${cacheKey}`);
+          return new Response(cached, {
+            headers: {
+              'content-type': 'text/html;charset=utf-8',
+              'x-rendered-by': 'cloudflare-prerender',
+              'cache-control': 'public, max-age=86400, s-maxage=604800',
+            },
+          });
+        }
       }
     }
 
-    // Fallback: Fetch the page from origin and inject meta tags
+    // Fetch origin and rewrite head for ALL HTML responses
     const response = await fetch(request);
     const contentType = response.headers.get('content-type') || '';
-    
-    if (!contentType.includes('text/html')) {
-      return response;
-    }
+    if (!contentType.includes('text/html')) return response;
 
-    // Use HTMLRewriter to add a header indicating bot rendering
-    const rewritten = new HTMLRewriter()
-      .on('head', {
-        element(element) {
-          // Add a meta tag so we can verify bot rendering is working
-          element.append('<meta name="x-rendered-for" content="bot">', { html: true });
-        },
-      })
-      .transform(response);
-
-    // Clone with custom headers
+    const extraMeta = isBot(userAgent) ? '<meta name="x-rendered-for" content="bot">' : null;
+    const rewritten = makeSeoRewriter(canonical, entry, extraMeta).transform(response);
     const newResponse = new Response(rewritten.body, rewritten);
-    newResponse.headers.set('x-rendered-by', 'cloudflare-spa-passthrough');
+    newResponse.headers.set('x-rendered-by', isBot(userAgent) ? 'cf-bot-rewrite' : 'cf-edge-rewrite');
+    newResponse.headers.set('x-seo-entry', entry ? 'matched' : 'fallback');
     return newResponse;
   },
 };
