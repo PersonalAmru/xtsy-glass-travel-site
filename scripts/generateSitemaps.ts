@@ -18,7 +18,7 @@ import {
   RECOVERY_PLACES_PATHS,
 } from '../src/data/seoAffectedSlugs';
 
-const PUBLIC = path.join(__dirname, '..', 'public');
+const PUBLIC = path.join(process.cwd(), 'public');
 const HOST = 'https://xtsy.one';
 const TODAY = new Date().toISOString().split('T')[0];
 
