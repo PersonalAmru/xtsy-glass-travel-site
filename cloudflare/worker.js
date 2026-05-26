@@ -11,10 +11,15 @@
 // Bot user-agent patterns
 const BOT_AGENTS = [
   'googlebot', 'bingbot', 'yandexbot', 'duckduckbot', 'slurp',
-  'baiduspider', 'facebookexternalhit', 'twitterbot', 'linkedinbot',
-  'whatsapp', 'telegrambot', 'applebot', 'pinterest', 'semrushbot',
-  'ahrefsbot', 'mj12bot', 'dotbot', 'petalbot', 'bytespider',
-  'gptbot', 'ia_archiver', 'archive.org_bot',
+  'baiduspider', 'facebookexternalhit', 'facebot', 'twitterbot',
+  'linkedinbot', 'whatsapp', 'telegrambot', 'applebot', 'pinterest',
+  'pinterestbot', 'semrushbot', 'ahrefsbot', 'mj12bot', 'dotbot',
+  'petalbot', 'bytespider', 'gptbot', 'oai-searchbot', 'chatgpt-user',
+  'perplexitybot', 'claudebot', 'claude-web', 'anthropic-ai',
+  'ccbot', 'cohere-ai', 'mistralai-user',
+  'ia_archiver', 'archive.org_bot',
+  'slackbot', 'discordbot', 'redditbot', 'embedly', 'skypeuripreview',
+  'msnbot', 'qwantbot', 'mojeekbot', 'seznambot',
   // Google specific
   'googlebot-mobile', 'google-inspectiontool', 'google-structured-data-testing-tool',
   'mediapartners-google', 'adsbot-google', 'apis-google',
