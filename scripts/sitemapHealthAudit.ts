@@ -24,6 +24,18 @@ import path from 'path';
 const PUBLIC = path.resolve(process.cwd(), 'public');
 const OUT_DIR = '/mnt/documents';
 const UA = 'XTSY-Sitemap-Health/1.0 (+https://xtsy.one)';
+const SITE = 'https://xtsy.one';
+
+// Load slim map if present so we can ignore the index.html homepage canonical
+// fallback (the worker / pre-hydration script overrides it per-route at runtime).
+let SLIM_MAP: Record<string, { t: string; d: string }> = {};
+try {
+  const slimPath = path.join(PUBLIC, 'seo-slim-map.json');
+  if (fs.existsSync(slimPath)) {
+    SLIM_MAP = JSON.parse(fs.readFileSync(slimPath, 'utf-8'));
+  }
+} catch { /* optional */ }
+const STATIC_FALLBACK_CANONICALS = new Set([`${SITE}/`, SITE]);
 
 const args = process.argv.slice(2);
 const flag = (n: string) => args.includes(n);
