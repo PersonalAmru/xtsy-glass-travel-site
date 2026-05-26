@@ -106,7 +106,15 @@ async function probe(url: string): Promise<Omit<Probe, 'branches'>> {
         || html.match(/<link[^>]+href=["']([^"']+)["'][^>]+rel=["']canonical["']/i);
       canonical = m ? m[1].trim() : null;
     }
-    const canonicalMismatch = !!canonical && normalize(canonical) !== normalize(url);
+    const normCanon = canonical ? normalize(canonical) : null;
+    const slug = new URL(url).pathname.replace(/^\/|\/$/g, '');
+    const hasSlimEntry = Object.prototype.hasOwnProperty.call(SLIM_MAP, slug);
+    const staticFallback = !!canonical && STATIC_FALLBACK_CANONICALS.has(canonical);
+    // Only count a mismatch when the canonical is non-fallback AND points
+    // somewhere other than the requested URL.
+    const canonicalMismatch = !!normCanon
+      && normCanon !== normalize(url)
+      && !staticFallback;
     return {
       url,
       status: res.status,
@@ -114,6 +122,8 @@ async function probe(url: string): Promise<Omit<Probe, 'branches'>> {
       redirects,
       canonical,
       canonicalMismatch,
+      staticFallback,
+      hasSlimEntry,
       error: null,
       ms: Date.now() - t0,
     };
@@ -125,6 +135,8 @@ async function probe(url: string): Promise<Omit<Probe, 'branches'>> {
       redirects: 0,
       canonical: null,
       canonicalMismatch: false,
+      staticFallback: false,
+      hasSlimEntry: false,
       error: e instanceof Error ? e.message : String(e),
       ms: Date.now() - t0,
     };
