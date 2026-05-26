@@ -5,6 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "sitemaps:rebuild": "tsx scripts/generateProgrammaticSitemap.ts && tsx scripts/generateSitemaps.ts && tsx scripts/dedupeSitemapsCrossBranch.ts",
+    "sitemaps:audit": "tsx scripts/sitemapHealthAudit.ts",
+    "prebuild": "tsx scripts/generateWorkerSlimMap.ts && npm run sitemaps:rebuild",
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",

@@ -11,10 +11,15 @@
 // Bot user-agent patterns
 const BOT_AGENTS = [
   'googlebot', 'bingbot', 'yandexbot', 'duckduckbot', 'slurp',
-  'baiduspider', 'facebookexternalhit', 'twitterbot', 'linkedinbot',
-  'whatsapp', 'telegrambot', 'applebot', 'pinterest', 'semrushbot',
-  'ahrefsbot', 'mj12bot', 'dotbot', 'petalbot', 'bytespider',
-  'gptbot', 'ia_archiver', 'archive.org_bot',
+  'baiduspider', 'facebookexternalhit', 'facebot', 'twitterbot',
+  'linkedinbot', 'whatsapp', 'telegrambot', 'applebot', 'pinterest',
+  'pinterestbot', 'semrushbot', 'ahrefsbot', 'mj12bot', 'dotbot',
+  'petalbot', 'bytespider', 'gptbot', 'oai-searchbot', 'chatgpt-user',
+  'perplexitybot', 'claudebot', 'claude-web', 'anthropic-ai',
+  'ccbot', 'cohere-ai', 'mistralai-user',
+  'ia_archiver', 'archive.org_bot',
+  'slackbot', 'discordbot', 'redditbot', 'embedly', 'skypeuripreview',
+  'msnbot', 'qwantbot', 'mojeekbot', 'seznambot',
   // Google specific
   'googlebot-mobile', 'google-inspectiontool', 'google-structured-data-testing-tool',
   'mediapartners-google', 'adsbot-google', 'apis-google',
@@ -39,9 +44,106 @@ function generateSEOHTML(url, originalHTML) {
   return null; // We'll use KV store for pre-rendered content
 }
 
-// In-memory micro-cache for redirect lookups (per worker isolate)
+// In-memory micro-caches (per worker isolate)
 const REDIRECT_CACHE = new Map();
 const REDIRECT_TTL_MS = 60_000;
+
+// SEO slim map cache — fetched from /seo-slim-map.json once per isolate.
+let SLIM_MAP_CACHE = null;
+let SLIM_MAP_FETCHED_AT = 0;
+const SLIM_MAP_TTL_MS = 5 * 60_000;
+
+async function getSlimMap(origin) {
+  if (SLIM_MAP_CACHE && Date.now() - SLIM_MAP_FETCHED_AT < SLIM_MAP_TTL_MS) {
+    return SLIM_MAP_CACHE;
+  }
+  try {
+    const res = await fetch(`${origin}/seo-slim-map.json`, {
+      cf: { cacheTtl: 3600, cacheEverything: true },
+    });
+    if (!res.ok) return SLIM_MAP_CACHE || {};
+    SLIM_MAP_CACHE = await res.json();
+    SLIM_MAP_FETCHED_AT = Date.now();
+    return SLIM_MAP_CACHE;
+  } catch (_) {
+    return SLIM_MAP_CACHE || {};
+  }
+}
+
+function escapeAttr(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+}
+
+/**
+ * Build an HTMLRewriter that bakes per-route canonical/og:url/og:title/
+ * og:description/twitter/<title>/<meta name="description"> into the response
+ * head. Runs for ALL HTML responses (users + bots) so non-JS preview crawlers
+ * (Slack, Facebook, LinkedIn) see route-correct metadata before any JS.
+ */
+function makeSeoRewriter(canonical, entry, extraHeaderMeta) {
+  let titleHandled = false;
+  let descHandled = false;
+  let canonicalHandled = false;
+  let ogUrlHandled = false;
+  let ogTitleHandled = false;
+  let ogDescHandled = false;
+  let twTitleHandled = false;
+  let twDescHandled = false;
+
+  const title = entry && entry.t;
+  const desc = entry && entry.d;
+
+  return new HTMLRewriter()
+    .on('title', {
+      text(text) {
+        if (titleHandled || !title) return;
+        if (text.lastInTextNode) {
+          text.replace(title, { html: false });
+          titleHandled = true;
+        } else {
+          text.remove();
+        }
+      },
+    })
+    .on('meta[name="description"]', {
+      element(el) { if (desc) { el.setAttribute('content', desc); descHandled = true; } },
+    })
+    .on('link[rel="canonical"]', {
+      element(el) { el.setAttribute('href', canonical); canonicalHandled = true; },
+    })
+    .on('meta[property="og:url"]', {
+      element(el) { el.setAttribute('content', canonical); ogUrlHandled = true; },
+    })
+    .on('meta[property="og:title"]', {
+      element(el) { if (title) { el.setAttribute('content', title); ogTitleHandled = true; } },
+    })
+    .on('meta[property="og:description"]', {
+      element(el) { if (desc) { el.setAttribute('content', desc); ogDescHandled = true; } },
+    })
+    .on('meta[name="twitter:title"]', {
+      element(el) { if (title) { el.setAttribute('content', title); twTitleHandled = true; } },
+    })
+    .on('meta[name="twitter:description"]', {
+      element(el) { if (desc) { el.setAttribute('content', desc); twDescHandled = true; } },
+    })
+    .on('head', {
+      element(el) {
+        // Append fallbacks for tags that didn't exist in the static head.
+        if (!canonicalHandled) el.append(`<link rel="canonical" href="${escapeAttr(canonical)}">`, { html: true });
+        if (!ogUrlHandled)     el.append(`<meta property="og:url" content="${escapeAttr(canonical)}">`, { html: true });
+        if (title) {
+          if (!ogTitleHandled) el.append(`<meta property="og:title" content="${escapeAttr(title)}">`, { html: true });
+          if (!twTitleHandled) el.append(`<meta name="twitter:title" content="${escapeAttr(title)}">`, { html: true });
+        }
+        if (desc) {
+          if (!descHandled)    el.append(`<meta name="description" content="${escapeAttr(desc)}">`, { html: true });
+          if (!ogDescHandled)  el.append(`<meta property="og:description" content="${escapeAttr(desc)}">`, { html: true });
+          if (!twDescHandled)  el.append(`<meta name="twitter:description" content="${escapeAttr(desc)}">`, { html: true });
+        }
+        if (extraHeaderMeta) el.append(extraHeaderMeta, { html: true });
+      },
+    });
+}
 
 async function resolveLegacyRedirect(path, env) {
   if (!env.SUPABASE_URL || !env.SUPABASE_FUNCTIONS_HOST) return null;
@@ -105,52 +207,45 @@ export default {
       }
     }
 
-    // If not a bot, serve normally
-    if (!isBot(userAgent)) {
-      return fetch(request);
-    }
+    // --- SEO head rewrite (applies to BOTH bots and human visitors) ---
+    // Resolves the slim per-route map, then rewrites canonical/og:url/og:title/
+    // og:description/twitter/<title>/<meta name="description"> at the edge so
+    // non-JS preview crawlers (Slack, Facebook, LinkedIn) and curl-based audits
+    // see route-correct metadata before the SPA hydrates.
+    const slug = path.replace(/^\/|\/$/g, '');
+    const canonical = `${url.origin}${slug ? '/' + slug : '/'}`;
+    const slimMap = await getSlimMap(url.origin);
+    const entry = slimMap[slug] || null;
 
-    // --- BOT DETECTED ---
-    console.log(`🤖 Bot detected: ${userAgent.substring(0, 80)} → ${path}`);
-
-    // Try to get pre-rendered content from KV store
-    if (env.PRERENDER_CACHE) {
-      const cacheKey = path === '/' ? '/' : path.replace(/\/$/, '');
-      const cached = await env.PRERENDER_CACHE.get(cacheKey, 'text');
-      
-      if (cached) {
-        console.log(`✅ Serving pre-rendered: ${cacheKey}`);
-        return new Response(cached, {
-          headers: {
-            'content-type': 'text/html;charset=utf-8',
-            'x-rendered-by': 'cloudflare-prerender',
-            'cache-control': 'public, max-age=86400, s-maxage=604800',
-          },
-        });
+    // Bot path: try KV pre-render first, fall back to origin + rewrite
+    if (isBot(userAgent)) {
+      console.log(`🤖 Bot detected: ${userAgent.substring(0, 80)} → ${path}`);
+      if (env.PRERENDER_CACHE) {
+        const cacheKey = path === '/' ? '/' : path.replace(/\/$/, '');
+        const cached = await env.PRERENDER_CACHE.get(cacheKey, 'text');
+        if (cached) {
+          console.log(`✅ Serving pre-rendered: ${cacheKey}`);
+          return new Response(cached, {
+            headers: {
+              'content-type': 'text/html;charset=utf-8',
+              'x-rendered-by': 'cloudflare-prerender',
+              'cache-control': 'public, max-age=86400, s-maxage=604800',
+            },
+          });
+        }
       }
     }
 
-    // Fallback: Fetch the page from origin and inject meta tags
+    // Fetch origin and rewrite head for ALL HTML responses
     const response = await fetch(request);
     const contentType = response.headers.get('content-type') || '';
-    
-    if (!contentType.includes('text/html')) {
-      return response;
-    }
+    if (!contentType.includes('text/html')) return response;
 
-    // Use HTMLRewriter to add a header indicating bot rendering
-    const rewritten = new HTMLRewriter()
-      .on('head', {
-        element(element) {
-          // Add a meta tag so we can verify bot rendering is working
-          element.append('<meta name="x-rendered-for" content="bot">', { html: true });
-        },
-      })
-      .transform(response);
-
-    // Clone with custom headers
+    const extraMeta = isBot(userAgent) ? '<meta name="x-rendered-for" content="bot">' : null;
+    const rewritten = makeSeoRewriter(canonical, entry, extraMeta).transform(response);
     const newResponse = new Response(rewritten.body, rewritten);
-    newResponse.headers.set('x-rendered-by', 'cloudflare-spa-passthrough');
+    newResponse.headers.set('x-rendered-by', isBot(userAgent) ? 'cf-bot-rewrite' : 'cf-edge-rewrite');
+    newResponse.headers.set('x-seo-entry', entry ? 'matched' : 'fallback');
     return newResponse;
   },
 };

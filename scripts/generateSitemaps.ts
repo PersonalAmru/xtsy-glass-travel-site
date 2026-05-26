@@ -18,7 +18,7 @@ import {
   RECOVERY_PLACES_PATHS,
 } from '../src/data/seoAffectedSlugs';
 
-const PUBLIC = path.join(__dirname, '..', 'public');
+const PUBLIC = path.join(process.cwd(), 'public');
 const HOST = 'https://xtsy.one';
 const TODAY = new Date().toISOString().split('T')[0];
 
@@ -46,24 +46,54 @@ const staticUrls = STATIC_ROUTES.map(p =>
 fs.writeFileSync(path.join(PUBLIC, 'sitemap-static.xml'), wrap(staticUrls));
 
 // ── Priority sitemap (programmatic SEO + recovery list) ──
+// Enforce: each URL appears in EXACTLY ONE sitemap branch.
+// Curated branches "own" specific slugs; priority skips anything they list.
+const OWNED_BY_OTHER_BRANCH: Set<string> = new Set();
+const branchFiles = [
+  'sitemap-destinations.xml', 'sitemap-guides.xml', 'sitemap-tours.xml',
+  'sitemap-hostel.xml', 'sitemap-dining.xml', 'sitemap-misc.xml',
+  'sitemap-programmatic.xml', 'sitemap-static.xml',
+];
+for (const f of branchFiles) {
+  const p = path.join(PUBLIC, f);
+  if (!fs.existsSync(p)) continue;
+  const xml = fs.readFileSync(p, 'utf-8');
+  const re = /<loc>([^<]+)<\/loc>/g;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(xml))) {
+    OWNED_BY_OTHER_BRANCH.add(m[1].trim().replace(/\/$/, ''));
+  }
+}
+
 const priorityUrls: string[] = [];
 const includedSlugs = new Set<string>();
+const seenUrls = new Set<string>();
+let skippedOwned = 0;
+let skippedDupe = 0;
+
+function pushUnique(url: string, priority: number) {
+  const full = `${HOST}${url.startsWith('/') ? url : '/' + url}`.replace(/\/$/, '');
+  if (OWNED_BY_OTHER_BRANCH.has(full)) { skippedOwned++; return; }
+  if (seenUrls.has(full))               { skippedDupe++; return; }
+  seenUrls.add(full);
+  priorityUrls.push(xmlUrl(url, priority));
+}
 
 for (const page of ALL_SEO_PAGES) {
   const isDest = page.category === 'destinations' || page.category === 'attractions';
   const url = isDest ? `/places-to-visit/${page.slug}` : `/${page.slug}`;
-  priorityUrls.push(xmlUrl(url, 1.0));
+  pushUnique(url, 1.0);
   includedSlugs.add(page.slug);
 }
 
-// Force-include recovery places-to-visit/* paths
+// Force-include recovery places-to-visit/* paths (still de-duped)
 for (const placePath of RECOVERY_PLACES_PATHS) {
-  if (!priorityUrls.some(u => u.includes(placePath))) {
-    priorityUrls.push(xmlUrl('/' + placePath, 0.9));
-  }
+  pushUnique('/' + placePath, 0.9);
 }
 
 fs.writeFileSync(path.join(PUBLIC, 'sitemap-priority.xml'), wrap(priorityUrls));
+console.log(` ↳ Skipped (owned by other branch) : ${skippedOwned}`);
+console.log(` ↳ Skipped (in-branch duplicate)   : ${skippedDupe}`);
 
 // ── Coverage cross-check ──
 const coverageSlugs = [...RECOVERY_LIVE_PAGES, ...RECOVERY_FILTERED_OUT];

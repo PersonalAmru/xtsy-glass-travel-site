@@ -24,6 +24,18 @@ import path from 'path';
 const PUBLIC = path.resolve(process.cwd(), 'public');
 const OUT_DIR = '/mnt/documents';
 const UA = 'XTSY-Sitemap-Health/1.0 (+https://xtsy.one)';
+const SITE = 'https://xtsy.one';
+
+// Load slim map if present so we can ignore the index.html homepage canonical
+// fallback (the worker / pre-hydration script overrides it per-route at runtime).
+let SLIM_MAP: Record<string, { t: string; d: string }> = {};
+try {
+  const slimPath = path.join(PUBLIC, 'seo-slim-map.json');
+  if (fs.existsSync(slimPath)) {
+    SLIM_MAP = JSON.parse(fs.readFileSync(slimPath, 'utf-8'));
+  }
+} catch { /* optional */ }
+const STATIC_FALLBACK_CANONICALS = new Set([`${SITE}/`, SITE]);
 
 const args = process.argv.slice(2);
 const flag = (n: string) => args.includes(n);
@@ -45,6 +57,11 @@ type Probe = {
   redirects: number;
   canonical: string | null;
   canonicalMismatch: boolean;
+  // true only when the canonical is the static index.html homepage fallback —
+  // expected to be overridden client-side / at the edge. Suppressed from the
+  // mismatch totals so the report focuses on real problems.
+  staticFallback: boolean;
+  hasSlimEntry: boolean;
   error: string | null;
   ms: number;
 };
@@ -89,7 +106,15 @@ async function probe(url: string): Promise<Omit<Probe, 'branches'>> {
         || html.match(/<link[^>]+href=["']([^"']+)["'][^>]+rel=["']canonical["']/i);
       canonical = m ? m[1].trim() : null;
     }
-    const canonicalMismatch = !!canonical && normalize(canonical) !== normalize(url);
+    const normCanon = canonical ? normalize(canonical) : null;
+    const slug = new URL(url).pathname.replace(/^\/|\/$/g, '');
+    const hasSlimEntry = Object.prototype.hasOwnProperty.call(SLIM_MAP, slug);
+    const staticFallback = !!canonical && STATIC_FALLBACK_CANONICALS.has(canonical);
+    // Only count a mismatch when the canonical is non-fallback AND points
+    // somewhere other than the requested URL.
+    const canonicalMismatch = !!normCanon
+      && normCanon !== normalize(url)
+      && !staticFallback;
     return {
       url,
       status: res.status,
@@ -97,6 +122,8 @@ async function probe(url: string): Promise<Omit<Probe, 'branches'>> {
       redirects,
       canonical,
       canonicalMismatch,
+      staticFallback,
+      hasSlimEntry,
       error: null,
       ms: Date.now() - t0,
     };
@@ -108,6 +135,8 @@ async function probe(url: string): Promise<Omit<Probe, 'branches'>> {
       redirects: 0,
       canonical: null,
       canonicalMismatch: false,
+      staticFallback: false,
+      hasSlimEntry: false,
       error: e instanceof Error ? e.message : String(e),
       ms: Date.now() - t0,
     };
@@ -188,9 +217,12 @@ async function main() {
   const statusBuckets: Record<string, number> = {};
   let redirectCount = 0;
   let canonicalMismatchCount = 0;
+  let staticFallbackCount = 0;
+  let missingSlimEntry = 0;
   const broken: Probe[] = [];
   const redirected: Probe[] = [];
   const canonicalIssues: Probe[] = [];
+  const staticFallbacks: Probe[] = [];
   const errors: Probe[] = [];
   for (const p of probes) {
     const bucket = p.status ? `${Math.floor(p.status / 100)}xx` : 'error';
@@ -199,6 +231,8 @@ async function main() {
     if (p.status && p.status >= 400) broken.push(p);
     if (p.redirects > 0) { redirectCount++; redirected.push(p); }
     if (p.canonicalMismatch) { canonicalMismatchCount++; canonicalIssues.push(p); }
+    if (p.staticFallback) { staticFallbackCount++; staticFallbacks.push(p); }
+    if (p.status && p.status < 400 && !p.hasSlimEntry) missingSlimEntry++;
   }
 
   const ts = new Date().toISOString().replace(/[:.]/g, '-');
@@ -217,6 +251,8 @@ async function main() {
       statusBuckets,
       redirected: redirectCount,
       canonicalMismatch: canonicalMismatchCount,
+      staticFallbackCanonical: staticFallbackCount,
+      missingSlimMapEntry: missingSlimEntry,
       broken: broken.length,
       errors: errors.length,
     },
@@ -225,6 +261,7 @@ async function main() {
     broken,
     redirected,
     canonicalIssues,
+    staticFallbacks,
     errors,
   };
   fs.mkdirSync(OUT_DIR, { recursive: true });
@@ -245,7 +282,9 @@ async function main() {
     md.push(`- Probed: **${probes.length}**`);
     md.push(`- Status buckets: ${JSON.stringify(statusBuckets)}`);
     md.push(`- Redirected: **${redirectCount}**`);
-    md.push(`- Canonical mismatches: **${canonicalMismatchCount}**`);
+    md.push(`- Canonical mismatches (real, post-fallback): **${canonicalMismatchCount}**`);
+    md.push(`- Static homepage fallback canonical (suppressed — expected if edge worker / JS overrides per-route): **${staticFallbackCount}**`);
+    md.push(`- Probed URLs missing from slim SEO map: **${missingSlimEntry}**`);
     md.push(`- Broken (4xx/5xx): **${broken.length}**`);
     md.push(`- Fetch errors: **${errors.length}**`);
   }
