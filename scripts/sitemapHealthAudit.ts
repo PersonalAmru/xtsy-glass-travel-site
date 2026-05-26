@@ -282,7 +282,9 @@ async function main() {
     md.push(`- Probed: **${probes.length}**`);
     md.push(`- Status buckets: ${JSON.stringify(statusBuckets)}`);
     md.push(`- Redirected: **${redirectCount}**`);
-    md.push(`- Canonical mismatches: **${canonicalMismatchCount}**`);
+    md.push(`- Canonical mismatches (real, post-fallback): **${canonicalMismatchCount}**`);
+    md.push(`- Static homepage fallback canonical (suppressed — expected if edge worker / JS overrides per-route): **${staticFallbackCount}**`);
+    md.push(`- Probed URLs missing from slim SEO map: **${missingSlimEntry}**`);
     md.push(`- Broken (4xx/5xx): **${broken.length}**`);
     md.push(`- Fetch errors: **${errors.length}**`);
   }
