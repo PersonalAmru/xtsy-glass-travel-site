@@ -39,9 +39,106 @@ function generateSEOHTML(url, originalHTML) {
   return null; // We'll use KV store for pre-rendered content
 }
 
-// In-memory micro-cache for redirect lookups (per worker isolate)
+// In-memory micro-caches (per worker isolate)
 const REDIRECT_CACHE = new Map();
 const REDIRECT_TTL_MS = 60_000;
+
+// SEO slim map cache — fetched from /seo-slim-map.json once per isolate.
+let SLIM_MAP_CACHE = null;
+let SLIM_MAP_FETCHED_AT = 0;
+const SLIM_MAP_TTL_MS = 5 * 60_000;
+
+async function getSlimMap(origin) {
+  if (SLIM_MAP_CACHE && Date.now() - SLIM_MAP_FETCHED_AT < SLIM_MAP_TTL_MS) {
+    return SLIM_MAP_CACHE;
+  }
+  try {
+    const res = await fetch(`${origin}/seo-slim-map.json`, {
+      cf: { cacheTtl: 3600, cacheEverything: true },
+    });
+    if (!res.ok) return SLIM_MAP_CACHE || {};
+    SLIM_MAP_CACHE = await res.json();
+    SLIM_MAP_FETCHED_AT = Date.now();
+    return SLIM_MAP_CACHE;
+  } catch (_) {
+    return SLIM_MAP_CACHE || {};
+  }
+}
+
+function escapeAttr(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+}
+
+/**
+ * Build an HTMLRewriter that bakes per-route canonical/og:url/og:title/
+ * og:description/twitter/<title>/<meta name="description"> into the response
+ * head. Runs for ALL HTML responses (users + bots) so non-JS preview crawlers
+ * (Slack, Facebook, LinkedIn) see route-correct metadata before any JS.
+ */
+function makeSeoRewriter(canonical, entry, extraHeaderMeta) {
+  let titleHandled = false;
+  let descHandled = false;
+  let canonicalHandled = false;
+  let ogUrlHandled = false;
+  let ogTitleHandled = false;
+  let ogDescHandled = false;
+  let twTitleHandled = false;
+  let twDescHandled = false;
+
+  const title = entry && entry.t;
+  const desc = entry && entry.d;
+
+  return new HTMLRewriter()
+    .on('title', {
+      text(text) {
+        if (titleHandled || !title) return;
+        if (text.lastInTextNode) {
+          text.replace(title, { html: false });
+          titleHandled = true;
+        } else {
+          text.remove();
+        }
+      },
+    })
+    .on('meta[name="description"]', {
+      element(el) { if (desc) { el.setAttribute('content', desc); descHandled = true; } },
+    })
+    .on('link[rel="canonical"]', {
+      element(el) { el.setAttribute('href', canonical); canonicalHandled = true; },
+    })
+    .on('meta[property="og:url"]', {
+      element(el) { el.setAttribute('content', canonical); ogUrlHandled = true; },
+    })
+    .on('meta[property="og:title"]', {
+      element(el) { if (title) { el.setAttribute('content', title); ogTitleHandled = true; } },
+    })
+    .on('meta[property="og:description"]', {
+      element(el) { if (desc) { el.setAttribute('content', desc); ogDescHandled = true; } },
+    })
+    .on('meta[name="twitter:title"]', {
+      element(el) { if (title) { el.setAttribute('content', title); twTitleHandled = true; } },
+    })
+    .on('meta[name="twitter:description"]', {
+      element(el) { if (desc) { el.setAttribute('content', desc); twDescHandled = true; } },
+    })
+    .on('head', {
+      element(el) {
+        // Append fallbacks for tags that didn't exist in the static head.
+        if (!canonicalHandled) el.append(`<link rel="canonical" href="${escapeAttr(canonical)}">`, { html: true });
+        if (!ogUrlHandled)     el.append(`<meta property="og:url" content="${escapeAttr(canonical)}">`, { html: true });
+        if (title) {
+          if (!ogTitleHandled) el.append(`<meta property="og:title" content="${escapeAttr(title)}">`, { html: true });
+          if (!twTitleHandled) el.append(`<meta name="twitter:title" content="${escapeAttr(title)}">`, { html: true });
+        }
+        if (desc) {
+          if (!descHandled)    el.append(`<meta name="description" content="${escapeAttr(desc)}">`, { html: true });
+          if (!ogDescHandled)  el.append(`<meta property="og:description" content="${escapeAttr(desc)}">`, { html: true });
+          if (!twDescHandled)  el.append(`<meta name="twitter:description" content="${escapeAttr(desc)}">`, { html: true });
+        }
+        if (extraHeaderMeta) el.append(extraHeaderMeta, { html: true });
+      },
+    });
+}
 
 async function resolveLegacyRedirect(path, env) {
   if (!env.SUPABASE_URL || !env.SUPABASE_FUNCTIONS_HOST) return null;
