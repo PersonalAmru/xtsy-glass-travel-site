@@ -217,9 +217,12 @@ async function main() {
   const statusBuckets: Record<string, number> = {};
   let redirectCount = 0;
   let canonicalMismatchCount = 0;
+  let staticFallbackCount = 0;
+  let missingSlimEntry = 0;
   const broken: Probe[] = [];
   const redirected: Probe[] = [];
   const canonicalIssues: Probe[] = [];
+  const staticFallbacks: Probe[] = [];
   const errors: Probe[] = [];
   for (const p of probes) {
     const bucket = p.status ? `${Math.floor(p.status / 100)}xx` : 'error';
@@ -228,6 +231,8 @@ async function main() {
     if (p.status && p.status >= 400) broken.push(p);
     if (p.redirects > 0) { redirectCount++; redirected.push(p); }
     if (p.canonicalMismatch) { canonicalMismatchCount++; canonicalIssues.push(p); }
+    if (p.staticFallback) { staticFallbackCount++; staticFallbacks.push(p); }
+    if (p.status && p.status < 400 && !p.hasSlimEntry) missingSlimEntry++;
   }
 
   const ts = new Date().toISOString().replace(/[:.]/g, '-');
@@ -246,6 +251,8 @@ async function main() {
       statusBuckets,
       redirected: redirectCount,
       canonicalMismatch: canonicalMismatchCount,
+      staticFallbackCanonical: staticFallbackCount,
+      missingSlimMapEntry: missingSlimEntry,
       broken: broken.length,
       errors: errors.length,
     },
@@ -254,6 +261,7 @@ async function main() {
     broken,
     redirected,
     canonicalIssues,
+    staticFallbacks,
     errors,
   };
   fs.mkdirSync(OUT_DIR, { recursive: true });
