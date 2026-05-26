@@ -11,7 +11,16 @@ async function main() {
   const today = new Date().toISOString().split('T')[0];
   const SITE = 'https://xtsy.one';
 
-  const urls = ALL_SEO_PAGES.map((p: any) => `  <url>
+  // De-dupe by slug — ALL_SEO_PAGES can contain repeats after merges.
+  const seen = new Set<string>();
+  const unique: any[] = [];
+  for (const p of ALL_SEO_PAGES as any[]) {
+    if (seen.has(p.slug)) continue;
+    seen.add(p.slug);
+    unique.push(p);
+  }
+
+  const urls = unique.map(p => `  <url>
     <loc>${SITE}/${p.slug}</loc>
     <lastmod>${today}</lastmod>
     <changefreq>weekly</changefreq>
@@ -26,7 +35,7 @@ ${urls}
 
   const outPath = path.resolve(process.cwd(), 'public', 'sitemap-programmatic.xml');
   fs.writeFileSync(outPath, xml, 'utf-8');
-  console.log(`✅ sitemap-programmatic.xml: ${ALL_SEO_PAGES.length} URLs`);
+  console.log(`✅ sitemap-programmatic.xml: ${unique.length} unique URLs (de-duped from ${ALL_SEO_PAGES.length})`);
 }
 
 main().catch(e => { console.error(e); process.exit(1); });
