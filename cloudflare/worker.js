@@ -53,21 +53,27 @@ let SLIM_MAP_CACHE = null;
 let SLIM_MAP_FETCHED_AT = 0;
 const SLIM_MAP_TTL_MS = 5 * 60_000;
 
-async function getSlimMap(origin) {
-  if (SLIM_MAP_CACHE && Date.now() - SLIM_MAP_FETCHED_AT < SLIM_MAP_TTL_MS) {
-    return SLIM_MAP_CACHE;
+async function getSlimMapEntry(slug, origin, env) {
+  // KV path — fast per-slug lookup; populated by the deploy workflow.
+  if (env && env.SEO_SLIM_MAP) {
+    try {
+      const v = await env.SEO_SLIM_MAP.get(slug, 'json');
+      if (v) return v;
+    } catch (_) { /* fall through */ }
   }
-  try {
-    const res = await fetch(`${origin}/seo-slim-map.json`, {
-      cf: { cacheTtl: 3600, cacheEverything: true },
-    });
-    if (!res.ok) return SLIM_MAP_CACHE || {};
-    SLIM_MAP_CACHE = await res.json();
-    SLIM_MAP_FETCHED_AT = Date.now();
-    return SLIM_MAP_CACHE;
-  } catch (_) {
-    return SLIM_MAP_CACHE || {};
+  // Origin fallback — fetched once per isolate, in-memory cached.
+  if (!SLIM_MAP_CACHE || Date.now() - SLIM_MAP_FETCHED_AT >= SLIM_MAP_TTL_MS) {
+    try {
+      const res = await fetch(`${origin}/seo-slim-map.json`, {
+        cf: { cacheTtl: 3600, cacheEverything: true },
+      });
+      if (res.ok) {
+        SLIM_MAP_CACHE = await res.json();
+        SLIM_MAP_FETCHED_AT = Date.now();
+      }
+    } catch (_) { /* keep prior cache */ }
   }
+  return (SLIM_MAP_CACHE && SLIM_MAP_CACHE[slug]) || null;
 }
 
 function escapeAttr(s) {
@@ -214,8 +220,7 @@ export default {
     // see route-correct metadata before the SPA hydrates.
     const slug = path.replace(/^\/|\/$/g, '');
     const canonical = `${url.origin}${slug ? '/' + slug : '/'}`;
-    const slimMap = await getSlimMap(url.origin);
-    const entry = slimMap[slug] || null;
+    const entry = await getSlimMapEntry(slug, url.origin, env);
 
     // Bot path: try KV pre-render first, fall back to origin + rewrite
     if (isBot(userAgent)) {
