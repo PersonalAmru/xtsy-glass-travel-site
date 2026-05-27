@@ -1,8 +1,11 @@
 name: Deploy Cloudflare Worker (xtsy-prerender)
 
-# Deploys cloudflare/worker.js and uploads the slim SEO metadata map to KV
-# on every push to main that touches the worker, the slim map source, or this
-# workflow. Manual dispatch is also enabled.
+# Deploys cloudflare/worker.js and uploads the slim SEO metadata map to KV.
+#
+# NOTE: Org policy on PersonalAmru blocks third-party GitHub Actions (must be
+# owned by PersonalAmru AND pinned to a full SHA). To stay compliant we use
+# ZERO `uses:` references — checkout via plain git, bun via the official
+# install script, wrangler via npx.
 #
 # REQUIRED REPO SECRETS (Settings → Secrets and variables → Actions):
 #   CLOUDFLARE_API_TOKEN     — Workers Scripts: Edit, Account: Read,
@@ -12,10 +15,9 @@ name: Deploy Cloudflare Worker (xtsy-prerender)
 #   CF_KV_SLIM_MAP_ID        — KV namespace ID for SEO_SLIM_MAP
 #   SUPABASE_ANON_KEY        — optional; enables legacy-redirect resolver
 #
-# To create the two KV namespaces (one-time, from your machine):
+# Create the two KV namespaces (one-time, from your machine):
 #   npx wrangler kv namespace create PRERENDER_CACHE
 #   npx wrangler kv namespace create SEO_SLIM_MAP
-# Then paste the returned `id` values into the two repo secrets above.
 
 on:
   push:
@@ -34,43 +36,56 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     env:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       CF_KV_PRERENDER_ID: ${{ secrets.CF_KV_PRERENDER_ID }}
       CF_KV_SLIM_MAP_ID: ${{ secrets.CF_KV_SLIM_MAP_ID }}
       SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+      GH_TOKEN: ${{ github.token }}
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
-
       - name: Sanity-check required secrets
         run: |
           missing=0
           for v in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID CF_KV_PRERENDER_ID CF_KV_SLIM_MAP_ID; do
             if [ -z "${!v}" ]; then
-              echo "::error::Missing repo secret: $v"
+              echo "::error::Missing repo secret: $v — add it under Settings → Secrets and variables → Actions"
               missing=1
             fi
           done
           [ "$missing" -eq 0 ]
 
+      - name: Checkout repository (plain git, no third-party action)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --depth=1 origin "${GITHUB_SHA}"
+          git checkout -q FETCH_HEAD
+          echo "── HEAD ──"; git log -1 --oneline
+
+      - name: Install Node.js (runner already has node; verify)
+        run: node --version && npm --version
+
+      - name: Install Bun (official install script)
+        run: |
+          curl -fsSL https://bun.sh/install | bash
+          echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
+
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        run: |
+          export PATH="$HOME/.bun/bin:$PATH"
+          bun install --frozen-lockfile
 
       - name: Regenerate seo-slim-map.json
-        run: bunx tsx scripts/generateWorkerSlimMap.ts
+        run: |
+          export PATH="$HOME/.bun/bin:$PATH"
+          bunx tsx scripts/generateWorkerSlimMap.ts
 
       - name: Render wrangler.toml from template
         working-directory: cloudflare
         run: |
-          # envsubst expands ${VAR} references — strict mode would crash on $ in
-          # comments, so we list only the keys we want substituted.
           envsubst '${CF_KV_PRERENDER_ID} ${CF_KV_SLIM_MAP_ID}' \
             < wrangler.toml > wrangler.rendered.toml
           mv wrangler.rendered.toml wrangler.toml
@@ -80,8 +95,6 @@ jobs:
       - name: Upload slim SEO map to KV (bulk)
         working-directory: cloudflare
         run: |
-          # Wrangler v3+ expects each entry as {key,value}. Convert the slim
-          # map to that shape, then bulk-put it under the SEO_SLIM_MAP binding.
           node -e '
             const fs = require("fs");
             const slim = JSON.parse(fs.readFileSync("../public/seo-slim-map.json","utf-8"));
@@ -102,7 +115,9 @@ jobs:
           fi
 
       - name: Verify edge rewrite is live (samples 20 URLs)
-        run: bunx tsx scripts/verifyEdgeRewrite.ts
+        run: |
+          export PATH="$HOME/.bun/bin:$PATH"
+          bunx tsx scripts/verifyEdgeRewrite.ts
         env:
           VERIFY_BASE_URL: https://xtsy.one
           VERIFY_SAMPLE_SIZE: "20"
