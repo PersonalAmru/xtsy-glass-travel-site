@@ -63,26 +63,54 @@ Allow: /
 User-agent: PinterestBot
 Allow: /
 
-# ── AI crawlers ──────────────────────────────────────────────────
+# ── AI training crawlers — BLOCKED (CF Security Insights moderate finding) ─
+# Content scraping for model training is disallowed. Live-answer/search-style
+# agents (ChatGPT-User, PerplexityBot) remain allowed so XTSY shows up in
+# user-initiated AI answers.
 User-agent: GPTBot
-Allow: /
+Disallow: /
 
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Omgilibot
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: ImagesiftBot
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+# Allowed live-answer agents (user-initiated, not training)
 User-agent: ChatGPT-User
 Allow: /
 
 User-agent: PerplexityBot
 Allow: /
 
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: anthropic-ai
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: CCBot
+User-agent: OAI-SearchBot
 Allow: /
 
 # ── Default ──────────────────────────────────────────────────────
