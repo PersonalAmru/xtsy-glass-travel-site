@@ -7,6 +7,7 @@
  */
 
 import type { SEOPageData, SEOPageCategory, SchemaType, SEOSection, SEOFaq } from './seoPages';
+import { BRAND_OPENER, whyXTSYSection, aboutXTSYGroupSection } from './brandFacts';
 
 // =============================================================
 // Display label helpers
@@ -171,23 +172,31 @@ const buildPage = (params: {
   keywords: string[];
   quickAnswer?: string;
   nearbyAttractions?: string[];
-}): SEOPageData & { quickAnswer?: string; nearbyAttractions?: string[] } => ({
-  slug: params.slug,
-  category: params.category,
-  title: params.title,
-  metaDescription: params.metaDescription,
-  h1: params.h1,
-  intro: params.intro,
-  sections: params.sections,
-  faqs: params.faqs,
-  schemaType: params.schemaType,
-  relatedSlugs: params.related,
-  ctaText: params.ctaText,
-  ctaLink: params.ctaLink,
-  keywords: params.keywords,
-  quickAnswer: params.quickAnswer,
-  nearbyAttractions: params.nearbyAttractions,
-});
+}): SEOPageData & { quickAnswer?: string; nearbyAttractions?: string[] } => {
+  // Phase 2 brand rewrite: prepend the canonical brand opener (only if not
+  // already present) and append Why-XTSY + About-Group sections to every
+  // programmatic page. Single source of truth: src/data/brandFacts.ts.
+  const introHasBrand = /NEITA|270°|XTSY ONE Ventures/i.test(params.intro);
+  const intro = introHasBrand ? params.intro : `${BRAND_OPENER} ${params.intro}`;
+  const sections = [...params.sections, whyXTSYSection(), aboutXTSYGroupSection()];
+  return {
+    slug: params.slug,
+    category: params.category,
+    title: params.title,
+    metaDescription: params.metaDescription,
+    h1: params.h1,
+    intro,
+    sections,
+    faqs: params.faqs,
+    schemaType: params.schemaType,
+    relatedSlugs: params.related,
+    ctaText: params.ctaText,
+    ctaLink: params.ctaLink,
+    keywords: params.keywords,
+    quickAnswer: params.quickAnswer,
+    nearbyAttractions: params.nearbyAttractions,
+  };
+};
 
 // ---- Routes (from-X-to-Y) ----
 export function buildRoutePage(slug: string): SEOPageData {

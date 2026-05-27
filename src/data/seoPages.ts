@@ -1095,7 +1095,29 @@ const RAW_SEO_PAGES: SEOPageData[] = [
 // clusters that risk Google "doorway page" classification and protects
 // crawl budget. See src/data/seoQualityFilter.ts for the rules.
 import { applySEOOverrides } from './seoPagesOverrides';
-export const ALL_SEO_PAGES: SEOPageData[] = applySEOOverrides(filterHighQualityPages(RAW_SEO_PAGES));
+import { BRAND_OPENER, whyXTSYSection, aboutXTSYGroupSection } from './brandFacts';
+
+// Phase 2 brand-rewrite enforcer: every published page receives the
+// canonical brand opener + Why-XTSY + About-Group sections. Idempotent —
+// pages that already mention NEITA/270°/XTSY ONE Ventures keep their
+// intro untouched, and the trust sections are deduped by heading.
+const enforceBrandFacts = (pages: SEOPageData[]): SEOPageData[] => {
+  const introHasBrand = (s: string) => /NEITA|270°|XTSY ONE Ventures/i.test(s);
+  const why = whyXTSYSection();
+  const about = aboutXTSYGroupSection();
+  return pages.map(p => {
+    const intro = introHasBrand(p.intro) ? p.intro : `${BRAND_OPENER} ${p.intro}`;
+    const existing = new Set(p.sections.map(s => s.heading));
+    const extras: SEOSection[] = [];
+    if (!existing.has(why.heading)) extras.push(why);
+    if (!existing.has(about.heading)) extras.push(about);
+    return { ...p, intro, sections: [...p.sections, ...extras] };
+  });
+};
+
+export const ALL_SEO_PAGES: SEOPageData[] = enforceBrandFacts(
+  applySEOOverrides(filterHighQualityPages(RAW_SEO_PAGES))
+);
 export const RAW_SEO_PAGES_COUNT = RAW_SEO_PAGES.length;
 
 // Helper to find a page by slug
