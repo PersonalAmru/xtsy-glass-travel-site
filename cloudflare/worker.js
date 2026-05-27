@@ -26,10 +26,26 @@ const BOT_AGENTS = [
   'feedfetcher-google', 'google-read-aloud',
 ];
 
+// AI training scrapers — return 403 at the edge (CF Security Insights:
+// "Review and block AI bots"). Live-answer agents (ChatGPT-User,
+// PerplexityBot, OAI-SearchBot) are intentionally NOT in this list so
+// xtsy.one keeps showing up in user-initiated AI answers.
+const BLOCKED_AI_AGENTS = [
+  'gptbot', 'claudebot', 'claude-web', 'anthropic-ai', 'ccbot',
+  'cohere-ai', 'bytespider', 'omgilibot', 'diffbot', 'imagesiftbot',
+  'google-extended', 'petalbot', 'mistralai-user',
+];
+
 function isBot(userAgent) {
   if (!userAgent) return false;
   const ua = userAgent.toLowerCase();
   return BOT_AGENTS.some(bot => ua.includes(bot));
+}
+
+function isBlockedAIBot(userAgent) {
+  if (!userAgent) return false;
+  const ua = userAgent.toLowerCase();
+  return BLOCKED_AI_AGENTS.some(bot => ua.includes(bot));
 }
 
 // Generate pre-rendered HTML for SEO pages
@@ -191,6 +207,18 @@ export default {
       path.match(/\.(js|css|png|jpg|jpeg|webp|avif|svg|ico|woff2?|ttf|eot|map|json|xml|txt|pdf)$/i)
     ) {
       return fetch(request);
+    }
+
+    // --- Block AI training scrapers (CF Security Insights: moderate) ---
+    if (isBlockedAIBot(userAgent)) {
+      return new Response('AI training crawl disallowed. See /robots.txt and /.well-known/security.txt', {
+        status: 403,
+        headers: {
+          'content-type': 'text/plain;charset=utf-8',
+          'x-blocked-by': 'cf-ai-bot-guard',
+          'cache-control': 'public, max-age=86400',
+        },
+      });
     }
 
     // --- Legacy URL → real 301 redirects (applies to bots AND users) ---
