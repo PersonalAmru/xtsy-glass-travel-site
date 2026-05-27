@@ -1,8 +1,40 @@
 name = "xtsy-prerender"
 main = "worker.js"
 compatibility_date = "2024-09-01"
+workers_dev = false
 
-# KV namespace for pre-rendered HTML cache
+# Bind the worker to xtsy.one/* — handles legacy redirects, bot prerender lookups,
+# and per-route SEO head rewrite at the edge.
+# NOTE: the zone must already be on this Cloudflare account.
+routes = [
+  { pattern = "xtsy.one/*", zone_name = "xtsy.one" },
+  { pattern = "www.xtsy.one/*", zone_name = "xtsy.one" },
+]
+
+# ─── KV namespaces ────────────────────────────────────────────────────────────
+# IDs are templated in by .github/workflows/cloudflare-deploy.yml using the
+# CF_KV_PRERENDER_ID and CF_KV_SLIM_MAP_ID repo secrets. For local `wrangler
+# deploy` runs, replace ${...} below with the real namespace IDs first.
+
+# Pre-rendered bot HTML cache.
 [[kv_namespaces]]
 binding = "PRERENDER_CACHE"
-id = "xtsy.one"
+id = "${CF_KV_PRERENDER_ID}"
+
+# Slim per-route SEO metadata map (title + description per slug) used by the
+# edge SEO rewriter. Populated by `scripts/generateWorkerSlimMap.ts` → uploaded
+# in the deploy workflow.
+[[kv_namespaces]]
+binding = "SEO_SLIM_MAP"
+id = "${CF_KV_SLIM_MAP_ID}"
+
+# ─── Vars consumed by worker.js (legacy redirect resolver fallback) ───────────
+[vars]
+SUPABASE_URL = "https://yqicimrurvgsynvmxckb.supabase.co"
+SUPABASE_FUNCTIONS_HOST = "https://yqicimrurvgsynvmxckb.functions.supabase.co"
+# SUPABASE_ANON_KEY is injected at deploy time via `wrangler deploy --var` in
+# the workflow (kept out of source). Worker tolerates it being absent.
+
+# ─── Observability ────────────────────────────────────────────────────────────
+[observability]
+enabled = true
