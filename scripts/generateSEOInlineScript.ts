@@ -81,7 +81,17 @@ const STATIC_ROUTE_META: Record<string, RichEntry> = {
   'meghalaya-trip-today': { t: 'Start Your Meghalaya Trip Today — Stays & Tours | XTSY', d: 'Spontaneous Meghalaya trip? Stays from ₹269 and tours ready today.', h: 'Start Your Meghalaya Trip Today', s: 'TouristTrip' },
   'hotels-in-shillong-available-now': { t: 'Hotels in Shillong Available Now — Instant Booking | XTSY', d: 'Hotels available right now in Shillong. Private rooms from ₹2,099.', h: 'Hotels in Shillong Available Now', s: 'Hotel' },
   'shillong-stay-tonight': { t: 'Stay in Shillong Tonight — Rooms & Beds Available | XTSY', d: 'Beds from ₹269, rooms from ₹2,099. Instant booking confirmation.', h: 'Stay in Shillong Tonight', s: 'Hostel' },
+  // Backfilled to eliminate slim-map gaps surfaced by sitemapHealthAudit.
+  '5-day-meghalaya-itinerary': { t: '5-Day Meghalaya Itinerary — Complete Trip Plan 2026 | XTSY', d: 'Day-by-day 5-day Meghalaya plan covering Shillong, Cherrapunji, Dawki, Mawlynnong & root bridges.', h: '5-Day Meghalaya Itinerary', s: 'Article' },
+  'budget-trip-to-meghalaya': { t: 'Budget Trip to Meghalaya — Plan Under ₹10,000 | XTSY', d: 'Cheap stays, transport hacks, free attractions. Plan a full Meghalaya trip under ₹10,000.', h: 'Budget Trip to Meghalaya', s: 'Article' },
+  'hidden-places-in-meghalaya': { t: 'Hidden Places in Meghalaya — Offbeat Secret Spots 2026', d: 'Offbeat waterfalls, villages and viewpoints in Meghalaya locals love. Curated by XTSY.', h: 'Hidden Places in Meghalaya', s: 'TouristAttraction' },
+  'meghalaya-caves': { t: 'Caves of Meghalaya — Mawsmai, Krem Liat Prah & More | XTSY', d: 'Top caves to explore in Meghalaya. Mawsmai, Arwah, Krem Liat Prah (longest in India).', h: 'Caves of Meghalaya', s: 'TouristAttraction' },
+  'meghalaya-viewpoints': { t: 'Best Viewpoints in Meghalaya — Sunrise & Valley Views | XTSY', d: 'Top viewpoints across Meghalaya: Laitlum, Shillong Peak, Nongjrong, Mawkdok canyon.', h: 'Best Viewpoints in Meghalaya', s: 'TouristAttraction' },
+  'meghalaya-villages': { t: 'Most Beautiful Villages in Meghalaya 2026 | XTSY Guide', d: 'Mawlynnong, Kongthong, Nongriat, Shnongpdeng — Meghalaya\'s most beautiful villages.', h: 'Most Beautiful Villages in Meghalaya', s: 'TouristAttraction' },
+  'meghalaya-waterfalls': { t: 'Waterfalls in Meghalaya — Top 15 to Visit 2026 | XTSY', d: 'Nohkalikai, Krang Suri, Seven Sisters, Wei Sawdong & more. Top 15 Meghalaya waterfalls.', h: 'Waterfalls in Meghalaya', s: 'TouristAttraction' },
+  'xtsy-adventure-campsite-dawki': { t: 'XTSY Adventure Campsite Dawki — Riverside Camping ₹699', d: 'Riverside camping at Dawki on the Umngot. ₹699 camping, ₹899 with breakfast. Book direct on WhatsApp.', h: 'XTSY Adventure Campsite Dawki', i: 'XTSY Adventure Campsite sits on the bank of the Umngot River in Dawki — Asia\'s clearest river. Riverside tents from ₹699, breakfast-inclusive from ₹899, with boating and India–Bangladesh border viewpoint nearby.', s: 'Campground' },
 };
+
 
 const DESTINATION_SLUGS_META: Record<string, RichEntry> = {
   'places-to-visit/nohkalikai-falls-meghalaya': { t: 'Nohkalikai Falls — India\'s Tallest Waterfall Guide 2026', d: 'India\'s tallest plunge waterfall at 1,115 ft. Location, timings, how to reach from Shillong.', h: 'Nohkalikai Falls', i: 'Nohkalikai Falls in Cherrapunji is India\'s tallest plunge waterfall at 1,115 feet. Located 7 km from Cherrapunji, 60 km from Shillong. Best visited Sept-Nov.', s: 'TouristAttraction' },
@@ -95,7 +105,28 @@ const DESTINATION_SLUGS_META: Record<string, RichEntry> = {
   'places-to-visit/elephant-falls-shillong': { t: 'Elephant Falls Shillong — Nearest Waterfall Guide', d: 'Shillong\'s most accessible waterfall. 12 km from city. 3-tier cascade.', h: 'Elephant Falls', s: 'TouristAttraction' },
   'places-to-visit/shillong-peak': { t: 'Shillong Peak — Highest Point & Viewpoint Guide', d: 'Shillong Peak at 1,965m. Panoramic views, best time to visit.', h: 'Shillong Peak', s: 'TouristAttraction' },
   'places-to-visit/umiam-lake-shillong': { t: 'Umiam Lake Shillong — Boating & Activities Guide', d: 'Boating, kayaking. Beautiful reservoir 15 km from Shillong.', h: 'Umiam Lake', s: 'TouristAttraction' },
+  // Backfilled: /places-to-visit/* slugs present in sitemap-destinations.xml but missing from slim map.
+  'places-to-visit/cherrapunji-guide': { t: 'Cherrapunji Travel Guide 2026 — Waterfalls & Caves | XTSY', d: 'Complete Cherrapunji guide: Nohkalikai, Mawsmai cave, root bridges, best time, how to reach.', h: 'Cherrapunji Travel Guide', s: 'TouristAttraction' },
+  'places-to-visit/dawki-guide': { t: 'Dawki Travel Guide 2026 — Umngot River & Camping | XTSY', d: 'Dawki guide: crystal-clear Umngot river, boating, India–Bangladesh border, camping options.', h: 'Dawki Travel Guide', s: 'TouristAttraction' },
+  'places-to-visit/dawki-river-boating': { t: 'Dawki River Boating — Umngot Boat Ride Guide 2026 | XTSY', d: 'Boat rides on Asia\'s clearest Umngot river at Dawki. Timings, price (~₹800/boat), best season.', h: 'Dawki River Boating', s: 'TouristAttraction' },
+  'places-to-visit/elephant-falls-guide': { t: 'Elephant Falls Shillong — Visitor Guide 2026 | XTSY', d: '3-tier cascade 12 km from Shillong. Entry fee, timings, best time, how to reach.', h: 'Elephant Falls Guide', s: 'TouristAttraction' },
+  'places-to-visit/kongthong-whistling-village': { t: 'Kongthong — The Whistling Village of Meghalaya | XTSY', d: 'Kongthong, where every villager has a unique tune-name. How to visit, what to expect.', h: 'Kongthong Whistling Village', s: 'TouristAttraction' },
+  'places-to-visit/krang-suri-falls-guide': { t: 'Krang Suri Falls Guide — Turquoise Falls Jaintia | XTSY', d: 'Visitor guide to Krang Suri Falls. Entry fee, swimming, how to reach from Shillong.', h: 'Krang Suri Falls Guide', s: 'TouristAttraction' },
+  'places-to-visit/laitlum-canyons-guide': { t: 'Laitlum Canyons Guide — Trek & Viewpoint | XTSY', d: 'Laitlum Canyons visitor guide. Sunrise, trekking route to Rasong village, how to reach.', h: 'Laitlum Canyons Guide', s: 'TouristAttraction' },
+  'places-to-visit/living-root-bridge-trek': { t: 'Living Root Bridge Trek — Nongriat Guide 2026 | XTSY', d: '3,500-step trek to the double-decker living root bridge in Nongriat. Difficulty, what to carry.', h: 'Living Root Bridge Trek', s: 'TouristAttraction' },
+  'places-to-visit/mawlynnong-cleanest-village': { t: 'Mawlynnong — Asia\'s Cleanest Village Guide | XTSY', d: 'Visit Mawlynnong: sky walk, living root bridge, bamboo trail. 2.5 hrs from Shillong.', h: 'Mawlynnong Cleanest Village', s: 'TouristAttraction' },
+  'places-to-visit/mawlynnong-guide': { t: 'Mawlynnong Travel Guide 2026 — Asia\'s Cleanest Village', d: 'Complete Mawlynnong guide: sky walk, root bridge, stays, how to reach from Shillong.', h: 'Mawlynnong Guide', s: 'TouristAttraction' },
+  'places-to-visit/mawphlang-sacred-forest': { t: 'Mawphlang Sacred Forest — Khasi Heritage Guide | XTSY', d: 'Mawphlang sacred grove: ancient Khasi rituals, monoliths, guided forest walks.', h: 'Mawphlang Sacred Forest', s: 'TouristAttraction' },
+  'places-to-visit/mawsmai-cave-cherrapunji': { t: 'Mawsmai Cave Cherrapunji — Walkthrough Guide | XTSY', d: 'Easiest cave to explore in Meghalaya. 150m lit walkthrough in Cherrapunji.', h: 'Mawsmai Cave Cherrapunji', s: 'TouristAttraction' },
+  'places-to-visit/nohkalikai-falls-guide': { t: 'Nohkalikai Falls Guide — India\'s Tallest Waterfall', d: 'Plan a visit to Nohkalikai. Viewpoint, timings, best season, how to reach from Shillong.', h: 'Nohkalikai Falls Guide', s: 'TouristAttraction' },
+  'places-to-visit/rainbow-falls-guide': { t: 'Rainbow Falls Nongriat — Trek Guide 2026 | XTSY', d: 'Rainbow Falls beyond Nongriat\'s double-decker root bridge. Trek route, difficulty, tips.', h: 'Rainbow Falls Guide', s: 'TouristAttraction' },
+  'places-to-visit/shillong-guide': { t: 'Shillong Travel Guide 2026 — Things to Do & Stays | XTSY', d: 'Shillong city guide: Police Bazaar, Ward\'s Lake, Laitlum, Elephant Falls, best stays.', h: 'Shillong Travel Guide', s: 'TouristAttraction' },
+  'places-to-visit/shillong-peak-viewpoint': { t: 'Shillong Peak Viewpoint — Highest Point Guide | XTSY', d: 'Shillong Peak at 1,965m: panoramic city views, entry rules (Air Force area), how to reach.', h: 'Shillong Peak Viewpoint', s: 'TouristAttraction' },
+  'places-to-visit/shnongpdeng-camping': { t: 'Shnongpdeng Camping — Riverside Tents Guide | XTSY', d: 'Camp at Shnongpdeng on the Umngot river. Kayaking, snorkeling, riverside tents.', h: 'Shnongpdeng Camping', s: 'TouristAttraction' },
+  'places-to-visit/wei-sawdong-falls-guide': { t: 'Wei Sawdong Falls Guide — 3-Tier Plunge Pool | XTSY', d: 'Wei Sawdong\'s emerald 3-tier plunge pool near Cherrapunji. Trek route, best time.', h: 'Wei Sawdong Falls Guide', s: 'TouristAttraction' },
+  'places-to-visit/wei-sawdong-falls-meghalaya': { t: 'Wei Sawdong Falls Meghalaya — Hidden Gem 2026 | XTSY', d: 'Hidden 3-tier emerald waterfall near Cherrapunji. How to reach, best months to visit.', h: 'Wei Sawdong Falls', s: 'TouristAttraction' },
 };
+
 
 /** Build the rich, full-content map (used by deferred body script + manifest). */
 export function generateSEOMap(): Record<string, RichEntry> {
