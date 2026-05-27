@@ -81,7 +81,17 @@ const STATIC_ROUTE_META: Record<string, RichEntry> = {
   'meghalaya-trip-today': { t: 'Start Your Meghalaya Trip Today — Stays & Tours | XTSY', d: 'Spontaneous Meghalaya trip? Stays from ₹269 and tours ready today.', h: 'Start Your Meghalaya Trip Today', s: 'TouristTrip' },
   'hotels-in-shillong-available-now': { t: 'Hotels in Shillong Available Now — Instant Booking | XTSY', d: 'Hotels available right now in Shillong. Private rooms from ₹2,099.', h: 'Hotels in Shillong Available Now', s: 'Hotel' },
   'shillong-stay-tonight': { t: 'Stay in Shillong Tonight — Rooms & Beds Available | XTSY', d: 'Beds from ₹269, rooms from ₹2,099. Instant booking confirmation.', h: 'Stay in Shillong Tonight', s: 'Hostel' },
+  // Backfilled to eliminate slim-map gaps surfaced by sitemapHealthAudit.
+  '5-day-meghalaya-itinerary': { t: '5-Day Meghalaya Itinerary — Complete Trip Plan 2026 | XTSY', d: 'Day-by-day 5-day Meghalaya plan covering Shillong, Cherrapunji, Dawki, Mawlynnong & root bridges.', h: '5-Day Meghalaya Itinerary', s: 'Article' },
+  'budget-trip-to-meghalaya': { t: 'Budget Trip to Meghalaya — Plan Under ₹10,000 | XTSY', d: 'Cheap stays, transport hacks, free attractions. Plan a full Meghalaya trip under ₹10,000.', h: 'Budget Trip to Meghalaya', s: 'Article' },
+  'hidden-places-in-meghalaya': { t: 'Hidden Places in Meghalaya — Offbeat Secret Spots 2026', d: 'Offbeat waterfalls, villages and viewpoints in Meghalaya locals love. Curated by XTSY.', h: 'Hidden Places in Meghalaya', s: 'TouristAttraction' },
+  'meghalaya-caves': { t: 'Caves of Meghalaya — Mawsmai, Krem Liat Prah & More | XTSY', d: 'Top caves to explore in Meghalaya. Mawsmai, Arwah, Krem Liat Prah (longest in India).', h: 'Caves of Meghalaya', s: 'TouristAttraction' },
+  'meghalaya-viewpoints': { t: 'Best Viewpoints in Meghalaya — Sunrise & Valley Views | XTSY', d: 'Top viewpoints across Meghalaya: Laitlum, Shillong Peak, Nongjrong, Mawkdok canyon.', h: 'Best Viewpoints in Meghalaya', s: 'TouristAttraction' },
+  'meghalaya-villages': { t: 'Most Beautiful Villages in Meghalaya 2026 | XTSY Guide', d: 'Mawlynnong, Kongthong, Nongriat, Shnongpdeng — Meghalaya\'s most beautiful villages.', h: 'Most Beautiful Villages in Meghalaya', s: 'TouristAttraction' },
+  'meghalaya-waterfalls': { t: 'Waterfalls in Meghalaya — Top 15 to Visit 2026 | XTSY', d: 'Nohkalikai, Krang Suri, Seven Sisters, Wei Sawdong & more. Top 15 Meghalaya waterfalls.', h: 'Waterfalls in Meghalaya', s: 'TouristAttraction' },
+  'xtsy-adventure-campsite-dawki': { t: 'XTSY Adventure Campsite Dawki — Riverside Camping ₹699', d: 'Riverside camping at Dawki on the Umngot. ₹699 camping, ₹899 with breakfast. Book direct on WhatsApp.', h: 'XTSY Adventure Campsite Dawki', i: 'XTSY Adventure Campsite sits on the bank of the Umngot River in Dawki — Asia\'s clearest river. Riverside tents from ₹699, breakfast-inclusive from ₹899, with boating and India–Bangladesh border viewpoint nearby.', s: 'Campground' },
 };
+
 
 const DESTINATION_SLUGS_META: Record<string, RichEntry> = {
   'places-to-visit/nohkalikai-falls-meghalaya': { t: 'Nohkalikai Falls — India\'s Tallest Waterfall Guide 2026', d: 'India\'s tallest plunge waterfall at 1,115 ft. Location, timings, how to reach from Shillong.', h: 'Nohkalikai Falls', i: 'Nohkalikai Falls in Cherrapunji is India\'s tallest plunge waterfall at 1,115 feet. Located 7 km from Cherrapunji, 60 km from Shillong. Best visited Sept-Nov.', s: 'TouristAttraction' },
