@@ -791,11 +791,11 @@ serve(async (req) => {
         });
       }
 
-      // Ownership check: caller must be the booking's user, the guest email, or an admin/staff role
+      // Ownership check: caller must be the booking's user or an admin/staff role.
+      // Email-based ownership is intentionally NOT accepted (recycled emails / stale JWT claims
+      // would otherwise grant cross-account access to PII).
+      void callerEmail;
       let authorized = false;
-      if (callerEmail && invoice.guest_email && invoice.guest_email.toLowerCase() === callerEmail) {
-        authorized = true;
-      }
       if (!authorized && callerUserId) {
         const { data: bookingRow } = await supabase
           .from('bookings')
