@@ -28,6 +28,48 @@ const DestinationDetail = () => {
     .map(name => meghalayaDestinations.find(d => d.name === name))
     .filter(Boolean) as typeof meghalayaDestinations;
 
+  // Genuine, on-page FAQs generated from this destination's data. Rendered
+  // visibly below AND emitted as FAQPage schema (Google requires the answer
+  // text to be visible on the page to be eligible for the rich result).
+  const topThings = destination.thingsToDo.slice(0, 3).join(', ');
+  const faqs: { q: string; a: string }[] = [
+    {
+      q: `What is the best time to visit ${destination.name}?`,
+      a: destination.bestTimeToVisit,
+    },
+    {
+      q: `How do I reach ${destination.name} from Shillong?`,
+      a: destination.howToReach,
+    },
+    {
+      q: `What are the top things to do at ${destination.name}?`,
+      a: `Popular things to do at ${destination.name} include ${topThings}. ${destination.shortDescription}`,
+    },
+    {
+      q: `Where can I stay near ${destination.name}?`,
+      a: `XTSY Travellers Hostel in Shillong is an affordable, well-located base for exploring ${destination.name} and the rest of ${destination.region}, with dorms from ₹329/night and curated Meghalaya tours that cover the region's top sights.`,
+    },
+  ];
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(({ q, a }) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
+  };
+
+  // Category-aware internal links to concentrate authority on pillar pages.
+  const categoryLink =
+    destination.category === 'waterfall'
+      ? { to: '/meghalaya-waterfalls', label: 'Waterfalls in Meghalaya' }
+      : destination.category === 'viewpoint' || destination.category === 'peak'
+      ? { to: '/meghalaya-viewpoints', label: 'Viewpoints in Meghalaya' }
+      : { to: '/things-to-do-in-meghalaya', label: 'Things to Do in Meghalaya' };
+
+
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'TouristDestination',
@@ -69,6 +111,7 @@ const DestinationDetail = () => {
         <meta property="og:image" content={images[0]?.src} />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
 
       <Header />
@@ -157,6 +200,21 @@ const DestinationDetail = () => {
             </section>
           )}
 
+          {/* FAQ — visible Q&A backed by FAQPage schema for rich SERP results */}
+          <section>
+            <h2 className="text-2xl font-bold text-foreground">
+              {destination.name} — Frequently Asked Questions
+            </h2>
+            <div className="mt-4 space-y-5">
+              {faqs.map(({ q, a }, i) => (
+                <div key={i}>
+                  <h3 className="font-semibold text-foreground">{q}</h3>
+                  <p className="mt-1 text-muted-foreground leading-relaxed">{a}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
           {/* CTA */}
           <section className="bg-primary/10 rounded-2xl p-8 text-center">
             <h2 className="text-2xl font-bold text-foreground">Book a Meghalaya Tour</h2>
@@ -175,10 +233,14 @@ const DestinationDetail = () => {
           <nav className="border-t border-border pt-8">
             <h2 className="text-lg font-semibold text-foreground mb-4">Related Guides</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              <Link to={categoryLink.to} className="text-sm text-primary hover:underline">{categoryLink.label}</Link>
               <Link to="/things-to-do-in-meghalaya" className="text-sm text-primary hover:underline">Things to Do in Meghalaya</Link>
               <Link to="/meghalaya-tour-packages" className="text-sm text-primary hover:underline">Meghalaya Tour Packages</Link>
               <Link to="/shillong-tour-package" className="text-sm text-primary hover:underline">Shillong Tour Package</Link>
               <Link to="/best-time-to-visit-meghalaya" className="text-sm text-primary hover:underline">Best Time to Visit</Link>
+              <Link to="/meghalaya-travel-guide" className="text-sm text-primary hover:underline">Meghalaya Travel Guide</Link>
+              <Link to="/best-hostel-in-shillong" className="text-sm text-primary hover:underline">Best Hostel in Shillong</Link>
+              <Link to="/tours" className="text-sm text-primary hover:underline">Northeast India Tours</Link>
               <Link to="/meghalaya-photo-gallery" className="text-sm text-primary hover:underline">Photo Gallery</Link>
             </div>
           </nav>

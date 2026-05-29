@@ -173,7 +173,7 @@
     <!-- HTTP Client Hints for image optimization -->
     <meta http-equiv="Accept-CH" content="DPR,Width,Viewport-Width">
     
-    <title>XTSY — Best Hostel in Shillong, Meghalaya | Northeast India</title>
+    <title>XTSY — Best Hostel in Shillong, Meghalaya</title>
     <meta name="description" content="India&#39;s biggest hostel in Shillong, Meghalaya. Budget dorms from ₹329, luxury 270° glass suite &amp; curated Northeast India tours. Book direct.">
 
     <!-- Explicit robots directives for rich-result eligibility (replaces deprecated keywords meta) -->
@@ -182,7 +182,7 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="XTSY — Best Hostel in Shillong, Meghalaya | Northeast India" />
+    <meta property="og:title" content="XTSY — Best Hostel in Shillong, Meghalaya" />
     <meta property="og:description" content="India&#39;s biggest hostel in Shillong, Meghalaya. Budget dorms from ₹329, luxury 270° glass suite &amp; curated Northeast India tours. Book direct." />
     <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/social-images/social-1765259372136-with_padding.png">
     <meta property="og:url" content="https://xtsy.one" />
@@ -191,7 +191,7 @@
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="XTSY — Best Hostel in Shillong, Meghalaya | Northeast India" />
+    <meta name="twitter:title" content="XTSY — Best Hostel in Shillong, Meghalaya" />
     <meta name="twitter:description" content="India's biggest hostel in Shillong, Meghalaya. Budget dorms from ₹329, luxury 270° glass suite, curated Northeast India tours. Book direct." />
     <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/social-images/social-1765259372136-with_padding.png">
     
@@ -208,8 +208,11 @@
     <meta name="distribution" content="Global" />
     <meta name="rating" content="General" />
     
-    <!-- Canonical URL - Production domain -->
-    <link rel="canonical" href="https://xtsy.one/" />
+    <!-- Canonical URL — intentionally NOT hardcoded here.
+         Per-route canonical is owned by React Helmet (SEOHead.tsx) for JS crawlers
+         and injected per-route by the Cloudflare edge worker for non-JS crawlers.
+         A static canonical here would double-emit with Helmet's and create
+         duplicate-content signals across all programmatic routes. -->
     
     <!-- Hreflang: only declare alternates we actually serve.
          Duplicate hreflang pointing to the same URL is treated by Google as
