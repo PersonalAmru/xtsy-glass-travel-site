@@ -9,7 +9,6 @@
 - [Homestays in Shillong](/homestays-in-shillong): Homestay-style stays in and around Shillong.
 - [Best Homestay in Cherrapunji](/best-homestay-in-cherrapunji): Where to stay near Cherrapunji (Sohra).
 - [Luxury Glamping Shillong](/luxury-glamping-shillong): Premium glamping and glass-suite experience.
-- [Properties](/properties): Browse all XTSY properties and book direct.
 - [Book a Stay](/book): Check availability and book dorms, rooms, or the glass suite.
 
 ## Tours & Experiences
@@ -21,7 +20,7 @@
 
 ## Destinations & Guides
 - [Meghalaya Travel Guide](/meghalaya-travel-guide): Complete trip-planning guide.
-- [Places to Visit in Meghalaya](/destinations): Top destinations to explore.
+- [Places to Visit in Meghalaya](/things-to-do-in-meghalaya): Top destinations and activities to explore.
 - [Waterfalls in Meghalaya](/meghalaya-waterfalls): Guide to the state's best waterfalls.
 - [Viewpoints in Meghalaya](/meghalaya-viewpoints): Best scenic viewpoints and canyons.
 - [Best Time to Visit Meghalaya](/best-time-to-visit-meghalaya): Season-by-season guide.
@@ -41,10 +40,8 @@
 ## Company
 - [About XTSY](/about): Story, awards, and what makes XTSY different.
 - [Contact](/contact): Phone, WhatsApp, address and directions.
-- [FAQ](/faq): Common questions about stays, tours and booking.
 
 ## Optional
-- [Offers & Deals](/offers): Current discounts on stays and tours.
 - [Gallery](/gallery): Photos of the hostel, glass suite and Meghalaya.
 - [Privacy Policy](/privacy-policy): Data and privacy practices.
 - [Terms of Service](/terms-of-service): Booking terms and conditions.
