@@ -46,6 +46,7 @@ const CategoryPage = () => {
       q: `Can I cover Meghalaya's top ${lcName} on a tour package?`,
       a: `Yes. XTSY's curated Meghalaya tour packages bundle transport, a local guide and the best ${lcName}, waterfalls, living root bridges and viewpoints into a single trip — booking direct saves up to 30% versus marketplace prices.`,
     },
+    ...(category.extraFaqs ?? []),
   ];
 
   const breadcrumbSchema = {
