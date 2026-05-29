@@ -120,6 +120,19 @@ const CategoryPage = () => {
             ))}
           </div>
 
+          {/* Editorial deep-dive — depth content for high-volume category terms */}
+          {category.seoContent && category.seoContent.length > 0 && (
+            <section className="mt-14 space-y-8">
+              {category.seoContent.map(({ heading, body }) => (
+                <article key={heading}>
+                  <h2 className="text-2xl font-bold text-foreground">{heading}</h2>
+                  <p className="mt-3 text-muted-foreground max-w-3xl leading-relaxed">{body}</p>
+                </article>
+              ))}
+            </section>
+          )}
+
+
           {/* FAQ — visible Q&A backed by FAQPage schema */}
           <section className="mt-12">
             <h2 className="text-2xl font-bold text-foreground">Meghalaya {category.name} — Frequently Asked Questions</h2>
