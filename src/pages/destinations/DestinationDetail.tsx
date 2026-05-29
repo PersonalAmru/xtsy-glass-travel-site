@@ -200,6 +200,21 @@ const DestinationDetail = () => {
             </section>
           )}
 
+          {/* FAQ — visible Q&A backed by FAQPage schema for rich SERP results */}
+          <section>
+            <h2 className="text-2xl font-bold text-foreground">
+              {destination.name} — Frequently Asked Questions
+            </h2>
+            <div className="mt-4 space-y-5">
+              {faqs.map(({ q, a }, i) => (
+                <div key={i}>
+                  <h3 className="font-semibold text-foreground">{q}</h3>
+                  <p className="mt-1 text-muted-foreground leading-relaxed">{a}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
           {/* CTA */}
           <section className="bg-primary/10 rounded-2xl p-8 text-center">
             <h2 className="text-2xl font-bold text-foreground">Book a Meghalaya Tour</h2>
