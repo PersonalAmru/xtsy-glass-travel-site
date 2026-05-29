@@ -233,10 +233,14 @@ const DestinationDetail = () => {
           <nav className="border-t border-border pt-8">
             <h2 className="text-lg font-semibold text-foreground mb-4">Related Guides</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              <Link to={categoryLink.to} className="text-sm text-primary hover:underline">{categoryLink.label}</Link>
               <Link to="/things-to-do-in-meghalaya" className="text-sm text-primary hover:underline">Things to Do in Meghalaya</Link>
               <Link to="/meghalaya-tour-packages" className="text-sm text-primary hover:underline">Meghalaya Tour Packages</Link>
               <Link to="/shillong-tour-package" className="text-sm text-primary hover:underline">Shillong Tour Package</Link>
               <Link to="/best-time-to-visit-meghalaya" className="text-sm text-primary hover:underline">Best Time to Visit</Link>
+              <Link to="/meghalaya-travel-guide" className="text-sm text-primary hover:underline">Meghalaya Travel Guide</Link>
+              <Link to="/best-hostel-in-shillong" className="text-sm text-primary hover:underline">Best Hostel in Shillong</Link>
+              <Link to="/tours" className="text-sm text-primary hover:underline">Northeast India Tours</Link>
               <Link to="/meghalaya-photo-gallery" className="text-sm text-primary hover:underline">Photo Gallery</Link>
             </div>
           </nav>
