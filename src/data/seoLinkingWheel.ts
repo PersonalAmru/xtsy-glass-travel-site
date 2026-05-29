@@ -90,6 +90,8 @@ export const LINK_WHEEL_CLUSTERS: LinkWheelCluster[] = [
     attractions: [
       'things-to-do-in-cherrapunjee',
       'shillong-to-cherrapunjee-road-trip',
+      'hostel-in-cherrapunji-tonight',
+      'cheap-homestay-in-cherrapunji',
     ],
     nextCluster: 'dawki',
   },
