@@ -675,9 +675,54 @@ export const getFeaturedDestinations = () =>
 export const getDestinationBySlug = (slug: string) =>
   meghalayaDestinations.find(d => d.slug === slug);
 
-export const destinationCategories = [
-  { slug: 'meghalaya-waterfalls', name: 'Waterfalls', category: 'waterfall' as const, description: 'Discover the most stunning waterfalls in Meghalaya — from India\'s tallest plunge waterfall to hidden turquoise pools in the rainforest.' },
+export interface DestinationCategory {
+  slug: string;
+  name: string;
+  category: MeghalayaDestination['category'];
+  description: string;
+  /** Optional editorial deep-dive sections rendered below the card grid for depth/SEO. */
+  seoContent?: { heading: string; body: string }[];
+  /** Optional extra FAQs appended to the auto-generated category FAQs. */
+  extraFaqs?: { q: string; a: string }[];
+}
+
+export const destinationCategories: DestinationCategory[] = [
+  {
+    slug: 'meghalaya-waterfalls',
+    name: 'Waterfalls',
+    category: 'waterfall' as const,
+    description: 'Discover the most stunning waterfalls in Meghalaya — from India\'s tallest plunge waterfall to hidden turquoise pools in the rainforest.',
+    seoContent: [
+      {
+        heading: 'Why Meghalaya has the best waterfalls in India',
+        body: 'Meghalaya catches the full force of the Bay of Bengal monsoon, making it the wettest place on Earth — Mawsynram and Cherrapunji (Sohra) record over 11,000 mm of rain a year. All that water spills off the Khasi and Jaintia plateau in dramatic plunge waterfalls, including Nohkalikai Falls, India\'s tallest plunge waterfall at 340 metres. The result is a concentration of waterfalls unmatched anywhere else in the country, most of them within a two-hour drive of Shillong.',
+      },
+      {
+        heading: 'The most famous waterfalls in Meghalaya',
+        body: 'Nohkalikai Falls near Cherrapunji is the headline act, plunging into a turquoise pool framed by sheer cliffs. Seven Sisters Falls (Nohsngithiang) fans out across the Sohra escarpment after rain, while Elephant Falls just outside Shillong offers an easy three-tiered walk perfect for first-timers. In the Jaintia Hills, Krang Suri Falls is famous for its swimmable blue water, and Wei Sawdong\'s three-tiered pools are a photographer\'s favourite. Dainthlen and Kynrem Falls round out a classic Meghalaya waterfall circuit.',
+      },
+      {
+        heading: 'Best time to visit Meghalaya waterfalls',
+        body: 'For sheer power and mist-filled drama, visit during or just after the monsoon (June to September) when the falls are at full flow — but expect leeches, slippery trails and limited visibility on heavy-rain days. For swimmable pools, clear skies and safe trekking, plan your trip between October and March. Krang Suri and Wei Sawdong are best enjoyed in this drier window when the water runs clear and turquoise.',
+      },
+      {
+        heading: 'How to plan a waterfall trip from Shillong',
+        body: 'Shillong is the natural base — most major waterfalls are an easy day trip. Pair Elephant Falls with Shillong Peak, then dedicate a full day to the Cherrapunji circuit (Nohkalikai, Seven Sisters, Dainthlen) and another to the Jaintia Hills (Krang Suri, Wei Sawdong). XTSY Travellers Hostel offers dorms from ₹329/night plus curated Meghalaya tours that bundle transport and a local guide so you cover the best waterfalls without renting a car.',
+      },
+    ],
+    extraFaqs: [
+      {
+        q: 'Which is the tallest waterfall in Meghalaya?',
+        a: 'Nohkalikai Falls near Cherrapunji is the tallest in Meghalaya and the tallest plunge waterfall in India, dropping around 340 metres into a turquoise plunge pool.',
+      },
+      {
+        q: 'Which Meghalaya waterfalls can you swim in?',
+        a: 'Krang Suri Falls in the Jaintia Hills is the most popular swimming spot, with clear blue water and a managed entry. Wei Sawdong\'s lower pools are also swimmable in the dry season — always check local conditions first.',
+      },
+    ],
+  },
   { slug: 'meghalaya-caves', name: 'Caves', category: 'cave' as const, description: 'Explore Meghalaya\'s underground world — the longest caves in India with ancient fossils and stunning limestone formations.' },
   { slug: 'meghalaya-villages', name: 'Villages', category: 'village' as const, description: 'Visit Asia\'s cleanest village, remote root bridge communities, and traditional Khasi and Garo settlements.' },
   { slug: 'meghalaya-viewpoints', name: 'Viewpoints', category: 'viewpoint' as const, description: 'Stand above the clouds at Meghalaya\'s most spectacular viewpoints — canyons, peaks, and sunrise spots.' },
 ];
+
