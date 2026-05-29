@@ -5,8 +5,10 @@ import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import TabBistroHero from "@/components/tab-bistro/TabBistroHero";
 import TabBistroMenu from "@/components/tab-bistro/TabBistroMenu";
+import TabBistroBreakfast from "@/components/tab-bistro/TabBistroBreakfast";
 import TabBistroDining from "@/components/tab-bistro/TabBistroDining";
 import TabBistroCatering from "@/components/tab-bistro/TabBistroCatering";
+import TabBistroFAQ from "@/components/tab-bistro/TabBistroFAQ";
 import TabBistroCTA from "@/components/tab-bistro/TabBistroCTA";
 
 const restaurantSchema = {
@@ -16,8 +18,9 @@ const restaurantSchema = {
   description: 'Multi-cuisine forest dining restaurant in Shillong offering Indian, Continental, Chinese, and Northeast cuisine. Wedding catering & event services.',
   url: 'https://xtsy.one/tab-bistro',
   telephone: '+918837317070',
-  servesCuisine: ['Indian', 'Continental', 'Chinese', 'Northeast Indian'],
+  servesCuisine: ['Indian', 'Continental', 'Chinese', 'Northeast Indian', 'Breakfast', 'Cafe'],
   priceRange: '₹₹',
+  acceptsReservations: 'True',
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Shillong',
