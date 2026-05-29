@@ -46,6 +46,7 @@ const CategoryPage = () => {
       q: `Can I cover Meghalaya's top ${lcName} on a tour package?`,
       a: `Yes. XTSY's curated Meghalaya tour packages bundle transport, a local guide and the best ${lcName}, waterfalls, living root bridges and viewpoints into a single trip — booking direct saves up to 30% versus marketplace prices.`,
     },
+    ...(category.extraFaqs ?? []),
   ];
 
   const breadcrumbSchema = {
@@ -118,6 +119,19 @@ const CategoryPage = () => {
               <DestinationCard key={dest.slug} destination={dest} />
             ))}
           </div>
+
+          {/* Editorial deep-dive — depth content for high-volume category terms */}
+          {category.seoContent && category.seoContent.length > 0 && (
+            <section className="mt-14 space-y-8">
+              {category.seoContent.map(({ heading, body }) => (
+                <article key={heading}>
+                  <h2 className="text-2xl font-bold text-foreground">{heading}</h2>
+                  <p className="mt-3 text-muted-foreground max-w-3xl leading-relaxed">{body}</p>
+                </article>
+              ))}
+            </section>
+          )}
+
 
           {/* FAQ — visible Q&A backed by FAQPage schema */}
           <section className="mt-12">

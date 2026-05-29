@@ -5,8 +5,10 @@ import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import TabBistroHero from "@/components/tab-bistro/TabBistroHero";
 import TabBistroMenu from "@/components/tab-bistro/TabBistroMenu";
+import TabBistroBreakfast from "@/components/tab-bistro/TabBistroBreakfast";
 import TabBistroDining from "@/components/tab-bistro/TabBistroDining";
 import TabBistroCatering from "@/components/tab-bistro/TabBistroCatering";
+import TabBistroFAQ from "@/components/tab-bistro/TabBistroFAQ";
 import TabBistroCTA from "@/components/tab-bistro/TabBistroCTA";
 
 const restaurantSchema = {
@@ -16,8 +18,9 @@ const restaurantSchema = {
   description: 'Multi-cuisine forest dining restaurant in Shillong offering Indian, Continental, Chinese, and Northeast cuisine. Wedding catering & event services.',
   url: 'https://xtsy.one/tab-bistro',
   telephone: '+918837317070',
-  servesCuisine: ['Indian', 'Continental', 'Chinese', 'Northeast Indian'],
+  servesCuisine: ['Indian', 'Continental', 'Chinese', 'Northeast Indian', 'Breakfast', 'Cafe'],
   priceRange: '₹₹',
+  acceptsReservations: 'True',
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Shillong',
@@ -33,9 +36,9 @@ const restaurantSchema = {
 const TabBistro = memo(() => (
   <div className="min-h-screen bg-background">
     <SEOHead
-      title="TAB Bistro — Best Restaurant in Shillong | Multi-Cuisine Dining & Catering"
-      description="TAB Bistro by XTSY — best restaurant in Shillong for multi-cuisine dining, forest BBQ, wedding catering, and private events. Indian, Continental, Chinese & Northeast cuisine."
-      keywords="restaurant in Shillong, best restaurant Shillong, cafe Shillong, dining Shillong, wedding catering Shillong, event catering Meghalaya, multi-cuisine Shillong, forest dining, TAB Bistro"
+      title="TAB Bistro — Breakfast, Rooftop Dining & Catering Shillong"
+      description="TAB Bistro by XTSY — breakfast places in Shillong, rooftop café & multi-cuisine dining in the pine forests. Forest BBQ, wedding catering & events. Open 8 AM daily."
+      keywords="breakfast places in shillong, rooftop restaurants in shillong, rooftop cafe in shillong, cafe shillong, best restaurant shillong, restaurant in shillong, dining shillong, wedding catering shillong, forest dining, TAB Bistro"
       canonicalUrl="https://xtsy.one/tab-bistro"
     />
     <Helmet>
@@ -46,8 +49,10 @@ const TabBistro = memo(() => (
 
     <main className="max-w-5xl mx-auto px-4 sm:px-8 pb-20 space-y-20">
       <TabBistroMenu />
+      <TabBistroBreakfast />
       <TabBistroDining />
       <TabBistroCatering />
+      <TabBistroFAQ />
       <TabBistroCTA />
     </main>
 
