@@ -540,6 +540,31 @@ const workationInclusionsSection = (scope: string): SEOSection => ({
   ],
 });
 
+const workationLifeSection = (scope: string): SEOSection => ({
+  heading: `What a Workation in ${scope} Is Really Like`,
+  content: `A workation in ${scope} blends focused remote-work days with weekends spent exploring Northeast India. Mornings are quiet and cool — ideal for deep work — while evenings open up to forest walks, live music and a community of other long-stay travellers. XTSY is built for nomads who want reliable WiFi and a proper desk without giving up the mountains outside the window.`,
+  listItems: [
+    `Cool, low-distraction mornings perfect for deep work`,
+    `Power backup so calls and deadlines never drop`,
+    `Walkable to cafés, viewpoints and weekend trailheads`,
+    `Flexible weekly and monthly rates — stay 7 nights or 3 months`,
+    `Pet-friendly and solo-female-friendly long stays`,
+    `Easy weekend trips to waterfalls, living root bridges and lakes`,
+  ],
+});
+
+const workationFaqs = (scope: string, intentLabel: string): SEOFaq[] => [
+  { question: `Is ${scope} good for a workation?`, answer: `Yes — ${scope} offers cool weather, low cost of living and calm surroundings that suit remote work. XTSY adds verified fibre WiFi, ergonomic desks and quiet hours so you can work reliably. WhatsApp ${WA}.` },
+  { question: `How fast is the WiFi for remote work in ${scope}?`, answer: `XTSY ${scope.toLowerCase()} stays run on verified 50+ Mbps fibre with a backup mobile hotspot, so video calls and uploads stay stable through the day.` },
+  { question: `What are the monthly workation rates in ${scope}?`, answer: `Long-stay rates are billed weekly or monthly with no hidden fees and drop the longer you stay. Share your dates on WhatsApp ${WA} for live monthly pricing.` },
+  { question: `What is the minimum stay for a ${intentLabel} in ${scope}?`, answer: `Workation stays start from 7 nights, with discounted weekly and monthly rates for stays of a month or more. Flexible check-in and check-out on request.` },
+  { question: `Is there a dedicated workspace or quiet zone?`, answer: `Yes — every workation guest gets an ergonomic desk, daylight lamp and access to a quiet zone with no-call hours (10am–5pm) for focused work.` },
+  { question: `What is the best time for a workation in ${scope}?`, answer: `October to April is ideal — clear skies, cool days and great weekend exploring. Monsoon (Jun–Sep) is greener and cheaper, with reliable indoor work setups.` },
+  { question: `Can digital nomads explore on weekends?`, answer: `Absolutely. ${scope} puts waterfalls, living root bridges, lakes and viewpoints within easy reach — XTSY can arrange weekend trips so you switch off fully between work weeks.` },
+  { question: `How do I book a ${intentLabel} in ${scope}?`, answer: `Send your dates and expected length of stay on WhatsApp ${WA}. We reply with live availability and a weekly/monthly quote within an hour.` },
+];
+
+
 // ---- Group tours (group-tour-cherrapunji, school-tour-meghalaya, etc.) ----
 export function buildGroupTourPage(slug: string): SEOPageData {
   // intent prefix from a known list, rest = scope (destination or state)
