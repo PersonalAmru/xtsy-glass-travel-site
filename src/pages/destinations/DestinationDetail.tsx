@@ -28,6 +28,48 @@ const DestinationDetail = () => {
     .map(name => meghalayaDestinations.find(d => d.name === name))
     .filter(Boolean) as typeof meghalayaDestinations;
 
+  // Genuine, on-page FAQs generated from this destination's data. Rendered
+  // visibly below AND emitted as FAQPage schema (Google requires the answer
+  // text to be visible on the page to be eligible for the rich result).
+  const topThings = destination.thingsToDo.slice(0, 3).join(', ');
+  const faqs: { q: string; a: string }[] = [
+    {
+      q: `What is the best time to visit ${destination.name}?`,
+      a: destination.bestTimeToVisit,
+    },
+    {
+      q: `How do I reach ${destination.name} from Shillong?`,
+      a: destination.howToReach,
+    },
+    {
+      q: `What are the top things to do at ${destination.name}?`,
+      a: `Popular things to do at ${destination.name} include ${topThings}. ${destination.shortDescription}`,
+    },
+    {
+      q: `Where can I stay near ${destination.name}?`,
+      a: `XTSY Travellers Hostel in Shillong is an affordable, well-located base for exploring ${destination.name} and the rest of ${destination.region}, with dorms from ₹329/night and curated Meghalaya tours that cover the region's top sights.`,
+    },
+  ];
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(({ q, a }) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
+  };
+
+  // Category-aware internal links to concentrate authority on pillar pages.
+  const categoryLink =
+    destination.category === 'waterfall'
+      ? { to: '/meghalaya-waterfalls', label: 'Waterfalls in Meghalaya' }
+      : destination.category === 'viewpoint' || destination.category === 'peak'
+      ? { to: '/meghalaya-viewpoints', label: 'Viewpoints in Meghalaya' }
+      : { to: '/things-to-do-in-meghalaya', label: 'Things to Do in Meghalaya' };
+
+
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'TouristDestination',
