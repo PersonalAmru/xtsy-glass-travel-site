@@ -1,0 +1,73 @@
+import { memo } from "react";
+import { Helmet } from "react-helmet-async";
+
+export const tabBistroFaqs = [
+  {
+    q: "Does TAB Bistro serve breakfast in Shillong?",
+    a: "Yes. TAB Bistro by XTSY serves a multi-cuisine breakfast daily from 8 AM — Assam tea, filter coffee, English breakfast, parathas, eggs to order and pancakes, in a pine-forest setting.",
+  },
+  {
+    q: "Is TAB Bistro a rooftop restaurant in Shillong?",
+    a: "TAB Bistro is launching a rooftop dining deck with panoramic pine-valley views, alongside its forest dining and BBQ experiences. It is one of the newest rooftop restaurant and café experiences in Shillong.",
+  },
+  {
+    q: "What are the opening hours of TAB Bistro?",
+    a: "TAB Bistro is open every day from 8 AM to 10 PM, serving breakfast, lunch, dinner and all-day café service.",
+  },
+  {
+    q: "What cuisines does TAB Bistro serve?",
+    a: "TAB Bistro is a multi-cuisine restaurant serving Indian, Continental, Chinese and Northeast Indian dishes, plus forest BBQ, handcrafted beverages and curated dining experiences.",
+  },
+  {
+    q: "Can I work from the café at TAB Bistro?",
+    a: "Yes. TAB Bistro doubles as an all-day café in Shillong with WiFi-friendly corners, espresso and cold brew — popular with remote workers and travellers.",
+  },
+  {
+    q: "Does TAB Bistro offer wedding catering and events?",
+    a: "Yes. TAB Bistro provides wedding catering and event catering across Shillong and Meghalaya, with custom menus. Enquire on WhatsApp +91 88373 17070.",
+  },
+];
+
+const TabBistroFAQ = memo(() => {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: tabBistroFaqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+
+  return (
+    <section id="faq">
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(schema)}</script>
+      </Helmet>
+      <h2 className="text-2xl sm:text-3xl font-bold text-foreground font-playfair mb-2">
+        Frequently Asked Questions
+      </h2>
+      <p className="text-muted-foreground text-sm mb-8">
+        Breakfast, rooftop dining, hours and catering at TAB Bistro in Shillong.
+      </p>
+
+      <div className="space-y-3">
+        {tabBistroFaqs.map((f) => (
+          <details
+            key={f.q}
+            className="group rounded-xl bg-card border border-border p-5 hover:border-amber-500/30 transition-colors"
+          >
+            <summary className="cursor-pointer list-none flex items-center justify-between gap-3 text-base font-semibold text-foreground">
+              {f.q}
+              <span className="text-amber-400 transition-transform group-open:rotate-45 text-xl leading-none">+</span>
+            </summary>
+            <p className="text-sm text-muted-foreground leading-relaxed mt-3">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+  );
+});
+
+TabBistroFAQ.displayName = "TabBistroFAQ";
+export default TabBistroFAQ;
