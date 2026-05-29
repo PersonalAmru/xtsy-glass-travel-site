@@ -225,7 +225,49 @@ const DestinationWeddingShillong = memo(() => {
             </div>
           </section>
 
-          {/* Couple Suite Highlight */}
+          {/* Packages */}
+          <section>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground">Destination Wedding Packages</h2>
+            <p className="mt-2 text-muted-foreground max-w-3xl">
+              Every wedding at XTSY is built around your vision, but these starting points help you plan. All packages are fully customisable and include venue access, on-site stays, and TAB Bistro catering.
+            </p>
+            <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+              {packages.map((p) => (
+                <Card key={p.name} className="border-border/50">
+                  <CardContent className="p-6">
+                    <h3 className="font-bold text-foreground">{p.name}</h3>
+                    <p className="text-sm text-primary font-medium mt-1">{p.guests}</p>
+                    <p className="text-lg font-bold text-foreground mt-2">{p.price}</p>
+                    <p className="mt-2 text-sm text-muted-foreground">{p.desc}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </section>
+
+          {/* How to Plan */}
+          <section>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground">How to Plan Your Meghalaya Destination Wedding</h2>
+            <p className="mt-3 text-muted-foreground max-w-3xl">
+              Planning a destination wedding in Shillong is simpler than most couples expect. As Northeast India's NEITA-recognised hospitality brand, XTSY handles venue, stays, food, and coordination under one roof — so you deal with one team, not a dozen vendors.
+            </p>
+            <div className="mt-6 space-y-4">
+              {[
+                { step: '1. Pick your dates', body: 'Aim for October–April for clear skies and golden light. Lock dates 3-6 months ahead for the best Glass Suite and room availability.' },
+                { step: '2. Choose your guest count', body: 'Our sweet spot is 20-100 guests. Tell us the number and we map the right ceremony space and on-site accommodation mix.' },
+                { step: '3. Build your menu with TAB Bistro', body: 'Indian, Continental, Chinese, and Khasi specialties — fully customisable for veg, Jain, and dietary needs, served as plated dinners or live counters.' },
+                { step: '4. Add décor, music & shoots', body: 'Floral and light décor, sound, and pre-wedding shoots across the glass suite, mountain terrace, and pine-forest trail.' },
+                { step: '5. Leave the logistics to us', body: 'Airport transfers from Guwahati (2.5 hrs), guest check-in, day-of coordination, and an optional post-wedding honeymoon tour to Dawki and Cherrapunji.' },
+              ].map((s) => (
+                <div key={s.step} className="flex items-start gap-3">
+                  <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                  <p className="text-muted-foreground"><span className="font-semibold text-foreground">{s.step}</span> — {s.body}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+
           <section className="bg-primary/5 rounded-2xl p-6 md:p-8">
             <div className="flex items-center gap-2 text-primary mb-3">
               <Star className="h-5 w-5" />
