@@ -36,9 +36,9 @@ const restaurantSchema = {
 const TabBistro = memo(() => (
   <div className="min-h-screen bg-background">
     <SEOHead
-      title="TAB Bistro — Best Restaurant in Shillong | Multi-Cuisine Dining & Catering"
-      description="TAB Bistro by XTSY — best restaurant in Shillong for multi-cuisine dining, forest BBQ, wedding catering, and private events. Indian, Continental, Chinese & Northeast cuisine."
-      keywords="restaurant in Shillong, best restaurant Shillong, cafe Shillong, dining Shillong, wedding catering Shillong, event catering Meghalaya, multi-cuisine Shillong, forest dining, TAB Bistro"
+      title="TAB Bistro — Breakfast, Rooftop Dining & Catering Shillong"
+      description="TAB Bistro by XTSY — breakfast places in Shillong, rooftop café & multi-cuisine dining in the pine forests. Forest BBQ, wedding catering & events. Open 8 AM daily."
+      keywords="breakfast places in shillong, rooftop restaurants in shillong, rooftop cafe in shillong, cafe shillong, best restaurant shillong, restaurant in shillong, dining shillong, wedding catering shillong, forest dining, TAB Bistro"
       canonicalUrl="https://xtsy.one/tab-bistro"
     />
     <Helmet>
@@ -49,8 +49,10 @@ const TabBistro = memo(() => (
 
     <main className="max-w-5xl mx-auto px-4 sm:px-8 pb-20 space-y-20">
       <TabBistroMenu />
+      <TabBistroBreakfast />
       <TabBistroDining />
       <TabBistroCatering />
+      <TabBistroFAQ />
       <TabBistroCTA />
     </main>
 
