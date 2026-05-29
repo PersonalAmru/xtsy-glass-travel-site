@@ -55,7 +55,23 @@ const DestinationWeddingShillong = memo(() => {
         name: 'How much does a destination wedding in Meghalaya cost?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'A destination wedding at XTSY Shillong starts from ₹3-5 lakhs for an intimate gathering of 30-50 guests, including venue, accommodation, catering, and basic decor. Custom packages are available for larger events.',
+          text: 'A destination wedding at XTSY Shillong starts from ₹3-5 lakhs for an intimate gathering of 30-50 guests, including venue, accommodation, catering, and basic decor. Custom packages are available for larger events. Compared to Goa or Rajasthan, a Meghalaya destination wedding typically costs 30-40% less for a comparable experience.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What is the best time for a destination wedding in Meghalaya?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'October to April is the ideal season for a Meghalaya destination wedding — clear skies, golden light, and pleasant 15-22°C weather perfect for open-air ceremonies and photography. We recommend avoiding the June-September monsoon for outdoor events, though our covered spaces can host year-round.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How many guests can XTSY host for a wedding?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'XTSY specialises in intimate weddings of 20-100 guests. With on-site dorms, private rooms, and the 270° Glass Suite for the couple, most of your guests can stay on-property — making it a true multi-day wedding experience rather than a single-day event.',
         },
       },
       {
@@ -66,8 +82,31 @@ const DestinationWeddingShillong = memo(() => {
           text: 'Yes. TAB Bistro by XTSY provides full-service catering for weddings, corporate events, birthday parties, and private gatherings. Multi-cuisine menu including Indian, Continental, Chinese, and Northeast specialties.',
         },
       },
+      {
+        '@type': 'Question',
+        name: 'Can we combine the wedding with a honeymoon in Meghalaya?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Absolutely. Many couples extend their stay into a honeymoon, exploring Dawki\'s crystal-clear Umngot River, the living root bridges of Cherrapunji, and Mawlynnong — Asia\'s cleanest village. XTSY can arrange a curated post-wedding tour for the couple.',
+        },
+      },
     ],
   };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://xtsy.one/' },
+      { '@type': 'ListItem', position: 2, name: 'Destination Wedding in Shillong', item: 'https://xtsy.one/destination-wedding-shillong' },
+    ],
+  };
+
+  const packages = [
+    { name: 'Intimate Elopement', guests: '2-15 guests', price: 'From ₹1.5 lakh', desc: 'Just the two of you (and closest few). Glass Suite stay, private ceremony setup, couple photography, and a curated dinner.' },
+    { name: 'Classic Mountain Wedding', guests: '30-50 guests', price: 'From ₹3-5 lakh', desc: 'Open-air ceremony, TAB Bistro catering, guest accommodation, décor, and day-of coordination. Our most popular package.' },
+    { name: 'Grand Celebration', guests: '50-100 guests', price: 'Custom quote', desc: 'Multi-day affair — mehendi, sangeet, ceremony and reception across the property, full event production and stay for all guests.' },
+  ];
 
   const services = [
     { icon: Mountain, title: 'Mountain Venue', desc: 'Open-air ceremony with panoramic Khasi Hills backdrop. Pine forests, misty mornings, golden sunsets.' },
