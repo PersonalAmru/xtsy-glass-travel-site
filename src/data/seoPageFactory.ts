@@ -671,11 +671,12 @@ export function buildWorkationPage(slug: string): SEOPageData {
     intro: `XTSY runs purpose-built ${intentLabel.toLowerCase()} stays in ${scopeLabel} for remote workers, founders and digital nomads. Verified fibre WiFi, ergonomic desks, quiet hours and a community of long-stay guests — billed weekly or monthly with no hidden fees.`,
     sections: [
       workationInclusionsSection(scopeLabel),
+      workationLifeSection(scopeLabel),
       thingsToDoSection(scope.split('-')[0]),
       bestTimeSection(scope.split('-')[0]),
       travelTipsSection(),
     ],
-    faqs: eightFaqs(scopeLabel, intentLabel.toLowerCase(), 'confirm the long-stay'),
+    faqs: workationFaqs(scopeLabel, intentLabel.toLowerCase()),
     schemaType: 'LodgingBusiness',
     related: ['best-hostel-in-shillong', 'work-from-home', 'homestays-in-shillong', 'meghalaya-travel-guide', 'shillong-travel-guide'],
     ctaText: 'Check Long-Stay Quote',
