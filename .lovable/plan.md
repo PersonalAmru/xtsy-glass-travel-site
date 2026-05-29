@@ -33,16 +33,28 @@ Google can't rank what it can't read cleanly. Today every route serves an identi
 
 These pages already rank — they just need a focused push. This is where you'll see traffic move in weeks, not months.
 
+**Priority is now grounded in LIVE Google Search Console data (last 28 days)** —
+real pages already earning impressions on page 2 with weak/zero CTR. These are
+the genuine near-wins (impressions = Google already trusts the page; we just
+need to push it up). Volume from Semrush (India market).
+
 ```text
-Page                                Term                    Pos  Vol/mo   Action
-──────────────────────────────────────────────────────────────────────────────
-/meghalaya-waterfalls               waterfalls in meghalaya  20  12,100   Expand depth
-/places-to-visit/elephant-falls     elephant falls           38  49,500   Rewrite + links
-/places-to-visit/krang-suri-falls   krang suri waterfall     38  22,200   Rewrite + links
-/places-to-visit/laitlum-canyons    laitlum view point       35   9,900   Rewrite + links
-/homestays-in-shillong              homestay in shillong      29   9,900   Intent match
-/best-homestay-in-cherrapunji       homestay in cherrapunji   16   5,400   Almost there
+Rank Page                              Term                     Pos  GSC imp  Vol/mo  KDI  Status
+────────────────────────────────────────────────────────────────────────────────────────────────
+ 1  /destination-wedding-shillong      destination wedding shg   11   108     —       —   DONE (enriched)
+ 2  /budget-stay-shillong              budget hotels in shillong 9-30  17     590    25   DONE (enriched)
+ 3  /hostel-in-cherrapunji-tonight     hostel in cherrapunji     10    57     260    23   NEXT
+ 4  /cheap-homestay-in-cherrapunji     cheap homestay cherrapunji 8.6  37     170    23   NEXT
+ 5  /tab-bistro                        breakfast places shillong  22     9     140    29   QUEUED
+ 6  /workation-gangtok                 gangtok workation           9    21     —      —   QUEUED
+ 7  /remote-work-stay-meghalaya        workation in meghalaya    8.6    17     —      —   QUEUED
+ 8  /meghalaya-waterfalls              best waterfalls meghalaya  21     6   12,100   —   QUEUED (high vol)
+ 9  /places-to-visit/elephant-falls    elephant falls meghalaya   23     6   49,500   —   QUEUED (high vol)
 ```
+
+Read: #1–#2 shipped this pass (highest impressions / cleanest pages). #3–#4 are
+the fastest remaining wins — KDI 23, position 8–10, real demand. #8–#9 are huge
+volume but lower current impressions, so they're a depth/rewrite job for later.
 
 Per page:
 - Expand to 1,200–1,800 words of genuinely useful, E-E-A-T content (how to reach, best time, entry fee, nearby stays, real tips) — not boilerplate.
