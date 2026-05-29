@@ -45,11 +45,12 @@ Rank Page                              Term                     Pos  GSC imp  Vo
  2  /budget-stay-shillong              budget hotels in shillong 9-30  17     590    25   DONE (enriched)
  3  /hostel-in-cherrapunji-tonight     hostel in cherrapunji     10    57     260    23   NEXT
  4  /cheap-homestay-in-cherrapunji     cheap homestay cherrapunji 8.6  37     170    23   NEXT
- 5  /tab-bistro                        breakfast places shillong  22     9     140    29   QUEUED
- 6  /workation-gangtok                 gangtok workation           9    21     —      —   QUEUED
- 7  /remote-work-stay-meghalaya        workation in meghalaya    8.6    17     —      —   QUEUED
- 8  /meghalaya-waterfalls              best waterfalls meghalaya  21     6   12,100   —   QUEUED (high vol)
+ 5  /tab-bistro                        breakfast places shillong  22     9     140    29   DONE (breakfast+rooftop+FAQ)
+ 6  /workation-gangtok                 gangtok workation           9    21     —      —   DONE (intent-fixed FAQ+depth)
+ 7  /remote-work-stay-meghalaya        workation in meghalaya    8.6    17     —      —   DONE (intent-fixed FAQ+depth)
+ 8  /meghalaya-waterfalls              best waterfalls meghalaya  21     6   12,100   —   DONE (deep-dive+FAQ)
  9  /places-to-visit/elephant-falls    elephant falls meghalaya   23     6   49,500   —   QUEUED (high vol)
+10  /places-to-visit/umiam-lake        umiam lake                 11   626   2,400   —   NEW TOP PRIORITY (GSC)
 ```
 
 Read: #1–#2 shipped this pass (highest impressions / cleanest pages). #3–#4 are
