@@ -45,6 +45,8 @@ const DestinationDetail = () => {
       q: `What are the top things to do at ${destination.name}?`,
       a: `Popular things to do at ${destination.name} include ${topThings}. ${destination.shortDescription}`,
     },
+    // Destination-specific extra FAQs (deep content for high-priority pages)
+    ...(destination.extraFaqs ?? []),
     {
       q: `Where can I stay near ${destination.name}?`,
       a: `XTSY Travellers Hostel in Shillong is an affordable, well-located base for exploring ${destination.name} and the rest of ${destination.region}, with dorms from ₹329/night and curated Meghalaya tours that cover the region's top sights.`,
