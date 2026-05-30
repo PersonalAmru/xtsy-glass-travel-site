@@ -26,7 +26,18 @@ export const tabBistroFaqs = [
     q: "Does TAB Bistro offer wedding catering and events?",
     a: "Yes. TAB Bistro provides wedding catering and event catering across Shillong and Meghalaya, with custom menus. Enquire on WhatsApp +91 88373 17070.",
   },
-];
+  {
+    q: "Can I place bulk or party food orders in Shillong?",
+    a: "Yes. TAB Bistro by XTSY handles bulk food orders, party orders and large group dining in Shillong — multi-cuisine menus for birthdays, get-togethers and celebrations. Share your headcount and date on WhatsApp +91 88373 17070 for a quote.",
+  },
+  {
+    q: "Do you provide corporate and event catering in Shillong?",
+    a: "Absolutely. We cater corporate events, conferences, offsites and private functions across Shillong and Meghalaya with Indian, Chinese, Continental, Thai and Northeast spreads, plus live counters and buffets tailored to your budget.",
+  },
+  {
+    q: "What cuisines can I order from TAB Bistro?",
+    a: "TAB Bistro is a multi-cuisine restaurant serving North Indian, Tandoor, Indo-Chinese, Thai, Continental, Italian (pizza & pasta), seafood, sizzlers and Northeast Indian dishes — all under the XTSY Specials menu.",
+  },
 
 const TabBistroFAQ = memo(() => {
   const schema = {
