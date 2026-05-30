@@ -134,6 +134,18 @@ const DestinationDetail = () => {
             </div>
           </section>
 
+          {/* Deep-dive editorial sections (content depth for priority pages) */}
+          {destination.deepDive && destination.deepDive.length > 0 && (
+            <section className="space-y-8">
+              {destination.deepDive.map((block, i) => (
+                <div key={i}>
+                  <h2 className="text-2xl font-bold text-foreground">{block.heading}</h2>
+                  <p className="mt-3 text-muted-foreground leading-relaxed whitespace-pre-line">{block.body}</p>
+                </div>
+              ))}
+            </section>
+          )}
+
           {/* Gallery */}
           <section>
             <h2 className="text-2xl font-bold text-foreground">Photo Gallery</h2>
