@@ -11,6 +11,10 @@ export interface MeghalayaDestination {
   thingsToDo: string[];
   nearbyAttractions: string[];
   featured?: boolean;
+  /** Optional deep-dive editorial paragraphs rendered below the overview for content depth. */
+  deepDive?: { heading: string; body: string }[];
+  /** Optional extra FAQs merged into the visible FAQ block and FAQPage schema. */
+  extraFaqs?: { q: string; a: string }[];
 }
 
 const SUPABASE_BUCKET_URL = 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Meghalaya%20things%20to%20do';
