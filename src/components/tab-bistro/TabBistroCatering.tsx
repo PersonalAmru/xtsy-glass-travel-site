@@ -1,5 +1,6 @@
 import { memo } from "react";
-import { PartyPopper, Heart, Sparkles, Star } from "lucide-react";
+import { Link } from "react-router-dom";
+import { PartyPopper, Heart, Sparkles, Star, ArrowRight } from "lucide-react";
 
 const cateringServices = [
   "Wedding Catering",
@@ -40,6 +41,12 @@ const TabBistroCatering = memo(() => (
           </div>
         ))}
       </div>
+      <Link
+        to="/tab-bistro/catering"
+        className="inline-flex items-center gap-2 mt-6 px-5 py-2.5 rounded-full bg-amber-500 hover:bg-amber-600 text-black font-semibold text-sm transition-colors"
+      >
+        Catering & Bulk Orders — Get a Quote <ArrowRight className="w-4 h-4" />
+      </Link>
     </section>
 
     <section>
