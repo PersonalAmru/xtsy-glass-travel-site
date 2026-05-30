@@ -6,6 +6,7 @@ import SEOHead from "@/components/SEOHead";
 import TabBistroHero from "@/components/tab-bistro/TabBistroHero";
 import TabBistroMenu from "@/components/tab-bistro/TabBistroMenu";
 import TabBistroBreakfast from "@/components/tab-bistro/TabBistroBreakfast";
+import TabBistroSpecials from "@/components/tab-bistro/TabBistroSpecials";
 import TabBistroDining from "@/components/tab-bistro/TabBistroDining";
 import TabBistroCatering from "@/components/tab-bistro/TabBistroCatering";
 import TabBistroFAQ from "@/components/tab-bistro/TabBistroFAQ";
@@ -49,6 +50,7 @@ const TabBistro = memo(() => (
 
     <main className="max-w-5xl mx-auto px-4 sm:px-8 pb-20 space-y-20">
       <TabBistroMenu />
+      <TabBistroSpecials />
       <TabBistroBreakfast />
       <TabBistroDining />
       <TabBistroCatering />
