@@ -38,6 +38,8 @@ export const tabBistroFaqs = [
     q: "What cuisines can I order from TAB Bistro?",
     a: "TAB Bistro is a multi-cuisine restaurant serving North Indian, Tandoor, Indo-Chinese, Thai, Continental, Italian (pizza & pasta), seafood, sizzlers and Northeast Indian dishes — all under the XTSY Specials menu.",
   },
+];
+
 
 const TabBistroFAQ = memo(() => {
   const schema = {
