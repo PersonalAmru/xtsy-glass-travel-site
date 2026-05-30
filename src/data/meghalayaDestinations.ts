@@ -100,16 +100,58 @@ export const meghalayaDestinations: MeghalayaDestination[] = [
   {
     name: 'Umiam Lake',
     slug: 'umiam-lake',
-    description: 'Umiam Lake is one of the most beautiful landscapes in Meghalaya and serves as a scenic gateway to Shillong. Located about 15 kilometers before entering the city from Guwahati, the lake was created after the construction of the Umiam Dam in the 1960s. Surrounded by pine forests and rolling hills, the reservoir stretches across a vast area and reflects the changing colors of the sky throughout the day.\n\nTravelers often stop here during their journey to Shillong to enjoy the panoramic viewpoints overlooking the water. Early morning is especially magical when mist rises gently above the lake and the surrounding hills glow in soft sunlight.\n\nApart from its natural beauty, Umiam Lake is also a hub for water activities such as boating, kayaking, and other adventure sports. The peaceful environment combined with breathtaking scenery makes it one of the most relaxing places to visit in Meghalaya.',
-    shortDescription: 'A scenic reservoir surrounded by pine forests, perfect for boating and kayaking near Shillong.',
+    description: 'Umiam Lake, locally known as Barapani, is one of the most beautiful landscapes in Meghalaya and the scenic gateway to Shillong. Spread across roughly 220 square kilometres of catchment, the reservoir sits about 15 kilometres before the city when you arrive from Guwahati, making it the first breathtaking view most travellers get of the Khasi Hills. It was created in the 1960s after the construction of the Umiam Dam — North East India\'s first hydel power project — and is today ringed by emerald pine forests and rolling hills that mirror the changing colours of the sky.\n\nMost travellers stop at the lakeside viewpoints to photograph the still blue water against the pines, but Umiam rewards those who linger. Early morning is genuinely magical: mist rises gently off the surface while the surrounding hills glow in soft gold light, and the water is calm enough for reflections. By afternoon the breeze picks up and the lake turns into one of the best spots near Shillong for boating, kayaking, water scooters and other adventure water sports run from the state water-sports complex.\n\nBecause it is so close to the city, Umiam Lake works equally well as a quick half-day trip from a Shillong base or as a relaxed first or last stop on a longer Meghalaya itinerary. Sunset over Barapani — when the sky burns orange and the dam lights flicker on — is one of those quiet, unhurried experiences that defines a trip to the hills.',
+    shortDescription: 'A scenic reservoir (Barapani) surrounded by pine forests, perfect for boating, kayaking and sunset viewpoints near Shillong.',
     region: 'Near Shillong',
     category: 'lake',
-    bestTimeToVisit: 'October to May for clear skies and pleasant weather. Early mornings offer the best mist views.',
-    howToReach: 'Located 15 km from Shillong on the Guwahati-Shillong Highway. Taxis and shared cabs are readily available.',
-    travelTips: ['Visit early morning for misty lake views', 'Carry a light jacket as it gets windy', 'Try kayaking or boating at the water sports complex'],
-    thingsToDo: ['Boating and kayaking', 'Photography at sunset viewpoints', 'Picnic along the lakeshore', 'Visit the orchid garden nearby'],
+    bestTimeToVisit: 'October to May for clear blue skies, pleasant weather and the best reflections. Early mornings (6–8 AM) offer misty, crowd-free views; sunset is best for photography. Monsoon (June–September) turns the surrounding hills lush green but skies can be overcast.',
+    howToReach: 'Umiam Lake is 15 km north of Shillong on the Guwahati–Shillong Highway (NH6), about a 30–40 minute drive. Shared sumos and taxis run frequently from Police Bazar; a private cab costs roughly ₹600–₹900 round trip. From Guwahati it is around 2.5 hours by road, so it is an easy first stop on arrival.',
+    travelTips: [
+      'Visit between 6–8 AM for misty water and reflections before tour buses arrive',
+      'Carry a light jacket or windbreaker — it gets breezy by the water in the afternoon',
+      'Book boating or kayaking at the Orchid Lake Resort / state water-sports complex',
+      'Weekdays are far quieter than weekends, when Shillong locals visit',
+      'Combine Umiam with Shillong Peak and Elephant Falls for a full sightseeing day',
+      'Sunset viewpoints near the dam are the most photogenic — arrive 45 minutes early',
+    ],
+    thingsToDo: [
+      'Boating, kayaking and pedal-boating on the reservoir',
+      'Water scooter and speedboat rides at the water-sports complex',
+      'Photography at the sunrise and sunset viewpoints',
+      'Lakeside picnic among the pine groves',
+      'Visit the nearby orchid garden and lakeside cafés',
+      'Cycling and short nature walks along the shoreline',
+    ],
     nearbyAttractions: ['Shillong Peak', 'Elephant Falls', 'Don Bosco Museum'],
     featured: true,
+    deepDive: [
+      {
+        heading: 'Why Umiam Lake is worth a stop',
+        body: 'Umiam (Barapani) is the largest artificial lake in Meghalaya and acts as a natural welcome to the state. Unlike crowded waterfalls, the lake offers space to slow down — wide-open water, pine-scented air and uninterrupted hill views. It is one of the few spots near Shillong where you can combine gentle adventure (boating, kayaking) with pure relaxation, which is why it suits families, couples and solo travellers alike.',
+      },
+      {
+        heading: 'Boating and water sports at Umiam',
+        body: 'The state water-sports complex on the lake runs paddle boats, kayaks, water scooters and speedboat rides through most of the year, with sessions typically priced between ₹300 and ₹800 depending on the craft. Mornings have the calmest water; afternoons are livelier with a steady breeze. Life jackets are provided, and the calmer coves make it beginner-friendly. Always confirm operating hours, especially during peak monsoon when rides may pause.',
+      },
+      {
+        heading: 'Where to stay near Umiam Lake',
+        body: 'There is no need to find a stay right on the lake. Umiam is only 15 km from Shillong, so most travellers base themselves in the city and visit Umiam as a half-day trip. XTSY Travellers Hostel in Shillong is an affordable, well-located base — dorms from ₹329/night — with a travel desk that can arrange a cab to Umiam, Shillong Peak and Elephant Falls in a single circuit.',
+      },
+    ],
+    extraFaqs: [
+      {
+        q: 'What is Umiam Lake also known as?',
+        a: 'Umiam Lake is locally called Barapani, which means "big water" in the local language. It was formed by the Umiam Dam, North East India\'s first hydroelectric power project, built in the 1960s.',
+      },
+      {
+        q: 'Is boating available at Umiam Lake?',
+        a: 'Yes. The state water-sports complex at Umiam offers paddle boats, kayaks, water scooters and speedboat rides, typically priced between ₹300 and ₹800. Mornings have the calmest water and life jackets are provided.',
+      },
+      {
+        q: 'How far is Umiam Lake from Shillong and Guwahati?',
+        a: 'Umiam Lake is about 15 km (30–40 minutes) north of Shillong on NH6, and roughly 2.5 hours by road from Guwahati, making it an ideal first or last stop on a Meghalaya trip.',
+      },
+    ],
   },
   {
     name: 'Shillong Peak',
