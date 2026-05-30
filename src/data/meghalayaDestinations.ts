@@ -170,16 +170,57 @@ export const meghalayaDestinations: MeghalayaDestination[] = [
   {
     name: 'Elephant Falls',
     slug: 'elephant-falls',
-    description: 'Elephant Falls is one of the most famous waterfalls near Shillong and a popular attraction for travelers exploring the Khasi Hills. The waterfall consists of three distinct tiers that cascade through lush green vegetation and rocky cliffs.\n\nVisitors can walk down a staircase trail that leads to different viewing platforms, each offering a unique perspective of the waterfall. During the monsoon season the falls become especially powerful as water rushes down the cliffs surrounded by dense forest.\n\nBecause of its accessibility and scenic surroundings, Elephant Falls remains one of the most visited natural attractions near Shillong.',
-    shortDescription: 'A three-tiered waterfall near Shillong, one of the most visited natural attractions in Meghalaya.',
+    description: 'Elephant Falls is the most famous waterfall near Shillong and one of the most visited natural attractions in all of Meghalaya. Tucked into the Khasi Hills about 12 kilometres from the city centre, the falls cascade through three distinct tiers, each framed by moss-covered rocks and dense, dripping forest. The name comes from a colonial-era stone beside the falls that resembled an elephant — it was later destroyed in the 1897 earthquake, but the name stuck.\n\nA well-maintained staircase and series of railed viewing platforms lead visitors down through all three tiers. The first tier is broad and partly hidden by trees, the second is the widest and most photographed, and the third — the bottom tier — is the tallest single drop, plunging dramatically into a clear pool. The short descent takes most people 15–20 minutes each way and is one of the most accessible waterfall experiences in the region.\n\nDuring the monsoon (June–September) the falls roar at full force, the spray drifting across the platforms, while in the drier winter months the flow is gentler but the surrounding light and greenery are at their clearest. Because it sits close to Shillong Peak and on the road back from the city\'s southern viewpoints, Elephant Falls is easy to combine with other sights into a single, rewarding day of sightseeing.',
+    shortDescription: 'A scenic three-tiered waterfall 12 km from Shillong — one of the most accessible and most visited natural attractions in Meghalaya.',
     region: 'Near Shillong',
     category: 'waterfall',
-    bestTimeToVisit: 'June to September for full water flow. October to February for pleasant weather.',
-    howToReach: '12 km from Shillong, easily accessible by taxi. Well-maintained staircase leads to the falls.',
-    travelTips: ['Wear comfortable walking shoes', 'The trail has steps — moderate fitness required', 'Visit early to avoid crowds'],
-    thingsToDo: ['Walk down to all three tiers', 'Photography at each viewing platform', 'Enjoy local snacks at stalls near the entrance'],
+    bestTimeToVisit: 'June to September for the most powerful, full-flow falls (expect spray and slippery steps). October to February offers pleasant weather, clearer light and easier walking. Early morning (entry opens around 8 AM) is best to beat the crowds.',
+    howToReach: 'Elephant Falls is 12 km south-west of Shillong, about a 30-minute drive, on the road towards Shillong Peak. Shared and private taxis run from Police Bazar; a private cab covering Elephant Falls and Shillong Peak together costs roughly ₹800–₹1,200 round trip. A small entry ticket and parking fee apply at the gate.',
+    travelTips: [
+      'Wear shoes with good grip — the stone steps get slippery in the monsoon',
+      'Visit right at opening (around 8 AM) to photograph the tiers without crowds',
+      'Carry a light raincoat in monsoon; spray reaches the lower platforms',
+      'The full descent and climb is moderate — pace yourself if you have knee issues',
+      'Pair it with Shillong Peak on the same trip, as they share the same road',
+      'Keep a small amount of cash for the entry ticket, parking and local snack stalls',
+    ],
+    thingsToDo: [
+      'Walk down to view all three tiers from the railed platforms',
+      'Photography at each viewing point, especially the widest middle tier',
+      'Watch the powerful monsoon flow from the lower deck',
+      'Enjoy hot tea and local snacks at the stalls near the entrance',
+      'Combine with a sunset visit to nearby Shillong Peak',
+    ],
     nearbyAttractions: ['Shillong Peak', 'Umiam Lake', 'Lady Hydari Park'],
     featured: true,
+    deepDive: [
+      {
+        heading: 'The three tiers of Elephant Falls',
+        body: 'Elephant Falls is really three waterfalls in one. The top tier is wide and partly screened by foliage; the middle tier fans out across the rocks and is the favourite for photos; and the bottom tier is a single tall plunge into a clear pool. A staircase with viewing decks connects all three, so even casual visitors can see the full sequence in under an hour.',
+      },
+      {
+        heading: 'Best time to photograph Elephant Falls',
+        body: 'For raw power and spray, come during the monsoon when the falls are at their loudest. For crisp, well-lit photos and dry steps, the winter months (October–February) are ideal. Either way, arrive at opening time around 8 AM — by mid-morning the platforms fill with tour groups, making clean shots harder.',
+      },
+      {
+        heading: 'Where to stay when visiting Elephant Falls',
+        body: 'Elephant Falls is a short day trip, so it is best visited from a Shillong base rather than staying nearby. XTSY Travellers Hostel in Shillong is an affordable, central option — dorms from ₹329/night — and its travel desk can arrange a half-day cab circuit covering Elephant Falls, Shillong Peak and Umiam Lake in one go.',
+      },
+    ],
+    extraFaqs: [
+      {
+        q: 'Why is it called Elephant Falls?',
+        a: 'The falls were named by British settlers after a large rock beside it that resembled an elephant. The rock was destroyed in the 1897 earthquake, but the name Elephant Falls remained.',
+      },
+      {
+        q: 'How many tiers does Elephant Falls have?',
+        a: 'Elephant Falls has three distinct tiers, each with its own railed viewing platform. The bottom tier is the tallest single drop and the middle tier is the widest and most photographed.',
+      },
+      {
+        q: 'Is there an entry fee for Elephant Falls?',
+        a: 'Yes, there is a small entry ticket and a parking fee at the gate. Carry some cash, as the descent through the tiers takes about 15–20 minutes each way along a maintained staircase.',
+      },
+    ],
   },
   {
     name: 'Laitlum Canyons',
