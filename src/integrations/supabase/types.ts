@@ -1083,6 +1083,48 @@ export type Database = {
         }
         Relationships: []
       }
+      catering_enquiries: {
+        Row: {
+          created_at: string
+          cuisine_preferences: string | null
+          email: string | null
+          event_date: string | null
+          event_type: string
+          full_name: string
+          guest_count: number | null
+          id: string
+          message: string | null
+          phone: string
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          cuisine_preferences?: string | null
+          email?: string | null
+          event_date?: string | null
+          event_type: string
+          full_name: string
+          guest_count?: number | null
+          id?: string
+          message?: string | null
+          phone: string
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          cuisine_preferences?: string | null
+          email?: string | null
+          event_date?: string | null
+          event_type?: string
+          full_name?: string
+          guest_count?: number | null
+          id?: string
+          message?: string | null
+          phone?: string
+          status?: string
+        }
+        Relationships: []
+      }
       channel_strategy: {
         Row: {
           avg_lead_time_days: number | null
@@ -2874,6 +2916,54 @@ export type Database = {
           ip_address?: string
           request_count?: number
           window_start?: string
+        }
+        Relationships: []
+      }
+      restaurant_reviews: {
+        Row: {
+          approved: boolean
+          created_at: string
+          guest_name: string
+          id: string
+          local_guide: boolean
+          owner_reply: string | null
+          photos: string[] | null
+          price_range: string | null
+          rating: number
+          review_text: string | null
+          source: string
+          verified: boolean
+          visit_type: string | null
+        }
+        Insert: {
+          approved?: boolean
+          created_at?: string
+          guest_name: string
+          id?: string
+          local_guide?: boolean
+          owner_reply?: string | null
+          photos?: string[] | null
+          price_range?: string | null
+          rating: number
+          review_text?: string | null
+          source?: string
+          verified?: boolean
+          visit_type?: string | null
+        }
+        Update: {
+          approved?: boolean
+          created_at?: string
+          guest_name?: string
+          id?: string
+          local_guide?: boolean
+          owner_reply?: string | null
+          photos?: string[] | null
+          price_range?: string | null
+          rating?: number
+          review_text?: string | null
+          source?: string
+          verified?: boolean
+          visit_type?: string | null
         }
         Relationships: []
       }
