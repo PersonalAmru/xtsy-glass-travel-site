@@ -6,6 +6,7 @@ import SEOHead from "@/components/SEOHead";
 import TabBistroHero from "@/components/tab-bistro/TabBistroHero";
 import TabBistroMenu from "@/components/tab-bistro/TabBistroMenu";
 import TabBistroBreakfast from "@/components/tab-bistro/TabBistroBreakfast";
+import TabBistroSpecials from "@/components/tab-bistro/TabBistroSpecials";
 import TabBistroDining from "@/components/tab-bistro/TabBistroDining";
 import TabBistroCatering from "@/components/tab-bistro/TabBistroCatering";
 import TabBistroFAQ from "@/components/tab-bistro/TabBistroFAQ";
@@ -38,7 +39,7 @@ const TabBistro = memo(() => (
     <SEOHead
       title="TAB Bistro — Breakfast, Rooftop Dining & Catering Shillong"
       description="TAB Bistro by XTSY — breakfast places in Shillong, rooftop café & multi-cuisine dining in the pine forests. Forest BBQ, wedding catering & events. Open 8 AM daily."
-      keywords="breakfast places in shillong, rooftop restaurants in shillong, rooftop cafe in shillong, cafe shillong, best restaurant shillong, restaurant in shillong, dining shillong, wedding catering shillong, forest dining, TAB Bistro"
+      keywords="restaurant in shillong, best restaurant shillong, multi cuisine restaurant shillong, food in shillong, food delivery shillong, online food order shillong, chinese food shillong, north indian restaurant shillong, thai food shillong, continental food shillong, italian restaurant shillong, pizza in shillong, breakfast places in shillong, rooftop restaurants in shillong, rooftop cafe in shillong, cafe shillong, dining shillong, wedding catering shillong, event catering shillong, corporate catering shillong, bulk food order shillong, party order shillong, forest dining, TAB Bistro"
       canonicalUrl="https://xtsy.one/tab-bistro"
     />
     <Helmet>
@@ -49,6 +50,7 @@ const TabBistro = memo(() => (
 
     <main className="max-w-5xl mx-auto px-4 sm:px-8 pb-20 space-y-20">
       <TabBistroMenu />
+      <TabBistroSpecials />
       <TabBistroBreakfast />
       <TabBistroDining />
       <TabBistroCatering />

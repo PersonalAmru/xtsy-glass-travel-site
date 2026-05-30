@@ -11,6 +11,10 @@ export interface MeghalayaDestination {
   thingsToDo: string[];
   nearbyAttractions: string[];
   featured?: boolean;
+  /** Optional deep-dive editorial paragraphs rendered below the overview for content depth. */
+  deepDive?: { heading: string; body: string }[];
+  /** Optional extra FAQs merged into the visible FAQ block and FAQPage schema. */
+  extraFaqs?: { q: string; a: string }[];
 }
 
 const SUPABASE_BUCKET_URL = 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Meghalaya%20things%20to%20do';
@@ -96,16 +100,58 @@ export const meghalayaDestinations: MeghalayaDestination[] = [
   {
     name: 'Umiam Lake',
     slug: 'umiam-lake',
-    description: 'Umiam Lake is one of the most beautiful landscapes in Meghalaya and serves as a scenic gateway to Shillong. Located about 15 kilometers before entering the city from Guwahati, the lake was created after the construction of the Umiam Dam in the 1960s. Surrounded by pine forests and rolling hills, the reservoir stretches across a vast area and reflects the changing colors of the sky throughout the day.\n\nTravelers often stop here during their journey to Shillong to enjoy the panoramic viewpoints overlooking the water. Early morning is especially magical when mist rises gently above the lake and the surrounding hills glow in soft sunlight.\n\nApart from its natural beauty, Umiam Lake is also a hub for water activities such as boating, kayaking, and other adventure sports. The peaceful environment combined with breathtaking scenery makes it one of the most relaxing places to visit in Meghalaya.',
-    shortDescription: 'A scenic reservoir surrounded by pine forests, perfect for boating and kayaking near Shillong.',
+    description: 'Umiam Lake, locally known as Barapani, is one of the most beautiful landscapes in Meghalaya and the scenic gateway to Shillong. Spread across roughly 220 square kilometres of catchment, the reservoir sits about 15 kilometres before the city when you arrive from Guwahati, making it the first breathtaking view most travellers get of the Khasi Hills. It was created in the 1960s after the construction of the Umiam Dam — North East India\'s first hydel power project — and is today ringed by emerald pine forests and rolling hills that mirror the changing colours of the sky.\n\nMost travellers stop at the lakeside viewpoints to photograph the still blue water against the pines, but Umiam rewards those who linger. Early morning is genuinely magical: mist rises gently off the surface while the surrounding hills glow in soft gold light, and the water is calm enough for reflections. By afternoon the breeze picks up and the lake turns into one of the best spots near Shillong for boating, kayaking, water scooters and other adventure water sports run from the state water-sports complex.\n\nBecause it is so close to the city, Umiam Lake works equally well as a quick half-day trip from a Shillong base or as a relaxed first or last stop on a longer Meghalaya itinerary. Sunset over Barapani — when the sky burns orange and the dam lights flicker on — is one of those quiet, unhurried experiences that defines a trip to the hills.',
+    shortDescription: 'A scenic reservoir (Barapani) surrounded by pine forests, perfect for boating, kayaking and sunset viewpoints near Shillong.',
     region: 'Near Shillong',
     category: 'lake',
-    bestTimeToVisit: 'October to May for clear skies and pleasant weather. Early mornings offer the best mist views.',
-    howToReach: 'Located 15 km from Shillong on the Guwahati-Shillong Highway. Taxis and shared cabs are readily available.',
-    travelTips: ['Visit early morning for misty lake views', 'Carry a light jacket as it gets windy', 'Try kayaking or boating at the water sports complex'],
-    thingsToDo: ['Boating and kayaking', 'Photography at sunset viewpoints', 'Picnic along the lakeshore', 'Visit the orchid garden nearby'],
+    bestTimeToVisit: 'October to May for clear blue skies, pleasant weather and the best reflections. Early mornings (6–8 AM) offer misty, crowd-free views; sunset is best for photography. Monsoon (June–September) turns the surrounding hills lush green but skies can be overcast.',
+    howToReach: 'Umiam Lake is 15 km north of Shillong on the Guwahati–Shillong Highway (NH6), about a 30–40 minute drive. Shared sumos and taxis run frequently from Police Bazar; a private cab costs roughly ₹600–₹900 round trip. From Guwahati it is around 2.5 hours by road, so it is an easy first stop on arrival.',
+    travelTips: [
+      'Visit between 6–8 AM for misty water and reflections before tour buses arrive',
+      'Carry a light jacket or windbreaker — it gets breezy by the water in the afternoon',
+      'Book boating or kayaking at the Orchid Lake Resort / state water-sports complex',
+      'Weekdays are far quieter than weekends, when Shillong locals visit',
+      'Combine Umiam with Shillong Peak and Elephant Falls for a full sightseeing day',
+      'Sunset viewpoints near the dam are the most photogenic — arrive 45 minutes early',
+    ],
+    thingsToDo: [
+      'Boating, kayaking and pedal-boating on the reservoir',
+      'Water scooter and speedboat rides at the water-sports complex',
+      'Photography at the sunrise and sunset viewpoints',
+      'Lakeside picnic among the pine groves',
+      'Visit the nearby orchid garden and lakeside cafés',
+      'Cycling and short nature walks along the shoreline',
+    ],
     nearbyAttractions: ['Shillong Peak', 'Elephant Falls', 'Don Bosco Museum'],
     featured: true,
+    deepDive: [
+      {
+        heading: 'Why Umiam Lake is worth a stop',
+        body: 'Umiam (Barapani) is the largest artificial lake in Meghalaya and acts as a natural welcome to the state. Unlike crowded waterfalls, the lake offers space to slow down — wide-open water, pine-scented air and uninterrupted hill views. It is one of the few spots near Shillong where you can combine gentle adventure (boating, kayaking) with pure relaxation, which is why it suits families, couples and solo travellers alike.',
+      },
+      {
+        heading: 'Boating and water sports at Umiam',
+        body: 'The state water-sports complex on the lake runs paddle boats, kayaks, water scooters and speedboat rides through most of the year, with sessions typically priced between ₹300 and ₹800 depending on the craft. Mornings have the calmest water; afternoons are livelier with a steady breeze. Life jackets are provided, and the calmer coves make it beginner-friendly. Always confirm operating hours, especially during peak monsoon when rides may pause.',
+      },
+      {
+        heading: 'Where to stay near Umiam Lake',
+        body: 'There is no need to find a stay right on the lake. Umiam is only 15 km from Shillong, so most travellers base themselves in the city and visit Umiam as a half-day trip. XTSY Travellers Hostel in Shillong is an affordable, well-located base — dorms from ₹329/night — with a travel desk that can arrange a cab to Umiam, Shillong Peak and Elephant Falls in a single circuit.',
+      },
+    ],
+    extraFaqs: [
+      {
+        q: 'What is Umiam Lake also known as?',
+        a: 'Umiam Lake is locally called Barapani, which means "big water" in the local language. It was formed by the Umiam Dam, North East India\'s first hydroelectric power project, built in the 1960s.',
+      },
+      {
+        q: 'Is boating available at Umiam Lake?',
+        a: 'Yes. The state water-sports complex at Umiam offers paddle boats, kayaks, water scooters and speedboat rides, typically priced between ₹300 and ₹800. Mornings have the calmest water and life jackets are provided.',
+      },
+      {
+        q: 'How far is Umiam Lake from Shillong and Guwahati?',
+        a: 'Umiam Lake is about 15 km (30–40 minutes) north of Shillong on NH6, and roughly 2.5 hours by road from Guwahati, making it an ideal first or last stop on a Meghalaya trip.',
+      },
+    ],
   },
   {
     name: 'Shillong Peak',
@@ -124,16 +170,57 @@ export const meghalayaDestinations: MeghalayaDestination[] = [
   {
     name: 'Elephant Falls',
     slug: 'elephant-falls',
-    description: 'Elephant Falls is one of the most famous waterfalls near Shillong and a popular attraction for travelers exploring the Khasi Hills. The waterfall consists of three distinct tiers that cascade through lush green vegetation and rocky cliffs.\n\nVisitors can walk down a staircase trail that leads to different viewing platforms, each offering a unique perspective of the waterfall. During the monsoon season the falls become especially powerful as water rushes down the cliffs surrounded by dense forest.\n\nBecause of its accessibility and scenic surroundings, Elephant Falls remains one of the most visited natural attractions near Shillong.',
-    shortDescription: 'A three-tiered waterfall near Shillong, one of the most visited natural attractions in Meghalaya.',
+    description: 'Elephant Falls is the most famous waterfall near Shillong and one of the most visited natural attractions in all of Meghalaya. Tucked into the Khasi Hills about 12 kilometres from the city centre, the falls cascade through three distinct tiers, each framed by moss-covered rocks and dense, dripping forest. The name comes from a colonial-era stone beside the falls that resembled an elephant — it was later destroyed in the 1897 earthquake, but the name stuck.\n\nA well-maintained staircase and series of railed viewing platforms lead visitors down through all three tiers. The first tier is broad and partly hidden by trees, the second is the widest and most photographed, and the third — the bottom tier — is the tallest single drop, plunging dramatically into a clear pool. The short descent takes most people 15–20 minutes each way and is one of the most accessible waterfall experiences in the region.\n\nDuring the monsoon (June–September) the falls roar at full force, the spray drifting across the platforms, while in the drier winter months the flow is gentler but the surrounding light and greenery are at their clearest. Because it sits close to Shillong Peak and on the road back from the city\'s southern viewpoints, Elephant Falls is easy to combine with other sights into a single, rewarding day of sightseeing.',
+    shortDescription: 'A scenic three-tiered waterfall 12 km from Shillong — one of the most accessible and most visited natural attractions in Meghalaya.',
     region: 'Near Shillong',
     category: 'waterfall',
-    bestTimeToVisit: 'June to September for full water flow. October to February for pleasant weather.',
-    howToReach: '12 km from Shillong, easily accessible by taxi. Well-maintained staircase leads to the falls.',
-    travelTips: ['Wear comfortable walking shoes', 'The trail has steps — moderate fitness required', 'Visit early to avoid crowds'],
-    thingsToDo: ['Walk down to all three tiers', 'Photography at each viewing platform', 'Enjoy local snacks at stalls near the entrance'],
+    bestTimeToVisit: 'June to September for the most powerful, full-flow falls (expect spray and slippery steps). October to February offers pleasant weather, clearer light and easier walking. Early morning (entry opens around 8 AM) is best to beat the crowds.',
+    howToReach: 'Elephant Falls is 12 km south-west of Shillong, about a 30-minute drive, on the road towards Shillong Peak. Shared and private taxis run from Police Bazar; a private cab covering Elephant Falls and Shillong Peak together costs roughly ₹800–₹1,200 round trip. A small entry ticket and parking fee apply at the gate.',
+    travelTips: [
+      'Wear shoes with good grip — the stone steps get slippery in the monsoon',
+      'Visit right at opening (around 8 AM) to photograph the tiers without crowds',
+      'Carry a light raincoat in monsoon; spray reaches the lower platforms',
+      'The full descent and climb is moderate — pace yourself if you have knee issues',
+      'Pair it with Shillong Peak on the same trip, as they share the same road',
+      'Keep a small amount of cash for the entry ticket, parking and local snack stalls',
+    ],
+    thingsToDo: [
+      'Walk down to view all three tiers from the railed platforms',
+      'Photography at each viewing point, especially the widest middle tier',
+      'Watch the powerful monsoon flow from the lower deck',
+      'Enjoy hot tea and local snacks at the stalls near the entrance',
+      'Combine with a sunset visit to nearby Shillong Peak',
+    ],
     nearbyAttractions: ['Shillong Peak', 'Umiam Lake', 'Lady Hydari Park'],
     featured: true,
+    deepDive: [
+      {
+        heading: 'The three tiers of Elephant Falls',
+        body: 'Elephant Falls is really three waterfalls in one. The top tier is wide and partly screened by foliage; the middle tier fans out across the rocks and is the favourite for photos; and the bottom tier is a single tall plunge into a clear pool. A staircase with viewing decks connects all three, so even casual visitors can see the full sequence in under an hour.',
+      },
+      {
+        heading: 'Best time to photograph Elephant Falls',
+        body: 'For raw power and spray, come during the monsoon when the falls are at their loudest. For crisp, well-lit photos and dry steps, the winter months (October–February) are ideal. Either way, arrive at opening time around 8 AM — by mid-morning the platforms fill with tour groups, making clean shots harder.',
+      },
+      {
+        heading: 'Where to stay when visiting Elephant Falls',
+        body: 'Elephant Falls is a short day trip, so it is best visited from a Shillong base rather than staying nearby. XTSY Travellers Hostel in Shillong is an affordable, central option — dorms from ₹329/night — and its travel desk can arrange a half-day cab circuit covering Elephant Falls, Shillong Peak and Umiam Lake in one go.',
+      },
+    ],
+    extraFaqs: [
+      {
+        q: 'Why is it called Elephant Falls?',
+        a: 'The falls were named by British settlers after a large rock beside it that resembled an elephant. The rock was destroyed in the 1897 earthquake, but the name Elephant Falls remained.',
+      },
+      {
+        q: 'How many tiers does Elephant Falls have?',
+        a: 'Elephant Falls has three distinct tiers, each with its own railed viewing platform. The bottom tier is the tallest single drop and the middle tier is the widest and most photographed.',
+      },
+      {
+        q: 'Is there an entry fee for Elephant Falls?',
+        a: 'Yes, there is a small entry ticket and a parking fee at the gate. Carry some cash, as the descent through the tiers takes about 15–20 minutes each way along a maintained staircase.',
+      },
+    ],
   },
   {
     name: 'Laitlum Canyons',

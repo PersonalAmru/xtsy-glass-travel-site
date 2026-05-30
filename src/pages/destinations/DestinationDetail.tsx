@@ -45,6 +45,8 @@ const DestinationDetail = () => {
       q: `What are the top things to do at ${destination.name}?`,
       a: `Popular things to do at ${destination.name} include ${topThings}. ${destination.shortDescription}`,
     },
+    // Destination-specific extra FAQs (deep content for high-priority pages)
+    ...(destination.extraFaqs ?? []),
     {
       q: `Where can I stay near ${destination.name}?`,
       a: `XTSY Travellers Hostel in Shillong is an affordable, well-located base for exploring ${destination.name} and the rest of ${destination.region}, with dorms from ₹329/night and curated Meghalaya tours that cover the region's top sights.`,
@@ -131,6 +133,18 @@ const DestinationDetail = () => {
               {destination.description}
             </div>
           </section>
+
+          {/* Deep-dive editorial sections (content depth for priority pages) */}
+          {destination.deepDive && destination.deepDive.length > 0 && (
+            <section className="space-y-8">
+              {destination.deepDive.map((block, i) => (
+                <div key={i}>
+                  <h2 className="text-2xl font-bold text-foreground">{block.heading}</h2>
+                  <p className="mt-3 text-muted-foreground leading-relaxed whitespace-pre-line">{block.body}</p>
+                </div>
+              ))}
+            </section>
+          )}
 
           {/* Gallery */}
           <section>
