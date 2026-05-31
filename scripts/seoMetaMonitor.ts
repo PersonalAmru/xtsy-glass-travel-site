@@ -222,6 +222,7 @@ async function main() {
 
   const failed = results.filter((r) => r.errors.length > 0);
   const softs = results.filter((r) => r.softNotFound);
+  const hreflangProblems = results.filter((r) => r.hreflangIssues.length > 0);
 
   // Write reports
   fs.mkdirSync(path.resolve(OUT_DIR), { recursive: true });
