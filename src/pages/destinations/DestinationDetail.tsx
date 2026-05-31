@@ -22,8 +22,15 @@ const DestinationDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const destination = slug ? getDestinationBySlug(slug) : null;
 
-  // 410 Gone — slug explicitly retired (drops from index faster than 404).
-  if (slug && GONE_SLUGS.has(slug)) {
+  // Runtime 410 escalation: an admin can flag /places-to-visit/<slug> as Gone
+  // in Supabase (seo_redirects) without a redeploy. Hook must run every render.
+  const runtimeStatus = useGoneStatus(
+    `/places-to-visit/${slug ?? ''}`,
+    slug && GONE_SLUGS.has(slug) ? 410 : 404,
+  );
+
+  // 410 Gone — slug explicitly retired (compile-time list or runtime flag).
+  if ((slug && GONE_SLUGS.has(slug)) || runtimeStatus === 410) {
     return <NotFound statusCode={410} />;
   }
 
