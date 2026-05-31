@@ -42,7 +42,7 @@ export function generateProductionSecurityHeaders(config: SecurityConfig = {}) {
       // Images: Google tracking pixels + general https
       "img-src 'self' data: https: blob: https://www.google-analytics.com https://www.googletagmanager.com https://www.google.com https://www.google.co.in https://googleads.g.doubleclick.net https://www.gstatic.com https://ssl.gstatic.com",
       // Connect: Analytics endpoints + Supabase
-      `connect-src 'self' ${allowedDomains} wss://*.supabase.co https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com https://pagead2.googlesyndication.com`,
+      `connect-src 'self' ${allowedDomains} wss://*.supabase.co https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com https://pagead2.googlesyndication.com https://t.contentsquare.net https://*.contentsquare.net https://*.hotjar.com https://*.hotjar.io`,
       // Frames: GTM preview/debug mode
       "frame-src 'self' https://www.googletagmanager.com https://td.doubleclick.net",
       "object-src 'none'",
