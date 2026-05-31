@@ -113,6 +113,30 @@ function analyze(url: string, status: number, html: string): PageResult {
 
   const h1Count = (html.match(/<h1[\b>]/gi) || html.match(/<h1[ >]/gi) || []).length;
 
+  // hreflang / alternate-language consistency.
+  const hreflangTags = html.match(/<link[^>]+rel=["']alternate["'][^>]*hreflang=["'][^"']+["'][^>]*>/gi) || [];
+  const hreflangLangs = hreflangTags
+    .map((t) => (t.match(/hreflang=["']([^"']+)["']/i) || [])[1]?.toLowerCase())
+    .filter(Boolean) as string[];
+  const hreflangCount = hreflangLangs.length;
+  const hreflangIssues: string[] = [];
+  if (hreflangCount > 0) {
+    // Inconsistencies only matter when hreflang is actually declared.
+    if (!hreflangLangs.includes('x-default')) {
+      hreflangIssues.push('hreflang present but missing x-default');
+    }
+    const dupes = hreflangLangs.filter((l, i) => hreflangLangs.indexOf(l) !== i);
+    if (dupes.length) {
+      hreflangIssues.push(`duplicate hreflang values (${[...new Set(dupes)].join(', ')})`);
+    }
+    const hasSelf = hreflangTags.some((t) => {
+      const href = (t.match(/href=["']([^"']+)["']/i) || [])[1];
+      return href && (href === url || href.replace(/\/$/, '') === url.replace(/\/$/, ''));
+    });
+    if (!hasSelf) hreflangIssues.push('hreflang set has no self-referential entry');
+  }
+
+
   const prerenderStatus = html.match(
     /<meta[^>]+name=["']prerender-status-code["'][^>]*content=["'](\d+)["']/i
   );
