@@ -86,6 +86,35 @@ jobs:
           path: dist/seo-reports/
 
   # ────────────────────────────────────────────────────────────────
+  # 2b. Post-deploy SEO meta + soft-404 monitor (live)
+  #     Alerts (fails the gate + writes a job summary) when an indexable
+  #     URL renders a soft-404 or is missing title/description/canonical/h1.
+  # ────────────────────────────────────────────────────────────────
+  seo-meta-monitor:
+    name: SEO Meta + Soft-404 Monitor (live)
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    needs: sitemap-diff
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+      - run: npm ci --prefer-offline --no-audit
+      - name: Wait 60s for Lovable deploy to propagate
+        run: sleep 60
+      - name: Run SEO meta + soft-404 monitor
+        env:
+          BASE_URL: ${{ github.event.inputs.base_url || 'https://xtsy.one' }}
+        run: npx tsx scripts/seoMetaMonitor.ts --base "$BASE_URL"
+      - name: Upload monitor report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-meta-monitor-${{ github.run_id }}
+          path: dist/seo-reports/
+
+  # ────────────────────────────────────────────────────────────────
   # 3. Lighthouse Core Web Vitals — budgets enforced via .lighthouserc.cjs
   # ────────────────────────────────────────────────────────────────
   lighthouse:
