@@ -165,6 +165,7 @@ function analyze(url: string, status: number, html: string): PageResult {
   if (canonicalCount > 1) warnings.push(`multiple canonical tags (${canonicalCount})`);
   if (h1Count === 0) warnings.push('h1 not in raw HTML (JS-injected)');
   if (h1Count > 1) warnings.push(`multiple h1 (${h1Count})`);
+  for (const issue of hreflangIssues) warnings.push(issue);
 
   return {
     url,
@@ -174,6 +175,8 @@ function analyze(url: string, status: number, html: string): PageResult {
     hasDescription,
     canonicalCount,
     h1Count,
+    hreflangCount,
+    hreflangIssues,
     errors,
     warnings,
   };
