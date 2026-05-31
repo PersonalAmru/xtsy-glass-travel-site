@@ -13,21 +13,27 @@ Deno.serve(async (req) => {
     const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-    // Verify admin authorization
+    // SECURITY: Admin authorization is REQUIRED. A missing/invalid token must
+    // never be allowed to reach the sensitive revenue/booking/traveller data.
     const authHeader = req.headers.get('Authorization');
-    if (authHeader) {
-      const token = authHeader.replace('Bearer ', '');
-      const userClient = createClient(supabaseUrl, Deno.env.get('SUPABASE_ANON_KEY')!, {
-        global: { headers: { Authorization: `Bearer ${token}` } },
-      });
-      
-      const { data: roleCheck } = await userClient.rpc('get_user_role');
-      if (roleCheck !== 'admin') {
-        return new Response(
-          JSON.stringify({ error: 'Admin access required' }),
-          { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 403 }
-        );
-      }
+    if (!authHeader?.startsWith('Bearer ')) {
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized' }),
+        { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 401 }
+      );
+    }
+
+    const token = authHeader.replace('Bearer ', '');
+    const userClient = createClient(supabaseUrl, Deno.env.get('SUPABASE_ANON_KEY')!, {
+      global: { headers: { Authorization: `Bearer ${token}` } },
+    });
+
+    const { data: roleCheck, error: roleError } = await userClient.rpc('get_user_role');
+    if (roleError || roleCheck !== 'admin') {
+      return new Response(
+        JSON.stringify({ error: 'Admin access required' }),
+        { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 403 }
+      );
     }
 
     const url = new URL(req.url);
