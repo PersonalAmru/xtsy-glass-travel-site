@@ -77,6 +77,7 @@ const Index = memo(() => {
     priceRange: '₹329 - ₹4,999',
     starRating: { '@type': 'Rating', ratingValue: '4.8' },
     aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.8', reviewCount: '320', bestRating: '5' },
+    review: reviewSchemaItems,
     checkinTime: '13:00',
     checkoutTime: '11:00',
     numberOfRooms: 20,
