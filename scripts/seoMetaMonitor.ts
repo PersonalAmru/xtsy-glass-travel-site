@@ -117,15 +117,19 @@ function analyze(url: string, status: number, html: string): PageResult {
       hasNoindex ||
       looksNotFound);
 
-  // A URL listed in a sitemap should be a real, indexable 200.
+  // Blocking: real index-damaging problems detectable in raw (no-JS) HTML.
   if (status >= 400) errors.push(`HTTP ${status}`);
   if (softNotFound) errors.push('SOFT-404 (indexable URL renders not-found)');
   if (!hasTitle) errors.push('missing <title>');
   if (!hasDescription) errors.push('missing meta description');
-  if (canonicalCount === 0) errors.push('missing canonical');
-  if (canonicalCount > 1) errors.push(`duplicate canonical (${canonicalCount})`);
-  if (h1Count === 0) errors.push('missing <h1>');
-  if (h1Count > 1) errors.push(`duplicate <h1> (${h1Count})`);
+
+  // Non-blocking warnings: canonical + h1 are injected client-side via
+  // react-helmet, so a no-JS fetch can under/over-count them. Report only.
+  const warnings: string[] = [];
+  if (canonicalCount === 0) warnings.push('canonical not in raw HTML (JS-injected)');
+  if (canonicalCount > 1) warnings.push(`multiple canonical tags (${canonicalCount})`);
+  if (h1Count === 0) warnings.push('h1 not in raw HTML (JS-injected)');
+  if (h1Count > 1) warnings.push(`multiple h1 (${h1Count})`);
 
   return {
     url,
@@ -136,6 +140,7 @@ function analyze(url: string, status: number, html: string): PageResult {
     canonicalCount,
     h1Count,
     errors,
+    warnings,
   };
 }
 
