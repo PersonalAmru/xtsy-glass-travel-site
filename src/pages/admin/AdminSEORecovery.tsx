@@ -28,6 +28,7 @@ import {
   RECOVERY_REDIRECTS,
 } from '@/data/seoAffectedSlugs';
 import { ALL_SEO_PAGES } from '@/data/seoPages';
+import { meghalayaDestinations } from '@/data/meghalayaDestinations';
 import { isResolvable } from '@/utils/seoSlugRegistry';
 import { supabase } from '@/integrations/supabase/client';
 import {
@@ -324,11 +325,120 @@ const AdminSEORecovery = () => {
           </table>
         </AppleCard>
 
+        {/* Destination 410 Gone toggles */}
+        <AppleSectionHeader title="Destination 410 Gone" subtitle="Mark a destination guide as permanently removed — escalates to a 410 on /places-to-visit/<slug>" />
+        <DestinationGoneManager />
+
         {/* UI-driven redirect map */}
         <AppleSectionHeader title="Redirect Map" subtitle="UI-managed 301/410 redirects, applied at the edge" />
         <RedirectsManager redirects={redirects} onChange={loadData} />
       </div>
     </UnifiedAdminLayout>
+  );
+};
+
+// ── Destination 410 Gone manager ──
+const DestinationGoneManager = () => {
+  const [goneSlugs, setGoneSlugs] = useState<Set<string>>(new Set());
+  const [loading, setLoading] = useState(true);
+  const [busy, setBusy] = useState<string | null>(null);
+  const [query, setQuery] = useState('');
+
+  const load = useCallback(async () => {
+    setLoading(true);
+    const { data } = await supabase
+      .from('seo_redirects')
+      .select('source_path, status_code, is_active')
+      .eq('status_code', 410)
+      .eq('is_active', true);
+    const set = new Set<string>();
+    (data || []).forEach((r: any) => {
+      const m = String(r.source_path).match(/^\/places-to-visit\/(.+)$/);
+      if (m) set.add(m[1]);
+    });
+    setGoneSlugs(set);
+    setLoading(false);
+  }, []);
+
+  useEffect(() => { load(); }, [load]);
+
+  const toggle = async (slug: string, gone: boolean) => {
+    setBusy(slug);
+    const source = `/places-to-visit/${slug}`;
+    if (gone) {
+      const { error } = await supabase
+        .from('seo_redirects')
+        .upsert(
+          { source_path: source, target_path: source, status_code: 410, is_active: true, notes: 'Destination retired via admin toggle' },
+          { onConflict: 'source_path' },
+        );
+      if (error) toast.error(`Failed: ${error.message}`);
+      else toast.success(`${slug} marked 410 Gone`);
+    } else {
+      const { error } = await supabase
+        .from('seo_redirects')
+        .update({ is_active: false })
+        .eq('source_path', source);
+      if (error) toast.error(`Failed: ${error.message}`);
+      else toast.success(`${slug} restored (live)`);
+    }
+    await load();
+    setBusy(null);
+  };
+
+  const list = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return meghalayaDestinations
+      .filter((d) => !q || d.name.toLowerCase().includes(q) || d.slug.includes(q))
+      .sort((a, b) => a.name.localeCompare(b.name));
+  }, [query]);
+
+  return (
+    <AppleCard className="p-4 space-y-4">
+      <div className="flex items-center justify-between gap-3 flex-wrap">
+        <p className="text-sm text-muted-foreground">
+          {goneSlugs.size} destination{goneSlugs.size === 1 ? '' : 's'} marked Gone
+        </p>
+        <Input
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search destinations…"
+          className="max-w-xs"
+        />
+      </div>
+      {loading ? (
+        <p className="text-sm text-muted-foreground">Loading…</p>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+          {list.map((d) => {
+            const gone = goneSlugs.has(d.slug);
+            return (
+              <div key={d.slug} className="flex items-center justify-between gap-2 rounded-lg border border-border/40 px-3 py-2">
+                <div className="min-w-0">
+                  <div className="text-sm font-medium truncate">{d.name}</div>
+                  <a
+                    href={`/places-to-visit/${d.slug}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-muted-foreground hover:underline truncate block"
+                  >
+                    /places-to-visit/{d.slug}
+                  </a>
+                </div>
+                <div className="flex items-center gap-2 shrink-0">
+                  {gone && <Badge variant="destructive" className="text-[10px]">410</Badge>}
+                  {busy === d.slug ? (
+                    <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
+                  ) : (
+                    <Switch checked={gone} onCheckedChange={(v) => toggle(d.slug, v)} />
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </AppleCard>
   );
 };
 

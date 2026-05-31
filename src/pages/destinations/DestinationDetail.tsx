@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import NotFound from '@/pages/NotFound';
 import { GONE_SLUGS } from '@/data/seoGoneSlugs';
+import { useGoneStatus } from '@/hooks/useGoneStatus';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -21,8 +22,15 @@ const DestinationDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const destination = slug ? getDestinationBySlug(slug) : null;
 
-  // 410 Gone — slug explicitly retired (drops from index faster than 404).
-  if (slug && GONE_SLUGS.has(slug)) {
+  // Runtime 410 escalation: an admin can flag /places-to-visit/<slug> as Gone
+  // in Supabase (seo_redirects) without a redeploy. Hook must run every render.
+  const runtimeStatus = useGoneStatus(
+    `/places-to-visit/${slug ?? ''}`,
+    slug && GONE_SLUGS.has(slug) ? 410 : 404,
+  );
+
+  // 410 Gone — slug explicitly retired (compile-time list or runtime flag).
+  if ((slug && GONE_SLUGS.has(slug)) || runtimeStatus === 410) {
     return <NotFound statusCode={410} />;
   }
 
@@ -83,11 +91,22 @@ const DestinationDetail = () => {
 
   const structuredData = {
     '@context': 'https://schema.org',
-    '@type': 'TouristDestination',
+    '@type': 'TouristAttraction',
     name: destination.name,
     description: destination.shortDescription,
+    url: `https://xtsy.one/places-to-visit/${destination.slug}`,
     touristType: [destination.category],
-    geo: { '@type': 'GeoCoordinates' },
+    isAccessibleForFree: true,
+    publicAccess: true,
+    address: {
+      '@type': 'PostalAddress',
+      addressRegion: 'Meghalaya',
+      addressCountry: 'IN',
+    },
+    containedInPlace: {
+      '@type': 'Place',
+      name: `${destination.region}, Meghalaya`,
+    },
     image: images.map(img => ({
       '@type': 'ImageObject',
       url: img.src,

@@ -73,13 +73,69 @@ const TourDetail = () => {
     { q: "Can I customize this itinerary?", a: "Yes! We offer private tours with customizable itineraries. Contact us on WhatsApp to discuss." },
   ];
 
+  const tourUrl = `https://xtsy.one/tours/${slug}`;
+  const numericPrice = parseInt(tour.price.replace(/[^\d]/g, '')) || undefined;
+
+  // TouristTrip schema (with Offer) for tour rich results, plus breadcrumb.
+  // No aggregateRating is emitted because there is no per-tour review count —
+  // fabricating one would violate review/rich-result integrity guidelines.
+  const tourSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'TouristTrip',
+    name: tour.title,
+    description: tour.description,
+    image: images,
+    url: tourUrl,
+    touristType: tour.category,
+    ...(tour.itinerary?.length
+      ? {
+          itinerary: {
+            '@type': 'ItemList',
+            numberOfItems: tour.itinerary.length,
+            itemListElement: tour.itinerary.map((day, i) => ({
+              '@type': 'ListItem',
+              position: i + 1,
+              name: day.title,
+            })),
+          },
+        }
+      : {}),
+    provider: {
+      '@type': 'TravelAgency',
+      name: 'XTSY Travel',
+      url: 'https://xtsy.one/tours',
+    },
+    ...(numericPrice
+      ? {
+          offers: {
+            '@type': 'Offer',
+            price: numericPrice,
+            priceCurrency: 'INR',
+            availability: 'https://schema.org/InStock',
+            url: tourUrl,
+          },
+        }
+      : {}),
+  };
+
+  const tourBreadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://xtsy.one/' },
+      { '@type': 'ListItem', position: 2, name: 'Tours', item: 'https://xtsy.one/tours' },
+      { '@type': 'ListItem', position: 3, name: tour.title, item: tourUrl },
+    ],
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEOHead
         title={`${tour.title} — XTSY Travel | ${tour.location}`}
         description={tour.description}
         keywords={`${tour.title}, ${tour.location} tour, ${tour.category} tour, XTSY Travel`}
-        canonicalUrl={`https://xtsy.one/tours/${slug}`}
+        canonicalUrl={tourUrl}
+        structuredData={[tourSchema, tourBreadcrumb]}
       />
       <Header />
 

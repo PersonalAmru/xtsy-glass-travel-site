@@ -51,8 +51,10 @@ interface PageResult {
   hasDescription: boolean;
   canonicalCount: number;
   h1Count: number;
+  hreflangCount: number;
+  hreflangIssues: string[]; // non-blocking — reported as warnings
   errors: string[]; // blocking — fail the gate
-  warnings: string[]; // non-blocking (canonical/h1 are JS-injected via helmet)
+  warnings: string[]; // non-blocking (canonical/h1/hreflang are JS-injected via helmet)
 }
 
 function readSitemapLocs(): string[] {
@@ -111,6 +113,30 @@ function analyze(url: string, status: number, html: string): PageResult {
 
   const h1Count = (html.match(/<h1[\b>]/gi) || html.match(/<h1[ >]/gi) || []).length;
 
+  // hreflang / alternate-language consistency.
+  const hreflangTags = html.match(/<link[^>]+rel=["']alternate["'][^>]*hreflang=["'][^"']+["'][^>]*>/gi) || [];
+  const hreflangLangs = hreflangTags
+    .map((t) => (t.match(/hreflang=["']([^"']+)["']/i) || [])[1]?.toLowerCase())
+    .filter(Boolean) as string[];
+  const hreflangCount = hreflangLangs.length;
+  const hreflangIssues: string[] = [];
+  if (hreflangCount > 0) {
+    // Inconsistencies only matter when hreflang is actually declared.
+    if (!hreflangLangs.includes('x-default')) {
+      hreflangIssues.push('hreflang present but missing x-default');
+    }
+    const dupes = hreflangLangs.filter((l, i) => hreflangLangs.indexOf(l) !== i);
+    if (dupes.length) {
+      hreflangIssues.push(`duplicate hreflang values (${[...new Set(dupes)].join(', ')})`);
+    }
+    const hasSelf = hreflangTags.some((t) => {
+      const href = (t.match(/href=["']([^"']+)["']/i) || [])[1];
+      return href && (href === url || href.replace(/\/$/, '') === url.replace(/\/$/, ''));
+    });
+    if (!hasSelf) hreflangIssues.push('hreflang set has no self-referential entry');
+  }
+
+
   const prerenderStatus = html.match(
     /<meta[^>]+name=["']prerender-status-code["'][^>]*content=["'](\d+)["']/i
   );
@@ -139,6 +165,7 @@ function analyze(url: string, status: number, html: string): PageResult {
   if (canonicalCount > 1) warnings.push(`multiple canonical tags (${canonicalCount})`);
   if (h1Count === 0) warnings.push('h1 not in raw HTML (JS-injected)');
   if (h1Count > 1) warnings.push(`multiple h1 (${h1Count})`);
+  for (const issue of hreflangIssues) warnings.push(issue);
 
   return {
     url,
@@ -148,6 +175,8 @@ function analyze(url: string, status: number, html: string): PageResult {
     hasDescription,
     canonicalCount,
     h1Count,
+    hreflangCount,
+    hreflangIssues,
     errors,
     warnings,
   };
@@ -180,6 +209,8 @@ async function main() {
             hasDescription: false,
             canonicalCount: 0,
             h1Count: 0,
+            hreflangCount: 0,
+            hreflangIssues: [],
             errors: [`fetch failed: ${(e as Error).message}`],
             warnings: [],
           } as PageResult;
@@ -191,6 +222,7 @@ async function main() {
 
   const failed = results.filter((r) => r.errors.length > 0);
   const softs = results.filter((r) => r.softNotFound);
+  const hreflangProblems = results.filter((r) => r.hreflangIssues.length > 0);
 
   // Write reports
   fs.mkdirSync(path.resolve(OUT_DIR), { recursive: true });
@@ -201,11 +233,44 @@ async function main() {
 
   console.log(`\n✅ Clean: ${results.length - failed.length}/${results.length}`);
   console.log(`⚠️  Soft-404s: ${softs.length}`);
+  console.log(`🌐 hreflang issues: ${hreflangProblems.length}`);
   console.log(`❌ Pages with issues: ${failed.length}`);
   for (const r of failed.slice(0, 50)) {
     console.log(`   - ${r.url}  [${r.status}]  ${r.errors.join(', ')}`);
   }
+  for (const r of hreflangProblems.slice(0, 30)) {
+    console.log(`   🌐 ${r.url}  ${r.hreflangIssues.join('; ')}`);
+  }
   if (failed.length > 50) console.log(`   ...and ${failed.length - 50} more`);
+
+  // Dispatch a Slack/email alert via the seo-monitor-alert edge function when
+  // anything actionable is detected. Endpoint + token are supplied by CI env.
+  const ALERT_ENDPOINT = argVal('--alert-endpoint', process.env.SEO_ALERT_ENDPOINT);
+  if (ALERT_ENDPOINT && (failed.length > 0 || hreflangProblems.length > 0)) {
+    try {
+      const token = process.env.SEO_ALERT_TOKEN || '';
+      await fetch(ALERT_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { Authorization: `Bearer ${token}`, apikey: token } : {}),
+        },
+        body: JSON.stringify({
+          base: BASE,
+          checked: results.length,
+          softCount: softs.length,
+          failedCount: failed.length,
+          hreflangCount: hreflangProblems.length,
+          failures: failed.slice(0, 25).map((r) => ({ url: r.url, status: r.status, issues: r.errors })),
+          hreflangIssues: hreflangProblems.slice(0, 25).map((r) => ({ url: r.url, issues: r.hreflangIssues })),
+          generatedAt: new Date().toISOString(),
+        }),
+      });
+      console.log('📣 Alert dispatched to seo-monitor-alert.');
+    } catch (e) {
+      console.error('Alert dispatch failed (non-fatal):', (e as Error).message);
+    }
+  }
 
   // GitHub Actions job summary (the "alert")
   if (process.env.GITHUB_STEP_SUMMARY) {
