@@ -39,20 +39,9 @@ const TourDetail = () => {
   }, [slug]);
 
   if (!tour) {
-    return (
-      <div className="min-h-screen flex flex-col bg-background">
-        <Header />
-        <div className="flex-1 flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-2xl font-bold text-white mb-4">Tour Not Found</h1>
-            <Button onClick={() => navigate("/tours")} variant="outline">
-              Back to Tours
-            </Button>
-          </div>
-        </div>
-        <Footer />
-      </div>
-    );
+    // Unknown tour slug → proper 404 (NotFound emits prerender-status-code
+    // 404 + noindex) instead of a soft-404 200 page.
+    return <NotFound />;
   }
 
   const images = tour.images?.length ? [tour.image, ...tour.images] : [tour.image];
