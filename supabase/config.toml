@@ -70,6 +70,9 @@ verify_jwt = true
 [functions.preview-transactional-email]
 verify_jwt = false
 
+[functions.cs-proxy]
+verify_jwt = false
+
 [functions.handle-email-unsubscribe]
 verify_jwt = false
 
