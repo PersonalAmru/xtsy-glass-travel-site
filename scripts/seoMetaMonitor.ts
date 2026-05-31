@@ -51,8 +51,10 @@ interface PageResult {
   hasDescription: boolean;
   canonicalCount: number;
   h1Count: number;
+  hreflangCount: number;
+  hreflangIssues: string[]; // non-blocking — reported as warnings
   errors: string[]; // blocking — fail the gate
-  warnings: string[]; // non-blocking (canonical/h1 are JS-injected via helmet)
+  warnings: string[]; // non-blocking (canonical/h1/hreflang are JS-injected via helmet)
 }
 
 function readSitemapLocs(): string[] {
