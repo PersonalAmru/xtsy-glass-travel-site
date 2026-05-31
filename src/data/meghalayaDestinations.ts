@@ -759,8 +759,49 @@ export const getDestinationsByRegion = (region: MeghalayaDestination['region']) 
 export const getFeaturedDestinations = () =>
   meghalayaDestinations.filter(d => d.featured);
 
-export const getDestinationBySlug = (slug: string) =>
-  meghalayaDestinations.find(d => d.slug === slug);
+/**
+ * SEO slug aliases → canonical destination slug.
+ *
+ * These keyword-rich URL variants (e.g. "umiam-lake-shillong",
+ * "nohkalikai-falls-meghalaya", "*-guide") were advertised in
+ * sitemap-destinations.xml but had no matching destination, so
+ * /places-to-visit/<alias> rendered a redirect to the pillar (soft-404,
+ * wasted crawl equity). Mapping them here makes every URL a LIVE 200 page;
+ * DestinationDetail emits a cross-canonical to the primary slug so equity
+ * consolidates onto one URL per place (no duplicate-content penalty).
+ */
+export const DESTINATION_SLUG_ALIASES: Readonly<Record<string, string>> = {
+  'umiam-lake-shillong': 'umiam-lake',
+  'nohkalikai-falls-meghalaya': 'nohkalikai-falls',
+  'nohkalikai-falls-guide': 'nohkalikai-falls',
+  'cherrapunji-guide': 'nohkalikai-falls',
+  'krang-suri-falls-meghalaya': 'krang-suri-falls',
+  'krang-suri-falls-guide': 'krang-suri-falls',
+  'wei-sawdong-falls-meghalaya': 'wei-sawdong-falls',
+  'wei-sawdong-falls-guide': 'wei-sawdong-falls',
+  'mawlynnong-cleanest-village': 'mawlynnong-village',
+  'mawlynnong-guide': 'mawlynnong-village',
+  'mawlynnong-village-meghalaya': 'mawlynnong-village',
+  'kongthong-whistling-village': 'mawlynnong-village',
+  'living-root-bridges-meghalaya': 'double-decker-living-root-bridge',
+  'living-root-bridge-trek': 'double-decker-living-root-bridge',
+  'dawki-river-boating': 'dawki-umngot-river',
+  'dawki-guide': 'dawki-umngot-river',
+  'laitlum-canyons-shillong': 'laitlum-canyons',
+  'laitlum-canyons-guide': 'laitlum-canyons',
+  'shnongpdeng-camping': 'shnongpdeng',
+  'mawsmai-cave-cherrapunji': 'mawsmai-cave',
+  'elephant-falls-shillong': 'elephant-falls',
+  'elephant-falls-guide': 'elephant-falls',
+  'shillong-peak-viewpoint': 'shillong-peak',
+  'shillong-guide': 'shillong-peak',
+  'rainbow-falls-guide': 'rainbow-falls',
+};
+
+export const getDestinationBySlug = (slug: string) => {
+  const canonical = DESTINATION_SLUG_ALIASES[slug] ?? slug;
+  return meghalayaDestinations.find(d => d.slug === canonical);
+};
 
 export interface DestinationCategory {
   slug: string;

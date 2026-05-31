@@ -28,12 +28,12 @@ const LINK_GROUPS: LinkGroup[] = [
   {
     title: 'Top Destinations',
     links: [
-      { label: 'Nohkalikai Falls', href: '/places-to-visit/nohkalikai-falls-meghalaya' },
-      { label: 'Krang Suri Falls', href: '/places-to-visit/krang-suri-falls-meghalaya' },
+      { label: 'Nohkalikai Falls', href: '/places-to-visit/nohkalikai-falls' },
+      { label: 'Krang Suri Falls', href: '/places-to-visit/krang-suri-falls' },
       { label: 'Dawki Umngot River', href: '/places-to-visit/dawki-umngot-river' },
-      { label: 'Mawlynnong Village', href: '/places-to-visit/mawlynnong-village-meghalaya' },
-      { label: 'Living Root Bridges', href: '/places-to-visit/living-root-bridges-meghalaya' },
-      { label: 'Laitlum Canyons', href: '/places-to-visit/laitlum-canyons-shillong' },
+      { label: 'Mawlynnong Village', href: '/places-to-visit/mawlynnong-village' },
+      { label: 'Living Root Bridges', href: '/places-to-visit/double-decker-living-root-bridge' },
+      { label: 'Laitlum Canyons', href: '/places-to-visit/laitlum-canyons' },
       { label: 'Meghalaya Waterfalls', href: '/meghalaya-waterfalls' },
       { label: 'Meghalaya Caves', href: '/meghalaya-caves' },
     ],
