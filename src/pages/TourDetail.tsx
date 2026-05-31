@@ -136,7 +136,7 @@ const TourDetail = () => {
         keywords={`${tour.title}, ${tour.location} tour, ${tour.category} tour, XTSY Travel`}
         canonicalUrl={tourUrl}
         structuredData={[tourSchema, tourBreadcrumb]}
-      />>
+      />
       <Header />
 
       <main className="flex-1">
