@@ -125,34 +125,32 @@ export const RECOVERY_LIVE_PAGES: ReadonlyArray<string> = [
   'zostel-vs-xtsy-shillong',
 ];
 
-/** places-to-visit/* paths handled by DestinationDetail. */
+/**
+ * places-to-visit/* paths handled by DestinationDetail.
+ *
+ * De-duped to CANONICAL destination slugs so generated sitemaps + the admin
+ * recovery panels stay consistent with the cross-canonical each page emits.
+ * The keyword-rich URL variants (…-shillong, …-meghalaya, …-guide) still
+ * resolve as LIVE 200 pages via DESTINATION_SLUG_ALIASES in
+ * meghalayaDestinations.ts and canonicalize onto these primary slugs.
+ */
 export const RECOVERY_PLACES_PATHS: ReadonlyArray<string> = [
-  'places-to-visit/cherrapunji-guide',
-  'places-to-visit/dawki-guide',
-  'places-to-visit/dawki-river-boating',
-  'places-to-visit/elephant-falls-guide',
-  'places-to-visit/elephant-falls-shillong',
-  'places-to-visit/kongthong-whistling-village',
-  'places-to-visit/krang-suri-falls-guide',
-  'places-to-visit/krang-suri-falls-meghalaya',
-  'places-to-visit/laitlum-canyons-guide',
-  'places-to-visit/laitlum-canyons-shillong',
-  'places-to-visit/living-root-bridge-trek',
-  'places-to-visit/living-root-bridges-meghalaya',
-  'places-to-visit/mawlynnong-cleanest-village',
-  'places-to-visit/mawlynnong-guide',
+  'places-to-visit/umiam-lake',
+  'places-to-visit/elephant-falls',
+  'places-to-visit/shillong-peak',
+  'places-to-visit/nohkalikai-falls',
+  'places-to-visit/krang-suri-falls',
+  'places-to-visit/wei-sawdong-falls',
+  'places-to-visit/rainbow-falls',
+  'places-to-visit/mawlynnong-village',
+  'places-to-visit/double-decker-living-root-bridge',
+  'places-to-visit/dawki-umngot-river',
+  'places-to-visit/laitlum-canyons',
   'places-to-visit/mawphlang-sacred-forest',
-  'places-to-visit/mawsmai-cave-cherrapunji',
-  'places-to-visit/nohkalikai-falls-guide',
-  'places-to-visit/nohkalikai-falls-meghalaya',
-  'places-to-visit/rainbow-falls-guide',
-  'places-to-visit/shillong-guide',
-  'places-to-visit/shillong-peak-viewpoint',
-  'places-to-visit/shnongpdeng-camping',
-  'places-to-visit/umiam-lake-shillong',
-  'places-to-visit/wei-sawdong-falls-guide',
-  'places-to-visit/wei-sawdong-falls-meghalaya',
+  'places-to-visit/mawsmai-cave',
+  'places-to-visit/shnongpdeng',
 ];
+
 
 /**
  * Slugs that have NO programmatic page and NO real React route. Each is
