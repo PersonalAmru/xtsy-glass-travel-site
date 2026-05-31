@@ -233,11 +233,44 @@ async function main() {
 
   console.log(`\n✅ Clean: ${results.length - failed.length}/${results.length}`);
   console.log(`⚠️  Soft-404s: ${softs.length}`);
+  console.log(`🌐 hreflang issues: ${hreflangProblems.length}`);
   console.log(`❌ Pages with issues: ${failed.length}`);
   for (const r of failed.slice(0, 50)) {
     console.log(`   - ${r.url}  [${r.status}]  ${r.errors.join(', ')}`);
   }
+  for (const r of hreflangProblems.slice(0, 30)) {
+    console.log(`   🌐 ${r.url}  ${r.hreflangIssues.join('; ')}`);
+  }
   if (failed.length > 50) console.log(`   ...and ${failed.length - 50} more`);
+
+  // Dispatch a Slack/email alert via the seo-monitor-alert edge function when
+  // anything actionable is detected. Endpoint + token are supplied by CI env.
+  const ALERT_ENDPOINT = argVal('--alert-endpoint', process.env.SEO_ALERT_ENDPOINT);
+  if (ALERT_ENDPOINT && (failed.length > 0 || hreflangProblems.length > 0)) {
+    try {
+      const token = process.env.SEO_ALERT_TOKEN || '';
+      await fetch(ALERT_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { Authorization: `Bearer ${token}`, apikey: token } : {}),
+        },
+        body: JSON.stringify({
+          base: BASE,
+          checked: results.length,
+          softCount: softs.length,
+          failedCount: failed.length,
+          hreflangCount: hreflangProblems.length,
+          failures: failed.slice(0, 25).map((r) => ({ url: r.url, status: r.status, issues: r.errors })),
+          hreflangIssues: hreflangProblems.slice(0, 25).map((r) => ({ url: r.url, issues: r.hreflangIssues })),
+          generatedAt: new Date().toISOString(),
+        }),
+      });
+      console.log('📣 Alert dispatched to seo-monitor-alert.');
+    } catch (e) {
+      console.error('Alert dispatch failed (non-fatal):', (e as Error).message);
+    }
+  }
 
   // GitHub Actions job summary (the "alert")
   if (process.env.GITHUB_STEP_SUMMARY) {
