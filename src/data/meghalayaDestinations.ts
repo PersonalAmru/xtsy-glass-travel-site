@@ -781,6 +781,7 @@ export const DESTINATION_SLUG_ALIASES: Readonly<Record<string, string>> = {
   'wei-sawdong-falls-guide': 'wei-sawdong-falls',
   'mawlynnong-cleanest-village': 'mawlynnong-village',
   'mawlynnong-guide': 'mawlynnong-village',
+  'mawlynnong-village-meghalaya': 'mawlynnong-village',
   'kongthong-whistling-village': 'mawlynnong-village',
   'living-root-bridges-meghalaya': 'double-decker-living-root-bridge',
   'living-root-bridge-trek': 'double-decker-living-root-bridge',
