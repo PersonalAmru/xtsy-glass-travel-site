@@ -90,8 +90,8 @@ export function useRestaurantReviews() {
         let photoUrls: string[] = [];
 
         if (input.photo) {
-          const ext = input.photo.name.split(".").pop() || "jpg";
-          const path = `reviews/${crypto.randomUUID()}.${ext}`;
+          const ext = (input.photo.name.split(".").pop() || "jpg").toLowerCase();
+          const path = `pending/${crypto.randomUUID()}.${ext}`;
           const { error: upErr } = await supabase.storage
             .from("review-media")
             .upload(path, input.photo, { cacheControl: "31536000", upsert: false });
