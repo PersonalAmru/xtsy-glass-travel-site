@@ -201,6 +201,27 @@ export default {
 
     // Skip for non-HTML requests (assets, API calls, etc.)
     const path = url.pathname;
+
+    // --- First-party Contentsquare/Hotjar proxy ---
+    // xtsy.one/cs/uxa/<id>.js → cs-proxy edge function. Serving the tag from a
+    // first-party path defeats domain-based blocklists (uBlock/Brave/AdGuard).
+    if (path.startsWith('/cs/') && env.SUPABASE_FUNCTIONS_HOST) {
+      const sub = path.slice('/cs/'.length);
+      const proxyUrl = `${env.SUPABASE_FUNCTIONS_HOST}/cs-proxy/${sub}${url.search}`;
+      const proxied = await fetch(proxyUrl, {
+        method: request.method,
+        headers: {
+          'user-agent': userAgent,
+          accept: request.headers.get('accept') || '*/*',
+          ...(env.SUPABASE_ANON_KEY ? { apikey: env.SUPABASE_ANON_KEY } : {}),
+        },
+        cf: { cacheTtl: 3600, cacheEverything: true },
+      });
+      const h = new Headers(proxied.headers);
+      h.set('x-rendered-by', 'cf-cs-proxy');
+      return new Response(proxied.body, { status: proxied.status, headers: h });
+    }
+
     if (
       path.startsWith('/assets/') ||
       path.startsWith('/api/') ||
@@ -208,6 +229,7 @@ export default {
     ) {
       return fetch(request);
     }
+
 
     // --- Block AI training scrapers (CF Security Insights: moderate) ---
     if (isBlockedAIBot(userAgent)) {
