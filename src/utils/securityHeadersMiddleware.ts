@@ -35,14 +35,14 @@ export function generateProductionSecurityHeaders(config: SecurityConfig = {}) {
     'Content-Security-Policy': [
       "default-src 'self'",
       // Scripts: GTM, GA4, Google Ads (inline needed for GTM to inject tags)
-      `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://www.googlesyndication.com https://googleads.g.doubleclick.net https://www.gstatic.com https://ssl.gstatic.com https://www.google.com ${isDevelopment ? "'unsafe-eval'" : ''}`,
+      `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://www.googlesyndication.com https://googleads.g.doubleclick.net https://www.gstatic.com https://ssl.gstatic.com https://www.google.com https://t.contentsquare.net https://*.contentsquare.net https://script.hotjar.com ${isDevelopment ? "'unsafe-eval'" : ''}`,
       // Styles: Google Fonts + GTM
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.googletagmanager.com",
       "font-src 'self' https://fonts.gstatic.com data:",
       // Images: Google tracking pixels + general https
       "img-src 'self' data: https: blob: https://www.google-analytics.com https://www.googletagmanager.com https://www.google.com https://www.google.co.in https://googleads.g.doubleclick.net https://www.gstatic.com https://ssl.gstatic.com",
       // Connect: Analytics endpoints + Supabase
-      `connect-src 'self' ${allowedDomains} wss://*.supabase.co https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com https://pagead2.googlesyndication.com`,
+      `connect-src 'self' ${allowedDomains} wss://*.supabase.co https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com https://pagead2.googlesyndication.com https://t.contentsquare.net https://*.contentsquare.net https://*.hotjar.com https://*.hotjar.io`,
       // Frames: GTM preview/debug mode
       "frame-src 'self' https://www.googletagmanager.com https://td.doubleclick.net",
       "object-src 'none'",

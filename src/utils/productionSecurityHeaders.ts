@@ -29,10 +29,11 @@ export function generateProductionSecurityHeaders(config: SecurityHeadersConfig 
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.googletagmanager.com",
       // Fonts: Google Fonts
       "font-src 'self' https://fonts.gstatic.com data:",
-      // Scripts: GTM, GA4, Google Ads (inline needed for GTM to inject tags)
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://www.googlesyndication.com https://googleads.g.doubleclick.net https://www.gstatic.com https://ssl.gstatic.com https://www.google.com",
-      // Connect: API endpoints for analytics + Supabase
-      `connect-src 'self' ${supabaseUrl} wss://*.supabase.co https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com https://pagead2.googlesyndication.com`,
+      // Scripts: GTM, GA4, Google Ads (inline needed for GTM to inject tags).
+      // 'self' covers the first-party /cs/uxa proxy path; Contentsquare/Hotjar kept as fallback origins.
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://www.googlesyndication.com https://googleads.g.doubleclick.net https://www.gstatic.com https://ssl.gstatic.com https://www.google.com https://t.contentsquare.net https://*.contentsquare.net https://script.hotjar.com",
+      // Connect: API endpoints for analytics + Supabase + Contentsquare/Hotjar beacons
+      `connect-src 'self' ${supabaseUrl} wss://*.supabase.co https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com https://pagead2.googlesyndication.com https://t.contentsquare.net https://*.contentsquare.net https://*.hotjar.com https://*.hotjar.io`,
       // Frames: Allow GTM preview/debug mode
       "frame-src 'self' https://www.googletagmanager.com https://td.doubleclick.net",
       "frame-ancestors 'none'",

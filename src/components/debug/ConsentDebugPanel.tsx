@@ -4,14 +4,20 @@
  *   - Current consent preferences (xtsy_consent_v2)
  *   - Google Consent Mode v2 last signal
  *   - Contentsquare/Hotjar loader status (queued/loading/loaded/blocked/error)
+ *   - WHY a tag was blocked (consent / offline / extension-or-dns / csp)
+ *   - A one-click copyable diagnostic report
  *
  * Visibility (any of):
- *   • URL has `?debug=consent`
- *   • localStorage `xtsy_debug_consent` === 'true'
+ *   • URL has `?debug=consent` or `?debug=hotjar`
+ *   • localStorage `xtsy_debug_consent` / `xtsy_debug_hotjar` === 'true'
  *   • dev mode (import.meta.env.DEV)
  */
 import { useEffect, useState } from 'react';
-import { getCSLoaderState, type CSLoaderState } from '@/utils/contentsquareLoader';
+import {
+  getCSLoaderState,
+  describeBlockReason,
+  type CSLoaderState,
+} from '@/utils/contentsquareLoader';
 
 const STATUS_COLORS: Record<CSLoaderState['status'], string> = {
   idle: 'bg-slate-400',
@@ -64,6 +70,7 @@ export default function ConsentDebugPanel() {
   const [loader, setLoader] = useState<CSLoaderState>(getCSLoaderState());
   const [consent, setConsent] = useState<unknown>(readConsent());
   const [gcm, setGcm] = useState<string>(readGCMSignal());
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     setVisible(shouldShow());
@@ -89,7 +96,55 @@ export default function ConsentDebugPanel() {
     };
   }, []);
 
+  const buildReport = (): string => {
+    const scriptInDom = !!document.querySelector(
+      'script[src*="t.contentsquare.net"], script[src*="/cs/uxa/"]'
+    );
+    const report = {
+      generatedAt: new Date().toISOString(),
+      page: window.location.href,
+      loaderStatus: loader.status,
+      blockReason: loader.blockReason,
+      blockReasonExplained: describeBlockReason(loader.blockReason),
+      usedFirstParty: loader.usedFirstParty,
+      activeUrl: loader.activeUrl ?? null,
+      consentSource: loader.consentSource,
+      analyticsConsent: loader.analyticsConsent,
+      gcmAnalyticsStorage: gcm,
+      attempts: loader.attempts ?? null,
+      durationMs: loader.durationMs ?? null,
+      lastError: loader.lastError ?? null,
+      scriptInDom,
+      online: navigator.onLine,
+      userAgent: navigator.userAgent,
+      consentRecord: consent,
+    };
+    return JSON.stringify(report, null, 2);
+  };
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(buildReport());
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1800);
+    } catch {
+      // Fallback: select-all in a temporary textarea
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = buildReport();
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        setCopied(true);
+        window.setTimeout(() => setCopied(false), 1800);
+      } catch { /* noop */ }
+    }
+  };
+
   if (!visible) return null;
+
+  const isBlocked = loader.status === 'blocked' || loader.status === 'error';
 
   return (
     <div
@@ -106,7 +161,7 @@ export default function ConsentDebugPanel() {
           CS: {loader.status}
         </button>
       ) : (
-        <div className="w-[320px] rounded-lg bg-slate-900/95 text-slate-100 text-xs shadow-2xl border border-slate-700">
+        <div className="w-[340px] rounded-lg bg-slate-900/95 text-slate-100 text-xs shadow-2xl border border-slate-700">
           <div className="flex items-center justify-between px-3 py-2 border-b border-slate-700">
             <strong className="text-[11px] uppercase tracking-wider">Consent & CS Loader</strong>
             <button
@@ -124,6 +179,24 @@ export default function ConsentDebugPanel() {
               <span className="font-semibold">Loader:</span>
               <span>{loader.status}</span>
             </div>
+
+            {/* WHY blocked — the key diagnostic */}
+            {isBlocked && (
+              <div className="rounded border border-rose-700/60 bg-rose-950/40 p-2 space-y-1">
+                <div className="text-rose-300 font-semibold">
+                  Reason: {loader.blockReason}
+                </div>
+                <div className="text-rose-200/90 text-[11px] leading-snug">
+                  {describeBlockReason(loader.blockReason)}
+                </div>
+              </div>
+            )}
+
+            <div>
+              <span className="text-slate-400">Served from:</span>{' '}
+              {loader.usedFirstParty ? 'first-party /cs/' : 'CDN'}
+            </div>
+            <div><span className="text-slate-400">Active URL:</span> <span className="break-all">{loader.activeUrl ?? '—'}</span></div>
             <div><span className="text-slate-400">Consent source:</span> {loader.consentSource}</div>
             <div><span className="text-slate-400">Analytics consent:</span> {String(loader.analyticsConsent)}</div>
             <div><span className="text-slate-400">GCM analytics_storage:</span> {gcm}</div>
@@ -138,8 +211,17 @@ export default function ConsentDebugPanel() {
             )}
             <div>
               <span className="text-slate-400">Script in DOM:</span>{' '}
-              {String(!!document.querySelector('script[src*="t.contentsquare.net"]'))}
+              {String(!!document.querySelector('script[src*="t.contentsquare.net"], script[src*="/cs/uxa/"]'))}
             </div>
+
+            <button
+              type="button"
+              onClick={handleCopy}
+              className="mt-1 w-full rounded bg-slate-700 hover:bg-slate-600 text-white text-[11px] py-1.5 transition-colors"
+            >
+              {copied ? '✓ Copied report' : 'Copy diagnostic report'}
+            </button>
+
             <details className="mt-2">
               <summary className="cursor-pointer text-slate-400">xtsy_consent_v2</summary>
               <pre className="mt-1 max-h-40 overflow-auto whitespace-pre-wrap break-words text-[10px] bg-slate-950/60 p-2 rounded">
