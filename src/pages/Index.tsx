@@ -8,6 +8,7 @@ import LastMinuteBanner from "@/components/LastMinuteBanner";
 
 import SEOHead, { getSEOConfig } from "@/components/SEOHead";
 import { useScrollDepthTracking } from "@/hooks/useScrollDepthTracking";
+import { googleReviews } from "@/data/googleReviews";
 
 // Lazy load below-fold sections for better initial load
 const DestinationExplorer = lazy(() => import("@/components/DestinationExplorer"));
