@@ -1,5 +1,7 @@
 import { memo } from "react";
+import { Instagram, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { TAB_BISTRO_INSTAGRAM, TAB_BISTRO_GOOGLE } from "@/data/tabBistroSchema";
 
 const WHATSAPP = "https://wa.me/918837317070?text=";
 
@@ -35,6 +37,30 @@ const TabBistroCTA = memo(() => (
       >
         Plan an Event
       </Button>
+    </div>
+
+    <div className="mt-8 pt-6 border-t border-amber-500/20 flex flex-wrap items-center justify-center gap-4">
+      <span className="text-sm text-muted-foreground">Follow TAB Bistro by XTSY</span>
+      <a
+        href={TAB_BISTRO_INSTAGRAM}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="TAB Bistro by XTSY on Instagram (@tabbistrobyxtsy)"
+        className="inline-flex items-center gap-2 text-sm font-medium text-amber-400 hover:text-amber-300 transition-colors"
+      >
+        <Instagram className="w-4 h-4" />
+        @tabbistrobyxtsy
+      </a>
+      <a
+        href={TAB_BISTRO_GOOGLE}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="TAB Bistro by XTSY on Google"
+        className="inline-flex items-center gap-2 text-sm font-medium text-amber-400 hover:text-amber-300 transition-colors"
+      >
+        <MapPin className="w-4 h-4" />
+        Google Profile
+      </a>
     </div>
   </section>
 ));

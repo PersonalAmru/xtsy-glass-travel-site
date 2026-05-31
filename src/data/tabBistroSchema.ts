@@ -11,6 +11,9 @@ export const TAB_BISTRO_URL = "https://xtsy.one/tab-bistro";
 export const TAB_BISTRO_PHONE = "+918837317070";
 export const TAB_BISTRO_OPENS = "09:00";
 export const TAB_BISTRO_CLOSES = "22:30";
+export const TAB_BISTRO_INSTAGRAM = "https://www.instagram.com/tabbistrobyxtsy";
+export const TAB_BISTRO_GOOGLE = "https://g.page/tabbistrobyxtsy";
+export const TAB_BISTRO_SAME_AS = [TAB_BISTRO_INSTAGRAM, TAB_BISTRO_GOOGLE];
 
 export const TAB_BISTRO_CUISINES = [
   "North Indian",
@@ -85,6 +88,7 @@ export function buildRestaurantSchema(opts: {
       "Multi-cuisine forest dining restaurant in Shillong serving North Indian, Tandoor, Indo-Chinese, Thai, Continental, Italian, seafood and Northeast cuisine. Breakfast, café, wedding catering, bulk & corporate orders.",
     url: TAB_BISTRO_URL,
     telephone: TAB_BISTRO_PHONE,
+    sameAs: TAB_BISTRO_SAME_AS,
     servesCuisine: TAB_BISTRO_CUISINES,
     priceRange: "₹₹",
     acceptsReservations: "True",
