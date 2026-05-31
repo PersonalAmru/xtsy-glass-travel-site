@@ -28,6 +28,7 @@ import {
   RECOVERY_REDIRECTS,
 } from '@/data/seoAffectedSlugs';
 import { ALL_SEO_PAGES } from '@/data/seoPages';
+import { meghalayaDestinations } from '@/data/meghalayaDestinations';
 import { isResolvable } from '@/utils/seoSlugRegistry';
 import { supabase } from '@/integrations/supabase/client';
 import {
