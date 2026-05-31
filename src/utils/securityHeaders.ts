@@ -23,8 +23,9 @@ export function generateSecurityHeaders(config: SecurityHeadersConfig = {}) {
       "img-src 'self' data: https: blob: https://www.google-analytics.com https://www.googletagmanager.com https://www.google.com https://www.google.co.in https://googleads.g.doubleclick.net https://www.gstatic.com",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.googletagmanager.com",
       "font-src 'self' https://fonts.gstatic.com data:",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://www.googlesyndication.com https://googleads.g.doubleclick.net https://www.gstatic.com https://www.google.com",
-      `connect-src 'self' ${supabaseUrl} wss://*.supabase.co https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com https://pagead2.googlesyndication.com`,
+      // Scripts: 'self' covers the first-party /cs/uxa proxy path; Contentsquare kept as fallback
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://www.googlesyndication.com https://googleads.g.doubleclick.net https://www.gstatic.com https://www.google.com https://t.contentsquare.net https://*.contentsquare.net https://script.hotjar.com",
+      `connect-src 'self' ${supabaseUrl} wss://*.supabase.co https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com https://pagead2.googlesyndication.com https://t.contentsquare.net https://*.contentsquare.net https://*.hotjar.com https://*.hotjar.io`,
       "frame-src 'self' https://www.googletagmanager.com https://td.doubleclick.net",
       "frame-ancestors 'none'",
       "base-uri 'self'",
