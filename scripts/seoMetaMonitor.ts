@@ -209,6 +209,8 @@ async function main() {
             hasDescription: false,
             canonicalCount: 0,
             h1Count: 0,
+            hreflangCount: 0,
+            hreflangIssues: [],
             errors: [`fetch failed: ${(e as Error).message}`],
             warnings: [],
           } as PageResult;
