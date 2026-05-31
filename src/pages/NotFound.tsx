@@ -8,6 +8,7 @@ import { Home, MapPin, Search, RefreshCw, MessageCircle, Phone, ArrowRight } fro
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { GONE_SLUGS } from "@/data/seoGoneSlugs";
+import { useGoneStatus } from "@/hooks/useGoneStatus";
 import { meghalayaDestinations, getDestinationImages } from "@/data/meghalayaDestinations";
 
 interface NotFoundProps {
