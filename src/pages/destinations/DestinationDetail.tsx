@@ -83,11 +83,22 @@ const DestinationDetail = () => {
 
   const structuredData = {
     '@context': 'https://schema.org',
-    '@type': 'TouristDestination',
+    '@type': 'TouristAttraction',
     name: destination.name,
     description: destination.shortDescription,
+    url: `https://xtsy.one/places-to-visit/${destination.slug}`,
     touristType: [destination.category],
-    geo: { '@type': 'GeoCoordinates' },
+    isAccessibleForFree: true,
+    publicAccess: true,
+    address: {
+      '@type': 'PostalAddress',
+      addressRegion: 'Meghalaya',
+      addressCountry: 'IN',
+    },
+    containedInPlace: {
+      '@type': 'Place',
+      name: `${destination.region}, Meghalaya`,
+    },
     image: images.map(img => ({
       '@type': 'ImageObject',
       url: img.src,
