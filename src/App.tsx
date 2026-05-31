@@ -99,6 +99,7 @@ const AdminActivity = createLazyComponent(() => import("./pages/admin/AdminActiv
 const AdminPropertiesV2 = createLazyComponent(() => import("./pages/admin/AdminPropertiesV2"));
 const AdminFranchisesV2 = createLazyComponent(() => import("./pages/admin/AdminFranchisesV2"));
 const AdminBookingsCalendar = createLazyComponent(() => import("./pages/admin/AdminBookingsCalendar"));
+const AdminEnquiries = createLazyComponent(() => import("./pages/admin/AdminEnquiries"));
 const AdminGuestChats = createLazyComponent(() => import("./pages/admin/AdminGuestChats"));
 const AdminOTAs = createLazyComponent(() => import("./pages/admin/AdminOTAs"));
 const AdminFinance = createLazyComponent(() => import("./pages/admin/AdminFinance"));
@@ -333,6 +334,7 @@ function App() {
                 <Route path="/admin/analytics/search" element={<LazyRoute><AdminSearchConsole /></LazyRoute>} />
                 <Route path="/admin/search" element={<LazyRoute><AdminSearchConsole /></LazyRoute>} />
                 <Route path="/admin/bookings" element={<LazyRoute><AdminBookingsCalendar /></LazyRoute>} />
+                <Route path="/admin/enquiries" element={<LazyRoute><AdminEnquiries /></LazyRoute>} />
                 <Route path="/admin/chats" element={<LazyRoute><AdminGuestChats /></LazyRoute>} />
                 <Route path="/admin/inventory" element={<LazyRoute><AdminInventory /></LazyRoute>} />
                 <Route path="/admin/activity" element={<LazyRoute><AdminActivity /></LazyRoute>} />
