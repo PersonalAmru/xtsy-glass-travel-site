@@ -17,7 +17,7 @@ const CategoryPage = () => {
   const category = destinationCategories.find(c => c.slug === slug);
 
   if (!category) {
-    return <Navigate to="/things-to-do-in-meghalaya" replace />;
+    return <NotFound />;
   }
 
   const destinations = getDestinationsByCategory(category.category);
