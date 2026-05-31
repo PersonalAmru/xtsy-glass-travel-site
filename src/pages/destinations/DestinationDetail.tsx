@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+import NotFound from '@/pages/NotFound';
+import { GONE_SLUGS } from '@/data/seoGoneSlugs';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
