@@ -49,7 +49,8 @@ interface UnifiedAdminLayoutProps {
 const menuItems = [
   { id: 'overview', label: 'Dashboard', icon: Home, path: '/admin' },
   { id: 'traffic', label: 'Live Traffic', icon: Activity, path: '/admin/traffic' },
-  { id: 'bookings', label: 'Bookings Calendar', icon: Calendar, path: '/admin/bookings' },
+  { id: 'enquiries', label: 'Enquiry Review', icon: Inbox, path: '/admin/enquiries' },
+  { id: 'bookings', label: 'Stay Calendar', icon: Calendar, path: '/admin/bookings' },
   { id: 'inventory', label: 'Inventory', icon: Package, path: '/admin/inventory' },
   { id: 'analytics', label: 'Analytics', icon: BarChart3, path: '/admin/analytics' },
   { id: 'search', label: 'Search Console', icon: Search, path: '/admin/analytics/search' },
