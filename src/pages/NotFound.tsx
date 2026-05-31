@@ -53,8 +53,11 @@ const NotFound = ({ statusCode }: NotFoundProps) => {
   const location = useLocation();
   const navigate = useNavigate();
   const slug = location.pathname.replace(/^\//, "").split("/")[0];
-  const isGone = statusCode === 410 || GONE_SLUGS.has(slug);
-  const finalStatus = isGone ? 410 : statusCode ?? 404;
+  const baseStatus: 404 | 410 =
+    statusCode === 410 || GONE_SLUGS.has(slug) ? 410 : 404;
+  // Escalate 404 → 410 when Supabase has the slug flagged as permanently gone.
+  const finalStatus = useGoneStatus(location.pathname, baseStatus);
+  const isGone = finalStatus === 410;
 
   const [query, setQuery] = useState("");
 
