@@ -1,4 +1,5 @@
-import { Link, useLocation, Navigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import NotFound from '@/pages/NotFound';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -16,7 +17,7 @@ const CategoryPage = () => {
   const category = destinationCategories.find(c => c.slug === slug);
 
   if (!category) {
-    return <Navigate to="/things-to-do-in-meghalaya" replace />;
+    return <NotFound />;
   }
 
   const destinations = getDestinationsByCategory(category.category);

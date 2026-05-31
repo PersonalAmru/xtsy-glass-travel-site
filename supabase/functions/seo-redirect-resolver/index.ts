@@ -64,11 +64,16 @@ Deno.serve(async (req) => {
       .eq('source_path', normalized)
       .then(() => {});
 
-    // Edge layer can read this JSON and issue a true HTTP 301.
+    const isGone = data.status_code === 410;
+
+    // Edge layer can read this JSON and issue a true HTTP 301/308 — or a
+    // 410 Gone (no Location header) when the slug was permanently retired so
+    // search engines drop it from the index faster.
     return new Response(
       JSON.stringify({
         found: true,
-        target: data.target_path,
+        gone: isGone,
+        target: isGone ? null : data.target_path,
         status: data.status_code,
       }),
       {
