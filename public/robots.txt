@@ -11,6 +11,9 @@ Disallow: /admin-login
 Disallow: /franchise
 Disallow: /franchise-login
 Disallow: /api/
+Disallow: /auth
+Disallow: /profile
+Disallow: /install
 
 User-agent: Bingbot
 Allow: /
@@ -122,6 +125,9 @@ Disallow: /admin-login
 Disallow: /franchise
 Disallow: /franchise-login
 Disallow: /api/
+Disallow: /auth
+Disallow: /profile
+Disallow: /install
 
 # Sitemap — single index entry (all child sitemaps are referenced inside)
 Sitemap: https://xtsy.one/sitemap_index.xml
