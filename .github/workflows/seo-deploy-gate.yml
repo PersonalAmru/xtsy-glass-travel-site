@@ -103,9 +103,12 @@ jobs:
       - run: npm ci --prefer-offline --no-audit
       - name: Wait 60s for Lovable deploy to propagate
         run: sleep 60
-      - name: Run SEO meta + soft-404 monitor
+      - name: Run SEO meta + soft-404 + hreflang monitor
         env:
           BASE_URL: ${{ github.event.inputs.base_url || 'https://xtsy.one' }}
+          # Slack/email alerting (no-op unless these repo secrets are set)
+          SEO_ALERT_ENDPOINT: ${{ secrets.SEO_ALERT_ENDPOINT }}
+          SEO_ALERT_TOKEN: ${{ secrets.SEO_ALERT_TOKEN }}
         run: npx tsx scripts/seoMetaMonitor.ts --base "$BASE_URL"
       - name: Upload monitor report
         if: always()
