@@ -313,6 +313,66 @@ export type Database = {
         }
         Relationships: []
       }
+      analytics_loader_events: {
+        Row: {
+          analytics_consent: boolean | null
+          attempts: number | null
+          block_reason: string | null
+          browser: string | null
+          consent_source: string | null
+          created_at: string
+          device_type: string | null
+          duration_ms: number | null
+          error_message: string | null
+          id: string
+          online: boolean | null
+          page_path: string | null
+          source_url: string | null
+          status: string
+          tag: string
+          used_first_party: boolean | null
+          user_agent: string | null
+        }
+        Insert: {
+          analytics_consent?: boolean | null
+          attempts?: number | null
+          block_reason?: string | null
+          browser?: string | null
+          consent_source?: string | null
+          created_at?: string
+          device_type?: string | null
+          duration_ms?: number | null
+          error_message?: string | null
+          id?: string
+          online?: boolean | null
+          page_path?: string | null
+          source_url?: string | null
+          status: string
+          tag?: string
+          used_first_party?: boolean | null
+          user_agent?: string | null
+        }
+        Update: {
+          analytics_consent?: boolean | null
+          attempts?: number | null
+          block_reason?: string | null
+          browser?: string | null
+          consent_source?: string | null
+          created_at?: string
+          device_type?: string | null
+          duration_ms?: number | null
+          error_message?: string | null
+          id?: string
+          online?: boolean | null
+          page_path?: string | null
+          source_url?: string | null
+          status?: string
+          tag?: string
+          used_first_party?: boolean | null
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
       analytics_pageviews: {
         Row: {
           created_at: string | null
