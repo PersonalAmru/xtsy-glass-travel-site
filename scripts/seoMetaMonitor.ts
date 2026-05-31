@@ -172,6 +172,7 @@ async function main() {
             canonicalCount: 0,
             h1Count: 0,
             errors: [`fetch failed: ${(e as Error).message}`],
+            warnings: [],
           } as PageResult;
         }
       })
