@@ -37,7 +37,25 @@ const Index = memo(() => {
   useScrollDepthTracking({ pageId: 'homepage' });
   
   const seoConfig = getSEOConfig('home');
-  
+
+  // Individual Review schema items built from real Google Business Profile
+  // reviews so the homepage Hostel entity is eligible for review rich results
+  // (the aggregateRating below already summarises all 320 reviews).
+  const reviewSchemaItems = googleReviews
+    .filter((r) => r.comment && r.comment.length > 40)
+    .slice(0, 6)
+    .map((r) => ({
+      '@type': 'Review',
+      author: { '@type': 'Person', name: r.name },
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: String(r.rating),
+        bestRating: '5',
+      },
+      reviewBody: r.comment,
+      itemReviewed: { '@type': 'Hostel', name: 'XTSY Travellers Hostel' },
+    }));
+
   const hostelSchema = {
     '@context': 'https://schema.org',
     '@type': 'Hostel',
