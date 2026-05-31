@@ -19,8 +19,15 @@ const DestinationDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const destination = slug ? getDestinationBySlug(slug) : null;
 
+  // 410 Gone — slug explicitly retired (drops from index faster than 404).
+  if (slug && GONE_SLUGS.has(slug)) {
+    return <NotFound statusCode={410} />;
+  }
+
+  // Unknown destination slug → render a proper 404 (NOT a soft-404 redirect to
+  // the pillar page, which wastes crawl budget and confuses Search Console).
   if (!destination) {
-    return <Navigate to="/things-to-do-in-meghalaya" replace />;
+    return <NotFound />;
   }
 
   const images = getDestinationImages(destination.slug, 6);
