@@ -35,7 +35,7 @@ export function generateProductionSecurityHeaders(config: SecurityConfig = {}) {
     'Content-Security-Policy': [
       "default-src 'self'",
       // Scripts: GTM, GA4, Google Ads (inline needed for GTM to inject tags)
-      `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://www.googlesyndication.com https://googleads.g.doubleclick.net https://www.gstatic.com https://ssl.gstatic.com https://www.google.com ${isDevelopment ? "'unsafe-eval'" : ''}`,
+      `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://www.googlesyndication.com https://googleads.g.doubleclick.net https://www.gstatic.com https://ssl.gstatic.com https://www.google.com https://t.contentsquare.net https://*.contentsquare.net https://script.hotjar.com ${isDevelopment ? "'unsafe-eval'" : ''}`,
       // Styles: Google Fonts + GTM
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.googletagmanager.com",
       "font-src 'self' https://fonts.gstatic.com data:",
