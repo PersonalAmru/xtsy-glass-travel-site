@@ -22,7 +22,16 @@
  */
 import fs from 'fs';
 import path from 'path';
-import { TOP_SEO_ROUTES } from './postDeploySchemaCheck';
+// Curated top SEO routes (kept in sync with scripts/postDeploySchemaCheck.ts).
+// Inlined rather than imported so this script has no module side-effects.
+const TOP_SEO_ROUTES = [
+  '/', '/best-hostel-in-shillong', '/hotels-in-shillong', '/homestays-in-shillong',
+  '/luxury-glamping-shillong', '/restaurant-in-shillong', '/meghalaya-tour-packages',
+  '/meghalaya-couple-tour-package', '/shillong-tour-package', '/things-to-do-in-meghalaya',
+  '/best-time-to-visit-meghalaya', '/3-day-meghalaya-itinerary', '/5-day-meghalaya-itinerary',
+  '/budget-trip-to-meghalaya', '/hidden-places-in-meghalaya', '/tours', '/gallery',
+  '/about', '/faq', '/tab-bistro', '/tab-bistro/catering',
+];
 
 const args = process.argv.slice(2);
 const argVal = (k: string, d?: string) => {
