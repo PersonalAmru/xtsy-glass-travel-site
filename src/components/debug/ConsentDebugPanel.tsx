@@ -71,6 +71,9 @@ export default function ConsentDebugPanel() {
   const [consent, setConsent] = useState<unknown>(readConsent());
   const [gcm, setGcm] = useState<string>(readGCMSignal());
   const [copied, setCopied] = useState(false);
+  const [csvDone, setCsvDone] = useState(false);
+  /** When true, only include non-empty diagnostic fields in the CSV. */
+  const [csvFilterEmpty, setCsvFilterEmpty] = useState(true);
 
   useEffect(() => {
     setVisible(shouldShow());
