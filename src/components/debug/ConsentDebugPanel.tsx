@@ -145,7 +145,63 @@ export default function ConsentDebugPanel() {
     }
   };
 
-  if (!visible) return null;
+  /** Flatten the diagnostic report into [field, value] rows (filtered). */
+  const buildCsvRows = (): Array<[string, string]> => {
+    const scriptInDom = !!document.querySelector(
+      'script[src*="t.contentsquare.net"], script[src*="/cs/uxa/"]'
+    );
+    const consentRecord = (consent && typeof consent === 'object') ? (consent as Record<string, unknown>) : {};
+    const raw: Array<[string, unknown]> = [
+      ['generatedAt', new Date().toISOString()],
+      ['page', window.location.href],
+      ['loaderStatus', loader.status],
+      ['blockReason', loader.blockReason],
+      ['blockReasonExplained', describeBlockReason(loader.blockReason)],
+      ['usedFirstParty', loader.usedFirstParty],
+      ['activeUrl', loader.activeUrl ?? ''],
+      ['consentSource', loader.consentSource],
+      ['analyticsConsent', loader.analyticsConsent],
+      ['gcmAnalyticsStorage', gcm],
+      ['attempts', loader.attempts ?? ''],
+      ['durationMs', loader.durationMs ?? ''],
+      ['lastError', loader.lastError ?? ''],
+      ['scriptInDom', scriptInDom],
+      ['online', navigator.onLine],
+      ['userAgent', navigator.userAgent],
+      ['consent.necessary', consentRecord['necessary'] ?? ''],
+      ['consent.analytics', consentRecord['analytics'] ?? ''],
+      ['consent.marketing', consentRecord['marketing'] ?? ''],
+      ['consent.personalization', consentRecord['personalization'] ?? ''],
+      ['consent.timestamp', consentRecord['timestamp'] ?? ''],
+      ['consent.version', consentRecord['version'] ?? ''],
+    ];
+    return raw
+      .filter(([, v]) => !csvFilterEmpty || (v !== '' && v !== null && v !== undefined))
+      .map(([k, v]) => [k, String(v)] as [string, string]);
+  };
+
+  const buildCsv = (): string => {
+    const esc = (s: string) => `"${s.replace(/"/g, '""')}"`;
+    const rows = [['field', 'value'], ...buildCsvRows()];
+    return rows.map((r) => r.map(esc).join(',')).join('\r\n');
+  };
+
+  const handleDownloadCsv = () => {
+    try {
+      const blob = new Blob([buildCsv()], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      const stamp = new Date().toISOString().replace(/[:.]/g, '-');
+      a.href = url;
+      a.download = `cs-loader-diagnostic-${stamp}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      setCsvDone(true);
+      window.setTimeout(() => setCsvDone(false), 1800);
+    } catch { /* noop */ }
+  };
 
   const isBlocked = loader.status === 'blocked' || loader.status === 'error';
 
