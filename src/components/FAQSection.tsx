@@ -201,6 +201,7 @@ const FAQSection = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 
