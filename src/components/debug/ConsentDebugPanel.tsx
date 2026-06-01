@@ -203,6 +203,8 @@ export default function ConsentDebugPanel() {
     } catch { /* noop */ }
   };
 
+  if (!visible) return null;
+
   const isBlocked = loader.status === 'blocked' || loader.status === 'error';
 
   return (
