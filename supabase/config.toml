@@ -78,3 +78,7 @@ verify_jwt = false
 
 [functions.handle-email-suppression]
 verify_jwt = false
+
+# Daily analytics loader health summary (invoked by pg_cron)
+[functions.analytics-loader-summary]
+verify_jwt = false
