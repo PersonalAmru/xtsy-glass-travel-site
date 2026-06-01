@@ -91,6 +91,7 @@ const UserProfile = createLazyComponent(() => import("./pages/user/UserProfile")
 // Admin pages - Unified layout with hamburger menu
 const AdminOverview = createLazyComponent(() => import("./pages/admin/AdminOverview"));
 const AdminAnalytics = createLazyComponent(() => import("./pages/admin/AdminAnalytics"));
+const AdminLoaderEvents = createLazyComponent(() => import("./pages/admin/AdminLoaderEvents"));
 const AdminSearchConsole = createLazyComponent(() => import("./pages/admin/AdminSearchConsole"));
 const AdminGSCErrors = createLazyComponent(() => import("./pages/admin/AdminGSCErrors"));
 const AdminSchemaResults = createLazyComponent(() => import("./pages/admin/AdminSchemaResults"));
@@ -331,6 +332,7 @@ function App() {
                 <Route path="/admin" element={<LazyRoute><AdminOverview /></LazyRoute>} />
                 <Route path="/admin/dashboard" element={<LazyRoute><AdminOverview /></LazyRoute>} />
                 <Route path="/admin/analytics" element={<LazyRoute><AdminAnalytics /></LazyRoute>} />
+                <Route path="/admin/analytics/loader-events" element={<LazyRoute><AdminLoaderEvents /></LazyRoute>} />
                 <Route path="/admin/analytics/search" element={<LazyRoute><AdminSearchConsole /></LazyRoute>} />
                 <Route path="/admin/search" element={<LazyRoute><AdminSearchConsole /></LazyRoute>} />
                 <Route path="/admin/bookings" element={<LazyRoute><AdminBookingsCalendar /></LazyRoute>} />

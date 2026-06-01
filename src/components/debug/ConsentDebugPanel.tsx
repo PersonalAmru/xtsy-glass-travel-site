@@ -71,6 +71,9 @@ export default function ConsentDebugPanel() {
   const [consent, setConsent] = useState<unknown>(readConsent());
   const [gcm, setGcm] = useState<string>(readGCMSignal());
   const [copied, setCopied] = useState(false);
+  const [csvDone, setCsvDone] = useState(false);
+  /** When true, only include non-empty diagnostic fields in the CSV. */
+  const [csvFilterEmpty, setCsvFilterEmpty] = useState(true);
 
   useEffect(() => {
     setVisible(shouldShow());
@@ -140,6 +143,64 @@ export default function ConsentDebugPanel() {
         window.setTimeout(() => setCopied(false), 1800);
       } catch { /* noop */ }
     }
+  };
+
+  /** Flatten the diagnostic report into [field, value] rows (filtered). */
+  const buildCsvRows = (): Array<[string, string]> => {
+    const scriptInDom = !!document.querySelector(
+      'script[src*="t.contentsquare.net"], script[src*="/cs/uxa/"]'
+    );
+    const consentRecord = (consent && typeof consent === 'object') ? (consent as Record<string, unknown>) : {};
+    const raw: Array<[string, unknown]> = [
+      ['generatedAt', new Date().toISOString()],
+      ['page', window.location.href],
+      ['loaderStatus', loader.status],
+      ['blockReason', loader.blockReason],
+      ['blockReasonExplained', describeBlockReason(loader.blockReason)],
+      ['usedFirstParty', loader.usedFirstParty],
+      ['activeUrl', loader.activeUrl ?? ''],
+      ['consentSource', loader.consentSource],
+      ['analyticsConsent', loader.analyticsConsent],
+      ['gcmAnalyticsStorage', gcm],
+      ['attempts', loader.attempts ?? ''],
+      ['durationMs', loader.durationMs ?? ''],
+      ['lastError', loader.lastError ?? ''],
+      ['scriptInDom', scriptInDom],
+      ['online', navigator.onLine],
+      ['userAgent', navigator.userAgent],
+      ['consent.necessary', consentRecord['necessary'] ?? ''],
+      ['consent.analytics', consentRecord['analytics'] ?? ''],
+      ['consent.marketing', consentRecord['marketing'] ?? ''],
+      ['consent.personalization', consentRecord['personalization'] ?? ''],
+      ['consent.timestamp', consentRecord['timestamp'] ?? ''],
+      ['consent.version', consentRecord['version'] ?? ''],
+    ];
+    return raw
+      .filter(([, v]) => !csvFilterEmpty || (v !== '' && v !== null && v !== undefined))
+      .map(([k, v]) => [k, String(v)] as [string, string]);
+  };
+
+  const buildCsv = (): string => {
+    const esc = (s: string) => `"${s.replace(/"/g, '""')}"`;
+    const rows = [['field', 'value'], ...buildCsvRows()];
+    return rows.map((r) => r.map(esc).join(',')).join('\r\n');
+  };
+
+  const handleDownloadCsv = () => {
+    try {
+      const blob = new Blob([buildCsv()], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      const stamp = new Date().toISOString().replace(/[:.]/g, '-');
+      a.href = url;
+      a.download = `cs-loader-diagnostic-${stamp}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      setCsvDone(true);
+      window.setTimeout(() => setCsvDone(false), 1800);
+    } catch { /* noop */ }
   };
 
   if (!visible) return null;
@@ -221,6 +282,24 @@ export default function ConsentDebugPanel() {
             >
               {copied ? '✓ Copied report' : 'Copy diagnostic report'}
             </button>
+
+            <button
+              type="button"
+              onClick={handleDownloadCsv}
+              className="w-full rounded bg-emerald-700 hover:bg-emerald-600 text-white text-[11px] py-1.5 transition-colors"
+            >
+              {csvDone ? '✓ CSV downloaded' : 'Export diagnostic CSV'}
+            </button>
+
+            <label className="flex items-center gap-2 text-[10px] text-slate-400 cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={csvFilterEmpty}
+                onChange={(e) => setCsvFilterEmpty(e.target.checked)}
+                className="h-3 w-3 accent-emerald-500"
+              />
+              CSV: only include non-empty fields
+            </label>
 
             <details className="mt-2">
               <summary className="cursor-pointer text-slate-400">xtsy_consent_v2</summary>

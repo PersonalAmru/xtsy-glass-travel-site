@@ -1,0 +1,59 @@
+name: CSP + /cs Proxy Tests
+# Verifies, on every push/PR to main, that:
+#   1. The production CSP keeps allowing first-party (/cs) + Contentsquare/Hotjar.
+#   2. The /cs proxy path resolver accepts the tag + subresources and rejects
+#      open-proxy / traversal attempts.
+#   3. (post-deploy) The live /cs/uxa tag loads with a JS content-type.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: 'Live URL for the proxy smoke test'
+        required: false
+        default: 'https://xtsy.one'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: csp-proxy-tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  unit:
+    name: CSP + proxy unit tests (production build)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+      - run: npm ci --prefer-offline --no-audit
+      # Build first so failures surface against the production bundle config.
+      - name: Build (production)
+        run: npm run build
+      - name: Run CSP + proxy tests
+        run: npx vitest run tests/cspAndProxy.test.ts
+
+  live-smoke:
+    name: Live /cs/uxa proxy smoke (post-deploy)
+    if: github.event_name != 'pull_request'
+    needs: unit
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+      - run: npm ci --prefer-offline --no-audit
+      - name: Wait 60s for deploy to propagate
+        run: sleep 60
+      - name: Smoke test the live proxy + CSP
+        env:
+          BASE_URL: ${{ github.event.inputs.base_url || 'https://xtsy.one' }}
+        run: npx vitest run tests/cspAndProxy.test.ts
