@@ -1,25 +1,27 @@
 /**
- * cs-proxy — First-party reverse proxy for the Contentsquare / Hotjar tag.
+ * cs-proxy — First-party reverse proxy for the Contentsquare / Hotjar tag
+ * AND its runtime subresources.
  *
- * Goal: serve `https://t.contentsquare.net/uxa/<id>.js` from a first-party
- * path so domain-based blocklists (uBlock, Brave Shields, AdGuard, Pi-hole,
- * NextDNS) that target `contentsquare.net` do not stop the request.
+ * Goal: serve Contentsquare/Hotjar assets from a first-party path so
+ * domain-based blocklists (uBlock, Brave Shields, AdGuard, Pi-hole, NextDNS)
+ * that target `contentsquare.net` / `hotjar.com` do not stop the requests.
  *
- * Public routes (production):
- *   xtsy.one/cs/uxa/<id>.js   ── Cloudflare Worker rewrites to ──▶
- *   <project>.functions.supabase.co/cs-proxy/uxa/<id>.js
+ * Public routes (production), via the Cloudflare Worker which rewrites
+ * `xtsy.one/cs/<sub>` ──▶ `<project>.functions.supabase.co/cs-proxy/<sub>`:
  *
- * Security:
- *   • ONLY paths under `uxa/` are proxied (no open proxy).
- *   • Path is sanitised to `[A-Za-z0-9._/-]` and `..` is rejected.
- *   • Response is returned as `application/javascript` with long cache + CORS.
+ *   Entry tag (prefix form):
+ *     xtsy.one/cs/uxa/<id>.js              → t.contentsquare.net/uxa/<id>.js
+ *   Same-origin subresources (prefix form):
+ *     xtsy.one/cs/t/...  /cs/log/...  etc. → t.contentsquare.net/<path>
+ *   Cross-host subresources (host form):
+ *     xtsy.one/cs/h/<host>/<path>          → https://<host>/<path>
+ *       where <host> ends with .contentsquare.net / .hotjar.com / .hotjar.io
  *
- * NOTE: This proxies the *loader* script first-party. The script may still
- * fetch sub-resources from contentsquare.net at runtime; those remain subject
- * to client blockers. Proxying the entry script is the highest-leverage step.
+ * Security (mirrors src/utils/csProxyPath.ts — kept in sync by tests):
+ *   • Path traversal rejected; conservative charset enforced.
+ *   • Prefix and upstream host are strictly allow-listed (no open proxy).
+ *   • GET/HEAD only. Long edge/browser cache + CORS on success.
  */
-
-const UPSTREAM_ORIGIN = 'https://t.contentsquare.net';
 
 const corsHeaders: Record<string, string> = {
   'Access-Control-Allow-Origin': '*',
@@ -28,19 +30,61 @@ const corsHeaders: Record<string, string> = {
   'Access-Control-Max-Age': '86400',
 };
 
-/** Extract the upstream sub-path (everything after `/cs-proxy` or `/cs`). */
-function extractSubPath(pathname: string): string | null {
-  // Strip a leading function mount segment, regardless of which gateway called us.
-  let p = pathname;
-  const markers = ['/cs-proxy/', '/cs/'];
-  for (const m of markers) {
-    const idx = p.indexOf(m);
-    if (idx !== -1) {
-      p = p.slice(idx + m.length);
-      return p;
-    }
+// ── Inlined copy of src/utils/csProxyPath.ts (Deno can't import `src`) ──
+const CS_DEFAULT_ORIGIN = 'https://t.contentsquare.net';
+const CS_ALLOWED_HOST_SUFFIXES = ['.contentsquare.net', '.hotjar.com', '.hotjar.io'];
+const CS_ALLOWED_PREFIXES = ['uxa', 't', 'log', 'logs', 'b', 'bb', 'pl', 'c', 'm', 'd', 'i', 's', 'hm'];
+
+interface CsProxyResolution {
+  ok: boolean;
+  upstreamUrl?: string;
+  reason?: string;
+  status?: number;
+}
+
+function resolveCsProxyTarget(subPath: string, search = ''): CsProxyResolution {
+  const sub = (subPath || '').replace(/^\/+/, '');
+  if (!sub) return { ok: false, reason: 'empty path', status: 404 };
+  if (sub.includes('..') || !/^[A-Za-z0-9._/-]+$/.test(sub)) {
+    return { ok: false, reason: 'invalid path', status: 400 };
   }
-  // Bare invocation (e.g. `/cs-proxy` with the file in query) — not supported.
+  if (sub.startsWith('h/')) {
+    const rest = sub.slice(2);
+    const slash = rest.indexOf('/');
+    if (slash <= 0) return { ok: false, reason: 'missing host or path', status: 400 };
+    const host = rest.slice(0, slash).toLowerCase();
+    const path = rest.slice(slash + 1);
+    if (!/^[a-z0-9.-]+$/.test(host) || !CS_ALLOWED_HOST_SUFFIXES.some((s) => host.endsWith(s))) {
+      return { ok: false, reason: `host not allowed: ${host}`, status: 403 };
+    }
+    if (!path) return { ok: false, reason: 'empty host path', status: 400 };
+    return { ok: true, upstreamUrl: `https://${host}/${path}${search}` };
+  }
+  const prefix = sub.split('/')[0];
+  if (!CS_ALLOWED_PREFIXES.includes(prefix)) {
+    return { ok: false, reason: `prefix not allowed: ${prefix}`, status: 403 };
+  }
+  return { ok: true, upstreamUrl: `${CS_DEFAULT_ORIGIN}/${sub}${search}` };
+}
+
+function inferContentType(path: string): string {
+  const p = path.toLowerCase().split('?')[0];
+  if (p.endsWith('.js')) return 'application/javascript; charset=utf-8';
+  if (p.endsWith('.json')) return 'application/json; charset=utf-8';
+  if (p.endsWith('.css')) return 'text/css; charset=utf-8';
+  if (p.endsWith('.gif')) return 'image/gif';
+  if (p.endsWith('.png')) return 'image/png';
+  if (p.endsWith('.svg')) return 'image/svg+xml';
+  if (p.endsWith('.html')) return 'text/html; charset=utf-8';
+  return 'application/octet-stream';
+}
+
+/** Extract the upstream sub-path (everything after `/cs-proxy/` or `/cs/`). */
+function extractSubPath(pathname: string): string | null {
+  for (const m of ['/cs-proxy/', '/cs/']) {
+    const idx = pathname.indexOf(m);
+    if (idx !== -1) return pathname.slice(idx + m.length);
+  }
   return null;
 }
 
@@ -57,27 +101,25 @@ Deno.serve(async (req) => {
     const url = new URL(req.url);
     const sub = extractSubPath(url.pathname);
 
-    if (!sub) {
+    if (sub === null) {
       return new Response('Not Found', { status: 404, headers: corsHeaders });
     }
 
-    // --- Hardening: only allow the Contentsquare UXA tag namespace ---
-    if (!sub.startsWith('uxa/')) {
-      return new Response('Forbidden path', { status: 403, headers: corsHeaders });
-    }
-    if (sub.includes('..') || !/^[A-Za-z0-9._/-]+$/.test(sub)) {
-      return new Response('Invalid path', { status: 400, headers: corsHeaders });
+    const resolved = resolveCsProxyTarget(sub, url.search);
+    if (!resolved.ok || !resolved.upstreamUrl) {
+      return new Response(resolved.reason ?? 'Invalid path', {
+        status: resolved.status ?? 400,
+        headers: { ...corsHeaders, 'cache-control': 'no-store' },
+      });
     }
 
-    const upstreamUrl = `${UPSTREAM_ORIGIN}/${sub}${url.search}`;
-
-    const upstream = await fetch(upstreamUrl, {
+    const upstream = await fetch(resolved.upstreamUrl, {
       method: req.method,
       headers: {
-        // Forward only safe headers; present a clean UA to the CDN.
         'user-agent': req.headers.get('user-agent') ?? 'xtsy-cs-proxy/1.0',
         'accept': req.headers.get('accept') ?? '*/*',
         'accept-encoding': 'gzip, br',
+        ...(req.headers.get('range') ? { range: req.headers.get('range')! } : {}),
       },
     });
 
@@ -89,17 +131,18 @@ Deno.serve(async (req) => {
     }
 
     const body = await upstream.arrayBuffer();
-    const contentType = upstream.headers.get('content-type') ?? 'application/javascript; charset=utf-8';
+    const contentType =
+      upstream.headers.get('content-type') ?? inferContentType(sub);
 
     return new Response(body, {
       status: 200,
       headers: {
         ...corsHeaders,
         'content-type': contentType,
-        // Cache hard at the edge/browser — the tag id is versioned in the path.
+        // Cache hard at the edge/browser — asset paths are versioned upstream.
         'cache-control': 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800',
         'x-proxied-by': 'xtsy-cs-proxy',
-        'x-upstream': UPSTREAM_ORIGIN,
+        'x-upstream': new URL(resolved.upstreamUrl).origin,
       },
     });
   } catch (err) {
