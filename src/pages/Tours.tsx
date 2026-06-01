@@ -135,6 +135,20 @@ const Tours = () => {
     document.getElementById("tour-listings")?.scrollIntoView({ behavior: "smooth" });
   }, []);
 
+  const itemListSchema = useMemo(() => ({
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Northeast India Tour Packages',
+    description: 'Curated Meghalaya, Nagaland, Assam, Arunachal & Sikkim tour packages by XTSY.',
+    numberOfItems: allTours.length,
+    itemListElement: allTours.map((tour, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: tour.title,
+      url: `https://xtsy.one/tours/${toSlug(tour.title)}`,
+    })),
+  }), [allTours]);
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEOHead
