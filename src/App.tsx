@@ -332,6 +332,7 @@ function App() {
                 <Route path="/admin" element={<LazyRoute><AdminOverview /></LazyRoute>} />
                 <Route path="/admin/dashboard" element={<LazyRoute><AdminOverview /></LazyRoute>} />
                 <Route path="/admin/analytics" element={<LazyRoute><AdminAnalytics /></LazyRoute>} />
+                <Route path="/admin/analytics/loader-events" element={<LazyRoute><AdminLoaderEvents /></LazyRoute>} />
                 <Route path="/admin/analytics/search" element={<LazyRoute><AdminSearchConsole /></LazyRoute>} />
                 <Route path="/admin/search" element={<LazyRoute><AdminSearchConsole /></LazyRoute>} />
                 <Route path="/admin/bookings" element={<LazyRoute><AdminBookingsCalendar /></LazyRoute>} />
