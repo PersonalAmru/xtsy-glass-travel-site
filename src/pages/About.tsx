@@ -33,6 +33,40 @@ const organizationSchema = {
   ],
 };
 
+const hostelSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Hostel',
+  name: 'XTSY Travellers Hostel',
+  url: 'https://xtsy.one/about',
+  image: 'https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/social-images/social-1765259372136-with_padding.png',
+  description: 'India\'s biggest hostel in Shillong, Meghalaya — budget dorms, private rooms, and India\'s first 270° glass suite. NEITA 2025 nominated.',
+  telephone: '+918837317070',
+  email: 'admin@xtsy.one',
+  priceRange: '₹325 - ₹9,999',
+  currenciesAccepted: 'INR',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Mawdiangdiang Road, New Shillong Township',
+    addressLocality: 'Shillong',
+    addressRegion: 'Meghalaya',
+    postalCode: '793018',
+    addressCountry: 'IN',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 25.5788,
+    longitude: 91.8933,
+  },
+  checkinTime: '13:00',
+  checkoutTime: '11:00',
+  amenityFeature: [
+    { '@type': 'LocationFeatureSpecification', name: 'Free WiFi', value: true },
+    { '@type': 'LocationFeatureSpecification', name: '24/7 Reception', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Airport Transfer', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Female-only Dorms', value: true },
+  ],
+};
+
 const About = () => {
   const seo = getSEOConfig('about');
 
