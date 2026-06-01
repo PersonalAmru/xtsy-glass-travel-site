@@ -117,7 +117,9 @@ describe('/cs proxy path resolver', () => {
 });
 
 // ── Optional LIVE smoke test against a production build (CI) ──
-const BASE = process.env.BASE_URL;
+// Only runs when BASE_URL is a fully-qualified http(s) origin.
+const RAW_BASE = process.env.BASE_URL ?? '';
+const BASE = /^https?:\/\/[^/]+/i.test(RAW_BASE) ? RAW_BASE.replace(/\/$/, '') : '';
 describe.skipIf(!BASE)('LIVE: /cs/uxa proxy + CSP header', () => {
   it('serves the proxied Contentsquare tag with a JS content-type', async () => {
     const res = await fetch(`${BASE}/cs/uxa/${TAG_ID}.js`, { redirect: 'follow' });
