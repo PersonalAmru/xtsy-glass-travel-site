@@ -84,6 +84,7 @@ const About = () => {
       />
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(organizationSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(hostelSchema)}</script>
       </Helmet>
       
       <Header />
