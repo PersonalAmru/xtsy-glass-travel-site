@@ -283,6 +283,24 @@ export default function ConsentDebugPanel() {
               {copied ? '✓ Copied report' : 'Copy diagnostic report'}
             </button>
 
+            <button
+              type="button"
+              onClick={handleDownloadCsv}
+              className="w-full rounded bg-emerald-700 hover:bg-emerald-600 text-white text-[11px] py-1.5 transition-colors"
+            >
+              {csvDone ? '✓ CSV downloaded' : 'Export diagnostic CSV'}
+            </button>
+
+            <label className="flex items-center gap-2 text-[10px] text-slate-400 cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={csvFilterEmpty}
+                onChange={(e) => setCsvFilterEmpty(e.target.checked)}
+                className="h-3 w-3 accent-emerald-500"
+              />
+              CSV: only include non-empty fields
+            </label>
+
             <details className="mt-2">
               <summary className="cursor-pointer text-slate-400">xtsy_consent_v2</summary>
               <pre className="mt-1 max-h-40 overflow-auto whitespace-pre-wrap break-words text-[10px] bg-slate-950/60 p-2 rounded">
