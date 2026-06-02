@@ -91,7 +91,7 @@ const PremiumReviewCard = ({
     .toUpperCase()
     .slice(0, 2);
 
-  const ratingDisplay = review.source === "Google" || review.source === "MakeMyTrip" 
+  const ratingDisplay = FIVE_POINT_SOURCES.includes(review.source)
     ? `${review.rating}/5` 
     : `${review.rating}/10`;
 
