@@ -121,8 +121,10 @@ const faqsForDestination = (destination: string): SEOFaq[] => {
   return [
     { question: `What is the best time to visit ${label}?`, answer: `October to April offers the clearest weather. Monsoon (Jun–Sep) is dramatic for waterfalls but expect heavy rain.` },
     { question: `How many days are enough for ${label}?`, answer: `Most travellers spend 3–5 days exploring ${label} and surrounding attractions. XTSY can craft a custom itinerary on WhatsApp.` },
-    { question: `Is ${label} safe for solo and female travellers?`, answer: `Yes. Northeast India is among the safest regions in the country, and XTSY runs dedicated female-only dorms with 24/7 reception.` },
+    { question: `Is ${label} safe for solo and female travellers?`, answer: `Yes. Northeast India is among the safest regions in the country, and XTSY runs dedicated female-only dorms with 24/7 reception. Solo and female guests consistently rate their stays 5/5 for safety and a peaceful atmosphere.` },
     { question: `How do I book a stay near ${label}?`, answer: `Message us on WhatsApp at +91 88373 17070 for instant availability and the best direct rate. Our Shillong base offers 24/7 check-in.` },
+    { question: `What do guests say about staying with XTSY near ${label}?`, answer: `XTSY Travellers Hostel is rated highly across Google, MakeMyTrip, Goibibo, Agoda and Hostelworld. Guests repeatedly praise the spotless dorms, friendly staff, great food at TAB Bistro and a genuine international backpacker vibe — "one of the best dormitories near Shillong".` },
+    { question: `Where will I sleep — what rooms are available near ${label}?`, answer: `Choose 4, 6 and 8-bed mixed dorms, female-only dorms, private rooms, or the flagship 270° Panorama Glass En-suite at Experience by XTSY. Every bed has a locker, reading light and charging point. Dorms from ₹499, glass suite for couples and content creators.` },
   ];
 };
 
