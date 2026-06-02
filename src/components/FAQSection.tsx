@@ -94,6 +94,41 @@ const FAQSection = () => {
     {
       question: "What amenities come with each tier?",
       answer: "Economy: Bed + Balcony + WiFi (basics only). Hostel: Charging points, study lights, common areas, terrace, bonfire nights. Luxury: Full service—room service, premium breakfast, concierge, complimentary upgrades, VIP treatment.",
+    },
+    {
+      question: "How clean are the dorms, really?",
+      answer: "Cleanliness is our most repeated review highlight across Google, MakeMyTrip, Goibibo and Agoda. Dorms (4, 6 and 8-bed mixed plus female-only) are sanitised daily, with fresh linen, lockers, reading lights and charging points at every bed. Guests consistently describe the beds as 'cozy and spotless'.",
+      hasQuote: true,
+      quote: "The beds are incredibly cozy and spotless—honestly so comfortable that I think they should be charging more!",
+      quoteName: "Millie Celeste"
+    },
+    {
+      question: "Does the 270° Glass Suite get hot during the day?",
+      answer: "Honest answer—daytime sun can warm any glass structure, which a few guests noted. That's exactly why the Panorama Glass En-suite by XTSY now has climate control, blackout shades and cross ventilation. Nights are the magic: you fall asleep under Meghalaya's stars. Guests still rate the ventilation better than glamping setups they've tried across Asia and Europe.",
+      hasQuote: true,
+      quote: "The glass room felt noticeably less humid compared to many glamping setups across Asia and Europe.",
+      quoteName: "Airbnb Guest, Experience by XTSY"
+    },
+    {
+      question: "How's the food and dining?",
+      answer: "Food earns repeat praise in reviews—'food was great', 'too good'. Breakfast and meals are served at TAB Bistro with veg, non-veg and Jain options. We've gone above and beyond for special diets (we'll cook pure-veg separately before non-veg on request). Common areas have games and a TV for chilled evenings.",
+      hasQuote: true,
+      quote: "The staff were super friendly and helpful, and the common areas have games and a TV. Good vibes!",
+      quoteName: "Verified Guest"
+    },
+    {
+      question: "Is XTSY good for students and large groups?",
+      answer: "Absolutely—students, college squads and corporate groups are some of our most frequent guests, often booking 6 and 8-bed mixed dorms together. Group rates kick in from 8 guests, plus bonfire and BBQ nights on the terrace. Reviews from group and student stays consistently land at 5/5.",
+      hasQuote: true,
+      quote: "Very nice atmosphere with cooperative staff.",
+      quoteName: "Vineeth S"
+    },
+    {
+      question: "What do international and backpacker guests say?",
+      answer: "XTSY has a genuine international backpacker vibe—travellers from Russia, Bangladesh and beyond, plus content creators and influencers, keep coming back. Strangers turn into friends here. It's repeatedly called one of the safest and most welcoming stays in Northeast India.",
+      hasQuote: true,
+      quote: "Yaha ka vibe full international backpacker type hai 😍 strangers bhi dost ban jaate hain!",
+      quoteName: "Nomad KNM, Travel Influencer"
     }
   ];
 
