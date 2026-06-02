@@ -120,6 +120,48 @@ const FAQ = () => {
           quoteName: "Sahil"
         }
       ]
+    },
+    {
+      title: "Rooms, Dorms & Guest Reviews",
+      icon: Star,
+      iconColor: "text-rose-500",
+      faqs: [
+        {
+          question: "What dorm and room types can I choose?",
+          answer: "4, 6 and 8-bed mixed dormitories, female-only dorms (4 and 6-bed), private double rooms with mountain views, and the flagship 270° Panorama Glass En-suite at Experience by XTSY. Every bed has a locker, reading light and charging point. Dorms from ₹499.",
+          hasQuote: true,
+          quote: "One of the best dormitories — clean, comfortable and full of good vibes.",
+          quoteName: "Kandarp"
+        },
+        {
+          question: "How clean and comfortable are the beds?",
+          answer: "Cleanliness is our #1 review highlight across Google, MakeMyTrip, Goibibo, Agoda and Hostelworld. Dorms are sanitised daily with fresh linen. Guests routinely call the beds 'cozy and spotless'.",
+          hasQuote: true,
+          quote: "The beds are incredibly cozy and spotless—the entire place is well-maintained with a warm, welcoming vibe.",
+          quoteName: "Millie Celeste"
+        },
+        {
+          question: "Is the dorm experience good for solo and female travellers?",
+          answer: "Yes — female-only dorms, 24/7 reception, CCTV and lockers. Solo and female guests consistently rate XTSY 5/5 for safety and a peaceful, neat environment.",
+          hasQuote: true,
+          quote: "It was very neat and clean. People were polite. Overall a peaceful stay.",
+          quoteName: "Priyadarshinee Nayak"
+        },
+        {
+          question: "Does the glass suite get hot in the daytime?",
+          answer: "Daytime sun can warm any glass structure — a point a couple of guests raised. The Panorama Glass En-suite now has climate control, blackout shades and cross ventilation, and guests rate it less humid than glamping setups across Asia and Europe. Nights under the stars are the real magic.",
+          hasQuote: true,
+          quote: "Sleeping under a transparent glass roof with Meghalaya's skies above you is just surreal.",
+          quoteName: "Airbnb Guest"
+        },
+        {
+          question: "How's the food and the vibe?",
+          answer: "Food earns repeat praise — meals and breakfast at TAB Bistro with veg, non-veg and Jain options. Common areas have games and a TV, and the overall feel is a genuine international backpacker hostel where strangers become friends.",
+          hasQuote: true,
+          quote: "Food was great, staff were very polite.",
+          quoteName: "Mahesh Singh"
+        }
+      ]
     }
   ];
 
