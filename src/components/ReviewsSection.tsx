@@ -576,6 +576,7 @@ const ReviewsSection = () => {
     const combined = [
       ...(hasReviews && dbReviews.length > 0 ? dbReviews : []),
       ...googleReviewsMapped,
+      ...otaReviews,
       ...fallbackReviews,
     ];
     
