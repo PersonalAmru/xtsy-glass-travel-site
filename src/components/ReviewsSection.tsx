@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { useReviews, type Review } from "@/hooks/useReviews";
 import { routeGTMEvent } from "@/utils/gtmEventRouter";
 import { googleReviews } from "@/data/googleReviews";
+import { otaReviews } from "@/data/otaReviews";
 
 // Number of reviews to show initially in the modal
 const REVIEWS_PER_PAGE = 12;
