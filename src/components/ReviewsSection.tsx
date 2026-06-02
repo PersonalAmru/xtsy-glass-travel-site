@@ -605,8 +605,9 @@ const ReviewsSection = () => {
   const topRatedReviews = useMemo(() => 
     [...allReviewsCombined].sort((a, b) => {
       // Normalize ratings to 0-10 scale for comparison
-      const ratingA = a.source === "Google" || a.source === "MakeMyTrip" ? a.rating * 2 : a.rating;
-      const ratingB = b.source === "Google" || b.source === "MakeMyTrip" ? b.rating * 2 : b.rating;
+      const fivePoint = ["Google", "MakeMyTrip", "Goibibo", "Airbnb", "Instagram"];
+      const ratingA = fivePoint.includes(a.source) ? a.rating * 2 : a.rating;
+      const ratingB = fivePoint.includes(b.source) ? b.rating * 2 : b.rating;
       // Sort by rating first, then by comment length
       if (ratingB !== ratingA) return ratingB - ratingA;
       return b.comment.length - a.comment.length;
