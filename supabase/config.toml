@@ -50,6 +50,13 @@ verify_jwt = true
 [functions.realtime-intelligence]
 verify_jwt = true
 
+# SEO admin functions (admin-only, JWT verified + in-function has_role check)
+[functions.generate-seo-hero]
+verify_jwt = true
+
+[functions.seo-crawl-request]
+verify_jwt = true
+
 
 # Invoice generation (public - generates booking and invoice)
 [functions.generate-invoice]

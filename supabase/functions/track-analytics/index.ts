@@ -112,22 +112,23 @@ async function getGeoFromIP(ip: string): Promise<{
       return cached.data;
     }
 
-    const response = await fetch(`http://ip-api.com/json/${ip}?fields=status,country,countryCode,region,regionName,city,lat,lon`, {
+    const response = await fetch(`https://ipapi.co/${ip}/json/`, {
       signal: AbortSignal.timeout(1000), // Reduced from 2s to 1s
     });
 
     if (!response.ok) return null;
 
     const data = await response.json();
-    if (data.status !== 'success') return null;
+    // ipapi.co returns { error: true } on failure
+    if (data.error || !data.country_code) return null;
 
     const result = {
-      country_code: data.countryCode,
-      country_name: data.country,
-      region: data.regionName,
+      country_code: data.country_code,
+      country_name: data.country_name,
+      region: data.region,
       city: data.city,
-      latitude: data.lat,
-      longitude: data.lon,
+      latitude: data.latitude,
+      longitude: data.longitude,
     };
 
     // Cache the result

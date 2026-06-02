@@ -85,6 +85,40 @@ Deno.serve(async (req) => {
   }
 
   try {
+    const supabase = createClient(
+      Deno.env.get('SUPABASE_URL')!,
+      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
+    );
+
+    // ── Auth: require an authenticated admin user ───────────────────────────────
+    const authHeader = req.headers.get('Authorization');
+    if (!authHeader) {
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+    const userClient = createClient(
+      Deno.env.get('SUPABASE_URL')!,
+      Deno.env.get('SUPABASE_ANON_KEY')!,
+      { global: { headers: { Authorization: authHeader } } }
+    );
+    const { data: { user } } = await userClient.auth.getUser();
+    if (!user) {
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+    const { data: isAdmin } = await userClient.rpc('has_role', { _user_id: user.id, _role: 'admin' });
+    if (!isAdmin) {
+      return new Response(
+        JSON.stringify({ error: 'Admin access required' }),
+        { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+    const userId = user.id;
+
     const body: RequestBody = await req.json();
     if (!body.paths || !Array.isArray(body.paths) || body.paths.length === 0) {
       return new Response(
@@ -93,23 +127,23 @@ Deno.serve(async (req) => {
       );
     }
 
-    const supabase = createClient(
-      Deno.env.get('SUPABASE_URL')!,
-      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
-    );
-
-    // Identify caller for audit trail
-    const authHeader = req.headers.get('Authorization');
-    let userId: string | null = null;
-    if (authHeader) {
-      const userClient = createClient(
-        Deno.env.get('SUPABASE_URL')!,
-        Deno.env.get('SUPABASE_ANON_KEY')!,
-        { global: { headers: { Authorization: authHeader } } }
+    // Validate paths — only same-origin relative paths, capped count, no absolute URLs
+    if (body.paths.length > 1000) {
+      return new Response(
+        JSON.stringify({ error: 'Too many paths (max 1000)' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
-      const { data: { user } } = await userClient.auth.getUser();
-      userId = user?.id ?? null;
     }
+    const invalidPath = body.paths.find(
+      (p) => typeof p !== 'string' || /^https?:\/\//i.test(p) || p.includes('..') || !/^\/?[a-zA-Z0-9\-_/]*$/.test(p)
+    );
+    if (invalidPath !== undefined) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid path: only relative xtsy.one paths are allowed' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
 
     const results: any = {};
 
