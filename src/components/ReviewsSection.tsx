@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { useReviews, type Review } from "@/hooks/useReviews";
 import { routeGTMEvent } from "@/utils/gtmEventRouter";
 import { googleReviews } from "@/data/googleReviews";
+import { otaReviews } from "@/data/otaReviews";
 
 // Number of reviews to show initially in the modal
 const REVIEWS_PER_PAGE = 12;
@@ -575,6 +576,7 @@ const ReviewsSection = () => {
     const combined = [
       ...(hasReviews && dbReviews.length > 0 ? dbReviews : []),
       ...googleReviewsMapped,
+      ...otaReviews,
       ...fallbackReviews,
     ];
     
@@ -603,8 +605,9 @@ const ReviewsSection = () => {
   const topRatedReviews = useMemo(() => 
     [...allReviewsCombined].sort((a, b) => {
       // Normalize ratings to 0-10 scale for comparison
-      const ratingA = a.source === "Google" || a.source === "MakeMyTrip" ? a.rating * 2 : a.rating;
-      const ratingB = b.source === "Google" || b.source === "MakeMyTrip" ? b.rating * 2 : b.rating;
+      const fivePoint = ["Google", "MakeMyTrip", "Goibibo", "Airbnb", "Instagram"];
+      const ratingA = fivePoint.includes(a.source) ? a.rating * 2 : a.rating;
+      const ratingB = fivePoint.includes(b.source) ? b.rating * 2 : b.rating;
       // Sort by rating first, then by comment length
       if (ratingB !== ratingA) return ratingB - ratingA;
       return b.comment.length - a.comment.length;
