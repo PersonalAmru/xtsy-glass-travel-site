@@ -47,12 +47,25 @@ const getSourceColor = (source: string) => {
       return "bg-brand-verified/80";
     case "MakeMyTrip":
       return "bg-brand-secondary";
+    case "Goibibo":
+      return "bg-brand-ember";
+    case "Agoda":
+      return "bg-brand-copper";
+    case "Hostelworld":
+      return "bg-brand-gold";
+    case "Airbnb":
+      return "bg-brand-secondary/80";
+    case "Instagram":
+      return "bg-gradient-to-r from-brand-ember to-brand-copper";
     case "Expedia":
       return "bg-brand-gold";
     default:
       return "bg-muted";
   }
 };
+
+// Sources rated on a 5-point scale (others use 10-point)
+const FIVE_POINT_SOURCES = ["Google", "MakeMyTrip", "Goibibo", "Airbnb", "Instagram"];
 
 const getPropertyColor = (property: string) => {
   if (property === "Experience by XTSY") return "bg-gradient-to-r from-brand-copper to-brand-ember";
