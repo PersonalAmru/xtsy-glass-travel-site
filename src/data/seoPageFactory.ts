@@ -149,7 +149,8 @@ const faqsForLastMinute = (city: string): SEOFaq[] => [
   { question: `Can I book a stay in ${slugToLabel(city)} for tonight?`, answer: `Yes — XTSY accepts same-day bookings via WhatsApp at +91 88373 17070. Subject to availability.` },
   { question: `What's the cheapest last-minute stay in ${slugToLabel(city)}?`, answer: `Dorm beds at XTSY start at ₹499/night including taxes. Private rooms from ₹1,499.` },
   { question: `Do you have 24/7 check-in?`, answer: `Yes — our Shillong reception is staffed 24/7 for late arrivals.` },
-  { question: `Is breakfast included?`, answer: `Breakfast can be added on at TAB Bistro — message us for the menu and rates.` },
+  { question: `Is breakfast included?`, answer: `Breakfast can be added on at TAB Bistro — message us for the menu and rates. Guests rate the food highly: "food was great, staff were very polite".` },
+  { question: `Is a last-minute dorm at XTSY any good?`, answer: `Very. Even guests who booked purely for budget end up surprised — spotless beds, friendly staff and a welcoming vibe earn repeat 5/5 ratings across Goibibo, MakeMyTrip and Agoda. "Really amazing and affordable place to stay near Shillong."` },
 ];
 
 // =============================================================
