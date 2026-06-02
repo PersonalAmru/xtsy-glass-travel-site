@@ -6,7 +6,7 @@ import SEOHead from '@/components/SEOHead';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Quote, MessageCircle, Sparkles, Mountain, Map, Plane, CreditCard } from 'lucide-react';
+import { Quote, MessageCircle, Sparkles, Mountain, Map, Plane, CreditCard, Star } from 'lucide-react';
 
 const FAQ = () => {
   const faqSections = [
