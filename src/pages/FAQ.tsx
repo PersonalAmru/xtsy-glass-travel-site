@@ -165,6 +165,18 @@ const FAQ = () => {
     }
   ];
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqSections.flatMap((section) =>
+      section.faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+      }))
+    ),
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
@@ -172,7 +184,9 @@ const FAQ = () => {
         description="Frequently asked questions about XTSY Hostel Shillong. Glass suite, dorm rooms, check-in/out, pet policy, Meghalaya tours, and booking help."
         keywords="XTSY FAQ, hostel Shillong questions, glass suite FAQ, Meghalaya travel FAQ, booking help XTSY"
         canonicalUrl="https://xtsy.one/faq"
+        structuredData={faqSchema}
       />
+      
       
       <Header />
       
