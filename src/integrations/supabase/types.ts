@@ -1156,6 +1156,7 @@ export type Database = {
           ota_booking_id: string | null
           ota_name: string | null
           payment_method: string | null
+          payment_status: string | null
           payment_verified_at: string | null
           payout_eligible: boolean | null
           payout_released_at: string | null
@@ -1163,14 +1164,20 @@ export type Database = {
           promo_applied: boolean | null
           promo_code: string | null
           property_id: string | null
+          quantity: number | null
           refund_amount: number | null
           room_details: Json
+          room_type: string | null
+          room_type_id: string | null
           settled_at: string | null
           settled_by: string | null
           settlement_amount: number | null
           settlement_status: string | null
+          source: string | null
+          special_requests: string | null
           state: string | null
           subtotal: number
+          taxes: number | null
           total_amount: number
           updated_at: string
           user_id: string | null
@@ -1203,6 +1210,7 @@ export type Database = {
           ota_booking_id?: string | null
           ota_name?: string | null
           payment_method?: string | null
+          payment_status?: string | null
           payment_verified_at?: string | null
           payout_eligible?: boolean | null
           payout_released_at?: string | null
@@ -1210,14 +1218,20 @@ export type Database = {
           promo_applied?: boolean | null
           promo_code?: string | null
           property_id?: string | null
+          quantity?: number | null
           refund_amount?: number | null
           room_details: Json
+          room_type?: string | null
+          room_type_id?: string | null
           settled_at?: string | null
           settled_by?: string | null
           settlement_amount?: number | null
           settlement_status?: string | null
+          source?: string | null
+          special_requests?: string | null
           state?: string | null
           subtotal: number
+          taxes?: number | null
           total_amount: number
           updated_at?: string
           user_id?: string | null
@@ -1250,6 +1264,7 @@ export type Database = {
           ota_booking_id?: string | null
           ota_name?: string | null
           payment_method?: string | null
+          payment_status?: string | null
           payment_verified_at?: string | null
           payout_eligible?: boolean | null
           payout_released_at?: string | null
@@ -1257,14 +1272,20 @@ export type Database = {
           promo_applied?: boolean | null
           promo_code?: string | null
           property_id?: string | null
+          quantity?: number | null
           refund_amount?: number | null
           room_details?: Json
+          room_type?: string | null
+          room_type_id?: string | null
           settled_at?: string | null
           settled_by?: string | null
           settlement_amount?: number | null
           settlement_status?: string | null
+          source?: string | null
+          special_requests?: string | null
           state?: string | null
           subtotal?: number
+          taxes?: number | null
           total_amount?: number
           updated_at?: string
           user_id?: string | null
@@ -3504,6 +3525,7 @@ export type Database = {
           created_at: string
           date: string
           id: string
+          last_updated: string | null
           room_type_id: string | null
           total_count: number
           updated_at: string
@@ -3513,6 +3535,7 @@ export type Database = {
           created_at?: string
           date: string
           id?: string
+          last_updated?: string | null
           room_type_id?: string | null
           total_count?: number
           updated_at?: string
@@ -3522,6 +3545,7 @@ export type Database = {
           created_at?: string
           date?: string
           id?: string
+          last_updated?: string | null
           room_type_id?: string | null
           total_count?: number
           updated_at?: string
@@ -3533,6 +3557,7 @@ export type Database = {
           amenities: Json | null
           base_price: number
           capacity: number
+          category: string | null
           created_at: string | null
           description: string | null
           id: string
@@ -3540,6 +3565,7 @@ export type Database = {
           is_active: boolean | null
           name: string
           property_id: string | null
+          total_units: number | null
           updated_at: string | null
           weekday_price: number | null
           weekend_price: number | null
@@ -3548,6 +3574,7 @@ export type Database = {
           amenities?: Json | null
           base_price: number
           capacity: number
+          category?: string | null
           created_at?: string | null
           description?: string | null
           id?: string
@@ -3555,6 +3582,7 @@ export type Database = {
           is_active?: boolean | null
           name: string
           property_id?: string | null
+          total_units?: number | null
           updated_at?: string | null
           weekday_price?: number | null
           weekend_price?: number | null
@@ -3563,6 +3591,7 @@ export type Database = {
           amenities?: Json | null
           base_price?: number
           capacity?: number
+          category?: string | null
           created_at?: string | null
           description?: string | null
           id?: string
@@ -3570,6 +3599,7 @@ export type Database = {
           is_active?: boolean | null
           name?: string
           property_id?: string | null
+          total_units?: number | null
           updated_at?: string | null
           weekday_price?: number | null
           weekend_price?: number | null
