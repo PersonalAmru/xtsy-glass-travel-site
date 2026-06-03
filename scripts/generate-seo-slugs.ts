@@ -310,7 +310,8 @@ export function generateAllSlugs() {
 }
 
 // CLI entrypoint — guarded so the file is safe to import in the browser bundle.
-if (typeof process !== 'undefined' && process.argv?.[1] && import.meta.url === `file://${process.argv[1]}`) {
+const _proc = (globalThis as { process?: { argv?: string[] } }).process;
+if (typeof _proc !== 'undefined' && _proc.argv?.[1] && import.meta.url === `file://${_proc.argv[1]}`) {
   const all = generateAllSlugs();
   Object.entries(all).forEach(([k, v]) => {
     if (Array.isArray(v)) console.log(`${k}: ${v.length}`);
