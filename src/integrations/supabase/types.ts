@@ -5652,6 +5652,7 @@ export type Database = {
           enquiry_uuid: string
         }[]
       }
+      current_user_id: { Args: never; Returns: string }
       delete_my_data: { Args: never; Returns: boolean }
       deny_booking_with_message: {
         Args: { p_admin_id: string; p_booking_id: string; p_reason?: string }
