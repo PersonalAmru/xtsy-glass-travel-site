@@ -4,6 +4,7 @@
  * All XTSY room types with unique IDs that match the database.
  * Used across: booking flow, admin dashboard, inventory management, calendar blocking
  */
+import { cdnMany } from '@/data/cdnImages';
 
 export type RoomCategory = 'luxury' | 'hostel';
 export type UnitType = 'bed' | 'room';
