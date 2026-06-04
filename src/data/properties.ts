@@ -9,7 +9,7 @@ import xtsyMilkyway from '@/assets/xtsy-270-milkyway.jpeg';
 import xtsyMilkyway2 from '@/assets/xtsy-270-milkyway2.jpeg';
 import xtsyInterior from '@/assets/xtsy-270-interior.jpeg';
 import hostelHero from '@/assets/hostel-hero-9068.jpeg';
-import { cdn, cdnMany } from './cdnImages';
+import { cdnMany } from './cdnImages';
 
 export interface Location {
   id: string;
