@@ -69,30 +69,15 @@ export const LOCATIONS: Record<string, Location> = {
   },
 };
 
-// Dawki Camping image filenames as stored in Supabase (xtsy-gallery-assets/Dawki Camping/)
-const DAWKI_CAMPING_IMAGES_RAW = [
-  'WhatsApp Image 2026-04-15 at 21.36.33.jpeg',
-  'WhatsApp Image 2026-04-15 at 21.36.33 (1).jpeg',
-  'WhatsApp Image 2026-04-15 at 21.36.33 (2).jpeg',
-  'WhatsApp Image 2026-04-15 at 21.36.37.jpeg',
-  'WhatsApp Image 2026-04-15 at 21.36.38.jpeg',
-  'WhatsApp Image 2026-04-15 at 21.36.39.jpeg',
-  'WhatsApp Image 2026-04-15 at 21.36.39 (1).jpeg',
-  'WhatsApp Image 2026-04-15 at 21.36.40.jpeg',
-  'WhatsApp Image 2026-04-15 at 21.36.41.jpeg',
-  'WhatsApp Image 2026-04-15 at 21.36.43.jpeg',
-  'WhatsApp Image 2026-04-16 at 16.05.03.jpeg',
-  'WhatsApp Image 2026-04-16 at 16.05.03 (1).jpeg',
-  'WhatsApp Image 2026-04-16 at 16.05.04.jpeg',
-  'WhatsApp Image 2026-04-16 at 16.05.04 (1).jpeg',
-  'WhatsApp Image 2026-04-16 at 16.05.04 (2).jpeg',
-  'WhatsApp Image 2026-04-16 at 16.05.06.jpeg',
-  'WhatsApp Image 2026-04-16 at 16.05.06 (1).jpeg',
-];
-
-export const DAWKI_CAMPING_IMAGES = DAWKI_CAMPING_IMAGES_RAW.map(
-  (name) => `${STORAGE_BASE}/Dawki%20Camping/${encodeURIComponent(name)}`,
-);
+// Dawki riverside campsite imagery (uploaded "Dawki River" photos on the CDN)
+export const DAWKI_CAMPING_IMAGES = cdnMany([
+  'xtsyvoyage/Dawki River.jpeg',
+  'xtsyvoyage/Dawki River 2.jpeg',
+  'xtsyvoyage/Dawki River 3.jpeg',
+  'xtsy/Property Images 11.jpg',
+  'xtsy/Property Images 12.jpg',
+  'xtsy/Property Images 13.jpg',
+]);
 
 // ==================== PROPERTIES ====================
 export const PROPERTIES: Record<string, Property> = {
