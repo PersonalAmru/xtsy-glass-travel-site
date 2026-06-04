@@ -232,7 +232,7 @@ export default function AdminPropertyOnboarding() {
       const { error } = await supabase
         .from('property_onboarding')
         .update({ 
-          status,
+          onboarding_status: status,
           completed_at: status === 'live' ? new Date().toISOString() : null
         })
         .eq('id', selectedProperty.onboarding.id);

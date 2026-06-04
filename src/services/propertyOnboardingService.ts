@@ -203,7 +203,7 @@ export async function updateOnboardingStatus(
   propertyId: string,
   status: OnboardingStatus
 ): Promise<{ success: boolean; error?: string }> {
-  const updates: Record<string, unknown> = {
+  const updates: { onboarding_status: OnboardingStatus; updated_at: string; completed_at?: string } = {
     onboarding_status: status,
     updated_at: new Date().toISOString(),
   };
