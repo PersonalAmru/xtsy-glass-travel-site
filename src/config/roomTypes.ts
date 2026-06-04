@@ -4,6 +4,7 @@
  * All XTSY room types with unique IDs that match the database.
  * Used across: booking flow, admin dashboard, inventory management, calendar blocking
  */
+import { cdnMany } from '@/data/cdnImages';
 
 export type RoomCategory = 'luxury' | 'hostel';
 export type UnitType = 'bed' | 'room';
@@ -54,58 +55,68 @@ export interface RoomTypeConfig {
  * - 6-bed-mixed-economy-dorm
  * - 8-bed-mixed-economy-dorm
  */
-// Room images from Supabase storage (source of truth)
+ // Room images — uploaded to storage, rehosted on the Lovable CDN.
+// Resolved by "bucket/Filename" key via the CDN image map.
+
 export const ROOM_IMAGES: Record<string, string[]> = {
-  'xtsy-270': [
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140811.png',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140029.png'
-  ],
-  '4-bed-female-only-dorm': [
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/2.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/3.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/4.JPG',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/5.JPG',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/6.JPG',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/7.JPG',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/IMG_5161.png'
-  ],
-  '4-bed-mixed-female-dorm': [
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/3.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/4.JPG',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/5.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/IMG_5161.png'
-  ],
-  '6-bed-mixed-female-dorm': [
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/3.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/4.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/5.JPG',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/6.JPG',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/IMG_5160.png'
-  ],
-  '6-bed-mixed-dorm': [
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/3.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/4.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/5.JPG',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/6.JPG',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/IMG_5160.png'
-  ],
-  'king-double-room': [
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/2.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/3.JPG',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/IMG_4077.jpg'
-  ],
-  '8-bed-mixed-dorm': [
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/4.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/5.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/6.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/8.jpg',
-    'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/9.jpg'
-  ],
+  'xtsy-270': cdnMany([
+    'xtsy-270/XTSY270.JPG',
+    'xtsy-270/XTSY270 2.JPG',
+    'xtsy-270/XTSY270 3.JPG',
+    'xtsy-270/XTSY270 4.JPG',
+    'xtsy-270/XTSY270 5.JPG',
+    'xtsy-270/XTSY270 6.JPG',
+    'xtsy-270/XTSY270 7.JPG',
+  ]),
+  '4-bed-female-only-dorm': cdnMany([
+    'xtsy/4 Bed Female Dormitory.jpg',
+    'xtsy/4 Bed Female Dormitory 2.jpg',
+    'xtsy/4 Bed Female Dormitory 3.jpg',
+    'xtsy/4 Bed Female Dormitory 4.JPG',
+    'xtsy/4 Bed Female Dormitory 5.JPG',
+    'xtsy/4 Bed Female Dormitory 6.JPG',
+    'xtsy/4 Bed Female Dormitory 7.JPG',
+    'xtsy/4 Bed Female Dormitory 8.jpg',
+  ]),
+  '4-bed-mixed-female-dorm': cdnMany([
+    'xtsy/4 Bed Mixed Dormitory 1.JPG',
+    'xtsy/4 Bed Mixed Dormitory 2.JPG',
+    'xtsy/4 Bed Mixed Dormitory 3.jpg',
+    'xtsy/4 Bed Mixed Dormitory 4.JPG',
+    'xtsy/4 Bed Mixed Dormitory 5.jpg',
+    'xtsy/4 Bed Mixed Dormitory 7.jpg',
+  ]),
+  '6-bed-mixed-female-dorm': cdnMany([
+    'xtsy/6 Bed Mixed Dormitory 1.JPG',
+    'xtsy/6 Bed Mixed Dormitory 2.JPG',
+    'xtsy/6 Bed Mixed Dormitory 3.jpg',
+    'xtsy/6 Bed Mixed Dormitory 4.jpg',
+    'xtsy/6 Bed Mixed Dormitory 5.JPG',
+    'xtsy/6 Bed Mixed Dormitory 6.JPG',
+  ]),
+  '6-bed-mixed-dorm': cdnMany([
+    'xtsy/6 Bed Mixed Dormitory 7.jpg',
+    'xtsy/6 Bed Mixed Dormitory 8.jpg',
+    'xtsy/6 Bed Mixed Dormitory 9.jpg',
+    'xtsy/6 Bed Mixed Dormitory 1.JPG',
+    'xtsy/6 Bed Mixed Dormitory 2.JPG',
+    'xtsy/6 Bed Mixed Dormitory 3.jpg',
+  ]),
+  'king-double-room': cdnMany([
+    'xtsy/King Double Room.jpg',
+    'xtsy/King Double Room 2.jpg',
+    'xtsy/King Double Room 3.JPG',
+    'xtsy/King Double Room 4.jpg',
+  ]),
+  // No dedicated 8-bed photos were uploaded — reuse the 6-bed mixed dorm set.
+  '8-bed-mixed-dorm': cdnMany([
+    'xtsy/6 Bed Mixed Dormitory 4.jpg',
+    'xtsy/6 Bed Mixed Dormitory 5.JPG',
+    'xtsy/6 Bed Mixed Dormitory 6.JPG',
+    'xtsy/6 Bed Mixed Dormitory 7.jpg',
+    'xtsy/6 Bed Mixed Dormitory 8.jpg',
+    'xtsy/6 Bed Mixed Dormitory 9.jpg',
+  ]),
 };
 
 // Tag display labels

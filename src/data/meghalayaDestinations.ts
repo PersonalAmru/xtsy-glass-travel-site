@@ -17,47 +17,45 @@ export interface MeghalayaDestination {
   extraFaqs?: { q: string; a: string }[];
 }
 
-const SUPABASE_BUCKET_URL = 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Meghalaya%20things%20to%20do';
+import { cdnMany } from './cdnImages';
 
-export const getDestinationImageUrl = (slug: string, index: number = 1) =>
-  `${SUPABASE_BUCKET_URL}/${slug}-meghalaya-${index}.webp`;
+// Destination slug -> uploaded gallery photos (rehosted on the Lovable CDN).
+const DESTINATION_IMAGE_KEYS: Record<string, string[]> = {
+  'elephant-falls': ['xtsyvoyage/Elephant Falls.jpeg'],
+  'nohkalikai-falls': ['xtsyvoyage/Nohkalikai Falls.jpeg', 'xtsyvoyage/Nohkalikai Falls 2.jpeg'],
+  'mawsmai-cave': ['xtsyvoyage/Mawsmai Cave.jpeg', 'xtsyvoyage/Mawsmai Cave-2.jpeg'],
+  'krang-suri-falls': ['xtsyvoyage/Krang Shuri Waterfall.jpeg'],
+  'laitlum-canyons': ['xtsyvoyage/Laitlum canyons.jpeg'],
+  'mawlynnong-village': ['xtsyvoyage/Mawlynnong.jpeg', 'xtsyvoyage/Mawlynnong 2.jpeg'],
+  'umiam-lake': ['xtsyvoyage/Umiam Lake.jpeg', 'xtsyvoyage/Umiam Lake 2.jpeg'],
+  'double-decker-living-root-bridge': ['xtsyvoyage/Nongriat Double Decker Root Bridge.jpeg'],
+  'nongriat-village': ['xtsyvoyage/Nongriat Double Decker Root Bridge and Rainbow Waterfall.jpeg'],
+  'rainbow-falls': ['xtsyvoyage/Nongriat Double Decker Root Bridge and Rainbow Waterfall.jpeg'],
+  'dawki-umngot-river': ['xtsyvoyage/Dawki River.jpeg', 'xtsyvoyage/Dawki River 2.jpeg', 'xtsyvoyage/Dawki River 3.jpeg'],
+  'dawki-suspension-bridge': ['xtsyvoyage/Dawki River 2.jpeg', 'xtsyvoyage/Dawki River 3.jpeg'],
+};
+
+// Resolved CDN URLs per slug.
+const DESTINATION_IMAGES: Record<string, string[]> = Object.fromEntries(
+  Object.entries(DESTINATION_IMAGE_KEYS).map(([slug, keys]) => [slug, cdnMany(keys)]),
+);
+
+export const getDestinationImageUrl = (slug: string, index: number = 1) => {
+  const imgs = DESTINATION_IMAGES[slug];
+  if (!imgs || imgs.length === 0) return '/placeholder.svg';
+  return imgs[(index - 1) % imgs.length] ?? imgs[0];
+};
 
 /**
  * Known available image indices per destination slug.
- * Verified against Supabase storage to prevent 404 requests.
- * Destinations not listed here have NO images uploaded.
+ * Derived from the uploaded gallery photos rehosted on the CDN to prevent 404s.
+ * Destinations not listed here fall back to a placeholder.
  */
-export const knownImageIndices: Record<string, number[]> = {
-  'dawki-suspension-bridge': [2, 3],
-  'dawki-umngot-river': [2, 3],
-  'double-decker-living-root-bridge': [2, 3],
-  'elephant-falls': [1, 2],
-  'jakrem-hot-springs': [4],
-  'krang-suri-falls': [2, 3],
-  'krem-liat-prah': [1, 2],
-  'laitlum-canyons': [2, 3, 4],
-  'mawjymbuin-cave': [2],
-  'mawlynnong-village': [2, 1],
-  'mawphlang-sacred-forest': [1, 2, 3],
-  'mawryngkhang-bamboo-trail': [1, 2],
-  'mawsmai-cave': [1, 2, 3],
-  'mawthadraishan-peak': [1, 2, 3],
-  'nohkalikai-falls': [1, 2],
-  'nokrek-biosphere-reserve': [1],
-  'nongjrong-sunrise-viewpoint': [1, 2, 3],
-  'nongkhnum-island': [1, 2, 3],
-  'nongriat-village': [1, 2, 3],
-  'rainbow-falls': [4],
-  'ranikor': [1, 2, 3],
-  'shillong-peak': [2, 3],
-  'siju-cave': [2, 3],
-  'spread-eagle-falls': [1, 2],
-  'sweet-falls': [1, 2],
-  'thadlaskein-lake': [2, 3],
-  'tura-peak': [2, 3],
-  'umiam-lake': [1, 2],
-  'wei-sawdong-falls': [2, 3],
-};
+export const knownImageIndices: Record<string, number[]> = Object.fromEntries(
+  Object.entries(DESTINATION_IMAGES)
+    .filter(([, imgs]) => imgs.length > 0)
+    .map(([slug, imgs]) => [slug, imgs.map((_, i) => i + 1)]),
+);
 
 // Override image indices for specific destinations (1-based)
 const destinationImageOverrides: Record<string, number[]> = {
