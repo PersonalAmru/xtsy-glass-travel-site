@@ -17,7 +17,7 @@ export const performGlobalCleanup = () => {
 
 // Debounced performance monitoring
 export const createDebouncedMonitor = (callback: () => void, delay: number = 5000) => {
-  let timeoutId: NodeJS.Timeout;
+  let timeoutId: ReturnType<typeof setTimeout>;
   
   return () => {
     clearTimeout(timeoutId);
