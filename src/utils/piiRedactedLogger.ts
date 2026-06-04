@@ -76,7 +76,7 @@ class ProductionLogger {
   
   constructor() {
     // Set log level based on environment
-    if (typeof process !== 'undefined' && process.env?.NODE_ENV === 'development') {
+    if (import.meta.env?.DEV) {
       this.currentLevel = 'debug';
     }
   }
