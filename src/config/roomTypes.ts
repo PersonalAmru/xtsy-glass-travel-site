@@ -57,7 +57,6 @@ export interface RoomTypeConfig {
  */
  // Room images — uploaded to storage, rehosted on the Lovable CDN.
 // Resolved by "bucket/Filename" key via the CDN image map.
-import { cdnMany } from '@/data/cdnImages';
 
 export const ROOM_IMAGES: Record<string, string[]> = {
   'xtsy-270': cdnMany([
