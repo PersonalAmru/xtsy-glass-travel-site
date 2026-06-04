@@ -120,7 +120,7 @@ export const useAdminAnalytics = (daysBack: number = 30) => {
   const [traffic, setTraffic] = useState<TrafficData | null>(null);
   const [behavior, setBehavior] = useState<BehaviorData | null>(null);
   const [trends, setTrends] = useState<TrendsData | null>(null);
-  const refreshIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const refreshIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Proactive session refresh - refresh token 5 minutes before expiry
   const ensureFreshSession = useCallback(async () => {

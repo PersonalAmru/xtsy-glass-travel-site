@@ -136,8 +136,20 @@ export default function AdminPropertyOnboarding() {
       const { data: property, error: propError } = await supabase
         .from('properties')
         .insert({
-          ...newProperty,
+          name: newProperty.name,
+          address: newProperty.address,
+          city: newProperty.city,
+          state: newProperty.state,
+          contact_email: newProperty.contact_email,
+          contact_phone: newProperty.contact_phone,
+          gst_number: newProperty.gst_number,
           slug: newProperty.name.toLowerCase().replace(/\s+/g, '-'),
+          settings: {
+            pincode: newProperty.pincode,
+            property_type: newProperty.property_type,
+            total_rooms: newProperty.total_rooms,
+            total_beds: newProperty.total_beds,
+          },
         })
         .select()
         .single();
@@ -149,7 +161,7 @@ export default function AdminPropertyOnboarding() {
         .from('property_onboarding')
         .insert({
           property_id: property.id,
-          status: 'in_progress',
+          onboarding_status: 'in_progress',
           checklist: {
             basic_info: true, // Already filled
             room_types: false,
@@ -220,7 +232,7 @@ export default function AdminPropertyOnboarding() {
       const { error } = await supabase
         .from('property_onboarding')
         .update({ 
-          status,
+          onboarding_status: status,
           completed_at: status === 'live' ? new Date().toISOString() : null
         })
         .eq('id', selectedProperty.onboarding.id);

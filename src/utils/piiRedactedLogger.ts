@@ -76,7 +76,7 @@ class ProductionLogger {
   
   constructor() {
     // Set log level based on environment
-    if (typeof process !== 'undefined' && process.env?.NODE_ENV === 'development') {
+    if (import.meta.env?.DEV) {
       this.currentLevel = 'debug';
     }
   }
@@ -91,7 +91,7 @@ class ProductionLogger {
       level: level.toUpperCase(),
       message: redactedMessage,
       data: redactedData,
-      environment: typeof process !== 'undefined' ? process.env?.NODE_ENV || 'unknown' : 'browser'
+      environment: import.meta.env?.MODE || 'browser'
     };
   }
 
@@ -105,7 +105,7 @@ class ProductionLogger {
     const logEntry = this.formatLogEntry(level, message, data);
     
     // In development, use colored console output
-    if (typeof process !== 'undefined' && process.env?.NODE_ENV === 'development') {
+    if (import.meta.env?.DEV) {
       const colors = {
         error: '\x1b[31m',
         warn: '\x1b[33m', 

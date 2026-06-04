@@ -81,7 +81,7 @@ export const useConsentAnalytics = (daysBack: number = 30) => {
   const [consentData, setConsentData] = useState<ConsentAnalyticsData | null>(null);
   const [tagData, setTagData] = useState<TagTimelineData | null>(null);
   const [funnelData, setFunnelData] = useState<FunnelData | null>(null);
-  const refreshIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const refreshIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Proactive session refresh for long dashboard sessions
   const ensureFreshSession = useCallback(async () => {
