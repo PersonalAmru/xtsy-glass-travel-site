@@ -37,8 +37,19 @@ export interface Property {
   isActive: boolean;
 }
 
-// Base storage URL for Supabase gallery assets
-const STORAGE_BASE = 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets';
+// Property gallery image keys (uploaded to storage, rehosted on the Lovable CDN)
+const PROPERTY_IMAGE_KEYS = [
+  'xtsy/Property Image 1.jpg',
+  'xtsy/Property Images 2.jpg',
+  'xtsy/Property Images 3.jpg',
+  'xtsy/Property Images 4.jpg',
+  'xtsy/Property Images 5.jpg',
+  'xtsy/Property Images 6.jpg',
+  'xtsy/Property Images 7.jpg',
+  'xtsy/Property Images 8.jpg',
+  'xtsy/Property Images 9.jpg',
+  'xtsy/Property Images 10.jpg',
+];
 
 // ==================== LOCATIONS ====================
 export const LOCATIONS: Record<string, Location> = {
