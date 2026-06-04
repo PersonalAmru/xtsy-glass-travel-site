@@ -17,10 +17,34 @@ export interface MeghalayaDestination {
   extraFaqs?: { q: string; a: string }[];
 }
 
-const SUPABASE_BUCKET_URL = 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Meghalaya%20things%20to%20do';
+import { cdnMany } from './cdnImages';
 
-export const getDestinationImageUrl = (slug: string, index: number = 1) =>
-  `${SUPABASE_BUCKET_URL}/${slug}-meghalaya-${index}.webp`;
+// Destination slug -> uploaded gallery photos (rehosted on the Lovable CDN).
+const DESTINATION_IMAGE_KEYS: Record<string, string[]> = {
+  'elephant-falls': ['xtsyvoyage/Elephant Falls.jpeg'],
+  'nohkalikai-falls': ['xtsyvoyage/Nohkalikai Falls.jpeg', 'xtsyvoyage/Nohkalikai Falls 2.jpeg'],
+  'mawsmai-cave': ['xtsyvoyage/Mawsmai Cave.jpeg', 'xtsyvoyage/Mawsmai Cave-2.jpeg'],
+  'krang-suri-falls': ['xtsyvoyage/Krang Shuri Waterfall.jpeg'],
+  'laitlum-canyons': ['xtsyvoyage/Laitlum canyons.jpeg'],
+  'mawlynnong-village': ['xtsyvoyage/Mawlynnong.jpeg', 'xtsyvoyage/Mawlynnong 2.jpeg'],
+  'umiam-lake': ['xtsyvoyage/Umiam Lake.jpeg', 'xtsyvoyage/Umiam Lake 2.jpeg'],
+  'double-decker-living-root-bridge': ['xtsyvoyage/Nongriat Double Decker Root Bridge.jpeg'],
+  'nongriat-village': ['xtsyvoyage/Nongriat Double Decker Root Bridge and Rainbow Waterfall.jpeg'],
+  'rainbow-falls': ['xtsyvoyage/Nongriat Double Decker Root Bridge and Rainbow Waterfall.jpeg'],
+  'dawki-umngot-river': ['xtsyvoyage/Dawki River.jpeg', 'xtsyvoyage/Dawki River 2.jpeg', 'xtsyvoyage/Dawki River 3.jpeg'],
+  'dawki-suspension-bridge': ['xtsyvoyage/Dawki River 2.jpeg', 'xtsyvoyage/Dawki River 3.jpeg'],
+};
+
+// Resolved CDN URLs per slug.
+const DESTINATION_IMAGES: Record<string, string[]> = Object.fromEntries(
+  Object.entries(DESTINATION_IMAGE_KEYS).map(([slug, keys]) => [slug, cdnMany(keys)]),
+);
+
+export const getDestinationImageUrl = (slug: string, index: number = 1) => {
+  const imgs = DESTINATION_IMAGES[slug];
+  if (!imgs || imgs.length === 0) return '/placeholder.svg';
+  return imgs[(index - 1) % imgs.length] ?? imgs[0];
+};
 
 /**
  * Known available image indices per destination slug.
