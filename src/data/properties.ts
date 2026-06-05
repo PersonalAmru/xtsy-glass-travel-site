@@ -9,7 +9,7 @@ import xtsyMilkyway from '@/assets/xtsy-270-milkyway.jpeg';
 import xtsyMilkyway2 from '@/assets/xtsy-270-milkyway2.jpeg';
 import xtsyInterior from '@/assets/xtsy-270-interior.jpeg';
 import hostelHero from '@/assets/hostel-hero-9068.jpeg';
-import { cdnMany } from './cdnImages';
+import { cdn, cdnMany } from './cdnImages';
 
 export interface Location {
   id: string;
@@ -136,7 +136,8 @@ export const PROPERTIES: Record<string, Property> = {
     shortName: 'Campsite',
     locationId: 'dawki',
     description: 'Riverside camping in Dawki on the crystal-clear Umngot — bonfires, kayaking and starlit skies for 80+ guests.',
-    heroImage: DAWKI_CAMPING_IMAGES[0],
+    // Hero = suspension-bridge photo (Dawki Campsite 4) per brand reference.
+    heroImage: cdn('xtsy-adventure-campsite/Dawki Campsite 4.jpeg'),
     images: DAWKI_CAMPING_IMAGES.slice(0, 8),
     amenities: ['Riverside Pitches', 'Shared Washrooms', 'Bonfire (chargeable)', 'Water Activities (chargeable)', 'Dinner On Request'],
     priceRange: { min: 699, max: 899 },
