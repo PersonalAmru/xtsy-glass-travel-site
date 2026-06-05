@@ -1,6 +1,12 @@
 // AUTO-GENERATED: maps "bucket/Original Filename" -> Lovable CDN URL
 // Source: images uploaded to private Supabase buckets, rehosted to CDN.
 export const CDN_IMAGE_MAP: Record<string, string> = {
+  "xtsy-adventure-campsite/Dawki Campsite 1.jpeg": "/__l5e/assets-v1/ccdb192a-2fab-4480-a7ed-98f7f25855f4/dawki-campsite-1.jpeg",
+  "xtsy-adventure-campsite/Dawki Campsite 2.jpeg": "/__l5e/assets-v1/29e68df7-fda8-49f6-8a1b-a63af786eb18/dawki-campsite-2.jpeg",
+  "xtsy-adventure-campsite/Dawki Campsite 3.jpeg": "/__l5e/assets-v1/cf18a2fe-d78f-4607-9aef-de8a6a133d07/dawki-campsite-3.jpeg",
+  "xtsy-adventure-campsite/Dawki Campsite 4.jpeg": "/__l5e/assets-v1/aa328743-7ec3-49e2-a34a-c13596998886/dawki-campsite-4.jpeg",
+  "xtsy-adventure-campsite/Dawki Campsite 5.jpeg": "/__l5e/assets-v1/d91fa8ec-2fb5-40dc-8712-13c320a69653/dawki-campsite-5.jpeg",
+  "xtsy-adventure-campsite/Dawki Campsite 6.jpeg": "/__l5e/assets-v1/e87b90bb-9d27-4393-8a83-abce0c69a851/dawki-campsite-6.jpeg",
   "xtsy-270/XTSY270 2.JPG": "/__l5e/assets-v1/676715c1-11b2-4e0c-9dd0-5f4b1b0c0870/xtsy-270-xtsy270-2.jpg",
   "xtsy-270/XTSY270 3.JPG": "/__l5e/assets-v1/bb94be23-2506-4f78-9b6d-93e974c96bab/xtsy-270-xtsy270-3.jpg",
   "xtsy-270/XTSY270 4.JPG": "/__l5e/assets-v1/9465f856-3690-4564-aac1-4b4f7ca28144/xtsy-270-xtsy270-4.jpg",
