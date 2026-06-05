@@ -69,14 +69,14 @@ export const LOCATIONS: Record<string, Location> = {
   },
 };
 
-// Dawki riverside campsite imagery (uploaded "Dawki River" photos on the CDN)
+// Dawki riverside campsite imagery (uploaded to the "xtsy-adventure-campsite" bucket, rehosted on the CDN)
 export const DAWKI_CAMPING_IMAGES = cdnMany([
-  'xtsyvoyage/Dawki River.jpeg',
-  'xtsyvoyage/Dawki River 2.jpeg',
-  'xtsyvoyage/Dawki River 3.jpeg',
-  'xtsy/Property Images 11.jpg',
-  'xtsy/Property Images 12.jpg',
-  'xtsy/Property Images 13.jpg',
+  'xtsy-adventure-campsite/Dawki Campsite 1.jpeg',
+  'xtsy-adventure-campsite/Dawki Campsite 2.jpeg',
+  'xtsy-adventure-campsite/Dawki Campsite 3.jpeg',
+  'xtsy-adventure-campsite/Dawki Campsite 4.jpeg',
+  'xtsy-adventure-campsite/Dawki Campsite 5.jpeg',
+  'xtsy-adventure-campsite/Dawki Campsite 6.jpeg',
 ]);
 
 // ==================== PROPERTIES ====================
