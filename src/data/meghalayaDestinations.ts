@@ -24,6 +24,7 @@ const DESTINATION_IMAGE_KEYS: Record<string, string[]> = {
   'elephant-falls': ['xtsyvoyage/Elephant Falls.jpeg'],
   'nohkalikai-falls': ['xtsyvoyage/Nohkalikai Falls.jpeg', 'xtsyvoyage/Nohkalikai Falls 2.jpeg'],
   'mawsmai-cave': ['xtsyvoyage/Mawsmai Cave.jpeg', 'xtsyvoyage/Mawsmai Cave-2.jpeg'],
+  'seven-sisters-falls': ['xtsyvoyage/Seven Sister waterfalls.jpeg'],
   'krang-suri-falls': ['xtsyvoyage/Krang Shuri Waterfall.jpeg'],
   'laitlum-canyons': ['xtsyvoyage/Laitlum canyons.jpeg'],
   'mawlynnong-village': ['xtsyvoyage/Mawlynnong.jpeg', 'xtsyvoyage/Mawlynnong 2.jpeg'],

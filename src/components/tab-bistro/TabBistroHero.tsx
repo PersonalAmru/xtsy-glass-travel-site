@@ -1,8 +1,10 @@
 import { memo } from "react";
 import { UtensilsCrossed } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cdn } from "@/data/cdnImages";
 
 const WHATSAPP = "https://wa.me/918837317070?text=";
+const HERO_IMG = cdn("xtsy/TAB Bistro by XTSY.jpeg");
 
 const TabBistroHero = memo(() => (
   <section className="bg-background pt-20 pb-16 sm:pt-28 sm:pb-20 px-4 sm:px-8">
@@ -19,6 +21,17 @@ const TabBistroHero = memo(() => (
       <p className="text-xs text-muted-foreground tracking-widest uppercase mb-8">
         Flavour · Food · Fusion
       </p>
+
+      <div className="relative max-w-3xl mx-auto mb-8 rounded-2xl overflow-hidden border border-border shadow-lg aspect-[16/9]">
+        <img
+          src={HERO_IMG}
+          alt="TAB Bistro by XTSY — multi-cuisine forest dining restaurant in Shillong"
+          className="w-full h-full object-cover"
+          fetchPriority="high"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+      </div>
+
 
 
       <div className="flex flex-wrap justify-center gap-3">
