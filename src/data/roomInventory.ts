@@ -5,9 +5,7 @@
  */
 
 import { generateStandardizedFeatures } from '@/utils/roomFeatures';
-import { TAG_LABELS, TAG_COLORS, type RoomTag } from '@/config/roomTypes';
-import xtsyStargazing from '@/assets/xtsy-270-stargazing.jpeg';
-import xtsyInterior from '@/assets/xtsy-270-interior.jpeg';
+import { TAG_LABELS, TAG_COLORS, ROOM_IMAGES, type RoomTag } from '@/config/roomTypes';
 
 export type RoomCategory = 'luxury' | 'hostel';
 export type RoomKind = 'private' | 'dorm';
@@ -121,8 +119,7 @@ export interface RoomType {
 export { TAG_LABELS, TAG_COLORS };
 export type { RoomTag };
 
-// Base storage URL for Supabase gallery assets
-const STORAGE_BASE = 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets';
+// Room gallery images are resolved via ROOM_IMAGES (Lovable CDN) in src/config/roomTypes.ts
 
 /**
  * Complete room inventory - XTSY Travellers Hostel
@@ -157,11 +154,8 @@ export const ROOM_INVENTORY: Record<string, RoomType> = {
       'Netflix & Chill',
       'Instagram Moments',
     ],
-    image: xtsyStargazing,
-    images: [
-      xtsyStargazing,
-      xtsyInterior,
-    ],
+    image: ROOM_IMAGES['xtsy-270'][0],
+    images: ROOM_IMAGES['xtsy-270'],
     isBookable: true,
     propertyType: 'Experience by XTSY',
     displayOrder: 1,
@@ -186,13 +180,8 @@ export const ROOM_INVENTORY: Record<string, RoomType> = {
     totalUnits: 3,
     description: 'Spacious private room with king bed for two guests',
     features: generateStandardizedFeatures('hostel', 'King Double Room', 'private'),
-    image: `${STORAGE_BASE}/King%20Double%20Room/1.jpg`,
-    images: [
-      `${STORAGE_BASE}/King%20Double%20Room/1.jpg`,
-      `${STORAGE_BASE}/King%20Double%20Room/2.jpg`,
-      `${STORAGE_BASE}/King%20Double%20Room/3.JPG`,
-      `${STORAGE_BASE}/King%20Double%20Room/IMG_4077.jpg`,
-    ],
+    image: ROOM_IMAGES['king-double-room'][0],
+    images: ROOM_IMAGES['king-double-room'],
     isBookable: true,
     propertyType: 'XTSY Travellers Hostel',
     displayOrder: 10,
@@ -215,17 +204,8 @@ export const ROOM_INVENTORY: Record<string, RoomType> = {
     totalUnits: 4,
     description: 'Female-only dormitory with modern amenities and comfortable beds',
     features: generateStandardizedFeatures('hostel', 'Bed in 4-Bed Female Dormitory', 'dorm'),
-    image: `${STORAGE_BASE}/4%20Bed%20Female%20Only%20Dorms/1.jpg`,
-    images: [
-      `${STORAGE_BASE}/4%20Bed%20Female%20Only%20Dorms/1.jpg`,
-      `${STORAGE_BASE}/4%20Bed%20Female%20Only%20Dorms/2.jpg`,
-      `${STORAGE_BASE}/4%20Bed%20Female%20Only%20Dorms/3.jpg`,
-      `${STORAGE_BASE}/4%20Bed%20Female%20Only%20Dorms/4.JPG`,
-      `${STORAGE_BASE}/4%20Bed%20Female%20Only%20Dorms/5.JPG`,
-      `${STORAGE_BASE}/4%20Bed%20Female%20Only%20Dorms/6.JPG`,
-      `${STORAGE_BASE}/4%20Bed%20Female%20Only%20Dorms/7.JPG`,
-      `${STORAGE_BASE}/4%20Bed%20Female%20Only%20Dorms/IMG_5161.png`,
-    ],
+    image: ROOM_IMAGES['4-bed-female-only-dorm'][0],
+    images: ROOM_IMAGES['4-bed-female-only-dorm'],
     isBookable: true,
     propertyType: 'XTSY Travellers Hostel',
     displayOrder: 20,
@@ -248,13 +228,8 @@ export const ROOM_INVENTORY: Record<string, RoomType> = {
     totalUnits: 4,
     description: 'Mixed dormitory with shared facilities and social atmosphere',
     features: generateStandardizedFeatures('hostel', 'Bed in 4-Bed Mixed Dormitory', 'dorm'),
-    image: `${STORAGE_BASE}/4%20Bed%20MixedFemale%20Dorms/3.jpg`,
-    images: [
-      `${STORAGE_BASE}/4%20Bed%20MixedFemale%20Dorms/3.jpg`,
-      `${STORAGE_BASE}/4%20Bed%20MixedFemale%20Dorms/4.JPG`,
-      `${STORAGE_BASE}/4%20Bed%20MixedFemale%20Dorms/5.jpg`,
-      `${STORAGE_BASE}/4%20Bed%20MixedFemale%20Dorms/IMG_5161.png`,
-    ],
+    image: ROOM_IMAGES['4-bed-mixed-female-dorm'][0],
+    images: ROOM_IMAGES['4-bed-mixed-female-dorm'],
     isBookable: true,
     propertyType: 'XTSY Travellers Hostel',
     displayOrder: 30,
@@ -277,15 +252,8 @@ export const ROOM_INVENTORY: Record<string, RoomType> = {
     totalUnits: 6,
     description: 'Spacious female dormitory with modern amenities',
     features: generateStandardizedFeatures('hostel', 'Bed in 6-Bed Female Dormitory', 'dorm'),
-    image: `${STORAGE_BASE}/6%20Bed%20MixedFemale%20Dorms/1.JPG`,
-    images: [
-      `${STORAGE_BASE}/6%20Bed%20MixedFemale%20Dorms/1.JPG`,
-      `${STORAGE_BASE}/6%20Bed%20MixedFemale%20Dorms/3.jpg`,
-      `${STORAGE_BASE}/6%20Bed%20MixedFemale%20Dorms/4.jpg`,
-      `${STORAGE_BASE}/6%20Bed%20MixedFemale%20Dorms/5.JPG`,
-      `${STORAGE_BASE}/6%20Bed%20MixedFemale%20Dorms/6.JPG`,
-      `${STORAGE_BASE}/6%20Bed%20MixedFemale%20Dorms/IMG_5160.png`,
-    ],
+    image: ROOM_IMAGES['6-bed-mixed-female-dorm'][0],
+    images: ROOM_IMAGES['6-bed-mixed-female-dorm'],
     isBookable: false,
     propertyType: 'XTSY Travellers Hostel',
     displayOrder: 40,
@@ -308,15 +276,8 @@ export const ROOM_INVENTORY: Record<string, RoomType> = {
     totalUnits: 18,
     description: 'Budget-friendly mixed dormitory with essential amenities',
     features: generateStandardizedFeatures('hostel', 'Bed in 6-Bed Mixed Dormitory', 'dorm'),
-    image: `${STORAGE_BASE}/6%20Bed%20MixedFemale%20Dorms/1.JPG`,
-    images: [
-      `${STORAGE_BASE}/6%20Bed%20MixedFemale%20Dorms/1.JPG`,
-      `${STORAGE_BASE}/6%20Bed%20MixedFemale%20Dorms/3.jpg`,
-      `${STORAGE_BASE}/6%20Bed%20MixedFemale%20Dorms/4.jpg`,
-      `${STORAGE_BASE}/6%20Bed%20MixedFemale%20Dorms/5.JPG`,
-      `${STORAGE_BASE}/6%20Bed%20MixedFemale%20Dorms/6.JPG`,
-      `${STORAGE_BASE}/6%20Bed%20MixedFemale%20Dorms/IMG_5160.png`,
-    ],
+    image: ROOM_IMAGES['6-bed-mixed-dorm'][0],
+    images: ROOM_IMAGES['6-bed-mixed-dorm'],
     isBookable: true,
     propertyType: 'XTSY Travellers Hostel',
     displayOrder: 50,
@@ -339,15 +300,8 @@ export const ROOM_INVENTORY: Record<string, RoomType> = {
     totalUnits: 24,
     description: 'Best value mixed dormitory for budget-conscious backpackers',
     features: generateStandardizedFeatures('hostel', 'Bed in 8-Bed Mixed Dormitory', 'dorm'),
-    image: `${STORAGE_BASE}/8%20Bed%20Mixed%20Dorms/3.jpg`,
-    images: [
-      `${STORAGE_BASE}/8%20Bed%20Mixed%20Dorms/3.jpg`,
-      `${STORAGE_BASE}/8%20Bed%20Mixed%20Dorms/4.jpg`,
-      `${STORAGE_BASE}/8%20Bed%20Mixed%20Dorms/5.jpg`,
-      `${STORAGE_BASE}/8%20Bed%20Mixed%20Dorms/6.jpg`,
-      `${STORAGE_BASE}/8%20Bed%20Mixed%20Dorms/8.jpg`,
-      `${STORAGE_BASE}/8%20Bed%20Mixed%20Dorms/9.jpg`,
-    ],
+    image: ROOM_IMAGES['8-bed-mixed-dorm'][0],
+    images: ROOM_IMAGES['8-bed-mixed-dorm'],
     isBookable: true,
     propertyType: 'XTSY Travellers Hostel',
     displayOrder: 60,

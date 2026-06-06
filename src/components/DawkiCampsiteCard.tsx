@@ -39,7 +39,7 @@ const DawkiCampsiteCard = memo(() => {
             {/* Image side */}
             <div className="relative lg:col-span-3 aspect-[16/10] lg:aspect-auto">
               <UnifiedImage
-                src={DAWKI_CAMPING_IMAGES[0]}
+                src={DAWKI_CAMPING_IMAGES[3]}
                 alt="XTSY Adventure Campsite on the Umngot River in Dawki, Meghalaya"
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
                 
