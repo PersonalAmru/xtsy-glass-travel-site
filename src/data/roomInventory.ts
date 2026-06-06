@@ -119,8 +119,7 @@ export interface RoomType {
 export { TAG_LABELS, TAG_COLORS };
 export type { RoomTag };
 
-// Base storage URL for Supabase gallery assets
-const STORAGE_BASE = 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets';
+// Room gallery images are resolved via ROOM_IMAGES (Lovable CDN) in src/config/roomTypes.ts
 
 /**
  * Complete room inventory - XTSY Travellers Hostel
