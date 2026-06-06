@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef, memo } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Image, Star, Users, Building } from "lucide-react";
 import InstagramPreviewModal from "./InstagramPreviewModal";
+import { ROOM_IMAGES } from "@/config/roomTypes";
 
 interface GalleryItem {
   id: number;
