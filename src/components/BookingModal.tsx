@@ -362,7 +362,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
   const ROOMS: BookingRoom[] = useMemo(() => {
     return getBookableRoomTypes().map((room: RoomTypeConfig) => {
       const images = room.images || ROOM_IMAGES[room.id] || [];
-      const primaryImage = images[0] || room.image || 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg';
+      const primaryImage = images[0] || room.image || '/placeholder.svg';
       return {
         id: room.id,
         name: room.name,

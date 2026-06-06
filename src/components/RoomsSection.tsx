@@ -5,6 +5,7 @@ import PropertySection from "./PropertySection";
 import GalleryImage from "./GalleryImage";
 import { XTSY270_DATA } from "@/data/rooms/xtsy270";
 import { generateStandardizedFeatures } from "@/utils/roomFeatures";
+import { ROOM_IMAGES } from "@/config/roomTypes";
 
 const RoomsSection = () => {
   const scrollToCalendar = () => {
@@ -48,13 +49,8 @@ const RoomsSection = () => {
       features: generateFeatures('hostel', 'King Double Room', 'private'),
       maxGuests: 2,
       maxRooms: 2,
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg",
-      images: [
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/2.jpg",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/3.JPG",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/IMG_4077.jpg"
-      ]
+      image: ROOM_IMAGES['king-double-room'][0],
+      images: ROOM_IMAGES['king-double-room']
     },
     {
       id: "4-bed-female-only-dorm",
@@ -65,17 +61,8 @@ const RoomsSection = () => {
       features: generateFeatures('hostel', 'Bed in 4-Bed Female Dormitory', 'dorm'),
       maxGuests: 4,
       maxRooms: 4,
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg",
-      images: [
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/2.jpg",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/3.jpg",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/4.JPG",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/5.JPG",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/6.JPG",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/7.JPG",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/IMG_5161.png"
-      ]
+      image: ROOM_IMAGES['4-bed-female-only-dorm'][0],
+      images: ROOM_IMAGES['4-bed-female-only-dorm']
     },
     {
       id: "4-bed-mixed-female-dorm",
@@ -86,13 +73,8 @@ const RoomsSection = () => {
       features: generateFeatures('hostel', 'Bed in 4-Bed Mixed Dormitory', 'dorm'),
       maxGuests: 4,
       maxRooms: 4,
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/3.jpg",
-      images: [
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/3.jpg",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/4.JPG",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/5.jpg",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/IMG_5161.png"
-      ]
+      image: ROOM_IMAGES['4-bed-mixed-female-dorm'][0],
+      images: ROOM_IMAGES['4-bed-mixed-female-dorm']
     },
     {
       id: "6-bed-mixed-female-dorm",
@@ -103,15 +85,8 @@ const RoomsSection = () => {
       features: generateFeatures('hostel', 'Bed in 6-Bed Female Dormitory', 'dorm'),
       maxGuests: 6,
       maxRooms: 6,
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG",
-      images: [
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/3.jpg",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/4.jpg",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/5.JPG",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/6.JPG",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/IMG_5160.png"
-      ]
+      image: ROOM_IMAGES['6-bed-mixed-female-dorm'][0],
+      images: ROOM_IMAGES['6-bed-mixed-female-dorm']
     },
     {
       id: "6-bed-mixed-dorm",
@@ -122,15 +97,8 @@ const RoomsSection = () => {
       features: generateFeatures('hostel', 'Bed in 6-Bed Mixed Dormitory', 'dorm'),
       maxGuests: 6,
       maxRooms: 6,
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG",
-      images: [
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/3.jpg",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/4.jpg",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/5.JPG",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/6.JPG",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/IMG_5160.png"
-      ]
+      image: ROOM_IMAGES['6-bed-mixed-dorm'][0],
+      images: ROOM_IMAGES['6-bed-mixed-dorm']
     },
     {
       id: "8-bed-mixed-dorm",
@@ -141,15 +109,8 @@ const RoomsSection = () => {
       features: generateFeatures('hostel', 'Bed in 8-Bed Mixed Dormitory', 'dorm'),
       maxGuests: 8,
       maxRooms: 8,
-      image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg",
-      images: [
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/4.jpg",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/5.jpg",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/6.jpg",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/8.jpg",
-        "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/9.jpg"
-      ]
+      image: ROOM_IMAGES['8-bed-mixed-dorm'][0],
+      images: ROOM_IMAGES['8-bed-mixed-dorm']
     }
   ];
 

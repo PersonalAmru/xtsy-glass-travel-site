@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import romanticForestDining from "@/assets/romantic-forest-dining.jpg";
 import hiddenWaterfallExpedition from "@/assets/hidden-waterfall-expedition.jpg";
+import { ROOM_IMAGES } from "@/config/roomTypes";
 
 const EXPERIENCES = [
   {
@@ -10,7 +11,7 @@ const EXPERIENCES = [
     description: "Sleep under the stars inside a transparent glass glamping dome surrounded by pine forests.",
     duration: "Overnight",
     includes: ["Stargazing session", "Bonfire night", "Dinner at TAB Bistro"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Xperience/panorama-glasshouse-stargazing-night.jpg",
+    image: ROOM_IMAGES["xtsy-270"][0],
   },
   {
     title: "Pine Forest Bonfire Nights",

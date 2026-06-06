@@ -16,7 +16,8 @@
     "seo:diff": "tsx scripts/diffSitemapManifest.ts",
     "seo:diff:strict": "tsx scripts/diffSitemapManifest.ts --strict",
     "seo:postdeploy": "tsx scripts/postDeploySchemaCheck.ts",
-    "seo:postdeploy:live": "tsx scripts/postDeploySchemaCheck.ts --base https://xtsy.one --routes top"
+    "seo:postdeploy:live": "tsx scripts/postDeploySchemaCheck.ts --base https://xtsy.one --routes top",
+    "verify:cdn-images": "tsx scripts/verify-cdn-images.ts"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

@@ -11,6 +11,7 @@ import { ArrowRight, Bed, Star, Users, Sparkles } from 'lucide-react';
 import { useApp } from '@/contexts/AppContext';
 import UnifiedImage from './UnifiedImage';
 import { trackRoomViewed } from '@/utils/dataLayerService';
+import { ROOM_IMAGES } from '@/config/roomTypes';
 
 // Room showcase data
 const featuredRooms = [
@@ -21,7 +22,7 @@ const featuredRooms = [
     tagline: 'Wake up to mountain views',
     price: 4999,
     originalPrice: 11999,
-    image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/20250722_0921_Meghalaya%20Getaway%20View_remix_01k0r405w4f66svm6nn0qdtxye%20(1).png',
+    image: ROOM_IMAGES['xtsy-270'][0],
     rating: 4.9,
     capacity: '2 Guests',
     highlight: 'Luxury Couple',
@@ -33,7 +34,7 @@ const featuredRooms = [
     tagline: 'Social travelers welcome',
     price: 269,
     originalPrice: 550,
-    image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/download%20(13).jpg',
+    image: ROOM_IMAGES['6-bed-mixed-dorm'][0],
     rating: 4.7,
     capacity: '1 Bed',
     highlight: 'Bestseller',
@@ -45,7 +46,7 @@ const featuredRooms = [
     tagline: 'Safe space for solo women',
     price: 419,
     originalPrice: 679,
-    image: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/download%20(15).jpg',
+    image: ROOM_IMAGES['4-bed-female-only-dorm'][0],
     rating: 4.8,
     capacity: '1 Bed',
     highlight: 'Preferred by Female',
