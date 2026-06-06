@@ -95,41 +95,40 @@ const GalleryTile = memo(({
 
 GalleryTile.displayName = "GalleryTile";
 
-const GALLERY_ITEMS: GalleryItem[] = [
-  // XTSY 270° Glass Suite
-  { id: 1, title: "270° Panorama Glass Suite", category: "luxury-suite", property: "XTSY 270° Glass Suite", featured: true, image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/270/ChatGPT%20Image%20Mar%207,%202026,%2008_23_20%20PM.png" },
-  { id: 2, title: "270° Glass Suite - Panoramic Vista", category: "luxury-suite", property: "XTSY 270° Glass Suite", featured: true, image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/270/ChatGPT%20Image%20Feb%2028,%202026,%2002_15_59%20PM.png" },
-  { id: 35, title: "270° Glass Suite - Stargazing", category: "luxury-suite", property: "XTSY 270° Glass Suite", featured: true, image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/270/Gemini_Generated_Image_7so6yc7so6yc7so6%20(1)%20(1).png" },
-  // King Double Room
-  { id: 3, title: "King Double Room", category: "private-rooms", property: "King Double Room", image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/1.jpg" },
-  { id: 4, title: "King Double - Valley View", category: "private-rooms", property: "King Double Room", image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/2.jpg" },
-  { id: 5, title: "King Double - Interior", category: "private-rooms", property: "King Double Room", image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/3.JPG" },
-  { id: 6, title: "King Double - Premium Setup", category: "private-rooms", property: "King Double Room", image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Double%20Room/IMG_4077.jpg" },
-  // King Triple Room
-  { id: 7, title: "King Triple Room", category: "private-rooms", property: "King Triple Room", image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/1.jpg" },
-  { id: 8, title: "King Triple - Panoramic", category: "private-rooms", property: "King Triple Room", image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/2.jpg" },
-  { id: 9, title: "King Triple - Layout", category: "private-rooms", property: "King Triple Room", image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/3.jpg" },
-  { id: 10, title: "King Triple - Additional", category: "private-rooms", property: "King Triple Room", image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/King%20Triple%20Room/5.jpg" },
-  // 4 Bed Female Only Dorm
-  { id: 11, title: "4-Bed Female Dorm", category: "dormitories", property: "4-Bed Female Only Dorm", image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/1.jpg" },
-  { id: 12, title: "Female Dorm - Bed Setup", category: "dormitories", property: "4-Bed Female Only Dorm", image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/2.jpg" },
-  { id: 13, title: "Female Dorm - Layout", category: "dormitories", property: "4-Bed Female Only Dorm", image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/3.jpg" },
-  { id: 14, title: "Female Dorm - Premium", category: "dormitories", property: "4-Bed Female Only Dorm", image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/4.JPG" },
-  { id: 15, title: "Female Dorm - Facilities", category: "dormitories", property: "4-Bed Female Only Dorm", image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/5.JPG" },
-  { id: 16, title: "Female Dorm - Cozy", category: "dormitories", property: "4-Bed Female Only Dorm", image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20Female%20Only%20Dorms/6.JPG" },
-  // 4 Bed Mixed Dorm
-  { id: 19, title: "4-Bed Mixed Dorm", category: "dormitories", property: "4-Bed Mixed Dorm", image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/3.jpg" },
-  { id: 20, title: "Mixed Dorm - Comfort", category: "dormitories", property: "4-Bed Mixed Dorm", image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/4.JPG" },
-  { id: 21, title: "Mixed Dorm - Interior", category: "dormitories", property: "4-Bed Mixed Dorm", image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/4%20Bed%20MixedFemale%20Dorms/5.jpg" },
-  // 6 Bed Mixed Dorm
-  { id: 23, title: "6-Bed Mixed Dorm", category: "dormitories", property: "6-Bed Mixed/Female Dorm", image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/1.JPG" },
-  { id: 24, title: "6-Bed Dorm - Interior", category: "dormitories", property: "6-Bed Mixed/Female Dorm", image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/3.jpg" },
-  { id: 25, title: "6-Bed Dorm - Layout", category: "dormitories", property: "6-Bed Mixed/Female Dorm", image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/6%20Bed%20MixedFemale%20Dorms/4.jpg" },
-  // 8 Bed Mixed Dorm
-  { id: 29, title: "8-Bed Mixed Dorm", category: "dormitories", property: "8-Bed Mixed Dorm", image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/3.jpg" },
-  { id: 30, title: "8-Bed Dorm - Sleeping", category: "dormitories", property: "8-Bed Mixed Dorm", image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/4.jpg" },
-  { id: 31, title: "8-Bed Dorm - Interior", category: "dormitories", property: "8-Bed Mixed Dorm", image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/8%20Bed%20Mixed%20Dorms/5.jpg" },
+// Gallery items are generated from the CDN-mapped room image sets (single source of truth).
+// This guarantees every tile resolves to a real uploaded asset — no dead Supabase links.
+interface GallerySource {
+  property: string;
+  category: string;
+  title: string;
+  roomId: string;
+  featured?: boolean;
+}
+
+const GALLERY_SOURCES: GallerySource[] = [
+  { property: "XTSY 270° Glass Suite", category: "luxury-suite", title: "270° Panorama Glass Suite", roomId: "xtsy-270", featured: true },
+  { property: "King Double Room", category: "private-rooms", title: "King Double Room", roomId: "king-double-room" },
+  { property: "4-Bed Female Only Dorm", category: "dormitories", title: "4-Bed Female Dorm", roomId: "4-bed-female-only-dorm" },
+  { property: "4-Bed Mixed Dorm", category: "dormitories", title: "4-Bed Mixed Dorm", roomId: "4-bed-mixed-female-dorm" },
+  { property: "6-Bed Mixed Dorm", category: "dormitories", title: "6-Bed Mixed Dorm", roomId: "6-bed-mixed-dorm" },
+  { property: "8-Bed Mixed Dorm", category: "dormitories", title: "8-Bed Mixed Dorm", roomId: "8-bed-mixed-dorm" },
 ];
+
+const GALLERY_ITEMS: GalleryItem[] = (() => {
+  let id = 0;
+  return GALLERY_SOURCES.flatMap((src) => {
+    const images = ROOM_IMAGES[src.roomId] ?? [];
+    return images.map((image, idx) => ({
+      id: ++id,
+      title: idx === 0 ? src.title : `${src.title} — ${idx + 1}`,
+      category: src.category,
+      property: src.property,
+      featured: src.featured && idx === 0,
+      image,
+    }));
+  });
+})();
+
 
 const CATEGORIES = [
   { id: "all", label: "All Photos", icon: Image, count: GALLERY_ITEMS.length },
