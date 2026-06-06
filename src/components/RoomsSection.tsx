@@ -5,6 +5,7 @@ import PropertySection from "./PropertySection";
 import GalleryImage from "./GalleryImage";
 import { XTSY270_DATA } from "@/data/rooms/xtsy270";
 import { generateStandardizedFeatures } from "@/utils/roomFeatures";
+import { ROOM_IMAGES } from "@/config/roomTypes";
 
 const RoomsSection = () => {
   const scrollToCalendar = () => {
