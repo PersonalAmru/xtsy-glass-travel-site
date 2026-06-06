@@ -5,9 +5,7 @@
  */
 
 import { generateStandardizedFeatures } from '@/utils/roomFeatures';
-import { TAG_LABELS, TAG_COLORS, type RoomTag } from '@/config/roomTypes';
-import xtsyStargazing from '@/assets/xtsy-270-stargazing.jpeg';
-import xtsyInterior from '@/assets/xtsy-270-interior.jpeg';
+import { TAG_LABELS, TAG_COLORS, ROOM_IMAGES, type RoomTag } from '@/config/roomTypes';
 
 export type RoomCategory = 'luxury' | 'hostel';
 export type RoomKind = 'private' | 'dorm';
