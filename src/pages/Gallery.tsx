@@ -6,13 +6,10 @@ import GallerySection from "@/components/GallerySection";
 import Footer from "@/components/Footer";
 
 import SEOHead from "@/components/SEOHead";
+import { ROOM_IMAGES } from "@/config/roomTypes";
 
-// Preload first row of gallery images (LCP candidates)
-const PRELOAD_IMAGES = [
-  "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140811.png",
-  "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Signature%20270%20Glass%20Suite/Screenshot%202025-08-17%20140029.png",
-  "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/270/Gemini_Generated_Image_7so6yc7so6yc7so6%20(1)%20(1).png",
-];
+// Preload first row of gallery images (LCP candidates) — CDN-mapped 270° suite shots
+const PRELOAD_IMAGES = ROOM_IMAGES['xtsy-270'].slice(0, 3);
 
 const Gallery = () => {
   const [searchParams] = useSearchParams();
