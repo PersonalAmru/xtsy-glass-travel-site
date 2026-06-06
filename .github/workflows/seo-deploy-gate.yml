@@ -118,8 +118,32 @@ jobs:
           path: dist/seo-reports/
 
   # ────────────────────────────────────────────────────────────────
+  # 2c. CDN room + panorama image health (live)
+  #     Fails the gate if any CDN-mapped room/panorama image does not
+  #     return HTTP 200 — prevents shipping broken room imagery.
+  # ────────────────────────────────────────────────────────────────
+  cdn-images:
+    name: CDN Room + Panorama Image Check (live)
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    needs: sitemap-diff
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+      - run: npm ci --prefer-offline --no-audit
+      - name: Wait 60s for Lovable deploy to propagate
+        run: sleep 60
+      - name: Verify CDN room + panorama images return 200
+        env:
+          BASE_URL: ${{ github.event.inputs.base_url || 'https://xtsy.one' }}
+        run: npm run verify:cdn-images
+
+  # ────────────────────────────────────────────────────────────────
   # 3. Lighthouse Core Web Vitals — budgets enforced via .lighthouserc.cjs
   # ────────────────────────────────────────────────────────────────
+
   lighthouse:
     name: Lighthouse CWV (${{ matrix.preset }})
     if: github.event_name != 'pull_request'
