@@ -1,191 +1,135 @@
 /**
  * Hero image mapping for programmatic SEO pages.
- * Uses Supabase-hosted Meghalaya gallery assets where available,
- * with category-level fallbacks for pages without specific images.
+ *
+ * All imagery is served from the Lovable CDN (rehosted from the `xtsyvoyage`
+ * destination bucket). The legacy Supabase project (oidnydyyjyjfnyadhyzn) was
+ * decommissioned, so every hero/section image now resolves through the
+ * centralised CDN map. Resolution order:
+ *   AI manifest (currently empty) → slug-specific → category fallback → default.
  */
-
 import { SEO_HERO_MANIFEST } from '@/data/seoHeroManifest';
+import { cdn } from '@/data/cdnImages';
 
+// Curated, CDN-hosted destination heroes.
+const IMG = {
+  meghalaya: cdn('xtsyvoyage/Meghalaya Cover Image.jpeg'),
+  assam: cdn('xtsyvoyage/Assam Cover Image.jpeg'),
+  arunachal: cdn('xtsyvoyage/Arunachal Pradesh Cover Image.jpeg'),
+  nagaland: cdn('xtsyvoyage/Nagaland Cover Image.jpeg'),
+  sikkim: cdn('xtsyvoyage/Sikkim Cover Image.jpeg'),
+  nohkalikai: cdn('xtsyvoyage/Nohkalikai Falls.jpeg'),
+  nohkalikai2: cdn('xtsyvoyage/Nohkalikai Falls 2.jpeg'),
+  krangshuri: cdn('xtsyvoyage/Krang Shuri Waterfall.jpeg'),
+  elephant: cdn('xtsyvoyage/Elephant Falls.jpeg'),
+  sevensister: cdn('xtsyvoyage/Seven Sister waterfalls.jpeg'),
+  mawsmai: cdn('xtsyvoyage/Mawsmai Cave.jpeg'),
+  mawsmai2: cdn('xtsyvoyage/Mawsmai Cave-2.jpeg'),
+  mawlynnong: cdn('xtsyvoyage/Mawlynnong.jpeg'),
+  mawlynnong2: cdn('xtsyvoyage/Mawlynnong 2.jpeg'),
+  nongriat: cdn('xtsyvoyage/Nongriat Double Decker Root Bridge.jpeg'),
+  nongriat2: cdn('xtsyvoyage/Nongriat Double Decker Root Bridge and Rainbow Waterfall.jpeg'),
+  laitlum: cdn('xtsyvoyage/Laitlum canyons.jpeg'),
+  umiam: cdn('xtsyvoyage/Umiam Lake.jpeg'),
+  umiam2: cdn('xtsyvoyage/Umiam Lake 2.jpeg'),
+  dawki: cdn('xtsyvoyage/Dawki River.jpeg'),
+  dawki2: cdn('xtsyvoyage/Dawki River 2.jpeg'),
+  dawki3: cdn('xtsyvoyage/Dawki River 3.jpeg'),
+  bumla: cdn('xtsyvoyage/Bumla Pass Bike Expedition.jpeg'),
+  festival: cdn('xtsyvoyage/Arunachal Winter Cultural Festival.jpeg'),
+  bhutan: cdn('xtsyvoyage/Bhutan Mindful Kingdom Journey.jpeg'),
+  himachal: cdn('xtsyvoyage/Himachal Yoga Retreat Program.jpeg'),
+  dravidian: cdn('xtsyvoyage/Dravidian Architecture Masterclass.jpeg'),
+  ecological: cdn('xtsyvoyage/Northeast Ecological Immersion.jpeg'),
+};
 
-const SUPABASE_BUCKET = 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets';
-const THINGS_TO_DO = `${SUPABASE_BUCKET}/Meghalaya%20things%20to%20do`;
+const DEFAULT_HERO = IMG.laitlum;
 
-// Slug-specific hero images (verified available assets)
+// Slug-specific curated heroes.
 const SLUG_HERO_MAP: Record<string, string> = {
-  // Waterfalls
-  'nohkalikai-falls-meghalaya': `${THINGS_TO_DO}/nohkalikai-falls-meghalaya-1.webp`,
-  'krang-suri-falls-meghalaya': `${THINGS_TO_DO}/krang-suri-falls-meghalaya-2.webp`,
-  'wei-sawdong-falls-meghalaya': `${THINGS_TO_DO}/wei-sawdong-falls-meghalaya-2.webp`,
-  'elephant-falls-shillong': `${THINGS_TO_DO}/elephant-falls-meghalaya-1.webp`,
-  'seven-sisters-falls-meghalaya': `${THINGS_TO_DO}/nohkalikai-falls-meghalaya-2.webp`,
-  'waterfalls-in-meghalaya': `${THINGS_TO_DO}/nohkalikai-falls-meghalaya-1.webp`,
-  'waterfalls-near-shillong': `${THINGS_TO_DO}/elephant-falls-meghalaya-2.webp`,
-  'best-waterfalls-meghalaya': `${THINGS_TO_DO}/wei-sawdong-falls-meghalaya-3.webp`,
-  'spread-eagle-falls-meghalaya': `${THINGS_TO_DO}/spread-eagle-falls-meghalaya-1.webp`,
-  'sweet-falls-meghalaya': `${THINGS_TO_DO}/sweet-falls-meghalaya-1.webp`,
-  'rainbow-falls-meghalaya': `${THINGS_TO_DO}/rainbow-falls-meghalaya-4.webp`,
-
-  // Caves
-  'mawsmai-cave-cherrapunji': `${THINGS_TO_DO}/mawsmai-cave-meghalaya-1.webp`,
-  'krem-liat-prah-meghalaya': `${THINGS_TO_DO}/krem-liat-prah-meghalaya-1.webp`,
-  'siju-cave-garo-hills': `${THINGS_TO_DO}/siju-cave-meghalaya-2.webp`,
-  'arwah-cave-cherrapunji': `${THINGS_TO_DO}/mawsmai-cave-meghalaya-2.webp`,
-  'meghalaya-caves-guide': `${THINGS_TO_DO}/mawsmai-cave-meghalaya-3.webp`,
-  'caving-in-meghalaya': `${THINGS_TO_DO}/mawsmai-cave-meghalaya-1.webp`,
-  'mawjymbuin-cave-mawsynram': `${THINGS_TO_DO}/mawjymbuin-cave-meghalaya-2.webp`,
-
-  // Villages & Culture
-  'mawlynnong-cleanest-village': `${THINGS_TO_DO}/mawlynnong-village-meghalaya-1.webp`,
-  'nongriat-village-trek': `${THINGS_TO_DO}/nongriat-village-meghalaya-1.webp`,
-  'mawphlang-sacred-forest': `${THINGS_TO_DO}/mawphlang-sacred-forest-meghalaya-1.webp`,
-  'double-decker-root-bridge': `${THINGS_TO_DO}/double-decker-living-root-bridge-meghalaya-2.webp`,
-
-  // Viewpoints & Peaks
-  'laitlum-canyons-shillong': `${THINGS_TO_DO}/laitlum-canyons-meghalaya-2.webp`,
-  'shillong-peak-meghalaya': `${THINGS_TO_DO}/shillong-peak-meghalaya-2.webp`,
-  'nongjrong-sunrise-viewpoint': `${THINGS_TO_DO}/nongjrong-sunrise-viewpoint-meghalaya-1.webp`,
-  'mawthadraishan-peak': `${THINGS_TO_DO}/mawthadraishan-peak-meghalaya-1.webp`,
-  'tura-peak-garo-hills': `${THINGS_TO_DO}/tura-peak-meghalaya-2.webp`,
-
-  // Rivers & Lakes
-  'dawki-umngot-river-guide': `${THINGS_TO_DO}/dawki-umngot-river-meghalaya-2.webp`,
-  'umiam-lake-shillong': `${THINGS_TO_DO}/umiam-lake-meghalaya-1.webp`,
-  'shnongpdeng-camping-meghalaya': `${THINGS_TO_DO}/dawki-umngot-river-meghalaya-3.webp`,
-  'thadlaskein-lake-jaintia-hills': `${THINGS_TO_DO}/thadlaskein-lake-meghalaya-2.webp`,
-  'nongkhnum-island-meghalaya': `${THINGS_TO_DO}/nongkhnum-island-meghalaya-1.webp`,
-
-  // Adventure
-  'mawryngkhang-bamboo-trail': `${THINGS_TO_DO}/mawryngkhang-bamboo-trail-meghalaya-1.webp`,
-  'trekking-in-meghalaya': `${THINGS_TO_DO}/mawryngkhang-bamboo-trail-meghalaya-2.webp`,
-  'david-scott-trail': `${THINGS_TO_DO}/laitlum-canyons-meghalaya-3.webp`,
-  'camping-in-meghalaya': `${THINGS_TO_DO}/ranikor-meghalaya-1.webp`,
-
-  // Wildlife
-  'nokrek-biosphere-reserve': `${THINGS_TO_DO}/nokrek-biosphere-reserve-meghalaya-1.webp`,
-
-  // Pillar/General
-  'meghalaya-travel-guide': `${THINGS_TO_DO}/laitlum-canyons-meghalaya-4.webp`,
-  'places-to-visit-meghalaya': `${THINGS_TO_DO}/nongjrong-sunrise-viewpoint-meghalaya-2.webp`,
-  'things-to-do-meghalaya': `${THINGS_TO_DO}/double-decker-living-root-bridge-meghalaya-3.webp`,
-  'shillong-travel-guide': `${THINGS_TO_DO}/shillong-peak-meghalaya-3.webp`,
-  'cherrapunji-travel-guide': `${THINGS_TO_DO}/nohkalikai-falls-meghalaya-2.webp`,
-  'dawki-travel-guide': `${THINGS_TO_DO}/dawki-umngot-river-meghalaya-2.webp`,
-  'jaintia-hills-travel-guide': `${THINGS_TO_DO}/krang-suri-falls-meghalaya-3.webp`,
-  'garo-hills-travel-guide': `${THINGS_TO_DO}/siju-cave-meghalaya-3.webp`,
-  'ranikor-meghalaya': `${THINGS_TO_DO}/ranikor-meghalaya-2.webp`,
+  'nohkalikai-falls-meghalaya': IMG.nohkalikai,
+  'krang-suri-falls-meghalaya': IMG.krangshuri,
+  'wei-sawdong-falls-meghalaya': IMG.nohkalikai2,
+  'elephant-falls-shillong': IMG.elephant,
+  'seven-sisters-falls-meghalaya': IMG.sevensister,
+  'waterfalls-in-meghalaya': IMG.nohkalikai,
+  'waterfalls-near-shillong': IMG.elephant,
+  'best-waterfalls-meghalaya': IMG.krangshuri,
+  'mawsmai-cave-cherrapunji': IMG.mawsmai,
+  'arwah-cave-cherrapunji': IMG.mawsmai2,
+  'meghalaya-caves-guide': IMG.mawsmai,
+  'caving-in-meghalaya': IMG.mawsmai2,
+  'mawlynnong-cleanest-village': IMG.mawlynnong,
+  'nongriat-village-trek': IMG.nongriat,
+  'double-decker-root-bridge': IMG.nongriat2,
+  'laitlum-canyons-shillong': IMG.laitlum,
+  'dawki-umngot-river-guide': IMG.dawki,
+  'umiam-lake-shillong': IMG.umiam,
+  'shnongpdeng-camping-meghalaya': IMG.dawki2,
+  'meghalaya-travel-guide': IMG.laitlum,
+  'places-to-visit-meghalaya': IMG.nongriat2,
+  'things-to-do-meghalaya': IMG.nongriat,
+  'shillong-travel-guide': IMG.umiam2,
+  'cherrapunji-travel-guide': IMG.nohkalikai2,
+  'dawki-travel-guide': IMG.dawki,
 };
 
-// Category-level fallback hero images
+// Category-level fallback heroes.
 const CATEGORY_HERO_MAP: Record<string, string> = {
-  hostels: `${THINGS_TO_DO}/laitlum-canyons-meghalaya-2.webp`,
-  hotels: `${THINGS_TO_DO}/umiam-lake-meghalaya-2.webp`,
-  homestays: `${THINGS_TO_DO}/mawlynnong-village-meghalaya-2.webp`,
-  glamping: `${THINGS_TO_DO}/nongjrong-sunrise-viewpoint-meghalaya-3.webp`,
-  accommodation: `${THINGS_TO_DO}/laitlum-canyons-meghalaya-3.webp`,
-  rentals: `${THINGS_TO_DO}/shillong-peak-meghalaya-2.webp`,
-  tours: `${THINGS_TO_DO}/double-decker-living-root-bridge-meghalaya-2.webp`,
-  'travel-guides': `${THINGS_TO_DO}/nongjrong-sunrise-viewpoint-meghalaya-2.webp`,
-  destinations: `${THINGS_TO_DO}/nohkalikai-falls-meghalaya-1.webp`,
-  attractions: `${THINGS_TO_DO}/krang-suri-falls-meghalaya-2.webp`,
-  itineraries: `${THINGS_TO_DO}/dawki-umngot-river-meghalaya-2.webp`,
-  activities: `${THINGS_TO_DO}/mawryngkhang-bamboo-trail-meghalaya-1.webp`,
-  restaurants: `${THINGS_TO_DO}/mawlynnong-village-meghalaya-1.webp`,
-  'food-dining': `${THINGS_TO_DO}/mawlynnong-village-meghalaya-1.webp`,
-  weddings: `${THINGS_TO_DO}/umiam-lake-meghalaya-1.webp`,
-  transport: `${THINGS_TO_DO}/laitlum-canyons-meghalaya-4.webp`,
-  'competitor-capture': `${THINGS_TO_DO}/laitlum-canyons-meghalaya-2.webp`,
-  seasonal: `${THINGS_TO_DO}/nohkalikai-falls-meghalaya-2.webp`,
-  events: `${THINGS_TO_DO}/mawphlang-sacred-forest-meghalaya-2.webp`,
-  'travel-agency': `${THINGS_TO_DO}/dawki-umngot-river-meghalaya-3.webp`,
-  hospitals: `${THINGS_TO_DO}/shillong-peak-meghalaya-3.webp`,
-  'themed-trips': `${THINGS_TO_DO}/double-decker-living-root-bridge-meghalaya-3.webp`,
-  'group-tours': `${THINGS_TO_DO}/mawphlang-sacred-forest-meghalaya-1.webp`,
-  corporate: `${THINGS_TO_DO}/umiam-lake-meghalaya-2.webp`,
-  'road-bike-trips': `${THINGS_TO_DO}/laitlum-canyons-meghalaya-4.webp`,
-  workation: `${THINGS_TO_DO}/nongjrong-sunrise-viewpoint-meghalaya-3.webp`,
+  hostels: IMG.laitlum,
+  hotels: IMG.umiam,
+  homestays: IMG.mawlynnong,
+  glamping: IMG.dawki2,
+  accommodation: IMG.laitlum,
+  rentals: IMG.bumla,
+  tours: IMG.nongriat,
+  'travel-guides': IMG.meghalaya,
+  destinations: IMG.nohkalikai,
+  attractions: IMG.krangshuri,
+  itineraries: IMG.dawki,
+  activities: IMG.bumla,
+  restaurants: IMG.mawlynnong2,
+  'food-dining': IMG.mawlynnong2,
+  weddings: IMG.umiam,
+  transport: IMG.laitlum,
+  'competitor-capture': IMG.laitlum,
+  seasonal: IMG.festival,
+  events: IMG.festival,
+  'travel-agency': IMG.dawki3,
+  hospitals: IMG.umiam2,
+  'themed-trips': IMG.bhutan,
+  'group-tours': IMG.nongriat2,
+  corporate: IMG.umiam,
+  'road-bike-trips': IMG.bumla,
+  workation: IMG.umiam2,
 };
-
-const SUPABASE_HERO_BUCKET = 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/seo-heroes';
-
-const DEFAULT_HERO = `${THINGS_TO_DO}/laitlum-canyons-meghalaya-2.webp`;
 
 /**
  * Get the hero image URL for a given SEO page.
- * Priority: AI-generated (Supabase seo-heroes bucket) → slug-specific curated → category fallback → default.
- *
- * Note: AI heroes are produced on-demand by the `generate-seo-hero` edge function.
- * The browser will fall back to the curated/category image if the AI hero hasn't been generated yet.
+ * Priority: AI manifest → slug-specific curated → category fallback → default.
  */
 export const getHeroImageForPage = (slug: string, category: string): string => {
   return SEO_HERO_MANIFEST[slug] || SLUG_HERO_MAP[slug] || CATEGORY_HERO_MAP[category] || DEFAULT_HERO;
 };
 
-/** URL where the AI-generated hero would live if/when produced. */
-export const getAIHeroURL = (slug: string): string => {
-  return `${SUPABASE_HERO_BUCKET}/${slug}.webp`;
-};
+/**
+ * URL of an AI-generated hero, if one exists. The legacy seo-heroes bucket is
+ * gone, so this returns an empty string — the page falls back to the curated
+ * CDN hero from getHeroImageForPage().
+ */
+export const getAIHeroURL = (_slug: string): string => '';
 
-// Wave 3B — Pool of contextual section images, rotated per section index so each
-// page renders distinct supporting visuals (no duplicates within a page).
-// Phase B — split by Northeast state so pages targeting Assam/Arunachal/etc.
-// no longer show only Meghalaya scenery.
-const TRAVEL_PAGE = `${SUPABASE_BUCKET}/Travel%20page`;
-const TRAVEL_DOM = `${SUPABASE_BUCKET}/Travel%20DOM/1`;
-
+// State-specific section image pools (all CDN-hosted).
 const MEGHALAYA_POOL = [
-  `${THINGS_TO_DO}/double-decker-living-root-bridge-meghalaya-2.webp`,
-  `${THINGS_TO_DO}/dawki-umngot-river-meghalaya-2.webp`,
-  `${THINGS_TO_DO}/laitlum-canyons-meghalaya-3.webp`,
-  `${THINGS_TO_DO}/nohkalikai-falls-meghalaya-1.webp`,
-  `${THINGS_TO_DO}/mawlynnong-village-meghalaya-1.webp`,
-  `${THINGS_TO_DO}/krang-suri-falls-meghalaya-2.webp`,
-  `${THINGS_TO_DO}/shillong-peak-meghalaya-2.webp`,
-  `${THINGS_TO_DO}/nongriat-village-meghalaya-1.webp`,
-  `${THINGS_TO_DO}/umiam-lake-meghalaya-1.webp`,
-  `${THINGS_TO_DO}/mawphlang-sacred-forest-meghalaya-1.webp`,
+  IMG.nongriat, IMG.dawki, IMG.laitlum, IMG.nohkalikai, IMG.mawlynnong,
+  IMG.krangshuri, IMG.umiam, IMG.nongriat2, IMG.elephant, IMG.sevensister,
 ];
-
-const ASSAM_POOL = [
-  `${TRAVEL_PAGE}/north%20east%20tour.jpg`,
-  `${TRAVEL_PAGE}/dress-of-north-east-india.jpg`,
-  `${TRAVEL_PAGE}/70q7obg5shx31.jpg`,
-];
-
-const ARUNACHAL_POOL = [
-  `${TRAVEL_PAGE}/Tawang-Monastery.jpg`,
-  `${TRAVEL_PAGE}/Bike%20trip%20arunachal.jpg`,
-  `${TRAVEL_DOM}/Complete%20Guide%20To%20Backpacking%20In%20Arunachal%20Pradesh%20-%20Lost%20With%20Purpose.jpg`,
-];
-
-const NAGALAND_POOL = [
-  `${TRAVEL_PAGE}/nagaland.jpg`,
-  `${TRAVEL_PAGE}/kohima.jpg`,
-  `${TRAVEL_PAGE}/dress-of-north-east-india.jpg`,
-];
-
-const SIKKIM_POOL = [
-  `${TRAVEL_PAGE}/kanchenjunga-mountain-pelling-sikkim-1-city-hero.jpg`,
-  `${TRAVEL_PAGE}/sikkim%20winter.png`,
-  `${TRAVEL_PAGE}/north%20east%20tour.jpg`,
-];
-
-const MANIPUR_POOL = [
-  `${TRAVEL_PAGE}/maipur%20lokak%20lake.webp`,
-  `${TRAVEL_PAGE}/dress-of-north-east-india.jpg`,
-  `${TRAVEL_PAGE}/north%20east%20tour.jpg`,
-];
-
-const MIZORAM_POOL = [
-  `${TRAVEL_PAGE}/dress-of-north-east-india.jpg`,
-  `${TRAVEL_PAGE}/north%20east%20tour.jpg`,
-  `${TRAVEL_PAGE}/70q7obg5shx31.jpg`,
-];
-
-const TRIPURA_POOL = [
-  `${TRAVEL_PAGE}/dress-of-north-east-india.jpg`,
-  `${TRAVEL_PAGE}/north%20east%20tour.jpg`,
-  `${TRAVEL_PAGE}/70q7obg5shx31.jpg`,
-];
+const ASSAM_POOL = [IMG.assam, IMG.sevensister, IMG.ecological];
+const ARUNACHAL_POOL = [IMG.arunachal, IMG.bumla, IMG.festival];
+const NAGALAND_POOL = [IMG.nagaland, IMG.festival, IMG.ecological];
+const SIKKIM_POOL = [IMG.sikkim, IMG.umiam, IMG.laitlum];
+const MANIPUR_POOL = [IMG.umiam, IMG.ecological, IMG.sevensister];
+const MIZORAM_POOL = [IMG.ecological, IMG.laitlum, IMG.sevensister];
+const TRIPURA_POOL = [IMG.ecological, IMG.dravidian, IMG.sevensister];
 
 const STATE_SECTION_POOLS: Record<string, string[]> = {
   meghalaya: MEGHALAYA_POOL,
@@ -221,22 +165,17 @@ const inferStateFromSlug = (slug: string): keyof typeof STATE_SECTION_POOLS => {
 
 /**
  * Pick a contextual image for a section based on the page slug + section index.
- * Deterministic: same slug+index always returns the same image.
- * State-aware: routes to the matching Northeast state pool.
+ * Deterministic and state-aware.
  */
 export const getSectionImage = (slug: string, sectionIndex: number, heroToAvoid?: string): string => {
   const state = inferStateFromSlug(slug);
   const pool = STATE_SECTION_POOLS[state] ?? MEGHALAYA_POOL;
-  // Deterministic hash from slug
   let h = 0;
   for (let i = 0; i < slug.length; i++) h = (h * 31 + slug.charCodeAt(i)) | 0;
   const start = Math.abs(h) % pool.length;
   let img = pool[(start + sectionIndex) % pool.length];
-  // Avoid repeating the hero image as the first section image
   if (img === heroToAvoid && pool.length > 1) {
     img = pool[(start + sectionIndex + 1) % pool.length];
   }
   return img;
 };
-
-

@@ -19,7 +19,7 @@ const cars = [
   {
     name: "Tata Punch",
     price: 2000,
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Rentals/Tata%20punch.jpg",
+    image: "/placeholder.svg",
     fuel: "Petrol",
     transmission: "Manual",
     seats: 5,
@@ -28,7 +28,7 @@ const cars = [
   {
     name: "Tata Indica",
     price: 2000,
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Rentals/Tata%20Indica.jpg",
+    image: "/placeholder.svg",
     fuel: "Diesel",
     transmission: "Manual",
     seats: 5,
@@ -37,7 +37,7 @@ const cars = [
   {
     name: "Mahindra Thar",
     price: 3800,
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Rentals/Thar.jpg",
+    image: "/placeholder.svg",
     fuel: "Diesel",
     transmission: "Manual/Auto",
     seats: 4,
@@ -46,7 +46,7 @@ const cars = [
   {
     name: "Mahindra Scorpio",
     price: 4000,
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Rentals/Scorpio.jpg",
+    image: "/placeholder.svg",
     fuel: "Diesel",
     transmission: "Manual",
     seats: 7,
@@ -55,7 +55,7 @@ const cars = [
   {
     name: "Mahindra XUV 700",
     price: 4500,
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Rentals/XUV%20700%20EBONY.jpg",
+    image: "/placeholder.svg",
     fuel: "Diesel/Petrol",
     transmission: "Auto",
     seats: 7,
@@ -65,7 +65,7 @@ const cars = [
   {
     name: "Hyundai i10 Nios",
     price: 1800,
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Rentals/i10%20nios.jpg",
+    image: "/placeholder.svg",
     fuel: "Petrol",
     transmission: "Manual",
     seats: 5,
@@ -74,7 +74,7 @@ const cars = [
   {
     name: "Hyundai i20",
     price: 2000,
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Rentals/I20.jpg",
+    image: "/placeholder.svg",
     fuel: "Petrol",
     transmission: "Manual/Auto",
     seats: 5,
@@ -83,7 +83,7 @@ const cars = [
   {
     name: "Kia Seltos",
     price: 2800,
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Rentals/KIA%20SELTOS.jpg",
+    image: "/placeholder.svg",
     fuel: "Petrol/Diesel",
     transmission: "Auto",
     seats: 5,
@@ -92,7 +92,7 @@ const cars = [
   {
     name: "Kia Sonet",
     price: 2500,
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Rentals/Sonet.jpg",
+    image: "/placeholder.svg",
     fuel: "Petrol/Diesel",
     transmission: "Manual/Auto",
     seats: 5,
@@ -104,7 +104,7 @@ const bikes = [
   {
     name: "RE Meteor 350",
     price: 1300,
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Rentals/ROYAL%20ENFIELD%20METEOR.jpg",
+    image: "/placeholder.svg",
     engine: "350cc",
     type: "Cruiser",
     mileage: "42 km/l"
@@ -112,7 +112,7 @@ const bikes = [
   {
     name: "RE Himalayan 411",
     price: 1300,
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Rentals/411.jpg",
+    image: "/placeholder.svg",
     engine: "411cc",
     type: "Adventure",
     mileage: "35 km/l"
@@ -120,7 +120,7 @@ const bikes = [
   {
     name: "RE Himalayan 450",
     price: 1800,
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Rentals/Royal%20Enfield%20Himalayan%20450.jpg",
+    image: "/placeholder.svg",
     engine: "450cc",
     type: "Adventure",
     mileage: "30 km/l",
@@ -129,7 +129,7 @@ const bikes = [
   {
     name: "RE Hunter 350",
     price: 1600,
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Rentals/Hunter.jpg",
+    image: "/placeholder.svg",
     engine: "350cc",
     type: "Roadster",
     mileage: "40 km/l"

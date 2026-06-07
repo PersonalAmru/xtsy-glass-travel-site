@@ -18,7 +18,7 @@ const EXPERIENCES = [
     description: "An evening experience in a peaceful pine forest with warm bonfires and BBQ dining.",
     duration: "Evening Experience",
     includes: ["Bonfire setup", "BBQ dinner", "Mocktails and beverages", "Local storytelling"],
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Xperience/bonfire-pine-forest.jpg",
+    image: "/__l5e/assets-v1/d91fa8ec-2fb5-40dc-8712-13c320a69653/dawki-campsite-5.jpeg",
   },
   {
     title: "Romantic Forest Dining",
