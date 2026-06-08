@@ -1,17 +1,21 @@
 #!/usr/bin/env bun
 /**
- * CDN Image Verification (room + panorama)
+ * CDN Image Verification (site-wide)
  *
- * Validates that every CDN-mapped room and panorama image URL referenced by the
- * app resolves to a real asset returning HTTP 200. Run before build/deploy so a
- * dead/stale image link fails CI instead of shipping broken room imagery.
+ * Validates that EVERY CDN-mapped image the app can render resolves to a real
+ * asset returning HTTP 200. This covers:
+ *   - Room + panorama gallery images (ROOM_IMAGES → xtsy / xtsy-270 buckets)
+ *   - Dawki campsite gallery images (xtsy-adventure-campsite bucket)
+ *   - Destination / SEO hero images (xtsyvoyage bucket)
+ *   - Property gallery, TAB Bistro, logos and any other non-room media
+ *     present in the centralised CDN map.
+ *
+ * Any non-200 (or network error) fails the process so a dead/stale image link
+ * fails CI/build instead of shipping broken media.
  *
  * Usage:
  *   bun run scripts/verify-cdn-images.ts
  *   BASE_URL=https://xtsy.one bun run scripts/verify-cdn-images.ts
- *
- * BASE_URL defaults to the published app origin. Lovable CDN assets are served
- * from the app origin under /__l5e/assets-v1/...
  */
 import { ROOM_IMAGES } from '../src/config/roomTypes';
 import { CDN_IMAGE_MAP } from '../src/data/cdnImageMap';
@@ -19,11 +23,22 @@ import { CDN_IMAGE_MAP } from '../src/data/cdnImageMap';
 const BASE_URL = (process.env.BASE_URL || 'https://xtsy.one').replace(/\/$/, '');
 const CONCURRENCY = 8;
 
-/** Collect the room + panorama image URLs the app actually renders. */
+/** Human-friendly category for a CDN map key, based on its bucket prefix. */
+function categorize(key: string): string {
+  if (key.startsWith('xtsy-270/')) return 'panorama';
+  if (key.startsWith('xtsy-adventure-campsite/')) return 'dawki';
+  if (key.startsWith('xtsyvoyage/')) return 'seo-hero/destination';
+  if (key.startsWith('xtsy/TAB Bistro')) return 'tab-bistro';
+  if (/^xtsy\/Property Image/i.test(key)) return 'property-gallery';
+  if (key.startsWith('xtsy/')) return 'room';
+  return 'other';
+}
+
+/** Collect every CDN image URL the app can render, with a descriptive label. */
 function collectTargets(): { label: string; url: string }[] {
   const targets = new Map<string, string>(); // url -> label
 
-  // 1) Every room/panorama gallery image wired into the UI via ROOM_IMAGES.
+  // 1) Every room/panorama gallery image actually wired into the UI.
   for (const [roomId, urls] of Object.entries(ROOM_IMAGES)) {
     urls.forEach((url, i) => {
       if (url && url !== '/placeholder.svg') {
@@ -32,11 +47,11 @@ function collectTargets(): { label: string; url: string }[] {
     });
   }
 
-  // 2) Every panorama (xtsy-270 bucket) entry from the CDN map, even if not yet
-  //    surfaced in a gallery, so missing panorama uploads are caught too.
+  // 2) Every entry in the centralised CDN map — Dawki, SEO heroes/destinations,
+  //    property gallery, TAB Bistro, logos and any other non-room media.
   for (const [key, url] of Object.entries(CDN_IMAGE_MAP)) {
-    if (key.startsWith('xtsy-270/') && !targets.has(url)) {
-      targets.set(url, `panorama:${key}`);
+    if (url && url !== '/placeholder.svg' && !targets.has(url)) {
+      targets.set(url, `${categorize(key)}:${key}`);
     }
   }
 
@@ -65,7 +80,7 @@ async function check(target: { label: string; url: string }) {
 
 async function main() {
   const targets = collectTargets();
-  console.log(`🔍 Verifying ${targets.length} CDN room + panorama images against ${BASE_URL}\n`);
+  console.log(`🔍 Verifying ${targets.length} CDN images (room, panorama, Dawki, SEO/destination, property, dining & misc) against ${BASE_URL}\n`);
 
   const results: Awaited<ReturnType<typeof check>>[] = [];
   for (let i = 0; i < targets.length; i += CONCURRENCY) {
@@ -73,10 +88,23 @@ async function main() {
     results.push(...(await Promise.all(batch.map(check))));
   }
 
+  // Per-category summary for quick diagnosis.
+  const byCat = new Map<string, { ok: number; fail: number }>();
+  for (const r of results) {
+    const cat = r.label.split(':')[0];
+    const entry = byCat.get(cat) ?? { ok: 0, fail: 0 };
+    if (r.ok) entry.ok++; else entry.fail++;
+    byCat.set(cat, entry);
+  }
+
   const failed = results.filter((r) => !r.ok);
   const passed = results.length - failed.length;
 
-  console.log(`✅ ${passed} OK   ❌ ${failed.length} failed\n`);
+  console.log('📊 By category:');
+  for (const [cat, { ok, fail }] of [...byCat.entries()].sort()) {
+    console.log(`   ${fail ? '❌' : '✅'} ${cat}: ${ok} OK${fail ? `, ${fail} failed` : ''}`);
+  }
+  console.log(`\n✅ ${passed} OK   ❌ ${failed.length} failed\n`);
 
   if (failed.length > 0) {
     console.error('❌ FAILED IMAGES:');
@@ -87,7 +115,7 @@ async function main() {
     process.exit(1);
   }
 
-  console.log('🎉 All CDN room + panorama images return HTTP 200.');
+  console.log('🎉 All CDN images return HTTP 200.');
 }
 
 main().catch((err) => {
