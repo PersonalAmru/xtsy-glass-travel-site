@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Image, Star, Users, Building } from "lucide-react";
 import InstagramPreviewModal from "./InstagramPreviewModal";
 import { ROOM_IMAGES } from "@/config/roomTypes";
+import { handleImageError } from "@/components/SafeImage";
 
 interface GalleryItem {
   id: number;
@@ -58,7 +59,7 @@ const GalleryTile = memo(({
         onClick={onClick}
         onLoad={() => setLoaded(true)}
         onError={(e) => {
-          (e.currentTarget as HTMLImageElement).src = "/placeholder.svg";
+          handleImageError(e);
           setLoaded(true);
         }}
         className={`w-full h-full object-cover relative z-10 cursor-pointer ${
