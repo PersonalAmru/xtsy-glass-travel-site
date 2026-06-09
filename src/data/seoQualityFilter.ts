@@ -47,7 +47,7 @@ export const PER_CATEGORY_CAP: Record<string, number> = {
   tours: 21,
   destinations: 18,
   attractions: 7,
-  restaurants: 4,
+  restaurants: 20,
   itineraries: 30,
   // NE expansion caps — sized to land near 1,250 net new indexable URLs.
   'group-tours': 220,

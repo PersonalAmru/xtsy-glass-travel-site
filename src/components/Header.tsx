@@ -59,6 +59,22 @@ const Header = () => {
     { to: "/xtsy-vs-zostel", label: "XTSY vs Zostel", icon: Mountain },
   ];
 
+  // Top-performing SEO pages (highest organic traffic) — surfaced for discovery.
+  const topGuides = [
+    { to: "/best-time-to-visit-meghalaya", label: "Best Time to Visit Meghalaya", icon: Mountain },
+    { to: "/meghalaya-waterfalls", label: "Meghalaya Waterfalls", icon: Mountain },
+    { to: "/places-to-visit/seven-sisters-falls", label: "Seven Sisters Falls", icon: Camera },
+    { to: "/places-to-visit/umiam-lake", label: "Umiam Lake", icon: Camera },
+    { to: "/things-to-do-in-meghalaya", label: "Things to Do in Meghalaya", icon: Mountain },
+  ];
+
+  // Dining / TAB Bistro discovery links.
+  const diningLinks = [
+    { to: "/restaurant-in-shillong", label: "Restaurant in Shillong", icon: UtensilsCrossed },
+    { to: "/best-restaurants-shillong", label: "Best Restaurants in Shillong", icon: UtensilsCrossed },
+    { to: "/cafe-shillong", label: "Cafés in Shillong", icon: UtensilsCrossed },
+  ];
+
   return (
     <header className="sticky top-0 z-50 safe-top safe-left safe-right border-b border-white/10 bg-black">
       <div className="responsive-container mobile-compact">
@@ -205,6 +221,42 @@ const Header = () => {
                       </Link>
                     </SheetClose>
                   </div>
+
+                  <div className="mx-5 my-2 border-t border-white/10" />
+
+                  {/* Dining — TAB Bistro */}
+                  <div className="px-5 py-2">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-amber-400/80">Dining</span>
+                  </div>
+                  {diningLinks.map((link) => (
+                    <SheetClose asChild key={link.to}>
+                      <Link
+                        to={link.to}
+                        className="flex items-center gap-3 px-5 py-3 text-white/80 hover:text-white hover:bg-white/5 transition-colors text-sm font-medium"
+                      >
+                        <link.icon size={18} className="text-amber-400/70" />
+                        {link.label}
+                      </Link>
+                    </SheetClose>
+                  ))}
+
+                  <div className="mx-5 my-2 border-t border-white/10" />
+
+                  {/* Top Guides — highest-traffic pages */}
+                  <div className="px-5 py-2">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400/80">Top Guides</span>
+                  </div>
+                  {topGuides.map((link) => (
+                    <SheetClose asChild key={link.to}>
+                      <Link
+                        to={link.to}
+                        className="flex items-center gap-3 px-5 py-3 text-white/80 hover:text-white hover:bg-white/5 transition-colors text-sm font-medium"
+                      >
+                        <link.icon size={18} className="text-emerald-400/70" />
+                        {link.label}
+                      </Link>
+                    </SheetClose>
+                  ))}
 
                   <div className="mx-5 my-2 border-t border-white/10" />
 
