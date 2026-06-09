@@ -59,6 +59,22 @@ const Header = () => {
     { to: "/xtsy-vs-zostel", label: "XTSY vs Zostel", icon: Mountain },
   ];
 
+  // Top-performing SEO pages (highest organic traffic) — surfaced for discovery.
+  const topGuides = [
+    { to: "/best-time-to-visit-meghalaya", label: "Best Time to Visit Meghalaya", icon: Mountain },
+    { to: "/meghalaya-waterfalls", label: "Meghalaya Waterfalls", icon: Mountain },
+    { to: "/places-to-visit/seven-sisters-falls", label: "Seven Sisters Falls", icon: Camera },
+    { to: "/places-to-visit/umiam-lake", label: "Umiam Lake", icon: Camera },
+    { to: "/things-to-do-in-meghalaya", label: "Things to Do in Meghalaya", icon: Mountain },
+  ];
+
+  // Dining / TAB Bistro discovery links.
+  const diningLinks = [
+    { to: "/restaurant-in-shillong", label: "Restaurant in Shillong", icon: UtensilsCrossed },
+    { to: "/best-restaurants-shillong", label: "Best Restaurants in Shillong", icon: UtensilsCrossed },
+    { to: "/cafe-shillong", label: "Cafés in Shillong", icon: UtensilsCrossed },
+  ];
+
   return (
     <header className="sticky top-0 z-50 safe-top safe-left safe-right border-b border-white/10 bg-black">
       <div className="responsive-container mobile-compact">
