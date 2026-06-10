@@ -115,9 +115,21 @@ const buildSchema = (page: SEOPageData) => {
 
   if (page.schemaType === 'Restaurant') {
     Object.assign(base, {
-      servesCuisine: ['Indian', 'Continental', 'Local Khasi'],
+      '@id': `https://xtsy.one/${page.slug}#restaurant`,
+      servesCuisine: ['North Indian', 'Tandoor', 'Indo-Chinese', 'Thai', 'Continental', 'Italian', 'Seafood', 'Northeast Indian', 'Cafe'],
       address: { '@type': 'PostalAddress', streetAddress: 'Mawdiangdiang Road', addressLocality: 'Shillong', addressRegion: 'Meghalaya', postalCode: '793018', addressCountry: 'IN' },
+      geo: { '@type': 'GeoCoordinates', latitude: 25.5788, longitude: 91.8933 },
       telephone: '+91-8837317070',
+      priceRange: '₹₹',
+      acceptsReservations: 'True',
+      hasMenu: 'https://xtsy.one/tab-bistro',
+      sameAs: ['https://www.instagram.com/tabbistrobyxtsy', 'https://g.page/tabbistrobyxtsy'],
+      openingHoursSpecification: [{
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        opens: '09:00',
+        closes: '22:30',
+      }],
     });
   }
 
