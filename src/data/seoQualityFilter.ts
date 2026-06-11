@@ -1,8 +1,8 @@
 /**
  * SEO QUALITY FILTER
  * ------------------
- * Reduces the programmatic SEO surface from ~1,600 thin pages to ~200
- * high-quality, high-commercial-intent slugs. This is the single source of
+ * Reduces the programmatic SEO surface to a focused ~500 high-quality,
+ * high-commercial-intent slugs (Tier 1 + Tier 2). This is the single source of
  * truth for which pages are indexable.
  *
  * RATIONALE:
@@ -28,7 +28,8 @@ export const HIGH_QUALITY_CATEGORIES: ReadonlySet<SEOPageCategory> = new Set([
   'attractions',
   'restaurants',
   'itineraries',
-  // NE expansion (Phase 1) — high-commercial-intent clusters.
+  'travel-guides',
+  // NE expansion (Phase 1) — high-commercial-intent clusters (capped tight).
   'group-tours',
   'corporate',
   'workation',
@@ -38,7 +39,7 @@ export const HIGH_QUALITY_CATEGORIES: ReadonlySet<SEOPageCategory> = new Set([
 ]);
 
 // Hard per-category cap to prevent any single cluster from dominating the
-// sitemap. Pillar pages and destination cards are exempt.
+// sitemap. Tuned to land the indexable surface near ~500 Tier 1/2 URLs.
 export const PER_CATEGORY_CAP: Record<string, number> = {
   hostels: 40,
   homestays: 25,
@@ -47,15 +48,16 @@ export const PER_CATEGORY_CAP: Record<string, number> = {
   tours: 21,
   destinations: 18,
   attractions: 7,
-  restaurants: 250,
+  restaurants: 60,
   itineraries: 30,
-  // NE expansion caps — sized to land near 1,250 net new indexable URLs.
-  'group-tours': 220,
-  'corporate': 180,
-  'workation': 120,
-  'themed-trips': 380,
-  'road-bike-trips': 160,
-  'seasonal': 200,
+  'travel-guides': 40,
+  // NE expansion caps — trimmed from the old doorway-page volumes.
+  'group-tours': 30,
+  'corporate': 20,
+  'workation': 12,
+  'themed-trips': 40,
+  'road-bike-trips': 20,
+  'seasonal': 30,
 };
 
 // Slugs we ALWAYS keep regardless of category caps (pillar + brand pages
@@ -73,6 +75,19 @@ export const ALWAYS_KEEP_SLUGS: ReadonlySet<string> = new Set([
 ]);
 
 /**
+ * Slugs that have been MERGED into a canonical page (Phase 1 hostel-cluster
+ * consolidation). Dropped from the indexable registry so `findSEOPage` returns
+ * undefined and the `/:slug` catch-all issues the 301-style redirect declared
+ * in `RECOVERY_REDIRECTS`. Never re-add these as live pages.
+ */
+export const MERGED_REDIRECT_SLUGS: ReadonlySet<string> = new Set<string>([
+  'cheap-hostel-in-shillong',     // → /cheap-hostel-shillong (keep better-ranking variant)
+  'backpacker-hostel-shillong',   // → /best-hostel-in-shillong
+  'youth-hostel-shillong',        // → /best-hostel-in-shillong
+  'hostels-in-shillong',          // → /best-hostel-in-shillong
+]);
+
+/**
  * Apply quality filter + per-category caps. Stable order is preserved so
  * sitemaps and prerender output remain deterministic.
  */
@@ -80,6 +95,8 @@ export function filterHighQualityPages(pages: SEOPageData[]): SEOPageData[] {
   const counts: Record<string, number> = {};
   const result: SEOPageData[] = [];
   for (const page of pages) {
+    // Merged/consolidated slugs are never indexable — they redirect instead.
+    if (MERGED_REDIRECT_SLUGS.has(page.slug)) continue;
     if (ALWAYS_KEEP_SLUGS.has(page.slug)) {
       result.push(page);
       continue;
