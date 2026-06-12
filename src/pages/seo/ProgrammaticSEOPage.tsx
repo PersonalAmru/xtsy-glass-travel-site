@@ -107,9 +107,15 @@ const buildSchema = (page: SEOPageData) => {
   }
 
   if (page.schemaType === 'TouristAttraction') {
+    const geo = getDestinationGeo(page.slug);
     Object.assign(base, {
+      '@id': `https://xtsy.one/${page.slug}#attraction`,
       isAccessibleForFree: true,
+      publicAccess: true,
+      geo: { '@type': 'GeoCoordinates', latitude: geo.lat, longitude: geo.lng },
+      hasMap: `https://www.google.com/maps/search/?api=1&query=${geo.lat},${geo.lng}`,
       address: { '@type': 'PostalAddress', addressRegion: 'Meghalaya', addressCountry: 'IN' },
+      containedInPlace: { '@type': 'Place', name: 'Meghalaya, India' },
     });
   }
 
