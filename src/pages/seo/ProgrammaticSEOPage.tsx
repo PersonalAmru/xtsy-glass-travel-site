@@ -8,8 +8,10 @@ import AuthorBox from '@/components/seo/AuthorBox';
 import TrustSignals from '@/components/seo/TrustSignals';
 import TopicalClusterNav from '@/components/seo/TopicalClusterNav';
 import ConversionLinks from '@/components/seo/ConversionLinks';
+import StayEatExplore from '@/components/seo/StayEatExplore';
 import { findSEOPage, getRelatedPages, getPagesByCategory, type SEOPageData } from '@/data/seoPages';
 import { RECOVERY_REDIRECTS } from '@/data/seoAffectedSlugs';
+import { getDestinationGeo } from '@/data/destinationGeo';
 import { getWheelLinks } from '@/data/seoLinkingWheel';
 import { getHeroImageForPage, getAIHeroURL, getSectionImage } from '@/utils/seoHeroImages';
 import { Check, ChevronDown, ChevronUp, MessageCircle, Sparkles } from 'lucide-react';
@@ -107,9 +109,15 @@ const buildSchema = (page: SEOPageData) => {
   }
 
   if (page.schemaType === 'TouristAttraction') {
+    const geo = getDestinationGeo(page.slug);
     Object.assign(base, {
+      '@id': `https://xtsy.one/${page.slug}#attraction`,
       isAccessibleForFree: true,
+      publicAccess: true,
+      geo: { '@type': 'GeoCoordinates', latitude: geo.lat, longitude: geo.lng },
+      hasMap: `https://www.google.com/maps/search/?api=1&query=${geo.lat},${geo.lng}`,
       address: { '@type': 'PostalAddress', addressRegion: 'Meghalaya', addressCountry: 'IN' },
+      containedInPlace: { '@type': 'Place', name: 'Meghalaya, India' },
     });
   }
 
@@ -295,6 +303,11 @@ const ProgrammaticSEOPage = () => {
   const categoryPages = getPagesByCategory(page.category)
     .filter(p => p.slug !== page.slug)
     .slice(0, 6);
+
+  // Show the commercial Stay·Eat·Catering·Tours module on informational
+  // clusters (destinations, attractions, itineraries, guides) so they route
+  // link equity into hostel, restaurant, catering and tour money pages.
+  const showStayEatExplore = ['destinations', 'attractions', 'itineraries', 'travel-guides'].includes(page.category);
 
 
   return (
@@ -489,6 +502,9 @@ const ProgrammaticSEOPage = () => {
               </a>
             </div>
           </section>
+
+          {/* Stay · Eat · Catering · Tours — commercial internal-linking module */}
+          {showStayEatExplore && <StayEatExplore context={page.h1} />}
 
           {/* Internal Linking Wheel */}
           <WheelLinksNav slug={page.slug} />

@@ -16,6 +16,7 @@
  */
 import type { SEOPageData, SEOPageCategory } from './seoPages';
 import { RECOVERY_FILTERED_OUT, RECOVERY_LIVE_PAGES } from './seoAffectedSlugs';
+import { DINING_SPOKE_SLUGS } from './seoPagesDiningSpokes';
 
 // Categories that drive bookings or have unique editorial value.
 export const HIGH_QUALITY_CATEGORIES: ReadonlySet<SEOPageCategory> = new Set([
@@ -72,6 +73,8 @@ export const ALWAYS_KEEP_SLUGS: ReadonlySet<string> = new Set([
   // GSC recovery — force inclusion so findSEOPage stops returning undefined.
   ...RECOVERY_FILTERED_OUT,
   ...RECOVERY_LIVE_PAGES,
+  // High-depth TAB Bistro restaurant + catering spokes — always indexable.
+  ...DINING_SPOKE_SLUGS,
 ]);
 
 /**

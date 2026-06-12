@@ -12,6 +12,8 @@ import DestinationGallery from '@/components/destinations/DestinationGallery';
 import { useValidatedImages } from '@/hooks/useValidatedImages';
 import DestinationCard from '@/components/destinations/DestinationCard';
 import { MapPin, Calendar, Navigation, Lightbulb, Mountain, BookOpen } from 'lucide-react';
+import StayEatExplore from '@/components/seo/StayEatExplore';
+import { getDestinationGeo } from '@/data/destinationGeo';
 import {
   getDestinationBySlug,
   getDestinationImages,
@@ -89,17 +91,26 @@ const DestinationDetail = () => {
       : { to: '/things-to-do-in-meghalaya', label: 'Things to Do in Meghalaya' };
 
 
+  const geo = getDestinationGeo(destination.slug);
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'TouristAttraction',
+    '@id': `https://xtsy.one/places-to-visit/${destination.slug}#attraction`,
     name: destination.name,
     description: destination.shortDescription,
     url: `https://xtsy.one/places-to-visit/${destination.slug}`,
     touristType: [destination.category],
     isAccessibleForFree: true,
     publicAccess: true,
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: geo.lat,
+      longitude: geo.lng,
+    },
+    hasMap: `https://www.google.com/maps/search/?api=1&query=${geo.lat},${geo.lng}`,
     address: {
       '@type': 'PostalAddress',
+      addressLocality: destination.region,
       addressRegion: 'Meghalaya',
       addressCountry: 'IN',
     },
@@ -270,6 +281,10 @@ const DestinationDetail = () => {
               </Link>
             </div>
           </section>
+
+          {/* Stay · Eat · Catering · Tours — commercial internal-linking module */}
+          <StayEatExplore context={destination.name} />
+
 
           {/* Internal Links */}
           <nav className="border-t border-border pt-8">

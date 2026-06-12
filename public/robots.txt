@@ -1,6 +1,6 @@
-# XTSY Travel — robots.txt (auto-generated 2026-06-03)
+# XTSY Travel — robots.txt (auto-generated 2026-06-12)
 # Canonical: https://xtsy.one
-# Total indexable URLs: 1562
+# Total indexable URLs: 578
 
 # ── Search engines ───────────────────────────────────────────────
 User-agent: Googlebot
