@@ -168,6 +168,13 @@ export const RECOVERY_REDIRECTS: Readonly<Record<string, string>> = {
   'premium-suv-rental-shillong': '/xtsy-rentals',
   'self-drive-car-shillong': '/xtsy-rentals',
   'tempo-traveller-shillong': '/xtsy-rentals',
+  // Phase 1 hostel-cluster MERGE → 301 the consolidated variants so they
+  // never render a real 404 (they were dropped from the registry via
+  // MERGED_REDIRECT_SLUGS but previously had no redirect target).
+  'hostels-in-shillong': '/best-hostel-in-shillong',
+  'youth-hostel-shillong': '/best-hostel-in-shillong',
+  'backpacker-hostel-shillong': '/best-hostel-in-shillong',
+  'cheap-hostel-in-shillong': '/cheap-hostel-shillong',
   // Stays → consolidated hostel pillar
   'oyo-rooms-shillong-alternative': '/best-hostel-in-shillong',
   'guest-house-neigrihms-shillong': '/best-hostel-in-shillong',
