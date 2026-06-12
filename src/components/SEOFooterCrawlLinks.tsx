@@ -61,7 +61,6 @@ const LINK_GROUPS: LinkGroup[] = [
       { label: 'XTSY Rentals', href: '/xtsy-rentals' },
       { label: 'Female Travellers', href: '/female-travellers' },
       { label: 'Pet-Friendly Travel', href: '/pet-friendly' },
-      { label: 'All Pages Directory', href: '/all-pages' },
     ],
   },
 ];
