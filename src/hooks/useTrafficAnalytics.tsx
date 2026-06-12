@@ -22,6 +22,7 @@ import {
   setUserProperties,
 } from '@/utils/ga4Integration';
 import { supabase } from '@/integrations/supabase/client';
+import { deferUntilIdle } from '@/utils/deferUntilIdle';
 
 export interface TrafficAnalyticsState {
   sessionId: string;
@@ -135,7 +136,10 @@ export const useTrafficAnalytics = () => {
       isInitialized.current = true;
     };
     
-    init();
+    // Defer the full analytics + defense init (several Supabase round-trips)
+    // until the browser is idle after LCP, so it never blocks hydration.
+    // Tracking still runs in full — only its start is scheduled off the critical path.
+    deferUntilIdle(() => { void init(); });
   }, []);
   
   // Update state periodically
