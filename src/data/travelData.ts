@@ -75,6 +75,14 @@ export interface TourPackage {
   groupSize?: string;
   region?: string;
   itinerary?: ItineraryDay[];
+  /** Optional package-specific inclusions; falls back to defaults on detail page. */
+  inclusions?: string[];
+  /** Optional package-specific exclusions; falls back to defaults on detail page. */
+  exclusions?: string[];
+  /** Optional package-specific FAQs; falls back to generated ones on detail page. */
+  faqs?: { q: string; a: string }[];
+  /** Fixed per-person price flag — disables currency multiplier on detail page. */
+  fixedPrice?: boolean;
 }
 
 export type TravelTheme = "all" | "adventure" | "cultural" | "leisure" | "educational";
@@ -266,17 +274,17 @@ export const northeastTours: Record<string, TourPackage[]> = {
     },
     {
       id: 7,
-      title: "Phi Phi & Moopun Waterfalls Adventure",
-      description: "Budget-friendly 3-day waterfall hopping tour through Meghalaya's hidden cascades — trek to pristine falls and swim in natural pools.",
+      title: "Phe Phe & Moopun Waterfalls Adventure",
+      description: "Budget-friendly 3-day waterfall hopping tour through Meghalaya's hidden Jaintia Hills cascades — trek to pristine Phe Phe & Moopun falls and swim in turquoise natural pools.",
       duration: "3 Days",
       difficulty: "Moderate",
     price: "₹12,999",
-      image: "/__l5e/assets-v1/8c577834-54b5-43f2-a7e6-8d8c15d99f80/xtsyvoyage-assam-cover-image.jpeg",
+      image: phiPhiWaterfallMeghalayaImg,
       images: [phiPhiWaterfallMeghalayaImg, moopunWaterfallImg],
       rating: 4.7,
       category: "adventure",
       location: "Meghalaya",
-      highlights: ["Phi Phi Falls Trek", "Moopun Waterfall Swim", "Hidden Cascade Exploration", "Jungle Trail Adventures", "Village Homestay Experience", "Photography Spots"],
+      highlights: ["Phe Phe Falls Trek", "Moopun Waterfall Swim", "Hidden Cascade Exploration", "Jungle Trail Adventures", "Village Homestay Experience", "Photography Spots"],
       bestSeason: "Oct-Mar"
     },
     {

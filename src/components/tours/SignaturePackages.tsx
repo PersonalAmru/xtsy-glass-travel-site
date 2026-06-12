@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -70,14 +71,26 @@ const PackageCard = ({ pkg }: { pkg: SignaturePackage }) => (
           </p>
           <p className="text-[11px] text-muted-foreground">per person</p>
         </div>
-        <Button
-          size="sm"
-          onClick={() => enquire(pkg)}
-          className="min-h-[44px]"
-          aria-label={`Enquire about ${pkg.title}`}
-        >
-          Enquire Now
-        </Button>
+        <div className="flex flex-col gap-2">
+          <Button
+            asChild
+            size="sm"
+            className="min-h-[44px]"
+          >
+            <Link to={`/tours/${pkg.slug}`} aria-label={`View itinerary for ${pkg.title}`}>
+              View Itinerary
+            </Link>
+          </Button>
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() => enquire(pkg)}
+            className="min-h-[44px]"
+            aria-label={`Enquire about ${pkg.title}`}
+          >
+            Enquire
+          </Button>
+        </div>
       </div>
     </CardContent>
   </Card>

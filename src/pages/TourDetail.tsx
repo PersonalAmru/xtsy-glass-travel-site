@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import TourBookingModal from "@/components/TourBookingModal";
 import { getAllTours, mergeItinerary } from "@/data/travelData";
 import type { TourPackage } from "@/data/travelData";
+import { getSignaturePackageBySlug, signaturePackageToTourPackage } from "@/data/signaturePackages";
 import { useApp } from "@/contexts/AppContext";
 import {
   Clock, MapPin, Users, Star, Calendar, ChevronLeft, CheckCircle2,
@@ -32,7 +33,9 @@ const TourDetail = () => {
     if (location.state?.tour) return location.state.tour as TourPackage;
     const allTours = getAllTours();
     const found = allTours.find(t => toSlug(t.title) === slug);
-    return found ? mergeItinerary(found) : null;
+    if (found) return mergeItinerary(found);
+    const sig = slug ? getSignaturePackageBySlug(slug) : undefined;
+    return sig ? signaturePackageToTourPackage(sig) : null;
   }, [slug, location.state]);
 
   useEffect(() => {
@@ -47,10 +50,10 @@ const TourDetail = () => {
 
   const images = tour.images?.length ? [tour.image, ...tour.images] : [tour.image];
   const basePrice = parseInt(tour.price.replace(/[^\d]/g, ''));
-  const displayPrice = currency.code !== 'INR' ? formatPrice(Math.round(basePrice * 1.10)) : tour.price;
+  const displayPrice = (tour.fixedPrice || currency.code === 'INR') ? tour.price : formatPrice(Math.round(basePrice * 1.10));
 
   // Default inclusions/exclusions if not defined
-  const inclusions = [
+  const inclusions = tour.inclusions ?? [
     "Accommodation on twin/triple sharing",
     "All meals (breakfast, lunch, dinner)",
     "Private transportation throughout",
@@ -59,14 +62,14 @@ const TourDetail = () => {
     "Welcome drink on arrival",
   ];
 
-  const exclusions = [
+  const exclusions = tour.exclusions ?? [
     "Flights/train tickets to & from destination",
     "Personal expenses & tips",
     "Travel insurance",
     "Anything not mentioned in inclusions",
   ];
 
-  const faqs = [
+  const faqs = tour.faqs ?? [
     { q: "What's the best time to do this tour?", a: `The best season for this tour is ${tour.bestSeason}. Weather is ideal and all activities are accessible.` },
     { q: "Is this tour suitable for beginners?", a: `This tour is rated as "${tour.difficulty}". ${tour.difficulty === 'Easy' ? 'Perfect for first-time adventurers.' : tour.difficulty === 'Moderate' ? 'Some fitness level recommended.' : 'Prior trekking experience recommended.'}` },
     { q: "What about group sizes?", a: tour.groupSize ? `Groups are kept small at ${tour.groupSize} for a personalized experience.` : "We keep groups small (4-12 people) for the best experience." },

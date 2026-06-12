@@ -243,3 +243,71 @@ export const getRelatedPackages = (
     .concat(SIGNATURE_PACKAGES.filter((p) => p.slug !== slug && p.region !== current.region))
     .slice(0, limit);
 };
+
+// ------------------------------------------------------------
+// Adapter: render a fixed Signature Package through the shared
+// /tours/:slug TourDetail page (TourPackage shape).
+// ------------------------------------------------------------
+import type { TourPackage } from "./travelData";
+import { cdn } from "./cdnImages";
+
+const REGION_IMAGES: Record<PackageRegion, string[]> = {
+  Meghalaya: [
+    cdn("xtsyvoyage/Meghalaya Cover Image.jpeg"),
+    cdn("xtsyvoyage/Nongriat Double Decker Root Bridge.jpeg"),
+    cdn("xtsyvoyage/Dawki River.jpeg"),
+    cdn("xtsyvoyage/Nohkalikai Falls.jpeg"),
+    cdn("xtsyvoyage/Mawlynnong.jpeg"),
+  ],
+  "Arunachal Pradesh": [
+    cdn("xtsyvoyage/Arunachal Pradesh Cover Image.jpeg"),
+    cdn("xtsyvoyage/Bumla Pass Bike Expedition.jpeg"),
+  ],
+  "Assam & Meghalaya": [
+    cdn("xtsyvoyage/Assam Cover Image.jpeg"),
+    cdn("xtsyvoyage/Meghalaya Cover Image.jpeg"),
+    cdn("xtsyvoyage/Dawki River.jpeg"),
+  ],
+};
+
+export const signaturePackageToTourPackage = (p: SignaturePackage): TourPackage => {
+  const imgs = REGION_IMAGES[p.region] ?? [cdn("xtsyvoyage/Meghalaya Cover Image.jpeg")];
+  return {
+    id: 9000 + SIGNATURE_PACKAGES.indexOf(p),
+    title: p.title,
+    description: p.shortDescription,
+    duration: p.duration,
+    difficulty: "Easy",
+    price: formatPackagePrice(p.pricePerPerson),
+    image: imgs[0],
+    images: imgs,
+    rating: 4.8,
+    category: "leisure",
+    location: p.region,
+    region: p.region,
+    highlights: p.highlights,
+    bestSeason: "Oct–Apr",
+    groupSize: p.minGroup ? `Min ${p.minGroup} travellers` : undefined,
+    fixedPrice: true,
+    inclusions: [
+      "Accommodation on twin/triple sharing",
+      "Daily breakfast",
+      "Private transport throughout the tour",
+      `Pickup & drop: ${p.pickupDrop}`,
+      "Experienced local driver-guide",
+      "All applicable permits & entry coordination",
+    ],
+    exclusions: [
+      "Flights / trains to & from the start point",
+      "Lunch & dinner (unless specified)",
+      "Personal expenses, tips & shopping",
+      "Anything not listed in inclusions",
+    ],
+    faqs: [
+      { q: "Is this a fixed price?", a: `Yes — ${formatPackagePrice(p.pricePerPerson)} per person is a fixed, transparent rate. We never generate random pricing.` },
+      { q: "What is the pickup & drop point?", a: p.pickupDrop },
+      { q: "Who is this package ideal for?", a: p.idealFor.join(", ") + "." },
+      { q: "Can I customise the itinerary?", a: "Yes, dates and stays can be tailored. Message us on WhatsApp to personalise this package." },
+    ],
+  };
+};
