@@ -178,7 +178,7 @@ export const useEnhancedAnalytics = () => {
     const referrer = getReferrerInfo();
     const utmParams = getUtmParams();
 
-    sendAnalytics('pageview', {
+    const dispatchPageview = () => sendAnalytics('pageview', {
       sessionId: context.sessionId,
       visitorId: context.visitorId,
       page_path: currentPath,
@@ -193,6 +193,14 @@ export const useEnhancedAnalytics = () => {
       ...referrer,
       ...utmParams,
     });
+
+    // Defer the first (entrance) pageview until after LCP so analytics never
+    // competes with the critical render. SPA navigations fire immediately.
+    if (isFirstPageview.current) {
+      deferUntilIdle(dispatchPageview);
+    } else {
+      dispatchPageview();
+    }
 
     // Reset tracking for new page
     lastPath.current = currentPath;
