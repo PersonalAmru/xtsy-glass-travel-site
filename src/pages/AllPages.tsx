@@ -482,36 +482,29 @@ const AllPages = () => {
 
             {/* Full Directory — SEO Crawl Hub (all links remain in HTML) */}
             <section className="container mx-auto px-4 max-w-6xl py-14">
-              <div className="flex items-center gap-3 mb-8">
+              <div className="flex items-center gap-3 mb-3">
                 <div className="h-px flex-1 bg-border" />
-                <h2 className="text-lg font-semibold text-foreground whitespace-nowrap">Complete Directory</h2>
+                <h2 className="text-xl md:text-2xl font-bold text-foreground whitespace-nowrap">Complete Directory</h2>
                 <div className="h-px flex-1 bg-border" />
               </div>
-              {categories.map(({ key, label }) => {
-                const pages = getPagesByCategory(key as any);
-                if (pages.length === 0) return null;
-                return (
-                  <div key={key} className="mb-8">
-                    <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
-                      {label}
-                      <span className="text-xs text-muted-foreground font-normal">({pages.length})</span>
-                    </h3>
-                    <div className="flex flex-wrap gap-x-4 gap-y-1.5">
-                      {pages.map(p => (
-                        <Link key={p.slug} to={`/${p.slug}`} className="text-xs text-muted-foreground hover:text-primary transition-colors">
-                          {p.h1}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                );
-              })}
+              <p className="text-center text-sm text-muted-foreground max-w-xl mx-auto mb-8">
+                Browse every guide, stay & experience by category — tap any card to claim the best season deals.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {categories.map(({ key, label }) => {
+                  const pages = getPagesByCategory(key as any);
+                  if (pages.length === 0) return null;
+                  return <DirectoryCategoryCard key={key} catKey={key} label={label} pages={pages} />;
+                })}
+              </div>
             </section>
           </>
         )}
       </main>
 
+      <DirectoryOfferPopup />
       <Footer />
+
     </div>
   );
 };
