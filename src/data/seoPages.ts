@@ -1105,7 +1105,7 @@ const RAW_SEO_PAGES: SEOPageData[] = [
 // clusters that risk Google "doorway page" classification and protects
 // crawl budget. See src/data/seoQualityFilter.ts for the rules.
 import { applySEOOverrides } from './seoPagesOverrides';
-import { BRAND_OPENER, whyXTSYSection, aboutXTSYGroupSection } from './brandFacts';
+import { BRAND_OPENER, whyXTSYSection } from './brandFacts';
 
 // Phase 2 brand-rewrite enforcer: every published page receives the
 // canonical brand opener + Why-XTSY + About-Group sections. Idempotent —
