@@ -50,7 +50,7 @@ const TourDetail = () => {
 
   const images = tour.images?.length ? [tour.image, ...tour.images] : [tour.image];
   const basePrice = parseInt(tour.price.replace(/[^\d]/g, ''));
-  const displayPrice = currency.code !== 'INR' ? formatPrice(Math.round(basePrice * 1.10)) : tour.price;
+  const displayPrice = (tour.fixedPrice || currency.code === 'INR') ? tour.price : formatPrice(Math.round(basePrice * 1.10));
 
   // Default inclusions/exclusions if not defined
   const inclusions = [
