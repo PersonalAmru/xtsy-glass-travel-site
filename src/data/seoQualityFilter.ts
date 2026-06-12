@@ -73,6 +73,8 @@ export const ALWAYS_KEEP_SLUGS: ReadonlySet<string> = new Set([
   // GSC recovery — force inclusion so findSEOPage stops returning undefined.
   ...RECOVERY_FILTERED_OUT,
   ...RECOVERY_LIVE_PAGES,
+  // High-depth TAB Bistro restaurant + catering spokes — always indexable.
+  ...DINING_SPOKE_SLUGS,
 ]);
 
 /**
