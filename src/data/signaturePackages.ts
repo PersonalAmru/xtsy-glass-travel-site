@@ -1012,6 +1012,7 @@ export const signaturePackageToTourPackage = (p: SignaturePackage): TourPackage 
     bestSeason: "Oct–Apr",
     groupSize: p.minGroup ? `Min ${p.minGroup} travellers` : undefined,
     fixedPrice: true,
+    itinerary: PACKAGE_ITINERARIES[p.slug],
     inclusions: [
       "Accommodation on twin/triple sharing",
       "Daily breakfast",
