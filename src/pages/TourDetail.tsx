@@ -32,7 +32,9 @@ const TourDetail = () => {
     if (location.state?.tour) return location.state.tour as TourPackage;
     const allTours = getAllTours();
     const found = allTours.find(t => toSlug(t.title) === slug);
-    return found ? mergeItinerary(found) : null;
+    if (found) return mergeItinerary(found);
+    const sig = slug ? getSignaturePackageBySlug(slug) : undefined;
+    return sig ? signaturePackageToTourPackage(sig) : null;
   }, [slug, location.state]);
 
   useEffect(() => {
