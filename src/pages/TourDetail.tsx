@@ -62,7 +62,7 @@ const TourDetail = () => {
     "Welcome drink on arrival",
   ];
 
-  const exclusions = [
+  const exclusions = tour.exclusions ?? [
     "Flights/train tickets to & from destination",
     "Personal expenses & tips",
     "Travel insurance",
