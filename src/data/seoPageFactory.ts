@@ -7,7 +7,7 @@
  */
 
 import type { SEOPageData, SEOPageCategory, SchemaType, SEOSection, SEOFaq } from './seoPages';
-import { BRAND_OPENER, whyXTSYSection, aboutXTSYGroupSection } from './brandFacts';
+import { BRAND_OPENER, whyXTSYSection } from './brandFacts';
 
 // =============================================================
 // Display label helpers
