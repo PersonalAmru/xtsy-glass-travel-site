@@ -91,17 +91,26 @@ const DestinationDetail = () => {
       : { to: '/things-to-do-in-meghalaya', label: 'Things to Do in Meghalaya' };
 
 
+  const geo = getDestinationGeo(destination.slug);
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'TouristAttraction',
+    '@id': `https://xtsy.one/places-to-visit/${destination.slug}#attraction`,
     name: destination.name,
     description: destination.shortDescription,
     url: `https://xtsy.one/places-to-visit/${destination.slug}`,
     touristType: [destination.category],
     isAccessibleForFree: true,
     publicAccess: true,
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: geo.lat,
+      longitude: geo.lng,
+    },
+    hasMap: `https://www.google.com/maps/search/?api=1&query=${geo.lat},${geo.lng}`,
     address: {
       '@type': 'PostalAddress',
+      addressLocality: destination.region,
       addressRegion: 'Meghalaya',
       addressCountry: 'IN',
     },
