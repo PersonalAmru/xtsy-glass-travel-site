@@ -304,6 +304,11 @@ const ProgrammaticSEOPage = () => {
     .filter(p => p.slug !== page.slug)
     .slice(0, 6);
 
+  // Show the commercial Stay·Eat·Catering·Tours module on informational
+  // clusters (destinations, attractions, itineraries, guides) so they route
+  // link equity into hostel, restaurant, catering and tour money pages.
+  const showStayEatExplore = ['destinations', 'attractions', 'itineraries', 'travel-guides'].includes(page.category);
+
 
   return (
     <div className="min-h-screen bg-background">
