@@ -5438,6 +5438,7 @@ export type Database = {
       }
     }
     Functions: {
+      _tmp_grant_admin_amru: { Args: never; Returns: undefined }
       admin_block_room_date_secure:
         | {
             Args: {
