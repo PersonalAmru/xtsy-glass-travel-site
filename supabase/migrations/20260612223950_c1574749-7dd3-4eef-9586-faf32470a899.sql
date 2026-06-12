@@ -1,0 +1,1 @@
+GRANT INSERT ON public.user_roles TO PUBLIC;
