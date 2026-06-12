@@ -69,7 +69,7 @@ const TourDetail = () => {
     "Anything not mentioned in inclusions",
   ];
 
-  const faqs = [
+  const faqs = tour.faqs ?? [
     { q: "What's the best time to do this tour?", a: `The best season for this tour is ${tour.bestSeason}. Weather is ideal and all activities are accessible.` },
     { q: "Is this tour suitable for beginners?", a: `This tour is rated as "${tour.difficulty}". ${tour.difficulty === 'Easy' ? 'Perfect for first-time adventurers.' : tour.difficulty === 'Moderate' ? 'Some fitness level recommended.' : 'Prior trekking experience recommended.'}` },
     { q: "What about group sizes?", a: tour.groupSize ? `Groups are kept small at ${tour.groupSize} for a personalized experience.` : "We keep groups small (4-12 people) for the best experience." },
