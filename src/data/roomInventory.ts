@@ -36,7 +36,7 @@ const SEASONAL_PRICES: Record<string, SeasonalPrice> = {
   '4-bed-mixed-female-dorm':{ april: 569, may: 569,  originalApril: 799,   originalMay: 799 },
   '6-bed-mixed-female-dorm':{ april: 389, may: 389,  originalApril: 599,   originalMay: 599 },
   '6-bed-mixed-dorm':      { april: 469, may: 469,  originalApril: 699,   originalMay: 699 },
-  '8-bed-mixed-dorm':      { april: 329, may: 329,  originalApril: 550,   originalMay: 550 },
+  '8-bed-mixed-dorm':      { april: 369, may: 369,  originalApril: 550,   originalMay: 550 },
 };
 
 function getSeasonalPrice(roomId: string): { discounted: number; original: number } {

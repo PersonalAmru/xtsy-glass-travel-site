@@ -19,7 +19,7 @@ const LastMinuteBanner = memo(({ className }: LastMinuteBannerProps) => {
   const lowestPrice = Math.min(...rooms.map(r => r.discountedPrice));
 
   // Show per-room scarcity total — capped realistically
-  const totalAvailable = rooms.reduce((sum, r) => sum + getSimulatedAvailability(r.id), 0);
+  const totalAvailable = Math.min(5, rooms.reduce((sum, r) => sum + getSimulatedAvailability(r.id), 0));
 
   const showPriceHike = !isMayPricingActive();
 

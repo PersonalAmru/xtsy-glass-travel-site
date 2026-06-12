@@ -179,9 +179,9 @@ const HeroSection = () => {
   // Guest increment/decrement handlers - unused, handled by ModernBookingForm
 
   const stats = [
-    { value: `${3000 + happyGuestsCount}+`, label: 'Happy Guests', gradient: 'from-primary to-orange-400' },
+    { value: `${10786 + happyGuestsCount}+`, label: 'Happy Guests', gradient: 'from-primary to-orange-400' },
     { value: '30+', label: 'Tour Packages', gradient: 'from-rose-400 to-pink-500' },
-    { value: averageRating.toString(), label: 'Guest Reviews', gradient: 'from-amber-400 to-orange-500' },
+    { value: '4.8', label: 'Guest Reviews', gradient: 'from-amber-400 to-orange-500' },
     { value: '24/7', label: 'Travel Support', gradient: 'from-emerald-400 to-teal-500' },
   ];
 
