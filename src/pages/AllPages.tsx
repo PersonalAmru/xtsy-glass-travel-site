@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import DirectoryOfferPopup from '@/components/DirectoryOfferPopup';
 import { ALL_SEO_PAGES, getPagesByCategory, type SEOPageData } from '@/data/seoPages';
 import { EXPLORER_CATEGORIES } from '@/data/seoLinkingWheel';
 import { meghalayaDestinations, getDestinationImageUrl, knownImageIndices, getFirstValidImageIndex } from '@/data/meghalayaDestinations';
-import { Search, MapPin, Star, Compass, BookOpen, Route, ChevronRight, Sparkles, Mountain, TreePine } from 'lucide-react';
+import { Search, MapPin, Star, Compass, BookOpen, Route, ChevronRight, Sparkles, Mountain, TreePine, ArrowRight } from 'lucide-react';
 
 // --- Cluster image mapping (first known image for each category) ---
 const CLUSTER_IMAGES: Record<string, { slug: string; idx: number }> = {
@@ -76,6 +77,80 @@ const categories = [
   { key: 'hospitals', label: 'Near Hospitals' },
   { key: 'accommodation', label: 'Accommodation' },
 ] as const;
+
+// Visual + offer metadata per directory category.
+type CatMeta = { img: string; idx: number; tagline: string; cta: string; ctaTo: string; offer?: string };
+const CATEGORY_META: Record<string, CatMeta> = {
+  'travel-guides': { img: 'mawlynnong-village', idx: 1, tagline: 'Expert-written guides to plan every detail', cta: 'Read Guides', ctaTo: '/meghalaya-travel-guide' },
+  destinations: { img: 'laitlum-canyons', idx: 2, tagline: 'Every waterfall, cave & viewpoint mapped', cta: 'Explore Map', ctaTo: '/places-to-visit-meghalaya' },
+  hostels: { img: 'umiam-lake', idx: 1, tagline: 'Award-winning stays from ₹599/night', cta: 'Book a Bed', ctaTo: '/book', offer: 'From ₹599' },
+  hotels: { img: 'umiam-lake', idx: 2, tagline: 'Comfortable hotels across Shillong', cta: 'Book Now', ctaTo: '/book' },
+  homestays: { img: 'mawlynnong-village', idx: 2, tagline: 'Live with local Khasi families', cta: 'Find a Homestay', ctaTo: '/book' },
+  tours: { img: 'dawki-umngot-river', idx: 1, tagline: 'Fixed-price packages from ₹15,500', cta: 'View Packages', ctaTo: '/tours', offer: 'Best Value' },
+  itineraries: { img: 'double-decker-living-root-bridge', idx: 1, tagline: 'Day-by-day plans ready to go', cta: 'Plan Trip', ctaTo: '/meghalaya-itinerary' },
+  activities: { img: 'double-decker-living-root-bridge', idx: 1, tagline: 'Treks, caving, boating & more', cta: 'See Activities', ctaTo: '/things-to-do-meghalaya' },
+  attractions: { img: 'nohkalikai-falls', idx: 1, tagline: "Meghalaya's most iconic sights", cta: 'Discover', ctaTo: '/places-to-visit-meghalaya' },
+  rentals: { img: 'laitlum-canyons', idx: 1, tagline: 'Bikes & cars for your journey', cta: 'Rent Now', ctaTo: '/book' },
+  restaurants: { img: 'krang-suri-falls', idx: 1, tagline: 'Café culture & local cuisine', cta: 'View Dining', ctaTo: '/restaurant-in-shillong' },
+  glamping: { img: 'umiam-lake', idx: 1, tagline: 'Riverside camps under the stars', cta: 'Book Glamping', ctaTo: '/book', offer: 'New' },
+  weddings: { img: 'mawlynnong-village', idx: 1, tagline: 'Dream destination weddings', cta: 'Enquire', ctaTo: '/book' },
+  hospitals: { img: 'laitlum-canyons', idx: 2, tagline: 'Stays close to care facilities', cta: 'View Stays', ctaTo: '/book' },
+  accommodation: { img: 'umiam-lake', idx: 2, tagline: 'Every place to stay in one list', cta: 'Browse Stays', ctaTo: '/book' },
+};
+
+const DirectoryCategoryCard = memo(({ catKey, label, pages }: { catKey: string; label: string; pages: SEOPageData[] }) => {
+  const meta = CATEGORY_META[catKey];
+  const imgSrc = meta ? getDestinationImageUrl(meta.img, meta.idx) : '/placeholder.svg';
+  return (
+    <div className="group flex flex-col rounded-3xl overflow-hidden border border-border/50 bg-card hover:border-primary/30 hover:shadow-xl transition-all duration-300">
+      {/* Image header */}
+      <div className="relative aspect-[16/10] overflow-hidden">
+        <img src={imgSrc} alt={label} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+        {meta?.offer && (
+          <span className="absolute top-3 right-3 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary text-primary-foreground text-[10px] font-bold shadow-lg">
+            <Sparkles className="h-3 w-3" /> {meta.offer}
+          </span>
+        )}
+        <div className="absolute bottom-0 left-0 right-0 p-4">
+          <div className="flex items-center gap-2">
+            <h3 className="text-lg font-bold text-white">{label}</h3>
+            <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-white/20 text-white backdrop-blur-sm">{pages.length}</span>
+          </div>
+          {meta?.tagline && <p className="mt-0.5 text-xs text-white/85">{meta.tagline}</p>}
+        </div>
+      </div>
+
+      {/* Page chips — all links stay in HTML for SEO crawl */}
+      <div className="flex-1 p-4">
+        <div className="flex flex-wrap gap-1.5">
+          {pages.map(p => (
+            <Link
+              key={p.slug}
+              to={`/${p.slug}`}
+              className="text-xs px-2.5 py-1 rounded-full bg-muted/60 text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
+            >
+              {p.h1}
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* CTA */}
+      {meta && (
+        <Link
+          to={meta.ctaTo}
+          className="flex items-center justify-between gap-2 min-h-[48px] px-4 m-4 mt-0 rounded-xl bg-primary/10 text-primary text-sm font-semibold hover:bg-primary hover:text-primary-foreground transition-colors"
+        >
+          {meta.cta}
+          <ArrowRight className="h-4 w-4" />
+        </Link>
+      )}
+    </div>
+  );
+});
+DirectoryCategoryCard.displayName = 'DirectoryCategoryCard';
+
 
 // --- Components ---
 
@@ -407,36 +482,29 @@ const AllPages = () => {
 
             {/* Full Directory — SEO Crawl Hub (all links remain in HTML) */}
             <section className="container mx-auto px-4 max-w-6xl py-14">
-              <div className="flex items-center gap-3 mb-8">
+              <div className="flex items-center gap-3 mb-3">
                 <div className="h-px flex-1 bg-border" />
-                <h2 className="text-lg font-semibold text-foreground whitespace-nowrap">Complete Directory</h2>
+                <h2 className="text-xl md:text-2xl font-bold text-foreground whitespace-nowrap">Complete Directory</h2>
                 <div className="h-px flex-1 bg-border" />
               </div>
-              {categories.map(({ key, label }) => {
-                const pages = getPagesByCategory(key as any);
-                if (pages.length === 0) return null;
-                return (
-                  <div key={key} className="mb-8">
-                    <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
-                      {label}
-                      <span className="text-xs text-muted-foreground font-normal">({pages.length})</span>
-                    </h3>
-                    <div className="flex flex-wrap gap-x-4 gap-y-1.5">
-                      {pages.map(p => (
-                        <Link key={p.slug} to={`/${p.slug}`} className="text-xs text-muted-foreground hover:text-primary transition-colors">
-                          {p.h1}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                );
-              })}
+              <p className="text-center text-sm text-muted-foreground max-w-xl mx-auto mb-8">
+                Browse every guide, stay & experience by category — tap any card to claim the best season deals.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {categories.map(({ key, label }) => {
+                  const pages = getPagesByCategory(key as any);
+                  if (pages.length === 0) return null;
+                  return <DirectoryCategoryCard key={key} catKey={key} label={label} pages={pages} />;
+                })}
+              </div>
             </section>
           </>
         )}
       </main>
 
+      <DirectoryOfferPopup />
       <Footer />
+
     </div>
   );
 };
