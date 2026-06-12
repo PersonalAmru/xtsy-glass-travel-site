@@ -90,6 +90,8 @@ const Footer = () => {
 
         <p className="text-muted-foreground text-[10px] sm:text-xs text-center mt-6">
           © 2025 XTSY One. All rights reserved. Experience the XTSY Vibe.
+          <br className="sm:hidden" />
+          <span className="sm:ml-1">Powered by XTSY ONE Ventures Pvt Ltd</span>
         </p>
       </div>
 

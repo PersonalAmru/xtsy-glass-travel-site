@@ -1105,7 +1105,7 @@ const RAW_SEO_PAGES: SEOPageData[] = [
 // clusters that risk Google "doorway page" classification and protects
 // crawl budget. See src/data/seoQualityFilter.ts for the rules.
 import { applySEOOverrides } from './seoPagesOverrides';
-import { BRAND_OPENER, whyXTSYSection, aboutXTSYGroupSection } from './brandFacts';
+import { BRAND_OPENER, whyXTSYSection } from './brandFacts';
 
 // Phase 2 brand-rewrite enforcer: every published page receives the
 // canonical brand opener + Why-XTSY + About-Group sections. Idempotent —
@@ -1114,13 +1114,11 @@ import { BRAND_OPENER, whyXTSYSection, aboutXTSYGroupSection } from './brandFact
 const enforceBrandFacts = (pages: SEOPageData[]): SEOPageData[] => {
   const introHasBrand = (s: string) => /NEITA|270°|XTSY ONE Ventures/i.test(s);
   const why = whyXTSYSection();
-  const about = aboutXTSYGroupSection();
   return pages.map(p => {
     const intro = introHasBrand(p.intro) ? p.intro : `${BRAND_OPENER} ${p.intro}`;
     const existing = new Set(p.sections.map(s => s.heading));
     const extras: SEOSection[] = [];
     if (!existing.has(why.heading)) extras.push(why);
-    if (!existing.has(about.heading)) extras.push(about);
     return { ...p, intro, sections: [...p.sections, ...extras] };
   });
 };

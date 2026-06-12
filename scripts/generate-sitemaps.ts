@@ -183,6 +183,7 @@ Allow: /
 Allow: /places-to-visit/
 Disallow: /admin
 Disallow: /admin-login
+Disallow: /all-pages
 Disallow: /franchise
 Disallow: /franchise-login
 Disallow: /api/
@@ -192,6 +193,7 @@ Allow: /
 Allow: /places-to-visit/
 Disallow: /admin
 Disallow: /admin-login
+Disallow: /all-pages
 Disallow: /franchise
 Disallow: /franchise-login
 
@@ -238,23 +240,77 @@ Allow: /
 User-agent: PinterestBot
 Allow: /
 
-# ── AI crawlers ──────────────────────────────────────────────────
+# ── AI crawlers & answer engines (explicitly welcomed) ───────────
 User-agent: GPTBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
-User-agent: PerplexityBot
+User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: ClaudeBot
 Allow: /
 
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
 User-agent: anthropic-ai
 Allow: /
 
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
 User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: ImagesiftBot
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: Timpibot
 Allow: /
 
 User-agent: CCBot
@@ -266,6 +322,7 @@ Allow: /
 Allow: /places-to-visit/
 Disallow: /admin
 Disallow: /admin-login
+Disallow: /all-pages
 Disallow: /franchise
 Disallow: /franchise-login
 Disallow: /api/

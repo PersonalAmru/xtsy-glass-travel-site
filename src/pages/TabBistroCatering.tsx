@@ -14,6 +14,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { createCateringEnquiry } from "@/services/cateringService";
+import { cdn } from "@/data/cdnImages";
+
+const HERO_IMG = cdn("xtsy/TAB Bistro by XTSY 1.jpeg");
 
 const EVENT_TYPES = [
   "Wedding",
@@ -156,8 +159,20 @@ const TabBistroCatering = memo(() => {
             Multi-cuisine catering for weddings, corporate events, parties and bulk orders across Shillong
             and Meghalaya — by <Link to="/tab-bistro" className="text-amber-400 underline">TAB Bistro by XTSY</Link>.
           </p>
+          <div className="relative max-w-3xl mx-auto mt-8 rounded-2xl overflow-hidden border border-border shadow-lg aspect-[16/9]">
+            <img
+              src={HERO_IMG}
+              alt="TAB Bistro by XTSY — multi-cuisine catering and forest dining in Shillong"
+              className="w-full h-full object-cover"
+              fetchPriority="high"
+              width={1280}
+              height={720}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+          </div>
         </div>
       </section>
+
 
       <main className="max-w-5xl mx-auto px-4 sm:px-8 pb-20 space-y-16">
         {/* Services */}
