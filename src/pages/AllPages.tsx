@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import DirectoryOfferPopup from '@/components/DirectoryOfferPopup';
 import { ALL_SEO_PAGES, getPagesByCategory, type SEOPageData } from '@/data/seoPages';
 import { EXPLORER_CATEGORIES } from '@/data/seoLinkingWheel';
 import { meghalayaDestinations, getDestinationImageUrl, knownImageIndices, getFirstValidImageIndex } from '@/data/meghalayaDestinations';
-import { Search, MapPin, Star, Compass, BookOpen, Route, ChevronRight, Sparkles, Mountain, TreePine } from 'lucide-react';
+import { Search, MapPin, Star, Compass, BookOpen, Route, ChevronRight, Sparkles, Mountain, TreePine, ArrowRight } from 'lucide-react';
 
 // --- Cluster image mapping (first known image for each category) ---
 const CLUSTER_IMAGES: Record<string, { slug: string; idx: number }> = {
