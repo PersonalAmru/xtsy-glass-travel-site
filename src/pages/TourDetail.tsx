@@ -53,7 +53,7 @@ const TourDetail = () => {
   const displayPrice = (tour.fixedPrice || currency.code === 'INR') ? tour.price : formatPrice(Math.round(basePrice * 1.10));
 
   // Default inclusions/exclusions if not defined
-  const inclusions = [
+  const inclusions = tour.inclusions ?? [
     "Accommodation on twin/triple sharing",
     "All meals (breakfast, lunch, dinner)",
     "Private transportation throughout",
