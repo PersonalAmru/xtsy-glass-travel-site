@@ -503,6 +503,9 @@ const ProgrammaticSEOPage = () => {
             </div>
           </section>
 
+          {/* Stay · Eat · Catering · Tours — commercial internal-linking module */}
+          {showStayEatExplore && <StayEatExplore context={page.h1} />}
+
           {/* Internal Linking Wheel */}
           <WheelLinksNav slug={page.slug} />
 
