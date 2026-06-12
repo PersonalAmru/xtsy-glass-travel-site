@@ -11,15 +11,15 @@ export const LAST_MINUTE_SEO_PAGES: SEOPageData[] = [
     slug: 'hostels-in-shillong-today',
     category: 'hostels',
     title: `Hostels in Shillong Available Today (${today}) | Book Now`,
-    metaDescription: `Find hostels available in Shillong today. Dorm beds from ₹329/night, private rooms from ₹2,399. Real-time availability, instant booking confirmation at XTSY.`,
+    metaDescription: `Find hostels available in Shillong today. Dorm beds from ₹369/night, private rooms from ₹2,399. Real-time availability, instant booking confirmation at XTSY.`,
     h1: `Hostels Available in Shillong Today`,
-    intro: `Looking for a hostel in Shillong right now? XTSY Travellers Hostel has beds and rooms available tonight. Book instantly with real-time availability — no waiting, no uncertainty. From budget dorm beds starting at ₹329/night to private king rooms at ₹2,399/night.`,
+    intro: `Looking for a hostel in Shillong right now? XTSY Travellers Hostel has beds and rooms available tonight. Book instantly with real-time availability — no waiting, no uncertainty. From budget dorm beds starting at ₹369/night to private king rooms at ₹2,399/night.`,
     sections: [
       {
         heading: 'Available Right Now',
         content: `Our real-time inventory shows live availability for today. Don't miss out — beds fill up fast, especially on weekends and during festivals. Book directly for the best rates, guaranteed.`,
         listItems: [
-          '8-Bed Mixed Dorm — ₹329/night (24 beds)',
+          '8-Bed Mixed Dorm — ₹369/night (24 beds)',
           '6-Bed Mixed Dorm — ₹419/night (18 beds)',
           '4-Bed Female Dorm — ₹419/night (4 beds)',
           '4-Bed Mixed Dorm — ₹529/night (4 beds)',
@@ -44,7 +44,7 @@ export const LAST_MINUTE_SEO_PAGES: SEOPageData[] = [
     ],
     faqs: [
       { question: 'Can I book a hostel in Shillong for tonight?', answer: 'Yes! XTSY accepts same-day bookings. Check our live availability above and book instantly. Confirmation is sent via WhatsApp within minutes.' },
-      { question: 'What is the cheapest hostel bed in Shillong today?', answer: 'The most affordable option is our 8-Bed Mixed Dormitory at ₹329/night. It includes Wi-Fi, hot water, locker storage, and access to all common areas.' },
+      { question: 'What is the cheapest hostel bed in Shillong today?', answer: 'The most affordable option is our 8-Bed Mixed Dormitory at ₹369/night. It includes Wi-Fi, hot water, locker storage, and access to all common areas.' },
       { question: 'Is walk-in available at XTSY?', answer: 'Walk-ins are welcome subject to availability. However, we recommend booking online to guarantee your spot, especially during peak season.' },
     ],
     schemaType: 'Hostel',
@@ -57,7 +57,7 @@ export const LAST_MINUTE_SEO_PAGES: SEOPageData[] = [
     slug: 'shillong-last-minute-stays',
     category: 'accommodation',
     title: `Last Minute Stays in Shillong — Available Now (${today})`,
-    metaDescription: `Need a last-minute stay in Shillong? Rooms and dorms available right now from ₹329/night. Instant booking, real-time availability at XTSY Travellers Hostel.`,
+    metaDescription: `Need a last-minute stay in Shillong? Rooms and dorms available right now from ₹369/night. Instant booking, real-time availability at XTSY Travellers Hostel.`,
     h1: 'Last Minute Stays in Shillong',
     intro: `Spontaneous trip to Shillong? We've got you covered. XTSY Travellers Hostel offers instant booking with real-time availability. No advance planning needed — find a bed or room available right now and book in under 30 seconds.`,
     sections: [
@@ -67,9 +67,9 @@ export const LAST_MINUTE_SEO_PAGES: SEOPageData[] = [
       },
       {
         heading: 'Tonight\'s Best Deals',
-        content: `Last-minute travellers get special rates. Our dorm beds start at just ₹329/night — that's less than a meal at most restaurants. Private rooms with king beds are available from ₹2,399/night.`,
+        content: `Last-minute travellers get special rates. Our dorm beds start at just ₹369/night — that's less than a meal at most restaurants. Private rooms with king beds are available from ₹2,399/night.`,
         listItems: [
-          'Dorm beds from ₹329/night',
+          'Dorm beds from ₹369/night',
           'Private rooms from ₹2,399/night',
           'Luxury 270° Glass Suite from ₹7,489/night',
           'All prices inclusive of taxes',
@@ -94,7 +94,7 @@ export const LAST_MINUTE_SEO_PAGES: SEOPageData[] = [
     slug: 'meghalaya-trip-today',
     category: 'travel-guides',
     title: `Start Your Meghalaya Trip Today — Stays & Tours Available Now`,
-    metaDescription: `Planning a spontaneous Meghalaya trip? Stays available from ₹329/night and curated tour packages ready to start today. Book accommodation and adventures instantly.`,
+    metaDescription: `Planning a spontaneous Meghalaya trip? Stays available from ₹369/night and curated tour packages ready to start today. Book accommodation and adventures instantly.`,
     h1: 'Start Your Meghalaya Trip Today',
     intro: `The best trips are the ones you don't overthink. Meghalaya is calling — and stays, tours, and adventures are available right now. Whether you're already in Guwahati or planning from Delhi, we'll help you start exploring today.`,
     sections: [
@@ -144,7 +144,7 @@ export const LAST_MINUTE_SEO_PAGES: SEOPageData[] = [
       },
       {
         heading: 'Budget-Friendly Alternatives',
-        content: `If private rooms are fully booked, our dormitories offer comfortable beds with all essential amenities starting from just ₹329/night. Perfect for solo travellers and backpackers.`,
+        content: `If private rooms are fully booked, our dormitories offer comfortable beds with all essential amenities starting from just ₹369/night. Perfect for solo travellers and backpackers.`,
       },
       {
         heading: 'Location & Accessibility',
@@ -165,7 +165,7 @@ export const LAST_MINUTE_SEO_PAGES: SEOPageData[] = [
     slug: 'shillong-stay-tonight',
     category: 'accommodation',
     title: `Stay in Shillong Tonight — Rooms & Beds Available (${today})`,
-    metaDescription: `Need a place to stay in Shillong tonight? Beds from ₹329, rooms from ₹2,399. Real-time availability, instant booking, WhatsApp confirmation at XTSY Hostel.`,
+    metaDescription: `Need a place to stay in Shillong tonight? Beds from ₹369, rooms from ₹2,399. Real-time availability, instant booking, WhatsApp confirmation at XTSY Hostel.`,
     h1: 'Stay in Shillong Tonight',
     intro: `It's not too late to find the perfect stay in Shillong. Whether you need a budget dorm bed or a luxury glass suite with panoramic mountain views, we have options available right now. Book in 30 seconds, get confirmed on WhatsApp.`,
     sections: [
@@ -173,7 +173,7 @@ export const LAST_MINUTE_SEO_PAGES: SEOPageData[] = [
         heading: 'What\'s Available Tonight',
         content: `Our live inventory updates in real-time. Here's what you can book right now:`,
         listItems: [
-          '8-Bed Mixed Dorm — From ₹329/night (best value)',
+          '8-Bed Mixed Dorm — From ₹369/night (best value)',
           '6-Bed Mixed Dorm — From ₹419/night (recommended)',
           '4-Bed Female Dorm — From ₹419/night (women only)',
           '4-Bed Mixed Dorm — From ₹529/night (smaller group)',

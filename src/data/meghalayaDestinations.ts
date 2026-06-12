@@ -134,7 +134,7 @@ export const meghalayaDestinations: MeghalayaDestination[] = [
       },
       {
         heading: 'Where to stay near Umiam Lake',
-        body: 'There is no need to find a stay right on the lake. Umiam is only 15 km from Shillong, so most travellers base themselves in the city and visit Umiam as a half-day trip. XTSY Travellers Hostel in Shillong is an affordable, well-located base — dorms from ₹329/night — with a travel desk that can arrange a cab to Umiam, Shillong Peak and Elephant Falls in a single circuit.',
+        body: 'There is no need to find a stay right on the lake. Umiam is only 15 km from Shillong, so most travellers base themselves in the city and visit Umiam as a half-day trip. XTSY Travellers Hostel in Shillong is an affordable, well-located base — dorms from ₹369/night — with a travel desk that can arrange a cab to Umiam, Shillong Peak and Elephant Falls in a single circuit.',
       },
     ],
     extraFaqs: [
@@ -203,7 +203,7 @@ export const meghalayaDestinations: MeghalayaDestination[] = [
       },
       {
         heading: 'Where to stay when visiting Elephant Falls',
-        body: 'Elephant Falls is a short day trip, so it is best visited from a Shillong base rather than staying nearby. XTSY Travellers Hostel in Shillong is an affordable, central option — dorms from ₹329/night — and its travel desk can arrange a half-day cab circuit covering Elephant Falls, Shillong Peak and Umiam Lake in one go.',
+        body: 'Elephant Falls is a short day trip, so it is best visited from a Shillong base rather than staying nearby. XTSY Travellers Hostel in Shillong is an affordable, central option — dorms from ₹369/night — and its travel desk can arrange a half-day cab circuit covering Elephant Falls, Shillong Peak and Umiam Lake in one go.',
       },
     ],
     extraFaqs: [
@@ -834,7 +834,7 @@ export const destinationCategories: DestinationCategory[] = [
       },
       {
         heading: 'How to plan a waterfall trip from Shillong',
-        body: 'Shillong is the natural base — most major waterfalls are an easy day trip. Pair Elephant Falls with Shillong Peak, then dedicate a full day to the Cherrapunji circuit (Nohkalikai, Seven Sisters, Dainthlen) and another to the Jaintia Hills (Krang Suri, Wei Sawdong). XTSY Travellers Hostel offers dorms from ₹329/night plus curated Meghalaya tours that bundle transport and a local guide so you cover the best waterfalls without renting a car.',
+        body: 'Shillong is the natural base — most major waterfalls are an easy day trip. Pair Elephant Falls with Shillong Peak, then dedicate a full day to the Cherrapunji circuit (Nohkalikai, Seven Sisters, Dainthlen) and another to the Jaintia Hills (Krang Suri, Wei Sawdong). XTSY Travellers Hostel offers dorms from ₹369/night plus curated Meghalaya tours that bundle transport and a local guide so you cover the best waterfalls without renting a car.',
       },
     ],
     extraFaqs: [

@@ -2442,7 +2442,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "question": "Where should I stay if I want a hostel near Cherrapunji tonight?",
-        "answer": "Base yourself at XTSY Travellers Hostel in Shillong. It offers 24/7 check-in, dorms from ₹329 and private rooms, instant WhatsApp confirmation, and a travel desk that runs daily Cherrapunji sightseeing trips. You get a safe, social, verified stay tonight and still see all of Sohra's waterfalls and caves."
+        "answer": "Base yourself at XTSY Travellers Hostel in Shillong. It offers 24/7 check-in, dorms from ₹369 and private rooms, instant WhatsApp confirmation, and a travel desk that runs daily Cherrapunji sightseeing trips. You get a safe, social, verified stay tonight and still see all of Sohra's waterfalls and caves."
       },
       {
         "question": "Can I book a same-day stay in Cherrapunji itself?",
@@ -2485,7 +2485,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         "heading": "Why XTSY Travellers Hostel in Shillong Is the Smarter Base",
         "content": "Instead of gambling on a walk-in tonight in Sohra, base yourself at XTSY Travellers Hostel in Shillong — only 1.5–2 hours from Cherrapunji. You get a reliable, verified bed tonight plus everything you'd want from a backpacker hostel, and you can still cover every Sohra highlight on a day trip.",
         "listItems": [
-          "Dorms from ₹329 and private rooms from ₹1,499 (taxes incl.)",
+          "Dorms from ₹369 and private rooms from ₹1,499 (taxes incl.)",
           "24/7 check-in for late-night and red-eye arrivals",
           "Instant WhatsApp confirmation — no walk-in uncertainty",
           "Free Wi-Fi, secure lockers, hot showers, female-only dorms",
@@ -2526,8 +2526,8 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         ]
       }
     ],
-    "intro": "Looking for a hostel in Cherrapunji tonight? Here's the honest answer most listings won't give you: Cherrapunji (Sohra) does not have reliable backpacker hostels. Accommodation there is limited to a handful of basic homestays and guesthouses, often without same-day availability, dependable hot water, or stable mobile network for confirming a booking after dark. The smarter, safer move for a last-minute stay is to base yourself at XTSY Travellers Hostel in Shillong — just 1.5–2 hours from Sohra — with 24/7 check-in, dorms from ₹329, instant WhatsApp confirmation, and a travel desk that runs daily Cherrapunji day trips. You get a verified, social, comfortable bed tonight and still see every waterfall, cave and root bridge Sohra is famous for. For real-time availability, message us on WhatsApp +91 8837317070.",
-    "quickAnswer": "Cherrapunji (Sohra) has no reliable backpacker hostels — only a few basic homestays with limited same-day availability. For a safe last-minute stay tonight, book XTSY Travellers Hostel in Shillong (1.5–2 hrs away) with 24/7 check-in and dorms from ₹329, then day-trip to Cherrapunji. WhatsApp +91 8837317070.",
+    "intro": "Looking for a hostel in Cherrapunji tonight? Here's the honest answer most listings won't give you: Cherrapunji (Sohra) does not have reliable backpacker hostels. Accommodation there is limited to a handful of basic homestays and guesthouses, often without same-day availability, dependable hot water, or stable mobile network for confirming a booking after dark. The smarter, safer move for a last-minute stay is to base yourself at XTSY Travellers Hostel in Shillong — just 1.5–2 hours from Sohra — with 24/7 check-in, dorms from ₹369, instant WhatsApp confirmation, and a travel desk that runs daily Cherrapunji day trips. You get a verified, social, comfortable bed tonight and still see every waterfall, cave and root bridge Sohra is famous for. For real-time availability, message us on WhatsApp +91 8837317070.",
+    "quickAnswer": "Cherrapunji (Sohra) has no reliable backpacker hostels — only a few basic homestays with limited same-day availability. For a safe last-minute stay tonight, book XTSY Travellers Hostel in Shillong (1.5–2 hrs away) with 24/7 check-in and dorms from ₹369, then day-trip to Cherrapunji. WhatsApp +91 8837317070.",
     "keywords": [
       "hostel in cherrapunji tonight",
       "stay near cherrapunji",
@@ -2542,9 +2542,9 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "slug": "cheap-homestay-in-cherrapunji",
     "title": "Cheap Homestay in Cherrapunji? Read This Before You Book",
     "h1": "Cheap Homestay in Cherrapunji: An Honest Guide",
-    "metaDescription": "Cherrapunji homestays are basic and limited. For a cheaper, more reliable stay, book XTSY Travellers Hostel in Shillong (dorms from ₹329, 24/7 check-in) and day-trip to Sohra. WhatsApp +91 8837317070.",
-    "intro": "Hunting for a cheap homestay in Cherrapunji? Be prepared: Sohra's budget stays are a small set of basic, family-run homestays and guesthouses with limited rooms, variable hot water and Wi-Fi, and unreliable mobile network. There are no dedicated, vetted travellers' hostels in Cherrapunji itself. For most budget travellers the better value is XTSY Travellers Hostel in Shillong — dorms from ₹329, private rooms from ₹1,499, 24/7 check-in and instant WhatsApp confirmation — only 1.5–2 hours from Sohra. You sleep cheaper and more reliably, and a single day trip still covers Nohkalikai Falls, the caves and the living root bridges. Message us on WhatsApp +91 8837317070 for live rates.",
-    "quickAnswer": "Cherrapunji (Sohra) only has a few basic homestays — no vetted budget hostels — and same-day availability is unreliable. The cheapest dependable option is XTSY Travellers Hostel in Shillong (dorms from ₹329, 24/7 check-in), 1.5–2 hrs away, with day trips into Cherrapunji. WhatsApp +91 8837317070.",
+    "metaDescription": "Cherrapunji homestays are basic and limited. For a cheaper, more reliable stay, book XTSY Travellers Hostel in Shillong (dorms from ₹369, 24/7 check-in) and day-trip to Sohra. WhatsApp +91 8837317070.",
+    "intro": "Hunting for a cheap homestay in Cherrapunji? Be prepared: Sohra's budget stays are a small set of basic, family-run homestays and guesthouses with limited rooms, variable hot water and Wi-Fi, and unreliable mobile network. There are no dedicated, vetted travellers' hostels in Cherrapunji itself. For most budget travellers the better value is XTSY Travellers Hostel in Shillong — dorms from ₹369, private rooms from ₹1,499, 24/7 check-in and instant WhatsApp confirmation — only 1.5–2 hours from Sohra. You sleep cheaper and more reliably, and a single day trip still covers Nohkalikai Falls, the caves and the living root bridges. Message us on WhatsApp +91 8837317070 for live rates.",
+    "quickAnswer": "Cherrapunji (Sohra) only has a few basic homestays — no vetted budget hostels — and same-day availability is unreliable. The cheapest dependable option is XTSY Travellers Hostel in Shillong (dorms from ₹369, 24/7 check-in), 1.5–2 hrs away, with day trips into Cherrapunji. WhatsApp +91 8837317070.",
     "sections": [
       {
         "heading": "What a Cheap Cherrapunji Homestay Really Looks Like",
@@ -2561,7 +2561,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         "heading": "The Cheaper, More Reliable Alternative: XTSY in Shillong",
         "content": "For value-focused travellers, XTSY Travellers Hostel in Shillong beats most Sohra homestays on both price and reliability — and keeps Cherrapunji well within reach.",
         "listItems": [
-          "Dorms from ₹329 — genuinely budget, with consistent quality",
+          "Dorms from ₹369 — genuinely budget, with consistent quality",
           "Private rooms from ₹1,499 for couples and small groups",
           "24/7 check-in, secure lockers, hot showers, female-only dorms",
           "Free Wi-Fi and a social common area to meet other travellers",
@@ -2605,11 +2605,11 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "faqs": [
       {
         "question": "Are there cheap homestays in Cherrapunji?",
-        "answer": "There are a few basic, family-run homestays in Cherrapunji (Sohra), but inventory is small, quality varies, and same-day availability is unreliable. There are no vetted budget travellers' hostels in Cherrapunji itself. For dependable budget value, XTSY Travellers Hostel in Shillong offers dorms from ₹329, 1.5–2 hours from Sohra."
+        "answer": "There are a few basic, family-run homestays in Cherrapunji (Sohra), but inventory is small, quality varies, and same-day availability is unreliable. There are no vetted budget travellers' hostels in Cherrapunji itself. For dependable budget value, XTSY Travellers Hostel in Shillong offers dorms from ₹369, 1.5–2 hours from Sohra."
       },
       {
         "question": "What is the cheapest reliable stay near Cherrapunji?",
-        "answer": "XTSY Travellers Hostel in Shillong, with dorms from ₹329 and 24/7 check-in. It is more consistent than most Sohra homestays — clean dorms, hot showers, Wi-Fi and a travel desk — and lets you day-trip to Cherrapunji's waterfalls and root bridges."
+        "answer": "XTSY Travellers Hostel in Shillong, with dorms from ₹369 and 24/7 check-in. It is more consistent than most Sohra homestays — clean dorms, hot showers, Wi-Fi and a travel desk — and lets you day-trip to Cherrapunji's waterfalls and root bridges."
       },
       {
         "question": "Why not just stay cheap in Cherrapunji itself?",
