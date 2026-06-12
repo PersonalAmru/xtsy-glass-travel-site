@@ -89,8 +89,7 @@ const Header = () => {
                   isMobile ? 'h-10' : isTablet ? 'h-12' : 'h-14'
                 }`}
                 loading="eager"
-                // @ts-expect-error - fetchpriority
-                fetchpriority="high"
+                fetchPriority="high"
                 decoding="sync"
                 onLoad={handleLogoLoad}
                 onError={handleLogoError}
