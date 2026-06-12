@@ -1,0 +1,1 @@
+DROP FUNCTION IF EXISTS public._tmp_grant_admin_amru();
