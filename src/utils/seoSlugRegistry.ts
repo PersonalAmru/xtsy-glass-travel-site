@@ -28,7 +28,7 @@ export const STATIC_ROUTES: ReadonlyArray<string> = [
   '/terms-of-service',
   '/pricing-cancellation-policy',
   '/book',
-  '/all-pages',
+  
   '/things-to-do-in-meghalaya',
   '/meghalaya-waterfalls',
   '/meghalaya-caves',

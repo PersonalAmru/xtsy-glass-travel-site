@@ -3,7 +3,7 @@ import { Menu, X, User, LogOut, Download, Phone, MessageCircle, MapPin, Mountain
 
 const IntelligentSearchOverlay = lazy(() => import("@/components/IntelligentSearchOverlay"));
 import { Link, useNavigate } from "react-router-dom";
-import xtsyLogo from "@/assets/xtsy-color-logo.png";
+import xtsyLogo from "@/assets/xtsy-color-logo.webp";
 import { useMediaQuery } from "@/hooks/use-mobile";
 import { useUserAuth } from "@/contexts/UserAuthContext";
 import {
@@ -89,8 +89,7 @@ const Header = () => {
                   isMobile ? 'h-10' : isTablet ? 'h-12' : 'h-14'
                 }`}
                 loading="eager"
-                // @ts-expect-error - fetchpriority
-                fetchpriority="high"
+                fetchPriority="high"
                 decoding="sync"
                 onLoad={handleLogoLoad}
                 onError={handleLogoError}

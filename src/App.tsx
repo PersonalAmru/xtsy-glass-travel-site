@@ -132,7 +132,7 @@ const MeghalayaPhotoGallery = createLazyComponent(() => import("./pages/destinat
 
 // Programmatic SEO engine
 const ProgrammaticSEOPage = createLazyComponent(() => import("./pages/seo/ProgrammaticSEOPage"));
-const AllPages = createLazyComponent(() => import("./pages/AllPages"));
+
 
 // High-intent SEO landing pages
 const BestHostelShillong = createLazyComponent(() => import("./pages/BestHostelShillong"));
@@ -396,8 +396,9 @@ function App() {
                 <Route path="/destination-wedding-shillong" element={<LazyRoute><DestinationWeddingShillong /></LazyRoute>} />
                 <Route path="/restaurant-in-shillong" element={<LazyRoute><LazyTabBistro /></LazyRoute>} />
                 
-                {/* Crawl Hub — All Pages Directory */}
-                <Route path="/all-pages" element={<LazyRoute><AllPages /></LazyRoute>} />
+                {/* Crawl Hub directory (/all-pages) intentionally removed —
+                    kept private to avoid exposing the full SEO architecture.
+                    Individual directory pages remain live & indexable. */}
                 
                 {/* Programmatic SEO Pages — 300+ keyword-targeted landing pages */}
                 <Route path="/:slug" element={<LazyRoute><ProgrammaticSEOPage /></LazyRoute>} />

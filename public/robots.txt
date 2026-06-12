@@ -8,6 +8,7 @@ Allow: /
 Allow: /places-to-visit/
 Disallow: /admin
 Disallow: /admin-login
+Disallow: /all-pages
 Disallow: /franchise
 Disallow: /franchise-login
 Disallow: /api/
@@ -17,6 +18,7 @@ Allow: /
 Allow: /places-to-visit/
 Disallow: /admin
 Disallow: /admin-login
+Disallow: /all-pages
 Disallow: /franchise
 Disallow: /franchise-login
 
@@ -91,6 +93,7 @@ Allow: /
 Allow: /places-to-visit/
 Disallow: /admin
 Disallow: /admin-login
+Disallow: /all-pages
 Disallow: /franchise
 Disallow: /franchise-login
 Disallow: /api/

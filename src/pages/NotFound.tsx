@@ -32,7 +32,6 @@ const QUICK_LINKS: { label: string; to: string; keywords: string }[] = [
   { label: "Catering & Bulk Orders", to: "/tab-bistro/catering", keywords: "catering bulk order corporate event food" },
   { label: "Browse All Tours", to: "/tours", keywords: "tours trips travel packages" },
   { label: "Gallery", to: "/gallery", keywords: "gallery photos images" },
-  { label: "All Pages", to: "/all-pages", keywords: "sitemap all pages directory" },
 ];
 
 /**
@@ -101,7 +100,7 @@ const NotFound = ({ statusCode }: NotFoundProps) => {
     if (results.length > 0) {
       navigate(results[0].to);
     } else {
-      navigate("/all-pages");
+      navigate("/");
     }
   };
 

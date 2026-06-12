@@ -100,7 +100,6 @@ const SafeShell = ({ variant = 'error', title, message, onRetry, compact = false
               <li><Link to="/meghalaya-tour-packages" className="text-primary hover:underline">Meghalaya Tours</Link></li>
               <li><Link to="/things-to-do-in-meghalaya" className="text-primary hover:underline">Things to Do</Link></li>
               <li><Link to="/gallery" className="text-primary hover:underline">Gallery</Link></li>
-              <li><Link to="/all-pages" className="text-primary hover:underline">All Pages</Link></li>
             </ul>
           </nav>
         </div>
