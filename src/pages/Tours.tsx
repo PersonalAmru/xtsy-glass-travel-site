@@ -168,6 +168,8 @@ const Tours = () => {
       <main className="flex-1">
         <ToursHero onSearch={handleHeroSearch} />
         <DestinationGrid onDestinationClick={handleDestinationClick} />
+        <SignaturePackages className="tours-section-bg" />
+
 
         {/* Tour Listings */}
         <section id="tour-listings" className="py-10 sm:py-14 tours-section-bg">
