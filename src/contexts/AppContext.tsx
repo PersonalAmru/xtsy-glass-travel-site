@@ -182,8 +182,9 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     
     initializeCurrency();
     
-    // Fetch exchange rates in background (non-blocking)
-    fetchExchangeRates();
+    // Fetch exchange rates AFTER LCP (non-blocking, deferred until idle so it
+    // never competes with the critical first render). Falls back to cached/default rates.
+    deferUntilIdle(() => { void fetchExchangeRates(); });
     
     // Set up interval to fetch rates every 12 hours (Edge Function handles caching)
     const interval = setInterval(fetchExchangeRates, 12 * 60 * 60 * 1000);
