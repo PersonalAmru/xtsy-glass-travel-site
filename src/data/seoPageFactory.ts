@@ -181,7 +181,7 @@ const buildPage = (params: {
   // programmatic page. Single source of truth: src/data/brandFacts.ts.
   const introHasBrand = /NEITA|270°|XTSY ONE Ventures/i.test(params.intro);
   const intro = introHasBrand ? params.intro : `${BRAND_OPENER} ${params.intro}`;
-  const sections = [...params.sections, whyXTSYSection(), aboutXTSYGroupSection()];
+  const sections = [...params.sections, whyXTSYSection()];
   return {
     slug: params.slug,
     category: params.category,

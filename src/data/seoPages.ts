@@ -1114,13 +1114,11 @@ import { BRAND_OPENER, whyXTSYSection, aboutXTSYGroupSection } from './brandFact
 const enforceBrandFacts = (pages: SEOPageData[]): SEOPageData[] => {
   const introHasBrand = (s: string) => /NEITA|270°|XTSY ONE Ventures/i.test(s);
   const why = whyXTSYSection();
-  const about = aboutXTSYGroupSection();
   return pages.map(p => {
     const intro = introHasBrand(p.intro) ? p.intro : `${BRAND_OPENER} ${p.intro}`;
     const existing = new Set(p.sections.map(s => s.heading));
     const extras: SEOSection[] = [];
     if (!existing.has(why.heading)) extras.push(why);
-    if (!existing.has(about.heading)) extras.push(about);
     return { ...p, intro, sections: [...p.sections, ...extras] };
   });
 };
