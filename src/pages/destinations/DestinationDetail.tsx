@@ -12,6 +12,8 @@ import DestinationGallery from '@/components/destinations/DestinationGallery';
 import { useValidatedImages } from '@/hooks/useValidatedImages';
 import DestinationCard from '@/components/destinations/DestinationCard';
 import { MapPin, Calendar, Navigation, Lightbulb, Mountain, BookOpen } from 'lucide-react';
+import StayEatExplore from '@/components/seo/StayEatExplore';
+import { getDestinationGeo } from '@/data/destinationGeo';
 import {
   getDestinationBySlug,
   getDestinationImages,
