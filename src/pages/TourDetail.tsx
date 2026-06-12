@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import TourBookingModal from "@/components/TourBookingModal";
 import { getAllTours, mergeItinerary } from "@/data/travelData";
 import type { TourPackage } from "@/data/travelData";
+import { getSignaturePackageBySlug, signaturePackageToTourPackage } from "@/data/signaturePackages";
 import { useApp } from "@/contexts/AppContext";
 import {
   Clock, MapPin, Users, Star, Calendar, ChevronLeft, CheckCircle2,
