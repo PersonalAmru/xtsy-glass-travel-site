@@ -8,7 +8,6 @@ import { Calendar, Clock, Users, Star, MapPin, X, ChevronLeft, ChevronRight, Mou
 import { useLocation, useNavigate } from "react-router-dom";
 import { useApp } from "@/contexts/AppContext";
 import { TourItineraryService } from "@/utils/tourItineraryService";
-import { TourPricingService } from "@/utils/tourPricingService";
 import UnifiedImage from "./UnifiedImage";
 import { motion, AnimatePresence } from "framer-motion";
 
