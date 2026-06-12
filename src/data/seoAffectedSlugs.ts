@@ -28,7 +28,7 @@ export const RECOVERY_FILTERED_OUT: ReadonlyArray<string> = [
   'guwahati-to-meghalaya-road-trip',
   'guwahati-to-shillong-transport',
   'hospital-accommodation-shillong',
-  'hostels-in-shillong',
+  // 'hostels-in-shillong' — MERGED → 301 to /best-hostel-in-shillong (see RECOVERY_REDIRECTS)
   'hotel-near-police-bazar',
   'hotels-in-shillong-available-now',
   'how-to-reach-cherrapunji',
@@ -120,7 +120,7 @@ export const RECOVERY_LIVE_PAGES: ReadonlyArray<string> = [
   'travel-agency-shillong',
   'unique-luxury-stay-india',
   'weekend-meghalaya-trip',
-  'youth-hostel-shillong',
+  // 'youth-hostel-shillong' — MERGED → 301 to /best-hostel-in-shillong (see RECOVERY_REDIRECTS)
   'zion-backpackers-vs-xtsy',
   'zostel-vs-xtsy-shillong',
 ];
