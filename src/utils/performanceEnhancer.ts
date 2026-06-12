@@ -23,22 +23,15 @@ export const setupLazyLoading = () => {
   }
 };
 
-// Preload critical resources
+// Preload critical resources.
+// NOTE: The real LCP image (hero brand symbol) is preloaded with a stable
+// /lovable-uploads/ path via index.html + criticalImagePreloader. The previous
+// list here pointed at `/src/assets/*` paths which only resolve in dev and 404
+// in the production build (Vite hashes asset filenames), and `meghalaya-hero.jpg`
+// is not rendered above the fold at all — so these were wasted/broken preloads
+// competing with the genuine LCP fetch. Intentionally a no-op now.
 export const preloadCriticalAssets = () => {
-  const criticalImages = [
-    '/src/assets/xtsy-brand-logo.webp',
-    '/src/assets/meghalaya-hero.jpg',
-    '/src/assets/xtsy-logo.png'
-  ];
-
-  criticalImages.forEach(src => {
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.as = 'image';
-    link.href = src;
-    link.fetchPriority = 'high';
-    document.head.appendChild(link);
-  });
+  /* no-op — see note above */
 };
 
 // Optimize fonts
