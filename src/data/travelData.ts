@@ -75,6 +75,14 @@ export interface TourPackage {
   groupSize?: string;
   region?: string;
   itinerary?: ItineraryDay[];
+  /** Optional package-specific inclusions; falls back to defaults on detail page. */
+  inclusions?: string[];
+  /** Optional package-specific exclusions; falls back to defaults on detail page. */
+  exclusions?: string[];
+  /** Optional package-specific FAQs; falls back to generated ones on detail page. */
+  faqs?: { q: string; a: string }[];
+  /** Fixed per-person price flag — disables currency multiplier on detail page. */
+  fixedPrice?: boolean;
 }
 
 export type TravelTheme = "all" | "adventure" | "cultural" | "leisure" | "educational";
