@@ -9,31 +9,31 @@ const DESTINATIONS = [
   {
     name: "Meghalaya",
     tagline: "Living Root Bridges & Crystal Waters",
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/double%20decker.jpg",
+    image: "/__l5e/assets-v1/60345ea5-fa2a-4808-a494-1b8b1261d0bb/xtsyvoyage-meghalaya-cover-image.jpeg",
     color: "from-emerald-900/80 to-emerald-700/40",
   },
   {
     name: "Nagaland",
     tagline: "Tribal Heritage & Hornbill Festival",
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/nagaland.jpg",
+    image: "/__l5e/assets-v1/6b08b14a-b9e7-40cc-a1af-966f16e43a5c/xtsyvoyage-nagaland-cover-image.jpeg",
     color: "from-amber-900/80 to-amber-700/40",
   },
   {
     name: "Assam",
     tagline: "Wildlife Safaris & Tea Gardens",
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/Complete%20Guide%20To%20Backpacking%20In%20Arunachal%20Pradesh%20-%20Lost%20With%20Purpose.jpg",
+    image: "/__l5e/assets-v1/8c577834-54b5-43f2-a7e6-8d8c15d99f80/xtsyvoyage-assam-cover-image.jpeg",
     color: "from-green-900/80 to-green-700/40",
   },
   {
     name: "Arunachal Pradesh",
     tagline: "Monasteries & Mountain Passes",
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/Tawang-Monastery.jpg",
+    image: "/__l5e/assets-v1/7c3e89c9-cddc-4c6a-894d-fdc3baf45b1a/xtsyvoyage-arunachal-pradesh-cover-image.jpeg",
     color: "from-blue-900/80 to-blue-700/40",
   },
   {
     name: "Sikkim",
     tagline: "Himalayan Peaks & Rhododendrons",
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/kanchenjunga-mountain-pelling-sikkim-1-city-hero.jpg",
+    image: "/__l5e/assets-v1/0c7e1c39-db98-4e5d-893c-2f87e0506ca2/xtsyvoyage-sikkim-cover-image.jpeg",
     color: "from-indigo-900/80 to-indigo-700/40",
   },
 ];

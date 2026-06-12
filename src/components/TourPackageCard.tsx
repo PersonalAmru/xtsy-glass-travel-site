@@ -18,7 +18,7 @@ import mawlynnongVillageImg from "@/assets/mawlynnong-village.jpg";
 import garoHillsTribalImg from "@/assets/garo-hills-tribal.jpg";
 import jaintiaCavesImg from "@/assets/jaintia-caves.jpg";
 import photographyTourImg from "@/assets/photography-tour.jpg";
-const wellnessRetreatImg = "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/download%20(26).jpg";
+const wellnessRetreatImg = "/__l5e/assets-v1/91241911-20fb-4045-b5e9-9dee9e502947/xtsyvoyage-northeast-ecological-immersion.jpeg";
 import offbeatCircuitImg from "@/assets/offbeat-circuit.jpg";
 import khasiHillsTrekImg from "@/assets/khasi-hills-trek.jpg";
 import tribalCircuitImg from "@/assets/tribal-circuit.jpg";
@@ -51,7 +51,7 @@ import assamTeaGardensImg from "@/assets/assam-tea-gardens-new.jpg";
 import teaGardensAuthenticImg from "@/assets/tea-gardens-authentic.jpg";
 import nagalandHornbillImg from "@/assets/nagaland-hornbill-premium.jpg";
 import sikkimRhododendronsImg from "@/assets/sikkim-rhododendrons-premium.jpg";
-const arunachalTribalImg = "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/download%20(25).jpg";
+const arunachalTribalImg = "/__l5e/assets-v1/7c3e89c9-cddc-4c6a-894d-fdc3baf45b1a/xtsyvoyage-arunachal-pradesh-cover-image.jpeg";
 import manipurLoktakImg from "@/assets/manipur-loktak-premium.jpg";
 import mizoramBambooImg from "@/assets/mizoram-bamboo-premium.jpg";
 import tripuraTribalImg from "@/assets/tripura-tribal-premium.jpg";
@@ -64,7 +64,7 @@ import wildernessImg from "@/assets/wilderness-survival-final.jpg";
 import wildernessAuthenticImg from "@/assets/wilderness-survival-authentic.jpg";
 
 // Northeast Ecological Education Program - using Supabase URL
-const northeastEcologicalEducationImg = "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20DOM/1/Complete%20Guide%20To%20Backpacking%20In%20Arunachal%20Pradesh%20-%20Lost%20With%20Purpose.jpg";
+const northeastEcologicalEducationImg = "/__l5e/assets-v1/8c577834-54b5-43f2-a7e6-8d8c15d99f80/xtsyvoyage-assam-cover-image.jpeg";
 
 interface TourPackageCardProps {
   tourPackage: TourPackage;

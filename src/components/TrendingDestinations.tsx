@@ -62,7 +62,7 @@ const TRENDING: TrendingDestination[] = [
   { name: 'Vietnam Discovery', href: '/travel', tagline: 'Hanoi, Ha Long Bay & Hoi An lanterns', category: 'International', location: 'Vietnam', imageOverride: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=600&auto=format&fit=crop&q=75' },
   { name: 'Bali Wellness Retreat', href: '/travel', tagline: 'Yoga, rice terraces & temple ceremonies', category: 'International', location: 'Bali, Indonesia', imageOverride: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&auto=format&fit=crop&q=75' },
   { name: 'Nepal Himalayan Trek', href: '/travel', tagline: 'Kathmandu, Pokhara & Poon Hill sunrise', category: 'International', location: 'Nepal', imageOverride: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=600&auto=format&fit=crop&q=75' },
-  { name: 'Bhutan Mindful Kingdom', href: '/travel', tagline: "Tiger's Nest & Gross National Happiness", category: 'International', location: 'Bhutan', imageOverride: 'https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/Travel%20page/Bhutan-Hill-Stations.webp' },
+  { name: 'Bhutan Mindful Kingdom', href: '/travel', tagline: "Tiger's Nest & Gross National Happiness", category: 'International', location: 'Bhutan', imageOverride: '/__l5e/assets-v1/7f13bec0-f4d9-43e3-9b1b-ed856f31075c/xtsyvoyage-bhutan-mindful-kingdom-journey.jpeg' },
   { name: 'Thailand Escape', href: '/travel', tagline: 'Temples, islands & street food culture', category: 'International', location: 'Thailand', imageOverride: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=600&auto=format&fit=crop&q=75' },
 ];
 
