@@ -282,14 +282,9 @@ const DestinationDetail = () => {
             </div>
           </section>
 
-          {/* Internal Links */}
-          <nav className="border-t border-border pt-8">
-            <h2 className="text-lg font-semibold text-foreground mb-4">Related Guides</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-              <Link to={categoryLink.to} className="text-sm text-primary hover:underline">{categoryLink.label}</Link>
-              <Link to="/things-to-do-in-meghalaya" className="text-sm text-primary hover:underline">Things to Do in Meghalaya</Link>
           {/* Stay · Eat · Catering · Tours — commercial internal-linking module */}
           <StayEatExplore context={destination.name} />
+
 
           {/* Internal Links */}
           <nav className="border-t border-border pt-8">
