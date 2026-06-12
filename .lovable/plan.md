@@ -1,42 +1,43 @@
-# Rebuild Cloud schema (consolidated) + fix build errors
+## Why the homepage feels slow — diagnosis
 
-## Background
-Enabling Lovable Cloud created a **brand-new, empty backend** (0 tables). Your app's data/schema lived in the previously-connected (now inaccessible) project. Because the new backend has no tables, the auto-generated `src/integrations/supabase/types.ts` is empty, so every `supabase.from('...')` resolves to `never` — the source of ~95% of the build errors. A separate, trivial error is `process` being undefined in a Node script.
+I profiled the live homepage and read the boot path (`index.html`, `main.tsx`, `App.tsx`, `Index.tsx`). Measured: FCP ~2.0s, DOMContentLoaded ~5.3s, Full load ~5.9s, main-thread Task time ~4.9s, Style recalc ~0.79s, 217 resources.
 
-## What I verified
-I reconstructed the schema locally by replaying all 200 migration files against a throwaway Postgres:
-- **90+ tables rebuilt successfully**, including all the ones the build complains about: `bookings`, `room_types`, `admin_notifications`, `booking_messages`, `blocked_dates`, `properties`, `room_availability_status`, `reviews`, `restaurant_reviews`, `enquiries`, `tour_enquiries`, `profiles`, `user_roles`, `analytics_loader_events`, `transactions`, `inventory`, `destinations`, `itineraries`, `newsletter_subscribers`, `booking_invoices`, `password_reset_otp`, `security_alerts`, `whatsapp_templates`, `secret_access_log`, and more.
-- **2 objects are NOT in your migration history**: `room_inventory` (table) and `metrics` (view). Your code references `room_inventory` (`date`, `room_type_id`, `available_count`) but no migration ever created it — it was almost certainly created by hand in the old project's dashboard. I will recreate it from the column shape the code uses.
+Two layers are at play:
 
-## Plan
+**A. Preview/dev inflation (not real for visitors)**
+- The preview serves 154 *unbundled* ES modules (e.g. `tailwind.css` as a 1118ms dev module, `App.tsx` 952ms). In the published build these bundle/minify, so a big part of the 5.9s is dev-server overhead. Production is faster — but the issues below are real in production too.
 
-### 1. Build a validated consolidated schema
-- From the local reconstruction, produce a single coherent schema snapshot (guaranteed to apply cleanly from scratch).
-- Add the missing `room_inventory` table:
-  - `id uuid pk`, `room_type_id uuid`, `date date`, `available_count int`, `total_count int`, timestamps; unique `(room_type_id, date)`.
-- Recreate `metrics` if anything depends on it; otherwise drop dependent references.
-- Keep both `app_role` and `user_role` enums (both are legitimately used — `user_role` types `profiles.role`).
-- Strip statements the migration tool can't run (writes to `storage.buckets`, `pg_cron` schedule pointing at the old project).
+**B. Real bottlenecks (affect the live site)**
+1. **Failing network call during boot** — `HappyGuestsContext` throws `Failed to fetch happy guests count` on every load. A failed round-trip blocks/competes with hydration and spams the console.
+2. **Heavy synchronous provider stack** wrapping every route: `HappyGuestsProvider → UserAuthProvider → TrafficAnalyticsProvider → ConversionSignalsProvider → EnhancedAnalyticsProvider`. Several fire network requests on mount (`track-analytics` measured at 763ms, traffic/realtime pings, conversion signals) — all on the critical path.
+3. **Third-party tag weight on the main thread** — GTM loads ContentSquare/uxa (131KB) plus extra frames (15 documents / 8 frames). This drives Style-recalc (618 recalcs, 787ms) and most of the 4.9s task time.
+4. **Big eager JS** — `supabase-js` (135KB) and `lucide-react` (157KB) load at boot because the client + icons are imported high in the tree.
+5. **LCP overlay lingers** — the `#lcp-skeleton` covers the screen until React commits (double-rAF) or a 4s/4.5s safety timeout. If hydration is delayed by #1–#4, visitors stare at the skeleton even though "load" technically finished → *perceived* slowness.
+6. **LCP image ambiguity** — `index.html` preloads the brand-symbol PNG, but the hero section paints `meghalaya-hero.jpg` (measured 861ms, not preloaded). The actual largest paint isn't the preloaded asset.
 
-### 2. Apply the consolidated migration
-- Run it through the migration tool (your approval). This creates all tables, enums, functions, triggers, RLS policies, and GRANTs in the new Cloud backend.
+## Proposed fixes (prioritized, non-destructive to tracking/consent/validation)
 
-### 3. Restore storage buckets + scheduled job separately
-- Recreate buckets `booking-invoices` (private), `seo-heroes` (public), `review-media` (public) via the storage tool, plus their `storage.objects` policies.
-- Re-add the daily `analytics-loader-summary` cron with the **correct new** project URL.
+These respect the admin-first analytics + Consent Mode v2 rules — analytics still fires, just deferred off the critical path; nothing is removed.
 
-### 4. Regenerate types + fix remaining build errors
-- After the migration runs, `src/integrations/supabase/types.ts` regenerates with all tables → the `never` errors disappear.
-- Fix `scripts/generate-seo-slugs.ts` `process` error by guarding the Node global.
+**P1 — Unblock hydration (biggest perceived win)**
+- Fix/guard `HappyGuestsContext` fetch: make it non-blocking, run after first paint (idle), cache, and fail silently so it never competes with hydration. Confirm the `metrics`/guests source is reachable; if it's an env/URL issue, correct it.
+- Defer the boot-time analytics network calls (traffic analytics provider mount ping, realtime ping, conversion-signals init) to `requestIdleCallback`/post-load, same pattern already used for the pageview event and exchange rates.
 
-### 5. Verify
-- Confirm the build passes.
-- Run a security scan to confirm RLS coverage on every public table (a few policies that depended on replay ordering may need re-adding; I'll fix any the scan flags).
+**P2 — Trim main-thread & boot JS**
+- Verify ContentSquare/rrweb only load post-consent + post-LCP (already partly via `contentsquareLoader` at 2s idle) and keep it strictly idle-gated.
+- Confirm `lucide-react` uses named imports everywhere (tree-shakeable) and audit any barrel/`import * as` usage.
+- Lazy-init the Supabase client usage paths that aren't needed for first paint where feasible.
 
-## Important caveats
-- **Data is not restored** — only the schema/structure. The new backend starts empty of rows (seed data from migrations, e.g. restaurant reviews, will be included where it was in migrations).
-- A small number of RLS policies may need re-adding after the scan (step 5); I'll handle those so no public table is left unprotected.
+**P3 — LCP correctness**
+- Align the preload with the real LCP element: either preload `meghalaya-hero.jpg` (responsive, `fetchpriority=high`) or confirm the brand symbol is genuinely the LCP and drop the unused hero cost. Serve the hero as WebP/AVIF.
+- Tighten skeleton dismissal so it hides immediately on first meaningful paint rather than waiting on the full provider tree.
 
-## Technical notes
-- Reconstruction done via local Postgres with a Supabase-compatible bootstrap (roles `anon`/`authenticated`/`service_role`, `auth`/`storage`/`vault` stubs). The final consolidated file is validated to apply with zero errors on a clean database before I submit it.
-- The consolidated migration is large; it will be submitted as one (or a few) migration approvals.
+**P4 — Verify on the published build**
+- Re-measure on `xtsy.one` (not the dev preview) with a performance profile to separate dev-mode noise from real gains, and confirm DOMContentLoaded/LCP drop.
+
+### Technical notes
+- Files in scope: `src/contexts/HappyGuestsContext.tsx`, `src/hooks/useTrafficAnalytics.tsx`, `src/providers/ConversionSignalsProvider.tsx`, `src/hooks/useEnhancedAnalytics.tsx`, `src/utils/contentsquareLoader.ts`, `src/main.tsx`, `index.html`, `src/components/HeroSection.tsx`.
+- No changes to consent gating, GTM single-authority routing, or validation/intent-scoring logic — only scheduling/ordering and a failing-fetch fix.
+- Keep keyframes in global CSS (per project rule) and inputs ≥16px.
+
+Want me to start with P1 (the failing fetch + deferring boot-time analytics), which should give the largest perceived-load improvement, then proceed through P2–P4?
