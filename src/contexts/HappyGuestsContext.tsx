@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
 import { supabase } from '@/integrations/supabase/client';
+import { deferUntilIdle } from '@/utils/deferUntilIdle';
 
 interface HappyGuestsContextValue {
   happyGuestsCount: number;
@@ -89,7 +90,9 @@ export const HappyGuestsProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    fetchHappyGuestsCount();
+    // Defer until after LCP — this is a non-critical vanity metric and must
+    // never compete with hydration. Fails silently to 0 if unreachable.
+    deferUntilIdle(() => { void fetchHappyGuestsCount(); });
   }, [fetchHappyGuestsCount]);
 
   return (
