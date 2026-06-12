@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { cdn } from "@/data/cdnImages";
 
 const WHATSAPP = "https://wa.me/918837317070?text=";
-const HERO_IMG = cdn("xtsy/TAB Bistro by XTSY.jpeg");
+const HERO_IMG = cdn("xtsy/TAB Bistro by XTSY 1.jpeg");
 
 const TabBistroHero = memo(() => (
   <section className="bg-background pt-20 pb-16 sm:pt-28 sm:pb-20 px-4 sm:px-8">
