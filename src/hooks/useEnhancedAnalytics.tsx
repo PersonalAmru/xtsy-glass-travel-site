@@ -6,6 +6,7 @@ import {
   initLovableSessionDetection, 
   cleanAnalyticsUrl 
 } from '@/utils/analyticsFilters';
+import { deferUntilIdle } from '@/utils/deferUntilIdle';
 
 // Check if this is a Lovable admin session - skip all tracking if so
 let isAdminSession: boolean | null = null;
