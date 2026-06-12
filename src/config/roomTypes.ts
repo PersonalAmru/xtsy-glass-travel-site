@@ -95,12 +95,12 @@ export const ROOM_IMAGES: Record<string, string[]> = {
     'xtsy/6 Bed Mixed Dormitory 6.JPG',
   ]),
   '6-bed-mixed-dorm': cdnMany([
-    'xtsy/6 Bed Mixed Dormitory 7.jpg',
-    'xtsy/6 Bed Mixed Dormitory 8.jpg',
-    'xtsy/6 Bed Mixed Dormitory 9.jpg',
     'xtsy/6 Bed Mixed Dormitory 1.JPG',
-    'xtsy/6 Bed Mixed Dormitory 2.JPG',
     'xtsy/6 Bed Mixed Dormitory 3.jpg',
+    'xtsy/6 Bed Mixed Dormitory 8.jpg',
+    'xtsy/6 Bed Mixed Dormitory 7.jpg',
+    'xtsy/6 Bed Mixed Dormitory 9.jpg',
+    'xtsy/6 Bed Mixed Dormitory 2.JPG',
   ]),
   'king-double-room': cdnMany([
     'xtsy/King Double Room.jpg',
@@ -110,11 +110,11 @@ export const ROOM_IMAGES: Record<string, string[]> = {
   ]),
   // No dedicated 8-bed photos were uploaded — reuse the 6-bed mixed dorm set.
   '8-bed-mixed-dorm': cdnMany([
-    'xtsy/6 Bed Mixed Dormitory 4.jpg',
-    'xtsy/6 Bed Mixed Dormitory 5.JPG',
-    'xtsy/6 Bed Mixed Dormitory 6.JPG',
-    'xtsy/6 Bed Mixed Dormitory 7.jpg',
+    'xtsy/6 Bed Mixed Dormitory 2.JPG',
+    'xtsy/6 Bed Mixed Dormitory 1.JPG',
+    'xtsy/6 Bed Mixed Dormitory 3.jpg',
     'xtsy/6 Bed Mixed Dormitory 8.jpg',
+    'xtsy/6 Bed Mixed Dormitory 7.jpg',
     'xtsy/6 Bed Mixed Dormitory 9.jpg',
   ]),
 };

@@ -125,7 +125,7 @@ const xtsyPrimeOfferings = [
     title: "XTSY Rentals",
     shortTitle: "Vehicle Rentals",
     description: "Explore Northeast India at your own pace. Premium cars and bikes for every adventure - from city drives to mountain expeditions.",
-    image: "https://oidnydyyjyjfnyadhyzn.supabase.co/storage/v1/object/public/xtsy-gallery-assets/XTSY%20Rentals/Thar.jpg",
+    image: "/__l5e/assets-v1/d38fd978-2e2b-4f92-bd70-3e1dcc6f44c8/xtsyvoyage-bumla-pass-bike-expedition.jpeg",
     icon: Car,
     price: "₹1,300",
     priceNote: "per day onwards",

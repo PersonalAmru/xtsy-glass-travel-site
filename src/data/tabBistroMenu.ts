@@ -105,8 +105,8 @@ export const menuSections: MenuSection[] = [
           { name: "Chicken Tikka Sandwich", price: "₹259" },
           { name: "XTSY Loaded (Veg/Non Veg)", price: "₹289" },
           { name: "Stupid Nachos Veg", price: "₹299" },
-          { name: "Stupid Nachos Non Veg", price: "₹329" },
-          { name: "XTSY Caesar (Veg/Non Veg)", price: "₹329" },
+          { name: "Stupid Nachos Non Veg", price: "₹369" },
+          { name: "XTSY Caesar (Veg/Non Veg)", price: "₹369" },
         ],
       },
       {
@@ -130,8 +130,8 @@ export const menuSections: MenuSection[] = [
         title: "Non Veg Appetizers",
         items: [
           { name: "Crispy Chicken", price: "₹289" },
-          { name: "Chicken Manchurian", price: "₹329" },
-          { name: "Chicken Schezwan", price: "₹329" },
+          { name: "Chicken Manchurian", price: "₹369" },
+          { name: "Chicken Schezwan", price: "₹369" },
           { name: "Bangkok Chicken Fusion", price: "₹369" },
           { name: "Chicken Pepper Dry", price: "₹369" },
           { name: "Drums of Heaven [6PC]", price: "₹369" },
@@ -150,10 +150,10 @@ export const menuSections: MenuSection[] = [
           { name: "Baby Corn Sweet & Chilli", price: "₹269" },
           { name: "Baby Corn Manchurian", price: "₹269" },
           { name: "American Corn Fusion", price: "₹299" },
-          { name: "Baby Corn Salt & Pepper Dry", price: "₹329" },
-          { name: "Paneer Sweet & Chilli", price: "₹329" },
-          { name: "Paneer Manchurian", price: "₹329" },
-          { name: "Paneer Chilli", price: "₹329" },
+          { name: "Baby Corn Salt & Pepper Dry", price: "₹369" },
+          { name: "Paneer Sweet & Chilli", price: "₹369" },
+          { name: "Paneer Manchurian", price: "₹369" },
+          { name: "Paneer Chilli", price: "₹369" },
           { name: "Paneer Kung Pao", price: "₹349" },
           { name: "Bangkok Paneer Fusion", price: "₹369" },
           { name: "Mushroom Sweet & Spice", price: "₹369" },
@@ -171,7 +171,7 @@ export const menuSections: MenuSection[] = [
       {
         title: "From the Clay — Veg",
         items: [
-          { name: "Chatpata Paneer Tikka", price: "₹329" },
+          { name: "Chatpata Paneer Tikka", price: "₹369" },
           { name: "Paneer Malai Tikka", price: "₹369" },
           { name: "Tandoori Mushroom Tikka", price: "₹399" },
         ],
@@ -218,7 +218,7 @@ export const menuSections: MenuSection[] = [
         title: "Indian Gravies — Veg",
         items: [
           { name: "Spl. Mix Vegetable", price: "₹299" },
-          { name: "Paneer Butter Masala", price: "₹329" },
+          { name: "Paneer Butter Masala", price: "₹369" },
           { name: "Matar Mushroom Masala", price: "₹349" },
           { name: "Meethi Malai Paneer", price: "₹349" },
           { name: "Paneer Lababdar", price: "₹349" },
@@ -241,7 +241,7 @@ export const menuSections: MenuSection[] = [
         title: "Dal Specials",
         items: [
           { name: "Yellow Dal Tadka", price: "₹289" },
-          { name: "XTSY Special Dal Makhani", price: "₹329" },
+          { name: "XTSY Special Dal Makhani", price: "₹369" },
         ],
       },
       {
@@ -255,8 +255,8 @@ export const menuSections: MenuSection[] = [
       {
         title: "Chinese Gravies — Non Veg",
         items: [
-          { name: "Chilli Chicken", price: "₹329" },
-          { name: "Chicken Manchurian", price: "₹329" },
+          { name: "Chilli Chicken", price: "₹369" },
+          { name: "Chicken Manchurian", price: "₹369" },
           { name: "Chicken Kung Pao", price: "₹349" },
           { name: "Garlic Chicken", price: "₹369" },
           { name: "Saucy Shredded Chicken", price: "₹399" },
@@ -354,7 +354,7 @@ export const menuSections: MenuSection[] = [
       {
         title: "Pizzas",
         items: [
-          { name: "Margarita Pizza", price: "₹329" },
+          { name: "Margarita Pizza", price: "₹369" },
           { name: "Farm Fresh Pizza (Veg/Non Veg)", price: "₹389" },
           { name: "BBQ Paneer Tikka Pizza", price: "₹399" },
           { name: "BBQ Chicken Tikka Pizza", price: "₹399" },

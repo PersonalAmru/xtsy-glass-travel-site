@@ -25,7 +25,7 @@ const EXPERIENCES = [
     description: "A private candlelight dinner experience set inside a forest environment.",
     duration: "2–3 hours",
     includes: ["Multi-course dinner", "Decorated dining setup", "Desserts and sweets", "Signature mocktails"],
-    image: romanticForestDining,
+    image: ROOM_IMAGES["xtsy-270"][3],
   },
   {
     title: "Hidden Waterfall Expedition",
