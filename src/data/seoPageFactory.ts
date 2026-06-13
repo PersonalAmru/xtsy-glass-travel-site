@@ -472,7 +472,7 @@ export function buildGlobalNEPage(slug: string): SEOPageData {
 
   const stateLabel = slugToLabel(state);
   const intentLabel = slugToLabel(intent.replace(/-/g, ' '));
-  const title = `${intentLabel} ${stateLabel} (${YEAR}) – Travel Guide, Itinerary & Booking Options`;
+  const title = seoTitle(`${intentLabel} ${stateLabel}`);
   const metaDescription = `Plan your ${stateLabel} trip with routes, ${intent} insights, costs, stays and WhatsApp support. Trusted by 10,000+ XTSY travellers.`;
 
   return buildPage({
