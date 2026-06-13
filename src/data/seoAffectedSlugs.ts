@@ -191,7 +191,8 @@ export const RECOVERY_REDIRECTS: Readonly<Record<string, string>> = {
   'caves-in-meghalaya': '/meghalaya-caves',
   'kayaking-meghalaya': '/things-to-do-in-meghalaya',
   'shnongpdeng-camping-guide': '/things-to-do-in-meghalaya',
-  // Travel guides → cherrapunji guide
-  'cherrapunji-travel-guide': '/things-to-do-in-meghalaya',
+  // Travel guides — consolidate the misspelled variant onto the canonical
+  // correctly-spelled Cherrapunji guide (de-duplication / anti-cannibalisation).
+  'cherrapunjee-travel-guide': '/cherrapunji-travel-guide',
   'dawki-river-travel-guide': '/things-to-do-in-meghalaya',
 };

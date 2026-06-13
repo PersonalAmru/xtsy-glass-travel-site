@@ -19,7 +19,7 @@ const LINK_GROUPS: LinkGroup[] = [
       { label: 'Places to Visit in Meghalaya', to: '/places-to-visit-meghalaya' },
       { label: 'Things to Do in Meghalaya', to: '/things-to-do-meghalaya' },
       { label: 'Shillong Travel Guide', to: '/shillong-travel-guide' },
-      { label: 'Cherrapunjee Travel Guide', to: '/cherrapunjee-travel-guide' },
+      { label: 'Cherrapunjee Travel Guide', to: '/cherrapunji-travel-guide' },
     ],
   },
   {

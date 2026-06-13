@@ -33,7 +33,7 @@ const FEATURED_GUIDES = [
   { slug: 'places-to-visit-meghalaya', title: '80 Places to Visit', desc: 'Complete destination guide with maps & tips', icon: MapPin },
   { slug: 'things-to-do-meghalaya', title: 'Things to Do', desc: 'Activities, experiences & hidden gems', icon: Sparkles },
   { slug: 'shillong-travel-guide', title: 'Shillong Guide', desc: 'Scotland of the East — complete city guide', icon: Mountain },
-  { slug: 'cherrapunjee-travel-guide', title: 'Cherrapunjee Guide', desc: 'Waterfalls, caves & root bridges', icon: TreePine },
+  { slug: 'cherrapunji-travel-guide', title: 'Cherrapunjee Guide', desc: 'Waterfalls, caves & root bridges', icon: TreePine },
   { slug: 'meghalaya-itinerary', title: 'Meghalaya Itinerary', desc: 'Day-by-day trip planning made easy', icon: Route },
 ];
 

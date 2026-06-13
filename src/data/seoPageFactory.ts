@@ -39,6 +39,21 @@ export const slugToLabel = (slug: string): string => {
 
 const YEAR = new Date().getFullYear();
 
+/**
+ * Build a SERP-safe <title> (≤60 chars so it never truncates in search).
+ * Tries "core (YEAR) | XTSY", then "core (YEAR)", then "core", finally an
+ * ellipsis-clamped core. Keeps the brand + year only when they fit.
+ */
+const seoTitle = (core: string, withYear = true): string => {
+  const year = withYear ? ` (${YEAR})` : '';
+  const full = `${core}${year} | XTSY`;
+  if (full.length <= 60) return full;
+  const noBrand = `${core}${year}`;
+  if (noBrand.length <= 60) return noBrand;
+  if (core.length <= 60) return core;
+  return core.slice(0, 59).trimEnd() + '…';
+};
+
 // =============================================================
 // Section builders
 // =============================================================
@@ -208,7 +223,7 @@ export function buildRoutePage(slug: string): SEOPageData {
     : ['', '', slug];
   const fromLabel = slugToLabel(from);
   const toLabel = slugToLabel(to);
-  const title = `${fromLabel} to ${toLabel} (${YEAR}) – Travel Guide, Itinerary & Booking Options`;
+  const title = seoTitle(`${fromLabel} to ${toLabel}`);
   const metaDescription = `Plan your trip from ${fromLabel} to ${toLabel} with routes, fares, transport tips and direct stay options. Get instant help on WhatsApp.`;
 
   return buildPage({
@@ -264,7 +279,7 @@ export function buildIntentStayPage(slug: string): SEOPageData {
   const stayLabel = slugToLabel(stay);
   const cityLabel = slugToLabel(city);
   const intentLabel = intent ? ` ${slugToLabel(intent)}` : modifier ? ` (${slugToLabel(modifier)})` : '';
-  const title = `${modifier ? slugToLabel(modifier) + ' ' : ''}${stayLabel} in ${cityLabel}${intentLabel} (${YEAR}) – Travel Guide, Itinerary & Booking Options`;
+  const title = seoTitle(`${modifier ? slugToLabel(modifier) + ' ' : ''}${stayLabel} in ${cityLabel}${intentLabel}`);
   const metaDescription = `Book a ${modifier ? modifier + ' ' : ''}${stayLabel.toLowerCase()} in ${cityLabel}${intent ? ' for ' + intent.replace('-', ' ') : ''}. Live availability, best rates and 24/7 check-in. Get instant help on WhatsApp.`;
 
   return buildPage({
@@ -303,8 +318,8 @@ export function buildIntentStayPage(slug: string): SEOPageData {
 export function buildInstitutionPage(slug: string, inst: { slug: string; name: string; type: 'medical' | 'education' }): SEOPageData {
   const intent = slug.replace(`-${inst.slug}`, '').replace(/-near$/, '');
   const intentLabel = slugToLabel(intent);
-  const title = `${intentLabel} ${inst.name} (${YEAR}) – Travel Guide, Itinerary & Booking Options`;
-  const metaDescription = `Find verified, budget-friendly stays near ${inst.name} with 24/7 check-in. Ideal for ${inst.type === 'medical' ? 'patient attendants and visitors' : 'students, parents and visitors'}. WhatsApp booking.`;
+  const title = seoTitle(`${intentLabel} ${inst.name}`);
+  const metaDescription = `${intentLabel} ${inst.name} — verified, budget-friendly with 24/7 check-in. Ideal for ${inst.type === 'medical' ? 'patient attendants and visitors' : 'students, parents and visitors'}. Instant WhatsApp booking.`;
 
   return buildPage({
     slug,
@@ -344,7 +359,7 @@ export function buildActivityPage(slug: string): SEOPageData {
     : ['', '', slug];
   const activityLabel = slugToLabel(activity);
   const destLabel = slugToLabel(destination);
-  const title = `${activityLabel} in ${destLabel} (${YEAR}) – Travel Guide, Itinerary & Booking Options`;
+  const title = seoTitle(`${activityLabel} in ${destLabel}`);
   const metaDescription = `Discover the best ${activityLabel.toLowerCase()} experiences in ${destLabel}. Verified guides, transport, gear and stays. WhatsApp for instant help.`;
 
   return buildPage({
@@ -374,18 +389,31 @@ export function buildActivityPage(slug: string): SEOPageData {
 export function buildDurationItineraryPage(slug: string): SEOPageData {
   const parts = slug.split('-');
   const dur = `${parts[0]}-${parts[1]}`;
+  const suffix = parts[parts.length - 1]; // 'itinerary' | 'trip'
   const stateRaw = parts.slice(2, -1).join('-');
   const stateLabel = slugToLabel(stateRaw);
-  const title = `${slugToLabel(dur)} ${stateLabel} Itinerary (${YEAR}) – Travel Guide, Itinerary & Booking Options`;
-  const metaDescription = `Complete ${slugToLabel(dur).toLowerCase()} ${stateLabel} itinerary with day-wise plan, costs, transport and stays. Customise on WhatsApp instantly.`;
+  const durLabel = slugToLabel(dur);
+  // Differentiate the -trip vs -itinerary variants so they never share
+  // identical title/description (avoids keyword cannibalisation).
+  const isTrip = suffix === 'trip';
+  const title = isTrip
+    ? `${durLabel} ${stateLabel} Trip Plan (${YEAR}) – Cost, Route & Stays`
+    : `${durLabel} ${stateLabel} Itinerary (${YEAR}) – Day-Wise Plan & Stays`;
+  const metaDescription = isTrip
+    ? `Planning a ${durLabel.toLowerCase()} ${stateLabel} trip? Get a ready route, realistic budget, transport tips and where to stay. Customise instantly on WhatsApp.`
+    : `Complete ${durLabel.toLowerCase()} ${stateLabel} itinerary with a day-wise plan, costs, transport and handpicked stays. Customise on WhatsApp instantly.`;
 
   return buildPage({
     slug,
     category: 'itineraries',
     title,
     metaDescription,
-    h1: `${slugToLabel(dur)} ${stateLabel} Itinerary for ${YEAR}`,
-    intro: `Our ${slugToLabel(dur).toLowerCase()} ${stateLabel} itinerary is the most-asked plan among XTSY travellers. It balances iconic spots, hidden gems, comfortable transit and budget-friendly stays.`,
+    h1: isTrip
+      ? `${durLabel} ${stateLabel} Trip Plan for ${YEAR}`
+      : `${durLabel} ${stateLabel} Itinerary for ${YEAR}`,
+    intro: isTrip
+      ? `Planning a ${durLabel.toLowerCase()} ${stateLabel} trip? This XTSY-tested plan covers the ideal route, realistic costs, transit timings and budget-friendly stays so you can travel without second-guessing.`
+      : `Our ${durLabel.toLowerCase()} ${stateLabel} itinerary is the most-asked plan among XTSY travellers. It balances iconic spots, hidden gems, comfortable transit and budget-friendly stays.`,
     sections: [
       thingsToDoSection(stateRaw),
       howToReachSection(stateRaw),
@@ -444,7 +472,7 @@ export function buildGlobalNEPage(slug: string): SEOPageData {
 
   const stateLabel = slugToLabel(state);
   const intentLabel = slugToLabel(intent.replace(/-/g, ' '));
-  const title = `${intentLabel} ${stateLabel} (${YEAR}) – Travel Guide, Itinerary & Booking Options`;
+  const title = seoTitle(`${intentLabel} ${stateLabel}`);
   const metaDescription = `Plan your ${stateLabel} trip with routes, ${intent} insights, costs, stays and WhatsApp support. Trusted by 10,000+ XTSY travellers.`;
 
   return buildPage({

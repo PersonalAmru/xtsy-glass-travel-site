@@ -1083,7 +1083,7 @@ const BASE_SEO_PAGES: SEOPageData[] = [
 import { filterHighQualityPages } from './seoQualityFilter';
 
 // Raw set — every programmatic page we know about.
-const RAW_SEO_PAGES: SEOPageData[] = [
+const RAW_SEO_PAGES_WITH_DUPES: SEOPageData[] = [
   ...PILLAR_PAGES,
   ...DESTINATION_PAGES,
   ...BASE_SEO_PAGES,
@@ -1101,11 +1101,61 @@ const RAW_SEO_PAGES: SEOPageData[] = [
   ...NE_EXPANSION_SEO_PAGES,
 ];
 
+// De-duplicate by slug — the same slug must never be defined twice
+// (causes duplicate-URL / self-cannibalisation in search). First
+// definition wins; earlier collections (pillar/destination) take
+// priority over auto-generated ones.
+const dedupeBySlug = (pages: SEOPageData[]): SEOPageData[] => {
+  const seen = new Set<string>();
+  const out: SEOPageData[] = [];
+  for (const p of pages) {
+    if (seen.has(p.slug)) continue;
+    seen.add(p.slug);
+    out.push(p);
+  }
+  return out;
+};
+
+const RAW_SEO_PAGES: SEOPageData[] = dedupeBySlug(RAW_SEO_PAGES_WITH_DUPES);
+
+
 // Public surface — quality-filtered to ~200 pages. Drops thin/duplicate
 // clusters that risk Google "doorway page" classification and protects
 // crawl budget. See src/data/seoQualityFilter.ts for the rules.
 import { applySEOOverrides } from './seoPagesOverrides';
 import { BRAND_OPENER, whyXTSYSection } from './brandFacts';
+
+// SERP-safe title clamp. Google truncates titles past ~60 chars, so any
+// over-length title is intelligently shortened: keep the brand suffix
+// (after " | "), drop the em/en-dash secondary descriptor, and only
+// ellipsis-clamp as a last resort. Titles already ≤60 chars are untouched.
+const clampTitle = (title: string): string => {
+  if (title.length <= 60) return title;
+  const parts = title.split(' | ');
+  const brand = parts.length > 1 ? parts.pop()! : '';
+  const head = parts.join(' | ');
+  const shortHead = head.split(/\s[—–-]\s/)[0].trim();
+  if (brand) {
+    const withBrand = `${shortHead} | ${brand}`;
+    if (withBrand.length <= 60) return withBrand;
+    if (shortHead.length <= 60) return shortHead;
+    return shortHead.slice(0, 59).trimEnd() + '…';
+  }
+  if (shortHead.length >= 30 && shortHead.length <= 60) return shortHead;
+  return head.slice(0, 59).trimEnd() + '…';
+};
+
+// SERP-safe meta description clamp (≤160 chars). Prefers ending on a full
+// sentence; otherwise trims to the last whole word. Descriptions ≤160 are
+// left untouched.
+const clampDesc = (desc: string): string => {
+  if (desc.length <= 160) return desc;
+  const window = desc.slice(0, 160);
+  const lastStop = Math.max(window.lastIndexOf('. '), window.lastIndexOf('! '), window.lastIndexOf('? '));
+  if (lastStop >= 110) return window.slice(0, lastStop + 1).trim();
+  const lastSpace = window.lastIndexOf(' ', 157);
+  return (lastSpace > 110 ? window.slice(0, lastSpace) : window.slice(0, 157)).trimEnd() + '…';
+};
 
 // Phase 2 brand-rewrite enforcer: every published page receives the
 // canonical brand opener + Why-XTSY + About-Group sections. Idempotent —
@@ -1119,7 +1169,7 @@ const enforceBrandFacts = (pages: SEOPageData[]): SEOPageData[] => {
     const existing = new Set(p.sections.map(s => s.heading));
     const extras: SEOSection[] = [];
     if (!existing.has(why.heading)) extras.push(why);
-    return { ...p, intro, sections: [...p.sections, ...extras] };
+    return { ...p, title: clampTitle(p.title), metaDescription: clampDesc(p.metaDescription), intro, sections: [...p.sections, ...extras] };
   });
 };
 

@@ -37,7 +37,7 @@ const STYLES = [
 // ── Destinations ──
 const DESTINATIONS = [
   { name: 'Shillong', slug: 'shillong-travel-guide', teaser: 'Scotland of the East', imageKey: 'shillong-peak' },
-  { name: 'Cherrapunjee', slug: 'cherrapunjee-travel-guide', teaser: 'Wettest place on Earth', imageKey: 'elephant-falls' },
+  { name: 'Cherrapunjee', slug: 'cherrapunji-travel-guide', teaser: 'Wettest place on Earth', imageKey: 'elephant-falls' },
   { name: 'Dawki – Umngot River', slug: 'dawki-umngot-river-guide', teaser: 'Crystal-clear river boating', imageKey: 'dawki-umngot-river' },
   { name: 'Mawlynnong Village', slug: 'mawlynnong-cleanest-village', teaser: "Asia's cleanest village", imageKey: 'mawlynnong-village' },
   { name: 'Nongriat Root Bridge', slug: 'double-decker-root-bridge', teaser: 'Iconic double-decker trek', imageKey: 'double-decker-living-root-bridge' },

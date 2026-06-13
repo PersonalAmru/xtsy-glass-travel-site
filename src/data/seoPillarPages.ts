@@ -124,7 +124,7 @@ export const PILLAR_PAGES: SEOPageData[] = [
     ['shillong travel guide', 'shillong tourism', 'shillong things to do', 'shillong sightseeing', 'scotland of the east']
   ),
 
-  pillar('cherrapunjee-travel-guide',
+  pillar('cherrapunji-travel-guide',
     'Cherrapunji Travel Guide 2026 — Wettest Place on Earth',
     'Complete Cherrapunji (Sohra) guide. Waterfalls, root bridges, caves, best time, how to reach. Day trip or overnight stay options explained.',
     'Cherrapunji Travel Guide — Explore the Wettest Place on Earth',
@@ -178,7 +178,7 @@ export const PILLAR_PAGES: SEOPageData[] = [
       { question: 'Which is the best waterfall in Meghalaya?', answer: 'Nohkalikai Falls is the most impressive for its sheer height (1,115 ft) and turquoise pool. Krang Suri is best for swimming. Wei Sawdong offers the most rewarding trek experience.' },
       { question: 'Are Meghalaya waterfalls accessible?', answer: 'Major waterfalls like Nohkalikai and Elephant Falls are easily accessible by road with viewpoints. Others like Wei Sawdong and Phe Phe require 30-minute to 2-hour treks.' },
     ],
-    ['meghalaya-travel-guide', 'cherrapunjee-travel-guide', 'places-to-visit-meghalaya', 'nohkalikai-falls-guide'],
+    ['meghalaya-travel-guide', 'cherrapunji-travel-guide', 'places-to-visit-meghalaya', 'nohkalikai-falls-guide'],
     ['waterfalls in meghalaya', 'best waterfalls meghalaya', 'meghalaya waterfall list', 'waterfalls near shillong', 'waterfalls near cherrapunji']
   ),
 
