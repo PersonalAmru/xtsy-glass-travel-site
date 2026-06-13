@@ -5,9 +5,12 @@
  * internal-link integrity and CTA validity.
  *
  * Run: bun run scripts/seoDeepAudit.ts
+ * Writes a full CSV + markdown report to /mnt/documents/.
  */
+import { writeFileSync } from 'fs';
 import { ALL_SEO_PAGES, findSEOPage } from '../src/data/seoPages';
 import type { SEOPageData } from '../src/data/seoPages';
+
 
 const TITLE_MIN = 30;
 const TITLE_MAX = 60;
