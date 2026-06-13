@@ -318,7 +318,7 @@ export function buildIntentStayPage(slug: string): SEOPageData {
 export function buildInstitutionPage(slug: string, inst: { slug: string; name: string; type: 'medical' | 'education' }): SEOPageData {
   const intent = slug.replace(`-${inst.slug}`, '').replace(/-near$/, '');
   const intentLabel = slugToLabel(intent);
-  const title = `${intentLabel} ${inst.name} (${YEAR}) – Travel Guide, Itinerary & Booking Options`;
+  const title = seoTitle(`${intentLabel} ${inst.name}`);
   const metaDescription = `${intentLabel} ${inst.name} — verified, budget-friendly with 24/7 check-in. Ideal for ${inst.type === 'medical' ? 'patient attendants and visitors' : 'students, parents and visitors'}. Instant WhatsApp booking.`;
 
   return buildPage({
