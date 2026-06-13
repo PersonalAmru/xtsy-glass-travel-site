@@ -374,18 +374,31 @@ export function buildActivityPage(slug: string): SEOPageData {
 export function buildDurationItineraryPage(slug: string): SEOPageData {
   const parts = slug.split('-');
   const dur = `${parts[0]}-${parts[1]}`;
+  const suffix = parts[parts.length - 1]; // 'itinerary' | 'trip'
   const stateRaw = parts.slice(2, -1).join('-');
   const stateLabel = slugToLabel(stateRaw);
-  const title = `${slugToLabel(dur)} ${stateLabel} Itinerary (${YEAR}) – Travel Guide, Itinerary & Booking Options`;
-  const metaDescription = `Complete ${slugToLabel(dur).toLowerCase()} ${stateLabel} itinerary with day-wise plan, costs, transport and stays. Customise on WhatsApp instantly.`;
+  const durLabel = slugToLabel(dur);
+  // Differentiate the -trip vs -itinerary variants so they never share
+  // identical title/description (avoids keyword cannibalisation).
+  const isTrip = suffix === 'trip';
+  const title = isTrip
+    ? `${durLabel} ${stateLabel} Trip Plan (${YEAR}) – Cost, Route & Stays`
+    : `${durLabel} ${stateLabel} Itinerary (${YEAR}) – Day-Wise Plan & Stays`;
+  const metaDescription = isTrip
+    ? `Planning a ${durLabel.toLowerCase()} ${stateLabel} trip? Get a ready route, realistic budget, transport tips and where to stay. Customise instantly on WhatsApp.`
+    : `Complete ${durLabel.toLowerCase()} ${stateLabel} itinerary with a day-wise plan, costs, transport and handpicked stays. Customise on WhatsApp instantly.`;
 
   return buildPage({
     slug,
     category: 'itineraries',
     title,
     metaDescription,
-    h1: `${slugToLabel(dur)} ${stateLabel} Itinerary for ${YEAR}`,
-    intro: `Our ${slugToLabel(dur).toLowerCase()} ${stateLabel} itinerary is the most-asked plan among XTSY travellers. It balances iconic spots, hidden gems, comfortable transit and budget-friendly stays.`,
+    h1: isTrip
+      ? `${durLabel} ${stateLabel} Trip Plan for ${YEAR}`
+      : `${durLabel} ${stateLabel} Itinerary for ${YEAR}`,
+    intro: isTrip
+      ? `Planning a ${durLabel.toLowerCase()} ${stateLabel} trip? This XTSY-tested plan covers the ideal route, realistic costs, transit timings and budget-friendly stays so you can travel without second-guessing.`
+      : `Our ${durLabel.toLowerCase()} ${stateLabel} itinerary is the most-asked plan among XTSY travellers. It balances iconic spots, hidden gems, comfortable transit and budget-friendly stays.`,
     sections: [
       thingsToDoSection(stateRaw),
       howToReachSection(stateRaw),
