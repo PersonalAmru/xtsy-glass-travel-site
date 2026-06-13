@@ -1083,7 +1083,7 @@ const BASE_SEO_PAGES: SEOPageData[] = [
 import { filterHighQualityPages } from './seoQualityFilter';
 
 // Raw set — every programmatic page we know about.
-const RAW_SEO_PAGES: SEOPageData[] = [
+const RAW_SEO_PAGES_WITH_DUPES: SEOPageData[] = [
   ...PILLAR_PAGES,
   ...DESTINATION_PAGES,
   ...BASE_SEO_PAGES,
@@ -1100,6 +1100,24 @@ const RAW_SEO_PAGES: SEOPageData[] = [
   ...GLOBAL_NE_SEO_PAGES,
   ...NE_EXPANSION_SEO_PAGES,
 ];
+
+// De-duplicate by slug — the same slug must never be defined twice
+// (causes duplicate-URL / self-cannibalisation in search). First
+// definition wins; earlier collections (pillar/destination) take
+// priority over auto-generated ones.
+const dedupeBySlug = (pages: SEOPageData[]): SEOPageData[] => {
+  const seen = new Set<string>();
+  const out: SEOPageData[] = [];
+  for (const p of pages) {
+    if (seen.has(p.slug)) continue;
+    seen.add(p.slug);
+    out.push(p);
+  }
+  return out;
+};
+
+const RAW_SEO_PAGES: SEOPageData[] = dedupeBySlug(RAW_SEO_PAGES_WITH_DUPES);
+
 
 // Public surface — quality-filtered to ~200 pages. Drops thin/duplicate
 // clusters that risk Google "doorway page" classification and protects
