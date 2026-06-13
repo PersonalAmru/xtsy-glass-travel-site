@@ -359,7 +359,7 @@ export function buildActivityPage(slug: string): SEOPageData {
     : ['', '', slug];
   const activityLabel = slugToLabel(activity);
   const destLabel = slugToLabel(destination);
-  const title = `${activityLabel} in ${destLabel} (${YEAR}) – Travel Guide, Itinerary & Booking Options`;
+  const title = seoTitle(`${activityLabel} in ${destLabel}`);
   const metaDescription = `Discover the best ${activityLabel.toLowerCase()} experiences in ${destLabel}. Verified guides, transport, gear and stays. WhatsApp for instant help.`;
 
   return buildPage({
