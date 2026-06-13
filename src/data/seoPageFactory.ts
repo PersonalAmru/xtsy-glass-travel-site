@@ -279,7 +279,7 @@ export function buildIntentStayPage(slug: string): SEOPageData {
   const stayLabel = slugToLabel(stay);
   const cityLabel = slugToLabel(city);
   const intentLabel = intent ? ` ${slugToLabel(intent)}` : modifier ? ` (${slugToLabel(modifier)})` : '';
-  const title = `${modifier ? slugToLabel(modifier) + ' ' : ''}${stayLabel} in ${cityLabel}${intentLabel} (${YEAR}) – Travel Guide, Itinerary & Booking Options`;
+  const title = seoTitle(`${modifier ? slugToLabel(modifier) + ' ' : ''}${stayLabel} in ${cityLabel}${intentLabel}`);
   const metaDescription = `Book a ${modifier ? modifier + ' ' : ''}${stayLabel.toLowerCase()} in ${cityLabel}${intent ? ' for ' + intent.replace('-', ' ') : ''}. Live availability, best rates and 24/7 check-in. Get instant help on WhatsApp.`;
 
   return buildPage({
