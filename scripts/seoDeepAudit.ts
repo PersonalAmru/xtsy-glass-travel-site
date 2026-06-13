@@ -172,3 +172,46 @@ const show = (label: string, list: Issue[], n: number) => {
 show('CRITICAL', crit, 40);
 show('WARNINGS', warn, 50);
 console.log('\n================ END ================\n');
+
+// ============ FILE EXPORTS ============
+// Detect true duplicate slugs (same slug defined twice in the registry).
+const slugCounts = new Map<string, number>();
+for (const p of ALL_SEO_PAGES) slugCounts.set(p.slug, (slugCounts.get(p.slug) ?? 0) + 1);
+const dupSlugs = [...slugCounts.entries()].filter(([, n]) => n > 1);
+
+const csv = ['slug,severity,rule,detail',
+  ...issues.map(i => `"${i.slug}","${i.sev}","${i.rule}","${i.detail.replace(/"/g, "'")}"`)].join('\n');
+writeFileSync('/mnt/documents/seo-audit-issues.csv', csv);
+
+const md = `# XTSY — Deep SEO Health Audit
+_Generated ${new Date().toISOString().slice(0,10)} • ${total} indexable pages_
+
+## Scorecard
+| Metric | Value |
+|---|---|
+| Indexable pages audited | ${total} |
+| Critical issues | ${crit.length} |
+| Warnings | ${warn.length} |
+| Info / opportunities | ${info.length} |
+| Pages clean (no CRIT/WARN) | ${clean} (${(clean/total*100).toFixed(1)}%) |
+| Duplicate title groups | ${dupTitles} |
+| Duplicate description groups | ${dupDescs} |
+| Duplicate H1 groups | ${dupH1} |
+| True duplicate slugs (registry bug) | ${dupSlugs.length} |
+
+## Issues by rule
+${[...byRule.entries()].sort((a,b)=>b[1]-a[1]).map(([r,n])=>`- \`${r}\` — ${n}`).join('\n')}
+
+## True duplicate slugs (defined more than once)
+${dupSlugs.length ? dupSlugs.map(([s,n])=>`- \`${s}\` ×${n}`).join('\n') : '_None_'}
+
+## All CRITICAL issues
+${crit.map(i=>`- **${i.slug}** \`${i.rule}\` — ${i.detail}`).join('\n')}
+
+## All WARNINGS
+${warn.map(i=>`- ${i.slug} \`${i.rule}\` — ${i.detail}`).join('\n')}
+`;
+writeFileSync('/mnt/documents/seo-audit-report.md', md);
+console.log('Reports written: /mnt/documents/seo-audit-report.md , /mnt/documents/seo-audit-issues.csv');
+console.log(`True duplicate slugs: ${dupSlugs.length}`, dupSlugs.map(d=>d[0]).join(', '));
+
