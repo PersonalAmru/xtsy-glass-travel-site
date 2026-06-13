@@ -1125,6 +1125,26 @@ const RAW_SEO_PAGES: SEOPageData[] = dedupeBySlug(RAW_SEO_PAGES_WITH_DUPES);
 import { applySEOOverrides } from './seoPagesOverrides';
 import { BRAND_OPENER, whyXTSYSection } from './brandFacts';
 
+// SERP-safe title clamp. Google truncates titles past ~60 chars, so any
+// over-length title is intelligently shortened: keep the brand suffix
+// (after " | "), drop the em/en-dash secondary descriptor, and only
+// ellipsis-clamp as a last resort. Titles already ≤60 chars are untouched.
+const clampTitle = (title: string): string => {
+  if (title.length <= 60) return title;
+  const parts = title.split(' | ');
+  const brand = parts.length > 1 ? parts.pop()! : '';
+  const head = parts.join(' | ');
+  const shortHead = head.split(/\s[—–-]\s/)[0].trim();
+  if (brand) {
+    const withBrand = `${shortHead} | ${brand}`;
+    if (withBrand.length <= 60) return withBrand;
+    if (shortHead.length <= 60) return shortHead;
+    return shortHead.slice(0, 59).trimEnd() + '…';
+  }
+  if (shortHead.length >= 30 && shortHead.length <= 60) return shortHead;
+  return head.slice(0, 59).trimEnd() + '…';
+};
+
 // Phase 2 brand-rewrite enforcer: every published page receives the
 // canonical brand opener + Why-XTSY + About-Group sections. Idempotent —
 // pages that already mention NEITA/270°/XTSY ONE Ventures keep their
@@ -1137,7 +1157,7 @@ const enforceBrandFacts = (pages: SEOPageData[]): SEOPageData[] => {
     const existing = new Set(p.sections.map(s => s.heading));
     const extras: SEOSection[] = [];
     if (!existing.has(why.heading)) extras.push(why);
-    return { ...p, intro, sections: [...p.sections, ...extras] };
+    return { ...p, title: clampTitle(p.title), intro, sections: [...p.sections, ...extras] };
   });
 };
 
