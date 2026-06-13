@@ -1145,6 +1145,18 @@ const clampTitle = (title: string): string => {
   return head.slice(0, 59).trimEnd() + '…';
 };
 
+// SERP-safe meta description clamp (≤160 chars). Prefers ending on a full
+// sentence; otherwise trims to the last whole word. Descriptions ≤160 are
+// left untouched.
+const clampDesc = (desc: string): string => {
+  if (desc.length <= 160) return desc;
+  const window = desc.slice(0, 160);
+  const lastStop = Math.max(window.lastIndexOf('. '), window.lastIndexOf('! '), window.lastIndexOf('? '));
+  if (lastStop >= 110) return window.slice(0, lastStop + 1).trim();
+  const lastSpace = window.lastIndexOf(' ', 157);
+  return (lastSpace > 110 ? window.slice(0, lastSpace) : window.slice(0, 157)).trimEnd() + '…';
+};
+
 // Phase 2 brand-rewrite enforcer: every published page receives the
 // canonical brand opener + Why-XTSY + About-Group sections. Idempotent —
 // pages that already mention NEITA/270°/XTSY ONE Ventures keep their
