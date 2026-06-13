@@ -223,7 +223,7 @@ export function buildRoutePage(slug: string): SEOPageData {
     : ['', '', slug];
   const fromLabel = slugToLabel(from);
   const toLabel = slugToLabel(to);
-  const title = `${fromLabel} to ${toLabel} (${YEAR}) – Travel Guide, Itinerary & Booking Options`;
+  const title = seoTitle(`${fromLabel} to ${toLabel}`);
   const metaDescription = `Plan your trip from ${fromLabel} to ${toLabel} with routes, fares, transport tips and direct stay options. Get instant help on WhatsApp.`;
 
   return buildPage({
