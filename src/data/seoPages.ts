@@ -1169,7 +1169,7 @@ const enforceBrandFacts = (pages: SEOPageData[]): SEOPageData[] => {
     const existing = new Set(p.sections.map(s => s.heading));
     const extras: SEOSection[] = [];
     if (!existing.has(why.heading)) extras.push(why);
-    return { ...p, title: clampTitle(p.title), intro, sections: [...p.sections, ...extras] };
+    return { ...p, title: clampTitle(p.title), metaDescription: clampDesc(p.metaDescription), intro, sections: [...p.sections, ...extras] };
   });
 };
 
