@@ -39,6 +39,21 @@ export const slugToLabel = (slug: string): string => {
 
 const YEAR = new Date().getFullYear();
 
+/**
+ * Build a SERP-safe <title> (≤60 chars so it never truncates in search).
+ * Tries "core (YEAR) | XTSY", then "core (YEAR)", then "core", finally an
+ * ellipsis-clamped core. Keeps the brand + year only when they fit.
+ */
+const seoTitle = (core: string, withYear = true): string => {
+  const year = withYear ? ` (${YEAR})` : '';
+  const full = `${core}${year} | XTSY`;
+  if (full.length <= 60) return full;
+  const noBrand = `${core}${year}`;
+  if (noBrand.length <= 60) return noBrand;
+  if (core.length <= 60) return core;
+  return core.slice(0, 59).trimEnd() + '…';
+};
+
 // =============================================================
 // Section builders
 // =============================================================
