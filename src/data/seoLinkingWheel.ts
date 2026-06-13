@@ -79,7 +79,7 @@ export const LINK_WHEEL_CLUSTERS: LinkWheelCluster[] = [
   {
     id: 'cherrapunjee',
     label: 'Cherrapunjee Attractions',
-    pillar: 'cherrapunjee-travel-guide',
+    pillar: 'cherrapunji-travel-guide',
     destinations: [
       'nohkalikai-falls-meghalaya',
       'mawsmai-cave-cherrapunji',
@@ -166,7 +166,7 @@ const PILLAR_LABELS: Record<string, string> = {
   'things-to-do-meghalaya': 'Things to Do in Meghalaya',
   'meghalaya-itinerary': 'Meghalaya Itinerary',
   'shillong-travel-guide': 'Shillong Travel Guide',
-  'cherrapunjee-travel-guide': 'Cherrapunjee Travel Guide',
+  'cherrapunji-travel-guide': 'Cherrapunjee Travel Guide',
   'dawki-umngot-river-guide': 'Dawki & Umngot River Guide',
   'waterfalls-in-meghalaya': 'Waterfalls in Meghalaya',
   'trekking-in-meghalaya': 'Trekking in Meghalaya',
@@ -269,7 +269,7 @@ export const KEYWORD_CANONICAL_MAP: Record<string, string> = {
   'things to do meghalaya': 'things-to-do-meghalaya',
   'meghalaya itinerary': 'meghalaya-itinerary',
   'shillong travel guide': 'shillong-travel-guide',
-  'cherrapunjee travel guide': 'cherrapunjee-travel-guide',
+  'cherrapunjee travel guide': 'cherrapunji-travel-guide',
   'dawki travel guide': 'dawki-umngot-river-guide',
   'waterfalls in meghalaya': 'waterfalls-in-meghalaya',
   'trekking in meghalaya': 'trekking-in-meghalaya',

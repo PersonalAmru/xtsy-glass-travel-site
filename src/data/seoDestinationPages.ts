@@ -32,7 +32,7 @@ export const DESTINATION_PAGES: SEOPageData[] = [
       { question: 'Can you swim in the pool below Nohkalikai Falls?', answer: 'No, the pool is not accessible from the viewpoint. Reaching it requires a very difficult and dangerous descent with no maintained trail. The viewpoint offers excellent views from above.' },
       { question: 'Is Nohkalikai Falls worth visiting?', answer: 'Absolutely. As India\'s tallest plunge waterfall with its iconic turquoise pool, it\'s one of the country\'s most spectacular natural sights. The viewpoint is easily accessible and requires no trekking.' },
     ],
-    ['waterfalls-in-meghalaya', 'cherrapunjee-travel-guide', 'meghalaya-travel-guide'],
+    ['waterfalls-in-meghalaya', 'cherrapunji-travel-guide', 'meghalaya-travel-guide'],
     ['nohkalikai falls', 'tallest waterfall india', 'nohkalikai falls meghalaya', 'nohkalikai falls cherrapunji']
   ),
 
@@ -69,7 +69,7 @@ export const DESTINATION_PAGES: SEOPageData[] = [
       { question: 'Is Wei Sawdong Falls difficult to reach?', answer: 'The 45-minute trek is moderate — manageable for most fit adults. The path involves stone steps that can be slippery in rain. A local guide is recommended.' },
       { question: 'How does Wei Sawdong compare to Nohkalikai?', answer: 'Nohkalikai is taller and more easily accessible (viewpoint by road). Wei Sawdong requires trekking but offers a more intimate, uncrowded experience with three distinct tiers to explore.' },
     ],
-    ['waterfalls-in-meghalaya', 'cherrapunjee-travel-guide', 'trekking-in-meghalaya'],
+    ['waterfalls-in-meghalaya', 'cherrapunji-travel-guide', 'trekking-in-meghalaya'],
     ['wei sawdong falls', 'wei sawdong waterfall meghalaya', 'hidden waterfall cherrapunji', 'three tier waterfall meghalaya']
   ),
 
@@ -108,7 +108,7 @@ export const DESTINATION_PAGES: SEOPageData[] = [
       { question: 'Can you walk on living root bridges?', answer: 'Yes! The bridges are fully functional and used daily by local villagers. They can support 50+ people at a time. However, be respectful — these are living organisms and community infrastructure.' },
       { question: 'Do I need to trek to see a root bridge?', answer: 'Not necessarily. The single root bridge near Mawlynnong village is accessible via a short 10-minute walk. The famous Double Decker Bridge requires a 6-8 hour trek.' },
     ],
-    ['trekking-in-meghalaya', 'places-to-visit-meghalaya', 'cherrapunjee-travel-guide', 'meghalaya-travel-guide'],
+    ['trekking-in-meghalaya', 'places-to-visit-meghalaya', 'cherrapunji-travel-guide', 'meghalaya-travel-guide'],
     ['living root bridges meghalaya', 'double decker root bridge', 'root bridge trek', 'meghalaya root bridge', 'nongriat root bridge']
   ),
 
@@ -235,7 +235,7 @@ export const DESTINATION_PAGES: SEOPageData[] = [
       { question: 'Is Mawsmai Cave safe for children?', answer: 'Yes, children can safely explore the cave with supervision. The path is lit and maintained. Some narrow passages require ducking but are not dangerous.' },
       { question: 'How long does Mawsmai Cave take?', answer: '20-30 minutes for a comfortable walkthrough. Including the viewpoint at the exit, plan for 45 minutes total.' },
     ],
-    ['cherrapunjee-travel-guide', 'places-to-visit-meghalaya', 'things-to-do-meghalaya'],
+    ['cherrapunji-travel-guide', 'places-to-visit-meghalaya', 'things-to-do-meghalaya'],
     ['mawsmai cave', 'mawsmai cave cherrapunji', 'caves in meghalaya', 'limestone cave meghalaya']
   ),
 
