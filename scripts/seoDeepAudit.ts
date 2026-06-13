@@ -27,6 +27,16 @@ const tokens = (s: string) => new Set(norm(s).split(' ').filter(w => w.length > 
 // Stop-y/brand words excluded from "relevance" overlap so we measure topical match.
 const STOP = new Set(['xtsy','best','book','your','with','from','near','2025','2026','travel','guide','stay','shillong','meghalaya']);
 
+// Static routes that relatedSlugs may legitimately point to (not SEO registry).
+const STATIC_SAFE = new Set([
+  'meghalaya-travel-guide','things-to-do-in-meghalaya','meghalaya-tour-packages',
+  'shillong-tour-package','best-hostel-in-shillong','meghalaya-waterfalls',
+  'meghalaya-caves','meghalaya-villages','meghalaya-viewpoints','shillong-travel-guide',
+  'cherrapunji-travel-guide','hotels-in-shillong','homestays-in-shillong',
+  'places-to-visit-meghalaya','waterfalls-in-meghalaya','trekking-in-meghalaya',
+  'things-to-do-meghalaya','meghalaya-itinerary',
+]);
+
 function pageWordCount(p: SEOPageData): number {
   let n = words(p.intro);
   for (const s of p.sections) {
@@ -106,18 +116,6 @@ for (const p of ALL_SEO_PAGES) {
   // --- CTA ---
   if (!p.ctaLink) add(p.slug, 'WARN', 'cta-missing', 'No CTA link');
 }
-
-// Static routes that relatedSlugs may legitimately point to (not SEO registry).
-var STATIC_SAFE: Set<string>;
-// hoist-safe reassignment
-(STATIC_SAFE as any) = new Set([
-  'meghalaya-travel-guide','things-to-do-in-meghalaya','meghalaya-tour-packages',
-  'shillong-tour-package','best-hostel-in-shillong','meghalaya-waterfalls',
-  'meghalaya-caves','meghalaya-villages','meghalaya-viewpoints','shillong-travel-guide',
-  'cherrapunji-travel-guide','hotels-in-shillong','homestays-in-shillong',
-  'places-to-visit-meghalaya','waterfalls-in-meghalaya','trekking-in-meghalaya',
-  'things-to-do-meghalaya','meghalaya-itinerary',
-]);
 
 // --- Duplicate detection ---
 const byTitle = new Map<string, string[]>();
