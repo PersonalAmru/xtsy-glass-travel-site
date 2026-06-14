@@ -1176,7 +1176,7 @@ const enforceBrandFacts = (pages: SEOPageData[]): SEOPageData[] => {
 
 export const ALL_SEO_PAGES: SEOPageData[] = enforceBrandFacts(
   applySEOOverrides(filterHighQualityPages(RAW_SEO_PAGES))
-);
+).map(normalizeSEOPage);
 export const RAW_SEO_PAGES_COUNT = RAW_SEO_PAGES.length;
 
 // Helper to find a page by slug
