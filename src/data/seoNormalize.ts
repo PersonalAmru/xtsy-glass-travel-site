@@ -219,23 +219,27 @@ function padTitle(title: string, cat: SEOPageCategory): string {
 // =============================================================
 // 3. Short-description padding
 // =============================================================
+// Suffixes are short enough to fit a self-contained sentence within 160 chars
+// even when added to the longest sub-110-char description (≤54 chars each).
 const DESC_SUFFIX: Partial<Record<SEOPageCategory, string>> = {
-  'road-bike-trips': ' Bikes, inner-line permits and vetted on-route stays are handled end-to-end by XTSY.',
-  'restaurants': ' Plus TAB Bistro — XTSY\'s in-house multi-cuisine kitchen with veg and Jain options.',
-  'food-dining': ' Plus TAB Bistro — XTSY\'s in-house multi-cuisine kitchen with veg and Jain options.',
+  'road-bike-trips': ' Bikes, permits & vetted stays handled by XTSY.',
+  'restaurants': " Plus TAB Bistro, XTSY's in-house kitchen.",
+  'food-dining': " Plus TAB Bistro, XTSY's in-house kitchen.",
 };
 
 function padDesc(desc: string, cat: SEOPageCategory): string {
   if (desc.length >= DESC_MIN) return desc;
-  let d = (desc + (DESC_SUFFIX[cat] ?? ` XTSY handles stays, transport and on-trip support end-to-end — WhatsApp ${WA}.`)).replace(/\s+/g, ' ').trim();
-  if (d.length < DESC_MIN) d = `${d} WhatsApp ${WA} for instant help.`;
+  const suffix = DESC_SUFFIX[cat] ?? ` WhatsApp ${WA} for instant booking help.`;
+  let d = `${desc}${suffix}`.replace(/\s+/g, ' ').trim();
+  // Safety net: if a suffix ever overflows, trim back to the last full sentence.
   if (d.length > DESC_MAX) {
     const win = d.slice(0, DESC_MAX);
-    const sp = win.lastIndexOf(' ', DESC_MAX - 1);
-    d = (sp > DESC_MIN ? win.slice(0, sp) : win.slice(0, DESC_MAX - 1)).trimEnd();
+    const lastStop = Math.max(win.lastIndexOf('. '), win.lastIndexOf('! '), win.lastIndexOf('? '));
+    d = lastStop >= DESC_MIN ? win.slice(0, lastStop + 1).trim() : win.slice(0, win.lastIndexOf(' ', DESC_MAX - 1)).trimEnd();
   }
   return d;
 }
+
 
 /** Apply all three normalizations. Safe to compose after enforceBrandFacts. */
 export function normalizeSEOPage(p: SEOPageData): SEOPageData {
