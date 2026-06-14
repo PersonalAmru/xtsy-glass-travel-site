@@ -1124,6 +1124,7 @@ const RAW_SEO_PAGES: SEOPageData[] = dedupeBySlug(RAW_SEO_PAGES_WITH_DUPES);
 // crawl budget. See src/data/seoQualityFilter.ts for the rules.
 import { applySEOOverrides } from './seoPagesOverrides';
 import { BRAND_OPENER, whyXTSYSection } from './brandFacts';
+import { normalizeSEOPage } from './seoNormalize';
 
 // SERP-safe title clamp. Google truncates titles past ~60 chars, so any
 // over-length title is intelligently shortened: keep the brand suffix
@@ -1175,7 +1176,7 @@ const enforceBrandFacts = (pages: SEOPageData[]): SEOPageData[] => {
 
 export const ALL_SEO_PAGES: SEOPageData[] = enforceBrandFacts(
   applySEOOverrides(filterHighQualityPages(RAW_SEO_PAGES))
-);
+).map(normalizeSEOPage);
 export const RAW_SEO_PAGES_COUNT = RAW_SEO_PAGES.length;
 
 // Helper to find a page by slug
