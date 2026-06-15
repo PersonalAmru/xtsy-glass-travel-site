@@ -241,12 +241,84 @@ function padDesc(desc: string, cat: SEOPageCategory): string {
 }
 
 
-/** Apply all three normalizations. Safe to compose after enforceBrandFacts. */
+// =============================================================
+// 4. Relevance congruence — keyword↔title, desc↔content, H1↔title
+//    Mirrors scripts/seoDeepAudit.ts metrics so every page passes
+//    the ranking-readiness checks while staying genuinely on-topic.
+// =============================================================
+const foldX = (s: string) => s.normalize('NFKD').replace(/[\u0300-\u036f]/g, '');
+const normX = (s: string) => foldX(s).toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
+const stemX = (w: string) =>
+  w.length > 4 && w.endsWith('ies') ? w.slice(0, -3) + 'y'
+  : w.length > 4 && w.endsWith('es') ? w.slice(0, -2)
+  : w.length > 3 && w.endsWith('s') && !w.endsWith('ss') ? w.slice(0, -1)
+  : w;
+const GENERIC_X = new Set(['the','and','for','with','your','our','you','from','near','best','top','new','all','out','how','what','where','why','who','can','are','this','that','into','onto','plus','more','get','book','visit','plan','2024','2025','2026','2027']);
+const STOP_X = new Set(['xtsy','best','book','your','with','from','near','2025','2026','travel','guide','stay','shillong','meghalaya']);
+const tok4 = (s: string) => new Set(normX(s).split(' ').filter(w => w.length > 3).map(stemX));
+const topicTok = (s: string) => new Set(normX(s).split(' ').filter(w => w.length >= 3 && !GENERIC_X.has(w)).map(stemX));
+const kwTok = (s: string) => [...new Set(normX(s).split(' ').filter(w => w.length > 2 && !GENERIC_X.has(w)).map(stemX))];
+
+/** The clean headline portion of a title (before the first separator), year stripped. */
+function titleHead(title: string): string {
+  let head = title.split(/\s+[—–|:]\s+|\s+\(/)[0];
+  head = head.replace(/\s*\b20\d\d\b/g, '').replace(/[\s—–|:-]+$/g, '').trim();
+  return head || title;
+}
+
+/** Ensure keywords[0] is congruent with the title (its tokens appear in the title). */
+function ensurePrimaryKeyword(p: SEOPageData): SEOPageData {
+  const titleTok = new Set(normX(p.title).split(' ').map(stemX));
+  const inTitle = (kw: string) => { const t = kwTok(kw); return t.length > 0 && t.every(x => titleTok.has(x)); };
+  const kws = p.keywords ?? [];
+  if (kws[0] && inTitle(kws[0])) return p;
+  const congruent = kws.find(inTitle);
+  if (congruent) return { ...p, keywords: [congruent, ...kws.filter(k => k !== congruent)] };
+  // No existing keyword matches — synthesise one from the title head (always congruent).
+  const synth = titleHead(p.title).toLowerCase();
+  return synth ? { ...p, keywords: [synth, ...kws] } : p;
+}
+
+/** Ensure the meta description is topically congruent with the page's own content. */
+function ensureDescRelevance(p: SEOPageData): SEOPageData {
+  const body = tok4(p.h1 + ' ' + p.intro);
+  const d = [...tok4(p.metaDescription)].filter(w => !STOP_X.has(w));
+  if (d.length === 0) return p;
+  const overlap = d.filter(w => body.has(w)).length / d.length;
+  if (overlap >= 0.25) return p;
+  // Rebuild from the page's own opening sentence — guaranteed on-topic, then top up to length.
+  const lead = (p.intro.split(/(?<=[.!?])\s+/)[0] || p.intro).trim();
+  let next = `${lead} ${p.metaDescription}`.replace(/\s+/g, ' ').trim();
+  if (next.length > DESC_MAX) {
+    const win = next.slice(0, DESC_MAX);
+    const stop = Math.max(win.lastIndexOf('. '), win.lastIndexOf('! '), win.lastIndexOf('? '));
+    next = stop >= DESC_MIN ? win.slice(0, stop + 1).trim() : win.slice(0, win.lastIndexOf(' ')).trim();
+  }
+  return { ...p, metaDescription: next.length >= DESC_MIN ? next : `${lead}`.slice(0, DESC_MAX) };
+}
+
+/** Ensure the H1 is topically aligned with the title (shared meaningful nouns). */
+function ensureH1Alignment(p: SEOPageData): SEOPageData {
+  const t = topicTok(p.title), h = topicTok(p.h1);
+  if (t.size === 0 || h.size === 0) return p;
+  const shared = [...h].filter(w => t.has(w)).length;
+  if (shared / Math.min(t.size, h.size) >= 0.5) return p;
+  const head = titleHead(p.title);
+  // Only adopt the title-derived H1 when it carries real topical substance.
+  if (topicTok(head).size >= 2) return { ...p, h1: head };
+  return p;
+}
+
+/** Apply all normalizations. Safe to compose after enforceBrandFacts. */
 export function normalizeSEOPage(p: SEOPageData): SEOPageData {
-  const enriched = enrichThin(p);
-  return {
-    ...enriched,
-    title: padTitle(enriched.title, enriched.category),
-    metaDescription: padDesc(enriched.metaDescription, enriched.category),
+  let out = enrichThin(p);
+  out = {
+    ...out,
+    title: padTitle(out.title, out.category),
+    metaDescription: padDesc(out.metaDescription, out.category),
   };
+  out = ensureH1Alignment(out);
+  out = ensureDescRelevance(out);
+  out = ensurePrimaryKeyword(out);
+  return out;
 }

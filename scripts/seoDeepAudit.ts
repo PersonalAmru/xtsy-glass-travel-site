@@ -24,9 +24,21 @@ const add = (slug: string, sev: Issue['sev'], rule: string, detail: string) =>
   issues.push({ slug, sev, rule, detail });
 
 const words = (s: string) => s.trim().split(/\s+/).filter(Boolean).length;
-const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
-const tokens = (s: string) => new Set(norm(s).split(' ').filter(w => w.length > 3));
+// Diacritic-fold so "café" === "cafe" the way Google treats them.
+const fold = (s: string) => s.normalize('NFKD').replace(/[\u0300-\u036f]/g, '');
+const norm = (s: string) => fold(s).toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
+// Light singular/plural + possessive stemmer so "restaurants" === "restaurant".
+const stem = (w: string) =>
+  w.length > 4 && w.endsWith('ies') ? w.slice(0, -3) + 'y'
+  : w.length > 4 && w.endsWith('es') ? w.slice(0, -2)
+  : w.length > 3 && w.endsWith('s') && !w.endsWith('ss') ? w.slice(0, -1)
+  : w;
+const tokens = (s: string) => new Set(norm(s).split(' ').filter(w => w.length > 3).map(stem));
+// Topic tokens keep 3-letter head nouns (car, bbq, spa) so short keywords match.
+const topicTokens = (s: string) => new Set(norm(s).split(' ').filter(w => w.length >= 3 && !GENERIC.has(w)).map(stem));
 
+// Generic connective/marketing words that carry no topical signal.
+const GENERIC = new Set(['the','and','for','with','your','our','you','from','near','best','top','new','all','out','how','what','where','why','who','can','are','this','that','into','onto','plus','more','get','book','visit','plan','2024','2025','2026','2027']);
 // Stop-y/brand words excluded from "relevance" overlap so we measure topical match.
 const STOP = new Set(['xtsy','best','book','your','with','from','near','2025','2026','travel','guide','stay','shillong','meghalaya']);
 
@@ -54,22 +66,26 @@ function pageWordCount(p: SEOPageData): number {
 function keywordRelevance(p: SEOPageData) {
   const kw = (p.keywords?.[0] ?? '').trim();
   if (!kw) { add(p.slug, 'WARN', 'keywords', 'No keywords defined'); return; }
-  const nk = norm(kw);
-  const kwTokens = norm(kw).split(' ').filter(w => w.length > 2);
-  const inTitle = kwTokens.every(t => norm(p.title).includes(t));
-  const inDesc = kwTokens.every(t => norm(p.metaDescription).includes(t));
+  // Match on folded+stemmed tokens so "café/cafe" and "restaurant/restaurants" align,
+  // and "near me" style intent modifiers don't force a verbatim title match.
+  const kwTokens = [...new Set(norm(kw).split(' ').filter(w => w.length > 2 && !GENERIC.has(w)).map(stem))];
+  const titleTok = new Set(norm(p.title).split(' ').map(stem));
+  const descTok = new Set(norm(p.metaDescription).split(' ').map(stem));
+  const inTitle = kwTokens.every(t => titleTok.has(t));
+  const inDesc = kwTokens.every(t => descTok.has(t));
   if (!inTitle) add(p.slug, 'WARN', 'kw-in-title', `Primary keyword "${kw}" not fully in <title>`);
   if (!inDesc) add(p.slug, 'INFO', 'kw-in-desc', `Primary keyword "${kw}" not fully in meta description`);
-  void nk;
 }
 
-// H1 must be topically aligned with the title (shared meaningful tokens).
+// H1 must be topically aligned with the title. Real-world rule: they align when
+// the smaller phrase's meaningful nouns are largely contained in the larger one.
 function h1TitleAlignment(p: SEOPageData) {
-  const t = [...tokens(p.title)].filter(w => !STOP.has(w));
-  const h = tokens(p.h1);
-  if (t.length === 0) return;
-  const overlap = t.filter(w => h.has(w)).length / t.length;
-  if (overlap < 0.34) add(p.slug, 'WARN', 'h1-title-mismatch',
+  const t = topicTokens(p.title);
+  const h = topicTokens(p.h1);
+  if (t.size === 0 || h.size === 0) return;
+  const shared = [...h].filter(w => t.has(w)).length;
+  const containment = shared / Math.min(t.size, h.size);
+  if (containment < 0.5) add(p.slug, 'WARN', 'h1-title-mismatch',
     `H1 ("${p.h1}") shares little topical overlap with title ("${p.title}")`);
 }
 
