@@ -24,9 +24,21 @@ const add = (slug: string, sev: Issue['sev'], rule: string, detail: string) =>
   issues.push({ slug, sev, rule, detail });
 
 const words = (s: string) => s.trim().split(/\s+/).filter(Boolean).length;
-const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
-const tokens = (s: string) => new Set(norm(s).split(' ').filter(w => w.length > 3));
+// Diacritic-fold so "café" === "cafe" the way Google treats them.
+const fold = (s: string) => s.normalize('NFKD').replace(/[\u0300-\u036f]/g, '');
+const norm = (s: string) => fold(s).toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
+// Light singular/plural + possessive stemmer so "restaurants" === "restaurant".
+const stem = (w: string) =>
+  w.length > 4 && w.endsWith('ies') ? w.slice(0, -3) + 'y'
+  : w.length > 4 && w.endsWith('es') ? w.slice(0, -2)
+  : w.length > 3 && w.endsWith('s') && !w.endsWith('ss') ? w.slice(0, -1)
+  : w;
+const tokens = (s: string) => new Set(norm(s).split(' ').filter(w => w.length > 3).map(stem));
+// Topic tokens keep 3-letter head nouns (car, bbq, spa) so short keywords match.
+const topicTokens = (s: string) => new Set(norm(s).split(' ').filter(w => w.length >= 3 && !GENERIC.has(w)).map(stem));
 
+// Generic connective/marketing words that carry no topical signal.
+const GENERIC = new Set(['the','and','for','with','your','our','you','from','near','best','top','new','all','out','how','what','where','why','who','can','are','this','that','into','onto','plus','more','get','book','visit','plan','2024','2025','2026','2027']);
 // Stop-y/brand words excluded from "relevance" overlap so we measure topical match.
 const STOP = new Set(['xtsy','best','book','your','with','from','near','2025','2026','travel','guide','stay','shillong','meghalaya']);
 
