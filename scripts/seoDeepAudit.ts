@@ -66,22 +66,26 @@ function pageWordCount(p: SEOPageData): number {
 function keywordRelevance(p: SEOPageData) {
   const kw = (p.keywords?.[0] ?? '').trim();
   if (!kw) { add(p.slug, 'WARN', 'keywords', 'No keywords defined'); return; }
-  const nk = norm(kw);
-  const kwTokens = norm(kw).split(' ').filter(w => w.length > 2);
-  const inTitle = kwTokens.every(t => norm(p.title).includes(t));
-  const inDesc = kwTokens.every(t => norm(p.metaDescription).includes(t));
+  // Match on folded+stemmed tokens so "café/cafe" and "restaurant/restaurants" align,
+  // and "near me" style intent modifiers don't force a verbatim title match.
+  const kwTokens = [...new Set(norm(kw).split(' ').filter(w => w.length > 2 && !GENERIC.has(w)).map(stem))];
+  const titleTok = new Set(norm(p.title).split(' ').map(stem));
+  const descTok = new Set(norm(p.metaDescription).split(' ').map(stem));
+  const inTitle = kwTokens.every(t => titleTok.has(t));
+  const inDesc = kwTokens.every(t => descTok.has(t));
   if (!inTitle) add(p.slug, 'WARN', 'kw-in-title', `Primary keyword "${kw}" not fully in <title>`);
   if (!inDesc) add(p.slug, 'INFO', 'kw-in-desc', `Primary keyword "${kw}" not fully in meta description`);
-  void nk;
 }
 
-// H1 must be topically aligned with the title (shared meaningful tokens).
+// H1 must be topically aligned with the title. Real-world rule: they align when
+// the smaller phrase's meaningful nouns are largely contained in the larger one.
 function h1TitleAlignment(p: SEOPageData) {
-  const t = [...tokens(p.title)].filter(w => !STOP.has(w));
-  const h = tokens(p.h1);
-  if (t.length === 0) return;
-  const overlap = t.filter(w => h.has(w)).length / t.length;
-  if (overlap < 0.34) add(p.slug, 'WARN', 'h1-title-mismatch',
+  const t = topicTokens(p.title);
+  const h = topicTokens(p.h1);
+  if (t.size === 0 || h.size === 0) return;
+  const shared = [...h].filter(w => t.has(w)).length;
+  const containment = shared / Math.min(t.size, h.size);
+  if (containment < 0.5) add(p.slug, 'WARN', 'h1-title-mismatch',
     `H1 ("${p.h1}") shares little topical overlap with title ("${p.title}")`);
 }
 
