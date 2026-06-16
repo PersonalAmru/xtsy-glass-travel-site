@@ -286,8 +286,11 @@ function ensureDescRelevance(p: SEOPageData): SEOPageData {
   if (d.length === 0) return p;
   const overlap = d.filter(w => body.has(w)).length / d.length;
   if (overlap >= 0.25) return p;
-  // Rebuild from the page's own opening sentence — guaranteed on-topic, then top up to length.
-  const lead = (p.intro.split(/(?<=[.!?])\s+/)[0] || p.intro).trim();
+  // Strip the shared brand opener so the rebuilt description is page-specific
+  // (otherwise every rebuilt description would start with the same sentence).
+  const introBody = p.intro.split(BRAND_OPENER).join('').replace(/\s+/g, ' ').trim();
+  const source = introBody || p.intro;
+  const lead = (source.split(/(?<=[.!?])\s+/)[0] || source).trim();
   let next = `${lead} ${p.metaDescription}`.replace(/\s+/g, ' ').trim();
   if (next.length > DESC_MAX) {
     const win = next.slice(0, DESC_MAX);
