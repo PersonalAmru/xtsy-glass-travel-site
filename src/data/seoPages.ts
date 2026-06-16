@@ -830,7 +830,7 @@ const destinationPages: SEOPageData[] = [
     ['shillong', 'shillong meghalaya', 'shillong city guide', 'visit shillong']
   ),
 
-  destination('cherrapunji-guide', 'Cherrapunji (Sohra) — Wettest Place on Earth | Guide', 'Complete Cherrapunji guide. Nohkalikai Falls, Root Bridges, caves. How to reach, where to stay, what to see. Day trip from Shillong.', 'Cherrapunji (Sohra) — Where Rain Meets Wonder', 'Cherrapunji, now officially known as Sohra, is famous as one of the wettest places on Earth. Home to India\'s tallest waterfall and ancient living root bridges.',
+  destination('cherrapunji-guide', 'Cherrapunji (Sohra) — Wettest Place on Earth | Guide', 'Complete Cherrapunji guide. Nohkalikai Falls, Root Bridges, caves. How to reach, where to stay, what to see. Day trip from Shillong.', 'Cherrapunji (Sohra) — Wettest Place on Earth', 'Cherrapunji, now officially known as Sohra, is famous as one of the wettest places on Earth. Home to India\'s tallest waterfall and ancient living root bridges.',
     [
       { heading: 'Key Attractions', content: 'Top places in Cherrapunji:', listItems: ['Nohkalikai Falls — 340m, India\'s tallest plunge waterfall', 'Double Decker Root Bridge — Nongriat trek', 'Mawsmai Cave — Walk-through limestone cave', 'Seven Sisters Falls — Seasonal waterfall', 'Eco Park — Canyon viewpoints', 'Arwah Cave — Ancient fossil cave'] },
     ],
@@ -841,7 +841,7 @@ const destinationPages: SEOPageData[] = [
     ['cherrapunji', 'sohra meghalaya', 'cherrapunjee guide', 'wettest place earth']
   ),
 
-  destination('dawki-guide', 'Dawki — Crystal Clear Umngot River | Travel Guide', 'Dawki travel guide. Crystal-clear Umngot River boating, Shnongpdeng, India-Bangladesh border. How to reach, best time, costs.', 'Dawki — Home of India\'s Clearest River', 'Dawki is a small border town in Meghalaya famous for the Umngot River, whose crystal-clear water makes boats appear to float in mid-air. A must-visit destination for every Meghalaya traveler.',
+  destination('dawki-guide', 'Dawki — Crystal Clear Umngot River | Travel Guide', 'Dawki travel guide. Crystal-clear Umngot River boating, Shnongpdeng, India-Bangladesh border. How to reach, best time, costs.', 'Dawki — Crystal-Clear Umngot River', 'Dawki is a small border town in Meghalaya famous for the Umngot River, whose crystal-clear water makes boats appear to float in mid-air. A must-visit destination for every Meghalaya traveler.',
     [
       { heading: 'What to Do in Dawki', content: 'Dawki experiences:', listItems: ['Boat ride on Umngot River (₹800-1,200)', 'Visit India-Bangladesh border', 'Shnongpdeng adventure sports', 'Photography — boats floating on clear water', 'Riverside camping'] },
     ],
@@ -1174,9 +1174,42 @@ const enforceBrandFacts = (pages: SEOPageData[]): SEOPageData[] => {
   });
 };
 
-export const ALL_SEO_PAGES: SEOPageData[] = enforceBrandFacts(
-  applySEOOverrides(filterHighQualityPages(RAW_SEO_PAGES))
-).map(normalizeSEOPage);
+// Registry-level H1 de-duplication. Two pages occasionally resolve to the
+// same H1 (e.g. a destination page and its "-guide" variant). Identical H1s
+// across URLs dilute topical signals, so any later duplicate is given a
+// slug-derived qualifier that keeps it human-readable and on-topic.
+const dedupeH1 = (pages: SEOPageData[]): SEOPageData[] => {
+  const seen = new Map<string, number>();
+  const norm = (s: string) => (s || '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+  const titleCase = (s: string) => s.replace(/\b\w/g, c => c.toUpperCase());
+  // A short qualifier inferred from the slug tail so duplicates read naturally.
+  const qualifierFrom = (slug: string): string => {
+    const tail = slug.split('-');
+    if (tail.includes('guide')) return 'Visitor Guide';
+    if (tail.includes('meghalaya')) return 'Meghalaya';
+    if (tail.includes('shillong')) return 'Shillong';
+    if (tail.includes('cherrapunji') || tail.includes('sohra')) return 'Cherrapunji';
+    if (tail.includes('village')) return 'Village Guide';
+    if (tail.includes('falls')) return 'Falls Guide';
+    return titleCase(tail.slice(-2).join(' '));
+  };
+  return pages.map(p => {
+    const key = norm(p.h1);
+    if (!key) return p;
+    const count = seen.get(key) ?? 0;
+    seen.set(key, count + 1);
+    if (count === 0) return p; // first occurrence keeps its H1
+    const q = qualifierFrom(p.slug);
+    const h1 = p.h1.includes(`(${q})`) ? p.h1 : `${p.h1} (${q})`;
+    return { ...p, h1 };
+  });
+};
+
+export const ALL_SEO_PAGES: SEOPageData[] = dedupeH1(
+  enforceBrandFacts(
+    applySEOOverrides(filterHighQualityPages(RAW_SEO_PAGES))
+  ).map(normalizeSEOPage)
+);
 export const RAW_SEO_PAGES_COUNT = RAW_SEO_PAGES.length;
 
 // Helper to find a page by slug
