@@ -18,7 +18,7 @@
  * fires when a field is actually under its threshold.
  */
 import type { SEOPageData, SEOPageCategory, SEOSection, SEOFaq } from './seoPages';
-import { BRAND } from './brandFacts';
+import { BRAND, BRAND_OPENER } from './brandFacts';
 
 const TITLE_MIN = 30;
 const TITLE_MAX = 60;
