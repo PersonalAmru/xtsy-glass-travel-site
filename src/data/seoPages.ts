@@ -830,7 +830,7 @@ const destinationPages: SEOPageData[] = [
     ['shillong', 'shillong meghalaya', 'shillong city guide', 'visit shillong']
   ),
 
-  destination('cherrapunji-guide', 'Cherrapunji (Sohra) — Wettest Place on Earth | Guide', 'Complete Cherrapunji guide. Nohkalikai Falls, Root Bridges, caves. How to reach, where to stay, what to see. Day trip from Shillong.', 'Cherrapunji (Sohra) — Where Rain Meets Wonder', 'Cherrapunji, now officially known as Sohra, is famous as one of the wettest places on Earth. Home to India\'s tallest waterfall and ancient living root bridges.',
+  destination('cherrapunji-guide', 'Cherrapunji (Sohra) — Wettest Place on Earth | Guide', 'Complete Cherrapunji guide. Nohkalikai Falls, Root Bridges, caves. How to reach, where to stay, what to see. Day trip from Shillong.', 'Cherrapunji (Sohra) — Wettest Place on Earth', 'Cherrapunji, now officially known as Sohra, is famous as one of the wettest places on Earth. Home to India\'s tallest waterfall and ancient living root bridges.',
     [
       { heading: 'Key Attractions', content: 'Top places in Cherrapunji:', listItems: ['Nohkalikai Falls — 340m, India\'s tallest plunge waterfall', 'Double Decker Root Bridge — Nongriat trek', 'Mawsmai Cave — Walk-through limestone cave', 'Seven Sisters Falls — Seasonal waterfall', 'Eco Park — Canyon viewpoints', 'Arwah Cave — Ancient fossil cave'] },
     ],
