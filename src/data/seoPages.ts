@@ -841,7 +841,7 @@ const destinationPages: SEOPageData[] = [
     ['cherrapunji', 'sohra meghalaya', 'cherrapunjee guide', 'wettest place earth']
   ),
 
-  destination('dawki-guide', 'Dawki — Crystal Clear Umngot River | Travel Guide', 'Dawki travel guide. Crystal-clear Umngot River boating, Shnongpdeng, India-Bangladesh border. How to reach, best time, costs.', 'Dawki — Home of India\'s Clearest River', 'Dawki is a small border town in Meghalaya famous for the Umngot River, whose crystal-clear water makes boats appear to float in mid-air. A must-visit destination for every Meghalaya traveler.',
+  destination('dawki-guide', 'Dawki — Crystal Clear Umngot River | Travel Guide', 'Dawki travel guide. Crystal-clear Umngot River boating, Shnongpdeng, India-Bangladesh border. How to reach, best time, costs.', 'Dawki — Crystal-Clear Umngot River', 'Dawki is a small border town in Meghalaya famous for the Umngot River, whose crystal-clear water makes boats appear to float in mid-air. A must-visit destination for every Meghalaya traveler.',
     [
       { heading: 'What to Do in Dawki', content: 'Dawki experiences:', listItems: ['Boat ride on Umngot River (₹800-1,200)', 'Visit India-Bangladesh border', 'Shnongpdeng adventure sports', 'Photography — boats floating on clear water', 'Riverside camping'] },
     ],
