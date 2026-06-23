@@ -110,8 +110,8 @@ const BestHostelShillong = memo(() => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Best Hostel in Shillong — Dorms from ₹329/night (Cheaper than OYO) | XTSY</title>
-        <meta name="description" content="XTSY is the best hostel in Shillong, Meghalaya. India's biggest hostel with budget dorms from ₹329, private rooms, 270° glass suite. 4.8★ rated. Book direct for best price." />
+        <title>Best Hostel in Shillong — Dorms from ₹329/night | XTSY</title>
+        <meta name="description" content="XTSY is the best hostel in Shillong, Meghalaya — India's biggest, with budget dorms from ₹329, private rooms & a 270° glass suite. 4.8★ rated." />
         <meta name="keywords" content="best hostel in Shillong, hostel in Shillong, budget hostel Shillong, backpacker hostel Meghalaya, cheap hostel Shillong, dorm bed Shillong, hostel near Shillong, budget stay Shillong, Shillong accommodation budget" />
         <link rel="canonical" href="https://xtsy.one/best-hostel-in-shillong" />
         <meta property="og:title" content="Best Hostel in Shillong — XTSY | Dorms from ₹329" />
