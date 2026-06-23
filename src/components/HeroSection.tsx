@@ -269,7 +269,7 @@ const HeroSection = () => {
                 <div className={cn("text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r bg-clip-text text-transparent", stat.gradient)}>
                   {stat.value}
                 </div>
-                <div className="text-xs sm:text-sm text-white/50 mt-1">{stat.label}</div>
+                <div className="text-xs sm:text-sm text-white/70 mt-1">{stat.label}</div>
               </div>
             ))}
           </div>
