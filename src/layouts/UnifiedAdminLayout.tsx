@@ -40,6 +40,7 @@ import {
   Shield,
   Search,
   Inbox,
+  Target,
 } from 'lucide-react';
 
 interface UnifiedAdminLayoutProps {
