@@ -251,7 +251,7 @@ const HeroSection = () => {
           />
           
           {/* Trust microcopy */}
-          <div className="flex flex-wrap items-center justify-center gap-4 mt-4 text-white/40 text-xs">
+          <div className="flex flex-wrap items-center justify-center gap-4 mt-4 text-white/70 text-xs">
             <span className="flex items-center gap-1.5">✓ Best price guaranteed</span>
             <span className="flex items-center gap-1.5">✓ Free WiFi</span>
             <span className="flex items-center gap-1.5">✓ Travel desk</span>
