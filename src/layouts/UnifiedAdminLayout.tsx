@@ -40,6 +40,7 @@ import {
   Shield,
   Search,
   Inbox,
+  Target,
 } from 'lucide-react';
 
 interface UnifiedAdminLayoutProps {
@@ -55,6 +56,8 @@ const menuItems = [
   { id: 'inventory', label: 'Inventory', icon: Package, path: '/admin/inventory' },
   { id: 'analytics', label: 'Analytics', icon: BarChart3, path: '/admin/analytics' },
   { id: 'search', label: 'Search Console', icon: Search, path: '/admin/analytics/search' },
+  { id: 'seo-workflow', label: 'SEO Workflow', icon: Sparkles, path: '/admin/seo/workflow' },
+  { id: 'seo-competitors', label: 'Competitor Analysis', icon: Target, path: '/admin/seo/competitors' },
 ];
 
 export function UnifiedAdminLayout({ children }: UnifiedAdminLayoutProps) {

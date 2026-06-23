@@ -1,3 +1,6 @@
 project_id = "kzhsxemkntfwsakhkylt"
 [functions.process-email-queue]
 verify_jwt = true
+
+[functions.semrush-seo-intel]
+verify_jwt = true
