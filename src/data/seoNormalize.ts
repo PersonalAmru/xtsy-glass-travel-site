@@ -312,6 +312,48 @@ function ensureH1Alignment(p: SEOPageData): SEOPageData {
   return p;
 }
 
+// Proper nouns we re-capitalize when surfacing a keyword phrase in copy.
+const PROPER_X = new Set([
+  'shillong','meghalaya','guwahati','cherrapunji','sohra','dawki','northeast',
+  'india','khasi','thai','italian','chinese','indo','tandoor','xtsy',
+]);
+/** Cosmetically case a lowercase keyword phrase for use as a sentence lead. */
+function caseKeyword(kw: string): string {
+  return kw
+    .split(/\s+/)
+    .map((w, i) => {
+      const lw = w.toLowerCase();
+      if (i === 0 || PROPER_X.has(lw)) return w.charAt(0).toUpperCase() + w.slice(1);
+      return w;
+    })
+    .join(' ')
+    .trim();
+}
+
+/**
+ * Ensure every meaningful token of the primary keyword appears in the meta
+ * description (the audit's `kw-in-desc` check). Runs AFTER ensurePrimaryKeyword
+ * so it uses the final keywords[0]. When tokens are missing we prepend the
+ * keyword phrase as a natural lead — placed at the START so it survives the
+ * ≤160-char clamp (which only trims from the end).
+ */
+function ensureKeywordInDesc(p: SEOPageData): SEOPageData {
+  const kw = (p.keywords?.[0] ?? '').trim();
+  if (!kw) return p;
+  const need = kwTok(kw);
+  if (need.length === 0) return p;
+  const descTok = new Set(normX(p.metaDescription).split(' ').map(stemX));
+  if (need.every(t => descTok.has(t))) return p;
+  const lead = caseKeyword(kw);
+  let next = `${lead}: ${p.metaDescription}`.replace(/\s+/g, ' ').trim();
+  if (next.length > DESC_MAX) {
+    const win = next.slice(0, DESC_MAX);
+    const stop = Math.max(win.lastIndexOf('. '), win.lastIndexOf('! '), win.lastIndexOf('? '));
+    next = stop >= DESC_MIN ? win.slice(0, stop + 1).trim() : win.slice(0, win.lastIndexOf(' ')).trim();
+  }
+  return { ...p, metaDescription: next };
+}
+
 /** Apply all normalizations. Safe to compose after enforceBrandFacts. */
 export function normalizeSEOPage(p: SEOPageData): SEOPageData {
   let out = enrichThin(p);
@@ -323,5 +365,6 @@ export function normalizeSEOPage(p: SEOPageData): SEOPageData {
   out = ensureH1Alignment(out);
   out = ensureDescRelevance(out);
   out = ensurePrimaryKeyword(out);
+  out = ensureKeywordInDesc(out);
   return out;
 }
