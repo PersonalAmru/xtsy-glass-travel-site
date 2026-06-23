@@ -251,7 +251,7 @@ const HeroSection = () => {
           />
           
           {/* Trust microcopy */}
-          <div className="flex flex-wrap items-center justify-center gap-4 mt-4 text-white/40 text-xs">
+          <div className="flex flex-wrap items-center justify-center gap-4 mt-4 text-white/70 text-xs">
             <span className="flex items-center gap-1.5">✓ Best price guaranteed</span>
             <span className="flex items-center gap-1.5">✓ Free WiFi</span>
             <span className="flex items-center gap-1.5">✓ Travel desk</span>
@@ -269,7 +269,7 @@ const HeroSection = () => {
                 <div className={cn("text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r bg-clip-text text-transparent", stat.gradient)}>
                   {stat.value}
                 </div>
-                <div className="text-xs sm:text-sm text-white/50 mt-1">{stat.label}</div>
+                <div className="text-xs sm:text-sm text-white/70 mt-1">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -277,7 +277,7 @@ const HeroSection = () => {
           {/* Scroll indicator */}
           <button
             onClick={scrollToContent}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/40 hover:text-white/70 transition-colors animate-bounce"
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70 hover:text-white transition-colors animate-bounce"
             aria-label="Scroll to content"
           >
             <ChevronDown className="w-6 h-6" />

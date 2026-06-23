@@ -248,6 +248,26 @@ export const meghalayaDestinations: MeghalayaDestination[] = [
     thingsToDo: ['Viewpoint photography', 'Learn the local legend', 'Visit nearby Nohsngithiang Falls'],
     nearbyAttractions: ['Mawsmai Cave', 'Seven Sisters Falls', 'Eco Park Sohra'],
     featured: true,
+    deepDive: [
+      {
+        heading: 'The Legend of Nohkalikai: The Story of Ka Likai',
+        body: 'Nohkalikai owes its name to one of the most heartbreaking stories in Khasi folklore — the legend of Ka Likai. "Noh-Ka-Likai" translates roughly as "the leap of Ka Likai," and to understand the falls is to understand her grief.\n\nKa Likai was a young woman who lived in the village of Rangjyrteh, above the falls, in the days when Sohra (Cherrapunji) was a cluster of small hill hamlets. Widowed soon after the birth of her daughter, she supported the two of them alone, working as a porter carrying iron and goods along the steep trade paths. To ease her hardship she eventually remarried, hoping her new husband would help raise the child.\n\nBut the husband grew bitterly jealous of the love and attention Ka Likai gave her daughter. One day, while Ka Likai was away at work, he killed the child and cooked the body, leaving a prepared meal behind. Returning home exhausted and hungry, and finding her daughter missing, she ate — and only afterwards discovered, among the remains, her daughter\'s fingers in the betel-nut basket. The truth struck her like a thunderclap.',
+      },
+      {
+        heading: 'Why the Story Still Echoes Here',
+        body: 'Maddened by horror and guilt, Ka Likai ran from the village and flung herself off the cliff beside the waterfall. The Khasi people named the cascade in her memory, so that her story would never be forgotten — and so that the falls themselves would stand as a memorial to a mother\'s love and loss.\n\nThe legend is far more than a ghost story. For the Khasi, a matrilineal people, it speaks to the sacred bond between mother and child and the catastrophe of breaking it. It is also a reminder of how completely the people of Meghalaya weave meaning into their landscape: almost every great waterfall, cave and peak here carries a name and a narrative. Standing at the viewpoint, watching India\'s tallest plunge waterfall fall 1,115 feet into its turquoise pool, the tale lends the silence a weight that pure scenery never could.\n\nLocal guides at the viewpoint still recount the legend, and hearing it told on the spot — with the cliff and the pool in view — is the single most memorable way to experience Nohkalikai.',
+      },
+    ],
+    extraFaqs: [
+      {
+        q: 'What is the legend behind Nohkalikai Falls?',
+        a: 'The falls are named after Ka Likai, a widowed mother from the village of Rangjyrteh. Her jealous second husband killed her daughter while she was away working. Unaware, Ka Likai returned and ate a meal he had prepared, only to discover the child\'s remains afterwards. Overcome with grief, she leapt from the cliff beside the waterfall, and the Khasi people named it "Noh-Ka-Likai" — "the leap of Ka Likai" — in her memory.',
+      },
+      {
+        q: 'Why is the legend of Ka Likai important to Khasi culture?',
+        a: 'The Khasi are a matrilineal society where the bond between mother and child is sacred, so the tragedy of Ka Likai resonates deeply. The story also reflects how the Khasi attach legends and meaning to natural landmarks across Meghalaya — nearly every major waterfall, cave and peak carries its own narrative passed down through generations.',
+      },
+    ],
   },
   {
     name: 'Double Decker Living Root Bridge',
