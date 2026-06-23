@@ -277,7 +277,7 @@ const HeroSection = () => {
           {/* Scroll indicator */}
           <button
             onClick={scrollToContent}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/40 hover:text-white/70 transition-colors animate-bounce"
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70 hover:text-white transition-colors animate-bounce"
             aria-label="Scroll to content"
           >
             <ChevronDown className="w-6 h-6" />
