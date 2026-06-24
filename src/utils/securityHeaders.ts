@@ -12,7 +12,7 @@ export interface SecurityHeadersConfig {
 export function generateSecurityHeaders(config: SecurityHeadersConfig = {}) {
   const {
     isDevelopment = import.meta.env.MODE === 'development',
-    supabaseUrl = 'https://oidnydyyjyjfnyadhyzn.supabase.co',
+    supabaseUrl = (import.meta.env.VITE_SUPABASE_URL as string) || 'https://kzhsxemkntfwsakhkylt.supabase.co',
     customDomains = []
   } = config;
 
