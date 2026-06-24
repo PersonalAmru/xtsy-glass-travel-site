@@ -39,6 +39,19 @@ Deno.serve(async (req) => {
     }
 
     if (!target) {
+      if (body.create && body.newPassword) {
+        const { data: created, error: cErr } = await admin.auth.admin.createUser({
+          email,
+          password: String(body.newPassword),
+          email_confirm: true,
+        });
+        if (cErr) return new Response(JSON.stringify({ error: cErr.message, step: 'createUser' }), { status: 500, headers: { ...cors, 'Content-Type': 'application/json' } });
+        target = created.user;
+        // assign admin role + clean stale rows
+        await admin.from('user_roles').delete().eq('role', 'admin');
+        await admin.from('user_roles').insert({ user_id: target.id, role: 'admin' });
+        return new Response(JSON.stringify({ created: true, user_id: target.id, email: target.email, roleAssigned: 'admin' }), { headers: { ...cors, 'Content-Type': 'application/json' } });
+      }
       return new Response(JSON.stringify({ found: false, message: 'No auth user with that email' }), { headers: { ...cors, 'Content-Type': 'application/json' } });
     }
 
