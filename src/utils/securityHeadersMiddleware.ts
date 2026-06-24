@@ -17,7 +17,7 @@ export interface SecurityConfig {
 export function generateProductionSecurityHeaders(config: SecurityConfig = {}) {
   const {
     isDevelopment = import.meta.env.MODE === 'development',
-    supabaseUrl = 'https://oidnydyyjyjfnyadhyzn.supabase.co',
+    supabaseUrl = (import.meta.env.VITE_SUPABASE_URL as string) || 'https://kzhsxemkntfwsakhkylt.supabase.co',
     customDomains = [],
     enableHSTS = !isDevelopment,
     reportViolations = true
