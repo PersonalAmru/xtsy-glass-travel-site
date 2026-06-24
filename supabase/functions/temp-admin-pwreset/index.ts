@@ -21,6 +21,12 @@ Deno.serve(async (req) => {
     const email = String(body.email || '').toLowerCase().trim();
     const admin = createClient(url, serviceKey, { auth: { autoRefreshToken: false, persistSession: false } });
 
+    if (body.list) {
+      const { data, error } = await admin.auth.admin.listUsers({ page: 1, perPage: 200 });
+      if (error) return new Response(JSON.stringify({ error: error.message }), { status: 500, headers: { ...cors, 'Content-Type': 'application/json' } });
+      return new Response(JSON.stringify({ count: data.users.length, users: data.users.map((u) => ({ id: u.id, email: u.email, confirmed: !!u.email_confirmed_at })) }), { headers: { ...cors, 'Content-Type': 'application/json' } });
+    }
+
     // Find user by paging through users
     let target: any = null;
     let page = 1;
