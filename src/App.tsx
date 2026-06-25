@@ -122,6 +122,7 @@ const DestinationDetail = createLazyComponent(() => import("./pages/destinations
 const CategoryPage = createLazyComponent(() => import("./pages/destinations/CategoryPage"));
 const MeghalayaTourPackages = createLazyComponent(() => import("./pages/destinations/MeghalayaTourPackages"));
 const MeghalayaCoupleTourPackage = createLazyComponent(() => import("./pages/destinations/MeghalayaCoupleTourPackage"));
+const GroupBookingsMeghalaya = createLazyComponent(() => import("./pages/GroupBookingsMeghalaya"));
 const ShillongTourPackage = createLazyComponent(() => import("./pages/destinations/ShillongTourPackage"));
 const BlogBestTimeToVisit = createLazyComponent(() => import("./pages/destinations/BlogBestTimeToVisit"));
 const BlogHiddenPlaces = createLazyComponent(() => import("./pages/destinations/BlogHiddenPlaces"));
@@ -383,6 +384,7 @@ function App() {
                 <Route path="/meghalaya-villages" element={<LazyRoute><CategoryPage /></LazyRoute>} />
                 <Route path="/meghalaya-viewpoints" element={<LazyRoute><CategoryPage /></LazyRoute>} />
                 <Route path="/meghalaya-tour-packages" element={<LazyRoute><MeghalayaTourPackages /></LazyRoute>} />
+                <Route path="/group-bookings-meghalaya" element={<LazyRoute><GroupBookingsMeghalaya /></LazyRoute>} />
                 <Route path="/meghalaya-couple-tour-package" element={<LazyRoute><MeghalayaCoupleTourPackage /></LazyRoute>} />
                 <Route path="/shillong-tour-package" element={<LazyRoute><ShillongTourPackage /></LazyRoute>} />
                 <Route path="/best-time-to-visit-meghalaya" element={<LazyRoute><BlogBestTimeToVisit /></LazyRoute>} />
