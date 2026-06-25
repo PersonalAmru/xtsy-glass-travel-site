@@ -56,6 +56,7 @@ const STATIC_ROUTES: { path: string; priority: string; changefreq: string; lastm
   { path: '/restaurant-in-shillong', priority: '0.7', changefreq: 'weekly', lastmod: TODAY },
   { path: '/things-to-do-in-meghalaya', priority: '0.9', changefreq: 'weekly', lastmod: TODAY },
   { path: '/meghalaya-tour-packages', priority: '0.9', changefreq: 'weekly', lastmod: TODAY },
+  { path: '/group-bookings-meghalaya', priority: '0.9', changefreq: 'weekly', lastmod: TODAY },
   { path: '/meghalaya-couple-tour-package', priority: '0.8', changefreq: 'weekly', lastmod: TODAY },
   { path: '/shillong-tour-package', priority: '0.8', changefreq: 'weekly', lastmod: TODAY },
   { path: '/meghalaya-photo-gallery', priority: '0.7', changefreq: 'weekly', lastmod: TODAY },
@@ -109,7 +110,7 @@ async function main() {
       sitemapGroups.destinations.push(page);
     } else if (['travel-guides', 'itineraries', 'seasonal', 'events'].includes(cat)) {
       sitemapGroups.guides.push(page);
-    } else if (['tours', 'activities'].includes(cat)) {
+    } else if (['tours', 'activities', 'group-tours', 'corporate', 'themed-trips', 'road-bike-trips'].includes(cat)) {
       sitemapGroups.tours.push(page);
     } else if (['hostels', 'hotels', 'homestays', 'glamping', 'accommodation', 'hospitals', 'weddings'].includes(cat)) {
       sitemapGroups.hostel.push(page);

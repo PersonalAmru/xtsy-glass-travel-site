@@ -523,6 +523,23 @@ const ProgrammaticSEOPage = () => {
             </nav>
           )}
 
+          {/* Group-booking hub callout — funnels group/corporate intent to the conversion hub */}
+          {(page.category === 'group-tours' || page.category === 'corporate') && (
+            <aside className="mt-8 rounded-xl border border-primary/30 bg-primary/5 p-6">
+              <h2 className="text-lg font-semibold text-foreground">Planning for a whole group?</h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                See group tour packages, corporate offsites, whole-dorm stays and group catering — all in one place — and get a per-person quote within an hour.
+              </p>
+              <Link
+                to="/group-bookings-meghalaya"
+                className="mt-4 inline-flex items-center rounded-lg bg-primary px-5 py-3 text-sm font-medium text-primary-foreground hover:opacity-90"
+              >
+                Explore Meghalaya Group Bookings →
+              </Link>
+            </aside>
+          )}
+
+
           {/* Related Pages */}
           {related.length > 0 && (
             <nav className="mt-8 border-t border-border pt-8">

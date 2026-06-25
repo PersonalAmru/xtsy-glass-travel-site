@@ -35,6 +35,7 @@ export const STATIC_ROUTES: ReadonlyArray<string> = [
   '/meghalaya-villages',
   '/meghalaya-viewpoints',
   '/meghalaya-tour-packages',
+  '/group-bookings-meghalaya',
   '/meghalaya-couple-tour-package',
   '/shillong-tour-package',
   '/best-time-to-visit-meghalaya',
