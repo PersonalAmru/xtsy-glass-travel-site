@@ -155,6 +155,7 @@ const AdminSEOPriority = createLazyComponent(() => import("./pages/admin/AdminSE
 const AdminSEOHeroManager = createLazyComponent(() => import("./pages/admin/AdminSEOHeroManager"));
 const AdminSEOWorkflow = createLazyComponent(() => import("./pages/admin/AdminSEOWorkflow"));
 const AdminCompetitorAnalysis = createLazyComponent(() => import("./pages/admin/AdminCompetitorAnalysis"));
+const AdminSEOPositionTracking = createLazyComponent(() => import("./pages/admin/AdminSEOPositionTracking"));
 
 // Redirect /travel → /tours (fixes keyword cannibalization)
 const TravelRedirect = () => <Navigate to="/tours" replace />;
