@@ -349,6 +349,18 @@ Deno.serve(async (req) => {
       });
     }
 
+    if (action === 'position-capture') {
+      // Service-role client to write snapshots (RLS lets only admins read).
+      const supabaseService = createClient(
+        supabaseUrl,
+        Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,
+      );
+      const data = await capturePositions(database, supabaseService);
+      return new Response(JSON.stringify(data), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
     return new Response(JSON.stringify({ error: `Unknown action: ${action}` }), {
       status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
