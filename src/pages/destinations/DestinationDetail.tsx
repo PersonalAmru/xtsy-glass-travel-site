@@ -380,8 +380,11 @@ const HeroSlideshow = ({ images, destination }: { images: { src: string; alt: st
           { label: destination.name },
         ]} />
         <h1 className="mt-3 text-3xl md:text-5xl font-bold text-foreground">
-          {destination.name} Travel Guide
+          {destination.name}
         </h1>
+        <p className="mt-1 text-base md:text-lg font-medium text-muted-foreground">
+          Meghalaya Travel Guide · Updated June 2026
+        </p>
         <div className="mt-2 flex items-center gap-2 text-muted-foreground">
           <MapPin className="h-4 w-4" />
           <span>{destination.region}, Meghalaya</span>
