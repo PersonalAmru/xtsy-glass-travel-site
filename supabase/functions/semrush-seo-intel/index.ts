@@ -21,7 +21,11 @@ interface Parsed {
   rows: Row[];
 }
 
-async function semrush(path: string, params: Record<string, string>): Promise<Parsed> {
+async function semrush(
+  path: string,
+  params: Record<string, string>,
+  extraHeaders: Record<string, string> = {},
+): Promise<Parsed> {
   const lovableKey = Deno.env.get('LOVABLE_API_KEY');
   const semrushKey = Deno.env.get('SEMRUSH_API_KEY');
   if (!lovableKey || !semrushKey) {
@@ -32,6 +36,7 @@ async function semrush(path: string, params: Record<string, string>): Promise<Pa
     headers: {
       'Authorization': `Bearer ${lovableKey}`,
       'X-Connection-Api-Key': semrushKey,
+      ...extraHeaders,
     },
   });
   const text = await res.text();
