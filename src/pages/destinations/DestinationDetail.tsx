@@ -68,7 +68,7 @@ const DestinationDetail = () => {
     ...(destination.extraFaqs ?? []),
     {
       q: `Where can I stay near ${destination.name}?`,
-      a: `XTSY Travellers Hostel in Shillong is an affordable, well-located base for exploring ${destination.name} and the rest of ${destination.region}, with dorms from ₹329/night and curated Meghalaya tours that cover the region's top sights.`,
+      a: `XTSY Travellers Hostel in Shillong is an affordable, well-located base for exploring ${destination.name} and the rest of ${destination.region}, with dorms from ₹369/night and curated Meghalaya tours that cover the region's top sights.`,
     },
   ];
 
