@@ -4029,6 +4029,57 @@ export type Database = {
         }
         Relationships: []
       }
+      seo_position_snapshots: {
+        Row: {
+          captured_at: string
+          cpc: number | null
+          database: string
+          delta: number | null
+          id: string
+          is_programmatic: boolean
+          is_striking_distance: boolean
+          keyword: string
+          position: number
+          previous_position: number | null
+          run_id: string
+          traffic_pct: number | null
+          url: string | null
+          volume: number | null
+        }
+        Insert: {
+          captured_at?: string
+          cpc?: number | null
+          database?: string
+          delta?: number | null
+          id?: string
+          is_programmatic?: boolean
+          is_striking_distance?: boolean
+          keyword: string
+          position: number
+          previous_position?: number | null
+          run_id: string
+          traffic_pct?: number | null
+          url?: string | null
+          volume?: number | null
+        }
+        Update: {
+          captured_at?: string
+          cpc?: number | null
+          database?: string
+          delta?: number | null
+          id?: string
+          is_programmatic?: boolean
+          is_striking_distance?: boolean
+          keyword?: string
+          position?: number
+          previous_position?: number | null
+          run_id?: string
+          traffic_pct?: number | null
+          url?: string | null
+          volume?: number | null
+        }
+        Relationships: []
+      }
       seo_redirects: {
         Row: {
           created_at: string
