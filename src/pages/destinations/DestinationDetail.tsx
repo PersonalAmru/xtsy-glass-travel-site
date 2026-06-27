@@ -68,7 +68,7 @@ const DestinationDetail = () => {
     ...(destination.extraFaqs ?? []),
     {
       q: `Where can I stay near ${destination.name}?`,
-      a: `XTSY Travellers Hostel in Shillong is an affordable, well-located base for exploring ${destination.name} and the rest of ${destination.region}, with dorms from ₹329/night and curated Meghalaya tours that cover the region's top sights.`,
+      a: `XTSY Travellers Hostel in Shillong is an affordable, well-located base for exploring ${destination.name} and the rest of ${destination.region}, with dorms from ₹369/night and curated Meghalaya tours that cover the region's top sights.`,
     },
   ];
 
@@ -123,6 +123,8 @@ const DestinationDetail = () => {
       url: img.src,
       name: img.alt,
     })),
+    datePublished: '2024-01-15',
+    dateModified: '2026-06-25',
   };
 
   const breadcrumbSchema = {
@@ -135,8 +137,25 @@ const DestinationDetail = () => {
     ],
   };
 
-  const pageTitle = `${destination.name} Travel Guide — Places to Visit in Meghalaya`;
-  const pageDescription = `${destination.shortDescription} Complete guide with photos, how to reach, best time to visit, and travel tips.`;
+  // Freshness signal — informational attraction pages rank better when Google
+  // sees a recent update. Bumped each content refresh.
+  const SEO_YEAR = 2026;
+  const lastUpdated = `June ${SEO_YEAR}`;
+
+  // Keyword-first title: lead with the exact head term (e.g. "Nohkalikai Falls"),
+  // then high-CTR intent modifiers searchers want for an attraction. Adaptive so
+  // long destination names don't blow past the SERP truncation width.
+  const titleModifiers =
+    destination.name.length > 20
+      ? 'Meghalaya Travel Guide'
+      : `Meghalaya — How to Reach, Timings & Photos`;
+  const pageTitle = `${destination.name}, ${titleModifiers}`;
+
+  const rawDescription = `${destination.name}, Meghalaya: ${destination.shortDescription} Best time to visit, how to reach, timings & travel tips — updated ${lastUpdated}.`;
+  const pageDescription =
+    rawDescription.length > 160
+      ? `${rawDescription.slice(0, 157).replace(/\s+\S*$/, '')}…`
+      : rawDescription;
 
   return (
     <div className="min-h-screen bg-background">
@@ -361,8 +380,11 @@ const HeroSlideshow = ({ images, destination }: { images: { src: string; alt: st
           { label: destination.name },
         ]} />
         <h1 className="mt-3 text-3xl md:text-5xl font-bold text-foreground">
-          {destination.name} Travel Guide
+          {destination.name}
         </h1>
+        <p className="mt-1 text-base md:text-lg font-medium text-muted-foreground">
+          Meghalaya Travel Guide · Updated June 2026
+        </p>
         <div className="mt-2 flex items-center gap-2 text-muted-foreground">
           <MapPin className="h-4 w-4" />
           <span>{destination.region}, Meghalaya</span>
