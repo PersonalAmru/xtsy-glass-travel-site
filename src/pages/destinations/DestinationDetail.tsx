@@ -123,6 +123,8 @@ const DestinationDetail = () => {
       url: img.src,
       name: img.alt,
     })),
+    datePublished: '2024-01-15',
+    dateModified: '2026-06-25',
   };
 
   const breadcrumbSchema = {
