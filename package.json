@@ -9,7 +9,7 @@
     "sitemaps:audit": "tsx scripts/sitemapHealthAudit.ts",
     "prebuild": "tsx scripts/generateWorkerSlimMap.ts && npm run sitemaps:rebuild",
     "build": "vite build",
-    "postbuild": "tsx scripts/prerender.ts || echo '⚠️  prerender failed but build artifact is intact — continuing'",
+    "postbuild": "tsx scripts/prerender.ts || echo '\u26a0\ufe0f  prerender failed but build artifact is intact \u2014 continuing'",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -106,5 +106,8 @@
     "typescript-eslint": "^8.0.1",
     "vite": "^5.4.1",
     "vitest": "^4.1.5"
+  },
+  "overrides": {
+    "d3-color": "^3.1.0"
   }
 }
