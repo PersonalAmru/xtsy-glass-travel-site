@@ -156,6 +156,7 @@ const AdminSEOHeroManager = createLazyComponent(() => import("./pages/admin/Admi
 const AdminSEOWorkflow = createLazyComponent(() => import("./pages/admin/AdminSEOWorkflow"));
 const AdminCompetitorAnalysis = createLazyComponent(() => import("./pages/admin/AdminCompetitorAnalysis"));
 const AdminSEOPositionTracking = createLazyComponent(() => import("./pages/admin/AdminSEOPositionTracking"));
+const AdminSecurity = createLazyComponent(() => import("./pages/admin/AdminSecurity"));
 
 // Redirect /travel → /tours (fixes keyword cannibalization)
 const TravelRedirect = () => <Navigate to="/tours" replace />;
@@ -372,6 +373,7 @@ function App() {
                 <Route path="/admin/seo/workflow" element={<LazyRoute><AdminSEOWorkflow /></LazyRoute>} />
                 <Route path="/admin/seo/competitors" element={<LazyRoute><AdminCompetitorAnalysis /></LazyRoute>} />
                 <Route path="/admin/seo/tracking" element={<LazyRoute><AdminSEOPositionTracking /></LazyRoute>} />
+                <Route path="/admin/security" element={<LazyRoute><AdminSecurity /></LazyRoute>} />
                 <Route path="/admin/seo/priority" element={<LazyRoute><AdminSEOPriority /></LazyRoute>} />
                 <Route path="/admin/seo/recovery" element={<LazyRoute><AdminSEORecovery /></LazyRoute>} />
                 <Route path="/admin/seo/gsc-errors" element={<LazyRoute><AdminGSCErrors /></LazyRoute>} />
