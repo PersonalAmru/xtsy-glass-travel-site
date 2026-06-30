@@ -38,7 +38,7 @@ jobs:
     outputs:
       build-cache-key: ${{ steps.cache-key.outputs.key }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v4
         with: { node-version: 20, cache: npm }
       - run: npm ci --prefer-offline --no-audit
@@ -68,7 +68,7 @@ jobs:
     needs: sitemap-diff
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v4
         with: { node-version: 20, cache: npm }
       - run: npm ci --prefer-offline --no-audit
@@ -97,7 +97,7 @@ jobs:
     needs: sitemap-diff
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v4
         with: { node-version: 20, cache: npm }
       - run: npm ci --prefer-offline --no-audit
@@ -129,7 +129,7 @@ jobs:
     needs: sitemap-diff
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v4
         with: { node-version: 20, cache: npm }
       - run: npm ci --prefer-offline --no-audit
@@ -155,7 +155,7 @@ jobs:
       matrix:
         preset: [mobile, desktop]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v4
         with: { node-version: 20, cache: npm }
       - run: npm install -g @lhci/cli@0.14.x
