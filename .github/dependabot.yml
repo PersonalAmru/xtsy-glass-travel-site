@@ -1,0 +1,62 @@
+# Dependabot configuration
+# - Opens PRs for vulnerable + outdated dependencies
+# - Security updates are always raised by GitHub's security-update engine
+#   (driven by GitHub Advisories: high/medium/critical advisories notify the
+#   repo's security contacts and open PRs automatically).
+# Docs: https://docs.github.com/code-security/dependabot
+version: 2
+
+updates:
+  # ---- Application npm dependencies ----
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "06:00"
+      timezone: "Asia/Kolkata"
+    # Cap noise from routine version bumps; security PRs are never capped.
+    open-pull-requests-limit: 10
+    versioning-strategy: "increase"
+    labels:
+      - "dependencies"
+      - "security"
+    commit-message:
+      prefix: "deps"
+      prefix-development: "deps-dev"
+      include: "scope"
+    # Group routine (non-security) updates so the PR list stays readable.
+    # Security updates are intentionally excluded from grouping so each
+    # advisory gets its own reviewable PR.
+    groups:
+      radix-ui:
+        patterns:
+          - "@radix-ui/*"
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "react-router-dom"
+      build-tooling:
+        patterns:
+          - "vite"
+          - "@vitejs/*"
+          - "typescript"
+          - "tsx"
+          - "esbuild"
+    ignore:
+      # Pin React major to avoid breaking the React 18 baseline.
+      - dependency-name: "react"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react-dom"
+        update-types: ["version-update:semver-major"]
+
+  # ---- GitHub Actions used by our CI workflows ----
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "ci"
+      - "security"
+    commit-message:
+      prefix: "ci"

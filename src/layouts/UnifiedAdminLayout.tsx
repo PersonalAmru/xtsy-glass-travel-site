@@ -60,6 +60,7 @@ const menuItems = [
   { id: 'seo-workflow', label: 'SEO Workflow', icon: Sparkles, path: '/admin/seo/workflow' },
   { id: 'seo-competitors', label: 'Competitor Analysis', icon: Target, path: '/admin/seo/competitors' },
   { id: 'seo-tracking', label: 'Position Tracking', icon: LineChart, path: '/admin/seo/tracking' },
+  { id: 'security', label: 'Security', icon: Shield, path: '/admin/security' },
 ];
 
 export function UnifiedAdminLayout({ children }: UnifiedAdminLayoutProps) {
