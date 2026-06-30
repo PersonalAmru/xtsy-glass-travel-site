@@ -48,7 +48,7 @@ jobs:
         run: npx tsx scripts/diffSitemapManifest.ts --strict
       - name: Upload SEO reports
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: seo-reports-${{ github.run_id }}
           path: dist/seo-reports/
@@ -80,7 +80,7 @@ jobs:
         run: npx tsx scripts/postDeploySchemaCheck.ts --base "$BASE_URL" --routes top
       - name: Upload schema report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: post-deploy-schema-${{ github.run_id }}
           path: dist/seo-reports/
@@ -112,7 +112,7 @@ jobs:
         run: npx tsx scripts/seoMetaMonitor.ts --base "$BASE_URL"
       - name: Upload monitor report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: seo-meta-monitor-${{ github.run_id }}
           path: dist/seo-reports/
@@ -186,7 +186,7 @@ jobs:
           lhci autorun --config=.lighthouserc.cjs
       - name: Upload Lighthouse reports
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: lighthouse-${{ matrix.preset }}-${{ github.run_id }}
           path: .lighthouseci/
