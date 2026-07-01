@@ -10,6 +10,7 @@
  */
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 import { getCorsHeaders } from '../_shared/cors.ts';
+import { capturePositions } from '../_shared/semrushPositions.ts';
 
 const GATEWAY = 'https://connector-gateway.lovable.dev/semrush';
 const OUR_DOMAIN = 'xtsy.one';
