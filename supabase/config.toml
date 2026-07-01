@@ -4,3 +4,6 @@ verify_jwt = true
 
 [functions.semrush-seo-intel]
 verify_jwt = true
+
+[functions.seo-position-cron]
+verify_jwt = false
