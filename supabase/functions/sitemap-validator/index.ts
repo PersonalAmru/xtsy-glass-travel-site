@@ -76,7 +76,7 @@ const validateSitemap = async (url: string): Promise<ValidationResult> => {
     // Crawlability: fetch robots.txt, check sitemap not disallowed
     try {
       const origin = new URL(url).origin;
-      const robotsRes = await fetch(`${origin}/robots.txt`);
+      const robotsRes = await fetch(`${origin}/robots.txt`, { signal: AbortSignal.timeout(FETCH_TIMEOUT_MS) });
       if (robotsRes.ok) {
         const robots = await robotsRes.text();
         result.is_crawlable = !robots.match(/Disallow:\s*\/sitemap/i);
