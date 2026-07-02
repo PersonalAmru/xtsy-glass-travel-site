@@ -51,7 +51,10 @@ const validateSitemap = async (url: string): Promise<ValidationResult> => {
 
   const start = Date.now();
   try {
-    const res = await fetch(url, { headers: { 'User-Agent': 'XTSY-Sitemap-Validator/1.0' } });
+    const res = await fetch(url, {
+      headers: { 'User-Agent': 'XTSY-Sitemap-Validator/1.0' },
+      signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+    });
     result.response_time_ms = Date.now() - start;
     result.http_status = res.status;
     if (!res.ok) {
