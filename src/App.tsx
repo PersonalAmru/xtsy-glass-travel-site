@@ -374,6 +374,7 @@ function App() {
                 <Route path="/admin/seo/workflow" element={<LazyRoute><AdminSEOWorkflow /></LazyRoute>} />
                 <Route path="/admin/seo/competitors" element={<LazyRoute><AdminCompetitorAnalysis /></LazyRoute>} />
                 <Route path="/admin/seo/tracking" element={<LazyRoute><AdminSEOPositionTracking /></LazyRoute>} />
+                <Route path="/admin/seo/funnel" element={<LazyRoute><AdminDestinationFunnel /></LazyRoute>} />
                 <Route path="/admin/security" element={<LazyRoute><AdminSecurity /></LazyRoute>} />
                 <Route path="/admin/seo/priority" element={<LazyRoute><AdminSEOPriority /></LazyRoute>} />
                 <Route path="/admin/seo/recovery" element={<LazyRoute><AdminSEORecovery /></LazyRoute>} />
