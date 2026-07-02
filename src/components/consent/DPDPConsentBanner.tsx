@@ -69,23 +69,21 @@ export function DPDPConsentBanner() {
       timestamp: new Date().toISOString(),
     }));
 
-    // Save to database for compliance
+    // Save to database for compliance via a validated server-side function.
+    // Direct client inserts are no longer permitted; the edge function captures
+    // the IP server-side and validates consent fields before writing.
     try {
-      const consentTypes = Object.entries(consentData).filter(([_, value]) => typeof value === 'boolean');
-      
-      for (const [type, granted] of consentTypes) {
-        await supabase.from('dpdp_consents').upsert({
+      const consents = Object.entries(consentData)
+        .filter(([_, value]) => typeof value === 'boolean')
+        .map(([type, granted]) => ({ consent_type: type, granted: granted as boolean }));
+
+      await supabase.functions.invoke('record-consent', {
+        body: {
           visitor_id: visitorId,
-          consent_type: type,
-          granted,
-          granted_at: granted ? new Date().toISOString() : null,
           consent_version: CONSENT_VERSION,
-          ip_address: null, // Would be captured server-side
-          user_agent: navigator.userAgent,
-        }, {
-          onConflict: 'visitor_id,consent_type'
-        });
-      }
+          consents,
+        },
+      });
     } catch (error) {
       console.error('Failed to save consent to database:', error);
     }
