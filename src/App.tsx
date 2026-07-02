@@ -156,6 +156,7 @@ const AdminSEOHeroManager = createLazyComponent(() => import("./pages/admin/Admi
 const AdminSEOWorkflow = createLazyComponent(() => import("./pages/admin/AdminSEOWorkflow"));
 const AdminCompetitorAnalysis = createLazyComponent(() => import("./pages/admin/AdminCompetitorAnalysis"));
 const AdminSEOPositionTracking = createLazyComponent(() => import("./pages/admin/AdminSEOPositionTracking"));
+const AdminDestinationFunnel = createLazyComponent(() => import("./pages/admin/AdminDestinationFunnel"));
 const AdminSecurity = createLazyComponent(() => import("./pages/admin/AdminSecurity"));
 
 // Redirect /travel → /tours (fixes keyword cannibalization)
