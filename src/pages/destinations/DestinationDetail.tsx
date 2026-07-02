@@ -11,8 +11,9 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import DestinationGallery from '@/components/destinations/DestinationGallery';
 import { useValidatedImages } from '@/hooks/useValidatedImages';
 import DestinationCard from '@/components/destinations/DestinationCard';
-import { MapPin, Calendar, Navigation, Lightbulb, Mountain, BookOpen } from 'lucide-react';
+import { MapPin, Calendar, Navigation, Lightbulb, Mountain, BookOpen, BedDouble, CalendarCheck } from 'lucide-react';
 import StayEatExplore from '@/components/seo/StayEatExplore';
+import { useAnalytics } from '@/hooks/useAnalytics';
 import { getDestinationGeo } from '@/data/destinationGeo';
 import {
   getDestinationBySlug,
