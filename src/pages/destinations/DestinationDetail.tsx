@@ -19,6 +19,7 @@ import {
   getDestinationBySlug,
   getDestinationImages,
   meghalayaDestinations,
+  type MeghalayaDestination,
 } from '@/data/meghalayaDestinations';
 
 const DestinationDetail = () => {
