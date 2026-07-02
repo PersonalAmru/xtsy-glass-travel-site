@@ -7,3 +7,6 @@ verify_jwt = true
 
 [functions.seo-position-cron]
 verify_jwt = false
+
+[functions.record-consent]
+verify_jwt = false
