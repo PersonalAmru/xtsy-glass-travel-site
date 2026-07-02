@@ -99,7 +99,25 @@ Deno.serve(async (req) => {
     const body = await req.json().catch(() => ({}));
     const url = body.sitemap_url || 'https://xtsy.one/sitemap-priority.xml';
 
-    const result = await validateSitemap(url);
+    // SECURITY: only allow validating sitemaps on our own hosts to prevent
+    // this function being used as an anonymous SSRF / fetch proxy.
+    let parsed: URL;
+    try {
+      parsed = new URL(url);
+    } catch {
+      return new Response(JSON.stringify({ success: false, error: 'Invalid sitemap_url' }), {
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+    if (parsed.protocol !== 'https:' || !isAllowedHost(parsed.hostname)) {
+      return new Response(
+        JSON.stringify({ success: false, error: 'sitemap_url host not allowed. Only xtsy.one properties may be validated.' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
+      );
+    }
+
+    const result = await validateSitemap(parsed.toString());
 
     const supabase = createClient(SUPABASE_URL, SERVICE_KEY);
     await supabase.from('sitemap_health_checks').insert(result);
