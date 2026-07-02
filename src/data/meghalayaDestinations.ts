@@ -15,7 +15,18 @@ export interface MeghalayaDestination {
   deepDive?: { heading: string; body: string }[];
   /** Optional extra FAQs merged into the visible FAQ block and FAQPage schema. */
   extraFaqs?: { q: string; a: string }[];
+  /** SEO title override (<60 chars) — leads with exact head keyword + high-volume modifiers. */
+  seoTitle?: string;
+  /** SEO meta description override (<160 chars). */
+  seoDescription?: string;
+  /** Extra <meta keywords> terms (high-volume related keywords for this page). */
+  seoKeywords?: string;
+  /** Sub-headline shown under the H1 in the hero (keyword-rich supporting phrase). */
+  heroTagline?: string;
+  /** Keyword-rich anchor text for the primary booking CTA on this page. */
+  bookingAnchor?: string;
 }
+
 
 import { cdnMany } from './cdnImages';
 
