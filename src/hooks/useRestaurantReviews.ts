@@ -90,11 +90,32 @@ export function useRestaurantReviews() {
         let photoUrls: string[] = [];
 
         if (input.photo) {
-          const ext = (input.photo.name.split(".").pop() || "jpg").toLowerCase();
+          // SECURITY: validate uploaded file type and size before touching
+          // public storage to prevent arbitrary/malicious file hosting.
+          const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"];
+          const MAX_BYTES = 5 * 1024 * 1024; // 5MB
+          const EXT_BY_TYPE: Record<string, string> = {
+            "image/jpeg": "jpg",
+            "image/png": "png",
+            "image/webp": "webp",
+          };
+
+          if (!ALLOWED_TYPES.includes(input.photo.type)) {
+            return { success: false, error: "Only JPG, PNG or WebP images are allowed." };
+          }
+          if (input.photo.size > MAX_BYTES) {
+            return { success: false, error: "Image must be 5MB or smaller." };
+          }
+
+          const ext = EXT_BY_TYPE[input.photo.type] || "jpg";
           const path = `pending/${crypto.randomUUID()}.${ext}`;
           const { error: upErr } = await supabase.storage
             .from("review-media")
-            .upload(path, input.photo, { cacheControl: "31536000", upsert: false });
+            .upload(path, input.photo, {
+              cacheControl: "31536000",
+              upsert: false,
+              contentType: input.photo.type,
+            });
           if (!upErr) {
             const { data: pub } = supabase.storage.from("review-media").getPublicUrl(path);
             if (pub?.publicUrl) photoUrls = [pub.publicUrl];

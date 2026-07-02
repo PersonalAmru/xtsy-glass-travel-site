@@ -37,14 +37,38 @@ Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response(null, { headers: corsHeaders });
 
   try {
-    const body = await req.json().catch(() => ({}));
-    const hours = Math.min(Math.max(Number(body?.hours) || 24, 1), 168);
-    const since = new Date(Date.now() - hours * 3600_000).toISOString();
-
     const supabase = createClient(
       Deno.env.get('SUPABASE_URL')!,
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,
     );
+
+    // SECURITY: this endpoint dispatches external Slack/email digests and is
+    // meant to be called by internal cron only. Require the shared cron secret
+    // OR a valid admin JWT before doing anything.
+    const cronSecret = Deno.env.get('CRON_SECRET');
+    const incomingSecret = req.headers.get('x-cron-secret');
+    const authHeaderGate = req.headers.get('Authorization');
+    let authorized = !!(cronSecret && incomingSecret && incomingSecret === cronSecret);
+    if (!authorized && authHeaderGate?.startsWith('Bearer ')) {
+      const gateClient = createClient(
+        Deno.env.get('SUPABASE_URL')!,
+        Deno.env.get('SUPABASE_ANON_KEY')!,
+        { global: { headers: { Authorization: authHeaderGate } } },
+      );
+      const { data: role } = await gateClient.rpc('get_user_role');
+      authorized = role === 'admin';
+    }
+    if (!authorized) {
+      return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+        status: 401,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    const body = await req.json().catch(() => ({}));
+    const hours = Math.min(Math.max(Number(body?.hours) || 24, 1), 168);
+    const since = new Date(Date.now() - hours * 3600_000).toISOString();
+
 
     // Pull the window (paginate defensively up to ~5k rows).
     const rows: LoaderRow[] = [];

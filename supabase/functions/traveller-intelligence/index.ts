@@ -47,6 +47,27 @@ Deno.serve(async (req) => {
     const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
+    // SECURITY: this pipeline bulk-rewrites admin/staff-only intelligence
+    // tables via the service-role key. Never run it for an anonymous caller.
+    // Allow either the internal cron secret OR a valid admin JWT.
+    const cronSecret = Deno.env.get('CRON_SECRET');
+    const incomingSecret = req.headers.get('x-cron-secret');
+    const authHeader = req.headers.get('Authorization');
+    let authorized = !!(cronSecret && incomingSecret && incomingSecret === cronSecret);
+    if (!authorized && authHeader?.startsWith('Bearer ')) {
+      const userClient = createClient(supabaseUrl, Deno.env.get('SUPABASE_ANON_KEY')!, {
+        global: { headers: { Authorization: authHeader } },
+      });
+      const { data: role } = await userClient.rpc('get_user_role');
+      authorized = role === 'admin';
+    }
+    if (!authorized) {
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
     const url = new URL(req.url);
     const action = url.searchParams.get('action') || 'full';
 

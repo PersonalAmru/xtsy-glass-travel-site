@@ -12,6 +12,18 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.45.0';
 const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!;
 const SERVICE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 
+// SECURITY: restrict outbound fetches to our own hosts to prevent SSRF /
+// anonymous fetch-proxy abuse via a caller-supplied sitemap_url.
+const ALLOWED_HOSTS = new Set(['xtsy.one', 'www.xtsy.one', 'xtsy-one.lovable.app']);
+const ALLOWED_HOST_SUFFIXES = ['.lovable.app', '.lovableproject.com'];
+const FETCH_TIMEOUT_MS = 10_000;
+
+function isAllowedHost(hostname: string): boolean {
+  const h = hostname.toLowerCase();
+  if (ALLOWED_HOSTS.has(h)) return true;
+  return ALLOWED_HOST_SUFFIXES.some((s) => h.endsWith(s));
+}
+
 interface ValidationResult {
   sitemap_url: string;
   http_status: number | null;
@@ -39,7 +51,10 @@ const validateSitemap = async (url: string): Promise<ValidationResult> => {
 
   const start = Date.now();
   try {
-    const res = await fetch(url, { headers: { 'User-Agent': 'XTSY-Sitemap-Validator/1.0' } });
+    const res = await fetch(url, {
+      headers: { 'User-Agent': 'XTSY-Sitemap-Validator/1.0' },
+      signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+    });
     result.response_time_ms = Date.now() - start;
     result.http_status = res.status;
     if (!res.ok) {
@@ -61,7 +76,7 @@ const validateSitemap = async (url: string): Promise<ValidationResult> => {
     // Crawlability: fetch robots.txt, check sitemap not disallowed
     try {
       const origin = new URL(url).origin;
-      const robotsRes = await fetch(`${origin}/robots.txt`);
+      const robotsRes = await fetch(`${origin}/robots.txt`, { signal: AbortSignal.timeout(FETCH_TIMEOUT_MS) });
       if (robotsRes.ok) {
         const robots = await robotsRes.text();
         result.is_crawlable = !robots.match(/Disallow:\s*\/sitemap/i);
@@ -84,7 +99,25 @@ Deno.serve(async (req) => {
     const body = await req.json().catch(() => ({}));
     const url = body.sitemap_url || 'https://xtsy.one/sitemap-priority.xml';
 
-    const result = await validateSitemap(url);
+    // SECURITY: only allow validating sitemaps on our own hosts to prevent
+    // this function being used as an anonymous SSRF / fetch proxy.
+    let parsed: URL;
+    try {
+      parsed = new URL(url);
+    } catch {
+      return new Response(JSON.stringify({ success: false, error: 'Invalid sitemap_url' }), {
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+    if (parsed.protocol !== 'https:' || !isAllowedHost(parsed.hostname)) {
+      return new Response(
+        JSON.stringify({ success: false, error: 'sitemap_url host not allowed. Only xtsy.one properties may be validated.' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
+      );
+    }
+
+    const result = await validateSitemap(parsed.toString());
 
     const supabase = createClient(SUPABASE_URL, SERVICE_KEY);
     await supabase.from('sitemap_health_checks').insert(result);
