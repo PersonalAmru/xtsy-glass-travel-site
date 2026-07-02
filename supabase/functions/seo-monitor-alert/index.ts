@@ -27,8 +27,36 @@ Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response(null, { headers: corsHeaders });
 
   try {
+    // SECURITY: this endpoint dispatches to the team's Slack/email. It is
+    // meant to be called by internal CI/cron only. Require the shared cron
+    // secret OR a valid admin JWT before doing anything.
+    const cronSecret = Deno.env.get('CRON_SECRET');
+    const incomingSecret = req.headers.get('x-cron-secret');
+    const authHeaderGate = req.headers.get('Authorization');
+    let authorized = !!(cronSecret && incomingSecret && incomingSecret === cronSecret);
+    if (!authorized && authHeaderGate?.startsWith('Bearer ')) {
+      const gateClient = createClient(
+        Deno.env.get('SUPABASE_URL')!,
+        Deno.env.get('SUPABASE_ANON_KEY')!,
+        { global: { headers: { Authorization: authHeaderGate } } },
+      );
+      const { data: role } = await gateClient.rpc('get_user_role');
+      authorized = role === 'admin';
+    }
+    if (!authorized) {
+      return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+        status: 401,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Sanitize any caller-supplied string embedded into outbound messages:
+    // strip control/newline chars and cap length to prevent alert spoofing.
+    const clean = (v: unknown, max = 300): string =>
+      String(v ?? '').replace(/[\r\n\t]+/g, ' ').replace(/[^\x20-\x7E]/g, '').slice(0, max);
+
     const body = (await req.json().catch(() => ({}))) as AlertPayload;
-    const base = body.base ?? 'https://xtsy.one';
+    const base = clean(body.base ?? 'https://xtsy.one', 200);
     const failed = body.failedCount ?? body.failures?.length ?? 0;
     const soft = body.softCount ?? 0;
     const hreflang = body.hreflangCount ?? body.hreflangIssues?.length ?? 0;
@@ -41,11 +69,11 @@ Deno.serve(async (req) => {
 
     const failLines = (body.failures ?? [])
       .slice(0, 15)
-      .map((f) => `• ${f.url} [${f.status}] — ${f.issues.join(', ')}`)
+      .map((f) => `• ${clean(f.url, 200)} [${Number(f.status) || 0}] — ${clean((f.issues ?? []).join(', '))}`)
       .join('\n');
     const hreflangLines = (body.hreflangIssues ?? [])
       .slice(0, 10)
-      .map((h) => `• ${h.url} — ${h.issues.join('; ')}`)
+      .map((h) => `• ${clean(h.url, 200)} — ${clean((h.issues ?? []).join('; '))}`)
       .join('\n');
 
     const title = `🚨 SEO Deploy Gate — ${failed} issue(s), ${soft} soft-404(s), ${hreflang} hreflang issue(s)`;
