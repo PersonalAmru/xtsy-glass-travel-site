@@ -11,13 +11,15 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import DestinationGallery from '@/components/destinations/DestinationGallery';
 import { useValidatedImages } from '@/hooks/useValidatedImages';
 import DestinationCard from '@/components/destinations/DestinationCard';
-import { MapPin, Calendar, Navigation, Lightbulb, Mountain, BookOpen } from 'lucide-react';
+import { MapPin, Calendar, Navigation, Lightbulb, Mountain, BookOpen, BedDouble, CalendarCheck } from 'lucide-react';
 import StayEatExplore from '@/components/seo/StayEatExplore';
+import { useAnalytics } from '@/hooks/useAnalytics';
 import { getDestinationGeo } from '@/data/destinationGeo';
 import {
   getDestinationBySlug,
   getDestinationImages,
   meghalayaDestinations,
+  type MeghalayaDestination,
 } from '@/data/meghalayaDestinations';
 
 const DestinationDetail = () => {
@@ -145,24 +147,32 @@ const DestinationDetail = () => {
   // Keyword-first title: lead with the exact head term (e.g. "Nohkalikai Falls"),
   // then high-CTR intent modifiers searchers want for an attraction. Adaptive so
   // long destination names don't blow past the SERP truncation width.
+  // Priority pages can override with a hand-tuned, keyword-validated title.
   const titleModifiers =
     destination.name.length > 20
       ? 'Meghalaya Travel Guide'
       : `Meghalaya — How to Reach, Timings & Photos`;
-  const pageTitle = `${destination.name}, ${titleModifiers}`;
+  const pageTitle = destination.seoTitle ?? `${destination.name}, ${titleModifiers}`;
 
-  const rawDescription = `${destination.name}, Meghalaya: ${destination.shortDescription} Best time to visit, how to reach, timings & travel tips — updated ${lastUpdated}.`;
+  const rawDescription =
+    destination.seoDescription ??
+    `${destination.name}, Meghalaya: ${destination.shortDescription} Best time to visit, how to reach, timings & travel tips — updated ${lastUpdated}.`;
   const pageDescription =
     rawDescription.length > 160
       ? `${rawDescription.slice(0, 157).replace(/\s+\S*$/, '')}…`
       : rawDescription;
+
+  const pageKeywords =
+    destination.seoKeywords ??
+    `${destination.name}, ${destination.name} Meghalaya, places to visit ${destination.region}, ${destination.category} Meghalaya`;
 
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
-        <meta name="keywords" content={`${destination.name}, ${destination.name} Meghalaya, places to visit ${destination.region}, ${destination.category} Meghalaya`} />
+        <meta name="keywords" content={pageKeywords} />
+
         <link rel="canonical" href={`https://xtsy.one/places-to-visit/${destination.slug}`} />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
@@ -191,6 +201,10 @@ const DestinationDetail = () => {
               {destination.description}
             </div>
           </section>
+
+          {/* Primary booking CTA — converts destination traffic into hostel bookings */}
+          <DestinationBookingCTA destination={destination} placement="top" />
+
 
           {/* Deep-dive editorial sections (content depth for priority pages) */}
           {destination.deepDive && destination.deepDive.length > 0 && (
@@ -301,8 +315,12 @@ const DestinationDetail = () => {
             </div>
           </section>
 
+          {/* Reinforce the booking path after the reader has consumed the guide */}
+          <DestinationBookingCTA destination={destination} placement="bottom" />
+
           {/* Stay · Eat · Catering · Tours — commercial internal-linking module */}
           <StayEatExplore context={destination.name} />
+
 
 
           {/* Internal Links */}
@@ -383,8 +401,9 @@ const HeroSlideshow = ({ images, destination }: { images: { src: string; alt: st
           {destination.name}
         </h1>
         <p className="mt-1 text-base md:text-lg font-medium text-muted-foreground">
-          Meghalaya Travel Guide · Updated June 2026
+          {destination.heroTagline ?? 'Meghalaya Travel Guide · Updated June 2026'}
         </p>
+
         <div className="mt-2 flex items-center gap-2 text-muted-foreground">
           <MapPin className="h-4 w-4" />
           <span>{destination.region}, Meghalaya</span>
@@ -396,4 +415,74 @@ const HeroSlideshow = ({ images, destination }: { images: { src: string; alt: st
   );
 };
 
+/**
+ * DestinationBookingCTA — converts high-traffic destination readers into hostel
+ * bookings. Keyword-rich anchor, links to the /book entry point, and fires the
+ * `destination_to_booking` conversion funnel step so the admin funnel report can
+ * measure how destination-page visits turn into availability checks / bookings.
+ */
+const DestinationBookingCTA = ({
+  destination,
+  placement,
+}: {
+  destination: MeghalayaDestination;
+  placement: 'top' | 'bottom';
+}) => {
+  const { trackConversion, trackEvent } = useAnalytics();
+
+  const anchor =
+    destination.bookingAnchor ??
+    `Book a bed in Shillong from ₹369 — your base near ${destination.name}`;
+
+  const handleClick = (step: 'availability_check' | 'book_now') => {
+    trackConversion('destination_to_booking', step, step === 'availability_check' ? 2 : 3, {
+      metadata: {
+        destination_slug: destination.slug,
+        destination_name: destination.name,
+        placement,
+      },
+    });
+    trackEvent('booking', 'destination_cta_click', destination.slug, undefined, {
+      step,
+      placement,
+    });
+  };
+
+  return (
+    <section
+      aria-label={`Book your stay near ${destination.name}`}
+      className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/10 to-accent/10 p-6 md:p-8"
+    >
+      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div>
+          <h2 className="flex items-center gap-2 text-xl md:text-2xl font-bold text-foreground">
+            <BedDouble className="h-5 w-5 text-primary" /> Stay Nearby: XTSY Travellers Hostel, Shillong
+          </h2>
+          <p className="mt-2 max-w-2xl text-muted-foreground">
+            {anchor}. Dorm beds, private rooms and glamping — the best-rated hostel base for
+            exploring {destination.name} and the rest of {destination.region}.
+          </p>
+        </div>
+        <div className="flex flex-shrink-0 flex-col gap-3 sm:flex-row">
+          <Link
+            to="/book"
+            onClick={() => handleClick('availability_check')}
+            className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+          >
+            <CalendarCheck className="h-4 w-4" /> Check Availability
+          </Link>
+          <Link
+            to="/best-hostel-in-shillong"
+            onClick={() => handleClick('book_now')}
+            className="inline-flex items-center justify-center rounded-lg border border-border px-6 py-3 font-medium text-foreground transition-colors hover:bg-muted"
+          >
+            View Hostel &amp; Rooms
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 export default DestinationDetail;
+
