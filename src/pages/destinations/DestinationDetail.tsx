@@ -315,8 +315,12 @@ const DestinationDetail = () => {
             </div>
           </section>
 
+          {/* Reinforce the booking path after the reader has consumed the guide */}
+          <DestinationBookingCTA destination={destination} placement="bottom" />
+
           {/* Stay · Eat · Catering · Tours — commercial internal-linking module */}
           <StayEatExplore context={destination.name} />
+
 
 
           {/* Internal Links */}
