@@ -201,6 +201,10 @@ const DestinationDetail = () => {
             </div>
           </section>
 
+          {/* Primary booking CTA — converts destination traffic into hostel bookings */}
+          <DestinationBookingCTA destination={destination} placement="top" />
+
+
           {/* Deep-dive editorial sections (content depth for priority pages) */}
           {destination.deepDive && destination.deepDive.length > 0 && (
             <section className="space-y-8">
