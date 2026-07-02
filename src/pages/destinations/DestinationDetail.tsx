@@ -410,4 +410,74 @@ const HeroSlideshow = ({ images, destination }: { images: { src: string; alt: st
   );
 };
 
+/**
+ * DestinationBookingCTA — converts high-traffic destination readers into hostel
+ * bookings. Keyword-rich anchor, links to the /book entry point, and fires the
+ * `destination_to_booking` conversion funnel step so the admin funnel report can
+ * measure how destination-page visits turn into availability checks / bookings.
+ */
+const DestinationBookingCTA = ({
+  destination,
+  placement,
+}: {
+  destination: MeghalayaDestination;
+  placement: 'top' | 'bottom';
+}) => {
+  const { trackConversion, trackEvent } = useAnalytics();
+
+  const anchor =
+    destination.bookingAnchor ??
+    `Book a bed in Shillong from ₹369 — your base near ${destination.name}`;
+
+  const handleClick = (step: 'availability_check' | 'book_now') => {
+    trackConversion('destination_to_booking', step, step === 'availability_check' ? 2 : 3, {
+      metadata: {
+        destination_slug: destination.slug,
+        destination_name: destination.name,
+        placement,
+      },
+    });
+    trackEvent('booking', 'destination_cta_click', destination.slug, undefined, {
+      step,
+      placement,
+    });
+  };
+
+  return (
+    <section
+      aria-label={`Book your stay near ${destination.name}`}
+      className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/10 to-accent/10 p-6 md:p-8"
+    >
+      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div>
+          <h2 className="flex items-center gap-2 text-xl md:text-2xl font-bold text-foreground">
+            <BedDouble className="h-5 w-5 text-primary" /> Stay Nearby: XTSY Travellers Hostel, Shillong
+          </h2>
+          <p className="mt-2 max-w-2xl text-muted-foreground">
+            {anchor}. Dorm beds, private rooms and glamping — the best-rated hostel base for
+            exploring {destination.name} and the rest of {destination.region}.
+          </p>
+        </div>
+        <div className="flex flex-shrink-0 flex-col gap-3 sm:flex-row">
+          <Link
+            to="/book"
+            onClick={() => handleClick('availability_check')}
+            className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+          >
+            <CalendarCheck className="h-4 w-4" /> Check Availability
+          </Link>
+          <Link
+            to="/best-hostel-in-shillong"
+            onClick={() => handleClick('book_now')}
+            className="inline-flex items-center justify-center rounded-lg border border-border px-6 py-3 font-medium text-foreground transition-colors hover:bg-muted"
+          >
+            View Hostel &amp; Rooms
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 export default DestinationDetail;
+
