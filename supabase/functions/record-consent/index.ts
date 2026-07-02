@@ -10,7 +10,7 @@ import { z } from 'npm:zod@3';
 // record consent before authenticating.
 
 const ConsentItem = z.object({
-  consent_type: z.enum(['necessary', 'analytics', 'marketing', 'personalization']),
+  consent_type: z.enum(['essential', 'analytics', 'marketing', 'personalization']),
   granted: z.boolean(),
 });
 
