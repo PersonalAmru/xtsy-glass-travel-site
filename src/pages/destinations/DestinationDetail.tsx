@@ -145,24 +145,32 @@ const DestinationDetail = () => {
   // Keyword-first title: lead with the exact head term (e.g. "Nohkalikai Falls"),
   // then high-CTR intent modifiers searchers want for an attraction. Adaptive so
   // long destination names don't blow past the SERP truncation width.
+  // Priority pages can override with a hand-tuned, keyword-validated title.
   const titleModifiers =
     destination.name.length > 20
       ? 'Meghalaya Travel Guide'
       : `Meghalaya — How to Reach, Timings & Photos`;
-  const pageTitle = `${destination.name}, ${titleModifiers}`;
+  const pageTitle = destination.seoTitle ?? `${destination.name}, ${titleModifiers}`;
 
-  const rawDescription = `${destination.name}, Meghalaya: ${destination.shortDescription} Best time to visit, how to reach, timings & travel tips — updated ${lastUpdated}.`;
+  const rawDescription =
+    destination.seoDescription ??
+    `${destination.name}, Meghalaya: ${destination.shortDescription} Best time to visit, how to reach, timings & travel tips — updated ${lastUpdated}.`;
   const pageDescription =
     rawDescription.length > 160
       ? `${rawDescription.slice(0, 157).replace(/\s+\S*$/, '')}…`
       : rawDescription;
+
+  const pageKeywords =
+    destination.seoKeywords ??
+    `${destination.name}, ${destination.name} Meghalaya, places to visit ${destination.region}, ${destination.category} Meghalaya`;
 
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
-        <meta name="keywords" content={`${destination.name}, ${destination.name} Meghalaya, places to visit ${destination.region}, ${destination.category} Meghalaya`} />
+        <meta name="keywords" content={pageKeywords} />
+
         <link rel="canonical" href={`https://xtsy.one/places-to-visit/${destination.slug}`} />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
