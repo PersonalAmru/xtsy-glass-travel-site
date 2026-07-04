@@ -14,6 +14,18 @@ export type Database = {
   }
   public: {
     Tables: {
+      _grant_probe: {
+        Row: {
+          id: number
+        }
+        Insert: {
+          id: number
+        }
+        Update: {
+          id?: number
+        }
+        Relationships: []
+      }
       admin_notifications: {
         Row: {
           booking_id: string | null
