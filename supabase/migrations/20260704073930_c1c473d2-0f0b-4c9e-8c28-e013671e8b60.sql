@@ -1,0 +1,9 @@
+GRANT ALL ON public.analytics_pageviews TO service_role;
+GRANT ALL ON public.analytics_events TO service_role;
+GRANT ALL ON public.analytics_conversions TO service_role;
+GRANT ALL ON public.analytics_sessions TO service_role;
+GRANT ALL ON public.analytics_realtime TO service_role;
+GRANT ALL ON public.analytics_geo_heatmap TO service_role;
+GRANT ALL ON public.traveller_events TO service_role;
+GRANT ALL ON public.traveller_profiles TO service_role;
+GRANT ALL ON public.traffic_sessions TO service_role;
