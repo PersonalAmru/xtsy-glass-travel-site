@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { Calendar, Sun, CloudRain, Leaf, Snowflake } from 'lucide-react';
+import PlanTripLinks from '@/components/PlanTripLinks';
 
 const BlogBestTimeToVisit = () => (
   <div className="min-h-screen bg-background">
