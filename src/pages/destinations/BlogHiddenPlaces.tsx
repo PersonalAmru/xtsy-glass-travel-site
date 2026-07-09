@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import PlanTripLinks from '@/components/PlanTripLinks';
 import DestinationCard from '@/components/destinations/DestinationCard';
 import { meghalayaDestinations } from '@/data/meghalayaDestinations';
 
