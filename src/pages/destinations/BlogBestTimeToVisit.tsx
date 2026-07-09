@@ -48,8 +48,16 @@ const BlogBestTimeToVisit = () => (
           <Link to="/meghalaya-tour-packages" className="mt-4 inline-block px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90">View Packages</Link>
         </section>
 
+        <PlanTripLinks
+          source="best-time-to-visit-meghalaya"
+          heading="Timed your trip? Now pick your places & stay"
+          bookingAnchor="Winter is peak season — book your Shillong base early. Dorm beds from ₹369, private rooms & glamping"
+          slugs={['dawki-umngot-river', 'double-decker-living-root-bridge', 'nohkalikai-falls', 'umiam-lake']}
+        />
+
         <nav className="mt-8 border-t border-border pt-8">
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+            <Link to="/places-to-visit-in-meghalaya" className="text-sm text-primary hover:underline">Places to Visit in Meghalaya</Link>
             <Link to="/things-to-do-in-meghalaya" className="text-sm text-primary hover:underline">Things to Do in Meghalaya</Link>
             <Link to="/hidden-places-in-meghalaya" className="text-sm text-primary hover:underline">Hidden Places</Link>
             <Link to="/budget-trip-to-meghalaya" className="text-sm text-primary hover:underline">Budget Trip Guide</Link>
