@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import PlanTripLinks from '@/components/PlanTripLinks';
 import DestinationCard from '@/components/destinations/DestinationCard';
 import { meghalayaDestinations } from '@/data/meghalayaDestinations';
 
@@ -38,6 +39,12 @@ const BlogHiddenPlaces = () => (
             <Link to="/budget-trip-to-meghalaya" className="text-sm text-primary hover:underline">Budget Trip Guide</Link>
           </div>
         </nav>
+        <PlanTripLinks
+          source="hidden-places-in-meghalaya"
+          heading="Explore the hidden gems — book your base"
+          bookingAnchor="Stay in Shillong and reach these offbeat spots easily — dorm beds from ₹369, private rooms & glamping"
+          slugs={['laitlum-canyons', 'wei-sawdong-falls', 'mawphlang-sacred-forest', 'phe-phe-falls']}
+        />
       </div>
     </main>
     <Footer />

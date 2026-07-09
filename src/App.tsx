@@ -118,6 +118,7 @@ const FranchiseDashboard = createLazyComponent(() => import("./pages/franchise/F
 
 // Destination / SEO pages
 const ThingsToDoInMeghalaya = createLazyComponent(() => import("./pages/destinations/ThingsToDoInMeghalaya"));
+const PlacesToVisitMeghalaya = createLazyComponent(() => import("./pages/destinations/PlacesToVisitMeghalaya"));
 const DestinationDetail = createLazyComponent(() => import("./pages/destinations/DestinationDetail"));
 const CategoryPage = createLazyComponent(() => import("./pages/destinations/CategoryPage"));
 const MeghalayaTourPackages = createLazyComponent(() => import("./pages/destinations/MeghalayaTourPackages"));
@@ -384,6 +385,7 @@ function App() {
                 
                 {/* Meghalaya SEO Pages */}
                 <Route path="/things-to-do-in-meghalaya" element={<LazyRoute><ThingsToDoInMeghalaya /></LazyRoute>} />
+                <Route path="/places-to-visit-in-meghalaya" element={<LazyRoute><PlacesToVisitMeghalaya /></LazyRoute>} />
                 <Route path="/places-to-visit/:slug" element={<LazyRoute><DestinationDetail /></LazyRoute>} />
                 <Route path="/meghalaya-waterfalls" element={<LazyRoute><CategoryPage /></LazyRoute>} />
                 <Route path="/meghalaya-caves" element={<LazyRoute><CategoryPage /></LazyRoute>} />

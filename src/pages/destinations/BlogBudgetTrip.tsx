@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import PlanTripLinks from '@/components/PlanTripLinks';
 import { IndianRupee, Bed, Car, UtensilsCrossed } from 'lucide-react';
 
 const BlogBudgetTrip = () => (
@@ -64,6 +65,12 @@ const BlogBudgetTrip = () => (
             <Link to="/things-to-do-in-meghalaya" className="text-sm text-primary hover:underline">All Places to Visit</Link>
           </div>
         </nav>
+        <PlanTripLinks
+          source="budget-trip-to-meghalaya"
+          heading="Travelling on a budget? Book beds from ₹369"
+          bookingAnchor="The cheapest comfortable base in Shillong — dorm beds from ₹369, private rooms from ₹2,099"
+          slugs={['dawki-umngot-river', 'double-decker-living-root-bridge', 'nohkalikai-falls', 'mawlynnong-village']}
+        />
       </div>
     </main>
     <Footer />

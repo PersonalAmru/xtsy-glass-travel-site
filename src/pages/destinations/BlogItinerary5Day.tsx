@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import PlanTripLinks from '@/components/PlanTripLinks';
 import { Calendar } from 'lucide-react';
 
 const BlogItinerary5Day = () => (
@@ -53,6 +54,12 @@ const BlogItinerary5Day = () => (
             <Link to="/things-to-do-in-meghalaya" className="text-sm text-primary hover:underline">All Places to Visit</Link>
           </div>
         </nav>
+        <PlanTripLinks
+          source="5-day-meghalaya-itinerary"
+          heading="Planning 5 days? Lock in your Shillong base"
+          bookingAnchor="A 5-day Meghalaya loop with Mawlynnong & the root-bridge trek — dorm beds from ₹369, private rooms & glamping"
+          slugs={['nohkalikai-falls', 'dawki-umngot-river', 'mawlynnong-village', 'double-decker-living-root-bridge']}
+        />
       </div>
     </main>
     <Footer />
