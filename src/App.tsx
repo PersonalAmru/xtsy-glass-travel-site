@@ -118,6 +118,7 @@ const FranchiseDashboard = createLazyComponent(() => import("./pages/franchise/F
 
 // Destination / SEO pages
 const ThingsToDoInMeghalaya = createLazyComponent(() => import("./pages/destinations/ThingsToDoInMeghalaya"));
+const PlacesToVisitMeghalaya = createLazyComponent(() => import("./pages/destinations/PlacesToVisitMeghalaya"));
 const DestinationDetail = createLazyComponent(() => import("./pages/destinations/DestinationDetail"));
 const CategoryPage = createLazyComponent(() => import("./pages/destinations/CategoryPage"));
 const MeghalayaTourPackages = createLazyComponent(() => import("./pages/destinations/MeghalayaTourPackages"));
