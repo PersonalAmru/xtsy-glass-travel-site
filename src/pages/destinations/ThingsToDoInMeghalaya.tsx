@@ -320,6 +320,12 @@ const ThingsToDoInMeghalaya = () => {
               <Link to="/meghalaya-photo-gallery" className="text-sm text-primary hover:underline">Photo Gallery</Link>
             </div>
           </nav>
+          <PlanTripLinks
+            source="things-to-do-in-meghalaya"
+            heading="Turn your list into a trip — book your base"
+            bookingAnchor="Stay central in Shillong to tick off every activity — dorm beds from ₹369, private rooms & glamping"
+            slugs={['dawki-umngot-river', 'double-decker-living-root-bridge', 'nohkalikai-falls', 'laitlum-canyons']}
+          />
         </div>
       </main>
 
