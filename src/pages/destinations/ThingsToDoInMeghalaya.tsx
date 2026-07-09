@@ -6,6 +6,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import DestinationCard from '@/components/destinations/DestinationCard';
+import PlanTripLinks from '@/components/PlanTripLinks';
 import { PhotoGallery } from '@/components/ui/photo-gallery';
 import { MapPin, Calendar, Mountain, TreePine, Waves, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
