@@ -53,6 +53,12 @@ const BlogItinerary3Day = () => (
             <Link to="/things-to-do-in-meghalaya" className="text-sm text-primary hover:underline">All Places to Visit</Link>
           </div>
         </nav>
+        <PlanTripLinks
+          source="3-day-meghalaya-itinerary"
+          heading="Ready to run this itinerary? Book your stay"
+          bookingAnchor="A 3-day Shillong–Cherrapunji–Dawki loop starts here — dorm beds from ₹369, private rooms & glamping"
+          slugs={['umiam-lake', 'nohkalikai-falls', 'dawki-umngot-river', 'elephant-falls']}
+        />
       </div>
     </main>
     <Footer />
