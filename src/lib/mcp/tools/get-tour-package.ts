@@ -40,8 +40,11 @@ export default defineTool({
     const itineraryText = itinerary.length
       ? "\n\nItinerary:\n" +
         itinerary
-          .map((d: { day?: number; title?: string; description?: string }, i: number) =>
-            `Day ${d.day ?? i + 1}: ${d.title ?? ""}${d.description ? ` — ${d.description}` : ""}`,
+          .map(
+            (d, i) =>
+              `${d.day ?? `Day ${i + 1}`}: ${d.title ?? ""}` +
+              (d.route ? ` (${d.route})` : "") +
+              (d.activities?.length ? ` — ${d.activities.join(", ")}` : ""),
           )
           .join("\n")
       : "";
