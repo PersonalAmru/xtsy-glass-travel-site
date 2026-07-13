@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "sdk_version": "0.20.1",
+  "path": "/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "xtsy-mcp",
+      "version": "0.1.0",
+      "title": "XTSY Travel & Hostel"
+    },
+    "tools": [
+      {
+        "name": "list_rooms",
+        "title": "List rooms & dorm beds",
+        "description": "List bookable rooms and dorm beds at XTSY Travellers Hostel and Experience by XTSY in Shillong, with starting prices in INR. Optionally filter by category.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string",
+              "enum": [
+                "luxury",
+                "hostel"
+              ],
+              "description": "Filter by 'luxury' (Experience by XTSY) or 'hostel' (dorms & private rooms)."
+            }
+          },
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_destinations",
+        "title": "List Meghalaya destinations",
+        "description": "List Meghalaya (Northeast India) travel destinations XTSY covers — waterfalls, caves, living-root bridges, rivers, viewpoints and villages. Optionally filter by category or region.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string",
+              "enum": [
+                "waterfall",
+                "cave",
+                "village",
+                "viewpoint",
+                "lake",
+                "adventure",
+                "wildlife",
+                "river",
+                "peak",
+                "cultural"
+              ],
+              "description": "Filter by destination category."
+            },
+            "region": {
+              "type": "string",
+              "description": "Filter by region, e.g. 'Cherrapunji & Sohra', 'Near Shillong'."
+            },
+            "featuredOnly": {
+              "type": "boolean",
+              "description": "Return only featured destinations."
+            }
+          },
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_destination",
+        "title": "Get a Meghalaya destination",
+        "description": "Get full details for a single Meghalaya destination by its slug (e.g. 'dawki-umngot-river', 'nohkalikai-falls'): overview, best time to visit, how to reach, things to do, travel tips and nearby attractions.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "slug": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Destination slug, e.g. 'living-root-bridge' or 'umiam-lake'."
+            }
+          },
+          "required": [
+            "slug"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_tour_packages",
+        "title": "List tour packages",
+        "description": "List XTSY signature tour packages across Meghalaya and Northeast India, with per-person prices in INR, duration and highlights. Optionally filter by region.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "region": {
+              "type": "string",
+              "enum": [
+                "Meghalaya",
+                "Arunachal Pradesh",
+                "Assam & Meghalaya"
+              ],
+              "description": "Filter packages by region."
+            }
+          },
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_tour_package",
+        "title": "Get a tour package",
+        "description": "Get full details and the day-by-day itinerary for a single XTSY tour package by its slug.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "slug": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Tour package slug, e.g. 'meghalaya-explorer'."
+            }
+          },
+          "required": [
+            "slug"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_bistro_menu",
+        "title": "Get TAB Bistro menu",
+        "description": "Get the TAB Bistro by XTSY menu (Shillong) — beverages, food, fusion dishes and more, with INR prices. Optionally filter to one menu section.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "section": {
+              "type": "string",
+              "description": "Optional section id or label to filter, e.g. 'beverages'."
+            }
+          },
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_hostel_info",
+        "title": "Get XTSY hostel & brand info",
+        "description": "Get an overview of XTSY's Shillong properties (XTSY Travellers Hostel and Experience by XTSY), awards, contact WhatsApp and the online booking link.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
