@@ -9,7 +9,7 @@
     "sitemaps:audit": "tsx scripts/sitemapHealthAudit.ts",
     "prebuild": "tsx scripts/generateWorkerSlimMap.ts && npm run sitemaps:rebuild",
     "build": "vite build",
-    "postbuild": "tsx scripts/prerender.ts || echo '\u26a0\ufe0f  prerender failed but build artifact is intact \u2014 continuing'",
+    "postbuild": "tsx scripts/prerender.ts || echo '⚠️  prerender failed but build artifact is intact — continuing'",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -22,6 +22,7 @@
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@hookform/resolvers": "^3.9.0",
+    "@lovable.dev/mcp-js": "^0.20.1",
     "@playwright/test": "^1.57.0",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-alert-dialog": "^1.1.1",
