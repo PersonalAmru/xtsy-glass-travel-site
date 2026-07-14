@@ -87,6 +87,7 @@ const SimplifiedBookingFlow = createLazyComponent(() => import("./pages/Simplifi
 // User auth pages
 const UserAuth = createLazyComponent(() => import("./pages/user/UserAuth"));
 const UserProfile = createLazyComponent(() => import("./pages/user/UserProfile"));
+const OAuthConsent = createLazyComponent(() => import("./pages/OAuthConsent"));
 
 // Admin pages - Unified layout with hamburger menu
 const AdminOverview = createLazyComponent(() => import("./pages/admin/AdminOverview"));
