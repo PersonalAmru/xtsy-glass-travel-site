@@ -89,8 +89,13 @@ export default function UserAuth() {
   const [newPassword, setNewPassword] = useState('');
   const [showNewPassword, setShowNewPassword] = useState(false);
   
-  // Get redirect path from state or default to home
-  const redirectPath = (location.state as any)?.from || '/';
+  // Get redirect path from state, ?next= (validated same-origin relative), or default to home
+  const nextParam = new URLSearchParams(location.search).get('next');
+  const safeNext =
+    nextParam && nextParam.startsWith('/') && !nextParam.startsWith('//')
+      ? nextParam
+      : null;
+  const redirectPath = safeNext || (location.state as any)?.from || '/';
 
   // Countdown timer for OTP expiry
   useEffect(() => {
