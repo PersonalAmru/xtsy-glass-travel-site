@@ -18,6 +18,10 @@ export default defineMcp({
   version: "0.1.0",
   instructions:
     "Read-only tools for XTSY (Shillong, Meghalaya). Use `list_rooms` for hostel/dorm/luxury stays and prices, `list_destinations` and `get_destination` for Meghalaya travel spots, `list_tour_packages` and `get_tour_package` for Northeast India tours, `get_bistro_menu` for the TAB Bistro menu, and `get_hostel_info` for brand, awards and booking links. All prices are in INR and bookings go through https://xtsy.one/book.",
+  auth: auth.oauth.issuer({
+    issuer: `https://${projectRef}.supabase.co/auth/v1`,
+    acceptedAudiences: "authenticated",
+  }),
   tools: [
     listRooms,
     listDestinations,
