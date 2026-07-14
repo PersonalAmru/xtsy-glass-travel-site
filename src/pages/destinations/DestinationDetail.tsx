@@ -215,6 +215,11 @@ const DestinationDetail = () => {
           {/* Primary booking CTA — converts destination traffic into hostel bookings */}
           <DestinationBookingCTA destination={destination} placement="top" />
 
+          {/* Keyword-rich "book a hostel in Shillong" link block for top destinations */}
+          {showShillongHostelLink && (
+            <ShillongHostelLinkBlock nearName={destination.name} source={`destination_${destination.slug}`} />
+          )}
+
 
           {/* Deep-dive editorial sections (content depth for priority pages) */}
           {destination.deepDive && destination.deepDive.length > 0 && (
