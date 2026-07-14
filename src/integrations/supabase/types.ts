@@ -3344,7 +3344,7 @@ export type Database = {
           is_active: boolean | null
           p256dh: string
           updated_at: string | null
-          user_id: string | null
+          user_id: string
           user_type: string
         }
         Insert: {
@@ -3355,7 +3355,7 @@ export type Database = {
           is_active?: boolean | null
           p256dh: string
           updated_at?: string | null
-          user_id?: string | null
+          user_id: string
           user_type?: string
         }
         Update: {
@@ -3366,7 +3366,7 @@ export type Database = {
           is_active?: boolean | null
           p256dh?: string
           updated_at?: string | null
-          user_id?: string | null
+          user_id?: string
           user_type?: string
         }
         Relationships: []
