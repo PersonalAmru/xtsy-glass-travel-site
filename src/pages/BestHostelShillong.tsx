@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { Star, Wifi, Shield, Coffee, Users, MapPin, Phone, MessageCircle, Check, Award, Bed, Mountain } from 'lucide-react';
+import { Star, Wifi, Shield, Coffee, Users, MapPin, Phone, MessageCircle, Check, Award, Bed, Mountain, Backpack, IndianRupee, CalendarCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
@@ -11,8 +11,9 @@ const BestHostelShillong = memo(() => {
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Hostel',
+    '@id': 'https://xtsy.one/best-hostel-in-shillong#hostel',
     name: 'XTSY Travellers Hostel',
-    description: 'India\'s biggest hostel in Shillong, Meghalaya. Budget dorms from ₹329, private rooms, luxury 270° glass suite.',
+    description: 'One of the best cheap hostels in Shillong, Meghalaya — budget dorm beds from ₹329, private rooms, and India\'s first 270° glass suite. Central location, 24/7 security, 4.8★ rated.',
     url: 'https://xtsy.one/best-hostel-in-shillong',
     telephone: '+918837317070',
     email: 'xtsytravellershostel@gmail.com',
@@ -30,6 +31,7 @@ const BestHostelShillong = memo(() => {
       longitude: 91.8933,
     },
     priceRange: '₹329 - ₹4,999',
+    currenciesAccepted: 'INR',
     starRating: { '@type': 'Rating', ratingValue: '4.8' },
     aggregateRating: {
       '@type': 'AggregateRating',
@@ -43,11 +45,26 @@ const BestHostelShillong = memo(() => {
       { '@type': 'LocationFeatureSpecification', name: 'Common Kitchen', value: true },
       { '@type': 'LocationFeatureSpecification', name: 'Locker Storage', value: true },
       { '@type': 'LocationFeatureSpecification', name: '24/7 Reception', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'Female-only Dorm', value: true },
+    ],
+    makesOffer: [
+      { '@type': 'Offer', name: '6-Bed Mixed Dorm Bed', price: '329', priceCurrency: 'INR' },
+      { '@type': 'Offer', name: '4-Bed Female Dorm Bed', price: '550', priceCurrency: 'INR' },
+      { '@type': 'Offer', name: 'Private Double Room', price: '2500', priceCurrency: 'INR' },
     ],
     checkinTime: '13:00',
     checkoutTime: '11:00',
     numberOfRooms: 20,
     petsAllowed: true,
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://xtsy.one/' },
+      { '@type': 'ListItem', position: 2, name: 'Hostels in Shillong', item: 'https://xtsy.one/best-hostel-in-shillong' },
+    ],
   };
 
   const faqData = {
@@ -56,31 +73,55 @@ const BestHostelShillong = memo(() => {
     mainEntity: [
       {
         '@type': 'Question',
-        name: 'What is the best hostel in Shillong?',
+        name: 'Which are the best cheap hostels in Shillong?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'XTSY Travellers Hostel is rated the best hostel in Shillong with a 4.8★ rating. It\'s India\'s biggest hostel in Northeast India, offering budget dorms from ₹329, private rooms, and India\'s first 270° panoramic glass suite.',
+          text: 'XTSY Travellers Hostel is among the best cheap hostels in Shillong, with a 4.8★ rating from 320+ guests. Budget dorm beds start at ₹329/night, making it one of the most affordable backpacker hostels in Meghalaya without cutting corners on safety or location.',
         },
       },
       {
         '@type': 'Question',
-        name: 'How much does a hostel in Shillong cost?',
+        name: 'How much does a dorm bed in a Shillong hostel cost?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Hostel beds in Shillong start from ₹329/night for a dorm bed at XTSY. Private rooms start at ₹2,500/night, and the premium 270° Glass Suite is ₹4,999/night.',
+          text: 'A dorm bed in a Shillong hostel at XTSY starts from ₹329/night in the 6-bed mixed dorm. Female-only dorms are ₹550/night, private double rooms from ₹2,500/night, and the premium 270° Glass Suite is ₹4,999/night.',
         },
       },
       {
         '@type': 'Question',
-        name: 'Is XTSY hostel safe for solo travellers?',
+        name: 'Do Shillong hostels have mixed and female-only dorms?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes. XTSY has 24/7 CCTV, personal lockers, female-only dorms, and round-the-clock staff. It\'s rated the safest hostel in Shillong for solo and female travellers.',
+          text: 'Yes. XTSY offers 6-bed and 8-bed mixed dormitories for backpackers plus dedicated 4-bed female-only dorms with privacy curtains and secure keycard access — ideal for solo female travellers looking for a safe, cheap hostel in Shillong.',
         },
       },
       {
         '@type': 'Question',
-        name: 'Does XTSY hostel allow pets?',
+        name: 'Is XTSY hostel safe for solo and backpacker travellers?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. XTSY has 24/7 CCTV, personal lockers at every bed, female-only dorms, and round-the-clock staff. It\'s rated among the safest backpacker hostels in Shillong for solo and female travellers.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How do I book a hostel in Shillong online?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'You can complete online hostel booking directly on xtsy.one — pick your dates and dorm or room, check live availability, and confirm instantly. Booking direct guarantees the best price with no OTA markups. You can also book a hostel in Shillong over WhatsApp or by phone.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Where is XTSY hostel located in Shillong?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'XTSY Travellers Hostel is in Mawkhar, central Shillong — walking distance to Police Bazaar, cafés and transport, and a short drive from Umiam Lake, Elephant Falls and the Dawki–Cherrapunji circuits.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does the Shillong hostel allow pets?',
         acceptedAnswer: {
           '@type': 'Answer',
           text: 'Yes! XTSY is India\'s first pet-friendly travellers hostel. Dogs, cats, and other pets are welcome with prior booking.',
@@ -89,11 +130,15 @@ const BestHostelShillong = memo(() => {
     ],
   };
 
-  const roomTypes = [
-    { name: '6-Bed Mixed Dorm', price: '₹469', desc: 'Personal locker, reading light, charging port', icon: Bed },
-    { name: '4-Bed Female Dorm', price: '₹550', desc: 'Women-only, extra privacy curtains, secure access', icon: Shield },
-    { name: 'Private Double Room', price: '₹2,500', desc: 'Ensuite bathroom, mountain views, queen bed', icon: Mountain },
-    { name: 'Panorama by XTSY', price: '₹4,999', desc: 'India\'s first panoramic glass suite, stargazing', icon: Star },
+  const dormRooms = [
+    { name: '6-Bed Mixed Dormitory', price: '₹329', desc: 'Backpacker favourite — personal locker, reading light, charging port & privacy curtain per bunk.', icon: Bed },
+    { name: '8-Bed Mixed Dormitory', price: '₹369', desc: 'Best value social dorm for backpackers — same in-bed amenities, biggest community vibe.', icon: Users },
+    { name: '4-Bed Female-Only Dorm', price: '₹550', desc: 'Women-only, extra privacy curtains, secure keycard access — safest cheap hostel option.', icon: Shield },
+  ];
+
+  const privateRooms = [
+    { name: 'Private Double Room', price: '₹2,500', desc: 'Ensuite bathroom, mountain views, queen bed — hostel social vibe with private comfort.', icon: Mountain },
+    { name: 'Panorama by XTSY', price: '₹4,999', desc: 'India\'s first 270° panoramic glass suite — stargazing from bed.', icon: Star },
   ];
 
   const amenities = [
@@ -105,20 +150,21 @@ const BestHostelShillong = memo(() => {
     { icon: Award, label: 'NEITA 2025 Nominated' },
   ];
 
-  const handleWhatsApp = () => window.open('https://wa.me/918837317070?text=Hi%2C%20I%20want%20to%20book%20at%20XTSY%20Hostel%20Shillong', '_blank');
+  const handleWhatsApp = () => window.open('https://wa.me/918837317070?text=Hi%2C%20I%20want%20to%20book%20a%20hostel%20in%20Shillong%20at%20XTSY', '_blank');
 
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Best Hostel in Shillong — Dorms from ₹329/night | XTSY</title>
-        <meta name="description" content="XTSY is the best hostel in Shillong, Meghalaya — India's biggest, with budget dorms from ₹329, private rooms & a 270° glass suite. 4.8★ rated." />
-        <meta name="keywords" content="best hostel in Shillong, hostel in Shillong, budget hostel Shillong, backpacker hostel Meghalaya, cheap hostel Shillong, dorm bed Shillong, hostel near Shillong, budget stay Shillong, Shillong accommodation budget" />
+        <title>Hostels in Shillong — Cheap Dorm Beds from ₹329 | XTSY</title>
+        <meta name="description" content="Looking for cheap hostels in Shillong? XTSY has backpacker dorm beds from ₹329, female-only dorms, private rooms & a 270° glass suite. Central, safe, 4.8★. Book online direct." />
+        <meta name="keywords" content="hostels in shillong, cheap hostels shillong, backpacker hostel shillong, dorm bed shillong, budget hostel meghalaya, female dorm shillong, hostel booking shillong, best hostel in shillong" />
         <link rel="canonical" href="https://xtsy.one/best-hostel-in-shillong" />
-        <meta property="og:title" content="Best Hostel in Shillong — XTSY | Dorms from ₹329" />
-        <meta property="og:description" content="India's biggest hostel in Shillong. Budget dorms, private rooms, 270° glass suite. 4.8★ rated by 320+ guests." />
+        <meta property="og:title" content="Hostels in Shillong — Cheap Dorm Beds from ₹329 | XTSY" />
+        <meta property="og:description" content="Cheap backpacker hostel in Shillong. Mixed & female dorms from ₹329, private rooms & 270° glass suite. 4.8★ rated by 320+ guests. Book direct online." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://xtsy.one/best-hostel-in-shillong" />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqData)}</script>
       </Helmet>
 
@@ -133,37 +179,103 @@ const BestHostelShillong = memo(() => {
               <span>NEITA 2025 Nominated · India's Biggest Hostel in Northeast</span>
             </div>
             <h1 className="text-3xl md:text-5xl font-bold text-foreground leading-tight">
-              Best Hostel in Shillong, Meghalaya
+              Hostels in Shillong — Cheap Dorm Beds from ₹329
             </h1>
             <p className="mt-4 text-lg text-muted-foreground max-w-3xl">
-              XTSY Travellers Hostel is Shillong's top-rated hostel with 320+ reviews and a 4.8★ rating. From budget dorms at ₹329/night to India's first 270° panoramic glass suite — we offer every type of stay for backpackers, couples, and groups visiting Meghalaya.
+              Searching for cheap hostels in Shillong? XTSY Travellers Hostel is Shillong's top-rated backpacker hostel — 4.8★ from 320+ guests, with budget mixed dorms from ₹329/night, safe female-only dorms, private rooms, and India's first 270° panoramic glass suite. Central Mawkhar location, minutes from Police Bazaar.
             </p>
             <div className="mt-4 flex items-center gap-4 text-sm text-muted-foreground">
               <span className="flex items-center gap-1"><MapPin className="h-4 w-4" /> Mawkhar, Shillong</span>
               <span className="flex items-center gap-1"><Star className="h-4 w-4 text-yellow-500 fill-yellow-500" /> 4.8 (320+ reviews)</span>
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
-              <Button onClick={handleWhatsApp} className="gap-2">
+              <Link to="/book">
+                <Button className="gap-2"><CalendarCheck className="h-4 w-4" /> Book a Hostel Bed Online</Button>
+              </Link>
+              <Button onClick={handleWhatsApp} variant="outline" className="gap-2">
                 <MessageCircle className="h-4 w-4" /> Book on WhatsApp
               </Button>
-              <Link to="/book">
-                <Button variant="outline" className="gap-2">Book Online</Button>
-              </Link>
             </div>
           </div>
         </section>
 
         <div className="container mx-auto px-4 max-w-5xl py-12 space-y-16">
 
-          {/* Room Types */}
+          {/* Dorm Beds — backpacker-focused section */}
           <section>
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground">Room Types & Pricing</h2>
-            <p className="mt-2 text-muted-foreground">Something for every budget — from ₹329 dorm beds to luxury glamping.</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground flex items-center gap-2">
+              <Bed className="h-6 w-6 text-primary" /> Dorm Beds — Cheap Backpacker Stays in Shillong
+            </h2>
+            <p className="mt-2 text-muted-foreground max-w-3xl">
+              Our dormitories are the most affordable way to stay in Shillong. Every bunk comes with a privacy curtain, personal locker, reading light and charging port — the social, budget-friendly base backpackers and solo travellers love. Choose a lively mixed dorm or a secure female-only dorm.
+            </p>
             <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {roomTypes.map((room) => (
+              {dormRooms.map((room) => (
                 <Card key={room.name} className="border-border/50">
                   <CardContent className="p-5">
-                    <div className="flex items-start justify-between">
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <room.icon className="h-5 w-5 text-primary" />
+                          <h3 className="font-semibold text-foreground">{room.name}</h3>
+                        </div>
+                        <p className="mt-1 text-sm text-muted-foreground">{room.desc}</p>
+                      </div>
+                      <span className="text-lg font-bold text-primary whitespace-nowrap">{room.price}<span className="text-xs text-muted-foreground font-normal">/night</span></span>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            <div className="mt-5">
+              <Link to="/book">
+                <Button className="gap-2"><CalendarCheck className="h-4 w-4" /> Check Dorm Availability</Button>
+              </Link>
+            </div>
+          </section>
+
+          {/* Backpacker guide section */}
+          <section className="rounded-2xl border border-border/50 bg-muted/20 p-6 md:p-8">
+            <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
+              <Backpack className="h-6 w-6 text-primary" /> A Backpacker Hostel Built for the Road
+            </h2>
+            <div className="mt-4 grid gap-6 md:grid-cols-2">
+              <div className="space-y-3 text-muted-foreground text-sm leading-relaxed">
+                <p>
+                  XTSY is a genuine backpacker hostel, not a repurposed guesthouse. You get a buzzing common lounge, communal kitchen, mountain-view terrace, and a crowd of travellers swapping Dawki, Nohkalikai and Cherrapunji route tips every evening.
+                </p>
+                <p>
+                  It's the perfect cheap Shillong base for backpackers doing the Meghalaya loop — lock in a dorm bed, drop your pack, and head out to the living root bridges, waterfalls and crystal-clear rivers.
+                </p>
+              </div>
+              <ul className="space-y-3">
+                {[
+                  'Dorm beds from ₹329 — one of the cheapest hostels in Shillong',
+                  'Free high-speed WiFi & co-working corners for digital nomads',
+                  'Self-catering common kitchen to keep costs down',
+                  'Lockers, curtains & 24/7 staff for safe solo travel',
+                  'Bike & car rentals + curated Meghalaya tours from the front desk',
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-foreground">
+                    <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+
+          {/* Private Rooms */}
+          <section>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground flex items-center gap-2">
+              <IndianRupee className="h-6 w-6 text-primary" /> Private Rooms & Suites
+            </h2>
+            <p className="mt-2 text-muted-foreground">Want the hostel vibe with private comfort? Choose an ensuite room or the panoramic glass suite.</p>
+            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {privateRooms.map((room) => (
+                <Card key={room.name} className="border-border/50">
+                  <CardContent className="p-5">
+                    <div className="flex items-start justify-between gap-3">
                       <div>
                         <div className="flex items-center gap-2">
                           <room.icon className="h-5 w-5 text-primary" />
@@ -194,9 +306,10 @@ const BestHostelShillong = memo(() => {
 
           {/* Why XTSY */}
           <section>
-            <h2 className="text-2xl font-bold text-foreground">Why XTSY is the Best Hostel in Shillong</h2>
+            <h2 className="text-2xl font-bold text-foreground">Why XTSY is the Best Cheap Hostel in Shillong</h2>
             <div className="mt-4 space-y-3">
               {[
+                'Dorm beds from ₹329 — among the cheapest hostels in Shillong',
                 'India\'s biggest hostel in Northeast India with 20+ rooms',
                 'Only hostel in Shillong with a 270° panoramic glass suite',
                 'Pet-friendly — India\'s first pet-friendly travellers hostel',
@@ -250,7 +363,7 @@ const BestHostelShillong = memo(() => {
 
           {/* FAQ */}
           <section>
-            <h2 className="text-2xl font-bold text-foreground">Frequently Asked Questions</h2>
+            <h2 className="text-2xl font-bold text-foreground">Hostels in Shillong — Frequently Asked Questions</h2>
             <div className="mt-6 space-y-6">
               {(faqData.mainEntity as any[]).map((faq, i) => (
                 <div key={i}>
@@ -263,15 +376,15 @@ const BestHostelShillong = memo(() => {
 
           {/* CTA */}
           <section className="bg-primary/10 rounded-2xl p-8 text-center">
-            <h2 className="text-2xl font-bold text-foreground">Book the Best Hostel in Shillong</h2>
-            <p className="mt-2 text-muted-foreground">Direct booking = best price guaranteed. No middlemen, no markups.</p>
+            <h2 className="text-2xl font-bold text-foreground">Book a Hostel in Shillong — Direct & Cheapest</h2>
+            <p className="mt-2 text-muted-foreground">Online hostel booking with the best price guaranteed. No OTAs, no markups, instant confirmation.</p>
             <div className="mt-6 flex flex-wrap gap-4 justify-center">
-              <Button onClick={handleWhatsApp} className="gap-2">
+              <Link to="/book">
+                <Button className="gap-2"><CalendarCheck className="h-4 w-4" /> Book Online</Button>
+              </Link>
+              <Button onClick={handleWhatsApp} variant="outline" className="gap-2">
                 <MessageCircle className="h-4 w-4" /> WhatsApp Booking
               </Button>
-              <Link to="/book">
-                <Button variant="outline">Book Online</Button>
-              </Link>
               <a href="tel:+918837317070">
                 <Button variant="outline" className="gap-2"><Phone className="h-4 w-4" /> Call Us</Button>
               </a>
