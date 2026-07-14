@@ -3,7 +3,7 @@
 // supabase function: mcp
 // Bundled from src/lib/mcp/index.ts by @lovable.dev/mcp-js.
 // src/lib/mcp/index.ts
-import { defineMcp } from "npm:@lovable.dev/mcp-js@0.20.1";
+import { auth, defineMcp } from "npm:@lovable.dev/mcp-js@0.20.1";
 
 // src/lib/mcp/tools/list-rooms.ts
 import { defineTool } from "npm:@lovable.dev/mcp-js@0.20.1";
@@ -2497,11 +2497,16 @@ Book online: ${HOSTEL_INFO.bookingUrl}`;
 });
 
 // src/lib/mcp/index.ts
+var projectRef = "kzhsxemkntfwsakhkylt";
 var mcp_default = defineMcp({
   name: "xtsy-mcp",
   title: "XTSY Travel & Hostel",
   version: "0.1.0",
   instructions: "Read-only tools for XTSY (Shillong, Meghalaya). Use `list_rooms` for hostel/dorm/luxury stays and prices, `list_destinations` and `get_destination` for Meghalaya travel spots, `list_tour_packages` and `get_tour_package` for Northeast India tours, `get_bistro_menu` for the TAB Bistro menu, and `get_hostel_info` for brand, awards and booking links. All prices are in INR and bookings go through https://xtsy.one/book.",
+  auth: auth.oauth.issuer({
+    issuer: `https://${projectRef}.supabase.co/auth/v1`,
+    acceptedAudiences: "authenticated"
+  }),
   tools: [
     list_rooms_default,
     list_destinations_default,
