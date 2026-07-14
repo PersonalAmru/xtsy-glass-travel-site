@@ -88,7 +88,7 @@ const PlanTripLinks = ({ slugs, bookingAnchor, heading, source }: PlanTripLinksP
             onClick={handleBookingClick}
             className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            <CalendarCheck className="h-4 w-4" /> Check Availability
+            <CalendarCheck className="h-4 w-4" /> Book Hostel Online
           </Link>
           <Link
             to="/places-to-visit-in-meghalaya"

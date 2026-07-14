@@ -13,6 +13,7 @@ import { useValidatedImages } from '@/hooks/useValidatedImages';
 import DestinationCard from '@/components/destinations/DestinationCard';
 import { MapPin, Calendar, Navigation, Lightbulb, Mountain, BookOpen, BedDouble, CalendarCheck } from 'lucide-react';
 import StayEatExplore from '@/components/seo/StayEatExplore';
+import ShillongHostelLinkBlock from '@/components/ShillongHostelLinkBlock';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { getDestinationGeo } from '@/data/destinationGeo';
 import {
@@ -48,6 +49,15 @@ const DestinationDetail = () => {
   const nearby = destination.nearbyAttractions
     .map(name => meghalayaDestinations.find(d => d.name === name))
     .filter(Boolean) as typeof meghalayaDestinations;
+
+  // High-traffic destination pages that get a dedicated "book a hostel in
+  // Shillong" internal link block funnelling to /best-hostel-in-shillong.
+  const SHILLONG_HOSTEL_LINK_SLUGS = new Set([
+    'dawki-umngot-river',
+    'nohkalikai-falls',
+    'umiam-lake',
+  ]);
+  const showShillongHostelLink = SHILLONG_HOSTEL_LINK_SLUGS.has(destination.slug);
 
   // Genuine, on-page FAQs generated from this destination's data. Rendered
   // visibly below AND emitted as FAQPage schema (Google requires the answer
@@ -204,6 +214,11 @@ const DestinationDetail = () => {
 
           {/* Primary booking CTA — converts destination traffic into hostel bookings */}
           <DestinationBookingCTA destination={destination} placement="top" />
+
+          {/* Keyword-rich "book a hostel in Shillong" link block for top destinations */}
+          {showShillongHostelLink && (
+            <ShillongHostelLinkBlock nearName={destination.name} source={`destination_${destination.slug}`} />
+          )}
 
 
           {/* Deep-dive editorial sections (content depth for priority pages) */}
@@ -469,7 +484,7 @@ const DestinationBookingCTA = ({
             onClick={() => handleClick('availability_check')}
             className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            <CalendarCheck className="h-4 w-4" /> Check Availability
+            <CalendarCheck className="h-4 w-4" /> Book Hostel Online
           </Link>
           <Link
             to="/best-hostel-in-shillong"
