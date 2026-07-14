@@ -13,6 +13,7 @@ import { useValidatedImages } from '@/hooks/useValidatedImages';
 import DestinationCard from '@/components/destinations/DestinationCard';
 import { MapPin, Calendar, Navigation, Lightbulb, Mountain, BookOpen, BedDouble, CalendarCheck } from 'lucide-react';
 import StayEatExplore from '@/components/seo/StayEatExplore';
+import ShillongHostelLinkBlock from '@/components/ShillongHostelLinkBlock';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { getDestinationGeo } from '@/data/destinationGeo';
 import {
