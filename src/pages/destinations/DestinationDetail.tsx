@@ -50,6 +50,15 @@ const DestinationDetail = () => {
     .map(name => meghalayaDestinations.find(d => d.name === name))
     .filter(Boolean) as typeof meghalayaDestinations;
 
+  // High-traffic destination pages that get a dedicated "book a hostel in
+  // Shillong" internal link block funnelling to /best-hostel-in-shillong.
+  const SHILLONG_HOSTEL_LINK_SLUGS = new Set([
+    'dawki-umngot-river',
+    'nohkalikai-falls',
+    'umiam-lake',
+  ]);
+  const showShillongHostelLink = SHILLONG_HOSTEL_LINK_SLUGS.has(destination.slug);
+
   // Genuine, on-page FAQs generated from this destination's data. Rendered
   // visibly below AND emitted as FAQPage schema (Google requires the answer
   // text to be visible on the page to be eligible for the rich result).
