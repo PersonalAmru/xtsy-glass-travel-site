@@ -335,6 +335,8 @@ function App() {
                 {/* User Auth Routes */}
                 <Route path="/auth" element={<LazyRoute><UserAuth /></LazyRoute>} />
                 <Route path="/profile" element={<LazyRoute><UserProfile /></LazyRoute>} />
+                {/* OAuth 2.1 consent screen for MCP agent integrations */}
+                <Route path="/.lovable/oauth/consent" element={<LazyRoute><OAuthConsent /></LazyRoute>} />
                 
                 {/* Admin Routes - Unified layout with hamburger menu */}
                 <Route path="/admin" element={<LazyRoute><AdminOverview /></LazyRoute>} />
