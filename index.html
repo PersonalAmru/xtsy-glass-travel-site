@@ -142,13 +142,15 @@
       })();
     </script>
     
-    <!-- Google Tag Manager - Heavily deferred to protect LCP/INP -->
-    <!-- Loads ONLY after window.load + 3s idle. First-interaction triggers removed —
-         they were starving LCP on mobile (GTM-MS23NHMF in admin, GTM-5FXJ9QBK in prod). -->
+    <!-- Google Tag Manager - Interaction-gated for LCP/TBT protection -->
+    <!-- Loads on the FIRST real user interaction (pointer/scroll/keyboard/touch/visibility)
+         or after a hard 10s fallback so idle sessions still record. Guarantees GTM never
+         competes with the LCP frame or the initial TBT window. -->
     <script>(function(w,d,s,l){
       var loaded = false;
       function loadGTM(){
         if (loaded) return; loaded = true;
+        cleanup();
         var containerId = w.__isLovableAdmin ? 'GTM-MS23NHMF' : 'GTM-5FXJ9QBK';
         w.__activeGTMContainer = containerId;
         w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
@@ -157,18 +159,12 @@
         j.src='https://www.googletagmanager.com/gtm.js?id='+containerId+dl;
         f.parentNode.insertBefore(j,f);
       }
-      function schedule(){
-        if ('requestIdleCallback' in w) {
-          w.requestIdleCallback(loadGTM, { timeout: 5000 });
-        } else {
-          setTimeout(loadGTM, 3000);
-        }
-      }
-      if (document.readyState === 'complete') {
-        setTimeout(schedule, 1500);
-      } else {
-        w.addEventListener('load', function(){ setTimeout(schedule, 1500); }, { once: true });
-      }
+      var events = ['pointerdown','touchstart','keydown','scroll','mousemove','visibilitychange'];
+      var opts = { once: true, passive: true, capture: true };
+      function cleanup(){ events.forEach(function(e){ try { w.removeEventListener(e, loadGTM, opts); } catch(_){} }); }
+      events.forEach(function(e){ w.addEventListener(e, loadGTM, opts); });
+      // Fallback: load after 10s so idle sessions still report a pageview.
+      setTimeout(loadGTM, 10000);
     })(window,document,'script','dataLayer');</script>
     <!-- End Google Tag Manager -->
     
