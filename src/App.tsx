@@ -72,6 +72,7 @@ const LazyCampsiteBooking = createLazyComponent(() => import("./pages/CampsiteBo
 // Other lazy pages
 const LazyAbout = createLazyComponent(() => import("./pages/About"));
 const LazyGallery = createLazyComponent(() => import("./pages/Gallery"));
+const GuwahatiToShillongTransport = createLazyComponent(() => import("./pages/GuwahatiToShillongTransport"));
 const LazyTravel = createLazyComponent(() => import("./pages/Travel"));
 const LazyTours = createLazyComponent(() => import("./pages/Tours"));
 const LazyTourDetail = createLazyComponent(() => import("./pages/TourDetail"));
@@ -303,6 +304,8 @@ function App() {
                 <Route path="/" element={<Index />} />
                 <Route path="/about" element={<LazyRoute><LazyAbout /></LazyRoute>} />
                 <Route path="/gallery" element={<LazyRoute><LazyGallery /></LazyRoute>} />
+                <Route path="/travel-guide/guwahati-to-shillong-transport" element={<LazyRoute><GuwahatiToShillongTransport /></LazyRoute>} />
+
                 {/* /travel → 301 redirect to /tours to fix keyword cannibalization */}
                 <Route path="/travel" element={<TravelRedirect />} />
                 <Route path="/tours" element={<LazyRoute><LazyTours /></LazyRoute>} />

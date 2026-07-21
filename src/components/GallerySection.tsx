@@ -138,7 +138,7 @@ const CATEGORIES = [
   { id: "dormitories", label: "Dormitories", icon: Users, count: GALLERY_ITEMS.filter(i => i.category === "dormitories").length },
 ];
 
-const GallerySection = () => {
+const GallerySection = ({ asPageHeading = false }: { asPageHeading?: boolean } = {}) => {
   const [activeCategory, setActiveCategory] = useState("all");
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
@@ -174,11 +174,17 @@ const GallerySection = () => {
       <div className="container mx-auto max-w-6xl relative z-10">
         {/* Header */}
         <div className="text-center mb-10 sm:mb-14">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3">
-            📸 Gallery
-          </h2>
+          {asPageHeading ? (
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3">
+              XTSY Photo Gallery — Shillong Hostel, 270° Glass Suite & Meghalaya
+            </h1>
+          ) : (
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3">
+              📸 Gallery
+            </h2>
+          )}
           <p className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto">
-            Explore all our accommodation options — from luxury suites to cozy dormitories
+            Explore real photos of our dorms, private rooms, the 270° glass suite and Meghalaya experiences
           </p>
         </div>
 
