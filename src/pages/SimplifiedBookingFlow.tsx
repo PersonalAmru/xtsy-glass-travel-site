@@ -114,7 +114,7 @@ const BookingHeader = ({
           animate={{ opacity: 1, y: 0 }}
           className="flex flex-col items-center"
         >
-          <span className="text-xs text-white/50 uppercase tracking-widest mb-0.5">
+          <span className="text-xs text-white/80 uppercase tracking-widest mb-0.5">
             Step {stepNumber} of {totalSteps}
           </span>
           <h1 className="text-lg font-semibold text-white">{step}</h1>
@@ -183,7 +183,7 @@ const RoomSelectionStep = ({
         className="mb-4"
       >
         <h3 className="text-lg font-bold text-white mb-1">Select Your Rooms</h3>
-        <p className="text-sm text-white/50">{nights} night{nights > 1 ? 's' : ''} · Choose rooms & beds</p>
+        <p className="text-sm text-white/80">{nights} night{nights > 1 ? 's' : ''} · Choose rooms & beds</p>
       </motion.div>
 
       <div className="space-y-3">
@@ -213,15 +213,15 @@ const RoomSelectionStep = ({
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="font-semibold text-white text-sm truncate">{room.name}</p>
-                  <p className="text-xs text-white/40 mt-0.5">
+                  <p className="text-xs text-white/75 mt-0.5">
                     {room.kind === 'dorm' ? `${room.capacity}-bed ${room.category}` : `Up to ${room.capacity} guests`}
                   </p>
                   <div className="flex items-baseline gap-1.5 mt-1">
                     <span className="font-bold text-white">₹{room.discountedPrice.toLocaleString()}</span>
                     {room.originalPrice > room.discountedPrice && (
-                      <span className="text-xs text-white/30 line-through">₹{room.originalPrice.toLocaleString()}</span>
+                      <span className="text-xs text-white/70 line-through">₹{room.originalPrice.toLocaleString()}</span>
                     )}
-                    <span className="text-xs text-white/40">/{room.kind === 'dorm' ? 'bed' : 'night'}</span>
+                    <span className="text-xs text-white/75">/{room.kind === 'dorm' ? 'bed' : 'night'}</span>
                   </div>
                 </div>
                 {/* Quantity control */}
@@ -251,7 +251,7 @@ const RoomSelectionStep = ({
       {/* Continue Button */}
       <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md p-4 bg-gradient-to-t from-[hsl(220,20%,12%)] via-[hsl(220,20%,12%)] to-transparent pt-8">
         <div className="flex items-center justify-between mb-3 px-1">
-          <span className="text-white/50 text-sm">
+          <span className="text-white/80 text-sm">
             {selectedRooms.length > 0 ? `${selectedRooms.reduce((s, r) => s + r.quantity, 0)} selected` : 'Select rooms'}
           </span>
           {totalAmount > 0 && (
@@ -306,7 +306,7 @@ const SummaryStep = ({
           <MapPin className="w-4 h-4" />
           <span className="font-medium text-white">{propertyName}</span>
         </div>
-        <p className="text-sm text-white/50 mt-1">Shillong, Meghalaya</p>
+        <p className="text-sm text-white/80 mt-1">Shillong, Meghalaya</p>
       </motion.div>
 
       {/* Date & Nights */}
@@ -318,19 +318,19 @@ const SummaryStep = ({
       >
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <p className="text-[10px] text-white/40 uppercase tracking-widest">Check-in</p>
+            <p className="text-[10px] text-white/75 uppercase tracking-widest">Check-in</p>
             <p className="font-semibold text-white">{format(checkIn, 'EEE, MMM d')}</p>
-            <p className="text-sm text-white/40">After 12:00 PM</p>
+            <p className="text-sm text-white/75">After 12:00 PM</p>
           </div>
           <div>
-            <p className="text-[10px] text-white/40 uppercase tracking-widest">Check-out</p>
+            <p className="text-[10px] text-white/75 uppercase tracking-widest">Check-out</p>
             <p className="font-semibold text-white">{format(checkOut, 'EEE, MMM d')}</p>
-            <p className="text-sm text-white/40">Before 10:00 AM</p>
+            <p className="text-sm text-white/75">Before 10:00 AM</p>
           </div>
         </div>
         <div className="mt-4 pt-4 border-t border-white/10">
           <div className="flex justify-between">
-            <span className="text-white/50">Duration</span>
+            <span className="text-white/80">Duration</span>
             <span className="font-medium text-white">{nights} night{nights > 1 ? 's' : ''}</span>
           </div>
         </div>
@@ -362,7 +362,7 @@ const SummaryStep = ({
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="font-medium text-white text-sm truncate">{room.name}</p>
-                  <p className="text-xs text-white/50">
+                  <p className="text-xs text-white/80">
                     {quantity} × {room.kind === 'dorm' ? 'bed' : 'room'}
                   </p>
                   {breakfastNote && (
@@ -371,7 +371,7 @@ const SummaryStep = ({
                 </div>
                 <div className="text-right">
                   <p className="font-semibold text-white">₹{(canonicalPrice * quantity * nights).toLocaleString()}</p>
-                  <p className="text-xs text-white/40">{nights}N</p>
+                  <p className="text-xs text-white/75">{nights}N</p>
                 </div>
               </div>
             );
@@ -389,12 +389,12 @@ const SummaryStep = ({
         <h4 className="font-semibold text-white mb-3">Price Breakdown</h4>
         <div className="space-y-2 text-sm">
           <div className="flex justify-between">
-            <span className="text-white/50">Room charges ({nights} night{nights > 1 ? 's' : ''})</span>
+            <span className="text-white/80">Room charges ({nights} night{nights > 1 ? 's' : ''})</span>
             <span className="text-white">₹{subtotal.toLocaleString()}</span>
           </div>
           {gstAmount > 0 && (
             <div className="flex justify-between">
-              <span className="text-white/50">GST (5%)</span>
+              <span className="text-white/80">GST (5%)</span>
               <span className="text-white">₹{gstAmount.toLocaleString()}</span>
             </div>
           )}
@@ -415,7 +415,7 @@ const SummaryStep = ({
         <Shield className="w-5 h-5 text-emerald-400" />
         <div>
           <p className="font-medium text-emerald-400">No payment now · Enquiry only</p>
-          <p className="text-sm text-white/50">Host confirms availability before any payment</p>
+          <p className="text-sm text-white/80">Host confirms availability before any payment</p>
         </div>
       </motion.div>
 
@@ -469,7 +469,7 @@ const GuestDetailsStep = ({
     }
   };
 
-  const inputClass = "h-12 pl-11 bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-white/30 focus:ring-white/10 rounded-xl";
+  const inputClass = "h-12 pl-11 bg-white/5 border-white/10 text-white placeholder:text-white/70 focus:border-white/30 focus:ring-white/10 rounded-xl";
   const labelClass = "text-sm font-medium text-white/80";
 
   return (
@@ -485,7 +485,7 @@ const GuestDetailsStep = ({
             Full Name <span className="text-red-400">*</span>
           </Label>
           <div className="relative mt-1.5">
-            <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+            <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/75" />
             <Input
               id="name"
               value={guestDetails.name}
@@ -503,7 +503,7 @@ const GuestDetailsStep = ({
             Email Address <span className="text-red-400">*</span>
           </Label>
           <div className="relative mt-1.5">
-            <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+            <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/75" />
             <Input
               id="email"
               type="email"
@@ -522,7 +522,7 @@ const GuestDetailsStep = ({
             WhatsApp Number <span className="text-red-400">*</span>
           </Label>
           <div className="relative mt-1.5">
-            <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+            <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/75" />
             <Input
               id="phone"
               type="tel"
@@ -538,16 +538,16 @@ const GuestDetailsStep = ({
         {/* Address */}
         <div>
           <Label htmlFor="address" className={labelClass}>
-            Address <span className="text-white/40">(Optional)</span>
+            Address <span className="text-white/75">(Optional)</span>
           </Label>
           <div className="relative mt-1.5">
-            <Home className="absolute left-3.5 top-3.5 w-4 h-4 text-white/40" />
+            <Home className="absolute left-3.5 top-3.5 w-4 h-4 text-white/75" />
             <Textarea
               id="address"
               value={guestDetails.address}
               onChange={(e) => onChange('address', e.target.value)}
               placeholder="Street address"
-              className="pl-11 min-h-[60px] bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-white/30 focus:ring-white/10 rounded-xl"
+              className="pl-11 min-h-[60px] bg-white/5 border-white/10 text-white placeholder:text-white/70 focus:border-white/30 focus:ring-white/10 rounded-xl"
             />
           </div>
         </div>
@@ -561,7 +561,7 @@ const GuestDetailsStep = ({
               value={guestDetails.city}
               onChange={(e) => onChange('city', e.target.value)}
               placeholder="City"
-              className="h-12 bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-white/30 focus:ring-white/10 rounded-xl mt-1.5"
+              className="h-12 bg-white/5 border-white/10 text-white placeholder:text-white/70 focus:border-white/30 focus:ring-white/10 rounded-xl mt-1.5"
             />
           </div>
           <div>
@@ -571,7 +571,7 @@ const GuestDetailsStep = ({
               value={guestDetails.state}
               onChange={(e) => onChange('state', e.target.value)}
               placeholder="State"
-              className="h-12 bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-white/30 focus:ring-white/10 rounded-xl mt-1.5"
+              className="h-12 bg-white/5 border-white/10 text-white placeholder:text-white/70 focus:border-white/30 focus:ring-white/10 rounded-xl mt-1.5"
             />
           </div>
         </div>
@@ -585,21 +585,21 @@ const GuestDetailsStep = ({
             onChange={(e) => onChange('pincode', e.target.value)}
             placeholder="000000"
             maxLength={6}
-            className="h-12 bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-white/30 focus:ring-white/10 rounded-xl mt-1.5"
+            className="h-12 bg-white/5 border-white/10 text-white placeholder:text-white/70 focus:border-white/30 focus:ring-white/10 rounded-xl mt-1.5"
           />
         </div>
 
         {/* Special Requests */}
         <div>
           <Label htmlFor="specialRequests" className={labelClass}>
-            Special Requests <span className="text-white/40">(Optional)</span>
+            Special Requests <span className="text-white/75">(Optional)</span>
           </Label>
           <Textarea
             id="specialRequests"
             value={guestDetails.specialRequests}
             onChange={(e) => onChange('specialRequests', e.target.value)}
             placeholder="Any special requirements..."
-            className="min-h-[80px] bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-white/30 focus:ring-white/10 rounded-xl mt-1.5"
+            className="min-h-[80px] bg-white/5 border-white/10 text-white placeholder:text-white/70 focus:border-white/30 focus:ring-white/10 rounded-xl mt-1.5"
           />
         </div>
       </motion.div>
@@ -742,25 +742,25 @@ const ConfirmationStep = ({
       >
         <div className="space-y-3">
           <div className="flex justify-between">
-            <span className="text-white/50">Enquiry ID</span>
+            <span className="text-white/80">Enquiry ID</span>
             <span className="font-mono font-bold text-emerald-400">{bookingId}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-white/50">Rooms</span>
+            <span className="text-white/80">Rooms</span>
             <span className="font-medium text-white text-right">
               {selectedRooms.map(r => `${r.quantity}× ${r.room.name}`).join(', ')}
             </span>
           </div>
           <div className="flex justify-between">
-            <span className="text-white/50">Check-in</span>
+            <span className="text-white/80">Check-in</span>
             <span className="font-medium text-white">{format(checkIn, 'MMM d, yyyy')}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-white/50">Check-out</span>
+            <span className="text-white/80">Check-out</span>
             <span className="font-medium text-white">{format(checkOut, 'MMM d, yyyy')}</span>
           </div>
           <div className="flex justify-between pt-2 border-t border-white/10">
-            <span className="text-white/50">Estimated Total</span>
+            <span className="text-white/80">Estimated Total</span>
             <span className="font-bold text-white">₹{total.toLocaleString()}</span>
           </div>
         </div>
@@ -810,7 +810,7 @@ const ConfirmationStep = ({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.6 }}
-        className="flex items-center gap-2 text-sm text-white/40 mb-6 text-center"
+        className="flex items-center gap-2 text-sm text-white/75 mb-6 text-center"
       >
         <Sparkles className="w-4 h-4" />
         <span>Enquiry copy sent to your email & WhatsApp</span>
@@ -1181,7 +1181,7 @@ export default function SimplifiedBookingFlow() {
   if (!checkIn || !checkOut) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-[hsl(220,20%,12%)] to-[hsl(220,25%,6%)] flex items-center justify-center">
-        <div className="text-white/50">Loading booking details...</div>
+        <div className="text-white/80">Loading booking details...</div>
       </div>
     );
   }
