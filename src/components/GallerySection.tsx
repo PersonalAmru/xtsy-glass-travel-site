@@ -138,7 +138,7 @@ const CATEGORIES = [
   { id: "dormitories", label: "Dormitories", icon: Users, count: GALLERY_ITEMS.filter(i => i.category === "dormitories").length },
 ];
 
-const GallerySection = () => {
+const GallerySection = ({ asPageHeading = false }: { asPageHeading?: boolean } = {}) => {
   const [activeCategory, setActiveCategory] = useState("all");
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
