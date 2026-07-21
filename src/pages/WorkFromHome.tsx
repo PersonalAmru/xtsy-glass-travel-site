@@ -358,7 +358,7 @@ const WorkFromHome = () => {
                         </div>
                         <div>
                           <div className="font-semibold text-white text-base sm:text-lg">{testimonial.name}</div>
-                          <div className="text-xs sm:text-sm text-white/50">{testimonial.role}</div>
+                          <div className="text-xs sm:text-sm text-white/80">{testimonial.role}</div>
                         </div>
                       </div>
                       <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10">
