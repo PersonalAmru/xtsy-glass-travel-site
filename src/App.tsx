@@ -303,6 +303,8 @@ function App() {
                 <Route path="/" element={<Index />} />
                 <Route path="/about" element={<LazyRoute><LazyAbout /></LazyRoute>} />
                 <Route path="/gallery" element={<LazyRoute><LazyGallery /></LazyRoute>} />
+                <Route path="/travel-guide/guwahati-to-shillong-transport" element={<LazyRoute><GuwahatiToShillongTransport /></LazyRoute>} />
+
                 {/* /travel → 301 redirect to /tours to fix keyword cannibalization */}
                 <Route path="/travel" element={<TravelRedirect />} />
                 <Route path="/tours" element={<LazyRoute><LazyTours /></LazyRoute>} />
