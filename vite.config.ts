@@ -239,6 +239,10 @@ export default defineConfig(({ mode }) => ({
     cssMinify: 'lightningcss',
     sourcemap: false,
     reportCompressedSize: false,
+    modulePreload: {
+      polyfill: true,
+      resolveDependencies: (_filename, deps) => deps.filter(d => !/charts-[a-zA-Z0-9]+\.js$/.test(d)),
+    },
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom', '@tanstack/react-query'],
