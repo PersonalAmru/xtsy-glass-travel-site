@@ -91,6 +91,8 @@ const Header = () => {
                 loading="eager"
                 fetchPriority="high"
                 decoding="sync"
+                width={440}
+                height={160}
                 onLoad={handleLogoLoad}
                 onError={handleLogoError}
               />

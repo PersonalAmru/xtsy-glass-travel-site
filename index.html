@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- LCP CRITICAL: Preload hero brand symbol with highest priority -->
-    <link rel="preload" as="image" href="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png" fetchpriority="high" type="image/png">
+    <link rel="preload" as="image" href="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.avif" fetchpriority="high" type="image/avif">
     
     <!-- Non-blocking font loading via preload + onload pattern -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -34,6 +34,8 @@
       @supports (-webkit-touch-callout:none){input,select,textarea{font-size:16px!important}}
       .hero-bg{background:linear-gradient(135deg,#020617 0%,#0f172a 50%,#020617 100%)}
       :root{--primary:25 95% 53%;--primary-foreground:0 0% 100%}
+      /* LCP FIX: render mountain decoration as a pseudo-element so it is not an LCP candidate */
+      .hero-mountain-decoration::after{content:'';position:absolute;bottom:0;left:0;right:0;height:30%;opacity:.04;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' d='M0,224L48,213.3C96,203,192,181,288,186.7C384,192,480,224,576,218.7C672,213,768,171,864,165.3C960,160,1056,192,1152,197.3C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'/%3E%3C/svg%3E") no-repeat bottom center;background-size:cover}
     </style>
     
     <!-- Hydration script - add hydrated class immediately when DOM is ready -->
