@@ -212,16 +212,20 @@ const HeroSection = () => {
             {/* LCP ELEMENT - Brand Symbol - optimized for sub-3s LCP */}
             <div className="flex items-center justify-center mb-6">
               <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32">
-                <img
-                  src="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png"
-                  alt="XTSY Brand Symbol"
-                  className="w-full h-full object-contain"
-                  loading="eager"
-                  decoding="sync"
-                  fetchPriority="high"
-                  width={128}
-                  height={128}
-                />
+                <picture>
+                  <source srcSet="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.avif" type="image/avif" />
+                  <source srcSet="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.webp" type="image/webp" />
+                  <img
+                    src="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png"
+                    alt="XTSY Brand Symbol"
+                    className="w-full h-full object-contain"
+                    loading="eager"
+                    decoding="sync"
+                    fetchPriority="high"
+                    width={128}
+                    height={128}
+                  />
+                </picture>
               </div>
             </div>
 
