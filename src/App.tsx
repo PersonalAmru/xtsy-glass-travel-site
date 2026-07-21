@@ -72,6 +72,7 @@ const LazyCampsiteBooking = createLazyComponent(() => import("./pages/CampsiteBo
 // Other lazy pages
 const LazyAbout = createLazyComponent(() => import("./pages/About"));
 const LazyGallery = createLazyComponent(() => import("./pages/Gallery"));
+const GuwahatiToShillongTransport = createLazyComponent(() => import("./pages/GuwahatiToShillongTransport"));
 const LazyTravel = createLazyComponent(() => import("./pages/Travel"));
 const LazyTours = createLazyComponent(() => import("./pages/Tours"));
 const LazyTourDetail = createLazyComponent(() => import("./pages/TourDetail"));
