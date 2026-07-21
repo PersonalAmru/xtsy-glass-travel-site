@@ -73,7 +73,7 @@ const Gallery = () => {
       
       <Header />
       <div className="pt-4">
-        <GallerySection />
+        <GallerySection asPageHeading />
       </div>
       <Footer />
     </div>
