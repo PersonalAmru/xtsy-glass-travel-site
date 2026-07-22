@@ -211,6 +211,7 @@ export default defineConfig(({ mode }) => ({
           'forms': ['react-hook-form', '@hookform/resolvers', 'zod'],
           'date': ['date-fns', 'react-day-picker'],
           'charts': ['recharts'],
+          'fuse': ['fuse.js'],
         },
         // Optimize chunk filenames for better caching
         chunkFileNames: 'assets/[name]-[hash:8].js',
@@ -241,7 +242,8 @@ export default defineConfig(({ mode }) => ({
     reportCompressedSize: false,
     modulePreload: {
       polyfill: true,
-      resolveDependencies: (_filename, deps) => deps.filter(d => !/charts-[a-zA-Z0-9]+\.js$/.test(d)),
+      resolveDependencies: (_filename, deps) =>
+        deps.filter((d) => !/(charts|fuse|recharts|d3|admin)-[a-zA-Z0-9]+\.js$/i.test(d)),
     },
   },
   optimizeDeps: {
