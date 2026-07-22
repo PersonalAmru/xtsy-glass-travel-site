@@ -2,24 +2,20 @@
  * useIntelligentSearch — Fuse.js powered fuzzy search hook
  * Searches the centralized XTSY index with synonym expansion and categorized results.
  *
- * v2 (Apr 2026): Added intent-routing layer + 3-tier ranking:
- *   1. High-intent slug matches (e.g. "stay in dawki today" → /stay-in-dawki-today)
- *   2. Property pages (conversion targets)
- *   3. Fuzzy SEO/page results
+ * v3 (2026-07): Fuse.js and the search index are now dynamically imported on the
+ * first search call so the homepage bundle no longer pays for them upfront. This
+ * shaves ~40 KB gz off the initial JS graph.
  */
 
-import { useMemo, useState, useCallback, useRef, useEffect } from 'react';
-import Fuse from 'fuse.js';
-import {
-  getSearchIndex,
-  expandWithSynonyms,
-  CATEGORY_ORDER,
-  type SearchEntry,
-  type SearchCategory,
+import { useState, useCallback, useRef, useEffect } from 'react';
+import type {
+  SearchEntry,
+  SearchCategory,
 } from '@/data/searchIndex';
 
+type FuseType = import('fuse.js').default<SearchEntry>;
+
 // ---- Intent routing: known SEO slugs we want to surface as the top hit
-// Keep this small + curated. Each entry = phrase → exact route.
 const INTENT_ROUTES: Array<{ match: RegExp; entry: Omit<SearchEntry, 'id'> }> = [
   {
     match: /\b(stay|hostel|hotel|room)\b.*\bdawki\b.*\b(today|tonight|now)\b/i,
@@ -119,6 +115,22 @@ const FUSE_OPTIONS = {
   ignoreLocation: true,
 };
 
+// Module-level singletons — resolved lazily, shared across hook instances.
+let fusePromise: Promise<{ fuse: FuseType; expand: (q: string) => string; order: readonly SearchCategory[] }> | null = null;
+const getFuse = () => {
+  if (!fusePromise) {
+    fusePromise = Promise.all([
+      import('fuse.js'),
+      import('@/data/searchIndex'),
+    ]).then(([{ default: Fuse }, mod]) => ({
+      fuse: new Fuse(mod.getSearchIndex(), FUSE_OPTIONS) as FuseType,
+      expand: mod.expandWithSynonyms,
+      order: mod.CATEGORY_ORDER,
+    }));
+  }
+  return fusePromise;
+};
+
 export function useIntelligentSearch() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<SearchEntry[]>([]);
@@ -126,11 +138,8 @@ export function useIntelligentSearch() {
   const [isSearching, setIsSearching] = useState(false);
   const debounceRef = useRef<ReturnType<typeof setTimeout>>();
 
-  const index = useMemo(() => getSearchIndex(), []);
-  const fuse = useMemo(() => new Fuse(index, FUSE_OPTIONS), [index]);
-
   const search = useCallback(
-    (q: string) => {
+    async (q: string) => {
       if (!q.trim() || q.trim().length < 2) {
         setResults([]);
         setCategorizedResults([]);
@@ -140,15 +149,12 @@ export function useIntelligentSearch() {
 
       setIsSearching(true);
 
-      // Tier 1: intent-routing layer (high-intent SEO slug matches)
       const intentHits = resolveIntent(q);
-
-      // Tier 2/3: fuzzy search with synonym expansion
-      const expanded = expandWithSynonyms(q);
+      const { fuse, expand, order } = await getFuse();
+      const expanded = expand(q);
       const fuseResults = fuse.search(expanded, { limit: 20 });
       const fuzzyItems = fuseResults.map((r) => r.item);
 
-      // Property entries (id starts with 'property-' or 'exp-dawki-campsite') = Tier 2
       const propertyItems = fuzzyItems.filter(
         (i) => i.id.startsWith('property-') || i.id === 'exp-dawki-campsite',
       );
@@ -156,7 +162,6 @@ export function useIntelligentSearch() {
         (i) => !i.id.startsWith('property-') && i.id !== 'exp-dawki-campsite',
       );
 
-      // De-dupe by URL: intent > property > other
       const seen = new Set<string>();
       const items: SearchEntry[] = [];
       [...intentHits, ...propertyItems, ...otherItems].forEach((it) => {
@@ -166,7 +171,6 @@ export function useIntelligentSearch() {
         }
       });
 
-      // Group by category
       const grouped: Record<SearchCategory, SearchEntry[]> = {
         stays: [],
         experiences: [],
@@ -178,7 +182,7 @@ export function useIntelligentSearch() {
         grouped[item.category].push(item);
       });
 
-      const categorized = CATEGORY_ORDER
+      const categorized = order
         .filter((cat) => grouped[cat].length > 0)
         .map((cat) => ({ category: cat, items: grouped[cat] }));
 
@@ -186,10 +190,9 @@ export function useIntelligentSearch() {
       setCategorizedResults(categorized);
       setIsSearching(false);
     },
-    [fuse],
+    [],
   );
 
-  // Debounced search
   const debouncedSearch = useCallback(
     (q: string) => {
       setQuery(q);
