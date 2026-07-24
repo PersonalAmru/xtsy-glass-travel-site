@@ -93,6 +93,7 @@ const OAuthConsent = createLazyComponent(() => import("./pages/OAuthConsent"));
 // Admin pages - Unified layout with hamburger menu
 const AdminOverview = createLazyComponent(() => import("./pages/admin/AdminOverview"));
 const AdminAnalytics = createLazyComponent(() => import("./pages/admin/AdminAnalytics"));
+const AdminRUMCompare = createLazyComponent(() => import("./pages/admin/AdminRUMCompare"));
 const AdminLoaderEvents = createLazyComponent(() => import("./pages/admin/AdminLoaderEvents"));
 const AdminSearchConsole = createLazyComponent(() => import("./pages/admin/AdminSearchConsole"));
 const AdminGSCErrors = createLazyComponent(() => import("./pages/admin/AdminGSCErrors"));
