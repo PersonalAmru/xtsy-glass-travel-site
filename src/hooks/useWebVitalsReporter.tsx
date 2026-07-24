@@ -33,6 +33,8 @@ interface VitalsSample {
   cls_score: number | null;
   fcp_ms: number | null;
   ttfb_ms: number | null;
+  tbt_ms: number | null;
+  long_tasks_count: number | null;
   device_type: string;
   connection_type: string;
   deploy_version: string;
@@ -41,6 +43,8 @@ interface VitalsSample {
   seo_jsonld_size: number;
   user_agent: string;
   visitor_id: string | null;
+  is_returning_visitor: boolean;
+  visit_number: number;
 }
 
 const sendSample = async (sample: VitalsSample) => {
