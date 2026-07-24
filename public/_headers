@@ -1,0 +1,35 @@
+# Cloudflare Pages / Netlify _headers — asset caching + LCP preload hints.
+# The Cloudflare Worker also injects a matching Link header for the homepage
+# (see cloudflare/worker.js). This file covers direct-from-origin serves.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: interest-cohort=()
+
+# ── Homepage LCP preload ─────────────────────────────────────────────
+# Preload the hero AVIF as the LCP resource so Cloudflare's HTTP/2 push
+# and 103 Early Hints can start the fetch before HTML parse.
+/
+  Link: </lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.avif>; rel=preload; as=image; type=image/avif; fetchpriority=high
+  Cache-Control: public, max-age=0, must-revalidate
+
+/index.html
+  Link: </lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.avif>; rel=preload; as=image; type=image/avif; fetchpriority=high
+
+# ── Immutable hashed assets ──────────────────────────────────────────
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# ── Images — long cache; CF Image Resizing can re-encode on the fly ──
+/lovable-uploads/*
+  Cache-Control: public, max-age=31536000, immutable
+  Vary: Accept
+
+*.avif
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: image/avif
+
+*.webp
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: image/webp

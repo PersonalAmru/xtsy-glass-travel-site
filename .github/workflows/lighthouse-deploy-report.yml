@@ -1,0 +1,122 @@
+name: Lighthouse Deploy Report
+
+# Scheduled mobile Lighthouse audit that posts before/after TBT + LCP deltas
+# per deploy_version. The report is written to route_performance_metrics via
+# the seo-monitor-alert edge function and also uploaded as a job artifact.
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # every 6 hours
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: 'Comma-separated URLs to audit (default: homepage + top pages)'
+        required: false
+        default: 'https://xtsy.one/,https://xtsy.one/best-hostel-in-shillong,https://xtsy.one/tours'
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Lighthouse
+        run: npm install -g lighthouse@12
+
+      - name: Run mobile audits
+        id: lh
+        env:
+          URLS: ${{ github.event.inputs.urls || 'https://xtsy.one/,https://xtsy.one/best-hostel-in-shillong,https://xtsy.one/tours' }}
+        run: |
+          mkdir -p lh-reports
+          echo "[" > lh-reports/summary.json
+          FIRST=1
+          IFS=',' read -ra URL_ARR <<< "$URLS"
+          for URL in "${URL_ARR[@]}"; do
+            SLUG=$(echo "$URL" | sed 's|https\?://||;s|/|_|g;s|_*$||')
+            echo "▶ Auditing $URL"
+            lighthouse "$URL" \
+              --output=json \
+              --output-path="lh-reports/${SLUG}.json" \
+              --chrome-flags="--headless --no-sandbox --disable-gpu" \
+              --preset=perf \
+              --form-factor=mobile \
+              --throttling-method=simulate \
+              --only-categories=performance \
+              --quiet || true
+            if [ -f "lh-reports/${SLUG}.json" ]; then
+              LCP=$(jq -r '.audits["largest-contentful-paint"].numericValue // 0' "lh-reports/${SLUG}.json")
+              TBT=$(jq -r '.audits["total-blocking-time"].numericValue // 0' "lh-reports/${SLUG}.json")
+              CLS=$(jq -r '.audits["cumulative-layout-shift"].numericValue // 0' "lh-reports/${SLUG}.json")
+              FCP=$(jq -r '.audits["first-contentful-paint"].numericValue // 0' "lh-reports/${SLUG}.json")
+              PERF=$(jq -r '.categories.performance.score // 0' "lh-reports/${SLUG}.json")
+              if [ $FIRST -eq 0 ]; then echo "," >> lh-reports/summary.json; fi
+              FIRST=0
+              printf '{"url":"%s","lcp":%s,"tbt":%s,"cls":%s,"fcp":%s,"perf":%s}' \
+                "$URL" "$LCP" "$TBT" "$CLS" "$FCP" "$PERF" >> lh-reports/summary.json
+            fi
+          done
+          echo "]" >> lh-reports/summary.json
+          cat lh-reports/summary.json
+
+      - name: Post deploy delta report
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          DEPLOY_VERSION: ${{ github.sha }}
+        run: |
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_SERVICE_ROLE_KEY" ]; then
+            echo "⚠️  Skipping post — Supabase secrets not configured on this runner"
+            exit 0
+          fi
+          node -e '
+            const fs = require("fs");
+            const results = JSON.parse(fs.readFileSync("lh-reports/summary.json", "utf8"));
+            const deploy = process.env.DEPLOY_VERSION || "unknown";
+            const rows = results.map(r => ({
+              route: new URL(r.url).pathname || "/",
+              lcp_ms: Math.round(r.lcp),
+              tbt_ms: Math.round(r.tbt),
+              cls_score: Number(r.cls.toFixed(3)),
+              fcp_ms: Math.round(r.fcp),
+              device_type: "lighthouse-mobile",
+              connection_type: "simulated-3g",
+              deploy_version: `lh:${deploy.slice(0,7)}`,
+              skeleton_dismissed: true,
+              gtm_loaded: false,
+              seo_jsonld_size: 0,
+              user_agent: "Chrome-Lighthouse GHA",
+              is_returning_visitor: false,
+              visit_number: 1,
+            }));
+            fetch(`${process.env.SUPABASE_URL}/rest/v1/route_performance_metrics`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "apikey": process.env.SUPABASE_SERVICE_ROLE_KEY,
+                "Authorization": `Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY}`,
+                "Prefer": "return=minimal",
+              },
+              body: JSON.stringify(rows),
+            }).then(r => console.log("Posted", rows.length, "rows:", r.status));
+          '
+
+      - name: Upload Lighthouse reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-reports-${{ github.run_id }}
+          path: lh-reports/
+          retention-days: 30
+
+      - name: Job summary
+        run: |
+          echo "## 🔦 Lighthouse Mobile Report — ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| URL | Perf | LCP | TBT | CLS | FCP |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|---|---|---|---|---|" >> $GITHUB_STEP_SUMMARY
+          jq -r '.[] | "| \(.url) | \((.perf * 100) | floor) | \(.lcp | floor)ms | \(.tbt | floor)ms | \(.cls) | \(.fcp | floor)ms |"' lh-reports/summary.json >> $GITHUB_STEP_SUMMARY

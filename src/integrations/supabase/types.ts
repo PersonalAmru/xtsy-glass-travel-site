@@ -3722,13 +3722,17 @@ export type Database = {
           gtm_loaded: boolean | null
           id: string
           inp_ms: number | null
+          is_returning_visitor: boolean | null
           lcp_ms: number | null
+          long_tasks_count: number | null
           metric_date: string
           route: string
           seo_jsonld_size: number | null
           skeleton_dismissed: boolean | null
+          tbt_ms: number | null
           ttfb_ms: number | null
           user_agent: string | null
+          visit_number: number | null
           visitor_id: string | null
         }
         Insert: {
@@ -3741,13 +3745,17 @@ export type Database = {
           gtm_loaded?: boolean | null
           id?: string
           inp_ms?: number | null
+          is_returning_visitor?: boolean | null
           lcp_ms?: number | null
+          long_tasks_count?: number | null
           metric_date?: string
           route: string
           seo_jsonld_size?: number | null
           skeleton_dismissed?: boolean | null
+          tbt_ms?: number | null
           ttfb_ms?: number | null
           user_agent?: string | null
+          visit_number?: number | null
           visitor_id?: string | null
         }
         Update: {
@@ -3760,13 +3768,17 @@ export type Database = {
           gtm_loaded?: boolean | null
           id?: string
           inp_ms?: number | null
+          is_returning_visitor?: boolean | null
           lcp_ms?: number | null
+          long_tasks_count?: number | null
           metric_date?: string
           route?: string
           seo_jsonld_size?: number | null
           skeleton_dismissed?: boolean | null
+          tbt_ms?: number | null
           ttfb_ms?: number | null
           user_agent?: string | null
+          visit_number?: number | null
           visitor_id?: string | null
         }
         Relationships: []

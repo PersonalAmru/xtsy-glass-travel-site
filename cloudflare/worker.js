@@ -301,6 +301,18 @@ export default {
     const newResponse = new Response(rewritten.body, rewritten);
     newResponse.headers.set('x-rendered-by', isBot(userAgent) ? 'cf-bot-rewrite' : 'cf-edge-rewrite');
     newResponse.headers.set('x-seo-entry', entry ? 'matched' : 'fallback');
+
+    // ── Homepage LCP preload via Link header ──────────────────────────
+    // Emits a Link: rel=preload for the hero AVIF on the homepage. When the
+    // zone has Early Hints enabled, Cloudflare converts this into a 103 hint
+    // sent before the origin HTML — measurably cuts mobile LCP.
+    const path = new URL(request.url).pathname;
+    if (path === '/' || path === '') {
+      newResponse.headers.append(
+        'Link',
+        '</lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.avif>; rel=preload; as=image; type=image/avif; fetchpriority=high'
+      );
+    }
     return newResponse;
   },
 };

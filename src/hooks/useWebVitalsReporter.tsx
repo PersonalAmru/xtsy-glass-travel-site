@@ -33,6 +33,8 @@ interface VitalsSample {
   cls_score: number | null;
   fcp_ms: number | null;
   ttfb_ms: number | null;
+  tbt_ms: number | null;
+  long_tasks_count: number | null;
   device_type: string;
   connection_type: string;
   deploy_version: string;
@@ -41,6 +43,8 @@ interface VitalsSample {
   seo_jsonld_size: number;
   user_agent: string;
   visitor_id: string | null;
+  is_returning_visitor: boolean;
+  visit_number: number;
 }
 
 const sendSample = async (sample: VitalsSample) => {
@@ -68,6 +72,8 @@ export const useWebVitalsReporter = () => {
     let inp = 0;
     let fcp = 0;
     let ttfb = 0;
+    let tbt = 0;
+    let longTasksCount = 0;
 
     const lcpObs = new PerformanceObserver((list) => {
       const entries = list.getEntries();
@@ -93,6 +99,19 @@ export const useWebVitalsReporter = () => {
       });
     });
 
+    // Long tasks — used to derive TBT (portion of each long task > 50ms)
+    let longTaskObs: PerformanceObserver | null = null;
+    try {
+      longTaskObs = new PerformanceObserver((list) => {
+        list.getEntries().forEach((e) => {
+          const over = e.duration - 50;
+          if (over > 0) tbt += Math.round(over);
+          longTasksCount += 1;
+        });
+      });
+      longTaskObs.observe({ type: 'longtask', buffered: true });
+    } catch {}
+
     try { lcpObs.observe({ type: 'largest-contentful-paint', buffered: true }); } catch {}
     try { clsObs.observe({ type: 'layout-shift', buffered: true }); } catch {}
     try { inpObs.observe({ type: 'event', buffered: true, durationThreshold: 40 } as any); } catch {}
@@ -111,6 +130,21 @@ export const useWebVitalsReporter = () => {
         .reduce((sum, el) => sum + (el.textContent?.length || 0), 0);
       const visitorId = localStorage.getItem('xtsy_visitor_id');
 
+      // Visit counter — persisted in localStorage. Increments on each hard load
+      // so we can split RUM cohorts by first-visit vs returning.
+      let visitNumber = 1;
+      try {
+        const raw = localStorage.getItem('xtsy_visit_count');
+        visitNumber = raw ? Math.min(parseInt(raw, 10) + 1, 9999) : 1;
+        if (!sessionStorage.getItem('xtsy_visit_counted')) {
+          localStorage.setItem('xtsy_visit_count', String(visitNumber));
+          sessionStorage.setItem('xtsy_visit_counted', '1');
+        } else {
+          visitNumber = parseInt(localStorage.getItem('xtsy_visit_count') || '1', 10);
+        }
+      } catch {}
+      const isReturning = visitNumber > 1;
+
       const sample: VitalsSample = {
         route: pathname,
         lcp_ms: lcp || null,
@@ -118,6 +152,8 @@ export const useWebVitalsReporter = () => {
         cls_score: cls > 0 ? Number(cls.toFixed(3)) : null,
         fcp_ms: fcp || null,
         ttfb_ms: ttfb || null,
+        tbt_ms: tbt || null,
+        long_tasks_count: longTasksCount || null,
         device_type: getDeviceType(),
         connection_type: getConnectionType(),
         deploy_version: DEPLOY_VERSION,
@@ -126,6 +162,8 @@ export const useWebVitalsReporter = () => {
         seo_jsonld_size: jsonldSize,
         user_agent: navigator.userAgent.slice(0, 255),
         visitor_id: visitorId,
+        is_returning_visitor: isReturning,
+        visit_number: visitNumber,
       };
 
       const idle = (cb: () => void) =>
@@ -145,6 +183,7 @@ export const useWebVitalsReporter = () => {
       try { clsObs.disconnect(); } catch {}
       try { inpObs.disconnect(); } catch {}
       try { paintObs.disconnect(); } catch {}
+      try { longTaskObs?.disconnect(); } catch {}
       flush();
     };
   }, [pathname]);
