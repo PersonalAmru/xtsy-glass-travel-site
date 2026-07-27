@@ -302,6 +302,38 @@ export default {
     newResponse.headers.set('x-rendered-by', isBot(userAgent) ? 'cf-bot-rewrite' : 'cf-edge-rewrite');
     newResponse.headers.set('x-seo-entry', entry ? 'matched' : 'fallback');
 
+    // ── Security headers (mirror public/_headers for Worker-served HTML) ──
+    newResponse.headers.set('X-Content-Type-Options', 'nosniff');
+    newResponse.headers.set('X-Frame-Options', 'DENY');
+    newResponse.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+    newResponse.headers.set(
+      'Permissions-Policy',
+      'geolocation=(), microphone=(), camera=(), payment=(), usb=(), bluetooth=(), interest-cohort=()'
+    );
+    newResponse.headers.set(
+      'Strict-Transport-Security',
+      'max-age=63072000; includeSubDomains; preload'
+    );
+    newResponse.headers.set('Cross-Origin-Opener-Policy', 'same-origin');
+    newResponse.headers.set('Cross-Origin-Resource-Policy', 'same-origin');
+    newResponse.headers.set(
+      'Content-Security-Policy',
+      [
+        "default-src 'self'",
+        "img-src 'self' data: blob: https:",
+        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.googletagmanager.com",
+        "font-src 'self' data: https://fonts.gstatic.com",
+        "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://www.googlesyndication.com https://googleads.g.doubleclick.net https://www.gstatic.com https://ssl.gstatic.com https://www.google.com https://t.contentsquare.net https://*.contentsquare.net https://script.hotjar.com",
+        "connect-src 'self' https://kzhsxemkntfwsakhkylt.supabase.co wss://kzhsxemkntfwsakhkylt.supabase.co https://*.supabase.co wss://*.supabase.co https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com https://pagead2.googlesyndication.com https://t.contentsquare.net https://*.contentsquare.net https://*.hotjar.com https://*.hotjar.io",
+        "frame-src 'self' https://www.googletagmanager.com https://td.doubleclick.net",
+        "frame-ancestors 'none'",
+        "base-uri 'self'",
+        "form-action 'self'",
+        "object-src 'none'",
+        'upgrade-insecure-requests',
+      ].join('; ')
+    );
+
     // ── Homepage LCP preload via Link header ──────────────────────────
     // Emits a Link: rel=preload for the hero AVIF on the homepage. When the
     // zone has Early Hints enabled, Cloudflare converts this into a 103 hint
