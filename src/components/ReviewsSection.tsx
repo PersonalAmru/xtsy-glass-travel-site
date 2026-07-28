@@ -659,6 +659,52 @@ const ReviewsSection = () => {
     return () => io.disconnect();
   }, []);
 
+  // Build Review + AggregateRating JSON-LD from real long-form reviews
+  const reviewsJsonLd = useMemo(() => {
+    const fivePoint = new Set(["Google", "MakeMyTrip", "Goibibo", "Airbnb", "Instagram"]);
+    const featured = topRatedReviews
+      .filter((r) => r.comment && r.comment.length > 60)
+      .slice(0, 10)
+      .map((r) => ({
+        "@type": "Review",
+        author: { "@type": "Person", name: r.name },
+        datePublished: r.date,
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: fivePoint.has(r.source) ? r.rating : r.rating / 2,
+          bestRating: 5,
+          worstRating: 1,
+        },
+        publisher: r.source ? { "@type": "Organization", name: r.source } : undefined,
+        reviewBody: r.comment,
+      }));
+    return {
+      "@context": "https://schema.org",
+      "@type": "Hostel",
+      "@id": "https://xtsy.one/#hostel",
+      name: "XTSY Travellers Hostel",
+      url: "https://xtsy.one/",
+      image: "https://xtsy.one/og-image.jpg",
+      priceRange: "₹369 - ₹9,999",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Mawkhar, Shillong",
+        addressLocality: "Shillong",
+        addressRegion: "Meghalaya",
+        postalCode: "793001",
+        addressCountry: "IN",
+      },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.8",
+        reviewCount: String(Math.max(320, allReviewsCombined.length)),
+        bestRating: "5",
+        worstRating: "1",
+      },
+      review: featured,
+    };
+  }, [topRatedReviews, allReviewsCombined.length]);
+
   return (
     <section 
       ref={sectionRef}
@@ -668,8 +714,12 @@ const ReviewsSection = () => {
         isMobile ? 'mobile-disable-pulse' : ''
       )}
     >
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(reviewsJsonLd)}</script>
+      </Helmet>
       {/* Premium Dark Background — brand aligned */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-card to-background" />
+
       
       {/* Animated gradient orbs - Disabled on mobile */}
       {!isMobile && (
