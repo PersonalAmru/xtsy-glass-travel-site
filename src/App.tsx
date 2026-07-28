@@ -141,6 +141,7 @@ const ProgrammaticSEOPage = createLazyComponent(() => import("./pages/seo/Progra
 
 // High-intent SEO landing pages
 const BestHostelShillong = createLazyComponent(() => import("./pages/BestHostelShillong"));
+const HostelBookingShillong = createLazyComponent(() => import("./pages/HostelBookingShillong"));
 const HotelsInShillong = createLazyComponent(() => import("./pages/HotelsInShillong"));
 const HomestaysInShillong = createLazyComponent(() => import("./pages/HomestaysInShillong"));
 const LuxuryGlampingShillong = createLazyComponent(() => import("./pages/LuxuryGlampingShillong"));
