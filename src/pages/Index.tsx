@@ -82,12 +82,40 @@ const Index = memo(() => {
     checkoutTime: '11:00',
     numberOfRooms: 20,
     petsAllowed: true,
+    smokingAllowed: false,
+    currenciesAccepted: 'INR',
+    paymentAccepted: 'Cash, UPI, Credit Card, Debit Card, Net Banking',
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        opens: '00:00',
+        closes: '23:59',
+      },
+    ],
+    amenityFeature: [
+      { '@type': 'LocationFeatureSpecification', name: 'Free WiFi', value: true },
+      { '@type': 'LocationFeatureSpecification', name: '24/7 Reception', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'Hot Shower', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'Common Kitchen', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'Luggage Storage', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'Locker Storage', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'Female-only Dorm', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'CCTV Security', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'Airport Transfer', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'Restaurant On-site (TAB Bistro)', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'Bonfire & BBQ Terrace', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'Power Backup', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'Pet Friendly', value: true },
+    ],
+    availableLanguage: ['English', 'Hindi', 'Khasi', 'Assamese', 'Bengali'],
     sameAs: [
       'https://www.instagram.com/xtsytravellershostel',
       'https://www.facebook.com/xtsytravellershostel',
       'https://g.co/kgs/XTSY',
     ],
   };
+
 
   const homeFaqSchema = {
     '@context': 'https://schema.org',
