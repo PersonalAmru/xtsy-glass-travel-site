@@ -25,9 +25,30 @@ const FAQSection = () => {
       quoteName: "Ritika"
     },
     {
+      question: "How do I book a hostel in Shillong online?",
+      answer: "Book directly at xtsy.one/book — pick your dates, choose a dorm bed or private room, and confirm with UPI, card, or net banking. Direct bookings are cheaper than Booking.com/Hostelworld (no OTA commission) and get instant WhatsApp confirmation. You can also WhatsApp +91 88373 17070 or email booking@xtsy.one.",
+    },
+    {
+      question: "How far in advance should I book?",
+      answer: "For dorm beds: 3–7 days ahead is usually fine (except long weekends and Dec–Jan peak). Private rooms and the 270° Glass Suite: book 2–4 weeks ahead, especially Oct–May. Same-day bookings often work outside peak — check live availability on our booking page or WhatsApp us.",
+    },
+    {
+      question: "What payment methods do you accept for booking?",
+      answer: "UPI (GPay, PhonePe, Paytm), all major credit/debit cards, net banking, and cash on arrival for select room types. International guests can pay via PayPal or wire transfer. A small advance secures your booking; the balance can be paid at check-in. All prices are inclusive of taxes.",
+    },
+    {
+      question: "What are your check-in and check-out times?",
+      answer: "Check-in: 1:00 PM | Check-out: 11:00 AM. Early check-in from 10 AM is free if a bed is available, otherwise ₹300 (dorm) / ₹500 (private). Late check-in is free until 11 PM — after that call ahead. Late check-out until 2 PM is ₹300; after that a half-day charge applies.",
+    },
+    {
+      question: "What is your cancellation and refund policy?",
+      answer: "Free cancellation up to 48 hours before check-in for dorm beds and private rooms — full refund. Cancel within 48 hours: first night is charged. No-show: full booking is charged. The 270° Glass Suite and tour packages are non-refundable but modifiable once within 90 days (date change or upgrade, subject to availability and fare difference). Full policy: xtsy.one/pricing-cancellation-policy.",
+    },
+    {
       question: "How do I book?",
       answer: "Super easy—WhatsApp us at +91 88373 17070 (fastest response), book on our website, or email booking@xtsy.one. We confirm instantly for available dates. Pro tip: Glass Suite needs 2-3 weeks advance during peak season because it books out fast.",
     },
+
     {
       question: "Do you do tour packages?",
       answer: "Oh, we go hard on tours. 30+ packages across 12 states in Northeast India. From living root bridges to Hornbill Festival—we create custom itineraries with local guides who actually know the hidden spots. Not your basic touristy stuff.",
