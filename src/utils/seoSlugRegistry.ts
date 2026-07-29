@@ -50,6 +50,8 @@ export const STATIC_ROUTES: ReadonlyArray<string> = [
   '/luxury-glamping-shillong',
   '/destination-wedding-shillong',
   '/restaurant-in-shillong',
+  '/hostel-booking',
+  '/hostel-near-me',
 ];
 
 /** Returns true if `path` resolves to a real React route, programmatic SEO

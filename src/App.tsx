@@ -142,6 +142,7 @@ const ProgrammaticSEOPage = createLazyComponent(() => import("./pages/seo/Progra
 // High-intent SEO landing pages
 const BestHostelShillong = createLazyComponent(() => import("./pages/BestHostelShillong"));
 const HostelBookingShillong = createLazyComponent(() => import("./pages/HostelBookingShillong"));
+const HostelNearMe = createLazyComponent(() => import("./pages/HostelNearMe"));
 const HotelsInShillong = createLazyComponent(() => import("./pages/HotelsInShillong"));
 const HomestaysInShillong = createLazyComponent(() => import("./pages/HomestaysInShillong"));
 const LuxuryGlampingShillong = createLazyComponent(() => import("./pages/LuxuryGlampingShillong"));
@@ -414,6 +415,7 @@ function App() {
                 {/* High-Intent SEO Landing Pages */}
                 <Route path="/best-hostel-in-shillong" element={<LazyRoute><BestHostelShillong /></LazyRoute>} />
                 <Route path="/hostel-booking" element={<LazyRoute><HostelBookingShillong /></LazyRoute>} />
+                <Route path="/hostel-near-me" element={<LazyRoute><HostelNearMe /></LazyRoute>} />
                 <Route path="/book-hostel-shillong" element={<Navigate to="/hostel-booking" replace />} />
                 <Route path="/hotels-in-shillong" element={<LazyRoute><HotelsInShillong /></LazyRoute>} />
                 <Route path="/homestays-in-shillong" element={<LazyRoute><HomestaysInShillong /></LazyRoute>} />
