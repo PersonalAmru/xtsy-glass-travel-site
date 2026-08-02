@@ -143,6 +143,7 @@ const ProgrammaticSEOPage = createLazyComponent(() => import("./pages/seo/Progra
 const BestHostelShillong = createLazyComponent(() => import("./pages/BestHostelShillong"));
 const HostelBookingShillong = createLazyComponent(() => import("./pages/HostelBookingShillong"));
 const HostelNearMe = createLazyComponent(() => import("./pages/HostelNearMe"));
+const BackpackingIndia = createLazyComponent(() => import("./pages/BackpackingIndia"));
 const HotelsInShillong = createLazyComponent(() => import("./pages/HotelsInShillong"));
 const HomestaysInShillong = createLazyComponent(() => import("./pages/HomestaysInShillong"));
 const LuxuryGlampingShillong = createLazyComponent(() => import("./pages/LuxuryGlampingShillong"));
