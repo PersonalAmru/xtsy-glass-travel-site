@@ -417,6 +417,7 @@ function App() {
                 <Route path="/best-hostel-in-shillong" element={<LazyRoute><BestHostelShillong /></LazyRoute>} />
                 <Route path="/hostel-booking" element={<LazyRoute><HostelBookingShillong /></LazyRoute>} />
                 <Route path="/hostel-near-me" element={<LazyRoute><HostelNearMe /></LazyRoute>} />
+                <Route path="/backpacking-india" element={<LazyRoute><BackpackingIndia /></LazyRoute>} />
                 <Route path="/book-hostel-shillong" element={<Navigate to="/hostel-booking" replace />} />
                 <Route path="/hotels-in-shillong" element={<LazyRoute><HotelsInShillong /></LazyRoute>} />
                 <Route path="/homestays-in-shillong" element={<LazyRoute><HomestaysInShillong /></LazyRoute>} />
