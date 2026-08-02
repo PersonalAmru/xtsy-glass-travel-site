@@ -6,7 +6,6 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import BookDirectComparison from '@/components/hostel/BookDirectComparison';
-import HostelDealsFAQ from '@/components/hostel/HostelDealsFAQ';
 import { hostelDealFaqs } from '@/data/hostelBookingFaqs';
 import {
   Star, Wifi, Shield, MapPin, Phone, MessageCircle, Check,
