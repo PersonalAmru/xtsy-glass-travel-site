@@ -335,7 +335,7 @@ const BackpackingIndia = memo(() => {
               {' · '}<Link to="/budget-trip-to-meghalaya" className="underline hover:text-primary">Budget trip to Meghalaya</Link>
               {' · '}<Link to="/best-time-to-visit-meghalaya" className="underline hover:text-primary">Best time to visit Meghalaya</Link>
               {' · '}<Link to="/5-day-meghalaya-itinerary" className="underline hover:text-primary">5-day Meghalaya itinerary</Link>
-              {' · '}<Link to="/guwahati-to-shillong" className="underline hover:text-primary">Guwahati to Shillong transport</Link>
+              {' · '}<Link to="/travel-guide/guwahati-to-shillong-transport" className="underline hover:text-primary">Guwahati to Shillong transport</Link>
               {' · '}<Link to="/places-to-visit-in-meghalaya" className="underline hover:text-primary">Places to visit in Meghalaya</Link>
             </p>
           </div>
