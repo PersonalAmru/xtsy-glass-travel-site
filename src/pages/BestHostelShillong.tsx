@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import BookDirectComparison from '@/components/hostel/BookDirectComparison';
+import { hostelDealFaqEntities } from '@/data/hostelBookingFaqs';
 import { Star, Wifi, Shield, Coffee, Users, MapPin, Phone, MessageCircle, Check, Award, Bed, Mountain, Backpack, IndianRupee, CalendarCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -127,6 +129,7 @@ const BestHostelShillong = memo(() => {
           text: 'Yes! XTSY is India\'s first pet-friendly travellers hostel. Dogs, cats, and other pets are welcome with prior booking.',
         },
       },
+      ...hostelDealFaqEntities,
     ],
   };
 
@@ -360,6 +363,8 @@ const BestHostelShillong = memo(() => {
               </table>
             </div>
           </section>
+
+          <BookDirectComparison className="!py-0 !px-0" />
 
           {/* FAQ */}
           <section>

@@ -5,6 +5,8 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import BookDirectComparison from '@/components/hostel/BookDirectComparison';
+import { hostelDealFaqs } from '@/data/hostelBookingFaqs';
 import {
   MapPin, Navigation, Clock, Phone, MessageCircle, Star,
   Plane, Bus, Car, Footprints, Compass, Check, Wifi, Shield,
@@ -125,6 +127,7 @@ const HostelNearMe = memo(() => {
       q: 'Can I walk-in without booking online?',
       a: 'Walk-ins are welcome subject to availability. Outside Oct–May peak, dorm beds are usually free. Call +91 88373 17070 before arriving so we can hold a bed for 2 hours — or book online with instant confirmation.',
     },
+    ...hostelDealFaqs,
   ];
 
   const faqSchema = {
@@ -317,6 +320,8 @@ const HostelNearMe = memo(() => {
             </div>
           </div>
         </section>
+
+        <BookDirectComparison />
 
         {/* FAQ */}
         <section className="py-14 px-4 bg-muted/30">
