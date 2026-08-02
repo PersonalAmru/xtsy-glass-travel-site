@@ -5,6 +5,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import BookDirectComparison from '@/components/hostel/BookDirectComparison';
+import HostelDealsFAQ from '@/components/hostel/HostelDealsFAQ';
+import { hostelDealFaqs } from '@/data/hostelBookingFaqs';
 import {
   Star, Wifi, Shield, MapPin, Phone, MessageCircle, Check,
   Bed, CalendarCheck, IndianRupee, Clock, CreditCard, BadgeCheck,
@@ -93,6 +96,7 @@ const HostelBookingShillong = memo(() => {
       q: 'Can I cancel or modify my booking?',
       a: 'Free cancellation up to 48 hours before check-in for dorm beds and private rooms. Within 48 hours: first night charged. Glass Suite and tours are non-refundable but modifiable once within 90 days.',
     },
+    ...hostelDealFaqs,
   ];
 
   const faqSchema = {
@@ -259,6 +263,8 @@ const HostelBookingShillong = memo(() => {
             </div>
           </div>
         </section>
+
+        <BookDirectComparison className="bg-muted/30" />
 
         {/* FAQ */}
         <section className="py-14 px-4 bg-card/40">
