@@ -45,6 +45,42 @@ interface KeywordRank {
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders });
 
+  // ---- Auth gate: shared cron secret OR verified admin/staff JWT ----------
+  // This endpoint burns paid Semrush quota and writes admin notifications,
+  // so it must never be callable anonymously.
+  const rawBody = await req.text();
+  let parsedBody: Record<string, unknown> = {};
+  if (rawBody) {
+    try { parsedBody = JSON.parse(rawBody); } catch { /* ignore */ }
+  }
+
+  const cronSecret = Deno.env.get('SEO_CRON_SECRET') ?? Deno.env.get('CRON_SECRET');
+  const providedSecret =
+    req.headers.get('x-cron-secret') ?? (parsedBody as any)?.secret ?? '';
+  let authorized = !!cronSecret && providedSecret === cronSecret;
+
+  const authHeader = req.headers.get('Authorization') ?? '';
+  if (!authorized && authHeader.startsWith('Bearer ')) {
+    try {
+      const authClient = createClient(
+        Deno.env.get('SUPABASE_URL')!,
+        Deno.env.get('SUPABASE_ANON_KEY')!,
+        { global: { headers: { Authorization: authHeader } } },
+      );
+      const { data: userData } = await authClient.auth.getUser();
+      if (userData?.user) {
+        const { data: isStaff } = await authClient.rpc('is_admin_or_staff');
+        authorized = isStaff === true;
+      }
+    } catch (_e) {
+      authorized = false;
+    }
+  }
+
+  if (!authorized) {
+    return json({ error: 'Unauthorized' }, 401);
+  }
+
   const LOVABLE_API_KEY = Deno.env.get('LOVABLE_API_KEY');
   const SEMRUSH_API_KEY = Deno.env.get('SEMRUSH_API_KEY');
   const SUPABASE_URL = Deno.env.get('SUPABASE_URL');
