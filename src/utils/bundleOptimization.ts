@@ -60,12 +60,8 @@ export const prefetchRouteChunks = () => {
 
 // Service Worker for caching
 export const registerServiceWorker = async () => {
-  if ('serviceWorker' in navigator) {
-    try {
-      const registration = await navigator.serviceWorker.register('/sw.js');
-      console.log('SW registered: ', registration);
-    } catch (registrationError) {
-      console.log('SW registration failed: ', registrationError);
-    }
-  }
+  // No-op post-TanStack migration: the old caching SW was replaced by a
+  // one-shot kill-switch at /sw.js that the browser's own update polling
+  // delivers to returning users. Registering it explicitly would force a
+  // reload cycle on fresh visitors.
 };

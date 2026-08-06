@@ -367,7 +367,7 @@ const ProgrammaticSEOPage = () => {
             { label: categoryLabel, href: '/things-to-do-in-meghalaya' },
             { label: page.h1 },
           ]} />
-          <h1 className="mt-3 text-2xl sm:text-3xl md:text-4xl font-bold text-foreground leading-tight drop-shadow-sm">
+          <h1 className="mt-3 text-2xl sm:text-3xl md:text-4xl font-bold text-foreground leading-tight drop-shadow-xs">
             {page.h1}
           </h1>
           <div className="mt-2 flex items-center gap-3 text-xs text-muted-foreground">

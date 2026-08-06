@@ -164,7 +164,7 @@ export function FocusRail({
   return (
     <div
       className={cn(
-        "relative w-full h-[580px] md:h-[680px] flex items-center justify-center overflow-hidden select-none outline-none",
+        "relative w-full h-[580px] md:h-[680px] flex items-center justify-center overflow-hidden select-none outline-hidden",
         className
       )}
       style={{ perspective: "1200px" }}

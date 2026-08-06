@@ -320,7 +320,7 @@ export const BookingChat: React.FC<BookingChatProps> = ({
                   "flex-1 h-12 px-4 rounded-2xl text-base",
                   "bg-white/[0.08] text-white placeholder:text-white/40",
                   "border border-white/[0.08] focus:border-emerald-500/50 focus:bg-white/[0.12]",
-                  "focus:outline-none focus:ring-2 focus:ring-emerald-500/20",
+                  "focus:outline-hidden focus:ring-2 focus:ring-emerald-500/20",
                   "transition-all duration-200"
                 )}
                 disabled={isSending}

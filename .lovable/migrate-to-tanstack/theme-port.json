@@ -1,0 +1,28 @@
+{
+  "customizations": [
+    { "token": "--font-playfair", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "--font-cormorant", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "--font-josefin", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "--font-cardo", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "--font-sans (Glacial Indifference stack)", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "--font-serif (Playfair Display)", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "--color-success / --color-success-foreground", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "--color-warning / --color-warning-foreground", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "--color-brand (+ secondary/accent/gold/ember/copper/verified)", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "--color-surface-elevated/overlay/highlight", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "--color-whatsapp", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "--color-sidebar-* (8 tokens)", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "--radius-sm/md/lg shadcn scale", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "--animate-accordion-down", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "--animate-accordion-up", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "--animate-shimmer", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "--animate-fade-in", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "--animate-marquee-left", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "--animate-marquee-right", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "container (centered, 1rem padding, 2xl=1400px)", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "fold max-320px screen variant", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "XTSY brand HSL token blocks (:root/.dark), glassmorphism, travel utilities, perf CSS", "source": "src/styles/tailwind.css", "reappliedIn": "src/styles.css (imported as ./styles/tailwind.css)" },
+    { "token": "Typography system", "source": "src/styles/typography.css", "reappliedIn": "src/styles.css (imported)" },
+    { "token": "responsive.css + ios-optimizations.css", "source": "src/styles/tailwind.css nested imports", "reappliedIn": "src/styles.css (via ./styles/tailwind.css)" }
+  ]
+}

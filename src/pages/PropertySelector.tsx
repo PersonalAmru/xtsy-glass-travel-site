@@ -146,7 +146,7 @@ const PropertySelector = memo(() => {
                     className={cn(
                       "group text-left",
                       "bg-card border border-border rounded-2xl overflow-hidden",
-                      "shadow-sm hover:shadow-xl",
+                      "shadow-xs hover:shadow-xl",
                       "transition-all duration-300"
                     )}
                   >

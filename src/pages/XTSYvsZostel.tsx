@@ -853,7 +853,7 @@ const XTSYvsZostel = () => {
           <div className="max-w-4xl mx-auto">
             <Accordion type="single" collapsible className="space-y-3">
               {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="bg-card rounded-xl px-6 border border-border hover:border-primary/30 shadow-sm">
+                <AccordionItem key={index} value={`item-${index}`} className="bg-card rounded-xl px-6 border border-border hover:border-primary/30 shadow-xs">
                   <AccordionTrigger className="text-left hover:text-primary transition-colors">
                     <span className="font-semibold text-foreground text-sm sm:text-base">{faq.question}</span>
                   </AccordionTrigger>

@@ -76,7 +76,7 @@ export const BookingSummary: React.FC<BookingSummaryProps> = ({
   };
 
   const isMobileView = screenSize === 'mobile';
-  return <Card className={`transition-all duration-300 backdrop-blur-sm bg-card/95 ${isMobileView ? 'sticky top-2 mx-2 shadow-md border-border/60' : 'sticky top-4 shadow-sm border-border/50'}`}>
+  return <Card className={`transition-all duration-300 backdrop-blur-sm bg-card/95 ${isMobileView ? 'sticky top-2 mx-2 shadow-md border-border/60' : 'sticky top-4 shadow-xs border-border/50'}`}>
       <CardHeader className="transition-all duration-300 pb-2 pt-3 px-3">
         <CardTitle className="transition-all duration-300 text-base text-center">Live the Shillong Vibe</CardTitle>
       </CardHeader>
