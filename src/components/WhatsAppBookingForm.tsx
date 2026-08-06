@@ -752,7 +752,7 @@ Looking forward to hearing from you. Thank you! 🌟`;
                                      selectedRoomIds.has(roomType.id)
                                        ? 'border-primary bg-primary/5'
                                        : canAccommodateRemaining(roomType.name)
-                                       ? 'border-accent bg-accent/10 hover:border-accent shadow-sm'
+                                       ? 'border-accent bg-accent/10 hover:border-accent shadow-xs'
                                        : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-primary'
                                    }`}
                                  >

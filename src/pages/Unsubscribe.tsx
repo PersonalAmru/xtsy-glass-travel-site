@@ -73,7 +73,7 @@ const Unsubscribe = memo(() => {
       </Helmet>
       <Header />
       <main className="flex-1 flex items-center justify-center px-4 py-16">
-        <div className="max-w-md w-full bg-card border border-border rounded-2xl p-8 text-center shadow-sm">
+        <div className="max-w-md w-full bg-card border border-border rounded-2xl p-8 text-center shadow-xs">
           {state.kind === "validating" && (
             <>
               <Loader2 className="w-8 h-8 mx-auto mb-4 animate-spin text-muted-foreground" />

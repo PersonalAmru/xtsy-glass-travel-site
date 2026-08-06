@@ -3,9 +3,8 @@
 @import './responsive.css';
 @import './ios-optimizations.css';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Tailwind v4: directives moved to src/styles.css (@import "tailwindcss") — this file
+   is now imported by src/styles.css and carries the design tokens + custom CSS only. */
 
 /* Marquee keyframes — defined here so inline style references work (Tailwind tree-shakes unused utility keyframes) */
 @keyframes marquee-left {

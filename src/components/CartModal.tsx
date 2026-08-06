@@ -653,7 +653,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                     }
                     
                     return (
-                      <div key={index} className="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+                      <div key={index} className="bg-white border border-gray-200 rounded-lg p-3 shadow-xs">
                         <div className="flex justify-between items-start gap-2">
                           <div className="flex-1 min-w-0">
                             <h4 className="font-semibold text-gray-900 mb-1 text-sm md:text-base">{item.roomName}</h4>

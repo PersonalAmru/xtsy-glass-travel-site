@@ -247,7 +247,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
 
   // Calculate button sizing and styling
   const getButtonStyles = () => ({
-    base: `border-gray-600 bg-gray-800 text-white hover:bg-gray-700 focus:ring-2 focus:ring-primary focus:outline-none transition-all duration-200`,
+    base: `border-gray-600 bg-gray-800 text-white hover:bg-gray-700 focus:ring-2 focus:ring-primary focus:outline-hidden transition-all duration-200`,
     disabled: `disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-gray-800`,
     mobile: isMobile ? 'h-8 w-8 p-0' : isTablet ? 'h-9 w-9 p-0' : 'h-10 w-10 p-0',
     xtsy270: isXTSY270 ? 'h-8 w-8 p-0' : ''

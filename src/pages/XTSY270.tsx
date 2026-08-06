@@ -99,15 +99,15 @@ Can't wait to sleep under the stars! 🌌✨`;
           <div className="container mx-auto max-w-7xl px-4">
             {/* Luxury Badges */}
             <div className="flex flex-wrap justify-center gap-3 mb-8 animate-fade-in">
-              <Badge variant="outline" className="bg-card border-border text-foreground font-semibold shadow-sm">
+              <Badge variant="outline" className="bg-card border-border text-foreground font-semibold shadow-xs">
                 <Award className="w-3 h-3 mr-1 text-primary" />
                 India's First Glasshouse Glamping
               </Badge>
-              <Badge variant="outline" className="bg-card border-border text-foreground font-semibold shadow-sm">
+              <Badge variant="outline" className="bg-card border-border text-foreground font-semibold shadow-xs">
                 <Star className="w-3 h-3 mr-1 text-primary" />
                 Intimate. Immersive. Iconic
               </Badge>
-              <Badge variant="outline" className="bg-card border-border text-foreground font-semibold shadow-sm">
+              <Badge variant="outline" className="bg-card border-border text-foreground font-semibold shadow-xs">
                 <Mountain className="w-3 h-3 mr-1 text-primary" />
                 Scotland of The East
               </Badge>

@@ -261,7 +261,7 @@ export function SearchHintBar() {
             onChange={(e) => setQuery(e.target.value)}
             onFocus={() => setIsActive(true)}
             onKeyDown={handleKeyDown}
-            className="w-full bg-transparent text-sm text-white placeholder-transparent outline-none caret-primary"
+            className="w-full bg-transparent text-sm text-white placeholder-transparent outline-hidden caret-primary"
             placeholder="Search XTSY..."
             aria-label="Search XTSY"
             autoComplete="off"
