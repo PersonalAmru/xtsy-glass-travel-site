@@ -93,13 +93,7 @@ Deno.serve(async (req) => {
     return json({ error: 'Backend credentials missing' }, 500);
   }
 
-  let dryRun = false;
-  if (req.method === 'POST') {
-    try {
-      const body = await req.json();
-      dryRun = body?.dryRun === true;
-    } catch { /* no body */ }
-  }
+  const dryRun = (parsedBody as any)?.dryRun === true;
 
   const supabase = createClient(SUPABASE_URL, SERVICE_ROLE);
 
