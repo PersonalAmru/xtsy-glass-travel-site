@@ -61,7 +61,7 @@ export function useReviews() {
     
     try {
       const { data, error: fetchError } = await supabase
-        .from('reviews')
+        .from('reviews_public' as 'reviews')
         .select('*')
         .order('created_at', { ascending: false });
 

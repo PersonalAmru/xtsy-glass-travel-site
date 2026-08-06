@@ -65,7 +65,7 @@ const HeroSection = () => {
         }
 
         const { data: reviews, error } = await supabase
-          .from('reviews')
+          .from('reviews_public' as 'reviews')
           .select('rating')
           .limit(100);
 
