@@ -73,7 +73,7 @@ const DestinationGrid = ({ onDestinationClick }: DestinationGridProps) => {
               <button
                 key={dest.name}
                 onClick={() => onDestinationClick(dest.name)}
-                className="group relative rounded-2xl overflow-hidden aspect-[3/4] sm:aspect-[2/3] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-emerald-500"
+                className="group relative rounded-2xl overflow-hidden aspect-[3/4] sm:aspect-[2/3] focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
               >
                 <img
                   src={dest.image}

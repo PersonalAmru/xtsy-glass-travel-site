@@ -4,7 +4,7 @@
  */
 
 import { useEffect, useCallback, useRef, useState } from 'react';
-import { useLocation } from '@/lib/router-compat';
+import { useLocation } from 'react-router-dom';
 import { 
   trafficAnalytics, 
   initTrafficAnalytics 

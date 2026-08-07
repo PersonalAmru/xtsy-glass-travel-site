@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { useParams, useLocation, useNavigate, Link } from "@/lib/router-compat";
+import { useParams, useLocation, useNavigate, Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import NotFound from "@/pages/NotFound";
@@ -30,8 +30,7 @@ const TourDetail = () => {
 
   // Try to get tour from navigation state first, then fallback to lookup
   const tour = useMemo(() => {
-    const navState = location.state as { tour?: TourPackage } | null;
-    if (navState?.tour) return navState.tour;
+    if (location.state?.tour) return location.state.tour as TourPackage;
     const allTours = getAllTours();
     const found = allTours.find(t => toSlug(t.title) === slug);
     if (found) return mergeItinerary(found);

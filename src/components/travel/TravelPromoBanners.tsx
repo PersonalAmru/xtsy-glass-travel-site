@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Heart, Bike, User, Sparkles } from "lucide-react";
-import { Link } from "@/lib/router-compat";
+import { Link } from "react-router-dom";
 
 const promos = [
   {

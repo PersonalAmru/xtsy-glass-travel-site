@@ -6,7 +6,7 @@
 
 import { memo, useMemo } from "react";
 import { Helmet } from "react-helmet-async";
-import { useNavigate, useSearchParams, Link } from "@/lib/router-compat";
+import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { MapPin, Calendar, Users, ArrowRight, Star, Sparkles } from "lucide-react";
 
@@ -146,7 +146,7 @@ const PropertySelector = memo(() => {
                     className={cn(
                       "group text-left",
                       "bg-card border border-border rounded-2xl overflow-hidden",
-                      "shadow-xs hover:shadow-xl",
+                      "shadow-sm hover:shadow-xl",
                       "transition-all duration-300"
                     )}
                   >

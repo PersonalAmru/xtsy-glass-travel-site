@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Users } from "lucide-react";
 import { useApp } from "@/contexts/AppContext";
-import { useNavigate } from "@/lib/router-compat";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import MobileImageCarousel from "./MobileImageCarousel";
 import ImageLightbox from "./ImageLightbox";

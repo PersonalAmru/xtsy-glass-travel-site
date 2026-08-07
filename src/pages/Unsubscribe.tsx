@@ -1,5 +1,5 @@
 import { useEffect, useState, memo } from "react";
-import { useSearchParams } from "@/lib/router-compat";
+import { useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Loader2, CheckCircle2, AlertCircle, MailX } from "lucide-react";
 import Header from "@/components/Header";
@@ -73,7 +73,7 @@ const Unsubscribe = memo(() => {
       </Helmet>
       <Header />
       <main className="flex-1 flex items-center justify-center px-4 py-16">
-        <div className="max-w-md w-full bg-card border border-border rounded-2xl p-8 text-center shadow-xs">
+        <div className="max-w-md w-full bg-card border border-border rounded-2xl p-8 text-center shadow-sm">
           {state.kind === "validating" && (
             <>
               <Loader2 className="w-8 h-8 mx-auto mb-4 animate-spin text-muted-foreground" />

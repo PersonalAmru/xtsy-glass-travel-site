@@ -88,7 +88,7 @@ const Contact: React.FC = () => {
 
           <a
             href={`tel:${phoneTel}`}
-            className="bg-card border border-border rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow flex flex-col"
+            className="bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col"
           >
             <Phone className="h-7 w-7 text-primary mb-3" />
             <h3 className="font-semibold text-slate-900 mb-1">Call us</h3>
@@ -100,7 +100,7 @@ const Contact: React.FC = () => {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-card border border-border rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow flex flex-col"
+            className="bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col"
           >
             <MessageCircle className="h-7 w-7 text-primary mb-3" />
             <h3 className="font-semibold text-slate-900 mb-1">WhatsApp</h3>
@@ -110,7 +110,7 @@ const Contact: React.FC = () => {
 
           <a
             href={`mailto:${email}`}
-            className="bg-card border border-border rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow flex flex-col"
+            className="bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col"
           >
             <Mail className="h-7 w-7 text-primary mb-3" />
             <h3 className="font-semibold text-slate-900 mb-1">Email</h3>
@@ -120,7 +120,7 @@ const Contact: React.FC = () => {
         </section>
 
         {/* Business details */}
-        <section aria-labelledby="business" className="bg-card border border-border rounded-xl p-6 md:p-8 shadow-xs mb-10">
+        <section aria-labelledby="business" className="bg-card border border-border rounded-xl p-6 md:p-8 shadow-sm mb-10">
           <h2 id="business" className="text-2xl font-semibold text-slate-900 mb-6 flex items-center gap-2">
             <Building2 className="h-6 w-6 text-primary" /> Business details
           </h2>
@@ -161,7 +161,7 @@ const Contact: React.FC = () => {
         </section>
 
         {/* Department-specific emails */}
-        <section aria-labelledby="depts" className="bg-card border border-border rounded-xl p-6 md:p-8 shadow-xs mb-10">
+        <section aria-labelledby="depts" className="bg-card border border-border rounded-xl p-6 md:p-8 shadow-sm mb-10">
           <h2 id="depts" className="text-2xl font-semibold text-slate-900 mb-6">Specific teams</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="border border-border rounded-lg p-4">

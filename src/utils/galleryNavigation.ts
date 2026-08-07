@@ -1,4 +1,4 @@
-import { useNavigate } from '@/lib/router-compat';
+import { useNavigate } from 'react-router-dom';
 
 // Gallery navigation utility functions
 export const navigateToGallery = (category?: string, tag?: string) => {

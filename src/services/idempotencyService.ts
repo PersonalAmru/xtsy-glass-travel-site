@@ -46,7 +46,7 @@ export async function checkIdempotency(
     const { data, error } = await supabase.rpc('check_idempotency', {
       p_key: key,
       p_operation_type: operationType,
-      p_request_hash: requestHash || undefined
+      p_request_hash: requestHash || null
     });
 
     if (error) {

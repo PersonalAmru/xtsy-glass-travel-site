@@ -1,4 +1,4 @@
-import { Link } from '@/lib/router-compat';
+import { Link } from 'react-router-dom';
 
 const ConversionLinks = () => (
   <div className="mt-6 p-4 bg-primary/5 rounded-lg border border-primary/10">

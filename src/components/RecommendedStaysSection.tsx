@@ -3,7 +3,7 @@
  * Compact room showcase below tour packages (secondary, not primary)
  */
 
-import { useNavigate } from '@/lib/router-compat';
+import { useNavigate } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';

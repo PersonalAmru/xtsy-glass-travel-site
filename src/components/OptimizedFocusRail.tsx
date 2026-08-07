@@ -259,7 +259,7 @@ export function OptimizedFocusRail({
   return (
     <div
       className={cn(
-        "relative w-full h-[580px] md:h-[680px] flex items-center justify-center overflow-hidden select-none outline-hidden",
+        "relative w-full h-[580px] md:h-[680px] flex items-center justify-center overflow-hidden select-none outline-none",
         className
       )}
       style={{ perspective: "1200px" }}

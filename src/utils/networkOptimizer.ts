@@ -22,7 +22,30 @@ export const enableResourceHints = () => {
 
 // Implement service worker for caching
 export const registerOptimizedServiceWorker = async () => {
-  // No-op post-TanStack migration: old caching SW replaced by /sw.js kill-switch.
+  if ('serviceWorker' in navigator) {
+    try {
+      const registration = await navigator.serviceWorker.register('/sw.js');
+      
+      // Update service worker when new version is available
+      registration.addEventListener('updatefound', () => {
+        const newWorker = registration.installing;
+        if (newWorker) {
+          newWorker.addEventListener('statechange', () => {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              // New content is available, refresh the page
+              if (confirm('New version available. Refresh to update?')) {
+                window.location.reload();
+              }
+            }
+          });
+        }
+      });
+      
+      console.log('Service Worker registered successfully');
+    } catch (error) {
+      console.log('Service Worker registration failed:', error);
+    }
+  }
 };
 
 // Optimize bundle loading with module preloading - disabled to reduce network contention

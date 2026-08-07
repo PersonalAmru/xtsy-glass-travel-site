@@ -33,7 +33,6 @@ export const useBlockedDates = (): UseBlockedDatesReturn => {
       // Group blocked dates by room type
       const blockedByRoom: BlockedDatesData = {};
       inventoryData?.forEach(item => {
-        if (!item.room_type_id) return;
         if (!blockedByRoom[item.room_type_id]) {
           blockedByRoom[item.room_type_id] = [];
         }

@@ -1,4 +1,4 @@
-import { Link } from '@/lib/router-compat';
+import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { MapPin, Waves, Mountain, Home, Droplets, Eye, Trees } from 'lucide-react';
 import Header from '@/components/Header';

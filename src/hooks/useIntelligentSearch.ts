@@ -136,7 +136,7 @@ export function useIntelligentSearch() {
   const [results, setResults] = useState<SearchEntry[]>([]);
   const [categorizedResults, setCategorizedResults] = useState<CategorizedResults[]>([]);
   const [isSearching, setIsSearching] = useState(false);
-  const debounceRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const debounceRef = useRef<ReturnType<typeof setTimeout>>();
 
   const search = useCallback(
     async (q: string) => {

@@ -1,4 +1,4 @@
-import { Link } from '@/lib/router-compat';
+import { Link } from 'react-router-dom';
 import { MapPin, BedDouble, CalendarCheck } from 'lucide-react';
 import { getDestinationBySlug } from '@/data/meghalayaDestinations';
 import { useAnalytics } from '@/hooks/useAnalytics';

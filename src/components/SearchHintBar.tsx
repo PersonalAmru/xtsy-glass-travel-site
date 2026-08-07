@@ -6,7 +6,7 @@
  */
 
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { useNavigate, useLocation } from '@/lib/router-compat';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Search, X, ArrowRight, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { logSearchQuery, logSearchClick } from '@/lib/searchAnalytics';
@@ -261,7 +261,7 @@ export function SearchHintBar() {
             onChange={(e) => setQuery(e.target.value)}
             onFocus={() => setIsActive(true)}
             onKeyDown={handleKeyDown}
-            className="w-full bg-transparent text-sm text-white placeholder-transparent outline-hidden caret-primary"
+            className="w-full bg-transparent text-sm text-white placeholder-transparent outline-none caret-primary"
             placeholder="Search XTSY..."
             aria-label="Search XTSY"
             autoComplete="off"

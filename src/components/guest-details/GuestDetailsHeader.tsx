@@ -34,7 +34,7 @@ export const GuestDetailsHeader = ({ isCompact, onBack, bookingData, displayGues
         </DialogTitle>
       </div>
 
-      <div className={`bg-white rounded-lg shadow-xs transition-all duration-300 overflow-hidden ${isCompact ? "p-1.5 mt-1.5" : "p-2 mt-2"}`}>
+      <div className={`bg-white rounded-lg shadow-sm transition-all duration-300 overflow-hidden ${isCompact ? "p-1.5 mt-1.5" : "p-2 mt-2"}`}>
         {/* Booking Details Row */}
         <div className={`grid gap-2 mb-3 ${isCompact ? "grid-cols-4 text-xs" : "grid-cols-2 md:grid-cols-4 text-xs"}`}>
           <div className="flex items-center gap-1.5">

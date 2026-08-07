@@ -92,7 +92,7 @@ export default function AdminGuestChats() {
         new Date(b.last_message_at).getTime() - new Date(a.last_message_at).getTime()
       );
 
-      setThreads(threadData as ChatThread[]);
+      setThreads(threadData);
     } catch (error) {
       console.error('Error fetching chat threads:', error);
     } finally {

@@ -3,7 +3,7 @@
  * Steps: Duration → Style → Destinations → Experiences → Preview → Lead Capture
  */
 import { memo, useState, useCallback } from 'react';
-import { Link } from '@/lib/router-compat';
+import { Link } from 'react-router-dom';
 import { 
   Clock, Backpack, Mountain, Heart, Camera, PawPrint, Trees,
   Waves, Tent, Footprints, Compass, Sun,

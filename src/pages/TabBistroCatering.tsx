@@ -1,6 +1,6 @@
 import { memo, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "@/lib/router-compat";
+import { Link } from "react-router-dom";
 import {
   PartyPopper, Loader2, Send, Users, CalendarDays, Utensils, Briefcase, Heart,
   Cake, Soup, CheckCircle2, Phone,

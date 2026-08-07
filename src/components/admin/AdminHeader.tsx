@@ -4,7 +4,7 @@
  */
 
 import { useState } from 'react';
-import { useLocation, useNavigate, NavLink } from '@/lib/router-compat';
+import { useLocation, useNavigate, NavLink } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import {
   LayoutDashboard,

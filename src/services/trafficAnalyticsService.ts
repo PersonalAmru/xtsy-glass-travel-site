@@ -89,7 +89,6 @@ export interface BotSignal {
  * Generate a unique visitor ID (persisted in localStorage)
  */
 export const generateVisitorId = (): string => {
-  if (typeof window === 'undefined') return 'v_ssr';
   const stored = localStorage.getItem('xtsy_vid');
   if (stored) return stored;
   
@@ -102,7 +101,6 @@ export const generateVisitorId = (): string => {
  * Generate a session ID (persisted in sessionStorage with 30-min timeout)
  */
 export const generateSessionId = (): string => {
-  if (typeof window === 'undefined') return 's_ssr';
   const SESSION_TIMEOUT = 30 * 60 * 1000; // 30 minutes
   const stored = sessionStorage.getItem('xtsy_sid');
   const lastActivity = sessionStorage.getItem('xtsy_last_activity');
@@ -136,7 +134,6 @@ export const hashValue = async (value: string): Promise<string> => {
  * Detect device type from user agent
  */
 export const detectDeviceType = (): 'mobile' | 'tablet' | 'desktop' => {
-  if (typeof navigator === 'undefined') return 'desktop';
   const ua = navigator.userAgent.toLowerCase();
   const isMobile = /iphone|ipod|android.*mobile|windows phone|blackberry/.test(ua);
   const isTablet = /ipad|android(?!.*mobile)|tablet/.test(ua);
@@ -166,7 +163,6 @@ export const detectOS = (): string => {
  * Determine device tier (iOS = premium for Smart Bidding optimization)
  */
 export const determineDeviceTier = (): 'premium' | 'standard' | 'neutral' => {
-  if (typeof navigator === 'undefined') return 'neutral';
   const os = detectOS();
   const deviceType = detectDeviceType();
   
@@ -289,9 +285,6 @@ export const getGeoLocation = async (): Promise<{
  */
 export const detectBotSignals = (): { score: number; signals: BotSignal[] } => {
   const signals: BotSignal[] = [];
-  if (typeof window === 'undefined' || typeof navigator === 'undefined') {
-    return { score: 0, signals };
-  }
   let totalScore = 0;
   
   // Check for headless browser indicators
@@ -1028,29 +1021,11 @@ class TrafficAnalyticsService {
   getClickQualityScore = () => this.computeClickQualityScore();
 }
 
-// Export singleton instance — lazily created so importing this module during
-// SSR never touches localStorage/sessionStorage/navigator. The instance is
-// only constructed on first property access, which happens client-side.
-let _instance: TrafficAnalyticsService | null = null;
-const getInstance = (): TrafficAnalyticsService => {
-  if (!_instance) _instance = new TrafficAnalyticsService();
-  return _instance;
-};
-
-export const trafficAnalytics: TrafficAnalyticsService = new Proxy(
-  {} as TrafficAnalyticsService,
-  {
-    get(_target, prop: string | symbol) {
-      const inst = getInstance();
-      const value = inst[prop as keyof TrafficAnalyticsService];
-      return typeof value === 'function' ? (value as Function).bind(inst) : value;
-    },
-  }
-);
+// Export singleton instance
+export const trafficAnalytics = new TrafficAnalyticsService();
 
 // Export initialization function
 export const initTrafficAnalytics = async () => {
-  if (typeof window === 'undefined') return;
   await trafficAnalytics.initSession();
   trafficAnalytics.trackPageView();
 };

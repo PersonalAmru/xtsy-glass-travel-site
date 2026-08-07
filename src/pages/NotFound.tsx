@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from "@/lib/router-compat";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { SEOHead } from "@/components/SEOHead";
@@ -200,7 +200,7 @@ const NotFound = ({ statusCode }: NotFoundProps) => {
                 <Link
                   key={d.slug}
                   to={`/places-to-visit/${d.slug}`}
-                  className="group relative overflow-hidden rounded-xl border border-border bg-card aspect-[4/3] focus:outline-hidden focus:ring-2 focus:ring-primary"
+                  className="group relative overflow-hidden rounded-xl border border-border bg-card aspect-[4/3] focus:outline-none focus:ring-2 focus:ring-primary"
                   aria-label={`Visit ${d.name} guide`}
                 >
                   {d.img && (

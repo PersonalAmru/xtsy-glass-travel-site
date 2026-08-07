@@ -4,7 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogDescription } from "@/compon
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { X, Sparkles, ArrowRight, CheckCircle2, Building2, Star } from "lucide-react";
-import { useNavigate } from "@/lib/router-compat";
+import { useNavigate } from "react-router-dom";
 
 interface XTSYPrimeModalProps {
   isOpen: boolean;

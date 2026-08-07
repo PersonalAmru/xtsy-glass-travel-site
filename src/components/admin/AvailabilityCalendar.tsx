@@ -75,7 +75,7 @@ export function AvailabilityCalendar() {
         .lte('date', monthEnd);
 
       if (inventoryError) throw inventoryError;
-      setInventory((inventoryData || []) as InventoryEntry[]);
+      setInventory(inventoryData || []);
 
     } catch (error) {
       console.error('Failed to fetch calendar data:', error);

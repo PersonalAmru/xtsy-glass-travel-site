@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Compass, MessageCircle } from "lucide-react";
-import { useNavigate } from "@/lib/router-compat";
+import { useNavigate } from "react-router-dom";
 
 const ToursCTA = () => {
   const navigate = useNavigate();

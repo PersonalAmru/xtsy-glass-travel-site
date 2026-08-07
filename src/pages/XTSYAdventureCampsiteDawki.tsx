@@ -7,7 +7,7 @@
 import { memo, useState, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
-import { Link } from "@/lib/router-compat";
+import { Link } from "react-router-dom";
 import {
   Tent, Flame, Waves, Utensils, Users, MapPin,
   Phone, MessageCircle, Star, ChevronRight, Sparkles,

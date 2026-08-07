@@ -10,7 +10,7 @@ import { UnifiedAdminLayout } from '@/layouts/UnifiedAdminLayout';
 import { AppleSectionHeader } from '@/components/admin/AppleCard';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { useNavigate } from '@/lib/router-compat';
+import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import {
   CheckCircle2, Lock, ChevronRight, RotateCcw, CircleDot,

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { FocusRail, FocusRailItem } from "@/components/ui/focus-rail";
 import { Badge } from "@/components/ui/badge";
 import { Sparkles, Mountain, PawPrint, Trophy, Heart, Laptop, Car, Star } from "lucide-react";
-import { useNavigate } from "@/lib/router-compat";
+import { useNavigate } from "react-router-dom";
 import { pushToDataLayer } from "@/utils/dataLayerService";
 
 // Use URL references instead of eager imports to reduce chunk size

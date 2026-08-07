@@ -57,7 +57,7 @@ export default function AdminAuditLogs() {
         .limit(100);
 
       if (error) throw error;
-      setLogs((data || []) as AuditLog[]);
+      setLogs(data || []);
     } catch (error) {
       console.error('Error fetching audit logs:', error);
       toast.error('Failed to load audit logs');

@@ -190,7 +190,7 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
           if (tableError) {
             console.error('Fallback also failed:', tableError);
           } else if (roomTypesData) {
-            setRoomTypes(roomTypesData as RoomType[]);
+            setRoomTypes(roomTypesData);
             setRoomsError("");
             console.log('Loaded room types from fallback:', roomTypesData.length);
           }
@@ -210,7 +210,7 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
             .eq('is_active', true);
           
           if (!tableError && roomTypesData) {
-            setRoomTypes(roomTypesData as RoomType[]);
+            setRoomTypes(roomTypesData);
             setRoomsError("");
             console.log('Loaded room types from fallback after exception:', roomTypesData.length);
           }
@@ -405,7 +405,7 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
       ? selectedRooms.map(room => `   • ${room.roomTypeName} × ${room.quantity}`).join('\n')
       : '   • To be decided';
 
-    const addOnsText: string[] = [];
+    const addOnsText = [];
     if (formData.breakfast) addOnsText.push(`   • Breakfast for ${formData.breakfastGuests} guest(s)`);
     if (formData.dinner) addOnsText.push(`   • Dinner (${formData.dinnerType}) for ${formData.dinnerGuests} guest(s)`);
     if (formData.transportation) addOnsText.push(`   • Transportation Service`);
@@ -752,7 +752,7 @@ Looking forward to hearing from you. Thank you! 🌟`;
                                      selectedRoomIds.has(roomType.id)
                                        ? 'border-primary bg-primary/5'
                                        : canAccommodateRemaining(roomType.name)
-                                       ? 'border-accent bg-accent/10 hover:border-accent shadow-xs'
+                                       ? 'border-accent bg-accent/10 hover:border-accent shadow-sm'
                                        : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-primary'
                                    }`}
                                  >

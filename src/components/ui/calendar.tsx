@@ -29,7 +29,7 @@ function Calendar({
           "text-muted-foreground hover:text-foreground",
           "bg-muted/50 hover:bg-muted active:bg-muted/80",
           "transition-colors duration-150",
-          "focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2",
+          "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
           "absolute left-0 cursor-pointer touch-manipulation"
         ),
         button_next: cn(
@@ -39,7 +39,7 @@ function Calendar({
           "text-muted-foreground hover:text-foreground",
           "bg-muted/50 hover:bg-muted active:bg-muted/80",
           "transition-colors duration-150",
-          "focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2",
+          "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
           "absolute right-0 cursor-pointer touch-manipulation"
         ),
         month_grid: "w-full border-collapse",
@@ -59,7 +59,7 @@ function Calendar({
           "w-10 h-10 p-0 font-normal text-sm",
           "text-foreground hover:bg-muted hover:text-foreground",
           "transition-colors duration-150 ease-in-out",
-          "focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-1",
+          "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1",
           "aria-selected:opacity-100"
         ),
         range_end: "day-range-end",
@@ -67,7 +67,7 @@ function Calendar({
           "bg-primary text-primary-foreground font-semibold",
           "hover:bg-primary hover:text-primary-foreground",
           "focus:bg-primary focus:text-primary-foreground",
-          "shadow-xs"
+          "shadow-sm"
         ),
         today: cn(
           "bg-accent/50 text-accent-foreground font-semibold",

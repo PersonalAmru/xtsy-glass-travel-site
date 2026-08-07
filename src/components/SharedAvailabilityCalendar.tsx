@@ -110,7 +110,7 @@ const SharedAvailabilityCalendar: React.FC<SharedAvailabilityCalendarProps> = ({
             <div className="relative">
               <div className="flex overflow-x-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800 gap-1 p-3 pb-4">
                 {(() => {
-                  const dates: React.ReactNode[] = [];
+                  const dates = [];
                   const startDate = new Date();
                   const endDate = new Date();
                   endDate.setMonth(endDate.getMonth() + 3);

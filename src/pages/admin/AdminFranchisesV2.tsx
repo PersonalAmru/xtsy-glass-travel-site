@@ -77,8 +77,8 @@ export default function AdminFranchises() {
         .eq('is_active', true)
         .order('name');
 
-      setAssignments((assignmentsData || []) as FranchiseAssignment[]);
-      setInvites((invitesData || []) as FranchiseInvite[]);
+      setAssignments(assignmentsData || []);
+      setInvites(invitesData || []);
       setProperties(propertiesData || []);
     } catch (error) {
       console.error('Error fetching data:', error);

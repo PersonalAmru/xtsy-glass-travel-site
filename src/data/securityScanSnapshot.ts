@@ -89,9 +89,9 @@ export const DEPENDENCY_FINDINGS: DependencyFinding[] = [
     level: 'high',
     status: 'fixed',
     title: 'High-severity vulnerable dependencies',
-    packages: ['@/lib/router-compat', 'recharts', 'react-simple-maps'],
+    packages: ['react-router-dom', 'recharts', 'react-simple-maps'],
     remediation:
-      'Bumped @/lib/router-compat → ^6.30.4, recharts → ^2.15.4; pinned d3-color → ^3.1.0 via overrides.',
+      'Bumped react-router-dom → ^6.30.4, recharts → ^2.15.4; pinned d3-color → ^3.1.0 via overrides.',
     resolvedAt: '2026-06-30',
   },
   {

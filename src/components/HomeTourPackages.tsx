@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Globe, MapPin, Compass, Heart, Bike } from "lucide-react";
-import { Link } from "@/lib/router-compat";
+import { Link } from "react-router-dom";
 import { LazyTourPackageModal } from "@/components/lazy/LazyTourPackageModal";
 import { useApp } from "@/contexts/AppContext";
 import { useComponentTracking } from "@/hooks/useComponentTracking";

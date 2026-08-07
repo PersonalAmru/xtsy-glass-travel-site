@@ -1,4 +1,4 @@
-import { Link } from "@/lib/router-compat";
+import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Instagram, Youtube } from "lucide-react";
 import { useState, lazy, Suspense } from "react";
 import PolicyModal from "./PolicyModals";

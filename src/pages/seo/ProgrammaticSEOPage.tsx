@@ -1,4 +1,4 @@
-import { useParams, Link, Navigate } from '@/lib/router-compat';
+import { useParams, Link, Navigate } from 'react-router-dom';
 import NotFound from '@/pages/NotFound';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -367,7 +367,7 @@ const ProgrammaticSEOPage = () => {
             { label: categoryLabel, href: '/things-to-do-in-meghalaya' },
             { label: page.h1 },
           ]} />
-          <h1 className="mt-3 text-2xl sm:text-3xl md:text-4xl font-bold text-foreground leading-tight drop-shadow-xs">
+          <h1 className="mt-3 text-2xl sm:text-3xl md:text-4xl font-bold text-foreground leading-tight drop-shadow-sm">
             {page.h1}
           </h1>
           <div className="mt-2 flex items-center gap-3 text-xs text-muted-foreground">

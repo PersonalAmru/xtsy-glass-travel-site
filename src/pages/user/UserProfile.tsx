@@ -4,7 +4,7 @@
  */
 
 import { useState, useEffect } from 'react';
-import { useNavigate } from '@/lib/router-compat';
+import { useNavigate } from 'react-router-dom';
 import { useUserAuth } from '@/contexts/UserAuthContext';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
@@ -118,37 +118,26 @@ export default function UserProfile() {
       // Combine bookings and enquiries
       const bookingsData: Booking[] = (bookingsResult.data || []).map(b => ({
         ...b,
-        room_type: b.room_type ?? '',
-        taxes: b.taxes ?? 0,
-        subtotal: b.subtotal ?? 0,
-        booking_status: b.booking_status ?? 'pending',
-        created_at: b.created_at ?? '',
-        guests: b.guests ?? 1,
-        quantity: b.quantity ?? 1,
-        special_requests: b.special_requests ?? undefined,
-        guest_name: b.guest_name ?? undefined,
-        email: b.email ?? undefined,
-        whatsapp_number: b.whatsapp_number ?? undefined,
         source: 'booking' as const
       }));
 
       const enquiriesAsBookings: Booking[] = (enquiriesResult.data || []).map(e => ({
         id: e.id,
         booking_id: e.enquiry_id,
-        room_type: (e.room_name || e.room_type) ?? '',
+        room_type: e.room_name || e.room_type,
         check_in: e.check_in,
         check_out: e.check_out,
         total_amount: e.total_amount,
-        subtotal: e.subtotal ?? 0,
-        taxes: e.gst_amount ?? 0,
-        booking_status: e.status ?? 'pending',
-        created_at: e.created_at ?? '',
-        guests: e.quantity ?? 1,
-        quantity: e.quantity ?? 1,
-        special_requests: e.special_requests ?? undefined,
-        guest_name: e.guest_name ?? undefined,
-        email: e.email ?? undefined,
-        whatsapp_number: e.phone ?? undefined,
+        subtotal: e.subtotal,
+        taxes: e.gst_amount,
+        booking_status: e.status,
+        created_at: e.created_at,
+        guests: e.quantity,
+        quantity: e.quantity,
+        special_requests: e.special_requests,
+        guest_name: e.guest_name,
+        email: e.email,
+        whatsapp_number: e.phone,
         source: 'enquiry' as const
       }));
 
@@ -278,7 +267,7 @@ export default function UserProfile() {
               className={cn(
                 "flex-1 min-w-[80px] py-2.5 px-4 rounded-lg text-sm font-medium transition-all flex items-center justify-center gap-2",
                 activeTab === tab.id 
-                  ? "bg-background shadow-xs text-foreground" 
+                  ? "bg-background shadow-sm text-foreground" 
                   : "text-muted-foreground hover:text-foreground"
               )}
             >

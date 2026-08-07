@@ -12,7 +12,7 @@
  */
 
 import { useEffect, useCallback, useRef } from 'react';
-import { useLocation, useNavigationType } from '@/lib/router-compat';
+import { useLocation, useNavigationType } from 'react-router-dom';
 import { 
   routePageEvent, 
   routeButtonEvent, 

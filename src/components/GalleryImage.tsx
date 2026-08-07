@@ -1,4 +1,4 @@
-import { Link } from '@/lib/router-compat';
+import { Link } from 'react-router-dom';
 import { navigateToGallery } from '@/utils/galleryNavigation';
 import { Camera, ExternalLink } from 'lucide-react';
 import UnifiedImage from './UnifiedImage';

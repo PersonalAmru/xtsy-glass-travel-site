@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    
+    <!-- Critical Performance: Preconnect to max 3 essential domains (Lighthouse warning >4) -->
+    <link rel="preconnect" href="https://kzhsxemkntfwsakhkylt.supabase.co" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- LCP CRITICAL: Preload hero brand symbol with highest priority -->
+    <link rel="preload" as="image" href="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.avif" fetchpriority="high" type="image/avif">
+    
+    <!-- Non-blocking font loading via preload + onload pattern -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap"></noscript>
+    
+    <!-- Critical inline CSS for instant first paint -->
+    <style>
+      /* Critical above-the-fold styles - inline for instant render */
+      *{margin:0;padding:0;box-sizing:border-box}
+      html{font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeSpeed}
+      /* SAFETY: cream/neutral background prevents black-screen failure mode.
+         Hero paints its own dark gradient on top, so visual is unchanged. */
+      body{background:#faf7f2;color:#0f172a;min-height:100vh;overflow-x:hidden;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
+      body::-webkit-scrollbar{display:none}
+      /* Match body cream so the SPA shell never paints a black screen pre-hydration.
+         Hero sections render their own dark gradient above this. */
+      #root{min-height:100vh;contain:style;background:#faf7f2}
+      .dark{color-scheme:dark}
+      img,video{max-width:100%;height:auto;display:block}
+      @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+      body.initial-load *{transition:none!important;animation-duration:.001ms!important;animation-delay:0ms!important}
+      @supports (-webkit-touch-callout:none){input,select,textarea{font-size:16px!important}}
+      .hero-bg{background:linear-gradient(135deg,#020617 0%,#0f172a 50%,#020617 100%)}
+      :root{--primary:25 95% 53%;--primary-foreground:0 0% 100%}
+      /* LCP FIX: render mountain decoration as a pseudo-element so it is not an LCP candidate */
+      .hero-mountain-decoration::after{content:'';position:absolute;bottom:0;left:0;right:0;height:30%;opacity:.04;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' d='M0,224L48,213.3C96,203,192,181,288,186.7C384,192,480,224,576,218.7C672,213,768,171,864,165.3C960,160,1056,192,1152,197.3C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'/%3E%3C/svg%3E") no-repeat bottom center;background-size:cover}
+    </style>
+    
+    <!-- Hydration script - add hydrated class immediately when DOM is ready -->
+    <script>document.documentElement.classList.add('hydrated');</script>
+    
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="JLU2b52K22fmRO8ee75E59cZS03qghtetQtjo8h0oD8" />
+    
+    <!-- Critical mobile viewport -->
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,viewport-fit=cover">
+    
+    <!-- Favicon - use inline data URI for fastest load -->
+    <link rel="icon" type="image/png" href="https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/uploads/1765259352370-with_padding.png">
+    <link rel="apple-touch-icon" href="/xtsy-favicon.png">
+    
+    <!-- DNS Prefetch — kept minimal to avoid Lighthouse warnings -->
+    <link rel="dns-prefetch" href="//www.googletagmanager.com">
+    <link rel="dns-prefetch" href="//checkout.razorpay.com">
+    <link rel="dns-prefetch" href="//wa.me">
+    
+    <!-- GTM SINGLE AUTHORITY - GTM-5FXJ9QBK is the sole analytics routing system -->
+    <!-- NO direct gtag.js, GA4, Google Ads, or GT-* tags allowed -->
+    <script>
+      // Initialize dataLayer FIRST (before GTM loads)
+      window.dataLayer = window.dataLayer || [];
+      
+      // Lovable admin detection - set flag for frontend to use
+      (function() {
+        var params = new URLSearchParams(window.location.search);
+        var isLovable = params.has('__lovable_token') || 
+                        params.has('forceHideBadge') || 
+                        params.has('__lovable');
+        
+        // Check sessionStorage for previously detected Lovable session
+        if (sessionStorage.getItem('xtsy_is_lovable_session') === 'true') {
+          isLovable = true;
+        }
+        
+        // Check referrer for Lovable domains
+        if (!isLovable && document.referrer) {
+          try {
+            var ref = new URL(document.referrer);
+            if (ref.hostname.indexOf('lovable.dev') !== -1 || 
+                ref.hostname.indexOf('lovable.app') !== -1 ||
+                ref.hostname.indexOf('gptengineer.app') !== -1) {
+              isLovable = true;
+            }
+          } catch(e) {}
+        }
+        
+        // Store flag for other scripts to use
+        window.__isLovableAdmin = isLovable;
+        if (isLovable) {
+          sessionStorage.setItem('xtsy_is_lovable_session', 'true');
+        }
+        
+        // Push initial context to dataLayer (GTM will handle routing)
+        dataLayer.push({
+          'event': 'xtsy_init',
+          'is_admin_session': isLovable,
+          'page_path': window.location.pathname,
+          'page_url': window.location.href,
+          'page_title': document.title,
+          'timestamp': new Date().toISOString(),
+          'user_agent': navigator.userAgent,
+          'screen_resolution': screen.width + 'x' + screen.height,
+          'viewport_size': window.innerWidth + 'x' + window.innerHeight
+        });
+        
+        // GDPR/DPDP COMPLIANT: Default consent MUST be DENIED
+        // User must explicitly grant consent via banner
+        // This is pushed BEFORE GTM loads so Consent Mode v2 receives defaults
+        dataLayer.push({
+          'event': 'consent_default',
+          'analytics_storage': 'denied',
+          'ad_storage': 'denied',
+          'ad_user_data': 'denied',
+          'ad_personalization': 'denied',
+          'functionality_storage': 'granted',
+          'security_storage': 'granted',
+          'wait_for_update': 2000  // Wait up to 2s for user consent choice
+        });
+        
+        // Check if user already consented (localStorage)
+        // CRITICAL: Analytics is ALWAYS granted once user has made ANY choice
+        try {
+          var storedConsent = localStorage.getItem('xtsy_consent_v2');
+          if (storedConsent) {
+            var prefs = JSON.parse(storedConsent);
+            // Analytics is MANDATORY - always granted after consent
+            dataLayer.push({
+              'event': 'consent_update',
+              'analytics_storage': 'granted', // ALWAYS granted (mandatory)
+              'ad_storage': prefs.marketing ? 'granted' : 'denied',
+              'ad_user_data': prefs.marketing ? 'granted' : 'denied',
+              'ad_personalization': prefs.personalization ? 'granted' : 'denied',
+              'functionality_storage': 'granted',
+              'security_storage': 'granted'
+            });
+            console.log('%c[CONSENT] Restored from localStorage - analytics_storage: GRANTED', 
+              'background: #4CAF50; color: white; font-weight: bold; padding: 2px 8px; border-radius: 4px;');
+          }
+        } catch(e) {}
+      })();
+    </script>
+    
+    <!-- Google Tag Manager - Interaction-gated for LCP/TBT protection -->
+    <!-- Loads on the FIRST real user interaction (pointer/scroll/keyboard/touch/visibility)
+         or after a hard 10s fallback so idle sessions still record. Guarantees GTM never
+         competes with the LCP frame or the initial TBT window. -->
+    <script>(function(w,d,s,l){
+      var loaded = false;
+      function loadGTM(){
+        if (loaded) return; loaded = true;
+        cleanup();
+        var containerId = w.__isLovableAdmin ? 'GTM-MS23NHMF' : 'GTM-5FXJ9QBK';
+        w.__activeGTMContainer = containerId;
+        w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+        var f=d.getElementsByTagName(s)[0],j=d.createElement(s),
+        dl=l!='dataLayer'?'&l='+l:'';j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+containerId+dl;
+        f.parentNode.insertBefore(j,f);
+      }
+      var events = ['pointerdown','touchstart','keydown','scroll','mousemove','visibilitychange'];
+      var opts = { once: true, passive: true, capture: true };
+      function cleanup(){ events.forEach(function(e){ try { w.removeEventListener(e, loadGTM, opts); } catch(_){} }); }
+      events.forEach(function(e){ w.addEventListener(e, loadGTM, opts); });
+      // Fallback: load after 10s so idle sessions still report a pageview.
+      setTimeout(loadGTM, 10000);
+    })(window,document,'script','dataLayer');</script>
+    <!-- End Google Tag Manager -->
+    
+    <!-- HTTP Client Hints for image optimization -->
+    <meta http-equiv="Accept-CH" content="DPR,Width,Viewport-Width">
+    
+    <title>XTSY — Best Hostel in Shillong, Meghalaya</title>
+    <meta name="description" content="India&#39;s biggest hostel in Shillong, Meghalaya. Budget dorms from ₹329, luxury 270° glass suite &amp; curated Northeast India tours. Book direct.">
+
+    <!-- Explicit robots directives for rich-result eligibility (replaces deprecated keywords meta) -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="XTSY — Best Hostel in Shillong, Meghalaya" />
+    <meta property="og:description" content="India&#39;s biggest hostel in Shillong, Meghalaya. Budget dorms from ₹329, luxury 270° glass suite &amp; curated Northeast India tours. Book direct." />
+    <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/social-images/social-1765259372136-with_padding.png">
+    <meta property="og:url" content="https://xtsy.one" />
+    <meta property="og:site_name" content="XTSY Travel" />
+    <meta property="og:locale" content="en_IN" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="XTSY — Best Hostel in Shillong, Meghalaya" />
+    <meta name="twitter:description" content="India's biggest hostel in Shillong, Meghalaya. Budget dorms from ₹329, luxury 270° glass suite, curated Northeast India tours. Book direct." />
+    <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/social-images/social-1765259372136-with_padding.png">
+    
+    <!-- Geographic and Location SEO -->
+    <meta name="geo.region" content="IN-ML" />
+    <meta name="geo.placename" content="Shillong, Meghalaya, India" />
+    <meta name="geo.position" content="25.5788;91.8933" />
+    <meta name="ICBM" content="25.5788, 91.8933" />
+    
+    <!-- Global audience targeting -->
+    <meta name="target" content="all" />
+    <meta name="audience" content="all" />
+    <meta name="coverage" content="Worldwide" />
+    <meta name="distribution" content="Global" />
+    <meta name="rating" content="General" />
+    
+    <!-- Canonical URL — intentionally NOT hardcoded here.
+         Per-route canonical is owned by React Helmet (SEOHead.tsx) for JS crawlers
+         and injected per-route by the Cloudflare edge worker for non-JS crawlers.
+         A static canonical here would double-emit with Helmet's and create
+         duplicate-content signals across all programmatic routes. -->
+    
+    <!-- Hreflang: only declare alternates we actually serve.
+         Duplicate hreflang pointing to the same URL is treated by Google as
+         spam/misconfiguration, so we keep only canonical English + x-default. -->
+    <link rel="alternate" hreflang="en" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="en-IN" href="https://xtsy.one/" />
+    <link rel="alternate" hreflang="x-default" href="https://xtsy.one/" />
+    
+    <!-- OG locale alternatives (trimmed — only the ones we serve content for) -->
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale:alternate" content="en_GB" />
+    
+    <!-- Author and Organization -->
+    <meta name="author" content="XTSY Travel" />
+    <meta name="publisher" content="XTSY Travel" />
+    
+    <!-- Structured Data - WebSite (enables sitelinks search box in SERPs) -->
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebSite","name":"XTSY Travel","alternateName":"XTSY Travellers Hostel","url":"https://xtsy.one","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://xtsy.one/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+    </script>
+
+    <!-- Structured Data - Hostel (Primary Entity) -->
+    <!-- Slim Hostel JSON-LD in head — full review/offer catalog is mounted client-side via React Helmet
+         to keep <head> small (was ~5KB, now ~700 bytes). Critical for LCP. -->
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"Hostel","name":"XTSY Travellers Hostel","url":"https://xtsy.one","logo":"https://xtsy.one/lovable-uploads/160f683c-a41c-41fd-8bdb-700d74a7e027.png","telephone":"+91-8837317070","priceRange":"₹329 - ₹4,999","address":{"@type":"PostalAddress","streetAddress":"Mawdiangdiang Road, New Shillong Township","addressLocality":"Shillong","addressRegion":"Meghalaya","addressCountry":"IN","postalCode":"793018"},"geo":{"@type":"GeoCoordinates","latitude":25.5788,"longitude":91.8933},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"320","reviewCount":"189","bestRating":"5"}}
+    </script>
+
+    <!-- Structured Data - Organization (parent brand) -->
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"Organization","name":"XTSY ONE Ventures Pvt Ltd","alternateName":"XTSY","url":"https://xtsy.one","logo":"https://xtsy.one/lovable-uploads/160f683c-a41c-41fd-8bdb-700d74a7e027.png","email":"hello@xtsy.one","telephone":"+91-8837317070","address":{"@type":"PostalAddress","streetAddress":"Mawdiangdiang Road, New Shillong Township","addressLocality":"Shillong","addressRegion":"Meghalaya","postalCode":"793018","addressCountry":"IN"},"sameAs":["https://www.instagram.com/xtsy.one","https://www.facebook.com/xtsy.one","https://www.youtube.com/@xtsy-one"],"contactPoint":[{"@type":"ContactPoint","telephone":"+91-8837317070","contactType":"reservations","areaServed":"IN","availableLanguage":["en","hi"]}]}
+    </script>
+
+    <!-- Structured Data - LocalBusiness (TAB Bistro by XTSY) -->
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"Restaurant","name":"TAB Bistro by XTSY","url":"https://xtsy.one/tab-bistro","image":"https://xtsy.one/lovable-uploads/160f683c-a41c-41fd-8bdb-700d74a7e027.png","servesCuisine":["Indian","Continental","Khasi","Cafe"],"priceRange":"₹₹","telephone":"+91-8837317070","address":{"@type":"PostalAddress","streetAddress":"Mawdiangdiang Road, New Shillong Township","addressLocality":"Shillong","addressRegion":"Meghalaya","postalCode":"793018","addressCountry":"IN"},"geo":{"@type":"GeoCoordinates","latitude":25.5788,"longitude":91.8933},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"07:00","closes":"22:30"}],"acceptsReservations":true,"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.7","reviewCount":"142","bestRating":"5"}}
+    </script>
+    <!-- PWA and Mobile App Integration -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="XTSY Hostel">
+    
+    <!-- Theme colors for mobile browsers -->
+    <meta name="theme-color" content="#000000">
+    <meta name="msapplication-navbutton-color" content="#000000">
+    
+    <!-- Foldable device support -->
+    <meta name="screen-spanning" content="single-fold-vertical | single-fold-horizontal | none">
+    
+    <!-- Non-critical fonts removed to reduce render blocking - Josefin Sans already loaded above -->
+    
+  </head>
+  <body>
+    <!-- Skip to content link for accessibility -->
+    <a href="#root" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[99999] focus:bg-primary focus:text-primary-foreground focus:px-4 focus:py-2 focus:rounded-md focus:text-sm focus:font-medium" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;" onfocus="this.style.position='fixed';this.style.left='8px';this.style.top='8px';this.style.width='auto';this.style.height='auto';this.style.overflow='visible';" onblur="this.style.position='absolute';this.style.left='-9999px';this.style.width='1px';this.style.height='1px';this.style.overflow='hidden';">Skip to content</a>
+    
+    <!-- Google Tag Manager (noscript) - Uses production container for noscript fallback -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FXJ9QBK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <!-- LCP CRITICAL: Hero skeleton — CSS-only auto-dismiss prevents black-screen failure mode.
+         Even if JS never executes, the skeleton fades out at 4.5s via CSS animation. -->
+    <style id="lcp-critical-css">
+      #lcp-skeleton{position:fixed;inset:0;z-index:9998;background:linear-gradient(135deg,#020617,#0f172a,#020617);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:1;transition:opacity .3s ease-out;animation:lcp-skeleton-autohide 0s linear 4.5s forwards}
+      #lcp-skeleton.fade-out{opacity:0;pointer-events:none}
+      #lcp-skeleton img{width:96px;height:96px;object-fit:contain;animation:lcp-pulse 1.5s ease-in-out infinite}
+      #lcp-skeleton h1{margin-top:16px;font-size:28px;font-weight:700;background:linear-gradient(90deg,#f97316,#fb923c,#f87171);-webkit-background-clip:text;background-clip:text;color:transparent}
+      #lcp-skeleton p{margin-top:8px;font-size:14px;color:rgba(255,255,255,0.6)}
+      @keyframes lcp-pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.05);opacity:0.9}}
+      @keyframes lcp-skeleton-autohide{to{opacity:0;visibility:hidden;pointer-events:none}}
+      @media(min-width:768px){#lcp-skeleton img{width:128px;height:128px}#lcp-skeleton h1{font-size:40px}}
+    </style>
+    
+    <!-- LCP Skeleton - renders BEFORE React, shows LCP image immediately -->
+    <div id="lcp-skeleton" aria-hidden="true">
+      <img 
+        src="/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.png" 
+        alt="XTSY" 
+        width="128" 
+        height="128"
+        fetchpriority="high"
+        decoding="sync"
+      />
+      <p class="loading-tagline" style="font-size:1.5rem;font-weight:600;margin:0;">Live the XTSY Vibe</p>
+      <p>Travel.Sleep.Binge</p>
+    </div>
+    
+    <div id="root"></div>
+    
+    <!-- SEO Fallback: Visible only to crawlers that don't execute JavaScript -->
+    <noscript>
+      <div style="max-width:800px;margin:0 auto;padding:20px;font-family:system-ui,sans-serif;">
+        <h1>XTSY — India's Biggest Hostel in Shillong, Meghalaya</h1>
+        <p>Welcome to XTSY Travellers Hostel — the biggest hostel in Northeast India. Budget dorms from ₹329, luxury 270° glass suite, and curated Meghalaya tour packages.</p>
+        <h2>Quick Links</h2>
+        <nav>
+          <ul>
+            <li><a href="/best-hostel-in-shillong">Best Hostel in Shillong</a></li>
+            <li><a href="/meghalaya-tour-packages">Meghalaya Tour Packages</a></li>
+            <li><a href="/bike-rental-shillong">Bike Rental Shillong</a></li>
+            <li><a href="/car-rental-shillong">Car Rental Shillong</a></li>
+            <li><a href="/things-to-do-in-meghalaya">Things to Do in Meghalaya</a></li>
+            <li><a href="/xtsy-270">270° Glass Suite</a></li>
+            <li><a href="/tours">Tour Packages</a></li>
+            <li><a href="/meghalaya-travel-guide">Meghalaya Travel Guide</a></li>
+            <li><a href="/about">About XTSY</a></li>
+            <li><a href="/gallery">Photo Gallery</a></li>
+            <li><a href="/budget-trip-meghalaya">Budget Trip Meghalaya</a></li>
+            <li><a href="/homestay-in-shillong">Homestay in Shillong</a></li>
+            <li><a href="/glamping-meghalaya">Glamping in Meghalaya</a></li>
+            <li><a href="/shillong-tour-package">Shillong Tour Package</a></li>
+            <li><a href="/living-root-bridges-meghalaya">Living Root Bridges</a></li>
+            <li><a href="/dawki-river-meghalaya">Dawki River</a></li>
+          </ul>
+        </nav>
+        <p>Contact: +91-8837317070 | Mawdiangdiang Road, New Shillong Township, Meghalaya 793018</p>
+      </div>
+    </noscript>
+    
+    <!-- LCP image is already rendered in skeleton above - mark LCP complete -->
+    <script>
+      // Performance marker for LCP
+      if(window.performance&&performance.mark)performance.mark('lcp-skeleton-rendered');
+      
+      // P2: Dynamic dateModified for Speakable schema
+      (function(){var s=document.querySelector('script[type="application/ld+json"]');if(s){try{var d=JSON.parse(s.textContent);if(d['@type']==='WebPage'){d.dateModified=new Date().toISOString().split('T')[0];s.textContent=JSON.stringify(d)}}catch(e){}}})();
+      
+      // Fade out skeleton after React hydrates
+      window.__hideLCPSkeleton=function(){
+        var s=document.getElementById('lcp-skeleton');
+        if(s){s.classList.add('fade-out');setTimeout(function(){s.remove();var c=document.getElementById('lcp-critical-css');if(c)c.remove()},300)}
+      };
+    </script>
+    
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Razorpay - on-demand loading only -->
+    <script>
+      window.loadRazorpay=function(c){if(window.Razorpay){c();return}var s=document.createElement('script');s.src='https://checkout.razorpay.com/v1/checkout.js';s.onload=c;document.head.appendChild(s)};
+    </script>
+  </body>
+</html>

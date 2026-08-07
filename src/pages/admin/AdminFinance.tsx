@@ -99,7 +99,7 @@ export default function AdminFinance() {
         revenueGrowth: 12.5,
       });
 
-      setRecentBookings(allBookings.slice(0, 10) as Booking[]);
+      setRecentBookings(allBookings.slice(0, 10));
     } catch (error) {
       console.error('Error fetching finance data:', error);
       toast.error('Failed to load finance data');

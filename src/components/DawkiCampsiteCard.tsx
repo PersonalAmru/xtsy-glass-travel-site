@@ -4,7 +4,7 @@
  */
 
 import { memo } from "react";
-import { Link } from "@/lib/router-compat";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Tent, Flame, Waves, ArrowRight, MapPin } from "lucide-react";
 import UnifiedImage from "@/components/UnifiedImage";

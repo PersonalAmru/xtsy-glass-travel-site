@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { Link } from '@/lib/router-compat';
+import { Link } from 'react-router-dom';
 import { Check, X, MessageCircle, IndianRupee } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 

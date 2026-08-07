@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Calendar, Clock, Users, Star, MapPin, X, ChevronLeft, ChevronRight, Mountain, Sparkles, CheckCircle2 } from "lucide-react";
-import { useLocation, useNavigate } from "@/lib/router-compat";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useApp } from "@/contexts/AppContext";
 import { TourItineraryService } from "@/utils/tourItineraryService";
 import UnifiedImage from "./UnifiedImage";

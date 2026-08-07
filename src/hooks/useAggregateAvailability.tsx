@@ -102,7 +102,6 @@ export const useAggregateAvailability = (
       const inventoryMap: Record<string, Record<string, number>> = {};
       if (inventory) {
         inventory.forEach(item => {
-          if (!item.room_type_id) return;
           if (!inventoryMap[item.date]) {
             inventoryMap[item.date] = {};
           }
@@ -114,7 +113,6 @@ export const useAggregateAvailability = (
       const bookingsMap: Record<string, Record<string, number>> = {};
       if (bookings) {
         bookings.forEach(booking => {
-          if (!booking.room_type) return;
           const checkIn = new Date(booking.check_in);
           const checkOut = new Date(booking.check_out);
           
@@ -141,7 +139,7 @@ export const useAggregateAvailability = (
         const roomTypesTotal = roomTypes.length;
 
         roomTypes.forEach(roomType => {
-          const units = roomType.total_units ?? 0;
+          const units = roomType.total_units;
           totalUnits += units;
 
           // Get available from inventory or default to total units

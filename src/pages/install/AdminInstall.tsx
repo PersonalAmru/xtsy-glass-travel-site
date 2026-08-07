@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Download, Shield, CheckCircle2, BarChart3, Settings, Users, X, Share, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { useNavigate } from '@/lib/router-compat';
+import { useNavigate } from 'react-router-dom';
 import { pushToDataLayer } from '@/utils/dataLayerService';
 
 interface BeforeInstallPromptEvent extends Event {

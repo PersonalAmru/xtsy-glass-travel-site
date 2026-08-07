@@ -4,7 +4,7 @@
  */
 import { memo, useState, useEffect } from 'react';
 import { Search, CalendarDays, Users, MapPin } from 'lucide-react';
-import { useNavigate, useLocation } from '@/lib/router-compat';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { formatLocalDateString } from '@/lib/date-utils';
 import { cn } from '@/lib/utils';
 
@@ -73,7 +73,7 @@ const StickyBookingBar = memo(() => {
             value={guests}
             onChange={(e) => setGuests(Number(e.target.value))}
             aria-label="Number of guests"
-            className="bg-transparent border-none text-sm text-foreground focus:outline-hidden cursor-pointer min-h-[44px]"
+            className="bg-transparent border-none text-sm text-foreground focus:outline-none cursor-pointer min-h-[44px]"
           >
             {[1,2,3,4,5,6].map(n => (
               <option key={n} value={n}>{n} Guest{n > 1 ? 's' : ''}</option>

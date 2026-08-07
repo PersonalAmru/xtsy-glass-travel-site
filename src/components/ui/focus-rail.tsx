@@ -3,7 +3,7 @@
 import * as React from "react";
 import { motion, PanInfo } from "framer-motion";
 import { ChevronLeft, ChevronRight, ArrowUpRight, Clock, Mountain, Star } from "lucide-react";
-import { Link } from "@/lib/router-compat";
+import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 
@@ -164,7 +164,7 @@ export function FocusRail({
   return (
     <div
       className={cn(
-        "relative w-full h-[580px] md:h-[680px] flex items-center justify-center overflow-hidden select-none outline-hidden",
+        "relative w-full h-[580px] md:h-[680px] flex items-center justify-center overflow-hidden select-none outline-none",
         className
       )}
       style={{ perspective: "1200px" }}

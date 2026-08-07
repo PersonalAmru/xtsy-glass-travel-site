@@ -1,4 +1,4 @@
-import { Link } from '@/lib/router-compat';
+import { Link } from 'react-router-dom';
 import { BedDouble, UtensilsCrossed, PartyPopper, Map } from 'lucide-react';
 
 /**

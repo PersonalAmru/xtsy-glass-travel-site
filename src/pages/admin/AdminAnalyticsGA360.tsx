@@ -68,7 +68,7 @@ export default function AdminAnalyticsGA360() {
         .gte('last_seen_at', fiveMinutesAgo)
         .order('last_seen_at', { ascending: false });
       
-      if (data) setRealtimeVisitors(data as RealtimeVisitor[]);
+      if (data) setRealtimeVisitors(data);
     };
 
     fetchRealtime();

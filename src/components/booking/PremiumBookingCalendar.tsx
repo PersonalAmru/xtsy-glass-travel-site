@@ -189,7 +189,7 @@ export function PremiumBookingCalendar({
                   "relative aspect-square flex flex-col items-center justify-center",
                   "rounded-xl transition-all duration-200",
                   "text-sm font-medium",
-                  "focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white/50",
+                  "focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50",
                   // Base states
                   outside && "text-white/25",
                   disabled && !outside && !soldOut && "text-white/30 cursor-not-allowed",

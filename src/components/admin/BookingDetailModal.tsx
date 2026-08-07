@@ -474,7 +474,7 @@ export const BookingDetailModal: React.FC<BookingDetailModalProps> = ({
                       onChange={(e) => setNewMessage(e.target.value)}
                       onKeyDown={handleKeyDown}
                       placeholder="Type a message..."
-                      className="flex-1 h-10 px-3 rounded-lg bg-background border text-sm focus:outline-hidden focus:ring-2 focus:ring-primary/20"
+                      className="flex-1 h-10 px-3 rounded-lg bg-background border text-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
                       disabled={isSending}
                     />
                     <Button

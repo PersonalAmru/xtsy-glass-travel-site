@@ -6,7 +6,7 @@
  * signed-in user; MCP tools then run under that user's identity/RLS.
  */
 import { useEffect, useState } from 'react';
-import { useSearchParams } from '@/lib/router-compat';
+import { useSearchParams } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Loader2, ShieldCheck } from 'lucide-react';

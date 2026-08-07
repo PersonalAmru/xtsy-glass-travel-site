@@ -1,5 +1,5 @@
 import { memo, useState } from "react";
-import { Link } from "@/lib/router-compat";
+import { Link } from "react-router-dom";
 import {
   Star, Soup, Beef, Pizza, Fish, Salad, Drumstick, Globe2, Leaf, ShoppingBag, PartyPopper,
 } from "lucide-react";

@@ -144,8 +144,8 @@ const B2BBookingForm = ({
         p_guest_name: formData.companyName || 'Guest',
         p_email: formData.email || 'inquiry@xtsy.one',
         p_whatsapp_number: formData.phone || '+910000000000',
-        p_city: formData.city || undefined,
-        p_pincode: formData.pincode || undefined,
+        p_city: formData.city || null,
+        p_pincode: formData.pincode || null,
         p_check_in: formData.checkIn || new Date().toISOString().split('T')[0],
         p_check_out: formData.checkOut || new Date(Date.now() + 86400000).toISOString().split('T')[0],
         p_guests: formData.guests || 1,
@@ -155,7 +155,7 @@ const B2BBookingForm = ({
         p_subtotal: isCoupleFocused ? 0 : totalPrice,
         p_taxes: isCoupleFocused ? 0 : gst,
         p_total_amount: isCoupleFocused ? 0 : finalTotal,
-        p_special_requests: formData.specialRequests || undefined
+        p_special_requests: formData.specialRequests || null
       });
 
       // Log error but don't block WhatsApp redirect
@@ -164,7 +164,7 @@ const B2BBookingForm = ({
       }
       
       // Build beautiful WhatsApp message with all details
-      const foodAddons: string[] = [];
+      const foodAddons = [];
       if (formData.breakfast) {
         foodAddons.push(`🍳 Breakfast: ${formData.breakfastGuests} guests - ${formatPrice(breakfastCost)}`);
       }
@@ -172,7 +172,7 @@ const B2BBookingForm = ({
         foodAddons.push(`🍽️ Dinner (${formData.dinnerType === 'veg' ? 'Vegetarian' : 'Non-Vegetarian'}): ${formData.dinnerGuests} guests - ${formatPrice(dinnerCost)}`);
       }
       
-      const additionalServices: string[] = [];
+      const additionalServices = [];
       if (formData.transportation) {
         additionalServices.push('🚗 Transportation Arrangement');
       }
