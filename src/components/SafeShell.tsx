@@ -115,10 +115,10 @@ const SafeShell = ({ variant = 'error', title, message, onRetry, compact = false
 /** Tiny inline boundary so a Header/Footer crash degrades silently. */
 import { Component, ReactNode } from 'react';
 class SafeBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
-  state = { failed: false };
+  override state = { failed: false };
   static getDerivedStateFromError() { return { failed: true }; }
-  componentDidCatch(e: Error) { console.warn('[SafeShell] sub-region failed:', e?.message); }
-  render() { return this.state.failed ? null : this.props.children; }
+  override componentDidCatch(e: Error) { console.warn('[SafeShell] sub-region failed:', e?.message); }
+  override render() { return this.state.failed ? null : this.props.children; }
 }
 
 export default SafeShell;

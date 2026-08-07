@@ -48,7 +48,7 @@ const UPIPaymentModal = ({ isOpen, onClose, bookingData }: UPIPaymentModalProps)
   const generateAddOnsMessage = () => {
     if (!bookingData.addOns) return '';
     
-    const addOns = [];
+    const addOns: string[] = [];
     
     if (bookingData.addOns.breakfast && bookingData.addOns.breakfast > 0) {
       addOns.push(`• Breakfast: ${bookingData.addOns.breakfast} meals × ₹150 = ₹${bookingData.addOns.breakfast * 150}`);

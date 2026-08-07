@@ -164,7 +164,7 @@ const B2BBookingForm = ({
       }
       
       // Build beautiful WhatsApp message with all details
-      const foodAddons = [];
+      const foodAddons: string[] = [];
       if (formData.breakfast) {
         foodAddons.push(`🍳 Breakfast: ${formData.breakfastGuests} guests - ${formatPrice(breakfastCost)}`);
       }
@@ -172,7 +172,7 @@ const B2BBookingForm = ({
         foodAddons.push(`🍽️ Dinner (${formData.dinnerType === 'veg' ? 'Vegetarian' : 'Non-Vegetarian'}): ${formData.dinnerGuests} guests - ${formatPrice(dinnerCost)}`);
       }
       
-      const additionalServices = [];
+      const additionalServices: string[] = [];
       if (formData.transportation) {
         additionalServices.push('🚗 Transportation Arrangement');
       }

@@ -116,7 +116,7 @@ const RoomAvailabilityCalendar: React.FC<RoomAvailabilityCalendarProps> = ({
             <div className="relative">
               <div className="flex overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 gap-1 p-3 pb-4">
                 {(() => {
-                  const dates = [];
+                  const dates: React.ReactNode[] = [];
                   const startDate = new Date();
                   const endDate = new Date();
                   endDate.setMonth(endDate.getMonth() + 3);
