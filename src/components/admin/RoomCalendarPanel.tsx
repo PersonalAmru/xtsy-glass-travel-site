@@ -88,7 +88,12 @@ export function RoomCalendarPanel({ roomId, roomName, basePrice, onClose }: Room
       if (inventoryRes.error) throw inventoryRes.error;
 
       setBlockedDates(blockedRes.data || []);
-      setInventory(inventoryRes.data || []);
+      setInventory(
+        (inventoryRes.data || []).map((i) => ({
+          ...i,
+          room_type_id: i.room_type_id ?? roomId,
+        }))
+      );
     } catch (error) {
       console.error('Failed to fetch calendar data:', error);
       toast.error('Failed to load calendar data');

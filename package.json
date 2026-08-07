@@ -9,7 +9,6 @@
     "sitemaps:audit": "tsx scripts/sitemapHealthAudit.ts",
     "prebuild": "tsx scripts/generateWorkerSlimMap.ts && npm run sitemaps:rebuild",
     "build": "vite build",
-    "postbuild": "tsx scripts/prerender.ts || echo '⚠️  prerender failed but build artifact is intact — continuing'",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
