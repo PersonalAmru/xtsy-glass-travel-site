@@ -136,6 +136,7 @@ export const hashValue = async (value: string): Promise<string> => {
  * Detect device type from user agent
  */
 export const detectDeviceType = (): 'mobile' | 'tablet' | 'desktop' => {
+  if (typeof navigator === 'undefined') return 'desktop';
   const ua = navigator.userAgent.toLowerCase();
   const isMobile = /iphone|ipod|android.*mobile|windows phone|blackberry/.test(ua);
   const isTablet = /ipad|android(?!.*mobile)|tablet/.test(ua);
@@ -165,6 +166,7 @@ export const detectOS = (): string => {
  * Determine device tier (iOS = premium for Smart Bidding optimization)
  */
 export const determineDeviceTier = (): 'premium' | 'standard' | 'neutral' => {
+  if (typeof navigator === 'undefined') return 'neutral';
   const os = detectOS();
   const deviceType = detectDeviceType();
   
@@ -287,6 +289,9 @@ export const getGeoLocation = async (): Promise<{
  */
 export const detectBotSignals = (): { score: number; signals: BotSignal[] } => {
   const signals: BotSignal[] = [];
+  if (typeof window === 'undefined' || typeof navigator === 'undefined') {
+    return { score: 0, signals };
+  }
   let totalScore = 0;
   
   // Check for headless browser indicators
