@@ -253,7 +253,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   }),
   shellComponent: RootShell,
   component: RootComponent,
-  notFoundComponent: NotFound,
+  notFoundComponent: () => <NotFound />,
   errorComponent: RootErrorComponent,
 });
 

@@ -77,7 +77,7 @@ export default function AdminReviews() {
         withPhotos: allReviews.filter(r => r.photos && r.photos.length > 0).length,
       });
 
-      setReviews(allReviews);
+      setReviews(allReviews as Review[]);
     } catch (error) {
       console.error('Error fetching reviews:', error);
       toast.error('Failed to load reviews');

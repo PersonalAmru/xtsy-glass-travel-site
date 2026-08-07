@@ -60,7 +60,7 @@ export default function AdminOTAs() {
         .order('ota_name');
 
       if (error) throw error;
-      setConfigs(data || []);
+      setConfigs((data || []) as ICalConfig[]);
     } catch (error) {
       console.error('Error fetching OTA configs:', error);
       toast.error('Failed to load OTA configurations');

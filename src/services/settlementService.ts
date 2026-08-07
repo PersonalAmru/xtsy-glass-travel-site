@@ -60,8 +60,8 @@ export async function transitionSettlementStatus(
       p_booking_reference: bookingReference,
       p_new_status: newStatus,
       p_amount: amount,
-      p_notes: notes || null,
-      p_actor_id: null // Will be set by function based on auth
+      p_notes: notes || undefined,
+      p_actor_id: undefined, // Will be set by function based on auth
     });
 
     if (error) {

@@ -144,8 +144,8 @@ const B2BBookingForm = ({
         p_guest_name: formData.companyName || 'Guest',
         p_email: formData.email || 'inquiry@xtsy.one',
         p_whatsapp_number: formData.phone || '+910000000000',
-        p_city: formData.city || null,
-        p_pincode: formData.pincode || null,
+        p_city: formData.city || undefined,
+        p_pincode: formData.pincode || undefined,
         p_check_in: formData.checkIn || new Date().toISOString().split('T')[0],
         p_check_out: formData.checkOut || new Date(Date.now() + 86400000).toISOString().split('T')[0],
         p_guests: formData.guests || 1,
@@ -155,7 +155,7 @@ const B2BBookingForm = ({
         p_subtotal: isCoupleFocused ? 0 : totalPrice,
         p_taxes: isCoupleFocused ? 0 : gst,
         p_total_amount: isCoupleFocused ? 0 : finalTotal,
-        p_special_requests: formData.specialRequests || null
+        p_special_requests: formData.specialRequests || undefined
       });
 
       // Log error but don't block WhatsApp redirect

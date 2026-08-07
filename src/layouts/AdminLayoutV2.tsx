@@ -162,10 +162,10 @@ export function AdminLayoutV2({ children }: AdminLayoutV2Props) {
                   key={item.id}
                   to={item.path}
                   onClick={() => setMenuOpen(false)}
-                  className={({ isActive }) => cn(
+                  className={cn(
                     "flex items-center gap-3 px-3 py-3 rounded-lg transition-colors mb-1",
-                    isActive 
-                      ? "bg-indigo-500/10 text-indigo-400" 
+                    location.pathname === item.path
+                      ? "bg-indigo-500/10 text-indigo-400"
                       : "text-zinc-400 hover:bg-zinc-800 hover:text-white"
                   )}
                 >

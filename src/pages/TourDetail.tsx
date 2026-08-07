@@ -30,7 +30,8 @@ const TourDetail = () => {
 
   // Try to get tour from navigation state first, then fallback to lookup
   const tour = useMemo(() => {
-    if (location.state?.tour) return location.state.tour as TourPackage;
+    const navState = location.state as { tour?: TourPackage } | null;
+    if (navState?.tour) return navState.tour;
     const allTours = getAllTours();
     const found = allTours.find(t => toSlug(t.title) === slug);
     if (found) return mergeItinerary(found);
