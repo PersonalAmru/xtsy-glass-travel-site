@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link } from '@/lib/router-compat';
 import NotFound from '@/pages/NotFound';
 import { GONE_SLUGS } from '@/data/seoGoneSlugs';
 import { useGoneStatus } from '@/hooks/useGoneStatus';

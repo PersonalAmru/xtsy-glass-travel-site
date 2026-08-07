@@ -5,7 +5,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '@/lib/router-compat';
 import { Search, X, ArrowRight, TrendingUp, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useIntelligentSearch } from '@/hooks/useIntelligentSearch';

@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation } from '@/lib/router-compat';
 import { useEffect, useState, useCallback } from 'react';
 import whatsappIcon from '@/assets/whatsapp-icon.svg';
 import { routeGTMEvent } from '@/utils/gtmEventRouter';

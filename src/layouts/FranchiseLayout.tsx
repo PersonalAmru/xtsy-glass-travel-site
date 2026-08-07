@@ -4,7 +4,7 @@
  */
 
 import { ReactNode, useState, useEffect } from 'react';
-import { useNavigate, useLocation, NavLink } from 'react-router-dom';
+import { useNavigate, useLocation, NavLink } from '@/lib/router-compat';
 import { supabase } from '@/integrations/supabase/client';
 import { Home, Calendar, BarChart3, MessageSquare, MoreHorizontal, Loader2, Download } from 'lucide-react';
 import { cn } from '@/lib/utils';

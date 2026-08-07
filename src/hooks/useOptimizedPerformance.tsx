@@ -113,7 +113,7 @@ export const useComponentOptimization = (options?: { eager?: boolean }) => {
 
 // Hook for stable resize handling without layout thrashing
 export const useStableResize = (callback: (width: number, height: number) => void, delay = 100) => {
-  const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   
   useEffect(() => {
     const handleResize = () => {

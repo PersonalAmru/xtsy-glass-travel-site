@@ -4,7 +4,7 @@
  * Uses sessionStorage so it doesn't re-trigger on page navigations.
  */
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '@/lib/router-compat';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Bell, Calendar, MessageSquare, X, ArrowRight } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';

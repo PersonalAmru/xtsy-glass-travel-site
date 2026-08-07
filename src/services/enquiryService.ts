@@ -69,12 +69,12 @@ export async function createEnquiry(data: EnquiryData): Promise<CreateEnquiryRes
       p_gst_rate: data.gstRate,
       p_gst_amount: data.gstAmount,
       p_total_amount: data.totalAmount,
-      p_address: data.guestAddress || null,
-      p_city: data.guestCity || null,
-      p_state: data.guestState || null,
-      p_pincode: data.guestPincode || null,
-      p_special_requests: data.specialRequests || null,
-      p_user_id: data.userId || null,
+      p_address: data.guestAddress || undefined,
+      p_city: data.guestCity || undefined,
+      p_state: data.guestState || undefined,
+      p_pincode: data.guestPincode || undefined,
+      p_special_requests: data.specialRequests || undefined,
+      p_user_id: data.userId || undefined,
     });
 
     if (error) {

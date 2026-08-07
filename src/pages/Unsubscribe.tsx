@@ -1,5 +1,5 @@
 import { useEffect, useState, memo } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from "@/lib/router-compat";
 import { Helmet } from "react-helmet-async";
 import { Loader2, CheckCircle2, AlertCircle, MailX } from "lucide-react";
 import Header from "@/components/Header";

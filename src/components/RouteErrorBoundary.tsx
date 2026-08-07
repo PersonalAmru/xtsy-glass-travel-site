@@ -15,13 +15,13 @@ interface Props { children: ReactNode; routeKey?: string; }
 const MAX_RETRIES = 2;
 
 export class RouteErrorBoundary extends Component<Props, State> {
-  state: State = { hasError: false, error: null, retries: 0 };
+  override state: State = { hasError: false, error: null, retries: 0 };
 
   static getDerivedStateFromError(error: Error): Partial<State> {
     return { hasError: true, error };
   }
 
-  componentDidCatch(error: Error) {
+  override componentDidCatch(error: Error) {
     // Forward to GA4/dataLayer for visibility
     try {
       (window as any).dataLayer?.push({
@@ -41,7 +41,7 @@ export class RouteErrorBoundary extends Component<Props, State> {
     }
   }
 
-  componentDidUpdate(prev: Props) {
+  override componentDidUpdate(prev: Props) {
     // Reset on route change so a stale error doesn't persist after the user navigates.
     if (prev.routeKey !== this.props.routeKey && this.state.hasError) {
       this.setState({ hasError: false, error: null, retries: 0 });
@@ -50,7 +50,7 @@ export class RouteErrorBoundary extends Component<Props, State> {
 
   handleRetry = () => this.setState({ hasError: false, error: null, retries: 0 });
 
-  render() {
+  override render() {
     if (this.state.hasError) {
       return (
         <SafeShell

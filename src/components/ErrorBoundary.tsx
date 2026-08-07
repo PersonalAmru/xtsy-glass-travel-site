@@ -28,7 +28,7 @@ class ErrorBoundary extends Component<Props, State> {
     return { hasError: true, error };
   }
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+  override componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('ErrorBoundary caught an error:', error.message);
     
     // Detect network/offline errors
@@ -61,7 +61,7 @@ class ErrorBoundary extends Component<Props, State> {
     }
   }
 
-  componentWillUnmount() {
+  override componentWillUnmount() {
     if (this.retryTimeout) {
       clearTimeout(this.retryTimeout);
     }
@@ -75,7 +75,7 @@ class ErrorBoundary extends Component<Props, State> {
     window.location.reload();
   };
 
-  render() {
+  override render() {
     if (this.state.hasError) {
       if (this.props.fallback) {
         return this.props.fallback;

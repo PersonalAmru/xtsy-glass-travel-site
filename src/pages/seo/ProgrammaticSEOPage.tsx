@@ -1,4 +1,4 @@
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, Link, Navigate } from '@/lib/router-compat';
 import NotFound from '@/pages/NotFound';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';

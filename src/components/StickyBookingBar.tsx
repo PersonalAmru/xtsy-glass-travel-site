@@ -4,7 +4,7 @@
  */
 import { memo, useState, useEffect } from 'react';
 import { Search, CalendarDays, Users, MapPin } from 'lucide-react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from '@/lib/router-compat';
 import { formatLocalDateString } from '@/lib/date-utils';
 import { cn } from '@/lib/utils';
 
