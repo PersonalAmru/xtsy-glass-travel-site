@@ -13,7 +13,23 @@ import {
   Navigate as TSNavigate,
   Outlet as TSOutlet,
 } from "@tanstack/react-router";
-import { useMemo, useCallback, forwardRef, type ComponentProps, type ReactNode } from "react";
+import { useMemo, useCallback, forwardRef, useState, useEffect, type ComponentProps, type ReactNode } from "react";
+
+// ---------- useNavigationType (react-router-dom compat) ----------
+
+export function useNavigationType(): "POP" | "PUSH" | "REPLACE" {
+  const router = useRouter();
+  const [type, setType] = useState<"POP" | "PUSH" | "REPLACE">("POP");
+  useEffect(
+    () =>
+      router.history.subscribe(({ action }) => {
+        const t = (action as { type?: string } | undefined)?.type;
+        setType(t === "PUSH" ? "PUSH" : t === "REPLACE" ? "REPLACE" : "POP");
+      }),
+    [router],
+  );
+  return type;
+}
 
 // ---------- shared URL parsing ----------
 
