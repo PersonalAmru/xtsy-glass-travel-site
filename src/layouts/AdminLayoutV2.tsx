@@ -4,7 +4,7 @@
  */
 
 import { ReactNode, useState, useEffect } from 'react';
-import { useNavigate, NavLink } from 'react-router-dom';
+import { useNavigate, NavLink } from '@/lib/router-compat';
 import { supabase } from '@/integrations/supabase/client';
 import { 
   Loader2, Menu, X, Building2, Users, Package, 

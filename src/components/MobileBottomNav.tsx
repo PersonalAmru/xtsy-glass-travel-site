@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Home, Compass, CalendarCheck, Sparkles, Phone, X } from 'lucide-react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from '@/lib/router-compat';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 

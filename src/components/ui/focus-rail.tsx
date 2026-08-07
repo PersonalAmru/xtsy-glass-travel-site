@@ -3,7 +3,7 @@
 import * as React from "react";
 import { motion, PanInfo } from "framer-motion";
 import { ChevronLeft, ChevronRight, ArrowUpRight, Clock, Mountain, Star } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 

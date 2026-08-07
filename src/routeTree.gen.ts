@@ -9,27 +9,2209 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as SlugRouteImport } from './routes/$slug'
+import { Route as R3DayMeghalayaItineraryRouteImport } from './routes/3-day-meghalaya-itinerary'
+import { Route as R5DayMeghalayaItineraryRouteImport } from './routes/5-day-meghalaya-itinerary'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AdminLoginRouteImport } from './routes/admin-login'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as BackpackingIndiaRouteImport } from './routes/backpacking-india'
+import { Route as BestHostelInShillongRouteImport } from './routes/best-hostel-in-shillong'
+import { Route as BestTimeToVisitMeghalayaRouteImport } from './routes/best-time-to-visit-meghalaya'
+import { Route as BookHostelShillongRouteImport } from './routes/book-hostel-shillong'
+import { Route as BudgetTripToMeghalayaRouteImport } from './routes/budget-trip-to-meghalaya'
+import { Route as CateringShillongRouteImport } from './routes/catering-shillong'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ContactUsRouteImport } from './routes/contact-us'
+import { Route as DestinationWeddingShillongRouteImport } from './routes/destination-wedding-shillong'
+import { Route as FemaleTravellersRouteImport } from './routes/female-travellers'
+import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as GroupBookingsMeghalayaRouteImport } from './routes/group-bookings-meghalaya'
+import { Route as HiddenPlacesInMeghalayaRouteImport } from './routes/hidden-places-in-meghalaya'
+import { Route as HomestaysInShillongRouteImport } from './routes/homestays-in-shillong'
+import { Route as HostelBookingRouteImport } from './routes/hostel-booking'
+import { Route as HostelNearMeRouteImport } from './routes/hostel-near-me'
+import { Route as HotelsInShillongRouteImport } from './routes/hotels-in-shillong'
+import { Route as InstallRouteImport } from './routes/install'
+import { Route as LuxuryGlampingShillongRouteImport } from './routes/luxury-glamping-shillong'
+import { Route as MeghalayaCavesRouteImport } from './routes/meghalaya-caves'
+import { Route as MeghalayaCoupleTourPackageRouteImport } from './routes/meghalaya-couple-tour-package'
+import { Route as MeghalayaPhotoGalleryRouteImport } from './routes/meghalaya-photo-gallery'
+import { Route as MeghalayaTourPackagesRouteImport } from './routes/meghalaya-tour-packages'
+import { Route as MeghalayaViewpointsRouteImport } from './routes/meghalaya-viewpoints'
+import { Route as MeghalayaVillagesRouteImport } from './routes/meghalaya-villages'
+import { Route as MeghalayaWaterfallsRouteImport } from './routes/meghalaya-waterfalls'
+import { Route as PetFriendlyRouteImport } from './routes/pet-friendly'
+import { Route as PlacesToVisitInMeghalayaRouteImport } from './routes/places-to-visit-in-meghalaya'
+import { Route as PricingCancellationPolicyRouteImport } from './routes/pricing-cancellation-policy'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as RefundCancellationPolicyRouteImport } from './routes/refund-cancellation-policy'
+import { Route as RestaurantInShillongRouteImport } from './routes/restaurant-in-shillong'
+import { Route as ShillongTourPackageRouteImport } from './routes/shillong-tour-package'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as TermsOfServiceRouteImport } from './routes/terms-of-service'
+import { Route as ThingsToDoInMeghalayaRouteImport } from './routes/things-to-do-in-meghalaya'
+import { Route as TravelRouteImport } from './routes/travel'
+import { Route as UnsubscribeRouteImport } from './routes/unsubscribe'
+import { Route as WorkFromHomeRouteImport } from './routes/work-from-home'
+import { Route as Xtsy270RouteImport } from './routes/xtsy-270'
+import { Route as XtsyAdventureCampsiteDawkiRouteImport } from './routes/xtsy-adventure-campsite-dawki'
+import { Route as XtsyRentalsRouteImport } from './routes/xtsy-rentals'
+import { Route as XtsyVsZostelRouteImport } from './routes/xtsy-vs-zostel'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminActivityRouteImport } from './routes/admin.activity'
+import { Route as AdminAuditRouteImport } from './routes/admin.audit'
+import { Route as AdminBookingsRouteImport } from './routes/admin.bookings'
+import { Route as AdminChannelsRouteImport } from './routes/admin.channels'
+import { Route as AdminChatsRouteImport } from './routes/admin.chats'
+import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
+import { Route as AdminDatalayerRouteImport } from './routes/admin.datalayer'
+import { Route as AdminDemandRouteImport } from './routes/admin.demand'
+import { Route as AdminEnquiriesRouteImport } from './routes/admin.enquiries'
+import { Route as AdminFinanceRouteImport } from './routes/admin.finance'
+import { Route as AdminFranchisePermissionsRouteImport } from './routes/admin.franchise-permissions'
+import { Route as AdminFranchisesRouteImport } from './routes/admin.franchises'
+import { Route as AdminGstRouteImport } from './routes/admin.gst'
+import { Route as AdminInstallRouteImport } from './routes/admin.install'
+import { Route as AdminInventoryRouteImport } from './routes/admin.inventory'
+import { Route as AdminOtasRouteImport } from './routes/admin.otas'
+import { Route as AdminPropertiesRouteImport } from './routes/admin.properties'
+import { Route as AdminReviewsRouteImport } from './routes/admin.reviews'
+import { Route as AdminSearchRouteImport } from './routes/admin.search'
+import { Route as AdminSecurityRouteImport } from './routes/admin.security'
+import { Route as AdminToursRouteImport } from './routes/admin.tours'
+import { Route as AdminTrafficRouteImport } from './routes/admin.traffic'
+import { Route as AdminWhatsappRouteImport } from './routes/admin.whatsapp'
+import { Route as BookIndexRouteImport } from './routes/book.index'
+import { Route as BookCampsiteRouteImport } from './routes/book.campsite'
+import { Route as BookSelectRouteImport } from './routes/book.select'
+import { Route as FranchiseIndexRouteImport } from './routes/franchise.index'
+import { Route as FranchiseInstallRouteImport } from './routes/franchise.install'
+import { Route as FranchiseLoginRouteImport } from './routes/franchise.login'
+import { Route as PlacesToVisitSlugRouteImport } from './routes/places-to-visit.$slug'
+import { Route as TabBistroIndexRouteImport } from './routes/tab-bistro.index'
+import { Route as TabBistroCateringRouteImport } from './routes/tab-bistro.catering'
+import { Route as ToursIndexRouteImport } from './routes/tours.index'
+import { Route as ToursSlugRouteImport } from './routes/tours.$slug'
+import { Route as TravelGuideGuwahatiToShillongTransportRouteImport } from './routes/travel-guide.guwahati-to-shillong-transport'
+import { Route as DotlovableOauthConsentRouteImport } from './routes/[.]lovable.oauth.consent'
+import { Route as AdminAnalyticsIndexRouteImport } from './routes/admin.analytics.index'
+import { Route as AdminAnalyticsLoaderEventsRouteImport } from './routes/admin.analytics.loader-events'
+import { Route as AdminAnalyticsRumCompareRouteImport } from './routes/admin.analytics.rum-compare'
+import { Route as AdminAnalyticsSearchRouteImport } from './routes/admin.analytics.search'
+import { Route as AdminSeoIndexRouteImport } from './routes/admin.seo.index'
+import { Route as AdminSeoCompetitorsRouteImport } from './routes/admin.seo.competitors'
+import { Route as AdminSeoFunnelRouteImport } from './routes/admin.seo.funnel'
+import { Route as AdminSeoGscErrorsRouteImport } from './routes/admin.seo.gsc-errors'
+import { Route as AdminSeoHeroManagerRouteImport } from './routes/admin.seo.hero-manager'
+import { Route as AdminSeoPriorityRouteImport } from './routes/admin.seo.priority'
+import { Route as AdminSeoRecoveryRouteImport } from './routes/admin.seo.recovery'
+import { Route as AdminSeoSchemaResultsRouteImport } from './routes/admin.seo.schema-results'
+import { Route as AdminSeoTrackingRouteImport } from './routes/admin.seo.tracking'
+import { Route as AdminSeoWorkflowRouteImport } from './routes/admin.seo.workflow'
 
-export interface FileRoutesByFullPath {}
-export interface FileRoutesByTo {}
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SlugRoute = SlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R3DayMeghalayaItineraryRoute = R3DayMeghalayaItineraryRouteImport.update({
+  id: '/3-day-meghalaya-itinerary',
+  path: '/3-day-meghalaya-itinerary',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R5DayMeghalayaItineraryRoute = R5DayMeghalayaItineraryRouteImport.update({
+  id: '/5-day-meghalaya-itinerary',
+  path: '/5-day-meghalaya-itinerary',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin-login',
+  path: '/admin-login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BackpackingIndiaRoute = BackpackingIndiaRouteImport.update({
+  id: '/backpacking-india',
+  path: '/backpacking-india',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BestHostelInShillongRoute = BestHostelInShillongRouteImport.update({
+  id: '/best-hostel-in-shillong',
+  path: '/best-hostel-in-shillong',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BestTimeToVisitMeghalayaRoute =
+  BestTimeToVisitMeghalayaRouteImport.update({
+    id: '/best-time-to-visit-meghalaya',
+    path: '/best-time-to-visit-meghalaya',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BookHostelShillongRoute = BookHostelShillongRouteImport.update({
+  id: '/book-hostel-shillong',
+  path: '/book-hostel-shillong',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BudgetTripToMeghalayaRoute = BudgetTripToMeghalayaRouteImport.update({
+  id: '/budget-trip-to-meghalaya',
+  path: '/budget-trip-to-meghalaya',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CateringShillongRoute = CateringShillongRouteImport.update({
+  id: '/catering-shillong',
+  path: '/catering-shillong',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactUsRoute = ContactUsRouteImport.update({
+  id: '/contact-us',
+  path: '/contact-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DestinationWeddingShillongRoute =
+  DestinationWeddingShillongRouteImport.update({
+    id: '/destination-wedding-shillong',
+    path: '/destination-wedding-shillong',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const FemaleTravellersRoute = FemaleTravellersRouteImport.update({
+  id: '/female-travellers',
+  path: '/female-travellers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GroupBookingsMeghalayaRoute = GroupBookingsMeghalayaRouteImport.update({
+  id: '/group-bookings-meghalaya',
+  path: '/group-bookings-meghalaya',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HiddenPlacesInMeghalayaRoute = HiddenPlacesInMeghalayaRouteImport.update({
+  id: '/hidden-places-in-meghalaya',
+  path: '/hidden-places-in-meghalaya',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomestaysInShillongRoute = HomestaysInShillongRouteImport.update({
+  id: '/homestays-in-shillong',
+  path: '/homestays-in-shillong',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HostelBookingRoute = HostelBookingRouteImport.update({
+  id: '/hostel-booking',
+  path: '/hostel-booking',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HostelNearMeRoute = HostelNearMeRouteImport.update({
+  id: '/hostel-near-me',
+  path: '/hostel-near-me',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HotelsInShillongRoute = HotelsInShillongRouteImport.update({
+  id: '/hotels-in-shillong',
+  path: '/hotels-in-shillong',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InstallRoute = InstallRouteImport.update({
+  id: '/install',
+  path: '/install',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LuxuryGlampingShillongRoute = LuxuryGlampingShillongRouteImport.update({
+  id: '/luxury-glamping-shillong',
+  path: '/luxury-glamping-shillong',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MeghalayaCavesRoute = MeghalayaCavesRouteImport.update({
+  id: '/meghalaya-caves',
+  path: '/meghalaya-caves',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MeghalayaCoupleTourPackageRoute =
+  MeghalayaCoupleTourPackageRouteImport.update({
+    id: '/meghalaya-couple-tour-package',
+    path: '/meghalaya-couple-tour-package',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const MeghalayaPhotoGalleryRoute = MeghalayaPhotoGalleryRouteImport.update({
+  id: '/meghalaya-photo-gallery',
+  path: '/meghalaya-photo-gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MeghalayaTourPackagesRoute = MeghalayaTourPackagesRouteImport.update({
+  id: '/meghalaya-tour-packages',
+  path: '/meghalaya-tour-packages',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MeghalayaViewpointsRoute = MeghalayaViewpointsRouteImport.update({
+  id: '/meghalaya-viewpoints',
+  path: '/meghalaya-viewpoints',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MeghalayaVillagesRoute = MeghalayaVillagesRouteImport.update({
+  id: '/meghalaya-villages',
+  path: '/meghalaya-villages',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MeghalayaWaterfallsRoute = MeghalayaWaterfallsRouteImport.update({
+  id: '/meghalaya-waterfalls',
+  path: '/meghalaya-waterfalls',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PetFriendlyRoute = PetFriendlyRouteImport.update({
+  id: '/pet-friendly',
+  path: '/pet-friendly',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlacesToVisitInMeghalayaRoute =
+  PlacesToVisitInMeghalayaRouteImport.update({
+    id: '/places-to-visit-in-meghalaya',
+    path: '/places-to-visit-in-meghalaya',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const PricingCancellationPolicyRoute =
+  PricingCancellationPolicyRouteImport.update({
+    id: '/pricing-cancellation-policy',
+    path: '/pricing-cancellation-policy',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RefundCancellationPolicyRoute =
+  RefundCancellationPolicyRouteImport.update({
+    id: '/refund-cancellation-policy',
+    path: '/refund-cancellation-policy',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const RestaurantInShillongRoute = RestaurantInShillongRouteImport.update({
+  id: '/restaurant-in-shillong',
+  path: '/restaurant-in-shillong',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShillongTourPackageRoute = ShillongTourPackageRouteImport.update({
+  id: '/shillong-tour-package',
+  path: '/shillong-tour-package',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsOfServiceRoute = TermsOfServiceRouteImport.update({
+  id: '/terms-of-service',
+  path: '/terms-of-service',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThingsToDoInMeghalayaRoute = ThingsToDoInMeghalayaRouteImport.update({
+  id: '/things-to-do-in-meghalaya',
+  path: '/things-to-do-in-meghalaya',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TravelRoute = TravelRouteImport.update({
+  id: '/travel',
+  path: '/travel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UnsubscribeRoute = UnsubscribeRouteImport.update({
+  id: '/unsubscribe',
+  path: '/unsubscribe',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkFromHomeRoute = WorkFromHomeRouteImport.update({
+  id: '/work-from-home',
+  path: '/work-from-home',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Xtsy270Route = Xtsy270RouteImport.update({
+  id: '/xtsy-270',
+  path: '/xtsy-270',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const XtsyAdventureCampsiteDawkiRoute =
+  XtsyAdventureCampsiteDawkiRouteImport.update({
+    id: '/xtsy-adventure-campsite-dawki',
+    path: '/xtsy-adventure-campsite-dawki',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const XtsyRentalsRoute = XtsyRentalsRouteImport.update({
+  id: '/xtsy-rentals',
+  path: '/xtsy-rentals',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const XtsyVsZostelRoute = XtsyVsZostelRouteImport.update({
+  id: '/xtsy-vs-zostel',
+  path: '/xtsy-vs-zostel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminActivityRoute = AdminActivityRouteImport.update({
+  id: '/admin/activity',
+  path: '/admin/activity',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminAuditRoute = AdminAuditRouteImport.update({
+  id: '/admin/audit',
+  path: '/admin/audit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminBookingsRoute = AdminBookingsRouteImport.update({
+  id: '/admin/bookings',
+  path: '/admin/bookings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminChannelsRoute = AdminChannelsRouteImport.update({
+  id: '/admin/channels',
+  path: '/admin/channels',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminChatsRoute = AdminChatsRouteImport.update({
+  id: '/admin/chats',
+  path: '/admin/chats',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/admin/dashboard',
+  path: '/admin/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminDatalayerRoute = AdminDatalayerRouteImport.update({
+  id: '/admin/datalayer',
+  path: '/admin/datalayer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminDemandRoute = AdminDemandRouteImport.update({
+  id: '/admin/demand',
+  path: '/admin/demand',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminEnquiriesRoute = AdminEnquiriesRouteImport.update({
+  id: '/admin/enquiries',
+  path: '/admin/enquiries',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminFinanceRoute = AdminFinanceRouteImport.update({
+  id: '/admin/finance',
+  path: '/admin/finance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminFranchisePermissionsRoute =
+  AdminFranchisePermissionsRouteImport.update({
+    id: '/admin/franchise-permissions',
+    path: '/admin/franchise-permissions',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AdminFranchisesRoute = AdminFranchisesRouteImport.update({
+  id: '/admin/franchises',
+  path: '/admin/franchises',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminGstRoute = AdminGstRouteImport.update({
+  id: '/admin/gst',
+  path: '/admin/gst',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminInstallRoute = AdminInstallRouteImport.update({
+  id: '/admin/install',
+  path: '/admin/install',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminInventoryRoute = AdminInventoryRouteImport.update({
+  id: '/admin/inventory',
+  path: '/admin/inventory',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminOtasRoute = AdminOtasRouteImport.update({
+  id: '/admin/otas',
+  path: '/admin/otas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminPropertiesRoute = AdminPropertiesRouteImport.update({
+  id: '/admin/properties',
+  path: '/admin/properties',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminReviewsRoute = AdminReviewsRouteImport.update({
+  id: '/admin/reviews',
+  path: '/admin/reviews',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSearchRoute = AdminSearchRouteImport.update({
+  id: '/admin/search',
+  path: '/admin/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSecurityRoute = AdminSecurityRouteImport.update({
+  id: '/admin/security',
+  path: '/admin/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminToursRoute = AdminToursRouteImport.update({
+  id: '/admin/tours',
+  path: '/admin/tours',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminTrafficRoute = AdminTrafficRouteImport.update({
+  id: '/admin/traffic',
+  path: '/admin/traffic',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminWhatsappRoute = AdminWhatsappRouteImport.update({
+  id: '/admin/whatsapp',
+  path: '/admin/whatsapp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookIndexRoute = BookIndexRouteImport.update({
+  id: '/book/',
+  path: '/book/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookCampsiteRoute = BookCampsiteRouteImport.update({
+  id: '/book/campsite',
+  path: '/book/campsite',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookSelectRoute = BookSelectRouteImport.update({
+  id: '/book/select',
+  path: '/book/select',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FranchiseIndexRoute = FranchiseIndexRouteImport.update({
+  id: '/franchise/',
+  path: '/franchise/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FranchiseInstallRoute = FranchiseInstallRouteImport.update({
+  id: '/franchise/install',
+  path: '/franchise/install',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FranchiseLoginRoute = FranchiseLoginRouteImport.update({
+  id: '/franchise/login',
+  path: '/franchise/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlacesToVisitSlugRoute = PlacesToVisitSlugRouteImport.update({
+  id: '/places-to-visit/$slug',
+  path: '/places-to-visit/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TabBistroIndexRoute = TabBistroIndexRouteImport.update({
+  id: '/tab-bistro/',
+  path: '/tab-bistro/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TabBistroCateringRoute = TabBistroCateringRouteImport.update({
+  id: '/tab-bistro/catering',
+  path: '/tab-bistro/catering',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToursIndexRoute = ToursIndexRouteImport.update({
+  id: '/tours/',
+  path: '/tours/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToursSlugRoute = ToursSlugRouteImport.update({
+  id: '/tours/$slug',
+  path: '/tours/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TravelGuideGuwahatiToShillongTransportRoute =
+  TravelGuideGuwahatiToShillongTransportRouteImport.update({
+    id: '/travel-guide/guwahati-to-shillong-transport',
+    path: '/travel-guide/guwahati-to-shillong-transport',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const DotlovableOauthConsentRoute = DotlovableOauthConsentRouteImport.update({
+  id: '/.lovable/oauth/consent',
+  path: '/.lovable/oauth/consent',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminAnalyticsIndexRoute = AdminAnalyticsIndexRouteImport.update({
+  id: '/admin/analytics/',
+  path: '/admin/analytics/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminAnalyticsLoaderEventsRoute =
+  AdminAnalyticsLoaderEventsRouteImport.update({
+    id: '/admin/analytics/loader-events',
+    path: '/admin/analytics/loader-events',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AdminAnalyticsRumCompareRoute =
+  AdminAnalyticsRumCompareRouteImport.update({
+    id: '/admin/analytics/rum-compare',
+    path: '/admin/analytics/rum-compare',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AdminAnalyticsSearchRoute = AdminAnalyticsSearchRouteImport.update({
+  id: '/admin/analytics/search',
+  path: '/admin/analytics/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSeoIndexRoute = AdminSeoIndexRouteImport.update({
+  id: '/admin/seo/',
+  path: '/admin/seo/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSeoCompetitorsRoute = AdminSeoCompetitorsRouteImport.update({
+  id: '/admin/seo/competitors',
+  path: '/admin/seo/competitors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSeoFunnelRoute = AdminSeoFunnelRouteImport.update({
+  id: '/admin/seo/funnel',
+  path: '/admin/seo/funnel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSeoGscErrorsRoute = AdminSeoGscErrorsRouteImport.update({
+  id: '/admin/seo/gsc-errors',
+  path: '/admin/seo/gsc-errors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSeoHeroManagerRoute = AdminSeoHeroManagerRouteImport.update({
+  id: '/admin/seo/hero-manager',
+  path: '/admin/seo/hero-manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSeoPriorityRoute = AdminSeoPriorityRouteImport.update({
+  id: '/admin/seo/priority',
+  path: '/admin/seo/priority',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSeoRecoveryRoute = AdminSeoRecoveryRouteImport.update({
+  id: '/admin/seo/recovery',
+  path: '/admin/seo/recovery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSeoSchemaResultsRoute = AdminSeoSchemaResultsRouteImport.update({
+  id: '/admin/seo/schema-results',
+  path: '/admin/seo/schema-results',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSeoTrackingRoute = AdminSeoTrackingRouteImport.update({
+  id: '/admin/seo/tracking',
+  path: '/admin/seo/tracking',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSeoWorkflowRoute = AdminSeoWorkflowRouteImport.update({
+  id: '/admin/seo/workflow',
+  path: '/admin/seo/workflow',
+  getParentRoute: () => rootRouteImport,
+} as any)
+
+export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
+  '/$slug': typeof SlugRoute
+  '/3-day-meghalaya-itinerary': typeof R3DayMeghalayaItineraryRoute
+  '/5-day-meghalaya-itinerary': typeof R5DayMeghalayaItineraryRoute
+  '/about': typeof AboutRoute
+  '/admin-login': typeof AdminLoginRoute
+  '/auth': typeof AuthRoute
+  '/backpacking-india': typeof BackpackingIndiaRoute
+  '/best-hostel-in-shillong': typeof BestHostelInShillongRoute
+  '/best-time-to-visit-meghalaya': typeof BestTimeToVisitMeghalayaRoute
+  '/book-hostel-shillong': typeof BookHostelShillongRoute
+  '/budget-trip-to-meghalaya': typeof BudgetTripToMeghalayaRoute
+  '/catering-shillong': typeof CateringShillongRoute
+  '/contact': typeof ContactRoute
+  '/contact-us': typeof ContactUsRoute
+  '/destination-wedding-shillong': typeof DestinationWeddingShillongRoute
+  '/female-travellers': typeof FemaleTravellersRoute
+  '/gallery': typeof GalleryRoute
+  '/group-bookings-meghalaya': typeof GroupBookingsMeghalayaRoute
+  '/hidden-places-in-meghalaya': typeof HiddenPlacesInMeghalayaRoute
+  '/homestays-in-shillong': typeof HomestaysInShillongRoute
+  '/hostel-booking': typeof HostelBookingRoute
+  '/hostel-near-me': typeof HostelNearMeRoute
+  '/hotels-in-shillong': typeof HotelsInShillongRoute
+  '/install': typeof InstallRoute
+  '/luxury-glamping-shillong': typeof LuxuryGlampingShillongRoute
+  '/meghalaya-caves': typeof MeghalayaCavesRoute
+  '/meghalaya-couple-tour-package': typeof MeghalayaCoupleTourPackageRoute
+  '/meghalaya-photo-gallery': typeof MeghalayaPhotoGalleryRoute
+  '/meghalaya-tour-packages': typeof MeghalayaTourPackagesRoute
+  '/meghalaya-viewpoints': typeof MeghalayaViewpointsRoute
+  '/meghalaya-villages': typeof MeghalayaVillagesRoute
+  '/meghalaya-waterfalls': typeof MeghalayaWaterfallsRoute
+  '/pet-friendly': typeof PetFriendlyRoute
+  '/places-to-visit-in-meghalaya': typeof PlacesToVisitInMeghalayaRoute
+  '/pricing-cancellation-policy': typeof PricingCancellationPolicyRoute
+  '/privacy': typeof PrivacyRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/profile': typeof ProfileRoute
+  '/refund-cancellation-policy': typeof RefundCancellationPolicyRoute
+  '/restaurant-in-shillong': typeof RestaurantInShillongRoute
+  '/shillong-tour-package': typeof ShillongTourPackageRoute
+  '/terms': typeof TermsRoute
+  '/terms-of-service': typeof TermsOfServiceRoute
+  '/things-to-do-in-meghalaya': typeof ThingsToDoInMeghalayaRoute
+  '/travel': typeof TravelRoute
+  '/unsubscribe': typeof UnsubscribeRoute
+  '/work-from-home': typeof WorkFromHomeRoute
+  '/xtsy-270': typeof Xtsy270Route
+  '/xtsy-adventure-campsite-dawki': typeof XtsyAdventureCampsiteDawkiRoute
+  '/xtsy-rentals': typeof XtsyRentalsRoute
+  '/xtsy-vs-zostel': typeof XtsyVsZostelRoute
+  '/admin/activity': typeof AdminActivityRoute
+  '/admin/audit': typeof AdminAuditRoute
+  '/admin/bookings': typeof AdminBookingsRoute
+  '/admin/channels': typeof AdminChannelsRoute
+  '/admin/chats': typeof AdminChatsRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/datalayer': typeof AdminDatalayerRoute
+  '/admin/demand': typeof AdminDemandRoute
+  '/admin/enquiries': typeof AdminEnquiriesRoute
+  '/admin/finance': typeof AdminFinanceRoute
+  '/admin/franchise-permissions': typeof AdminFranchisePermissionsRoute
+  '/admin/franchises': typeof AdminFranchisesRoute
+  '/admin/gst': typeof AdminGstRoute
+  '/admin/install': typeof AdminInstallRoute
+  '/admin/inventory': typeof AdminInventoryRoute
+  '/admin/otas': typeof AdminOtasRoute
+  '/admin/properties': typeof AdminPropertiesRoute
+  '/admin/reviews': typeof AdminReviewsRoute
+  '/admin/search': typeof AdminSearchRoute
+  '/admin/security': typeof AdminSecurityRoute
+  '/admin/tours': typeof AdminToursRoute
+  '/admin/traffic': typeof AdminTrafficRoute
+  '/admin/whatsapp': typeof AdminWhatsappRoute
+  '/book/campsite': typeof BookCampsiteRoute
+  '/book/select': typeof BookSelectRoute
+  '/franchise/install': typeof FranchiseInstallRoute
+  '/franchise/login': typeof FranchiseLoginRoute
+  '/places-to-visit/$slug': typeof PlacesToVisitSlugRoute
+  '/tab-bistro/catering': typeof TabBistroCateringRoute
+  '/tours/$slug': typeof ToursSlugRoute
+  '/travel-guide/guwahati-to-shillong-transport': typeof TravelGuideGuwahatiToShillongTransportRoute
+  '/admin/': typeof AdminIndexRoute
+  '/book/': typeof BookIndexRoute
+  '/franchise/': typeof FranchiseIndexRoute
+  '/tab-bistro/': typeof TabBistroIndexRoute
+  '/tours/': typeof ToursIndexRoute
+  '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
+  '/admin/analytics/loader-events': typeof AdminAnalyticsLoaderEventsRoute
+  '/admin/analytics/rum-compare': typeof AdminAnalyticsRumCompareRoute
+  '/admin/analytics/search': typeof AdminAnalyticsSearchRoute
+  '/admin/seo/competitors': typeof AdminSeoCompetitorsRoute
+  '/admin/seo/funnel': typeof AdminSeoFunnelRoute
+  '/admin/seo/gsc-errors': typeof AdminSeoGscErrorsRoute
+  '/admin/seo/hero-manager': typeof AdminSeoHeroManagerRoute
+  '/admin/seo/priority': typeof AdminSeoPriorityRoute
+  '/admin/seo/recovery': typeof AdminSeoRecoveryRoute
+  '/admin/seo/schema-results': typeof AdminSeoSchemaResultsRoute
+  '/admin/seo/tracking': typeof AdminSeoTrackingRoute
+  '/admin/seo/workflow': typeof AdminSeoWorkflowRoute
+  '/admin/analytics/': typeof AdminAnalyticsIndexRoute
+  '/admin/seo/': typeof AdminSeoIndexRoute
+}
+export interface FileRoutesByTo {
+  '/': typeof IndexRoute
+  '/$slug': typeof SlugRoute
+  '/3-day-meghalaya-itinerary': typeof R3DayMeghalayaItineraryRoute
+  '/5-day-meghalaya-itinerary': typeof R5DayMeghalayaItineraryRoute
+  '/about': typeof AboutRoute
+  '/admin-login': typeof AdminLoginRoute
+  '/auth': typeof AuthRoute
+  '/backpacking-india': typeof BackpackingIndiaRoute
+  '/best-hostel-in-shillong': typeof BestHostelInShillongRoute
+  '/best-time-to-visit-meghalaya': typeof BestTimeToVisitMeghalayaRoute
+  '/book-hostel-shillong': typeof BookHostelShillongRoute
+  '/budget-trip-to-meghalaya': typeof BudgetTripToMeghalayaRoute
+  '/catering-shillong': typeof CateringShillongRoute
+  '/contact': typeof ContactRoute
+  '/contact-us': typeof ContactUsRoute
+  '/destination-wedding-shillong': typeof DestinationWeddingShillongRoute
+  '/female-travellers': typeof FemaleTravellersRoute
+  '/gallery': typeof GalleryRoute
+  '/group-bookings-meghalaya': typeof GroupBookingsMeghalayaRoute
+  '/hidden-places-in-meghalaya': typeof HiddenPlacesInMeghalayaRoute
+  '/homestays-in-shillong': typeof HomestaysInShillongRoute
+  '/hostel-booking': typeof HostelBookingRoute
+  '/hostel-near-me': typeof HostelNearMeRoute
+  '/hotels-in-shillong': typeof HotelsInShillongRoute
+  '/install': typeof InstallRoute
+  '/luxury-glamping-shillong': typeof LuxuryGlampingShillongRoute
+  '/meghalaya-caves': typeof MeghalayaCavesRoute
+  '/meghalaya-couple-tour-package': typeof MeghalayaCoupleTourPackageRoute
+  '/meghalaya-photo-gallery': typeof MeghalayaPhotoGalleryRoute
+  '/meghalaya-tour-packages': typeof MeghalayaTourPackagesRoute
+  '/meghalaya-viewpoints': typeof MeghalayaViewpointsRoute
+  '/meghalaya-villages': typeof MeghalayaVillagesRoute
+  '/meghalaya-waterfalls': typeof MeghalayaWaterfallsRoute
+  '/pet-friendly': typeof PetFriendlyRoute
+  '/places-to-visit-in-meghalaya': typeof PlacesToVisitInMeghalayaRoute
+  '/pricing-cancellation-policy': typeof PricingCancellationPolicyRoute
+  '/privacy': typeof PrivacyRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/profile': typeof ProfileRoute
+  '/refund-cancellation-policy': typeof RefundCancellationPolicyRoute
+  '/restaurant-in-shillong': typeof RestaurantInShillongRoute
+  '/shillong-tour-package': typeof ShillongTourPackageRoute
+  '/terms': typeof TermsRoute
+  '/terms-of-service': typeof TermsOfServiceRoute
+  '/things-to-do-in-meghalaya': typeof ThingsToDoInMeghalayaRoute
+  '/travel': typeof TravelRoute
+  '/unsubscribe': typeof UnsubscribeRoute
+  '/work-from-home': typeof WorkFromHomeRoute
+  '/xtsy-270': typeof Xtsy270Route
+  '/xtsy-adventure-campsite-dawki': typeof XtsyAdventureCampsiteDawkiRoute
+  '/xtsy-rentals': typeof XtsyRentalsRoute
+  '/xtsy-vs-zostel': typeof XtsyVsZostelRoute
+  '/admin/activity': typeof AdminActivityRoute
+  '/admin/audit': typeof AdminAuditRoute
+  '/admin/bookings': typeof AdminBookingsRoute
+  '/admin/channels': typeof AdminChannelsRoute
+  '/admin/chats': typeof AdminChatsRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/datalayer': typeof AdminDatalayerRoute
+  '/admin/demand': typeof AdminDemandRoute
+  '/admin/enquiries': typeof AdminEnquiriesRoute
+  '/admin/finance': typeof AdminFinanceRoute
+  '/admin/franchise-permissions': typeof AdminFranchisePermissionsRoute
+  '/admin/franchises': typeof AdminFranchisesRoute
+  '/admin/gst': typeof AdminGstRoute
+  '/admin/install': typeof AdminInstallRoute
+  '/admin/inventory': typeof AdminInventoryRoute
+  '/admin/otas': typeof AdminOtasRoute
+  '/admin/properties': typeof AdminPropertiesRoute
+  '/admin/reviews': typeof AdminReviewsRoute
+  '/admin/search': typeof AdminSearchRoute
+  '/admin/security': typeof AdminSecurityRoute
+  '/admin/tours': typeof AdminToursRoute
+  '/admin/traffic': typeof AdminTrafficRoute
+  '/admin/whatsapp': typeof AdminWhatsappRoute
+  '/book/campsite': typeof BookCampsiteRoute
+  '/book/select': typeof BookSelectRoute
+  '/franchise/install': typeof FranchiseInstallRoute
+  '/franchise/login': typeof FranchiseLoginRoute
+  '/places-to-visit/$slug': typeof PlacesToVisitSlugRoute
+  '/tab-bistro/catering': typeof TabBistroCateringRoute
+  '/tours/$slug': typeof ToursSlugRoute
+  '/travel-guide/guwahati-to-shillong-transport': typeof TravelGuideGuwahatiToShillongTransportRoute
+  '/admin': typeof AdminIndexRoute
+  '/book': typeof BookIndexRoute
+  '/franchise': typeof FranchiseIndexRoute
+  '/tab-bistro': typeof TabBistroIndexRoute
+  '/tours': typeof ToursIndexRoute
+  '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
+  '/admin/analytics/loader-events': typeof AdminAnalyticsLoaderEventsRoute
+  '/admin/analytics/rum-compare': typeof AdminAnalyticsRumCompareRoute
+  '/admin/analytics/search': typeof AdminAnalyticsSearchRoute
+  '/admin/seo/competitors': typeof AdminSeoCompetitorsRoute
+  '/admin/seo/funnel': typeof AdminSeoFunnelRoute
+  '/admin/seo/gsc-errors': typeof AdminSeoGscErrorsRoute
+  '/admin/seo/hero-manager': typeof AdminSeoHeroManagerRoute
+  '/admin/seo/priority': typeof AdminSeoPriorityRoute
+  '/admin/seo/recovery': typeof AdminSeoRecoveryRoute
+  '/admin/seo/schema-results': typeof AdminSeoSchemaResultsRoute
+  '/admin/seo/tracking': typeof AdminSeoTrackingRoute
+  '/admin/seo/workflow': typeof AdminSeoWorkflowRoute
+  '/admin/analytics': typeof AdminAnalyticsIndexRoute
+  '/admin/seo': typeof AdminSeoIndexRoute
+}
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/$slug': typeof SlugRoute
+  '/3-day-meghalaya-itinerary': typeof R3DayMeghalayaItineraryRoute
+  '/5-day-meghalaya-itinerary': typeof R5DayMeghalayaItineraryRoute
+  '/about': typeof AboutRoute
+  '/admin-login': typeof AdminLoginRoute
+  '/auth': typeof AuthRoute
+  '/backpacking-india': typeof BackpackingIndiaRoute
+  '/best-hostel-in-shillong': typeof BestHostelInShillongRoute
+  '/best-time-to-visit-meghalaya': typeof BestTimeToVisitMeghalayaRoute
+  '/book-hostel-shillong': typeof BookHostelShillongRoute
+  '/budget-trip-to-meghalaya': typeof BudgetTripToMeghalayaRoute
+  '/catering-shillong': typeof CateringShillongRoute
+  '/contact': typeof ContactRoute
+  '/contact-us': typeof ContactUsRoute
+  '/destination-wedding-shillong': typeof DestinationWeddingShillongRoute
+  '/female-travellers': typeof FemaleTravellersRoute
+  '/gallery': typeof GalleryRoute
+  '/group-bookings-meghalaya': typeof GroupBookingsMeghalayaRoute
+  '/hidden-places-in-meghalaya': typeof HiddenPlacesInMeghalayaRoute
+  '/homestays-in-shillong': typeof HomestaysInShillongRoute
+  '/hostel-booking': typeof HostelBookingRoute
+  '/hostel-near-me': typeof HostelNearMeRoute
+  '/hotels-in-shillong': typeof HotelsInShillongRoute
+  '/install': typeof InstallRoute
+  '/luxury-glamping-shillong': typeof LuxuryGlampingShillongRoute
+  '/meghalaya-caves': typeof MeghalayaCavesRoute
+  '/meghalaya-couple-tour-package': typeof MeghalayaCoupleTourPackageRoute
+  '/meghalaya-photo-gallery': typeof MeghalayaPhotoGalleryRoute
+  '/meghalaya-tour-packages': typeof MeghalayaTourPackagesRoute
+  '/meghalaya-viewpoints': typeof MeghalayaViewpointsRoute
+  '/meghalaya-villages': typeof MeghalayaVillagesRoute
+  '/meghalaya-waterfalls': typeof MeghalayaWaterfallsRoute
+  '/pet-friendly': typeof PetFriendlyRoute
+  '/places-to-visit-in-meghalaya': typeof PlacesToVisitInMeghalayaRoute
+  '/pricing-cancellation-policy': typeof PricingCancellationPolicyRoute
+  '/privacy': typeof PrivacyRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/profile': typeof ProfileRoute
+  '/refund-cancellation-policy': typeof RefundCancellationPolicyRoute
+  '/restaurant-in-shillong': typeof RestaurantInShillongRoute
+  '/shillong-tour-package': typeof ShillongTourPackageRoute
+  '/terms': typeof TermsRoute
+  '/terms-of-service': typeof TermsOfServiceRoute
+  '/things-to-do-in-meghalaya': typeof ThingsToDoInMeghalayaRoute
+  '/travel': typeof TravelRoute
+  '/unsubscribe': typeof UnsubscribeRoute
+  '/work-from-home': typeof WorkFromHomeRoute
+  '/xtsy-270': typeof Xtsy270Route
+  '/xtsy-adventure-campsite-dawki': typeof XtsyAdventureCampsiteDawkiRoute
+  '/xtsy-rentals': typeof XtsyRentalsRoute
+  '/xtsy-vs-zostel': typeof XtsyVsZostelRoute
+  '/admin/activity': typeof AdminActivityRoute
+  '/admin/audit': typeof AdminAuditRoute
+  '/admin/bookings': typeof AdminBookingsRoute
+  '/admin/channels': typeof AdminChannelsRoute
+  '/admin/chats': typeof AdminChatsRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/datalayer': typeof AdminDatalayerRoute
+  '/admin/demand': typeof AdminDemandRoute
+  '/admin/enquiries': typeof AdminEnquiriesRoute
+  '/admin/finance': typeof AdminFinanceRoute
+  '/admin/franchise-permissions': typeof AdminFranchisePermissionsRoute
+  '/admin/franchises': typeof AdminFranchisesRoute
+  '/admin/gst': typeof AdminGstRoute
+  '/admin/install': typeof AdminInstallRoute
+  '/admin/inventory': typeof AdminInventoryRoute
+  '/admin/otas': typeof AdminOtasRoute
+  '/admin/properties': typeof AdminPropertiesRoute
+  '/admin/reviews': typeof AdminReviewsRoute
+  '/admin/search': typeof AdminSearchRoute
+  '/admin/security': typeof AdminSecurityRoute
+  '/admin/tours': typeof AdminToursRoute
+  '/admin/traffic': typeof AdminTrafficRoute
+  '/admin/whatsapp': typeof AdminWhatsappRoute
+  '/book/campsite': typeof BookCampsiteRoute
+  '/book/select': typeof BookSelectRoute
+  '/franchise/install': typeof FranchiseInstallRoute
+  '/franchise/login': typeof FranchiseLoginRoute
+  '/places-to-visit/$slug': typeof PlacesToVisitSlugRoute
+  '/tab-bistro/catering': typeof TabBistroCateringRoute
+  '/tours/$slug': typeof ToursSlugRoute
+  '/travel-guide/guwahati-to-shillong-transport': typeof TravelGuideGuwahatiToShillongTransportRoute
+  '/admin/': typeof AdminIndexRoute
+  '/book/': typeof BookIndexRoute
+  '/franchise/': typeof FranchiseIndexRoute
+  '/tab-bistro/': typeof TabBistroIndexRoute
+  '/tours/': typeof ToursIndexRoute
+  '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
+  '/admin/analytics/loader-events': typeof AdminAnalyticsLoaderEventsRoute
+  '/admin/analytics/rum-compare': typeof AdminAnalyticsRumCompareRoute
+  '/admin/analytics/search': typeof AdminAnalyticsSearchRoute
+  '/admin/seo/competitors': typeof AdminSeoCompetitorsRoute
+  '/admin/seo/funnel': typeof AdminSeoFunnelRoute
+  '/admin/seo/gsc-errors': typeof AdminSeoGscErrorsRoute
+  '/admin/seo/hero-manager': typeof AdminSeoHeroManagerRoute
+  '/admin/seo/priority': typeof AdminSeoPriorityRoute
+  '/admin/seo/recovery': typeof AdminSeoRecoveryRoute
+  '/admin/seo/schema-results': typeof AdminSeoSchemaResultsRoute
+  '/admin/seo/tracking': typeof AdminSeoTrackingRoute
+  '/admin/seo/workflow': typeof AdminSeoWorkflowRoute
+  '/admin/analytics/': typeof AdminAnalyticsIndexRoute
+  '/admin/seo/': typeof AdminSeoIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: never
+  fullPaths:
+    | '/'
+    | '/$slug'
+    | '/3-day-meghalaya-itinerary'
+    | '/5-day-meghalaya-itinerary'
+    | '/about'
+    | '/admin-login'
+    | '/auth'
+    | '/backpacking-india'
+    | '/best-hostel-in-shillong'
+    | '/best-time-to-visit-meghalaya'
+    | '/book-hostel-shillong'
+    | '/budget-trip-to-meghalaya'
+    | '/catering-shillong'
+    | '/contact'
+    | '/contact-us'
+    | '/destination-wedding-shillong'
+    | '/female-travellers'
+    | '/gallery'
+    | '/group-bookings-meghalaya'
+    | '/hidden-places-in-meghalaya'
+    | '/homestays-in-shillong'
+    | '/hostel-booking'
+    | '/hostel-near-me'
+    | '/hotels-in-shillong'
+    | '/install'
+    | '/luxury-glamping-shillong'
+    | '/meghalaya-caves'
+    | '/meghalaya-couple-tour-package'
+    | '/meghalaya-photo-gallery'
+    | '/meghalaya-tour-packages'
+    | '/meghalaya-viewpoints'
+    | '/meghalaya-villages'
+    | '/meghalaya-waterfalls'
+    | '/pet-friendly'
+    | '/places-to-visit-in-meghalaya'
+    | '/pricing-cancellation-policy'
+    | '/privacy'
+    | '/privacy-policy'
+    | '/profile'
+    | '/refund-cancellation-policy'
+    | '/restaurant-in-shillong'
+    | '/shillong-tour-package'
+    | '/terms'
+    | '/terms-of-service'
+    | '/things-to-do-in-meghalaya'
+    | '/travel'
+    | '/unsubscribe'
+    | '/work-from-home'
+    | '/xtsy-270'
+    | '/xtsy-adventure-campsite-dawki'
+    | '/xtsy-rentals'
+    | '/xtsy-vs-zostel'
+    | '/admin/activity'
+    | '/admin/audit'
+    | '/admin/bookings'
+    | '/admin/channels'
+    | '/admin/chats'
+    | '/admin/dashboard'
+    | '/admin/datalayer'
+    | '/admin/demand'
+    | '/admin/enquiries'
+    | '/admin/finance'
+    | '/admin/franchise-permissions'
+    | '/admin/franchises'
+    | '/admin/gst'
+    | '/admin/install'
+    | '/admin/inventory'
+    | '/admin/otas'
+    | '/admin/properties'
+    | '/admin/reviews'
+    | '/admin/search'
+    | '/admin/security'
+    | '/admin/tours'
+    | '/admin/traffic'
+    | '/admin/whatsapp'
+    | '/book/campsite'
+    | '/book/select'
+    | '/franchise/install'
+    | '/franchise/login'
+    | '/places-to-visit/$slug'
+    | '/tab-bistro/catering'
+    | '/tours/$slug'
+    | '/travel-guide/guwahati-to-shillong-transport'
+    | '/admin/'
+    | '/book/'
+    | '/franchise/'
+    | '/tab-bistro/'
+    | '/tours/'
+    | '/.lovable/oauth/consent'
+    | '/admin/analytics/loader-events'
+    | '/admin/analytics/rum-compare'
+    | '/admin/analytics/search'
+    | '/admin/seo/competitors'
+    | '/admin/seo/funnel'
+    | '/admin/seo/gsc-errors'
+    | '/admin/seo/hero-manager'
+    | '/admin/seo/priority'
+    | '/admin/seo/recovery'
+    | '/admin/seo/schema-results'
+    | '/admin/seo/tracking'
+    | '/admin/seo/workflow'
+    | '/admin/analytics/'
+    | '/admin/seo/'
   fileRoutesByTo: FileRoutesByTo
-  to: never
-  id: '__root__'
+  to:
+    | '/'
+    | '/$slug'
+    | '/3-day-meghalaya-itinerary'
+    | '/5-day-meghalaya-itinerary'
+    | '/about'
+    | '/admin-login'
+    | '/auth'
+    | '/backpacking-india'
+    | '/best-hostel-in-shillong'
+    | '/best-time-to-visit-meghalaya'
+    | '/book-hostel-shillong'
+    | '/budget-trip-to-meghalaya'
+    | '/catering-shillong'
+    | '/contact'
+    | '/contact-us'
+    | '/destination-wedding-shillong'
+    | '/female-travellers'
+    | '/gallery'
+    | '/group-bookings-meghalaya'
+    | '/hidden-places-in-meghalaya'
+    | '/homestays-in-shillong'
+    | '/hostel-booking'
+    | '/hostel-near-me'
+    | '/hotels-in-shillong'
+    | '/install'
+    | '/luxury-glamping-shillong'
+    | '/meghalaya-caves'
+    | '/meghalaya-couple-tour-package'
+    | '/meghalaya-photo-gallery'
+    | '/meghalaya-tour-packages'
+    | '/meghalaya-viewpoints'
+    | '/meghalaya-villages'
+    | '/meghalaya-waterfalls'
+    | '/pet-friendly'
+    | '/places-to-visit-in-meghalaya'
+    | '/pricing-cancellation-policy'
+    | '/privacy'
+    | '/privacy-policy'
+    | '/profile'
+    | '/refund-cancellation-policy'
+    | '/restaurant-in-shillong'
+    | '/shillong-tour-package'
+    | '/terms'
+    | '/terms-of-service'
+    | '/things-to-do-in-meghalaya'
+    | '/travel'
+    | '/unsubscribe'
+    | '/work-from-home'
+    | '/xtsy-270'
+    | '/xtsy-adventure-campsite-dawki'
+    | '/xtsy-rentals'
+    | '/xtsy-vs-zostel'
+    | '/admin/activity'
+    | '/admin/audit'
+    | '/admin/bookings'
+    | '/admin/channels'
+    | '/admin/chats'
+    | '/admin/dashboard'
+    | '/admin/datalayer'
+    | '/admin/demand'
+    | '/admin/enquiries'
+    | '/admin/finance'
+    | '/admin/franchise-permissions'
+    | '/admin/franchises'
+    | '/admin/gst'
+    | '/admin/install'
+    | '/admin/inventory'
+    | '/admin/otas'
+    | '/admin/properties'
+    | '/admin/reviews'
+    | '/admin/search'
+    | '/admin/security'
+    | '/admin/tours'
+    | '/admin/traffic'
+    | '/admin/whatsapp'
+    | '/book/campsite'
+    | '/book/select'
+    | '/franchise/install'
+    | '/franchise/login'
+    | '/places-to-visit/$slug'
+    | '/tab-bistro/catering'
+    | '/tours/$slug'
+    | '/travel-guide/guwahati-to-shillong-transport'
+    | '/admin'
+    | '/book'
+    | '/franchise'
+    | '/tab-bistro'
+    | '/tours'
+    | '/.lovable/oauth/consent'
+    | '/admin/analytics/loader-events'
+    | '/admin/analytics/rum-compare'
+    | '/admin/analytics/search'
+    | '/admin/seo/competitors'
+    | '/admin/seo/funnel'
+    | '/admin/seo/gsc-errors'
+    | '/admin/seo/hero-manager'
+    | '/admin/seo/priority'
+    | '/admin/seo/recovery'
+    | '/admin/seo/schema-results'
+    | '/admin/seo/tracking'
+    | '/admin/seo/workflow'
+    | '/admin/analytics'
+    | '/admin/seo'
+  id:
+    | '__root__'
+    | '/'
+    | '/$slug'
+    | '/3-day-meghalaya-itinerary'
+    | '/5-day-meghalaya-itinerary'
+    | '/about'
+    | '/admin-login'
+    | '/auth'
+    | '/backpacking-india'
+    | '/best-hostel-in-shillong'
+    | '/best-time-to-visit-meghalaya'
+    | '/book-hostel-shillong'
+    | '/budget-trip-to-meghalaya'
+    | '/catering-shillong'
+    | '/contact'
+    | '/contact-us'
+    | '/destination-wedding-shillong'
+    | '/female-travellers'
+    | '/gallery'
+    | '/group-bookings-meghalaya'
+    | '/hidden-places-in-meghalaya'
+    | '/homestays-in-shillong'
+    | '/hostel-booking'
+    | '/hostel-near-me'
+    | '/hotels-in-shillong'
+    | '/install'
+    | '/luxury-glamping-shillong'
+    | '/meghalaya-caves'
+    | '/meghalaya-couple-tour-package'
+    | '/meghalaya-photo-gallery'
+    | '/meghalaya-tour-packages'
+    | '/meghalaya-viewpoints'
+    | '/meghalaya-villages'
+    | '/meghalaya-waterfalls'
+    | '/pet-friendly'
+    | '/places-to-visit-in-meghalaya'
+    | '/pricing-cancellation-policy'
+    | '/privacy'
+    | '/privacy-policy'
+    | '/profile'
+    | '/refund-cancellation-policy'
+    | '/restaurant-in-shillong'
+    | '/shillong-tour-package'
+    | '/terms'
+    | '/terms-of-service'
+    | '/things-to-do-in-meghalaya'
+    | '/travel'
+    | '/unsubscribe'
+    | '/work-from-home'
+    | '/xtsy-270'
+    | '/xtsy-adventure-campsite-dawki'
+    | '/xtsy-rentals'
+    | '/xtsy-vs-zostel'
+    | '/admin/activity'
+    | '/admin/audit'
+    | '/admin/bookings'
+    | '/admin/channels'
+    | '/admin/chats'
+    | '/admin/dashboard'
+    | '/admin/datalayer'
+    | '/admin/demand'
+    | '/admin/enquiries'
+    | '/admin/finance'
+    | '/admin/franchise-permissions'
+    | '/admin/franchises'
+    | '/admin/gst'
+    | '/admin/install'
+    | '/admin/inventory'
+    | '/admin/otas'
+    | '/admin/properties'
+    | '/admin/reviews'
+    | '/admin/search'
+    | '/admin/security'
+    | '/admin/tours'
+    | '/admin/traffic'
+    | '/admin/whatsapp'
+    | '/book/campsite'
+    | '/book/select'
+    | '/franchise/install'
+    | '/franchise/login'
+    | '/places-to-visit/$slug'
+    | '/tab-bistro/catering'
+    | '/tours/$slug'
+    | '/travel-guide/guwahati-to-shillong-transport'
+    | '/admin/'
+    | '/book/'
+    | '/franchise/'
+    | '/tab-bistro/'
+    | '/tours/'
+    | '/.lovable/oauth/consent'
+    | '/admin/analytics/loader-events'
+    | '/admin/analytics/rum-compare'
+    | '/admin/analytics/search'
+    | '/admin/seo/competitors'
+    | '/admin/seo/funnel'
+    | '/admin/seo/gsc-errors'
+    | '/admin/seo/hero-manager'
+    | '/admin/seo/priority'
+    | '/admin/seo/recovery'
+    | '/admin/seo/schema-results'
+    | '/admin/seo/tracking'
+    | '/admin/seo/workflow'
+    | '/admin/analytics/'
+    | '/admin/seo/'
   fileRoutesById: FileRoutesById
 }
-export interface RootRouteChildren {}
-
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {}
+export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
+  SlugRoute: typeof SlugRoute
+  R3DayMeghalayaItineraryRoute: typeof R3DayMeghalayaItineraryRoute
+  R5DayMeghalayaItineraryRoute: typeof R5DayMeghalayaItineraryRoute
+  AboutRoute: typeof AboutRoute
+  AdminLoginRoute: typeof AdminLoginRoute
+  AuthRoute: typeof AuthRoute
+  BackpackingIndiaRoute: typeof BackpackingIndiaRoute
+  BestHostelInShillongRoute: typeof BestHostelInShillongRoute
+  BestTimeToVisitMeghalayaRoute: typeof BestTimeToVisitMeghalayaRoute
+  BookHostelShillongRoute: typeof BookHostelShillongRoute
+  BudgetTripToMeghalayaRoute: typeof BudgetTripToMeghalayaRoute
+  CateringShillongRoute: typeof CateringShillongRoute
+  ContactRoute: typeof ContactRoute
+  ContactUsRoute: typeof ContactUsRoute
+  DestinationWeddingShillongRoute: typeof DestinationWeddingShillongRoute
+  FemaleTravellersRoute: typeof FemaleTravellersRoute
+  GalleryRoute: typeof GalleryRoute
+  GroupBookingsMeghalayaRoute: typeof GroupBookingsMeghalayaRoute
+  HiddenPlacesInMeghalayaRoute: typeof HiddenPlacesInMeghalayaRoute
+  HomestaysInShillongRoute: typeof HomestaysInShillongRoute
+  HostelBookingRoute: typeof HostelBookingRoute
+  HostelNearMeRoute: typeof HostelNearMeRoute
+  HotelsInShillongRoute: typeof HotelsInShillongRoute
+  InstallRoute: typeof InstallRoute
+  LuxuryGlampingShillongRoute: typeof LuxuryGlampingShillongRoute
+  MeghalayaCavesRoute: typeof MeghalayaCavesRoute
+  MeghalayaCoupleTourPackageRoute: typeof MeghalayaCoupleTourPackageRoute
+  MeghalayaPhotoGalleryRoute: typeof MeghalayaPhotoGalleryRoute
+  MeghalayaTourPackagesRoute: typeof MeghalayaTourPackagesRoute
+  MeghalayaViewpointsRoute: typeof MeghalayaViewpointsRoute
+  MeghalayaVillagesRoute: typeof MeghalayaVillagesRoute
+  MeghalayaWaterfallsRoute: typeof MeghalayaWaterfallsRoute
+  PetFriendlyRoute: typeof PetFriendlyRoute
+  PlacesToVisitInMeghalayaRoute: typeof PlacesToVisitInMeghalayaRoute
+  PricingCancellationPolicyRoute: typeof PricingCancellationPolicyRoute
+  PrivacyRoute: typeof PrivacyRoute
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  ProfileRoute: typeof ProfileRoute
+  RefundCancellationPolicyRoute: typeof RefundCancellationPolicyRoute
+  RestaurantInShillongRoute: typeof RestaurantInShillongRoute
+  ShillongTourPackageRoute: typeof ShillongTourPackageRoute
+  TermsRoute: typeof TermsRoute
+  TermsOfServiceRoute: typeof TermsOfServiceRoute
+  ThingsToDoInMeghalayaRoute: typeof ThingsToDoInMeghalayaRoute
+  TravelRoute: typeof TravelRoute
+  UnsubscribeRoute: typeof UnsubscribeRoute
+  WorkFromHomeRoute: typeof WorkFromHomeRoute
+  Xtsy270Route: typeof Xtsy270Route
+  XtsyAdventureCampsiteDawkiRoute: typeof XtsyAdventureCampsiteDawkiRoute
+  XtsyRentalsRoute: typeof XtsyRentalsRoute
+  XtsyVsZostelRoute: typeof XtsyVsZostelRoute
+  AdminActivityRoute: typeof AdminActivityRoute
+  AdminAuditRoute: typeof AdminAuditRoute
+  AdminBookingsRoute: typeof AdminBookingsRoute
+  AdminChannelsRoute: typeof AdminChannelsRoute
+  AdminChatsRoute: typeof AdminChatsRoute
+  AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminDatalayerRoute: typeof AdminDatalayerRoute
+  AdminDemandRoute: typeof AdminDemandRoute
+  AdminEnquiriesRoute: typeof AdminEnquiriesRoute
+  AdminFinanceRoute: typeof AdminFinanceRoute
+  AdminFranchisePermissionsRoute: typeof AdminFranchisePermissionsRoute
+  AdminFranchisesRoute: typeof AdminFranchisesRoute
+  AdminGstRoute: typeof AdminGstRoute
+  AdminInstallRoute: typeof AdminInstallRoute
+  AdminInventoryRoute: typeof AdminInventoryRoute
+  AdminOtasRoute: typeof AdminOtasRoute
+  AdminPropertiesRoute: typeof AdminPropertiesRoute
+  AdminReviewsRoute: typeof AdminReviewsRoute
+  AdminSearchRoute: typeof AdminSearchRoute
+  AdminSecurityRoute: typeof AdminSecurityRoute
+  AdminToursRoute: typeof AdminToursRoute
+  AdminTrafficRoute: typeof AdminTrafficRoute
+  AdminWhatsappRoute: typeof AdminWhatsappRoute
+  BookCampsiteRoute: typeof BookCampsiteRoute
+  BookSelectRoute: typeof BookSelectRoute
+  FranchiseInstallRoute: typeof FranchiseInstallRoute
+  FranchiseLoginRoute: typeof FranchiseLoginRoute
+  PlacesToVisitSlugRoute: typeof PlacesToVisitSlugRoute
+  TabBistroCateringRoute: typeof TabBistroCateringRoute
+  ToursSlugRoute: typeof ToursSlugRoute
+  TravelGuideGuwahatiToShillongTransportRoute: typeof TravelGuideGuwahatiToShillongTransportRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+  BookIndexRoute: typeof BookIndexRoute
+  FranchiseIndexRoute: typeof FranchiseIndexRoute
+  TabBistroIndexRoute: typeof TabBistroIndexRoute
+  ToursIndexRoute: typeof ToursIndexRoute
+  DotlovableOauthConsentRoute: typeof DotlovableOauthConsentRoute
+  AdminAnalyticsLoaderEventsRoute: typeof AdminAnalyticsLoaderEventsRoute
+  AdminAnalyticsRumCompareRoute: typeof AdminAnalyticsRumCompareRoute
+  AdminAnalyticsSearchRoute: typeof AdminAnalyticsSearchRoute
+  AdminSeoCompetitorsRoute: typeof AdminSeoCompetitorsRoute
+  AdminSeoFunnelRoute: typeof AdminSeoFunnelRoute
+  AdminSeoGscErrorsRoute: typeof AdminSeoGscErrorsRoute
+  AdminSeoHeroManagerRoute: typeof AdminSeoHeroManagerRoute
+  AdminSeoPriorityRoute: typeof AdminSeoPriorityRoute
+  AdminSeoRecoveryRoute: typeof AdminSeoRecoveryRoute
+  AdminSeoSchemaResultsRoute: typeof AdminSeoSchemaResultsRoute
+  AdminSeoTrackingRoute: typeof AdminSeoTrackingRoute
+  AdminSeoWorkflowRoute: typeof AdminSeoWorkflowRoute
+  AdminAnalyticsIndexRoute: typeof AdminAnalyticsIndexRoute
+  AdminSeoIndexRoute: typeof AdminSeoIndexRoute
 }
 
-const rootRouteChildren: RootRouteChildren = {}
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$slug': {
+      id: '/$slug'
+      path: '/$slug'
+      fullPath: '/$slug'
+      preLoaderRoute: typeof SlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/3-day-meghalaya-itinerary': {
+      id: '/3-day-meghalaya-itinerary'
+      path: '/3-day-meghalaya-itinerary'
+      fullPath: '/3-day-meghalaya-itinerary'
+      preLoaderRoute: typeof R3DayMeghalayaItineraryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/5-day-meghalaya-itinerary': {
+      id: '/5-day-meghalaya-itinerary'
+      path: '/5-day-meghalaya-itinerary'
+      fullPath: '/5-day-meghalaya-itinerary'
+      preLoaderRoute: typeof R5DayMeghalayaItineraryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin-login': {
+      id: '/admin-login'
+      path: '/admin-login'
+      fullPath: '/admin-login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/backpacking-india': {
+      id: '/backpacking-india'
+      path: '/backpacking-india'
+      fullPath: '/backpacking-india'
+      preLoaderRoute: typeof BackpackingIndiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/best-hostel-in-shillong': {
+      id: '/best-hostel-in-shillong'
+      path: '/best-hostel-in-shillong'
+      fullPath: '/best-hostel-in-shillong'
+      preLoaderRoute: typeof BestHostelInShillongRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/best-time-to-visit-meghalaya': {
+      id: '/best-time-to-visit-meghalaya'
+      path: '/best-time-to-visit-meghalaya'
+      fullPath: '/best-time-to-visit-meghalaya'
+      preLoaderRoute: typeof BestTimeToVisitMeghalayaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/book-hostel-shillong': {
+      id: '/book-hostel-shillong'
+      path: '/book-hostel-shillong'
+      fullPath: '/book-hostel-shillong'
+      preLoaderRoute: typeof BookHostelShillongRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/budget-trip-to-meghalaya': {
+      id: '/budget-trip-to-meghalaya'
+      path: '/budget-trip-to-meghalaya'
+      fullPath: '/budget-trip-to-meghalaya'
+      preLoaderRoute: typeof BudgetTripToMeghalayaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/catering-shillong': {
+      id: '/catering-shillong'
+      path: '/catering-shillong'
+      fullPath: '/catering-shillong'
+      preLoaderRoute: typeof CateringShillongRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact-us': {
+      id: '/contact-us'
+      path: '/contact-us'
+      fullPath: '/contact-us'
+      preLoaderRoute: typeof ContactUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/destination-wedding-shillong': {
+      id: '/destination-wedding-shillong'
+      path: '/destination-wedding-shillong'
+      fullPath: '/destination-wedding-shillong'
+      preLoaderRoute: typeof DestinationWeddingShillongRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/female-travellers': {
+      id: '/female-travellers'
+      path: '/female-travellers'
+      fullPath: '/female-travellers'
+      preLoaderRoute: typeof FemaleTravellersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/group-bookings-meghalaya': {
+      id: '/group-bookings-meghalaya'
+      path: '/group-bookings-meghalaya'
+      fullPath: '/group-bookings-meghalaya'
+      preLoaderRoute: typeof GroupBookingsMeghalayaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hidden-places-in-meghalaya': {
+      id: '/hidden-places-in-meghalaya'
+      path: '/hidden-places-in-meghalaya'
+      fullPath: '/hidden-places-in-meghalaya'
+      preLoaderRoute: typeof HiddenPlacesInMeghalayaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/homestays-in-shillong': {
+      id: '/homestays-in-shillong'
+      path: '/homestays-in-shillong'
+      fullPath: '/homestays-in-shillong'
+      preLoaderRoute: typeof HomestaysInShillongRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hostel-booking': {
+      id: '/hostel-booking'
+      path: '/hostel-booking'
+      fullPath: '/hostel-booking'
+      preLoaderRoute: typeof HostelBookingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hostel-near-me': {
+      id: '/hostel-near-me'
+      path: '/hostel-near-me'
+      fullPath: '/hostel-near-me'
+      preLoaderRoute: typeof HostelNearMeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hotels-in-shillong': {
+      id: '/hotels-in-shillong'
+      path: '/hotels-in-shillong'
+      fullPath: '/hotels-in-shillong'
+      preLoaderRoute: typeof HotelsInShillongRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/install': {
+      id: '/install'
+      path: '/install'
+      fullPath: '/install'
+      preLoaderRoute: typeof InstallRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/luxury-glamping-shillong': {
+      id: '/luxury-glamping-shillong'
+      path: '/luxury-glamping-shillong'
+      fullPath: '/luxury-glamping-shillong'
+      preLoaderRoute: typeof LuxuryGlampingShillongRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/meghalaya-caves': {
+      id: '/meghalaya-caves'
+      path: '/meghalaya-caves'
+      fullPath: '/meghalaya-caves'
+      preLoaderRoute: typeof MeghalayaCavesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/meghalaya-couple-tour-package': {
+      id: '/meghalaya-couple-tour-package'
+      path: '/meghalaya-couple-tour-package'
+      fullPath: '/meghalaya-couple-tour-package'
+      preLoaderRoute: typeof MeghalayaCoupleTourPackageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/meghalaya-photo-gallery': {
+      id: '/meghalaya-photo-gallery'
+      path: '/meghalaya-photo-gallery'
+      fullPath: '/meghalaya-photo-gallery'
+      preLoaderRoute: typeof MeghalayaPhotoGalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/meghalaya-tour-packages': {
+      id: '/meghalaya-tour-packages'
+      path: '/meghalaya-tour-packages'
+      fullPath: '/meghalaya-tour-packages'
+      preLoaderRoute: typeof MeghalayaTourPackagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/meghalaya-viewpoints': {
+      id: '/meghalaya-viewpoints'
+      path: '/meghalaya-viewpoints'
+      fullPath: '/meghalaya-viewpoints'
+      preLoaderRoute: typeof MeghalayaViewpointsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/meghalaya-villages': {
+      id: '/meghalaya-villages'
+      path: '/meghalaya-villages'
+      fullPath: '/meghalaya-villages'
+      preLoaderRoute: typeof MeghalayaVillagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/meghalaya-waterfalls': {
+      id: '/meghalaya-waterfalls'
+      path: '/meghalaya-waterfalls'
+      fullPath: '/meghalaya-waterfalls'
+      preLoaderRoute: typeof MeghalayaWaterfallsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pet-friendly': {
+      id: '/pet-friendly'
+      path: '/pet-friendly'
+      fullPath: '/pet-friendly'
+      preLoaderRoute: typeof PetFriendlyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/places-to-visit-in-meghalaya': {
+      id: '/places-to-visit-in-meghalaya'
+      path: '/places-to-visit-in-meghalaya'
+      fullPath: '/places-to-visit-in-meghalaya'
+      preLoaderRoute: typeof PlacesToVisitInMeghalayaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing-cancellation-policy': {
+      id: '/pricing-cancellation-policy'
+      path: '/pricing-cancellation-policy'
+      fullPath: '/pricing-cancellation-policy'
+      preLoaderRoute: typeof PricingCancellationPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/refund-cancellation-policy': {
+      id: '/refund-cancellation-policy'
+      path: '/refund-cancellation-policy'
+      fullPath: '/refund-cancellation-policy'
+      preLoaderRoute: typeof RefundCancellationPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/restaurant-in-shillong': {
+      id: '/restaurant-in-shillong'
+      path: '/restaurant-in-shillong'
+      fullPath: '/restaurant-in-shillong'
+      preLoaderRoute: typeof RestaurantInShillongRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shillong-tour-package': {
+      id: '/shillong-tour-package'
+      path: '/shillong-tour-package'
+      fullPath: '/shillong-tour-package'
+      preLoaderRoute: typeof ShillongTourPackageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms-of-service': {
+      id: '/terms-of-service'
+      path: '/terms-of-service'
+      fullPath: '/terms-of-service'
+      preLoaderRoute: typeof TermsOfServiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/things-to-do-in-meghalaya': {
+      id: '/things-to-do-in-meghalaya'
+      path: '/things-to-do-in-meghalaya'
+      fullPath: '/things-to-do-in-meghalaya'
+      preLoaderRoute: typeof ThingsToDoInMeghalayaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/travel': {
+      id: '/travel'
+      path: '/travel'
+      fullPath: '/travel'
+      preLoaderRoute: typeof TravelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/unsubscribe': {
+      id: '/unsubscribe'
+      path: '/unsubscribe'
+      fullPath: '/unsubscribe'
+      preLoaderRoute: typeof UnsubscribeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work-from-home': {
+      id: '/work-from-home'
+      path: '/work-from-home'
+      fullPath: '/work-from-home'
+      preLoaderRoute: typeof WorkFromHomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/xtsy-270': {
+      id: '/xtsy-270'
+      path: '/xtsy-270'
+      fullPath: '/xtsy-270'
+      preLoaderRoute: typeof Xtsy270RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/xtsy-adventure-campsite-dawki': {
+      id: '/xtsy-adventure-campsite-dawki'
+      path: '/xtsy-adventure-campsite-dawki'
+      fullPath: '/xtsy-adventure-campsite-dawki'
+      preLoaderRoute: typeof XtsyAdventureCampsiteDawkiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/xtsy-rentals': {
+      id: '/xtsy-rentals'
+      path: '/xtsy-rentals'
+      fullPath: '/xtsy-rentals'
+      preLoaderRoute: typeof XtsyRentalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/xtsy-vs-zostel': {
+      id: '/xtsy-vs-zostel'
+      path: '/xtsy-vs-zostel'
+      fullPath: '/xtsy-vs-zostel'
+      preLoaderRoute: typeof XtsyVsZostelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/activity': {
+      id: '/admin/activity'
+      path: '/admin/activity'
+      fullPath: '/admin/activity'
+      preLoaderRoute: typeof AdminActivityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/audit': {
+      id: '/admin/audit'
+      path: '/admin/audit'
+      fullPath: '/admin/audit'
+      preLoaderRoute: typeof AdminAuditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/bookings': {
+      id: '/admin/bookings'
+      path: '/admin/bookings'
+      fullPath: '/admin/bookings'
+      preLoaderRoute: typeof AdminBookingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/channels': {
+      id: '/admin/channels'
+      path: '/admin/channels'
+      fullPath: '/admin/channels'
+      preLoaderRoute: typeof AdminChannelsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/chats': {
+      id: '/admin/chats'
+      path: '/admin/chats'
+      fullPath: '/admin/chats'
+      preLoaderRoute: typeof AdminChatsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/dashboard': {
+      id: '/admin/dashboard'
+      path: '/admin/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/datalayer': {
+      id: '/admin/datalayer'
+      path: '/admin/datalayer'
+      fullPath: '/admin/datalayer'
+      preLoaderRoute: typeof AdminDatalayerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/demand': {
+      id: '/admin/demand'
+      path: '/admin/demand'
+      fullPath: '/admin/demand'
+      preLoaderRoute: typeof AdminDemandRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/enquiries': {
+      id: '/admin/enquiries'
+      path: '/admin/enquiries'
+      fullPath: '/admin/enquiries'
+      preLoaderRoute: typeof AdminEnquiriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/finance': {
+      id: '/admin/finance'
+      path: '/admin/finance'
+      fullPath: '/admin/finance'
+      preLoaderRoute: typeof AdminFinanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/franchise-permissions': {
+      id: '/admin/franchise-permissions'
+      path: '/admin/franchise-permissions'
+      fullPath: '/admin/franchise-permissions'
+      preLoaderRoute: typeof AdminFranchisePermissionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/franchises': {
+      id: '/admin/franchises'
+      path: '/admin/franchises'
+      fullPath: '/admin/franchises'
+      preLoaderRoute: typeof AdminFranchisesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/gst': {
+      id: '/admin/gst'
+      path: '/admin/gst'
+      fullPath: '/admin/gst'
+      preLoaderRoute: typeof AdminGstRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/install': {
+      id: '/admin/install'
+      path: '/admin/install'
+      fullPath: '/admin/install'
+      preLoaderRoute: typeof AdminInstallRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/inventory': {
+      id: '/admin/inventory'
+      path: '/admin/inventory'
+      fullPath: '/admin/inventory'
+      preLoaderRoute: typeof AdminInventoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/otas': {
+      id: '/admin/otas'
+      path: '/admin/otas'
+      fullPath: '/admin/otas'
+      preLoaderRoute: typeof AdminOtasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/properties': {
+      id: '/admin/properties'
+      path: '/admin/properties'
+      fullPath: '/admin/properties'
+      preLoaderRoute: typeof AdminPropertiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/reviews': {
+      id: '/admin/reviews'
+      path: '/admin/reviews'
+      fullPath: '/admin/reviews'
+      preLoaderRoute: typeof AdminReviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/search': {
+      id: '/admin/search'
+      path: '/admin/search'
+      fullPath: '/admin/search'
+      preLoaderRoute: typeof AdminSearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/security': {
+      id: '/admin/security'
+      path: '/admin/security'
+      fullPath: '/admin/security'
+      preLoaderRoute: typeof AdminSecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/tours': {
+      id: '/admin/tours'
+      path: '/admin/tours'
+      fullPath: '/admin/tours'
+      preLoaderRoute: typeof AdminToursRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/traffic': {
+      id: '/admin/traffic'
+      path: '/admin/traffic'
+      fullPath: '/admin/traffic'
+      preLoaderRoute: typeof AdminTrafficRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/whatsapp': {
+      id: '/admin/whatsapp'
+      path: '/admin/whatsapp'
+      fullPath: '/admin/whatsapp'
+      preLoaderRoute: typeof AdminWhatsappRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/book/': {
+      id: '/book/'
+      path: '/book'
+      fullPath: '/book/'
+      preLoaderRoute: typeof BookIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/book/campsite': {
+      id: '/book/campsite'
+      path: '/book/campsite'
+      fullPath: '/book/campsite'
+      preLoaderRoute: typeof BookCampsiteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/book/select': {
+      id: '/book/select'
+      path: '/book/select'
+      fullPath: '/book/select'
+      preLoaderRoute: typeof BookSelectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/franchise/': {
+      id: '/franchise/'
+      path: '/franchise'
+      fullPath: '/franchise/'
+      preLoaderRoute: typeof FranchiseIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/franchise/install': {
+      id: '/franchise/install'
+      path: '/franchise/install'
+      fullPath: '/franchise/install'
+      preLoaderRoute: typeof FranchiseInstallRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/franchise/login': {
+      id: '/franchise/login'
+      path: '/franchise/login'
+      fullPath: '/franchise/login'
+      preLoaderRoute: typeof FranchiseLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/places-to-visit/$slug': {
+      id: '/places-to-visit/$slug'
+      path: '/places-to-visit/$slug'
+      fullPath: '/places-to-visit/$slug'
+      preLoaderRoute: typeof PlacesToVisitSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tab-bistro/': {
+      id: '/tab-bistro/'
+      path: '/tab-bistro'
+      fullPath: '/tab-bistro/'
+      preLoaderRoute: typeof TabBistroIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tab-bistro/catering': {
+      id: '/tab-bistro/catering'
+      path: '/tab-bistro/catering'
+      fullPath: '/tab-bistro/catering'
+      preLoaderRoute: typeof TabBistroCateringRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tours/': {
+      id: '/tours/'
+      path: '/tours'
+      fullPath: '/tours/'
+      preLoaderRoute: typeof ToursIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tours/$slug': {
+      id: '/tours/$slug'
+      path: '/tours/$slug'
+      fullPath: '/tours/$slug'
+      preLoaderRoute: typeof ToursSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/travel-guide/guwahati-to-shillong-transport': {
+      id: '/travel-guide/guwahati-to-shillong-transport'
+      path: '/travel-guide/guwahati-to-shillong-transport'
+      fullPath: '/travel-guide/guwahati-to-shillong-transport'
+      preLoaderRoute: typeof TravelGuideGuwahatiToShillongTransportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/.lovable/oauth/consent': {
+      id: '/.lovable/oauth/consent'
+      path: '/.lovable/oauth/consent'
+      fullPath: '/.lovable/oauth/consent'
+      preLoaderRoute: typeof DotlovableOauthConsentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/analytics/': {
+      id: '/admin/analytics/'
+      path: '/admin/analytics'
+      fullPath: '/admin/analytics/'
+      preLoaderRoute: typeof AdminAnalyticsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/analytics/loader-events': {
+      id: '/admin/analytics/loader-events'
+      path: '/admin/analytics/loader-events'
+      fullPath: '/admin/analytics/loader-events'
+      preLoaderRoute: typeof AdminAnalyticsLoaderEventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/analytics/rum-compare': {
+      id: '/admin/analytics/rum-compare'
+      path: '/admin/analytics/rum-compare'
+      fullPath: '/admin/analytics/rum-compare'
+      preLoaderRoute: typeof AdminAnalyticsRumCompareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/analytics/search': {
+      id: '/admin/analytics/search'
+      path: '/admin/analytics/search'
+      fullPath: '/admin/analytics/search'
+      preLoaderRoute: typeof AdminAnalyticsSearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/seo/': {
+      id: '/admin/seo/'
+      path: '/admin/seo'
+      fullPath: '/admin/seo/'
+      preLoaderRoute: typeof AdminSeoIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/seo/competitors': {
+      id: '/admin/seo/competitors'
+      path: '/admin/seo/competitors'
+      fullPath: '/admin/seo/competitors'
+      preLoaderRoute: typeof AdminSeoCompetitorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/seo/funnel': {
+      id: '/admin/seo/funnel'
+      path: '/admin/seo/funnel'
+      fullPath: '/admin/seo/funnel'
+      preLoaderRoute: typeof AdminSeoFunnelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/seo/gsc-errors': {
+      id: '/admin/seo/gsc-errors'
+      path: '/admin/seo/gsc-errors'
+      fullPath: '/admin/seo/gsc-errors'
+      preLoaderRoute: typeof AdminSeoGscErrorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/seo/hero-manager': {
+      id: '/admin/seo/hero-manager'
+      path: '/admin/seo/hero-manager'
+      fullPath: '/admin/seo/hero-manager'
+      preLoaderRoute: typeof AdminSeoHeroManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/seo/priority': {
+      id: '/admin/seo/priority'
+      path: '/admin/seo/priority'
+      fullPath: '/admin/seo/priority'
+      preLoaderRoute: typeof AdminSeoPriorityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/seo/recovery': {
+      id: '/admin/seo/recovery'
+      path: '/admin/seo/recovery'
+      fullPath: '/admin/seo/recovery'
+      preLoaderRoute: typeof AdminSeoRecoveryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/seo/schema-results': {
+      id: '/admin/seo/schema-results'
+      path: '/admin/seo/schema-results'
+      fullPath: '/admin/seo/schema-results'
+      preLoaderRoute: typeof AdminSeoSchemaResultsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/seo/tracking': {
+      id: '/admin/seo/tracking'
+      path: '/admin/seo/tracking'
+      fullPath: '/admin/seo/tracking'
+      preLoaderRoute: typeof AdminSeoTrackingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/seo/workflow': {
+      id: '/admin/seo/workflow'
+      path: '/admin/seo/workflow'
+      fullPath: '/admin/seo/workflow'
+      preLoaderRoute: typeof AdminSeoWorkflowRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+  }
+}
+
+const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
+  SlugRoute: SlugRoute,
+  R3DayMeghalayaItineraryRoute: R3DayMeghalayaItineraryRoute,
+  R5DayMeghalayaItineraryRoute: R5DayMeghalayaItineraryRoute,
+  AboutRoute: AboutRoute,
+  AdminLoginRoute: AdminLoginRoute,
+  AuthRoute: AuthRoute,
+  BackpackingIndiaRoute: BackpackingIndiaRoute,
+  BestHostelInShillongRoute: BestHostelInShillongRoute,
+  BestTimeToVisitMeghalayaRoute: BestTimeToVisitMeghalayaRoute,
+  BookHostelShillongRoute: BookHostelShillongRoute,
+  BudgetTripToMeghalayaRoute: BudgetTripToMeghalayaRoute,
+  CateringShillongRoute: CateringShillongRoute,
+  ContactRoute: ContactRoute,
+  ContactUsRoute: ContactUsRoute,
+  DestinationWeddingShillongRoute: DestinationWeddingShillongRoute,
+  FemaleTravellersRoute: FemaleTravellersRoute,
+  GalleryRoute: GalleryRoute,
+  GroupBookingsMeghalayaRoute: GroupBookingsMeghalayaRoute,
+  HiddenPlacesInMeghalayaRoute: HiddenPlacesInMeghalayaRoute,
+  HomestaysInShillongRoute: HomestaysInShillongRoute,
+  HostelBookingRoute: HostelBookingRoute,
+  HostelNearMeRoute: HostelNearMeRoute,
+  HotelsInShillongRoute: HotelsInShillongRoute,
+  InstallRoute: InstallRoute,
+  LuxuryGlampingShillongRoute: LuxuryGlampingShillongRoute,
+  MeghalayaCavesRoute: MeghalayaCavesRoute,
+  MeghalayaCoupleTourPackageRoute: MeghalayaCoupleTourPackageRoute,
+  MeghalayaPhotoGalleryRoute: MeghalayaPhotoGalleryRoute,
+  MeghalayaTourPackagesRoute: MeghalayaTourPackagesRoute,
+  MeghalayaViewpointsRoute: MeghalayaViewpointsRoute,
+  MeghalayaVillagesRoute: MeghalayaVillagesRoute,
+  MeghalayaWaterfallsRoute: MeghalayaWaterfallsRoute,
+  PetFriendlyRoute: PetFriendlyRoute,
+  PlacesToVisitInMeghalayaRoute: PlacesToVisitInMeghalayaRoute,
+  PricingCancellationPolicyRoute: PricingCancellationPolicyRoute,
+  PrivacyRoute: PrivacyRoute,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
+  ProfileRoute: ProfileRoute,
+  RefundCancellationPolicyRoute: RefundCancellationPolicyRoute,
+  RestaurantInShillongRoute: RestaurantInShillongRoute,
+  ShillongTourPackageRoute: ShillongTourPackageRoute,
+  TermsRoute: TermsRoute,
+  TermsOfServiceRoute: TermsOfServiceRoute,
+  ThingsToDoInMeghalayaRoute: ThingsToDoInMeghalayaRoute,
+  TravelRoute: TravelRoute,
+  UnsubscribeRoute: UnsubscribeRoute,
+  WorkFromHomeRoute: WorkFromHomeRoute,
+  Xtsy270Route: Xtsy270Route,
+  XtsyAdventureCampsiteDawkiRoute: XtsyAdventureCampsiteDawkiRoute,
+  XtsyRentalsRoute: XtsyRentalsRoute,
+  XtsyVsZostelRoute: XtsyVsZostelRoute,
+  AdminActivityRoute: AdminActivityRoute,
+  AdminAuditRoute: AdminAuditRoute,
+  AdminBookingsRoute: AdminBookingsRoute,
+  AdminChannelsRoute: AdminChannelsRoute,
+  AdminChatsRoute: AdminChatsRoute,
+  AdminDashboardRoute: AdminDashboardRoute,
+  AdminDatalayerRoute: AdminDatalayerRoute,
+  AdminDemandRoute: AdminDemandRoute,
+  AdminEnquiriesRoute: AdminEnquiriesRoute,
+  AdminFinanceRoute: AdminFinanceRoute,
+  AdminFranchisePermissionsRoute: AdminFranchisePermissionsRoute,
+  AdminFranchisesRoute: AdminFranchisesRoute,
+  AdminGstRoute: AdminGstRoute,
+  AdminInstallRoute: AdminInstallRoute,
+  AdminInventoryRoute: AdminInventoryRoute,
+  AdminOtasRoute: AdminOtasRoute,
+  AdminPropertiesRoute: AdminPropertiesRoute,
+  AdminReviewsRoute: AdminReviewsRoute,
+  AdminSearchRoute: AdminSearchRoute,
+  AdminSecurityRoute: AdminSecurityRoute,
+  AdminToursRoute: AdminToursRoute,
+  AdminTrafficRoute: AdminTrafficRoute,
+  AdminWhatsappRoute: AdminWhatsappRoute,
+  BookCampsiteRoute: BookCampsiteRoute,
+  BookSelectRoute: BookSelectRoute,
+  FranchiseInstallRoute: FranchiseInstallRoute,
+  FranchiseLoginRoute: FranchiseLoginRoute,
+  PlacesToVisitSlugRoute: PlacesToVisitSlugRoute,
+  TabBistroCateringRoute: TabBistroCateringRoute,
+  ToursSlugRoute: ToursSlugRoute,
+  TravelGuideGuwahatiToShillongTransportRoute:
+    TravelGuideGuwahatiToShillongTransportRoute,
+  AdminIndexRoute: AdminIndexRoute,
+  BookIndexRoute: BookIndexRoute,
+  FranchiseIndexRoute: FranchiseIndexRoute,
+  TabBistroIndexRoute: TabBistroIndexRoute,
+  ToursIndexRoute: ToursIndexRoute,
+  DotlovableOauthConsentRoute: DotlovableOauthConsentRoute,
+  AdminAnalyticsLoaderEventsRoute: AdminAnalyticsLoaderEventsRoute,
+  AdminAnalyticsRumCompareRoute: AdminAnalyticsRumCompareRoute,
+  AdminAnalyticsSearchRoute: AdminAnalyticsSearchRoute,
+  AdminSeoCompetitorsRoute: AdminSeoCompetitorsRoute,
+  AdminSeoFunnelRoute: AdminSeoFunnelRoute,
+  AdminSeoGscErrorsRoute: AdminSeoGscErrorsRoute,
+  AdminSeoHeroManagerRoute: AdminSeoHeroManagerRoute,
+  AdminSeoPriorityRoute: AdminSeoPriorityRoute,
+  AdminSeoRecoveryRoute: AdminSeoRecoveryRoute,
+  AdminSeoSchemaResultsRoute: AdminSeoSchemaResultsRoute,
+  AdminSeoTrackingRoute: AdminSeoTrackingRoute,
+  AdminSeoWorkflowRoute: AdminSeoWorkflowRoute,
+  AdminAnalyticsIndexRoute: AdminAnalyticsIndexRoute,
+  AdminSeoIndexRoute: AdminSeoIndexRoute,
+}
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()

@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "@/lib/router-compat";
 import { useEffect, useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { SEOHead } from "@/components/SEOHead";
