@@ -89,6 +89,7 @@ export interface BotSignal {
  * Generate a unique visitor ID (persisted in localStorage)
  */
 export const generateVisitorId = (): string => {
+  if (typeof window === 'undefined') return 'v_ssr';
   const stored = localStorage.getItem('xtsy_vid');
   if (stored) return stored;
   
@@ -101,6 +102,7 @@ export const generateVisitorId = (): string => {
  * Generate a session ID (persisted in sessionStorage with 30-min timeout)
  */
 export const generateSessionId = (): string => {
+  if (typeof window === 'undefined') return 's_ssr';
   const SESSION_TIMEOUT = 30 * 60 * 1000; // 30 minutes
   const stored = sessionStorage.getItem('xtsy_sid');
   const lastActivity = sessionStorage.getItem('xtsy_last_activity');
@@ -1021,11 +1023,29 @@ class TrafficAnalyticsService {
   getClickQualityScore = () => this.computeClickQualityScore();
 }
 
-// Export singleton instance
-export const trafficAnalytics = new TrafficAnalyticsService();
+// Export singleton instance — lazily created so importing this module during
+// SSR never touches localStorage/sessionStorage/navigator. The instance is
+// only constructed on first property access, which happens client-side.
+let _instance: TrafficAnalyticsService | null = null;
+const getInstance = (): TrafficAnalyticsService => {
+  if (!_instance) _instance = new TrafficAnalyticsService();
+  return _instance;
+};
+
+export const trafficAnalytics: TrafficAnalyticsService = new Proxy(
+  {} as TrafficAnalyticsService,
+  {
+    get(_target, prop: string | symbol) {
+      const inst = getInstance();
+      const value = inst[prop as keyof TrafficAnalyticsService];
+      return typeof value === 'function' ? (value as Function).bind(inst) : value;
+    },
+  }
+);
 
 // Export initialization function
 export const initTrafficAnalytics = async () => {
+  if (typeof window === 'undefined') return;
   await trafficAnalytics.initSession();
   trafficAnalytics.trackPageView();
 };

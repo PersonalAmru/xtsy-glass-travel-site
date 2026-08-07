@@ -115,7 +115,17 @@ export function InventoryCalendarView() {
       setBlockedDates(blockedRes.data || []);
       setInventory((inventoryRes.data || []) as InventoryEntry[]);
       setBookings((bookingsRes.data || []) as BookingEntry[]);
-      setPricingRules(pricingRes.data || []);
+      setPricingRules(
+        (pricingRes.data || [])
+          .filter((r) => r.room_type_id && r.start_date && r.end_date)
+          .map((r) => ({
+            ...r,
+            room_type_id: r.room_type_id!,
+            start_date: r.start_date!,
+            end_date: r.end_date!,
+            is_active: r.is_active ?? true,
+          }))
+      );
     } catch (error) {
       console.error('Failed to fetch calendar data:', error);
       toast.error('Failed to load calendar data');

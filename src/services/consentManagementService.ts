@@ -154,7 +154,7 @@ class ConsentManagementService {
    * Load preferences from localStorage
    */
   private loadPreferences(): ConsentPreferences {
-    const stored = localStorage.getItem('xtsy_consent_v2');
+    const stored = typeof window !== 'undefined' ? localStorage.getItem('xtsy_consent_v2') : null;
     if (stored) {
       try {
         return JSON.parse(stored);
@@ -348,17 +348,28 @@ class ConsentManagementService {
     consentedAt: string | null;
     preferences: ConsentPreferences;
   } {
-    const timestamp = localStorage.getItem('xtsy_consent_timestamp');
+    const canStore = typeof window !== 'undefined';
+    const timestamp = canStore ? localStorage.getItem('xtsy_consent_timestamp') : null;
     return {
-      hasConsented: !!localStorage.getItem('xtsy_consent_v2'),
+      hasConsented: canStore ? !!localStorage.getItem('xtsy_consent_v2') : false,
       consentedAt: timestamp,
       preferences: this.preferences,
     };
   }
 }
 
-// Export singleton instance
-export const consentManager = ConsentManagementService.getInstance();
+// Export singleton instance — lazily created via Proxy so importing this
+// module during SSR never touches localStorage.
+export const consentManager: ConsentManagementService = new Proxy(
+  {} as ConsentManagementService,
+  {
+    get(_target, prop: string | symbol) {
+      const inst = ConsentManagementService.getInstance();
+      const value = inst[prop as keyof ConsentManagementService];
+      return typeof value === 'function' ? (value as Function).bind(inst) : value;
+    },
+  }
+);
 
 // Export convenience functions
 export const initConsent = () => consentManager.initialize();
