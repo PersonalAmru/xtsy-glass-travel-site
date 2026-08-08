@@ -1,11 +1,8 @@
-/* Fonts loaded via index.html preload (non-blocking) — DO NOT use @import here */
-/* @import url for Google Fonts was render-blocking and adding 1-2s to LCP */
+/* Fonts loaded via root head() preload (non-blocking) — DO NOT use @import url() for Google Fonts here */
+/* Tailwind v4: this file is imported by src/styles.css after `@import "tailwindcss"` —
+   the old `@tailwind base/components/utilities` directives are gone. */
 @import './responsive.css';
 @import './ios-optimizations.css';
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 /* Marquee keyframes — defined here so inline style references work (Tailwind tree-shakes unused utility keyframes) */
 @keyframes marquee-left {
