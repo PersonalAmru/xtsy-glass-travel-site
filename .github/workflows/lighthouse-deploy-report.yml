@@ -6,7 +6,7 @@ name: Lighthouse Deploy Report
 
 on:
   schedule:
-    - cron: '0 4 * * 1'  # weekly (Mon 04:00 UTC) — reduced from every 6h to cut backend usage
+    - cron: '0 */6 * * *'  # every 6 hours
   workflow_dispatch:
     inputs:
       urls:

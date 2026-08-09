@@ -5550,54 +5550,6 @@ export type Database = {
         }
         Relationships: []
       }
-      reviews_public: {
-        Row: {
-          created_at: string | null
-          guest_name: string | null
-          id: string | null
-          photos: string[] | null
-          property_id: string | null
-          rating: number | null
-          review_text: string | null
-          verified: boolean | null
-        }
-        Insert: {
-          created_at?: string | null
-          guest_name?: string | null
-          id?: string | null
-          photos?: string[] | null
-          property_id?: string | null
-          rating?: number | null
-          review_text?: string | null
-          verified?: boolean | null
-        }
-        Update: {
-          created_at?: string | null
-          guest_name?: string | null
-          id?: string | null
-          photos?: string[] | null
-          property_id?: string | null
-          rating?: number | null
-          review_text?: string | null
-          verified?: boolean | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "reviews_property_id_fkey"
-            columns: ["property_id"]
-            isOneToOne: false
-            referencedRelation: "properties"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "reviews_property_id_fkey"
-            columns: ["property_id"]
-            isOneToOne: false
-            referencedRelation: "public_properties"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       secret_access_log_masked: {
         Row: {
           created_at: string | null
